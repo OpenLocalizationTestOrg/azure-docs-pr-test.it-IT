@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Ricerca di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: "Informazioni su come aggiungere solide funzionalità di ricerca, tra cui il monitoraggio delle attività, alle applicazioni mobili o Web. Informazioni di riferimento sulle API e altri documenti."
+title: aaaAzure ricerca documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: "Informazioni su come tooadd affidabile ricerca funzionalità, tra cui il monitoraggio dell'attività, toocustom web o applicazioni per dispositivi mobili. Informazioni di riferimento sulle API e altri documenti."
 services: search
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 7fffe78bebd6799cad544c12c20eb1926975a68f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2ef61d7bf68e94c4429ba1b13709ee9b31093b71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-search-documentation"></a>Documentazione di Ricerca di Azure
 
-Informazioni su come aggiungere funzionalità alle app per dispositivi mobili o Web usando Ricerca di Azure, un servizio di ricerca cloud gestito. Esercitazioni, informazioni di riferimento sulle API e altri documenti mostrano come aggiungere la ricerca full-text scalabile in più lingue, la ricerca geospaziale, i filtri l'esplorazione in base a facet, query con completamento automatico, l'evidenziazione dei riscontri e gli analizzatori personalizzati.
+Informazioni su come tooadd ricerca web di funzionalità tooyour personalizzato o App per dispositivi mobili mediante la ricerca di Azure, un servizio di ricerca cloud gestito. Altra documentazione, esercitazioni e riferimenti alle API indicano come tooadd ricerca full-text di scalabili in più lingue, ricerca geografica spaziali, filtro e navigazione con facet, le query con completamento, evidenziazione e analizzatori personalizzati.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Informazioni su come aggiungere funzionalità alle app per dispositivi mobili o 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione a Ricerca di Azure nel portale di Azure</h3>
+                        <h3>Introduzione a ricerca di Azure usando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>

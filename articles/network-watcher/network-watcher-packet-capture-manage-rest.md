@@ -1,6 +1,6 @@
 ---
-title: 'Gestire le acquisizioni di pacchetti con Azure Network Watcher: API REST | Microsoft Docs'
-description: "Questa pagina illustra come gestire la funzionalità di acquisizione di pacchetti di Network Watcher usando l'API REST"
+title: acquisizioni di pacchetti aaaManage con Watcher di rete di Azure - API REST | Documenti Microsoft
+description: "Questa pagina viene illustrato come toomanage hello funzionalità di acquisizione di pacchetti di controllo di rete utilizzando l'API REST di Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 49ec20802a252258d8493eb26510270b925e851a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a531fbe796e85e94961bd192d171defb299be05
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-packet-captures-with-azure-network-watcher-using-azure-rest-api"></a><span data-ttu-id="f5ab7-103">Gestire le acquisizioni di pacchetti con Azure Network Watcher usando l'API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="f5ab7-103">Manage packet captures with Azure Network Watcher using Azure REST API</span></span>
+# <a name="manage-packet-captures-with-azure-network-watcher-using-azure-rest-api"></a><span data-ttu-id="67c60-103">Gestire le acquisizioni di pacchetti con Azure Network Watcher usando l'API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="67c60-103">Manage packet captures with Azure Network Watcher using Azure REST API</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="f5ab7-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="f5ab7-104">Azure portal</span></span>](network-watcher-packet-capture-manage-portal.md)
-> - [<span data-ttu-id="f5ab7-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="f5ab7-105">PowerShell</span></span>](network-watcher-packet-capture-manage-powershell.md)
-> - [<span data-ttu-id="f5ab7-106">Interfaccia della riga di comando 1.0</span><span class="sxs-lookup"><span data-stu-id="f5ab7-106">CLI 1.0</span></span>](network-watcher-packet-capture-manage-cli-nodejs.md)
-> - [<span data-ttu-id="f5ab7-107">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="f5ab7-107">CLI 2.0</span></span>](network-watcher-packet-capture-manage-cli.md)
-> - [<span data-ttu-id="f5ab7-108">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="f5ab7-108">Azure REST API</span></span>](network-watcher-packet-capture-manage-rest.md)
+> - [<span data-ttu-id="67c60-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="67c60-104">Azure portal</span></span>](network-watcher-packet-capture-manage-portal.md)
+> - [<span data-ttu-id="67c60-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="67c60-105">PowerShell</span></span>](network-watcher-packet-capture-manage-powershell.md)
+> - [<span data-ttu-id="67c60-106">Interfaccia della riga di comando 1.0</span><span class="sxs-lookup"><span data-stu-id="67c60-106">CLI 1.0</span></span>](network-watcher-packet-capture-manage-cli-nodejs.md)
+> - [<span data-ttu-id="67c60-107">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="67c60-107">CLI 2.0</span></span>](network-watcher-packet-capture-manage-cli.md)
+> - [<span data-ttu-id="67c60-108">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="67c60-108">Azure REST API</span></span>](network-watcher-packet-capture-manage-rest.md)
 
-<span data-ttu-id="f5ab7-109">Il servizio di acquisizione di pacchetti di Network Watcher consente di creare sessioni di acquisizione per registrare il traffico da e verso una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-109">Network Watcher packet capture allows you to create capture sessions to track traffic to and from a virtual machine.</span></span> <span data-ttu-id="f5ab7-110">Sono disponibili filtri per la sessione di acquisizione per garantire che venga acquisito solo il traffico desiderato.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-110">Filters are provided for the capture session to ensure you capture only the traffic you want.</span></span> <span data-ttu-id="f5ab7-111">Il servizio di acquisizione di pacchetti consente di individuare eventuali anomalie di rete in modo proattivo e reattivo.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-111">Packet capture helps to diagnose network anomalies both reactively and proactively.</span></span> <span data-ttu-id="f5ab7-112">Altri utilizzi comprendono la raccolta di statistiche di rete, informazioni sulle intrusioni nella rete, debug delle comunicazioni client-server e molto altro ancora.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-112">Other uses include gathering network statistics, gaining information on network intrusions, to debug client-server communications and much more.</span></span> <span data-ttu-id="f5ab7-113">La possibilità di attivare da remoto l'acquisizione di pacchetti evita di dover eseguire manualmente questa operazione sul computer desiderato, consentendo un notevole risparmio di tempo.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-113">By being able to remotely trigger packet captures, this capability eases the burden of running a packet capture manually and on the desired machine, which saves valuable time.</span></span>
+<span data-ttu-id="67c60-109">Acquisizione di pacchetti di rete Watcher consente tooand toocreate acquisizione sessioni tootrack traffico da una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67c60-109">Network Watcher packet capture allows you toocreate capture sessions tootrack traffic tooand from a virtual machine.</span></span> <span data-ttu-id="67c60-110">I filtri vengono forniti per hello acquisizione sessione tooensure che si acquisisce solo il traffico hello desiderato.</span><span class="sxs-lookup"><span data-stu-id="67c60-110">Filters are provided for hello capture session tooensure you capture only hello traffic you want.</span></span> <span data-ttu-id="67c60-111">Acquisizione di pacchetti consente toodiagnose anomalie di rete in modo proattivo e reattivo.</span><span class="sxs-lookup"><span data-stu-id="67c60-111">Packet capture helps toodiagnose network anomalies both reactively and proactively.</span></span> <span data-ttu-id="67c60-112">Altri usi includono la raccolta di statistiche di rete, ottenere informazioni su intrusioni di rete, client-server toodebug le comunicazioni e molto altro ancora.</span><span class="sxs-lookup"><span data-stu-id="67c60-112">Other uses include gathering network statistics, gaining information on network intrusions, toodebug client-server communications and much more.</span></span> <span data-ttu-id="67c60-113">Essendo in grado di tooremotely trigger pacchetto acquisizioni, questa funzionalità semplifica il carico di hello dell'esecuzione di acquisizione pacchetto eseguita manualmente e nel computer desiderato hello, che consente di risparmiare tempo prezioso.</span><span class="sxs-lookup"><span data-stu-id="67c60-113">By being able tooremotely trigger packet captures, this capability eases hello burden of running a packet capture manually and on hello desired machine, which saves valuable time.</span></span>
 
-<span data-ttu-id="f5ab7-114">Questo articolo illustra le diverse attività di gestione attualmente disponibili per l'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-114">This article takes you through the different management tasks that are currently available for packet capture.</span></span>
+<span data-ttu-id="67c60-114">In questo articolo illustra hello diverse operazioni di gestione che sono attualmente disponibili per l'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="67c60-114">This article takes you through hello different management tasks that are currently available for packet capture.</span></span>
 
-- [<span data-ttu-id="f5ab7-115">**Ottenere un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="f5ab7-115">**Get a packet capture**</span></span>](#get-a-packet-capture)
-- [<span data-ttu-id="f5ab7-116">**Elencare tutte le acquisizioni di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="f5ab7-116">**List all packet captures**</span></span>](#list-all-packet-captures)
-- [<span data-ttu-id="f5ab7-117">**Effettuare una query dello stato di un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="f5ab7-117">**Query the status of a packet capture**</span></span>](#query-packet-capture-status)
-- [<span data-ttu-id="f5ab7-118">**Avviare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="f5ab7-118">**Start a packet capture**</span></span>](#start-packet-capture)
-- [<span data-ttu-id="f5ab7-119">**Interrompere un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="f5ab7-119">**Stop a packet capture**</span></span>](#stop-packet-capture)
-- [<span data-ttu-id="f5ab7-120">**Eliminare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="f5ab7-120">**Delete a packet capture**</span></span>](#delete-packet-capture)
+- [<span data-ttu-id="67c60-115">**Ottenere un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="67c60-115">**Get a packet capture**</span></span>](#get-a-packet-capture)
+- [<span data-ttu-id="67c60-116">**Elencare tutte le acquisizioni di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="67c60-116">**List all packet captures**</span></span>](#list-all-packet-captures)
+- [<span data-ttu-id="67c60-117">**Query hello sullo stato di un'acquisizione pacchetti**</span><span class="sxs-lookup"><span data-stu-id="67c60-117">**Query hello status of a packet capture**</span></span>](#query-packet-capture-status)
+- [<span data-ttu-id="67c60-118">**Avviare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="67c60-118">**Start a packet capture**</span></span>](#start-packet-capture)
+- [<span data-ttu-id="67c60-119">**Interrompere un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="67c60-119">**Stop a packet capture**</span></span>](#stop-packet-capture)
+- [<span data-ttu-id="67c60-120">**Eliminare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="67c60-120">**Delete a packet capture**</span></span>](#delete-packet-capture)
 
-## <a name="before-you-begin"></a><span data-ttu-id="f5ab7-121">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="f5ab7-121">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="67c60-121">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="67c60-121">Before you begin</span></span>
 
-<span data-ttu-id="f5ab7-122">In questo scenario si chiama l'API REST Network Watcher per eseguire la verifica del flusso IP.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-122">In this scenario, you call the Network Watcher Rest API to run IP Flow Verify.</span></span> <span data-ttu-id="f5ab7-123">ARMclient viene usato per chiamare l'API REST con PowerShell.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-123">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="f5ab7-124">ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)</span><span class="sxs-lookup"><span data-stu-id="f5ab7-124">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
+<span data-ttu-id="67c60-122">In questo scenario, si chiama hello toorun di API Rest Watcher di rete IP flusso verificare.</span><span class="sxs-lookup"><span data-stu-id="67c60-122">In this scenario, you call hello Network Watcher Rest API toorun IP Flow Verify.</span></span> <span data-ttu-id="67c60-123">ARMclient è l'API REST di hello toocall utilizzati tramite PowerShell.</span><span class="sxs-lookup"><span data-stu-id="67c60-123">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="67c60-124">ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)</span><span class="sxs-lookup"><span data-stu-id="67c60-124">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
 
-<span data-ttu-id="f5ab7-125">Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-125">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span>
+<span data-ttu-id="67c60-125">Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete.</span><span class="sxs-lookup"><span data-stu-id="67c60-125">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span>
 
-> <span data-ttu-id="f5ab7-126">L'acquisizione di pacchetti richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-126">Packet capture requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="f5ab7-127">Per installare l'estensione in una VM Windows, vedere [Estensione macchina virtuale agente Azure Network Watcher per Windows](../virtual-machines/windows/extensions-nwa.md) e per una VM Linux VM vedere [Estensione macchina virtuale Azure Network Watcher Agent per Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="f5ab7-127">For installing the extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
+> <span data-ttu-id="67c60-126">L'acquisizione di pacchetti richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="67c60-126">Packet capture requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="67c60-127">Per l'installazione dell'estensione hello in una macchina virtuale di Windows, visitare [estensione della macchina virtuale Azure rete Watcher agente per Windows](../virtual-machines/windows/extensions-nwa.md) e per la visita di VM Linux [estensione della macchina virtuale Azure rete Watcher agente per Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="67c60-127">For installing hello extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="f5ab7-128">Accedere con ARMClient</span><span class="sxs-lookup"><span data-stu-id="f5ab7-128">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="67c60-128">Accedere con ARMClient</span><span class="sxs-lookup"><span data-stu-id="67c60-128">Log in with ARMClient</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="f5ab7-129">Recuperare una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="f5ab7-129">Retrieve a virtual machine</span></span>
+## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="67c60-129">Recuperare una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="67c60-129">Retrieve a virtual machine</span></span>
 
-<span data-ttu-id="f5ab7-130">Eseguire lo script seguente per restituire la macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-130">Run the following script to return a virtual machine.</span></span> <span data-ttu-id="f5ab7-131">Queste informazioni sono necessarie per avviare un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-131">This information is needed for starting a packet capture.</span></span>
+<span data-ttu-id="67c60-130">Eseguire hello seguenti script tooreturn una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67c60-130">Run hello following script tooreturn a virtual machine.</span></span> <span data-ttu-id="67c60-131">Queste informazioni sono necessarie per avviare un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="67c60-131">This information is needed for starting a packet capture.</span></span>
 
-<span data-ttu-id="f5ab7-132">Per il codice seguente sono necessarie alcune variabili:</span><span class="sxs-lookup"><span data-stu-id="f5ab7-132">The following code needs variables:</span></span>
+<span data-ttu-id="67c60-132">Hello codice riportato di seguito è necessario variabili:</span><span class="sxs-lookup"><span data-stu-id="67c60-132">hello following code needs variables:</span></span>
 
-- <span data-ttu-id="f5ab7-133">**subscriptionId**: l'ID sottoscrizione può essere recuperato anche con il cmdlet **Get-AzureRMSubscription**.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-133">**subscriptionId** - The subscription id can also be retrieved with the **Get-AzureRMSubscription** cmdlet.</span></span>
-- <span data-ttu-id="f5ab7-134">**resourceGroupName**: il nome di un gruppo di risorse contenente le macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-134">**resourceGroupName** - The name of a resource group that contains virtual machines.</span></span>
+- <span data-ttu-id="67c60-133">**subscriptionId** -id sottoscrizione hello possono anche essere recuperati con hello **Get AzureRMSubscription** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="67c60-133">**subscriptionId** - hello subscription id can also be retrieved with hello **Get-AzureRMSubscription** cmdlet.</span></span>
+- <span data-ttu-id="67c60-134">**resourceGroupName** : hello nome di un gruppo di risorse contenente le macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="67c60-134">**resourceGroupName** - hello name of a resource group that contains virtual machines.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -70,7 +70,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-<span data-ttu-id="f5ab7-135">L'ID della macchina virtuale dell'output seguente viene usato nell'esempio successivo.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-135">From the following output, the id of the virtual machine is used in the next example.</span></span>
+<span data-ttu-id="67c60-135">Dall'output seguente hello, id di hello della macchina virtuale hello viene utilizzato nell'esempio riportato di seguito hello.</span><span class="sxs-lookup"><span data-stu-id="67c60-135">From hello following output, hello id of hello virtual machine is used in hello next example.</span></span>
 
 ```json
 ...
@@ -86,9 +86,9 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 ```
 
 
-## <a name="get-a-packet-capture"></a><span data-ttu-id="f5ab7-136">Ottenere un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-136">Get a packet capture</span></span>
+## <a name="get-a-packet-capture"></a><span data-ttu-id="67c60-136">Ottenere un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="67c60-136">Get a packet capture</span></span>
 
-<span data-ttu-id="f5ab7-137">L'esempio seguente ottiene lo stato di una singola acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-137">The following example gets the status of a single packet capture</span></span>
+<span data-ttu-id="67c60-137">esempio Hello Ottiene hello stato di un'acquisizione singolo pacchetto</span><span class="sxs-lookup"><span data-stu-id="67c60-137">hello following example gets hello status of a single packet capture</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -97,7 +97,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-<span data-ttu-id="f5ab7-138">Le risposte seguenti sono esempi di una tipica risposta restituita quando si effettua una query sullo stato di un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-138">The following responses are examples of a typical response returned when querying the status of a packet capture.</span></span>
+<span data-ttu-id="67c60-138">Hello risposte seguenti sono esempi di una tipica risposta restituito quando si eseguono query stato hello di un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="67c60-138">hello following responses are examples of a typical response returned when querying hello status of a packet capture.</span></span>
 
 ```json
 {
@@ -120,9 +120,9 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="list-all-packet-captures"></a><span data-ttu-id="f5ab7-139">Elencare tutte le acquisizioni di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-139">List all packet captures</span></span>
+## <a name="list-all-packet-captures"></a><span data-ttu-id="67c60-139">Elencare tutte le acquisizioni di pacchetti</span><span class="sxs-lookup"><span data-stu-id="67c60-139">List all packet captures</span></span>
 
-<span data-ttu-id="f5ab7-140">L'esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-140">The following example gets all packet capture sessions in a region.</span></span>
+<span data-ttu-id="67c60-140">Hello di esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.</span><span class="sxs-lookup"><span data-stu-id="67c60-140">hello following example gets all packet capture sessions in a region.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -131,7 +131,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures?api-version=2016-12-01"
 ```
 
-<span data-ttu-id="f5ab7-141">La risposta seguente è un esempio di una tipica risposta restituita quando si ottengono tutte le acquisizioni di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-141">The following response is an example of a typical response returned when getting all packet captures</span></span>
+<span data-ttu-id="67c60-141">Hello risposta seguente è riportato un esempio di una risposta tipica restituito durante il recupero di tutti i pacchetti acquisisce</span><span class="sxs-lookup"><span data-stu-id="67c60-141">hello following response is an example of a typical response returned when getting all packet captures</span></span>
 
 ```json
 {
@@ -194,9 +194,9 @@ ture_17_23_15_364.cap",
 }
 ```
 
-## <a name="query-packet-capture-status"></a><span data-ttu-id="f5ab7-142">Effettuare una query dello stato di acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-142">Query packet capture status</span></span>
+## <a name="query-packet-capture-status"></a><span data-ttu-id="67c60-142">Effettuare una query dello stato di acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="67c60-142">Query packet capture status</span></span>
 
-<span data-ttu-id="f5ab7-143">L'esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-143">The following example gets all packet capture sessions in a region.</span></span>
+<span data-ttu-id="67c60-143">Hello di esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.</span><span class="sxs-lookup"><span data-stu-id="67c60-143">hello following example gets all packet capture sessions in a region.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -206,7 +206,7 @@ $packetCaptureName = "TestPacketCapture5"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-<span data-ttu-id="f5ab7-144">La risposta seguente è un esempio di una tipica risposta restituita quando si effettua una query sullo stato di un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-144">The following response is an example of a typical response returned when querying the status of a packet capture.</span></span>
+<span data-ttu-id="67c60-144">Hello risposta seguente è riportato un esempio di una risposta tipica restituito quando si eseguono query stato hello di un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="67c60-144">hello following response is an example of a typical response returned when querying hello status of a packet capture.</span></span>
 
 ```json
 {
@@ -218,9 +218,9 @@ armclient get "https://management.azure.com/subscriptions/${subscriptionId}/Reso
 }
 ```
 
-## <a name="start-packet-capture"></a><span data-ttu-id="f5ab7-145">Avviare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-145">Start packet capture</span></span>
+## <a name="start-packet-capture"></a><span data-ttu-id="67c60-145">Avviare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="67c60-145">Start packet capture</span></span>
 
-<span data-ttu-id="f5ab7-146">L'esempio seguente crea un'acquisizione di pacchetti in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-146">The following example creates a packet capture on a virtual machine.</span></span>  <span data-ttu-id="f5ab7-147">Nell'esempio vengono impostati parametri per consentire flessibilità nella creazione di un esempio.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-147">The example is parameterized to allow for flexibility in creating an example.</span></span>
+<span data-ttu-id="67c60-146">Hello di esempio seguente crea una pacchetto di acquisizione in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67c60-146">hello following example creates a packet capture on a virtual machine.</span></span>  <span data-ttu-id="67c60-147">esempio Hello è tooallow con parametri per la flessibilità per la creazione di un esempio.</span><span class="sxs-lookup"><span data-stu-id="67c60-147">hello example is parameterized tooallow for flexibility in creating an example.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -270,9 +270,9 @@ $requestBody = @"
 armclient PUT "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}?api-version=2016-07-01" $requestbody
 ```
 
-## <a name="stop-packet-capture"></a><span data-ttu-id="f5ab7-148">Arrestare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-148">Stop packet capture</span></span>
+## <a name="stop-packet-capture"></a><span data-ttu-id="67c60-148">Arrestare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="67c60-148">Stop packet capture</span></span>
 
-<span data-ttu-id="f5ab7-149">L'esempio seguente arresta un'acquisizione di pacchetti in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-149">The following example stops a packet capture on a virtual machine.</span></span>  <span data-ttu-id="f5ab7-150">Nell'esempio vengono impostati parametri per consentire flessibilità nella creazione di un esempio.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-150">The example is parameterized to allow for flexibility in creating an example.</span></span>
+<span data-ttu-id="67c60-149">Hello di esempio seguente viene arrestata un'acquisizione di pacchetti in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67c60-149">hello following example stops a packet capture on a virtual machine.</span></span>  <span data-ttu-id="67c60-150">esempio Hello è tooallow con parametri per la flessibilità per la creazione di un esempio.</span><span class="sxs-lookup"><span data-stu-id="67c60-150">hello example is parameterized tooallow for flexibility in creating an example.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -282,9 +282,9 @@ $packetCaptureName = "TestPacketCapture5"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/stop?api-version=2016-12-01"
 ```
 
-## <a name="delete-packet-capture"></a><span data-ttu-id="f5ab7-151">Eliminare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="f5ab7-151">Delete packet capture</span></span>
+## <a name="delete-packet-capture"></a><span data-ttu-id="67c60-151">Eliminare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="67c60-151">Delete packet capture</span></span>
 
-<span data-ttu-id="f5ab7-152">L'esempio seguente elimina un'acquisizione di pacchetti in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-152">The following example deletes a packet capture on a virtual machine.</span></span>  <span data-ttu-id="f5ab7-153">Nell'esempio vengono impostati parametri per consentire flessibilità nella creazione di un esempio.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-153">The example is parameterized to allow for flexibility in creating an example.</span></span>
+<span data-ttu-id="67c60-152">Hello di esempio seguente elimina un'acquisizione di pacchetti in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67c60-152">hello following example deletes a packet capture on a virtual machine.</span></span>  <span data-ttu-id="67c60-153">esempio Hello è tooallow con parametri per la flessibilità per la creazione di un esempio.</span><span class="sxs-lookup"><span data-stu-id="67c60-153">hello example is parameterized tooallow for flexibility in creating an example.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -296,13 +296,13 @@ armclient delete "https://management.azure.com/subscriptions/${subscriptionId}/R
 ```
 
 > [!NOTE]
-> <span data-ttu-id="f5ab7-154">L'eliminazione di un'acquisizione di pacchetti non elimina il file nell'account di archiviazione</span><span class="sxs-lookup"><span data-stu-id="f5ab7-154">Deleting a packet capture does not delete the file in the storage account</span></span>
+> <span data-ttu-id="67c60-154">L'eliminazione di un'acquisizione di pacchetti non elimina il file hello nell'account di archiviazione hello</span><span class="sxs-lookup"><span data-stu-id="67c60-154">Deleting a packet capture does not delete hello file in hello storage account</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="f5ab7-155">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f5ab7-155">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="67c60-155">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="67c60-155">Next steps</span></span>
 
-<span data-ttu-id="f5ab7-156">Per istruzioni sul download di file dall'account di archiviazione di Azure, vedere [Introduzione all'archivio BLOB di Azure con .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md).</span><span class="sxs-lookup"><span data-stu-id="f5ab7-156">For instructions on downloading files from azure storage accounts, refer to [Get started with Azure Blob storage using .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md).</span></span> <span data-ttu-id="f5ab7-157">Un altro strumento che può essere usato è Storage Explorer.</span><span class="sxs-lookup"><span data-stu-id="f5ab7-157">Another tool that can be used is Storage Explorer.</span></span> <span data-ttu-id="f5ab7-158">Altre informazioni su Storage Explorer sono reperibili facendo clic sul collegamento seguente: [Storage Explorer](http://storageexplorer.com/).</span><span class="sxs-lookup"><span data-stu-id="f5ab7-158">More information about Storage Explorer can be found here at the following link: [Storage Explorer](http://storageexplorer.com/)</span></span>
+<span data-ttu-id="67c60-156">Per istruzioni sul download di file dall'account di archiviazione di azure, consultare troppo[Introduzione all'archiviazione Blob di Azure usando .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md).</span><span class="sxs-lookup"><span data-stu-id="67c60-156">For instructions on downloading files from azure storage accounts, refer too[Get started with Azure Blob storage using .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md).</span></span> <span data-ttu-id="67c60-157">Un altro strumento che può essere usato è Storage Explorer.</span><span class="sxs-lookup"><span data-stu-id="67c60-157">Another tool that can be used is Storage Explorer.</span></span> <span data-ttu-id="67c60-158">Ulteriori informazioni su soluzioni di archiviazione sono reperibile qui in hello seguente collegamento: [Esplora archivi](http://storageexplorer.com/)</span><span class="sxs-lookup"><span data-stu-id="67c60-158">More information about Storage Explorer can be found here at hello following link: [Storage Explorer](http://storageexplorer.com/)</span></span>
 
-<span data-ttu-id="f5ab7-159">Per altre informazioni su come automatizzare le acquisizioni di pacchetti tramite gli avvisi della macchina virtuale, leggere l'articolo su come [creare un'acquisizione di pacchetti attivata da un avviso](network-watcher-alert-triggered-packet-capture.md).</span><span class="sxs-lookup"><span data-stu-id="f5ab7-159">Learn how to automate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="67c60-159">Informazioni su come acquisizioni di pacchetti tooautomate con gli avvisi di macchina virtuale visualizzando [creare un'acquisizione pacchetto attivati avvisi](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="67c60-159">Learn how tooautomate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
 
 

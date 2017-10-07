@@ -1,6 +1,6 @@
 ---
-title: Azure Mobile Engagement - Integrazione del back-end
-description: Informazioni su come connettere Azure Mobile Engagement a un back-end di SharePoint per creare campagne da SharePoint.
+title: aaaAzure Engagement Mobile - integrazione back-end
+description: La connessione di Azure Mobile Engagement con un back-end di SharePoint toocreate le campagne da SharePoint
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: d49f1094f4c3f170f3618f3e19e42266f9ae8858
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 89e1ef57db607d63c326a760b20260ad439f08b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-mobile-engagement---api-integration"></a><span data-ttu-id="8fe0c-103">Azure Mobile Engagement - Integrazione di API</span><span class="sxs-lookup"><span data-stu-id="8fe0c-103">Azure Mobile Engagement - API integration</span></span>
-<span data-ttu-id="8fe0c-104">In un sistema marketing automatizzato, vengono eseguite automaticamente anche la creazione e l'attivazione delle campagne di marketing.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-104">In an automated marketing system, creating and activating the marketing campaigns also occur automatically.</span></span> <span data-ttu-id="8fe0c-105">A questo scopo, Azure Mobile Engagement permette la creazione di tali campagne marketing automatizzate anche mediante le API.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-105">For this purpose - Azure Mobile Engagement enables creating such automated marketing campaigns using APIs as well.</span></span> 
+# <a name="azure-mobile-engagement---api-integration"></a><span data-ttu-id="da73d-103">Azure Mobile Engagement - Integrazione di API</span><span class="sxs-lookup"><span data-stu-id="da73d-103">Azure Mobile Engagement - API integration</span></span>
+<span data-ttu-id="da73d-104">In un sistema automatizzato di marketing, creazione e l'attivazione di hello anche le campagne di marketing si verificano automaticamente.</span><span class="sxs-lookup"><span data-stu-id="da73d-104">In an automated marketing system, creating and activating hello marketing campaigns also occur automatically.</span></span> <span data-ttu-id="da73d-105">A questo scopo, Azure Mobile Engagement permette la creazione di tali campagne marketing automatizzate anche mediante le API.</span><span class="sxs-lookup"><span data-stu-id="da73d-105">For this purpose - Azure Mobile Engagement enables creating such automated marketing campaigns using APIs as well.</span></span> 
 
-<span data-ttu-id="8fe0c-106">In genere i clienti usano l'interfaccia del front-end di Mobile Engagement per creare annunci/sondaggi e così via come parte delle campagne di marketing.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-106">Typically customers use the Mobile Engagement front end interface to create announcements/polls etc as part of their marketing campaigns.</span></span> <span data-ttu-id="8fe0c-107">Nel corso della maturazione delle campagne di marketing, tuttavia, diventa necessario sfruttare i dati bloccati nei sistemi back-end (ad esempio qualsiasi sistema CRM o un sistema CMS come SharePoint), in modo che sia possibile creare una pipeline automatizzata completa, che crea a sua volta in modo dinamico campagne in Mobile Engagement in base ai dati provenienti dai sistemi back-end.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-107">However as the marketing campaigns become mature, there is a need to leverage the data locked in the backend systems (like any CRM system or CMS system like SharePoint) so that a fully automated pipeline can be created which creates campaigns in Mobile Engagement dynamically based on the data flowing in from the backend systems.</span></span> 
+<span data-ttu-id="da73d-106">I clienti utilizzano in genere hello Mobile Engagement front-end interfaccia toocreate annunci o sondaggi e così via come parte le campagne di marketing.</span><span class="sxs-lookup"><span data-stu-id="da73d-106">Typically customers use hello Mobile Engagement front end interface toocreate announcements/polls etc as part of their marketing campaigns.</span></span> <span data-ttu-id="da73d-107">Tuttavia, come hello diventare mature campagne di marketing, è necessario tooleverage hello il blocco dei dati nei sistemi back-end hello (ad esempio, un sistema CRM o CMS come SharePoint) in modo che sia possibile creare una pipeline completamente automatizzata che consente di creare campagne in dispositivi mobili Engagement in modo dinamico in base ai dati di hello trasmessi dai sistemi back-end hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-107">However as hello marketing campaigns become mature, there is a need tooleverage hello data locked in hello backend systems (like any CRM system or CMS system like SharePoint) so that a fully automated pipeline can be created which creates campaigns in Mobile Engagement dynamically based on hello data flowing in from hello backend systems.</span></span> 
 
 ![][5]
 
-<span data-ttu-id="8fe0c-108">Questa esercitazione illustra uno scenario di questo tipo, in cui un utente aziendale di SharePoint popola un elenco di SharePoint con dati di marketing e un processo automatizzato sceglie elementi dall'elenco e li connette al sistema Mobile Engagement usando le API REST disponibili per creare una campagna di marketing dai dati di SharePoint.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-108">This tutorial goes through such a scenario where a SharePoint business user populates a SharePoint list with marketing data and an automated process picks up items from the list and connects with the Mobile Engagement system using the available REST APIs to create a marketing campaign from the SharePoint data.</span></span> 
+<span data-ttu-id="da73d-108">Questa esercitazione sarà inviato tramite una situazione in cui un utente di business di SharePoint consente di popolare un elenco di SharePoint con dati di marketing e un processo automatizzato preleva gli elementi elenco hello e si connette con hello Mobile Engagement sistema con hello disponibili API REST toocreate una campagna di marketing dai dati di SharePoint hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-108">This tutorial goes through such a scenario where a SharePoint business user populates a SharePoint list with marketing data and an automated process picks up items from hello list and connects with hello Mobile Engagement system using hello available REST APIs toocreate a marketing campaign from hello SharePoint data.</span></span> 
 
 > [!IMPORTANT]
-> <span data-ttu-id="8fe0c-109">In generale, è possibile usare questo esempio come punto di partenza per capire come chiamare qualsiasi API REST di Mobile Engagement, poiché illustra nel dettaglio i due aspetti chiave della chiamata delle API, ovvero l'autenticazione e il passaggio di parametri.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-109">In general, you can use this sample as a starting point for understanding how to call any Mobile Engagement REST API as it details the two key aspects of calling the APIs - authenticating and passing parameters.</span></span> 
+> <span data-ttu-id="da73d-109">In generale, è possibile utilizzare questo esempio come punto di partenza per comprendere come toocall qualsiasi API REST di Engagement Mobile come dettagli hello due gli aspetti chiave della chiamata hello API - autenticazione e passando i parametri.</span><span class="sxs-lookup"><span data-stu-id="da73d-109">In general, you can use this sample as a starting point for understanding how toocall any Mobile Engagement REST API as it details hello two key aspects of calling hello APIs - authenticating and passing parameters.</span></span> 
 > 
 > 
 
-## <a name="sharepoint-integration"></a><span data-ttu-id="8fe0c-110">Integrazione con SharePoint</span><span class="sxs-lookup"><span data-stu-id="8fe0c-110">SharePoint integration</span></span>
-1. <span data-ttu-id="8fe0c-111">L'elenco di SharePoint di esempio ha un aspetto analogo al seguente.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-111">Here is what the sample SharePoint list looks like.</span></span> <span data-ttu-id="8fe0c-112">I valori di **Title**, **Category**, **NotificationTitle**, **Message** e **URL** vengono usati per la creazione dell'annuncio.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-112">**Title**, **Category**, **NotificationTitle**, **Message** and **URL** are used for creating the announcement.</span></span> <span data-ttu-id="8fe0c-113">La colonna **IsProcessed** viene usata dal processo di automazione di esempio sotto forma di programma console.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-113">There is a column called **IsProcessed** which is used by the sample automation process in the form of a console program.</span></span> <span data-ttu-id="8fe0c-114">È possibile eseguire questo programma console come processo Web di Azure, in modo che sia possibile pianificarlo, oppure si può usare direttamente il flusso di lavoro di SharePoint per programmare la creazione e l'attivazione dell'annuncio quando un elemento viene inserito nell'elenco di SharePoint.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-114">You can either run this console program as an Azure WebJob so that you can schedule it or you can directly use the SharePoint workflow to program creating and activating the announcement when an item is inserted into the SharePoint list.</span></span> <span data-ttu-id="8fe0c-115">In questo esempio viene usato il programma console, che esamina gli elementi dell'elenco di SharePoint, crea annunci in Azure Mobile Engagement per ogni elemento e infine contrassegna il flag **IsProcessed** come true in caso di creazione riuscita dell'annuncio.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-115">In this sample we use the console program which goes through the items in the SharePoint list and create announcement in Azure Mobile Engagement for each of them and then finally marks the **IsProcessed** flag to be true on successful announcement creation.</span></span>
+## <a name="sharepoint-integration"></a><span data-ttu-id="da73d-110">Integrazione con SharePoint</span><span class="sxs-lookup"><span data-stu-id="da73d-110">SharePoint integration</span></span>
+1. <span data-ttu-id="da73d-111">Ecco quali esempio hello è simile a elenco SharePoint.</span><span class="sxs-lookup"><span data-stu-id="da73d-111">Here is what hello sample SharePoint list looks like.</span></span> <span data-ttu-id="da73d-112">**Titolo**, **categoria**, **NotificationTitle**, **messaggio** e **URL** vengono utilizzati per creare l'annuncio hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-112">**Title**, **Category**, **NotificationTitle**, **Message** and **URL** are used for creating hello announcement.</span></span> <span data-ttu-id="da73d-113">È una colonna denominata **IsProcessed** che viene utilizzato dal processo di automazione di esempio hello sotto forma di hello di un programma di console.</span><span class="sxs-lookup"><span data-stu-id="da73d-113">There is a column called **IsProcessed** which is used by hello sample automation process in hello form of a console program.</span></span> <span data-ttu-id="da73d-114">È possibile eseguire il programma di console come un processo Web di Azure in modo che è possibile eseguire la pianificazione o è possibile utilizzare direttamente la creazione di hello SharePoint del flusso di lavoro tooprogram e l'attivazione annuncio hello quando un elemento viene inserito nell'elenco di SharePoint hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-114">You can either run this console program as an Azure WebJob so that you can schedule it or you can directly use hello SharePoint workflow tooprogram creating and activating hello announcement when an item is inserted into hello SharePoint list.</span></span> <span data-ttu-id="da73d-115">In questo esempio viene utilizzato programma console hello che passa tra gli elementi di hello hello SharePoint elencare e creare l'annuncio in Azure Mobile Engagement per ognuno di essi e quindi contrassegna infine hello **IsProcessed** true toobe flag creazione di un annuncio ha esito positivo.</span><span class="sxs-lookup"><span data-stu-id="da73d-115">In this sample we use hello console program which goes through hello items in hello SharePoint list and create announcement in Azure Mobile Engagement for each of them and then finally marks hello **IsProcessed** flag toobe true on successful announcement creation.</span></span>
    
     ![][1]
-2. <span data-ttu-id="8fe0c-116">Per l'autenticazione nell'elenco di SharePoint viene usato il codice dell'esempio di *Autenticazione remota in SharePoint Online mediante il modello a oggetti client* [qui](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) .</span><span class="sxs-lookup"><span data-stu-id="8fe0c-116">We are using the code from the sample *Remote Authentication in SharePoint Online Using the Client Object Model* [here](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) to authenticate with the SharePoint list.</span></span>
-3. <span data-ttu-id="8fe0c-117">Dopo l'autenticazione, gli elementi dell'elenco verranno esaminati in ciclo per individuare eventuali elementi appena creati, il cui valore **IsProcessed** sarà false.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-117">Once authenticated, we loop through the list items to find out any newly created items (which will have **IsProcessed** = false).</span></span> 
+2. <span data-ttu-id="da73d-116">Si sta usando codice hello tratto dall'esempio hello *autenticazione remota in SharePoint Online usando hello modello a oggetti Client* [qui](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) tooauthenticate con elenco di SharePoint hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-116">We are using hello code from hello sample *Remote Authentication in SharePoint Online Using hello Client Object Model* [here](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) tooauthenticate with hello SharePoint list.</span></span>
+3. <span data-ttu-id="da73d-117">Una volta autenticato, il ciclo tramite hello elenco elementi toofind gli eventuali elementi appena creati (che avrà **IsProcessed** = false).</span><span class="sxs-lookup"><span data-stu-id="da73d-117">Once authenticated, we loop through hello list items toofind out any newly created items (which will have **IsProcessed** = false).</span></span> 
    
          static async void CreateCampaignFromSharepoint()
         {
@@ -52,12 +52,12 @@ ms.lasthandoff: 07/11/2017
                 query.ViewXml = "<View/>";
                 ListItemCollection items = list.GetItems(query);
    
-                // Load the SharePoint list
+                // Load hello SharePoint list
                 clientContext.Load(list);
                 clientContext.Load(items);
                 clientContext.ExecuteQuery();
    
-                // Loop through the list to go through all the items which are newly added
+                // Loop through hello list toogo through all hello items which are newly added
                 foreach (ListItem item in items)
                     if (item["IsProcessed"].ToString() != "Yes")
                     {
@@ -67,16 +67,16 @@ ms.lasthandoff: 07/11/2017
                         string category = item["Category"].ToString();
                         string actionURL = ((FieldUrlValue)item["URL"]).Url;
    
-                        // Send an HTTP request to create AzME campaign
+                        // Send an HTTP request toocreate AzME campaign
                         int campaignId = CreateAzMECampaign
                             (name, notificationTitle, notificationMessage, category, actionURL).Result;
    
                         if (campaignId != -1)
                         {
-                            // If creating campaign is successful then set this to true
+                            // If creating campaign is successful then set this tootrue
                             item["IsProcessed"] = "Yes";
    
-                            // Now try to activate the campaign also
+                            // Now try tooactivate hello campaign also
                             await ActivateAzMECampaign(campaignId);
                         }
                         else
@@ -89,9 +89,9 @@ ms.lasthandoff: 07/11/2017
             }
         }
 
-## <a name="mobile-engagement-integration"></a><span data-ttu-id="8fe0c-118">Integrazione con Mobile Engagement</span><span class="sxs-lookup"><span data-stu-id="8fe0c-118">Mobile Engagement integration</span></span>
-1. <span data-ttu-id="8fe0c-119">Quando viene rilevato un elemento che richiede l'elaborazione, vengono estratte le informazioni necessarie per creare un annuncio dall'elemento dell'elenco, viene chiamato `CreateAzMECampaign` per creare l'annuncio e infine `ActivateAzMECampaign` per attivarlo.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-119">Once we find an item which requires processing - we extract the information required to create an announcement from the list item and call `CreateAzMECampaign` to create it and subsequently `ActivateAzMECampaign` to activate it.</span></span> <span data-ttu-id="8fe0c-120">Si tratta essenzialmente di chiamate all'API REST per il back-end di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-120">These are essentially REST API calls calling to the Mobile Engagement backend.</span></span> 
-2. <span data-ttu-id="8fe0c-121">Le API REST di Mobile Engagement necessitano di un'**intestazione HTTP dell'autorizzazione dello schema di autorizzazione di base**, costituita da `ApplicationId` e `ApiKey`, disponibili nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-121">The Mobile Engagement REST APIs require a **Basic auth scheme authorization HTTP header** which is composed of the `ApplicationId` and the `ApiKey` which you get from the Azure portal.</span></span> <span data-ttu-id="8fe0c-122">Assicurarsi di usare la chiave della sezione **Chiavi API** e *non* della sezione **Chiavi SDK**.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-122">Make sure that you are using the Key from the **api keys** section and *not* from the **sdk keys** section.</span></span> 
+## <a name="mobile-engagement-integration"></a><span data-ttu-id="da73d-118">Integrazione con Mobile Engagement</span><span class="sxs-lookup"><span data-stu-id="da73d-118">Mobile Engagement integration</span></span>
+1. <span data-ttu-id="da73d-119">Una volta che si trova un elemento che richiede l'elaborazione, si estrarre informazioni hello necessarie toocreate un annuncio hello voce di elenco e chiamare `CreateAzMECampaign` toocreate e successivamente `ActivateAzMECampaign` tooactivate è.</span><span class="sxs-lookup"><span data-stu-id="da73d-119">Once we find an item which requires processing - we extract hello information required toocreate an announcement from hello list item and call `CreateAzMECampaign` toocreate it and subsequently `ActivateAzMECampaign` tooactivate it.</span></span> <span data-ttu-id="da73d-120">Si tratta essenzialmente chiamate all'API REST chiamata back-end Mobile Engagement toohello.</span><span class="sxs-lookup"><span data-stu-id="da73d-120">These are essentially REST API calls calling toohello Mobile Engagement backend.</span></span> 
+2. <span data-ttu-id="da73d-121">Hello Mobile Engagement REST API richiedono un **intestazione autorizzazione HTTP lo schema di autenticazione di base** che comprende hello `ApplicationId` hello e `ApiKey` è utilizzare hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="da73d-121">hello Mobile Engagement REST APIs require a **Basic auth scheme authorization HTTP header** which is composed of hello `ApplicationId` and hello `ApiKey` which you get from hello Azure portal.</span></span> <span data-ttu-id="da73d-122">Assicurarsi che si sta utilizzando il messaggio hello chiave from hello **chiavi api** sezione e *non* da hello **chiavi sdk** sezione.</span><span class="sxs-lookup"><span data-stu-id="da73d-122">Make sure that you are using hello Key from hello **api keys** section and *not* from hello **sdk keys** section.</span></span> 
    
    ![][2]
    
@@ -107,7 +107,7 @@ ms.lasthandoff: 07/11/2017
            string returnValue = System.Convert.ToBase64String(toEncodeAsBytes);
            return returnValue;
        }  
-3. <span data-ttu-id="8fe0c-123">Per la creazione di una campagna di tipo annuncio, fare riferimento alla [documentazione](https://msdn.microsoft.com/library/azure/mt683750.aspx).</span><span class="sxs-lookup"><span data-stu-id="8fe0c-123">For creating the announcement type campaign - refer to the [documentation](https://msdn.microsoft.com/library/azure/mt683750.aspx).</span></span> <span data-ttu-id="8fe0c-124">È necessario assicurarsi di specificare l'elemento `kind` della campagna come *announcement* e il [payload](https://msdn.microsoft.com/library/azure/mt683751.aspx) e infine di passarlo come FormUrlEncodedContent.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-124">You need to make sure that you are specifying the campaign `kind` as *announcement* and the [payload](https://msdn.microsoft.com/library/azure/mt683751.aspx) and passing it as FormUrlEncodedContent.</span></span> 
+3. <span data-ttu-id="da73d-123">Per creare il tipo di annuncio hello della campagna, fare riferimento toohello [documentazione](https://msdn.microsoft.com/library/azure/mt683750.aspx).</span><span class="sxs-lookup"><span data-stu-id="da73d-123">For creating hello announcement type campaign - refer toohello [documentation](https://msdn.microsoft.com/library/azure/mt683750.aspx).</span></span> <span data-ttu-id="da73d-124">È necessario assicurarsi di avere specificato la campagna hello toomake `kind` come *annuncio* hello e [payload](https://msdn.microsoft.com/library/azure/mt683751.aspx) e passarlo come FormUrlEncodedContent.</span><span class="sxs-lookup"><span data-stu-id="da73d-124">You need toomake sure that you are specifying hello campaign `kind` as *announcement* and hello [payload](https://msdn.microsoft.com/library/azure/mt683751.aspx) and passing it as FormUrlEncodedContent.</span></span> 
    
         static async Task<int> CreateAzMECampaign(string campaignName, string notificationTitle, 
             string notificationMessage, string notificationCategory, string actionURL)
@@ -119,7 +119,7 @@ ms.lasthandoff: 07/11/2017
                 // Add Authorization Header
                 client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", CreateAuthZHeader());
    
-                // Create the payload to send the content
+                // Create hello payload toosend hello content
                 // Reference -> https://msdn.microsoft.com/library/dn913749.aspx
                 string data =
                     @"{""name"":""" + campaignName + @"""," + 
@@ -135,13 +135,13 @@ ms.lasthandoff: 07/11/2017
                     new KeyValuePair<string, string>("data", data),
                 });
    
-                // Send the POST request
+                // Send hello POST request
                 var response = await client.PostAsync(url + createURIFragment, content);
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 int campaignId = -1;
                 if (response.StatusCode.ToString() == "OK")
                 {
-                    // This is the campaign id
+                    // This is hello campaign id
                     campaignId = Convert.ToInt32(responseString);
                     Console.WriteLine("Campaign successfully created with id {0}", campaignId);
                 }
@@ -152,10 +152,10 @@ ms.lasthandoff: 07/11/2017
                 return campaignId;
             }
         }
-4. <span data-ttu-id="8fe0c-125">Al termine della creazione dell'annuncio, il portale di Mobile Engagement avrà un aspetto analogo al seguente. Si noti che Stato=Bozza e Attivato = N/D.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-125">Once you have the announcement created, you will see something like the following on the Mobile Engagement portal (note that the State=Draft and Activated = N/A)</span></span>
+4. <span data-ttu-id="da73d-125">Dopo aver creato annuncio hello creato, verrà visualizzato un risultato simile hello seguenti nel portale Mobile Engagement hello (si noti che lo stato di hello = bozza e attivato = n/d)</span><span class="sxs-lookup"><span data-stu-id="da73d-125">Once you have hello announcement created, you will see something like hello following on hello Mobile Engagement portal (note that hello State=Draft and Activated = N/A)</span></span>
    
     ![][3]
-5. <span data-ttu-id="8fe0c-126">`CreateAzMECampaign` crea una campagna di tipo annuncio e restituisce il rispettivo ID al chiamante.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-126">`CreateAzMECampaign` creates an announcement campaign and returns its Id to the caller.</span></span> <span data-ttu-id="8fe0c-127">`ActivateAzMECampaign` richiede questo ID come parametro per l'attivazione della campagna.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-127">`ActivateAzMECampaign` requires this Id as the parameter to activate the campaign.</span></span> 
+5. <span data-ttu-id="da73d-126">`CreateAzMECampaign`Crea una campagna di annuncio e restituisce il relativo chiamante toohello Id.</span><span class="sxs-lookup"><span data-stu-id="da73d-126">`CreateAzMECampaign` creates an announcement campaign and returns its Id toohello caller.</span></span> <span data-ttu-id="da73d-127">`ActivateAzMECampaign`richiede l'Id come campagna di hello tooactivate parametro hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-127">`ActivateAzMECampaign` requires this Id as hello parameter tooactivate hello campaign.</span></span> 
    
         static async Task<bool> ActivateAzMECampaign(int campaignId)
         {
@@ -171,7 +171,7 @@ ms.lasthandoff: 07/11/2017
                     new KeyValuePair<string, string>("id", campaignId.ToString()),
                 });
    
-                // Send the POST request
+                // Send hello POST request
                 var response = await client.PostAsync(url + activateUriFragment, content);
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 if (response.StatusCode.ToString() == "OK")
@@ -186,13 +186,13 @@ ms.lasthandoff: 07/11/2017
                 }
             }
         }
-6. <span data-ttu-id="8fe0c-128">Dopo l'attivazione dell'annuncio, il portale di Mobile Engagement avrà un aspetto analogo al seguente:</span><span class="sxs-lookup"><span data-stu-id="8fe0c-128">Once you have the announcement activated, you will see something like the following on the Mobile Engagement portal:</span></span>
+6. <span data-ttu-id="da73d-128">Dopo aver creato annuncio hello attivata, si noterà simile alla seguente hello nel portale Mobile Engagement hello:</span><span class="sxs-lookup"><span data-stu-id="da73d-128">Once you have hello announcement activated, you will see something like hello following on hello Mobile Engagement portal:</span></span>
    
     ![][4]
-7. <span data-ttu-id="8fe0c-129">Non appena viene attivata la campagna, tutti i dispositivi che soddisfano i criteri della campagna inizieranno a visualizzare notifiche.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-129">As soon as the campaign gets activated, any devices which satisfy the criterion on the campaign will start seeing notifications.</span></span> 
-8. <span data-ttu-id="8fe0c-130">Si potrà anche notare che l'elemento dell'elenco contrassegnato come IsProcessed = false è stato impostato su True dopo la creazione della campagna.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-130">You will also notice that the list item marked with IsProcessed = false has been set to True once the announcement campaign is created.</span></span>  
+7. <span data-ttu-id="da73d-129">Non appena viene attivata la campagna hello, tutti i dispositivi che soddisfano il criterio di hello nella campagna hello inizierà a visualizzare le notifiche.</span><span class="sxs-lookup"><span data-stu-id="da73d-129">As soon as hello campaign gets activated, any devices which satisfy hello criterion on hello campaign will start seeing notifications.</span></span> 
+8. <span data-ttu-id="da73d-130">Si noterà anche che l'elemento di elenco hello contrassegnato con IsProcessed = false è stata impostata tooTrue dopo la creazione della campagna di annuncio hello.</span><span class="sxs-lookup"><span data-stu-id="da73d-130">You will also notice that hello list item marked with IsProcessed = false has been set tooTrue once hello announcement campaign is created.</span></span>  
 
-<span data-ttu-id="8fe0c-131">Questo esempio ha creato una semplice campagna di tipo annuncio, specificando principalmente le proprietà necessarie.</span><span class="sxs-lookup"><span data-stu-id="8fe0c-131">This sample created a simple announcement campaign specifying mostly the required properties.</span></span> <span data-ttu-id="8fe0c-132">È possibile personalizzare come si desidera l'esempio nel portale, usando le informazioni disponibili [qui](https://msdn.microsoft.com/library/azure/mt683751.aspx).</span><span class="sxs-lookup"><span data-stu-id="8fe0c-132">You can customize this as much as you can from the portal by using the information [here](https://msdn.microsoft.com/library/azure/mt683751.aspx).</span></span> 
+<span data-ttu-id="da73d-131">In questo esempio creata una campagna di annuncio semplice impostazione delle proprietà di hello necessario per lo più.</span><span class="sxs-lookup"><span data-stu-id="da73d-131">This sample created a simple announcement campaign specifying mostly hello required properties.</span></span> <span data-ttu-id="da73d-132">È possibile personalizzare questa come è possibile dal portale hello usando informazioni hello [qui](https://msdn.microsoft.com/library/azure/mt683751.aspx).</span><span class="sxs-lookup"><span data-stu-id="da73d-132">You can customize this as much as you can from hello portal by using hello information [here](https://msdn.microsoft.com/library/azure/mt683751.aspx).</span></span> 
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-sample-backend-integration-sharepoint/sharepointlist.png

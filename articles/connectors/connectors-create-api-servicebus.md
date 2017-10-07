@@ -1,6 +1,6 @@
 ---
-title: Informazioni su come usare il connettore del bus di servizio di Azure nelle app per la logica | Documentazione Microsoft
-description: "Creare app per la logica con Servizio app di Azure. Connettersi al bus di servizio di Azure per inviare e ricevere messaggi. È possibile eseguire varie azioni, ad esempio inviare alla coda, inviare all'argomento, ricevere dalla coda e ricevere dalla sottoscrizione."
+title: connettore di Azure Service Bus hello toouse aaaLearn nelle App logica | Documenti Microsoft
+description: "Creare app per la logica con Servizio app di Azure. Connettersi tooAzure toosend di Bus di servizio e ricevere messaggi. È possibile eseguire azioni come trasmissione tooqueue inviare tootopic, dalla coda la ricezione dalla sottoscrizione."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/02/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 1e2ce06f5993280dbdb67121849591e67f7979e9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c815ac167c3106ade470ce139d119085558a9497
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-azure-service-bus-connector"></a><span data-ttu-id="0b921-105">Introduzione al connettore del bus di servizio di Azure</span><span class="sxs-lookup"><span data-stu-id="0b921-105">Get started with the Azure Service Bus connector</span></span>
-<span data-ttu-id="0b921-106">Connettersi al bus di servizio di Azure per inviare e ricevere messaggi.</span><span class="sxs-lookup"><span data-stu-id="0b921-106">Connect to Azure Service Bus to send and receive messages.</span></span> <span data-ttu-id="0b921-107">È possibile eseguire varie azioni, ad esempio inviare alla coda, inviare all'argomento, ricevere dalla coda e ricevere dalla sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="0b921-107">You can perform actions such as send to queue, send to topic, receive from queue, and receive from subscription.</span></span>
+# <a name="get-started-with-hello-azure-service-bus-connector"></a><span data-ttu-id="4a5f0-105">Iniziare con il connettore di Azure Service Bus hello</span><span class="sxs-lookup"><span data-stu-id="4a5f0-105">Get started with hello Azure Service Bus connector</span></span>
+<span data-ttu-id="4a5f0-106">Connettersi tooAzure toosend di Bus di servizio e ricevere messaggi.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-106">Connect tooAzure Service Bus toosend and receive messages.</span></span> <span data-ttu-id="4a5f0-107">È possibile eseguire azioni come trasmissione tooqueue inviare tootopic, dalla coda la ricezione dalla sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-107">You can perform actions such as send tooqueue, send tootopic, receive from queue, and receive from subscription.</span></span>
 
-<span data-ttu-id="0b921-108">Per usare [qualsiasi connettore](apis-list.md), è necessario innanzitutto creare un'app per la logica.</span><span class="sxs-lookup"><span data-stu-id="0b921-108">To use [any connector](apis-list.md), you first need to create a logic app.</span></span> <span data-ttu-id="0b921-109">Come prima operazione [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="0b921-109">You can get started by [creating a logic app now](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="4a5f0-108">toouse [i connettori](apis-list.md), è necessario innanzitutto toocreate un'app di logica.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-108">toouse [any connector](apis-list.md), you first need toocreate a logic app.</span></span> <span data-ttu-id="4a5f0-109">Come prima operazione [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="4a5f0-109">You can get started by [creating a logic app now](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="connect-to-service-bus"></a><span data-ttu-id="0b921-110">Connettersi al bus di servizio</span><span class="sxs-lookup"><span data-stu-id="0b921-110">Connect to Service Bus</span></span>
-<span data-ttu-id="0b921-111">Perché l'app per la logica possa accedere a qualsiasi servizio, è necessario creare una connessione al servizio.</span><span class="sxs-lookup"><span data-stu-id="0b921-111">Before your logic app can access any service, you first need to create a connection to the service.</span></span> <span data-ttu-id="0b921-112">Una [connessione](connectors-overview.md) fornisce la connettività tra un'app per la logica e un altro servizio.</span><span class="sxs-lookup"><span data-stu-id="0b921-112">A [connection](connectors-overview.md) provides connectivity between a logic app and another service.</span></span>  
+## <a name="connect-tooservice-bus"></a><span data-ttu-id="4a5f0-110">Connettersi tooService Bus</span><span class="sxs-lookup"><span data-stu-id="4a5f0-110">Connect tooService Bus</span></span>
+<span data-ttu-id="4a5f0-111">Prima che la logica app possa accedere a qualsiasi servizio, è necessario innanzitutto toocreate un servizio toohello di connessione.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-111">Before your logic app can access any service, you first need toocreate a connection toohello service.</span></span> <span data-ttu-id="4a5f0-112">Una [connessione](connectors-overview.md) fornisce la connettività tra un'app per la logica e un altro servizio.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-112">A [connection](connectors-overview.md) provides connectivity between a logic app and another service.</span></span>  
 
-> [!INCLUDE [Steps to create a connection to Azure Service Bus](../../includes/connectors-create-api-servicebus.md)]
+> [!INCLUDE [Steps toocreate a connection tooAzure Service Bus](../../includes/connectors-create-api-servicebus.md)]
 > 
 > 
 
-## <a name="use-a-service-bus-trigger"></a><span data-ttu-id="0b921-113">Usare un trigger di bus di servizio</span><span class="sxs-lookup"><span data-stu-id="0b921-113">Use a Service Bus trigger</span></span>
-<span data-ttu-id="0b921-114">Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica.</span><span class="sxs-lookup"><span data-stu-id="0b921-114">A trigger is an event that can be used to start the workflow defined in a logic app.</span></span> <span data-ttu-id="0b921-115">[Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="0b921-115">[Learn more about triggers](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>  
+## <a name="use-a-service-bus-trigger"></a><span data-ttu-id="4a5f0-113">Usare un trigger di bus di servizio</span><span class="sxs-lookup"><span data-stu-id="4a5f0-113">Use a Service Bus trigger</span></span>
+<span data-ttu-id="4a5f0-114">Un trigger è un evento che può essere utilizzato toostart flusso di lavoro hello definito in un'app di logica.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-114">A trigger is an event that can be used toostart hello workflow defined in a logic app.</span></span> <span data-ttu-id="4a5f0-115">[Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="4a5f0-115">[Learn more about triggers](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>  
 
-> [!INCLUDE [Steps to create a Service Bus trigger](../../includes/connectors-create-api-servicebus-trigger.md)]
+> [!INCLUDE [Steps toocreate a Service Bus trigger](../../includes/connectors-create-api-servicebus-trigger.md)]
 > 
 > 
 
-## <a name="use-a-service-bus-action"></a><span data-ttu-id="0b921-116">Usare un'azione del bus di servizio</span><span class="sxs-lookup"><span data-stu-id="0b921-116">Use a Service Bus action</span></span>
-<span data-ttu-id="0b921-117">Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica.</span><span class="sxs-lookup"><span data-stu-id="0b921-117">An action is an operation carried out by the workflow defined in a logic app.</span></span> <span data-ttu-id="0b921-118">[Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="0b921-118">[Learn more about actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>
+## <a name="use-a-service-bus-action"></a><span data-ttu-id="4a5f0-116">Usare un'azione del bus di servizio</span><span class="sxs-lookup"><span data-stu-id="4a5f0-116">Use a Service Bus action</span></span>
+<span data-ttu-id="4a5f0-117">Un'azione è un'operazione effettuata dal flusso di lavoro hello definito in un'app di logica.</span><span class="sxs-lookup"><span data-stu-id="4a5f0-117">An action is an operation carried out by hello workflow defined in a logic app.</span></span> <span data-ttu-id="4a5f0-118">[Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="4a5f0-118">[Learn more about actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>
 
-[!INCLUDE [Steps to create a Service Bus action](../../includes/connectors-create-api-servicebus-action.md)]
+[!INCLUDE [Steps toocreate a Service Bus action](../../includes/connectors-create-api-servicebus-action.md)]
 
-## <a name="connector-specific-details"></a><span data-ttu-id="0b921-119">Dettagli specifici del connettore</span><span class="sxs-lookup"><span data-stu-id="0b921-119">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="4a5f0-119">Dettagli specifici del connettore</span><span class="sxs-lookup"><span data-stu-id="4a5f0-119">Connector-specific details</span></span>
 
-<span data-ttu-id="0b921-120">Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/servicebus/).</span><span class="sxs-lookup"><span data-stu-id="0b921-120">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/servicebus/).</span></span> 
+<span data-ttu-id="4a5f0-120">Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/servicebus/).</span><span class="sxs-lookup"><span data-stu-id="4a5f0-120">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/servicebus/).</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="0b921-121">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="0b921-121">Next steps</span></span>
-<span data-ttu-id="0b921-122">[Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="0b921-122">[Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4a5f0-121">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="4a5f0-121">Next steps</span></span>
+<span data-ttu-id="4a5f0-122">[Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="4a5f0-122">[Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 

@@ -1,6 +1,6 @@
 ---
-title: Montare un volume di File di Azure in Istanze di contenitore di Azure
-description: Informazioni su come montare un volume di File di Azure per rendere persistente lo stato con Istanze di contenitore di Azure
+title: aaaMounting un volume di file di Azure in istanze di contenitori di Azure
+description: Informazioni su come toomount un Azure file stato toopersist del volume con istanze di contenitori di Azure
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,19 +17,19 @@ ms.workload: na
 ms.date: 08/01/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 4248a3769ba8a0fb067b3904d55d487fe67e5778
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d87215e06d5e5af40bfebcad17768ee45ccabbb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="mounting-an-azure-file-share-with-azure-container-instances"></a><span data-ttu-id="55e0a-103">Montare una condivisione file di Azure con Istanze di contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="55e0a-103">Mounting an Azure file share with Azure Container Instances</span></span>
+# <a name="mounting-an-azure-file-share-with-azure-container-instances"></a><span data-ttu-id="2aff7-103">Montare una condivisione file di Azure con Istanze di contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="2aff7-103">Mounting an Azure file share with Azure Container Instances</span></span>
 
-<span data-ttu-id="55e0a-104">Per impostazione predefinita, Istanze di contenitore di Azure è senza stato.</span><span class="sxs-lookup"><span data-stu-id="55e0a-104">By default, Azure Container Instances are stateless.</span></span> <span data-ttu-id="55e0a-105">Se il contenitore si blocca o si arresta, lo stato viene perso.</span><span class="sxs-lookup"><span data-stu-id="55e0a-105">If the container crashes or stops, all of its state is lost.</span></span> <span data-ttu-id="55e0a-106">Per rendere persistente lo stato oltre la durata del contenitore, è necessario montare un volume da un archivio esterno.</span><span class="sxs-lookup"><span data-stu-id="55e0a-106">To persist state beyond the lifetime of the container, you must mount a volume from an external store.</span></span> <span data-ttu-id="55e0a-107">Questo articolo illustra come montare una condivisione file di Azure per l'uso con Istanze di contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="55e0a-107">This article shows how to mount an Azure file share for use with Azure Container Instances.</span></span>
+<span data-ttu-id="2aff7-104">Per impostazione predefinita, Istanze di contenitore di Azure è senza stato.</span><span class="sxs-lookup"><span data-stu-id="2aff7-104">By default, Azure Container Instances are stateless.</span></span> <span data-ttu-id="2aff7-105">Se il contenitore di hello si blocca o si arresta, il relativo stato viene perso.</span><span class="sxs-lookup"><span data-stu-id="2aff7-105">If hello container crashes or stops, all of its state is lost.</span></span> <span data-ttu-id="2aff7-106">toopersist stato oltre la durata hello del contenitore di hello, è necessario montare un volume da un archivio esterno.</span><span class="sxs-lookup"><span data-stu-id="2aff7-106">toopersist state beyond hello lifetime of hello container, you must mount a volume from an external store.</span></span> <span data-ttu-id="2aff7-107">Questo articolo illustra come toomount condividere un file di Azure per l'uso con istanze di contenitori di Azure.</span><span class="sxs-lookup"><span data-stu-id="2aff7-107">This article shows how toomount an Azure file share for use with Azure Container Instances.</span></span>
 
-## <a name="create-an-azure-file-share"></a><span data-ttu-id="55e0a-108">Creare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="55e0a-108">Create an Azure file share</span></span>
+## <a name="create-an-azure-file-share"></a><span data-ttu-id="2aff7-108">Creare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="2aff7-108">Create an Azure file share</span></span>
 
-<span data-ttu-id="55e0a-109">Prima di usare una condivisione file di Azure con Istanze di contenitore di Azure è necessario creare la condivisione.</span><span class="sxs-lookup"><span data-stu-id="55e0a-109">Before using an Azure file share with Azure Container Instances, you must create it.</span></span> <span data-ttu-id="55e0a-110">Eseguire questo script per creare un account di archiviazione per ospitare la condivisione file e la condivisione in sé.</span><span class="sxs-lookup"><span data-stu-id="55e0a-110">Run the following script to create a storage account to host the file share and the share itself.</span></span> <span data-ttu-id="55e0a-111">Si noti che il nome dell'account di archiviazione deve essere globalmente univoco, quindi lo script aggiunge un valore casuale alla stringa di base.</span><span class="sxs-lookup"><span data-stu-id="55e0a-111">Note that the storage account name must be globally unique, so the script adds a random value to the base string.</span></span>
+<span data-ttu-id="2aff7-109">Prima di usare una condivisione file di Azure con Istanze di contenitore di Azure è necessario creare la condivisione.</span><span class="sxs-lookup"><span data-stu-id="2aff7-109">Before using an Azure file share with Azure Container Instances, you must create it.</span></span> <span data-ttu-id="2aff7-110">Eseguire i seguenti script toocreate hello una condivisione di file di archiviazione account toohost hello e hello condividono stesso.</span><span class="sxs-lookup"><span data-stu-id="2aff7-110">Run hello following script toocreate a storage account toohost hello file share and hello share itself.</span></span> <span data-ttu-id="2aff7-111">Si noti che il nome di account di archiviazione hello deve essere globalmente univoco, in modo script hello aggiunge una stringa in base toohello valore casuale.</span><span class="sxs-lookup"><span data-stu-id="2aff7-111">Note that hello storage account name must be globally unique, so hello script adds a random value toohello base string.</span></span>
 
 ```azurecli-interactive
 # Change these four parameters
@@ -38,59 +38,59 @@ ACI_PERS_RESOURCE_GROUP=myResourceGroup
 ACI_PERS_LOCATION=eastus
 ACI_PERS_SHARE_NAME=acishare
 
-# Create the storage account with the parameters
+# Create hello storage account with hello parameters
 az storage account create -n $ACI_PERS_STORAGE_ACCOUNT_NAME -g $ACI_PERS_RESOURCE_GROUP -l $ACI_PERS_LOCATION --sku Standard_LRS
 
-# Export the connection string as an environment variable, this is used when creating the Azure file share
+# Export hello connection string as an environment variable, this is used when creating hello Azure file share
 export AZURE_STORAGE_CONNECTION_STRING=`az storage account show-connection-string -n $ACI_PERS_STORAGE_ACCOUNT_NAME -g $ACI_PERS_RESOURCE_GROUP -o tsv`
 
-# Create the share
+# Create hello share
 az storage share create -n $ACI_PERS_SHARE_NAME
 ```
 
-## <a name="acquire-storage-account-access-details"></a><span data-ttu-id="55e0a-112">Acquisire i dettagli di accesso dell'account di archiviazione</span><span class="sxs-lookup"><span data-stu-id="55e0a-112">Acquire storage account access details</span></span>
+## <a name="acquire-storage-account-access-details"></a><span data-ttu-id="2aff7-112">Acquisire i dettagli di accesso dell'account di archiviazione</span><span class="sxs-lookup"><span data-stu-id="2aff7-112">Acquire storage account access details</span></span>
 
-<span data-ttu-id="55e0a-113">Per montare una condivisione file di Azure come volume in Istanze di contenitore di Azure sono necessari tre valori: il nome dell'account di archiviazione, il nome della condivisione e la chiave di accesso alle risorse di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="55e0a-113">To mount an Azure file share as a volume in Azure Container Instances, you need three values: the storage account name, the share name, and the storage access key.</span></span> 
+<span data-ttu-id="2aff7-113">toomount condivisione di un file di Azure come un volume in istanze di contenitori di Azure, sono necessari tre valori: hello Nome account di archiviazione, il nome di condivisione hello e chiave di accesso di archiviazione hello.</span><span class="sxs-lookup"><span data-stu-id="2aff7-113">toomount an Azure file share as a volume in Azure Container Instances, you need three values: hello storage account name, hello share name, and hello storage access key.</span></span> 
 
-<span data-ttu-id="55e0a-114">Se si usa lo script precedente, il nome dell'account di archiviazione viene creato con un valore casuale alla fine.</span><span class="sxs-lookup"><span data-stu-id="55e0a-114">If you used the script above, the storage account name was created with a random value at the end.</span></span> <span data-ttu-id="55e0a-115">Per eseguire una query sulla stringa finale (inclusa la parte casuale), usare i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="55e0a-115">To query the final string (including the random portion), use the following commands:</span></span>
+<span data-ttu-id="2aff7-114">Se è stato utilizzato lo script hello precedente, nome account di archiviazione hello è stato creato con un valore casuale alla fine di hello.</span><span class="sxs-lookup"><span data-stu-id="2aff7-114">If you used hello script above, hello storage account name was created with a random value at hello end.</span></span> <span data-ttu-id="2aff7-115">stringa finale tooquery hello (tra cui hello casuale parte), utilizzare hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="2aff7-115">tooquery hello final string (including hello random portion), use hello following commands:</span></span>
 
 ```azurecli-interactive
 STORAGE_ACCOUNT=$(az storage account list --resource-group myResourceGroup --query "[?contains(name,'mystorageaccount')].[name]" -o tsv)
 echo $STORAGE_ACCOUNT
 ```
 
-<span data-ttu-id="55e0a-116">Il nome della condivisione è già noto (*acishare* nello script precedente), quindi resta da trovare solo la chiave dell'account di archiviazione, che può essere recuperata tramite il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="55e0a-116">The share name is already known (it is *acishare* in the script above), so all that remains is the storage account key, which can be found using the following command:</span></span>
+<span data-ttu-id="2aff7-116">Hello nome di condivisione è già nota (è *acishare* nello script hello precedente), pertanto tutto ciò che resta da una chiave account archiviazione hello, che può essere recuperata tramite hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="2aff7-116">hello share name is already known (it is *acishare* in hello script above), so all that remains is hello storage account key, which can be found using hello following command:</span></span>
 
 ```azurecli-interactive
 $STORAGE_KEY=$(az storage account keys list --resource-group myResourceGroup --account-name $STORAGE_ACCOUNT --query "[0].value" -o tsv)
 echo $STORAGE_KEY
 ```
 
-## <a name="store-storage-account-access-details-with-azure-key-vault"></a><span data-ttu-id="55e0a-117">Archiviare i dettagli di accesso dell'account di archiviazione con Azure Key Vault</span><span class="sxs-lookup"><span data-stu-id="55e0a-117">Store storage account access details with Azure key vault</span></span>
+## <a name="store-storage-account-access-details-with-azure-key-vault"></a><span data-ttu-id="2aff7-117">Archiviare i dettagli di accesso dell'account di archiviazione con Azure Key Vault</span><span class="sxs-lookup"><span data-stu-id="2aff7-117">Store storage account access details with Azure key vault</span></span>
 
-<span data-ttu-id="55e0a-118">Le chiavi dell'account di archiviazione proteggono l'accesso ai dati, quindi è consigliabile archiviarle in Azure Key Vault.</span><span class="sxs-lookup"><span data-stu-id="55e0a-118">Storage account keys protect access to your data, so we recommend storing them in an Azure key vault.</span></span> 
+<span data-ttu-id="2aff7-118">Chiavi dell'account di archiviazione proteggere tooyour di accedere ai dati, pertanto è consigliabile archiviarli in un insieme di credenziali chiave di Azure.</span><span class="sxs-lookup"><span data-stu-id="2aff7-118">Storage account keys protect access tooyour data, so we recommend storing them in an Azure key vault.</span></span> 
 
-<span data-ttu-id="55e0a-119">Creare un insieme di credenziali delle chiavi con l'interfaccia della riga di comando di Azure:</span><span class="sxs-lookup"><span data-stu-id="55e0a-119">Create a key vault with the Azure CLI:</span></span>
+<span data-ttu-id="2aff7-119">Creare un insieme di credenziali chiave con hello CLI di Azure:</span><span class="sxs-lookup"><span data-stu-id="2aff7-119">Create a key vault with hello Azure CLI:</span></span>
 
 ```azurecli-interactive
 KEYVAULT_NAME=aci-keyvault
 az keyvault create -n $KEYVAULT_NAME --enabled-for-template-deployment -g myResourceGroup
 ```
 
-<span data-ttu-id="55e0a-120">L'opzione `enabled-for-template-deployment` consente ad Azure Resource Manager di eseguire il pull dei segreti dall'insieme di credenziali delle chiavi al momento della distribuzione.</span><span class="sxs-lookup"><span data-stu-id="55e0a-120">The `enabled-for-template-deployment` switch allows Azure Resource Manager to pull secrets from your key vault at deployment time.</span></span>
+<span data-ttu-id="2aff7-120">Hello `enabled-for-template-deployment` switch consente Azure Resource Manager toopull segreti dall'insieme di credenziali delle chiavi in fase di distribuzione.</span><span class="sxs-lookup"><span data-stu-id="2aff7-120">hello `enabled-for-template-deployment` switch allows Azure Resource Manager toopull secrets from your key vault at deployment time.</span></span>
 
-<span data-ttu-id="55e0a-121">Archiviare la chiave dell'account di archiviazione come nuovo segreto nell'insieme di credenziali delle chiavi:</span><span class="sxs-lookup"><span data-stu-id="55e0a-121">Store the storage account key as a new secret in the key vault:</span></span>
+<span data-ttu-id="2aff7-121">Archivio hello chiave account di archiviazione come un nuovo segreto nell'insieme di credenziali chiave hello:</span><span class="sxs-lookup"><span data-stu-id="2aff7-121">Store hello storage account key as a new secret in hello key vault:</span></span>
 
 ```azurecli-interactive
 KEYVAULT_SECRET_NAME=azurefilesstoragekey
 az keyvault secret set --vault-name $KEYVAULT_NAME --name $KEYVAULT_SECRET_NAME --value $STORAGE_KEY
 ```
 
-## <a name="mount-the-volume"></a><span data-ttu-id="55e0a-122">Montare il volume</span><span class="sxs-lookup"><span data-stu-id="55e0a-122">Mount the volume</span></span>
+## <a name="mount-hello-volume"></a><span data-ttu-id="2aff7-122">Montare il volume di hello</span><span class="sxs-lookup"><span data-stu-id="2aff7-122">Mount hello volume</span></span>
 
-<span data-ttu-id="55e0a-123">Il montaggio di una condivisione file di Azure come volume in un contenitore prevede due fasi.</span><span class="sxs-lookup"><span data-stu-id="55e0a-123">Mounting an Azure file share as a volume in a container is a two-step process.</span></span> <span data-ttu-id="55e0a-124">Si forniscono prima i dettagli della condivisione nell'ambito della definizione del gruppo di contenitori, quindi si specifica come montare il volume in uno o più contenitori del gruppo.</span><span class="sxs-lookup"><span data-stu-id="55e0a-124">First, you provide the details of the share as part of defining the container group, then you specify how you want the volume mounted within one or more of the containers in the group.</span></span>
+<span data-ttu-id="2aff7-123">Il montaggio di una condivisione file di Azure come volume in un contenitore prevede due fasi.</span><span class="sxs-lookup"><span data-stu-id="2aff7-123">Mounting an Azure file share as a volume in a container is a two-step process.</span></span> <span data-ttu-id="2aff7-124">Prima di tutto, fornire i dettagli di hello della condivisione hello come parte della definizione di gruppo di contenitori di hello, è necessario specificare la modalità di volume hello montato all'interno di uno o più contenitori di hello nel gruppo di hello.</span><span class="sxs-lookup"><span data-stu-id="2aff7-124">First, you provide hello details of hello share as part of defining hello container group, then you specify how you want hello volume mounted within one or more of hello containers in hello group.</span></span>
 
-<span data-ttu-id="55e0a-125">Per definire i volumi da rendere disponibili per il montaggio, aggiungere una matrice `volumes` alla definizione del gruppo di contenitori nel modello di Azure Resource Manager, quindi farvi riferimento nella definizione dei singoli contenitori.</span><span class="sxs-lookup"><span data-stu-id="55e0a-125">To define the volumes you want to make available for mounting, add a `volumes` array to the container group definition in the Azure Resource Manager template, then reference them in the definition of the individual containers.</span></span>
+<span data-ttu-id="2aff7-125">volumi di hello toodefine desiderato toomake disponibili per l'installazione, aggiungere un `volumes` toohello definizione del gruppo contenitore nel modello di gestione risorse di Azure hello della matrice, quindi farvi riferimento nella definizione di hello di singoli contenitori hello.</span><span class="sxs-lookup"><span data-stu-id="2aff7-125">toodefine hello volumes you want toomake available for mounting, add a `volumes` array toohello container group definition in hello Azure Resource Manager template, then reference them in hello definition of hello individual containers.</span></span>
 
 ```json
 {
@@ -150,7 +150,7 @@ az keyvault secret set --vault-name $KEYVAULT_NAME --name $KEYVAULT_SECRET_NAME 
 }
 ```
 
-<span data-ttu-id="55e0a-126">Il modello include il nome dell'account di archiviazione e la chiave come parametri che possono essere forniti in un file di parametri separati.</span><span class="sxs-lookup"><span data-stu-id="55e0a-126">The template includes the storage account name and key as parameters, which can be provided in a separate parameters file.</span></span> <span data-ttu-id="55e0a-127">Per popolare il file dei parametri sono necessari tre valori: nome dell'account di archiviazione, ID risorsa di Azure Key Vault e nome del segreto dell'insieme di credenziali delle chiavi usato per archiviare la chiave di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="55e0a-127">To populate the parameters file, you will need three values: the storage account name, the resource ID of your Azure key vault, and the key vault secret name that you used to store the storage key.</span></span> <span data-ttu-id="55e0a-128">Se è stata seguita la procedura precedente, è possibile ottenere questi valori con questo script:</span><span class="sxs-lookup"><span data-stu-id="55e0a-128">If you have followed previous steps, you can get these values with the following script:</span></span>
+<span data-ttu-id="2aff7-126">modello di Hello include nome account di archiviazione hello e la chiave come parametri, che possono essere forniti in un file di parametri separati.</span><span class="sxs-lookup"><span data-stu-id="2aff7-126">hello template includes hello storage account name and key as parameters, which can be provided in a separate parameters file.</span></span> <span data-ttu-id="2aff7-127">file dei parametri hello toopopulate, sono necessari tre valori: hello Nome account di archiviazione, hello ID risorsa di credenziali delle chiavi di Azure e nome del segreto dell'insieme di credenziali chiave di avere utilizzato la chiave di archiviazione hello toostore hello.</span><span class="sxs-lookup"><span data-stu-id="2aff7-127">toopopulate hello parameters file, you will need three values: hello storage account name, hello resource ID of your Azure key vault, and hello key vault secret name that you used toostore hello storage key.</span></span> <span data-ttu-id="2aff7-128">Se è stata seguita la procedura precedente, è possibile ottenere questi valori con hello lo script seguente:</span><span class="sxs-lookup"><span data-stu-id="2aff7-128">If you have followed previous steps, you can get these values with hello following script:</span></span>
 
 ```azurecli-interactive
 echo $STORAGE_ACCOUNT
@@ -158,7 +158,7 @@ echo $KEYVAULT_SECRET_NAME
 az keyvault show --name $KEYVAULT_NAME --query [id] -o tsv
 ```
 
-<span data-ttu-id="55e0a-129">Inserire i valori nel file dei parametri:</span><span class="sxs-lookup"><span data-stu-id="55e0a-129">Insert the values into the parameters file:</span></span>
+<span data-ttu-id="2aff7-129">Inserire i valori hello nel file dei parametri hello:</span><span class="sxs-lookup"><span data-stu-id="2aff7-129">Insert hello values into hello parameters file:</span></span>
 
 ```json
 {
@@ -180,26 +180,26 @@ az keyvault show --name $KEYVAULT_NAME --query [id] -o tsv
 }
 ```
 
-## <a name="deploy-the-container-and-manage-files"></a><span data-ttu-id="55e0a-130">Distribuire il contenitore e gestire i file</span><span class="sxs-lookup"><span data-stu-id="55e0a-130">Deploy the container and manage files</span></span>
+## <a name="deploy-hello-container-and-manage-files"></a><span data-ttu-id="2aff7-130">Distribuire il contenitore di hello e gestire i file</span><span class="sxs-lookup"><span data-stu-id="2aff7-130">Deploy hello container and manage files</span></span>
 
-<span data-ttu-id="55e0a-131">Con il modello definito, è possibile creare il contenitore e montarne il volume usando l'interfaccia della riga di comando di Azure.</span><span class="sxs-lookup"><span data-stu-id="55e0a-131">With the template defined, you can create the container and mount its volume using the Azure CLI.</span></span> <span data-ttu-id="55e0a-132">Supponendo che il file del modello sia denominato *azuredeploy.json* e che il file dei parametri sia denominato *azuredeploy.parameters.json*, la riga di comando sarà:</span><span class="sxs-lookup"><span data-stu-id="55e0a-132">Assuming that the template file is named *azuredeploy.json* and that the parameters file is named *azuredeploy.parameters.json*, then the command line is:</span></span>
+<span data-ttu-id="2aff7-131">Con il modello di hello definito, è possibile creare il contenitore di hello e montare il volume utilizzando hello CLI di Azure.</span><span class="sxs-lookup"><span data-stu-id="2aff7-131">With hello template defined, you can create hello container and mount its volume using hello Azure CLI.</span></span> <span data-ttu-id="2aff7-132">Supponendo che hello file modello è denominato *azuredeploy.json* e il file di parametri hello è denominato *azuredeploy.parameters.json*, quindi la riga di comando hello è:</span><span class="sxs-lookup"><span data-stu-id="2aff7-132">Assuming that hello template file is named *azuredeploy.json* and that hello parameters file is named *azuredeploy.parameters.json*, then hello command line is:</span></span>
 
 ```azurecli-interactive
 az group deployment create --name hellofilesdeployment --template-file azuredeploy.json --parameters @azuredeploy.parameters.json --resource-group myResourceGroup
 ```
 
-<span data-ttu-id="55e0a-133">Dopo l'avvio del contenitore, è possibile usare la semplice app Web distribuita tramite l'immagine **seanmckenna/aci-hellofiles** per gestire i file nella condivisione file di Azure nel percorso di montaggio specificato.</span><span class="sxs-lookup"><span data-stu-id="55e0a-133">Once the container starts up, you can use the simple web app deployed via the **seanmckenna/aci-hellofiles** image, to the manage files in the Azure file share at the mount path that you specified.</span></span> <span data-ttu-id="55e0a-134">Ottenere l'indirizzo IP dell'app Web con il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="55e0a-134">Obtain the ip address for the web app via the following:</span></span>
+<span data-ttu-id="2aff7-133">Una volta contenitore hello viene avviata, è possibile utilizzare app web semplici hello distribuite tramite hello **aci/seanmckenna-hellofiles** immagine toohello gestire i file nella condivisione di file di Azure hello nel percorso di montaggio hello specificato.</span><span class="sxs-lookup"><span data-stu-id="2aff7-133">Once hello container starts up, you can use hello simple web app deployed via hello **seanmckenna/aci-hellofiles** image, toohello manage files in hello Azure file share at hello mount path that you specified.</span></span> <span data-ttu-id="2aff7-134">Ottenere l'indirizzo ip hello hello di applicazione web tramite il seguente hello:</span><span class="sxs-lookup"><span data-stu-id="2aff7-134">Obtain hello ip address for hello web app via hello following:</span></span>
 
 ```azurecli-interactive
 az container show --resource-group myResourceGroup --name hellofiles -o table
 ```
 
-<span data-ttu-id="55e0a-135">È possibile usare uno strumento come [Microsoft Azure Storage Explorer](http://storageexplorer.com) per recuperare e ispezionare il file scritto nella condivisione file.</span><span class="sxs-lookup"><span data-stu-id="55e0a-135">You can use a tool like the [Microsoft Azure Storage Explorer](http://storageexplorer.com) to retrieve and inspect the file writen to the file share.</span></span>
+<span data-ttu-id="2aff7-135">È possibile utilizzare uno strumento quale hello [Microsoft Azure Storage Explorer](http://storageexplorer.com) tooretrieve e controllare la condivisione file hello file scritti toohello.</span><span class="sxs-lookup"><span data-stu-id="2aff7-135">You can use a tool like hello [Microsoft Azure Storage Explorer](http://storageexplorer.com) tooretrieve and inspect hello file writen toohello file share.</span></span>
 
 >[!NOTE]
-> <span data-ttu-id="55e0a-136">Per altre informazioni sull'uso dei modelli di Azure Resource Manager e dei file dei parametri e sulla distribuzione con l'interfaccia della riga di comando di Azure, vedere [Distribuire le risorse con i modelli di Azure Resource Manager e l'interfaccia della riga di comando di Azure](../azure-resource-manager/resource-group-template-deploy-cli.md).</span><span class="sxs-lookup"><span data-stu-id="55e0a-136">To learn more about using Azure Resource Manager templates, parameter files, and deploying with the Azure CLI, see [Deploy resources with Resource Manager templates and Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md).</span></span>
+> <span data-ttu-id="2aff7-136">toolearn ulteriori informazioni su utilizzo di modelli di gestione risorse di Azure, i file dei parametri e la distribuzione con hello CLI di Azure, vedere [distribuire le risorse con i modelli di gestione risorse e CLI di Azure](../azure-resource-manager/resource-group-template-deploy-cli.md).</span><span class="sxs-lookup"><span data-stu-id="2aff7-136">toolearn more about using Azure Resource Manager templates, parameter files, and deploying with hello Azure CLI, see [Deploy resources with Resource Manager templates and Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="55e0a-137">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="55e0a-137">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2aff7-137">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="2aff7-137">Next steps</span></span>
 
-- <span data-ttu-id="55e0a-138">Distribuire il primo contenitore usando la [guida introduttiva](container-instances-quickstart.md) di Istanze di contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="55e0a-138">Deploy for your first container using the Azure Container Instances [quick start](container-instances-quickstart.md)</span></span>
-- <span data-ttu-id="55e0a-139">Informazioni sulla [relazione tra Istanze di contenitore di Azure e gli agenti di orchestrazione di contenitori](container-instances-orchestrator-relationship.md)</span><span class="sxs-lookup"><span data-stu-id="55e0a-139">Learn about the [relationship between Azure Container Instances and container orchestrators](container-instances-orchestrator-relationship.md)</span></span>
+- <span data-ttu-id="2aff7-138">La distribuzione per il primo contenitore utilizzando istanze di contenitori di hello Azure [avvio rapido](container-instances-quickstart.md)</span><span class="sxs-lookup"><span data-stu-id="2aff7-138">Deploy for your first container using hello Azure Container Instances [quick start](container-instances-quickstart.md)</span></span>
+- <span data-ttu-id="2aff7-139">Informazioni su hello [relazione tra le istanze di contenitore di Azure e orchestrators contenitore](container-instances-orchestrator-relationship.md)</span><span class="sxs-lookup"><span data-stu-id="2aff7-139">Learn about hello [relationship between Azure Container Instances and container orchestrators](container-instances-orchestrator-relationship.md)</span></span>

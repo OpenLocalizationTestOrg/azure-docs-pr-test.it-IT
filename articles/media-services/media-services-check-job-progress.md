@@ -1,6 +1,6 @@
 ---
-title: Monitorare lo stato dei processi mediante .NET
-description: "Informazioni su come usare il codice del gestore eventi per tenere traccia dello stato dei processi e inviare aggiornamenti di stato. L'esempio di codice è scritto in C# e usa l'SDK di Servizi multimediali per .NET."
+title: lo stato del processo aaaMonitor usando .NET
+description: Informazioni su come toouse evento gestore codice tootrack lo stato di avanzamento del processo e inviare gli aggiornamenti di stato. Nell'esempio di codice Hello viene scritto in c# e utilizza hello Media Services SDK per .NET.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 851981b291115ba31dc40535f8bcc71cdb475717
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 530aa1d78437cd7c41b4d9a895f9a0e9de0ad49d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-job-progress-using-net"></a><span data-ttu-id="88de2-104">Monitorare lo stato dei processi mediante .NET</span><span class="sxs-lookup"><span data-stu-id="88de2-104">Monitor Job Progress using .NET</span></span>
+# <a name="monitor-job-progress-using-net"></a><span data-ttu-id="bbb12-104">Monitorare lo stato dei processi mediante .NET</span><span class="sxs-lookup"><span data-stu-id="bbb12-104">Monitor Job Progress using .NET</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="88de2-105">Portale</span><span class="sxs-lookup"><span data-stu-id="88de2-105">Portal</span></span>](media-services-portal-check-job-progress.md)
-> * [<span data-ttu-id="88de2-106">.NET</span><span class="sxs-lookup"><span data-stu-id="88de2-106">.NET</span></span>](media-services-check-job-progress.md)
-> * [<span data-ttu-id="88de2-107">REST</span><span class="sxs-lookup"><span data-stu-id="88de2-107">REST</span></span>](media-services-rest-check-job-progress.md)
+> * [<span data-ttu-id="bbb12-105">Portale</span><span class="sxs-lookup"><span data-stu-id="bbb12-105">Portal</span></span>](media-services-portal-check-job-progress.md)
+> * [<span data-ttu-id="bbb12-106">.NET</span><span class="sxs-lookup"><span data-stu-id="bbb12-106">.NET</span></span>](media-services-check-job-progress.md)
+> * [<span data-ttu-id="bbb12-107">REST</span><span class="sxs-lookup"><span data-stu-id="bbb12-107">REST</span></span>](media-services-rest-check-job-progress.md)
 > 
 > 
 
-<span data-ttu-id="88de2-108">Quando si esegue un processo, spesso è necessario monitorarne l'avanzamento.</span><span class="sxs-lookup"><span data-stu-id="88de2-108">When you run jobs, you often require a way to track job progress.</span></span> <span data-ttu-id="88de2-109">È possibile controllare l'avanzamento definendo un gestore eventi StateChanged (come descritto in questo argomento) o usando l'archiviazione code di Azure per monitorare le notifiche dei processi di Servizi multimediali (come descritto in [questo](media-services-dotnet-check-job-progress-with-queues.md) argomento).</span><span class="sxs-lookup"><span data-stu-id="88de2-109">You can check the progress by defining a StateChanged event handler (as described in this topic) or using Azure Queue storage to monitor Media Services job notifications (as described in [this](media-services-dotnet-check-job-progress-with-queues.md) topic).</span></span>
+<span data-ttu-id="bbb12-108">Quando si eseguono i processi, spesso richiedono un avanzamento del processo tootrack modo.</span><span class="sxs-lookup"><span data-stu-id="bbb12-108">When you run jobs, you often require a way tootrack job progress.</span></span> <span data-ttu-id="bbb12-109">È possibile verificare lo stato di hello definendo un gestore dell'evento StateChanged (come descritto in questo argomento) o tramite toomonitor di archiviazione della coda di Azure Media Services processo notifiche (come descritto in [questo](media-services-dotnet-check-job-progress-with-queues.md) argomento).</span><span class="sxs-lookup"><span data-stu-id="bbb12-109">You can check hello progress by defining a StateChanged event handler (as described in this topic) or using Azure Queue storage toomonitor Media Services job notifications (as described in [this](media-services-dotnet-check-job-progress-with-queues.md) topic).</span></span>
 
-## <a name="define-statechanged-event-handler-to-monitor-job-progress"></a><span data-ttu-id="88de2-110">Definire un gestore eventi StateChanged per monitorare lo stato di un processo</span><span class="sxs-lookup"><span data-stu-id="88de2-110">Define StateChanged event handler to monitor job progress</span></span>
-<span data-ttu-id="88de2-111">Nell'esempio di codice seguente viene definito il gestore dell'evento StateChanged,</span><span class="sxs-lookup"><span data-stu-id="88de2-111">The following code example defines the StateChanged event handler.</span></span> <span data-ttu-id="88de2-112">che monitora l'avanzamento del processo e ne indica lo stato aggiornato.</span><span class="sxs-lookup"><span data-stu-id="88de2-112">This event handler tracks job progress and provides updated status, depending on the state.</span></span> <span data-ttu-id="88de2-113">Il codice consente inoltre di definire il metodo helper LogJobStop,</span><span class="sxs-lookup"><span data-stu-id="88de2-113">The code also defines the LogJobStop method.</span></span> <span data-ttu-id="88de2-114">che registra i dettagli degli errori.</span><span class="sxs-lookup"><span data-stu-id="88de2-114">This helper method logs error details.</span></span>
+## <a name="define-statechanged-event-handler-toomonitor-job-progress"></a><span data-ttu-id="bbb12-110">Definire lo stato del processo StateChanged evento gestore toomonitor</span><span class="sxs-lookup"><span data-stu-id="bbb12-110">Define StateChanged event handler toomonitor job progress</span></span>
+<span data-ttu-id="bbb12-111">esempio di codice seguente Hello definisce gestore dell'evento StateChanged hello.</span><span class="sxs-lookup"><span data-stu-id="bbb12-111">hello following code example defines hello StateChanged event handler.</span></span> <span data-ttu-id="bbb12-112">Questo gestore rileva lo stato del processo e fornisce lo stato aggiornato, a seconda dello stato di hello.</span><span class="sxs-lookup"><span data-stu-id="bbb12-112">This event handler tracks job progress and provides updated status, depending on hello state.</span></span> <span data-ttu-id="bbb12-113">codice Hello definisce anche il metodo LogJobStop hello.</span><span class="sxs-lookup"><span data-stu-id="bbb12-113">hello code also defines hello LogJobStop method.</span></span> <span data-ttu-id="bbb12-114">che registra i dettagli degli errori.</span><span class="sxs-lookup"><span data-stu-id="bbb12-114">This helper method logs error details.</span></span>
 
     private static void StateChanged(object sender, JobStateChangedEventArgs e)
     {
@@ -73,7 +73,7 @@ ms.lasthandoff: 08/29/2017
         StringBuilder builder = new StringBuilder();
         IJob job = GetJob(jobId);
 
-        builder.AppendLine("\nThe job stopped due to cancellation or an error.");
+        builder.AppendLine("\nThe job stopped due toocancellation or an error.");
         builder.AppendLine("***************************");
         builder.AppendLine("Job ID: " + job.Id);
         builder.AppendLine("Job Name: " + job.Name);
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/29/2017
             }
         }
         builder.AppendLine("***************************\n");
-        // Write the output to a local file and to the console. The template 
+        // Write hello output tooa local file and toohello console. hello template 
         // for an error output file is:  JobStop-{JobId}.txt
         string outputFile = _outputFilesFolder + @"\JobStop-" + JobIdAsFileName(job.Id) + ".txt";
         WriteToFile(outputFile, builder.ToString());
@@ -110,11 +110,11 @@ ms.lasthandoff: 08/29/2017
 
 
 
-## <a name="next-step"></a><span data-ttu-id="88de2-115">Passaggio successivo</span><span class="sxs-lookup"><span data-stu-id="88de2-115">Next step</span></span>
-<span data-ttu-id="88de2-116">Analizzare i percorsi di apprendimento di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="88de2-116">Review Media Services learning paths.</span></span>
+## <a name="next-step"></a><span data-ttu-id="bbb12-115">Passaggio successivo</span><span class="sxs-lookup"><span data-stu-id="bbb12-115">Next step</span></span>
+<span data-ttu-id="bbb12-116">Analizzare i percorsi di apprendimento di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="bbb12-116">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="88de2-117">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="88de2-117">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="bbb12-117">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="bbb12-117">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

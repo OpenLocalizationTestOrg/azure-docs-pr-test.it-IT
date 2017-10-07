@@ -1,6 +1,6 @@
 ---
-title: Funzioni numeriche del modello di Azure Resource Manager | Microsoft Docs
-description: "Informazioni sulle funzioni che è possibile usare in un modello di Azure Resource Manager per elaborare i numeri."
+title: aaaAzure Gestione risorse funzioni di modello - numeriche | Documenti Microsoft
+description: Descrive toouse funzioni hello in un toowork modello di gestione risorse di Azure con i numeri.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ae0261134b8d4a934048f58d6c679a48a904950b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 855d5b354d094b9815edc160e3d72efbfd36ba77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="numeric-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="741a3-103">Funzioni numeriche per i modelli di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="741a3-103">Numeric functions for Azure Resource Manager templates</span></span>
+# <a name="numeric-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="c642f-103">Funzioni numeriche per i modelli di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="c642f-103">Numeric functions for Azure Resource Manager templates</span></span>
 
-<span data-ttu-id="741a3-104">Gestione risorse fornisce le funzioni seguenti per usare i numeri interi:</span><span class="sxs-lookup"><span data-stu-id="741a3-104">Resource Manager provides the following functions for working with integers:</span></span>
+<span data-ttu-id="c642f-104">Gestione risorse offre hello seguenti funzioni per l'utilizzo di numeri interi:</span><span class="sxs-lookup"><span data-stu-id="c642f-104">Resource Manager provides hello following functions for working with integers:</span></span>
 
-* [<span data-ttu-id="741a3-105">add</span><span class="sxs-lookup"><span data-stu-id="741a3-105">add</span></span>](#add)
-* [<span data-ttu-id="741a3-106">copyIndex</span><span class="sxs-lookup"><span data-stu-id="741a3-106">copyIndex</span></span>](#copyindex)
-* [<span data-ttu-id="741a3-107">div</span><span class="sxs-lookup"><span data-stu-id="741a3-107">div</span></span>](#div)
-* [<span data-ttu-id="741a3-108">float</span><span class="sxs-lookup"><span data-stu-id="741a3-108">float</span></span>](#float)
-* [<span data-ttu-id="741a3-109">int</span><span class="sxs-lookup"><span data-stu-id="741a3-109">int</span></span>](#int)
-* [<span data-ttu-id="741a3-110">min</span><span class="sxs-lookup"><span data-stu-id="741a3-110">min</span></span>](#min)
-* [<span data-ttu-id="741a3-111">max</span><span class="sxs-lookup"><span data-stu-id="741a3-111">max</span></span>](#max)
-* [<span data-ttu-id="741a3-112">mod</span><span class="sxs-lookup"><span data-stu-id="741a3-112">mod</span></span>](#mod)
-* [<span data-ttu-id="741a3-113">mul</span><span class="sxs-lookup"><span data-stu-id="741a3-113">mul</span></span>](#mul)
-* [<span data-ttu-id="741a3-114">sub</span><span class="sxs-lookup"><span data-stu-id="741a3-114">sub</span></span>](#sub)
+* [<span data-ttu-id="c642f-105">add</span><span class="sxs-lookup"><span data-stu-id="c642f-105">add</span></span>](#add)
+* [<span data-ttu-id="c642f-106">copyIndex</span><span class="sxs-lookup"><span data-stu-id="c642f-106">copyIndex</span></span>](#copyindex)
+* [<span data-ttu-id="c642f-107">div</span><span class="sxs-lookup"><span data-stu-id="c642f-107">div</span></span>](#div)
+* [<span data-ttu-id="c642f-108">float</span><span class="sxs-lookup"><span data-stu-id="c642f-108">float</span></span>](#float)
+* [<span data-ttu-id="c642f-109">int</span><span class="sxs-lookup"><span data-stu-id="c642f-109">int</span></span>](#int)
+* [<span data-ttu-id="c642f-110">min</span><span class="sxs-lookup"><span data-stu-id="c642f-110">min</span></span>](#min)
+* [<span data-ttu-id="c642f-111">max</span><span class="sxs-lookup"><span data-stu-id="c642f-111">max</span></span>](#max)
+* [<span data-ttu-id="c642f-112">mod</span><span class="sxs-lookup"><span data-stu-id="c642f-112">mod</span></span>](#mod)
+* [<span data-ttu-id="c642f-113">mul</span><span class="sxs-lookup"><span data-stu-id="c642f-113">mul</span></span>](#mul)
+* [<span data-ttu-id="c642f-114">sub</span><span class="sxs-lookup"><span data-stu-id="c642f-114">sub</span></span>](#sub)
 
 <a id="add" />
 
-## <a name="add"></a><span data-ttu-id="741a3-115">add</span><span class="sxs-lookup"><span data-stu-id="741a3-115">add</span></span>
+## <a name="add"></a><span data-ttu-id="c642f-115">add</span><span class="sxs-lookup"><span data-stu-id="c642f-115">add</span></span>
 `add(operand1, operand2)`
 
-<span data-ttu-id="741a3-116">Restituisce la somma dei due numeri interi forniti.</span><span class="sxs-lookup"><span data-stu-id="741a3-116">Returns the sum of the two provided integers.</span></span>
+<span data-ttu-id="c642f-116">Restituisce hello somma di due interi fornito di hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-116">Returns hello sum of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-117">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-117">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-117">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-117">Parameters</span></span>
 
-| <span data-ttu-id="741a3-118">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-118">Parameter</span></span> | <span data-ttu-id="741a3-119">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-119">Required</span></span> | <span data-ttu-id="741a3-120">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-120">Type</span></span> | <span data-ttu-id="741a3-121">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-121">Description</span></span> |
+| <span data-ttu-id="c642f-118">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-118">Parameter</span></span> | <span data-ttu-id="c642f-119">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-119">Required</span></span> | <span data-ttu-id="c642f-120">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-120">Type</span></span> | <span data-ttu-id="c642f-121">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-121">Description</span></span> |
 |:--- |:--- |:--- |:--- | 
-|<span data-ttu-id="741a3-122">operand1</span><span class="sxs-lookup"><span data-stu-id="741a3-122">operand1</span></span> |<span data-ttu-id="741a3-123">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-123">Yes</span></span> |<span data-ttu-id="741a3-124">int</span><span class="sxs-lookup"><span data-stu-id="741a3-124">int</span></span> |<span data-ttu-id="741a3-125">Il primo numero da aggiungere.</span><span class="sxs-lookup"><span data-stu-id="741a3-125">First number to add.</span></span> |
-|<span data-ttu-id="741a3-126">operand2</span><span class="sxs-lookup"><span data-stu-id="741a3-126">operand2</span></span> |<span data-ttu-id="741a3-127">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-127">Yes</span></span> |<span data-ttu-id="741a3-128">int</span><span class="sxs-lookup"><span data-stu-id="741a3-128">int</span></span> |<span data-ttu-id="741a3-129">Il secondo numero da aggiungere.</span><span class="sxs-lookup"><span data-stu-id="741a3-129">Second number to add.</span></span> |
+|<span data-ttu-id="c642f-122">operand1</span><span class="sxs-lookup"><span data-stu-id="c642f-122">operand1</span></span> |<span data-ttu-id="c642f-123">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-123">Yes</span></span> |<span data-ttu-id="c642f-124">int</span><span class="sxs-lookup"><span data-stu-id="c642f-124">int</span></span> |<span data-ttu-id="c642f-125">Primo numero tooadd.</span><span class="sxs-lookup"><span data-stu-id="c642f-125">First number tooadd.</span></span> |
+|<span data-ttu-id="c642f-126">operand2</span><span class="sxs-lookup"><span data-stu-id="c642f-126">operand2</span></span> |<span data-ttu-id="c642f-127">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-127">Yes</span></span> |<span data-ttu-id="c642f-128">int</span><span class="sxs-lookup"><span data-stu-id="c642f-128">int</span></span> |<span data-ttu-id="c642f-129">Secondo numero tooadd.</span><span class="sxs-lookup"><span data-stu-id="c642f-129">Second number tooadd.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-130">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-130">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-130">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-130">Return value</span></span>
 
-<span data-ttu-id="741a3-131">Un intero che contiene la somma dei parametri.</span><span class="sxs-lookup"><span data-stu-id="741a3-131">An integer that contains the sum of the parameters.</span></span>
+<span data-ttu-id="c642f-131">Valore intero che contiene la somma hello dei parametri di hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-131">An integer that contains hello sum of hello parameters.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-132">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-132">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-132">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-132">Example</span></span>
 
-<span data-ttu-id="741a3-133">L'esempio seguente aggiunge due parametri.</span><span class="sxs-lookup"><span data-stu-id="741a3-133">The following example adds two parameters.</span></span>
+<span data-ttu-id="c642f-133">Hello di esempio seguente vengono aggiunti due parametri.</span><span class="sxs-lookup"><span data-stu-id="c642f-133">hello following example adds two parameters.</span></span>
 
 ```json
 {
@@ -66,14 +66,14 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to add"
+                "description": "First integer tooadd"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to add"
+                "description": "Second integer tooadd"
             }
         }
     },
@@ -88,37 +88,37 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-134">L'output dell'esempio precedente con i valori predefiniti è:</span><span class="sxs-lookup"><span data-stu-id="741a3-134">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-134">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-134">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-135">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-135">Name</span></span> | <span data-ttu-id="741a3-136">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-136">Type</span></span> | <span data-ttu-id="741a3-137">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-137">Value</span></span> |
+| <span data-ttu-id="c642f-135">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-135">Name</span></span> | <span data-ttu-id="c642f-136">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-136">Type</span></span> | <span data-ttu-id="c642f-137">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-137">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-138">addResult</span><span class="sxs-lookup"><span data-stu-id="741a3-138">addResult</span></span> | <span data-ttu-id="741a3-139">int</span><span class="sxs-lookup"><span data-stu-id="741a3-139">Int</span></span> | <span data-ttu-id="741a3-140">8</span><span class="sxs-lookup"><span data-stu-id="741a3-140">8</span></span> |
+| <span data-ttu-id="c642f-138">addResult</span><span class="sxs-lookup"><span data-stu-id="c642f-138">addResult</span></span> | <span data-ttu-id="c642f-139">int</span><span class="sxs-lookup"><span data-stu-id="c642f-139">Int</span></span> | <span data-ttu-id="c642f-140">8</span><span class="sxs-lookup"><span data-stu-id="c642f-140">8</span></span> |
 
 <a id="copyindex" />
 
-## <a name="copyindex"></a><span data-ttu-id="741a3-141">copyIndex</span><span class="sxs-lookup"><span data-stu-id="741a3-141">copyIndex</span></span>
+## <a name="copyindex"></a><span data-ttu-id="c642f-141">copyIndex</span><span class="sxs-lookup"><span data-stu-id="c642f-141">copyIndex</span></span>
 `copyIndex(loopName, offset)`
 
-<span data-ttu-id="741a3-142">Restituisce l'indice di un ciclo di iterazione.</span><span class="sxs-lookup"><span data-stu-id="741a3-142">Returns the index of an iteration loop.</span></span> 
+<span data-ttu-id="c642f-142">Restituisce hello indice di un ciclo di iterazione.</span><span class="sxs-lookup"><span data-stu-id="c642f-142">Returns hello index of an iteration loop.</span></span> 
 
-### <a name="parameters"></a><span data-ttu-id="741a3-143">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-143">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-143">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-143">Parameters</span></span>
 
-| <span data-ttu-id="741a3-144">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-144">Parameter</span></span> | <span data-ttu-id="741a3-145">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-145">Required</span></span> | <span data-ttu-id="741a3-146">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-146">Type</span></span> | <span data-ttu-id="741a3-147">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-147">Description</span></span> |
+| <span data-ttu-id="c642f-144">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-144">Parameter</span></span> | <span data-ttu-id="c642f-145">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-145">Required</span></span> | <span data-ttu-id="c642f-146">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-146">Type</span></span> | <span data-ttu-id="c642f-147">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-147">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-148">loopName</span><span class="sxs-lookup"><span data-stu-id="741a3-148">loopName</span></span> | <span data-ttu-id="741a3-149">No</span><span class="sxs-lookup"><span data-stu-id="741a3-149">No</span></span> | <span data-ttu-id="741a3-150">string</span><span class="sxs-lookup"><span data-stu-id="741a3-150">string</span></span> | <span data-ttu-id="741a3-151">Nome del ciclo per ottenere l'iterazione.</span><span class="sxs-lookup"><span data-stu-id="741a3-151">The name of the loop for getting the iteration.</span></span> |
-| <span data-ttu-id="741a3-152">offset</span><span class="sxs-lookup"><span data-stu-id="741a3-152">offset</span></span> |<span data-ttu-id="741a3-153">No</span><span class="sxs-lookup"><span data-stu-id="741a3-153">No</span></span> |<span data-ttu-id="741a3-154">int</span><span class="sxs-lookup"><span data-stu-id="741a3-154">int</span></span> |<span data-ttu-id="741a3-155">Il numero da aggiungere al valore di iterazione in base zero.</span><span class="sxs-lookup"><span data-stu-id="741a3-155">The number to add to the zero-based iteration value.</span></span> |
+| <span data-ttu-id="c642f-148">loopName</span><span class="sxs-lookup"><span data-stu-id="c642f-148">loopName</span></span> | <span data-ttu-id="c642f-149">No</span><span class="sxs-lookup"><span data-stu-id="c642f-149">No</span></span> | <span data-ttu-id="c642f-150">string</span><span class="sxs-lookup"><span data-stu-id="c642f-150">string</span></span> | <span data-ttu-id="c642f-151">nome di Hello del ciclo di hello per il recupero di iterazione hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-151">hello name of hello loop for getting hello iteration.</span></span> |
+| <span data-ttu-id="c642f-152">offset</span><span class="sxs-lookup"><span data-stu-id="c642f-152">offset</span></span> |<span data-ttu-id="c642f-153">No</span><span class="sxs-lookup"><span data-stu-id="c642f-153">No</span></span> |<span data-ttu-id="c642f-154">int</span><span class="sxs-lookup"><span data-stu-id="c642f-154">int</span></span> |<span data-ttu-id="c642f-155">Hello tooadd toohello iterazione in base zero in valore numerico.</span><span class="sxs-lookup"><span data-stu-id="c642f-155">hello number tooadd toohello zero-based iteration value.</span></span> |
 
-### <a name="remarks"></a><span data-ttu-id="741a3-156">Osservazioni</span><span class="sxs-lookup"><span data-stu-id="741a3-156">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="c642f-156">Osservazioni</span><span class="sxs-lookup"><span data-stu-id="c642f-156">Remarks</span></span>
 
-<span data-ttu-id="741a3-157">Questa funzione viene sempre usata con un oggetto **copy** .</span><span class="sxs-lookup"><span data-stu-id="741a3-157">This function is always used with a **copy** object.</span></span> <span data-ttu-id="741a3-158">Se non viene specificato alcun valore per **offset**, viene restituito il valore di iterazione corrente.</span><span class="sxs-lookup"><span data-stu-id="741a3-158">If no value is provided for **offset**, the current iteration value is returned.</span></span> <span data-ttu-id="741a3-159">Il valore di iterazione inizia da zero.</span><span class="sxs-lookup"><span data-stu-id="741a3-159">The iteration value starts at zero.</span></span>
+<span data-ttu-id="c642f-157">Questa funzione viene sempre usata con un oggetto **copy** .</span><span class="sxs-lookup"><span data-stu-id="c642f-157">This function is always used with a **copy** object.</span></span> <span data-ttu-id="c642f-158">Se non viene fornito alcun valore per **offset**, viene restituito il valore di iterazione corrente hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-158">If no value is provided for **offset**, hello current iteration value is returned.</span></span> <span data-ttu-id="c642f-159">il valore di iterazione Hello inizia in corrispondenza di zero.</span><span class="sxs-lookup"><span data-stu-id="c642f-159">hello iteration value starts at zero.</span></span>
 
-<span data-ttu-id="741a3-160">La proprietà **loopName** consente di specificare se copyIndex fa riferimento all'iterazione di una risorsa o all'iterazione di una proprietà.</span><span class="sxs-lookup"><span data-stu-id="741a3-160">The **loopName** property enables you to specify whether copyIndex is referring to a resource iteration or property iteration.</span></span> <span data-ttu-id="741a3-161">Se non viene specificato alcun valore per **loopName**, viene usata l'iterazione del tipo di risorsa corrente.</span><span class="sxs-lookup"><span data-stu-id="741a3-161">If no value is provided for **loopName**, the current resource type iteration is used.</span></span> <span data-ttu-id="741a3-162">Specificare un valore per **loopName** durante l'iterazione di una proprietà.</span><span class="sxs-lookup"><span data-stu-id="741a3-162">Provide a value for **loopName** when iterating on a property.</span></span> 
+<span data-ttu-id="c642f-160">Hello **loopName** proprietà consente toospecify se copyIndex fa riferimento iterazione risorsa tooa o l'iterazione di proprietà.</span><span class="sxs-lookup"><span data-stu-id="c642f-160">hello **loopName** property enables you toospecify whether copyIndex is referring tooa resource iteration or property iteration.</span></span> <span data-ttu-id="c642f-161">Se non viene fornito alcun valore per **loopName**, viene utilizzato l'iterazione di tipo risorsa corrente hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-161">If no value is provided for **loopName**, hello current resource type iteration is used.</span></span> <span data-ttu-id="c642f-162">Specificare un valore per **loopName** durante l'iterazione di una proprietà.</span><span class="sxs-lookup"><span data-stu-id="c642f-162">Provide a value for **loopName** when iterating on a property.</span></span> 
  
-<span data-ttu-id="741a3-163">Per una descrizione completa dell'uso di **copyIndex**, vedere [Creare più istanze di risorse in Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="741a3-163">For a complete description of how you use **copyIndex**, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+<span data-ttu-id="c642f-163">Per una descrizione completa dell'uso di **copyIndex**, vedere [Creare più istanze di risorse in Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="c642f-163">For a complete description of how you use **copyIndex**, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-164">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-164">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-164">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-164">Example</span></span>
 
-<span data-ttu-id="741a3-165">L'esempio seguente illustra un ciclo di copy e il valore di indice incluso nel nome.</span><span class="sxs-lookup"><span data-stu-id="741a3-165">The following example shows a copy loop and the index value included in the name.</span></span> 
+<span data-ttu-id="c642f-165">Hello esempio seguente viene illustrato un ciclo e hello indice valore copia incluso nel nome hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-165">hello following example shows a copy loop and hello index value included in hello name.</span></span> 
 
 ```json
 "resources": [ 
@@ -134,31 +134,31 @@ ms.lasthandoff: 08/03/2017
 ]
 ```
 
-### <a name="return-value"></a><span data-ttu-id="741a3-166">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-166">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-166">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-166">Return value</span></span>
 
-<span data-ttu-id="741a3-167">Un intero che rappresenta l'indice corrente dell'iterazione.</span><span class="sxs-lookup"><span data-stu-id="741a3-167">An integer representing the current index of the iteration.</span></span>
+<span data-ttu-id="c642f-167">Numero intero che rappresenta l'indice corrente di hello di iterazione hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-167">An integer representing hello current index of hello iteration.</span></span>
 
 <a id="div" />
 
-## <a name="div"></a><span data-ttu-id="741a3-168">div</span><span class="sxs-lookup"><span data-stu-id="741a3-168">div</span></span>
+## <a name="div"></a><span data-ttu-id="c642f-168">div</span><span class="sxs-lookup"><span data-stu-id="c642f-168">div</span></span>
 `div(operand1, operand2)`
 
-<span data-ttu-id="741a3-169">Restituisce la divisione Integer dei due numeri interi forniti.</span><span class="sxs-lookup"><span data-stu-id="741a3-169">Returns the integer division of the two provided integers.</span></span>
+<span data-ttu-id="c642f-169">Restituisce hello divisione di integer di due interi fornito di hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-169">Returns hello integer division of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-170">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-170">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-170">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-170">Parameters</span></span>
 
-| <span data-ttu-id="741a3-171">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-171">Parameter</span></span> | <span data-ttu-id="741a3-172">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-172">Required</span></span> | <span data-ttu-id="741a3-173">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-173">Type</span></span> | <span data-ttu-id="741a3-174">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-174">Description</span></span> |
+| <span data-ttu-id="c642f-171">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-171">Parameter</span></span> | <span data-ttu-id="c642f-172">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-172">Required</span></span> | <span data-ttu-id="c642f-173">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-173">Type</span></span> | <span data-ttu-id="c642f-174">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-174">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-175">operand1</span><span class="sxs-lookup"><span data-stu-id="741a3-175">operand1</span></span> |<span data-ttu-id="741a3-176">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-176">Yes</span></span> |<span data-ttu-id="741a3-177">int</span><span class="sxs-lookup"><span data-stu-id="741a3-177">int</span></span> |<span data-ttu-id="741a3-178">Il numero da dividere.</span><span class="sxs-lookup"><span data-stu-id="741a3-178">The number being divided.</span></span> |
-| <span data-ttu-id="741a3-179">operand2</span><span class="sxs-lookup"><span data-stu-id="741a3-179">operand2</span></span> |<span data-ttu-id="741a3-180">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-180">Yes</span></span> |<span data-ttu-id="741a3-181">int</span><span class="sxs-lookup"><span data-stu-id="741a3-181">int</span></span> |<span data-ttu-id="741a3-182">Il numero usato per dividere.</span><span class="sxs-lookup"><span data-stu-id="741a3-182">The number that is used to divide.</span></span> <span data-ttu-id="741a3-183">Non può essere 0.</span><span class="sxs-lookup"><span data-stu-id="741a3-183">Cannot be 0.</span></span> |
+| <span data-ttu-id="c642f-175">operand1</span><span class="sxs-lookup"><span data-stu-id="c642f-175">operand1</span></span> |<span data-ttu-id="c642f-176">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-176">Yes</span></span> |<span data-ttu-id="c642f-177">int</span><span class="sxs-lookup"><span data-stu-id="c642f-177">int</span></span> |<span data-ttu-id="c642f-178">numero di Hello viene diviso.</span><span class="sxs-lookup"><span data-stu-id="c642f-178">hello number being divided.</span></span> |
+| <span data-ttu-id="c642f-179">operand2</span><span class="sxs-lookup"><span data-stu-id="c642f-179">operand2</span></span> |<span data-ttu-id="c642f-180">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-180">Yes</span></span> |<span data-ttu-id="c642f-181">int</span><span class="sxs-lookup"><span data-stu-id="c642f-181">int</span></span> |<span data-ttu-id="c642f-182">Hello numero toodivide utilizzato.</span><span class="sxs-lookup"><span data-stu-id="c642f-182">hello number that is used toodivide.</span></span> <span data-ttu-id="c642f-183">Non può essere 0.</span><span class="sxs-lookup"><span data-stu-id="c642f-183">Cannot be 0.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-184">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-184">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-184">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-184">Return value</span></span>
 
-<span data-ttu-id="741a3-185">Un intero che rappresenta la divisione.</span><span class="sxs-lookup"><span data-stu-id="741a3-185">An integer representing the division.</span></span>
+<span data-ttu-id="c642f-185">Una divisione di interi che rappresentano hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-185">An integer representing hello division.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-186">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-186">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-186">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-186">Example</span></span>
 
-<span data-ttu-id="741a3-187">L'esempio seguente mostra come dividere un parametro per un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="741a3-187">The following example divides one parameter by another parameter.</span></span>
+<span data-ttu-id="c642f-187">Hello di esempio seguente consente di dividere un parametro da un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="c642f-187">hello following example divides one parameter by another parameter.</span></span>
 
 ```json
 {
@@ -176,7 +176,7 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -191,31 +191,31 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-188">L'output dell'esempio precedente con i valori predefiniti è:</span><span class="sxs-lookup"><span data-stu-id="741a3-188">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-188">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-188">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-189">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-189">Name</span></span> | <span data-ttu-id="741a3-190">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-190">Type</span></span> | <span data-ttu-id="741a3-191">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-191">Value</span></span> |
+| <span data-ttu-id="c642f-189">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-189">Name</span></span> | <span data-ttu-id="c642f-190">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-190">Type</span></span> | <span data-ttu-id="c642f-191">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-191">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-192">divResult</span><span class="sxs-lookup"><span data-stu-id="741a3-192">divResult</span></span> | <span data-ttu-id="741a3-193">int</span><span class="sxs-lookup"><span data-stu-id="741a3-193">Int</span></span> | <span data-ttu-id="741a3-194">2</span><span class="sxs-lookup"><span data-stu-id="741a3-194">2</span></span> |
+| <span data-ttu-id="c642f-192">divResult</span><span class="sxs-lookup"><span data-stu-id="c642f-192">divResult</span></span> | <span data-ttu-id="c642f-193">int</span><span class="sxs-lookup"><span data-stu-id="c642f-193">Int</span></span> | <span data-ttu-id="c642f-194">2</span><span class="sxs-lookup"><span data-stu-id="c642f-194">2</span></span> |
 
 <a id="float" />
 
-## <a name="float"></a><span data-ttu-id="741a3-195">float</span><span class="sxs-lookup"><span data-stu-id="741a3-195">float</span></span>
+## <a name="float"></a><span data-ttu-id="c642f-195">float</span><span class="sxs-lookup"><span data-stu-id="c642f-195">float</span></span>
 `float(arg1)`
 
-<span data-ttu-id="741a3-196">Converte il valore in un numero a virgola mobile.</span><span class="sxs-lookup"><span data-stu-id="741a3-196">Converts the value to a floating point number.</span></span> <span data-ttu-id="741a3-197">Usare questa funzione solo quando si passano parametri personalizzati a un'applicazione, ad esempio un'app per la logica.</span><span class="sxs-lookup"><span data-stu-id="741a3-197">You only use this function when passing custom parameters to an application, such as a Logic App.</span></span>
+<span data-ttu-id="c642f-196">Converte tooa valore hello numero a virgola mobile.</span><span class="sxs-lookup"><span data-stu-id="c642f-196">Converts hello value tooa floating point number.</span></span> <span data-ttu-id="c642f-197">Questa funzione è utilizzare solo quando si passano parametri personalizzati tooan applicazione, ad esempio un'App di logica.</span><span class="sxs-lookup"><span data-stu-id="c642f-197">You only use this function when passing custom parameters tooan application, such as a Logic App.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-198">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-198">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-198">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-198">Parameters</span></span>
 
-| <span data-ttu-id="741a3-199">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-199">Parameter</span></span> | <span data-ttu-id="741a3-200">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-200">Required</span></span> | <span data-ttu-id="741a3-201">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-201">Type</span></span> | <span data-ttu-id="741a3-202">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-202">Description</span></span> |
+| <span data-ttu-id="c642f-199">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-199">Parameter</span></span> | <span data-ttu-id="c642f-200">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-200">Required</span></span> | <span data-ttu-id="c642f-201">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-201">Type</span></span> | <span data-ttu-id="c642f-202">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-202">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-203">arg1</span><span class="sxs-lookup"><span data-stu-id="741a3-203">arg1</span></span> |<span data-ttu-id="741a3-204">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-204">Yes</span></span> |<span data-ttu-id="741a3-205">stringa o int</span><span class="sxs-lookup"><span data-stu-id="741a3-205">string or int</span></span> |<span data-ttu-id="741a3-206">Il valore da convertire in un numero a virgola mobile.</span><span class="sxs-lookup"><span data-stu-id="741a3-206">The value to convert to a floating point number.</span></span> |
+| <span data-ttu-id="c642f-203">arg1</span><span class="sxs-lookup"><span data-stu-id="c642f-203">arg1</span></span> |<span data-ttu-id="c642f-204">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-204">Yes</span></span> |<span data-ttu-id="c642f-205">stringa o numero intero</span><span class="sxs-lookup"><span data-stu-id="c642f-205">string or int</span></span> |<span data-ttu-id="c642f-206">Hello valore tooconvert tooa numero a virgola mobile.</span><span class="sxs-lookup"><span data-stu-id="c642f-206">hello value tooconvert tooa floating point number.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-207">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-207">Return value</span></span>
-<span data-ttu-id="741a3-208">Un numero a virgola mobile.</span><span class="sxs-lookup"><span data-stu-id="741a3-208">A floating point number.</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-207">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-207">Return value</span></span>
+<span data-ttu-id="c642f-208">Un numero a virgola mobile.</span><span class="sxs-lookup"><span data-stu-id="c642f-208">A floating point number.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-209">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-209">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-209">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-209">Example</span></span>
 
-<span data-ttu-id="741a3-210">L'esempio seguente illustra come usare float per passare parametri a un'app per la logica:</span><span class="sxs-lookup"><span data-stu-id="741a3-210">The following example shows how to use float to pass parameters to a Logic App:</span></span>
+<span data-ttu-id="c642f-210">Hello di esempio seguente viene illustrato come toouse float toopass parametri tooa logica App:</span><span class="sxs-lookup"><span data-stu-id="c642f-210">hello following example shows how toouse float toopass parameters tooa Logic App:</span></span>
 
 ```json
 {
@@ -233,24 +233,24 @@ ms.lasthandoff: 08/03/2017
 
 <a id="int" />
 
-## <a name="int"></a><span data-ttu-id="741a3-211">int</span><span class="sxs-lookup"><span data-stu-id="741a3-211">int</span></span>
+## <a name="int"></a><span data-ttu-id="c642f-211">int</span><span class="sxs-lookup"><span data-stu-id="c642f-211">int</span></span>
 `int(valueToConvert)`
 
-<span data-ttu-id="741a3-212">Converte il valore specificato in un numero intero.</span><span class="sxs-lookup"><span data-stu-id="741a3-212">Converts the specified value to an integer.</span></span>
+<span data-ttu-id="c642f-212">Converte l'intero tooan di hello valore specificato.</span><span class="sxs-lookup"><span data-stu-id="c642f-212">Converts hello specified value tooan integer.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-213">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-213">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-213">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-213">Parameters</span></span>
 
-| <span data-ttu-id="741a3-214">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-214">Parameter</span></span> | <span data-ttu-id="741a3-215">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-215">Required</span></span> | <span data-ttu-id="741a3-216">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-216">Type</span></span> | <span data-ttu-id="741a3-217">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-217">Description</span></span> |
+| <span data-ttu-id="c642f-214">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-214">Parameter</span></span> | <span data-ttu-id="c642f-215">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-215">Required</span></span> | <span data-ttu-id="c642f-216">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-216">Type</span></span> | <span data-ttu-id="c642f-217">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-217">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-218">valueToConvert</span><span class="sxs-lookup"><span data-stu-id="741a3-218">valueToConvert</span></span> |<span data-ttu-id="741a3-219">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-219">Yes</span></span> |<span data-ttu-id="741a3-220">stringa o int</span><span class="sxs-lookup"><span data-stu-id="741a3-220">string or int</span></span> |<span data-ttu-id="741a3-221">Il valore da convertire in numero intero.</span><span class="sxs-lookup"><span data-stu-id="741a3-221">The value to convert to an integer.</span></span> |
+| <span data-ttu-id="c642f-218">valueToConvert</span><span class="sxs-lookup"><span data-stu-id="c642f-218">valueToConvert</span></span> |<span data-ttu-id="c642f-219">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-219">Yes</span></span> |<span data-ttu-id="c642f-220">stringa o numero intero</span><span class="sxs-lookup"><span data-stu-id="c642f-220">string or int</span></span> |<span data-ttu-id="c642f-221">Hello valore tooconvert tooan numero intero.</span><span class="sxs-lookup"><span data-stu-id="c642f-221">hello value tooconvert tooan integer.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-222">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-222">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-222">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-222">Return value</span></span>
 
-<span data-ttu-id="741a3-223">Un intero del valore convertito.</span><span class="sxs-lookup"><span data-stu-id="741a3-223">An integer of the converted value.</span></span>
+<span data-ttu-id="c642f-223">Valore convertito da un numero intero di hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-223">An integer of hello converted value.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-224">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-224">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-224">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-224">Example</span></span>
 
-<span data-ttu-id="741a3-225">L'esempio seguente converte il valore del parametro fornito dall'utente in intero.</span><span class="sxs-lookup"><span data-stu-id="741a3-225">The following example converts the user-provided parameter value to integer.</span></span>
+<span data-ttu-id="c642f-225">Hello seguente converte toointeger valore di parametro fornito dall'utente hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-225">hello following example converts hello user-provided parameter value toointeger.</span></span>
 
 ```json
 {
@@ -273,33 +273,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-226">L'output dell'esempio precedente con i valori predefiniti è:</span><span class="sxs-lookup"><span data-stu-id="741a3-226">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-226">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-226">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-227">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-227">Name</span></span> | <span data-ttu-id="741a3-228">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-228">Type</span></span> | <span data-ttu-id="741a3-229">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-229">Value</span></span> |
+| <span data-ttu-id="c642f-227">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-227">Name</span></span> | <span data-ttu-id="c642f-228">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-228">Type</span></span> | <span data-ttu-id="c642f-229">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-229">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-230">intResult</span><span class="sxs-lookup"><span data-stu-id="741a3-230">intResult</span></span> | <span data-ttu-id="741a3-231">int</span><span class="sxs-lookup"><span data-stu-id="741a3-231">Int</span></span> | <span data-ttu-id="741a3-232">4</span><span class="sxs-lookup"><span data-stu-id="741a3-232">4</span></span> |
+| <span data-ttu-id="c642f-230">intResult</span><span class="sxs-lookup"><span data-stu-id="c642f-230">intResult</span></span> | <span data-ttu-id="c642f-231">int</span><span class="sxs-lookup"><span data-stu-id="c642f-231">Int</span></span> | <span data-ttu-id="c642f-232">4</span><span class="sxs-lookup"><span data-stu-id="c642f-232">4</span></span> |
 
 
 <a id="min" />
 
-## <a name="min"></a><span data-ttu-id="741a3-233">Min</span><span class="sxs-lookup"><span data-stu-id="741a3-233">min</span></span>
+## <a name="min"></a><span data-ttu-id="c642f-233">Min</span><span class="sxs-lookup"><span data-stu-id="c642f-233">min</span></span>
 `min (arg1)`
 
-<span data-ttu-id="741a3-234">Restituisce il valore minimo di una matrice di numeri interi o di un elenco di numeri interi delimitato da virgole.</span><span class="sxs-lookup"><span data-stu-id="741a3-234">Returns the minimum value from an array of integers or a comma-separated list of integers.</span></span>
+<span data-ttu-id="c642f-234">Restituisce hello valore minimo da una matrice di interi o un elenco delimitato da virgole di numeri interi.</span><span class="sxs-lookup"><span data-stu-id="c642f-234">Returns hello minimum value from an array of integers or a comma-separated list of integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-235">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-235">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-235">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-235">Parameters</span></span>
 
-| <span data-ttu-id="741a3-236">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-236">Parameter</span></span> | <span data-ttu-id="741a3-237">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-237">Required</span></span> | <span data-ttu-id="741a3-238">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-238">Type</span></span> | <span data-ttu-id="741a3-239">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-239">Description</span></span> |
+| <span data-ttu-id="c642f-236">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-236">Parameter</span></span> | <span data-ttu-id="c642f-237">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-237">Required</span></span> | <span data-ttu-id="c642f-238">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-238">Type</span></span> | <span data-ttu-id="c642f-239">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-239">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-240">arg1</span><span class="sxs-lookup"><span data-stu-id="741a3-240">arg1</span></span> |<span data-ttu-id="741a3-241">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-241">Yes</span></span> |<span data-ttu-id="741a3-242">matrice di numeri interi o elenco di numeri interi delimitato da virgole</span><span class="sxs-lookup"><span data-stu-id="741a3-242">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="741a3-243">La raccolta per ottenere il valore minimo.</span><span class="sxs-lookup"><span data-stu-id="741a3-243">The collection to get the minimum value.</span></span> |
+| <span data-ttu-id="c642f-240">arg1</span><span class="sxs-lookup"><span data-stu-id="c642f-240">arg1</span></span> |<span data-ttu-id="c642f-241">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-241">Yes</span></span> |<span data-ttu-id="c642f-242">matrice di numeri interi o elenco di numeri interi delimitato da virgole</span><span class="sxs-lookup"><span data-stu-id="c642f-242">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="c642f-243">Hello raccolta tooget hello valore minimo.</span><span class="sxs-lookup"><span data-stu-id="c642f-243">hello collection tooget hello minimum value.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-244">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-244">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-244">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-244">Return value</span></span>
 
-<span data-ttu-id="741a3-245">un intero che rappresenta il valore minimo dalla raccolta.</span><span class="sxs-lookup"><span data-stu-id="741a3-245">An integer representing minimum value from the collection.</span></span>
+<span data-ttu-id="c642f-245">Intero che rappresenta il valore minimo da raccolta hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-245">An integer representing minimum value from hello collection.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-246">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-246">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-246">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-246">Example</span></span>
 
-<span data-ttu-id="741a3-247">L'esempio seguente mostra come usare la funzione min con una matrice e un elenco di numeri interi:</span><span class="sxs-lookup"><span data-stu-id="741a3-247">The following example shows how to use min with an array and a list of integers:</span></span>
+<span data-ttu-id="c642f-247">Hello seguente esempio viene illustrato come toouse min con una matrice e un elenco di numeri interi:</span><span class="sxs-lookup"><span data-stu-id="c642f-247">hello following example shows how toouse min with an array and a list of integers:</span></span>
 
 ```json
 {
@@ -325,33 +325,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-248">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="741a3-248">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-248">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-248">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-249">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-249">Name</span></span> | <span data-ttu-id="741a3-250">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-250">Type</span></span> | <span data-ttu-id="741a3-251">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-251">Value</span></span> |
+| <span data-ttu-id="c642f-249">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-249">Name</span></span> | <span data-ttu-id="c642f-250">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-250">Type</span></span> | <span data-ttu-id="c642f-251">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-251">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-252">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="741a3-252">arrayOutput</span></span> | <span data-ttu-id="741a3-253">int</span><span class="sxs-lookup"><span data-stu-id="741a3-253">Int</span></span> | <span data-ttu-id="741a3-254">0</span><span class="sxs-lookup"><span data-stu-id="741a3-254">0</span></span> |
-| <span data-ttu-id="741a3-255">intOutput</span><span class="sxs-lookup"><span data-stu-id="741a3-255">intOutput</span></span> | <span data-ttu-id="741a3-256">int</span><span class="sxs-lookup"><span data-stu-id="741a3-256">Int</span></span> | <span data-ttu-id="741a3-257">0</span><span class="sxs-lookup"><span data-stu-id="741a3-257">0</span></span> |
+| <span data-ttu-id="c642f-252">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="c642f-252">arrayOutput</span></span> | <span data-ttu-id="c642f-253">int</span><span class="sxs-lookup"><span data-stu-id="c642f-253">Int</span></span> | <span data-ttu-id="c642f-254">0</span><span class="sxs-lookup"><span data-stu-id="c642f-254">0</span></span> |
+| <span data-ttu-id="c642f-255">intOutput</span><span class="sxs-lookup"><span data-stu-id="c642f-255">intOutput</span></span> | <span data-ttu-id="c642f-256">int</span><span class="sxs-lookup"><span data-stu-id="c642f-256">Int</span></span> | <span data-ttu-id="c642f-257">0</span><span class="sxs-lookup"><span data-stu-id="c642f-257">0</span></span> |
 
 <a id="max" />
 
-## <a name="max"></a><span data-ttu-id="741a3-258">max</span><span class="sxs-lookup"><span data-stu-id="741a3-258">max</span></span>
+## <a name="max"></a><span data-ttu-id="c642f-258">max</span><span class="sxs-lookup"><span data-stu-id="c642f-258">max</span></span>
 `max (arg1)`
 
-<span data-ttu-id="741a3-259">Restituisce il valore massimo da una matrice di numeri interi o da un elenco di numeri interi delimitato da virgole.</span><span class="sxs-lookup"><span data-stu-id="741a3-259">Returns the maximum value from an array of integers or a comma-separated list of integers.</span></span>
+<span data-ttu-id="c642f-259">Restituisce hello valore massimo da una matrice di interi o un elenco delimitato da virgole di numeri interi.</span><span class="sxs-lookup"><span data-stu-id="c642f-259">Returns hello maximum value from an array of integers or a comma-separated list of integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-260">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-260">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-260">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-260">Parameters</span></span>
 
-| <span data-ttu-id="741a3-261">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-261">Parameter</span></span> | <span data-ttu-id="741a3-262">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-262">Required</span></span> | <span data-ttu-id="741a3-263">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-263">Type</span></span> | <span data-ttu-id="741a3-264">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-264">Description</span></span> |
+| <span data-ttu-id="c642f-261">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-261">Parameter</span></span> | <span data-ttu-id="c642f-262">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-262">Required</span></span> | <span data-ttu-id="c642f-263">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-263">Type</span></span> | <span data-ttu-id="c642f-264">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-264">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-265">arg1</span><span class="sxs-lookup"><span data-stu-id="741a3-265">arg1</span></span> |<span data-ttu-id="741a3-266">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-266">Yes</span></span> |<span data-ttu-id="741a3-267">matrice di numeri interi o elenco di numeri interi delimitato da virgole</span><span class="sxs-lookup"><span data-stu-id="741a3-267">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="741a3-268">La raccolta per ottenere il valore massimo.</span><span class="sxs-lookup"><span data-stu-id="741a3-268">The collection to get the maximum value.</span></span> |
+| <span data-ttu-id="c642f-265">arg1</span><span class="sxs-lookup"><span data-stu-id="c642f-265">arg1</span></span> |<span data-ttu-id="c642f-266">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-266">Yes</span></span> |<span data-ttu-id="c642f-267">matrice di numeri interi o elenco di numeri interi delimitato da virgole</span><span class="sxs-lookup"><span data-stu-id="c642f-267">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="c642f-268">Hello raccolta tooget hello valore massimo.</span><span class="sxs-lookup"><span data-stu-id="c642f-268">hello collection tooget hello maximum value.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-269">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-269">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-269">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-269">Return value</span></span>
 
-<span data-ttu-id="741a3-270">Un intero che rappresenta il valore massimo dalla raccolta.</span><span class="sxs-lookup"><span data-stu-id="741a3-270">An integer representing the maximum value from the collection.</span></span>
+<span data-ttu-id="c642f-270">Intero che rappresenta il valore massimo di hello dalla raccolta hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-270">An integer representing hello maximum value from hello collection.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-271">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-271">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-271">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-271">Example</span></span>
 
-<span data-ttu-id="741a3-272">L'esempio seguente mostra come usare la funzione max con una matrice e un elenco di numeri interi:</span><span class="sxs-lookup"><span data-stu-id="741a3-272">The following example shows how to use max with an array and a list of integers:</span></span>
+<span data-ttu-id="c642f-272">Hello seguente esempio viene illustrato come toouse max a una matrice e un elenco di numeri interi:</span><span class="sxs-lookup"><span data-stu-id="c642f-272">hello following example shows how toouse max with an array and a list of integers:</span></span>
 
 ```json
 {
@@ -377,33 +377,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-273">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="741a3-273">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-273">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-273">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-274">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-274">Name</span></span> | <span data-ttu-id="741a3-275">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-275">Type</span></span> | <span data-ttu-id="741a3-276">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-276">Value</span></span> |
+| <span data-ttu-id="c642f-274">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-274">Name</span></span> | <span data-ttu-id="c642f-275">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-275">Type</span></span> | <span data-ttu-id="c642f-276">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-276">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-277">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="741a3-277">arrayOutput</span></span> | <span data-ttu-id="741a3-278">int</span><span class="sxs-lookup"><span data-stu-id="741a3-278">Int</span></span> | <span data-ttu-id="741a3-279">5</span><span class="sxs-lookup"><span data-stu-id="741a3-279">5</span></span> |
-| <span data-ttu-id="741a3-280">intOutput</span><span class="sxs-lookup"><span data-stu-id="741a3-280">intOutput</span></span> | <span data-ttu-id="741a3-281">int</span><span class="sxs-lookup"><span data-stu-id="741a3-281">Int</span></span> | <span data-ttu-id="741a3-282">5</span><span class="sxs-lookup"><span data-stu-id="741a3-282">5</span></span> |
+| <span data-ttu-id="c642f-277">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="c642f-277">arrayOutput</span></span> | <span data-ttu-id="c642f-278">int</span><span class="sxs-lookup"><span data-stu-id="c642f-278">Int</span></span> | <span data-ttu-id="c642f-279">5</span><span class="sxs-lookup"><span data-stu-id="c642f-279">5</span></span> |
+| <span data-ttu-id="c642f-280">intOutput</span><span class="sxs-lookup"><span data-stu-id="c642f-280">intOutput</span></span> | <span data-ttu-id="c642f-281">int</span><span class="sxs-lookup"><span data-stu-id="c642f-281">Int</span></span> | <span data-ttu-id="c642f-282">5</span><span class="sxs-lookup"><span data-stu-id="c642f-282">5</span></span> |
 
 <a id="mod" />
 
-## <a name="mod"></a><span data-ttu-id="741a3-283">mod</span><span class="sxs-lookup"><span data-stu-id="741a3-283">mod</span></span>
+## <a name="mod"></a><span data-ttu-id="c642f-283">mod</span><span class="sxs-lookup"><span data-stu-id="c642f-283">mod</span></span>
 `mod(operand1, operand2)`
 
-<span data-ttu-id="741a3-284">Restituisce la parte rimanente della divisione Integer usando i due numeri interi forniti.</span><span class="sxs-lookup"><span data-stu-id="741a3-284">Returns the remainder of the integer division using the two provided integers.</span></span>
+<span data-ttu-id="c642f-284">Restituisce il resto di hello della divisione di interi hello usando interi forniti due hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-284">Returns hello remainder of hello integer division using hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-285">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-285">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-285">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-285">Parameters</span></span>
 
-| <span data-ttu-id="741a3-286">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-286">Parameter</span></span> | <span data-ttu-id="741a3-287">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-287">Required</span></span> | <span data-ttu-id="741a3-288">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-288">Type</span></span> | <span data-ttu-id="741a3-289">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-289">Description</span></span> |
+| <span data-ttu-id="c642f-286">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-286">Parameter</span></span> | <span data-ttu-id="c642f-287">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-287">Required</span></span> | <span data-ttu-id="c642f-288">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-288">Type</span></span> | <span data-ttu-id="c642f-289">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-289">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-290">operand1</span><span class="sxs-lookup"><span data-stu-id="741a3-290">operand1</span></span> |<span data-ttu-id="741a3-291">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-291">Yes</span></span> |<span data-ttu-id="741a3-292">int</span><span class="sxs-lookup"><span data-stu-id="741a3-292">int</span></span> |<span data-ttu-id="741a3-293">Il numero da dividere.</span><span class="sxs-lookup"><span data-stu-id="741a3-293">The number being divided.</span></span> |
-| <span data-ttu-id="741a3-294">operand2</span><span class="sxs-lookup"><span data-stu-id="741a3-294">operand2</span></span> |<span data-ttu-id="741a3-295">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-295">Yes</span></span> |<span data-ttu-id="741a3-296">int</span><span class="sxs-lookup"><span data-stu-id="741a3-296">int</span></span> |<span data-ttu-id="741a3-297">Il numero usato per dividere; non può corrispondere a 0.</span><span class="sxs-lookup"><span data-stu-id="741a3-297">The number that is used to divide, Cannot be 0.</span></span> |
+| <span data-ttu-id="c642f-290">operand1</span><span class="sxs-lookup"><span data-stu-id="c642f-290">operand1</span></span> |<span data-ttu-id="c642f-291">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-291">Yes</span></span> |<span data-ttu-id="c642f-292">int</span><span class="sxs-lookup"><span data-stu-id="c642f-292">int</span></span> |<span data-ttu-id="c642f-293">numero di Hello viene diviso.</span><span class="sxs-lookup"><span data-stu-id="c642f-293">hello number being divided.</span></span> |
+| <span data-ttu-id="c642f-294">operand2</span><span class="sxs-lookup"><span data-stu-id="c642f-294">operand2</span></span> |<span data-ttu-id="c642f-295">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-295">Yes</span></span> |<span data-ttu-id="c642f-296">int</span><span class="sxs-lookup"><span data-stu-id="c642f-296">int</span></span> |<span data-ttu-id="c642f-297">numero di Hello toodivide utilizzato, non può essere 0.</span><span class="sxs-lookup"><span data-stu-id="c642f-297">hello number that is used toodivide, Cannot be 0.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-298">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-298">Return value</span></span>
-<span data-ttu-id="741a3-299">Un intero che rappresenta il resto.</span><span class="sxs-lookup"><span data-stu-id="741a3-299">An integer representing the remainder.</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-298">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-298">Return value</span></span>
+<span data-ttu-id="c642f-299">Un numero intero che rappresenta hello parte restante.</span><span class="sxs-lookup"><span data-stu-id="c642f-299">An integer representing hello remainder.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-300">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-300">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-300">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-300">Example</span></span>
 
-<span data-ttu-id="741a3-301">L'esempio seguente restituisce il resto della divisione di un parametro per un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="741a3-301">The following example returns the remainder of dividing one parameter by another parameter.</span></span>
+<span data-ttu-id="c642f-301">Hello esempio seguente restituisce il resto di hello della divisione di un parametro da un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="c642f-301">hello following example returns hello remainder of dividing one parameter by another parameter.</span></span>
 
 ```json
 {
@@ -421,7 +421,7 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -436,33 +436,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-302">L'output dell'esempio precedente con i valori predefiniti è:</span><span class="sxs-lookup"><span data-stu-id="741a3-302">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-302">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-302">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-303">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-303">Name</span></span> | <span data-ttu-id="741a3-304">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-304">Type</span></span> | <span data-ttu-id="741a3-305">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-305">Value</span></span> |
+| <span data-ttu-id="c642f-303">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-303">Name</span></span> | <span data-ttu-id="c642f-304">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-304">Type</span></span> | <span data-ttu-id="c642f-305">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-305">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-306">modResult</span><span class="sxs-lookup"><span data-stu-id="741a3-306">modResult</span></span> | <span data-ttu-id="741a3-307">int</span><span class="sxs-lookup"><span data-stu-id="741a3-307">Int</span></span> | <span data-ttu-id="741a3-308">1</span><span class="sxs-lookup"><span data-stu-id="741a3-308">1</span></span> |
+| <span data-ttu-id="c642f-306">modResult</span><span class="sxs-lookup"><span data-stu-id="c642f-306">modResult</span></span> | <span data-ttu-id="c642f-307">int</span><span class="sxs-lookup"><span data-stu-id="c642f-307">Int</span></span> | <span data-ttu-id="c642f-308">1</span><span class="sxs-lookup"><span data-stu-id="c642f-308">1</span></span> |
 
 <a id="mul" />
 
-## <a name="mul"></a><span data-ttu-id="741a3-309">mul</span><span class="sxs-lookup"><span data-stu-id="741a3-309">mul</span></span>
+## <a name="mul"></a><span data-ttu-id="c642f-309">mul</span><span class="sxs-lookup"><span data-stu-id="c642f-309">mul</span></span>
 `mul(operand1, operand2)`
 
-<span data-ttu-id="741a3-310">Restituisce la moltiplicazione dei due numeri interi forniti.</span><span class="sxs-lookup"><span data-stu-id="741a3-310">Returns the multiplication of the two provided integers.</span></span>
+<span data-ttu-id="c642f-310">Restituisce hello moltiplicazione di due interi fornito di hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-310">Returns hello multiplication of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-311">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-311">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-311">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-311">Parameters</span></span>
 
-| <span data-ttu-id="741a3-312">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-312">Parameter</span></span> | <span data-ttu-id="741a3-313">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-313">Required</span></span> | <span data-ttu-id="741a3-314">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-314">Type</span></span> | <span data-ttu-id="741a3-315">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-315">Description</span></span> |
+| <span data-ttu-id="c642f-312">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-312">Parameter</span></span> | <span data-ttu-id="c642f-313">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-313">Required</span></span> | <span data-ttu-id="c642f-314">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-314">Type</span></span> | <span data-ttu-id="c642f-315">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-315">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-316">operand1</span><span class="sxs-lookup"><span data-stu-id="741a3-316">operand1</span></span> |<span data-ttu-id="741a3-317">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-317">Yes</span></span> |<span data-ttu-id="741a3-318">int</span><span class="sxs-lookup"><span data-stu-id="741a3-318">int</span></span> |<span data-ttu-id="741a3-319">Il primo numero da moltiplicare.</span><span class="sxs-lookup"><span data-stu-id="741a3-319">First number to multiply.</span></span> |
-| <span data-ttu-id="741a3-320">operand2</span><span class="sxs-lookup"><span data-stu-id="741a3-320">operand2</span></span> |<span data-ttu-id="741a3-321">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-321">Yes</span></span> |<span data-ttu-id="741a3-322">int</span><span class="sxs-lookup"><span data-stu-id="741a3-322">int</span></span> |<span data-ttu-id="741a3-323">Il secondo numero da moltiplicare.</span><span class="sxs-lookup"><span data-stu-id="741a3-323">Second number to multiply.</span></span> |
+| <span data-ttu-id="c642f-316">operand1</span><span class="sxs-lookup"><span data-stu-id="c642f-316">operand1</span></span> |<span data-ttu-id="c642f-317">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-317">Yes</span></span> |<span data-ttu-id="c642f-318">int</span><span class="sxs-lookup"><span data-stu-id="c642f-318">int</span></span> |<span data-ttu-id="c642f-319">Primo numero toomultiply.</span><span class="sxs-lookup"><span data-stu-id="c642f-319">First number toomultiply.</span></span> |
+| <span data-ttu-id="c642f-320">operand2</span><span class="sxs-lookup"><span data-stu-id="c642f-320">operand2</span></span> |<span data-ttu-id="c642f-321">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-321">Yes</span></span> |<span data-ttu-id="c642f-322">int</span><span class="sxs-lookup"><span data-stu-id="c642f-322">int</span></span> |<span data-ttu-id="c642f-323">Secondo numero toomultiply.</span><span class="sxs-lookup"><span data-stu-id="c642f-323">Second number toomultiply.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-324">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-324">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-324">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-324">Return value</span></span>
 
-<span data-ttu-id="741a3-325">Un intero che rappresenta la moltiplicazione.</span><span class="sxs-lookup"><span data-stu-id="741a3-325">An integer representing the multiplication.</span></span>
+<span data-ttu-id="c642f-325">Una numero intero che rappresenta hello la moltiplicazione.</span><span class="sxs-lookup"><span data-stu-id="c642f-325">An integer representing hello multiplication.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-326">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-326">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-326">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-326">Example</span></span>
 
-<span data-ttu-id="741a3-327">L'esempio seguente mostra come moltiplicare un parametro per un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="741a3-327">The following example multiplies one parameter by another parameter.</span></span>
+<span data-ttu-id="c642f-327">Hello di esempio seguente moltiplica un parametro da un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="c642f-327">hello following example multiplies one parameter by another parameter.</span></span>
 
 ```json
 {
@@ -473,14 +473,14 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to multiply"
+                "description": "First integer toomultiply"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to multiply"
+                "description": "Second integer toomultiply"
             }
         }
     },
@@ -495,32 +495,32 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-328">L'output dell'esempio precedente con i valori predefiniti è:</span><span class="sxs-lookup"><span data-stu-id="741a3-328">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-328">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-328">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-329">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-329">Name</span></span> | <span data-ttu-id="741a3-330">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-330">Type</span></span> | <span data-ttu-id="741a3-331">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-331">Value</span></span> |
+| <span data-ttu-id="c642f-329">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-329">Name</span></span> | <span data-ttu-id="c642f-330">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-330">Type</span></span> | <span data-ttu-id="c642f-331">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-331">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-332">mulResult</span><span class="sxs-lookup"><span data-stu-id="741a3-332">mulResult</span></span> | <span data-ttu-id="741a3-333">int</span><span class="sxs-lookup"><span data-stu-id="741a3-333">Int</span></span> | <span data-ttu-id="741a3-334">15</span><span class="sxs-lookup"><span data-stu-id="741a3-334">15</span></span> |
+| <span data-ttu-id="c642f-332">mulResult</span><span class="sxs-lookup"><span data-stu-id="c642f-332">mulResult</span></span> | <span data-ttu-id="c642f-333">int</span><span class="sxs-lookup"><span data-stu-id="c642f-333">Int</span></span> | <span data-ttu-id="c642f-334">15</span><span class="sxs-lookup"><span data-stu-id="c642f-334">15</span></span> |
 
 <a id="sub" />
 
-## <a name="sub"></a><span data-ttu-id="741a3-335">sub</span><span class="sxs-lookup"><span data-stu-id="741a3-335">sub</span></span>
+## <a name="sub"></a><span data-ttu-id="c642f-335">sub</span><span class="sxs-lookup"><span data-stu-id="c642f-335">sub</span></span>
 `sub(operand1, operand2)`
 
-<span data-ttu-id="741a3-336">Restituisce la sottrazione dei due numeri interi forniti.</span><span class="sxs-lookup"><span data-stu-id="741a3-336">Returns the subtraction of the two provided integers.</span></span>
+<span data-ttu-id="c642f-336">Restituisce hello sottrazione di due interi fornito di hello.</span><span class="sxs-lookup"><span data-stu-id="c642f-336">Returns hello subtraction of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="741a3-337">Parametri</span><span class="sxs-lookup"><span data-stu-id="741a3-337">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="c642f-337">parameters</span><span class="sxs-lookup"><span data-stu-id="c642f-337">Parameters</span></span>
 
-| <span data-ttu-id="741a3-338">Parametro</span><span class="sxs-lookup"><span data-stu-id="741a3-338">Parameter</span></span> | <span data-ttu-id="741a3-339">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="741a3-339">Required</span></span> | <span data-ttu-id="741a3-340">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-340">Type</span></span> | <span data-ttu-id="741a3-341">Descrizione</span><span class="sxs-lookup"><span data-stu-id="741a3-341">Description</span></span> |
+| <span data-ttu-id="c642f-338">Parametro</span><span class="sxs-lookup"><span data-stu-id="c642f-338">Parameter</span></span> | <span data-ttu-id="c642f-339">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="c642f-339">Required</span></span> | <span data-ttu-id="c642f-340">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-340">Type</span></span> | <span data-ttu-id="c642f-341">Descrizione</span><span class="sxs-lookup"><span data-stu-id="c642f-341">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="741a3-342">operand1</span><span class="sxs-lookup"><span data-stu-id="741a3-342">operand1</span></span> |<span data-ttu-id="741a3-343">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-343">Yes</span></span> |<span data-ttu-id="741a3-344">int</span><span class="sxs-lookup"><span data-stu-id="741a3-344">int</span></span> |<span data-ttu-id="741a3-345">Il numero da cui sottrarre.</span><span class="sxs-lookup"><span data-stu-id="741a3-345">The number that is subtracted from.</span></span> |
-| <span data-ttu-id="741a3-346">operand2</span><span class="sxs-lookup"><span data-stu-id="741a3-346">operand2</span></span> |<span data-ttu-id="741a3-347">Sì</span><span class="sxs-lookup"><span data-stu-id="741a3-347">Yes</span></span> |<span data-ttu-id="741a3-348">int</span><span class="sxs-lookup"><span data-stu-id="741a3-348">int</span></span> |<span data-ttu-id="741a3-349">Il numero sottratto.</span><span class="sxs-lookup"><span data-stu-id="741a3-349">The number that is subtracted.</span></span> |
+| <span data-ttu-id="c642f-342">operand1</span><span class="sxs-lookup"><span data-stu-id="c642f-342">operand1</span></span> |<span data-ttu-id="c642f-343">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-343">Yes</span></span> |<span data-ttu-id="c642f-344">int</span><span class="sxs-lookup"><span data-stu-id="c642f-344">int</span></span> |<span data-ttu-id="c642f-345">numero di Hello che viene sottratto.</span><span class="sxs-lookup"><span data-stu-id="c642f-345">hello number that is subtracted from.</span></span> |
+| <span data-ttu-id="c642f-346">operand2</span><span class="sxs-lookup"><span data-stu-id="c642f-346">operand2</span></span> |<span data-ttu-id="c642f-347">Sì</span><span class="sxs-lookup"><span data-stu-id="c642f-347">Yes</span></span> |<span data-ttu-id="c642f-348">int</span><span class="sxs-lookup"><span data-stu-id="c642f-348">int</span></span> |<span data-ttu-id="c642f-349">numero di Hello che viene sottratto.</span><span class="sxs-lookup"><span data-stu-id="c642f-349">hello number that is subtracted.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="741a3-350">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="741a3-350">Return value</span></span>
-<span data-ttu-id="741a3-351">Un intero che rappresenta la sottrazione.</span><span class="sxs-lookup"><span data-stu-id="741a3-351">An integer representing the subtraction.</span></span>
+### <a name="return-value"></a><span data-ttu-id="c642f-350">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="c642f-350">Return value</span></span>
+<span data-ttu-id="c642f-351">Una numero intero che rappresenta hello la sottrazione.</span><span class="sxs-lookup"><span data-stu-id="c642f-351">An integer representing hello subtraction.</span></span>
 
-### <a name="example"></a><span data-ttu-id="741a3-352">Esempio</span><span class="sxs-lookup"><span data-stu-id="741a3-352">Example</span></span>
+### <a name="example"></a><span data-ttu-id="c642f-352">Esempio</span><span class="sxs-lookup"><span data-stu-id="c642f-352">Example</span></span>
 
-<span data-ttu-id="741a3-353">L'esempio seguente mostra come sottrarre un parametro da un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="741a3-353">The following example subtracts one parameter from another parameter.</span></span>
+<span data-ttu-id="c642f-353">Hello di esempio seguente sottrae un parametro da un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="c642f-353">hello following example subtracts one parameter from another parameter.</span></span>
 
 ```json
 {
@@ -538,7 +538,7 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer to subtract"
+                "description": "Integer toosubtract"
             }
         }
     },
@@ -553,15 +553,15 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="741a3-354">L'output dell'esempio precedente con i valori predefiniti è:</span><span class="sxs-lookup"><span data-stu-id="741a3-354">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="c642f-354">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="c642f-354">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="741a3-355">Nome</span><span class="sxs-lookup"><span data-stu-id="741a3-355">Name</span></span> | <span data-ttu-id="741a3-356">Tipo</span><span class="sxs-lookup"><span data-stu-id="741a3-356">Type</span></span> | <span data-ttu-id="741a3-357">Valore</span><span class="sxs-lookup"><span data-stu-id="741a3-357">Value</span></span> |
+| <span data-ttu-id="c642f-355">Nome</span><span class="sxs-lookup"><span data-stu-id="c642f-355">Name</span></span> | <span data-ttu-id="c642f-356">Tipo</span><span class="sxs-lookup"><span data-stu-id="c642f-356">Type</span></span> | <span data-ttu-id="c642f-357">Valore</span><span class="sxs-lookup"><span data-stu-id="c642f-357">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="741a3-358">subResult</span><span class="sxs-lookup"><span data-stu-id="741a3-358">subResult</span></span> | <span data-ttu-id="741a3-359">int</span><span class="sxs-lookup"><span data-stu-id="741a3-359">Int</span></span> | <span data-ttu-id="741a3-360">4</span><span class="sxs-lookup"><span data-stu-id="741a3-360">4</span></span> |
+| <span data-ttu-id="c642f-358">subResult</span><span class="sxs-lookup"><span data-stu-id="c642f-358">subResult</span></span> | <span data-ttu-id="c642f-359">int</span><span class="sxs-lookup"><span data-stu-id="c642f-359">Int</span></span> | <span data-ttu-id="c642f-360">4</span><span class="sxs-lookup"><span data-stu-id="c642f-360">4</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="741a3-361">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="741a3-361">Next steps</span></span>
-* <span data-ttu-id="741a3-362">Per una descrizione delle sezioni in un modello di Azure Resource Manager, vedere [Creazione di modelli di Azure Resource Manager](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="741a3-362">For a description of the sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="741a3-363">Per unire più modelli, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="741a3-363">To merge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
-* <span data-ttu-id="741a3-364">Per eseguire un'iterazione di un numero di volte specificato durante la creazione di un tipo di risorsa, vedere [Creare più istanze di risorse in Gestione risorse di Azure](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="741a3-364">To iterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
-* <span data-ttu-id="741a3-365">Per informazioni su come distribuire il modello che è stato creato, vedere [Distribuire un'applicazione con un modello di Azure Resource Manager](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="741a3-365">To see how to deploy the template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c642f-361">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c642f-361">Next steps</span></span>
+* <span data-ttu-id="c642f-362">Per una descrizione delle sezioni hello in un modello di gestione risorse di Azure, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="c642f-362">For a description of hello sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="c642f-363">toomerge più modelli, vedere [con modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="c642f-363">toomerge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
+* <span data-ttu-id="c642f-364">tooiterate un numero specificato di volte durante la creazione di un tipo di risorsa, vedere [creare più istanze delle risorse in Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="c642f-364">tooiterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+* <span data-ttu-id="c642f-365">toosee come modello hello toodeploy è stato creato, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="c642f-365">toosee how toodeploy hello template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
 

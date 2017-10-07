@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure Batch - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare Azure Batch per eseguire in modo efficiente applicazioni parallele e HPC (High Performance Computing) su larga scala. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
+title: aaaAzure Batch documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse Batch paralleli su larga scala toorun e applicazioni di calcolo ad alte prestazioni in modo efficiente. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
 services: batch
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bf3e8b9e8976e2b68bc0da6a3beb1dacfaef6066
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 25172c7b3462794643d1cba539fcd0d9a6c4c62e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="batch-documentation"></a>Documentazione di Batch
 
-Informazioni su come usare Azure Batch per eseguire in modo efficiente applicazioni parallele e HPC (High Performance Computing) su larga scala nel cloud. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come definire le risorse di calcolo di Azure per eseguire le applicazioni in parallelo o in scala, senza necessità di configurare o gestire manualmente l'infrastruttura.
+Informazioni su come paralleli su larga scala di toouse Batch toorun e applicazioni di calcolo ad alte prestazioni in modo efficiente in hello cloud. Esercitazioni, riferimenti ad API e altra documentazione illustrano come toodefine hello Azure compute tooexecute risorse delle applicazioni in parallelo o a livello di scalabilità senza la configurazione manuale o la gestione dell'infrastruttura.
 
 <ul class="panelContent cardsFTitle">
     <li>

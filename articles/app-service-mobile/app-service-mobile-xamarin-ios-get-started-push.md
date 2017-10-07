@@ -1,6 +1,6 @@
 ---
-title: Aggiungere notifiche push all'app Xamarin.iOS tramite il servizio app di Azure
-description: Informazioni su come usare il servizio app di Azure per inviare notifiche push all'app Xamarin.iOS.
+title: aaaAdd push notifiche tooyour xamarin app con il servizio App di Azure
+description: Informazioni su app xamarin tooyour di notifiche push toouse toosend di servizio App di Azure
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,38 +14,38 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: glenga
-ms.openlocfilehash: bf922e49c4c92d0065817a5dd6c7d10a04737304
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3e6439aee4f3fe0f60b9786d0bbfd74c4f5e52d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-push-notifications-to-your-xamarinios-app"></a><span data-ttu-id="0176a-103">Aggiungere notifiche push all'app Xamarin.iOS</span><span class="sxs-lookup"><span data-stu-id="0176a-103">Add push notifications to your Xamarin.iOS App</span></span>
+# <a name="add-push-notifications-tooyour-xamarinios-app"></a><span data-ttu-id="ca3f5-103">Aggiungere le notifiche di push tooyour Xamarin.iOS App</span><span class="sxs-lookup"><span data-stu-id="ca3f5-103">Add push notifications tooyour Xamarin.iOS App</span></span>
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-## <a name="overview"></a><span data-ttu-id="0176a-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="0176a-104">Overview</span></span>
-<span data-ttu-id="0176a-105">In questa esercitazione vengono aggiunte notifiche push al progetto [avvio rapido di Xamarin.iOS](app-service-mobile-xamarin-ios-get-started.md), in modo che una notifica push venga inviata al dispositivo a ogni inserimento di record.</span><span class="sxs-lookup"><span data-stu-id="0176a-105">In this tutorial, you add push notifications to the [Xamarin.iOS quick start](app-service-mobile-xamarin-ios-get-started.md) project so that a push notification is sent to the device every time a record is inserted.</span></span>
+## <a name="overview"></a><span data-ttu-id="ca3f5-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="ca3f5-104">Overview</span></span>
+<span data-ttu-id="ca3f5-105">In questa esercitazione, si aggiunge toohello le notifiche push [xamarin introduttiva](app-service-mobile-xamarin-ios-get-started.md) progetto in modo che il dispositivo toohello viene inviata una notifica di push ogni volta che viene inserito un record.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-105">In this tutorial, you add push notifications toohello [Xamarin.iOS quick start](app-service-mobile-xamarin-ios-get-started.md) project so that a push notification is sent toohello device every time a record is inserted.</span></span>
 
-<span data-ttu-id="0176a-106">Se non si usa il progetto server di avvio rapido scaricato, sarà necessario aggiungere il pacchetto di estensione di notifica push.</span><span class="sxs-lookup"><span data-stu-id="0176a-106">If you do not use the downloaded quick start server project, you will need the push notification extension package.</span></span> <span data-ttu-id="0176a-107">Per altre informazioni, vedere [Usare l'SDK del server back-end .NET per App per dispositivi mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).</span><span class="sxs-lookup"><span data-stu-id="0176a-107">See [Work with the .NET backend server SDK for Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) for more information.</span></span>
+<span data-ttu-id="ca3f5-106">Se non si utilizza hello scaricato il progetto server di avvio rapido, si sarà necessario hello pacchetto estensione di notifica push.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-106">If you do not use hello downloaded quick start server project, you will need hello push notification extension package.</span></span> <span data-ttu-id="ca3f5-107">Vedere [funziona con server di back-end .NET hello SDK per App mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) per ulteriori informazioni.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-107">See [Work with hello .NET backend server SDK for Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) for more information.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="0176a-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="0176a-108">Prerequisites</span></span>
-* <span data-ttu-id="0176a-109">Completare l'esercitazione della [guida introduttiva di Xamarin.iOS](app-service-mobile-xamarin-ios-get-started.md) .</span><span class="sxs-lookup"><span data-stu-id="0176a-109">Complete the [Xamarin.iOS quickstart](app-service-mobile-xamarin-ios-get-started.md) tutorial.</span></span>
-* <span data-ttu-id="0176a-110">Un dispositivo iOS fisico.</span><span class="sxs-lookup"><span data-stu-id="0176a-110">A physical iOS device.</span></span> <span data-ttu-id="0176a-111">Le notifiche push non sono supportate dal simulatore iOS.</span><span class="sxs-lookup"><span data-stu-id="0176a-111">Push notifications are not supported by the iOS simulator.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ca3f5-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="ca3f5-108">Prerequisites</span></span>
+* <span data-ttu-id="ca3f5-109">Hello completo [delle Guide rapide xamarin](app-service-mobile-xamarin-ios-get-started.md) esercitazione.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-109">Complete hello [Xamarin.iOS quickstart](app-service-mobile-xamarin-ios-get-started.md) tutorial.</span></span>
+* <span data-ttu-id="ca3f5-110">Un dispositivo iOS fisico.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-110">A physical iOS device.</span></span> <span data-ttu-id="ca3f5-111">Notifiche push non sono supportate dal simulatore iOS hello.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-111">Push notifications are not supported by hello iOS simulator.</span></span>
 
-## <a name="register-the-app-for-push-notifications-on-apples-developer-portal"></a><span data-ttu-id="0176a-112">Registrare l'app per le notifiche push nel portale per sviluppatori Apple</span><span class="sxs-lookup"><span data-stu-id="0176a-112">Register the app for push notifications on Apple's developer portal</span></span>
+## <a name="register-hello-app-for-push-notifications-on-apples-developer-portal"></a><span data-ttu-id="ca3f5-112">Registrare l'applicazione hello per le notifiche push nel portale per sviluppatori di Apple</span><span class="sxs-lookup"><span data-stu-id="ca3f5-112">Register hello app for push notifications on Apple's developer portal</span></span>
 [!INCLUDE [Enable Apple Push Notifications](../../includes/enable-apple-push-notifications.md)]
 
-## <a name="configure-your-mobile-app-to-send-push-notifications"></a><span data-ttu-id="0176a-113">Configurare l'app per dispositivi mobili per l'invio di notifiche push</span><span class="sxs-lookup"><span data-stu-id="0176a-113">Configure your Mobile App to send push notifications</span></span>
+## <a name="configure-your-mobile-app-toosend-push-notifications"></a><span data-ttu-id="ca3f5-113">Configurare le notifiche push toosend di App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="ca3f5-113">Configure your Mobile App toosend push notifications</span></span>
 [!INCLUDE [app-service-mobile-apns-configure-push](../../includes/app-service-mobile-apns-configure-push.md)]
 
-## <a name="update-the-server-project-to-send-push-notifications"></a><span data-ttu-id="0176a-114">Aggiornare il progetto server per l'invio di notifiche push</span><span class="sxs-lookup"><span data-stu-id="0176a-114">Update the server project to send push notifications</span></span>
+## <a name="update-hello-server-project-toosend-push-notifications"></a><span data-ttu-id="ca3f5-114">Aggiornare le notifiche push di hello server progetto toosend</span><span class="sxs-lookup"><span data-stu-id="ca3f5-114">Update hello server project toosend push notifications</span></span>
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## <a name="configure-your-xamarinios-project"></a><span data-ttu-id="0176a-115">Configurare il progetto Xamarin.iOS</span><span class="sxs-lookup"><span data-stu-id="0176a-115">Configure your Xamarin.iOS project</span></span>
+## <a name="configure-your-xamarinios-project"></a><span data-ttu-id="ca3f5-115">Configurare il progetto Xamarin.iOS</span><span class="sxs-lookup"><span data-stu-id="ca3f5-115">Configure your Xamarin.iOS project</span></span>
 [!INCLUDE [app-service-mobile-xamarin-ios-configure-project](../../includes/app-service-mobile-xamarin-ios-configure-project.md)]
 
-## <a name="add-push-notifications-to-your-app"></a><span data-ttu-id="0176a-116">Aggiungere notifiche push all'app</span><span class="sxs-lookup"><span data-stu-id="0176a-116">Add push notifications to your app</span></span>
-1. <span data-ttu-id="0176a-117">In **QSTodoService** aggiungere la proprietà seguente in modo che l'oggetto **AppDelegate** possa acquisire il client per dispositivi mobili:</span><span class="sxs-lookup"><span data-stu-id="0176a-117">In **QSTodoService**, add the following property so that **AppDelegate** can acquire the mobile client:</span></span>
+## <a name="add-push-notifications-tooyour-app"></a><span data-ttu-id="ca3f5-116">Aggiungere app tooyour di notifiche push</span><span class="sxs-lookup"><span data-stu-id="ca3f5-116">Add push notifications tooyour app</span></span>
+1. <span data-ttu-id="ca3f5-117">In **QSTodoService**, aggiungere hello seguente proprietà in modo che **AppDelegate** può acquisire client mobili hello:</span><span class="sxs-lookup"><span data-stu-id="ca3f5-117">In **QSTodoService**, add hello following property so that **AppDelegate** can acquire hello mobile client:</span></span>
    
             public MobileServiceClient GetClient {
             get
@@ -57,11 +57,11 @@ ms.lasthandoff: 08/03/2017
                 client = value;
             }
         }
-2. <span data-ttu-id="0176a-118">Aggiungere l'istruzione `using` seguente all'inizio del file **AppDelegate.cs** .</span><span class="sxs-lookup"><span data-stu-id="0176a-118">Add the following `using` statement to the top of the **AppDelegate.cs** file.</span></span>
+2. <span data-ttu-id="ca3f5-118">Aggiungere il seguente hello `using` hello cima toohello istruzione **appdelegate. cs** file.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-118">Add hello following `using` statement toohello top of hello **AppDelegate.cs** file.</span></span>
    
         using Microsoft.WindowsAzure.MobileServices;
         using Newtonsoft.Json.Linq;
-3. <span data-ttu-id="0176a-119">In **AppDelegate** eseguire l'override dell'evento **FinishedLaunching**:</span><span class="sxs-lookup"><span data-stu-id="0176a-119">In **AppDelegate**, override the **FinishedLaunching** event:</span></span>
+3. <span data-ttu-id="ca3f5-119">In **AppDelegate**, eseguire l'override di hello **FinishedLaunching** evento:</span><span class="sxs-lookup"><span data-stu-id="ca3f5-119">In **AppDelegate**, override hello **FinishedLaunching** event:</span></span>
    
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
@@ -77,9 +77,9 @@ ms.lasthandoff: 08/03/2017
    
             return true;
         }
-4. <span data-ttu-id="0176a-120">Nello stesso file, eseguire l'override dell'evento **RegisteredForRemoteNotifications** .</span><span class="sxs-lookup"><span data-stu-id="0176a-120">In the same file, override the **RegisteredForRemoteNotifications** event.</span></span> <span data-ttu-id="0176a-121">In questo codice ci si sta registrando per una semplice notifica del modello che verrà inviata a tutte le piattaforme supportate dal server.</span><span class="sxs-lookup"><span data-stu-id="0176a-121">In this code you are registering for a simple template notification that will be sent across all supported platforms by the server.</span></span>
+4. <span data-ttu-id="ca3f5-120">In hello stesso file, eseguire l'override di hello **RegisteredForRemoteNotifications** evento.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-120">In hello same file, override hello **RegisteredForRemoteNotifications** event.</span></span> <span data-ttu-id="ca3f5-121">In questo codice si sta registrando per una notifica modello semplice che verrà inviata dal server hello in tutte le piattaforme supportate.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-121">In this code you are registering for a simple template notification that will be sent across all supported platforms by hello server.</span></span>
    
-    <span data-ttu-id="0176a-122">Per ulteriori informazioni sui modelli con Hub di notifica, vedere [Modelli](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).</span><span class="sxs-lookup"><span data-stu-id="0176a-122">For more information on templates with Notification Hubs, see [Templates](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).</span></span>
+    <span data-ttu-id="ca3f5-122">Per ulteriori informazioni sui modelli con Hub di notifica, vedere [Modelli](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).</span><span class="sxs-lookup"><span data-stu-id="ca3f5-122">For more information on templates with Notification Hubs, see [Templates](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).</span></span>
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
@@ -99,7 +99,7 @@ ms.lasthandoff: 08/03/2017
         }
 
 
-1. <span data-ttu-id="0176a-123">Sovrascrivere quindi l'evento **DidReceivedRemoteNotification** :</span><span class="sxs-lookup"><span data-stu-id="0176a-123">Then, override the **DidReceivedRemoteNotification** event:</span></span>
+1. <span data-ttu-id="ca3f5-123">Quindi, eseguire l'override hello **DidReceivedRemoteNotification** evento:</span><span class="sxs-lookup"><span data-stu-id="ca3f5-123">Then, override hello **DidReceivedRemoteNotification** event:</span></span>
    
         public override void DidReceiveRemoteNotification (UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
         {
@@ -117,20 +117,20 @@ ms.lasthandoff: 08/03/2017
             }
         }
 
-<span data-ttu-id="0176a-124">L'app è ora aggiornata per il supporto delle notifiche push.</span><span class="sxs-lookup"><span data-stu-id="0176a-124">Your app is now updated to support push notifications.</span></span>
+<span data-ttu-id="ca3f5-124">L'app è notifiche push toosupport aggiornato.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-124">Your app is now updated toosupport push notifications.</span></span>
 
-## <span data-ttu-id="0176a-125"><a name="test"></a>Testare le notifiche push nell'app</span><span class="sxs-lookup"><span data-stu-id="0176a-125"><a name="test"></a>Test push notifications in your app</span></span>
-1. <span data-ttu-id="0176a-126">Scegliere **Run** (Esegui) per generare il progetto e avviare l'app in un dispositivo con iOS, quindi fare clic su **OK** per accettare le notifiche push.</span><span class="sxs-lookup"><span data-stu-id="0176a-126">Press the **Run** button to build the project and start the app in an iOS capable device, then click **OK** to accept push notifications.</span></span>
+## <span data-ttu-id="ca3f5-125"><a name="test"></a>Testare le notifiche push nell'app</span><span class="sxs-lookup"><span data-stu-id="ca3f5-125"><a name="test"></a>Test push notifications in your app</span></span>
+1. <span data-ttu-id="ca3f5-126">Hello premere **eseguire** progetto hello toobuild e avviare l'applicazione hello in un dispositivo in grado di iOS, quindi scegliere **OK** tooaccept le notifiche push.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-126">Press hello **Run** button toobuild hello project and start hello app in an iOS capable device, then click **OK** tooaccept push notifications.</span></span>
    
    > [!NOTE]
-   > <span data-ttu-id="0176a-127">È necessario accettare le notifiche push in modo esplicito dall'app.</span><span class="sxs-lookup"><span data-stu-id="0176a-127">You must explicitly accept push notifications from your app.</span></span> <span data-ttu-id="0176a-128">Questa richiesta viene visualizzata solo la prima volta che si esegue l'app.</span><span class="sxs-lookup"><span data-stu-id="0176a-128">This request only occurs the first time that the app runs.</span></span>
+   > <span data-ttu-id="ca3f5-127">È necessario accettare le notifiche push in modo esplicito dall'app.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-127">You must explicitly accept push notifications from your app.</span></span> <span data-ttu-id="ca3f5-128">Questa richiesta si verifica solo hello prima volta che l'esecuzione applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-128">This request only occurs hello first time that hello app runs.</span></span>
    > 
    > 
-2. <span data-ttu-id="0176a-129">Nell'app digitare un'attività e fare clic sull'icona con il segno più (**+**).</span><span class="sxs-lookup"><span data-stu-id="0176a-129">In the app, type a task, and then click the plus (**+**) icon.</span></span>
-3. <span data-ttu-id="0176a-130">Verificare che venga ricevuta una notifica, quindi fare clic su **OK** per eliminarla.</span><span class="sxs-lookup"><span data-stu-id="0176a-130">Verify that a notification is received, then click **OK** to dismiss the notification.</span></span>
-4. <span data-ttu-id="0176a-131">Ripetere il passaggio 2 e chiudere immediatamente l'app, quindi verificare che venga visualizzata una notifica push.</span><span class="sxs-lookup"><span data-stu-id="0176a-131">Repeat step 2 and immediately close the app, then verify that a notification is shown.</span></span>
+2. <span data-ttu-id="ca3f5-129">Nell'app hello, digitare un'attività e quindi fare clic su hello segno più (**+**) icona.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-129">In hello app, type a task, and then click hello plus (**+**) icon.</span></span>
+3. <span data-ttu-id="ca3f5-130">Verificare che viene ricevuta una notifica, quindi fare clic su **OK** toodismiss hello notifica.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-130">Verify that a notification is received, then click **OK** toodismiss hello notification.</span></span>
+4. <span data-ttu-id="ca3f5-131">Ripetere il passaggio 2 e chiusura immediatamente hello app, quindi verificare che sia visualizzata una notifica.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-131">Repeat step 2 and immediately close hello app, then verify that a notification is shown.</span></span>
 
-<span data-ttu-id="0176a-132">L'esercitazione è stata completata.</span><span class="sxs-lookup"><span data-stu-id="0176a-132">You have successfully completed this tutorial.</span></span>
+<span data-ttu-id="ca3f5-132">L'esercitazione è stata completata.</span><span class="sxs-lookup"><span data-stu-id="ca3f5-132">You have successfully completed this tutorial.</span></span>
 
 <!-- Images. -->
 

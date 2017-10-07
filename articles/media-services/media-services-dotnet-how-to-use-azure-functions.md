@@ -1,6 +1,6 @@
 ---
-title: Sviluppare le Funzioni di Azure con Servizi multimediali
-description: In questo argomento viene illustrato come avviare lo sviluppo di Funzioni di Azure con Servizi multimediali tramite il Portale di Azure.
+title: aaaDevelop funzioni di Azure con servizi multimediali
+description: Questo argomento viene illustrato come lo sviluppo di funzioni con servizi multimediali di Azure toostart hello portale di Azure.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,90 +14,90 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: juliako
-ms.openlocfilehash: 35d539855572fef6c00de614a4e57738a8abd075
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3b2c2fb498fea399c862dfbdb63033d06cabf6d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-#<a name="develop-azure-functions-with-media-services"></a><span data-ttu-id="1d278-103">Sviluppare le Funzioni di Azure con Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="1d278-103">Develop Azure Functions with Media Services</span></span>
+#<a name="develop-azure-functions-with-media-services"></a><span data-ttu-id="ab6ca-103">Sviluppare le Funzioni di Azure con Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="ab6ca-103">Develop Azure Functions with Media Services</span></span>
 
-<span data-ttu-id="1d278-104">In questo argomento viene illustrato come iniziare a creare le Funzioni di Azure che usano i Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="1d278-104">This topic shows you how to get started with creating Azure Functions that use Media Services.</span></span> <span data-ttu-id="1d278-105">La funzione di Azure definita in questo argomento consente di monitorare un contenitore di account di archiviazione denominato **input** per i nuovi file MP4.</span><span class="sxs-lookup"><span data-stu-id="1d278-105">The Azure Function defined in this topic monitors a storage account container named **input** for new MP4 files.</span></span> <span data-ttu-id="1d278-106">Una volta rilasciato un file nel contenitore di archiviazione, il trigger BLOB eseguirà la funzione.</span><span class="sxs-lookup"><span data-stu-id="1d278-106">Once a file is dropped into the storage container, the blob trigger will execute the function.</span></span>
+<span data-ttu-id="ab6ca-104">Questo argomento viene illustrato come tooget iniziare con la creazione di funzioni di Azure che utilizzano i servizi di supporto.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-104">This topic shows you how tooget started with creating Azure Functions that use Media Services.</span></span> <span data-ttu-id="ab6ca-105">Hello Azure funzione definito in questo argomento consente di monitorare un contenitore di account di archiviazione denominato **input** per i nuovi file MP4.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-105">hello Azure Function defined in this topic monitors a storage account container named **input** for new MP4 files.</span></span> <span data-ttu-id="ab6ca-106">Una volta che viene rilasciato un file in un contenitore di archiviazione hello, trigger blob hello eseguirà la funzione hello.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-106">Once a file is dropped into hello storage container, hello blob trigger will execute hello function.</span></span>
 
-<span data-ttu-id="1d278-107">Se si vuole esplorare e distribuire le Funzioni di Azure esistenti che usano i Servizi multimediali di Azure, estrarre [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) (Funzioni di Azure di Servizi multimediali).</span><span class="sxs-lookup"><span data-stu-id="1d278-107">If you want to explore and deploy existing Azure Functions that use Azure Media Services, check out [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span></span> <span data-ttu-id="1d278-108">Questo repository contiene esempi che usano Servizi multimediali per visualizzare i flussi di lavoro correlati all'inserimento di contenuto direttamente dall'archiviazione BLOB, alla codifica e alla scrittura del contenuto nell'archiviazione BLOB.</span><span class="sxs-lookup"><span data-stu-id="1d278-108">This repository contains examples that use Media Services to show workflows related to ingesting content directly from blob storage, encoding, and writing content back to blob storage.</span></span> <span data-ttu-id="1d278-109">Include inoltre esempi su come monitorare le notifiche dei processi tramite i webhook e le code di Azure.</span><span class="sxs-lookup"><span data-stu-id="1d278-109">It also includes examples of how to monitor job notifications via WebHooks and Azure Queues.</span></span> <span data-ttu-id="1d278-110">È inoltre possibile sviluppare le funzioni in base agli esempi nel repository [Funzioni di Azure dei Servizi multimediali](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span><span class="sxs-lookup"><span data-stu-id="1d278-110">You can also develop your Functions based on the examples in the [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) repository.</span></span> <span data-ttu-id="1d278-111">Per distribuire le funzioni, premere il pulsante **Distribuisci in Azure**.</span><span class="sxs-lookup"><span data-stu-id="1d278-111">To deploy the functions, press the **Deploy to Azure** button.</span></span>
+<span data-ttu-id="ab6ca-107">Se si desidera tooexplore e distribuire le funzioni di Azure esistenti che utilizzano servizi multimediali di Azure, consultare [funzioni di Azure Media Services](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-107">If you want tooexplore and deploy existing Azure Functions that use Azure Media Services, check out [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span></span> <span data-ttu-id="ab6ca-108">Il repository contiene esempi che utilizzano servizi multimediali tooshow flussi di lavoro correlati tooingesting contenuto direttamente dall'archiviazione blob, codifica e la scrittura del contenuto nuovamente tooblob archiviazione.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-108">This repository contains examples that use Media Services tooshow workflows related tooingesting content directly from blob storage, encoding, and writing content back tooblob storage.</span></span> <span data-ttu-id="ab6ca-109">Include inoltre esempi di come toomonitor processo le notifiche tramite Webhook e le code di Azure.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-109">It also includes examples of how toomonitor job notifications via WebHooks and Azure Queues.</span></span> <span data-ttu-id="ab6ca-110">È inoltre possibile sviluppare le funzioni in base negli esempi di hello hello [funzioni di Azure Media Services](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) repository.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-110">You can also develop your Functions based on hello examples in hello [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) repository.</span></span> <span data-ttu-id="ab6ca-111">le funzioni hello toodeploy, premere hello **distribuire tooAzure** pulsante.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-111">toodeploy hello functions, press hello **Deploy tooAzure** button.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="1d278-112">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="1d278-112">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ab6ca-112">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="ab6ca-112">Prerequisites</span></span>
 
-- <span data-ttu-id="1d278-113">Per poter creare la prima funzione, è necessario avere un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="1d278-113">Before you can create your first function, you need to have an active Azure account.</span></span> <span data-ttu-id="1d278-114">Se non si possiede già un account Azure, [sono disponibili account gratuiti](https://azure.microsoft.com/free/).</span><span class="sxs-lookup"><span data-stu-id="1d278-114">If you don't already have an Azure account, [free accounts are available](https://azure.microsoft.com/free/).</span></span>
-- <span data-ttu-id="1d278-115">Se si intende creare le Funzioni di Azure per eseguire azioni sull'account dei Servizi multimediali di Azure o ascoltare gli eventi inviati dai Servizi multimediali, è necessario creare un account AMS, come descritto [qui](media-services-portal-create-account.md).</span><span class="sxs-lookup"><span data-stu-id="1d278-115">If you are going to create Azure Functions that perform actions on your Azure Media Services (AMS) account or listen to events sent by Media Services, you should create an AMS account, as described [here](media-services-portal-create-account.md).</span></span>
-- <span data-ttu-id="1d278-116">Comprensione della [modalità d'uso delle funzioni di Azure](../azure-functions/functions-overview.md).</span><span class="sxs-lookup"><span data-stu-id="1d278-116">Understanding of [how to use Azure functions](../azure-functions/functions-overview.md).</span></span> <span data-ttu-id="1d278-117">Inoltre, esaminare:</span><span class="sxs-lookup"><span data-stu-id="1d278-117">Also, review:</span></span>
-    - [<span data-ttu-id="1d278-118">Associazioni HTTP e webhook in Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="1d278-118">Azure functions HTTP and webhook bindings</span></span>](../azure-functions/functions-triggers-bindings.md)
-    - [<span data-ttu-id="1d278-119">Come configurare le impostazioni dell'app per le funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="1d278-119">How to configure Azure Function app settings</span></span>](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
+- <span data-ttu-id="ab6ca-113">Prima di creare la prima funzione, è necessario un account di Azure attivo toohave.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-113">Before you can create your first function, you need toohave an active Azure account.</span></span> <span data-ttu-id="ab6ca-114">Se non si possiede un account di Azure, [sono disponibili account gratuiti](https://azure.microsoft.com/free/).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-114">If you don't already have an Azure account, [free accounts are available](https://azure.microsoft.com/free/).</span></span>
+- <span data-ttu-id="ab6ca-115">Se si intende toocreate Azure funzioni che eseguono azioni per l'account di servizi multimediali di Azure (AMS) o ascolto tooevents inviati da servizi multimediali, è necessario creare un account di sistema AMS, come descritto [qui](media-services-portal-create-account.md).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-115">If you are going toocreate Azure Functions that perform actions on your Azure Media Services (AMS) account or listen tooevents sent by Media Services, you should create an AMS account, as described [here](media-services-portal-create-account.md).</span></span>
+- <span data-ttu-id="ab6ca-116">Comprensione delle [come toouse Azure funzioni](../azure-functions/functions-overview.md).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-116">Understanding of [how toouse Azure functions](../azure-functions/functions-overview.md).</span></span> <span data-ttu-id="ab6ca-117">Inoltre, esaminare:</span><span class="sxs-lookup"><span data-stu-id="ab6ca-117">Also, review:</span></span>
+    - [<span data-ttu-id="ab6ca-118">Associazioni HTTP e webhook in Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="ab6ca-118">Azure functions HTTP and webhook bindings</span></span>](../azure-functions/functions-triggers-bindings.md)
+    - [<span data-ttu-id="ab6ca-119">Come tooconfigure le impostazioni dell'app di Azure (funzione)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-119">How tooconfigure Azure Function app settings</span></span>](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
     
-## <a name="considerations"></a><span data-ttu-id="1d278-120">Considerazioni</span><span class="sxs-lookup"><span data-stu-id="1d278-120">Considerations</span></span>
+## <a name="considerations"></a><span data-ttu-id="ab6ca-120">Considerazioni</span><span class="sxs-lookup"><span data-stu-id="ab6ca-120">Considerations</span></span>
 
--  <span data-ttu-id="1d278-121">Le funzioni di Azure in esecuzione con piano a consumo hanno un timeout di 5 minuti.</span><span class="sxs-lookup"><span data-stu-id="1d278-121">Azure Functions running under the Consumption plan have 5 minutes timeout limit.</span></span>
+-  <span data-ttu-id="ab6ca-121">Funzioni di Azure in esecuzione nel piano di consumo hello hanno il timeout di 5 minuti limitare.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-121">Azure Functions running under hello Consumption plan have 5 minutes timeout limit.</span></span>
 
-## <a name="create-a-function-app"></a><span data-ttu-id="1d278-122">Creare un'app per le funzioni</span><span class="sxs-lookup"><span data-stu-id="1d278-122">Create a function app</span></span>
+## <a name="create-a-function-app"></a><span data-ttu-id="ab6ca-122">Creare un'app per le funzioni</span><span class="sxs-lookup"><span data-stu-id="ab6ca-122">Create a function app</span></span>
 
-1. <span data-ttu-id="1d278-123">Passare al [portale di Azure](http://portal.azure.com) e accedere con il proprio account Azure.</span><span class="sxs-lookup"><span data-stu-id="1d278-123">Go to the [Azure portal](http://portal.azure.com) and sign-in with your Azure account.</span></span>
-2. <span data-ttu-id="1d278-124">Creare un'app per le funzioni come descritto [qui](../azure-functions/functions-create-function-app-portal.md).</span><span class="sxs-lookup"><span data-stu-id="1d278-124">Create a function app as described [here](../azure-functions/functions-create-function-app-portal.md).</span></span>
+1. <span data-ttu-id="ab6ca-123">Passare toohello [portale di Azure](http://portal.azure.com) e Accedi con l'account di Azure.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-123">Go toohello [Azure portal](http://portal.azure.com) and sign-in with your Azure account.</span></span>
+2. <span data-ttu-id="ab6ca-124">Creare un'app per le funzioni come descritto [qui](../azure-functions/functions-create-function-app-portal.md).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-124">Create a function app as described [here](../azure-functions/functions-create-function-app-portal.md).</span></span>
 
 >[!NOTE]
-> <span data-ttu-id="1d278-125">Un account di archiviazione specificato nella variabile di ambiente **StorageConnection** (vedere il passaggio successivo) deve essere nella stessa area dell'app.</span><span class="sxs-lookup"><span data-stu-id="1d278-125">A storage account that you specify in the **StorageConnection** environment variable (see the next step) should be in the same region as your app.</span></span>
+> <span data-ttu-id="ab6ca-125">Un account di archiviazione specificato nel hello **StorageConnection** variabile di ambiente (vedere il passaggio successivo hello) deve essere hello stessa area dell'app.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-125">A storage account that you specify in hello **StorageConnection** environment variable (see hello next step) should be in hello same region as your app.</span></span>
 
-## <a name="configure-function-app-settings"></a><span data-ttu-id="1d278-126">Configurare le impostazioni dell'app per le funzioni</span><span class="sxs-lookup"><span data-stu-id="1d278-126">Configure function app settings</span></span>
+## <a name="configure-function-app-settings"></a><span data-ttu-id="ab6ca-126">Configurare le impostazioni dell'app per le funzioni</span><span class="sxs-lookup"><span data-stu-id="ab6ca-126">Configure function app settings</span></span>
 
-<span data-ttu-id="1d278-127">Quando si sviluppano le funzioni di Servizi multimediali, è utile aggiungere variabili di ambiente che verranno usati nelle funzioni.</span><span class="sxs-lookup"><span data-stu-id="1d278-127">When developing Media Services functions, it is handy to add environment variables that will be used throughout your functions.</span></span> <span data-ttu-id="1d278-128">Per configurare le impostazioni dell'app, fare clic sul collegamento Configurare le impostazioni dell'app.</span><span class="sxs-lookup"><span data-stu-id="1d278-128">To configure app settings, click the Configure App Settings link.</span></span> <span data-ttu-id="1d278-129">Per altre informazioni, vedere [Come configurare le impostazioni dell'app per le funzioni di Azure](../azure-functions/functions-how-to-use-azure-function-app-settings.md).</span><span class="sxs-lookup"><span data-stu-id="1d278-129">For more information, see  [How to configure Azure Function app settings](../azure-functions/functions-how-to-use-azure-function-app-settings.md).</span></span> 
+<span data-ttu-id="ab6ca-127">Quando si sviluppano le funzioni di servizi multimediali, è utile tooadd le variabili di ambiente che verranno utilizzate nel corso delle funzioni.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-127">When developing Media Services functions, it is handy tooadd environment variables that will be used throughout your functions.</span></span> <span data-ttu-id="ab6ca-128">le impostazioni dell'app tooconfigure, fare clic su collegamento Configura impostazioni App hello.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-128">tooconfigure app settings, click hello Configure App Settings link.</span></span> <span data-ttu-id="ab6ca-129">Per ulteriori informazioni, vedere [come impostazioni dell'app Azure funzione tooconfigure](../azure-functions/functions-how-to-use-azure-function-app-settings.md).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-129">For more information, see  [How tooconfigure Azure Function app settings](../azure-functions/functions-how-to-use-azure-function-app-settings.md).</span></span> 
 
-<span data-ttu-id="1d278-130">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="1d278-130">For example:</span></span>
+<span data-ttu-id="ab6ca-130">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="ab6ca-130">For example:</span></span>
 
 ![Impostazioni](./media/media-services-azure-functions/media-services-azure-functions001.png)
 
-<span data-ttu-id="1d278-132">Per la funzione definita in questo articolo si presuppongono le seguenti variabili di ambiente nelle impostazioni dell'app:</span><span class="sxs-lookup"><span data-stu-id="1d278-132">The function, defined in this article, assumes you have the following environment variables in your app settings:</span></span>
+<span data-ttu-id="ab6ca-132">funzione Hello, definita in questo articolo, si suppone che hello le variabili di ambiente nelle impostazioni di app seguenti:</span><span class="sxs-lookup"><span data-stu-id="ab6ca-132">hello function, defined in this article, assumes you have hello following environment variables in your app settings:</span></span>
 
-<span data-ttu-id="1d278-133">**AMSAccount**: *nome dell'account AMS* (ad esempio testams)</span><span class="sxs-lookup"><span data-stu-id="1d278-133">**AMSAccount** : *AMS account name* (e.g. testams)</span></span>
+<span data-ttu-id="ab6ca-133">**AMSAccount**: *nome dell'account AMS* (ad esempio testams)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-133">**AMSAccount** : *AMS account name* (e.g. testams)</span></span>
 
-<span data-ttu-id="1d278-134">**AMSKey** : *chiave dell'account AMS* (ad esempio, IHOySnH+XX3LGPfraE5fKPl0EnzvEPKkOPKCr59aiMM=)</span><span class="sxs-lookup"><span data-stu-id="1d278-134">**AMSKey** : *AMS account key* (e.g. IHOySnH+XX3LGPfraE5fKPl0EnzvEPKkOPKCr59aiMM=)</span></span>
+<span data-ttu-id="ab6ca-134">**AMSKey** : *chiave dell'account AMS* (ad esempio, IHOySnH+XX3LGPfraE5fKPl0EnzvEPKkOPKCr59aiMM=)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-134">**AMSKey** : *AMS account key* (e.g. IHOySnH+XX3LGPfraE5fKPl0EnzvEPKkOPKCr59aiMM=)</span></span>
 
-<span data-ttu-id="1d278-135">**MediaServicesStorageAccountName** : *nome dell'account di archiviazione* (ad esempio, testamsstorage)</span><span class="sxs-lookup"><span data-stu-id="1d278-135">**MediaServicesStorageAccountName** : *storage account name* (e.g., testamsstorage)</span></span>
+<span data-ttu-id="ab6ca-135">**MediaServicesStorageAccountName** : *nome dell'account di archiviazione* (ad esempio, testamsstorage)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-135">**MediaServicesStorageAccountName** : *storage account name* (e.g., testamsstorage)</span></span>
 
-<span data-ttu-id="1d278-136">**MediaServicesStorageAccountKey** : *chiave dell'account di archiviazione* (ad esempio, xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXXX==)</span><span class="sxs-lookup"><span data-stu-id="1d278-136">**MediaServicesStorageAccountKey** : *storage account key* (e.g., xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXXX==)</span></span>
+<span data-ttu-id="ab6ca-136">**MediaServicesStorageAccountKey** : *chiave dell'account di archiviazione* (ad esempio, xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXXX==)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-136">**MediaServicesStorageAccountKey** : *storage account key* (e.g., xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXXX==)</span></span>
 
-<span data-ttu-id="1d278-137">**StorageConnection** : *connessione di archiviazione* (ad esempio, DefaultEndpointsProtocol=https;AccountName=testamsstorage;AccountKey=xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXX==)</span><span class="sxs-lookup"><span data-stu-id="1d278-137">**StorageConnection** : *storage connection* (e.g., DefaultEndpointsProtocol=https;AccountName=testamsstorage;AccountKey=xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXX==)</span></span>
+<span data-ttu-id="ab6ca-137">**StorageConnection** : *connessione di archiviazione* (ad esempio, DefaultEndpointsProtocol=https;AccountName=testamsstorage;AccountKey=xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXX==)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-137">**StorageConnection** : *storage connection* (e.g., DefaultEndpointsProtocol=https;AccountName=testamsstorage;AccountKey=xx7RN7mvpcipkuXvn5g7jwxnKh5MwYQ/awZAzkSIxQA8tmCtn93rqobjgjt41Wb0zwTZWeWQHY5kSZF0XXXXX==)</span></span>
 
-## <a name="create-a-function"></a><span data-ttu-id="1d278-138">Creare una funzione</span><span class="sxs-lookup"><span data-stu-id="1d278-138">Create a function</span></span>
+## <a name="create-a-function"></a><span data-ttu-id="ab6ca-138">Creare una funzione</span><span class="sxs-lookup"><span data-stu-id="ab6ca-138">Create a function</span></span>
 
-<span data-ttu-id="1d278-139">In seguito alla distribuzione dell'app per le funzioni, questa verrà visualizzata tra le Funzioni di Azure dei **Servizi app**.</span><span class="sxs-lookup"><span data-stu-id="1d278-139">Once your function app is deployed, you can find it among **App Services** Azure Functions.</span></span>
+<span data-ttu-id="ab6ca-139">In seguito alla distribuzione dell'app per le funzioni, questa verrà visualizzata tra le Funzioni di Azure dei **Servizi app**.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-139">Once your function app is deployed, you can find it among **App Services** Azure Functions.</span></span>
 
-1. <span data-ttu-id="1d278-140">Selezionare l'app per le funzioni e fare clic su **Nuova funzione**.</span><span class="sxs-lookup"><span data-stu-id="1d278-140">Select your function app and click **New Function**.</span></span>
-2. <span data-ttu-id="1d278-141">Scegliere il linguaggio **C#** e lo scenario **Elaborazione dati**.</span><span class="sxs-lookup"><span data-stu-id="1d278-141">Choose the **C#** language and **Data Processing** scenario.</span></span>
-3. <span data-ttu-id="1d278-142">Scegliere il modello **BlobTrigger**.</span><span class="sxs-lookup"><span data-stu-id="1d278-142">Choose **BlobTrigger** template.</span></span> <span data-ttu-id="1d278-143">Questa funzione verrà attivata ogni volta che viene caricato un BLOB nel contenitore di **input**.</span><span class="sxs-lookup"><span data-stu-id="1d278-143">This function will be triggered whenever a blob is uploaded into the **input** container.</span></span> <span data-ttu-id="1d278-144">Il nome **input** è specificato nel **percorso**, nel passaggio successivo.</span><span class="sxs-lookup"><span data-stu-id="1d278-144">The **input** name is specified in the **Path**, in the next step.</span></span>
+1. <span data-ttu-id="ab6ca-140">Selezionare l'app per le funzioni e fare clic su **Nuova funzione**.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-140">Select your function app and click **New Function**.</span></span>
+2. <span data-ttu-id="ab6ca-141">Scegliere hello **c#** language e **l'elaborazione dati** scenario.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-141">Choose hello **C#** language and **Data Processing** scenario.</span></span>
+3. <span data-ttu-id="ab6ca-142">Scegliere il modello **BlobTrigger**.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-142">Choose **BlobTrigger** template.</span></span> <span data-ttu-id="ab6ca-143">Questa funzione verrà attivata ogni volta che un blob viene caricato nel hello **input** contenitore.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-143">This function will be triggered whenever a blob is uploaded into hello **input** container.</span></span> <span data-ttu-id="ab6ca-144">Hello **input** nome è specificato in hello **percorso**, nel passaggio successivo hello.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-144">hello **input** name is specified in hello **Path**, in hello next step.</span></span>
 
     ![input](./media/media-services-azure-functions/media-services-azure-functions004.png)
 
-4. <span data-ttu-id="1d278-146">Dopo aver selezionato **BlobTrigger**, altri controlli verranno visualizzati nella pagina.</span><span class="sxs-lookup"><span data-stu-id="1d278-146">Once you select **BlobTrigger**, some more controls will appear on the page.</span></span>
+4. <span data-ttu-id="ab6ca-146">Dopo aver selezionato **BlobTrigger**, hello pagina verranno visualizzati altri controlli.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-146">Once you select **BlobTrigger**, some more controls will appear on hello page.</span></span>
 
     ![input](./media/media-services-azure-functions/media-services-azure-functions005.png)
 
-4. <span data-ttu-id="1d278-148">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="1d278-148">Click **Create**.</span></span> 
+4. <span data-ttu-id="ab6ca-148">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-148">Click **Create**.</span></span> 
 
 
-## <a name="files"></a><span data-ttu-id="1d278-149">File</span><span class="sxs-lookup"><span data-stu-id="1d278-149">Files</span></span>
+## <a name="files"></a><span data-ttu-id="ab6ca-149">File</span><span class="sxs-lookup"><span data-stu-id="ab6ca-149">Files</span></span>
 
-<span data-ttu-id="1d278-150">La funzione di Azure è associata al file del codice e ad altri file descritti in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="1d278-150">Your Azure function is associated with code files and other files that are described in this section.</span></span> <span data-ttu-id="1d278-151">Per impostazione predefinita, una funzione è associata ai file **function.json** e **run.csx** (C#).</span><span class="sxs-lookup"><span data-stu-id="1d278-151">By default, a function is associated with **function.json** and **run.csx** (C#) files.</span></span> <span data-ttu-id="1d278-152">Sarà necessario aggiungere un file **project.json**.</span><span class="sxs-lookup"><span data-stu-id="1d278-152">You will need to add a **project.json** file.</span></span> <span data-ttu-id="1d278-153">La parte successiva di questa sezione illustra le definizioni per questi file.</span><span class="sxs-lookup"><span data-stu-id="1d278-153">The rest of this section shows the definitions for these files.</span></span>
+<span data-ttu-id="ab6ca-150">La funzione di Azure è associata al file del codice e ad altri file descritti in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-150">Your Azure function is associated with code files and other files that are described in this section.</span></span> <span data-ttu-id="ab6ca-151">Per impostazione predefinita, una funzione è associata ai file **function.json** e **run.csx** (C#).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-151">By default, a function is associated with **function.json** and **run.csx** (C#) files.</span></span> <span data-ttu-id="ab6ca-152">Sarà necessario tooadd un **Project** file.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-152">You will need tooadd a **project.json** file.</span></span> <span data-ttu-id="ab6ca-153">resto Hello di questa sezione mostra le definizioni di hello per questi file.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-153">hello rest of this section shows hello definitions for these files.</span></span>
 
 ![input](./media/media-services-azure-functions/media-services-azure-functions003.png)
 
-### <a name="functionjson"></a><span data-ttu-id="1d278-155">function.json</span><span class="sxs-lookup"><span data-stu-id="1d278-155">function.json</span></span>
+### <a name="functionjson"></a><span data-ttu-id="ab6ca-155">function.json</span><span class="sxs-lookup"><span data-stu-id="ab6ca-155">function.json</span></span>
 
-<span data-ttu-id="1d278-156">Il file function.json definisce le associazioni di funzione e altre impostazioni di configurazione.</span><span class="sxs-lookup"><span data-stu-id="1d278-156">The function.json file defines the function bindings and other configuration settings.</span></span> <span data-ttu-id="1d278-157">Il runtime usa questo file per determinare gli eventi da monitorare e come passare i dati e restituirli dall'esecuzione di funzioni.</span><span class="sxs-lookup"><span data-stu-id="1d278-157">The runtime uses this file to determine the events to monitor and how to pass data into and return data from function execution.</span></span> <span data-ttu-id="1d278-158">Per altre informazioni rivedere [Associazioni HTTP e webhook in Funzioni di Azure](../azure-functions/functions-reference.md#function-code).</span><span class="sxs-lookup"><span data-stu-id="1d278-158">For more information, see [Azure functions HTTP and webhook bindings](../azure-functions/functions-reference.md#function-code).</span></span>
+<span data-ttu-id="ab6ca-156">file function.json Hello definisce l'associazione di funzione hello e altre impostazioni di configurazione.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-156">hello function.json file defines hello function bindings and other configuration settings.</span></span> <span data-ttu-id="ab6ca-157">Hello runtime utilizza questo toomonitor gli eventi di file toodetermine hello e come toopass e dati restituiti dalla funzionano esecuzione.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-157">hello runtime uses this file toodetermine hello events toomonitor and how toopass data into and return data from function execution.</span></span> <span data-ttu-id="ab6ca-158">Per altre informazioni rivedere [Associazioni HTTP e webhook in Funzioni di Azure](../azure-functions/functions-reference.md#function-code).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-158">For more information, see [Azure functions HTTP and webhook bindings](../azure-functions/functions-reference.md#function-code).</span></span>
 
 >[!NOTE]
-><span data-ttu-id="1d278-159">Impostare la proprietà **disattivato** su **vero** per impedire l'esecuzione della funzione.</span><span class="sxs-lookup"><span data-stu-id="1d278-159">Set the **disabled** property to **true** to prevent the function from being executed.</span></span> 
+><span data-ttu-id="ab6ca-159">Set hello **disabilitato** proprietà troppo**true** funzione hello tooprevent venga eseguito.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-159">Set hello **disabled** property too**true** tooprevent hello function from being executed.</span></span> 
 
 
-<span data-ttu-id="1d278-160">Di seguito è riportato un esempio di file **function.json**.</span><span class="sxs-lookup"><span data-stu-id="1d278-160">Here is an example of **function.json** file.</span></span>
+<span data-ttu-id="ab6ca-160">Di seguito è riportato un esempio di file **function.json**.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-160">Here is an example of **function.json** file.</span></span>
 
     {
     "bindings": [
@@ -112,9 +112,9 @@ ms.lasthandoff: 08/29/2017
     "disabled": false
     }
 
-### <a name="projectjson"></a><span data-ttu-id="1d278-161">project.json</span><span class="sxs-lookup"><span data-stu-id="1d278-161">project.json</span></span>
+### <a name="projectjson"></a><span data-ttu-id="ab6ca-161">project.json</span><span class="sxs-lookup"><span data-stu-id="ab6ca-161">project.json</span></span>
 
-<span data-ttu-id="1d278-162">Il file project.json contiene dipendenze.</span><span class="sxs-lookup"><span data-stu-id="1d278-162">The project.json file contains dependencies.</span></span> <span data-ttu-id="1d278-163">Di seguito è riportato un esempio del file **project.json** che include i pacchetti di Servizi multimediali di Azure .NET da Nuget.</span><span class="sxs-lookup"><span data-stu-id="1d278-163">Here is an example of **project.json** file that includes the required .NET Azure Media Services packages from Nuget.</span></span> <span data-ttu-id="1d278-164">Si noti che i numeri di versione cambieranno con gli aggiornamenti più recenti per i pacchetti, pertanto è consigliabile confermare le versioni più recenti.</span><span class="sxs-lookup"><span data-stu-id="1d278-164">Note that the version numbers will change with latest updates to the packages, so you should confirm the most recent versions.</span></span> 
+<span data-ttu-id="ab6ca-162">file Project JSON Hello contiene dipendenze.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-162">hello project.json file contains dependencies.</span></span> <span data-ttu-id="ab6ca-163">Di seguito è riportato un esempio di **Project** pacchetti di file che include i servizi multimediali di Azure .NET hello richiesto da Nuget.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-163">Here is an example of **project.json** file that includes hello required .NET Azure Media Services packages from Nuget.</span></span> <span data-ttu-id="ab6ca-164">Si noti che i numeri di versione di hello verranno modificate con gli aggiornamenti più recenti toohello pacchetti, pertanto è necessario verificare le versioni più recenti di hello.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-164">Note that hello version numbers will change with latest updates toohello packages, so you should confirm hello most recent versions.</span></span> 
 
     {
       "frameworks": {
@@ -127,18 +127,18 @@ ms.lasthandoff: 08/29/2017
        }
     }
     
-### <a name="runcsx"></a><span data-ttu-id="1d278-165">run.csx</span><span class="sxs-lookup"><span data-stu-id="1d278-165">run.csx</span></span>
+### <a name="runcsx"></a><span data-ttu-id="ab6ca-165">run.csx</span><span class="sxs-lookup"><span data-stu-id="ab6ca-165">run.csx</span></span>
 
-<span data-ttu-id="1d278-166">Questo è il codice C# per la funzione.</span><span class="sxs-lookup"><span data-stu-id="1d278-166">This is the C# code for your function.</span></span>  <span data-ttu-id="1d278-167">La funzione definita di seguito monitora un contenitore dell'account di archiviazione denominato **input** (cioè quello specificato nel percorso) per i nuovi file MP4.</span><span class="sxs-lookup"><span data-stu-id="1d278-167">The function defined below monitors a storage account container named **input** (that is what was specified in the path) for new MP4 files.</span></span> <span data-ttu-id="1d278-168">Una volta rilasciato un file nel contenitore di archiviazione, il trigger BLOB eseguirà la funzione.</span><span class="sxs-lookup"><span data-stu-id="1d278-168">Once a file is dropped into the storage container, the blob trigger will execute the function.</span></span>
+<span data-ttu-id="ab6ca-166">Si tratta di codice hello c# per la funzione.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-166">This is hello C# code for your function.</span></span>  <span data-ttu-id="ab6ca-167">funzione Hello definita sotto monitoraggi un contenitore di account di archiviazione denominato **input** (che è ciò che è stato specificato nel percorso hello) per i nuovi file MP4.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-167">hello function defined below monitors a storage account container named **input** (that is what was specified in hello path) for new MP4 files.</span></span> <span data-ttu-id="ab6ca-168">Una volta che viene rilasciato un file in un contenitore di archiviazione hello, trigger blob hello eseguirà la funzione hello.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-168">Once a file is dropped into hello storage container, hello blob trigger will execute hello function.</span></span>
     
-<span data-ttu-id="1d278-169">L'esempio viene definito in questa sezione illustra</span><span class="sxs-lookup"><span data-stu-id="1d278-169">The example defined in this section demonstrates</span></span> 
+<span data-ttu-id="ab6ca-169">esempio Hello definita in questa sezione viene illustrato</span><span class="sxs-lookup"><span data-stu-id="ab6ca-169">hello example defined in this section demonstrates</span></span> 
 
-1. <span data-ttu-id="1d278-170">come inserire un asset in un account di Servizi multimediali (copiando un BLOB in un asset AMS) e</span><span class="sxs-lookup"><span data-stu-id="1d278-170">how to ingest an asset into a Media Services account (by coping a blob into an AMS asset) and</span></span> 
-2. <span data-ttu-id="1d278-171">come inviare un processo di codifica che usa il set di impostazioni "Flusso adattivo" di Media Encoder Standard.</span><span class="sxs-lookup"><span data-stu-id="1d278-171">how to submit an encoding job that uses Media Encoder Standard's "Adaptive Streaming" preset .</span></span>
+1. <span data-ttu-id="ab6ca-170">come tooingest un asset in servizi multimediali di un account (copiando un blob in un asset AMS) e</span><span class="sxs-lookup"><span data-stu-id="ab6ca-170">how tooingest an asset into a Media Services account (by coping a blob into an AMS asset) and</span></span> 
+2. <span data-ttu-id="ab6ca-171">come toosubmit un processo di codifica che utilizza "Il flusso adattivo" del Media Encoder Standard predefinito.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-171">how toosubmit an encoding job that uses Media Encoder Standard's "Adaptive Streaming" preset .</span></span>
 
-<span data-ttu-id="1d278-172">Nello scenario reale, è probabile che l'utente desideri tenere traccia dello stato dei processi e quindi pubblicare l'asset codificato.</span><span class="sxs-lookup"><span data-stu-id="1d278-172">In the real life scenario, you most likely want to track job progress and then publish your encoded asset.</span></span> <span data-ttu-id="1d278-173">Per altre informazioni, vedere [Usare i webhook di Azure per monitorare le notifiche dei processi di Servizi multimediali con .NET](media-services-dotnet-check-job-progress-with-webhooks.md).</span><span class="sxs-lookup"><span data-stu-id="1d278-173">For more information, see [Use Azure WebHooks to monitor Media Services job notifications](media-services-dotnet-check-job-progress-with-webhooks.md).</span></span> <span data-ttu-id="1d278-174">Per altri esempi, vedere [Funzioni di Azure dei Servizi multimediali](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span><span class="sxs-lookup"><span data-stu-id="1d278-174">For more examples, see [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span></span>  
+<span data-ttu-id="ab6ca-172">In uno scenario reale hello, è probabile che si desidera che lo stato del processo tootrack e quindi si pubblica l'asset codificato.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-172">In hello real life scenario, you most likely want tootrack job progress and then publish your encoded asset.</span></span> <span data-ttu-id="ab6ca-173">Per ulteriori informazioni, vedere [servizi multimediali di Azure usare i Webhook toomonitor processo notifiche](media-services-dotnet-check-job-progress-with-webhooks.md).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-173">For more information, see [Use Azure WebHooks toomonitor Media Services job notifications](media-services-dotnet-check-job-progress-with-webhooks.md).</span></span> <span data-ttu-id="ab6ca-174">Per altri esempi, vedere [Funzioni di Azure dei Servizi multimediali](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-174">For more examples, see [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span></span>  
 
-<span data-ttu-id="1d278-175">Al termine dell'operazione di definizione della funzione fare clic su **Salva ed esegui**.</span><span class="sxs-lookup"><span data-stu-id="1d278-175">Once you are done defining your function click **Save and Run**.</span></span>
+<span data-ttu-id="ab6ca-175">Al termine dell'operazione di definizione della funzione fare clic su **Salva ed esegui**.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-175">Once you are done defining your function click **Save and Run**.</span></span>
 
     #r "Microsoft.WindowsAzure.Storage"
     #r "Newtonsoft.Json"
@@ -171,12 +171,12 @@ ms.lasthandoff: 08/29/2017
 
     public static void Run(CloudBlockBlob myBlob, string fileName, TraceWriter log)
     {
-        // NOTE that the variables {fileName} here come from the path setting in function.json
-        // and are passed into the  Run method signature above. We can use this to make decisions on what type of file
-        // was dropped into the input container for the function. 
+        // NOTE that hello variables {fileName} here come from hello path setting in function.json
+        // and are passed into hello  Run method signature above. We can use this toomake decisions on what type of file
+        // was dropped into hello input container for hello function. 
 
-        // No need to do any Retry strategy in this function, By default, the SDK calls a function up to 5 times for a 
-        // given blob. If the fifth try fails, the SDK adds a message to a queue named webjobs-blobtrigger-poison.
+        // No need toodo any Retry strategy in this function, By default, hello SDK calls a function up too5 times for a 
+        // given blob. If hello fifth try fails, hello SDK adds a message tooa queue named webjobs-blobtrigger-poison.
 
         log.Info($"C# Blob trigger function processed: {fileName}.mp4");
         log.Info($"Using Azure Media Services account : {_mediaServicesAccountName}");
@@ -184,16 +184,16 @@ ms.lasthandoff: 08/29/2017
 
         try
         {
-        // Create and cache the Media Services credentials in a static class variable.
+        // Create and cache hello Media Services credentials in a static class variable.
         _cachedCredentials = new MediaServicesCredentials(
                 _mediaServicesAccountName,
                 _mediaServicesAccountKey);
 
-        // Used the chached credentials to create CloudMediaContext.
+        // Used hello chached credentials toocreate CloudMediaContext.
         _context = new CloudMediaContext(_cachedCredentials);
 
-        // Step 1:  Copy the Blob into a new Input Asset for the Job
-        // ***NOTE: Ideally we would have a method to ingest a Blob directly here somehow. 
+        // Step 1:  Copy hello Blob into a new Input Asset for hello Job
+        // ***NOTE: Ideally we would have a method tooingest a Blob directly here somehow. 
         // using code from this sample - https://azure.microsoft.com/en-us/documentation/articles/media-services-copying-existing-blob/
 
         StorageCredentials mediaServicesStorageCredentials =
@@ -203,25 +203,25 @@ ms.lasthandoff: 08/29/2017
 
         // Step 2: Create an Encoding Job
 
-        // Declare a new encoding job with the Standard encoder
+        // Declare a new encoding job with hello Standard encoder
         IJob job = _context.Jobs.Create("Azure Function - MES Job");
 
-        // Get a media processor reference, and pass to it the name of the 
-        // processor to use for the specific task.
+        // Get a media processor reference, and pass tooit hello name of hello 
+        // processor toouse for hello specific task.
         IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-        // Create a task with the encoding details, using a custom preset
+        // Create a task with hello encoding details, using a custom preset
         ITask task = job.Tasks.AddNew("Encode with Adaptive Streaming",
             processor,
             "Adaptive Streaming",
             TaskOptions.None); 
 
-        // Specify the input asset to be encoded.
+        // Specify hello input asset toobe encoded.
         task.InputAssets.Add(newAsset);
 
-        // Add an output asset to contain the results of the job. 
+        // Add an output asset toocontain hello results of hello job. 
         // This output is specified as AssetCreationOptions.None, which 
-        // means the output asset is not encrypted. 
+        // means hello output asset is not encrypted. 
         task.OutputAssets.AddNew(fileName, AssetCreationOptions.None);
 
         job.Submit();
@@ -266,13 +266,13 @@ ms.lasthandoff: 08/29/2017
     }
 
     /// <summary>
-    /// Creates a new asset and copies blobs from the specifed storage account.
+    /// Creates a new asset and copies blobs from hello specifed storage account.
     /// </summary>
-    /// <param name="blob">The specified blob.</param>
-    /// <returns>The new asset.</returns>
+    /// <param name="blob">hello specified blob.</param>
+    /// <returns>hello new asset.</returns>
     public static async Task<IAsset> CreateAssetFromBlobAsync(CloudBlockBlob blob, string assetName, TraceWriter log)
     {
-         //Get a reference to the storage account that is associated with the Media Services account. 
+         //Get a reference toohello storage account that is associated with hello Media Services account. 
         StorageCredentials mediaServicesStorageCredentials =
         new StorageCredentials(_storageAccountName, _storageAccountKey);
         _destinationStorageAccount = new CloudStorageAccount(mediaServicesStorageCredentials, false);
@@ -286,7 +286,7 @@ ms.lasthandoff: 08/29/2017
         ILocator destinationLocator = _context.Locators.CreateLocator(LocatorType.Sas, asset, writePolicy);
         CloudBlobClient destBlobStorage = _destinationStorageAccount.CreateCloudBlobClient();
 
-        // Get the destination asset container reference
+        // Get hello destination asset container reference
         string destinationContainerName = (new Uri(destinationLocator.Path)).Segments[1];
         CloudBlobContainer assetContainer = destBlobStorage.GetContainerReference(destinationContainerName);
 
@@ -300,7 +300,7 @@ ms.lasthandoff: 08/29/2017
 
         log.Info("Created asset.");
 
-        // Get hold of the destination blob
+        // Get hold of hello destination blob
         CloudBlockBlob destinationBlob = assetContainer.GetBlockBlobReference(blob.Name);
 
         // Copy Blob
@@ -332,21 +332,21 @@ ms.lasthandoff: 08/29/2017
 
         return asset;
     }
-##<a name="test-your-function"></a><span data-ttu-id="1d278-176">Testare la funzione</span><span class="sxs-lookup"><span data-stu-id="1d278-176">Test your function</span></span>
+##<a name="test-your-function"></a><span data-ttu-id="ab6ca-176">Testare la funzione</span><span class="sxs-lookup"><span data-stu-id="ab6ca-176">Test your function</span></span>
 
-<span data-ttu-id="1d278-177">Per testare la funzione, è necessario caricare un file MP4 nel contenitore **input** dell'account di archiviazione specificato nella stringa di connessione.</span><span class="sxs-lookup"><span data-stu-id="1d278-177">To test your function, you need to upload an MP4 file into the **input** container of the storage account that you specified in the connection string.</span></span>  
+<span data-ttu-id="ab6ca-177">tootest della funzione, è necessario un file MP4 in hello tooupload **input** contenitore hello dell'account di archiviazione specificato nella stringa di connessione hello.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-177">tootest your function, you need tooupload an MP4 file into hello **input** container of hello storage account that you specified in hello connection string.</span></span>  
 
-## <a name="next-step"></a><span data-ttu-id="1d278-178">Passaggio successivo</span><span class="sxs-lookup"><span data-stu-id="1d278-178">Next step</span></span>
+## <a name="next-step"></a><span data-ttu-id="ab6ca-178">Passaggio successivo</span><span class="sxs-lookup"><span data-stu-id="ab6ca-178">Next step</span></span>
 
-<span data-ttu-id="1d278-179">A questo punto, si è pronti per iniziare a sviluppare un'applicazione di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="1d278-179">At this point, you are ready to start developing a Media Services application.</span></span> 
+<span data-ttu-id="ab6ca-179">A questo punto, si è pronti toostart lo sviluppo di un'applicazione di servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="ab6ca-179">At this point, you are ready toostart developing a Media Services application.</span></span> 
  
-<span data-ttu-id="1d278-180">Per altri dettagli ed esempi o soluzioni complete di uso di Funzioni di Azure e delle App per la logica con Servizi multimediali di Azure per creare flussi di lavoro di creazione di contenuto personalizzato, vedere l'[Esempio di integrazione delle funzioni di Servizi multimediali .NET su GitHub](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)</span><span class="sxs-lookup"><span data-stu-id="1d278-180">For more details and complete samples/solutions of using Azure Functions and Logic Apps with Azure Media Services to create custom content creation workflows, see the [Media Services .NET Functions Integraiton Sample on GitHub](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)</span></span>
+<span data-ttu-id="ab6ca-180">Per ulteriori dettagli ed esempi/soluzioni complete dell'utilizzo di funzioni di Azure e la logica App con i flussi di lavoro di servizi multimediali di Azure toocreate creazione di contenuto personalizzato, vedere hello [esempio integrazione funzioni Media Services .NET su GitHub](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)</span><span class="sxs-lookup"><span data-stu-id="ab6ca-180">For more details and complete samples/solutions of using Azure Functions and Logic Apps with Azure Media Services toocreate custom content creation workflows, see hello [Media Services .NET Functions Integraiton Sample on GitHub](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)</span></span>
 
-<span data-ttu-id="1d278-181">Vedere anche [Usare i webhook di Azure per monitorare le notifiche dei processi di Servizi multimediali con .NET](media-services-dotnet-check-job-progress-with-webhooks.md).</span><span class="sxs-lookup"><span data-stu-id="1d278-181">Also, see [Use Azure WebHooks to monitor Media Services job notifications with .NET](media-services-dotnet-check-job-progress-with-webhooks.md).</span></span> 
+<span data-ttu-id="ab6ca-181">Vedere anche [notifiche con .NET di servizi multimediali di Azure usare i Webhook toomonitor processo](media-services-dotnet-check-job-progress-with-webhooks.md).</span><span class="sxs-lookup"><span data-stu-id="ab6ca-181">Also, see [Use Azure WebHooks toomonitor Media Services job notifications with .NET](media-services-dotnet-check-job-progress-with-webhooks.md).</span></span> 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="1d278-182">Percorsi di apprendimento di Media Services</span><span class="sxs-lookup"><span data-stu-id="1d278-182">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="ab6ca-182">Percorsi di apprendimento di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="ab6ca-182">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="1d278-183">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="1d278-183">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="ab6ca-183">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="ab6ca-183">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

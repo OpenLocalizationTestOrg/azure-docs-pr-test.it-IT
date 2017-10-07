@@ -1,6 +1,6 @@
 ---
-title: Invio di notifiche push ad Android con Hub di notifica di Azure | Documentazione di Microsoft
-description: "In questa esercitazione, si apprenderà come usare Hub di notifica di Azure per inviare notifiche push a dispositivi Android."
+title: tooAndroid di notifiche push aaaSending con gli hub di notifica di Azure | Documenti Microsoft
+description: "In questa esercitazione, è illustrato come i dispositivi tooAndroid toouse gli hub di notifica di Azure toopush notifiche."
 services: notification-hubs
 documentationcenter: android
 keywords: notifiche push, notifica push, notifiche push per android
@@ -15,69 +15,69 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 07/05/2016
 ms.author: yuaxu
-ms.openlocfilehash: 808fc10ef1ebb3288facbdf2e9e817b27d4fc6bc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b15a477d86cf1e6efffb21c5bcef0de7761af79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sending-push-notifications-to-android-with-azure-notification-hubs"></a><span data-ttu-id="1b61a-104">Invio di notifiche push ad Android con Hub di notifica di Azure</span><span class="sxs-lookup"><span data-stu-id="1b61a-104">Sending push notifications to Android with Azure Notification Hubs</span></span>
+# <a name="sending-push-notifications-tooandroid-with-azure-notification-hubs"></a><span data-ttu-id="001ca-104">TooAndroid l'invio di notifiche push con hub di notifica di Azure</span><span class="sxs-lookup"><span data-stu-id="001ca-104">Sending push notifications tooAndroid with Azure Notification Hubs</span></span>
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-## <a name="overview"></a><span data-ttu-id="1b61a-105">Overview</span><span class="sxs-lookup"><span data-stu-id="1b61a-105">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="001ca-105">Panoramica</span><span class="sxs-lookup"><span data-stu-id="001ca-105">Overview</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="1b61a-106">Questo argomento illustra le notifiche push con Google Cloud Messaging (GCM).</span><span class="sxs-lookup"><span data-stu-id="1b61a-106">This topic demonstrates push notifications with Google Cloud Messaging (GCM).</span></span> <span data-ttu-id="1b61a-107">Se si sta ancora usando Google Firebase Messaging (FCM), vedere [Invio di notifiche push ad Android con Hub di notifica di Azure e Firebase Cloud Messaging](notification-hubs-android-push-notification-google-fcm-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="1b61a-107">If you are using Google's Firebase Cloud Messaging (FCM), see [Sending push notifications to Android with Azure Notification Hubs and FCM](notification-hubs-android-push-notification-google-fcm-get-started.md).</span></span>
+> <span data-ttu-id="001ca-106">Questo argomento illustra le notifiche push con Google Cloud Messaging (GCM).</span><span class="sxs-lookup"><span data-stu-id="001ca-106">This topic demonstrates push notifications with Google Cloud Messaging (GCM).</span></span> <span data-ttu-id="001ca-107">Se si utilizza Google Firebase Cloud Messaging (FCM), vedere [tooAndroid le notifiche push di invio con gli hub di notifica di Azure e FCM](notification-hubs-android-push-notification-google-fcm-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="001ca-107">If you are using Google's Firebase Cloud Messaging (FCM), see [Sending push notifications tooAndroid with Azure Notification Hubs and FCM](notification-hubs-android-push-notification-google-fcm-get-started.md).</span></span>
 > 
 > 
 
-<span data-ttu-id="1b61a-108">Questa esercitazione illustra come usare Hub di notifica di Azure per inviare notifiche push a un'applicazione per Android.</span><span class="sxs-lookup"><span data-stu-id="1b61a-108">This tutorial shows you how to use Azure Notification Hubs to send push notifications to an Android application.</span></span>
-<span data-ttu-id="1b61a-109">In questa esercitazione verrà creata un'app Android vuota che riceve notifiche push usando il servizio Google Cloud Messaging (GCM).</span><span class="sxs-lookup"><span data-stu-id="1b61a-109">You'll create a blank Android app that receives push notifications by using Google Cloud Messaging (GCM).</span></span>
+<span data-ttu-id="001ca-108">Questa esercitazione illustra come applicazione Android tooan di notifiche push toouse toosend di hub di notifica di Azure.</span><span class="sxs-lookup"><span data-stu-id="001ca-108">This tutorial shows you how toouse Azure Notification Hubs toosend push notifications tooan Android application.</span></span>
+<span data-ttu-id="001ca-109">In questa esercitazione verrà creata un'app Android vuota che riceve notifiche push usando il servizio Google Cloud Messaging (GCM).</span><span class="sxs-lookup"><span data-stu-id="001ca-109">You'll create a blank Android app that receives push notifications by using Google Cloud Messaging (GCM).</span></span>
 
 [!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-<span data-ttu-id="1b61a-110">Il codice completo per questa esercitazione può essere scaricato da GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).</span><span class="sxs-lookup"><span data-stu-id="1b61a-110">The completed code for this tutorial can be downloaded from GitHub [here](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).</span></span>
+<span data-ttu-id="001ca-110">codice Hello completata per questa esercitazione può essere scaricato da GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).</span><span class="sxs-lookup"><span data-stu-id="001ca-110">hello completed code for this tutorial can be downloaded from GitHub [here](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="1b61a-111">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="1b61a-111">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="001ca-111">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="001ca-111">Prerequisites</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="1b61a-112">Per completare l'esercitazione, è necessario disporre di un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="1b61a-112">To complete this tutorial, you must have an active Azure account.</span></span> <span data-ttu-id="1b61a-113">Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="1b61a-113">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="1b61a-114">Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).</span><span class="sxs-lookup"><span data-stu-id="1b61a-114">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).</span></span>
+> <span data-ttu-id="001ca-112">toocomplete questa esercitazione, è necessario disporre di un account di Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="001ca-112">toocomplete this tutorial, you must have an active Azure account.</span></span> <span data-ttu-id="001ca-113">Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="001ca-113">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="001ca-114">Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).</span><span class="sxs-lookup"><span data-stu-id="001ca-114">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).</span></span>
 > 
 > 
 
-<span data-ttu-id="1b61a-115">Oltre a un account Azure attivo come indicato sopra, questa esercitazione richiede solo la versione più recente di [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).</span><span class="sxs-lookup"><span data-stu-id="1b61a-115">In addition to an active Azure account mentioned above, this tutorial only requires the latest version of [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).</span></span>
+<span data-ttu-id="001ca-115">Inoltre account Azure active tooan indicati sopra, in questa esercitazione richiede solo una versione più recente di hello di [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).</span><span class="sxs-lookup"><span data-stu-id="001ca-115">In addition tooan active Azure account mentioned above, this tutorial only requires hello latest version of [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).</span></span>
 
-<span data-ttu-id="1b61a-116">Il completamento di questa esercitazione costituisce un prerequisito per tutte le altre esercitazioni di Hub di notifica relative ad app Android.</span><span class="sxs-lookup"><span data-stu-id="1b61a-116">Completing this tutorial is a prerequisite for all other Notification Hubs tutorials for Android apps.</span></span>
+<span data-ttu-id="001ca-116">Il completamento di questa esercitazione costituisce un prerequisito per tutte le altre esercitazioni di Hub di notifica relative ad app Android.</span><span class="sxs-lookup"><span data-stu-id="001ca-116">Completing this tutorial is a prerequisite for all other Notification Hubs tutorials for Android apps.</span></span>
 
-## <a name="creating-a-project-that-supports-google-cloud-messaging"></a><span data-ttu-id="1b61a-117">Creazione di un progetto che supporta Google Cloud Messaging</span><span class="sxs-lookup"><span data-stu-id="1b61a-117">Creating a project that supports Google Cloud Messaging</span></span>
+## <a name="creating-a-project-that-supports-google-cloud-messaging"></a><span data-ttu-id="001ca-117">Creazione di un progetto che supporta Google Cloud Messaging</span><span class="sxs-lookup"><span data-stu-id="001ca-117">Creating a project that supports Google Cloud Messaging</span></span>
 [!INCLUDE [mobile-services-enable-Google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
 
-## <a name="configure-a-new-notification-hub"></a><span data-ttu-id="1b61a-118">Configurare un nuovo hub di notifica</span><span class="sxs-lookup"><span data-stu-id="1b61a-118">Configure a new notification hub</span></span>
+## <a name="configure-a-new-notification-hub"></a><span data-ttu-id="001ca-118">Configurare un nuovo hub di notifica</span><span class="sxs-lookup"><span data-stu-id="001ca-118">Configure a new notification hub</span></span>
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-<span data-ttu-id="1b61a-119">&emsp;&emsp;6.</span><span class="sxs-lookup"><span data-stu-id="1b61a-119">&emsp;&emsp;6.</span></span>   <span data-ttu-id="1b61a-120">Nel pannello **Impostazioni** selezionare **Servizi di notifica**, quindi **Google (GCM)**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-120">In the **Settings** blade, select **Notification Services** and then **Google (GCM)**.</span></span> <span data-ttu-id="1b61a-121">Immettere la chiave API e fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-121">Enter the API key and click **Save**.</span></span>
+<span data-ttu-id="001ca-119">&emsp;&emsp;6.</span><span class="sxs-lookup"><span data-stu-id="001ca-119">&emsp;&emsp;6.</span></span>   <span data-ttu-id="001ca-120">In hello **impostazioni** pannello seleziona **Notification Services** e quindi **Google (GCM)**.</span><span class="sxs-lookup"><span data-stu-id="001ca-120">In hello **Settings** blade, select **Notification Services** and then **Google (GCM)**.</span></span> <span data-ttu-id="001ca-121">Immettere la chiave API hello e fare clic su **salvare**.</span><span class="sxs-lookup"><span data-stu-id="001ca-121">Enter hello API key and click **Save**.</span></span>
 
 &emsp;&emsp;![Hub di notifica di Azure - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
-<span data-ttu-id="1b61a-123">A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono disponibili le stringhe di connessione per registrare l'app per l'invio e la ricezione di notifiche push.</span><span class="sxs-lookup"><span data-stu-id="1b61a-123">Your notification hub is now configured to work with GCM, and you have the connection strings to both register your app to receive and send push notifications.</span></span>
+<span data-ttu-id="001ca-123">Hub di notifica è ora configurato toowork con GCM, e si dispone di tooboth stringhe di connessione hello registrare tooreceive l'app e inviare notifiche push.</span><span class="sxs-lookup"><span data-stu-id="001ca-123">Your notification hub is now configured toowork with GCM, and you have hello connection strings tooboth register your app tooreceive and send push notifications.</span></span>
 
-## <span data-ttu-id="1b61a-124"><a id="connecting-app"></a>Connettere l'app all'hub di notifica</span><span class="sxs-lookup"><span data-stu-id="1b61a-124"><a id="connecting-app"></a>Connect your app to the notification hub</span></span>
-### <a name="create-a-new-android-project"></a><span data-ttu-id="1b61a-125">Creare un nuovo progetto Android</span><span class="sxs-lookup"><span data-stu-id="1b61a-125">Create a new Android project</span></span>
-1. <span data-ttu-id="1b61a-126">In Android Studio avviare un nuovo progetto Android Studio.</span><span class="sxs-lookup"><span data-stu-id="1b61a-126">In Android Studio, start a new Android Studio project.</span></span>
+## <span data-ttu-id="001ca-124"><a id="connecting-app"></a>Connettere l'hub di notifica toohello app</span><span class="sxs-lookup"><span data-stu-id="001ca-124"><a id="connecting-app"></a>Connect your app toohello notification hub</span></span>
+### <a name="create-a-new-android-project"></a><span data-ttu-id="001ca-125">Creare un nuovo progetto Android</span><span class="sxs-lookup"><span data-stu-id="001ca-125">Create a new Android project</span></span>
+1. <span data-ttu-id="001ca-126">In Android Studio avviare un nuovo progetto Android Studio.</span><span class="sxs-lookup"><span data-stu-id="001ca-126">In Android Studio, start a new Android Studio project.</span></span>
    
    ![Android Studio: nuovo progetto][13]
-2. <span data-ttu-id="1b61a-128">Scegliere il fattore di forma **Phone and Tablet** (Telefono e tablet) e la versione **Minimum SDK** (SDK minimo) che si vuole supportare.</span><span class="sxs-lookup"><span data-stu-id="1b61a-128">Choose the **Phone and Tablet** form factor and the **Minimum SDK** that you want to support.</span></span> <span data-ttu-id="1b61a-129">Quindi fare clic su **Next**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-129">Then click **Next**.</span></span>
+2. <span data-ttu-id="001ca-128">Scegliere hello **Tablet e telefoni** form factor e hello **minimo SDK** che si desidera toosupport.</span><span class="sxs-lookup"><span data-stu-id="001ca-128">Choose hello **Phone and Tablet** form factor and hello **Minimum SDK** that you want toosupport.</span></span> <span data-ttu-id="001ca-129">Quindi fare clic su **Next**.</span><span class="sxs-lookup"><span data-stu-id="001ca-129">Then click **Next**.</span></span>
    
    ![Android Studio: flusso di lavoro di creazione del progetto][14]
-3. <span data-ttu-id="1b61a-131">Scegliere **Empty Activity** (Attività vuota) per l'attività principale, fare clic su **Avanti**, quindi su **Fine**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-131">Choose **Empty Activity** for the main activity, click **Next**, and then click **Finish**.</span></span>
+3. <span data-ttu-id="001ca-131">Scegliere **attività vuota** per l'attività principale hello, fare clic su **Avanti**, quindi fare clic su **fine**.</span><span class="sxs-lookup"><span data-stu-id="001ca-131">Choose **Empty Activity** for hello main activity, click **Next**, and then click **Finish**.</span></span>
 
-### <a name="add-google-play-services-to-the-project"></a><span data-ttu-id="1b61a-132">Aggiungere Google Play Services al progetto</span><span class="sxs-lookup"><span data-stu-id="1b61a-132">Add Google Play services to the project</span></span>
+### <a name="add-google-play-services-toohello-project"></a><span data-ttu-id="001ca-132">Aggiungi progetto toohello di Google Play services</span><span class="sxs-lookup"><span data-stu-id="001ca-132">Add Google Play services toohello project</span></span>
 [!INCLUDE [Add Play Services](../../includes/notification-hubs-android-studio-add-google-play-services.md)]
 
-### <a name="adding-azure-notification-hubs-libraries"></a><span data-ttu-id="1b61a-133">Aggiunta di librerie dell'Hub di notifica di Azure</span><span class="sxs-lookup"><span data-stu-id="1b61a-133">Adding Azure Notification Hubs libraries</span></span>
-1. <span data-ttu-id="1b61a-134">Nel file `Build.Gradle` relativo all'**app** aggiungere le righe seguenti alla sezione delle **dipendenze**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-134">In the `Build.Gradle` file for the **app**, add the following lines in the **dependencies** section.</span></span>
+### <a name="adding-azure-notification-hubs-libraries"></a><span data-ttu-id="001ca-133">Aggiunta di librerie dell'Hub di notifica di Azure</span><span class="sxs-lookup"><span data-stu-id="001ca-133">Adding Azure Notification Hubs libraries</span></span>
+1. <span data-ttu-id="001ca-134">In hello `Build.Gradle` file per hello **app**, aggiungere hello seguenti righe hello **dipendenze** sezione.</span><span class="sxs-lookup"><span data-stu-id="001ca-134">In hello `Build.Gradle` file for hello **app**, add hello following lines in hello **dependencies** section.</span></span>
    
         compile 'com.microsoft.azure:notification-hubs-android-sdk:0.4@aar'
         compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
-2. <span data-ttu-id="1b61a-135">Aggiungere l'archivio seguente dopo la sezione **dependencies** .</span><span class="sxs-lookup"><span data-stu-id="1b61a-135">Add the following repository after the **dependencies** section.</span></span>
+2. <span data-ttu-id="001ca-135">Aggiungere hello seguenti repository dopo hello **dipendenze** sezione.</span><span class="sxs-lookup"><span data-stu-id="001ca-135">Add hello following repository after hello **dependencies** section.</span></span>
    
         repositories {
             maven {
@@ -85,25 +85,25 @@ ms.lasthandoff: 07/11/2017
             }
         }
 
-### <a name="updating-the-androidmanifestxml"></a><span data-ttu-id="1b61a-136">Aggiornamento del file AndroidManifest.xml</span><span class="sxs-lookup"><span data-stu-id="1b61a-136">Updating the AndroidManifest.xml.</span></span>
-1. <span data-ttu-id="1b61a-137">Per supportare GCM è necessario implementare un servizio listener Instance ID nel codice, che consente di [ottenere token di registrazione](https://developers.google.com/cloud-messaging/android/client#sample-register) usando l'[API Instance ID di Google](https://developers.google.com/instance-id/).</span><span class="sxs-lookup"><span data-stu-id="1b61a-137">To support GCM, we must implement a Instance ID listener service in our code which is used to [obtain registration tokens](https://developers.google.com/cloud-messaging/android/client#sample-register) using [Google's Instance ID API](https://developers.google.com/instance-id/).</span></span> <span data-ttu-id="1b61a-138">In questa esercitazione verrà assegnato il nome `MyInstanceIDService`alla classe.</span><span class="sxs-lookup"><span data-stu-id="1b61a-138">In this tutorial we will name the class `MyInstanceIDService`.</span></span> 
+### <a name="updating-hello-androidmanifestxml"></a><span data-ttu-id="001ca-136">Aggiornamento hello androidmanifest. Xml.</span><span class="sxs-lookup"><span data-stu-id="001ca-136">Updating hello AndroidManifest.xml.</span></span>
+1. <span data-ttu-id="001ca-137">toosupport GCM, è necessario implementare un servizio di listener di ID istanza nel codice viene utilizzato troppo[ottenere i token di registrazione](https://developers.google.com/cloud-messaging/android/client#sample-register) utilizzando [Google API dell'ID istanza](https://developers.google.com/instance-id/).</span><span class="sxs-lookup"><span data-stu-id="001ca-137">toosupport GCM, we must implement a Instance ID listener service in our code which is used too[obtain registration tokens](https://developers.google.com/cloud-messaging/android/client#sample-register) using [Google's Instance ID API](https://developers.google.com/instance-id/).</span></span> <span data-ttu-id="001ca-138">In questa esercitazione verrà assegnato un nome classe hello `MyInstanceIDService`.</span><span class="sxs-lookup"><span data-stu-id="001ca-138">In this tutorial we will name hello class `MyInstanceIDService`.</span></span> 
    
-    <span data-ttu-id="1b61a-139">Aggiungere la definizione del servizio seguente al file AndroidManifest.xml, all'interno del tag `<application>` .</span><span class="sxs-lookup"><span data-stu-id="1b61a-139">Add the following service definition to the AndroidManifest.xml file, inside the `<application>` tag.</span></span> <span data-ttu-id="1b61a-140">Sostituire il segnaposto `<your package>` con il nome effettivo del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-140">Replace the `<your package>` placeholder with the your actual package name shown at the top of the `AndroidManifest.xml` file.</span></span>
+    <span data-ttu-id="001ca-139">Aggiungere hello seguente toohello AndroidManifest.xml file di definizione servizio all'interno di hello `<application>` tag.</span><span class="sxs-lookup"><span data-stu-id="001ca-139">Add hello following service definition toohello AndroidManifest.xml file, inside hello `<application>` tag.</span></span> <span data-ttu-id="001ca-140">Sostituire hello `<your package>` hello di segnaposto con il nome del pacchetto effettivo visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.</span><span class="sxs-lookup"><span data-stu-id="001ca-140">Replace hello `<your package>` placeholder with hello your actual package name shown at hello top of hello `AndroidManifest.xml` file.</span></span>
    
         <service android:name="<your package>.MyInstanceIDService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
-2. <span data-ttu-id="1b61a-141">Dopo la ricezione del token di registrazione di GCM dall'API Instance ID, lo si userà per la [registrazione con Hub di notifica di Azure](notification-hubs-push-notification-registration-management.md).</span><span class="sxs-lookup"><span data-stu-id="1b61a-141">Once we have received our GCM registration token from the Instance ID API, we will use it to [register with the Azure Notification Hub](notification-hubs-push-notification-registration-management.md).</span></span> <span data-ttu-id="1b61a-142">La registrazione verrà supportata in background mediante un `IntentService` denominato `RegistrationIntentService`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-142">We will support this registration in the background using an `IntentService` named `RegistrationIntentService`.</span></span> <span data-ttu-id="1b61a-143">Il servizio sarà anche responsabile dell' [aggiornamento del token di registrazione di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).</span><span class="sxs-lookup"><span data-stu-id="1b61a-143">This service will also be responsible for [refreshing our GCM registration token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).</span></span>
+2. <span data-ttu-id="001ca-141">Una volta che è stato ricevuto il token di registrazione GCM da hello API dell'ID istanza, verrà usato troppo[registrare con l'Hub di notifica di Azure hello](notification-hubs-push-notification-registration-management.md).</span><span class="sxs-lookup"><span data-stu-id="001ca-141">Once we have received our GCM registration token from hello Instance ID API, we will use it too[register with hello Azure Notification Hub](notification-hubs-push-notification-registration-management.md).</span></span> <span data-ttu-id="001ca-142">Saranno supportati la registrazione in background hello utilizzando un `IntentService` denominato `RegistrationIntentService`.</span><span class="sxs-lookup"><span data-stu-id="001ca-142">We will support this registration in hello background using an `IntentService` named `RegistrationIntentService`.</span></span> <span data-ttu-id="001ca-143">Il servizio sarà anche responsabile dell' [aggiornamento del token di registrazione di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).</span><span class="sxs-lookup"><span data-stu-id="001ca-143">This service will also be responsible for [refreshing our GCM registration token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).</span></span>
    
-    <span data-ttu-id="1b61a-144">Aggiungere la definizione del servizio seguente al file AndroidManifest.xml, all'interno del tag `<application>` .</span><span class="sxs-lookup"><span data-stu-id="1b61a-144">Add the following service definition to the AndroidManifest.xml file, inside the `<application>` tag.</span></span> <span data-ttu-id="1b61a-145">Sostituire il segnaposto `<your package>` con il nome effettivo del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-145">Replace the `<your package>` placeholder with the your actual package name shown at the top of the `AndroidManifest.xml` file.</span></span> 
+    <span data-ttu-id="001ca-144">Aggiungere hello seguente toohello AndroidManifest.xml file di definizione servizio all'interno di hello `<application>` tag.</span><span class="sxs-lookup"><span data-stu-id="001ca-144">Add hello following service definition toohello AndroidManifest.xml file, inside hello `<application>` tag.</span></span> <span data-ttu-id="001ca-145">Sostituire hello `<your package>` hello di segnaposto con il nome del pacchetto effettivo visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.</span><span class="sxs-lookup"><span data-stu-id="001ca-145">Replace hello `<your package>` placeholder with hello your actual package name shown at hello top of hello `AndroidManifest.xml` file.</span></span> 
    
         <service
             android:name="<your package>.RegistrationIntentService"
             android:exported="false">
         </service>
-3. <span data-ttu-id="1b61a-146">Verrà definito anche un ricevitore per la ricezione di notifiche.</span><span class="sxs-lookup"><span data-stu-id="1b61a-146">We will also define a receiver to receive notifications.</span></span> <span data-ttu-id="1b61a-147">Aggiungere la definizione del ricevitore seguente al file AndroidManifest.xml, nel tag `<application>` .</span><span class="sxs-lookup"><span data-stu-id="1b61a-147">Add the following receiver definition to the AndroidManifest.xml file, inside the `<application>` tag.</span></span> <span data-ttu-id="1b61a-148">Sostituire il segnaposto `<your package>` con il nome effettivo del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-148">Replace the `<your package>` placeholder with the your actual package name shown at the top of the `AndroidManifest.xml` file.</span></span>
+3. <span data-ttu-id="001ca-146">Verrà inoltre definito un notifiche tooreceive ricevitore.</span><span class="sxs-lookup"><span data-stu-id="001ca-146">We will also define a receiver tooreceive notifications.</span></span> <span data-ttu-id="001ca-147">Aggiungere hello seguente ricevitore toohello AndroidManifest.xml file di definizione, all'interno di hello `<application>` tag.</span><span class="sxs-lookup"><span data-stu-id="001ca-147">Add hello following receiver definition toohello AndroidManifest.xml file, inside hello `<application>` tag.</span></span> <span data-ttu-id="001ca-148">Sostituire hello `<your package>` hello di segnaposto con il nome del pacchetto effettivo visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.</span><span class="sxs-lookup"><span data-stu-id="001ca-148">Replace hello `<your package>` placeholder with hello your actual package name shown at hello top of hello `AndroidManifest.xml` file.</span></span>
    
         <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
@@ -112,9 +112,9 @@ ms.lasthandoff: 07/11/2017
                 <category android:name="<your package name>" />
             </intent-filter>
         </receiver>
-4. <span data-ttu-id="1b61a-149">Aggiungere le necessarie autorizzazioni correlate a GCM riportate di seguito sotto il tag `</application>`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-149">Add the following necessary GCM related permissions below the  `</application>` tag.</span></span> <span data-ttu-id="1b61a-150">Sostituire `<your package>` con il nome del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-150">Make sure to replace `<your package>` with the package name shown at the top of the `AndroidManifest.xml` file.</span></span>
+4. <span data-ttu-id="001ca-149">Aggiungere hello seguente GCM necessarie relative autorizzazioni seguito hello `</application>` tag.</span><span class="sxs-lookup"><span data-stu-id="001ca-149">Add hello following necessary GCM related permissions below hello  `</application>` tag.</span></span> <span data-ttu-id="001ca-150">Verificare che tooreplace `<your package>` con il nome di pacchetto hello visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.</span><span class="sxs-lookup"><span data-stu-id="001ca-150">Make sure tooreplace `<your package>` with hello package name shown at hello top of hello `AndroidManifest.xml` file.</span></span>
    
-    <span data-ttu-id="1b61a-151">Per altre informazioni su queste autorizzazioni, vedere [Setup a GCM Client app for Android](https://developers.google.com/cloud-messaging/android/client#manifest)(Configurare un'app client di GCM per Android).</span><span class="sxs-lookup"><span data-stu-id="1b61a-151">For more information on these permissions, see [Setup a GCM Client app for Android](https://developers.google.com/cloud-messaging/android/client#manifest).</span></span>
+    <span data-ttu-id="001ca-151">Per altre informazioni su queste autorizzazioni, vedere [Setup a GCM Client app for Android](https://developers.google.com/cloud-messaging/android/client#manifest)(Configurare un'app client di GCM per Android).</span><span class="sxs-lookup"><span data-stu-id="001ca-151">For more information on these permissions, see [Setup a GCM Client app for Android](https://developers.google.com/cloud-messaging/android/client#manifest).</span></span>
    
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -124,28 +124,28 @@ ms.lasthandoff: 07/11/2017
         <permission android:name="<your package>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
         <uses-permission android:name="<your package>.permission.C2D_MESSAGE"/>
 
-### <a name="adding-code"></a><span data-ttu-id="1b61a-152">Aggiunta di codice</span><span class="sxs-lookup"><span data-stu-id="1b61a-152">Adding code</span></span>
-1. <span data-ttu-id="1b61a-153">Nella visualizzazione del progetto espandere **app** > **src** > **main** > **java**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-153">In the Project View, expand **app** > **src** > **main** > **java**.</span></span> <span data-ttu-id="1b61a-154">Fare clic con il pulsante destro del mouse sulla cartella del pacchetto in **java**, scegliere **Nuovo**, quindi selezionare **Java Class** (Classe Java).</span><span class="sxs-lookup"><span data-stu-id="1b61a-154">Right-click your package folder under **java**, click **New**, and then click **Java Class**.</span></span> <span data-ttu-id="1b61a-155">Aggiungere una nuova classe denominata `NotificationSettings`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-155">Add a new class named `NotificationSettings`.</span></span> 
+### <a name="adding-code"></a><span data-ttu-id="001ca-152">Aggiunta di codice</span><span class="sxs-lookup"><span data-stu-id="001ca-152">Adding code</span></span>
+1. <span data-ttu-id="001ca-153">Nella visualizzazione progetto hello, espandere **app** > **src** > **principale** > **java**.</span><span class="sxs-lookup"><span data-stu-id="001ca-153">In hello Project View, expand **app** > **src** > **main** > **java**.</span></span> <span data-ttu-id="001ca-154">Fare clic con il pulsante destro del mouse sulla cartella del pacchetto in **java**, scegliere **Nuovo**, quindi selezionare **Java Class** (Classe Java).</span><span class="sxs-lookup"><span data-stu-id="001ca-154">Right-click your package folder under **java**, click **New**, and then click **Java Class**.</span></span> <span data-ttu-id="001ca-155">Aggiungere una nuova classe denominata `NotificationSettings`.</span><span class="sxs-lookup"><span data-stu-id="001ca-155">Add a new class named `NotificationSettings`.</span></span> 
    
     ![Android Studio: nuova classe Java][6]
    
-    <span data-ttu-id="1b61a-157">Aggiornare questi tre segnaposto nel codice seguente per la classe `NotificationSettings` :</span><span class="sxs-lookup"><span data-stu-id="1b61a-157">Make sure to update the these three placeholders in the following code for the `NotificationSettings` class:</span></span>
+    <span data-ttu-id="001ca-157">Assicurarsi che questi tre segnaposto nel seguente codice per hello hello di hello tooupdate `NotificationSettings` classe:</span><span class="sxs-lookup"><span data-stu-id="001ca-157">Make sure tooupdate hello these three placeholders in hello following code for hello `NotificationSettings` class:</span></span>
    
-   * <span data-ttu-id="1b61a-158">**SenderId**: numero di progetto ottenuto in precedenza in [Google Cloud Console](http://cloud.google.com/console)(Console Cloud di Google).</span><span class="sxs-lookup"><span data-stu-id="1b61a-158">**SenderId**: The project number you obtained earlier in the [Google Cloud Console](http://cloud.google.com/console).</span></span>
-   * <span data-ttu-id="1b61a-159">**HubListenConnectionString**: stringa di connessione **DefaultListenAccessSignature** per l'hub.</span><span class="sxs-lookup"><span data-stu-id="1b61a-159">**HubListenConnectionString**: The **DefaultListenAccessSignature** connection string for your hub.</span></span> <span data-ttu-id="1b61a-160">È possibile copiare la stringa di connessione facendo clic su **Criteri di accesso** nel pannello **Impostazioni** dell'hub nel [portale di Azure].</span><span class="sxs-lookup"><span data-stu-id="1b61a-160">You can copy that connection string by clicking **Access Policies** on the **Settings** blade of your hub on the [Azure Portal].</span></span>
-   * <span data-ttu-id="1b61a-161">**HubName**: usare il nome dell'Hub di notifica visualizzato nel pannello dell'hub nel [portale di Azure].</span><span class="sxs-lookup"><span data-stu-id="1b61a-161">**HubName**: Use the name of your notification hub that appears in the hub blade in the [Azure Portal].</span></span>
+   * <span data-ttu-id="001ca-158">**ID mittente**: hello numero progetto ottenuto in precedenza in hello [Google Cloud Console](http://cloud.google.com/console).</span><span class="sxs-lookup"><span data-stu-id="001ca-158">**SenderId**: hello project number you obtained earlier in hello [Google Cloud Console](http://cloud.google.com/console).</span></span>
+   * <span data-ttu-id="001ca-159">**HubListenConnectionString**: hello **DefaultListenAccessSignature** stringa di connessione per l'hub.</span><span class="sxs-lookup"><span data-stu-id="001ca-159">**HubListenConnectionString**: hello **DefaultListenAccessSignature** connection string for your hub.</span></span> <span data-ttu-id="001ca-160">È possibile copiare la stringa di connessione, fare clic su **criteri di accesso** su hello **impostazioni** blade di hub di su hello [portale Azure].</span><span class="sxs-lookup"><span data-stu-id="001ca-160">You can copy that connection string by clicking **Access Policies** on hello **Settings** blade of your hub on hello [Azure Portal].</span></span>
+   * <span data-ttu-id="001ca-161">**HubName**: utilizza il nome dell'hub di notifica che viene visualizzato nel Pannello di hub hello in hello hello [portale Azure].</span><span class="sxs-lookup"><span data-stu-id="001ca-161">**HubName**: Use hello name of your notification hub that appears in hello hub blade in hello [Azure Portal].</span></span>
      
-     <span data-ttu-id="1b61a-162">`NotificationSettings` :</span><span class="sxs-lookup"><span data-stu-id="1b61a-162">`NotificationSettings` code:</span></span>
+     <span data-ttu-id="001ca-162">`NotificationSettings` :</span><span class="sxs-lookup"><span data-stu-id="001ca-162">`NotificationSettings` code:</span></span>
      
-       <span data-ttu-id="1b61a-163">classe pubblica NotificationSettings {</span><span class="sxs-lookup"><span data-stu-id="1b61a-163">public class NotificationSettings {</span></span>
+       <span data-ttu-id="001ca-163">classe pubblica NotificationSettings {</span><span class="sxs-lookup"><span data-stu-id="001ca-163">public class NotificationSettings {</span></span>
      
            public static String SenderId = "<Your project number>";
            public static String HubName = "<Your HubName>";
            public static String HubListenConnectionString = "<Your default listen connection string>";
-       <span data-ttu-id="1b61a-164">}</span><span class="sxs-lookup"><span data-stu-id="1b61a-164">}</span></span>
-2. <span data-ttu-id="1b61a-165">Usando la procedura precedente, aggiungere un'altra nuova classe denominata `MyInstanceIDService`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-165">Using the steps above, add another new class named `MyInstanceIDService`.</span></span> <span data-ttu-id="1b61a-166">Questa sarà l'implementazione del servizio listener Instance ID.</span><span class="sxs-lookup"><span data-stu-id="1b61a-166">This will be our Instance ID listener service implementation.</span></span>
+       <span data-ttu-id="001ca-164">}</span><span class="sxs-lookup"><span data-stu-id="001ca-164">}</span></span>
+2. <span data-ttu-id="001ca-165">Seguendo i passaggi di hello sopra riportati, aggiungere un'altra nuova classe denominata `MyInstanceIDService`.</span><span class="sxs-lookup"><span data-stu-id="001ca-165">Using hello steps above, add another new class named `MyInstanceIDService`.</span></span> <span data-ttu-id="001ca-166">Questa sarà l'implementazione del servizio listener Instance ID.</span><span class="sxs-lookup"><span data-stu-id="001ca-166">This will be our Instance ID listener service implementation.</span></span>
    
-    <span data-ttu-id="1b61a-167">Il codice per questa classe chiamerà `IntentService` per [aggiornare il token di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in background.</span><span class="sxs-lookup"><span data-stu-id="1b61a-167">The code for this class will call our `IntentService` to [refresh the GCM token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in the background.</span></span>
+    <span data-ttu-id="001ca-167">codice Hello per questa classe chiamerà il nostro `IntentService` troppo[token di aggiornamento hello GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in background hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-167">hello code for this class will call our `IntentService` too[refresh hello GCM token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in hello background.</span></span>
    
         import android.content.Intent;
         import android.util.Log;
@@ -166,9 +166,9 @@ ms.lasthandoff: 07/11/2017
         };
 
 
-1. <span data-ttu-id="1b61a-168">Aggiungere al progetto un'altra nuova classe denominata `RegistrationIntentService`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-168">Add another new class to your project named, `RegistrationIntentService`.</span></span> <span data-ttu-id="1b61a-169">Questa sarà l'implementazione di `IntentService` che gestirà l'[aggiornamento del token di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) e la [registrazione nell'hub di notifica](notification-hubs-push-notification-registration-management.md).</span><span class="sxs-lookup"><span data-stu-id="1b61a-169">This will be the implementation for our `IntentService` that will handle [refreshing the GCM token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) and [registering with the notification hub](notification-hubs-push-notification-registration-management.md).</span></span>
+1. <span data-ttu-id="001ca-168">Aggiungere un altro nuovo progetto tooyour di classe denominato, `RegistrationIntentService`.</span><span class="sxs-lookup"><span data-stu-id="001ca-168">Add another new class tooyour project named, `RegistrationIntentService`.</span></span> <span data-ttu-id="001ca-169">Questo sarà l'implementazione di hello per il nostro `IntentService` che gestirà [aggiornati i token GCM hello](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) e [registrazione con hub di notifica hello](notification-hubs-push-notification-registration-management.md).</span><span class="sxs-lookup"><span data-stu-id="001ca-169">This will be hello implementation for our `IntentService` that will handle [refreshing hello GCM token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) and [registering with hello notification hub](notification-hubs-push-notification-registration-management.md).</span></span>
    
-    <span data-ttu-id="1b61a-170">Usare il codice seguente per la classe.</span><span class="sxs-lookup"><span data-stu-id="1b61a-170">Use the following code for this class.</span></span>
+    <span data-ttu-id="001ca-170">Utilizzare hello seguente codice per questa classe.</span><span class="sxs-lookup"><span data-stu-id="001ca-170">Use hello following code for this class.</span></span>
    
         import android.app.IntentService;
         import android.content.Intent;
@@ -202,18 +202,18 @@ ms.lasthandoff: 07/11/2017
                             GoogleCloudMessaging.INSTANCE_ID_SCOPE);        
                     Log.i(TAG, "Got GCM Registration Token: " + token);
    
-                    // Storing the registration id that indicates whether the generated token has been
-                    // sent to your server. If it is not stored, send the token to your server,
-                    // otherwise your server should have already received the token.
+                    // Storing hello registration id that indicates whether hello generated token has been
+                    // sent tooyour server. If it is not stored, send hello token tooyour server,
+                    // otherwise your server should have already received hello token.
                     if ((regID=sharedPreferences.getString("registrationID", null)) == null) {        
                         NotificationHub hub = new NotificationHub(NotificationSettings.HubName,
                                 NotificationSettings.HubListenConnectionString, this);
-                        Log.i(TAG, "Attempting to register with NH using token : " + token);
+                        Log.i(TAG, "Attempting tooregister with NH using token : " + token);
    
                         regID = hub.register(token).getRegistrationId();
    
-                        // If you want to use tags...
-                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                        // If you want toouse tags...
+                        // Refer too: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
                         // regID = hub.register(token, "tag1", "tag2").getRegistrationId();
    
                         resultString = "Registered Successfully - RegId : " + regID;
@@ -223,9 +223,9 @@ ms.lasthandoff: 07/11/2017
                         resultString = "Previously Registered Successfully - RegId : " + regID;
                     }
                 } catch (Exception e) {
-                    Log.e(TAG, resultString="Failed to complete token refresh", e);
-                    // If an exception happens while fetching the new token or updating our registration data
-                    // on a third-party server, this ensures that we'll attempt the update at a later time.
+                    Log.e(TAG, resultString="Failed toocomplete token refresh", e);
+                    // If an exception happens while fetching hello new token or updating our registration data
+                    // on a third-party server, this ensures that we'll attempt hello update at a later time.
                 }
    
                 // Notify UI that registration has completed.
@@ -234,7 +234,7 @@ ms.lasthandoff: 07/11/2017
                 }
             }
         }
-2. <span data-ttu-id="1b61a-171">Nella classe `MainActivity` aggiungere le istruzioni `import` seguenti sopra la dichiarazione della classe.</span><span class="sxs-lookup"><span data-stu-id="1b61a-171">In your `MainActivity` class, add the following `import` statements above the class declaration.</span></span>
+2. <span data-ttu-id="001ca-171">Nel `MainActivity` classe, aggiungere il seguente hello `import` istruzioni sopra hello dichiarazione di classe.</span><span class="sxs-lookup"><span data-stu-id="001ca-171">In your `MainActivity` class, add hello following `import` statements above hello class declaration.</span></span>
    
         import com.google.android.gms.common.ConnectionResult;
         import com.google.android.gms.common.GoogleApiAvailability;
@@ -243,18 +243,18 @@ ms.lasthandoff: 07/11/2017
         import android.util.Log;
         import android.widget.TextView;
         import android.widget.Toast;
-3. <span data-ttu-id="1b61a-172">Aggiungere i seguenti membri privati nella parte superiore della classe.</span><span class="sxs-lookup"><span data-stu-id="1b61a-172">Add the following private members at the top of the class.</span></span> <span data-ttu-id="1b61a-173">Verranno usati per [verificare la disponibilità di Google Play Services come consigliato da Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).</span><span class="sxs-lookup"><span data-stu-id="1b61a-173">We will use these [check the availability of Google Play Services as recommended by Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).</span></span>
+3. <span data-ttu-id="001ca-172">Aggiungere i seguenti membri privati della classe hello lato superiore hello hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-172">Add hello following private members at hello top of hello class.</span></span> <span data-ttu-id="001ca-173">Si utilizzerà questi [verificare la disponibilità di hello di Google Play Services come consigliato da Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).</span><span class="sxs-lookup"><span data-stu-id="001ca-173">We will use these [check hello availability of Google Play Services as recommended by Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).</span></span>
    
         public static MainActivity mainActivity;
         public static Boolean isVisible = false;    
         private GoogleCloudMessaging gcm;
         private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-4. <span data-ttu-id="1b61a-174">Nella classe `MainActivity` aggiungere il metodo seguente alla disponibilità di Google Play Services.</span><span class="sxs-lookup"><span data-stu-id="1b61a-174">In your `MainActivity` class, add the following method to the availability of Google Play Services.</span></span> 
+4. <span data-ttu-id="001ca-174">Nel `MainActivity` classe, aggiungere hello successivi la disponibilità di toohello metodo di Google Play Services.</span><span class="sxs-lookup"><span data-stu-id="001ca-174">In your `MainActivity` class, add hello following method toohello availability of Google Play Services.</span></span> 
    
         /**
-         * Check the device to make sure it has the Google Play Services APK. If
-         * it doesn't, display a dialog that allows users to download the APK from
-         * the Google Play Store or enable it in the device's system settings.
+         * Check hello device toomake sure it has hello Google Play Services APK. If
+         * it doesn't, display a dialog that allows users toodownload hello APK from
+         * hello Google Play Store or enable it in hello device's system settings.
          */
         private boolean checkPlayServices() {
             GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
@@ -272,19 +272,19 @@ ms.lasthandoff: 07/11/2017
             }
             return true;
         }
-5. <span data-ttu-id="1b61a-175">Nella classe `MainActivity` aggiungere il codice seguente che cercherà Google Play Services prima di chiamare `IntentService` per ottenere il token di registrazione di GCM e registrarlo nell'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="1b61a-175">In your `MainActivity` class, add the following code that will check for Google Play Services before calling your `IntentService` to get your GCM registration token and register with your notification hub.</span></span>
+5. <span data-ttu-id="001ca-175">Nel `MainActivity` classe, aggiungere hello seguente di codice che verrà archiviata per Google Play Services prima di chiamare il `IntentService` tooget il token di registrazione GCM e la registrazione con l'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="001ca-175">In your `MainActivity` class, add hello following code that will check for Google Play Services before calling your `IntentService` tooget your GCM registration token and register with your notification hub.</span></span>
    
         public void registerWithNotificationHubs()
         {
             Log.i(TAG, " Registering with Notification Hubs");
    
             if (checkPlayServices()) {
-                // Start IntentService to register this application with GCM.
+                // Start IntentService tooregister this application with GCM.
                 Intent intent = new Intent(this, RegistrationIntentService.class);
                 startService(intent);
             }
         }
-6. <span data-ttu-id="1b61a-176">Nel metodo `OnCreate` della classe `MainActivity` aggiungere il codice seguente per avviare il processo di registrazione quando viene creata l'attività.</span><span class="sxs-lookup"><span data-stu-id="1b61a-176">In the `OnCreate` method of the `MainActivity` class, add the following code to start the registration process when activity is created.</span></span>
+6. <span data-ttu-id="001ca-176">In hello `OnCreate` metodo hello `MainActivity` classe, aggiungere hello successivo processo di registrazione hello toostart codice quando viene creato l'attività.</span><span class="sxs-lookup"><span data-stu-id="001ca-176">In hello `OnCreate` method of hello `MainActivity` class, add hello following code toostart hello registration process when activity is created.</span></span>
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -295,7 +295,7 @@ ms.lasthandoff: 07/11/2017
             NotificationsManager.handleNotifications(this, NotificationSettings.SenderId, MyHandler.class);
             registerWithNotificationHubs();
         }
-7. <span data-ttu-id="1b61a-177">Aggiungere questi altri metodi a `MainActivity` per verificare lo stato dell'app e segnalare lo stato nell'app.</span><span class="sxs-lookup"><span data-stu-id="1b61a-177">Add these additional methods to the `MainActivity` to verify app state and report status in your app.</span></span>
+7. <span data-ttu-id="001ca-177">Aggiungere questi altri metodi toohello `MainActivity` tooverify app lo stato e segnalare lo stato dell'app.</span><span class="sxs-lookup"><span data-stu-id="001ca-177">Add these additional methods toohello `MainActivity` tooverify app state and report status in your app.</span></span>
    
         @Override
         protected void onStart() {
@@ -331,11 +331,11 @@ ms.lasthandoff: 07/11/2017
                 }
             });
         }
-8. <span data-ttu-id="1b61a-178">Il metodo `ToastNotify` usa il controllo *"Hello World"* `TextView` per segnalare lo stato e le notifiche in modo permanente nell'app.</span><span class="sxs-lookup"><span data-stu-id="1b61a-178">The `ToastNotify` method uses the *"Hello World"* `TextView` control to report status and notifications persistently in the app.</span></span> <span data-ttu-id="1b61a-179">Nel layout di activity_main.xml aggiungere l'ID seguente per il controllo.</span><span class="sxs-lookup"><span data-stu-id="1b61a-179">In your activity_main.xml layout, add the following id for that control.</span></span>
+8. <span data-ttu-id="001ca-178">Hello `ToastNotify` metodo utilizza hello *"Hello World"* `TextView` controllare lo stato di tooreport e notifiche in modo permanente in app hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-178">hello `ToastNotify` method uses hello *"Hello World"* `TextView` control tooreport status and notifications persistently in hello app.</span></span> <span data-ttu-id="001ca-179">Nel layout activity_main.xml, aggiungere hello seguente id per tale controllo.</span><span class="sxs-lookup"><span data-stu-id="001ca-179">In your activity_main.xml layout, add hello following id for that control.</span></span>
    
        android:id="@+id/text_hello"
-9. <span data-ttu-id="1b61a-180">Verrà quindi aggiunta una sottoclasse per il ricevitore definita nel file AndroidManifest.xml.</span><span class="sxs-lookup"><span data-stu-id="1b61a-180">Next we will add a subclass for our receiver we defined in the AndroidManifest.xml.</span></span> <span data-ttu-id="1b61a-181">Aggiungere al progetto un'altra nuova classe denominata `MyHandler`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-181">Add another new class to your project named `MyHandler`.</span></span>
-10. <span data-ttu-id="1b61a-182">Aggiungere le istruzioni import seguenti all'inizio di `MyHandler.java`:</span><span class="sxs-lookup"><span data-stu-id="1b61a-182">Add the following import statements at the top of `MyHandler.java`:</span></span>
+9. <span data-ttu-id="001ca-180">Successivamente sarà necessario aggiungere una sottoclasse per il ricevitore che è stato definito in hello androidmanifest. Xml.</span><span class="sxs-lookup"><span data-stu-id="001ca-180">Next we will add a subclass for our receiver we defined in hello AndroidManifest.xml.</span></span> <span data-ttu-id="001ca-181">Aggiungere un altro nuovo progetto tooyour di classe denominato `MyHandler`.</span><span class="sxs-lookup"><span data-stu-id="001ca-181">Add another new class tooyour project named `MyHandler`.</span></span>
+10. <span data-ttu-id="001ca-182">Aggiungere hello seguendo le istruzioni import in cima hello `MyHandler.java`:</span><span class="sxs-lookup"><span data-stu-id="001ca-182">Add hello following import statements at hello top of `MyHandler.java`:</span></span>
     
         import android.app.NotificationManager;
         import android.app.PendingIntent;
@@ -344,9 +344,9 @@ ms.lasthandoff: 07/11/2017
         import android.os.Bundle;
         import android.support.v4.app.NotificationCompat;
         import com.microsoft.windowsazure.notifications.NotificationsHandler;
-11. <span data-ttu-id="1b61a-183">Aggiungere il codice seguente per la classe `MyHandler` impostandola come sottoclasse di `com.microsoft.windowsazure.notifications.NotificationsHandler`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-183">Add the following code for the `MyHandler` class making it a subclass of `com.microsoft.windowsazure.notifications.NotificationsHandler`.</span></span>
+11. <span data-ttu-id="001ca-183">Aggiungere hello seguente codice per hello `MyHandler` rendendola una sottoclasse della classe `com.microsoft.windowsazure.notifications.NotificationsHandler`.</span><span class="sxs-lookup"><span data-stu-id="001ca-183">Add hello following code for hello `MyHandler` class making it a subclass of `com.microsoft.windowsazure.notifications.NotificationsHandler`.</span></span>
     
-    <span data-ttu-id="1b61a-184">Questo codice ignora il metodo `OnReceive` , in modo che il gestore segnali le notifiche ricevute.</span><span class="sxs-lookup"><span data-stu-id="1b61a-184">This code overrides the `OnReceive` method, so the handler will report notifications that are received.</span></span> <span data-ttu-id="1b61a-185">Il gestore invia anche la notifica push al gestore delle notifiche di Android usando il metodo `sendNotification()` .</span><span class="sxs-lookup"><span data-stu-id="1b61a-185">The handler also sends the push notification to the Android notification manager by using the `sendNotification()` method.</span></span> <span data-ttu-id="1b61a-186">Il metodo `sendNotification()` deve essere eseguito quando l'app non è in esecuzione e si riceve una notifica.</span><span class="sxs-lookup"><span data-stu-id="1b61a-186">The `sendNotification()` method should be executed when the app is not running and a notification is received.</span></span>
+    <span data-ttu-id="001ca-184">Questo codice esegue l'override di hello `OnReceive` metodo, pertanto il gestore di hello indicheranno le notifiche ricevute.</span><span class="sxs-lookup"><span data-stu-id="001ca-184">This code overrides hello `OnReceive` method, so hello handler will report notifications that are received.</span></span> <span data-ttu-id="001ca-185">gestore Hello invia anche di gestione delle notifiche Android hello push notifica toohello utilizzando hello `sendNotification()` metodo.</span><span class="sxs-lookup"><span data-stu-id="001ca-185">hello handler also sends hello push notification toohello Android notification manager by using hello `sendNotification()` method.</span></span> <span data-ttu-id="001ca-186">Hello `sendNotification()` (metodo) deve essere eseguito quando l'applicazione hello non è in esecuzione e viene ricevuta una notifica.</span><span class="sxs-lookup"><span data-stu-id="001ca-186">hello `sendNotification()` method should be executed when hello app is not running and a notification is received.</span></span>
     
         public class MyHandler extends NotificationsHandler {
             public static final int NOTIFICATION_ID = 1;
@@ -389,19 +389,19 @@ ms.lasthandoff: 07/11/2017
                 mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
             }
         }
-12. <span data-ttu-id="1b61a-187">Sulla barra dei menu in Android Studio fare clic su **Compila** > **Ricompila il progetto** per assicurarsi che non ci siano errori nel codice.</span><span class="sxs-lookup"><span data-stu-id="1b61a-187">In Android Studio on the menu bar, click **Build** > **Rebuild Project** to make sure that no errors are present in your code.</span></span>
+12. <span data-ttu-id="001ca-187">In Android Studio hello barra dei menu, fare clic su **compilare** > **ricompilare progetto** toomake assicurarsi che non sono presenti errori nel codice.</span><span class="sxs-lookup"><span data-stu-id="001ca-187">In Android Studio on hello menu bar, click **Build** > **Rebuild Project** toomake sure that no errors are present in your code.</span></span>
 
-## <a name="sending-push-notifications"></a><span data-ttu-id="1b61a-188">Invio di notifiche push</span><span class="sxs-lookup"><span data-stu-id="1b61a-188">Sending push notifications</span></span>
-<span data-ttu-id="1b61a-189">È possibile testare la ricezione delle notifiche push nell'app inviandole tramite il [portale di Azure]; cercare la sezione **Risoluzione dei problemi** nel pannello dell'hub, come illustrato di seguito.</span><span class="sxs-lookup"><span data-stu-id="1b61a-189">You can test receiving push notifications in your app by sending them via the [Azure Portal] - look for the **Troubleshooting** Section in the hub blade, as shown below.</span></span>
+## <a name="sending-push-notifications"></a><span data-ttu-id="001ca-188">Invio di notifiche push</span><span class="sxs-lookup"><span data-stu-id="001ca-188">Sending push notifications</span></span>
+<span data-ttu-id="001ca-189">È possibile verificare la ricezione di notifiche push nell'app inviando tramite hello [portale Azure] -cercare hello **Troubleshooting** sezione nel Pannello di hub hello, come illustrato di seguito.</span><span class="sxs-lookup"><span data-stu-id="001ca-189">You can test receiving push notifications in your app by sending them via hello [Azure Portal] - look for hello **Troubleshooting** Section in hello hub blade, as shown below.</span></span>
 
 ![Hub di notifica di Azure: test dell'invio](./media/notification-hubs-android-get-started/notification-hubs-test-send.png)
 
 [!INCLUDE [notification-hubs-sending-notifications-from-the-portal](../../includes/notification-hubs-sending-notifications-from-the-portal.md)]
 
-## <a name="optional-send-push-notifications-directly-from-the-app"></a><span data-ttu-id="1b61a-191">(Facoltativo) Inviare notifiche push direttamente dall'app</span><span class="sxs-lookup"><span data-stu-id="1b61a-191">(Optional) Send push notifications directly from the app</span></span>
-<span data-ttu-id="1b61a-192">In genere, le notifiche vengono inviate tramite un server back-end.</span><span class="sxs-lookup"><span data-stu-id="1b61a-192">Normally, you would send notifications using a backend server.</span></span> <span data-ttu-id="1b61a-193">In alcuni casi può essere necessario inviare notifiche push direttamente dall'applicazione client.</span><span class="sxs-lookup"><span data-stu-id="1b61a-193">For some cases, you might want to be able to send push notifications directly from the client application.</span></span> <span data-ttu-id="1b61a-194">Questa sezione illustra come inviare notifiche dal client usando l' [API REST dell'Hub di notifica di Azure](https://msdn.microsoft.com/library/azure/dn223264.aspx).</span><span class="sxs-lookup"><span data-stu-id="1b61a-194">This section explains how to send notifications from the client using the [Azure Notification Hub REST API](https://msdn.microsoft.com/library/azure/dn223264.aspx).</span></span>
+## <a name="optional-send-push-notifications-directly-from-hello-app"></a><span data-ttu-id="001ca-191">(Facoltativo) Inviare notifiche push direttamente dall'app hello</span><span class="sxs-lookup"><span data-stu-id="001ca-191">(Optional) Send push notifications directly from hello app</span></span>
+<span data-ttu-id="001ca-192">In genere, le notifiche vengono inviate tramite un server back-end.</span><span class="sxs-lookup"><span data-stu-id="001ca-192">Normally, you would send notifications using a backend server.</span></span> <span data-ttu-id="001ca-193">In alcuni casi, potrebbe essere toobe in grado di toosend le notifiche push direttamente da un'applicazione hello client.</span><span class="sxs-lookup"><span data-stu-id="001ca-193">For some cases, you might want toobe able toosend push notifications directly from hello client application.</span></span> <span data-ttu-id="001ca-194">Questa sezione viene illustrato come le notifiche di toosend da client hello utilizzando hello [API REST di Hub di notifica di Azure](https://msdn.microsoft.com/library/azure/dn223264.aspx).</span><span class="sxs-lookup"><span data-stu-id="001ca-194">This section explains how toosend notifications from hello client using hello [Azure Notification Hub REST API](https://msdn.microsoft.com/library/azure/dn223264.aspx).</span></span>
 
-1. <span data-ttu-id="1b61a-195">Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **layout**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-195">In Android Studio Project View, expand **App** > **src** > **main** > **res** > **layout**.</span></span> <span data-ttu-id="1b61a-196">Aprire il file di layout `activity_main.xml` e fare clic sulla scheda **Text** (Testo) per aggiornare il contenuto di testo del file.</span><span class="sxs-lookup"><span data-stu-id="1b61a-196">Open the `activity_main.xml` layout file and click the **Text** tab to update the text contents of the file.</span></span> <span data-ttu-id="1b61a-197">Aggiornarlo con il codice seguente che aggiunge i nuovi controlli `Button` e `EditText` per l'invio di messaggi di notifica push all'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="1b61a-197">Update it with the code below, which adds new `Button` and `EditText` controls for sending push notification messages to the notification hub.</span></span> <span data-ttu-id="1b61a-198">Aggiungere questo codice alla fine, subito prima di `</RelativeLayout>`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-198">Add this code at the bottom, just before `</RelativeLayout>`.</span></span>
+1. <span data-ttu-id="001ca-195">Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **layout**.</span><span class="sxs-lookup"><span data-stu-id="001ca-195">In Android Studio Project View, expand **App** > **src** > **main** > **res** > **layout**.</span></span> <span data-ttu-id="001ca-196">Aprire hello `activity_main.xml` layout di file e fare clic su hello **testo** scheda contenuto di testo hello tooupdate del file hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-196">Open hello `activity_main.xml` layout file and click hello **Text** tab tooupdate hello text contents of hello file.</span></span> <span data-ttu-id="001ca-197">Aggiornarlo con codice hello seguente, che aggiunge nuove `Button` e `EditText` controlli per l'invio di push hub di notifica toohello i messaggi di notifica.</span><span class="sxs-lookup"><span data-stu-id="001ca-197">Update it with hello code below, which adds new `Button` and `EditText` controls for sending push notification messages toohello notification hub.</span></span> <span data-ttu-id="001ca-198">Aggiungere questo codice nella parte inferiore di hello, subito prima `</RelativeLayout>`.</span><span class="sxs-lookup"><span data-stu-id="001ca-198">Add this code at hello bottom, just before `</RelativeLayout>`.</span></span>
    
         <Button
         android:layout_width="wrap_content"
@@ -420,16 +420,16 @@ ms.lasthandoff: 07/11/2017
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
         android:hint="@string/notification_message_hint" />
-2. <span data-ttu-id="1b61a-199">Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **values**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-199">In Android Studio Project View, expand **App** > **src** > **main** > **res** > **values**.</span></span> <span data-ttu-id="1b61a-200">Aprire il file `strings.xml` e aggiungere i valori di stringa a cui fanno riferimento i nuovi controlli `Button` e `EditText`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-200">Open the `strings.xml` file and add the string values that are referenced by the new `Button` and `EditText` controls.</span></span> <span data-ttu-id="1b61a-201">Aggiungerli alla fine del file, subito prima di `</resources>`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-201">Add these at the bottom of the file, just before `</resources>`.</span></span>
+2. <span data-ttu-id="001ca-199">Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **values**.</span><span class="sxs-lookup"><span data-stu-id="001ca-199">In Android Studio Project View, expand **App** > **src** > **main** > **res** > **values**.</span></span> <span data-ttu-id="001ca-200">Aprire hello `strings.xml` file e aggiungere i valori stringa hello che fanno riferimento hello nuovo `Button` e `EditText` controlli.</span><span class="sxs-lookup"><span data-stu-id="001ca-200">Open hello `strings.xml` file and add hello string values that are referenced by hello new `Button` and `EditText` controls.</span></span> <span data-ttu-id="001ca-201">Aggiungi queste nella parte inferiore di hello del file hello, appena prima `</resources>`.</span><span class="sxs-lookup"><span data-stu-id="001ca-201">Add these at hello bottom of hello file, just before `</resources>`.</span></span>
    
         <string name="send_button">Send Notification</string>
         <string name="notification_message_hint">Enter notification message text</string>
-3. <span data-ttu-id="1b61a-202">Nel file `NotificationSetting.java` aggiungere l'impostazione seguente alla classe `NotificationSettings`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-202">In your `NotificationSetting.java` file, add the following setting to the `NotificationSettings` class.</span></span>
+3. <span data-ttu-id="001ca-202">Nel `NotificationSetting.java` file, aggiungere hello seguente impostazione toohello `NotificationSettings` classe.</span><span class="sxs-lookup"><span data-stu-id="001ca-202">In your `NotificationSetting.java` file, add hello following setting toohello `NotificationSettings` class.</span></span>
    
-    <span data-ttu-id="1b61a-203">Aggiornare `HubFullAccess` con la stringa di connessione **DefaultFullSharedAccessSignature** per l'hub.</span><span class="sxs-lookup"><span data-stu-id="1b61a-203">Update `HubFullAccess` with the **DefaultFullSharedAccessSignature** connection string for your hub.</span></span> <span data-ttu-id="1b61a-204">Questa stringa di connessione può essere copiata dal [portale di Azure] facendo clic su **Criteri di accesso** nel pannello **Impostazioni** dell'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="1b61a-204">This connection string can be copied from the [Azure Portal] by clicking **Access Policies** on the **Settings** blade for your notification hub.</span></span>
+    <span data-ttu-id="001ca-203">Aggiornamento `HubFullAccess` con hello **DefaultFullSharedAccessSignature** stringa di connessione per l'hub.</span><span class="sxs-lookup"><span data-stu-id="001ca-203">Update `HubFullAccess` with hello **DefaultFullSharedAccessSignature** connection string for your hub.</span></span> <span data-ttu-id="001ca-204">La stringa di connessione può essere copiata da hello [portale Azure] facendo **criteri di accesso** su hello **impostazioni** pannello per l'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="001ca-204">This connection string can be copied from hello [Azure Portal] by clicking **Access Policies** on hello **Settings** blade for your notification hub.</span></span>
    
         public static String HubFullAccess = "<Enter Your DefaultFullSharedAccess Connection string>";
-4. <span data-ttu-id="1b61a-205">Nel file `MainActivity.java` aggiungere le istruzioni `import` seguenti sopra la classe `MainActivity`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-205">In your `MainActivity.java` file, add the following `import` statements above the `MainActivity` class.</span></span>
+4. <span data-ttu-id="001ca-205">Nel `MainActivity.java` file, aggiungere il seguente hello `import` istruzioni sopra hello `MainActivity` classe.</span><span class="sxs-lookup"><span data-stu-id="001ca-205">In your `MainActivity.java` file, add hello following `import` statements above hello `MainActivity` class.</span></span>
    
         import java.io.BufferedOutputStream;
         import java.io.BufferedReader;
@@ -443,21 +443,21 @@ ms.lasthandoff: 07/11/2017
         import android.util.Base64;
         import android.view.View;
         import android.widget.EditText;
-5. <span data-ttu-id="1b61a-206">Nel file `MainActivity.java` aggiungere i membri seguenti all'inizio della classe `MainActivity`.</span><span class="sxs-lookup"><span data-stu-id="1b61a-206">In your `MainActivity.java` file, add the following members at the top of the `MainActivity` class.</span></span>    
+5. <span data-ttu-id="001ca-206">Nel `MainActivity.java` file, aggiungere i seguenti membri nella parte superiore di hello di hello hello `MainActivity` classe.</span><span class="sxs-lookup"><span data-stu-id="001ca-206">In your `MainActivity.java` file, add hello following members at hello top of hello `MainActivity` class.</span></span>    
    
         private String HubEndpoint = null;
         private String HubSasKeyName = null;
         private String HubSasKeyValue = null;
-6. <span data-ttu-id="1b61a-207">È necessario creare un token SaS (Software Access Signature) per autenticare una richiesta POST per l'invio di messaggi all'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="1b61a-207">You must create a Software Access Signature (SaS) token to authenticate a POST request to send messages to your notification hub.</span></span> <span data-ttu-id="1b61a-208">Per eseguire questa operazione, analizzare i dati della chiave dalla stringa di connessione e quindi creare il token di firma di accesso condiviso come indicato in [Concetti comuni](http://msdn.microsoft.com/library/azure/dn495627.aspx) nelle informazioni di riferimento sull'API REST.</span><span class="sxs-lookup"><span data-stu-id="1b61a-208">This is done by parsing the key data from the connection string and then creating the SaS token, as mentioned in the [Common Concepts](http://msdn.microsoft.com/library/azure/dn495627.aspx) REST API reference.</span></span> <span data-ttu-id="1b61a-209">Il codice seguente è un esempio di implementazione.</span><span class="sxs-lookup"><span data-stu-id="1b61a-209">The following code is an example implementation.</span></span>
+6. <span data-ttu-id="001ca-207">Creare un hub di notifica POST richiesta toosend messaggi tooyour un tooauthenticate token di firma di accesso di Software (SaS).</span><span class="sxs-lookup"><span data-stu-id="001ca-207">You must create a Software Access Signature (SaS) token tooauthenticate a POST request toosend messages tooyour notification hub.</span></span> <span data-ttu-id="001ca-208">Questa operazione viene eseguita mediante l'analisi di dati della chiave hello dalla stringa di connessione hello e quindi creare hello token SaS, come indicato in hello [concetti comuni](http://msdn.microsoft.com/library/azure/dn495627.aspx) riferimento all'API REST.</span><span class="sxs-lookup"><span data-stu-id="001ca-208">This is done by parsing hello key data from hello connection string and then creating hello SaS token, as mentioned in hello [Common Concepts](http://msdn.microsoft.com/library/azure/dn495627.aspx) REST API reference.</span></span> <span data-ttu-id="001ca-209">Hello seguente di codice è un'implementazione di esempio.</span><span class="sxs-lookup"><span data-stu-id="001ca-209">hello following code is an example implementation.</span></span>
    
-    <span data-ttu-id="1b61a-210">In `MainActivity.java` aggiungere il metodo seguente alla classe `MainActivity` per analizzare la stringa di connessione.</span><span class="sxs-lookup"><span data-stu-id="1b61a-210">In `MainActivity.java`, add the following method to the `MainActivity` class to parse your connection string.</span></span>
+    <span data-ttu-id="001ca-210">In `MainActivity.java`, aggiungere hello seguente metodo toohello `MainActivity` classe tooparse la stringa di connessione.</span><span class="sxs-lookup"><span data-stu-id="001ca-210">In `MainActivity.java`, add hello following method toohello `MainActivity` class tooparse your connection string.</span></span>
    
         /**
          * Example code from http://msdn.microsoft.com/library/azure/dn495627.aspx
-         * to parse the connection string so a SaS authentication token can be
+         * tooparse hello connection string so a SaS authentication token can be
          * constructed.
          *
-         * @param connectionString This must be the DefaultFullSharedAccess connection
+         * @param connectionString This must be hello DefaultFullSharedAccess connection
          *                         string for this example.
          */
         private void ParseConnectionString(String connectionString)
@@ -477,14 +477,14 @@ ms.lasthandoff: 07/11/2017
                 }
             }
         }
-7. <span data-ttu-id="1b61a-211">In `MainActivity.java` aggiungere il metodo seguente alla classe `MainActivity` per creare un token di autenticazione di firma di accesso condiviso.</span><span class="sxs-lookup"><span data-stu-id="1b61a-211">In `MainActivity.java`, add the following method to the `MainActivity` class to create a SaS authentication token.</span></span>
+7. <span data-ttu-id="001ca-211">In `MainActivity.java`, aggiungere hello seguente metodo toohello `MainActivity` toocreate classe un token di autenticazione della firma di accesso condiviso.</span><span class="sxs-lookup"><span data-stu-id="001ca-211">In `MainActivity.java`, add hello following method toohello `MainActivity` class toocreate a SaS authentication token.</span></span>
    
         /**
          * Example code from http://msdn.microsoft.com/library/azure/dn495627.aspx to
-         * construct a SaS token from the access key to authenticate a request.
+         * construct a SaS token from hello access key tooauthenticate a request.
          *
-         * @param uri The unencoded resource URI string for this operation. The resource
-         *            URI is the full URI of the Service Bus resource to which access is
+         * @param uri hello unencoded resource URI string for this operation. hello resource
+         *            URI is hello full URI of hello Service Bus resource toowhich access is
          *            claimed. For example,
          *            "http://<namespace>.servicebus.windows.net/<hubName>"
          */
@@ -503,15 +503,15 @@ ms.lasthandoff: 07/11/2017
                 long expires = expiresOnDate / 1000;
                 String toSign = targetUri + "\n" + expires;
    
-                // Get an hmac_sha1 key from the raw key bytes
+                // Get an hmac_sha1 key from hello raw key bytes
                 byte[] keyBytes = HubSasKeyValue.getBytes("UTF-8");
                 SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA256");
    
-                // Get an hmac_sha1 Mac instance and initialize with the signing key
+                // Get an hmac_sha1 Mac instance and initialize with hello signing key
                 Mac mac = Mac.getInstance("HmacSHA256");
                 mac.init(signingKey);
    
-                // Compute the hmac on input data bytes
+                // Compute hello hmac on input data bytes
                 byte[] rawHmac = mac.doFinal(toSign.getBytes("UTF-8"));
    
                 // Using android.util.Base64 for Android Studio instead of
@@ -530,14 +530,14 @@ ms.lasthandoff: 07/11/2017
    
             return token;
         }
-8. <span data-ttu-id="1b61a-212">In `MainActivity.java` aggiungere il metodo seguente alla classe `MainActivity` per gestire il clic del pulsante **Invia notifica** e inviare il messaggio di notifica push all'hub usando l'API REST predefinita.</span><span class="sxs-lookup"><span data-stu-id="1b61a-212">In `MainActivity.java`, add the following method to the `MainActivity` class to handle the **Send Notification** button click and send the push notification message to the hub by using the built-in REST API.</span></span>
+8. <span data-ttu-id="001ca-212">In `MainActivity.java`, aggiungere hello seguente metodo toohello `MainActivity` hello toohandle classe **invia una notifica** fare clic su pulsante e inviare la notifica push hello hub toohello messaggio utilizzando hello incorporato API REST.</span><span class="sxs-lookup"><span data-stu-id="001ca-212">In `MainActivity.java`, add hello following method toohello `MainActivity` class toohandle hello **Send Notification** button click and send hello push notification message toohello hub by using hello built-in REST API.</span></span>
    
         /**
          * Send Notification button click handler. This method parses the
          * DefaultFullSharedAccess connection string and generates a SaS token. The
-         * token is added to the Authorization header on the POST request to the
-         * notification hub. The text in the editTextNotificationMessage control
-         * is added as the JSON body for the request to add a GCM message to the hub.
+         * token is added toohello Authorization header on hello POST request toothe
+         * notification hub. hello text in hello editTextNotificationMessage control
+         * is added as hello JSON body for hello request tooadd a GCM message toohello hub.
          *
          * @param v
          */
@@ -563,7 +563,7 @@ ms.lasthandoff: 07/11/2017
                             // POST request
                             urlConnection.setDoOutput(true);
    
-                            // Authenticate the POST request with the SaS token
+                            // Authenticate hello POST request with hello SaS token
                             urlConnection.setRequestProperty("Authorization", 
                                 generateSasToken(url.toString()));
    
@@ -572,7 +572,7 @@ ms.lasthandoff: 07/11/2017
    
                             // Include any tags
                             // Example below targets 3 specific tags
-                            // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                            // Refer too: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
                             // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
                             //        "tag1 || tag2 || tag3");
    
@@ -610,30 +610,30 @@ ms.lasthandoff: 07/11/2017
             }.start();
         }
 
-## <a name="testing-your-app"></a><span data-ttu-id="1b61a-213">Testare l'app</span><span class="sxs-lookup"><span data-stu-id="1b61a-213">Testing your app</span></span>
-#### <a name="push-notifications-in-the-emulator"></a><span data-ttu-id="1b61a-214">Notifiche push nell'emulatore</span><span class="sxs-lookup"><span data-stu-id="1b61a-214">Push notifications in the emulator</span></span>
-<span data-ttu-id="1b61a-215">Per testare le notifiche push all'interno dell'emulatore, assicurarsi che l'immagine dell'emulatore supporti il livello Google API scelto per l'app.</span><span class="sxs-lookup"><span data-stu-id="1b61a-215">If you want to test push notifications inside an emulator, make sure that your emulator image supports the Google API level that you chose for your app.</span></span> <span data-ttu-id="1b61a-216">Se l'immagine non supporta le API di Google in modalità nativa verrà generata l'eccezione **SERVICE\_NOT\_AVAILABLE**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-216">If your image doesn't support native Google APIs, you will end up with the **SERVICE\_NOT\_AVAILABLE** exception.</span></span>
+## <a name="testing-your-app"></a><span data-ttu-id="001ca-213">Testare l'app</span><span class="sxs-lookup"><span data-stu-id="001ca-213">Testing your app</span></span>
+#### <a name="push-notifications-in-hello-emulator"></a><span data-ttu-id="001ca-214">Le notifiche push nell'emulatore hello</span><span class="sxs-lookup"><span data-stu-id="001ca-214">Push notifications in hello emulator</span></span>
+<span data-ttu-id="001ca-215">Se si desidera tootest le notifiche push all'interno di un emulatore, assicurarsi che l'immagine dell'emulatore supporta livello API Google hello scelto per l'app.</span><span class="sxs-lookup"><span data-stu-id="001ca-215">If you want tootest push notifications inside an emulator, make sure that your emulator image supports hello Google API level that you chose for your app.</span></span> <span data-ttu-id="001ca-216">Se l'immagine non supporta native Google APIs, si finirà con hello **servizio\_non\_disponibile** eccezione.</span><span class="sxs-lookup"><span data-stu-id="001ca-216">If your image doesn't support native Google APIs, you will end up with hello **SERVICE\_NOT\_AVAILABLE** exception.</span></span>
 
-<span data-ttu-id="1b61a-217">Verificare anche di avere aggiunto l'account Google all'emulatore in esecuzione in **Impostazioni** > **Account**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-217">In addition to the above, ensure that you have added your Google account to your running emulator under **Settings** > **Accounts**.</span></span> <span data-ttu-id="1b61a-218">In caso contrario, i tentativi di registrazione con GCM potrebbero generare l'eccezione **AUTHENTICATION\_FAILED**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-218">Otherwise, your attempts to register with GCM may result in the **AUTHENTICATION\_FAILED** exception.</span></span>
+<span data-ttu-id="001ca-217">Inoltre toohello precedente, assicurarsi di aver aggiunto il tooyour account Google emulatore in esecuzione **impostazioni** > **account**.</span><span class="sxs-lookup"><span data-stu-id="001ca-217">In addition toohello above, ensure that you have added your Google account tooyour running emulator under **Settings** > **Accounts**.</span></span> <span data-ttu-id="001ca-218">In caso contrario, i tentativi tooregister con GCM può comportare hello **autenticazione\_FAILED** eccezione.</span><span class="sxs-lookup"><span data-stu-id="001ca-218">Otherwise, your attempts tooregister with GCM may result in hello **AUTHENTICATION\_FAILED** exception.</span></span>
 
-#### <a name="running-the-application"></a><span data-ttu-id="1b61a-219">Esecuzione dell'applicazione</span><span class="sxs-lookup"><span data-stu-id="1b61a-219">Running the application</span></span>
-1. <span data-ttu-id="1b61a-220">Eseguire l'app e notare l'ID registrazione segnalato per una registrazione riuscita.</span><span class="sxs-lookup"><span data-stu-id="1b61a-220">Run the app and notice that the registration ID is reported for a successful registration.</span></span>
+#### <a name="running-hello-application"></a><span data-ttu-id="001ca-219">Esecuzione di un'applicazione hello</span><span class="sxs-lookup"><span data-stu-id="001ca-219">Running hello application</span></span>
+1. <span data-ttu-id="001ca-220">Eseguire app hello e notare che l'ID registrazione hello viene segnalato per la registrazione ha esito positivo.</span><span class="sxs-lookup"><span data-stu-id="001ca-220">Run hello app and notice that hello registration ID is reported for a successful registration.</span></span>
    
       ![Test in Android: registrazione di canali][18]
-2. <span data-ttu-id="1b61a-222">Immettere un messaggio di notifica da inviare a tutti i dispositivi Android registrati con l'hub.</span><span class="sxs-lookup"><span data-stu-id="1b61a-222">Enter a notification message to be sent to all Android devices that have registered with the hub.</span></span>
+2. <span data-ttu-id="001ca-222">Immettere un toobe messaggio di notifica inviati tooall i dispositivi Android registrati con hub hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-222">Enter a notification message toobe sent tooall Android devices that have registered with hello hub.</span></span>
    
       ![Test in Android: invio di un messaggio][19]
 
-3. <span data-ttu-id="1b61a-224">Premere **Send Notification**.</span><span class="sxs-lookup"><span data-stu-id="1b61a-224">Press **Send Notification**.</span></span> <span data-ttu-id="1b61a-225">Su tutti i dispositivi che eseguono l'app verrà visualizzata un'istanza di `AlertDialog` con il messaggio di notifica push.</span><span class="sxs-lookup"><span data-stu-id="1b61a-225">Any devices that have the app running will show an `AlertDialog` instance with the push notification message.</span></span> <span data-ttu-id="1b61a-226">I dispositivi che non eseguono l'app, ma che sono stati registrati in precedenza per le notifiche push, riceveranno una notifica in Android Notification Manager.</span><span class="sxs-lookup"><span data-stu-id="1b61a-226">Devices that don't have the app running but were previously registered for push notifications will receive a notification in the Android Notification Manager.</span></span> <span data-ttu-id="1b61a-227">Per visualizzarle, scorrere verso il basso dall'angolo superiore sinistro.</span><span class="sxs-lookup"><span data-stu-id="1b61a-227">Those can be viewed by swiping down from the upper-left corner.</span></span>
+3. <span data-ttu-id="001ca-224">Premere **Send Notification**.</span><span class="sxs-lookup"><span data-stu-id="001ca-224">Press **Send Notification**.</span></span> <span data-ttu-id="001ca-225">Verranno visualizzati tutti i dispositivi che sono in esecuzione app hello un `AlertDialog` istanza con un messaggio di notifica push di hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-225">Any devices that have hello app running will show an `AlertDialog` instance with hello push notification message.</span></span> <span data-ttu-id="001ca-226">I dispositivi che non sono in esecuzione app hello ma sono stati registrati in precedenza per le notifiche push riceverà una notifica in hello Android Notification Manager.</span><span class="sxs-lookup"><span data-stu-id="001ca-226">Devices that don't have hello app running but were previously registered for push notifications will receive a notification in hello Android Notification Manager.</span></span> <span data-ttu-id="001ca-227">Quelli visualizzabili scorrendo verso il basso nell'angolo superiore sinistro hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-227">Those can be viewed by swiping down from hello upper-left corner.</span></span>
    
       ![Test in Android: notifiche][21]
 
-## <a name="next-steps"></a><span data-ttu-id="1b61a-229">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="1b61a-229">Next steps</span></span>
-<span data-ttu-id="1b61a-230">Come passaggio successivo, è consigliabile vedere l'esercitazione [Uso di Hub di notifica di Azure per inviare notifiche agli utenti] .</span><span class="sxs-lookup"><span data-stu-id="1b61a-230">We recommend the [Use Notification Hubs to push notifications to users] tutorial as the next step.</span></span> <span data-ttu-id="1b61a-231">Verrà illustrato come inviare notifiche da un back-end ASP.NET destinate a utenti specifici.</span><span class="sxs-lookup"><span data-stu-id="1b61a-231">It will show you how to send notifications from an ASP.NET backend using tags to target specific users.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="001ca-229">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="001ca-229">Next steps</span></span>
+<span data-ttu-id="001ca-230">Si consiglia di hello [toousers le notifiche di utilizzare gli hub di notifica toopush] esercitazione come passaggio successivo hello.</span><span class="sxs-lookup"><span data-stu-id="001ca-230">We recommend hello [Use Notification Hubs toopush notifications toousers] tutorial as hello next step.</span></span> <span data-ttu-id="001ca-231">Verrà descritto come toosend notifiche da un back-end ASP.NET usando tag tootarget specifici utenti.</span><span class="sxs-lookup"><span data-stu-id="001ca-231">It will show you how toosend notifications from an ASP.NET backend using tags tootarget specific users.</span></span>
 
-<span data-ttu-id="1b61a-232">Per segmentare gli utenti in base ai gruppi di interesse, vedere l'esercitazione [Usare Hub di notifica per inviare le ultime notizie] .</span><span class="sxs-lookup"><span data-stu-id="1b61a-232">If you want to segment your users by interest groups, check out the [Use Notification Hubs to send breaking news] tutorial.</span></span>
+<span data-ttu-id="001ca-232">Se si desidera che gli utenti dai gruppi di interesse toosegment, estrarre hello [toosend gli hub di notifica di utilizzare le ultime notizie] esercitazione.</span><span class="sxs-lookup"><span data-stu-id="001ca-232">If you want toosegment your users by interest groups, check out hello [Use Notification Hubs toosend breaking news] tutorial.</span></span>
 
-<span data-ttu-id="1b61a-233">Per altre informazioni generali sull'uso di Hub di notifica, vedere [Hub di notifica di Azure].</span><span class="sxs-lookup"><span data-stu-id="1b61a-233">To learn more general information about Notification Hubs, see our [Notification Hubs Guidance].</span></span>
+<span data-ttu-id="001ca-233">toolearn informazioni generali sull'hub di notifica, vedere il nostro [materiale sussidiario per gli hub di notifica].</span><span class="sxs-lookup"><span data-stu-id="001ca-233">toolearn more general information about Notification Hubs, see our [Notification Hubs Guidance].</span></span>
 
 <!-- Images. -->
 [6]: ./media/notification-hubs-android-get-started/notification-hub-android-new-class.png
@@ -665,7 +665,7 @@ ms.lasthandoff: 07/11/2017
 [Mobile Services Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
 [Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
 [Azure Classic Portal]: https://manage.windowsazure.com/
-<span data-ttu-id="1b61a-234">[Hub di notifica di Azure]: http://msdn.microsoft.com/library/jj927170.aspx</span><span class="sxs-lookup"><span data-stu-id="1b61a-234">[Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx</span></span>
-<span data-ttu-id="1b61a-235">[Uso di Hub di notifica di Azure per inviare notifiche agli utenti]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md</span><span class="sxs-lookup"><span data-stu-id="1b61a-235">[Use Notification Hubs to push notifications to users]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md</span></span>
-<span data-ttu-id="1b61a-236">[Usare Hub di notifica per inviare le ultime notizie]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md</span><span class="sxs-lookup"><span data-stu-id="1b61a-236">[Use Notification Hubs to send breaking news]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md</span></span>
-<span data-ttu-id="1b61a-237">[portale di Azure]: https://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="1b61a-237">[Azure Portal]: https://portal.azure.com</span></span>
+[materiale sussidiario per gli hub di notifica]: http://msdn.microsoft.com/library/jj927170.aspx
+[toousers le notifiche di utilizzare gli hub di notifica toopush]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
+[toosend gli hub di notifica di utilizzare le ultime notizie]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
+[portale Azure]: https://portal.azure.com

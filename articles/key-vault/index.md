@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure Key Vault - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare l'insieme di credenziali delle chiavi per creare e gestire chiavi in grado di accedere e crittografare le risorse, le app e le soluzioni cloud. Esercitazioni, informazioni di riferimento sulle API e altro ancora.
+title: aaaAzure chiave dell'insieme di credenziali documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse insieme di credenziali chiave toocreate e gestire chiavi di accesso e di crittografare le risorse cloud, applicazioni e soluzioni. Esercitazioni, informazioni di riferimento sulle API e altro ancora.
 services: key-vault
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 41db3ea23bc1e9895893201078b1ada3297418cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a7fbebf94b3f345731ccba0ab788c83efa4c021e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="key-vault-documentation"></a>Documentazione sull'insieme di credenziali delle chiavi
 
-Informazioni su come usare l'insieme di credenziali delle chiavi per proteggere e gestire le chiavi e i segreti di crittografia usati da servizi e applicazioni cloud. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come creare e gestire chiavi in grado di accedere e crittografare risorse e soluzioni.
+Informazioni su come toouse insieme di credenziali chiave toosafeguard e gestire chiavi di crittografia e i segreti utilizzati da applicazioni cloud e servizi. Esercitazioni, riferimenti ad API e altra documentazione illustrano come toocreate e gestire chiavi di accesso e di crittografare le risorse e soluzioni.
 
 <ul class="panelContent cardsFTitle">
     <li>

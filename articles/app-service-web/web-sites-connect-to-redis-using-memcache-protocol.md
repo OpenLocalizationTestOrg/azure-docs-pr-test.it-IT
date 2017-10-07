@@ -1,6 +1,6 @@
 ---
-title: 'Connettere un''app Web del servizio app a Redis mediante il protocollo Memcache: Azure | Documentazione Microsoft'
-description: Connettere un'app Web nel servizio app di Azure a Cache Redis mediante il protocollo Memcache
+title: aaaConnect tooRedis di app web un servizio App tramite hello protocollo Memcache - Azure | Documenti Microsoft
+description: Connettersi a un'app web in Azure App service tooRedis Cache mediante protocollo Memcache hello
 services: app-service\web
 documentationcenter: php
 author: SyntaxC4
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: windows
 ms.workload: na
 ms.date: 02/29/2016
 ms.author: cfowler
-ms.openlocfilehash: 0eea1d64a50bec8fb7da155e2088ddfc36b377f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48036d60fbbced59eb1e37584f507fffffff753d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Connettere un'app Web nel servizio app di Azure a Cache Redis mediante il protocollo Memcache
-Questo articolo illustrerà come connettere un'app Web di WordPress in [Servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) a [Cache Redis di Azure][12] mediante il protocollo [Memcache][13]. Se si dispone di un'app Web esistente che usa un server Memcached per l'inserimento nella cache in memoria, è possibile sottoporla a migrazione in Servizio app di Azure e usare la soluzione di memorizzazione nella cache del produttore in Microsoft Azure apportando modifiche minime o addirittura nessuna modifica al codice dell'applicazione. È anche possibile usare la familiarità già acquisita con Memcache per creare app distribuite e con scalabilità elevata in Azure App Service con Cache Redis di Azure per l'inserimento nella cache in memoria, usando framework di applicazioni comuni, ad esempio .NET, PHP, Node.js, Java e Python.  
+# Connettersi a un'app web nel servizio App di Azure tooRedis Cache tramite hello protocollo Memcache
+In questo articolo si apprenderà come tooconnect un WordPress web app in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) troppo[Cache Redis di Azure] [ 12] utilizzando hello [Memcache] [ 13] protocollo. Se si dispone di un'app web esistente che utilizza un server Memcache per memorizzare nella cache in memoria, è possibile migrare tooAzure servizio App e usare hello prima parte memorizzazione nella cache soluzione in Microsoft Azure con codice dell'applicazione tooyour modifiche minime o nessuna. Inoltre, è possibile utilizzare le app esistenti di Memcache esperienza toocreate altamente scalabili e distribuite in Azure App Service con Cache Redis di Azure per la memorizzazione nella cache in memoria, quando si utilizza il framework di applicazioni più diffusi, ad esempio .NET, PHP, Node.js, Java e Python.  
 
-App Web del servizio app di Azure rende possibile questo scenario di applicazione con lo shim Memcache per app Web, ovvero un server locale Memcached che funziona come proxy Memcache per memorizzare nella cache le chiamate a Cache Redis di Azure. In questo modo qualsiasi app può comunicare usando il protocollo Memcache per memorizzare i dati nella cache con Cache Redis. Questo shim Memcache funziona a livello di protocollo, in modo da poter essere usato da qualsiasi applicazione o framework di applicazioni, purché comunichi usando il protocollo Memcache.
+Servizio App Web App consente questo scenario di applicazione con shim Memcache di App Web di hello, che è un server Memcache locale che funge da proxy Memcache per la memorizzazione nella cache le chiamate tooAzure Cache Redis. In questo modo tutte le app che comunica con dati di toocache protocollo Memcache hello Cache Redis. Questo shim Memcache opera a livello di protocollo hello, pertanto può essere utilizzato da qualsiasi applicazione o di framework applicazione, purché comunica mediante protocollo Memcache hello.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## Prerequisiti
-Lo shim Memcache per app Web può essere usato con qualsiasi applicazione, purché comunichi tramite il protocollo Memcache. Per questo particolare esempio, l'applicazione di riferimento è un sito WordPress scalabile di cui è possibile eseguire il provisioning da Azure Marketplace.
+shim Memcache di App Web Hello è utilizzabile con qualsiasi applicazione fornito comunica mediante protocollo Memcache hello. Per questo particolare esempio, un'applicazione hello riferimento è un sito WordPress scalabile che può essere eseguito il provisioning da hello Azure Marketplace.
 
-Seguire la procedura descritta in questi articoli:
+Seguire i passaggi di hello descritti negli articoli seguenti:
 
-* [Provisioning di un'istanza del servizio Cache Redis di Azure][0]
+* [Eseguire il provisioning di un'istanza di hello servizio Cache Redis di Azure][0]
 * [Distribuzione di un sito WordPress scalabile in Azure][1]
 
-Dopo aver distribuito il sito WordPress scalabile e aver eseguito il provisioning di un'istanza di Cache Redis, si è pronti per abilitare lo shim Memcache nelle app Web di Servizio app di Azure.
+Dopo aver distribuito del sito WordPress scalabile di hello e un'istanza di Cache Redis provisioning sarà pronto tooproceed con abilitazione shim Memcache hello in App Web di servizio App di Azure.
 
-## Abilitare lo shim Memcache per app Web
-Per configurare lo shim Memcache, è necessario creare tre impostazioni di app. Questa operazione può essere eseguita usando un'ampia gamma di metodi, tra cui il [portale di Azure](http://go.microsoft.com/fwlink/?LinkId=529715), il [portale classico][3], i [cmdlet di Azure PowerShell][5] o l'[interfaccia della riga di comando di Azure][5]. Ai fini di questo post, per configurare le impostazioni dell'app verrà usato il [portale di Azure][4]. I seguenti valori possono essere recuperati dal pannello **Impostazioni** dell'istanza di Cache Redis.
+## Abilitare shim Memcache di App Web hello
+In shim Memcache tooconfigure di ordine, è necessario creare tre impostazioni di app. Questa operazione può essere eseguita tramite una vasta gamma di metodi inclusi hello [portale Azure](http://go.microsoft.com/fwlink/?LinkId=529715), hello [portale classico][3], hello [cmdlet di Azure PowerShell] [ 5] o hello [interfaccia della riga di comando di Azure][5]. Per motivi di hello del post, eseguo hello toouse [portale Azure] [ 4] tooset le impostazioni dell'app hello. Hello seguenti possono essere recuperati da **impostazioni** pannello dell'istanza della Cache Redis.
 
 ![Pannello Impostazioni di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/1-azure-redis-cache-settings.png)
 
 ### Aggiungere l'impostazione di app REDIS_HOST
-La prima impostazione di app che è necessario creare è **REDIS\_HOST**. Questa impostazione definisce la destinazione a cui lo shim inoltra le informazioni della cache. Il valore richiesto per l'impostazione di app REDIS_HOST può essere recuperato dal pannello **Proprietà** dell'istanza di Cache Redis.
+Hello prima impostazione dell'app è necessario toocreate è hello **REDIS\_HOST** impostazione dell'app. Questa impostazione consente di hello toowhich hello shim inoltra hello cache informazioni sulla destinazione. valore richiesto per l'impostazione dell'app REDIS_HOST hello può essere recuperati da hello Hello **proprietà** pannello dell'istanza della Cache Redis.
 
 ![Nome host di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/2-azure-redis-cache-hostname.png)
 
-Impostare la chiave dell'impostazione di app su **REDIS\_HOST** e il valore dell'impostazione di app sul **nome host** dell'istanza di Cache Redis.
+Chiave di hello set di hello app impostazione troppo**REDIS\_HOST** e il valore di hello di hello app impostazione toohello **hostname** dell'istanza di Cache Redis hello.
 
 ![Impostazione REDIS_HOST per app Web](./media/web-sites-connect-to-redis-using-memcache-protocol/3-azure-website-appsettings-redis-host.png)
 
 ### Aggiungere l'impostazione di app REDIS_KEY
-La seconda impostazione di app che è necessario creare è **REDIS\_KEY**. Questa impostazione fornisce il token di autenticazione necessario per accedere in modo sicuro all'istanza di Cache Redis. È possibile recuperare il valore richiesto per l'impostazione di app REDIS_KEY dal pannello **Chiavi di accesso** dell'istanza di Cache Redis.
+Hello secondo impostazione app necessaria toocreate è hello **REDIS\_chiave** impostazione dell'app. Questa impostazione offre una istanza di hello authentication token toosecurely richiesto accesso hello Cache Redis. È possibile recuperare il valore di hello necessari per l'impostazione dell'app da hello hello REDIS_KEY **le chiavi di accesso** pannello dell'istanza di Cache Redis hello.
 
 ![Chiave primaria di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/4-azure-redis-cache-primarykey.png)
 
-Impostare la chiave dell'impostazione di app su **REDIS\_KEY** e il valore dell'impostazione di app sulla **chiave primaria** dell'istanza di Cache Redis.
+Chiave di hello set di hello app impostazione troppo**REDIS\_chiave** e il valore di hello di hello app impostazione toohello **chiave primaria** dell'istanza di Cache Redis hello.
 
 ![Impostazione REDIS_KEY per siti Web di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/5-azure-website-appsettings-redis-primarykey.png)
 
 ### Aggiungere l'impostazione di app MEMCACHESHIM_REDIS_ENABLE
-L'ultima impostazione di app viene usata per abilitare lo shim Memcache in app Web che usano REDIS_HOST e REDIS_KEY per la connessione a Cache Redis di Azure e per l'inoltro delle chiamate alla cache. Impostare la chiave dell'impostazione di app su **MEMCACHESHIM\_REDIS\_ENABLE** e il valore su **true**.
+impostazione dell'app ultimo Hello è hello tooenable usati Memcache Shim in applicazioni Web, che usa hello REDIS_HOST e REDIS_KEY toohello tooconnect Cache Redis di Azure e chiamate di cache di hello in avanti. Chiave di hello set di hello app impostazione troppo**MEMCACHESHIM\_REDIS\_abilitare** e hello troppo valore**true**.
 
 ![Impostazione MEMCACHESHIM_REDIS_ENABLE per app Web](./media/web-sites-connect-to-redis-using-memcache-protocol/6-azure-website-appsettings-enable-shim.png)
 
-Dopo aver aggiunto le tre (3) impostazioni di app, fare clic su **Salva**.
+Dopo aver eseguito le impostazioni dell'app aggiungendo hello tre (3), fare clic su **salvare**.
 
 ## Abilitare l'estensione Memcache per PHP
-Affinché l'applicazione supporti il protocollo Memcache, è necessario installare l'estensione Memcache per PHP, il framework del linguaggio per il sito WordPress.
+Affinché hello toospeak di applicazione hello protocollo Memcache, è necessario tooinstall hello Memcache estensione tooPHP - framework di hello del linguaggio per il sito WordPress.
 
-### Scaricare l'estensione php_memcache
-Passare a [PECL][6]. Nella categoria di memorizzazione nella cache fare clic su [memcache][7]. Nella colonna dei download fare clic sul collegamento relativo alle DLL.
+### Scaricare hello php_memcache estensione
+Sfoglia troppo[PECL][6]. In hello la memorizzazione nella cache di categoria, fare clic su [memcache][7]. Nella colonna download hello fare clic sul collegamento DLL hello.
 
 ![Sito Web di PHP PECL](./media/web-sites-connect-to-redis-using-memcache-protocol/7-php-pecl-website.png)
 
-Scaricare il link Non-Thread Safe (NTS) x86 per la versione di PHP abilitata nelle app Web (il valore predefinito è PHP 5.4).
+Collegamento di hello Non Thread-Safe (punta) x86 per la versione di hello di PHP nelle App Web abilitato per il download. (il valore predefinito è PHP 5.4).
 
 ![Pacchetto Memcache sul sito Web di PHP PECL](./media/web-sites-connect-to-redis-using-memcache-protocol/8-php-pecl-memcache-package.png)
 
-### Abilitare l'estensione php_memcache
-Dopo il download del file, decomprimerlo e caricare il file **php\_memcache.dll** nella directory **d:\\home\\site\\wwwroot\\bin\\ext\\**. Dopo il caricamento del file php_memcache.dll nell'app Web, è necessario abilitare l'estensione nel runtime PHP. Per abilitare l'estensione Memcache nel portale di Azure, aprire il pannello **Impostazioni applicazione** per l'App Web e quindi aggiungere una nuova impostazione di app con chiave **PHP\_EXTENSIONS** e valore **bin\\ext\\php_memcache.dll**.
+### Abilitare l'estensione php_memcache hello
+Dopo aver scaricato il file hello, decomprimere e caricare hello **php\_memcache.dll** in hello **unità d:\\home\\sito\\wwwroot\\bin\\ext\\**  directory. Dopo aver caricato php_memcache.dll hello in hello web app, è necessario tooenable hello estensione toohello Runtime PHP. hello tooenable estensione Memcache nel portale di Azure, aprire hello hello **le impostazioni dell'applicazione** pannello per l'app web hello, quindi aggiungere una nuova impostazione di app con la chiave di hello di **PHP\_estensioni** hello e valore **bin\\ext\\php_memcache.dll**.
 
 > [!NOTE]
-> Se l'app Web deve caricare più estensioni PHP, il valore di PHP_EXTENSIONS deve essere un elenco di percorsi relativi di file DLL delimitati da virgole.
+> Se l'app web hello deve tooload più estensioni PHP, il valore di hello di PHP_EXTENSIONS deve essere un elenco delimitato da virgole dei file tooDLL i percorsi relativi.
 > 
 > 
 
@@ -93,29 +93,29 @@ Al termine, fare clic su **Salva**.
 
 ## Installare il plug-in Memcache WordPress
 > [!NOTE]
-> È anche possibile scaricare il [plug-in Memcached Object Cache](https://wordpress.org/plugins/memcached/) da WordPress.org.
+> È inoltre possibile scaricare hello [plug-in Cache di Memcache oggetto](https://wordpress.org/plugins/memcached/) da WordPress.org.
 > 
 > 
 
-Nella pagina dei plug-in di WordPress fare clic su **Aggiungi nuovo**.
+Nella pagina di plug-in WordPress di hello, fare clic su **Aggiungi nuovo**.
 
 ![Pagina del plug-in WordPress](./media/web-sites-connect-to-redis-using-memcache-protocol/10-wordpress-plugin.png)
 
-Nella casella di ricerca digitare **memcached** e premere **Invio**.
+Nella casella di ricerca hello, digitare **memcache** e premere **invio**.
 
 ![Aggiungere il nuovo plug-in WordPress](./media/web-sites-connect-to-redis-using-memcache-protocol/11-wordpress-add-new-plugin.png)
 
-Trovare **Memcached Object Cache** nell'elenco e quindi fare clic su **Install Now** (Installa ora).
+Trovare **Cache oggetti Memcache** nell'elenco di hello, quindi fare clic su **installa**.
 
 ![Installare il plug-in Memcache WordPress](./media/web-sites-connect-to-redis-using-memcache-protocol/12-wordpress-install-memcache-plugin.png)
 
-### Abilitare il plug-in Memcache WordPress
+### Abilitare hello plug-in WordPress di Memcache
 > [!NOTE]
-> Seguire le istruzioni in questo blog su come [abilitare un'estensione del sito nelle app Web][8] per installare Visual Studio Team Services.
+> Seguire le istruzioni di hello in questo blog [come un'estensione del sito nelle App Web tooenable] [ 8] tooinstall Visual Studio Team Services.
 > 
 > 
 
-Nel file `wp-config.php` aggiungere il seguente frammento di codice al di sopra del commento di arresto della modifica verso la fine del file.
+In hello `wp-config.php` file, aggiungere hello seguente codice di sopra di commento di modifica stop hello verso la fine hello del file hello.
 
 ```php
 $memcached_servers = array(
@@ -123,30 +123,30 @@ $memcached_servers = array(
 );
 ```
 
-Dopo che il frammento di codice è stato incollato, il documento verrà salvato automaticamente.
+Una volta che questo codice è stato incollato, monaco salvano automaticamente documento hello.
 
-Il passaggio successivo consiste nell'abilitare il plug-in della cache di oggetti. Questa operazione viene eseguita trascinando **object-cache.php** dalla cartella **wp-content/plugins/memcached** alla cartella **wp-content** per abilitare la funzionalità Memcached Object Cache.
+passaggio successivo Hello è tooenable plug-in della cache di hello. Questa operazione viene eseguita mediante trascinamento della selezione **oggetto cache.php** da **wp-contenuto, i plug-in/memcache** cartella toohello **wp contenuto** tooenable cartella hello oggetto Memcache Funzionalità di cache.
 
-![Individuare il plug-in object-cache.php di memcache](./media/web-sites-connect-to-redis-using-memcache-protocol/13-locate-memcache-object-cache-plugin.png)
+![Individuare i plug-in di hello memcache cache.php-oggetto](./media/web-sites-connect-to-redis-using-memcache-protocol/13-locate-memcache-object-cache-plugin.png)
 
-Ora che il file **object-cache.php** si trova nella cartella **wp-content**, la funzionalità Memcached Object Cache è abilitata.
+Ora che hello **oggetto cache.php** file si trova in hello **wp contenuto** cartella hello Cache oggetti Memcache è ora abilitata.
 
-![Abilitare il plug-in object-cache.php di memcache](./media/web-sites-connect-to-redis-using-memcache-protocol/14-enable-memcache-object-cache-plugin.png)
+![Abilitare i plug-in di hello memcache cache.php-oggetto](./media/web-sites-connect-to-redis-using-memcache-protocol/14-enable-memcache-object-cache-plugin.png)
 
-## Verificare il corretto funzionamento del plug-in della cache di oggetti Memcached
-Tutti i passaggi per abilitare lo shim Memcache per app Web sono stati completati. Resta solo da verificare che i dati popolino l'istanza di Cache Redis.
+## Verificare hello Cache oggetti Memcache funzioni plug-in
+Hello passaggi tooenable hello Web App Memcache shim sono ora complete. resta Hello è tooverify che l'istanza di Cache Redis sono popolamento di dati hello.
 
-### Abilitare il supporto della porta non SSL in Cache Redis di Azure
+### Abilitare il supporto di porta non SSL hello in Cache Redis di Azure
 > [!NOTE]
-> Alla data in cui viene scritto questo articolo, l'interfaccia della riga di comando Redis non supporta la connettività SSL e pertanto sono necessarie le operazioni seguenti.
+> In fase di hello stesura di questo articolo, hello Redis CLI non supporta la connettività SSL, pertanto hello passaggi seguenti sono necessari.
 > 
 > 
 
-Nel portale di Azure passare all'istanza di Cache Redis creata per questa app Web. Dopo aver aperto il pannello della cache, fare clic sull'icona **Impostazioni** .
+In hello portale di Azure, passare l'istanza di Cache Redis toohello creata per questa app web. Una volta aperto il pannello della cache di hello, fare clic su hello **impostazioni** icona.
 
 ![Pulsante Impostazioni di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/15-azure-redis-cache-settings-button.png)
 
-Selezionare **Porte di accesso** dall'elenco.
+Selezionare **porte di accesso** dall'elenco di hello.
 
 ![Porta di accesso di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/16-azure-redis-cache-access-port.png)
 
@@ -154,38 +154,38 @@ Fare clic su **No** per **Consenti l'accesso solo tramite SSL**.
 
 ![Porta di accesso solo SSL di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/17-azure-redis-cache-access-port-ssl-only.png)
 
-La porta non SSL ora risulta impostata. Fare clic su **Salva**.
+Si noterà che la porta NON SSL hello è ora impostata. Fare clic su **Salva**.
 
 ![Portale di accesso non SSL di Cache Redis di Azure](./media/web-sites-connect-to-redis-using-memcache-protocol/18-azure-redis-cache-access-port-non-ssl.png)
 
-### Connettersi a Cache Redis di Azure da redis-cli
+### Connettersi tooAzure Cache Redis da redis-cli
 > [!NOTE]
 > In questo passaggio si presuppone che Redis sia installato in locale nel computer di sviluppo. [Installare Redis in locale seguendo queste istruzioni][9].
 > 
 > 
 
-Aprire la console della riga di comando desiderata e digitare il seguente comando:
+Aprire la console della riga di comando di hello scelta e tipo di comando seguente:
 
 ```shell
 redis-cli –h <hostname-for-redis-cache> –a <primary-key-for-redis-cache> –p 6379
 ```
 
-Sostituire **&lt;hostname-for-redis-cache&gt;** con il nome host effettivo xxxxx.redis.cache.windows.net e **&lt;primary-key-for-redis-cache&gt;** con la chiave di accesso della cache, quindi premere **INVIO**. Dopo che l'interfaccia della riga di comando si è connessa all'istanza di Cache Redis, inviare un comando Redis. Nella seguente schermata si è scelto di elencare le chiavi.
+Sostituire hello  **&lt;nome host per redis cache&gt;**  con nome host effettivo xxxxx.redis.cache.windows.net hello e hello  **&lt;primaria-chiave-per--cache redis&gt;**  con chiave di accesso hello per cache di hello, quindi premere **invio**. Una volta hello CLI è connesso toohello istanza di Cache Redis, eseguire qualsiasi comando redis. Nella schermata di hello riportata di seguito, ho scelto toolist chiavi hello.
 
-![Connettersi a Cache Redis di Azure dall'interfaccia della riga di comando di Redis in Terminal](./media/web-sites-connect-to-redis-using-memcache-protocol/19-redis-cli-terminal.png)
+![Connettersi tooAzure Cache Redis da Redis CLI terminal](./media/web-sites-connect-to-redis-using-memcache-protocol/19-redis-cli-terminal.png)
 
-La chiamata per elencare le chiavi deve restituire un valore. In caso contrario, provare a passare all'app web e ripetere l'operazione.
+le chiavi di hello Hello chiamata toolist devono restituire un valore. In caso contrario, provare a passare toohello web app e riprovare.
 
 ## Conclusioni
-Congratulazioni. L'app di WordPress dispone ora di una cache in memoria centralizzata per garantire una velocità effettiva maggiore. Tenere presente che lo shim Memcache per app Web può essere usato con qualsiasi client Memcache, indipendentemente dal linguaggio di programmazione o dal framework di applicazioni. Pubblicare eventuali commenti o domande sullo shim Memcache per app Web sui [forum MSDN][10] o su [Stackoverflow][11].
+Congratulazioni. app WordPress Hello ha ora un tooaid centralizzata della cache in memoria in aumentando la velocità effettiva. Tenere presente che hello Memcache Shim di App Web può essere utilizzato con qualsiasi client Memcache indipendentemente dal linguaggio o applicazione framework di programmazione. domande di commenti e suggerimenti o tooask tooprovide su shim Memcache di App Web hello, registrare troppo[forum MSDN] [ 10] o [Stackoverflow][11].
 
 > [!NOTE]
-> Per iniziare a usare Servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
 ## Modifiche apportate
-* Per una guida relativa al passaggio da Siti Web ad App Service, vedere [Servizio app di Azure e impatto sui servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [servizio App di Azure e il relativo impatto sui servizi di Azure esistente](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [0]: ../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache
 [1]: http://bit.ly/1t0KxBQ

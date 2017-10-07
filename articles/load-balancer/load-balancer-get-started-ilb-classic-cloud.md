@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico interno per Servizi cloud di Azure | Documentazione Microsoft
-description: Informazioni su come creare un servizio di bilanciamento del carico interno usando PowerShell nel modello di distribuzione classica
+title: aaaCreate un bilanciamento del carico interno per servizi Cloud di Azure | Documenti Microsoft
+description: Informazioni su come toocreate un interno bilanciamento del carico con PowerShell nel modello di distribuzione classica hello
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 8dbc951416d577fa7f534c2eab1605c6bee61fce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fe7975bca7bec3248626b0ad0fad6823e278ade2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-for-cloud-services"></a><span data-ttu-id="95a0d-103">Introduzione alla creazione di un servizio di bilanciamento del carico interno (classico) per i servizi cloud</span><span class="sxs-lookup"><span data-stu-id="95a0d-103">Get started creating an internal load balancer (classic) for cloud services</span></span>
+# <a name="get-started-creating-an-internal-load-balancer-classic-for-cloud-services"></a><span data-ttu-id="48080-103">Introduzione alla creazione di un servizio di bilanciamento del carico interno (classico) per i servizi cloud</span><span class="sxs-lookup"><span data-stu-id="48080-103">Get started creating an internal load balancer (classic) for cloud services</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="95a0d-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="95a0d-104">PowerShell</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
-> * [<span data-ttu-id="95a0d-105">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="95a0d-105">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
-> * [<span data-ttu-id="95a0d-106">Servizi cloud</span><span class="sxs-lookup"><span data-stu-id="95a0d-106">Cloud services</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
+> * [<span data-ttu-id="48080-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="48080-104">PowerShell</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
+> * [<span data-ttu-id="48080-105">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="48080-105">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
+> * [<span data-ttu-id="48080-106">Servizi cloud</span><span class="sxs-lookup"><span data-stu-id="48080-106">Cloud services</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
 
 > [!IMPORTANT]
-> <span data-ttu-id="95a0d-107">Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="95a0d-107">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="95a0d-108">Questo articolo illustra l'uso del modello di distribuzione classica.</span><span class="sxs-lookup"><span data-stu-id="95a0d-108">This article covers using the classic deployment model.</span></span> <span data-ttu-id="95a0d-109">Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.</span><span class="sxs-lookup"><span data-stu-id="95a0d-109">Microsoft recommends that most new deployments use the Resource Manager model.</span></span> <span data-ttu-id="95a0d-110">Informazioni su come [eseguire questa procedura con il modello di Resource Manager](load-balancer-get-started-ilb-arm-ps.md).</span><span class="sxs-lookup"><span data-stu-id="95a0d-110">Learn how to [perform these steps using the Resource Manager model](load-balancer-get-started-ilb-arm-ps.md).</span></span>
+> <span data-ttu-id="48080-107">Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="48080-107">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="48080-108">In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello.</span><span class="sxs-lookup"><span data-stu-id="48080-108">This article covers using hello classic deployment model.</span></span> <span data-ttu-id="48080-109">Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.</span><span class="sxs-lookup"><span data-stu-id="48080-109">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span> <span data-ttu-id="48080-110">Informazioni su come troppo[eseguire questi passaggi tramite il modello di gestione risorse di hello](load-balancer-get-started-ilb-arm-ps.md).</span><span class="sxs-lookup"><span data-stu-id="48080-110">Learn how too[perform these steps using hello Resource Manager model](load-balancer-get-started-ilb-arm-ps.md).</span></span>
 
-## <a name="configure-internal-load-balancer-for-cloud-services"></a><span data-ttu-id="95a0d-111">Configurare il servizio di bilanciamento del carico interno per i servizi cloud</span><span class="sxs-lookup"><span data-stu-id="95a0d-111">Configure internal load balancer for cloud services</span></span>
+## <a name="configure-internal-load-balancer-for-cloud-services"></a><span data-ttu-id="48080-111">Configurare il servizio di bilanciamento del carico interno per i servizi cloud</span><span class="sxs-lookup"><span data-stu-id="48080-111">Configure internal load balancer for cloud services</span></span>
 
-<span data-ttu-id="95a0d-112">Il servizio di bilanciamento del carico interno è supportato sia per le macchine virtuali che per i servizi cloud.</span><span class="sxs-lookup"><span data-stu-id="95a0d-112">Internal load balancer is supported for both virtual machines and cloud services.</span></span> <span data-ttu-id="95a0d-113">Un endpoint del servizio di bilanciamento del carico interno creato in un servizio cloud esterno a una rete virtuale dell'area sarà accessibile solo nel servizio cloud.</span><span class="sxs-lookup"><span data-stu-id="95a0d-113">An internal load balancer endpoint created in a cloud service that is outside a regional virtual network will be accessible only within the cloud service.</span></span>
+<span data-ttu-id="48080-112">Il servizio di bilanciamento del carico interno è supportato sia per le macchine virtuali che per i servizi cloud.</span><span class="sxs-lookup"><span data-stu-id="48080-112">Internal load balancer is supported for both virtual machines and cloud services.</span></span> <span data-ttu-id="48080-113">Un endpoint di servizio di bilanciamento carico interno creato in un servizio cloud di fuori di una rete virtuale regionale sarà accessibile solo all'interno del servizio cloud hello.</span><span class="sxs-lookup"><span data-stu-id="48080-113">An internal load balancer endpoint created in a cloud service that is outside a regional virtual network will be accessible only within hello cloud service.</span></span>
 
-<span data-ttu-id="95a0d-114">La configurazione del servizio di bilanciamento del carico interno deve essere impostata durante la creazione della prima distribuzione nel servizio cloud, come illustrato nell'esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="95a0d-114">The internal load balancer configuration has to be set during the creation of the first deployment in the cloud service, as shown in the sample below.</span></span>
+<span data-ttu-id="48080-114">configurazione di bilanciamento del carico interno Hello è toobe impostato durante la creazione di hello di distribuzione prima di hello nel servizio cloud hello, come illustrato nell'esempio hello riportato di seguito.</span><span class="sxs-lookup"><span data-stu-id="48080-114">hello internal load balancer configuration has toobe set during hello creation of hello first deployment in hello cloud service, as shown in hello sample below.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="95a0d-115">Come prerequisito per eseguire i passaggi seguenti, è necessario avere già creato una rete virtuale per la distribuzione cloud.</span><span class="sxs-lookup"><span data-stu-id="95a0d-115">A prerequisite to run the steps below is to have a virtual network already created for the cloud deployment.</span></span> <span data-ttu-id="95a0d-116">Per creare il bilanciamento del carico interno, saranno necessari il nome della rete virtuale e il nome della subnet.</span><span class="sxs-lookup"><span data-stu-id="95a0d-116">You will need the virtual network name and subnet name to create the Internal Load Balancing.</span></span>
+> <span data-ttu-id="48080-115">Una procedura di hello toorun prerequisiti riportata di seguito è una rete virtuale già creata per la distribuzione cloud hello toohave.</span><span class="sxs-lookup"><span data-stu-id="48080-115">A prerequisite toorun hello steps below is toohave a virtual network already created for hello cloud deployment.</span></span> <span data-ttu-id="48080-116">Sarà necessario hello rete virtuale nome e la subnet nome toocreate hello bilanciamento del carico interno.</span><span class="sxs-lookup"><span data-stu-id="48080-116">You will need hello virtual network name and subnet name toocreate hello Internal Load Balancing.</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="95a0d-117">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="95a0d-117">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="48080-117">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="48080-117">Step 1</span></span>
 
-<span data-ttu-id="95a0d-118">Aprire il file di configurazione del servizio (.cscfg) per la distribuzione cloud in Visual Studio e aggiungere la sezione seguente per creare il bilanciamento del carico interno sotto l'ultimo elemento "`</Role>`" per la configurazione di rete.</span><span class="sxs-lookup"><span data-stu-id="95a0d-118">Open the service configuration file (.cscfg) for your cloud deployment in Visual Studio and add the following section to create the Internal Load Balancing under the last "`</Role>`" item for the network configuration.</span></span>
+<span data-ttu-id="48080-118">Aprire file di configurazione servizio hello (. cscfg) per la distribuzione cloud in Visual Studio e aggiungere hello seguente ultima sezione toocreate hello bilanciamento del carico interno in hello "`</Role>`" elemento di configurazione di rete hello.</span><span class="sxs-lookup"><span data-stu-id="48080-118">Open hello service configuration file (.cscfg) for your cloud deployment in Visual Studio and add hello following section toocreate hello Internal Load Balancing under hello last "`</Role>`" item for hello network configuration.</span></span>
 
 ```xml
 <NetworkConfiguration>
     <LoadBalancers>
-    <LoadBalancer name="name of the load balancer">
+    <LoadBalancer name="name of hello load balancer">
         <FrontendIPConfiguration type="private" subnet="subnet-name" staticVirtualNetworkIPAddress="static-IP-address"/>
     </LoadBalancer>
     </LoadBalancers>
 </NetworkConfiguration>
 ```
 
-<span data-ttu-id="95a0d-119">Vengono aggiunti i valori per il file di configurazione di rete per mostrare come apparirà.</span><span class="sxs-lookup"><span data-stu-id="95a0d-119">Let's add the values for the network configuration file to show how it will look.</span></span> <span data-ttu-id="95a0d-120">Nell'esempio, si supponga di aver creato una rete virtuale denominata "test_vnet" con una subnet 10.0.0.0/24 denominata test_subnet e un indirizzo IP statico 10.0.0.4.</span><span class="sxs-lookup"><span data-stu-id="95a0d-120">In the example, assume you created a VNet called "test_vnet" with a subnet 10.0.0.0/24 called test_subnet and a static IP 10.0.0.4.</span></span> <span data-ttu-id="95a0d-121">Il servizio di bilanciamento del carico si chiamerà testLB.</span><span class="sxs-lookup"><span data-stu-id="95a0d-121">The load balancer will be named testLB.</span></span>
+<span data-ttu-id="48080-119">Aggiungere i valori hello per hello rete configurazione file tooshow l'aspetto.</span><span class="sxs-lookup"><span data-stu-id="48080-119">Let's add hello values for hello network configuration file tooshow how it will look.</span></span> <span data-ttu-id="48080-120">Nell'esempio di hello si supponga che creare una rete virtuale denominata "test_vnet" con un 10.0.0.0/24 subnet denominata test_subnet e un indirizzo IP statico 10.0.0.4.</span><span class="sxs-lookup"><span data-stu-id="48080-120">In hello example, assume you created a VNet called "test_vnet" with a subnet 10.0.0.0/24 called test_subnet and a static IP 10.0.0.4.</span></span> <span data-ttu-id="48080-121">servizio di bilanciamento del carico Hello verrà denominato testLB.</span><span class="sxs-lookup"><span data-stu-id="48080-121">hello load balancer will be named testLB.</span></span>
 
 ```xml
 <NetworkConfiguration>
@@ -65,11 +65,11 @@ ms.lasthandoff: 07/11/2017
 </NetworkConfiguration>
 ```
 
-<span data-ttu-id="95a0d-122">Per altre informazioni sullo schema di bilanciamento del carico, vedere [Aggiungere il servizio di bilanciamento del carico](https://msdn.microsoft.com/library/azure/dn722411.aspx).</span><span class="sxs-lookup"><span data-stu-id="95a0d-122">For more information about the load balancer schema, see [Add load balancer](https://msdn.microsoft.com/library/azure/dn722411.aspx).</span></span>
+<span data-ttu-id="48080-122">Per ulteriori informazioni sullo schema di bilanciamento carico di hello, vedere [Aggiungi servizio di bilanciamento del carico](https://msdn.microsoft.com/library/azure/dn722411.aspx).</span><span class="sxs-lookup"><span data-stu-id="48080-122">For more information about hello load balancer schema, see [Add load balancer](https://msdn.microsoft.com/library/azure/dn722411.aspx).</span></span>
 
-### <a name="step-2"></a><span data-ttu-id="95a0d-123">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="95a0d-123">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="48080-123">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="48080-123">Step 2</span></span>
 
-<span data-ttu-id="95a0d-124">Modificare il file di definizione del servizio (.csdef) per aggiungere endpoint al bilanciamento del carico interno.</span><span class="sxs-lookup"><span data-stu-id="95a0d-124">Change the service definition (.csdef) file to add endpoints to the Internal Load Balancing.</span></span> <span data-ttu-id="95a0d-125">Non appena viene creata un'istanza del ruolo, il file di definizione del servizio aggiunge le istanze del ruolo al bilanciamento del carico interno.</span><span class="sxs-lookup"><span data-stu-id="95a0d-125">The moment a role instance is created, the service definition file will add the role instances to the Internal Load Balancing.</span></span>
+<span data-ttu-id="48080-124">Modificare gli endpoint hello servizio definizione (con estensione csdef) file tooadd toohello con bilanciamento del carico interno.</span><span class="sxs-lookup"><span data-stu-id="48080-124">Change hello service definition (.csdef) file tooadd endpoints toohello Internal Load Balancing.</span></span> <span data-ttu-id="48080-125">momento di Hello viene creata un'istanza del ruolo, file di definizione del servizio hello aggiungerà hello toohello di istanze di ruolo bilanciamento del carico interno.</span><span class="sxs-lookup"><span data-stu-id="48080-125">hello moment a role instance is created, hello service definition file will add hello role instances toohello Internal Load Balancing.</span></span>
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -79,7 +79,7 @@ ms.lasthandoff: 07/11/2017
 </WorkerRole>
 ```
 
-<span data-ttu-id="95a0d-126">Usando gli stessi valori dell'esempio precedente, vengono aggiunti i valori al file di definizione del servizio.</span><span class="sxs-lookup"><span data-stu-id="95a0d-126">Following the same values from the example above, let's add the values to the service definition file.</span></span>
+<span data-ttu-id="48080-126">In seguito hello stesso valori nell'esempio hello precedente, aggiungere file di definizione del servizio toohello valori hello.</span><span class="sxs-lookup"><span data-stu-id="48080-126">Following hello same values from hello example above, let's add hello values toohello service definition file.</span></span>
 
 ```xml
 <WorkerRole name="WorkerRole1" vmsize="A7" enableNativeCodeExecution="[true|false]">
@@ -89,11 +89,11 @@ ms.lasthandoff: 07/11/2017
 </WorkerRole>
 ```
 
-<span data-ttu-id="95a0d-127">Il traffico di rete verrà configurato per il bilanciamento del carico tramite il servizio di bilanciamento del carico testLB, usando la porta 80 per le richieste in ingresso e anche per l'invio alle istanze del ruolo di lavoro.</span><span class="sxs-lookup"><span data-stu-id="95a0d-127">The network traffic will be load balanced using the testLB load balancer using port 80 for incoming requests, sending to worker role instances also on port 80.</span></span>
+<span data-ttu-id="48080-127">il traffico di rete Hello sarà con carico bilanciato con bilanciamento del carico di testLB hello utilizza la porta 80 per le richieste in ingresso, l'invio di tooworker le istanze del ruolo anche sulla porta 80.</span><span class="sxs-lookup"><span data-stu-id="48080-127">hello network traffic will be load balanced using hello testLB load balancer using port 80 for incoming requests, sending tooworker role instances also on port 80.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="95a0d-128">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="95a0d-128">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="48080-128">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="48080-128">Next steps</span></span>
 
-[<span data-ttu-id="95a0d-129">Configurare una modalità di distribuzione del servizio di bilanciamento del carico utilizzando l’affinità dell’IP di origine</span><span class="sxs-lookup"><span data-stu-id="95a0d-129">Configure a load balancer distribution mode using source IP affinity</span></span>](load-balancer-distribution-mode.md)
+[<span data-ttu-id="48080-129">Configurare una modalità di distribuzione del servizio di bilanciamento del carico utilizzando l’affinità dell’IP di origine</span><span class="sxs-lookup"><span data-stu-id="48080-129">Configure a load balancer distribution mode using source IP affinity</span></span>](load-balancer-distribution-mode.md)
 
-[<span data-ttu-id="95a0d-130">Configurare le impostazioni del timeout di inattività TCP per il bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="95a0d-130">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)
+[<span data-ttu-id="48080-130">Configurare le impostazioni del timeout di inattività TCP per il bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="48080-130">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)
 

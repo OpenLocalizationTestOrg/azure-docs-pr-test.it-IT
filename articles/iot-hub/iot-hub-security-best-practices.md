@@ -1,5 +1,5 @@
 ---
-title: Procedure consigliate per la sicurezza di Azure IoT | Documentazione Microsoft
+title: procedure ottimali di protezione IoT aaaAzure | Documenti Microsoft
 description: Procedure consigliate per la sicurezza dell'infrastruttura IoT. Include indicazioni per sviluppatori, distributori e operatori di soluzioni.
 services: iot-hub
 documentationcenter: 
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: yurid
-ms.openlocfilehash: d922cd972528882a921c8b5a4c5af251fd3e61a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c71affbf861882e655b824ae7d3bd23f3421d3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [iot-security-best-practices](../../includes/iot-security-best-practices.md)]
 
-## <a name="see-also"></a><span data-ttu-id="52dc1-104">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="52dc1-104">See also</span></span>
-<span data-ttu-id="52dc1-105">Per altre informazioni sulla protezione della soluzione IoT, vedere:</span><span class="sxs-lookup"><span data-stu-id="52dc1-105">To learn more about securing your IoT solution, see:</span></span>
+## <a name="see-also"></a><span data-ttu-id="ba0b8-104">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="ba0b8-104">See also</span></span>
+<span data-ttu-id="ba0b8-105">toolearn più sulla protezione soluzione IoT, vedere:</span><span class="sxs-lookup"><span data-stu-id="ba0b8-105">toolearn more about securing your IoT solution, see:</span></span>
 
-* <span data-ttu-id="52dc1-106">[Architettura della sicurezza IoT][lnk-security-architecture]</span><span class="sxs-lookup"><span data-stu-id="52dc1-106">[IoT Security Architecture][lnk-security-architecture]</span></span>
-* <span data-ttu-id="52dc1-107">[Proteggere la distribuzione di IoT][lnk-security-deployment]</span><span class="sxs-lookup"><span data-stu-id="52dc1-107">[Secure your IoT deployment][lnk-security-deployment]</span></span>
+* <span data-ttu-id="ba0b8-106">[Architettura della sicurezza IoT][lnk-security-architecture]</span><span class="sxs-lookup"><span data-stu-id="ba0b8-106">[IoT Security Architecture][lnk-security-architecture]</span></span>
+* <span data-ttu-id="ba0b8-107">[Proteggere la distribuzione di IoT][lnk-security-deployment]</span><span class="sxs-lookup"><span data-stu-id="ba0b8-107">[Secure your IoT deployment][lnk-security-deployment]</span></span>
 
-<span data-ttu-id="52dc1-108">Per altre informazioni sulle funzionalità dell'hub IoT, vedere:</span><span class="sxs-lookup"><span data-stu-id="52dc1-108">To further explore the capabilities of IoT Hub, see:</span></span>
+<span data-ttu-id="ba0b8-108">toofurther esplorare le funzionalità di hello di IoT Hub, vedere:</span><span class="sxs-lookup"><span data-stu-id="ba0b8-108">toofurther explore hello capabilities of IoT Hub, see:</span></span>
 
-* <span data-ttu-id="52dc1-109">[Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="52dc1-109">[Simulating a device with Azure IoT Edge][lnk-iotedge]</span></span>
+* <span data-ttu-id="ba0b8-109">[Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="ba0b8-109">[Simulating a device with Azure IoT Edge][lnk-iotedge]</span></span>
 
 [lnk-security-architecture]: iot-hub-security-architecture.md
 [lnk-security-deployment]: iot-hub-security-deployment.md

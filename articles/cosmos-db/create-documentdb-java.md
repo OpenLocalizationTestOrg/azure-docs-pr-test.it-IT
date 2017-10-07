@@ -1,6 +1,6 @@
 ---
-title: Creare un database di documenti di Azure Cosmos DB con Java | Microsoft Docs | Microsoft Docs
-description: Presenta un esempio di codice Java che permette di connettersi all'API DocumentDB di Azure Cosmos DB ed eseguire query su di essa
+title: un database di documenti DB Cosmos Azure con Java aaaCreate | Documenti Microsoft | Microsoft documenti
+description: "Visualizza un esempio di codice Java è possibile utilizzare query tooand tooconnect hello Azure Cosmos DB DocumentDB API"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,50 +15,50 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 08/02/2017
 ms.author: mimig
-ms.openlocfilehash: df1a25d703a7b8082bdabb4f7d593cb005d416fe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 400c9e7780034d3e28d749e734786e950edad22f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-create-a-document-database-using-java-and-the-azure-portal"></a><span data-ttu-id="60b48-103">Azure Cosmos DB: Creare un database di documenti con Java e il portale di Azure</span><span class="sxs-lookup"><span data-stu-id="60b48-103">Azure Cosmos DB: Create a document database using Java and the Azure portal</span></span>
+# <a name="azure-cosmos-db-create-a-document-database-using-java-and-hello-azure-portal"></a><span data-ttu-id="28ed7-103">DB Cosmos Azure: Creare un database di documenti tramite Java e hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="28ed7-103">Azure Cosmos DB: Create a document database using Java and hello Azure portal</span></span>
 
-<span data-ttu-id="60b48-104">Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft.</span><span class="sxs-lookup"><span data-stu-id="60b48-104">Azure Cosmos DB is Microsoft’s globally distributed multi-model database service.</span></span> <span data-ttu-id="60b48-105">È possibile creare ed eseguire rapidamente query su database di documenti, coppie chiave/valore e grafi, sfruttando in ognuno dei casi i vantaggi offerti dalle funzionalità di scalabilità orizzontale e distribuzione globale alla base di Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="60b48-105">You can quickly create and query document, key/value, and graph databases, all of which benefit from the global distribution and horizontal scale capabilities at the core of Azure Cosmos DB.</span></span> 
+<span data-ttu-id="28ed7-104">Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft.</span><span class="sxs-lookup"><span data-stu-id="28ed7-104">Azure Cosmos DB is Microsoft’s globally distributed multi-model database service.</span></span> <span data-ttu-id="28ed7-105">Creare rapidamente e query chiave/valore, il documento e database grafico, ognuno dei quali trarre vantaggio dalla distribuzione globale hello e funzionalità di scalabilità orizzontale di base di Azure Cosmos DB hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-105">You can quickly create and query document, key/value, and graph databases, all of which benefit from hello global distribution and horizontal scale capabilities at hello core of Azure Cosmos DB.</span></span> 
 
-<span data-ttu-id="60b48-106">Questa guida introduttiva illustra come creare un database di documenti con gli strumenti del portale di Azure per Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="60b48-106">This quickstart creates a document database using the Azure portal tools for Azure Cosmos DB.</span></span> <span data-ttu-id="60b48-107">Illustra anche come creare rapidamente un'app console Java usando l'[API Java DocumentDB](documentdb-sdk-java.md).</span><span class="sxs-lookup"><span data-stu-id="60b48-107">This quickstart also shows you how to quickly create a Java console app using the [DocumentDB Java API](documentdb-sdk-java.md).</span></span> <span data-ttu-id="60b48-108">Le istruzioni di questa guida introduttiva possono essere eseguite in qualsiasi sistema operativo in grado di eseguire Java.</span><span class="sxs-lookup"><span data-stu-id="60b48-108">The instructions in this quickstart can be followed on any operating system that is capable of running Java.</span></span> <span data-ttu-id="60b48-109">Completando questa guida introduttiva si acquisirà familiarità con la creazione e la modifica di risorse database di documenti nell'interfaccia utente o a livello di codice, in base alle proprie preferenze.</span><span class="sxs-lookup"><span data-stu-id="60b48-109">By completing this quickstart you'll be familiar with creating and modifying document database resources in either the UI or programatically, whichever is your preference.</span></span>
+<span data-ttu-id="28ed7-106">Questa Guida rapida viene creato un documento utilizzando database hello gli strumenti del portale di Azure per Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="28ed7-106">This quickstart creates a document database using hello Azure portal tools for Azure Cosmos DB.</span></span> <span data-ttu-id="28ed7-107">Questa Guida rapida illustra anche come tooquickly creare un'applicazione console Java utilizzando hello [API Java di DocumentDB](documentdb-sdk-java.md).</span><span class="sxs-lookup"><span data-stu-id="28ed7-107">This quickstart also shows you how tooquickly create a Java console app using hello [DocumentDB Java API](documentdb-sdk-java.md).</span></span> <span data-ttu-id="28ed7-108">istruzioni di Hello in questa Guida rapida possono essere seguite in qualsiasi sistema operativo che è in grado di eseguire Java.</span><span class="sxs-lookup"><span data-stu-id="28ed7-108">hello instructions in this quickstart can be followed on any operating system that is capable of running Java.</span></span> <span data-ttu-id="28ed7-109">Completando questa Guida rapida sarà familiarità con la creazione e la modifica delle risorse di database di documenti in hello dell'interfaccia utente o a livello di codice, a seconda del valore è la preferenza.</span><span class="sxs-lookup"><span data-stu-id="28ed7-109">By completing this quickstart you'll be familiar with creating and modifying document database resources in either hello UI or programatically, whichever is your preference.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="60b48-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="60b48-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="28ed7-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="28ed7-110">Prerequisites</span></span>
 
-* [<span data-ttu-id="60b48-111">Java Development Kit (JDK) 1.7+</span><span class="sxs-lookup"><span data-stu-id="60b48-111">Java Development Kit (JDK) 1.7+</span></span>](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-    * <span data-ttu-id="60b48-112">In Ubuntu eseguire `apt-get install default-jdk` per installare JDK.</span><span class="sxs-lookup"><span data-stu-id="60b48-112">On Ubuntu, run `apt-get install default-jdk` to install the JDK.</span></span>
-    * <span data-ttu-id="60b48-113">Assicurarsi di impostare la variabile di ambiente JAVA_HOME in modo che faccia riferimento alla cartella di installazione di JDK.</span><span class="sxs-lookup"><span data-stu-id="60b48-113">Be sure to set the JAVA_HOME environment variable to point to the folder where the JDK is installed.</span></span>
-* <span data-ttu-id="60b48-114">[Scaricare](http://maven.apache.org/download.cgi) e [installare](http://maven.apache.org/install.html) un archivio binario [Maven](http://maven.apache.org/)</span><span class="sxs-lookup"><span data-stu-id="60b48-114">[Download](http://maven.apache.org/download.cgi) and [install](http://maven.apache.org/install.html) a [Maven](http://maven.apache.org/) binary archive</span></span>
-    * <span data-ttu-id="60b48-115">In Ubuntu è possibile eseguire `apt-get install maven` per installare Maven.</span><span class="sxs-lookup"><span data-stu-id="60b48-115">On Ubuntu, you can run `apt-get install maven` to install Maven.</span></span>
-* [<span data-ttu-id="60b48-116">Git</span><span class="sxs-lookup"><span data-stu-id="60b48-116">Git</span></span>](https://www.git-scm.com/)
-    * <span data-ttu-id="60b48-117">In Ubuntu è possibile eseguire `sudo apt-get install git` per installare Git.</span><span class="sxs-lookup"><span data-stu-id="60b48-117">On Ubuntu, you can run `sudo apt-get install git` to install Git.</span></span>
+* [<span data-ttu-id="28ed7-111">Java Development Kit (JDK) 1.7+</span><span class="sxs-lookup"><span data-stu-id="28ed7-111">Java Development Kit (JDK) 1.7+</span></span>](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+    * <span data-ttu-id="28ed7-112">In Ubuntu, eseguire `apt-get install default-jdk` tooinstall hello JDK.</span><span class="sxs-lookup"><span data-stu-id="28ed7-112">On Ubuntu, run `apt-get install default-jdk` tooinstall hello JDK.</span></span>
+    * <span data-ttu-id="28ed7-113">Essere tooset che hello JAVA_HOME ambiente variabile toopoint toohello cartella in cui è installato hello JDK.</span><span class="sxs-lookup"><span data-stu-id="28ed7-113">Be sure tooset hello JAVA_HOME environment variable toopoint toohello folder where hello JDK is installed.</span></span>
+* <span data-ttu-id="28ed7-114">[Scaricare](http://maven.apache.org/download.cgi) e [installare](http://maven.apache.org/install.html) un archivio binario [Maven](http://maven.apache.org/)</span><span class="sxs-lookup"><span data-stu-id="28ed7-114">[Download](http://maven.apache.org/download.cgi) and [install](http://maven.apache.org/install.html) a [Maven](http://maven.apache.org/) binary archive</span></span>
+    * <span data-ttu-id="28ed7-115">In Ubuntu, è possibile eseguire `apt-get install maven` tooinstall Maven.</span><span class="sxs-lookup"><span data-stu-id="28ed7-115">On Ubuntu, you can run `apt-get install maven` tooinstall Maven.</span></span>
+* [<span data-ttu-id="28ed7-116">Git</span><span class="sxs-lookup"><span data-stu-id="28ed7-116">Git</span></span>](https://www.git-scm.com/)
+    * <span data-ttu-id="28ed7-117">In Ubuntu, è possibile eseguire `sudo apt-get install git` tooinstall Git.</span><span class="sxs-lookup"><span data-stu-id="28ed7-117">On Ubuntu, you can run `sudo apt-get install git` tooinstall Git.</span></span>
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-a-database-account"></a><span data-ttu-id="60b48-118">Creare un account di database</span><span class="sxs-lookup"><span data-stu-id="60b48-118">Create a database account</span></span>
+## <a name="create-a-database-account"></a><span data-ttu-id="28ed7-118">Creare un account di database</span><span class="sxs-lookup"><span data-stu-id="28ed7-118">Create a database account</span></span>
 
-<span data-ttu-id="60b48-119">Prima di poter creare un database di documenti, è necessario creare un account di database SQL (DocumentDB) con Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="60b48-119">Before you can create a document database, you need to create a SQL (DocumentDB) database account with Azure Cosmos DB.</span></span>
+<span data-ttu-id="28ed7-119">Prima di creare un database di documenti, è necessario un account di database SQL (DocumentDB) con Azure Cosmos DB toocreate.</span><span class="sxs-lookup"><span data-stu-id="28ed7-119">Before you can create a document database, you need toocreate a SQL (DocumentDB) database account with Azure Cosmos DB.</span></span>
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
-## <a name="add-a-collection"></a><span data-ttu-id="60b48-120">Aggiungere una raccolta</span><span class="sxs-lookup"><span data-stu-id="60b48-120">Add a collection</span></span>
+## <a name="add-a-collection"></a><span data-ttu-id="28ed7-120">Aggiungere una raccolta</span><span class="sxs-lookup"><span data-stu-id="28ed7-120">Add a collection</span></span>
 
 [!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
 <a id="add-sample-data"></a>
-## <a name="add-sample-data"></a><span data-ttu-id="60b48-121">Aggiungere dati di esempio</span><span class="sxs-lookup"><span data-stu-id="60b48-121">Add sample data</span></span>
+## <a name="add-sample-data"></a><span data-ttu-id="28ed7-121">Aggiungere dati di esempio</span><span class="sxs-lookup"><span data-stu-id="28ed7-121">Add sample data</span></span>
 
-<span data-ttu-id="60b48-122">È ora possibile aggiungere dati alla nuova raccolta usando Esplora dati.</span><span class="sxs-lookup"><span data-stu-id="60b48-122">You can now add data to your new collection using Data Explorer.</span></span>
+<span data-ttu-id="28ed7-122">È ora possibile aggiungere una nuova raccolta utilizzando Esplora dati tooyour dati.</span><span class="sxs-lookup"><span data-stu-id="28ed7-122">You can now add data tooyour new collection using Data Explorer.</span></span>
 
-1. <span data-ttu-id="60b48-123">In Esplora dati il nuovo database viene visualizzato nel riquadro Raccolte.</span><span class="sxs-lookup"><span data-stu-id="60b48-123">In Data Explorer, the new database appears in the Collections pane.</span></span> <span data-ttu-id="60b48-124">Espandere il database **Tasks**, espandere la raccolta **Items**, fare clic su **Documenti** e quindi su **Nuovo documento**.</span><span class="sxs-lookup"><span data-stu-id="60b48-124">Expand the **Tasks** database, expand the **Items** collection, click **Documents**, and then click **New Documents**.</span></span> 
+1. <span data-ttu-id="28ed7-123">In Esplora dati hello nuovo database verrà visualizzato nel riquadro raccolte hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-123">In Data Explorer, hello new database appears in hello Collections pane.</span></span> <span data-ttu-id="28ed7-124">Espandere hello **attività** del database, espandere hello **elementi** raccolta, fare clic su **documenti**, quindi fare clic su **nuovi documenti**.</span><span class="sxs-lookup"><span data-stu-id="28ed7-124">Expand hello **Tasks** database, expand hello **Items** collection, click **Documents**, and then click **New Documents**.</span></span> 
 
-   ![Creare nuovi documenti in Esplora dati nel portale di Azure](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
+   ![Creare nuovi documenti in Esplora dati nel portale di Azure hello](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
   
-2. <span data-ttu-id="60b48-126">Aggiungere ora un documento alla raccolta con la struttura seguente.</span><span class="sxs-lookup"><span data-stu-id="60b48-126">Now add a document to the collection with the following structure.</span></span>
+2. <span data-ttu-id="28ed7-126">Ora è possibile aggiungere una raccolta di documenti toohello con hello seguente struttura.</span><span class="sxs-lookup"><span data-stu-id="28ed7-126">Now add a document toohello collection with hello following structure.</span></span>
 
      ```json
      {
@@ -70,33 +70,33 @@ ms.lasthandoff: 08/18/2017
      }
      ```
 
-3. <span data-ttu-id="60b48-127">Dopo avere aggiunto il codice JSON alla scheda **Documenti**, fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="60b48-127">Once you've added the json to the **Documents** tab, click **Save**.</span></span>
+3. <span data-ttu-id="28ed7-127">Dopo aver aggiunto hello json toohello **documenti** scheda, fare clic su **salvare**.</span><span class="sxs-lookup"><span data-stu-id="28ed7-127">Once you've added hello json toohello **Documents** tab, click **Save**.</span></span>
 
-    ![Copiare i dati JSON e fare clic su Salva in Esplora dati nel portale di Azure](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
+    ![Copiare i dati json e fare clic su Salva in Esplora dati nel portale di Azure hello](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
 
-4.  <span data-ttu-id="60b48-129">Creare e salvare un altro documento inserendo un valore univoco per la proprietà `id` e modificando le altre proprietà come si preferisce.</span><span class="sxs-lookup"><span data-stu-id="60b48-129">Create and save one more document where you insert a unique value for the `id` property, and change the other properties as you see fit.</span></span> <span data-ttu-id="60b48-130">I nuovi documenti possono avere la struttura desiderata, perché Azure Cosmos DB non impone alcuno schema per i dati.</span><span class="sxs-lookup"><span data-stu-id="60b48-130">Your new documents can have any structure you want as Azure Cosmos DB doesn't impose any schema on your data.</span></span>
+4.  <span data-ttu-id="28ed7-129">Creare e salvare un documento più in cui si inserisce un valore univoco per hello `id` proprietà e modificare hello altre proprietà nel modo desiderato.</span><span class="sxs-lookup"><span data-stu-id="28ed7-129">Create and save one more document where you insert a unique value for hello `id` property, and change hello other properties as you see fit.</span></span> <span data-ttu-id="28ed7-130">I nuovi documenti possono avere la struttura desiderata, perché Azure Cosmos DB non impone alcuno schema per i dati.</span><span class="sxs-lookup"><span data-stu-id="28ed7-130">Your new documents can have any structure you want as Azure Cosmos DB doesn't impose any schema on your data.</span></span>
 
-     <span data-ttu-id="60b48-131">È ora possibile usare query in Esplora dati per recuperare i dati facendo clic sui pulsanti **Modifica filtro** e **Applica filtro**.</span><span class="sxs-lookup"><span data-stu-id="60b48-131">You can now use queries in Data Explorer to retrieve your data by clicking the **Edit Filter** and **Apply Filter** buttons.</span></span> <span data-ttu-id="60b48-132">Per impostazione predefinita, Esplora dati usa `SELECT * FROM c` per recuperare tutti i documenti della raccolta, ma è possibile usare una[query SQL](documentdb-sql-query.md) diversa, ad esempio `SELECT * FROM c ORDER BY c._ts DESC`, per restituire tutti i documenti in ordine decrescente in base al timestamp.</span><span class="sxs-lookup"><span data-stu-id="60b48-132">By default, Data Explorer uses `SELECT * FROM c` to retrieve all documents in the collection, but you can change that to a different [SQL query](documentdb-sql-query.md), such as `SELECT * FROM c ORDER BY c._ts DESC`, to return all the documents in descending order based on their timestamp.</span></span> 
+     <span data-ttu-id="28ed7-131">È possibile utilizzare le query in Esplora dati tooretrieve i dati facendo clic su hello **Modifica filtro** e **Applica filtro** pulsanti.</span><span class="sxs-lookup"><span data-stu-id="28ed7-131">You can now use queries in Data Explorer tooretrieve your data by clicking hello **Edit Filter** and **Apply Filter** buttons.</span></span> <span data-ttu-id="28ed7-132">Per impostazione predefinita, si utilizza Esplora dati `SELECT * FROM c` tooretrieve tutti i documenti nella raccolta di hello, ma è possibile modificare tale tooa diversi [query SQL](documentdb-sql-query.md), ad esempio `SELECT * FROM c ORDER BY c._ts DESC`, tooreturn tutti i documenti hello in ordine decrescente in base a al relativo timestamp.</span><span class="sxs-lookup"><span data-stu-id="28ed7-132">By default, Data Explorer uses `SELECT * FROM c` tooretrieve all documents in hello collection, but you can change that tooa different [SQL query](documentdb-sql-query.md), such as `SELECT * FROM c ORDER BY c._ts DESC`, tooreturn all hello documents in descending order based on their timestamp.</span></span> 
  
-     <span data-ttu-id="60b48-133">È anche possibile usare Esplora dati per creare stored procedure, funzioni definite dall'utente e trigger per eseguire la logica di business sul lato server e aumentare la velocità effettiva.</span><span class="sxs-lookup"><span data-stu-id="60b48-133">You can also use Data Explorer to create stored procedures, UDFs, and triggers to perform server-side business logic as well as scale throughput.</span></span> <span data-ttu-id="60b48-134">Esplora dati espone tutti i tipi di accesso ai dati a livello di codice predefiniti disponibili nelle API, ma consente anche di accedere facilmente ai dati nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="60b48-134">Data Explorer exposes all of the built-in programmatic data access available in the APIs, but provides easy access to your data in the Azure portal.</span></span>
+     <span data-ttu-id="28ed7-133">È inoltre possibile utilizzare Esplora dati toocreate stored procedure, funzioni definite dall'utente e anche logica di business sul lato server tooperform trigger come velocità effettiva di scala.</span><span class="sxs-lookup"><span data-stu-id="28ed7-133">You can also use Data Explorer toocreate stored procedures, UDFs, and triggers tooperform server-side business logic as well as scale throughput.</span></span> <span data-ttu-id="28ed7-134">Esplora dati espone tutti hello predefinite a livello di codice l'accesso ai dati disponibile in hello API, ma fornisce un accesso semplice tooyour dati hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="28ed7-134">Data Explorer exposes all of hello built-in programmatic data access available in hello APIs, but provides easy access tooyour data in hello Azure portal.</span></span>
 
-## <a name="clone-the-sample-application"></a><span data-ttu-id="60b48-135">Clonare l'applicazione di esempio</span><span class="sxs-lookup"><span data-stu-id="60b48-135">Clone the sample application</span></span>
+## <a name="clone-hello-sample-application"></a><span data-ttu-id="28ed7-135">Applicazione di esempio hello clonare</span><span class="sxs-lookup"><span data-stu-id="28ed7-135">Clone hello sample application</span></span>
 
-<span data-ttu-id="60b48-136">Si può ora passare a usare il codice.</span><span class="sxs-lookup"><span data-stu-id="60b48-136">Now let's switch to working with code.</span></span> <span data-ttu-id="60b48-137">Si clonerà un'app per le API DocumentDB da GitHub, si imposterà la stringa di connessione e la si eseguirà.</span><span class="sxs-lookup"><span data-stu-id="60b48-137">Let's clone a DocumentDB API app from GitHub, set the connection string, and run it.</span></span> <span data-ttu-id="60b48-138">Come si noterà, è facile usare i dati a livello di codice.</span><span class="sxs-lookup"><span data-stu-id="60b48-138">You see how easy it is to work with data programmatically.</span></span> 
+<span data-ttu-id="28ed7-136">Ora si passa tooworking con il codice.</span><span class="sxs-lookup"><span data-stu-id="28ed7-136">Now let's switch tooworking with code.</span></span> <span data-ttu-id="28ed7-137">Si clona una app per le API DocumentDB da GitHub, impostare la stringa di connessione hello ed eseguirlo.</span><span class="sxs-lookup"><span data-stu-id="28ed7-137">Let's clone a DocumentDB API app from GitHub, set hello connection string, and run it.</span></span> <span data-ttu-id="28ed7-138">Viene visualizzato quanto sia facile toowork con i dati a livello di codice.</span><span class="sxs-lookup"><span data-stu-id="28ed7-138">You see how easy it is toowork with data programmatically.</span></span> 
 
-1. <span data-ttu-id="60b48-139">Aprire una finestra del terminale Git, ad esempio Git Bash, ed eseguire il comando `CD` per passare a una directory di lavoro.</span><span class="sxs-lookup"><span data-stu-id="60b48-139">Open a git terminal window, such as git bash, and `CD` to a working directory.</span></span>  
+1. <span data-ttu-id="28ed7-139">Aprire una finestra terminale git, ad esempio git bash, e `CD` tooa directory di lavoro.</span><span class="sxs-lookup"><span data-stu-id="28ed7-139">Open a git terminal window, such as git bash, and `CD` tooa working directory.</span></span>  
 
-2. <span data-ttu-id="60b48-140">Eseguire il comando seguente per clonare l'archivio di esempio.</span><span class="sxs-lookup"><span data-stu-id="60b48-140">Run the following command to clone the sample repository.</span></span> 
+2. <span data-ttu-id="28ed7-140">Eseguire hello seguenti repository di esempio di comando tooclone hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-140">Run hello following command tooclone hello sample repository.</span></span> 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-documentdb-java-getting-started.git
     ```
 
-## <a name="review-the-code"></a><span data-ttu-id="60b48-141">Esaminare il codice</span><span class="sxs-lookup"><span data-stu-id="60b48-141">Review the code</span></span>
+## <a name="review-hello-code"></a><span data-ttu-id="28ed7-141">Esaminare il codice hello</span><span class="sxs-lookup"><span data-stu-id="28ed7-141">Review hello code</span></span>
 
-<span data-ttu-id="60b48-142">Ecco una breve analisi di ciò che accade nell'app.</span><span class="sxs-lookup"><span data-stu-id="60b48-142">Let's make a quick review of what's happening in the app.</span></span> <span data-ttu-id="60b48-143">Aprire il file `Program.java` dalla cartella \src\GetStarted e trovare queste righe di codice che creano le risorse di Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="60b48-143">Open the `Program.java` file from the \src\GetStarted folder, and find these lines of code that create the Azure Cosmos DB resources.</span></span> 
+<span data-ttu-id="28ed7-142">Questo punto, eseguire una rapida panoramica delle operazioni eseguite nell'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-142">Let's make a quick review of what's happening in hello app.</span></span> <span data-ttu-id="28ed7-143">Aprire hello `Program.java` file dalla cartella \src\GetStarted hello e trovare le righe di codice che creano hello risorse Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="28ed7-143">Open hello `Program.java` file from hello \src\GetStarted folder, and find these lines of code that create hello Azure Cosmos DB resources.</span></span> 
 
-* <span data-ttu-id="60b48-144">Viene inizializzato `DocumentClient`.</span><span class="sxs-lookup"><span data-stu-id="60b48-144">The `DocumentClient` is initialized.</span></span>
+* <span data-ttu-id="28ed7-144">Hello `DocumentClient` viene inizializzato.</span><span class="sxs-lookup"><span data-stu-id="28ed7-144">hello `DocumentClient` is initialized.</span></span>
 
     ```java
     this.client = new DocumentClient("https://FILLME.documents.azure.com",
@@ -105,7 +105,7 @@ ms.lasthandoff: 08/18/2017
             ConsistencyLevel.Session);
     ```
 
-* <span data-ttu-id="60b48-145">Viene creato un nuovo database.</span><span class="sxs-lookup"><span data-stu-id="60b48-145">A new database is created.</span></span>
+* <span data-ttu-id="28ed7-145">Viene creato un nuovo database.</span><span class="sxs-lookup"><span data-stu-id="28ed7-145">A new database is created.</span></span>
 
     ```java
     Database database = new Database();
@@ -114,7 +114,7 @@ ms.lasthandoff: 08/18/2017
     this.client.createDatabase(database, null);
     ```
 
-* <span data-ttu-id="60b48-146">Viene creata una nuova raccolta.</span><span class="sxs-lookup"><span data-stu-id="60b48-146">A new collection is created.</span></span>
+* <span data-ttu-id="28ed7-146">Viene creata una nuova raccolta.</span><span class="sxs-lookup"><span data-stu-id="28ed7-146">A new collection is created.</span></span>
 
     ```java
     DocumentCollection collectionInfo = new DocumentCollection();
@@ -125,10 +125,10 @@ ms.lasthandoff: 08/18/2017
     this.client.createCollection(databaseLink, collectionInfo, requestOptions);
     ```
 
-* <span data-ttu-id="60b48-147">Vengono creati alcuni documenti.</span><span class="sxs-lookup"><span data-stu-id="60b48-147">Some documents are created.</span></span>
+* <span data-ttu-id="28ed7-147">Vengono creati alcuni documenti.</span><span class="sxs-lookup"><span data-stu-id="28ed7-147">Some documents are created.</span></span>
 
     ```java
-    // Any Java object within your code can be serialized into JSON and written to Azure Cosmos DB
+    // Any Java object within your code can be serialized into JSON and written tooAzure Cosmos DB
     Family andersenFamily = new Family();
     andersenFamily.setId("Andersen.1");
     andersenFamily.setLastName("Andersen");
@@ -138,7 +138,7 @@ ms.lasthandoff: 08/18/2017
     this.client.createDocument(collectionLink, family, new RequestOptions(), true);
     ```
 
-* <span data-ttu-id="60b48-148">Viene eseguita una query SQL su JSON.</span><span class="sxs-lookup"><span data-stu-id="60b48-148">A SQL query over JSON is performed.</span></span>
+* <span data-ttu-id="28ed7-148">Viene eseguita una query SQL su JSON.</span><span class="sxs-lookup"><span data-stu-id="28ed7-148">A SQL query over JSON is performed.</span></span>
 
     ```java
     FeedOptions queryOptions = new FeedOptions();
@@ -156,49 +156,49 @@ ms.lasthandoff: 08/18/2017
     }
     ```    
 
-## <a name="update-your-connection-string"></a><span data-ttu-id="60b48-149">Aggiornare la stringa di connessione</span><span class="sxs-lookup"><span data-stu-id="60b48-149">Update your connection string</span></span>
+## <a name="update-your-connection-string"></a><span data-ttu-id="28ed7-149">Aggiornare la stringa di connessione</span><span class="sxs-lookup"><span data-stu-id="28ed7-149">Update your connection string</span></span>
 
-<span data-ttu-id="60b48-150">Tornare ora al portale di Azure per recuperare le informazioni sulla stringa di connessione e copiarle nell'app.</span><span class="sxs-lookup"><span data-stu-id="60b48-150">Now go back to the Azure portal to get your connection string information and copy it into the app.</span></span> <span data-ttu-id="60b48-151">In questo modo l'app potrà comunicare con il database ospitato.</span><span class="sxs-lookup"><span data-stu-id="60b48-151">This will enable your app to communicate with your hosted database.</span></span>
+<span data-ttu-id="28ed7-150">Tornare toohello tooget portale Azure le informazioni sulla stringa di connessione e copiarla in app hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-150">Now go back toohello Azure portal tooget your connection string information and copy it into hello app.</span></span> <span data-ttu-id="28ed7-151">In questo modo il toocommunicate app con il database di hosting.</span><span class="sxs-lookup"><span data-stu-id="28ed7-151">This will enable your app toocommunicate with your hosted database.</span></span>
 
-1. <span data-ttu-id="60b48-152">Nell'account Azure Cosmos DB nel [portale di Azure](http://portal.azure.com/) fare clic su **Chiavi** nel riquadro di spostamento a sinistra e quindi su **Chiavi di lettura/scrittura**.</span><span class="sxs-lookup"><span data-stu-id="60b48-152">In the [Azure portal](http://portal.azure.com/), in your Azure Cosmos DB account, in the left navigation click **Keys**, and then click **Read-write Keys**.</span></span> <span data-ttu-id="60b48-153">Usare i pulsanti di copia sul lato destro dello schermo per copiare URI e CHIAVE PRIMARIA nel file `Program.java` nel passaggio seguente.</span><span class="sxs-lookup"><span data-stu-id="60b48-153">You'll use the copy buttons on the right side of the screen to copy the URI and PRIMARY KEY into the `Program.java` file in the next step.</span></span>
+1. <span data-ttu-id="28ed7-152">In hello [portale di Azure](http://portal.azure.com/)il Cosmos Azure DB account, nel riquadro di spostamento sinistro hello fare clic su **chiavi**, quindi fare clic su **le chiavi di lettura / scrittura**.</span><span class="sxs-lookup"><span data-stu-id="28ed7-152">In hello [Azure portal](http://portal.azure.com/), in your Azure Cosmos DB account, in hello left navigation click **Keys**, and then click **Read-write Keys**.</span></span> <span data-ttu-id="28ed7-153">È possibile usare i pulsanti copia hello per il lato destro hello di hello toocopy di hello schermata URI e chiave primaria in hello `Program.java` file nel passaggio successivo hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-153">You'll use hello copy buttons on hello right side of hello screen toocopy hello URI and PRIMARY KEY into hello `Program.java` file in hello next step.</span></span>
 
-    ![Visualizzazione e copia di una chiave di accesso nel portale di Azure, pannello Chiavi](./media/create-documentdb-dotnet/keys.png)
+    ![Visualizzare e copiare una chiave di accesso nel portale di Azure hello, pannello di chiavi](./media/create-documentdb-dotnet/keys.png)
 
-2. <span data-ttu-id="60b48-155">Nel file `Program.java` aperto copiare il valore di URI dal portale (usando il pulsante di copia) e impostarlo come valore dell'endpoint del costruttore DocumentClient in `Program.java`.</span><span class="sxs-lookup"><span data-stu-id="60b48-155">In the open `Program.java` file, copy your URI value from the portal (using the copy button) and make it the value of the endpoint to the DocumentClient constructor in `Program.java`.</span></span> 
+2. <span data-ttu-id="28ed7-155">In aprire hello `Program.java` file, copiare il valore dell'URI dal portale di hello (con il pulsante di copia hello) e renderla hello valore hello endpoint toohello DocumentClient costruttore `Program.java`.</span><span class="sxs-lookup"><span data-stu-id="28ed7-155">In hello open `Program.java` file, copy your URI value from hello portal (using hello copy button) and make it hello value of hello endpoint toohello DocumentClient constructor in `Program.java`.</span></span> 
 
     `"https://FILLME.documents.azure.com"`
 
-4. <span data-ttu-id="60b48-156">Copiare quindi il valore di CHIAVE PRIMARIA dal portale e incollarlo sopra "FILLME", come secondo parametro del costruttore DocumentClient.</span><span class="sxs-lookup"><span data-stu-id="60b48-156">Then copy your PRIMARY KEY value from the portal and paste it over “FILLME”, making it the second parameter in the DocumentClient constructor.</span></span> <span data-ttu-id="60b48-157">L'app è stata aggiornata con tutte le informazioni necessarie per comunicare con Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="60b48-157">You've now updated your app with all the info it needs to communicate with Azure Cosmos DB.</span></span> 
+4. <span data-ttu-id="28ed7-156">Quindi copiare il valore di chiave primaria dal portale di hello e incollarla su "FILLME", rendendo hello secondo parametro nel costruttore DocumentClient hello.</span><span class="sxs-lookup"><span data-stu-id="28ed7-156">Then copy your PRIMARY KEY value from hello portal and paste it over “FILLME”, making it hello second parameter in hello DocumentClient constructor.</span></span> <span data-ttu-id="28ed7-157">È stato aggiornato a questo punto l'app con tutte le informazioni di hello deve toocommunicate con Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="28ed7-157">You've now updated your app with all hello info it needs toocommunicate with Azure Cosmos DB.</span></span> 
     
-## <a name="run-the-app"></a><span data-ttu-id="60b48-158">Esecuzione dell'app</span><span class="sxs-lookup"><span data-stu-id="60b48-158">Run the app</span></span>
+## <a name="run-hello-app"></a><span data-ttu-id="28ed7-158">Eseguire app hello</span><span class="sxs-lookup"><span data-stu-id="28ed7-158">Run hello app</span></span>
 
-1. <span data-ttu-id="60b48-159">Nella finestra del terminale Git eseguire il comando `cd` per passare alla cartella azure-cosmos-db-documentdb-java-getting-started.</span><span class="sxs-lookup"><span data-stu-id="60b48-159">In the git terminal window, `cd` to the azure-cosmos-db-documentdb-java-getting-started folder.</span></span>
+1. <span data-ttu-id="28ed7-159">Nella finestra terminale git hello, `cd` toohello azure-cosmos-db-documentdb-java-getting-started cartella.</span><span class="sxs-lookup"><span data-stu-id="28ed7-159">In hello git terminal window, `cd` toohello azure-cosmos-db-documentdb-java-getting-started folder.</span></span>
 
-2. <span data-ttu-id="60b48-160">Nella finestra del terminale Git digitare `mvn package` per installare i pacchetti Java necessari.</span><span class="sxs-lookup"><span data-stu-id="60b48-160">In the git terminal window, type `mvn package` to install the required Java packages.</span></span>
+2. <span data-ttu-id="28ed7-160">Nella finestra terminal git hello, digitare `mvn package` tooinstall hello necessari pacchetti Java.</span><span class="sxs-lookup"><span data-stu-id="28ed7-160">In hello git terminal window, type `mvn package` tooinstall hello required Java packages.</span></span>
 
-3. <span data-ttu-id="60b48-161">Nella finestra del terminale Git eseguire `mvn exec:java -D exec.mainClass=GetStarted.Program` per avviare l'applicazione Java.</span><span class="sxs-lookup"><span data-stu-id="60b48-161">In the git terminal window, run `mvn exec:java -D exec.mainClass=GetStarted.Program` in the terminal window to start your Java application.</span></span>
+3. <span data-ttu-id="28ed7-161">Nella finestra terminale di hello git, eseguire `mvn exec:java -D exec.mainClass=GetStarted.Program` hello finestra terminale toostart l'applicazione Java.</span><span class="sxs-lookup"><span data-stu-id="28ed7-161">In hello git terminal window, run `mvn exec:java -D exec.mainClass=GetStarted.Program` in hello terminal window toostart your Java application.</span></span>
 
-    <span data-ttu-id="60b48-162">Nella finestra del terminale si riceverà la notifica che indica che il database FamilyDB è stato creato e in cui viene chiesto di premere un tasto per continuare.</span><span class="sxs-lookup"><span data-stu-id="60b48-162">In the terminal window, you'll receive notification that the FamilyDB database was created, and to press a key to continue.</span></span> <span data-ttu-id="60b48-163">Premere un tasto per creare il database, quindi passare a Esplora dati e osservare che ora contiene un database FamilyDB.</span><span class="sxs-lookup"><span data-stu-id="60b48-163">Press a key to create the database, then switch to the Data Explorer and you'll see that it now contains a FamilyDB database.</span></span> <span data-ttu-id="60b48-164">Continuare a premere i tasti per creare la raccolta e i documenti e quindi eseguire una query.</span><span class="sxs-lookup"><span data-stu-id="60b48-164">Continue to press keys to create the collection and the documents and then perform a query.</span></span> <span data-ttu-id="60b48-165">Quando viene completato il progetto, le risorse vengono eliminate dall'account.</span><span class="sxs-lookup"><span data-stu-id="60b48-165">When the project completes, the resources are deleted from your account.</span></span> 
+    <span data-ttu-id="28ed7-162">Nella finestra terminal hello, si riceverà la notifica che hello FamilyDB database è stato creato e toopress toocontinue una chiave.</span><span class="sxs-lookup"><span data-stu-id="28ed7-162">In hello terminal window, you'll receive notification that hello FamilyDB database was created, and toopress a key toocontinue.</span></span> <span data-ttu-id="28ed7-163">Premere un database di hello toocreate chiave, quindi passare toohello Esplora dati e si noterà che ora contiene un database FamilyDB.</span><span class="sxs-lookup"><span data-stu-id="28ed7-163">Press a key toocreate hello database, then switch toohello Data Explorer and you'll see that it now contains a FamilyDB database.</span></span> <span data-ttu-id="28ed7-164">Continuare toopress chiavi toocreate hello hello e raccolta documenti e quindi eseguire una query.</span><span class="sxs-lookup"><span data-stu-id="28ed7-164">Continue toopress keys toocreate hello collection and hello documents and then perform a query.</span></span> <span data-ttu-id="28ed7-165">Al termine del progetto hello, vengono eliminate le risorse di hello dal tuo account.</span><span class="sxs-lookup"><span data-stu-id="28ed7-165">When hello project completes, hello resources are deleted from your account.</span></span> 
 
-    ![Visualizzazione e copia di una chiave di accesso nel portale di Azure, pannello Chiavi](./media/create-documentdb-java/console-output.png)
+    ![Visualizzare e copiare una chiave di accesso nel portale di Azure hello, pannello di chiavi](./media/create-documentdb-java/console-output.png)
 
 
-## <a name="review-slas-in-the-azure-portal"></a><span data-ttu-id="60b48-167">Esaminare i contratti di servizio nel portale di Azure</span><span class="sxs-lookup"><span data-stu-id="60b48-167">Review SLAs in the Azure portal</span></span>
+## <a name="review-slas-in-hello-azure-portal"></a><span data-ttu-id="28ed7-167">Esaminare i contratti di servizio nel portale di Azure hello</span><span class="sxs-lookup"><span data-stu-id="28ed7-167">Review SLAs in hello Azure portal</span></span>
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
-## <a name="clean-up-resources"></a><span data-ttu-id="60b48-168">Pulire le risorse</span><span class="sxs-lookup"><span data-stu-id="60b48-168">Clean up resources</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="28ed7-168">Pulire le risorse</span><span class="sxs-lookup"><span data-stu-id="28ed7-168">Clean up resources</span></span>
 
-<span data-ttu-id="60b48-169">Se non si intende continuare a usare l'app, eliminare tutte le risorse create tramite questa guida di avvio rapido nel portale di Azure eseguendo questi passaggi:</span><span class="sxs-lookup"><span data-stu-id="60b48-169">If you're not going to continue to use this app, delete all resources created by this quickstart in the Azure portal with the following steps:</span></span>
+<span data-ttu-id="28ed7-169">Se non si ha intenzione toocontinue toouse questa app, eliminare tutte le risorse create da questa Guida rapida hello portale di Azure con hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="28ed7-169">If you're not going toocontinue toouse this app, delete all resources created by this quickstart in hello Azure portal with hello following steps:</span></span>
 
-1. <span data-ttu-id="60b48-170">Scegliere **Gruppi di risorse** dal menu a sinistra del portale di Azure e quindi fare clic sul nome della risorsa creata.</span><span class="sxs-lookup"><span data-stu-id="60b48-170">From the left-hand menu in the Azure portal, click **Resource groups** and then click the name of the resource you created.</span></span> 
-2. <span data-ttu-id="60b48-171">Nella pagina del gruppo di risorse fare clic su **Elimina**, digitare il nome della risorsa da eliminare nella casella di testo e quindi fare clic su **Elimina**.</span><span class="sxs-lookup"><span data-stu-id="60b48-171">On your resource group page, click **Delete**, type the name of the resource to delete in the text box, and then click **Delete**.</span></span>
+1. <span data-ttu-id="28ed7-170">Dal menu a sinistra di hello in hello portale di Azure, fare clic su **gruppi di risorse** e quindi fare clic su nome hello della risorsa di hello è stato creato.</span><span class="sxs-lookup"><span data-stu-id="28ed7-170">From hello left-hand menu in hello Azure portal, click **Resource groups** and then click hello name of hello resource you created.</span></span> 
+2. <span data-ttu-id="28ed7-171">Nella pagina di gruppo di risorse, fare clic su **eliminare**, digitare il nome di hello di hello risorsa toodelete nella casella di testo hello e quindi fare clic su **eliminare**.</span><span class="sxs-lookup"><span data-stu-id="28ed7-171">On your resource group page, click **Delete**, type hello name of hello resource toodelete in hello text box, and then click **Delete**.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="60b48-172">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="60b48-172">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="28ed7-172">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="28ed7-172">Next steps</span></span>
 
-<span data-ttu-id="60b48-173">In questa guida di avvio rapido si è appreso come creare un account Azure Cosmos DB, un database di documenti e una raccolta usando Esplora dati e come creare eseguire un'app per ottenere lo stesso risultato a livello di codice.</span><span class="sxs-lookup"><span data-stu-id="60b48-173">In this quickstart, you've learned how to create an Azure Cosmos DB account, document database, and collection using the Data Explorer, and run an app to do the same thing programmatically.</span></span> <span data-ttu-id="60b48-174">È ora possibile importare dati aggiuntivi nell'account Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="60b48-174">You can now import additional data to your Cosmos DB account.</span></span> 
+<span data-ttu-id="28ed7-173">In questa Guida rapida, si è appreso come toocreate un account Azure Cosmos DB, database di documenti e raccolta utilizzando Esplora dati hello ed eseguire un toodo app hello stessa operazione a livello di codice.</span><span class="sxs-lookup"><span data-stu-id="28ed7-173">In this quickstart, you've learned how toocreate an Azure Cosmos DB account, document database, and collection using hello Data Explorer, and run an app toodo hello same thing programmatically.</span></span> <span data-ttu-id="28ed7-174">È ora possibile importare account Cosmos DB tooyour di dati aggiuntivi.</span><span class="sxs-lookup"><span data-stu-id="28ed7-174">You can now import additional data tooyour Cosmos DB account.</span></span> 
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="60b48-175">Importare dati in Azure Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="60b48-175">Import data into Azure Cosmos DB</span></span>](import-data.md)
+> [<span data-ttu-id="28ed7-175">Importare dati in Azure Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="28ed7-175">Import data into Azure Cosmos DB</span></span>](import-data.md)
 
 

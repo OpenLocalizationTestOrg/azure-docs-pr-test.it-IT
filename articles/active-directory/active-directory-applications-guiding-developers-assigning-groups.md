@@ -1,6 +1,6 @@
 ---
-title: Assegnare gruppi alle app Azure AD | Documentazione Microsoft
-description: Come implementare l'assegnazione di gruppo per le applicazioni Azure.
+title: aaaAssign gruppi tooAzure AD App | Microsoft documenti
+description: "La modalità di assegnazione per le applicazioni Azure gruppo tooimplement."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -16,28 +16,28 @@ ms.date: 05/07/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 robots: noindex
-ms.openlocfilehash: e0b0b87a454db96747f024e81882fe83d62fdbe2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 086619df09c13bf259afc3128d45ed804b99e519
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-azure-active-directory-groups-to-an-application"></a><span data-ttu-id="17f02-103">Assegnare gruppi di Azure Active Directory a un'applicazione</span><span class="sxs-lookup"><span data-stu-id="17f02-103">Assign Azure Active Directory groups to an application</span></span>
-<span data-ttu-id="17f02-104">Prima di assegnare utenti e gruppi a un'applicazione, è necessario richiedere l'assegnazione dell’utente.</span><span class="sxs-lookup"><span data-stu-id="17f02-104">Before you can assign users and groups to an application, you must require user assignment.</span></span> <span data-ttu-id="17f02-105">Per informazioni su come richiedere l'assegnazione dell'utente, vedere l'articolo [Richiedere l'assegnazione utente](active-directory-applications-guiding-developers-requiring-user-assignment.md) .</span><span class="sxs-lookup"><span data-stu-id="17f02-105">To learn how to require user assignment, see the [Requiring User Assignment](active-directory-applications-guiding-developers-requiring-user-assignment.md) article.</span></span>
+# <a name="assign-azure-active-directory-groups-tooan-application"></a><span data-ttu-id="bdab3-103">Assegnare gruppi di Azure Active Directory dell'applicazione tooan</span><span class="sxs-lookup"><span data-stu-id="bdab3-103">Assign Azure Active Directory groups tooan application</span></span>
+<span data-ttu-id="bdab3-104">Prima di poter assegnare gli utenti e applicazioni tooan gruppi, è necessario richiedere assegnazione utente.</span><span class="sxs-lookup"><span data-stu-id="bdab3-104">Before you can assign users and groups tooan application, you must require user assignment.</span></span> <span data-ttu-id="bdab3-105">toolearn come toorequire assegnazione utente, vedere hello [che richiedono l'assegnazione utente](active-directory-applications-guiding-developers-requiring-user-assignment.md) articolo.</span><span class="sxs-lookup"><span data-stu-id="bdab3-105">toolearn how toorequire user assignment, see hello [Requiring User Assignment](active-directory-applications-guiding-developers-requiring-user-assignment.md) article.</span></span>
 
-<span data-ttu-id="17f02-106">In questo articolo si presuppone che siano già stati creati gruppi nella active directory che si utilizza per questa applicazione.</span><span class="sxs-lookup"><span data-stu-id="17f02-106">This article assumes that you have already created groups in the active directory you are using for this application.</span></span>
+<span data-ttu-id="bdab3-106">Questo articolo si presuppone che si sono già creati gruppi di active directory hello in uso per questa applicazione.</span><span class="sxs-lookup"><span data-stu-id="bdab3-106">This article assumes that you have already created groups in hello active directory you are using for this application.</span></span>
 
-## <a name="assigning-groups-to-an-application"></a><span data-ttu-id="17f02-107">Assegnazione dei gruppi a un'applicazione</span><span class="sxs-lookup"><span data-stu-id="17f02-107">Assigning Groups to an Application</span></span>
-1. <span data-ttu-id="17f02-108">Accedere al portale di Azure con un account amministratore.</span><span class="sxs-lookup"><span data-stu-id="17f02-108">Log in to the Azure portal with an administrator account.</span></span>
-2. <span data-ttu-id="17f02-109">Fare clic sulla voce **Tutti gli elementi** del menu principale.</span><span class="sxs-lookup"><span data-stu-id="17f02-109">Click on the **All Items** item in the main menu.</span></span>
-3. <span data-ttu-id="17f02-110">Scegliere la directory utilizzata per l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="17f02-110">Choose the directory you are using for the application.</span></span>
-4. <span data-ttu-id="17f02-111">Fare clic sulla scheda **APPLICAZIONI** .</span><span class="sxs-lookup"><span data-stu-id="17f02-111">Click on the **APPLICATIONS** tab.</span></span>
-5. <span data-ttu-id="17f02-112">Selezionare l'applicazione dall'elenco di applicazioni associate a questa directory.</span><span class="sxs-lookup"><span data-stu-id="17f02-112">Select the application from the list of applications associated with this directory.</span></span>
-6. <span data-ttu-id="17f02-113">Fare clic sulla scheda **UTENTI E GRUPPI** .</span><span class="sxs-lookup"><span data-stu-id="17f02-113">Click the **USERS AND GROUPS** tab.</span></span>
-7. <span data-ttu-id="17f02-114">Filtrare l'elenco dei gruppi nella active directory utilizzando l’elenco a discesa **Gruppi** .</span><span class="sxs-lookup"><span data-stu-id="17f02-114">Filter the list of groups in your active directory by using the **Groups** dropdown list.</span></span>
-8. <span data-ttu-id="17f02-115">Selezionare il gruppo.</span><span class="sxs-lookup"><span data-stu-id="17f02-115">Select the group.</span></span>
-9. <span data-ttu-id="17f02-116">Fare clic su **ASSEGNARE**.</span><span class="sxs-lookup"><span data-stu-id="17f02-116">Click **ASSIGN**.</span></span>
-10. <span data-ttu-id="17f02-117">Fare clic su **sì** quando richiesto.</span><span class="sxs-lookup"><span data-stu-id="17f02-117">Click **yes** when prompted.</span></span>
+## <a name="assigning-groups-tooan-application"></a><span data-ttu-id="bdab3-107">L'assegnazione di gruppi tooan applicazione</span><span class="sxs-lookup"><span data-stu-id="bdab3-107">Assigning Groups tooan Application</span></span>
+1. <span data-ttu-id="bdab3-108">Accedi toohello portale di Azure con un account amministratore.</span><span class="sxs-lookup"><span data-stu-id="bdab3-108">Log in toohello Azure portal with an administrator account.</span></span>
+2. <span data-ttu-id="bdab3-109">Fare clic su hello **tutti gli elementi** elemento nel menu principale di hello.</span><span class="sxs-lookup"><span data-stu-id="bdab3-109">Click on hello **All Items** item in hello main menu.</span></span>
+3. <span data-ttu-id="bdab3-110">Scelta di una directory hello in uso per un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="bdab3-110">Choose hello directory you are using for hello application.</span></span>
+4. <span data-ttu-id="bdab3-111">Fare clic su hello **applicazioni** scheda.</span><span class="sxs-lookup"><span data-stu-id="bdab3-111">Click on hello **APPLICATIONS** tab.</span></span>
+5. <span data-ttu-id="bdab3-112">Selezionare un'applicazione hello hello elenco di applicazioni associato a questa directory.</span><span class="sxs-lookup"><span data-stu-id="bdab3-112">Select hello application from hello list of applications associated with this directory.</span></span>
+6. <span data-ttu-id="bdab3-113">Fare clic su hello **utenti e gruppi** scheda.</span><span class="sxs-lookup"><span data-stu-id="bdab3-113">Click hello **USERS AND GROUPS** tab.</span></span>
+7. <span data-ttu-id="bdab3-114">Elenco di filtri hello dei gruppi in active directory utilizzando hello **gruppi** elenco a discesa.</span><span class="sxs-lookup"><span data-stu-id="bdab3-114">Filter hello list of groups in your active directory by using hello **Groups** dropdown list.</span></span>
+8. <span data-ttu-id="bdab3-115">Selezionare il gruppo di hello.</span><span class="sxs-lookup"><span data-stu-id="bdab3-115">Select hello group.</span></span>
+9. <span data-ttu-id="bdab3-116">Fare clic su **ASSEGNARE**.</span><span class="sxs-lookup"><span data-stu-id="bdab3-116">Click **ASSIGN**.</span></span>
+10. <span data-ttu-id="bdab3-117">Fare clic su **sì** quando richiesto.</span><span class="sxs-lookup"><span data-stu-id="bdab3-117">Click **yes** when prompted.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="17f02-118">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="17f02-118">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="bdab3-118">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="bdab3-118">Next Steps</span></span>
 [!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]

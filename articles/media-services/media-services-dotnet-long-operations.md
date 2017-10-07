@@ -1,6 +1,6 @@
 ---
-title: Polling di operazioni con esecuzione prolungata | Microsoft Docs
-description: Questo argomento descrive come eseguire il polling di operazioni con esecuzione prolungata.
+title: Operazioni con esecuzione prolungata aaaPolling | Documenti Microsoft
+description: Questo argomento viene illustrato come toopoll operazioni a esecuzione prolungata.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 7123a2d44d3b7c332afe30fb0fcea88ca29e313a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f8315a5ddbe484d794c3e2164e47dd9e70521671
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="delivering-live-streaming-with-azure-media-services"></a><span data-ttu-id="0da2f-103">Distribuzione di Live Streaming con Servizi multimediali di Azure</span><span class="sxs-lookup"><span data-stu-id="0da2f-103">Delivering Live Streaming with Azure Media Services</span></span>
+# <a name="delivering-live-streaming-with-azure-media-services"></a><span data-ttu-id="7d119-103">Distribuzione di Live Streaming con Servizi multimediali di Azure</span><span class="sxs-lookup"><span data-stu-id="7d119-103">Delivering Live Streaming with Azure Media Services</span></span>
 
-## <a name="overview"></a><span data-ttu-id="0da2f-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="0da2f-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="7d119-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="7d119-104">Overview</span></span>
 
-<span data-ttu-id="0da2f-105">Servizi multimediali di Microsoft Azure offre API che inviano richieste a servizi multimediali per avviare operazioni, ad esempio creazione, avvio, arresto o eliminazione di un canale.</span><span class="sxs-lookup"><span data-stu-id="0da2f-105">Microsoft Azure Media Services offers APIs that send requests to Media Services to start operations (for example: create, start, stop, or delete a channel).</span></span> <span data-ttu-id="0da2f-106">Queste operazioni hanno un'esecuzione prolungata.</span><span class="sxs-lookup"><span data-stu-id="0da2f-106">These operations are long-running.</span></span>
+<span data-ttu-id="7d119-105">Servizi multimediali di Microsoft Azure offre API che inviano richieste di operazioni di toostart tooMedia Services (ad esempio: creare, avviare, arrestare o eliminare un canale).</span><span class="sxs-lookup"><span data-stu-id="7d119-105">Microsoft Azure Media Services offers APIs that send requests tooMedia Services toostart operations (for example: create, start, stop, or delete a channel).</span></span> <span data-ttu-id="7d119-106">Queste operazioni hanno un'esecuzione prolungata.</span><span class="sxs-lookup"><span data-stu-id="7d119-106">These operations are long-running.</span></span>
 
-<span data-ttu-id="0da2f-107">L'SDK di Servizi multimediali per .NET fornisce le API che inviano la richiesta e attendono il completamento dell'operazione (a livello interno, le API eseguono il polling dell'avanzamento dell'operazione a intervalli definiti).</span><span class="sxs-lookup"><span data-stu-id="0da2f-107">The Media Services .NET SDK provides APIs that send the request and wait for the operation to complete (internally, the APIs are polling for operation progress at some intervals).</span></span> <span data-ttu-id="0da2f-108">Ad esempio, quando si chiama channel.Start(), il metodo restituisce dopo l'avvio del canale.</span><span class="sxs-lookup"><span data-stu-id="0da2f-108">For example, when you call channel.Start(), the method returns after the channel is started.</span></span> <span data-ttu-id="0da2f-109">È possibile anche usare la versione asincrona: await channel.StartAsync(). Per informazioni sul modello asincrono basato su attività, vedere [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx).</span><span class="sxs-lookup"><span data-stu-id="0da2f-109">You can also use the asynchronous version: await channel.StartAsync() (for information about Task-based Asynchronous Pattern, see [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx)).</span></span> <span data-ttu-id="0da2f-110">Le API che inviano una richiesta di operazione e quindi eseguono il polling dello stato fino al completamento dell'operazione vengono definite "metodi di polling".</span><span class="sxs-lookup"><span data-stu-id="0da2f-110">APIs that send an operation request and then poll for the status until the operation is complete are called “polling methods”.</span></span> <span data-ttu-id="0da2f-111">Tali metodi (in special modo la versione asincrona) sono consigliati per le applicazioni rich client e/o i servizi con stato.</span><span class="sxs-lookup"><span data-stu-id="0da2f-111">These methods (especially the Async version) are recommended for rich client applications and/or stateful services.</span></span>
+<span data-ttu-id="7d119-107">Hello Media Services .NET SDK fornisce le API che inviano la richiesta hello e attendere hello operazione toocomplete (internamente, Buongiorno API eseguono il polling dell'avanzamento dell'operazione a intervalli definiti).</span><span class="sxs-lookup"><span data-stu-id="7d119-107">hello Media Services .NET SDK provides APIs that send hello request and wait for hello operation toocomplete (internally, hello APIs are polling for operation progress at some intervals).</span></span> <span data-ttu-id="7d119-108">Ad esempio, quando si chiama canale. Start (), il metodo hello restituisce dopo l'avvio del canale hello.</span><span class="sxs-lookup"><span data-stu-id="7d119-108">For example, when you call channel.Start(), hello method returns after hello channel is started.</span></span> <span data-ttu-id="7d119-109">È inoltre possibile utilizzare la versione asincrona di hello: attesa del canale. StartAsync() (per informazioni sul modello asincrono basato su attività, vedere [toccare](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx)).</span><span class="sxs-lookup"><span data-stu-id="7d119-109">You can also use hello asynchronous version: await channel.StartAsync() (for information about Task-based Asynchronous Pattern, see [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx)).</span></span> <span data-ttu-id="7d119-110">Le API che inviano una richiesta di operazione e quindi eseguire il polling per lo stato di hello fino al completamento dell'operazione hello vengono definite "metodi di polling".</span><span class="sxs-lookup"><span data-stu-id="7d119-110">APIs that send an operation request and then poll for hello status until hello operation is complete are called “polling methods”.</span></span> <span data-ttu-id="7d119-111">Questi metodi (in particolare versione asincrona di hello) sono consigliati per le applicazioni rich client e/o i servizi con stato.</span><span class="sxs-lookup"><span data-stu-id="7d119-111">These methods (especially hello Async version) are recommended for rich client applications and/or stateful services.</span></span>
 
-<span data-ttu-id="0da2f-112">In alcuni scenari è possibile che un'applicazione non possa attendere una richiesta HTTP con esecuzione prolungata e sia necessario eseguire il polling manuale dell'avanzamento dell'operazione.</span><span class="sxs-lookup"><span data-stu-id="0da2f-112">There are scenarios where an application cannot wait for a long running http request and wants to poll for the operation progress manually.</span></span> <span data-ttu-id="0da2f-113">Un esempio tipico può essere un browser che interagisce con un servizio Web senza stato: quando il browser richiede di creare un canale, il servizio Web avvia un'operazione con esecuzione prolungata e restituisce l'ID operazione al browser.</span><span class="sxs-lookup"><span data-stu-id="0da2f-113">A typical example would be a browser interacting with a stateless web service: when the browser requests to create a channel, the web service initiates a long running operation and returns the operation ID to the browser.</span></span> <span data-ttu-id="0da2f-114">Il browser potrebbe quindi chiedere al servizio Web di ottenere lo stato dell'operazione in base all'ID.</span><span class="sxs-lookup"><span data-stu-id="0da2f-114">The browser could then ask the web service to get the operation status based on the ID.</span></span> <span data-ttu-id="0da2f-115">L'SDK di Servizi multimediali per .NET fornisce API che sono utili per questo scenario,</span><span class="sxs-lookup"><span data-stu-id="0da2f-115">The Media Services .NET SDK provides APIs that are useful for this scenario.</span></span> <span data-ttu-id="0da2f-116">definite "metodi di non polling",</span><span class="sxs-lookup"><span data-stu-id="0da2f-116">These APIs are called “non-polling methods”.</span></span>
-<span data-ttu-id="0da2f-117">che sono caratterizzati dal seguente criterio di denominazione: Send*NomeOperazione*Operation, ad esempio SendCreateOperation.</span><span class="sxs-lookup"><span data-stu-id="0da2f-117">The “non-polling methods” have the following naming pattern: Send*OperationName*Operation (for example, SendCreateOperation).</span></span> <span data-ttu-id="0da2f-118">I metodi Send*NomeOperazione*Operation restituiscono l'oggetto **IOperation**. L'oggetto restituito contiene informazioni che consentono di tenere traccia dell'operazione.</span><span class="sxs-lookup"><span data-stu-id="0da2f-118">Send*OperationName*Operation methods return the **IOperation** object; the returned object contains information that can be used to track the operation.</span></span> <span data-ttu-id="0da2f-119">I metodi Send*NomeOperazione*OperationAsync restituiscono **Task<IOperation>**.</span><span class="sxs-lookup"><span data-stu-id="0da2f-119">The Send*OperationName*OperationAsync methods return **Task<IOperation>**.</span></span>
+<span data-ttu-id="7d119-112">Esistono scenari in cui un'applicazione non può attendere una richiesta http a esecuzione prolungata e desidera toopoll hello dell'avanzamento dell'operazione manualmente.</span><span class="sxs-lookup"><span data-stu-id="7d119-112">There are scenarios where an application cannot wait for a long running http request and wants toopoll for hello operation progress manually.</span></span> <span data-ttu-id="7d119-113">Un esempio tipico sarebbe un browser che interagisce con un servizio web senza stato: quando il browser di hello richiede toocreate un canale, servizio web hello avvia un'operazione a esecuzione prolungata e restituisce hello browser toohello ID di operazione.</span><span class="sxs-lookup"><span data-stu-id="7d119-113">A typical example would be a browser interacting with a stateless web service: when hello browser requests toocreate a channel, hello web service initiates a long running operation and returns hello operation ID toohello browser.</span></span> <span data-ttu-id="7d119-114">browser Hello potrebbe quindi chiedere di hello web servizio tooget hello stato dell'operazione basato sull'ID di hello.</span><span class="sxs-lookup"><span data-stu-id="7d119-114">hello browser could then ask hello web service tooget hello operation status based on hello ID.</span></span> <span data-ttu-id="7d119-115">Hello Media Services .NET SDK fornisce le API che sono utili per questo scenario.</span><span class="sxs-lookup"><span data-stu-id="7d119-115">hello Media Services .NET SDK provides APIs that are useful for this scenario.</span></span> <span data-ttu-id="7d119-116">definite "metodi di non polling",</span><span class="sxs-lookup"><span data-stu-id="7d119-116">These APIs are called “non-polling methods”.</span></span>
+<span data-ttu-id="7d119-117">"metodi di non polling" Hello hanno hello seguente modello di denominazione: inviare*OperationName*operazione (ad esempio, SendCreateOperation).</span><span class="sxs-lookup"><span data-stu-id="7d119-117">hello “non-polling methods” have hello following naming pattern: Send*OperationName*Operation (for example, SendCreateOperation).</span></span> <span data-ttu-id="7d119-118">Inviare*OperationName*operazione restituiscono hello **IOperation** oggetto; hello oggetto restituito contiene le informazioni che possono essere utilizzati tootrack hello operazione.</span><span class="sxs-lookup"><span data-stu-id="7d119-118">Send*OperationName*Operation methods return hello **IOperation** object; hello returned object contains information that can be used tootrack hello operation.</span></span> <span data-ttu-id="7d119-119">Hello trasmissione*OperationName*OperationAsync restituiscono **attività<IOperation>**.</span><span class="sxs-lookup"><span data-stu-id="7d119-119">hello Send*OperationName*OperationAsync methods return **Task<IOperation>**.</span></span>
 
-<span data-ttu-id="0da2f-120">Attualmente, le classi seguenti supportano i metodi non polling: **Channel**, **StreamingEndpoint** e **Program**.</span><span class="sxs-lookup"><span data-stu-id="0da2f-120">Currently, the following classes support non-polling methods:  **Channel**, **StreamingEndpoint**, and **Program**.</span></span>
+<span data-ttu-id="7d119-120">Attualmente, hello dei seguenti metodi di non polling supporto classi: **canale**, **StreamingEndpoint**, e **programma**.</span><span class="sxs-lookup"><span data-stu-id="7d119-120">Currently, hello following classes support non-polling methods:  **Channel**, **StreamingEndpoint**, and **Program**.</span></span>
 
-<span data-ttu-id="0da2f-121">Per eseguire il polling dello stato delle operazioni, usare il metodo **GetOperation** sulla classe **OperationBaseCollection**.</span><span class="sxs-lookup"><span data-stu-id="0da2f-121">To poll for the operation status, use the **GetOperation** method on the **OperationBaseCollection** class.</span></span> <span data-ttu-id="0da2f-122">Usare gli intervalli seguenti per controllare lo stato dell'operazione: per le operazioni **Channel** e **StreamingEndpoint**, usare 30 secondi; per le operazioni **Program**, usare 10 secondi.</span><span class="sxs-lookup"><span data-stu-id="0da2f-122">Use the following intervals to check the operation status: for **Channel** and **StreamingEndpoint** operations, use 30 seconds; for **Program** operations, use 10 seconds.</span></span>
+<span data-ttu-id="7d119-121">toopoll hello dello stato dell'operazione, utilizzare hello **GetOperation** metodo hello **OperationBaseCollection** classe.</span><span class="sxs-lookup"><span data-stu-id="7d119-121">toopoll for hello operation status, use hello **GetOperation** method on hello **OperationBaseCollection** class.</span></span> <span data-ttu-id="7d119-122">Utilizzare hello seguente lo stato dell'operazione intervalli toocheck hello: per **canale** e **StreamingEndpoint** operazioni, usare 30 secondi; per **programma** operazioni, utilizzare 10 secondi.</span><span class="sxs-lookup"><span data-stu-id="7d119-122">Use hello following intervals toocheck hello operation status: for **Channel** and **StreamingEndpoint** operations, use 30 seconds; for **Program** operations, use 10 seconds.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="0da2f-123">Creare e configurare un progetto di Visual Studio</span><span class="sxs-lookup"><span data-stu-id="0da2f-123">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="7d119-123">Creare e configurare un progetto di Visual Studio</span><span class="sxs-lookup"><span data-stu-id="7d119-123">Create and configure a Visual Studio project</span></span>
 
-<span data-ttu-id="0da2f-124">Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="0da2f-124">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span>
+<span data-ttu-id="7d119-124">Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="7d119-124">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span>
 
-## <a name="example"></a><span data-ttu-id="0da2f-125">Esempio</span><span class="sxs-lookup"><span data-stu-id="0da2f-125">Example</span></span>
+## <a name="example"></a><span data-ttu-id="7d119-125">Esempio</span><span class="sxs-lookup"><span data-stu-id="7d119-125">Example</span></span>
 
-<span data-ttu-id="0da2f-126">L'esempio seguente definisce una classe denominata **ChannelOperations**.</span><span class="sxs-lookup"><span data-stu-id="0da2f-126">The following example defines a class called **ChannelOperations**.</span></span> <span data-ttu-id="0da2f-127">Questa definizione di classe può essere un punto di partenza per la definizione di classe del servizio Web.</span><span class="sxs-lookup"><span data-stu-id="0da2f-127">This class definition could be a starting point for your web service class definition.</span></span> <span data-ttu-id="0da2f-128">Per esigenze di semplicità, negli esempi seguenti vengono usate le versioni non asincrone dei metodi.</span><span class="sxs-lookup"><span data-stu-id="0da2f-128">For simplicity, the following examples use the non-async versions of methods.</span></span>
+<span data-ttu-id="7d119-126">esempio Hello definisce una classe denominata **ChannelOperations**.</span><span class="sxs-lookup"><span data-stu-id="7d119-126">hello following example defines a class called **ChannelOperations**.</span></span> <span data-ttu-id="7d119-127">Questa definizione di classe può essere un punto di partenza per la definizione di classe del servizio Web.</span><span class="sxs-lookup"><span data-stu-id="7d119-127">This class definition could be a starting point for your web service class definition.</span></span> <span data-ttu-id="7d119-128">Per semplicità, hello negli esempi seguenti utilizzano versioni non asincrone hello dei metodi.</span><span class="sxs-lookup"><span data-stu-id="7d119-128">For simplicity, hello following examples use hello non-async versions of methods.</span></span>
 
-<span data-ttu-id="0da2f-129">Nell'esempio viene inoltre illustrato il modo in cui il client potrebbe usare questa classe.</span><span class="sxs-lookup"><span data-stu-id="0da2f-129">The example also shows how the client might use this class.</span></span>
+<span data-ttu-id="7d119-129">esempio Hello Mostra anche come client hello possibile utilizzare questa classe.</span><span class="sxs-lookup"><span data-stu-id="7d119-129">hello example also shows how hello client might use this class.</span></span>
 
-### <a name="channeloperations-class-definition"></a><span data-ttu-id="0da2f-130">Definizione della classe ChannelOperations</span><span class="sxs-lookup"><span data-stu-id="0da2f-130">ChannelOperations class definition</span></span>
+### <a name="channeloperations-class-definition"></a><span data-ttu-id="7d119-130">Definizione della classe ChannelOperations</span><span class="sxs-lookup"><span data-stu-id="7d119-130">ChannelOperations class definition</span></span>
 
     using Microsoft.WindowsAzure.MediaServices.Client;
     using System;
@@ -54,12 +54,12 @@ ms.lasthandoff: 08/29/2017
     using System.Net;
 
     /// <summary> 
-    /// The ChannelOperations class only implements 
-    /// the Channel’s creation operation. 
+    /// hello ChannelOperations class only implements 
+    /// hello Channel’s creation operation. 
     /// </summary> 
     public class ChannelOperations
     {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -77,12 +77,12 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary>  
-        /// Initiates the creation of a new channel.  
+        /// Initiates hello creation of a new channel.  
         /// </summary>  
-        /// <param name="channelName">Name to be given to the new channel</param>  
+        /// <param name="channelName">Name toobe given toohello new channel</param>  
         /// <returns>  
-        /// Operation Id for the long running operation being executed by Media Services. 
-        /// Use this operation Id to poll for the channel creation status. 
+        /// Operation Id for hello long running operation being executed by Media Services. 
+        /// Use this operation Id toopoll for hello channel creation status. 
         /// </returns> 
         public string StartChannelCreation(string channelName)
         {
@@ -99,14 +99,14 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary> 
-        /// Checks if the operation has been completed. 
-        /// If the operation succeeded, the created channel Id is returned in the out parameter.
+        /// Checks if hello operation has been completed. 
+        /// If hello operation succeeded, hello created channel Id is returned in hello out parameter.
         /// </summary> 
-        /// <param name="operationId">The operation Id.</param> 
+        /// <param name="operationId">hello operation Id.</param> 
         /// <param name="channel">
-        /// If the operation succeeded, 
-        /// the created channel Id is returned in the out parameter.</param>
-        /// <returns>Returns false if the operation is still in progress; otherwise, true.</returns> 
+        /// If hello operation succeeded, 
+        /// hello created channel Id is returned in hello out parameter.</param>
+        /// <returns>Returns false if hello operation is still in progress; otherwise, true.</returns> 
         public bool IsCompleted(string operationId, out string channelId)
         {
             IOperation operation = _context.Operations.GetOperation(operationId);
@@ -117,9 +117,9 @@ ms.lasthandoff: 08/29/2017
             switch (operation.State)
             {
                 case OperationState.Failed:
-                    // Handle the failure. 
+                    // Handle hello failure. 
                     // For example, throw an exception. 
-                    // Use the following information in the exception: operationId, operation.ErrorMessage.
+                    // Use hello following information in hello exception: operationId, operation.ErrorMessage.
                     break;
                 case OperationState.Succeeded:
                     completed = true;
@@ -180,7 +180,7 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-### <a name="the-client-code"></a><span data-ttu-id="0da2f-131">The client code</span><span class="sxs-lookup"><span data-stu-id="0da2f-131">The client code</span></span>
+### <a name="hello-client-code"></a><span data-ttu-id="7d119-131">codice client Hello</span><span class="sxs-lookup"><span data-stu-id="7d119-131">hello client code</span></span>
     ChannelOperations channelOperations = new ChannelOperations();
     string opId = channelOperations.StartChannelCreation("MyChannel001");
 
@@ -193,14 +193,14 @@ ms.lasthandoff: 08/29/2017
         isCompleted = channelOperations.IsCompleted(opId, out channelId);
     }
 
-    // If we got here, we should have the newly created channel id.
+    // If we got here, we should have hello newly created channel id.
     Console.WriteLine(channelId);
 
 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="0da2f-132">Percorsi di apprendimento di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="0da2f-132">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="7d119-132">Percorsi di apprendimento di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="7d119-132">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="0da2f-133">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="0da2f-133">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="7d119-133">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="7d119-133">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

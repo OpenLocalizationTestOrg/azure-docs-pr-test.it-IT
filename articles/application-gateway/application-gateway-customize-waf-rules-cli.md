@@ -1,6 +1,6 @@
 ---
-title: Personalizzare le regole del web application firewall nel gateway applicazione di Azure - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: Questo articolo descrive come personalizzare le regole del web application firewall nel gateway applicazione con l'interfaccia della riga di comando di Azure 2.0.
+title: regole del firewall applicazione web aaaCustomize in Gateway applicazione Azure - CLI di Azure 2.0 | Documenti Microsoft
+description: Questo articolo fornisce informazioni sul funzionamento delle regole firewall di applicazione web toocustomize in Gateway applicazione con hello CLI di Azure 2.0.
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,34 +14,34 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: 456be048dc2d82cd50d145b71f17a84a7189ea96
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b83ffb9f6a7e0d0c8c970885d2bcb3b63d32581c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-web-application-firewall-rules-through-the-azure-cli-20"></a><span data-ttu-id="c1b2d-103">Personalizzare le regole del web application firewall con l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="c1b2d-103">Customize web application firewall rules through the Azure CLI 2.0</span></span>
+# <a name="customize-web-application-firewall-rules-through-hello-azure-cli-20"></a><span data-ttu-id="69332-103">Personalizzare le regole di firewall applicazione web tramite hello Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="69332-103">Customize web application firewall rules through hello Azure CLI 2.0</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="c1b2d-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="c1b2d-104">Azure portal</span></span>](application-gateway-customize-waf-rules-portal.md)
-> * [<span data-ttu-id="c1b2d-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="c1b2d-105">PowerShell</span></span>](application-gateway-customize-waf-rules-powershell.md)
-> * [<span data-ttu-id="c1b2d-106">Interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="c1b2d-106">Azure CLI 2.0</span></span>](application-gateway-customize-waf-rules-cli.md)
+> * [<span data-ttu-id="69332-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="69332-104">Azure portal</span></span>](application-gateway-customize-waf-rules-portal.md)
+> * [<span data-ttu-id="69332-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="69332-105">PowerShell</span></span>](application-gateway-customize-waf-rules-powershell.md)
+> * [<span data-ttu-id="69332-106">Interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="69332-106">Azure CLI 2.0</span></span>](application-gateway-customize-waf-rules-cli.md)
 
-<span data-ttu-id="c1b2d-107">Il Web application firewall del gateway applicazione di Azure (WAF) fornisce la protezione per le Applicazioni Web.</span><span class="sxs-lookup"><span data-stu-id="c1b2d-107">The Azure Application Gateway web application firewall (WAF) provides protection for web applications.</span></span> <span data-ttu-id="c1b2d-108">Queste protezioni vengono fornite dal Set di regole principali (CRS) di Open Web Application Security Project (OWASP).</span><span class="sxs-lookup"><span data-stu-id="c1b2d-108">These protections are provided by the Open Web Application Security Project (OWASP) Core Rule Set (CRS).</span></span> <span data-ttu-id="c1b2d-109">Alcune regole possono generare falsi positivi e bloccare il traffico reale.</span><span class="sxs-lookup"><span data-stu-id="c1b2d-109">Some rules can cause false positives and block real traffic.</span></span> <span data-ttu-id="c1b2d-110">Per questo motivo, il gateway applicazione offre la possibilità di personalizzare regole e gruppi di regole.</span><span class="sxs-lookup"><span data-stu-id="c1b2d-110">For this reason, Application Gateway provides the capability to customize rule groups and rules.</span></span> <span data-ttu-id="c1b2d-111">Per altre informazioni su regole e gruppi di regole specifici, vedere l'[Elenco di regole e gruppi di regole CRS del Web application firewall](application-gateway-crs-rulegroups-rules.md).</span><span class="sxs-lookup"><span data-stu-id="c1b2d-111">For more information on the specific rule groups and rules, see [List of web application firewall CRS rule groups and rules](application-gateway-crs-rulegroups-rules.md).</span></span>
+<span data-ttu-id="69332-107">firewall applicazione web di Hello Gateway applicazione Azure (WAF) fornisce protezione per le applicazioni web.</span><span class="sxs-lookup"><span data-stu-id="69332-107">hello Azure Application Gateway web application firewall (WAF) provides protection for web applications.</span></span> <span data-ttu-id="69332-108">Queste protezioni sono fornite da hello aprire Web applicazione sicurezza progetto (OWASP) Core regola impostata (CR).</span><span class="sxs-lookup"><span data-stu-id="69332-108">These protections are provided by hello Open Web Application Security Project (OWASP) Core Rule Set (CRS).</span></span> <span data-ttu-id="69332-109">Alcune regole possono generare falsi positivi e bloccare il traffico reale.</span><span class="sxs-lookup"><span data-stu-id="69332-109">Some rules can cause false positives and block real traffic.</span></span> <span data-ttu-id="69332-110">Per questo motivo, il Gateway applicazione fornisce le regole e gruppi di regole toocustomize funzionalità hello.</span><span class="sxs-lookup"><span data-stu-id="69332-110">For this reason, Application Gateway provides hello capability toocustomize rule groups and rules.</span></span> <span data-ttu-id="69332-111">Per ulteriori informazioni sui gruppi di regole specifici hello e sulle regole, vedere [elenco di regole e gruppi di regole CRS firewall applicazione web](application-gateway-crs-rulegroups-rules.md).</span><span class="sxs-lookup"><span data-stu-id="69332-111">For more information on hello specific rule groups and rules, see [List of web application firewall CRS rule groups and rules](application-gateway-crs-rulegroups-rules.md).</span></span>
 
-## <a name="view-rule-groups-and-rules"></a><span data-ttu-id="c1b2d-112">Visualizzare le regole e i gruppi di regole</span><span class="sxs-lookup"><span data-stu-id="c1b2d-112">View rule groups and rules</span></span>
+## <a name="view-rule-groups-and-rules"></a><span data-ttu-id="69332-112">Visualizzare le regole e i gruppi di regole</span><span class="sxs-lookup"><span data-stu-id="69332-112">View rule groups and rules</span></span>
 
-<span data-ttu-id="c1b2d-113">Gli esempi di codice seguenti illustrano come visualizzare le regole e i gruppi di regole configurabili.</span><span class="sxs-lookup"><span data-stu-id="c1b2d-113">The following code examples show how to view rules and rule groups that are configurable.</span></span>
+<span data-ttu-id="69332-113">Hello esempi di codice seguente mostra come tooview regole regole e gruppi che possono essere configurati.</span><span class="sxs-lookup"><span data-stu-id="69332-113">hello following code examples show how tooview rules and rule groups that are configurable.</span></span>
 
-### <a name="view-rule-groups"></a><span data-ttu-id="c1b2d-114">Visualizzare i gruppi di regole</span><span class="sxs-lookup"><span data-stu-id="c1b2d-114">View rule groups</span></span>
+### <a name="view-rule-groups"></a><span data-ttu-id="69332-114">Visualizzare i gruppi di regole</span><span class="sxs-lookup"><span data-stu-id="69332-114">View rule groups</span></span>
 
-<span data-ttu-id="c1b2d-115">L'esempio seguente mostra come visualizzare i gruppi di regole:</span><span class="sxs-lookup"><span data-stu-id="c1b2d-115">The following example shows how to view the rule groups:</span></span>
+<span data-ttu-id="69332-115">Hello di esempio seguente viene illustrato come tooview hello gruppi di regole:</span><span class="sxs-lookup"><span data-stu-id="69332-115">hello following example shows how tooview hello rule groups:</span></span>
 
 ```azurecli-interactive
 az network application-gateway waf-config list-rule-sets --type OWASP
 ```
 
-<span data-ttu-id="c1b2d-116">Di seguito è riportata una parte di risposta dell'esempio precedente:</span><span class="sxs-lookup"><span data-stu-id="c1b2d-116">The following output is a truncated response from the preceding example:</span></span>
+<span data-ttu-id="69332-116">Dopo l'output di Hello è una risposta troncata da hello sopra riportato:</span><span class="sxs-lookup"><span data-stu-id="69332-116">hello following output is a truncated response from hello preceding example:</span></span>
 
 ```
 [
@@ -86,15 +86,15 @@ az network application-gateway waf-config list-rule-sets --type OWASP
 ]
 ```
 
-### <a name="view-rules-in-a-rule-group"></a><span data-ttu-id="c1b2d-117">Visualizzare le regole in un gruppo di regole</span><span class="sxs-lookup"><span data-stu-id="c1b2d-117">View rules in a rule group</span></span>
+### <a name="view-rules-in-a-rule-group"></a><span data-ttu-id="69332-117">Visualizzare le regole in un gruppo di regole</span><span class="sxs-lookup"><span data-stu-id="69332-117">View rules in a rule group</span></span>
 
-<span data-ttu-id="c1b2d-118">L'esempio seguente mostra come visualizzare le regole in un gruppo di regole specificato:</span><span class="sxs-lookup"><span data-stu-id="c1b2d-118">The following example shows how to view rules in a specified rule group:</span></span>
+<span data-ttu-id="69332-118">Hello di esempio seguente viene illustrato come tooview regole in un gruppo di regole specificato:</span><span class="sxs-lookup"><span data-stu-id="69332-118">hello following example shows how tooview rules in a specified rule group:</span></span>
 
 ```azurecli-interactive
 az network application-gateway waf-config list-rule-sets --group "REQUEST-910-IP-REPUTATION"
 ```
 
-<span data-ttu-id="c1b2d-119">Di seguito è riportata una parte di risposta dell'esempio precedente:</span><span class="sxs-lookup"><span data-stu-id="c1b2d-119">The following output is a truncated response from the preceding example:</span></span>
+<span data-ttu-id="69332-119">Dopo l'output di Hello è una risposta troncata da hello sopra riportato:</span><span class="sxs-lookup"><span data-stu-id="69332-119">hello following output is a truncated response from hello preceding example:</span></span>
 
 ```
 [
@@ -125,17 +125,17 @@ az network application-gateway waf-config list-rule-sets --group "REQUEST-910-IP
 ]
 ```
 
-## <a name="disable-rules"></a><span data-ttu-id="c1b2d-120">Disabilitare le regole</span><span class="sxs-lookup"><span data-stu-id="c1b2d-120">Disable rules</span></span>
+## <a name="disable-rules"></a><span data-ttu-id="69332-120">Disabilitare le regole</span><span class="sxs-lookup"><span data-stu-id="69332-120">Disable rules</span></span>
 
-<span data-ttu-id="c1b2d-121">L'esempio seguente disabilita le regole `910018` e `910017` in un gateway applicazione:</span><span class="sxs-lookup"><span data-stu-id="c1b2d-121">The following example disables rules `910018` and `910017` on an application gateway:</span></span>
+<span data-ttu-id="69332-121">esempio Hello disabilita le regole `910018` e `910017` su un gateway applicazione:</span><span class="sxs-lookup"><span data-stu-id="69332-121">hello following example disables rules `910018` and `910017` on an application gateway:</span></span>
 
 ```azurecli-interactive
 az network application-gateway waf-config set --resource-group AdatumAppGatewayRG --gateway-name AdatumAppGateway --enabled true --rule-set-version 3.0 --disabled-rules 910018 910017
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="c1b2d-122">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c1b2d-122">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="69332-122">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="69332-122">Next steps</span></span>
 
-<span data-ttu-id="c1b2d-123">Dopo aver configurato le regole disattivate, viene descritto come visualizzare i log WAF.</span><span class="sxs-lookup"><span data-stu-id="c1b2d-123">After you configure your disabled rules, you can learn how to view your WAF logs.</span></span> <span data-ttu-id="c1b2d-124">Per altre informazioni, vedere [Diagnostica del gateway applicazione](application-gateway-diagnostics.md#diagnostic-logging).</span><span class="sxs-lookup"><span data-stu-id="c1b2d-124">For more information, see [Application Gateway diagnostics](application-gateway-diagnostics.md#diagnostic-logging).</span></span>
+<span data-ttu-id="69332-123">Dopo aver configurato le regole disabilitate, utili come tooview i log WAF.</span><span class="sxs-lookup"><span data-stu-id="69332-123">After you configure your disabled rules, you can learn how tooview your WAF logs.</span></span> <span data-ttu-id="69332-124">Per altre informazioni, vedere [Diagnostica del gateway applicazione](application-gateway-diagnostics.md#diagnostic-logging).</span><span class="sxs-lookup"><span data-stu-id="69332-124">For more information, see [Application Gateway diagnostics](application-gateway-diagnostics.md#diagnostic-logging).</span></span>
 
 [fig1]: ./media/application-gateway-customize-waf-rules-portal/1.png
 [1]: ./media/application-gateway-customize-waf-rules-portal/figure1.png

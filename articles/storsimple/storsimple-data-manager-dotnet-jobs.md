@@ -1,6 +1,6 @@
 ---
-title: Usare .NET SDK per i processi di Microsoft Azure StorSimple Data Manager | Documentazione Microsoft
-description: Informazioni su come usare .NET SDK per avviare i processi di StorSimple Data Manager (anteprima privata)
+title: aaaUse .NET SDK per i processi di gestione di dati di Microsoft Azure StorSimple | Documenti Microsoft
+description: Informazioni su come i processi di toouse .NET SDK toolaunch StorSimple Data Manager (anteprima privata)
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 11/22/2016
 ms.author: vidarmsft
-ms.openlocfilehash: 44d243a034b20b99faf284c8615e470bc6f9d020
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b07fe64369574c994fd28d42786aa02dca435ccc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-net-sdk-to-initiate-data-transformation-private-preview"></a><span data-ttu-id="9002b-103">Usare .Net SDK per avviare la trasformazione dei dati (anteprima privata)</span><span class="sxs-lookup"><span data-stu-id="9002b-103">Use the .Net SDK to initiate data transformation (Private Preview)</span></span>
+# <a name="use-hello-net-sdk-tooinitiate-data-transformation-private-preview"></a><span data-ttu-id="67307-103">Utilizzare hello .net SDK tooinitiate la trasformazione dei dati (anteprima privata)</span><span class="sxs-lookup"><span data-stu-id="67307-103">Use hello .Net SDK tooinitiate data transformation (Private Preview)</span></span>
 
-## <a name="overview"></a><span data-ttu-id="9002b-104">Overview</span><span class="sxs-lookup"><span data-stu-id="9002b-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="67307-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="67307-104">Overview</span></span>
 
-<span data-ttu-id="9002b-105">Questo articolo illustra come usare la funzione di trasformazione dei dati all'interno del servizio StorSimple Data Manager per trasformare i dati del dispositivo StorSimple.</span><span class="sxs-lookup"><span data-stu-id="9002b-105">This article explains how you can use the data transformation feature within the StorSimple Data Manager service to transform StorSimple device data.</span></span> <span data-ttu-id="9002b-106">I dati trasformati vengono quindi usati da altri servizi di Azure nel cloud.</span><span class="sxs-lookup"><span data-stu-id="9002b-106">The transformed data is then consumed by other Azure services in the cloud.</span></span> <span data-ttu-id="9002b-107">L'articolo descrive anche una procedura dettagliata per creare un'applicazione console .NET di esempio allo scopo di avviare un processo di trasformazione dei dati e tenere traccia dei risultati per il completamento.</span><span class="sxs-lookup"><span data-stu-id="9002b-107">The article also has a walkthrough to help create a sample .NET console application to initiate a data transformation job and then track it for completion.</span></span>
+<span data-ttu-id="67307-105">In questo articolo viene illustrato come utilizzare funzionalità di trasformazione dati hello all'interno di tootransform di servizio dati di StorSimple Manager hello dati del dispositivo StorSimple.</span><span class="sxs-lookup"><span data-stu-id="67307-105">This article explains how you can use hello data transformation feature within hello StorSimple Data Manager service tootransform StorSimple device data.</span></span> <span data-ttu-id="67307-106">Hello dati trasformati vengono quindi utilizzati da altri servizi Azure nel cloud hello.</span><span class="sxs-lookup"><span data-stu-id="67307-106">hello transformed data is then consumed by other Azure services in hello cloud.</span></span> <span data-ttu-id="67307-107">articolo Hello dispone inoltre toohelp una procedura dettagliata, creare un tooinitiate di applicazione console .NET esempio un processo di trasformazione dei dati e tenere traccia dei risultati per il completamento.</span><span class="sxs-lookup"><span data-stu-id="67307-107">hello article also has a walkthrough toohelp create a sample .NET console application tooinitiate a data transformation job and then track it for completion.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="9002b-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="9002b-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="67307-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="67307-108">Prerequisites</span></span>
 
-<span data-ttu-id="9002b-109">Prima di iniziare, assicurarsi di disporre di:</span><span class="sxs-lookup"><span data-stu-id="9002b-109">Before you begin, ensure that you have:</span></span>
-*   <span data-ttu-id="9002b-110">Un sistema con Visual Studio 2012, 2013, 2015 o 2017 installato.</span><span class="sxs-lookup"><span data-stu-id="9002b-110">A system with Visual Studio 2012, 2013, 2015, or 2017 installed.</span></span>
-*   <span data-ttu-id="9002b-111">Azure Powershell installato.</span><span class="sxs-lookup"><span data-stu-id="9002b-111">Azure Powershell installed.</span></span> <span data-ttu-id="9002b-112">[Scaricare Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).</span><span class="sxs-lookup"><span data-stu-id="9002b-112">[Download Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).</span></span>
-*   <span data-ttu-id="9002b-113">Impostazioni di configurazione per l'inizializzazione del processo di trasformazione dei dati (le istruzioni per ottenere queste impostazioni sono incluse qui).</span><span class="sxs-lookup"><span data-stu-id="9002b-113">Configuration settings to initialize the Data Transformation job (instructions to obtain these settings are included here).</span></span>
-*   <span data-ttu-id="9002b-114">Una definizione di processo configurata correttamente in una risorsa dati ibridi all'interno di un gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="9002b-114">A job definition that has been correctly configured in a Hybrid Data Resource within a Resource Group.</span></span>
-*   <span data-ttu-id="9002b-115">Tutte le DLL necessarie.</span><span class="sxs-lookup"><span data-stu-id="9002b-115">All the required dlls.</span></span> <span data-ttu-id="9002b-116">Scaricare le DLL dal [repository GitHub](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls).</span><span class="sxs-lookup"><span data-stu-id="9002b-116">Download these dlls from the [GitHub repository](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls).</span></span>
-*   <span data-ttu-id="9002b-117">[Script](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/blob/master/Data_Manager_Job_Run/Get-ConfigurationParams.ps1) `Get-ConfigurationParams.ps1` dal repository GitHub.</span><span class="sxs-lookup"><span data-stu-id="9002b-117">`Get-ConfigurationParams.ps1` [script](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/blob/master/Data_Manager_Job_Run/Get-ConfigurationParams.ps1) from the github repository.</span></span>
+<span data-ttu-id="67307-109">Prima di iniziare, assicurarsi di disporre di:</span><span class="sxs-lookup"><span data-stu-id="67307-109">Before you begin, ensure that you have:</span></span>
+*   <span data-ttu-id="67307-110">Un sistema con Visual Studio 2012, 2013, 2015 o 2017 installato.</span><span class="sxs-lookup"><span data-stu-id="67307-110">A system with Visual Studio 2012, 2013, 2015, or 2017 installed.</span></span>
+*   <span data-ttu-id="67307-111">Azure Powershell installato.</span><span class="sxs-lookup"><span data-stu-id="67307-111">Azure Powershell installed.</span></span> <span data-ttu-id="67307-112">[Scaricare Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).</span><span class="sxs-lookup"><span data-stu-id="67307-112">[Download Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).</span></span>
+*   <span data-ttu-id="67307-113">Configurazione processo impostazioni di tooinitialize hello la trasformazione dei dati (istruzioni tooobtain queste impostazioni sono incluse in questo caso).</span><span class="sxs-lookup"><span data-stu-id="67307-113">Configuration settings tooinitialize hello Data Transformation job (instructions tooobtain these settings are included here).</span></span>
+*   <span data-ttu-id="67307-114">Una definizione di processo configurata correttamente in una risorsa dati ibridi all'interno di un gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="67307-114">A job definition that has been correctly configured in a Hybrid Data Resource within a Resource Group.</span></span>
+*   <span data-ttu-id="67307-115">Tutte le DLL necessarie hello.</span><span class="sxs-lookup"><span data-stu-id="67307-115">All hello required dlls.</span></span> <span data-ttu-id="67307-116">Scaricare queste DLL da hello [repository GitHub](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls).</span><span class="sxs-lookup"><span data-stu-id="67307-116">Download these dlls from hello [GitHub repository](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls).</span></span>
+*   <span data-ttu-id="67307-117">`Get-ConfigurationParams.ps1`[script](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/blob/master/Data_Manager_Job_Run/Get-ConfigurationParams.ps1) dal repository github hello.</span><span class="sxs-lookup"><span data-stu-id="67307-117">`Get-ConfigurationParams.ps1` [script](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/blob/master/Data_Manager_Job_Run/Get-ConfigurationParams.ps1) from hello github repository.</span></span>
 
-## <a name="step-by-step"></a><span data-ttu-id="9002b-118">Procedura dettagliata</span><span class="sxs-lookup"><span data-stu-id="9002b-118">Step-by-step</span></span>
+## <a name="step-by-step"></a><span data-ttu-id="67307-118">Procedura dettagliata</span><span class="sxs-lookup"><span data-stu-id="67307-118">Step-by-step</span></span>
 
-<span data-ttu-id="9002b-119">Eseguire la procedura seguente per usare .NET allo scopo di avviare un processo di trasformazione dei dati.</span><span class="sxs-lookup"><span data-stu-id="9002b-119">Perform the following steps to use .NET to launch a data transformation job.</span></span>
+<span data-ttu-id="67307-119">Eseguire hello seguendo i passaggi toouse .NET toolaunch un processo di trasformazione dei dati.</span><span class="sxs-lookup"><span data-stu-id="67307-119">Perform hello following steps toouse .NET toolaunch a data transformation job.</span></span>
 
-1. <span data-ttu-id="9002b-120">Per recuperare i parametri di configurazione, eseguire la procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="9002b-120">To retrieve the configuration parameters, do the following steps:</span></span>
-    1. <span data-ttu-id="9002b-121">Scaricare lo script `Get-ConfigurationParams.ps1` dal repository GitHub nel percorso `C:\DataTransformation`.</span><span class="sxs-lookup"><span data-stu-id="9002b-121">Download the `Get-ConfigurationParams.ps1` from the github repository script in `C:\DataTransformation` location.</span></span>
-    1. <span data-ttu-id="9002b-122">Eseguire lo script `Get-ConfigurationParams.ps1` dal repository GitHub.</span><span class="sxs-lookup"><span data-stu-id="9002b-122">Run the `Get-ConfigurationParams.ps1` script from the github repository.</span></span> <span data-ttu-id="9002b-123">Digitare il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="9002b-123">Type the following command:</span></span>
+1. <span data-ttu-id="67307-120">parametri di configurazione tooretrieve hello, hello i passaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="67307-120">tooretrieve hello configuration parameters, do hello following steps:</span></span>
+    1. <span data-ttu-id="67307-121">Scaricare hello `Get-ConfigurationParams.ps1` dallo script di repository github hello in `C:\DataTransformation` percorso.</span><span class="sxs-lookup"><span data-stu-id="67307-121">Download hello `Get-ConfigurationParams.ps1` from hello github repository script in `C:\DataTransformation` location.</span></span>
+    1. <span data-ttu-id="67307-122">Eseguire hello `Get-ConfigurationParams.ps1` script dal repository github hello.</span><span class="sxs-lookup"><span data-stu-id="67307-122">Run hello `Get-ConfigurationParams.ps1` script from hello github repository.</span></span> <span data-ttu-id="67307-123">Digitare hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="67307-123">Type hello following command:</span></span>
 
         ```
         C:\DataTransformation\Get-ConfigurationParams.ps1 -SubscriptionName "AzureSubscriptionName" -ActiveDirectoryKey "AnyRandomPassword" -AppName "ApplicationName"
          ```
-        <span data-ttu-id="9002b-124">È possibile trasmettere qualsiasi valore per ActiveDirectoryKey e AppName.</span><span class="sxs-lookup"><span data-stu-id="9002b-124">You can pass in any values for the ActiveDirectoryKey and AppName.</span></span>
+        <span data-ttu-id="67307-124">È possibile passare in uno qualsiasi dei valori hello ActiveDirectoryKey e AppName.</span><span class="sxs-lookup"><span data-stu-id="67307-124">You can pass in any values for hello ActiveDirectoryKey and AppName.</span></span>
 
 
-2. <span data-ttu-id="9002b-125">Questo script restituisce i valori seguenti:</span><span class="sxs-lookup"><span data-stu-id="9002b-125">This script outputs the following values:</span></span>
-    * <span data-ttu-id="9002b-126">ID Client</span><span class="sxs-lookup"><span data-stu-id="9002b-126">Client ID</span></span>
-    * <span data-ttu-id="9002b-127">ID tenant</span><span class="sxs-lookup"><span data-stu-id="9002b-127">Tenant ID</span></span>
-    * <span data-ttu-id="9002b-128">Chiave di Active Directory (uguale a quella immessa in precedenza)</span><span class="sxs-lookup"><span data-stu-id="9002b-128">Active Directory key (same as the one entered above)</span></span>
-    * <span data-ttu-id="9002b-129">ID sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="9002b-129">Subscription ID</span></span>
+2. <span data-ttu-id="67307-125">Questo script restituisce hello seguenti valori:</span><span class="sxs-lookup"><span data-stu-id="67307-125">This script outputs hello following values:</span></span>
+    * <span data-ttu-id="67307-126">ID client</span><span class="sxs-lookup"><span data-stu-id="67307-126">Client ID</span></span>
+    * <span data-ttu-id="67307-127">ID tenant</span><span class="sxs-lookup"><span data-stu-id="67307-127">Tenant ID</span></span>
+    * <span data-ttu-id="67307-128">Chiave di Directory attiva (quella hello uno sopra specificato)</span><span class="sxs-lookup"><span data-stu-id="67307-128">Active Directory key (same as hello one entered above)</span></span>
+    * <span data-ttu-id="67307-129">ID sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="67307-129">Subscription ID</span></span>
 
-3. <span data-ttu-id="9002b-130">Usando Visual Studio 2012, 2013 o 2015, creare un'applicazione console .NET in C#.</span><span class="sxs-lookup"><span data-stu-id="9002b-130">Using Visual Studio 2012, 2013 or 2015, create a C# .NET console application.</span></span>
+3. <span data-ttu-id="67307-130">Usando Visual Studio 2012, 2013 o 2015, creare un'applicazione console .NET in C#.</span><span class="sxs-lookup"><span data-stu-id="67307-130">Using Visual Studio 2012, 2013 or 2015, create a C# .NET console application.</span></span>
 
-    1. <span data-ttu-id="9002b-131">Avviare **Visual Studio 2012/2013/2015**.</span><span class="sxs-lookup"><span data-stu-id="9002b-131">Launch **Visual Studio 2012/2013/2015**.</span></span>
-    1. <span data-ttu-id="9002b-132">Fare clic su **File**, scegliere **Nuovo** e quindi fare clic su **Progetto**.</span><span class="sxs-lookup"><span data-stu-id="9002b-132">Click **File**, point to **New**, and click **Project**.</span></span>
-    2. <span data-ttu-id="9002b-133">Espandere **Modelli** e quindi selezionare **Visual C#**.</span><span class="sxs-lookup"><span data-stu-id="9002b-133">Expand **Templates**, and select **Visual C#**.</span></span>
-    3. <span data-ttu-id="9002b-134">Selezionare **Applicazione console** dall'elenco dei tipi di progetto a destra.</span><span class="sxs-lookup"><span data-stu-id="9002b-134">Select **Console Application** from the list of project types on the right.</span></span>
-    4. <span data-ttu-id="9002b-135">Immettere **DataTransformationApp** per il **Nome**.</span><span class="sxs-lookup"><span data-stu-id="9002b-135">Enter **DataTransformationApp** for the **Name**.</span></span>
-    5. <span data-ttu-id="9002b-136">Selezionare **C:\DataTransformation** per il **Percorso**.</span><span class="sxs-lookup"><span data-stu-id="9002b-136">Select **C:\DataTransformation** for the **Location**.</span></span>
-    6. <span data-ttu-id="9002b-137">Fare clic su **OK** per creare il progetto.</span><span class="sxs-lookup"><span data-stu-id="9002b-137">Click **OK** to create the project.</span></span>
+    1. <span data-ttu-id="67307-131">Avviare **Visual Studio 2012/2013/2015**.</span><span class="sxs-lookup"><span data-stu-id="67307-131">Launch **Visual Studio 2012/2013/2015**.</span></span>
+    1. <span data-ttu-id="67307-132">Fare clic su **File**, punto troppo**New**, fare clic su **progetto**.</span><span class="sxs-lookup"><span data-stu-id="67307-132">Click **File**, point too**New**, and click **Project**.</span></span>
+    2. <span data-ttu-id="67307-133">Espandere **Modelli** e quindi selezionare **Visual C#**.</span><span class="sxs-lookup"><span data-stu-id="67307-133">Expand **Templates**, and select **Visual C#**.</span></span>
+    3. <span data-ttu-id="67307-134">Selezionare **applicazione Console** dall'elenco di hello dei tipi di progetto su hello destra.</span><span class="sxs-lookup"><span data-stu-id="67307-134">Select **Console Application** from hello list of project types on hello right.</span></span>
+    4. <span data-ttu-id="67307-135">Immettere **DataTransformationApp** per hello **nome**.</span><span class="sxs-lookup"><span data-stu-id="67307-135">Enter **DataTransformationApp** for hello **Name**.</span></span>
+    5. <span data-ttu-id="67307-136">Selezionare **C:\DataTransformation** per hello **percorso**.</span><span class="sxs-lookup"><span data-stu-id="67307-136">Select **C:\DataTransformation** for hello **Location**.</span></span>
+    6. <span data-ttu-id="67307-137">Fare clic su **OK** progetto hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="67307-137">Click **OK** toocreate hello project.</span></span>
 
-4.  <span data-ttu-id="9002b-138">Aggiungere quindi tutte le DLL presenti nella cartella [dlls](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) come **Riferimenti** nel progetto creato.</span><span class="sxs-lookup"><span data-stu-id="9002b-138">Now, add all DLLs present in the [dlls](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) folder as **References** in the project that you created.</span></span> <span data-ttu-id="9002b-139">Per scaricare i file DLL, eseguire le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="9002b-139">To download the dll files, do the following:</span></span>
+4.  <span data-ttu-id="67307-138">A questo punto, aggiungere tutte le DLL presenti in hello [DLL](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) cartella **riferimenti** nel progetto hello creato.</span><span class="sxs-lookup"><span data-stu-id="67307-138">Now, add all DLLs present in hello [dlls](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) folder as **References** in hello project that you created.</span></span> <span data-ttu-id="67307-139">file dll di hello toodownload, hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="67307-139">toodownload hello dll files, do hello following:</span></span>
 
-    1. <span data-ttu-id="9002b-140">In Visual Studio passare a **Visualizza > Esplora soluzioni**.</span><span class="sxs-lookup"><span data-stu-id="9002b-140">In Visual Studio, go to **View > Solution Explorer**.</span></span>
-    1. <span data-ttu-id="9002b-141">Fare clic sulla freccia a sinistra del progetto Data Transformation App.</span><span class="sxs-lookup"><span data-stu-id="9002b-141">Click the arrow to the left of Data Transformation App project.</span></span> <span data-ttu-id="9002b-142">Fare clic su **Riferimenti** e quindi fare clic con il pulsante destro del mouse su **Aggiungi riferimento**.</span><span class="sxs-lookup"><span data-stu-id="9002b-142">Click **References** and then right-click to **Add Reference**.</span></span>
-    2. <span data-ttu-id="9002b-143">Passare al percorso della cartella dei pacchetti, selezionare tutte le DLL e fare clic su **Aggiungi**, quindi su **OK**.</span><span class="sxs-lookup"><span data-stu-id="9002b-143">Browse to the location of the packages folder, select all the DLLs and click **Add**, and then click **OK**.</span></span>
+    1. <span data-ttu-id="67307-140">In Visual Studio, andare troppo**Vista > Esplora soluzioni**.</span><span class="sxs-lookup"><span data-stu-id="67307-140">In Visual Studio, go too**View > Solution Explorer**.</span></span>
+    1. <span data-ttu-id="67307-141">Fare clic a sinistra di hello freccia toohello del progetto App di trasformazione di dati.</span><span class="sxs-lookup"><span data-stu-id="67307-141">Click hello arrow toohello left of Data Transformation App project.</span></span> <span data-ttu-id="67307-142">Fare clic su **riferimenti** e quindi fare doppio clic su troppo**Aggiungi riferimento**.</span><span class="sxs-lookup"><span data-stu-id="67307-142">Click **References** and then right-click too**Add Reference**.</span></span>
+    2. <span data-ttu-id="67307-143">Cerca nel percorso della cartella di pacchetti hello toohello, selezionare tutte le DLL hello e fare clic su **Aggiungi**, quindi fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="67307-143">Browse toohello location of hello packages folder, select all hello DLLs and click **Add**, and then click **OK**.</span></span>
 
-5. <span data-ttu-id="9002b-144">Aggiungere le istruzioni **using** seguenti al file di origine (Program.cs) nel progetto.</span><span class="sxs-lookup"><span data-stu-id="9002b-144">Add the following **using** statements to the source file (Program.cs) in the project.</span></span>
+5. <span data-ttu-id="67307-144">Aggiungere il seguente hello **utilizzando** istruzioni toohello file di origine (Program.cs) nel progetto hello.</span><span class="sxs-lookup"><span data-stu-id="67307-144">Add hello following **using** statements toohello source file (Program.cs) in hello project.</span></span>
 
     ```
     using System;
@@ -84,10 +84,10 @@ ms.lasthandoff: 08/18/2017
     ```
 
 
-6. <span data-ttu-id="9002b-145">Il codice seguente consente di inizializzare l'istanza di processo di trasformazione dei dati.</span><span class="sxs-lookup"><span data-stu-id="9002b-145">The following code initializes the data transformation job instance.</span></span> <span data-ttu-id="9002b-146">Aggiungerlo nel **metodo Main**.</span><span class="sxs-lookup"><span data-stu-id="9002b-146">Add this in the **Main method**.</span></span> <span data-ttu-id="9002b-147">Sostituire i valori dei parametri di configurazione ottenuti in precedenza.</span><span class="sxs-lookup"><span data-stu-id="9002b-147">Replace the values of configuration parameters as obtained earlier.</span></span> <span data-ttu-id="9002b-148">Immettere i valori del **nome del gruppo di risorse** e del **nome della risorsa dati ibridi**.</span><span class="sxs-lookup"><span data-stu-id="9002b-148">Plug in the values of **Resource Group Name** and **Hybrid Data Resource name**.</span></span> <span data-ttu-id="9002b-149">Il **nome del gruppo di risorse** ospita la risorsa dati ibridi in cui era stata configurata la definizione del processo.</span><span class="sxs-lookup"><span data-stu-id="9002b-149">The **Resource Group Name** is the one that hosts the Hybrid Data Resource on which the job definition was configured.</span></span>
+6. <span data-ttu-id="67307-145">Hello seguente codice inizializza l'istanza del processo di trasformazione dati hello.</span><span class="sxs-lookup"><span data-stu-id="67307-145">hello following code initializes hello data transformation job instance.</span></span> <span data-ttu-id="67307-146">Questo componente aggiuntivo hello **metodo Main**.</span><span class="sxs-lookup"><span data-stu-id="67307-146">Add this in hello **Main method**.</span></span> <span data-ttu-id="67307-147">Sostituire i valori hello dei parametri di configurazione come ottenuto in precedenza.</span><span class="sxs-lookup"><span data-stu-id="67307-147">Replace hello values of configuration parameters as obtained earlier.</span></span> <span data-ttu-id="67307-148">Inserire i valori hello **nome gruppo di risorse** e **nome risorsa dati ibrido**.</span><span class="sxs-lookup"><span data-stu-id="67307-148">Plug in hello values of **Resource Group Name** and **Hybrid Data Resource name**.</span></span> <span data-ttu-id="67307-149">Hello **nome gruppo di risorse** è hello quello che ospita una risorsa di dati ibrido hello in cui hello definizione del processo è stato configurato.</span><span class="sxs-lookup"><span data-stu-id="67307-149">hello **Resource Group Name** is hello one that hosts hello Hybrid Data Resource on which hello job definition was configured.</span></span>
 
     ```
-    // Setup the configuration parameters.
+    // Setup hello configuration parameters.
     var configParams = new ConfigurationParams
     {
         ClientId = "client-id",
@@ -98,12 +98,12 @@ ms.lasthandoff: 08/18/2017
         ResourceName = "resource-name"
     };
 
-    // Initialize the Data Transformation Job instance.
+    // Initialize hello Data Transformation Job instance.
     DataTransformationJob dataTransformationJob = new DataTransformationJob(configParams);
 
     ```
 
-7. <span data-ttu-id="9002b-150">Specificare i parametri con cui deve essere eseguita la definizione del processo</span><span class="sxs-lookup"><span data-stu-id="9002b-150">Specify the parameters with which the job definition needs to be run</span></span>
+7. <span data-ttu-id="67307-150">Specificare i parametri con cui hello definizione del processo deve toobe eseguire hello</span><span class="sxs-lookup"><span data-stu-id="67307-150">Specify hello parameters with which hello job definition needs toobe run</span></span>
 
     ```
     string jobDefinitionName = "job-definition-name";
@@ -112,72 +112,72 @@ ms.lasthandoff: 08/18/2017
 
     ```
 
-    <span data-ttu-id="9002b-151">OPPURE</span><span class="sxs-lookup"><span data-stu-id="9002b-151">(OR)</span></span>
+    <span data-ttu-id="67307-151">OPPURE</span><span class="sxs-lookup"><span data-stu-id="67307-151">(OR)</span></span>
 
-    <span data-ttu-id="9002b-152">Se si desidera modificare i parametri della definizione del processo in fase di esecuzione, aggiungere il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="9002b-152">If you want to change the job definition parameters during run time, then add the following code:</span></span>
+    <span data-ttu-id="67307-152">Se si desidera che i parametri di definizione del processo di toochange hello in fase di esecuzione, aggiunta hello seguente codice:</span><span class="sxs-lookup"><span data-stu-id="67307-152">If you want toochange hello job definition parameters during run time, then add hello following code:</span></span>
 
     ```
     string jobDefinitionName = "job-definition-name";
     // Must start with a '\'
     var rootDirectories = new List<string> {@"\root"};
 
-    // Name of the volume on the StorSimple device.
+    // Name of hello volume on hello StorSimple device.
     var volumeNames = new List<string> {"volume-name"};
 
     var dataTransformationInput = new DataTransformationInput
     {
-        // If you require the latest existing backup to be picked else use TakeNow to trigger a new backup.
+        // If you require hello latest existing backup toobe picked else use TakeNow tootrigger a new backup.
         BackupChoice = BackupChoice.UseExistingLatest.ToString(),
-        // Name of the StorSimple device.
+        // Name of hello StorSimple device.
         DeviceName = "device-name",
-        // Name of the container in Azure storage where the files will be placed after execution.
+        // Name of hello container in Azure storage where hello files will be placed after execution.
         ContainerName = "container-name",
-        // File name filter (search pattern) to be applied on files under the root directory. * - Match all files.
+        // File name filter (search pattern) toobe applied on files under hello root directory. * - Match all files.
         FileNameFilter = "*",
         // List of root directories.
         RootDirectories = rootDirectories,
-        // Name of the volume on StorSimple device on which the relevant data is present. 
+        // Name of hello volume on StorSimple device on which hello relevant data is present. 
         VolumeNames = volumeNames
     };
     
     ```
 
-8. <span data-ttu-id="9002b-153">Dopo l'inizializzazione, aggiungere il codice seguente per attivare un processo di trasformazione dati sulla definizione del processo.</span><span class="sxs-lookup"><span data-stu-id="9002b-153">After the initialization, add the following code to trigger a data transformation job on the job definition.</span></span> <span data-ttu-id="9002b-154">Immettere il **nome della definizione processo**.</span><span class="sxs-lookup"><span data-stu-id="9002b-154">Plug in the appropriate **Job Definition Name**.</span></span>
+8. <span data-ttu-id="67307-153">Dopo l'inizializzazione di hello, aggiungere il seguente codice tootrigger un processo di trasformazione dei dati nella definizione del processo hello hello.</span><span class="sxs-lookup"><span data-stu-id="67307-153">After hello initialization, add hello following code tootrigger a data transformation job on hello job definition.</span></span> <span data-ttu-id="67307-154">Plug-in hello appropriato **nome definizione di processo**.</span><span class="sxs-lookup"><span data-stu-id="67307-154">Plug in hello appropriate **Job Definition Name**.</span></span>
 
     ```
-    // Trigger a job, retrieve the jobId and the retry interval for polling.
+    // Trigger a job, retrieve hello jobId and hello retry interval for polling.
     int retryAfter;
     string jobId = dataTransformationJob.RunJobAsync(jobDefinitionName, 
     dataTransformationInput, out retryAfter);
 
     ```
 
-9. <span data-ttu-id="9002b-155">Questo processo carica i file corrispondenti presenti nella directory radice del volume di StorSimple nel contenitore specificato.</span><span class="sxs-lookup"><span data-stu-id="9002b-155">This job uploads the matched files present under the root directory on the StorSimple volume to the specified container.</span></span> <span data-ttu-id="9002b-156">Quando viene caricato un file, viene rilasciato un messaggio nella coda (nello stesso account di archiviazione del contenitore) con lo stesso nome della definizione del processo.</span><span class="sxs-lookup"><span data-stu-id="9002b-156">When a file is uploaded, a message is dropped in the queue (in the same storage account as the container) with the same name as the job definition.</span></span> <span data-ttu-id="9002b-157">Questo messaggio può essere usato come trigger per avviare un'ulteriore elaborazione del file.</span><span class="sxs-lookup"><span data-stu-id="9002b-157">This message can be used as a trigger to initiate any further processing of the file.</span></span>
+9. <span data-ttu-id="67307-155">Questo processo Carica file hello corrispondenza presente nella directory radice dell'hello nel contenitore specificato toohello volume StorSimple hello.</span><span class="sxs-lookup"><span data-stu-id="67307-155">This job uploads hello matched files present under hello root directory on hello StorSimple volume toohello specified container.</span></span> <span data-ttu-id="67307-156">Quando viene caricato un file, viene eliminato un messaggio nella coda di hello (in hello stesso account di archiviazione come contenitore hello) con hello stesso nome come definizione del processo hello.</span><span class="sxs-lookup"><span data-stu-id="67307-156">When a file is uploaded, a message is dropped in hello queue (in hello same storage account as hello container) with hello same name as hello job definition.</span></span> <span data-ttu-id="67307-157">Questo messaggio può essere utilizzato come un tooinitiate trigger qualsiasi ulteriore elaborazione del file hello.</span><span class="sxs-lookup"><span data-stu-id="67307-157">This message can be used as a trigger tooinitiate any further processing of hello file.</span></span>
 
-10. <span data-ttu-id="9002b-158">Dopo l'attivazione del processo, aggiungere il codice seguente per tenere traccia dei risultati per il completamento.</span><span class="sxs-lookup"><span data-stu-id="9002b-158">Once the job has been triggered, add the following code to track the job for completion.</span></span>
+10. <span data-ttu-id="67307-158">Una volta processo hello è stato attivato, è possibile aggiungere hello seguente processo hello tootrack di codice per il completamento.</span><span class="sxs-lookup"><span data-stu-id="67307-158">Once hello job has been triggered, add hello following code tootrack hello job for completion.</span></span>
 
     ```
     Job jobDetails = null;
 
-    // Poll the job.
+    // Poll hello job.
     do
     {
         jobDetails = dataTransformationJob.GetJob(jobDefinitionName, jobId);
 
-        // Wait before polling for the status again.
+        // Wait before polling for hello status again.
         Thread.Sleep(TimeSpan.FromSeconds(retryAfter));
 
     } while (jobDetails.Status == JobStatus.InProgress);
 
-    // Completion status of the job.
+    // Completion status of hello job.
     Console.WriteLine("JobStatus: {0}", jobDetails.Status);
     
-    // To hold the console before exiting.
+    // toohold hello console before exiting.
     Console.Read();
 
     ```
 
 
-## <a name="next-steps"></a><span data-ttu-id="9002b-159">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="9002b-159">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="67307-159">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="67307-159">Next steps</span></span>
 
-<span data-ttu-id="9002b-160">[Usare l'interfaccia utente di StorSimple Data Manager per la trasformazione dei dati](storsimple-data-manager-ui.md).</span><span class="sxs-lookup"><span data-stu-id="9002b-160">[Use StorSimple Data Manager UI to transform your data](storsimple-data-manager-ui.md).</span></span>
+<span data-ttu-id="67307-160">[Utilizzare i dati di interfaccia utente di gestione dati di StorSimple tootransform](storsimple-data-manager-ui.md).</span><span class="sxs-lookup"><span data-stu-id="67307-160">[Use StorSimple Data Manager UI tootransform your data](storsimple-data-manager-ui.md).</span></span>

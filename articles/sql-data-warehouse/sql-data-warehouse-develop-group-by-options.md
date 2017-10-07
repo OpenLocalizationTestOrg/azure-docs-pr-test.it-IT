@@ -1,5 +1,5 @@
 ---
-title: Opzioni Group by in SQL Data Warehouse | Documentazione Microsoft
+title: aaaGroup dalle opzioni in SQL Data Warehouse | Documenti Microsoft
 description: "Suggerimenti per l’implementazione delle opzioni group by in SQL Data Warehouse di Azure per lo sviluppo di soluzioni."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,25 +15,25 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: da71cb834c13da5d0f5690f471efc6c696163f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc443c2af4e3ef2babd74d78aa6fb57bb3c1c7ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="group-by-options-in-sql-data-warehouse"></a><span data-ttu-id="64752-103">Opzioni Group by in SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="64752-103">Group by options in SQL Data Warehouse</span></span>
-<span data-ttu-id="64752-104">La clausola [GROUP BY][GROUP BY] viene usata per aggregare i dati a un set di righe di riepilogo.</span><span class="sxs-lookup"><span data-stu-id="64752-104">The [GROUP BY][GROUP BY] clause is used to aggregate data to a summary set of rows.</span></span> <span data-ttu-id="64752-105">Include inoltre alcune opzioni che ne estendono la funzionalità che devono essere evitate in quanto non sono supportate direttamente SQL Data Warehouse di Azure.</span><span class="sxs-lookup"><span data-stu-id="64752-105">It also has a few options that extend it's functionality that need to be worked around as they are not directly supported by Azure SQL Data Warehouse.</span></span>
+# <a name="group-by-options-in-sql-data-warehouse"></a><span data-ttu-id="d905b-103">Opzioni Group by in SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="d905b-103">Group by options in SQL Data Warehouse</span></span>
+<span data-ttu-id="d905b-104">Hello [GROUP BY] [ GROUP BY] viene utilizzata la clausola set riepilogo tooaggregate dati tooa di righe.</span><span class="sxs-lookup"><span data-stu-id="d905b-104">hello [GROUP BY][GROUP BY] clause is used tooaggregate data tooa summary set of rows.</span></span> <span data-ttu-id="d905b-105">Include inoltre alcune opzioni che estendono la funzionalità che toobe necessità aggirato come non sono supportati direttamente da Azure SQL Data Warehouse.</span><span class="sxs-lookup"><span data-stu-id="d905b-105">It also has a few options that extend it's functionality that need toobe worked around as they are not directly supported by Azure SQL Data Warehouse.</span></span>
 
-<span data-ttu-id="64752-106">Queste opzioni sono</span><span class="sxs-lookup"><span data-stu-id="64752-106">These options are</span></span>
+<span data-ttu-id="d905b-106">Queste opzioni sono</span><span class="sxs-lookup"><span data-stu-id="d905b-106">These options are</span></span>
 
-* <span data-ttu-id="64752-107">GROUP BY con ROLLUP</span><span class="sxs-lookup"><span data-stu-id="64752-107">GROUP BY with ROLLUP</span></span>
-* <span data-ttu-id="64752-108">GROUPING SETS</span><span class="sxs-lookup"><span data-stu-id="64752-108">GROUPING SETS</span></span>
-* <span data-ttu-id="64752-109">GROUP BY con CUBE</span><span class="sxs-lookup"><span data-stu-id="64752-109">GROUP BY with CUBE</span></span>
+* <span data-ttu-id="d905b-107">GROUP BY con ROLLUP</span><span class="sxs-lookup"><span data-stu-id="d905b-107">GROUP BY with ROLLUP</span></span>
+* <span data-ttu-id="d905b-108">GROUPING SETS</span><span class="sxs-lookup"><span data-stu-id="d905b-108">GROUPING SETS</span></span>
+* <span data-ttu-id="d905b-109">GROUP BY con CUBE</span><span class="sxs-lookup"><span data-stu-id="d905b-109">GROUP BY with CUBE</span></span>
 
-## <a name="rollup-and-grouping-sets-options"></a><span data-ttu-id="64752-110">Opzioni di rollup e raggruppamento di set</span><span class="sxs-lookup"><span data-stu-id="64752-110">Rollup and grouping sets options</span></span>
-<span data-ttu-id="64752-111">L'opzione più semplice consiste nell'utilizzare `UNION ALL` invece di eseguire il rollup anziché utilizzare la sintassi esplicita.</span><span class="sxs-lookup"><span data-stu-id="64752-111">The simplest option here is to use `UNION ALL` instead to perform the rollup rather than relying on the explicit syntax.</span></span> <span data-ttu-id="64752-112">Il risultato è esattamente lo stesso</span><span class="sxs-lookup"><span data-stu-id="64752-112">The result is exactly the same</span></span>
+## <a name="rollup-and-grouping-sets-options"></a><span data-ttu-id="d905b-110">Opzioni di rollup e raggruppamento di set</span><span class="sxs-lookup"><span data-stu-id="d905b-110">Rollup and grouping sets options</span></span>
+<span data-ttu-id="d905b-111">opzione più semplice Hello è toouse `UNION ALL` invece tooperform hello rollup anziché basarsi sul hello sintassi esplicita.</span><span class="sxs-lookup"><span data-stu-id="d905b-111">hello simplest option here is toouse `UNION ALL` instead tooperform hello rollup rather than relying on hello explicit syntax.</span></span> <span data-ttu-id="d905b-112">risultato Hello è esattamente hello stesso</span><span class="sxs-lookup"><span data-stu-id="d905b-112">hello result is exactly hello same</span></span>
 
-<span data-ttu-id="64752-113">Di seguito è riportato un esempio di istruzione group by utilizzando l’opzione `ROLLUP` :</span><span class="sxs-lookup"><span data-stu-id="64752-113">Below is an example of a group by statement using the `ROLLUP` option:</span></span>
+<span data-ttu-id="d905b-113">Di seguito è riportato un esempio di un gruppo dall'istruzione tramite hello `ROLLUP` opzione:</span><span class="sxs-lookup"><span data-stu-id="d905b-113">Below is an example of a group by statement using hello `ROLLUP` option:</span></span>
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -48,13 +48,13 @@ GROUP BY ROLLUP (
 ;
 ```
 
-<span data-ttu-id="64752-114">Usando ROLLUP sono state richieste le aggregazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="64752-114">By using ROLLUP we have requested the following aggregations:</span></span>
+<span data-ttu-id="d905b-114">Con i ROLLUP è stato richiesto hello seguendo le aggregazioni:</span><span class="sxs-lookup"><span data-stu-id="d905b-114">By using ROLLUP we have requested hello following aggregations:</span></span>
 
-* <span data-ttu-id="64752-115">Paese e area</span><span class="sxs-lookup"><span data-stu-id="64752-115">Country and Region</span></span>
-* <span data-ttu-id="64752-116">Paese</span><span class="sxs-lookup"><span data-stu-id="64752-116">Country</span></span>
-* <span data-ttu-id="64752-117">Grand Total</span><span class="sxs-lookup"><span data-stu-id="64752-117">Grand Total</span></span>
+* <span data-ttu-id="d905b-115">Paese e area</span><span class="sxs-lookup"><span data-stu-id="d905b-115">Country and Region</span></span>
+* <span data-ttu-id="d905b-116">Paese</span><span class="sxs-lookup"><span data-stu-id="d905b-116">Country</span></span>
+* <span data-ttu-id="d905b-117">Grand Total</span><span class="sxs-lookup"><span data-stu-id="d905b-117">Grand Total</span></span>
 
-<span data-ttu-id="64752-118">Per sostituire questo valore è necessario utilizzare `UNION ALL`; specificando le aggregazioni necessarie in modo esplicito per restituire gli stessi risultati:</span><span class="sxs-lookup"><span data-stu-id="64752-118">To replace this you will need to use `UNION ALL`; specifying the aggregations required explicitly to return the same results:</span></span>
+<span data-ttu-id="d905b-118">tooreplace questo valore è necessario toouse `UNION ALL`; specificando le aggregazioni hello richieste in modo esplicito tooreturn hello stessi risultati:</span><span class="sxs-lookup"><span data-stu-id="d905b-118">tooreplace this you will need toouse `UNION ALL`; specifying hello aggregations required explicitly tooreturn hello same results:</span></span>
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -81,14 +81,14 @@ FROM  dbo.factInternetSales s
 JOIN  dbo.DimSalesTerritory t     ON s.SalesTerritoryKey       = t.SalesTerritoryKey;
 ```
 
-<span data-ttu-id="64752-119">Per GROUPING SETS è necessario adottare la stessa entità e creare solo sezioni UNION ALL per i livelli di aggregazione che si desidera visualizzare.</span><span class="sxs-lookup"><span data-stu-id="64752-119">For GROUPING SETS all we need to do is adopt the same principal but only create UNION ALL sections for the aggregation levels we want to see</span></span>
+<span data-ttu-id="d905b-119">Per GROUPING SETS, è sufficiente toodo è adottare hello stesso principale, ma solo creare sezioni UNION ALL per hello livelli di aggregazione desideriamo toosee</span><span class="sxs-lookup"><span data-stu-id="d905b-119">For GROUPING SETS all we need toodo is adopt hello same principal but only create UNION ALL sections for hello aggregation levels we want toosee</span></span>
 
-## <a name="cube-options"></a><span data-ttu-id="64752-120">Opzioni Cube</span><span class="sxs-lookup"><span data-stu-id="64752-120">Cube options</span></span>
-<span data-ttu-id="64752-121">È possibile creare un GROUP BY WITH CUBE utilizzando l'approccio UNION ALL.</span><span class="sxs-lookup"><span data-stu-id="64752-121">It is possible to create a GROUP BY WITH CUBE using the UNION ALL approach.</span></span> <span data-ttu-id="64752-122">Il problema è che il codice può risultare complesso e difficile da gestire.</span><span class="sxs-lookup"><span data-stu-id="64752-122">The problem is that the code can quickly become cumbersome and unwieldy.</span></span> <span data-ttu-id="64752-123">Per risolvere questo problema è possibile utilizzare questo approccio avanzato.</span><span class="sxs-lookup"><span data-stu-id="64752-123">To mitigate this you can use this more advanced approach.</span></span>
+## <a name="cube-options"></a><span data-ttu-id="d905b-120">Opzioni Cube</span><span class="sxs-lookup"><span data-stu-id="d905b-120">Cube options</span></span>
+<span data-ttu-id="d905b-121">È possibile toocreate un GROUP BY WITH CUBE approccio di hello UNION ALL.</span><span class="sxs-lookup"><span data-stu-id="d905b-121">It is possible toocreate a GROUP BY WITH CUBE using hello UNION ALL approach.</span></span> <span data-ttu-id="d905b-122">problema di Hello è che il codice hello può diventare rapidamente un'operazione complessa e difficile da gestire.</span><span class="sxs-lookup"><span data-stu-id="d905b-122">hello problem is that hello code can quickly become cumbersome and unwieldy.</span></span> <span data-ttu-id="d905b-123">toomitigate questo è possibile utilizzare questo più avanzate approccio.</span><span class="sxs-lookup"><span data-stu-id="d905b-123">toomitigate this you can use this more advanced approach.</span></span>
 
-<span data-ttu-id="64752-124">Utilizzare l'esempio precedente.</span><span class="sxs-lookup"><span data-stu-id="64752-124">Let's use the example above.</span></span>
+<span data-ttu-id="d905b-124">Consente di usare il precedente esempio di hello.</span><span class="sxs-lookup"><span data-stu-id="d905b-124">Let's use hello example above.</span></span>
 
-<span data-ttu-id="64752-125">Il primo passaggio consiste nel definire il cubo che definisce tutti i livelli di aggregazione che si desidera creare.</span><span class="sxs-lookup"><span data-stu-id="64752-125">The first step is to define the 'cube' that defines all the levels of aggregation that we want to create.</span></span> <span data-ttu-id="64752-126">È importante tenere conto del CROSS JOIN delle due tabelle derivate.</span><span class="sxs-lookup"><span data-stu-id="64752-126">It is important to take note of the CROSS JOIN of the two derived tables.</span></span> <span data-ttu-id="64752-127">In tal modo tutti i livelli vengono generati automaticamente.</span><span class="sxs-lookup"><span data-stu-id="64752-127">This generates all the levels for us.</span></span> <span data-ttu-id="64752-128">Il resto del codice è disponibile per la formattazione.</span><span class="sxs-lookup"><span data-stu-id="64752-128">The rest of the code is really there for formatting.</span></span>
+<span data-ttu-id="d905b-125">primo passaggio Hello è hello toodefine 'cube' che definisce tutti i livelli di aggregazione che si desidera toocreate hello.</span><span class="sxs-lookup"><span data-stu-id="d905b-125">hello first step is toodefine hello 'cube' that defines all hello levels of aggregation that we want toocreate.</span></span> <span data-ttu-id="d905b-126">È importante tootake nota di hello CROSS JOIN di tabelle derivate due hello.</span><span class="sxs-lookup"><span data-stu-id="d905b-126">It is important tootake note of hello CROSS JOIN of hello two derived tables.</span></span> <span data-ttu-id="d905b-127">Tutti i livelli di hello viene generato automaticamente.</span><span class="sxs-lookup"><span data-stu-id="d905b-127">This generates all hello levels for us.</span></span> <span data-ttu-id="d905b-128">resto di Hello del codice hello è effettivamente presente per la formattazione.</span><span class="sxs-lookup"><span data-stu-id="d905b-128">hello rest of hello code is really there for formatting.</span></span>
 
 ```sql
 CREATE TABLE #Cube
@@ -119,11 +119,11 @@ SELECT Cols
 FROM GrpCube;
 ```
 
-<span data-ttu-id="64752-129">Di seguito sono illustrati i risultati del CTAS:</span><span class="sxs-lookup"><span data-stu-id="64752-129">The results of the CTAS can be seen below:</span></span>
+<span data-ttu-id="d905b-129">risultati Hello di hello un'istruzione CTAS può essere illustrata di seguito:</span><span class="sxs-lookup"><span data-stu-id="d905b-129">hello results of hello CTAS can be seen below:</span></span>
 
 ![][1]
 
-<span data-ttu-id="64752-130">Il secondo passaggio consiste nel specificare una tabella di destinazione per archiviare i risultati temporanei:</span><span class="sxs-lookup"><span data-stu-id="64752-130">The second step is to specify a target table to store interim results:</span></span>
+<span data-ttu-id="d905b-130">secondo passaggio Hello è toospecify che comporta un provvisorio toostore tabella di destinazione:</span><span class="sxs-lookup"><span data-stu-id="d905b-130">hello second step is toospecify a target table toostore interim results:</span></span>
 
 ```sql
 DECLARE
@@ -146,7 +146,7 @@ WITH
 ;
 ```
 
-<span data-ttu-id="64752-131">Il terzo passaggio consiste nell’eseguire il ciclo del cubo delle colonne per eseguire l'aggregazione.</span><span class="sxs-lookup"><span data-stu-id="64752-131">The third step is to loop over our cube of columns performing the aggregation.</span></span> <span data-ttu-id="64752-132">La query verrà eseguita una volta per ogni riga nella tabella temporanea #Cube e i risultati verranno archiviati nella tabella temporanea #Results</span><span class="sxs-lookup"><span data-stu-id="64752-132">The query will run once for every row in the #Cube temporary table and store the results in the #Results temp table</span></span>
+<span data-ttu-id="d905b-131">terzo passaggio Hello è tooloop sul cubo di esecuzione hello aggregazione di colonne.</span><span class="sxs-lookup"><span data-stu-id="d905b-131">hello third step is tooloop over our cube of columns performing hello aggregation.</span></span> <span data-ttu-id="d905b-132">query Hello verrà eseguito una volta per ogni riga nella tabella temporanea hello #Cube e archiviare i risultati di hello nella tabella temporanea hello #Results</span><span class="sxs-lookup"><span data-stu-id="d905b-132">hello query will run once for every row in hello #Cube temporary table and store hello results in hello #Results temp table</span></span>
 
 ```sql
 SET @nbr =(SELECT MAX(Seq) FROM #Cube);
@@ -170,7 +170,7 @@ BEGIN
 END
 ```
 
-<span data-ttu-id="64752-133">Infine è possibile restituire i risultati semplicemente leggendo dalla tabella temporanea #Results</span><span class="sxs-lookup"><span data-stu-id="64752-133">Lastly we can return the results by simply reading from the #Results temporary table</span></span>
+<span data-ttu-id="d905b-133">Infine è possibile restituire i risultati di hello semplicemente leggendo da una tabella temporanea hello #Results</span><span class="sxs-lookup"><span data-stu-id="d905b-133">Lastly we can return hello results by simply reading from hello #Results temporary table</span></span>
 
 ```sql
 SELECT *
@@ -179,10 +179,10 @@ ORDER BY 1,2,3
 ;
 ```
 
-<span data-ttu-id="64752-134">Suddividendo il codice in sezioni e generando un costrutto di ciclo il codice diventa più gestibile e gestibile e sostenibile.</span><span class="sxs-lookup"><span data-stu-id="64752-134">By breaking the code up into sections and generating a looping construct the code becomes more manageable and maintainable.</span></span>
+<span data-ttu-id="d905b-134">Suddivisione di codice hello in sezioni e generando un ciclo hello costrutto di codice diventa più gestibile e gestibile.</span><span class="sxs-lookup"><span data-stu-id="d905b-134">By breaking hello code up into sections and generating a looping construct hello code becomes more manageable and maintainable.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="64752-135">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="64752-135">Next steps</span></span>
-<span data-ttu-id="64752-136">Per altri suggerimenti sullo sviluppo, vedere la [panoramica dello sviluppo][development overview].</span><span class="sxs-lookup"><span data-stu-id="64752-136">For more development tips, see [development overview][development overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d905b-135">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="d905b-135">Next steps</span></span>
+<span data-ttu-id="d905b-136">Per altri suggerimenti sullo sviluppo, vedere la [panoramica dello sviluppo][development overview].</span><span class="sxs-lookup"><span data-stu-id="d905b-136">For more development tips, see [development overview][development overview].</span></span>
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png

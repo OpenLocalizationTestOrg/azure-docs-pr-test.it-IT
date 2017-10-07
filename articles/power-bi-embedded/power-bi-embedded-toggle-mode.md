@@ -1,6 +1,6 @@
 ---
-title: "Passare dalla modalità di visualizzazione alla modalità di modifica dei report e viceversa in Azure Power BI Embedded | Microsoft Docs"
-description: "Informazioni su come passare dalla modalità di visualizzazione alla modalità di modifica dei report e viceversa in Power BI Embedded."
+title: "aaaToggle tra la modalità di visualizzazione e modifica per i report in Power BI Embedded Azure | Documenti Microsoft"
+description: "Informazioni su come tootoggle tra la modalità di visualizzazione e modifica per i report all'interno di Power BI Embedded."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,22 +15,22 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: f73bf05b41523a5833cc9366fb84cb7021b4b7a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9e3da5f9ae74d221af650adebde7c9d83b38a99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="toggle-between-view-and-edit-mode-for-reports-in-power-bi-embedded"></a><span data-ttu-id="5b9e1-103">Passare dalla modalità di visualizzazione alla modalità di modifica dei report e viceversa in Power BI Embedded</span><span class="sxs-lookup"><span data-stu-id="5b9e1-103">Toggle between view and edit mode for reports in Power BI Embedded</span></span>
+# <a name="toggle-between-view-and-edit-mode-for-reports-in-power-bi-embedded"></a><span data-ttu-id="79261-103">Passare dalla modalità di visualizzazione alla modalità di modifica dei report e viceversa in Power BI Embedded</span><span class="sxs-lookup"><span data-stu-id="79261-103">Toggle between view and edit mode for reports in Power BI Embedded</span></span>
 
-<span data-ttu-id="5b9e1-104">Informazioni su come passare dalla modalità di visualizzazione alla modalità di modifica dei report e viceversa in Power BI Embedded.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-104">Learn how to toggle between view and edit mode for your reports within Power BI Embedded.</span></span>
+<span data-ttu-id="79261-104">Informazioni su come tootoggle tra la modalità di visualizzazione e modifica per i report all'interno di Power BI Embedded.</span><span class="sxs-lookup"><span data-stu-id="79261-104">Learn how tootoggle between view and edit mode for your reports within Power BI Embedded.</span></span>
 
-## <a name="creating-an-access-token"></a><span data-ttu-id="5b9e1-105">Creazione di un token di accesso</span><span class="sxs-lookup"><span data-stu-id="5b9e1-105">Creating an access token</span></span>
+## <a name="creating-an-access-token"></a><span data-ttu-id="79261-105">Creazione di un token di accesso</span><span class="sxs-lookup"><span data-stu-id="79261-105">Creating an access token</span></span>
 
-<span data-ttu-id="5b9e1-106">È necessario creare un token di accesso che consenta sia di visualizzare che di modificare un report.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-106">You will need to create an access token that gives you the ability to both view and edit a report.</span></span> <span data-ttu-id="5b9e1-107">Per modificare e salvare un report, è necessaria l'autorizzazione del token **Report.ReadWrite**.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-107">To edit and save a report, you will need the **Report.ReadWrite** token permission.</span></span> <span data-ttu-id="5b9e1-108">Per altre informazioni, vedere [Autenticazione e autorizzazione con Power BI Embedded](power-bi-embedded-app-token-flow.md).</span><span class="sxs-lookup"><span data-stu-id="5b9e1-108">For more information, see [Authenticating and authorizing in Power BI Embedded](power-bi-embedded-app-token-flow.md).</span></span>
+<span data-ttu-id="79261-106">Sarà necessario toocreate un token di accesso che consente di visualizzare di tooboth possibilità hello e modificare un report.</span><span class="sxs-lookup"><span data-stu-id="79261-106">You will need toocreate an access token that gives you hello ability tooboth view and edit a report.</span></span> <span data-ttu-id="79261-107">tooedit e salvare un report, sarà necessario hello **Report.ReadWrite** token di autorizzazione.</span><span class="sxs-lookup"><span data-stu-id="79261-107">tooedit and save a report, you will need hello **Report.ReadWrite** token permission.</span></span> <span data-ttu-id="79261-108">Per altre informazioni, vedere [Autenticazione e autorizzazione con Power BI Embedded](power-bi-embedded-app-token-flow.md).</span><span class="sxs-lookup"><span data-stu-id="79261-108">For more information, see [Authenticating and authorizing in Power BI Embedded](power-bi-embedded-app-token-flow.md).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5b9e1-109">In questo modo sarà possibile modificare un report esistente e salvare le modifiche.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-109">This will allow you to edit and save changes to an existing report.</span></span> <span data-ttu-id="5b9e1-110">Se si vuole supportare anche la funzione **Salva con nome**, è necessario specificare autorizzazioni aggiuntive.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-110">If you would also like the function of supporting **Save As**, you will need to supply additional permissions.</span></span> <span data-ttu-id="5b9e1-111">Per altre informazioni, vedere [Scopes](power-bi-embedded-app-token-flow.md#scopes) (Ambiti).</span><span class="sxs-lookup"><span data-stu-id="5b9e1-111">For more information, see [Scopes](power-bi-embedded-app-token-flow.md#scopes).</span></span>
+> <span data-ttu-id="79261-109">Verrà consentono tooedit e salvare le modifiche tooan report esistente.</span><span class="sxs-lookup"><span data-stu-id="79261-109">This will allow you tooedit and save changes tooan existing report.</span></span> <span data-ttu-id="79261-110">Se si desidera anche la funzione hello di supportare **Salva con nome**, sarà necessario toosupply ulteriori autorizzazioni.</span><span class="sxs-lookup"><span data-stu-id="79261-110">If you would also like hello function of supporting **Save As**, you will need toosupply additional permissions.</span></span> <span data-ttu-id="79261-111">Per altre informazioni, vedere [Scopes](power-bi-embedded-app-token-flow.md#scopes) (Ambiti).</span><span class="sxs-lookup"><span data-stu-id="79261-111">For more information, see [Scopes](power-bi-embedded-app-token-flow.md#scopes).</span></span>
 
 ```
 using Microsoft.PowerBI.Security;
@@ -42,11 +42,11 @@ PowerBIToken embedToken = PowerBIToken.CreateReportEmbedTokenForCreation(workspa
 var token = embedToken.Generate("{access key}");
 ```
 
-## <a name="embed-configuration"></a><span data-ttu-id="5b9e1-112">Configurazione di incorporamento</span><span class="sxs-lookup"><span data-stu-id="5b9e1-112">Embed configuration</span></span>
+## <a name="embed-configuration"></a><span data-ttu-id="79261-112">Configurazione di incorporamento</span><span class="sxs-lookup"><span data-stu-id="79261-112">Embed configuration</span></span>
 
-<span data-ttu-id="5b9e1-113">Per visualizzare il pulsante Salva in modalità di modifica, sarà necessario specificare le autorizzazioni e una modalità di visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-113">You will need to supply permissions and a viewMode in order to see the save button when in edit mode.</span></span> <span data-ttu-id="5b9e1-114">Per altre informazioni, vedere [Embed configuration details](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details) (Dettagli della configurazione di incorporamento).</span><span class="sxs-lookup"><span data-stu-id="5b9e1-114">For more information, see [Embed configuration details](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).</span></span>
+<span data-ttu-id="79261-113">Sarà necessario toosupply autorizzazioni e un viewMode di hello toosee ordine Salva pulsante quando è in modalità di modifica.</span><span class="sxs-lookup"><span data-stu-id="79261-113">You will need toosupply permissions and a viewMode in order toosee hello save button when in edit mode.</span></span> <span data-ttu-id="79261-114">Per altre informazioni, vedere [Embed configuration details](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details) (Dettagli della configurazione di incorporamento).</span><span class="sxs-lookup"><span data-stu-id="79261-114">For more information, see [Embed configuration details](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).</span></span>
 
-<span data-ttu-id="5b9e1-115">In JavaScript, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="5b9e1-115">For example in JavaScript:</span></span>
+<span data-ttu-id="79261-115">In JavaScript, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="79261-115">For example in JavaScript:</span></span>
 
 ```
    <div id="reportContainer"></div>
@@ -54,7 +54,7 @@ var token = embedToken.Generate("{access key}");
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,54 +71,54 @@ var token = embedToken.Generate("{access key}");
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
-<span data-ttu-id="5b9e1-116">In questo modo verrà indicato di incorporare il report in modalità di visualizzazione in base all'impostazione di **viewMode** su **models.ViewMode.View**.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-116">This will indicate to embed the report in view mode based on **viewMode** being set to **models.ViewMode.View**.</span></span>
+<span data-ttu-id="79261-116">Ciò indicherà report hello tooembed in modalità di visualizzazione in base alle **viewMode** impostato troppo**modelli. ViewMode.View**.</span><span class="sxs-lookup"><span data-stu-id="79261-116">This will indicate tooembed hello report in view mode based on **viewMode** being set too**models.ViewMode.View**.</span></span>
 
-## <a name="view-mode"></a><span data-ttu-id="5b9e1-117">Modalità di visualizzazione</span><span class="sxs-lookup"><span data-stu-id="5b9e1-117">View mode</span></span>
+## <a name="view-mode"></a><span data-ttu-id="79261-117">Modalità di visualizzazione</span><span class="sxs-lookup"><span data-stu-id="79261-117">View mode</span></span>
 
-<span data-ttu-id="5b9e1-118">Se si è in modalità di modifica, è possibile usare il codice JavaScript seguente per passare alla modalità di visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-118">You can use the following JavaScript to switch into view mode, if you are in edit mode.</span></span>
+<span data-ttu-id="79261-118">È possibile utilizzare hello seguente tooswitch JavaScript in modalità di visualizzazione, se si è in modalità di modifica.</span><span class="sxs-lookup"><span data-stu-id="79261-118">You can use hello following JavaScript tooswitch into view mode, if you are in edit mode.</span></span>
 
 ```
-// Get a reference to the embedded report HTML element
+// Get a reference toohello embedded report HTML element
 var reportContainer = $('#reportContainer')[0];
 
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
 report = powerbi.get(reportContainer);
 
-// Switch to view mode.
+// Switch tooview mode.
 report.switchMode("view");
 
 ```
 
-## <a name="edit-mode"></a><span data-ttu-id="5b9e1-119">Modalità di modifica</span><span class="sxs-lookup"><span data-stu-id="5b9e1-119">Edit mode</span></span>
+## <a name="edit-mode"></a><span data-ttu-id="79261-119">Modalità di modifica</span><span class="sxs-lookup"><span data-stu-id="79261-119">Edit mode</span></span>
 
-<span data-ttu-id="5b9e1-120">Se si è in modalità di visualizzazione, è possibile usare il codice JavaScript seguente per passare alla modalità di modifica.</span><span class="sxs-lookup"><span data-stu-id="5b9e1-120">You can use the following JavaScript to switch into edit mode, if you are in view mode.</span></span>
+<span data-ttu-id="79261-120">È possibile utilizzare hello seguente tooswitch JavaScript in modalità di modifica, se si è nella visualizzazione modalità.</span><span class="sxs-lookup"><span data-stu-id="79261-120">You can use hello following JavaScript tooswitch into edit mode, if you are in view mode.</span></span>
 
 ```
-// Get a reference to the embedded report HTML element
+// Get a reference toohello embedded report HTML element
 var reportContainer = $('#reportContainer')[0];
 
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
 report = powerbi.get(reportContainer);
 
-// Switch to edit mode.
+// Switch tooedit mode.
 report.switchMode("edit");
 
 ```
 
-## <a name="see-also"></a><span data-ttu-id="5b9e1-121">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="5b9e1-121">See also</span></span>
+## <a name="see-also"></a><span data-ttu-id="79261-121">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="79261-121">See also</span></span>
 
-[<span data-ttu-id="5b9e1-122">Esempio introduttivo</span><span class="sxs-lookup"><span data-stu-id="5b9e1-122">Get started with sample</span></span>](power-bi-embedded-get-started-sample.md)  
-[<span data-ttu-id="5b9e1-123">Incorporare un report</span><span class="sxs-lookup"><span data-stu-id="5b9e1-123">Embed a report</span></span>](power-bi-embedded-embed-report.md)  
-[<span data-ttu-id="5b9e1-124">Autenticazione e autorizzazione con Power BI Embedded</span><span class="sxs-lookup"><span data-stu-id="5b9e1-124">Authenticating and authorizing in Power BI Embedded</span></span>](power-bi-embedded-app-token-flow.md)  
-[<span data-ttu-id="5b9e1-125">CreateReportEmbedToken</span><span class="sxs-lookup"><span data-stu-id="5b9e1-125">CreateReportEmbedToken</span></span>](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_)  
-[<span data-ttu-id="5b9e1-126">Esempio di incorporamento con JavaScript</span><span class="sxs-lookup"><span data-stu-id="5b9e1-126">JavaScript Embed Sample</span></span>](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-[<span data-ttu-id="5b9e1-127">Repository Git PowerBI-CSharp</span><span class="sxs-lookup"><span data-stu-id="5b9e1-127">PowerBI-CSharp Git Repo</span></span>](https://github.com/Microsoft/PowerBI-CSharp)  
-[<span data-ttu-id="5b9e1-128">Repository Git PowerBI-Node</span><span class="sxs-lookup"><span data-stu-id="5b9e1-128">PowerBI-Node Git Repo</span></span>](https://github.com/Microsoft/PowerBI-Node)  
-<span data-ttu-id="5b9e1-129">Altre domande?</span><span class="sxs-lookup"><span data-stu-id="5b9e1-129">More questions?</span></span> [<span data-ttu-id="5b9e1-130">Contattare la community di Power BI</span><span class="sxs-lookup"><span data-stu-id="5b9e1-130">Try the Power BI Community</span></span>](http://community.powerbi.com/)
+[<span data-ttu-id="79261-122">Esempio introduttivo</span><span class="sxs-lookup"><span data-stu-id="79261-122">Get started with sample</span></span>](power-bi-embedded-get-started-sample.md)  
+[<span data-ttu-id="79261-123">Incorporare un report</span><span class="sxs-lookup"><span data-stu-id="79261-123">Embed a report</span></span>](power-bi-embedded-embed-report.md)  
+[<span data-ttu-id="79261-124">Autenticazione e autorizzazione con Power BI Embedded</span><span class="sxs-lookup"><span data-stu-id="79261-124">Authenticating and authorizing in Power BI Embedded</span></span>](power-bi-embedded-app-token-flow.md)  
+[<span data-ttu-id="79261-125">CreateReportEmbedToken</span><span class="sxs-lookup"><span data-stu-id="79261-125">CreateReportEmbedToken</span></span>](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_)  
+[<span data-ttu-id="79261-126">Esempio di incorporamento con JavaScript</span><span class="sxs-lookup"><span data-stu-id="79261-126">JavaScript Embed Sample</span></span>](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
+[<span data-ttu-id="79261-127">Repository Git PowerBI-CSharp</span><span class="sxs-lookup"><span data-stu-id="79261-127">PowerBI-CSharp Git Repo</span></span>](https://github.com/Microsoft/PowerBI-CSharp)  
+[<span data-ttu-id="79261-128">Repository Git PowerBI-Node</span><span class="sxs-lookup"><span data-stu-id="79261-128">PowerBI-Node Git Repo</span></span>](https://github.com/Microsoft/PowerBI-Node)  
+<span data-ttu-id="79261-129">Altre domande?</span><span class="sxs-lookup"><span data-stu-id="79261-129">More questions?</span></span> [<span data-ttu-id="79261-130">Provare a hello Community di Power BI</span><span class="sxs-lookup"><span data-stu-id="79261-130">Try hello Power BI Community</span></span>](http://community.powerbi.com/)

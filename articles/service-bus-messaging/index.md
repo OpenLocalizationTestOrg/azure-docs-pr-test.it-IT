@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-title: Documentazione della messaggistica del bus di servizio
-description: Informazioni su come impostare una messaggistica per collegare applicazioni e servici in ambienti locali e cloud.
-ms.openlocfilehash: 559bbabe07ae50b2cc83fad5e867c23c9272d6ab
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+title: Documentazione di messaggistica del Bus aaaService
+description: Informazioni su come tooset di messaggistica che connette le applicazioni e servizi in locale e l'ambiente cloud.
+ms.openlocfilehash: ea8c58b6e954cc0d53c3eed1f761b1d1e3984e66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-messaging-documentation"></a>Documentazione della messaggistica del bus di servizio
-Il servizio di messaggistica offre informazioni affidabili in quanto meccanismo di comunicazione negoziata o di terze parti.
+servizio di messaggistica Hello offre recapito affidabile informazioni come un meccanismo di comunicazione negoziata o di terze parti.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -59,7 +59,7 @@ Il servizio di messaggistica offre informazioni affidabili in quanto meccanismo 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Creare uno spazio dei nomi tramite il portale</h3>
+                        <h3>Creare uno spazio dei nomi tramite il portale di hello</h3>
                     </div>
                 </div>
             </div>

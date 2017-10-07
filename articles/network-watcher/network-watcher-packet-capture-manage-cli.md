@@ -1,6 +1,6 @@
 ---
-title: Gestire le acquisizioni di pacchetti con Azure Network Watcher - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: "Questa pagina illustra come gestire la funzionalità di acquisizione di pacchetti di Network Watcher usando l'interfaccia della riga di comando di Azure 2.0"
+title: acquisizioni di pacchetti aaaManage con Watcher di rete di Azure - CLI di Azure 2.0 | Documenti Microsoft
+description: "Questa pagina viene illustrato come toomanage hello funzionalità di acquisizione di pacchetti di controllo di rete mediante Azure CLI 2.0"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,71 +14,71 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: c94eb46f31f2f19b843ccd7bf77b8a39943a07d4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d19cb7d0ca3b7a9bc0546859e07ef6d4df4f42d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-packet-captures-with-azure-network-watcher-using-azure-cli-20"></a><span data-ttu-id="03698-103">Gestire le acquisizioni di pacchetti con Azure Network Watcher usando l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="03698-103">Manage packet captures with Azure Network Watcher using Azure CLI 2.0</span></span>
+# <a name="manage-packet-captures-with-azure-network-watcher-using-azure-cli-20"></a><span data-ttu-id="cdeca-103">Gestire le acquisizioni di pacchetti con Azure Network Watcher usando l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="cdeca-103">Manage packet captures with Azure Network Watcher using Azure CLI 2.0</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="03698-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="03698-104">Azure portal</span></span>](network-watcher-packet-capture-manage-portal.md)
-> - [<span data-ttu-id="03698-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="03698-105">PowerShell</span></span>](network-watcher-packet-capture-manage-powershell.md)
-> - [<span data-ttu-id="03698-106">Interfaccia della riga di comando 1.0</span><span class="sxs-lookup"><span data-stu-id="03698-106">CLI 1.0</span></span>](network-watcher-packet-capture-manage-cli-nodejs.md)
-> - [<span data-ttu-id="03698-107">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="03698-107">CLI 2.0</span></span>](network-watcher-packet-capture-manage-cli.md)
-> - [<span data-ttu-id="03698-108">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="03698-108">Azure REST API</span></span>](network-watcher-packet-capture-manage-rest.md)
+> - [<span data-ttu-id="cdeca-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="cdeca-104">Azure portal</span></span>](network-watcher-packet-capture-manage-portal.md)
+> - [<span data-ttu-id="cdeca-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="cdeca-105">PowerShell</span></span>](network-watcher-packet-capture-manage-powershell.md)
+> - [<span data-ttu-id="cdeca-106">Interfaccia della riga di comando 1.0</span><span class="sxs-lookup"><span data-stu-id="cdeca-106">CLI 1.0</span></span>](network-watcher-packet-capture-manage-cli-nodejs.md)
+> - [<span data-ttu-id="cdeca-107">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="cdeca-107">CLI 2.0</span></span>](network-watcher-packet-capture-manage-cli.md)
+> - [<span data-ttu-id="cdeca-108">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="cdeca-108">Azure REST API</span></span>](network-watcher-packet-capture-manage-rest.md)
 
-<span data-ttu-id="03698-109">Il servizio di acquisizione di pacchetti di Network Watcher consente di creare sessioni di acquisizione per registrare il traffico da e verso una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="03698-109">Network Watcher packet capture allows you to create capture sessions to track traffic to and from a virtual machine.</span></span> <span data-ttu-id="03698-110">Sono disponibili filtri per la sessione di acquisizione per garantire che venga acquisito solo il traffico desiderato.</span><span class="sxs-lookup"><span data-stu-id="03698-110">Filters are provided for the capture session to ensure you capture only the traffic you want.</span></span> <span data-ttu-id="03698-111">Il servizio di acquisizione di pacchetti consente di individuare eventuali anomalie di rete in modo proattivo e reattivo.</span><span class="sxs-lookup"><span data-stu-id="03698-111">Packet capture helps to diagnose network anomalies both reactively and proactively.</span></span> <span data-ttu-id="03698-112">Altri utilizzi comprendono la raccolta di statistiche di rete, informazioni sulle intrusioni nella rete, debug delle comunicazioni client-server e molto altro ancora.</span><span class="sxs-lookup"><span data-stu-id="03698-112">Other uses include gathering network statistics, gaining information on network intrusions, to debug client-server communications and much more.</span></span> <span data-ttu-id="03698-113">La possibilità di attivare da remoto l'acquisizione di pacchetti evita di dover eseguire manualmente questa operazione sul computer desiderato, consentendo un notevole risparmio di tempo.</span><span class="sxs-lookup"><span data-stu-id="03698-113">By being able to remotely trigger packet captures, this capability eases the burden of running a packet capture manually and on the desired machine, which saves valuable time.</span></span>
+<span data-ttu-id="cdeca-109">Acquisizione di pacchetti di rete Watcher consente tooand toocreate acquisizione sessioni tootrack traffico da una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="cdeca-109">Network Watcher packet capture allows you toocreate capture sessions tootrack traffic tooand from a virtual machine.</span></span> <span data-ttu-id="cdeca-110">I filtri vengono forniti per hello acquisizione sessione tooensure che si acquisisce solo il traffico hello desiderato.</span><span class="sxs-lookup"><span data-stu-id="cdeca-110">Filters are provided for hello capture session tooensure you capture only hello traffic you want.</span></span> <span data-ttu-id="cdeca-111">Acquisizione di pacchetti consente toodiagnose anomalie di rete in modo proattivo e reattivo.</span><span class="sxs-lookup"><span data-stu-id="cdeca-111">Packet capture helps toodiagnose network anomalies both reactively and proactively.</span></span> <span data-ttu-id="cdeca-112">Altri usi includono la raccolta di statistiche di rete, ottenere informazioni su intrusioni di rete, client-server toodebug le comunicazioni e molto altro ancora.</span><span class="sxs-lookup"><span data-stu-id="cdeca-112">Other uses include gathering network statistics, gaining information on network intrusions, toodebug client-server communications and much more.</span></span> <span data-ttu-id="cdeca-113">Essendo in grado di tooremotely trigger pacchetto acquisizioni, questa funzionalità semplifica il carico di hello dell'esecuzione di acquisizione pacchetto eseguita manualmente e nel computer desiderato hello, che consente di risparmiare tempo prezioso.</span><span class="sxs-lookup"><span data-stu-id="cdeca-113">By being able tooremotely trigger packet captures, this capability eases hello burden of running a packet capture manually and on hello desired machine, which saves valuable time.</span></span>
 
-<span data-ttu-id="03698-114">Questo articolo usa l'interfaccia della riga di comando di nuova generazione per il modello di distribuzione di gestione delle risorse, ovvero l'interfaccia della riga di comando di Azure 2.0, disponibile per Windows, Mac e Linux.</span><span class="sxs-lookup"><span data-stu-id="03698-114">This article uses our next generation CLI for the resource management deployment model, Azure CLI 2.0, which is available for Windows, Mac and Linux.</span></span>
+<span data-ttu-id="cdeca-114">In questo articolo utilizza la nuova generazione CLI per modello di distribuzione Gestione risorse hello, CLI di Azure 2.0, che è disponibile per Windows, Mac e Linux.</span><span class="sxs-lookup"><span data-stu-id="cdeca-114">This article uses our next generation CLI for hello resource management deployment model, Azure CLI 2.0, which is available for Windows, Mac and Linux.</span></span>
 
-<span data-ttu-id="03698-115">Per eseguire i passaggi indicati in questo articolo è necessario [installare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows (interfaccia della riga di comando di Azure)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).</span><span class="sxs-lookup"><span data-stu-id="03698-115">To perform the steps in this article, you need to [install the Azure Command-Line Interface for Mac, Linux, and Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).</span></span>
+<span data-ttu-id="cdeca-115">hello tooperform i passaggi in questo articolo, è necessario troppo[installare hello interfaccia della riga di comando di Azure per Mac, Linux e Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).</span><span class="sxs-lookup"><span data-stu-id="cdeca-115">tooperform hello steps in this article, you need too[install hello Azure Command-Line Interface for Mac, Linux, and Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).</span></span>
 
-<span data-ttu-id="03698-116">Questo articolo illustra le diverse attività di gestione attualmente disponibili per l'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="03698-116">This article takes you through the different management tasks that are currently available for packet capture.</span></span>
+<span data-ttu-id="cdeca-116">In questo articolo illustra hello diverse operazioni di gestione che sono attualmente disponibili per l'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="cdeca-116">This article takes you through hello different management tasks that are currently available for packet capture.</span></span>
 
-- [<span data-ttu-id="03698-117">**Avviare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="03698-117">**Start a packet capture**</span></span>](#start-a-packet-capture)
-- [<span data-ttu-id="03698-118">**Interrompere un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="03698-118">**Stop a packet capture**</span></span>](#stop-a-packet-capture)
-- [<span data-ttu-id="03698-119">**Eliminare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="03698-119">**Delete a packet capture**</span></span>](#delete-a-packet-capture)
-- [<span data-ttu-id="03698-120">**Scaricare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="03698-120">**Download a packet capture**</span></span>](#download-a-packet-capture)
+- [<span data-ttu-id="cdeca-117">**Avviare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="cdeca-117">**Start a packet capture**</span></span>](#start-a-packet-capture)
+- [<span data-ttu-id="cdeca-118">**Interrompere un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="cdeca-118">**Stop a packet capture**</span></span>](#stop-a-packet-capture)
+- [<span data-ttu-id="cdeca-119">**Eliminare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="cdeca-119">**Delete a packet capture**</span></span>](#delete-a-packet-capture)
+- [<span data-ttu-id="cdeca-120">**Scaricare un'acquisizione di pacchetti**</span><span class="sxs-lookup"><span data-stu-id="cdeca-120">**Download a packet capture**</span></span>](#download-a-packet-capture)
 
-## <a name="before-you-begin"></a><span data-ttu-id="03698-121">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="03698-121">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="cdeca-121">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="cdeca-121">Before you begin</span></span>
 
-<span data-ttu-id="03698-122">Questo articolo presuppone che l'utente disponga delle risorse seguenti:</span><span class="sxs-lookup"><span data-stu-id="03698-122">This article assumes you have the following resources:</span></span>
+<span data-ttu-id="cdeca-122">Questo articolo si presuppone di che aver hello seguenti risorse:</span><span class="sxs-lookup"><span data-stu-id="cdeca-122">This article assumes you have hello following resources:</span></span>
 
-- <span data-ttu-id="03698-123">Un'istanza di Network Watcher nell'area in cui creare un'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="03698-123">An instance of Network Watcher in the region you want to create a packet capture</span></span>
-- <span data-ttu-id="03698-124">Una macchina virtuale con l'estensione di acquisizione di pacchetti abilitata.</span><span class="sxs-lookup"><span data-stu-id="03698-124">A virtual machine with the packet capture extension enabled.</span></span>
+- <span data-ttu-id="cdeca-123">Un'istanza del controllo di rete nell'area di hello desiderato toocreate un'acquisizione pacchetti</span><span class="sxs-lookup"><span data-stu-id="cdeca-123">An instance of Network Watcher in hello region you want toocreate a packet capture</span></span>
+- <span data-ttu-id="cdeca-124">Una macchina virtuale con i pacchetti hello acquisire estensione abilitata.</span><span class="sxs-lookup"><span data-stu-id="cdeca-124">A virtual machine with hello packet capture extension enabled.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="03698-125">L'acquisizione di pacchetti richiede un agente in esecuzione nella macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="03698-125">Packet capture requires an agent to be running on the virtual machine.</span></span> <span data-ttu-id="03698-126">L'agente viene installato come estensione.</span><span class="sxs-lookup"><span data-stu-id="03698-126">The Agent is installed as an extension.</span></span> <span data-ttu-id="03698-127">Per informazioni sulle estensioni di VM, leggere l'articolo sulle [estensioni e funzionalità della macchina virtuale](../virtual-machines/windows/extensions-features.md).</span><span class="sxs-lookup"><span data-stu-id="03698-127">For instructions on VM extensions, visit [Virtual Machine extensions and features](../virtual-machines/windows/extensions-features.md).</span></span>
+> <span data-ttu-id="cdeca-125">Acquisizione pacchetto richiede toobe un agente in esecuzione nella macchina virtuale hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-125">Packet capture requires an agent toobe running on hello virtual machine.</span></span> <span data-ttu-id="cdeca-126">Hello agente viene installato come un'estensione.</span><span class="sxs-lookup"><span data-stu-id="cdeca-126">hello Agent is installed as an extension.</span></span> <span data-ttu-id="cdeca-127">Per informazioni sulle estensioni di VM, leggere l'articolo sulle [estensioni e funzionalità della macchina virtuale](../virtual-machines/windows/extensions-features.md).</span><span class="sxs-lookup"><span data-stu-id="cdeca-127">For instructions on VM extensions, visit [Virtual Machine extensions and features](../virtual-machines/windows/extensions-features.md).</span></span>
 
-## <a name="install-vm-extension"></a><span data-ttu-id="03698-128">Installare un'estensione di macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="03698-128">Install VM extension</span></span>
+## <a name="install-vm-extension"></a><span data-ttu-id="cdeca-128">Installare un'estensione di macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="cdeca-128">Install VM extension</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="03698-129">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="03698-129">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="cdeca-129">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="cdeca-129">Step 1</span></span>
 
-<span data-ttu-id="03698-130">Eseguire il cmdlet `az vm extension set` per installare l'agente di acquisizione di pacchetti sulla macchina virtuale guest.</span><span class="sxs-lookup"><span data-stu-id="03698-130">Run the `az vm extension set` cmdlet to install the packet capture agent on the guest virtual machine.</span></span>
+<span data-ttu-id="cdeca-130">Eseguire hello `az vm extension set` agente cmdlet tooinstall hello pacchetto acquisizione sulla macchina virtuale guest di hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-130">Run hello `az vm extension set` cmdlet tooinstall hello packet capture agent on hello guest virtual machine.</span></span>
 
-<span data-ttu-id="03698-131">Per le macchine virtuali Windows:</span><span class="sxs-lookup"><span data-stu-id="03698-131">For Windows virtual machines:</span></span>
+<span data-ttu-id="cdeca-131">Per le macchine virtuali Windows:</span><span class="sxs-lookup"><span data-stu-id="cdeca-131">For Windows virtual machines:</span></span>
 
 ```azurecli
 az vm extension set --resource-group resourceGroupName --vm-name virtualMachineName --publisher Microsoft.Azure.NetworkWatcher --name NetworkWatcherAgentWindows --version 1.4
 ```
 
-<span data-ttu-id="03698-132">Per le macchine virtuali Linux:</span><span class="sxs-lookup"><span data-stu-id="03698-132">For Linux virtual machines:</span></span>
+<span data-ttu-id="cdeca-132">Per le macchine virtuali Linux:</span><span class="sxs-lookup"><span data-stu-id="cdeca-132">For Linux virtual machines:</span></span>
 
 ```azurecli
 az vm extension set --resource-group resourceGroupName --vm-name virtualMachineName --publisher Microsoft.Azure.NetworkWatcher --name NetworkWatcherAgentLinux--version 1.4
 ````
 
-### <a name="step-2"></a><span data-ttu-id="03698-133">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="03698-133">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="cdeca-133">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="cdeca-133">Step 2</span></span>
 
-<span data-ttu-id="03698-134">Per verificare che l'agente sia stato installato, eseguire il cmdlet `vm extension get` e passare il gruppo di risorse e il nome della macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="03698-134">To ensure that the agent is installed, run the `vm extension get` cmdlet and pass it the resource group and virtual machine name.</span></span> <span data-ttu-id="03698-135">Controllare l'elenco risultante per verificare l'installazione dell'agente.</span><span class="sxs-lookup"><span data-stu-id="03698-135">Check the resulting list to ensure the agent is installed.</span></span>
+<span data-ttu-id="cdeca-134">tooensure che hello agente è installato, eseguire hello `vm extension get` cmdlet e passarlo a gruppo di risorse hello e nome della macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="cdeca-134">tooensure that hello agent is installed, run hello `vm extension get` cmdlet and pass it hello resource group and virtual machine name.</span></span> <span data-ttu-id="cdeca-135">Controllare hello risultante elenco tooensure hello agente è installato.</span><span class="sxs-lookup"><span data-stu-id="cdeca-135">Check hello resulting list tooensure hello agent is installed.</span></span>
 
 ```azurecli
 az vm extension show -resource-group resourceGroupName --vm-name virtualMachineName --name NetworkWatcherAgentWindows
 ```
 
-<span data-ttu-id="03698-136">L'esempio seguente riporta una possibile risposta all'esecuzione di `az vm extension show`.</span><span class="sxs-lookup"><span data-stu-id="03698-136">The following sample is an example of the response from running `az vm extension show`</span></span>
+<span data-ttu-id="cdeca-136">Hello di esempio seguente è riportato un esempio di risposta hello esecuzione`az vm extension show`</span><span class="sxs-lookup"><span data-stu-id="cdeca-136">hello following sample is an example of hello response from running `az vm extension show`</span></span>
 
 ```json
 {
@@ -100,35 +100,35 @@ az vm extension show -resource-group resourceGroupName --vm-name virtualMachineN
 }
 ```
 
-## <a name="start-a-packet-capture"></a><span data-ttu-id="03698-137">Avviare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="03698-137">Start a packet capture</span></span>
+## <a name="start-a-packet-capture"></a><span data-ttu-id="cdeca-137">Avviare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="cdeca-137">Start a packet capture</span></span>
 
-<span data-ttu-id="03698-138">Dopo aver completato i passaggi precedenti, l'agente di acquisizione di pacchetti è installato nella macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="03698-138">Once the preceding steps are complete, the packet capture agent is installed on the virtual machine.</span></span>
+<span data-ttu-id="cdeca-138">Una volta hello passaggi precedenti, agente di acquisizione di pacchetti hello è installato nella macchina virtuale hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-138">Once hello preceding steps are complete, hello packet capture agent is installed on hello virtual machine.</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="03698-139">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="03698-139">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="cdeca-139">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="cdeca-139">Step 1</span></span>
 
-<span data-ttu-id="03698-140">Il passaggio successivo consente di recuperare l'istanza di Network Watcher.</span><span class="sxs-lookup"><span data-stu-id="03698-140">The next step is to retrieve the Network Watcher instance.</span></span> <span data-ttu-id="03698-141">Il nome dell'istanza di Network Watcher viene passato al cmdlet `az network watcher show` nel passaggio 4.</span><span class="sxs-lookup"><span data-stu-id="03698-141">TThe name of the Network Watcher is passed to the `az network watcher show` cmdlet in step 4.</span></span>
+<span data-ttu-id="cdeca-140">passaggio successivo Hello è istanza di tooretrieve hello Watcher di rete.</span><span class="sxs-lookup"><span data-stu-id="cdeca-140">hello next step is tooretrieve hello Network Watcher instance.</span></span> <span data-ttu-id="cdeca-141">Il nome TImpossibile di hello Watcher di rete viene passato toohello `az network watcher show` cmdlet nel passaggio 4.</span><span class="sxs-lookup"><span data-stu-id="cdeca-141">TThe name of hello Network Watcher is passed toohello `az network watcher show` cmdlet in step 4.</span></span>
 
 ```azurecli
 az network watcher show -resource-group resourceGroup -name networkWatcherName
 ```
 
-### <a name="step-2"></a><span data-ttu-id="03698-142">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="03698-142">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="cdeca-142">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="cdeca-142">Step 2</span></span>
 
-<span data-ttu-id="03698-143">Recuperare un account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="03698-143">Retrieve a storage account.</span></span> <span data-ttu-id="03698-144">L'account di archiviazione viene usato per archiviare il file di acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="03698-144">This storage account is used to store the packet capture file.</span></span>
+<span data-ttu-id="cdeca-143">Recuperare un account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="cdeca-143">Retrieve a storage account.</span></span> <span data-ttu-id="cdeca-144">Questo account di archiviazione è file di acquisizione di pacchetti hello toostore utilizzato.</span><span class="sxs-lookup"><span data-stu-id="cdeca-144">This storage account is used toostore hello packet capture file.</span></span>
 
 ```azurecli
 azure storage account list
 ```
 
-### <a name="step-3"></a><span data-ttu-id="03698-145">Passaggio 3</span><span class="sxs-lookup"><span data-stu-id="03698-145">Step 3</span></span>
+### <a name="step-3"></a><span data-ttu-id="cdeca-145">Passaggio 3</span><span class="sxs-lookup"><span data-stu-id="cdeca-145">Step 3</span></span>
 
-<span data-ttu-id="03698-146">È possibile usare i filtri per limitare i dati archiviati dall'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="03698-146">Filters can be used to limit the data that is stored by the packet capture.</span></span> <span data-ttu-id="03698-147">L'esempio seguente imposta un'acquisizione di pacchetto con diversi filtri.</span><span class="sxs-lookup"><span data-stu-id="03698-147">The following example sets up a packet capture with several  filters.</span></span>  <span data-ttu-id="03698-148">I primi tre filtri acquisiscono il traffico TCP in uscita solo dall'indirizzo IP 10.0.0.3 verso le porte di destinazione 20, 80 e 443.</span><span class="sxs-lookup"><span data-stu-id="03698-148">The first three filters collect outgoing TCP traffic only from local IP 10.0.0.3 to destination ports 20, 80 and 443.</span></span>  <span data-ttu-id="03698-149">L'ultimo filtro acquisisce solo il traffico UDP.</span><span class="sxs-lookup"><span data-stu-id="03698-149">The last filter collects only UDP traffic.</span></span>
+<span data-ttu-id="cdeca-146">I filtri possono essere utilizzati toolimit hello i dati archiviati dall'acquisizione di pacchetti hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-146">Filters can be used toolimit hello data that is stored by hello packet capture.</span></span> <span data-ttu-id="cdeca-147">Hello questo esempio viene impostata un'acquisizione pacchetto con diversi filtri.</span><span class="sxs-lookup"><span data-stu-id="cdeca-147">hello following example sets up a packet capture with several  filters.</span></span>  <span data-ttu-id="cdeca-148">Hello innanzitutto tre filtri raccolgono il traffico TCP in uscita solo da indirizzo IP locale 10.0.0.3 toodestination porte 20, 80 e 443.</span><span class="sxs-lookup"><span data-stu-id="cdeca-148">hello first three filters collect outgoing TCP traffic only from local IP 10.0.0.3 toodestination ports 20, 80 and 443.</span></span>  <span data-ttu-id="cdeca-149">ultimo filtro Hello raccoglie solo il traffico UDP.</span><span class="sxs-lookup"><span data-stu-id="cdeca-149">hello last filter collects only UDP traffic.</span></span>
 
 ```azurecli
 az network watcher packet-capture create --resource-group {resoureceurceGroupName} --vm {vmName} --name packetCaptureName --storage-account gwteststorage123abc --filters "[{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"20\"},{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"80\"},{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"443\"},{\"protocol\":\"UDP\"}]"
 ```
 
-<span data-ttu-id="03698-150">L'esempio seguente riporta l'output previsto dall'esecuzione del cmdlet `az network watcher packet-capture create`.</span><span class="sxs-lookup"><span data-stu-id="03698-150">The following example is the expected output from running the `az network watcher packet-capture create` cmdlet.</span></span>
+<span data-ttu-id="cdeca-150">esempio Hello è output di hello prevista dell'esecuzione hello `az network watcher packet-capture create` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="cdeca-150">hello following example is hello expected output from running hello `az network watcher packet-capture create` cmdlet.</span></span>
 
 ```json
 {
@@ -181,15 +181,15 @@ roviders/microsoft.compute/virtualmachines/{vmName}/2017/05/25/packetcapture_16_
 }
 ```
 
-## <a name="get-a-packet-capture"></a><span data-ttu-id="03698-151">Ottenere un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="03698-151">Get a packet capture</span></span>
+## <a name="get-a-packet-capture"></a><span data-ttu-id="cdeca-151">Ottenere un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="cdeca-151">Get a packet capture</span></span>
 
-<span data-ttu-id="03698-152">L'esecuzione del cmdlet `az network watcher packet-capture show` consente di recuperare lo stato di un'acquisizione di pacchetti attualmente in esecuzione o completata.</span><span class="sxs-lookup"><span data-stu-id="03698-152">Running the `az network watcher packet-capture show` cmdlet, retrieves the status of a currently running, or completed packet capture.</span></span>
+<span data-ttu-id="cdeca-152">Esecuzione hello `az network watcher packet-capture show` cmdlet recupera informazioni sullo stato hello di un'acquisizione di pacchetti attualmente in esecuzione o è stata completata.</span><span class="sxs-lookup"><span data-stu-id="cdeca-152">Running hello `az network watcher packet-capture show` cmdlet, retrieves hello status of a currently running, or completed packet capture.</span></span>
 
 ```azurecli
 az network watcher packet-capture show --name packetCaptureName --location westcentralus
 ```
 
-<span data-ttu-id="03698-153">L'esempio seguente riporta l'output ottenuto dall'esecuzione del cmdlet `az network watcher packet-capture show`.</span><span class="sxs-lookup"><span data-stu-id="03698-153">The following example is the output from the `az network watcher packet-capture show` cmdlet.</span></span> <span data-ttu-id="03698-154">L'esempio seguente mostra il risultato ottenuto al completamento dell'acquisizione di pacchetti.</span><span class="sxs-lookup"><span data-stu-id="03698-154">The following example is after the capture is complete.</span></span> <span data-ttu-id="03698-155">Il valore PacketCaptureStatus è Stopped, mentre il valore StopReason corrisponde a TimeExceeded.</span><span class="sxs-lookup"><span data-stu-id="03698-155">The PacketCaptureStatus value is Stopped, with a StopReason of TimeExceeded.</span></span> <span data-ttu-id="03698-156">Questo valore indica che l'acquisizione di pacchetti ha avuto esito positivo ed è stata eseguita per il tempo necessario.</span><span class="sxs-lookup"><span data-stu-id="03698-156">This value shows that the packet capture was successful and ran its time.</span></span>
+<span data-ttu-id="cdeca-153">esempio Hello è output hello hello `az network watcher packet-capture show` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="cdeca-153">hello following example is hello output from hello `az network watcher packet-capture show` cmdlet.</span></span> <span data-ttu-id="cdeca-154">Hello seguito è riportata al termine dell'acquisizione hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-154">hello following example is after hello capture is complete.</span></span> <span data-ttu-id="cdeca-155">valore PacketCaptureStatus Hello viene arrestato, con un StopReason di TimeExceeded.</span><span class="sxs-lookup"><span data-stu-id="cdeca-155">hello PacketCaptureStatus value is Stopped, with a StopReason of TimeExceeded.</span></span> <span data-ttu-id="cdeca-156">Questo valore indica che acquisizione pacchetti hello ha avuto esito positivo e il tempo di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="cdeca-156">This value shows that hello packet capture was successful and ran its time.</span></span>
 
 ```
 {
@@ -241,40 +241,40 @@ ure_16_22_34_630.cap"
 }
 ```
 
-## <a name="stop-a-packet-capture"></a><span data-ttu-id="03698-157">Interrompere un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="03698-157">Stop a packet capture</span></span>
+## <a name="stop-a-packet-capture"></a><span data-ttu-id="cdeca-157">Interrompere un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="cdeca-157">Stop a packet capture</span></span>
 
-<span data-ttu-id="03698-158">L'esecuzione del cmdlet `az network watcher packet-capture stop` consente di interrompere un'acquisizione di pacchetti in corso.</span><span class="sxs-lookup"><span data-stu-id="03698-158">By running the `az network watcher packet-capture stop` cmdlet, if a capture session is in progress it is stopped.</span></span>
+<span data-ttu-id="cdeca-158">Eseguendo hello `az network watcher packet-capture stop` cmdlet, se una sessione di acquisizione è in corso viene arrestata.</span><span class="sxs-lookup"><span data-stu-id="cdeca-158">By running hello `az network watcher packet-capture stop` cmdlet, if a capture session is in progress it is stopped.</span></span>
 
 ```azurecli
 az network watcher packet-capture stop --name packetCaptureName --location westcentralus
 ```
 
 > [!NOTE]
-> <span data-ttu-id="03698-159">Il cmdlet non restituisce alcuna risposta se eseguito in una sessione di acquisizione in corso o in una sessione esistente che è già stata interrotta.</span><span class="sxs-lookup"><span data-stu-id="03698-159">The cmdlet returns no response when ran on a currently running capture session or an existing session that has already stopped.</span></span>
+> <span data-ttu-id="cdeca-159">cmdlet di Hello non restituisce alcuna risposta quando è stato eseguito in una sessione di acquisizione attualmente in esecuzione o di una sessione esistente che è già stato arrestato.</span><span class="sxs-lookup"><span data-stu-id="cdeca-159">hello cmdlet returns no response when ran on a currently running capture session or an existing session that has already stopped.</span></span>
 
-## <a name="delete-a-packet-capture"></a><span data-ttu-id="03698-160">Eliminare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="03698-160">Delete a packet capture</span></span>
+## <a name="delete-a-packet-capture"></a><span data-ttu-id="cdeca-160">Eliminare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="cdeca-160">Delete a packet capture</span></span>
 
 ```azurecli
 az network watcher packet-capture delete --name packetCaptureName --location westcentralus
 ```
 
 > [!NOTE]
-> <span data-ttu-id="03698-161">L'eliminazione di un'acquisizione di pacchetti non elimina il file nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="03698-161">Deleting a packet capture does not delete the file in the storage account.</span></span>
+> <span data-ttu-id="cdeca-161">L'eliminazione di un'acquisizione di pacchetti non elimina il file hello nell'account di archiviazione hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-161">Deleting a packet capture does not delete hello file in hello storage account.</span></span>
 
-## <a name="download-a-packet-capture"></a><span data-ttu-id="03698-162">Scaricare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="03698-162">Download a packet capture</span></span>
+## <a name="download-a-packet-capture"></a><span data-ttu-id="cdeca-162">Scaricare un'acquisizione di pacchetti</span><span class="sxs-lookup"><span data-stu-id="cdeca-162">Download a packet capture</span></span>
 
-<span data-ttu-id="03698-163">Dopo aver completato la sessione di acquisizione di pacchetti, è possibile scaricare il file di acquisizione nell'archiviazione BLOB o in un file locale nella macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="03698-163">Once your packet capture session has completed, the capture file can be uploaded to blob storage or to a local file on the VM.</span></span> <span data-ttu-id="03698-164">La posizione di archiviazione dell'acquisizione di pacchetti viene definita al momento della creazione della sessione.</span><span class="sxs-lookup"><span data-stu-id="03698-164">The storage location of the packet capture is defined at creation of the session.</span></span> <span data-ttu-id="03698-165">Uno strumento utile per accedere ai file di acquisizione salvati in un account di archiviazione è Esplora archivi di Microsoft Azure, disponibile qui: http://storageexplorer.com/</span><span class="sxs-lookup"><span data-stu-id="03698-165">A convenient tool to access these capture files saved to a storage account is Microsoft Azure Storage Explorer, which can be downloaded here:  http://storageexplorer.com/</span></span>
+<span data-ttu-id="cdeca-163">Una volta completata la sessione di acquisizione di pacchetti, hello acquisizione file può essere caricato tooblob tooa o archiviazione locale nella macchina virtuale hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-163">Once your packet capture session has completed, hello capture file can be uploaded tooblob storage or tooa local file on hello VM.</span></span> <span data-ttu-id="cdeca-164">percorso di archiviazione Hello dell'acquisizione di pacchetti hello è definito al momento della creazione della sessione hello.</span><span class="sxs-lookup"><span data-stu-id="cdeca-164">hello storage location of hello packet capture is defined at creation of hello session.</span></span> <span data-ttu-id="cdeca-165">Tooaccess un utile strumento questi file di acquisizione di account di archiviazione tooa salvato è Microsoft Azure Storage Explorer, che può essere scaricata qui: http://storageexplorer.com/</span><span class="sxs-lookup"><span data-stu-id="cdeca-165">A convenient tool tooaccess these capture files saved tooa storage account is Microsoft Azure Storage Explorer, which can be downloaded here:  http://storageexplorer.com/</span></span>
 
-<span data-ttu-id="03698-166">Se viene specificato un account di archiviazione, i file di acquisizione di pacchetti vengono salvati in un account di archiviazione nel percorso seguente:</span><span class="sxs-lookup"><span data-stu-id="03698-166">If a storage account is specified, packet capture files are saved to a storage account at the following location:</span></span>
+<span data-ttu-id="cdeca-166">Se viene specificato un account di archiviazione, i file di acquisizione dei pacchetti vengono salvati tooa account di archiviazione in hello seguente posizione:</span><span class="sxs-lookup"><span data-stu-id="cdeca-166">If a storage account is specified, packet capture files are saved tooa storage account at hello following location:</span></span>
 
 ```
 https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscriptions/{subscriptionId}/resourcegroups/{storageAccountResourceGroup}/providers/microsoft.compute/virtualmachines/{VMName}/{year}/{month}/{day}/packetCapture_{creationTime}.cap
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="03698-167">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="03698-167">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="cdeca-167">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="cdeca-167">Next steps</span></span>
 
-<span data-ttu-id="03698-168">Per altre informazioni su come automatizzare le acquisizioni di pacchetti tramite gli avvisi della macchina virtuale, leggere l'articolo su come [creare un'acquisizione di pacchetti attivata da un avviso](network-watcher-alert-triggered-packet-capture.md).</span><span class="sxs-lookup"><span data-stu-id="03698-168">Learn how to automate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="cdeca-168">Informazioni su come acquisizioni di pacchetti tooautomate con gli avvisi di macchina virtuale visualizzando [creare un'acquisizione pacchetto attivati avvisi](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="cdeca-168">Learn how tooautomate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
-<span data-ttu-id="03698-169">Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).</span><span class="sxs-lookup"><span data-stu-id="03698-169">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
+<span data-ttu-id="cdeca-169">Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).</span><span class="sxs-lookup"><span data-stu-id="cdeca-169">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
 
 <!-- Image references -->

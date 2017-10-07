@@ -1,5 +1,5 @@
 ---
-title: Usare Analisi di flusso di Azure con SQL Data Warehouse | Documentazione Microsoft
+title: aaaUse Analitica di flusso di Azure con SQL Data Warehouse | Documenti Microsoft
 description: Suggerimenti per l'uso di Analisi di flusso di Azure con Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,65 +15,65 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 14783f0464764a11d7f03a5db1c2d63728a4cb50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1278197a6764864124fd92fc672de00b83ec343f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-stream-analytics-with-sql-data-warehouse"></a><span data-ttu-id="9491e-103">Usare Analisi di flusso di Azure con SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="9491e-103">Use Azure Stream Analytics with SQL Data Warehouse</span></span>
-<span data-ttu-id="9491e-104">Analisi di flusso di Azure è un servizio completamente gestito che consente l'elaborazione di eventi complessi con bassa latenza, elevata disponibilità e scalabilità per lo streaming di dati nel cloud.</span><span class="sxs-lookup"><span data-stu-id="9491e-104">Azure Stream Analytics is a fully managed service providing low-latency, highly available, scalable complex event processing over streaming data in the cloud.</span></span> <span data-ttu-id="9491e-105">Per informazioni di base, vedere [Introduzione ad Analisi di flusso di Azure][Introduction to Azure Stream Analytics].</span><span class="sxs-lookup"><span data-stu-id="9491e-105">You can learn the basics by reading [Introduction to Azure Stream Analytics][Introduction to Azure Stream Analytics].</span></span> <span data-ttu-id="9491e-106">È possibile apprendere come creare una soluzione end-to-end con Analisi di flusso seguendo l'esercitazione [Introduzione all'uso di Analisi di flusso di Azure][Get started using Azure Stream Analytics].</span><span class="sxs-lookup"><span data-stu-id="9491e-106">You can then learn how to create an end-to-end solution with Stream Analytics by following the [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>
+# <a name="use-azure-stream-analytics-with-sql-data-warehouse"></a><span data-ttu-id="3f939-103">Usare Analisi di flusso di Azure con SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="3f939-103">Use Azure Stream Analytics with SQL Data Warehouse</span></span>
+<span data-ttu-id="3f939-104">Analitica di flusso di Azure è un servizio completamente gestito che fornisce l'elaborazione a bassa latenza, elevata disponibilità e scalabile di eventi complessi nel flusso di dati nel cloud hello.</span><span class="sxs-lookup"><span data-stu-id="3f939-104">Azure Stream Analytics is a fully managed service providing low-latency, highly available, scalable complex event processing over streaming data in hello cloud.</span></span> <span data-ttu-id="3f939-105">È possibile nozioni di base hello leggendo [tooAzure introduzione Analitica flusso][Introduction tooAzure Stream Analytics].</span><span class="sxs-lookup"><span data-stu-id="3f939-105">You can learn hello basics by reading [Introduction tooAzure Stream Analytics][Introduction tooAzure Stream Analytics].</span></span> <span data-ttu-id="3f939-106">Sarà possibile apprendere come una soluzione end-to-end con flusso Analitica seguendo toocreate hello [iniziare a usare Azure flusso Analitica] [ Get started using Azure Stream Analytics] esercitazione.</span><span class="sxs-lookup"><span data-stu-id="3f939-106">You can then learn how toocreate an end-to-end solution with Stream Analytics by following hello [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>
 
-<span data-ttu-id="9491e-107">In questo articolo si apprenderà come usare il database di Azure SQL Data Warehouse come un sink di output per i processi di Analisi di flusso.</span><span class="sxs-lookup"><span data-stu-id="9491e-107">In this article, you will learn how to use your Azure SQL Data Warehouse database as an output sink for your Steam Analytics jobs.</span></span>
+<span data-ttu-id="3f939-107">In questo articolo si apprenderà come toouse database Azure SQL Data Warehouse come sink di output per i processi di flusso Analitica.</span><span class="sxs-lookup"><span data-stu-id="3f939-107">In this article, you will learn how toouse your Azure SQL Data Warehouse database as an output sink for your Steam Analytics jobs.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="9491e-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="9491e-108">Prerequisites</span></span>
-<span data-ttu-id="9491e-109">Eseguire prima di tutto questa procedura nell'esercitazione [Introduzione all'uso di Analisi di flusso di Azure][Get started using Azure Stream Analytics].</span><span class="sxs-lookup"><span data-stu-id="9491e-109">First, run through the following steps in the [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>  
+## <a name="prerequisites"></a><span data-ttu-id="3f939-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="3f939-108">Prerequisites</span></span>
+<span data-ttu-id="3f939-109">In primo luogo, eseguire i passaggi hello hello [iniziare a usare Azure flusso Analitica] [ Get started using Azure Stream Analytics] esercitazione.</span><span class="sxs-lookup"><span data-stu-id="3f939-109">First, run through hello following steps in hello [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>  
 
-1. <span data-ttu-id="9491e-110">Creare un input dell'hub eventi</span><span class="sxs-lookup"><span data-stu-id="9491e-110">Create an Event Hub input</span></span>
-2. <span data-ttu-id="9491e-111">Configurare e avviare l'applicazione di generazione di eventi</span><span class="sxs-lookup"><span data-stu-id="9491e-111">Configure and start event generator application</span></span>
-3. <span data-ttu-id="9491e-112">Eseguire il provisioning di un processo di Analisi dei flussi</span><span class="sxs-lookup"><span data-stu-id="9491e-112">Provision a Stream Analytics job</span></span>
-4. <span data-ttu-id="9491e-113">Specificare la query e l'input del processo</span><span class="sxs-lookup"><span data-stu-id="9491e-113">Specify job input and query</span></span>
+1. <span data-ttu-id="3f939-110">Creare un input dell'hub eventi</span><span class="sxs-lookup"><span data-stu-id="3f939-110">Create an Event Hub input</span></span>
+2. <span data-ttu-id="3f939-111">Configurare e avviare l'applicazione di generazione di eventi</span><span class="sxs-lookup"><span data-stu-id="3f939-111">Configure and start event generator application</span></span>
+3. <span data-ttu-id="3f939-112">Eseguire il provisioning di un processo di Analisi dei flussi</span><span class="sxs-lookup"><span data-stu-id="3f939-112">Provision a Stream Analytics job</span></span>
+4. <span data-ttu-id="3f939-113">Specificare la query e l'input del processo</span><span class="sxs-lookup"><span data-stu-id="3f939-113">Specify job input and query</span></span>
 
-<span data-ttu-id="9491e-114">Creare quindi un database di Azure SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="9491e-114">Then, create an Azure SQL Data Warehouse database</span></span>
+<span data-ttu-id="3f939-114">Creare quindi un database di Azure SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="3f939-114">Then, create an Azure SQL Data Warehouse database</span></span>
 
-## <a name="specify-job-output-azure-sql-data-warehouse-database"></a><span data-ttu-id="9491e-115">Specificare l'output del processo: database di Azure SQL Warehouse</span><span class="sxs-lookup"><span data-stu-id="9491e-115">Specify job output: Azure SQL Data Warehouse database</span></span>
-### <a name="step-1"></a><span data-ttu-id="9491e-116">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="9491e-116">Step 1</span></span>
-<span data-ttu-id="9491e-117">Nel processo di Analisi di flusso fare clic su **OUTPUT** nella parte superiore della pagina e quindi scegliere **AGGIUNGI OUTPUT**.</span><span class="sxs-lookup"><span data-stu-id="9491e-117">In your Stream Analytics job click **OUTPUT** from the top of the page, and then click **ADD OUTPUT**.</span></span>
+## <a name="specify-job-output-azure-sql-data-warehouse-database"></a><span data-ttu-id="3f939-115">Specificare l'output del processo: database di Azure SQL Warehouse</span><span class="sxs-lookup"><span data-stu-id="3f939-115">Specify job output: Azure SQL Data Warehouse database</span></span>
+### <a name="step-1"></a><span data-ttu-id="3f939-116">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="3f939-116">Step 1</span></span>
+<span data-ttu-id="3f939-117">Selezionare il processo di flusso Analitica **OUTPUT** dall'alto hello della pagina hello e quindi fare clic su **Aggiungi OUTPUT**.</span><span class="sxs-lookup"><span data-stu-id="3f939-117">In your Stream Analytics job click **OUTPUT** from hello top of hello page, and then click **ADD OUTPUT**.</span></span>
 
-### <a name="step-2"></a><span data-ttu-id="9491e-118">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="9491e-118">Step 2</span></span>
-<span data-ttu-id="9491e-119">Selezionare il Database SQL e fare clic su Avanti.</span><span class="sxs-lookup"><span data-stu-id="9491e-119">Select SQL Database and click next.</span></span>
+### <a name="step-2"></a><span data-ttu-id="3f939-118">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="3f939-118">Step 2</span></span>
+<span data-ttu-id="3f939-119">Selezionare il Database SQL e fare clic su Avanti.</span><span class="sxs-lookup"><span data-stu-id="3f939-119">Select SQL Database and click next.</span></span>
 
 ![][add-output]
 
-### <a name="step-3"></a><span data-ttu-id="9491e-120">Passaggio 3</span><span class="sxs-lookup"><span data-stu-id="9491e-120">Step 3</span></span>
-<span data-ttu-id="9491e-121">Immettere i valori seguenti nella pagina successiva:</span><span class="sxs-lookup"><span data-stu-id="9491e-121">Enter the following values on the next page:</span></span>
+### <a name="step-3"></a><span data-ttu-id="3f939-120">Passaggio 3</span><span class="sxs-lookup"><span data-stu-id="3f939-120">Step 3</span></span>
+<span data-ttu-id="3f939-121">Immettere i seguenti valori nella pagina successiva hello hello:</span><span class="sxs-lookup"><span data-stu-id="3f939-121">Enter hello following values on hello next page:</span></span>
 
-* <span data-ttu-id="9491e-122">*Alias di output*: immettere un nome descrittivo per l'output del processo.</span><span class="sxs-lookup"><span data-stu-id="9491e-122">*Output Alias*: Enter a friendly name for this job output.</span></span>
-* <span data-ttu-id="9491e-123">*Sottoscrizione*</span><span class="sxs-lookup"><span data-stu-id="9491e-123">*Subscription*:</span></span>
-  * <span data-ttu-id="9491e-124">Se il database SQL Data Warehouse esiste nella stessa sottoscrizione del processo di analisi di flusso, selezionare Usare il database SQL dalla sottoscrizione corrente.</span><span class="sxs-lookup"><span data-stu-id="9491e-124">If your SQL Data Warehouse database is in the same subscription as the Stream Analytics job, select Use SQL Database from Current Subscription.</span></span>
-  * <span data-ttu-id="9491e-125">Se il database è in una sottoscrizione diversa, selezionare Usare il database SQL da un'altra sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="9491e-125">If your database is in a different subscription, select Use SQL Database from Another Subscription.</span></span>
-* <span data-ttu-id="9491e-126">*Database*: specificare il nome di un database di destinazione.</span><span class="sxs-lookup"><span data-stu-id="9491e-126">*Database*: Specify the name of a destination database.</span></span>
-* <span data-ttu-id="9491e-127">*Nome server*: specificare il nome del server per il database specificato.</span><span class="sxs-lookup"><span data-stu-id="9491e-127">*Server Name*: Specify the server name for the database you just specified.</span></span> <span data-ttu-id="9491e-128">Per trovarlo, è possibile usare il portale di Azure classico.</span><span class="sxs-lookup"><span data-stu-id="9491e-128">You can use the Azure Classic Portal to find this.</span></span>
+* <span data-ttu-id="3f939-122">*Alias di output*: immettere un nome descrittivo per l'output del processo.</span><span class="sxs-lookup"><span data-stu-id="3f939-122">*Output Alias*: Enter a friendly name for this job output.</span></span>
+* <span data-ttu-id="3f939-123">*Sottoscrizione*</span><span class="sxs-lookup"><span data-stu-id="3f939-123">*Subscription*:</span></span>
+  * <span data-ttu-id="3f939-124">Se il database di SQL Data Warehouse è in hello stessa sottoscrizione come processo di flusso Analitica hello, selezionare Usa Database SQL dalla sottoscrizione corrente.</span><span class="sxs-lookup"><span data-stu-id="3f939-124">If your SQL Data Warehouse database is in hello same subscription as hello Stream Analytics job, select Use SQL Database from Current Subscription.</span></span>
+  * <span data-ttu-id="3f939-125">Se il database è in una sottoscrizione diversa, selezionare Usare il database SQL da un'altra sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="3f939-125">If your database is in a different subscription, select Use SQL Database from Another Subscription.</span></span>
+* <span data-ttu-id="3f939-126">*Database*: specificare il nome di hello di un database di destinazione.</span><span class="sxs-lookup"><span data-stu-id="3f939-126">*Database*: Specify hello name of a destination database.</span></span>
+* <span data-ttu-id="3f939-127">*Nome del server*: specificare il nome di server hello per database hello è stato specificato.</span><span class="sxs-lookup"><span data-stu-id="3f939-127">*Server Name*: Specify hello server name for hello database you just specified.</span></span> <span data-ttu-id="3f939-128">È possibile utilizzare hello portale di Azure classico toofind questo.</span><span class="sxs-lookup"><span data-stu-id="3f939-128">You can use hello Azure Classic Portal toofind this.</span></span>
 
 ![][server-name]
 
-* <span data-ttu-id="9491e-129">*Nome utente*: digitare il nome utente di un account con autorizzazioni di scrittura nel database.</span><span class="sxs-lookup"><span data-stu-id="9491e-129">*User Name*: Specify the user name of an account that has write permissions for the database.</span></span>
-* <span data-ttu-id="9491e-130">*Password*: fornire la password per l'account utente specificato.</span><span class="sxs-lookup"><span data-stu-id="9491e-130">*Password*: Provide the password for the specified user account.</span></span>
-* <span data-ttu-id="9491e-131">*Tabella*: specificare il nome della tabella di destinazione nel database.</span><span class="sxs-lookup"><span data-stu-id="9491e-131">*Table*: Specify the name of the target table in the database.</span></span>
+* <span data-ttu-id="3f939-129">*Nome utente*: specificare il nome utente hello di un account che disponga di autorizzazioni di scrittura per il database di hello.</span><span class="sxs-lookup"><span data-stu-id="3f939-129">*User Name*: Specify hello user name of an account that has write permissions for hello database.</span></span>
+* <span data-ttu-id="3f939-130">*Password*: specificare la password di hello per hello l'account utente specificato.</span><span class="sxs-lookup"><span data-stu-id="3f939-130">*Password*: Provide hello password for hello specified user account.</span></span>
+* <span data-ttu-id="3f939-131">*Tabella*: specificare il nome di hello della tabella di destinazione hello nel database di hello.</span><span class="sxs-lookup"><span data-stu-id="3f939-131">*Table*: Specify hello name of hello target table in hello database.</span></span>
 
 ![][add-database]
 
-### <a name="step-4"></a><span data-ttu-id="9491e-132">Passaggio 4</span><span class="sxs-lookup"><span data-stu-id="9491e-132">Step 4</span></span>
-<span data-ttu-id="9491e-133">Fare clic sul pulsante con il segno di spunta per aggiungere l'output del processo e per verificare che Analisi di flusso possa connettersi al database.</span><span class="sxs-lookup"><span data-stu-id="9491e-133">Click the check button to add this job output and to verify that Stream Analytics can successfully connect to the database.</span></span>
+### <a name="step-4"></a><span data-ttu-id="3f939-132">Passaggio 4</span><span class="sxs-lookup"><span data-stu-id="3f939-132">Step 4</span></span>
+<span data-ttu-id="3f939-133">Fare clic su hello controllo pulsante tooadd l'output del processo e tooverify Analitica di flusso che può connettersi toohello database.</span><span class="sxs-lookup"><span data-stu-id="3f939-133">Click hello check button tooadd this job output and tooverify that Stream Analytics can successfully connect toohello database.</span></span>
 
 ![][test-connection]
 
-<span data-ttu-id="9491e-134">Quando la connessione al database riesce, verrà visualizzata una notifica nella parte inferiore del portale.</span><span class="sxs-lookup"><span data-stu-id="9491e-134">When the connection to the database succeeds, you will see a notification at the bottom of the portal.</span></span> <span data-ttu-id="9491e-135">È possibile scegliere Test connessione nella parte inferiore per testare la connessione al database.</span><span class="sxs-lookup"><span data-stu-id="9491e-135">You can click Test Connection at the bottom to test the connection to the database.</span></span>
+<span data-ttu-id="3f939-134">Quando il database di toohello hello connessione ha esito positivo, si vedrà una notifica nella parte inferiore di hello del portale hello.</span><span class="sxs-lookup"><span data-stu-id="3f939-134">When hello connection toohello database succeeds, you will see a notification at hello bottom of hello portal.</span></span> <span data-ttu-id="3f939-135">È possibile fare clic su Verifica connessione nel database di hello inferiore tootest hello connessione toohello.</span><span class="sxs-lookup"><span data-stu-id="3f939-135">You can click Test Connection at hello bottom tootest hello connection toohello database.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="9491e-136">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="9491e-136">Next steps</span></span>
-<span data-ttu-id="9491e-137">Per una panoramica dell'integrazione, vedere [Panoramica dell'integrazione di SQL Data Warehouse][SQL Data Warehouse integration overview].</span><span class="sxs-lookup"><span data-stu-id="9491e-137">For an overview of integration, see [SQL Data Warehouse integration overview][SQL Data Warehouse integration overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3f939-136">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3f939-136">Next steps</span></span>
+<span data-ttu-id="3f939-137">Per una panoramica dell'integrazione, vedere [Panoramica dell'integrazione di SQL Data Warehouse][SQL Data Warehouse integration overview].</span><span class="sxs-lookup"><span data-stu-id="3f939-137">For an overview of integration, see [SQL Data Warehouse integration overview][SQL Data Warehouse integration overview].</span></span>
 
-<span data-ttu-id="9491e-138">Per altri suggerimenti sullo sviluppo, vedere [Panoramica sullo sviluppo per SQL Data Warehouse][SQL Data Warehouse development overview].</span><span class="sxs-lookup"><span data-stu-id="9491e-138">For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
+<span data-ttu-id="3f939-138">Per altri suggerimenti sullo sviluppo, vedere [Panoramica sullo sviluppo per SQL Data Warehouse][SQL Data Warehouse development overview].</span><span class="sxs-lookup"><span data-stu-id="3f939-138">For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
 
 <!--Image references-->
 
@@ -84,7 +84,7 @@ ms.lasthandoff: 07/11/2017
 
 <!--Article references-->
 
-[Introduction to Azure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
+[Introduction tooAzure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
 [Get started using Azure Stream Analytics]: ../stream-analytics/stream-analytics-real-time-fraud-detection.md
 [SQL Data Warehouse development overview]:  ./sql-data-warehouse-overview-develop.md
 [SQL Data Warehouse integration overview]:  ./sql-data-warehouse-overview-integrate.md

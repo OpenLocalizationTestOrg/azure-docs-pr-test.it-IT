@@ -1,6 +1,6 @@
 ---
-title: Funzioni di confronto del modello di Azure Resource Manager | Microsoft Docs
-description: "Informazioni sulle funzioni che è possibile usare in un modello di Azure Resource Manager per confrontare valori."
+title: funzioni di modello di gestione risorse aaaAzure - confronto | Documenti Microsoft
+description: Viene descritto toouse funzioni hello un valori toocompare modello di gestione risorse di Azure.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 521e5ed06c138bcd374913588f06a2e6c1e99963
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ebcfc9ed6c93f8b540ec4c066e9457c621800b7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="comparison-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="fba93-103">Funzioni di confronto per i modelli di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="fba93-103">Comparison functions for Azure Resource Manager templates</span></span>
+# <a name="comparison-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="d17ba-103">Funzioni di confronto per i modelli di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="d17ba-103">Comparison functions for Azure Resource Manager templates</span></span>
 
-<span data-ttu-id="fba93-104">Resource Manager include numerose funzioni per l'esecuzione di confronti nei modelli.</span><span class="sxs-lookup"><span data-stu-id="fba93-104">Resource Manager provides several functions for making comparisons in your templates.</span></span>
+<span data-ttu-id="d17ba-104">Resource Manager include numerose funzioni per l'esecuzione di confronti nei modelli.</span><span class="sxs-lookup"><span data-stu-id="d17ba-104">Resource Manager provides several functions for making comparisons in your templates.</span></span>
 
-* [<span data-ttu-id="fba93-105">equals</span><span class="sxs-lookup"><span data-stu-id="fba93-105">equals</span></span>](#equals)
-* [<span data-ttu-id="fba93-106">greater</span><span class="sxs-lookup"><span data-stu-id="fba93-106">greater</span></span>](#greater)
-* [<span data-ttu-id="fba93-107">greaterOrEquals</span><span class="sxs-lookup"><span data-stu-id="fba93-107">greaterOrEquals</span></span>](#greaterorequals)
-* [<span data-ttu-id="fba93-108">less</span><span class="sxs-lookup"><span data-stu-id="fba93-108">less</span></span>](#less)
-* [<span data-ttu-id="fba93-109">lessOrEquals</span><span class="sxs-lookup"><span data-stu-id="fba93-109">lessOrEquals</span></span>](#lessorequals)
+* [<span data-ttu-id="d17ba-105">equals</span><span class="sxs-lookup"><span data-stu-id="d17ba-105">equals</span></span>](#equals)
+* [<span data-ttu-id="d17ba-106">greater</span><span class="sxs-lookup"><span data-stu-id="d17ba-106">greater</span></span>](#greater)
+* [<span data-ttu-id="d17ba-107">greaterOrEquals</span><span class="sxs-lookup"><span data-stu-id="d17ba-107">greaterOrEquals</span></span>](#greaterorequals)
+* [<span data-ttu-id="d17ba-108">less</span><span class="sxs-lookup"><span data-stu-id="d17ba-108">less</span></span>](#less)
+* [<span data-ttu-id="d17ba-109">lessOrEquals</span><span class="sxs-lookup"><span data-stu-id="d17ba-109">lessOrEquals</span></span>](#lessorequals)
 
-## <a name="equals"></a><span data-ttu-id="fba93-110">equals</span><span class="sxs-lookup"><span data-stu-id="fba93-110">equals</span></span>
+## <a name="equals"></a><span data-ttu-id="d17ba-110">equals</span><span class="sxs-lookup"><span data-stu-id="d17ba-110">equals</span></span>
 `equals(arg1, arg2)`
 
-<span data-ttu-id="fba93-111">Controlla se due valori sono uguali tra loro.</span><span class="sxs-lookup"><span data-stu-id="fba93-111">Checks whether two values equal each other.</span></span>
+<span data-ttu-id="d17ba-111">Controlla se due valori sono uguali tra loro.</span><span class="sxs-lookup"><span data-stu-id="d17ba-111">Checks whether two values equal each other.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="fba93-112">Parametri</span><span class="sxs-lookup"><span data-stu-id="fba93-112">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="d17ba-112">Parametri</span><span class="sxs-lookup"><span data-stu-id="d17ba-112">Parameters</span></span>
 
-| <span data-ttu-id="fba93-113">Parametro</span><span class="sxs-lookup"><span data-stu-id="fba93-113">Parameter</span></span> | <span data-ttu-id="fba93-114">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="fba93-114">Required</span></span> | <span data-ttu-id="fba93-115">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-115">Type</span></span> | <span data-ttu-id="fba93-116">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fba93-116">Description</span></span> |
+| <span data-ttu-id="d17ba-113">Parametro</span><span class="sxs-lookup"><span data-stu-id="d17ba-113">Parameter</span></span> | <span data-ttu-id="d17ba-114">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="d17ba-114">Required</span></span> | <span data-ttu-id="d17ba-115">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-115">Type</span></span> | <span data-ttu-id="d17ba-116">Descrizione</span><span class="sxs-lookup"><span data-stu-id="d17ba-116">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="fba93-117">arg1</span><span class="sxs-lookup"><span data-stu-id="fba93-117">arg1</span></span> |<span data-ttu-id="fba93-118">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-118">Yes</span></span> |<span data-ttu-id="fba93-119">int, stringa, matrice o oggetto</span><span class="sxs-lookup"><span data-stu-id="fba93-119">int, string, array, or object</span></span> |<span data-ttu-id="fba93-120">Il primo valore per verificare l'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-120">The first value to check for equality.</span></span> |
-| <span data-ttu-id="fba93-121">arg2</span><span class="sxs-lookup"><span data-stu-id="fba93-121">arg2</span></span> |<span data-ttu-id="fba93-122">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-122">Yes</span></span> |<span data-ttu-id="fba93-123">int, stringa, matrice o oggetto</span><span class="sxs-lookup"><span data-stu-id="fba93-123">int, string, array, or object</span></span> |<span data-ttu-id="fba93-124">Il secondo valore per verificare l'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-124">The second value to check for equality.</span></span> |
+| <span data-ttu-id="d17ba-117">arg1</span><span class="sxs-lookup"><span data-stu-id="d17ba-117">arg1</span></span> |<span data-ttu-id="d17ba-118">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-118">Yes</span></span> |<span data-ttu-id="d17ba-119">int, stringa, matrice o oggetto</span><span class="sxs-lookup"><span data-stu-id="d17ba-119">int, string, array, or object</span></span> |<span data-ttu-id="d17ba-120">Hello primo valore toocheck per verificarne l'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="d17ba-120">hello first value toocheck for equality.</span></span> |
+| <span data-ttu-id="d17ba-121">arg2</span><span class="sxs-lookup"><span data-stu-id="d17ba-121">arg2</span></span> |<span data-ttu-id="d17ba-122">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-122">Yes</span></span> |<span data-ttu-id="d17ba-123">int, stringa, matrice o oggetto</span><span class="sxs-lookup"><span data-stu-id="d17ba-123">int, string, array, or object</span></span> |<span data-ttu-id="d17ba-124">Hello secondo valore toocheck per verificarne l'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="d17ba-124">hello second value toocheck for equality.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="fba93-125">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="fba93-125">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="d17ba-125">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="d17ba-125">Return value</span></span>
 
-<span data-ttu-id="fba93-126">Restituisce **True** se i valori sono uguali; in caso contrario, restituisce **False**.</span><span class="sxs-lookup"><span data-stu-id="fba93-126">Returns **True** if the values are equal; otherwise, **False**.</span></span>
+<span data-ttu-id="d17ba-126">Restituisce **True** se hello valori sono uguali; in caso contrario, **False**.</span><span class="sxs-lookup"><span data-stu-id="d17ba-126">Returns **True** if hello values are equal; otherwise, **False**.</span></span>
 
-### <a name="remarks"></a><span data-ttu-id="fba93-127">Osservazioni</span><span class="sxs-lookup"><span data-stu-id="fba93-127">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="d17ba-127">Osservazioni</span><span class="sxs-lookup"><span data-stu-id="d17ba-127">Remarks</span></span>
 
-<span data-ttu-id="fba93-128">La funzione uguale a viene spesso usata con l'elemento `condition` per verificare se la risorsa viene distribuita.</span><span class="sxs-lookup"><span data-stu-id="fba93-128">The equals function is often used with the `condition` element to test whether a resource is deployed.</span></span>
+<span data-ttu-id="d17ba-128">Hello funzione equals viene spesso usato con hello `condition` tootest elemento che viene implementata una risorsa.</span><span class="sxs-lookup"><span data-stu-id="d17ba-128">hello equals function is often used with hello `condition` element tootest whether a resource is deployed.</span></span>
 
 ```json
 {
@@ -65,9 +65,9 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-### <a name="example"></a><span data-ttu-id="fba93-129">Esempio</span><span class="sxs-lookup"><span data-stu-id="fba93-129">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d17ba-129">Esempio</span><span class="sxs-lookup"><span data-stu-id="d17ba-129">Example</span></span>
 
-<span data-ttu-id="fba93-130">Il modello di esempio controlla tipi diversi di valori per verificarne l'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-130">The example template checks different types of values for equality.</span></span> <span data-ttu-id="fba93-131">Tutti i valori predefiniti restituiscono True.</span><span class="sxs-lookup"><span data-stu-id="fba93-131">All the default values return True.</span></span>
+<span data-ttu-id="d17ba-130">modello di esempio Hello controlla i tipi diversi di valori per verificarne l'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="d17ba-130">hello example template checks different types of values for equality.</span></span> <span data-ttu-id="d17ba-131">Tutti i valori predefiniti di hello restituiscono True.</span><span class="sxs-lookup"><span data-stu-id="d17ba-131">All hello default values return True.</span></span>
 
 ```json
 {
@@ -130,17 +130,17 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="fba93-132">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="fba93-132">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="d17ba-132">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="d17ba-132">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="fba93-133">Nome</span><span class="sxs-lookup"><span data-stu-id="fba93-133">Name</span></span> | <span data-ttu-id="fba93-134">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-134">Type</span></span> | <span data-ttu-id="fba93-135">Valore</span><span class="sxs-lookup"><span data-stu-id="fba93-135">Value</span></span> |
+| <span data-ttu-id="d17ba-133">Nome</span><span class="sxs-lookup"><span data-stu-id="d17ba-133">Name</span></span> | <span data-ttu-id="d17ba-134">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-134">Type</span></span> | <span data-ttu-id="d17ba-135">Valore</span><span class="sxs-lookup"><span data-stu-id="d17ba-135">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="fba93-136">checkInts</span><span class="sxs-lookup"><span data-stu-id="fba93-136">checkInts</span></span> | <span data-ttu-id="fba93-137">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-137">Bool</span></span> | <span data-ttu-id="fba93-138">True </span><span class="sxs-lookup"><span data-stu-id="fba93-138">True</span></span> |
-| <span data-ttu-id="fba93-139">checkStrings</span><span class="sxs-lookup"><span data-stu-id="fba93-139">checkStrings</span></span> | <span data-ttu-id="fba93-140">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-140">Bool</span></span> | <span data-ttu-id="fba93-141">True </span><span class="sxs-lookup"><span data-stu-id="fba93-141">True</span></span> |
-| <span data-ttu-id="fba93-142">checkArrays</span><span class="sxs-lookup"><span data-stu-id="fba93-142">checkArrays</span></span> | <span data-ttu-id="fba93-143">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-143">Bool</span></span> | <span data-ttu-id="fba93-144">True </span><span class="sxs-lookup"><span data-stu-id="fba93-144">True</span></span> |
-| <span data-ttu-id="fba93-145">checkObjects</span><span class="sxs-lookup"><span data-stu-id="fba93-145">checkObjects</span></span> | <span data-ttu-id="fba93-146">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-146">Bool</span></span> | <span data-ttu-id="fba93-147">True </span><span class="sxs-lookup"><span data-stu-id="fba93-147">True</span></span> |
+| <span data-ttu-id="d17ba-136">checkInts</span><span class="sxs-lookup"><span data-stu-id="d17ba-136">checkInts</span></span> | <span data-ttu-id="d17ba-137">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-137">Bool</span></span> | <span data-ttu-id="d17ba-138">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-138">True</span></span> |
+| <span data-ttu-id="d17ba-139">checkStrings</span><span class="sxs-lookup"><span data-stu-id="d17ba-139">checkStrings</span></span> | <span data-ttu-id="d17ba-140">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-140">Bool</span></span> | <span data-ttu-id="d17ba-141">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-141">True</span></span> |
+| <span data-ttu-id="d17ba-142">checkArrays</span><span class="sxs-lookup"><span data-stu-id="d17ba-142">checkArrays</span></span> | <span data-ttu-id="d17ba-143">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-143">Bool</span></span> | <span data-ttu-id="d17ba-144">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-144">True</span></span> |
+| <span data-ttu-id="d17ba-145">checkObjects</span><span class="sxs-lookup"><span data-stu-id="d17ba-145">checkObjects</span></span> | <span data-ttu-id="d17ba-146">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-146">Bool</span></span> | <span data-ttu-id="d17ba-147">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-147">True</span></span> |
 
 
-<span data-ttu-id="fba93-148">L'esempio seguente usa [not](resource-group-template-functions-logical.md#not) con **equals**.</span><span class="sxs-lookup"><span data-stu-id="fba93-148">The following example uses [not](resource-group-template-functions-logical.md#not) with **equals**.</span></span>
+<span data-ttu-id="d17ba-148">Hello seguente utilizza [non](resource-group-template-functions-logical.md#not) con **è uguale a**.</span><span class="sxs-lookup"><span data-stu-id="d17ba-148">hello following example uses [not](resource-group-template-functions-logical.md#not) with **equals**.</span></span>
 
 ```json
 {
@@ -156,32 +156,32 @@ ms.lasthandoff: 08/03/2017
     }
 ```
 
-<span data-ttu-id="fba93-149">L'output dell'esempio precedente è:</span><span class="sxs-lookup"><span data-stu-id="fba93-149">The output from the preceding example is:</span></span>
+<span data-ttu-id="d17ba-149">output di Hello hello sopra riportato è:</span><span class="sxs-lookup"><span data-stu-id="d17ba-149">hello output from hello preceding example is:</span></span>
 
-| <span data-ttu-id="fba93-150">Nome</span><span class="sxs-lookup"><span data-stu-id="fba93-150">Name</span></span> | <span data-ttu-id="fba93-151">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-151">Type</span></span> | <span data-ttu-id="fba93-152">Valore</span><span class="sxs-lookup"><span data-stu-id="fba93-152">Value</span></span> |
+| <span data-ttu-id="d17ba-150">Nome</span><span class="sxs-lookup"><span data-stu-id="d17ba-150">Name</span></span> | <span data-ttu-id="d17ba-151">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-151">Type</span></span> | <span data-ttu-id="d17ba-152">Valore</span><span class="sxs-lookup"><span data-stu-id="d17ba-152">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="fba93-153">checkNotEquals</span><span class="sxs-lookup"><span data-stu-id="fba93-153">checkNotEquals</span></span> | <span data-ttu-id="fba93-154">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-154">Bool</span></span> | <span data-ttu-id="fba93-155">True </span><span class="sxs-lookup"><span data-stu-id="fba93-155">True</span></span> |
+| <span data-ttu-id="d17ba-153">checkNotEquals</span><span class="sxs-lookup"><span data-stu-id="d17ba-153">checkNotEquals</span></span> | <span data-ttu-id="d17ba-154">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-154">Bool</span></span> | <span data-ttu-id="d17ba-155">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-155">True</span></span> |
 
 
-## <a name="greater"></a><span data-ttu-id="fba93-156">greater</span><span class="sxs-lookup"><span data-stu-id="fba93-156">greater</span></span>
+## <a name="greater"></a><span data-ttu-id="d17ba-156">greater</span><span class="sxs-lookup"><span data-stu-id="d17ba-156">greater</span></span>
 `greater(arg1, arg2)`
 
-<span data-ttu-id="fba93-157">Controlla se il primo valore è maggiore del secondo.</span><span class="sxs-lookup"><span data-stu-id="fba93-157">Checks whether the first value is greater than the second value.</span></span>
+<span data-ttu-id="d17ba-157">Controlla se il primo valore di hello è maggiore del secondo valore hello.</span><span class="sxs-lookup"><span data-stu-id="d17ba-157">Checks whether hello first value is greater than hello second value.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="fba93-158">Parametri</span><span class="sxs-lookup"><span data-stu-id="fba93-158">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="d17ba-158">parameters</span><span class="sxs-lookup"><span data-stu-id="d17ba-158">Parameters</span></span>
 
-| <span data-ttu-id="fba93-159">Parametro</span><span class="sxs-lookup"><span data-stu-id="fba93-159">Parameter</span></span> | <span data-ttu-id="fba93-160">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="fba93-160">Required</span></span> | <span data-ttu-id="fba93-161">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-161">Type</span></span> | <span data-ttu-id="fba93-162">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fba93-162">Description</span></span> |
+| <span data-ttu-id="d17ba-159">Parametro</span><span class="sxs-lookup"><span data-stu-id="d17ba-159">Parameter</span></span> | <span data-ttu-id="d17ba-160">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="d17ba-160">Required</span></span> | <span data-ttu-id="d17ba-161">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-161">Type</span></span> | <span data-ttu-id="d17ba-162">Descrizione</span><span class="sxs-lookup"><span data-stu-id="d17ba-162">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="fba93-163">arg1</span><span class="sxs-lookup"><span data-stu-id="fba93-163">arg1</span></span> |<span data-ttu-id="fba93-164">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-164">Yes</span></span> |<span data-ttu-id="fba93-165">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-165">int or string</span></span> |<span data-ttu-id="fba93-166">Il primo valore per il confronto del maggiore.</span><span class="sxs-lookup"><span data-stu-id="fba93-166">The first value for the greater comparison.</span></span> |
-| <span data-ttu-id="fba93-167">arg2</span><span class="sxs-lookup"><span data-stu-id="fba93-167">arg2</span></span> |<span data-ttu-id="fba93-168">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-168">Yes</span></span> |<span data-ttu-id="fba93-169">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-169">int or string</span></span> |<span data-ttu-id="fba93-170">Il secondo valore per il confronto del maggiore.</span><span class="sxs-lookup"><span data-stu-id="fba93-170">The second value for the greater comparison.</span></span> |
+| <span data-ttu-id="d17ba-163">arg1</span><span class="sxs-lookup"><span data-stu-id="d17ba-163">arg1</span></span> |<span data-ttu-id="d17ba-164">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-164">Yes</span></span> |<span data-ttu-id="d17ba-165">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-165">int or string</span></span> |<span data-ttu-id="d17ba-166">primo valore Hello per confronto maggiore di hello.</span><span class="sxs-lookup"><span data-stu-id="d17ba-166">hello first value for hello greater comparison.</span></span> |
+| <span data-ttu-id="d17ba-167">arg2</span><span class="sxs-lookup"><span data-stu-id="d17ba-167">arg2</span></span> |<span data-ttu-id="d17ba-168">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-168">Yes</span></span> |<span data-ttu-id="d17ba-169">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-169">int or string</span></span> |<span data-ttu-id="d17ba-170">secondo valore Hello per confronto maggiore di hello.</span><span class="sxs-lookup"><span data-stu-id="d17ba-170">hello second value for hello greater comparison.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="fba93-171">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="fba93-171">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="d17ba-171">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="d17ba-171">Return value</span></span>
 
-<span data-ttu-id="fba93-172">Restituisce **True** se il primo valore è maggiore del secondo; in caso contrario, restituisce **False**.</span><span class="sxs-lookup"><span data-stu-id="fba93-172">Returns **True** if the first value is greater than the second value; otherwise, **False**.</span></span>
+<span data-ttu-id="d17ba-172">Restituisce **True** se hello primo valore è maggiore del secondo valore hello; in caso contrario, **False**.</span><span class="sxs-lookup"><span data-stu-id="d17ba-172">Returns **True** if hello first value is greater than hello second value; otherwise, **False**.</span></span>
 
-### <a name="example"></a><span data-ttu-id="fba93-173">Esempio</span><span class="sxs-lookup"><span data-stu-id="fba93-173">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d17ba-173">Esempio</span><span class="sxs-lookup"><span data-stu-id="d17ba-173">Example</span></span>
 
-<span data-ttu-id="fba93-174">Il modello di esempio controlla se un valore è maggiore dell'altro.</span><span class="sxs-lookup"><span data-stu-id="fba93-174">The example template checks whether the one value is greater than the other.</span></span>
+<span data-ttu-id="d17ba-174">modello di esempio Hello controlla se un valore di hello è maggiore di hello altri.</span><span class="sxs-lookup"><span data-stu-id="d17ba-174">hello example template checks whether hello one value is greater than hello other.</span></span>
 
 ```json
 {
@@ -220,33 +220,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="fba93-175">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="fba93-175">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="d17ba-175">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="d17ba-175">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="fba93-176">Nome</span><span class="sxs-lookup"><span data-stu-id="fba93-176">Name</span></span> | <span data-ttu-id="fba93-177">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-177">Type</span></span> | <span data-ttu-id="fba93-178">Valore</span><span class="sxs-lookup"><span data-stu-id="fba93-178">Value</span></span> |
+| <span data-ttu-id="d17ba-176">Nome</span><span class="sxs-lookup"><span data-stu-id="d17ba-176">Name</span></span> | <span data-ttu-id="d17ba-177">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-177">Type</span></span> | <span data-ttu-id="d17ba-178">Valore</span><span class="sxs-lookup"><span data-stu-id="d17ba-178">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="fba93-179">checkInts</span><span class="sxs-lookup"><span data-stu-id="fba93-179">checkInts</span></span> | <span data-ttu-id="fba93-180">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-180">Bool</span></span> | <span data-ttu-id="fba93-181">False</span><span class="sxs-lookup"><span data-stu-id="fba93-181">False</span></span> |
-| <span data-ttu-id="fba93-182">checkStrings</span><span class="sxs-lookup"><span data-stu-id="fba93-182">checkStrings</span></span> | <span data-ttu-id="fba93-183">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-183">Bool</span></span> | <span data-ttu-id="fba93-184">True </span><span class="sxs-lookup"><span data-stu-id="fba93-184">True</span></span> |
+| <span data-ttu-id="d17ba-179">checkInts</span><span class="sxs-lookup"><span data-stu-id="d17ba-179">checkInts</span></span> | <span data-ttu-id="d17ba-180">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-180">Bool</span></span> | <span data-ttu-id="d17ba-181">False</span><span class="sxs-lookup"><span data-stu-id="d17ba-181">False</span></span> |
+| <span data-ttu-id="d17ba-182">checkStrings</span><span class="sxs-lookup"><span data-stu-id="d17ba-182">checkStrings</span></span> | <span data-ttu-id="d17ba-183">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-183">Bool</span></span> | <span data-ttu-id="d17ba-184">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-184">True</span></span> |
 
 
-## <a name="greaterorequals"></a><span data-ttu-id="fba93-185">greaterOrEquals</span><span class="sxs-lookup"><span data-stu-id="fba93-185">greaterOrEquals</span></span>
+## <a name="greaterorequals"></a><span data-ttu-id="d17ba-185">greaterOrEquals</span><span class="sxs-lookup"><span data-stu-id="d17ba-185">greaterOrEquals</span></span>
 `greaterOrEquals(arg1, arg2)`
 
-<span data-ttu-id="fba93-186">Controlla se il primo valore è maggiore o uguale al secondo valore.</span><span class="sxs-lookup"><span data-stu-id="fba93-186">Checks whether the first value is greater than or equal to the second value.</span></span>
+<span data-ttu-id="d17ba-186">Controlla se hello primo valore è maggiore o uguale toohello secondo valore.</span><span class="sxs-lookup"><span data-stu-id="d17ba-186">Checks whether hello first value is greater than or equal toohello second value.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="fba93-187">Parametri</span><span class="sxs-lookup"><span data-stu-id="fba93-187">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="d17ba-187">parameters</span><span class="sxs-lookup"><span data-stu-id="d17ba-187">Parameters</span></span>
 
-| <span data-ttu-id="fba93-188">Parametro</span><span class="sxs-lookup"><span data-stu-id="fba93-188">Parameter</span></span> | <span data-ttu-id="fba93-189">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="fba93-189">Required</span></span> | <span data-ttu-id="fba93-190">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-190">Type</span></span> | <span data-ttu-id="fba93-191">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fba93-191">Description</span></span> |
+| <span data-ttu-id="d17ba-188">Parametro</span><span class="sxs-lookup"><span data-stu-id="d17ba-188">Parameter</span></span> | <span data-ttu-id="d17ba-189">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="d17ba-189">Required</span></span> | <span data-ttu-id="d17ba-190">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-190">Type</span></span> | <span data-ttu-id="d17ba-191">Descrizione</span><span class="sxs-lookup"><span data-stu-id="d17ba-191">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="fba93-192">arg1</span><span class="sxs-lookup"><span data-stu-id="fba93-192">arg1</span></span> |<span data-ttu-id="fba93-193">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-193">Yes</span></span> |<span data-ttu-id="fba93-194">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-194">int or string</span></span> |<span data-ttu-id="fba93-195">Il primo valore per il confronto del maggiore e dell'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-195">The first value for the greater or equal comparison.</span></span> |
-| <span data-ttu-id="fba93-196">arg2</span><span class="sxs-lookup"><span data-stu-id="fba93-196">arg2</span></span> |<span data-ttu-id="fba93-197">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-197">Yes</span></span> |<span data-ttu-id="fba93-198">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-198">int or string</span></span> |<span data-ttu-id="fba93-199">Il secondo valore per il confronto del maggiore e dell'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-199">The second value for the greater or equal comparison.</span></span> |
+| <span data-ttu-id="d17ba-192">arg1</span><span class="sxs-lookup"><span data-stu-id="d17ba-192">arg1</span></span> |<span data-ttu-id="d17ba-193">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-193">Yes</span></span> |<span data-ttu-id="d17ba-194">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-194">int or string</span></span> |<span data-ttu-id="d17ba-195">primo valore Hello per il confronto maggiore o uguale di hello.</span><span class="sxs-lookup"><span data-stu-id="d17ba-195">hello first value for hello greater or equal comparison.</span></span> |
+| <span data-ttu-id="d17ba-196">arg2</span><span class="sxs-lookup"><span data-stu-id="d17ba-196">arg2</span></span> |<span data-ttu-id="d17ba-197">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-197">Yes</span></span> |<span data-ttu-id="d17ba-198">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-198">int or string</span></span> |<span data-ttu-id="d17ba-199">secondo valore Hello per il confronto maggiore o uguale di hello.</span><span class="sxs-lookup"><span data-stu-id="d17ba-199">hello second value for hello greater or equal comparison.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="fba93-200">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="fba93-200">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="d17ba-200">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="d17ba-200">Return value</span></span>
 
-<span data-ttu-id="fba93-201">Restituisce **True** se il primo valore è maggiore o uguale al secondo; in caso contrario, restituisce **False**.</span><span class="sxs-lookup"><span data-stu-id="fba93-201">Returns **True** if the first value is greater than or equal to the second value; otherwise, **False**.</span></span>
+<span data-ttu-id="d17ba-201">Restituisce **True** se hello primo valore è maggiore o uguale toohello secondo; in caso contrario, **False**.</span><span class="sxs-lookup"><span data-stu-id="d17ba-201">Returns **True** if hello first value is greater than or equal toohello second value; otherwise, **False**.</span></span>
 
-### <a name="example"></a><span data-ttu-id="fba93-202">Esempio</span><span class="sxs-lookup"><span data-stu-id="fba93-202">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d17ba-202">Esempio</span><span class="sxs-lookup"><span data-stu-id="d17ba-202">Example</span></span>
 
-<span data-ttu-id="fba93-203">Il modello di esempio controlla se un valore è maggiore o uguale all'altro.</span><span class="sxs-lookup"><span data-stu-id="fba93-203">The example template checks whether the one value is greater than or equal to the other.</span></span>
+<span data-ttu-id="d17ba-203">modello di esempio Hello controlla se un valore di hello è maggiore o uguale toohello altri.</span><span class="sxs-lookup"><span data-stu-id="d17ba-203">hello example template checks whether hello one value is greater than or equal toohello other.</span></span>
 
 ```json
 {
@@ -285,34 +285,34 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="fba93-204">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="fba93-204">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="d17ba-204">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="d17ba-204">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="fba93-205">Nome</span><span class="sxs-lookup"><span data-stu-id="fba93-205">Name</span></span> | <span data-ttu-id="fba93-206">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-206">Type</span></span> | <span data-ttu-id="fba93-207">Valore</span><span class="sxs-lookup"><span data-stu-id="fba93-207">Value</span></span> |
+| <span data-ttu-id="d17ba-205">Nome</span><span class="sxs-lookup"><span data-stu-id="d17ba-205">Name</span></span> | <span data-ttu-id="d17ba-206">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-206">Type</span></span> | <span data-ttu-id="d17ba-207">Valore</span><span class="sxs-lookup"><span data-stu-id="d17ba-207">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="fba93-208">checkInts</span><span class="sxs-lookup"><span data-stu-id="fba93-208">checkInts</span></span> | <span data-ttu-id="fba93-209">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-209">Bool</span></span> | <span data-ttu-id="fba93-210">False</span><span class="sxs-lookup"><span data-stu-id="fba93-210">False</span></span> |
-| <span data-ttu-id="fba93-211">checkStrings</span><span class="sxs-lookup"><span data-stu-id="fba93-211">checkStrings</span></span> | <span data-ttu-id="fba93-212">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-212">Bool</span></span> | <span data-ttu-id="fba93-213">True </span><span class="sxs-lookup"><span data-stu-id="fba93-213">True</span></span> |
+| <span data-ttu-id="d17ba-208">checkInts</span><span class="sxs-lookup"><span data-stu-id="d17ba-208">checkInts</span></span> | <span data-ttu-id="d17ba-209">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-209">Bool</span></span> | <span data-ttu-id="d17ba-210">False</span><span class="sxs-lookup"><span data-stu-id="d17ba-210">False</span></span> |
+| <span data-ttu-id="d17ba-211">checkStrings</span><span class="sxs-lookup"><span data-stu-id="d17ba-211">checkStrings</span></span> | <span data-ttu-id="d17ba-212">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-212">Bool</span></span> | <span data-ttu-id="d17ba-213">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-213">True</span></span> |
 
 
 
-## <a name="less"></a><span data-ttu-id="fba93-214">less</span><span class="sxs-lookup"><span data-stu-id="fba93-214">less</span></span>
+## <a name="less"></a><span data-ttu-id="d17ba-214">less</span><span class="sxs-lookup"><span data-stu-id="d17ba-214">less</span></span>
 `less(arg1, arg2)`
 
-<span data-ttu-id="fba93-215">Controlla se il primo valore è minore del secondo.</span><span class="sxs-lookup"><span data-stu-id="fba93-215">Checks whether the first value is less than the second value.</span></span>
+<span data-ttu-id="d17ba-215">Controlla se hello primo valore è minore di hello secondo valore.</span><span class="sxs-lookup"><span data-stu-id="d17ba-215">Checks whether hello first value is less than hello second value.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="fba93-216">Parametri</span><span class="sxs-lookup"><span data-stu-id="fba93-216">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="d17ba-216">parameters</span><span class="sxs-lookup"><span data-stu-id="d17ba-216">Parameters</span></span>
 
-| <span data-ttu-id="fba93-217">Parametro</span><span class="sxs-lookup"><span data-stu-id="fba93-217">Parameter</span></span> | <span data-ttu-id="fba93-218">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="fba93-218">Required</span></span> | <span data-ttu-id="fba93-219">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-219">Type</span></span> | <span data-ttu-id="fba93-220">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fba93-220">Description</span></span> |
+| <span data-ttu-id="d17ba-217">Parametro</span><span class="sxs-lookup"><span data-stu-id="d17ba-217">Parameter</span></span> | <span data-ttu-id="d17ba-218">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="d17ba-218">Required</span></span> | <span data-ttu-id="d17ba-219">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-219">Type</span></span> | <span data-ttu-id="d17ba-220">Descrizione</span><span class="sxs-lookup"><span data-stu-id="d17ba-220">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="fba93-221">arg1</span><span class="sxs-lookup"><span data-stu-id="fba93-221">arg1</span></span> |<span data-ttu-id="fba93-222">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-222">Yes</span></span> |<span data-ttu-id="fba93-223">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-223">int or string</span></span> |<span data-ttu-id="fba93-224">Il primo valore per il confronto del minore.</span><span class="sxs-lookup"><span data-stu-id="fba93-224">The first value for the less comparison.</span></span> |
-| <span data-ttu-id="fba93-225">arg2</span><span class="sxs-lookup"><span data-stu-id="fba93-225">arg2</span></span> |<span data-ttu-id="fba93-226">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-226">Yes</span></span> |<span data-ttu-id="fba93-227">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-227">int or string</span></span> |<span data-ttu-id="fba93-228">Il secondo valore per il confronto del minore.</span><span class="sxs-lookup"><span data-stu-id="fba93-228">The second value for the less comparison.</span></span> |
+| <span data-ttu-id="d17ba-221">arg1</span><span class="sxs-lookup"><span data-stu-id="d17ba-221">arg1</span></span> |<span data-ttu-id="d17ba-222">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-222">Yes</span></span> |<span data-ttu-id="d17ba-223">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-223">int or string</span></span> |<span data-ttu-id="d17ba-224">primo valore Hello per hello meno confronto.</span><span class="sxs-lookup"><span data-stu-id="d17ba-224">hello first value for hello less comparison.</span></span> |
+| <span data-ttu-id="d17ba-225">arg2</span><span class="sxs-lookup"><span data-stu-id="d17ba-225">arg2</span></span> |<span data-ttu-id="d17ba-226">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-226">Yes</span></span> |<span data-ttu-id="d17ba-227">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-227">int or string</span></span> |<span data-ttu-id="d17ba-228">secondo valore Hello per hello meno confronto.</span><span class="sxs-lookup"><span data-stu-id="d17ba-228">hello second value for hello less comparison.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="fba93-229">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="fba93-229">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="d17ba-229">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="d17ba-229">Return value</span></span>
 
-<span data-ttu-id="fba93-230">Restituisce **True** se il primo valore è inferiore al secondo; in caso contrario, restituisce **False**.</span><span class="sxs-lookup"><span data-stu-id="fba93-230">Returns **True** if the first value is less than the second value; otherwise, **False**.</span></span>
+<span data-ttu-id="d17ba-230">Restituisce **True** se hello primo valore è minore di hello secondo valore; in caso contrario, **False**.</span><span class="sxs-lookup"><span data-stu-id="d17ba-230">Returns **True** if hello first value is less than hello second value; otherwise, **False**.</span></span>
 
-### <a name="example"></a><span data-ttu-id="fba93-231">Esempio</span><span class="sxs-lookup"><span data-stu-id="fba93-231">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d17ba-231">Esempio</span><span class="sxs-lookup"><span data-stu-id="d17ba-231">Example</span></span>
 
-<span data-ttu-id="fba93-232">Il modello di esempio controlla se un valore è minore dell'altro.</span><span class="sxs-lookup"><span data-stu-id="fba93-232">The example template checks whether the one value is less than the other.</span></span>
+<span data-ttu-id="d17ba-232">modello di esempio Hello controlla se un valore di hello è minore di hello altri.</span><span class="sxs-lookup"><span data-stu-id="d17ba-232">hello example template checks whether hello one value is less than hello other.</span></span>
 
 ```json
 {
@@ -351,33 +351,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="fba93-233">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="fba93-233">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="d17ba-233">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="d17ba-233">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="fba93-234">Nome</span><span class="sxs-lookup"><span data-stu-id="fba93-234">Name</span></span> | <span data-ttu-id="fba93-235">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-235">Type</span></span> | <span data-ttu-id="fba93-236">Valore</span><span class="sxs-lookup"><span data-stu-id="fba93-236">Value</span></span> |
+| <span data-ttu-id="d17ba-234">Nome</span><span class="sxs-lookup"><span data-stu-id="d17ba-234">Name</span></span> | <span data-ttu-id="d17ba-235">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-235">Type</span></span> | <span data-ttu-id="d17ba-236">Valore</span><span class="sxs-lookup"><span data-stu-id="d17ba-236">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="fba93-237">checkInts</span><span class="sxs-lookup"><span data-stu-id="fba93-237">checkInts</span></span> | <span data-ttu-id="fba93-238">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-238">Bool</span></span> | <span data-ttu-id="fba93-239">True </span><span class="sxs-lookup"><span data-stu-id="fba93-239">True</span></span> |
-| <span data-ttu-id="fba93-240">checkStrings</span><span class="sxs-lookup"><span data-stu-id="fba93-240">checkStrings</span></span> | <span data-ttu-id="fba93-241">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-241">Bool</span></span> | <span data-ttu-id="fba93-242">False</span><span class="sxs-lookup"><span data-stu-id="fba93-242">False</span></span> |
+| <span data-ttu-id="d17ba-237">checkInts</span><span class="sxs-lookup"><span data-stu-id="d17ba-237">checkInts</span></span> | <span data-ttu-id="d17ba-238">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-238">Bool</span></span> | <span data-ttu-id="d17ba-239">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-239">True</span></span> |
+| <span data-ttu-id="d17ba-240">checkStrings</span><span class="sxs-lookup"><span data-stu-id="d17ba-240">checkStrings</span></span> | <span data-ttu-id="d17ba-241">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-241">Bool</span></span> | <span data-ttu-id="d17ba-242">False</span><span class="sxs-lookup"><span data-stu-id="d17ba-242">False</span></span> |
 
 
-## <a name="lessorequals"></a><span data-ttu-id="fba93-243">lessOrEquals</span><span class="sxs-lookup"><span data-stu-id="fba93-243">lessOrEquals</span></span>
+## <a name="lessorequals"></a><span data-ttu-id="d17ba-243">lessOrEquals</span><span class="sxs-lookup"><span data-stu-id="d17ba-243">lessOrEquals</span></span>
 `lessOrEquals(arg1, arg2)`
 
-<span data-ttu-id="fba93-244">Controlla se il primo valore è minore o uguale al secondo valore.</span><span class="sxs-lookup"><span data-stu-id="fba93-244">Checks whether the first value is less than or equal to the second value.</span></span>
+<span data-ttu-id="d17ba-244">Controlla se il primo valore di hello è minore o uguale toohello secondo valore.</span><span class="sxs-lookup"><span data-stu-id="d17ba-244">Checks whether hello first value is less than or equal toohello second value.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="fba93-245">Parametri</span><span class="sxs-lookup"><span data-stu-id="fba93-245">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="d17ba-245">parameters</span><span class="sxs-lookup"><span data-stu-id="d17ba-245">Parameters</span></span>
 
-| <span data-ttu-id="fba93-246">Parametro</span><span class="sxs-lookup"><span data-stu-id="fba93-246">Parameter</span></span> | <span data-ttu-id="fba93-247">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="fba93-247">Required</span></span> | <span data-ttu-id="fba93-248">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-248">Type</span></span> | <span data-ttu-id="fba93-249">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fba93-249">Description</span></span> |
+| <span data-ttu-id="d17ba-246">Parametro</span><span class="sxs-lookup"><span data-stu-id="d17ba-246">Parameter</span></span> | <span data-ttu-id="d17ba-247">Obbligatorio</span><span class="sxs-lookup"><span data-stu-id="d17ba-247">Required</span></span> | <span data-ttu-id="d17ba-248">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-248">Type</span></span> | <span data-ttu-id="d17ba-249">Descrizione</span><span class="sxs-lookup"><span data-stu-id="d17ba-249">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="fba93-250">arg1</span><span class="sxs-lookup"><span data-stu-id="fba93-250">arg1</span></span> |<span data-ttu-id="fba93-251">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-251">Yes</span></span> |<span data-ttu-id="fba93-252">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-252">int or string</span></span> |<span data-ttu-id="fba93-253">Il primo valore per il confronto del minore o dell'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-253">The first value for the less or equals comparison.</span></span> |
-| <span data-ttu-id="fba93-254">arg2</span><span class="sxs-lookup"><span data-stu-id="fba93-254">arg2</span></span> |<span data-ttu-id="fba93-255">Sì</span><span class="sxs-lookup"><span data-stu-id="fba93-255">Yes</span></span> |<span data-ttu-id="fba93-256">int o stringa</span><span class="sxs-lookup"><span data-stu-id="fba93-256">int or string</span></span> |<span data-ttu-id="fba93-257">Il secondo valore per il confronto del minore o dell'uguaglianza.</span><span class="sxs-lookup"><span data-stu-id="fba93-257">The second value for the less or equals comparison.</span></span> |
+| <span data-ttu-id="d17ba-250">arg1</span><span class="sxs-lookup"><span data-stu-id="d17ba-250">arg1</span></span> |<span data-ttu-id="d17ba-251">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-251">Yes</span></span> |<span data-ttu-id="d17ba-252">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-252">int or string</span></span> |<span data-ttu-id="d17ba-253">Hello primo valore per hello minore o uguale a confronto.</span><span class="sxs-lookup"><span data-stu-id="d17ba-253">hello first value for hello less or equals comparison.</span></span> |
+| <span data-ttu-id="d17ba-254">arg2</span><span class="sxs-lookup"><span data-stu-id="d17ba-254">arg2</span></span> |<span data-ttu-id="d17ba-255">Sì</span><span class="sxs-lookup"><span data-stu-id="d17ba-255">Yes</span></span> |<span data-ttu-id="d17ba-256">int o stringa</span><span class="sxs-lookup"><span data-stu-id="d17ba-256">int or string</span></span> |<span data-ttu-id="d17ba-257">secondo valore di Hello per hello minore o uguale a confronto.</span><span class="sxs-lookup"><span data-stu-id="d17ba-257">hello second value for hello less or equals comparison.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="fba93-258">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="fba93-258">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="d17ba-258">Valore restituito</span><span class="sxs-lookup"><span data-stu-id="d17ba-258">Return value</span></span>
 
-<span data-ttu-id="fba93-259">Restituisce **True** se il primo valore è minore o uguale al secondo; in caso contrario, restituisce **False**.</span><span class="sxs-lookup"><span data-stu-id="fba93-259">Returns **True** if the first value is less than or equal to the second value; otherwise, **False**.</span></span>
+<span data-ttu-id="d17ba-259">Restituisce **True** se hello primo valore è minore o uguale toohello secondo valore; in caso contrario, **False**.</span><span class="sxs-lookup"><span data-stu-id="d17ba-259">Returns **True** if hello first value is less than or equal toohello second value; otherwise, **False**.</span></span>
 
-### <a name="example"></a><span data-ttu-id="fba93-260">Esempio</span><span class="sxs-lookup"><span data-stu-id="fba93-260">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d17ba-260">Esempio</span><span class="sxs-lookup"><span data-stu-id="d17ba-260">Example</span></span>
 
-<span data-ttu-id="fba93-261">Il modello di esempio controlla se un valore è minore o uguale all'altro.</span><span class="sxs-lookup"><span data-stu-id="fba93-261">The example template checks whether the one value is less than or equal to the other.</span></span>
+<span data-ttu-id="d17ba-261">Hello modello di esempio controlla se un valore di hello è minore o uguale toohello altri.</span><span class="sxs-lookup"><span data-stu-id="d17ba-261">hello example template checks whether hello one value is less than or equal toohello other.</span></span>
 
 ```json
 {
@@ -416,18 +416,18 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="fba93-262">L'output dell'esempio precedente con i valori predefiniti è il seguente:</span><span class="sxs-lookup"><span data-stu-id="fba93-262">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="d17ba-262">Hello output di hello precedente esempio con i valori predefiniti di hello è:</span><span class="sxs-lookup"><span data-stu-id="d17ba-262">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="fba93-263">Nome</span><span class="sxs-lookup"><span data-stu-id="fba93-263">Name</span></span> | <span data-ttu-id="fba93-264">Tipo</span><span class="sxs-lookup"><span data-stu-id="fba93-264">Type</span></span> | <span data-ttu-id="fba93-265">Valore</span><span class="sxs-lookup"><span data-stu-id="fba93-265">Value</span></span> |
+| <span data-ttu-id="d17ba-263">Nome</span><span class="sxs-lookup"><span data-stu-id="d17ba-263">Name</span></span> | <span data-ttu-id="d17ba-264">Tipo</span><span class="sxs-lookup"><span data-stu-id="d17ba-264">Type</span></span> | <span data-ttu-id="d17ba-265">Valore</span><span class="sxs-lookup"><span data-stu-id="d17ba-265">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="fba93-266">checkInts</span><span class="sxs-lookup"><span data-stu-id="fba93-266">checkInts</span></span> | <span data-ttu-id="fba93-267">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-267">Bool</span></span> | <span data-ttu-id="fba93-268">True </span><span class="sxs-lookup"><span data-stu-id="fba93-268">True</span></span> |
-| <span data-ttu-id="fba93-269">checkStrings</span><span class="sxs-lookup"><span data-stu-id="fba93-269">checkStrings</span></span> | <span data-ttu-id="fba93-270">Booleano</span><span class="sxs-lookup"><span data-stu-id="fba93-270">Bool</span></span> | <span data-ttu-id="fba93-271">False</span><span class="sxs-lookup"><span data-stu-id="fba93-271">False</span></span> |
+| <span data-ttu-id="d17ba-266">checkInts</span><span class="sxs-lookup"><span data-stu-id="d17ba-266">checkInts</span></span> | <span data-ttu-id="d17ba-267">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-267">Bool</span></span> | <span data-ttu-id="d17ba-268">True </span><span class="sxs-lookup"><span data-stu-id="d17ba-268">True</span></span> |
+| <span data-ttu-id="d17ba-269">checkStrings</span><span class="sxs-lookup"><span data-stu-id="d17ba-269">checkStrings</span></span> | <span data-ttu-id="d17ba-270">Booleano</span><span class="sxs-lookup"><span data-stu-id="d17ba-270">Bool</span></span> | <span data-ttu-id="d17ba-271">False</span><span class="sxs-lookup"><span data-stu-id="d17ba-271">False</span></span> |
 
 
 
-## <a name="next-steps"></a><span data-ttu-id="fba93-272">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="fba93-272">Next steps</span></span>
-* <span data-ttu-id="fba93-273">Per una descrizione delle sezioni in un modello di Azure Resource Manager, vedere [Creazione di modelli di Azure Resource Manager](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="fba93-273">For a description of the sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="fba93-274">Per unire più modelli, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="fba93-274">To merge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
-* <span data-ttu-id="fba93-275">Per eseguire un'iterazione di un numero di volte specificato durante la creazione di un tipo di risorsa, vedere [Creare più istanze di risorse in Gestione risorse di Azure](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="fba93-275">To iterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
-* <span data-ttu-id="fba93-276">Per informazioni su come distribuire il modello che è stato creato, vedere [Distribuire un'applicazione con un modello di Azure Resource Manager](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="fba93-276">To see how to deploy the template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d17ba-272">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="d17ba-272">Next steps</span></span>
+* <span data-ttu-id="d17ba-273">Per una descrizione delle sezioni hello in un modello di gestione risorse di Azure, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="d17ba-273">For a description of hello sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="d17ba-274">toomerge più modelli, vedere [con modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="d17ba-274">toomerge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
+* <span data-ttu-id="d17ba-275">tooiterate un numero specificato di volte durante la creazione di un tipo di risorsa, vedere [creare più istanze delle risorse in Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="d17ba-275">tooiterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+* <span data-ttu-id="d17ba-276">toosee come modello hello toodeploy è stato creato, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="d17ba-276">toosee how toodeploy hello template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
 

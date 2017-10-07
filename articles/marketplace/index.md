@@ -1,5 +1,5 @@
 ---
-title: Documentazione su Azure Marketplace | Microsoft Docs
+title: Documentazione di Marketplace aaaAzure | Documenti Microsoft
 description: Informazioni su Azure Marketplace.
 services: marketplace
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/14/2017
 ms.author: carolz
-ms.openlocfilehash: 6dca59ddd5fe524b7778abe770b6387f8bb24f01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc66c89a5e34ec41ff95851a2f02d836ff0d1261
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-marketplace-documentation"></a>Documentazione su Azure Marketplace
 
-Informazioni su Azure Marketplace, un marketplace online per applicazioni e servizi che consente ai fornitori di software indipendenti (ISV), dalle startup e alle grandi imprese, di offrire le proprie soluzioni a clienti in tutto il mondo.
+Informazioni su Azure Marketplace, un'applicazione in linea e servizi marketplace, che consente agli ISV di avvii tooenterprises toooffer toocustomers loro soluzioni tutto il mondo hello.
 
 <ul class="panelContent cardsFTitle">
     <li>

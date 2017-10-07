@@ -1,6 +1,6 @@
 ---
-title: Aggiungere Microsoft Translator nelle app per la logica | Documentazione Microsoft
-description: Panoramica del connettore Microsoft Translator con i parametri dell'API REST.
+title: aaaAdd hello Microsoft Translator in App per la logica | Documenti Microsoft
+description: Panoramica del connettore Microsoft Translator hello con i parametri di API REST
 services: 
 suite: 
 documentationcenter: 
@@ -16,28 +16,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: f36cd801a0572d671977e2e48a7f1e743e38e768
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 598405dfbc13b340f34923157dfb967da5e7d55a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-microsoft-translator-connector"></a><span data-ttu-id="ec6f8-103">Introduzione al connettore Microsoft Translator</span><span class="sxs-lookup"><span data-stu-id="ec6f8-103">Get started with the Microsoft Translator connector</span></span>
-<span data-ttu-id="ec6f8-104">Connettersi a Microsoft Translator per tradurre il testo, individuare una lingua e così via.</span><span class="sxs-lookup"><span data-stu-id="ec6f8-104">Connect to Microsoft Translator to translate text, detect a language, and more.</span></span> <span data-ttu-id="ec6f8-105">Con Microsoft Translator è possibile:</span><span class="sxs-lookup"><span data-stu-id="ec6f8-105">With Microsoft Translator, you can:</span></span> 
+# <a name="get-started-with-hello-microsoft-translator-connector"></a><span data-ttu-id="a2540-103">Introduzione a connettore Microsoft Translator hello</span><span class="sxs-lookup"><span data-stu-id="a2540-103">Get started with hello Microsoft Translator connector</span></span>
+<span data-ttu-id="a2540-104">Testo di tootranslate traduttore tooMicrosoft di connessione, rilevare una lingua e altro ancora.</span><span class="sxs-lookup"><span data-stu-id="a2540-104">Connect tooMicrosoft Translator tootranslate text, detect a language, and more.</span></span> <span data-ttu-id="a2540-105">Con Microsoft Translator è possibile:</span><span class="sxs-lookup"><span data-stu-id="a2540-105">With Microsoft Translator, you can:</span></span> 
 
-* <span data-ttu-id="ec6f8-106">Creare il flusso aziendale in base ai dati ottenuti da Microsoft Translator.</span><span class="sxs-lookup"><span data-stu-id="ec6f8-106">Build your business flow based on the data you get from Microsoft Translator.</span></span> 
-* <span data-ttu-id="ec6f8-107">Usare le azioni per tradurre il testo, individuare una lingua e così via.</span><span class="sxs-lookup"><span data-stu-id="ec6f8-107">Use actions to translate text, detect a language, and more.</span></span> <span data-ttu-id="ec6f8-108">Queste azioni ottengono una risposta e quindi rendono l'output disponibile per altre azioni.</span><span class="sxs-lookup"><span data-stu-id="ec6f8-108">These actions get a response, and then make the output available for other actions.</span></span> <span data-ttu-id="ec6f8-109">Ad esempio, quando viene creato un nuovo file in Dropbox, è possibile tradurre il testo nel file in un'altra lingua tramite Microsoft Translator.</span><span class="sxs-lookup"><span data-stu-id="ec6f8-109">For example, when a new file is created in Dropbox, you can translate the text in the file to another language using Microsoft Translator.</span></span>
+* <span data-ttu-id="a2540-106">Compilare il flusso di business in base ai dati hello che è ottenere da Microsoft Translator.</span><span class="sxs-lookup"><span data-stu-id="a2540-106">Build your business flow based on hello data you get from Microsoft Translator.</span></span> 
+* <span data-ttu-id="a2540-107">Usare testo tootranslate azioni, rilevare una lingua e altro ancora.</span><span class="sxs-lookup"><span data-stu-id="a2540-107">Use actions tootranslate text, detect a language, and more.</span></span> <span data-ttu-id="a2540-108">Tali azioni ottengono una risposta e quindi apportare output di hello per le altre azioni.</span><span class="sxs-lookup"><span data-stu-id="a2540-108">These actions get a response, and then make hello output available for other actions.</span></span> <span data-ttu-id="a2540-109">Ad esempio, quando viene creato un nuovo file in Dropbox, è possibile tradurre il testo hello nella lingua di tooanother file hello utilizzando Microsoft Translator.</span><span class="sxs-lookup"><span data-stu-id="a2540-109">For example, when a new file is created in Dropbox, you can translate hello text in hello file tooanother language using Microsoft Translator.</span></span>
 
-<span data-ttu-id="ec6f8-110">Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="ec6f8-110">You can get started by creating a logic app now, see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="a2540-110">Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="a2540-110">You can get started by creating a logic app now, see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="create-a-connection-to-microsoft-translator"></a><span data-ttu-id="ec6f8-111">Creare una connessione a Microsoft Translator</span><span class="sxs-lookup"><span data-stu-id="ec6f8-111">Create a connection to Microsoft Translator</span></span>
-> [!INCLUDE [Steps to create a connection to Microsoft Translator](../../includes/connectors-create-api-microsofttranslator.md)]
+## <a name="create-a-connection-toomicrosoft-translator"></a><span data-ttu-id="a2540-111">Creare una funzione di conversione di tooMicrosoft connessione</span><span class="sxs-lookup"><span data-stu-id="a2540-111">Create a connection tooMicrosoft Translator</span></span>
+> [!INCLUDE [Steps toocreate a connection tooMicrosoft Translator](../../includes/connectors-create-api-microsofttranslator.md)]
 > 
 > 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="ec6f8-112">Dettagli specifici del connettore</span><span class="sxs-lookup"><span data-stu-id="ec6f8-112">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="a2540-112">Dettagli specifici del connettore</span><span class="sxs-lookup"><span data-stu-id="a2540-112">Connector-specific details</span></span>
 
-<span data-ttu-id="ec6f8-113">Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/microsofttranslator/).</span><span class="sxs-lookup"><span data-stu-id="ec6f8-113">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/microsofttranslator/).</span></span>
+<span data-ttu-id="a2540-113">Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/microsofttranslator/).</span><span class="sxs-lookup"><span data-stu-id="a2540-113">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/microsofttranslator/).</span></span>
 
-## <a name="more-connectors"></a><span data-ttu-id="ec6f8-114">Altri connettori</span><span class="sxs-lookup"><span data-stu-id="ec6f8-114">More connectors</span></span>
-<span data-ttu-id="ec6f8-115">Tornare all' [elenco di API](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="ec6f8-115">Go back to the [APIs list](apis-list.md).</span></span>
+## <a name="more-connectors"></a><span data-ttu-id="a2540-114">Altri connettori</span><span class="sxs-lookup"><span data-stu-id="a2540-114">More connectors</span></span>
+<span data-ttu-id="a2540-115">Tornare indietro toohello [elenco API](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="a2540-115">Go back toohello [APIs list](apis-list.md).</span></span>

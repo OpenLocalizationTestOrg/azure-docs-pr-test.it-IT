@@ -1,6 +1,6 @@
 ---
-title: Eseguire lo sviluppo per l'archiviazione file di Azure con C++ | Microsoft Docs
-description: Informazioni su come sviluppare applicazioni e servizi C++ che usano l'archiviazione file di Azure per archiviare i dati dei file.
+title: aaaDevelop per l'archiviazione di File di Azure con C++ | Documenti Microsoft
+description: Informazioni su come toodevelop C++ applicazioni e servizi che usano File di Azure storage toostore dati dei file.
 services: storage
 documentationcenter: .net
 author: renashahmsft
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/27/2017
 ms.author: renashahmsft
-ms.openlocfilehash: fc0d8451442f1337db4a36718c3fc746f8eb5125
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 40c3aac94214a91121913e2ded315031aeed1c30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="develop-for-azure-file-storage-with-c"></a><span data-ttu-id="278b3-103">Eseguire lo sviluppo per l'archiviazione file di Azure con C++</span><span class="sxs-lookup"><span data-stu-id="278b3-103">Develop for Azure File storage with C++</span></span>
+# <a name="develop-for-azure-file-storage-with-c"></a><span data-ttu-id="66a4f-103">Eseguire lo sviluppo per l'archiviazione file di Azure con C++</span><span class="sxs-lookup"><span data-stu-id="66a4f-103">Develop for Azure File storage with C++</span></span>
 [!INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-files](../../includes/storage-try-azure-tools-files.md)]
 
-## <a name="about-this-tutorial"></a><span data-ttu-id="278b3-104">Informazioni sull'esercitazione</span><span class="sxs-lookup"><span data-stu-id="278b3-104">About this tutorial</span></span>
+## <a name="about-this-tutorial"></a><span data-ttu-id="66a4f-104">Informazioni sull'esercitazione</span><span class="sxs-lookup"><span data-stu-id="66a4f-104">About this tutorial</span></span>
 
-<span data-ttu-id="278b3-105">In questa esercitazione verrà illustrato come eseguire operazioni di base nell'archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="278b3-105">In this tutorial, you'll learn how to perform basic operations on Azure File storage.</span></span> <span data-ttu-id="278b3-106">Gli esempi scritti in C++ consentono di apprendere come creare condivisioni e directory, caricare, elencare ed eliminare file.</span><span class="sxs-lookup"><span data-stu-id="278b3-106">Through samples written in C++, you'll learn how to create shares and directories, upload, list, and delete files.</span></span> <span data-ttu-id="278b3-107">Se non si ha familiarità con l'archiviazione file di Azure, leggere le sezioni seguenti per comprendere gli esempi.</span><span class="sxs-lookup"><span data-stu-id="278b3-107">If you are new to Azure File storage , going through the concepts in the sections that follow will be helpful in understanding the samples.</span></span>
+<span data-ttu-id="66a4f-105">In questa esercitazione si apprenderà come operazioni di base tooperform sull'archiviazione di File di Azure.</span><span class="sxs-lookup"><span data-stu-id="66a4f-105">In this tutorial, you'll learn how tooperform basic operations on Azure File storage.</span></span> <span data-ttu-id="66a4f-106">Attraverso esempi scritti in C++, si apprenderà come toocreate condivide e directory, caricare, elencare ed eliminare i file.</span><span class="sxs-lookup"><span data-stu-id="66a4f-106">Through samples written in C++, you'll learn how toocreate shares and directories, upload, list, and delete files.</span></span> <span data-ttu-id="66a4f-107">Nel caso di nuove risorse di archiviazione tooAzure File, il passando concetti hello in sezioni hello seguenti saranno utile per capire gli esempi di hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-107">If you are new tooAzure File storage , going through hello concepts in hello sections that follow will be helpful in understanding hello samples.</span></span>
 
 
-* <span data-ttu-id="278b3-108">Creare ed eliminare condivisioni file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-108">Create and delete Azure File shares</span></span>
-* <span data-ttu-id="278b3-109">Creare ed eliminare directory</span><span class="sxs-lookup"><span data-stu-id="278b3-109">Create and delete directories</span></span>
-* <span data-ttu-id="278b3-110">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-110">Enumerate files and directories in an Azure File share</span></span>
-* <span data-ttu-id="278b3-111">Caricare, scaricare ed eliminare un file</span><span class="sxs-lookup"><span data-stu-id="278b3-111">Upload, download, and delete a file</span></span>
-* <span data-ttu-id="278b3-112">Impostare la quota (dimensione massima) per la condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-112">Set the quota (maximum size) for an Azure File share</span></span>
-* <span data-ttu-id="278b3-113">Creare una firma di accesso condiviso (chiave di firma di accesso condiviso) per un file che usa criteri di accesso condiviso definiti nella condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-113">Create a shared access signature (SAS key) for a file that uses a shared access policy defined on the share.</span></span>
+* <span data-ttu-id="66a4f-108">Creare ed eliminare condivisioni file di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-108">Create and delete Azure File shares</span></span>
+* <span data-ttu-id="66a4f-109">Creare ed eliminare directory</span><span class="sxs-lookup"><span data-stu-id="66a4f-109">Create and delete directories</span></span>
+* <span data-ttu-id="66a4f-110">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-110">Enumerate files and directories in an Azure File share</span></span>
+* <span data-ttu-id="66a4f-111">Caricare, scaricare ed eliminare un file</span><span class="sxs-lookup"><span data-stu-id="66a4f-111">Upload, download, and delete a file</span></span>
+* <span data-ttu-id="66a4f-112">Impostare la quota di hello (dimensione massima) per una condivisione di File di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-112">Set hello quota (maximum size) for an Azure File share</span></span>
+* <span data-ttu-id="66a4f-113">Creare una firma di accesso condiviso (chiave di firma di accesso condiviso) per un file che utilizza un criterio di accesso condiviso definito nella condivisione di hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-113">Create a shared access signature (SAS key) for a file that uses a shared access policy defined on hello share.</span></span>
 
 > [!Note]  
-> <span data-ttu-id="278b3-114">Poiché l'archiviazione file di Azure è accessibile tramite SMB, è possibile scrivere semplici applicazioni che accedono alla condivisione file di Azure usando le classi e le funzioni standard I/O di C++.</span><span class="sxs-lookup"><span data-stu-id="278b3-114">Because Azure File storage may be accessed over SMB, it is possible to write simple applications that access the Azure File share using the standard C++ I/O classes and functions.</span></span> <span data-ttu-id="278b3-115">Questo articolo descrive come scrivere applicazioni basate su Azure Storage .NET SDK, che usa l'[API REST dell'archiviazione file Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) per comunicare con l'archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="278b3-115">This article will describe how to write applications that use the Azure Storage C++ SDK, which uses the [Azure File storage REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) to talk to Azure File storage.</span></span>
+> <span data-ttu-id="66a4f-114">Poiché l'archiviazione di File di Azure sono accessibili tramite SMB, è possibile toowrite semplici applicazioni che accedono a condivisione di File di Azure hello utilizzando le funzioni e classi C++ dei / o standard hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-114">Because Azure File storage may be accessed over SMB, it is possible toowrite simple applications that access hello Azure File share using hello standard C++ I/O classes and functions.</span></span> <span data-ttu-id="66a4f-115">In questo articolo descrive come le applicazioni che usano toowrite hello C++ Azure Storage SDK, che usa hello [API REST di archiviazione di File di Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure archiviazione File.</span><span class="sxs-lookup"><span data-stu-id="66a4f-115">This article will describe how toowrite applications that use hello Azure Storage C++ SDK, which uses hello [Azure File storage REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure File storage.</span></span>
 
-## <a name="create-a-c-application"></a><span data-ttu-id="278b3-116">Creazione di un’applicazione C++</span><span class="sxs-lookup"><span data-stu-id="278b3-116">Create a C++ application</span></span>
-<span data-ttu-id="278b3-117">Per compilare gli esempi, è necessario installare la libreria client di archiviazione di Azure 2.4.0 per C++.</span><span class="sxs-lookup"><span data-stu-id="278b3-117">To build the samples, you will need to install the Azure Storage Client Library 2.4.0 for C++.</span></span> <span data-ttu-id="278b3-118">È inoltre necessario aver creato un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="278b3-118">You should also have created an Azure storage account.</span></span>
+## <a name="create-a-c-application"></a><span data-ttu-id="66a4f-116">Creazione di un’applicazione C++</span><span class="sxs-lookup"><span data-stu-id="66a4f-116">Create a C++ application</span></span>
+<span data-ttu-id="66a4f-117">esempi di hello toobuild, sarà necessario tooinstall hello Azure Storage Client Library 2.4.0 per C++.</span><span class="sxs-lookup"><span data-stu-id="66a4f-117">toobuild hello samples, you will need tooinstall hello Azure Storage Client Library 2.4.0 for C++.</span></span> <span data-ttu-id="66a4f-118">È inoltre necessario aver creato un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="66a4f-118">You should also have created an Azure storage account.</span></span>
 
-<span data-ttu-id="278b3-119">Per installare il client di archiviazione di Azure 2.4.0 per C++, è possibile usare i metodi seguenti:</span><span class="sxs-lookup"><span data-stu-id="278b3-119">To install the Azure Storage Client 2.4.0 for C++, you can use one of the following methods:</span></span>
+<span data-ttu-id="66a4f-119">tooinstall hello del Client di archiviazione Azure 2.4.0 per C++, è possibile utilizzare uno dei seguenti metodi hello:</span><span class="sxs-lookup"><span data-stu-id="66a4f-119">tooinstall hello Azure Storage Client 2.4.0 for C++, you can use one of hello following methods:</span></span>
 
-* <span data-ttu-id="278b3-120">**Linux:** seguire le istruzioni fornite nella pagina [README della libreria client di Archiviazione di Azure per C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) .</span><span class="sxs-lookup"><span data-stu-id="278b3-120">**Linux:** Follow the instructions given in the [Azure Storage Client Library for C++ README](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) page.</span></span>
-* <span data-ttu-id="278b3-121">**Windows:** in Visual Studio fare clic su **Strumenti &gt; Gestione pacchetti NuGet &gt; console di Gestione pacchetti**.</span><span class="sxs-lookup"><span data-stu-id="278b3-121">**Windows:** In Visual Studio, click **Tools &gt; NuGet Package Manager &gt; Package Manager Console**.</span></span> <span data-ttu-id="278b3-122">Digitare il seguente comando nella [console Gestione pacchetti NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) e premere **INVIO**.</span><span class="sxs-lookup"><span data-stu-id="278b3-122">Type the following command into the [NuGet Package Manager console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) and press **ENTER**.</span></span>
+* <span data-ttu-id="66a4f-120">**Linux:** seguire istruzioni hello hello [Azure Storage Client Library per il file README C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) pagina.</span><span class="sxs-lookup"><span data-stu-id="66a4f-120">**Linux:** Follow hello instructions given in hello [Azure Storage Client Library for C++ README](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) page.</span></span>
+* <span data-ttu-id="66a4f-121">**Windows:** in Visual Studio fare clic su **Strumenti &gt; Gestione pacchetti NuGet &gt; console di Gestione pacchetti**.</span><span class="sxs-lookup"><span data-stu-id="66a4f-121">**Windows:** In Visual Studio, click **Tools &gt; NuGet Package Manager &gt; Package Manager Console**.</span></span> <span data-ttu-id="66a4f-122">Comando che segue di tipo hello in hello [console di gestione pacchetti NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) e premere **invio**.</span><span class="sxs-lookup"><span data-stu-id="66a4f-122">Type hello following command into hello [NuGet Package Manager console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) and press **ENTER**.</span></span>
   
 ```
 Install-Package wastorage
 ```
 
-## <a name="set-up-your-application-to-use-azure-file-storage"></a><span data-ttu-id="278b3-123">Configurare l'applicazione per usare l'archiviazione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-123">Set up your application to use Azure File storage</span></span>
-<span data-ttu-id="278b3-124">Aggiungere le istruzioni include seguenti all'inizio del file di origine C++ in cui si vuole modificare l'archiviazione file di Azure:</span><span class="sxs-lookup"><span data-stu-id="278b3-124">Add the following include statements to the top of the C++ source file where you want to manipulate Azure File storage:</span></span>
+## <a name="set-up-your-application-toouse-azure-file-storage"></a><span data-ttu-id="66a4f-123">Configurare l'archiviazione di File di Azure di toouse applicazione</span><span class="sxs-lookup"><span data-stu-id="66a4f-123">Set up your application toouse Azure File storage</span></span>
+<span data-ttu-id="66a4f-124">Aggiungere i seguenti hello includono file di origine C++ hello il percorso di archiviazione di File di Azure toomanipulate cima toohello istruzioni:</span><span class="sxs-lookup"><span data-stu-id="66a4f-124">Add hello following include statements toohello top of hello C++ source file where you want toomanipulate Azure File storage:</span></span>
 
 ```cpp
 #include <was/storage_account.h>
 #include <was/file.h>
 ```
 
-## <a name="set-up-an-azure-storage-connection-string"></a><span data-ttu-id="278b3-125">Impostare una stringa di connessione di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-125">Set up an Azure storage connection string</span></span>
-<span data-ttu-id="278b3-126">Per utilizzare la condivisione di file, è necessario connettersi all'account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="278b3-126">To use File storage, you need to connect to your Azure storage account.</span></span> <span data-ttu-id="278b3-127">Il primo passaggio consiste nel configurare una stringa di connessione che verrà usata per connettersi all'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="278b3-127">The first step would be to configure a connection string, which we'll use to connect to your storage account.</span></span> <span data-ttu-id="278b3-128">È importante definire una variabile statica a tale scopo.</span><span class="sxs-lookup"><span data-stu-id="278b3-128">Let's define a static variable to do that.</span></span>
+## <a name="set-up-an-azure-storage-connection-string"></a><span data-ttu-id="66a4f-125">Impostare una stringa di connessione di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-125">Set up an Azure storage connection string</span></span>
+<span data-ttu-id="66a4f-126">toouse archiviazione di File, è necessario tooconnect tooyour account di archiviazione Azure.</span><span class="sxs-lookup"><span data-stu-id="66a4f-126">toouse File storage, you need tooconnect tooyour Azure storage account.</span></span> <span data-ttu-id="66a4f-127">Hello primo passaggio potrebbe essere una stringa di connessione, che verrà usato tooconfigure tooconnect tooyour account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="66a4f-127">hello first step would be tooconfigure a connection string, which we'll use tooconnect tooyour storage account.</span></span> <span data-ttu-id="66a4f-128">È pertanto possibile definire un toodo variabile statica che.</span><span class="sxs-lookup"><span data-stu-id="66a4f-128">Let's define a static variable toodo that.</span></span>
 
 ```cpp
-// Define the connection-string with your values.
+// Define hello connection-string with your values.
 const utility::string_t 
 storage_connection_string(U("DefaultEndpointsProtocol=https;AccountName=your_storage_account;AccountKey=your_storage_account_key"));
 ```
 
-## <a name="connecting-to-an-azure-storage-account"></a><span data-ttu-id="278b3-129">Connessione a un account di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-129">Connecting to an Azure storage account</span></span>
-<span data-ttu-id="278b3-130">Per visualizzare le informazioni dell'account di archiviazione, è possibile usare la classe **cloud_storage_account**.</span><span class="sxs-lookup"><span data-stu-id="278b3-130">You can use the **cloud_storage_account** class to represent your Storage Account information.</span></span> <span data-ttu-id="278b3-131">Per recuperare le informazioni sull'account di archiviazione dalla stringa di connessione alla risorsa di archiviazione, è possibile utilizzare il metodo **parse** .</span><span class="sxs-lookup"><span data-stu-id="278b3-131">To retrieve your storage account information from the storage connection string, you can use the **parse** method.</span></span>
+## <a name="connecting-tooan-azure-storage-account"></a><span data-ttu-id="66a4f-129">Connessione tooan account di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-129">Connecting tooan Azure storage account</span></span>
+<span data-ttu-id="66a4f-130">È possibile utilizzare hello **cloud_storage_account** classe toorepresent le informazioni sull'Account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="66a4f-130">You can use hello **cloud_storage_account** class toorepresent your Storage Account information.</span></span> <span data-ttu-id="66a4f-131">tooretrieve informazioni dalla stringa di connessione di archiviazione hello dell'account di archiviazione, è possibile usare hello **analizzare** metodo.</span><span class="sxs-lookup"><span data-stu-id="66a4f-131">tooretrieve your storage account information from hello storage connection string, you can use hello **parse** method.</span></span>
 
 ```cpp
 // Retrieve storage account from connection string.    
@@ -78,24 +78,24 @@ azure::storage::cloud_storage_account storage_account =
   azure::storage::cloud_storage_account::parse(storage_connection_string);
 ```
 
-## <a name="create-an-azure-file-share"></a><span data-ttu-id="278b3-132">Creare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-132">Create an Azure File share</span></span>
-<span data-ttu-id="278b3-133">Tutti i file e le directory nell'archiviazione file di Azure si trovano in un contenitore denominato **Share**.</span><span class="sxs-lookup"><span data-stu-id="278b3-133">All files and directories in Azure File storage reside in a container called a **Share**.</span></span> <span data-ttu-id="278b3-134">L'account di archiviazione può disporre del numero di condivisioni consentite dalla capacità dell'account.</span><span class="sxs-lookup"><span data-stu-id="278b3-134">Your storage account can have as many shares as your account capacity allows.</span></span> <span data-ttu-id="278b3-135">Per ottenere l'accesso a una condivisione e ai suoi contenuti, è necessario usare un client per l'archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="278b3-135">To obtain access to a share and its contents, you need to use a Azure File storage client.</span></span>
+## <a name="create-an-azure-file-share"></a><span data-ttu-id="66a4f-132">Creare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-132">Create an Azure File share</span></span>
+<span data-ttu-id="66a4f-133">Tutti i file e le directory nell'archiviazione file di Azure si trovano in un contenitore denominato **Share**.</span><span class="sxs-lookup"><span data-stu-id="66a4f-133">All files and directories in Azure File storage reside in a container called a **Share**.</span></span> <span data-ttu-id="66a4f-134">L'account di archiviazione può disporre del numero di condivisioni consentite dalla capacità dell'account.</span><span class="sxs-lookup"><span data-stu-id="66a4f-134">Your storage account can have as many shares as your account capacity allows.</span></span> <span data-ttu-id="66a4f-135">condivisione di tooa tooobtain accesso e il relativo contenuto, è necessario toouse un client di archiviazione di File di Azure.</span><span class="sxs-lookup"><span data-stu-id="66a4f-135">tooobtain access tooa share and its contents, you need toouse a Azure File storage client.</span></span>
 
 ```cpp
-// Create the Azure File storage client.
+// Create hello Azure File storage client.
 azure::storage::cloud_file_client file_client = 
   storage_account.create_cloud_file_client();
 ```
 
-<span data-ttu-id="278b3-136">In questo modo è possibile ottenere un riferimento a una condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-136">Using the Azure File storage client, you can then obtain a reference to a share.</span></span>
+<span data-ttu-id="66a4f-136">Client di archiviazione Azure File hello è quindi possibile ottenere una condivisione di tooa di riferimento.</span><span class="sxs-lookup"><span data-stu-id="66a4f-136">Using hello Azure File storage client, you can then obtain a reference tooa share.</span></span>
 
 ```cpp
-// Get a reference to the file share
+// Get a reference toohello file share
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 ```
 
-<span data-ttu-id="278b3-137">Per creare la condivisione, usare il metodo **create_if_not_exists** dell'oggetto **cloud_file_share**.</span><span class="sxs-lookup"><span data-stu-id="278b3-137">To create the share, use the **create_if_not_exists** method of the **cloud_file_share** object.</span></span>
+<span data-ttu-id="66a4f-137">condivisione di hello toocreate, utilizzare hello **create_if_not_exists** metodo hello **cloud_file_share** oggetto.</span><span class="sxs-lookup"><span data-stu-id="66a4f-137">toocreate hello share, use hello **create_if_not_exists** method of hello **cloud_file_share** object.</span></span>
 
 ```cpp
 if (share.create_if_not_exists()) {    
@@ -103,28 +103,28 @@ if (share.create_if_not_exists()) {
 }
 ```
 
-<span data-ttu-id="278b3-138">A questo punto, **share** contiene un riferimento a una condivisione denominata **my-sample-share**.</span><span class="sxs-lookup"><span data-stu-id="278b3-138">At this point, **share** holds a reference to a share named **my-sample-share**.</span></span>
+<span data-ttu-id="66a4f-138">A questo punto, **condividere** contiene una condivisione di tooa di riferimento denominata **my-esempio-share**.</span><span class="sxs-lookup"><span data-stu-id="66a4f-138">At this point, **share** holds a reference tooa share named **my-sample-share**.</span></span>
 
-## <a name="delete-an-azure-file-share"></a><span data-ttu-id="278b3-139">Eliminare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-139">Delete an Azure File share</span></span>
-<span data-ttu-id="278b3-140">L'eliminazione di una condivisione viene eseguita chiamando il metodo **delete_if_exists** in un oggetto cloud_file_share.</span><span class="sxs-lookup"><span data-stu-id="278b3-140">Deleting a share is done by calling the **delete_if_exists** method on a cloud_file_share object.</span></span> <span data-ttu-id="278b3-141">Ecco il codice di esempio che esegue tale operazione.</span><span class="sxs-lookup"><span data-stu-id="278b3-141">Here's sample code that does that.</span></span>
+## <a name="delete-an-azure-file-share"></a><span data-ttu-id="66a4f-139">Eliminare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-139">Delete an Azure File share</span></span>
+<span data-ttu-id="66a4f-140">Eliminazione di una condivisione di viene eseguita dal chiamante hello **delete_if_exists** metodo su un oggetto cloud_file_share.</span><span class="sxs-lookup"><span data-stu-id="66a4f-140">Deleting a share is done by calling hello **delete_if_exists** method on a cloud_file_share object.</span></span> <span data-ttu-id="66a4f-141">Ecco il codice di esempio che esegue tale operazione.</span><span class="sxs-lookup"><span data-stu-id="66a4f-141">Here's sample code that does that.</span></span>
 
 ```cpp
-// Get a reference to the share.
+// Get a reference toohello share.
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 
-// delete the share if exists
+// delete hello share if exists
 share.delete_share_if_exists();
 ```
 
-## <a name="create-a-directory"></a><span data-ttu-id="278b3-142">Creare una directory</span><span class="sxs-lookup"><span data-stu-id="278b3-142">Create a directory</span></span>
-<span data-ttu-id="278b3-143">È possibile organizzare l'archiviazione inserendo i file all'interno di sottodirectory anziché inserirli tutti nella directory radice.</span><span class="sxs-lookup"><span data-stu-id="278b3-143">You can organize storage by putting files inside subdirectories instead of having all of them in the root directory.</span></span> <span data-ttu-id="278b3-144">L'archiviazione file di Azure consente di creare tutte le directory consentite dall'account.</span><span class="sxs-lookup"><span data-stu-id="278b3-144">Azure File storage allows you to create as many directories as your account will allow.</span></span> <span data-ttu-id="278b3-145">Il codice seguente creerà una directory denominata **my-sample-directory** sotto la directory radice e una sottodirectory denominata **my-sample-subdirectory**.</span><span class="sxs-lookup"><span data-stu-id="278b3-145">The code below will create a directory named **my-sample-directory** under the root directory as well as a subdirectory named **my-sample-subdirectory**.</span></span>
+## <a name="create-a-directory"></a><span data-ttu-id="66a4f-142">Creare una directory</span><span class="sxs-lookup"><span data-stu-id="66a4f-142">Create a directory</span></span>
+<span data-ttu-id="66a4f-143">È possibile organizzare archiviazione inserendo i file all'interno di sottodirectory anziché tutti gli elementi nella directory radice hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-143">You can organize storage by putting files inside subdirectories instead of having all of them in hello root directory.</span></span> <span data-ttu-id="66a4f-144">Archiviazione di File di Azure consente toocreate come consentire molte directory come l'account.</span><span class="sxs-lookup"><span data-stu-id="66a4f-144">Azure File storage allows you toocreate as many directories as your account will allow.</span></span> <span data-ttu-id="66a4f-145">codice Hello seguente verrà creata una directory denominata **directory di esempio my** nella directory radice di hello, nonché una sottodirectory denominata **my sottodirectory-esempio**.</span><span class="sxs-lookup"><span data-stu-id="66a4f-145">hello code below will create a directory named **my-sample-directory** under hello root directory as well as a subdirectory named **my-sample-subdirectory**.</span></span>
 
 ```cpp
-// Retrieve a reference to a directory
+// Retrieve a reference tooa directory
 azure::storage::cloud_file_directory directory = share.get_directory_reference(_XPLATSTR("my-sample-directory"));
 
-// Return value is true if the share did not exist and was successfully created.
+// Return value is true if hello share did not exist and was successfully created.
 directory.create_if_not_exists();
 
 // Create a subdirectory.
@@ -133,35 +133,35 @@ azure::storage::cloud_file_directory subdirectory =
 subdirectory.create_if_not_exists();
 ```
 
-## <a name="delete-a-directory"></a><span data-ttu-id="278b3-146">Eliminare una directory</span><span class="sxs-lookup"><span data-stu-id="278b3-146">Delete a directory</span></span>
-<span data-ttu-id="278b3-147">Eliminare una directory è un'attività semplice, anche se occorre tenere presente che non è possibile eliminare una directory che contiene ancora file o altre directory.</span><span class="sxs-lookup"><span data-stu-id="278b3-147">Deleting a directory is a simple task, although it should be noted that you cannot delete a directory that still contains files or other directories.</span></span>
+## <a name="delete-a-directory"></a><span data-ttu-id="66a4f-146">Eliminare una directory</span><span class="sxs-lookup"><span data-stu-id="66a4f-146">Delete a directory</span></span>
+<span data-ttu-id="66a4f-147">Eliminare una directory è un'attività semplice, anche se occorre tenere presente che non è possibile eliminare una directory che contiene ancora file o altre directory.</span><span class="sxs-lookup"><span data-stu-id="66a4f-147">Deleting a directory is a simple task, although it should be noted that you cannot delete a directory that still contains files or other directories.</span></span>
 
 ```cpp
-// Get a reference to the share.
+// Get a reference toohello share.
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 
-// Get a reference to the directory.
+// Get a reference toohello directory.
 azure::storage::cloud_file_directory directory = 
   share.get_directory_reference(_XPLATSTR("my-sample-directory"));
 
-// Get a reference to the subdirectory you want to delete.
+// Get a reference toohello subdirectory you want toodelete.
 azure::storage::cloud_file_directory sub_directory =
   directory.get_subdirectory_reference(_XPLATSTR("my-sample-subdirectory"));
 
-// Delete the subdirectory and the sample directory.
+// Delete hello subdirectory and hello sample directory.
 sub_directory.delete_directory_if_exists();
 
 directory.delete_directory_if_exists();
 ```
 
-## <a name="enumerate-files-and-directories-in-an-azure-file-share"></a><span data-ttu-id="278b3-148">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-148">Enumerate files and directories in an Azure File share</span></span>
-<span data-ttu-id="278b3-149">Ottenere un elenco di file e directory all'interno di una condivisione è facile chiamando **list_files_and_directories** in un riferimento **cloud_file_directory**.</span><span class="sxs-lookup"><span data-stu-id="278b3-149">Obtaining a list of files and directories within a share is easily done by calling **list_files_and_directories** on a **cloud_file_directory** reference.</span></span> <span data-ttu-id="278b3-150">Per accedere al set completo di proprietà e metodi per un **list_file_and_directory_item** restituito, è necessario chiamare il metodo **list_file_and_directory_item.as_file** per ottenere un oggetto **cloud_file** oppure il metodo **list_file_and_directory_item.as_directory** per ottenere un oggetto **cloud_file_directory**.</span><span class="sxs-lookup"><span data-stu-id="278b3-150">To access the rich set of properties and methods for a returned **list_file_and_directory_item**, you must call the **list_file_and_directory_item.as_file** method to get a **cloud_file** object, or the **list_file_and_directory_item.as_directory** method to get a **cloud_file_directory** object.</span></span>
+## <a name="enumerate-files-and-directories-in-an-azure-file-share"></a><span data-ttu-id="66a4f-148">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-148">Enumerate files and directories in an Azure File share</span></span>
+<span data-ttu-id="66a4f-149">Ottenere un elenco di file e directory all'interno di una condivisione è facile chiamando **list_files_and_directories** in un riferimento **cloud_file_directory**.</span><span class="sxs-lookup"><span data-stu-id="66a4f-149">Obtaining a list of files and directories within a share is easily done by calling **list_files_and_directories** on a **cloud_file_directory** reference.</span></span> <span data-ttu-id="66a4f-150">set completo di proprietà e metodi per un tipo restituito di hello tooaccess **list_file_and_directory_item**, è necessario chiamare hello **list_file_and_directory_item.as_file** metodo tooget un **cloud_ file** oggetto o hello **list_file_and_directory_item.as_directory** metodo tooget un **cloud_file_directory** oggetto.</span><span class="sxs-lookup"><span data-stu-id="66a4f-150">tooaccess hello rich set of properties and methods for a returned **list_file_and_directory_item**, you must call hello **list_file_and_directory_item.as_file** method tooget a **cloud_file** object, or hello **list_file_and_directory_item.as_directory** method tooget a **cloud_file_directory** object.</span></span>
 
-<span data-ttu-id="278b3-151">Il codice seguente illustra come recuperare e visualizzare l'URI di ogni elemento della directory radice della condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-151">The following code demonstrates how to retrieve and output the URI of each item in the root directory of the share.</span></span>
+<span data-ttu-id="66a4f-151">Hello di codice seguente viene illustrato come tooretrieve e output di hello URI di ogni elemento nella directory radice hello della condivisione hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-151">hello following code demonstrates how tooretrieve and output hello URI of each item in hello root directory of hello share.</span></span>
 
 ```cpp
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 azure::storage::cloud_file_directory root_dir = 
   share.get_root_directory_reference();
 
@@ -181,17 +181,17 @@ for (auto it = directory.list_files_and_directories(); it != end_of_results; ++i
 }
 ```
 
-## <a name="upload-a-file"></a><span data-ttu-id="278b3-152">Caricare un file</span><span class="sxs-lookup"><span data-stu-id="278b3-152">Upload a file</span></span>
-<span data-ttu-id="278b3-153">Una condivisione file di Azure contiene almeno una directory radice in cui possono risiedere i file.</span><span class="sxs-lookup"><span data-stu-id="278b3-153">At the very least, an Azure File share contains a root directory where files can reside.</span></span> <span data-ttu-id="278b3-154">In questa sezione verrà illustrato come caricare un file dall'archiviazione locale nella directory radice di una condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-154">In this section, you'll learn how to upload a file from local storage onto the root directory of a share.</span></span>
+## <a name="upload-a-file"></a><span data-ttu-id="66a4f-152">Caricare un file</span><span class="sxs-lookup"><span data-stu-id="66a4f-152">Upload a file</span></span>
+<span data-ttu-id="66a4f-153">Hello molto, almeno una condivisione di File di Azure contiene una directory radice in cui i file possono trovarsi.</span><span class="sxs-lookup"><span data-stu-id="66a4f-153">At hello very least, an Azure File share contains a root directory where files can reside.</span></span> <span data-ttu-id="66a4f-154">In questa sezione si apprenderà come tooupload un file dall'archiviazione locale su hello radice della directory di una condivisione.</span><span class="sxs-lookup"><span data-stu-id="66a4f-154">In this section, you'll learn how tooupload a file from local storage onto hello root directory of a share.</span></span>
 
-<span data-ttu-id="278b3-155">Il primo passaggio del caricamento di un file consiste nell'ottenere un riferimento alla directory in cui risiederà.</span><span class="sxs-lookup"><span data-stu-id="278b3-155">The first step in uploading a file is to obtain a reference to the directory where it should reside.</span></span> <span data-ttu-id="278b3-156">È possibile eseguire questa operazione chiamando il metodo **get_root_directory_reference** dell'oggetto condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-156">You do this by calling the **get_root_directory_reference** method of the share object.</span></span>
+<span data-ttu-id="66a4f-155">Hello caricando un file è innanzitutto tooobtain una directory toohello di riferimento in cui risiede.</span><span class="sxs-lookup"><span data-stu-id="66a4f-155">hello first step in uploading a file is tooobtain a reference toohello directory where it should reside.</span></span> <span data-ttu-id="66a4f-156">A tale scopo, chiamata hello **get_root_directory_reference** metodo dell'oggetto condivisione hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-156">You do this by calling hello **get_root_directory_reference** method of hello share object.</span></span>
 
 ```cpp
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 azure::storage::cloud_file_directory root_dir = share.get_root_directory_reference();
 ```
 
-<span data-ttu-id="278b3-157">Ora che si dispone di un riferimento alla directory radice della condivisione, è possibile caricarvi un file.</span><span class="sxs-lookup"><span data-stu-id="278b3-157">Now that you have a reference to the root directory of the share, you can upload a file onto it.</span></span> <span data-ttu-id="278b3-158">Questo esempio esegue il caricamento da un file, da testo e da un flusso.</span><span class="sxs-lookup"><span data-stu-id="278b3-158">This example uploads from a file, from text, and from a stream.</span></span>
+<span data-ttu-id="66a4f-157">Dopo aver creato una directory radice toohello di riferimento della condivisione di hello, è possibile caricare un file su di esso.</span><span class="sxs-lookup"><span data-stu-id="66a4f-157">Now that you have a reference toohello root directory of hello share, you can upload a file onto it.</span></span> <span data-ttu-id="66a4f-158">Questo esempio esegue il caricamento da un file, da testo e da un flusso.</span><span class="sxs-lookup"><span data-stu-id="66a4f-158">This example uploads from a file, from text, and from a stream.</span></span>
 
 ```cpp
 // Upload a file from a stream.
@@ -213,10 +213,10 @@ azure::storage::cloud_file file4 =
 file4.upload_from_file(_XPLATSTR("DataFile.txt"));    
 ```
 
-## <a name="download-a-file"></a><span data-ttu-id="278b3-159">Scaricare un file</span><span class="sxs-lookup"><span data-stu-id="278b3-159">Download a file</span></span>
-<span data-ttu-id="278b3-160">Per scaricare i file, recuperare prima un riferimento al file e quindi chiamare il metodo **download_to_stream** per trasferire il contenuto del file in un oggetto flusso che è possibile memorizzare in modo permanente in un file locale.</span><span class="sxs-lookup"><span data-stu-id="278b3-160">To download files, first retrieve a file reference and then call the **download_to_stream** method to transfer the file contents to a stream object, which you can then persist to a local file.</span></span> <span data-ttu-id="278b3-161">In alternativa, è possibile usare il metodo **download_to_file** per scaricare il contenuto di un file in un file locale.</span><span class="sxs-lookup"><span data-stu-id="278b3-161">Alternatively, you can use the **download_to_file** method to download the contents of a file to a local file.</span></span> <span data-ttu-id="278b3-162">È possibile usare il metodo **download_text** per scaricare il contenuto di un file come stringa di testo.</span><span class="sxs-lookup"><span data-stu-id="278b3-162">You can use the **download_text** method to download the contents of a file as a text string.</span></span>
+## <a name="download-a-file"></a><span data-ttu-id="66a4f-159">Scaricare un file</span><span class="sxs-lookup"><span data-stu-id="66a4f-159">Download a file</span></span>
+<span data-ttu-id="66a4f-160">file toodownload, recuperare innanzitutto un riferimento a file e quindi chiamare hello **download_to_stream** metodo tootransfer hello file contenuto tooa oggetto flusso, che è quindi possibile mantenere tooa file locale.</span><span class="sxs-lookup"><span data-stu-id="66a4f-160">toodownload files, first retrieve a file reference and then call hello **download_to_stream** method tootransfer hello file contents tooa stream object, which you can then persist tooa local file.</span></span> <span data-ttu-id="66a4f-161">In alternativa, è possibile utilizzare hello **download_to_file** contenuto hello toodownload di metodo di un file locale tooa di file.</span><span class="sxs-lookup"><span data-stu-id="66a4f-161">Alternatively, you can use hello **download_to_file** method toodownload hello contents of a file tooa local file.</span></span> <span data-ttu-id="66a4f-162">È possibile utilizzare hello **download_text** contenuto hello toodownload di metodo di un file come una stringa di testo.</span><span class="sxs-lookup"><span data-stu-id="66a4f-162">You can use hello **download_text** method toodownload hello contents of a file as a text string.</span></span>
 
-<span data-ttu-id="278b3-163">L'esempio seguente usa i metodi **download_to_stream** e **download_text** per illustrare il download dei file creati nelle sezioni precedenti.</span><span class="sxs-lookup"><span data-stu-id="278b3-163">The following example uses the **download_to_stream** and **download_text** methods to demonstrate downloading the files, which were created in previous sections.</span></span>
+<span data-ttu-id="66a4f-163">esempio Hello utilizza hello **download_to_stream** e **download_text** toodemonstrate metodi download file hello, che sono stati creati nelle sezioni precedenti.</span><span class="sxs-lookup"><span data-stu-id="66a4f-163">hello following example uses hello **download_to_stream** and **download_text** methods toodemonstrate downloading hello files, which were created in previous sections.</span></span>
 
 ```cpp
 // Download as text
@@ -238,11 +238,11 @@ outfile.write((char *)&data[0], buffer.size());
 outfile.close();
 ```
 
-## <a name="delete-a-file"></a><span data-ttu-id="278b3-164">Eliminare un file</span><span class="sxs-lookup"><span data-stu-id="278b3-164">Delete a file</span></span>
-<span data-ttu-id="278b3-165">Un'altra operazione comunemente eseguita nell'archiviazione file di Azure è l'eliminazione dei file.</span><span class="sxs-lookup"><span data-stu-id="278b3-165">Another common Azure File storage operation is file deletion.</span></span> <span data-ttu-id="278b3-166">Il codice seguente elimina un file denominato my-sample-file-3 archiviato nella directory radice.</span><span class="sxs-lookup"><span data-stu-id="278b3-166">The following code deletes a file named my-sample-file-3 stored under the root directory.</span></span>
+## <a name="delete-a-file"></a><span data-ttu-id="66a4f-164">Eliminare un file</span><span class="sxs-lookup"><span data-stu-id="66a4f-164">Delete a file</span></span>
+<span data-ttu-id="66a4f-165">Un'altra operazione comunemente eseguita nell'archiviazione file di Azure è l'eliminazione dei file.</span><span class="sxs-lookup"><span data-stu-id="66a4f-165">Another common Azure File storage operation is file deletion.</span></span> <span data-ttu-id="66a4f-166">Hello codice seguente elimina un file denominato my-esempio-file-3 archiviato nella directory radice hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-166">hello following code deletes a file named my-sample-file-3 stored under hello root directory.</span></span>
 
 ```cpp
-// Get a reference to the root directory for the share.    
+// Get a reference toohello root directory for hello share.    
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 
@@ -255,30 +255,30 @@ azure::storage::cloud_file file =
 file.delete_file_if_exists();
 ```
 
-## <a name="set-the-quota-maximum-size-for-an-azure-file-share"></a><span data-ttu-id="278b3-167">Impostare la quota (dimensione massima) per la condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-167">Set the quota (maximum size) for an Azure File share</span></span>
-<span data-ttu-id="278b3-168">È possibile impostare la quota o dimensione massima per una condivisione file in gigabyte.</span><span class="sxs-lookup"><span data-stu-id="278b3-168">You can set the quota (or maximum size) for a file share, in gigabytes.</span></span> <span data-ttu-id="278b3-169">È anche possibile controllare la quantità di dati archiviata attualmente nella condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-169">You can also check to see how much data is currently stored on the share.</span></span>
+## <a name="set-hello-quota-maximum-size-for-an-azure-file-share"></a><span data-ttu-id="66a4f-167">Impostare la quota di hello (dimensione massima) per una condivisione di File di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-167">Set hello quota (maximum size) for an Azure File share</span></span>
+<span data-ttu-id="66a4f-168">È possibile impostare una quota di hello (o dimensioni massime) per una condivisione di file, in gigabyte.</span><span class="sxs-lookup"><span data-stu-id="66a4f-168">You can set hello quota (or maximum size) for a file share, in gigabytes.</span></span> <span data-ttu-id="66a4f-169">È inoltre possibile verificare la quantità di dati è attualmente archiviati nella condivisione di hello toosee.</span><span class="sxs-lookup"><span data-stu-id="66a4f-169">You can also check toosee how much data is currently stored on hello share.</span></span>
 
-<span data-ttu-id="278b3-170">Impostando la quota per una condivisione, è possibile limitare la dimensione totale dei file archiviati nella condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-170">By setting the quota for a share, you can limit the total size of the files stored on the share.</span></span> <span data-ttu-id="278b3-171">Se la dimensione totale dei file nella condivisione supera la quota impostata per la condivisione, i client non saranno in grado di aumentare le dimensioni dei file esistenti o creare nuovi file, a meno che tali file non siano vuoti.</span><span class="sxs-lookup"><span data-stu-id="278b3-171">If the total size of files on the share exceeds the quota set on the share, then clients will be unable to increase the size of existing files or create new files, unless those files are empty.</span></span>
+<span data-ttu-id="66a4f-170">Dalla quota hello impostazione per una condivisione, è possibile limitare hello totale dimensioni hello file archiviati nella condivisione di hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-170">By setting hello quota for a share, you can limit hello total size of hello files stored on hello share.</span></span> <span data-ttu-id="66a4f-171">Se hello dimensioni totali dei file nella condivisione di hello superano quota hello impostato nella condivisione di hello, il client verrà tooincrease Impossibile hello dimensioni dei file esistenti o creare nuovi file, a meno che tali file sono vuoti.</span><span class="sxs-lookup"><span data-stu-id="66a4f-171">If hello total size of files on hello share exceeds hello quota set on hello share, then clients will be unable tooincrease hello size of existing files or create new files, unless those files are empty.</span></span>
 
-<span data-ttu-id="278b3-172">L'esempio seguente illustra come controllare l'uso corrente per una condivisione e come impostare la quota per la condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-172">The example below shows how to check the current usage for a share and how to set the quota for the share.</span></span>
+<span data-ttu-id="66a4f-172">esempio di Hello seguente mostra come toocheck hello utilizzo corrente per una condivisione e la modalità tooset hello quota per la condivisione di hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-172">hello example below shows how toocheck hello current usage for a share and how tooset hello quota for hello share.</span></span>
 
 ```cpp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 azure::storage::cloud_storage_account storage_account = 
   azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the file client.
+// Create hello file client.
 azure::storage::cloud_file_client file_client = 
   storage_account.create_cloud_file_client();
 
-// Get a reference to the share.
+// Get a reference toohello share.
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 if (share.exists())
 {
     std::cout << "Current share usage: " << share.download_share_usage() << "/" << share.properties().quota();
 
-    //This line sets the quota to 2560GB
+    //This line sets hello quota too2560GB
     share.resize(2560);
 
     std::cout << "Quota increased: " << share.download_share_usage() << "/" << share.properties().quota();
@@ -286,17 +286,17 @@ if (share.exists())
 }
 ```
 
-## <a name="generate-a-shared-access-signature-for-a-file-or-file-share"></a><span data-ttu-id="278b3-173">Generare la firma di accesso condiviso per un file o una condivisione file</span><span class="sxs-lookup"><span data-stu-id="278b3-173">Generate a shared access signature for a file or file share</span></span>
-<span data-ttu-id="278b3-174">È possibile generare una firma di accesso condiviso per una condivisione file o un singolo file.</span><span class="sxs-lookup"><span data-stu-id="278b3-174">You can generate a shared access signature (SAS) for a file share or for an individual file.</span></span> <span data-ttu-id="278b3-175">È inoltre possibile creare un criterio di accesso condiviso in una condivisione file per gestire le firme di accesso condiviso.</span><span class="sxs-lookup"><span data-stu-id="278b3-175">You can also create a shared access policy on a file share to manage shared access signatures.</span></span> <span data-ttu-id="278b3-176">È consigliabile creare un criterio di accesso condiviso, in quanto fornisce un modo per revocare la firma SAS se necessario.</span><span class="sxs-lookup"><span data-stu-id="278b3-176">Creating a shared access policy is recommended, as it provides a means of revoking the SAS if it should be compromised.</span></span>
+## <a name="generate-a-shared-access-signature-for-a-file-or-file-share"></a><span data-ttu-id="66a4f-173">Generare la firma di accesso condiviso per un file o una condivisione file</span><span class="sxs-lookup"><span data-stu-id="66a4f-173">Generate a shared access signature for a file or file share</span></span>
+<span data-ttu-id="66a4f-174">È possibile generare una firma di accesso condiviso per una condivisione file o un singolo file.</span><span class="sxs-lookup"><span data-stu-id="66a4f-174">You can generate a shared access signature (SAS) for a file share or for an individual file.</span></span> <span data-ttu-id="66a4f-175">È anche possibile creare un criterio di accesso condiviso per un accesso condiviso toomanage di condivisione file firme.</span><span class="sxs-lookup"><span data-stu-id="66a4f-175">You can also create a shared access policy on a file share toomanage shared access signatures.</span></span> <span data-ttu-id="66a4f-176">È consigliabile creare un criterio di accesso condiviso, in quanto forniscono un mezzo di revoca hello SAS se questa deve essere compromessa.</span><span class="sxs-lookup"><span data-stu-id="66a4f-176">Creating a shared access policy is recommended, as it provides a means of revoking hello SAS if it should be compromised.</span></span>
 
-<span data-ttu-id="278b3-177">Nell'esempio seguente viene creato un criterio di accesso condiviso in una condivisione e quindi viene usato tale criterio per fornire i vincoli per una firma di accesso condiviso su un file della condivisione.</span><span class="sxs-lookup"><span data-stu-id="278b3-177">The following example creates a shared access policy on a share, and then uses that policy to provide the constraints for a SAS on a file in the share.</span></span>
+<span data-ttu-id="66a4f-177">Hello di esempio seguente viene creato un criterio di accesso condiviso in una condivisione e quindi utilizza che condividono tooprovide hello i vincoli dei criteri per una firma di accesso condiviso in un file hello.</span><span class="sxs-lookup"><span data-stu-id="66a4f-177">hello following example creates a shared access policy on a share, and then uses that policy tooprovide hello constraints for a SAS on a file in hello share.</span></span>
 
 ```cpp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 azure::storage::cloud_storage_account storage_account = 
   azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the file client and get a reference to the share
+// Create hello file client and get a reference toohello share
 azure::storage::cloud_file_client file_client = 
   storage_account.create_cloud_file_client();
 
@@ -311,37 +311,37 @@ if (share.exists())
     azure::storage::file_shared_access_policy sharedPolicy = 
       azure::storage::file_shared_access_policy();
 
-    //set permissions to expire in 90 minutes
+    //set permissions tooexpire in 90 minutes
     sharedPolicy.set_expiry(utility::datetime::utc_now() + 
        utility::datetime::from_minutes(90));
 
     //give read and write permissions
     sharedPolicy.set_permissions(azure::storage::file_shared_access_policy::permissions::write | azure::storage::file_shared_access_policy::permissions::read);
 
-    //set permissions for the share
+    //set permissions for hello share
     azure::storage::file_share_permissions permissions;    
 
-    //retrieve the current list of shared access policies
+    //retrieve hello current list of shared access policies
     azure::storage::shared_access_policies<azure::storage::file_shared_access_policy> policies;
 
-    //add the new shared policy
+    //add hello new shared policy
     policies.insert(std::make_pair(policy_name, sharedPolicy));
 
-    //save the updated policy list
+    //save hello updated policy list
     permissions.set_policies(policies);
     share.upload_permissions(permissions);
 
-    //Retrieve the root directory and file references
+    //Retrieve hello root directory and file references
     azure::storage::cloud_file_directory root_dir = 
         share.get_root_directory_reference();
     azure::storage::cloud_file file = 
       root_dir.get_file_reference(_XPLATSTR("my-sample-file-1"));
 
-    // Generate a SAS for a file in the share 
+    // Generate a SAS for a file in hello share 
     //  and associate this access policy with it.        
     utility::string_t sas_token = file.get_shared_access_signature(sharedPolicy);
 
-    // Create a new CloudFile object from the SAS, and write some text to the file.        
+    // Create a new CloudFile object from hello SAS, and write some text toohello file.        
     azure::storage::cloud_file file_with_sas(azure::storage::storage_credentials(sas_token).transform_uri(file.uri().primary_uri()));
     utility::string_t text = _XPLATSTR("My sample content");        
     file_with_sas.upload_text(text);        
@@ -353,10 +353,10 @@ if (share.exists())
 
 }
 ```
-## <a name="next-steps"></a><span data-ttu-id="278b3-178">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="278b3-178">Next steps</span></span>
-<span data-ttu-id="278b3-179">Per altre informazioni su Archiviazione di Azure, vedere le risorse seguenti:</span><span class="sxs-lookup"><span data-stu-id="278b3-179">To learn more about Azure Storage, explore these resources:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="66a4f-178">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="66a4f-178">Next steps</span></span>
+<span data-ttu-id="66a4f-179">toolearn più sull'archiviazione di Azure, è esplorare queste risorse:</span><span class="sxs-lookup"><span data-stu-id="66a4f-179">toolearn more about Azure Storage, explore these resources:</span></span>
 
-* [<span data-ttu-id="278b3-180">Libreria client di archiviazione per C++</span><span class="sxs-lookup"><span data-stu-id="278b3-180">Storage Client Library for C++</span></span>](https://github.com/Azure/azure-storage-cpp)
-* <span data-ttu-id="278b3-181">[Esempi del servizio di archiviazione file di Azure scritti in C++] (https://github.com/Azure-Samples/storage-file-cpp-getting-started)</span><span class="sxs-lookup"><span data-stu-id="278b3-181">[Azure Storage File Service Samples in C++] (https://github.com/Azure-Samples/storage-file-cpp-getting-started)</span></span>
-* [<span data-ttu-id="278b3-182">Azure Storage Explorer</span><span class="sxs-lookup"><span data-stu-id="278b3-182">Azure Storage Explorer</span></span>](http://go.microsoft.com/fwlink/?LinkID=822673&clcid=0x409)
-* [<span data-ttu-id="278b3-183">Documentazione di Archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="278b3-183">Azure Storage Documentation</span></span>](https://azure.microsoft.com/documentation/services/storage/)
+* [<span data-ttu-id="66a4f-180">Libreria client di archiviazione per C++</span><span class="sxs-lookup"><span data-stu-id="66a4f-180">Storage Client Library for C++</span></span>](https://github.com/Azure/azure-storage-cpp)
+* <span data-ttu-id="66a4f-181">[Esempi del servizio di archiviazione file di Azure scritti in C++] (https://github.com/Azure-Samples/storage-file-cpp-getting-started)</span><span class="sxs-lookup"><span data-stu-id="66a4f-181">[Azure Storage File Service Samples in C++] (https://github.com/Azure-Samples/storage-file-cpp-getting-started)</span></span>
+* [<span data-ttu-id="66a4f-182">Azure Storage Explorer</span><span class="sxs-lookup"><span data-stu-id="66a4f-182">Azure Storage Explorer</span></span>](http://go.microsoft.com/fwlink/?LinkID=822673&clcid=0x409)
+* [<span data-ttu-id="66a4f-183">Documentazione di Archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="66a4f-183">Azure Storage Documentation</span></span>](https://azure.microsoft.com/documentation/services/storage/)

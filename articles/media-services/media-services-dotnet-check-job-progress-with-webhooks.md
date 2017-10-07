@@ -1,6 +1,6 @@
 ---
-title: Usare i webhook di Azure per monitorare le notifiche dei processi di Servizi multimediali con .NET | Documentazione Microsoft
-description: "Informazioni su come usare i webhook di Azure per monitorare le notifiche dei processi di Servizi multimediali. L'esempio di codice è scritto in C# e usa l'SDK di Servizi multimediali per .NET."
+title: notifiche del processo con .NET aaaUse Azure Webhook toomonitor servizi multimediali | Documenti Microsoft
+description: Informazioni su come le notifiche del processo toouse Azure Webhook toomonitor servizi multimediali. Nell'esempio di codice Hello viene scritto in c# e utilizza hello Media Services SDK per .NET.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,63 +14,63 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: juliako
-ms.openlocfilehash: eaa875a7c78de0b69c81514ea023f9b8bceb2656
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b7df597da20e551cb2a02cd21c96c7bddf9e1a66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-webhooks-to-monitor-media-services-job-notifications-with-net"></a><span data-ttu-id="2dc95-104">Usare i webhook di Azure per monitorare le notifiche dei processi di Servizi multimediali con .NET</span><span class="sxs-lookup"><span data-stu-id="2dc95-104">Use Azure WebHooks to monitor Media Services job notifications with .NET</span></span>
-<span data-ttu-id="2dc95-105">Quando si esegue un processo, spesso è necessario monitorarne l'avanzamento.</span><span class="sxs-lookup"><span data-stu-id="2dc95-105">When you run jobs, you often require a way to track job progress.</span></span> <span data-ttu-id="2dc95-106">È possibile monitorare le notifiche dei processi di Servizi multimediali tramite webhook di Azure o [archiviazione code di Azure](media-services-dotnet-check-job-progress-with-queues.md).</span><span class="sxs-lookup"><span data-stu-id="2dc95-106">You can monitor Media Services job notifications by using Azure Webhooks or [Azure Queue storage](media-services-dotnet-check-job-progress-with-queues.md).</span></span> <span data-ttu-id="2dc95-107">Questo argomento mostra come lavorare con i webhook.</span><span class="sxs-lookup"><span data-stu-id="2dc95-107">This topic shows how to work with Webhooks.</span></span>
+# <a name="use-azure-webhooks-toomonitor-media-services-job-notifications-with-net"></a><span data-ttu-id="f33d0-104">Usare le notifiche di processo servizi multimediali di Azure Webhook toomonitor con .NET</span><span class="sxs-lookup"><span data-stu-id="f33d0-104">Use Azure WebHooks toomonitor Media Services job notifications with .NET</span></span>
+<span data-ttu-id="f33d0-105">Quando si eseguono i processi, spesso richiedono un avanzamento del processo tootrack modo.</span><span class="sxs-lookup"><span data-stu-id="f33d0-105">When you run jobs, you often require a way tootrack job progress.</span></span> <span data-ttu-id="f33d0-106">È possibile monitorare le notifiche dei processi di Servizi multimediali tramite webhook di Azure o [archiviazione code di Azure](media-services-dotnet-check-job-progress-with-queues.md).</span><span class="sxs-lookup"><span data-stu-id="f33d0-106">You can monitor Media Services job notifications by using Azure Webhooks or [Azure Queue storage](media-services-dotnet-check-job-progress-with-queues.md).</span></span> <span data-ttu-id="f33d0-107">Questo argomento viene illustrato come toowork con Webhook.</span><span class="sxs-lookup"><span data-stu-id="f33d0-107">This topic shows how toowork with Webhooks.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="2dc95-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="2dc95-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="f33d0-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="f33d0-108">Prerequisites</span></span>
 
-<span data-ttu-id="2dc95-109">Per completare l'esercitazione è necessario quanto segue:</span><span class="sxs-lookup"><span data-stu-id="2dc95-109">The following are required to complete the tutorial:</span></span>
+<span data-ttu-id="f33d0-109">di seguito Hello sono esercitazione hello toocomplete necessarie:</span><span class="sxs-lookup"><span data-stu-id="f33d0-109">hello following are required toocomplete hello tutorial:</span></span>
 
-* <span data-ttu-id="2dc95-110">Un account Azure.</span><span class="sxs-lookup"><span data-stu-id="2dc95-110">An Azure account.</span></span> <span data-ttu-id="2dc95-111">Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="2dc95-111">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
-* <span data-ttu-id="2dc95-112">Account di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="2dc95-112">A Media Services account.</span></span> <span data-ttu-id="2dc95-113">Per creare un account Servizi multimediali, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).</span><span class="sxs-lookup"><span data-stu-id="2dc95-113">To create a Media Services account, see [How to Create a Media Services Account](media-services-portal-create-account.md).</span></span>
-* <span data-ttu-id="2dc95-114">Comprensione della [modalità d'uso delle funzioni di Azure](../azure-functions/functions-overview.md).</span><span class="sxs-lookup"><span data-stu-id="2dc95-114">Understanding of [how to use Azure functions](../azure-functions/functions-overview.md).</span></span> <span data-ttu-id="2dc95-115">Rivedere anche [Associazioni HTTP e webhook in Funzioni di Azure](../azure-functions/functions-bindings-http-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="2dc95-115">Also, review [Azure functions HTTP and webhook bindings](../azure-functions/functions-bindings-http-webhook.md).</span></span>
+* <span data-ttu-id="f33d0-110">Un account Azure.</span><span class="sxs-lookup"><span data-stu-id="f33d0-110">An Azure account.</span></span> <span data-ttu-id="f33d0-111">Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="f33d0-111">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+* <span data-ttu-id="f33d0-112">Account di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="f33d0-112">A Media Services account.</span></span> <span data-ttu-id="f33d0-113">toocreate un account di servizi multimediali, vedere [come un Account di servizi multimediali tooCreate](media-services-portal-create-account.md).</span><span class="sxs-lookup"><span data-stu-id="f33d0-113">toocreate a Media Services account, see [How tooCreate a Media Services Account](media-services-portal-create-account.md).</span></span>
+* <span data-ttu-id="f33d0-114">Comprensione delle [come toouse Azure funzioni](../azure-functions/functions-overview.md).</span><span class="sxs-lookup"><span data-stu-id="f33d0-114">Understanding of [how toouse Azure functions](../azure-functions/functions-overview.md).</span></span> <span data-ttu-id="f33d0-115">Rivedere anche [Associazioni HTTP e webhook in Funzioni di Azure](../azure-functions/functions-bindings-http-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="f33d0-115">Also, review [Azure functions HTTP and webhook bindings](../azure-functions/functions-bindings-http-webhook.md).</span></span>
 
-<span data-ttu-id="2dc95-116">Questo argomento illustra come</span><span class="sxs-lookup"><span data-stu-id="2dc95-116">This topic shows how to</span></span>
+<span data-ttu-id="f33d0-116">Questo argomento illustra come</span><span class="sxs-lookup"><span data-stu-id="f33d0-116">This topic shows how to</span></span>
 
-*  <span data-ttu-id="2dc95-117">Definire una funzione di Azure personalizzata per rispondere ai webhook.</span><span class="sxs-lookup"><span data-stu-id="2dc95-117">Define an Azure Function that is customized to respond to webhooks.</span></span> 
+*  <span data-ttu-id="f33d0-117">Definire una funzione di Azure che è toowebhooks toorespond personalizzato.</span><span class="sxs-lookup"><span data-stu-id="f33d0-117">Define an Azure Function that is customized toorespond toowebhooks.</span></span> 
     
-    <span data-ttu-id="2dc95-118">In questo caso, il webhook viene attivato da Servizi multimediali quando il processo di codifica cambia stato.</span><span class="sxs-lookup"><span data-stu-id="2dc95-118">In this case, the webhook is triggered by Media Services when your encoding job changes status.</span></span> <span data-ttu-id="2dc95-119">La funzione è in attesa del callback del webhook dalle notifiche di Servizi multimediali e pubblica l'asset di output al termine del processo.</span><span class="sxs-lookup"><span data-stu-id="2dc95-119">The function listens for the webhook call back from Media Services notifications and publishes the output asset once the job finishes.</span></span> 
+    <span data-ttu-id="f33d0-118">In questo caso, hello webhook viene attivata da servizi multimediali quando il processo di codifica viene modificato lo stato.</span><span class="sxs-lookup"><span data-stu-id="f33d0-118">In this case, hello webhook is triggered by Media Services when your encoding job changes status.</span></span> <span data-ttu-id="f33d0-119">funzione Hello è in attesa di hello webhook chiamata da notifiche di servizi multimediali e pubblica asset di output di hello una volta terminato il processo di hello.</span><span class="sxs-lookup"><span data-stu-id="f33d0-119">hello function listens for hello webhook call back from Media Services notifications and publishes hello output asset once hello job finishes.</span></span> 
     
     >[!NOTE]
-    ><span data-ttu-id="2dc95-120">Prima di continuare, assicurarsi di comprendere come funzionano le [associazioni HTTP e webhook in Funzioni di Azure](../azure-functions/functions-bindings-http-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="2dc95-120">Before continuing, make sure you understand how [Azure Functions HTTP and webhook bindings](../azure-functions/functions-bindings-http-webhook.md) work.</span></span>
+    ><span data-ttu-id="f33d0-120">Prima di continuare, assicurarsi di comprendere come funzionano le [associazioni HTTP e webhook in Funzioni di Azure](../azure-functions/functions-bindings-http-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="f33d0-120">Before continuing, make sure you understand how [Azure Functions HTTP and webhook bindings](../azure-functions/functions-bindings-http-webhook.md) work.</span></span>
     >
     
-* <span data-ttu-id="2dc95-121">Aggiungere un webhook all'attività di codifica e specificarne l'URL e la chiave privata a cui risponde.</span><span class="sxs-lookup"><span data-stu-id="2dc95-121">Add a webhook to your encoding task and specify the webhook URL and secret key that this webhook responds to.</span></span> <span data-ttu-id="2dc95-122">Nell'esempio riportato di seguito il codice che crea l'attività di codifica è un'applicazione console.</span><span class="sxs-lookup"><span data-stu-id="2dc95-122">In the example shown here, the code that creates the encoding task is a console app.</span></span>
+* <span data-ttu-id="f33d0-121">Aggiungere un'attività di codifica tooyour webhook e specificare l'URL del webhook hello e una chiave privata che questo webhook risponde a.</span><span class="sxs-lookup"><span data-stu-id="f33d0-121">Add a webhook tooyour encoding task and specify hello webhook URL and secret key that this webhook responds to.</span></span> <span data-ttu-id="f33d0-122">Nell'esempio hello illustrato di seguito, il codice hello Crea attività di codifica hello è un'applicazione console.</span><span class="sxs-lookup"><span data-stu-id="f33d0-122">In hello example shown here, hello code that creates hello encoding task is a console app.</span></span>
 
-## <a name="setting-up-webhook-notification-azure-functions"></a><span data-ttu-id="2dc95-123">Configurazione delle funzioni di Azure per la notifica di webhook</span><span class="sxs-lookup"><span data-stu-id="2dc95-123">Setting up "webhook notification" Azure functions</span></span>
+## <a name="setting-up-webhook-notification-azure-functions"></a><span data-ttu-id="f33d0-123">Configurazione delle funzioni di Azure per la notifica di webhook</span><span class="sxs-lookup"><span data-stu-id="f33d0-123">Setting up "webhook notification" Azure functions</span></span>
 
-<span data-ttu-id="2dc95-124">Il codice in questa sezione mostra un'implementazione di una funzione di Azure corrispondente a un webhook.</span><span class="sxs-lookup"><span data-stu-id="2dc95-124">The code in this section shows an implementation of an Azure function that is a webhook.</span></span> <span data-ttu-id="2dc95-125">In questo esempio la funzione è in attesa del callback del webhook dalle notifiche di Servizi multimediali e pubblica l'asset di output al termine del processo.</span><span class="sxs-lookup"><span data-stu-id="2dc95-125">In this sample, the function listens for the webhook call back from Media Services notifications and publishes the output asset once the job finishes.</span></span>
+<span data-ttu-id="f33d0-124">codice Hello in questa sezione viene illustrata un'implementazione di una funzione di Azure è un webhook.</span><span class="sxs-lookup"><span data-stu-id="f33d0-124">hello code in this section shows an implementation of an Azure function that is a webhook.</span></span> <span data-ttu-id="f33d0-125">In questo esempio, la funzione hello è in attesa di hello webhook chiamata da notifiche di servizi multimediali e pubblica asset di output di hello una volta terminato il processo di hello.</span><span class="sxs-lookup"><span data-stu-id="f33d0-125">In this sample, hello function listens for hello webhook call back from Media Services notifications and publishes hello output asset once hello job finishes.</span></span>
 
-<span data-ttu-id="2dc95-126">Il webhook prevede una chiave di firma (credenziale) che corrisponda a quella trasmessa quando si configura l'endpoint di notifica.</span><span class="sxs-lookup"><span data-stu-id="2dc95-126">The webhook expects a signing key (credential) to match the one you pass when you configure the notification endpoint.</span></span> <span data-ttu-id="2dc95-127">La chiave di firma è il valore codificato di 64 byte Base64 usato per proteggere i callback dei webhook da Servizi multimediali di Azure.</span><span class="sxs-lookup"><span data-stu-id="2dc95-127">The signing key is the 64-byte Base64 encoded value that is used to protect and secure your WebHooks callbacks from Azure Media Services.</span></span> 
+<span data-ttu-id="f33d0-126">Hello webhook prevede una firma di chiave (credenziali) toomatch hello uno è passato quando si configura l'endpoint di notifica hello.</span><span class="sxs-lookup"><span data-stu-id="f33d0-126">hello webhook expects a signing key (credential) toomatch hello one you pass when you configure hello notification endpoint.</span></span> <span data-ttu-id="f33d0-127">chiave di firma Hello è hello 64 byte con codificata Base64 valore tooprotect utilizzato e protetta il callback di Webhook da servizi multimediali di Azure.</span><span class="sxs-lookup"><span data-stu-id="f33d0-127">hello signing key is hello 64-byte Base64 encoded value that is used tooprotect and secure your WebHooks callbacks from Azure Media Services.</span></span> 
 
-<span data-ttu-id="2dc95-128">Nel codice seguente il metodo **VerifyWebHookRequestSignature** esegue la verifica sul messaggio di notifica.</span><span class="sxs-lookup"><span data-stu-id="2dc95-128">In the following code, the **VerifyWebHookRequestSignature** method does the verification on the notification message.</span></span> <span data-ttu-id="2dc95-129">Lo scopo di questa convalida è garantire che il messaggio sia stato inviato da Servizi multimediali di Azure e che non sia stato alterato.</span><span class="sxs-lookup"><span data-stu-id="2dc95-129">The purpose of this validation is to ensure that the message was sent by Azure Media Services and hasn’t been tampered with.</span></span> <span data-ttu-id="2dc95-130">La firma è facoltativa per le funzioni di Azure dal momento che ha il valore **Code** come un parametro di query su Transport Layer Security (TLS).</span><span class="sxs-lookup"><span data-stu-id="2dc95-130">The signature is optional for Azure functions as it has the **Code** value as a query parameter over Transport Layer Security (TLS).</span></span> 
+<span data-ttu-id="f33d0-128">Nel seguente codice di hello, hello **VerifyWebHookRequestSignature** metodo hello verifica nel messaggio di notifica hello.</span><span class="sxs-lookup"><span data-stu-id="f33d0-128">In hello following code, hello **VerifyWebHookRequestSignature** method does hello verification on hello notification message.</span></span> <span data-ttu-id="f33d0-129">scopo di Hello di questa convalida è tooensure che hello messaggio è stato inviato da servizi multimediali di Azure e non è stato alterato.</span><span class="sxs-lookup"><span data-stu-id="f33d0-129">hello purpose of this validation is tooensure that hello message was sent by Azure Media Services and hasn’t been tampered with.</span></span> <span data-ttu-id="f33d0-130">firma Hello è facoltativo per le funzioni di Azure perché contiene hello **codice** valore come parametro di query sulla sicurezza TLS (Transport Layer).</span><span class="sxs-lookup"><span data-stu-id="f33d0-130">hello signature is optional for Azure functions as it has hello **Code** value as a query parameter over Transport Layer Security (TLS).</span></span> 
 
-<span data-ttu-id="2dc95-131">È possibile trovare la definizione delle varie funzioni di Azure .NET di Servizi multimediali (incluso quello illustrato in questo argomento) [qui](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span><span class="sxs-lookup"><span data-stu-id="2dc95-131">You can find the definition of various Media Services .NET Azure functions (including the one shown in this topic) [here](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span></span>
+<span data-ttu-id="f33d0-131">È possibile trovare la definizione di hello di varie funzioni di Media Services .NET Azure (incluso hello illustrato in questo argomento) [qui](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span><span class="sxs-lookup"><span data-stu-id="f33d0-131">You can find hello definition of various Media Services .NET Azure functions (including hello one shown in this topic) [here](https://github.com/Azure-Samples/media-services-dotnet-functions-integration).</span></span>
 
-<span data-ttu-id="2dc95-132">L'elenco codici seguente mostra le definizioni dei parametri della funzione di Azure e dei tre file associati a tale funzione: function.json, project.json e run.csx.</span><span class="sxs-lookup"><span data-stu-id="2dc95-132">The following code listing shows the definitions of Azure function parameters and three files that are associated with the Azure function: function.json, project.json, and run.csx.</span></span>
+<span data-ttu-id="f33d0-132">Hello listato di codice seguente vengono illustrate hello definizioni di parametri di funzione di Azure e tre i file associati a hello Azure funzione: function.json, Project e run.csx.</span><span class="sxs-lookup"><span data-stu-id="f33d0-132">hello following code listing shows hello definitions of Azure function parameters and three files that are associated with hello Azure function: function.json, project.json, and run.csx.</span></span>
 
-### <a name="application-settings"></a><span data-ttu-id="2dc95-133">Impostazioni dell'applicazione</span><span class="sxs-lookup"><span data-stu-id="2dc95-133">Application settings</span></span> 
+### <a name="application-settings"></a><span data-ttu-id="f33d0-133">Impostazioni dell'applicazione</span><span class="sxs-lookup"><span data-stu-id="f33d0-133">Application settings</span></span> 
 
-<span data-ttu-id="2dc95-134">La tabella seguente illustra i parametri usati dalla funzione di Azure definita in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="2dc95-134">The following table shows the parameters that are used by the Azure function defined in this section.</span></span> 
+<span data-ttu-id="f33d0-134">Hello nella tabella seguente vengono illustrati hello parametri usati da hello Azure funzione definita in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="f33d0-134">hello following table shows hello parameters that are used by hello Azure function defined in this section.</span></span> 
 
-|<span data-ttu-id="2dc95-135">Nome</span><span class="sxs-lookup"><span data-stu-id="2dc95-135">Name</span></span>|<span data-ttu-id="2dc95-136">Definizione</span><span class="sxs-lookup"><span data-stu-id="2dc95-136">Definition</span></span>|<span data-ttu-id="2dc95-137">Esempio</span><span class="sxs-lookup"><span data-stu-id="2dc95-137">Example</span></span>| 
+|<span data-ttu-id="f33d0-135">Nome</span><span class="sxs-lookup"><span data-stu-id="f33d0-135">Name</span></span>|<span data-ttu-id="f33d0-136">Definizione</span><span class="sxs-lookup"><span data-stu-id="f33d0-136">Definition</span></span>|<span data-ttu-id="f33d0-137">Esempio</span><span class="sxs-lookup"><span data-stu-id="f33d0-137">Example</span></span>| 
 |---|---|---|
-|<span data-ttu-id="2dc95-138">AMSAccount</span><span class="sxs-lookup"><span data-stu-id="2dc95-138">AMSAccount</span></span>|<span data-ttu-id="2dc95-139">Nome dell'account AMS.</span><span class="sxs-lookup"><span data-stu-id="2dc95-139">Your AMS account name.</span></span> |<span data-ttu-id="2dc95-140">juliakomediaservices</span><span class="sxs-lookup"><span data-stu-id="2dc95-140">juliakomediaservices</span></span>|
-|<span data-ttu-id="2dc95-141">AMSKey</span><span class="sxs-lookup"><span data-stu-id="2dc95-141">AMSKey</span></span> |<span data-ttu-id="2dc95-142">Chiave dell'account AMS.</span><span class="sxs-lookup"><span data-stu-id="2dc95-142">Your AMS account key.</span></span> | <span data-ttu-id="2dc95-143">JUWJdDaOHQQqsZeiXZuE76eDt2SO+YMJk25Lghgy2nY=</span><span class="sxs-lookup"><span data-stu-id="2dc95-143">JUWJdDaOHQQqsZeiXZuE76eDt2SO+YMJk25Lghgy2nY=</span></span>|
-|<span data-ttu-id="2dc95-144">MediaServicesStorageAccountName</span><span class="sxs-lookup"><span data-stu-id="2dc95-144">MediaServicesStorageAccountName</span></span> |<span data-ttu-id="2dc95-145">Nome dell'account di archiviazione associato all'account AMS.</span><span class="sxs-lookup"><span data-stu-id="2dc95-145">A name of the storage account that is associated with your AMS account.</span></span>| <span data-ttu-id="2dc95-146">storagepkeewmg5c3peq</span><span class="sxs-lookup"><span data-stu-id="2dc95-146">storagepkeewmg5c3peq</span></span>|
-|<span data-ttu-id="2dc95-147">MediaServicesStorageAccountKey</span><span class="sxs-lookup"><span data-stu-id="2dc95-147">MediaServicesStorageAccountKey</span></span> |<span data-ttu-id="2dc95-148">Chiave dell'account di archiviazione associato all'account AMS.</span><span class="sxs-lookup"><span data-stu-id="2dc95-148">A key of the storage account that is associated with your AMS account.</span></span>|
-|<span data-ttu-id="2dc95-149">SigningKey</span><span class="sxs-lookup"><span data-stu-id="2dc95-149">SigningKey</span></span> |<span data-ttu-id="2dc95-150">Chiave di firma.</span><span class="sxs-lookup"><span data-stu-id="2dc95-150">A signing key.</span></span>| <span data-ttu-id="2dc95-151">j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt</span><span class="sxs-lookup"><span data-stu-id="2dc95-151">j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt</span></span>|
-|<span data-ttu-id="2dc95-152">WebHookEndpoint</span><span class="sxs-lookup"><span data-stu-id="2dc95-152">WebHookEndpoint</span></span> | <span data-ttu-id="2dc95-153">Indirizzo di un endpoint di webhook.</span><span class="sxs-lookup"><span data-stu-id="2dc95-153">A webhook endpoint address.</span></span> | <span data-ttu-id="2dc95-154">https://juliakofuncapp.azurewebsites.net/api/Notification_Webhook_Function?code=iN2phdrTnCxmvaKExFWOTulfnm4C71mMLIy8tzLr7Zvf6Z22HHIK5g==.</span><span class="sxs-lookup"><span data-stu-id="2dc95-154">https://juliakofuncapp.azurewebsites.net/api/Notification_Webhook_Function?code=iN2phdrTnCxmvaKExFWOTulfnm4C71mMLIy8tzLr7Zvf6Z22HHIK5g==.</span></span>|
+|<span data-ttu-id="f33d0-138">AMSAccount</span><span class="sxs-lookup"><span data-stu-id="f33d0-138">AMSAccount</span></span>|<span data-ttu-id="f33d0-139">Nome dell'account AMS.</span><span class="sxs-lookup"><span data-stu-id="f33d0-139">Your AMS account name.</span></span> |<span data-ttu-id="f33d0-140">juliakomediaservices</span><span class="sxs-lookup"><span data-stu-id="f33d0-140">juliakomediaservices</span></span>|
+|<span data-ttu-id="f33d0-141">AMSKey</span><span class="sxs-lookup"><span data-stu-id="f33d0-141">AMSKey</span></span> |<span data-ttu-id="f33d0-142">Chiave dell'account AMS.</span><span class="sxs-lookup"><span data-stu-id="f33d0-142">Your AMS account key.</span></span> | <span data-ttu-id="f33d0-143">JUWJdDaOHQQqsZeiXZuE76eDt2SO+YMJk25Lghgy2nY=</span><span class="sxs-lookup"><span data-stu-id="f33d0-143">JUWJdDaOHQQqsZeiXZuE76eDt2SO+YMJk25Lghgy2nY=</span></span>|
+|<span data-ttu-id="f33d0-144">MediaServicesStorageAccountName</span><span class="sxs-lookup"><span data-stu-id="f33d0-144">MediaServicesStorageAccountName</span></span> |<span data-ttu-id="f33d0-145">Nome dell'account di archiviazione hello associata con l'account di sistema AMS.</span><span class="sxs-lookup"><span data-stu-id="f33d0-145">A name of hello storage account that is associated with your AMS account.</span></span>| <span data-ttu-id="f33d0-146">storagepkeewmg5c3peq</span><span class="sxs-lookup"><span data-stu-id="f33d0-146">storagepkeewmg5c3peq</span></span>|
+|<span data-ttu-id="f33d0-147">MediaServicesStorageAccountKey</span><span class="sxs-lookup"><span data-stu-id="f33d0-147">MediaServicesStorageAccountKey</span></span> |<span data-ttu-id="f33d0-148">Chiave dell'account di archiviazione hello associata con l'account di sistema AMS.</span><span class="sxs-lookup"><span data-stu-id="f33d0-148">A key of hello storage account that is associated with your AMS account.</span></span>|
+|<span data-ttu-id="f33d0-149">SigningKey</span><span class="sxs-lookup"><span data-stu-id="f33d0-149">SigningKey</span></span> |<span data-ttu-id="f33d0-150">Chiave di firma.</span><span class="sxs-lookup"><span data-stu-id="f33d0-150">A signing key.</span></span>| <span data-ttu-id="f33d0-151">j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt</span><span class="sxs-lookup"><span data-stu-id="f33d0-151">j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt</span></span>|
+|<span data-ttu-id="f33d0-152">WebHookEndpoint</span><span class="sxs-lookup"><span data-stu-id="f33d0-152">WebHookEndpoint</span></span> | <span data-ttu-id="f33d0-153">Indirizzo di un endpoint di webhook.</span><span class="sxs-lookup"><span data-stu-id="f33d0-153">A webhook endpoint address.</span></span> | <span data-ttu-id="f33d0-154">https://juliakofuncapp.azurewebsites.net/api/Notification_Webhook_Function?code=iN2phdrTnCxmvaKExFWOTulfnm4C71mMLIy8tzLr7Zvf6Z22HHIK5g==.</span><span class="sxs-lookup"><span data-stu-id="f33d0-154">https://juliakofuncapp.azurewebsites.net/api/Notification_Webhook_Function?code=iN2phdrTnCxmvaKExFWOTulfnm4C71mMLIy8tzLr7Zvf6Z22HHIK5g==.</span></span>|
 
-### <a name="functionjson"></a><span data-ttu-id="2dc95-155">function.json</span><span class="sxs-lookup"><span data-stu-id="2dc95-155">function.json</span></span>
+### <a name="functionjson"></a><span data-ttu-id="f33d0-155">function.json</span><span class="sxs-lookup"><span data-stu-id="f33d0-155">function.json</span></span>
 
-<span data-ttu-id="2dc95-156">Il file function.json definisce le associazioni di funzione e altre impostazioni di configurazione.</span><span class="sxs-lookup"><span data-stu-id="2dc95-156">The function.json file defines the function bindings and other configuration settings.</span></span> <span data-ttu-id="2dc95-157">Il runtime usa questo file per determinare gli eventi da monitorare e come passare i dati e restituirli dall'esecuzione di funzioni.</span><span class="sxs-lookup"><span data-stu-id="2dc95-157">The runtime uses this file to determine the events to monitor and how to pass data into and return data from function execution.</span></span> 
+<span data-ttu-id="f33d0-156">file function.json Hello definisce l'associazione di funzione hello e altre impostazioni di configurazione.</span><span class="sxs-lookup"><span data-stu-id="f33d0-156">hello function.json file defines hello function bindings and other configuration settings.</span></span> <span data-ttu-id="f33d0-157">Hello runtime utilizza questo toomonitor gli eventi di file toodetermine hello e come toopass e dati restituiti dalla funzionano esecuzione.</span><span class="sxs-lookup"><span data-stu-id="f33d0-157">hello runtime uses this file toodetermine hello events toomonitor and how toopass data into and return data from function execution.</span></span> 
 
     {
       "bindings": [
@@ -94,9 +94,9 @@ ms.lasthandoff: 08/29/2017
       ]
     }
     
-### <a name="projectjson"></a><span data-ttu-id="2dc95-158">project.json</span><span class="sxs-lookup"><span data-stu-id="2dc95-158">project.json</span></span>
+### <a name="projectjson"></a><span data-ttu-id="f33d0-158">project.json</span><span class="sxs-lookup"><span data-stu-id="f33d0-158">project.json</span></span>
 
-<span data-ttu-id="2dc95-159">Il file project.json contiene dipendenze.</span><span class="sxs-lookup"><span data-stu-id="2dc95-159">The project.json file contains dependencies.</span></span> 
+<span data-ttu-id="f33d0-159">file Project JSON Hello contiene dipendenze.</span><span class="sxs-lookup"><span data-stu-id="f33d0-159">hello project.json file contains dependencies.</span></span> 
 
     {
       "frameworks": {
@@ -109,13 +109,13 @@ ms.lasthandoff: 08/29/2017
        }
     }
     
-### <a name="runcsx"></a><span data-ttu-id="2dc95-160">run.csx</span><span class="sxs-lookup"><span data-stu-id="2dc95-160">run.csx</span></span>
+### <a name="runcsx"></a><span data-ttu-id="f33d0-160">run.csx</span><span class="sxs-lookup"><span data-stu-id="f33d0-160">run.csx</span></span>
 
-<span data-ttu-id="2dc95-161">Il codice C# seguente mostra una definizione di una funzione di Azure corrispondente a un webhook.</span><span class="sxs-lookup"><span data-stu-id="2dc95-161">The following C# code shows a definition of an Azure function that is a webhook.</span></span> <span data-ttu-id="2dc95-162">La funzione è in attesa del callback del webhook dalle notifiche di Servizi multimediali e pubblica l'asset di output al termine del processo.</span><span class="sxs-lookup"><span data-stu-id="2dc95-162">The function listens for the webhook call back from Media Services notifications and publishes the output asset once the job finishes.</span></span> 
+<span data-ttu-id="f33d0-161">Hello codice c# seguente viene illustrata una definizione di una funzione di Azure è un webhook.</span><span class="sxs-lookup"><span data-stu-id="f33d0-161">hello following C# code shows a definition of an Azure function that is a webhook.</span></span> <span data-ttu-id="f33d0-162">funzione Hello è in attesa di hello webhook chiamata da notifiche di servizi multimediali e pubblica asset di output di hello una volta terminato il processo di hello.</span><span class="sxs-lookup"><span data-stu-id="f33d0-162">hello function listens for hello webhook call back from Media Services notifications and publishes hello output asset once hello job finishes.</span></span> 
 
 
 >[!NOTE]
-><span data-ttu-id="2dc95-163">È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="2dc95-163">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="2dc95-164">Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento).</span><span class="sxs-lookup"><span data-stu-id="2dc95-164">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="2dc95-165">Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.</span><span class="sxs-lookup"><span data-stu-id="2dc95-165">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+><span data-ttu-id="f33d0-163">È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="f33d0-163">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="f33d0-164">È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri).</span><span class="sxs-lookup"><span data-stu-id="f33d0-164">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="f33d0-165">Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.</span><span class="sxs-lookup"><span data-stu-id="f33d0-165">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
     ///////////////////////////////////////////////////
     #r "Newtonsoft.Json"
@@ -177,7 +177,7 @@ ms.lasthandoff: 08/29/2017
                 if(_context!=null)   
                 {                        
                 string urlForClientStreaming = PublishAndBuildStreamingURLs(msg.Properties["JobId"]);
-                log.Info($"URL to the manifest for client streaming using HLS protocol: {urlForClientStreaming}");
+                log.Info($"URL toohello manifest for client streaming using HLS protocol: {urlForClientStreaming}");
                 }
             }
 
@@ -210,19 +210,19 @@ ms.lasthandoff: 08/29/2017
         TimeSpan.FromDays(30),
         AccessPermissions.Read);
 
-        // Create a locator to the streaming content on an origin. 
+        // Create a locator toohello streaming content on an origin. 
         ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
         policy,
         DateTime.UtcNow.AddMinutes(-5));
 
 
-        // Get a reference to the streaming manifest file from the  
-        // collection of files in the asset. 
+        // Get a reference toohello streaming manifest file from hello  
+        // collection of files in hello asset. 
         var manifestFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                     EndsWith(".ism")).
                     FirstOrDefault();
 
-        // Create a full URL to the manifest file. Use this for playback
+        // Create a full URL toohello manifest file. Use this for playback
         // in streaming media clients. 
         string urlForClientStreaming = originLocator.Path + manifestFile.Name + "/manifest" +  "(format=m3u8-aapl)";
         return urlForClientStreaming;
@@ -278,7 +278,7 @@ ms.lasthandoff: 08/29/2017
     private static readonly char[] HexLookup = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
     /// <summary>
-    /// Converts a <see cref="T:byte[]"/> to a hex-encoded string.
+    /// Converts a <see cref="T:byte[]"/> tooa hex-encoded string.
     /// </summary>
     private static string ToHex(byte[] data)
     {
@@ -318,9 +318,9 @@ ms.lasthandoff: 08/29/2017
         public IDictionary<string, string> Properties { get; set; }
     }
 
-### <a name="function-output"></a><span data-ttu-id="2dc95-166">Output della funzione</span><span class="sxs-lookup"><span data-stu-id="2dc95-166">Function output</span></span>
+### <a name="function-output"></a><span data-ttu-id="f33d0-166">Output della funzione</span><span class="sxs-lookup"><span data-stu-id="f33d0-166">Function output</span></span>
 
-<span data-ttu-id="2dc95-167">L'esempio precedente ha prodotto il seguente output; i valori possono variare.</span><span class="sxs-lookup"><span data-stu-id="2dc95-167">The example above produced the following output, your values will vary.</span></span>
+<span data-ttu-id="f33d0-167">esempio Hello precedente generati dopo l'output di hello, variano i valori.</span><span class="sxs-lookup"><span data-stu-id="f33d0-167">hello example above produced hello following output, your values will vary.</span></span>
 
     C# HTTP trigger function processed a request. RequestUri=https://juliako001-functions.azurewebsites.net/api/Notification_Webhook_Function?code=9376d69kygoy49oft81nel8frty5cme8hb9xsjslxjhalwhfrqd79awz8ic4ieku74dvkdfgvi
     Request Body = {
@@ -339,19 +339,19 @@ ms.lasthandoff: 08/29/2017
       }
     }
     
-    URL to the manifest for client streaming using HLS protocol: http://mediapkeewmg5c3peq.streaming.mediaservices.windows.net/0ac98077-2b58-4db7-a8da-789a13ac6167/BigBuckBunny.ism/manifest(format=m3u8-aapl)
+    URL toohello manifest for client streaming using HLS protocol: http://mediapkeewmg5c3peq.streaming.mediaservices.windows.net/0ac98077-2b58-4db7-a8da-789a13ac6167/BigBuckBunny.ism/manifest(format=m3u8-aapl)
 
-## <a name="adding-webhook-to-your-encoding-task"></a><span data-ttu-id="2dc95-168">Aggiunta di un webhook all'attività di codifica</span><span class="sxs-lookup"><span data-stu-id="2dc95-168">Adding Webhook to your encoding task</span></span>
+## <a name="adding-webhook-tooyour-encoding-task"></a><span data-ttu-id="f33d0-168">Aggiunta di attività di codifica tooyour Webhook</span><span class="sxs-lookup"><span data-stu-id="f33d0-168">Adding Webhook tooyour encoding task</span></span>
 
-<span data-ttu-id="2dc95-169">Questa sezione mostra il codice che aggiunge una notifica di webhook a un'attività.</span><span class="sxs-lookup"><span data-stu-id="2dc95-169">In this section, the code that adds a webhook notification to a Task is shown.</span></span> <span data-ttu-id="2dc95-170">È inoltre possibile aggiungere una notifica di livello di processo, che dovrebbe essere più utile per un processo con attività concatenate.</span><span class="sxs-lookup"><span data-stu-id="2dc95-170">You can also add a job level notification, which would be more useful for a job with chained tasks.</span></span>  
+<span data-ttu-id="f33d0-169">In questa sezione viene visualizzato il codice hello che aggiunge un tooa notifica webhook attività.</span><span class="sxs-lookup"><span data-stu-id="f33d0-169">In this section, hello code that adds a webhook notification tooa Task is shown.</span></span> <span data-ttu-id="f33d0-170">È inoltre possibile aggiungere una notifica di livello di processo, che dovrebbe essere più utile per un processo con attività concatenate.</span><span class="sxs-lookup"><span data-stu-id="f33d0-170">You can also add a job level notification, which would be more useful for a job with chained tasks.</span></span>  
 
-1. <span data-ttu-id="2dc95-171">Creare una nuova applicazione console C# in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="2dc95-171">Create a new C# Console Application in Visual Studio.</span></span> <span data-ttu-id="2dc95-172">Immettere un valore nei campi Nome, Percorso e Nome soluzione, quindi fare clic su OK.</span><span class="sxs-lookup"><span data-stu-id="2dc95-172">Enter the Name, Location, and Solution name, and then click OK.</span></span>
-2. <span data-ttu-id="2dc95-173">Usare [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) per installare Servizi multimediali di Azure.</span><span class="sxs-lookup"><span data-stu-id="2dc95-173">Use [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) to install Azure Media Services.</span></span>
-3. <span data-ttu-id="2dc95-174">Aggiornare il file App.config con valori appropriati:</span><span class="sxs-lookup"><span data-stu-id="2dc95-174">Update App.config file with appropriate values:</span></span> 
+1. <span data-ttu-id="f33d0-171">Creare una nuova applicazione console C# in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="f33d0-171">Create a new C# Console Application in Visual Studio.</span></span> <span data-ttu-id="f33d0-172">Immettere nome, percorso e soluzione nome hello e quindi fare clic su OK.</span><span class="sxs-lookup"><span data-stu-id="f33d0-172">Enter hello Name, Location, and Solution name, and then click OK.</span></span>
+2. <span data-ttu-id="f33d0-173">Utilizzare [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) tooinstall servizi multimediali di Azure.</span><span class="sxs-lookup"><span data-stu-id="f33d0-173">Use [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) tooinstall Azure Media Services.</span></span>
+3. <span data-ttu-id="f33d0-174">Aggiornare il file App.config con valori appropriati:</span><span class="sxs-lookup"><span data-stu-id="f33d0-174">Update App.config file with appropriate values:</span></span> 
     
-    * <span data-ttu-id="2dc95-175">Nome e chiave di Servizi multimediali di Azure che invieranno notifiche,</span><span class="sxs-lookup"><span data-stu-id="2dc95-175">Azure Media Services name and key that will be sending notifications,</span></span> 
-    * <span data-ttu-id="2dc95-176">URL del webhook che prevede di ricevere le notifiche,</span><span class="sxs-lookup"><span data-stu-id="2dc95-176">webhook URL that expects to get the notifications,</span></span> 
-    * <span data-ttu-id="2dc95-177">la chiave di firma corrispondente alla chiave attesa dal webhook.</span><span class="sxs-lookup"><span data-stu-id="2dc95-177">the signing key that matches the key that your webhook expects.</span></span> <span data-ttu-id="2dc95-178">La chiave di firma è il valore codificato di 64 byte Base64 usato per proteggere i callback dei webhook da Servizi multimediali di Azure.</span><span class="sxs-lookup"><span data-stu-id="2dc95-178">The signing key is the 64-byte Base64 encoded value that is used to protect and secure your WebHooks callbacks from Azure Media Services.</span></span> 
+    * <span data-ttu-id="f33d0-175">Nome e chiave di Servizi multimediali di Azure che invieranno notifiche,</span><span class="sxs-lookup"><span data-stu-id="f33d0-175">Azure Media Services name and key that will be sending notifications,</span></span> 
+    * <span data-ttu-id="f33d0-176">URL del webhook che prevede notifiche hello tooget,</span><span class="sxs-lookup"><span data-stu-id="f33d0-176">webhook URL that expects tooget hello notifications,</span></span> 
+    * <span data-ttu-id="f33d0-177">Hello chiave corrispondente alla chiave hello che prevede il webhook per la firma.</span><span class="sxs-lookup"><span data-stu-id="f33d0-177">hello signing key that matches hello key that your webhook expects.</span></span> <span data-ttu-id="f33d0-178">chiave di firma Hello è hello 64 byte con codificata Base64 valore tooprotect utilizzato e protetta il callback di Webhook da servizi multimediali di Azure.</span><span class="sxs-lookup"><span data-stu-id="f33d0-178">hello signing key is hello 64-byte Base64 encoded value that is used tooprotect and secure your WebHooks callbacks from Azure Media Services.</span></span> 
 
             <appSettings>
               <add key="MediaServicesAccountName" value="AMSAcctName" />
@@ -360,7 +360,7 @@ ms.lasthandoff: 08/29/2017
               <add key="WebhookSigningKey" value="j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt" />
             </appSettings>
             
-4. <span data-ttu-id="2dc95-179">Aggiornare il file Program.cs con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2dc95-179">Update your Program.cs file with the following code:</span></span>
+4. <span data-ttu-id="f33d0-179">Aggiornare il file Program.cs hello seguente codice:</span><span class="sxs-lookup"><span data-stu-id="f33d0-179">Update your Program.cs file with hello following code:</span></span>
 
         using System;
         using System.Configuration;
@@ -371,7 +371,7 @@ ms.lasthandoff: 08/29/2017
         {
             class Program
             {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _mediaServicesAccountName =
                 ConfigurationManager.AppSettings["MediaServicesAccountName"];
             private static readonly string _mediaServicesAccountKey =
@@ -387,7 +387,7 @@ ms.lasthandoff: 08/29/2017
             static void Main(string[] args)
             {
 
-                // Used the cached credentials to create CloudMediaContext.
+                // Used hello cached credentials toocreate CloudMediaContext.
                 _context = new CloudMediaContext(new MediaServicesCredentials(
                         _mediaServicesAccountName,
                         _mediaServicesAccountKey));
@@ -396,7 +396,7 @@ ms.lasthandoff: 08/29/2017
 
                 IAsset newAsset = _context.Assets.FirstOrDefault();
 
-                // Check for existing Notification Endpoint with the name "FunctionWebHook"
+                // Check for existing Notification Endpoint with hello name "FunctionWebHook"
 
                 var existingEndpoint = _context.NotificationEndPoints.Where(e => e.Name == "FunctionWebHook").FirstOrDefault();
                 INotificationEndPoint endpoint = null;
@@ -413,11 +413,11 @@ ms.lasthandoff: 08/29/2017
                 Console.WriteLine("Notification Endpoint Created with Key : {0}", keyBytes.ToString());
                 }
 
-                // Declare a new encoding job with the Standard encoder
+                // Declare a new encoding job with hello Standard encoder
                 IJob job = _context.Jobs.Create("MES Job");
 
-                // Get a media processor reference, and pass to it the name of the 
-                // processor to use for the specific task.
+                // Get a media processor reference, and pass tooit hello name of hello 
+                // processor toouse for hello specific task.
                 IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
                 ITask task = job.Tasks.AddNew("My encoding task",
@@ -425,15 +425,15 @@ ms.lasthandoff: 08/29/2017
                 "Adaptive Streaming",
                 TaskOptions.None);
 
-                // Specify the input asset to be encoded.
+                // Specify hello input asset toobe encoded.
                 task.InputAssets.Add(newAsset);
 
-                // Add an output asset to contain the results of the job. 
+                // Add an output asset toocontain hello results of hello job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means the output asset is not encrypted. 
+                // means hello output asset is not encrypted. 
                 task.OutputAssets.AddNew(newAsset.Name, AssetCreationOptions.None);
 
-                // Add the WebHook notification to this Task and request all notification state changes.
+                // Add hello WebHook notification toothis Task and request all notification state changes.
                 // Note that you can also add a job level notification
                 // which would be more useful for a job with chained tasks.  
                 if (endpoint != null)
@@ -448,8 +448,8 @@ ms.lasthandoff: 08/29/2017
 
                 job.Submit();
 
-                Console.WriteLine("Expect WebHook to be triggered for the Job ID: {0}", job.Id);
-                Console.WriteLine("Expect WebHook to be triggered for the Task ID: {0}", task.Id);
+                Console.WriteLine("Expect WebHook toobe triggered for hello Job ID: {0}", job.Id);
+                Console.WriteLine("Expect WebHook toobe triggered for hello Task ID: {0}", task.Id);
 
                 Console.WriteLine("Job Submitted");
 
@@ -468,10 +468,10 @@ ms.lasthandoff: 08/29/2017
             }
         }
 
-## <a name="next-step"></a><span data-ttu-id="2dc95-180">Passaggio successivo</span><span class="sxs-lookup"><span data-stu-id="2dc95-180">Next step</span></span>
-<span data-ttu-id="2dc95-181">Analizzare i percorsi di apprendimento dei Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="2dc95-181">Review Media Services learning paths</span></span>
+## <a name="next-step"></a><span data-ttu-id="f33d0-180">Passaggio successivo</span><span class="sxs-lookup"><span data-stu-id="f33d0-180">Next step</span></span>
+<span data-ttu-id="f33d0-181">Analizzare i percorsi di apprendimento dei Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="f33d0-181">Review Media Services learning paths</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="2dc95-182">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="2dc95-182">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="f33d0-182">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="f33d0-182">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]

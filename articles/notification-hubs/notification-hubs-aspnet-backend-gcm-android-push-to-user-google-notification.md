@@ -1,6 +1,6 @@
 ---
-title: Uso di Hub di notifica di Azure per inviare notifiche agli utenti per Android con back-end .NET
-description: Informazioni su come inviare notifiche push agli utenti in Azure. Esempi di codice scritti in Java per Android
+title: aaaAzure utenti notificare gli hub di notifica per Android con back-end .NET
+description: Informazioni su come toosend push toousers notifiche in Azure. Esempi di codice scritti in Java per Android
 documentationcenter: android
 services: notification-hubs
 author: ysxu
@@ -14,32 +14,32 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 418a4b638dfaa3fee33a7a7242433699205c79f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b042d2e6fb7f7c861c378526a8a0d59ab75beef9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a><span data-ttu-id="bd923-104">Uso di Hub di notifica di Azure per inviare notifiche agli utenti per Android con back-end .NET</span><span class="sxs-lookup"><span data-stu-id="bd923-104">Azure Notification Hubs Notify Users for Android with .NET backend</span></span>
+# <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a><span data-ttu-id="429d3-104">Uso di Hub di notifica di Azure per inviare notifiche agli utenti per Android con back-end .NET</span><span class="sxs-lookup"><span data-stu-id="429d3-104">Azure Notification Hubs Notify Users for Android with .NET backend</span></span>
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
-## <a name="overview"></a><span data-ttu-id="bd923-105">Overview</span><span class="sxs-lookup"><span data-stu-id="bd923-105">Overview</span></span>
-<span data-ttu-id="bd923-106">Il supporto per le notifiche push in Azure consente di accedere a un'infrastruttura push facile da usare, multipiattaforma e con scalabilità orizzontale, che semplifica considerevolmente l'implementazione delle notifiche push sia per le applicazioni consumer sia per quelle aziendali per piattaforme mobili.</span><span class="sxs-lookup"><span data-stu-id="bd923-106">Push notification support in Azure enables you to access an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies the implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span> <span data-ttu-id="bd923-107">In questa esercitazione viene illustrato come usare Hub di notifica di Azure per inviare notifiche push a un utente specifico dell'app su un dispositivo specifico.</span><span class="sxs-lookup"><span data-stu-id="bd923-107">This tutorial shows you how to use Azure Notification Hubs to send push notifications to a specific app user on a specific device.</span></span> <span data-ttu-id="bd923-108">Per autenticare i client e generare le notifiche viene usato un back-end di API Web ASP.NET, come illustrato nell'argomento [Registrazione dal back-end dell'app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="bd923-108">An ASP.NET WebAPI backend is used to authenticate clients and to generate notifications, as shown in the guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="bd923-109">Questa esercitazione si basa sull'hub di notifica creato nell'esercitazione [Introduzione ad Hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) .</span><span class="sxs-lookup"><span data-stu-id="bd923-109">This tutorial builds on the notification hub that you created in the [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.</span></span>
+## <a name="overview"></a><span data-ttu-id="429d3-105">Panoramica</span><span class="sxs-lookup"><span data-stu-id="429d3-105">Overview</span></span>
+<span data-ttu-id="429d3-106">Supporto di notifica push in Azure consente tooaccess un semplice utilizzo, multipiattaforma e infrastruttura push di scalabilità orizzontale, che semplifica notevolmente l'implementazione di hello delle notifiche push per le applicazioni aziendali e per dispositivi mobili piattaforme.</span><span class="sxs-lookup"><span data-stu-id="429d3-106">Push notification support in Azure enables you tooaccess an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies hello implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span> <span data-ttu-id="429d3-107">Questa esercitazione viene illustrato come toouse gli hub di notifica di Azure toosend push utente app specifica tooa di notifiche in un dispositivo specifico.</span><span class="sxs-lookup"><span data-stu-id="429d3-107">This tutorial shows you how toouse Azure Notification Hubs toosend push notifications tooa specific app user on a specific device.</span></span> <span data-ttu-id="429d3-108">Un back-end ASP.NET WebAPI è tooauthenticate utilizzati client e le notifiche di toogenerate, come illustrato nell'argomento Guida hello [registrazione dal back-end app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="429d3-108">An ASP.NET WebAPI backend is used tooauthenticate clients and toogenerate notifications, as shown in hello guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="429d3-109">In questa esercitazione si basa sull'hub di notifica hello creati in hello [Introduzione agli hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) esercitazione.</span><span class="sxs-lookup"><span data-stu-id="429d3-109">This tutorial builds on hello notification hub that you created in hello [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="bd923-110">In questa esercitazione si presuppone che l'utente abbia creato e configurato l'hub di notifica come descritto in [Introduzione ad Hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="bd923-110">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span></span>
+> <span data-ttu-id="429d3-110">In questa esercitazione si presuppone che l'utente abbia creato e configurato l'hub di notifica come descritto in [Introduzione ad Hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="429d3-110">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span></span>
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="create-the-android-project"></a><span data-ttu-id="bd923-111">Creare il progetto Android</span><span class="sxs-lookup"><span data-stu-id="bd923-111">Create the Android Project</span></span>
-<span data-ttu-id="bd923-112">Il passaggio successivo consiste nella creazione dell'applicazione per Android.</span><span class="sxs-lookup"><span data-stu-id="bd923-112">The next step is to create the Android application.</span></span>
+## <a name="create-hello-android-project"></a><span data-ttu-id="429d3-111">Creare un progetto Android hello</span><span class="sxs-lookup"><span data-stu-id="429d3-111">Create hello Android Project</span></span>
+<span data-ttu-id="429d3-112">passaggio successivo Hello è un'applicazione Android hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="429d3-112">hello next step is toocreate hello Android application.</span></span>
 
-1. <span data-ttu-id="bd923-113">Seguire l'esercitazione [Introduzione ad Hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) per creare e configurare l'app per la ricezione di notifiche push da GCM.</span><span class="sxs-lookup"><span data-stu-id="bd923-113">Follow the [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial to create and configure your app to receive push notifications from GCM.</span></span>
-2. <span data-ttu-id="bd923-114">Aprire il file **res/layout/activity_main.xml** e sostituire il contenuto con le definizioni seguenti.</span><span class="sxs-lookup"><span data-stu-id="bd923-114">Open your **res/layout/activity_main.xml** file, replace the with the following content definitions.</span></span>
+1. <span data-ttu-id="429d3-113">Seguire hello [Introduzione agli hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) toocreate esercitazione e configurare le notifiche di push app tooreceive da GCM.</span><span class="sxs-lookup"><span data-stu-id="429d3-113">Follow hello [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial toocreate and configure your app tooreceive push notifications from GCM.</span></span>
+2. <span data-ttu-id="429d3-114">Aprire il **res/layout/activity_main.xml** file, sostituire hello con hello seguenti definizioni di contenuto.</span><span class="sxs-lookup"><span data-stu-id="429d3-114">Open your **res/layout/activity_main.xml** file, replace hello with hello following content definitions.</span></span>
    
-    <span data-ttu-id="bd923-115">Verranno aggiunti nuovi controlli EditText per l'accesso come utente.</span><span class="sxs-lookup"><span data-stu-id="bd923-115">This adds new EditText controls for logging in as a user.</span></span> <span data-ttu-id="bd923-116">Viene aggiunto anche un campo per un tag username che farà parte delle notifiche inviate:</span><span class="sxs-lookup"><span data-stu-id="bd923-116">Also a field is added for a username tag that will be part of notifications you send:</span></span>
+    <span data-ttu-id="429d3-115">Verranno aggiunti nuovi controlli EditText per l'accesso come utente.</span><span class="sxs-lookup"><span data-stu-id="429d3-115">This adds new EditText controls for logging in as a user.</span></span> <span data-ttu-id="429d3-116">Viene aggiunto anche un campo per un tag username che farà parte delle notifiche inviate:</span><span class="sxs-lookup"><span data-stu-id="429d3-116">Also a field is added for a username tag that will be part of notifications you send:</span></span>
    
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -122,7 +122,7 @@ ms.lasthandoff: 07/11/2017
             android:layout_below="@+id/editTextNotificationMessage"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
-3. <span data-ttu-id="bd923-117">Aprire il file **res/values/strings.xml** e sostituire la definizione `send_button` con le righe seguenti per ridefinire la stringa per `send_button` e aggiungere stringhe per gli altri controlli:</span><span class="sxs-lookup"><span data-stu-id="bd923-117">Open your **res/values/strings.xml** file and replace the `send_button` definition with the following lines that redefine the string for the `send_button` and add strings for the other controls:</span></span>
+3. <span data-ttu-id="429d3-117">Aprire il **res/values/strings.xml** file e sostituire hello `send_button` definizione con seguenti hello righe tale stringa hello redefine per hello `send_button` e aggiungere altri controlli di stringhe per hello:</span><span class="sxs-lookup"><span data-stu-id="429d3-117">Open your **res/values/strings.xml** file and replace hello `send_button` definition with hello following lines that redefine hello string for hello `send_button` and add strings for hello other controls:</span></span>
    
         <string name="usernameHint">Username</string>
         <string name="passwordHint">Password</string>
@@ -132,10 +132,10 @@ ms.lasthandoff: 07/11/2017
             Recipient username tag
         </string>
    
-    <span data-ttu-id="bd923-118">A questo punto il layout grafico del file main_activity.xml dovrebbe essere simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="bd923-118">Your main_activity.xml graphical layout should now look like this:</span></span>
+    <span data-ttu-id="429d3-118">A questo punto il layout grafico del file main_activity.xml dovrebbe essere simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="429d3-118">Your main_activity.xml graphical layout should now look like this:</span></span>
    
     ![][A1]
-4. <span data-ttu-id="bd923-119">Creare una nuova classe denominata **RegisterClient** nello stesso pacchetto della classe `MainActivity`.</span><span class="sxs-lookup"><span data-stu-id="bd923-119">Create a new class named **RegisterClient** in the same package as your `MainActivity` class.</span></span> <span data-ttu-id="bd923-120">Usare il codice seguente per il nuovo file di classe.</span><span class="sxs-lookup"><span data-stu-id="bd923-120">Use the code below for the new class file.</span></span>
+4. <span data-ttu-id="429d3-119">Creare una nuova classe denominata **RegisterClient** nel hello stesso pacchetto come la `MainActivity` classe.</span><span class="sxs-lookup"><span data-stu-id="429d3-119">Create a new class named **RegisterClient** in hello same package as your `MainActivity` class.</span></span> <span data-ttu-id="429d3-120">Utilizzare il codice hello riportato di seguito per il nuovo file di classe hello.</span><span class="sxs-lookup"><span data-stu-id="429d3-120">Use hello code below for hello new class file.</span></span>
    
         import java.io.IOException;
         import java.io.UnsupportedEncodingException;
@@ -240,15 +240,15 @@ ms.lasthandoff: 07/11/2017
             }
         }
    
-    <span data-ttu-id="bd923-121">Questo componente implementa le chiamate REST necessarie per contattare il back-end dell'app allo scopo di effettuare la registrazione per le notifiche push.</span><span class="sxs-lookup"><span data-stu-id="bd923-121">This component implements the REST calls required to contact the app backend, in order to register for push notifications.</span></span> <span data-ttu-id="bd923-122">Archivia inoltre in locale i *registrationId* creati dall'hub di notifica, come illustrato in [Registrazione dal back-end dell'app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="bd923-122">It also locally stores the *registrationIds* created by the Notification Hub as detailed in [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="bd923-123">Si noti che usa un token di autorizzazione memorizzato nell'archivio locale quando si fa clic sul pulsante **Log in** .</span><span class="sxs-lookup"><span data-stu-id="bd923-123">Note that it uses an authorization token stored in local storage when you click the **Log in** button.</span></span>
-5. <span data-ttu-id="bd923-124">Nella classe `MainActivity` rimuovere o impostare come commento il campo privato per `NotificationHub` e aggiungere un campo per la classe `RegisterClient` e una stringa per l'endpoint del back-end ASP.NET.</span><span class="sxs-lookup"><span data-stu-id="bd923-124">In your `MainActivity` class remove or comment out your private field for `NotificationHub`, and add a field for the `RegisterClient` class and a string for your ASP.NET backend's endpoint.</span></span> <span data-ttu-id="bd923-125">Assicurarsi di sostituire `<Enter Your Backend Endpoint>` con l'endpoint back-end effettivo ottenuto in precedenza:</span><span class="sxs-lookup"><span data-stu-id="bd923-125">Be sure to replace `<Enter Your Backend Endpoint>` with the your actual backend endpoint obtained previously.</span></span> <span data-ttu-id="bd923-126">Ad esempio: `http://mybackend.azurewebsites.net`.</span><span class="sxs-lookup"><span data-stu-id="bd923-126">For example, `http://mybackend.azurewebsites.net`.</span></span>
+    <span data-ttu-id="429d3-121">Questo componente implementa hello REST chiamate necessarie toocontact hello app back-end, in ordine tooregister per le notifiche push.</span><span class="sxs-lookup"><span data-stu-id="429d3-121">This component implements hello REST calls required toocontact hello app backend, in order tooregister for push notifications.</span></span> <span data-ttu-id="429d3-122">Archivia anche localmente hello *RegistrationId* creato da hello Hub di notifica, come descritto in dettaglio nella [registrazione dal back-end app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="429d3-122">It also locally stores hello *registrationIds* created by hello Notification Hub as detailed in [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="429d3-123">Si noti che usa un token di autorizzazione memorizzato nell'archiviazione locale quando si fa clic hello **Accedi** pulsante.</span><span class="sxs-lookup"><span data-stu-id="429d3-123">Note that it uses an authorization token stored in local storage when you click hello **Log in** button.</span></span>
+5. <span data-ttu-id="429d3-124">Nel `MainActivity` classe, rimuovere o impostare come commento il campo privato per `NotificationHub`, e aggiungere un campo per hello `RegisterClient` classe e una stringa per l'endpoint di back-end ASP.NET.</span><span class="sxs-lookup"><span data-stu-id="429d3-124">In your `MainActivity` class remove or comment out your private field for `NotificationHub`, and add a field for hello `RegisterClient` class and a string for your ASP.NET backend's endpoint.</span></span> <span data-ttu-id="429d3-125">Tooreplace assicurarsi di essere `<Enter Your Backend Endpoint>` con hello l'endpoint di back-end effettivo ottenuto in precedenza.</span><span class="sxs-lookup"><span data-stu-id="429d3-125">Be sure tooreplace `<Enter Your Backend Endpoint>` with hello your actual backend endpoint obtained previously.</span></span> <span data-ttu-id="429d3-126">ad esempio `http://mybackend.azurewebsites.net`.</span><span class="sxs-lookup"><span data-stu-id="429d3-126">For example, `http://mybackend.azurewebsites.net`.</span></span>
 
         //private NotificationHub hub;
         private RegisterClient registerClient;
         private static final String BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
 
 
-1. <span data-ttu-id="bd923-127">Nella classe `MainActivity`, all'interno del metodo `onCreate`, rimuovere o impostare come commento l'inizializzazione del campo `hub` e la chiamata al metodo `registerWithNotificationHubs`.</span><span class="sxs-lookup"><span data-stu-id="bd923-127">In your `MainActivity` class, in the `onCreate` method, remove or comment out the initialization of the `hub` field and the call to the `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="bd923-128">Aggiungere quindi il codice per inizializzare un'istanza della classe `RegisterClient` .</span><span class="sxs-lookup"><span data-stu-id="bd923-128">Then add code to initialize an instance of the `RegisterClient` class.</span></span> <span data-ttu-id="bd923-129">Il metodo deve contenere le seguenti righe:</span><span class="sxs-lookup"><span data-stu-id="bd923-129">The method should contain the following lines:</span></span>
+1. <span data-ttu-id="429d3-127">Nel `MainActivity` classe, hello `onCreate` (metodo), rimuovere o impostare come commento l'inizializzazione di hello di hello `hub` campo e hello chiamare toohello `registerWithNotificationHubs` metodo.</span><span class="sxs-lookup"><span data-stu-id="429d3-127">In your `MainActivity` class, in hello `onCreate` method, remove or comment out hello initialization of hello `hub` field and hello call toohello `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="429d3-128">Aggiungere quindi codice tooinitialize un'istanza di hello `RegisterClient` classe.</span><span class="sxs-lookup"><span data-stu-id="429d3-128">Then add code tooinitialize an instance of hello `RegisterClient` class.</span></span> <span data-ttu-id="429d3-129">metodo Hello deve contenere hello seguenti righe:</span><span class="sxs-lookup"><span data-stu-id="429d3-129">hello method should contain hello following lines:</span></span>
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -265,8 +265,8 @@ ms.lasthandoff: 07/11/2017
    
             setContentView(R.layout.activity_main);
         }
-2. <span data-ttu-id="bd923-130">Nella classe `MainActivity` eliminare o impostare come commento tutto il metodo `registerWithNotificationHubs`.</span><span class="sxs-lookup"><span data-stu-id="bd923-130">In your `MainActivity` class, delete or comment out the entire `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="bd923-131">Non verrà usato in questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="bd923-131">It will not be used in this tutorial.</span></span>
-3. <span data-ttu-id="bd923-132">Aggiungere le istruzioni `import` seguenti al file **MainActivity.java** .</span><span class="sxs-lookup"><span data-stu-id="bd923-132">Add the following `import` statements to your **MainActivity.java** file.</span></span>
+2. <span data-ttu-id="429d3-130">Nel `MainActivity` classe, eliminare o impostare come commento hello intero `registerWithNotificationHubs` metodo.</span><span class="sxs-lookup"><span data-stu-id="429d3-130">In your `MainActivity` class, delete or comment out hello entire `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="429d3-131">Non verrà usato in questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="429d3-131">It will not be used in this tutorial.</span></span>
+3. <span data-ttu-id="429d3-132">Aggiungere il seguente hello `import` istruzioni tooyour **Mainactivity** file.</span><span class="sxs-lookup"><span data-stu-id="429d3-132">Add hello following `import` statements tooyour **MainActivity.java** file.</span></span>
    
         import android.widget.Button;
         import java.io.UnsupportedEncodingException;
@@ -276,7 +276,7 @@ ms.lasthandoff: 07/11/2017
         import org.apache.http.client.ClientProtocolException;
         import java.io.IOException;
         import org.apache.http.HttpStatus;
-4. <span data-ttu-id="bd923-133">Aggiungere quindi i metodi seguenti per gestire l'evento clic del pulsante **Log in** e inviare le notifiche push.</span><span class="sxs-lookup"><span data-stu-id="bd923-133">Then, add the following methods to handle the **Log in** button click event and sending push notifications.</span></span>
+4. <span data-ttu-id="429d3-133">Aggiungere quindi hello seguente hello toohandle metodi **Accedi** click del pulsante eventi e l'invio di notifiche push.</span><span class="sxs-lookup"><span data-stu-id="429d3-133">Then, add hello following methods toohandle hello **Log in** button click event and sending push notifications.</span></span>
    
         @Override
         protected void onStart() {
@@ -296,7 +296,7 @@ ms.lasthandoff: 07/11/2017
                         String regid = gcm.register(SENDER_ID);
                         registerClient.register(regid, new HashSet<String>());
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to register", e.getMessage());
+                        DialogNotify("MainActivity - Failed tooregister", e.getMessage());
                         return e;
                     }
                     return null;
@@ -320,15 +320,15 @@ ms.lasthandoff: 07/11/2017
         }
    
         /**
-         * This method calls the ASP.NET WebAPI backend to send the notification message
-         * to the platform notification service based on the pns parameter.
+         * This method calls hello ASP.NET WebAPI backend toosend hello notification message
+         * toohello platform notification service based on hello pns parameter.
          *
-         * @param pns     The platform notification service to send the notification message to. Must
-         *                be one of the following ("wns", "gcm", "apns").
-         * @param userTag The tag for the user who will receive the notification message. This string
+         * @param pns     hello platform notification service toosend hello notification message to. Must
+         *                be one of hello following ("wns", "gcm", "apns").
+         * @param userTag hello tag for hello user who will receive hello notification message. This string
          *                must not contain spaces or special characters.
-         * @param message The notification message string. This string must include the double quotes
-         *                to be used as JSON content.
+         * @param message hello notification message string. This string must include hello double quotes
+         *                toobe used as JSON content.
          */
         public void sendPush(final String pns, final String userTag, final String message)
                 throws ClientProtocolException, IOException {
@@ -354,7 +354,7 @@ ms.lasthandoff: 07/11/2017
                             throw new RuntimeException("Error sending notification");
                         }
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to send " + pns + " notification ", e.getMessage());
+                        DialogNotify("MainActivity - Failed toosend " + pns + " notification ", e.getMessage());
                         return e;
                     }
    
@@ -363,17 +363,17 @@ ms.lasthandoff: 07/11/2017
             }.execute(null, null, null);
         }
 
-    <span data-ttu-id="bd923-134">Il gestore `login` per il pulsante **Log in`RegisterClient` genera un token di autenticazione di base usando il nome utente e la password di input. Si noti che rappresenta qualsiasi token usato dallo schema di autenticazione, quindi usa**  per chiamare il back-end per la registrazione.</span><span class="sxs-lookup"><span data-stu-id="bd923-134">The `login` handler for the **Log in** button generates a basic authentication token using on the input username and password (note that this represents any token your authentication scheme uses), then it uses `RegisterClient` to call the backend for registration.</span></span>
+    <span data-ttu-id="429d3-134">Hello `login` gestore per hello **Accedi** pulsante genera un'autenticazione di base token utilizzando hello immettere il nome utente e password (notare che questo rappresenta un token viene utilizzato uno schema di autenticazione), quindi Usa `RegisterClient`back-end hello toocall per la registrazione.</span><span class="sxs-lookup"><span data-stu-id="429d3-134">hello `login` handler for hello **Log in** button generates a basic authentication token using on hello input username and password (note that this represents any token your authentication scheme uses), then it uses `RegisterClient` toocall hello backend for registration.</span></span>
 
-    <span data-ttu-id="bd923-135">Il metodo `sendPush` chiama il back-end per attivare una notifica sicura per l'utente in base al tag user.</span><span class="sxs-lookup"><span data-stu-id="bd923-135">The `sendPush` method calls the backend to trigger a secure notification to the user based on the user tag.</span></span> <span data-ttu-id="bd923-136">Il servizio di notifica della piattaforma a cui è destinato `sendPush` dipende dalla stringa `pns` passata.</span><span class="sxs-lookup"><span data-stu-id="bd923-136">The platform notification service that `sendPush` targets depends on the `pns` string passed in.</span></span>
+    <span data-ttu-id="429d3-135">Hello `sendPush` metodo chiama hello back-end tootrigger un utente toohello sicura notifica basato su tag utente hello.</span><span class="sxs-lookup"><span data-stu-id="429d3-135">hello `sendPush` method calls hello backend tootrigger a secure notification toohello user based on hello user tag.</span></span> <span data-ttu-id="429d3-136">Hello notifica piattaforma servizio `sendPush` destinazioni dipende hello `pns` stringa passata.</span><span class="sxs-lookup"><span data-stu-id="429d3-136">hello platform notification service that `sendPush` targets depends on hello `pns` string passed in.</span></span>
 
-1. <span data-ttu-id="bd923-137">Nella classe `MainActivity` aggiornare il metodo`sendNotificationButtonOnClick` per chiamare il metodo `sendPush` con i servizi di notifica della piattaforma selezionati dell'utente, come indicato di seguito.</span><span class="sxs-lookup"><span data-stu-id="bd923-137">In your `MainActivity` class, update the `sendNotificationButtonOnClick` method to call the `sendPush` method with the user's selected platform notification services as follows.</span></span>
+1. <span data-ttu-id="429d3-137">Nel `MainActivity` (classe), aggiornamento hello `sendNotificationButtonOnClick` hello toocall metodo `sendPush` metodo con dell'utente hello selezionato servizi di notifica della piattaforma, come indicato di seguito.</span><span class="sxs-lookup"><span data-stu-id="429d3-137">In your `MainActivity` class, update hello `sendNotificationButtonOnClick` method toocall hello `sendPush` method with hello user's selected platform notification services as follows.</span></span>
    
        /**
-        * Send Notification button click handler. This method sends the push notification
-        * message to each platform selected.
+        * Send Notification button click handler. This method sends hello push notification
+        * message tooeach platform selected.
         *
-        * @param v The view
+        * @param v hello view
         */
        public void sendNotificationButtonOnClick(View v)
                throws ClientProtocolException, IOException {
@@ -400,16 +400,16 @@ ms.lasthandoff: 07/11/2017
            }
        }
 
-## <a name="run-the-application"></a><span data-ttu-id="bd923-138">Eseguire l'applicazione</span><span class="sxs-lookup"><span data-stu-id="bd923-138">Run the Application</span></span>
-1. <span data-ttu-id="bd923-139">Eseguire l'applicazione su un dispositivo o un emulatore tramite Android Studio.</span><span class="sxs-lookup"><span data-stu-id="bd923-139">Run the application on a device or an emulator using Android Studio.</span></span>
-2. <span data-ttu-id="bd923-140">Nell'app per Android immettere un nome utente e una password.</span><span class="sxs-lookup"><span data-stu-id="bd923-140">In the Android app, enter a username and password.</span></span> <span data-ttu-id="bd923-141">Devono avere lo stesso valore di stringa e non devono contenere spazi o caratteri speciali.</span><span class="sxs-lookup"><span data-stu-id="bd923-141">They must both be the same string value and they must not contain spaces or special characters.</span></span>
-3. <span data-ttu-id="bd923-142">Nell'app per Android fare clic su **Log in**.</span><span class="sxs-lookup"><span data-stu-id="bd923-142">In the Android app, click **Log in**.</span></span> <span data-ttu-id="bd923-143">Attendere un avviso popup che indica **Logged in and registered**.</span><span class="sxs-lookup"><span data-stu-id="bd923-143">Wait for a toast message that states **Logged in and registered**.</span></span> <span data-ttu-id="bd923-144">Verrà abilitato il pulsante **Send Notification** .</span><span class="sxs-lookup"><span data-stu-id="bd923-144">This will enable the **Send Notification** button.</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="429d3-138">Eseguire l'applicazione hello</span><span class="sxs-lookup"><span data-stu-id="429d3-138">Run hello Application</span></span>
+1. <span data-ttu-id="429d3-139">Eseguire un'applicazione hello su un dispositivo o un emulatore con Android Studio.</span><span class="sxs-lookup"><span data-stu-id="429d3-139">Run hello application on a device or an emulator using Android Studio.</span></span>
+2. <span data-ttu-id="429d3-140">Nell'app Android hello, immettere un nome utente e password.</span><span class="sxs-lookup"><span data-stu-id="429d3-140">In hello Android app, enter a username and password.</span></span> <span data-ttu-id="429d3-141">Devono essere entrambi hello stesso valore di stringa e non deve contenere spazi o caratteri speciali.</span><span class="sxs-lookup"><span data-stu-id="429d3-141">They must both be hello same string value and they must not contain spaces or special characters.</span></span>
+3. <span data-ttu-id="429d3-142">Nell'app Android hello, fare clic su **Accedi**.</span><span class="sxs-lookup"><span data-stu-id="429d3-142">In hello Android app, click **Log in**.</span></span> <span data-ttu-id="429d3-143">Attendere un avviso popup che indica **Logged in and registered**.</span><span class="sxs-lookup"><span data-stu-id="429d3-143">Wait for a toast message that states **Logged in and registered**.</span></span> <span data-ttu-id="429d3-144">In questo modo hello **invia una notifica** pulsante.</span><span class="sxs-lookup"><span data-stu-id="429d3-144">This will enable hello **Send Notification** button.</span></span>
    
     ![][A2]
-4. <span data-ttu-id="bd923-145">Fare clic sugli interruttori per abilitare tutte le piattaforme in cui è stata eseguita l'app ed è stato registrato un utente.</span><span class="sxs-lookup"><span data-stu-id="bd923-145">Click the toggle buttons to enable all platforms where you have ran the app and registered a user.</span></span>
-5. <span data-ttu-id="bd923-146">Immettere il nome dell'utente che riceverà il messaggio di notifica.</span><span class="sxs-lookup"><span data-stu-id="bd923-146">Enter the user's name that will receive the notification message.</span></span> <span data-ttu-id="bd923-147">L'utente dovrà essere registrato per le notifiche nei dispositivi di destinazione.</span><span class="sxs-lookup"><span data-stu-id="bd923-147">That user must be registered for notifications on the target devices.</span></span>
-6. <span data-ttu-id="bd923-148">Immettere un messaggio che l'utente riceverà come messaggio di notifica push.</span><span class="sxs-lookup"><span data-stu-id="bd923-148">Enter a message for the user to receive as a push notification message.</span></span>
-7. <span data-ttu-id="bd923-149">Fare clic su **Send Notification**.</span><span class="sxs-lookup"><span data-stu-id="bd923-149">Click **Send Notification**.</span></span>  <span data-ttu-id="bd923-150">Ogni dispositivo che ha una registrazione con il tag username corrispondente riceverà la notifica push.</span><span class="sxs-lookup"><span data-stu-id="bd923-150">Each device that has a registration with the matching username tag will receive the push notification.</span></span>
+4. <span data-ttu-id="429d3-145">Fare clic su hello Attiva/Disattiva pulsanti tooenable tutte le piattaforme in cui è eseguito app hello e registrato un utente.</span><span class="sxs-lookup"><span data-stu-id="429d3-145">Click hello toggle buttons tooenable all platforms where you have ran hello app and registered a user.</span></span>
+5. <span data-ttu-id="429d3-146">Immettere il nome dell'utente hello che riceverà il messaggio di notifica hello.</span><span class="sxs-lookup"><span data-stu-id="429d3-146">Enter hello user's name that will receive hello notification message.</span></span> <span data-ttu-id="429d3-147">L'utente deve essere registrato per le notifiche sui dispositivi di destinazione hello.</span><span class="sxs-lookup"><span data-stu-id="429d3-147">That user must be registered for notifications on hello target devices.</span></span>
+6. <span data-ttu-id="429d3-148">Immettere un messaggio per hello utente tooreceive come un messaggio di notifica push.</span><span class="sxs-lookup"><span data-stu-id="429d3-148">Enter a message for hello user tooreceive as a push notification message.</span></span>
+7. <span data-ttu-id="429d3-149">Fare clic su **Send Notification**.</span><span class="sxs-lookup"><span data-stu-id="429d3-149">Click **Send Notification**.</span></span>  <span data-ttu-id="429d3-150">Ogni dispositivo che presenta una registrazione con il tag di nome utente corrispondente hello riceverà una notifica push di hello.</span><span class="sxs-lookup"><span data-stu-id="429d3-150">Each device that has a registration with hello matching username tag will receive hello push notification.</span></span>
 
 [A1]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users.png
 [A2]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users-enter-password.png

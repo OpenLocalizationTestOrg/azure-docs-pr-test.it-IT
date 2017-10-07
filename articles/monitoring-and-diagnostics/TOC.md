@@ -32,14 +32,14 @@
 ### [Ridimensionare automaticamente i set di scalabilità di macchine virtuali usando i modelli di Resource Manager](insights-advanced-autoscale-virtual-machine-scale-sets.md)
 ### [Ridimensionare automaticamente i computer in un set di set di scalabilità di macchine virtuali](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [Configurare webhook e notifiche di posta elettronica per la scalabilità automatica](insights-autoscale-to-webhook-email.md)
-## Usare il log attività
+## Utilizzare il registro attività hello
 ### [Visualizzare eventi nel log attività](../azure-resource-manager/resource-group-audit.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [Configurare avvisi per un evento del log attività](monitoring-activity-log-alerts.md)
 ### [Archiviare il log attività](monitoring-archive-activity-log.md)
-### [Trasmettere il log attività a Hub eventi](monitoring-stream-activity-logs-event-hubs.md)
+### [Flusso attività log tooEvent hub](monitoring-stream-activity-logs-event-hubs.md)
 ### [Operazioni di controllo con Gestione risorse](../azure-resource-manager/resource-group-audit.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [Creare avvisi del log attività con Resource Manager](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
-### [Eseguire la migrazione agli avvisi del log attività](monitoring-migrate-management-alerts.md)
+### [Eseguire la migrazione gli avvisi del registro tooActivity](monitoring-migrate-management-alerts.md)
 ## Usare le notifiche del servizio
 ### [Visualizzare le notifiche del servizio](monitoring-service-notifications.md)
 ### [Configurare avvisi per le notifiche del servizio](monitoring-activity-log-alerts-on-service-notifications.md)
@@ -50,13 +50,13 @@
 ### [Creare gruppi di azioni con Resource Manager](monitoring-create-action-group-with-resource-manager-template.md)
 ## Gestire i log di diagnostica
 ### [Archiviazione](monitoring-archive-diagnostic-logs.md)
-### [Trasmettere un flusso a Hub eventi](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+### [Flusso tooEvent hub](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 ### [Abilitare le impostazioni di diagnostica usando i modelli di Resource Manager](monitoring-enable-diagnostic-logs-using-template.md)
-## Usare l'API REST
+## Utilizzare l'API REST hello
 ### [Procedura dettagliata sull'uso dell'API REST](monitoring-rest-api-walkthrough.md)
 ## Usare l'estensione di Diagnostica di Azure
-### [Inviare dati ad Application Insights](azure-diagnostics-configure-application-insights.md)
-### [Trasmettere a Hub eventi](azure-diagnostics-streaming-event-hubs.md)
+### [Inviare tooApplication Insights](azure-diagnostics-configure-application-insights.md)
+### [Inviare tooEvent hub](azure-diagnostics-streaming-event-hubs.md)
 ### [Risoluzione dei problemi](azure-diagnostics-troubleshooting.md)
 
 # riferimento

@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Rete virtuale di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare una rete virtuale nel cloud. I documenti mostrano come distribuire una rete virtuale, usarla per avviare le risorse e integrarla con una rete locale.
+title: aaaAzure documentazione della rete virtuale - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse una rete virtuale in hello cloud. Documentazione viene illustrato come toodeploy una rete virtuale, utilizzarlo toolaunch risorse e l'integrazione con una rete locale.
 services: virtual-network
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c3535b428fa4cb4ca3fc348e4f57eab8a0def1e9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ecaecfab31a2bbfb46a712a035e07a059fa40be7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="virtual-network-documentation"></a>Documentazione sulla rete virtuale
 
-Informazioni su come usare una rete virtuale, una rappresentazione logica della propria rete nel cloud. I documenti mostrano come configurare e gestire una rete virtuale, usarla per avviare macchine virtuali o Servizi cloud, connetterla alla propria rete locale ed espandere la rete al cloud mantenendo il controllo sulle risorse.
+Informazioni su come rete virtuale (VNet), una rappresentazione logica della rete in hello toouse cloud. Documentazione Mostra come impostare e gestire una rete virtuale, usarlo toolaunch macchine virtuali o servizi Cloud, connettersi hello tooyour locale della rete rete virtuale ed espandere il cloud toohello rete mantenendo il controllo sulle risorse.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Informazioni su come usare una rete virtuale, una rappresentazione logica della 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alle reti virtuali con il portale di Azure</h3>
+                        <h3>Iniziare con la rete virtuale utilizzando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Informazioni su come usare una rete virtuale, una rappresentazione logica della 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alle reti virtuali con l'interfaccia della riga di comando di Azure</h3>
+                        <h3>Iniziare con la rete virtuale utilizzando hello CLI di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@ Informazioni su come usare una rete virtuale, una rappresentazione logica della 
 
 ---
 
-<h2>Riferimenti</h2>
+<h2>riferimento</h2>
 <ul class="panelContent cardsW">
     <li>
         <div class="cardSize">

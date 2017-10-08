@@ -21,8 +21,8 @@
 ## [Verificare le impostazioni di Gestione traffico](traffic-manager-testing-settings.md)
 ## [Combinare i servizi di bilanciamento del carico](traffic-manager-load-balancing-azure.md)
 ## [Misurare le prestazioni di Gestione traffico](traffic-manager-performance-considerations.md)
-## [Usare PowerShell per gestire Gestione traffico](traffic-manager-powershell-arm.md)
-## [Indirizzare il dominio Internet a Gestione traffico](traffic-manager-point-internet-domain.md)
+## [Utilizzare PowerShell toomanage Traffic Manager](traffic-manager-powershell-arm.md)
+## [Scegliere il tooTraffic di dominio Internet Manager](traffic-manager-point-internet-domain.md)
 ## Risoluzione dei problemi
 ### [Risolvere i problemi di stato danneggiato in Gestione traffico di Azure](traffic-manager-troubleshooting-degraded.md)
 

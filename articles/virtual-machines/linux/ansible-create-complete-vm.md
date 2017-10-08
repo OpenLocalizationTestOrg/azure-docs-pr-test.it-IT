@@ -1,6 +1,6 @@
 ---
-title: Usare Ansible per creare una macchina virtuale Linux completa in Azure | Microsoft Docs
-description: Informazioni su come usare Ansible per creare e gestire un ambiente completo per la macchina virtuale Linux in Azure
+title: aaaUse Ansible toocreate una VM Linux completo in Azure | Documenti Microsoft
+description: Informazioni su come toouse Ansible toocreate e gestire un ambiente di macchina virtuale Linux completo in Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/25/2017
 ms.author: iainfou
-ms.openlocfilehash: b2fcc288b40c12a9b3f966156ee2eedf4acca313
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 970b0427f39fc23240f9faab868196ca4f444e0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-virtual-machine-environment-in-azure-with-ansible"></a><span data-ttu-id="f63f1-103">Creare un ambiente completo per la macchina virtuale Linux in Azure con Ansible</span><span class="sxs-lookup"><span data-stu-id="f63f1-103">Create a complete Linux virtual machine environment in Azure with Ansible</span></span>
-<span data-ttu-id="f63f1-104">Ansible consente di automatizzare la distribuzione e la configurazione delle risorse nell'ambiente in uso.</span><span class="sxs-lookup"><span data-stu-id="f63f1-104">Ansible allows you to automate the deployment and configuration of resources in your environment.</span></span> <span data-ttu-id="f63f1-105">È possibile usare Ansible per gestire le macchine virtuali in Azure, così come si farebbe con qualsiasi altra risorsa.</span><span class="sxs-lookup"><span data-stu-id="f63f1-105">You can use Ansible to manage your virtual machines (VMs) in Azure, the same as you would any other resource.</span></span> <span data-ttu-id="f63f1-106">In questo articolo viene illustrato come creare un ambiente Linux completo e le risorse di supporto con Ansible.</span><span class="sxs-lookup"><span data-stu-id="f63f1-106">This article shows you how to create a complete Linux environment and supporting resources with Ansible.</span></span> <span data-ttu-id="f63f1-107">È anche possibile apprendere come [creare una macchina virtuale di base con Ansible](ansible-create-vm.md).</span><span class="sxs-lookup"><span data-stu-id="f63f1-107">You can also learn how to [Create a basic VM with Ansible](ansible-create-vm.md).</span></span>
+# <a name="create-a-complete-linux-virtual-machine-environment-in-azure-with-ansible"></a><span data-ttu-id="3aa06-103">Creare un ambiente completo per la macchina virtuale Linux in Azure con Ansible</span><span class="sxs-lookup"><span data-stu-id="3aa06-103">Create a complete Linux virtual machine environment in Azure with Ansible</span></span>
+<span data-ttu-id="3aa06-104">Ansible consente tooautomate hello distribuzione e la configurazione delle risorse nell'ambiente in uso.</span><span class="sxs-lookup"><span data-stu-id="3aa06-104">Ansible allows you tooautomate hello deployment and configuration of resources in your environment.</span></span> <span data-ttu-id="3aa06-105">È possibile utilizzare Ansible toomanage le macchine virtuali (VM) in Azure, hello stesso come si farebbe con qualsiasi altra risorsa.</span><span class="sxs-lookup"><span data-stu-id="3aa06-105">You can use Ansible toomanage your virtual machines (VMs) in Azure, hello same as you would any other resource.</span></span> <span data-ttu-id="3aa06-106">In questo articolo illustra come toocreate un ambiente completo di Linux e le risorse con Ansible di supporto.</span><span class="sxs-lookup"><span data-stu-id="3aa06-106">This article shows you how toocreate a complete Linux environment and supporting resources with Ansible.</span></span> <span data-ttu-id="3aa06-107">Viene inoltre illustrato come troppo[creare una macchina virtuale di base con Ansible](ansible-create-vm.md).</span><span class="sxs-lookup"><span data-stu-id="3aa06-107">You can also learn how too[Create a basic VM with Ansible](ansible-create-vm.md).</span></span>
 
 
-## <a name="prerequisites"></a><span data-ttu-id="f63f1-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="f63f1-108">Prerequisites</span></span>
-<span data-ttu-id="f63f1-109">Per gestire le risorse di Azure con Ansible, è necessario:</span><span class="sxs-lookup"><span data-stu-id="f63f1-109">To manage Azure resources with Ansible, you need the following:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="3aa06-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="3aa06-108">Prerequisites</span></span>
+<span data-ttu-id="3aa06-109">toomanage Azure risorse con Ansible, è necessario hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="3aa06-109">toomanage Azure resources with Ansible, you need hello following:</span></span>
 
-- <span data-ttu-id="f63f1-110">avere Ansible e i moduli dell'SDK Python di Azure installati nel sistema host.</span><span class="sxs-lookup"><span data-stu-id="f63f1-110">Ansible and the Azure Python SDK modules installed on your host system.</span></span>
-    - <span data-ttu-id="f63f1-111">Installare Ansible su [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73) e [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)</span><span class="sxs-lookup"><span data-stu-id="f63f1-111">Install Ansible on [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73), and [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)</span></span>
-- <span data-ttu-id="f63f1-112">configurare le credenziali di Azure e Ansible in modo che siano pronte all'uso.</span><span class="sxs-lookup"><span data-stu-id="f63f1-112">Azure credentials, and Ansible configured to use them.</span></span>
-    - [<span data-ttu-id="f63f1-113">Creare le credenziali di Azure e configurare Ansible</span><span class="sxs-lookup"><span data-stu-id="f63f1-113">Create Azure credentials and configure Ansible</span></span>](ansible-install-configure.md#create-azure-credentials)
-- <span data-ttu-id="f63f1-114">Versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure.</span><span class="sxs-lookup"><span data-stu-id="f63f1-114">Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="f63f1-115">Eseguire `az --version` per trovare la versione.</span><span class="sxs-lookup"><span data-stu-id="f63f1-115">Run `az --version` to find the version.</span></span> 
-    - <span data-ttu-id="f63f1-116">Se è necessario eseguire l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="f63f1-116">If you need to upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> <span data-ttu-id="f63f1-117">È anche possibile usare [Cloud Shell](/azure/cloud-shell/quickstart) dal browser.</span><span class="sxs-lookup"><span data-stu-id="f63f1-117">You can also use [Cloud Shell](/azure/cloud-shell/quickstart) from your browser.</span></span>
+- <span data-ttu-id="3aa06-110">Ansible e hello moduli Python di Azure SDK installati nel sistema host.</span><span class="sxs-lookup"><span data-stu-id="3aa06-110">Ansible and hello Azure Python SDK modules installed on your host system.</span></span>
+    - <span data-ttu-id="3aa06-111">Installare Ansible su [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73) e [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)</span><span class="sxs-lookup"><span data-stu-id="3aa06-111">Install Ansible on [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73), and [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)</span></span>
+- <span data-ttu-id="3aa06-112">Le credenziali di Azure e toouse Ansible configurato li.</span><span class="sxs-lookup"><span data-stu-id="3aa06-112">Azure credentials, and Ansible configured toouse them.</span></span>
+    - [<span data-ttu-id="3aa06-113">Creare le credenziali di Azure e configurare Ansible</span><span class="sxs-lookup"><span data-stu-id="3aa06-113">Create Azure credentials and configure Ansible</span></span>](ansible-install-configure.md#create-azure-credentials)
+- <span data-ttu-id="3aa06-114">Versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure.</span><span class="sxs-lookup"><span data-stu-id="3aa06-114">Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="3aa06-115">Eseguire `az --version` versione hello toofind.</span><span class="sxs-lookup"><span data-stu-id="3aa06-115">Run `az --version` toofind hello version.</span></span> 
+    - <span data-ttu-id="3aa06-116">Se è necessario tooupgrade, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="3aa06-116">If you need tooupgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> <span data-ttu-id="3aa06-117">È anche possibile usare [Cloud Shell](/azure/cloud-shell/quickstart) dal browser.</span><span class="sxs-lookup"><span data-stu-id="3aa06-117">You can also use [Cloud Shell](/azure/cloud-shell/quickstart) from your browser.</span></span>
 
 
-## <a name="create-virtual-network"></a><span data-ttu-id="f63f1-118">Creare una rete virtuale</span><span class="sxs-lookup"><span data-stu-id="f63f1-118">Create virtual network</span></span>
-<span data-ttu-id="f63f1-119">La sezione seguente in un playbook Ansible crea una rete virtuale denominata *myVnet* nello spazio degli indirizzi *10.0.0.0/16*:</span><span class="sxs-lookup"><span data-stu-id="f63f1-119">The following section in an Ansible playbook creates a virtual network named *myVnet* in the *10.0.0.0/16* address space:</span></span>
+## <a name="create-virtual-network"></a><span data-ttu-id="3aa06-118">Creare una rete virtuale</span><span class="sxs-lookup"><span data-stu-id="3aa06-118">Create virtual network</span></span>
+<span data-ttu-id="3aa06-119">Nella sezione seguente in un playbook Ansible Hello crea una rete virtuale denominata *myVnet* in hello *10.0.0.0/16* lo spazio degli indirizzi:</span><span class="sxs-lookup"><span data-stu-id="3aa06-119">hello following section in an Ansible playbook creates a virtual network named *myVnet* in hello *10.0.0.0/16* address space:</span></span>
 
 ```yaml
 - name: Create virtual network
@@ -47,7 +47,7 @@ ms.lasthandoff: 07/11/2017
     address_prefixes: "10.10.0.0/16"
 ```
 
-<span data-ttu-id="f63f1-120">Per aggiungere una subnet, la sezione seguente crea una subnet denominata *mySubnet* nella rete virtuale *myVnet*:</span><span class="sxs-lookup"><span data-stu-id="f63f1-120">To add a subnet, the following section creates a subnet named *mySubnet* in the *myVnet* virtual network:</span></span>
+<span data-ttu-id="3aa06-120">tooadd una subnet, hello seguente sezione viene creata una subnet denominata *mySubnet* in hello *myVnet* rete virtuale:</span><span class="sxs-lookup"><span data-stu-id="3aa06-120">tooadd a subnet, hello following section creates a subnet named *mySubnet* in hello *myVnet* virtual network:</span></span>
 
 ```yaml
 - name: Add subnet
@@ -59,8 +59,8 @@ ms.lasthandoff: 07/11/2017
 ```
 
 
-## <a name="create-public-ip-address"></a><span data-ttu-id="f63f1-121">Creare un indirizzo IP pubblico</span><span class="sxs-lookup"><span data-stu-id="f63f1-121">Create public IP address</span></span>
-<span data-ttu-id="f63f1-122">Per accedere alle risorse in Internet, creare e assegnare un indirizzo IP pubblico alla macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f63f1-122">To access resources across the Internet, create and assign a public IP address to your VM.</span></span> <span data-ttu-id="f63f1-123">La sezione seguente in un playbook Ansible crea un indirizzo IP pubblico denominato *myPublicIP*:</span><span class="sxs-lookup"><span data-stu-id="f63f1-123">The following section in an Ansible playbook creates a public IP address named *myPublicIP*:</span></span>
+## <a name="create-public-ip-address"></a><span data-ttu-id="3aa06-121">Creare un indirizzo IP pubblico</span><span class="sxs-lookup"><span data-stu-id="3aa06-121">Create public IP address</span></span>
+<span data-ttu-id="3aa06-122">risorse tooaccess tra hello Internet, creare e assegnare un tooyour di indirizzo IP pubblico macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="3aa06-122">tooaccess resources across hello Internet, create and assign a public IP address tooyour VM.</span></span> <span data-ttu-id="3aa06-123">Nella sezione seguente in un playbook Ansible Hello crea un indirizzo IP pubblico denominato *myPublicIP*:</span><span class="sxs-lookup"><span data-stu-id="3aa06-123">hello following section in an Ansible playbook creates a public IP address named *myPublicIP*:</span></span>
 
 ```yaml
 - name: Create public IP address
@@ -71,8 +71,8 @@ ms.lasthandoff: 07/11/2017
 ```
 
 
-## <a name="create-network-security-group"></a><span data-ttu-id="f63f1-124">Creare un gruppo di sicurezza di rete</span><span class="sxs-lookup"><span data-stu-id="f63f1-124">Create Network Security Group</span></span>
-<span data-ttu-id="f63f1-125">I gruppi di sicurezza di rete consentono di controllare il flusso del traffico di rete in ingresso e in uscita dalla macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="f63f1-125">Network Security Groups control the flow of network traffic in and out of your VM.</span></span> <span data-ttu-id="f63f1-126">La sezione seguente in un playbook Ansible crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup* e definisce una regola per consentire il traffico SSH sulla porta TCP 22:</span><span class="sxs-lookup"><span data-stu-id="f63f1-126">The following section in an Ansible playbook creates a network security group named *myNetworkSecurityGroup* and defines a rule to allow SSH traffic on TCP port 22:</span></span>
+## <a name="create-network-security-group"></a><span data-ttu-id="3aa06-124">Creare un gruppo di sicurezza di rete</span><span class="sxs-lookup"><span data-stu-id="3aa06-124">Create Network Security Group</span></span>
+<span data-ttu-id="3aa06-125">Gruppi di sicurezza di rete controllano il flusso di hello del traffico di rete da e verso la macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="3aa06-125">Network Security Groups control hello flow of network traffic in and out of your VM.</span></span> <span data-ttu-id="3aa06-126">Nella sezione seguente in un playbook Ansible Hello crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup* e definisce un traffico SSH tooallow regola sulla porta TCP 22:</span><span class="sxs-lookup"><span data-stu-id="3aa06-126">hello following section in an Ansible playbook creates a network security group named *myNetworkSecurityGroup* and defines a rule tooallow SSH traffic on TCP port 22:</span></span>
 
 ```yaml
 - name: Create Network Security Group that allows SSH
@@ -89,8 +89,8 @@ ms.lasthandoff: 07/11/2017
 ```
 
 
-## <a name="create-virtual-network-interface-card"></a><span data-ttu-id="f63f1-127">Creare la scheda di interfaccia di rete virtuale</span><span class="sxs-lookup"><span data-stu-id="f63f1-127">Create virtual network interface card</span></span>
-<span data-ttu-id="f63f1-128">Una scheda di interfaccia di rete virtuale, NIC, connette la macchina virtuale a una rete virtuale specifica, a un indirizzo IP pubblico e a un gruppo di sicurezza di rete.</span><span class="sxs-lookup"><span data-stu-id="f63f1-128">A virtual network interface card (NIC) connects your VM to a given virtual network, public IP address, and network security group.</span></span> <span data-ttu-id="f63f1-129">La sezione seguente in un playbook Ansible crea una scheda di rete virtuale denominata *myNIC* connessa alle risorse di rete virtuale create:</span><span class="sxs-lookup"><span data-stu-id="f63f1-129">The following section in an Ansible playbook creates a virtual NIC named *myNIC* connected to the virtual networking resources you have created:</span></span>
+## <a name="create-virtual-network-interface-card"></a><span data-ttu-id="3aa06-127">Creare la scheda di interfaccia di rete virtuale</span><span class="sxs-lookup"><span data-stu-id="3aa06-127">Create virtual network interface card</span></span>
+<span data-ttu-id="3aa06-128">Una scheda di interfaccia di rete virtuale (NIC) si connette tooa la macchina virtuale assegnato al gruppo di sicurezza di rete, indirizzo IP pubblico e rete virtuale.</span><span class="sxs-lookup"><span data-stu-id="3aa06-128">A virtual network interface card (NIC) connects your VM tooa given virtual network, public IP address, and network security group.</span></span> <span data-ttu-id="3aa06-129">Nella sezione seguente in un playbook Ansible Hello crea una scheda di rete virtuale denominata *myNIC* connesso toohello virtuale le risorse di rete è stato creato:</span><span class="sxs-lookup"><span data-stu-id="3aa06-129">hello following section in an Ansible playbook creates a virtual NIC named *myNIC* connected toohello virtual networking resources you have created:</span></span>
 
 ```yaml
 - name: Create virtual network inteface card
@@ -104,8 +104,8 @@ ms.lasthandoff: 07/11/2017
 ```
 
 
-## <a name="create-virtual-machine"></a><span data-ttu-id="f63f1-130">Crea macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="f63f1-130">Create virtual machine</span></span>
-<span data-ttu-id="f63f1-131">Il passaggio finale consiste nel creare una macchina virtuale e usare tutte le risorse create.</span><span class="sxs-lookup"><span data-stu-id="f63f1-131">The final step is to create a VM and use all the resources created.</span></span> <span data-ttu-id="f63f1-132">La sezione seguente in un playbook Ansible crea una macchina virtuale denominata *myVM* e associa la scheda di rete virtuale denominata *myNIC*.</span><span class="sxs-lookup"><span data-stu-id="f63f1-132">The following section in an Ansible playbook creates a VM named *myVM* and attaches the virtual NIC named *myNIC*.</span></span> <span data-ttu-id="f63f1-133">Immettere i propri dati della chiave pubblica nella coppia *key_data* come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="f63f1-133">Enter your own public key data in the *key_data* pair as follows:</span></span>
+## <a name="create-virtual-machine"></a><span data-ttu-id="3aa06-130">Crea macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="3aa06-130">Create virtual machine</span></span>
+<span data-ttu-id="3aa06-131">passaggio finale Hello è toocreate una macchina virtuale e usare tutte le risorse di hello create.</span><span class="sxs-lookup"><span data-stu-id="3aa06-131">hello final step is toocreate a VM and use all hello resources created.</span></span> <span data-ttu-id="3aa06-132">Nella sezione seguente in un playbook Ansible Hello crea una macchina virtuale denominata *myVM* e collega hello NIC virtuale denominato *myNIC*.</span><span class="sxs-lookup"><span data-stu-id="3aa06-132">hello following section in an Ansible playbook creates a VM named *myVM* and attaches hello virtual NIC named *myNIC*.</span></span> <span data-ttu-id="3aa06-133">Immettere i propri dati di chiave pubblici in hello *key_data* coppia come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="3aa06-133">Enter your own public key data in hello *key_data* pair as follows:</span></span>
 
 ```yaml
 - name: Create VM
@@ -126,8 +126,8 @@ ms.lasthandoff: 07/11/2017
       version: latest
 ```
 
-## <a name="complete-ansible-playbook"></a><span data-ttu-id="f63f1-134">Completare il playbook Ansible</span><span class="sxs-lookup"><span data-stu-id="f63f1-134">Complete Ansible playbook</span></span>
-<span data-ttu-id="f63f1-135">Per unire tutte queste sezioni, creare un playbook Ansible denominato *azure_create_vm.yml* e incollarvi i contenuti seguenti:</span><span class="sxs-lookup"><span data-stu-id="f63f1-135">To bring all these sections together, create an Ansible playbook named *azure_create_complete_vm.yml* and paste the following contents:</span></span>
+## <a name="complete-ansible-playbook"></a><span data-ttu-id="3aa06-134">Completare il playbook Ansible</span><span class="sxs-lookup"><span data-stu-id="3aa06-134">Complete Ansible playbook</span></span>
+<span data-ttu-id="3aa06-135">toobring tutte queste sezioni insieme, creano un playbook Ansible denominato *azure_create_complete_vm.yml* e Incolla hello seguente contenuto:</span><span class="sxs-lookup"><span data-stu-id="3aa06-135">toobring all these sections together, create an Ansible playbook named *azure_create_complete_vm.yml* and paste hello following contents:</span></span>
 
 ```yaml
 - name: Create Azure VM
@@ -187,19 +187,19 @@ ms.lasthandoff: 07/11/2017
         version: latest
 ```
 
-<span data-ttu-id="f63f1-136">Ansible deve distribuire tutte le risorse in un gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="f63f1-136">Ansible needs a resource group to deploy all your resources into.</span></span> <span data-ttu-id="f63f1-137">Come prima cosa creare un gruppo di risorse con [az group create](/cli/azure/vm#create).</span><span class="sxs-lookup"><span data-stu-id="f63f1-137">Create a resource group with [az group create](/cli/azure/vm#create).</span></span> <span data-ttu-id="f63f1-138">L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella posizione *eastus*:</span><span class="sxs-lookup"><span data-stu-id="f63f1-138">The following example creates a resource group named *myResourceGroup* in the *eastus* location:</span></span>
+<span data-ttu-id="3aa06-136">Ansible è necessario tutte le risorse in un toodeploy gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="3aa06-136">Ansible needs a resource group toodeploy all your resources into.</span></span> <span data-ttu-id="3aa06-137">Come prima cosa creare un gruppo di risorse con [az group create](/cli/azure/vm#create).</span><span class="sxs-lookup"><span data-stu-id="3aa06-137">Create a resource group with [az group create](/cli/azure/vm#create).</span></span> <span data-ttu-id="3aa06-138">esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso:</span><span class="sxs-lookup"><span data-stu-id="3aa06-138">hello following example creates a resource group named *myResourceGroup* in hello *eastus* location:</span></span>
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-<span data-ttu-id="f63f1-139">Per creare l'ambiente completo per la macchina virtuale con Ansible, eseguire il playbook come segue:</span><span class="sxs-lookup"><span data-stu-id="f63f1-139">To create the complete VM environment with Ansible, run the playbook as follows:</span></span>
+<span data-ttu-id="3aa06-139">toocreate hello completo ambiente di VM con Ansible, eseguire playbook hello come segue:</span><span class="sxs-lookup"><span data-stu-id="3aa06-139">toocreate hello complete VM environment with Ansible, run hello playbook as follows:</span></span>
 
 ```bash
 ansible-playbook azure_create_complete_vm.yml
 ```
 
-<span data-ttu-id="f63f1-140">L'output è simile all'esempio seguente che mostra che la macchina virtuale è stata creata correttamente:</span><span class="sxs-lookup"><span data-stu-id="f63f1-140">The output looks similar to the following example that shows the VM has been successfully created:</span></span>
+<span data-ttu-id="3aa06-140">output di Hello è simile toohello seguendo l'esempio che illustra hello che VM è stato creato correttamente:</span><span class="sxs-lookup"><span data-stu-id="3aa06-140">hello output looks similar toohello following example that shows hello VM has been successfully created:</span></span>
 
 ```bash
 PLAY [Create Azure VM] ****************************************************
@@ -229,5 +229,5 @@ PLAY RECAP ****************************************************************
 localhost                  : ok=7    changed=6    unreachable=0    failed=0
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="f63f1-141">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f63f1-141">Next steps</span></span>
-<span data-ttu-id="f63f1-142">In questo esempio viene creato un ambiente completo della macchina virtuale che include le risorse di rete virtuali necessarie.</span><span class="sxs-lookup"><span data-stu-id="f63f1-142">This example creates a complete VM environment including the required virtual networking resources.</span></span> <span data-ttu-id="f63f1-143">Per un esempio più diretto che illustri come creare una macchina virtuale nelle risorse di rete esistenti con le opzioni predefinite, vedere [Creare una macchina virtuale](ansible-create-vm.md).</span><span class="sxs-lookup"><span data-stu-id="f63f1-143">For a more direct example to create a VM into existing network resources with default options, see [Create a VM](ansible-create-vm.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3aa06-141">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3aa06-141">Next steps</span></span>
+<span data-ttu-id="3aa06-142">Questo esempio viene creato un ambiente di VM completo incluso hello necessarie risorse di rete virtuale.</span><span class="sxs-lookup"><span data-stu-id="3aa06-142">This example creates a complete VM environment including hello required virtual networking resources.</span></span> <span data-ttu-id="3aa06-143">Per un toocreate esempio più diretto, una macchina virtuale in risorse di rete esistenti con le opzioni predefinite, vedere [creare una macchina virtuale](ansible-create-vm.md).</span><span class="sxs-lookup"><span data-stu-id="3aa06-143">For a more direct example toocreate a VM into existing network resources with default options, see [Create a VM](ansible-create-vm.md).</span></span>

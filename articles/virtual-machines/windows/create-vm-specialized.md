@@ -1,6 +1,6 @@
 ---
-title: Creare una macchina virtuale Windows da un disco rigido virtuale specializzato in Azure | Microsoft Docs
-description: Creare una nuova macchina virtuale Windows collegando un disco gestito specializzato come disco del sistema operativo usando il modello di distribuzione Resource Manager.
+title: una macchina virtuale Windows da un VHD in Azure specializzato aaaCreate | Documenti Microsoft
+description: Creare una nuova macchina virtuale Windows collegando un disco specializzato gestito come disco del sistema operativo hello utilizzo nel modello di distribuzione di gestione risorse di hello.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,79 +15,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: cynthn
-ms.openlocfilehash: fa952286a9ceca8b3b2c7efe2cc4867a2728c477
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c72c6f4fb650e2664e87cf38ec9be62f0b2209fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-windows-vm-from-a-specialized-disk"></a><span data-ttu-id="61e97-103">Creare una macchina virtuale Windows da un disco specializzato</span><span class="sxs-lookup"><span data-stu-id="61e97-103">Create a Windows VM from a specialized disk</span></span>
+# <a name="create-a-windows-vm-from-a-specialized-disk"></a><span data-ttu-id="67b95-103">Creare una macchina virtuale Windows da un disco specializzato</span><span class="sxs-lookup"><span data-stu-id="67b95-103">Create a Windows VM from a specialized disk</span></span>
 
-<span data-ttu-id="61e97-104">Creare una nuova macchina virtuale collegando un disco gestito specializzato come disco del sistema operativo con Powershell.</span><span class="sxs-lookup"><span data-stu-id="61e97-104">Create a new VM by attaching a specialized managed disk as the OS disk using Powershell.</span></span> <span data-ttu-id="61e97-105">Un disco specializzato è una copia del disco rigido virtuale proveniente da una macchina virtuale esistente che gestisce gli account utente, le applicazioni e altri dati di stato dalla macchina virtuale originale.</span><span class="sxs-lookup"><span data-stu-id="61e97-105">A specialized disk is a copy of virtual hard disk (VHD) from an existing VM that maintains the user accounts, applications, and other state data from your original VM.</span></span> 
+<span data-ttu-id="67b95-104">Creare una nuova macchina virtuale collegando un disco specializzato gestito come disco del sistema operativo hello tramite Powershell.</span><span class="sxs-lookup"><span data-stu-id="67b95-104">Create a new VM by attaching a specialized managed disk as hello OS disk using Powershell.</span></span> <span data-ttu-id="67b95-105">Un disco specializzato è una copia del disco rigido virtuale (VHD) da una macchina virtuale esistente che gestisce gli account utente di hello, applicazioni e altri dati di stato dalla macchina virtuale originale.</span><span class="sxs-lookup"><span data-stu-id="67b95-105">A specialized disk is a copy of virtual hard disk (VHD) from an existing VM that maintains hello user accounts, applications, and other state data from your original VM.</span></span> 
 
-<span data-ttu-id="61e97-106">Quando si usa un disco rigido virtuale specializzato per creare una nuova VM, la nuova VM mantiene il nome computer della VM originale.</span><span class="sxs-lookup"><span data-stu-id="61e97-106">When you use a specialized VHD to create a new VM, the new VM retains the computer name of the original VM.</span></span> <span data-ttu-id="61e97-107">Vengono mantenute anche altre informazioni specifiche del computer e, in alcuni casi, queste informazioni duplicate possono causare problemi.</span><span class="sxs-lookup"><span data-stu-id="61e97-107">Other computer-specific information is also be kept and, in some cases, this duplicate information could cause issues.</span></span> <span data-ttu-id="61e97-108">Quando si copia una VM, tenere presente quali tipi di informazioni specifiche del computer vengono usate dalle applicazioni.</span><span class="sxs-lookup"><span data-stu-id="61e97-108">Be aware of what types of computer-specific information your applications rely on when copying a VM.</span></span>
+<span data-ttu-id="67b95-106">Quando si utilizza un toocreate VHD specializzata di una nuova macchina virtuale, hello nuova macchina virtuale mantiene il nome del computer hello hello macchina virtuale originale.</span><span class="sxs-lookup"><span data-stu-id="67b95-106">When you use a specialized VHD toocreate a new VM, hello new VM retains hello computer name of hello original VM.</span></span> <span data-ttu-id="67b95-107">Vengono mantenute anche altre informazioni specifiche del computer e, in alcuni casi, queste informazioni duplicate possono causare problemi.</span><span class="sxs-lookup"><span data-stu-id="67b95-107">Other computer-specific information is also be kept and, in some cases, this duplicate information could cause issues.</span></span> <span data-ttu-id="67b95-108">Quando si copia una VM, tenere presente quali tipi di informazioni specifiche del computer vengono usate dalle applicazioni.</span><span class="sxs-lookup"><span data-stu-id="67b95-108">Be aware of what types of computer-specific information your applications rely on when copying a VM.</span></span>
 
-<span data-ttu-id="61e97-109">Sono disponibili due opzioni:</span><span class="sxs-lookup"><span data-stu-id="61e97-109">You have two options:</span></span>
-* [<span data-ttu-id="61e97-110">Caricare un VHD</span><span class="sxs-lookup"><span data-stu-id="61e97-110">Upload a VHD</span></span>](#option-1-upload-a-specialized-vhd)
-* [<span data-ttu-id="61e97-111">Copiare una VM di Azure esistente</span><span class="sxs-lookup"><span data-stu-id="61e97-111">Copy an existing Azure VM</span></span>](#option-2-copy-an-existing-azure-vm)
+<span data-ttu-id="67b95-109">Sono disponibili due opzioni:</span><span class="sxs-lookup"><span data-stu-id="67b95-109">You have two options:</span></span>
+* [<span data-ttu-id="67b95-110">Caricare un VHD</span><span class="sxs-lookup"><span data-stu-id="67b95-110">Upload a VHD</span></span>](#option-1-upload-a-specialized-vhd)
+* [<span data-ttu-id="67b95-111">Copiare una VM di Azure esistente</span><span class="sxs-lookup"><span data-stu-id="67b95-111">Copy an existing Azure VM</span></span>](#option-2-copy-an-existing-azure-vm)
 
-<span data-ttu-id="61e97-112">Questo argomento illustra come usare i dischi gestiti.</span><span class="sxs-lookup"><span data-stu-id="61e97-112">This topic shows you how to use managed disks.</span></span> <span data-ttu-id="61e97-113">Se è presente una distribuzione legacy che richiede l'uso di un account di archiviazione, vedere [Create a VM from a specialized VHD in a storage account](sa-create-vm-specialized.md) (Creare una VM da un disco rigido virtuale specializzato in un account di archiviazione)</span><span class="sxs-lookup"><span data-stu-id="61e97-113">If you have a legacy deployment that requires using a storage account, see [Create a VM from a specialized VHD in a storage account](sa-create-vm-specialized.md)</span></span>
+<span data-ttu-id="67b95-112">Questo argomento viene illustrato come toouse dischi gestiti.</span><span class="sxs-lookup"><span data-stu-id="67b95-112">This topic shows you how toouse managed disks.</span></span> <span data-ttu-id="67b95-113">Se è presente una distribuzione legacy che richiede l'uso di un account di archiviazione, vedere [Create a VM from a specialized VHD in a storage account](sa-create-vm-specialized.md) (Creare una VM da un disco rigido virtuale specializzato in un account di archiviazione)</span><span class="sxs-lookup"><span data-stu-id="67b95-113">If you have a legacy deployment that requires using a storage account, see [Create a VM from a specialized VHD in a storage account](sa-create-vm-specialized.md)</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="61e97-114">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="61e97-114">Before you begin</span></span>
-<span data-ttu-id="61e97-115">Se si usa PowerShell, verificare di avere la versione più recente del modulo di PowerShell AzureRM.Compute.</span><span class="sxs-lookup"><span data-stu-id="61e97-115">If you use PowerShell, make sure that you have the latest version of the AzureRM.Compute PowerShell module.</span></span> 
+## <a name="before-you-begin"></a><span data-ttu-id="67b95-114">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="67b95-114">Before you begin</span></span>
+<span data-ttu-id="67b95-115">Se si usa PowerShell, assicurarsi di aver hello la versione più recente del modulo AzureRM.Compute PowerShell hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-115">If you use PowerShell, make sure that you have hello latest version of hello AzureRM.Compute PowerShell module.</span></span> 
 
 ```powershell
 Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 ```
-<span data-ttu-id="61e97-116">Per altre informazioni, vedere [Azure PowerShell Versioning](/powershell/azure/overview) (Controllo delle versioni di Azure PowerShell).</span><span class="sxs-lookup"><span data-stu-id="61e97-116">For more information, see [Azure PowerShell Versioning](/powershell/azure/overview).</span></span>
+<span data-ttu-id="67b95-116">Per altre informazioni, vedere [Controllo delle versioni di Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="67b95-116">For more information, see [Azure PowerShell Versioning](/powershell/azure/overview).</span></span>
 
 
-## <a name="option-1-upload-a-specialized-vhd"></a><span data-ttu-id="61e97-117">Opzione 1: Caricare un disco rigido virtuale specializzato</span><span class="sxs-lookup"><span data-stu-id="61e97-117">Option 1: Upload a specialized VHD</span></span>
+## <a name="option-1-upload-a-specialized-vhd"></a><span data-ttu-id="67b95-117">Opzione 1: Caricare un disco rigido virtuale specializzato</span><span class="sxs-lookup"><span data-stu-id="67b95-117">Option 1: Upload a specialized VHD</span></span>
 
-<span data-ttu-id="61e97-118">È possibile caricare il disco rigido virtuale da una VM specializzata creata con uno strumento di virtualizzazione locale, ad esempio Hyper-V, o da una VM esportata da un altro cloud.</span><span class="sxs-lookup"><span data-stu-id="61e97-118">You can upload the VHD from a specialized VM created with an on-premises virtualization tool, like Hyper-V, or a VM exported from another cloud.</span></span>
+<span data-ttu-id="67b95-118">È possibile caricare hello che disco rigido virtuale da una VM specializzata creato con uno strumento di virtualizzazione locale, come Hyper-V, o una macchina virtuale esportata da un altro cloud.</span><span class="sxs-lookup"><span data-stu-id="67b95-118">You can upload hello VHD from a specialized VM created with an on-premises virtualization tool, like Hyper-V, or a VM exported from another cloud.</span></span>
 
-### <a name="prepare-the-vm"></a><span data-ttu-id="61e97-119">Preparare la macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="61e97-119">Prepare the VM</span></span>
-<span data-ttu-id="61e97-120">Se si intende usare il disco rigido virtuale così come è per creare una nuova macchina virtuale, assicurare il completamento delle operazioni seguenti.</span><span class="sxs-lookup"><span data-stu-id="61e97-120">If you intend to use the VHD as-is to create a new VM, ensure the following steps are completed.</span></span> 
+### <a name="prepare-hello-vm"></a><span data-ttu-id="67b95-119">Preparare hello VM</span><span class="sxs-lookup"><span data-stu-id="67b95-119">Prepare hello VM</span></span>
+<span data-ttu-id="67b95-120">Se si intende toouse hello file VHD come-è toocreate una nuova macchina virtuale, verificare hello operazioni viene completata.</span><span class="sxs-lookup"><span data-stu-id="67b95-120">If you intend toouse hello VHD as-is toocreate a new VM, ensure hello following steps are completed.</span></span> 
   
-  * <span data-ttu-id="61e97-121">[Preparare un disco rigido virtuale (VHD) di Windows per il caricamento in Azure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="61e97-121">[Prepare a Windows VHD to upload to Azure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span> <span data-ttu-id="61e97-122">**Non** generalizzare la macchina Virtuale con Sysprep.</span><span class="sxs-lookup"><span data-stu-id="61e97-122">**Do not** generalize the VM using Sysprep.</span></span>
-  * <span data-ttu-id="61e97-123">Rimuovere tutti gli strumenti di virtualizzazione guest e gli agenti installati nella macchina virtuale, ad esempio gli strumenti VMware.</span><span class="sxs-lookup"><span data-stu-id="61e97-123">Remove any guest virtualization tools and agents that are installed on the VM (like VMware tools).</span></span>
-  * <span data-ttu-id="61e97-124">Assicurarsi che la macchina virtuale sia configurata per eseguire il pull dell'indirizzo IP e delle impostazioni DNS tramite DHCP.</span><span class="sxs-lookup"><span data-stu-id="61e97-124">Ensure the VM is configured to pull its IP address and DNS settings via DHCP.</span></span> <span data-ttu-id="61e97-125">In questo modo il server ottiene un indirizzo IP all'interno della rete virtuale all'avvio.</span><span class="sxs-lookup"><span data-stu-id="61e97-125">This ensures that the server obtains an IP address within the VNet when it starts up.</span></span> 
+  * <span data-ttu-id="67b95-121">[Preparare un tooAzure tooupload disco rigido virtuale di Windows](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="67b95-121">[Prepare a Windows VHD tooupload tooAzure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span> <span data-ttu-id="67b95-122">**Non** generalizzare hello macchina virtuale con Sysprep.</span><span class="sxs-lookup"><span data-stu-id="67b95-122">**Do not** generalize hello VM using Sysprep.</span></span>
+  * <span data-ttu-id="67b95-123">Rimuovere eventuali strumenti di virtualizzazione guest e gli agenti installati in hello VM (ad esempio strumenti di VMware).</span><span class="sxs-lookup"><span data-stu-id="67b95-123">Remove any guest virtualization tools and agents that are installed on hello VM (like VMware tools).</span></span>
+  * <span data-ttu-id="67b95-124">Assicurarsi di hello macchina virtuale è configurata toopull il relativo indirizzo IP e le impostazioni DNS attraverso DHCP.</span><span class="sxs-lookup"><span data-stu-id="67b95-124">Ensure hello VM is configured toopull its IP address and DNS settings via DHCP.</span></span> <span data-ttu-id="67b95-125">Ciò garantisce che il server hello ottenga un indirizzo IP all'interno di hello rete virtuale al momento dell'avvio.</span><span class="sxs-lookup"><span data-stu-id="67b95-125">This ensures that hello server obtains an IP address within hello VNet when it starts up.</span></span> 
 
 
-### <a name="get-the-storage-account"></a><span data-ttu-id="61e97-126">Ottenere l'account di archiviazione</span><span class="sxs-lookup"><span data-stu-id="61e97-126">Get the storage account</span></span>
-<span data-ttu-id="61e97-127">Per archiviare il disco rigido virtuale caricato, è necessario un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="61e97-127">You need a storage account in Azure to store the uploaded VHD.</span></span> <span data-ttu-id="61e97-128">È possibile usare un account di archiviazione esistente o crearne uno nuovo.</span><span class="sxs-lookup"><span data-stu-id="61e97-128">You can either use an existing storage account or create a new one.</span></span> 
+### <a name="get-hello-storage-account"></a><span data-ttu-id="67b95-126">Ottenere l'account di archiviazione hello</span><span class="sxs-lookup"><span data-stu-id="67b95-126">Get hello storage account</span></span>
+<span data-ttu-id="67b95-127">È necessario uno spazio di archiviazione account in Azure toostore hello caricato disco rigido virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-127">You need a storage account in Azure toostore hello uploaded VHD.</span></span> <span data-ttu-id="67b95-128">È possibile usare un account di archiviazione esistente o crearne uno nuovo.</span><span class="sxs-lookup"><span data-stu-id="67b95-128">You can either use an existing storage account or create a new one.</span></span> 
 
-<span data-ttu-id="61e97-129">Per mostrare gli account di archiviazione disponibili, digitare:</span><span class="sxs-lookup"><span data-stu-id="61e97-129">To show the available storage accounts, type:</span></span>
+<span data-ttu-id="67b95-129">account di archiviazione disponibili hello tooshow, digitare:</span><span class="sxs-lookup"><span data-stu-id="67b95-129">tooshow hello available storage accounts, type:</span></span>
 
 ```powershell
 Get-AzureRmStorageAccount
 ```
 
-<span data-ttu-id="61e97-130">Per usare un account di archiviazione esistente, passare alla sezione [Caricare il disco rigido virtuale](#upload-the-vhd-to-your-storage-account).</span><span class="sxs-lookup"><span data-stu-id="61e97-130">If you want to use an existing storage account, proceed to the [Upload the VHD](#upload-the-vhd-to-your-storage-account) section.</span></span>
+<span data-ttu-id="67b95-130">Se si desidera toouse un account di archiviazione esistente, procedere toohello [hello caricamento VHD](#upload-the-vhd-to-your-storage-account) sezione.</span><span class="sxs-lookup"><span data-stu-id="67b95-130">If you want toouse an existing storage account, proceed toohello [Upload hello VHD](#upload-the-vhd-to-your-storage-account) section.</span></span>
 
-<span data-ttu-id="61e97-131">Per creare un account di archiviazione, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="61e97-131">If you need to create a storage account, follow these steps:</span></span>
+<span data-ttu-id="67b95-131">Se è necessario un account di archiviazione toocreate, seguire questi passaggi:</span><span class="sxs-lookup"><span data-stu-id="67b95-131">If you need toocreate a storage account, follow these steps:</span></span>
 
-1. <span data-ttu-id="61e97-132">È necessario il nome del gruppo di risorse in cui deve essere creato l'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="61e97-132">You need the name of the resource group where the storage account should be created.</span></span> <span data-ttu-id="61e97-133">Per trovare tutti i gruppi di risorse inclusi nella sottoscrizione digitare:</span><span class="sxs-lookup"><span data-stu-id="61e97-133">To find out all the resource groups that are in your subscription, type:</span></span>
+1. <span data-ttu-id="67b95-132">È necessario il nome di hello hello del gruppo di risorse in cui deve essere creato l'account di archiviazione hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-132">You need hello name of hello resource group where hello storage account should be created.</span></span> <span data-ttu-id="67b95-133">toofind out tutti i gruppi di risorse hello nella sottoscrizione di tipo sono:</span><span class="sxs-lookup"><span data-stu-id="67b95-133">toofind out all hello resource groups that are in your subscription, type:</span></span>
    
     ```powershell
     Get-AzureRmResourceGroup
     ```
 
-    <span data-ttu-id="61e97-134">Per creare un gruppo di risorse denominato *MyResourceGroup* nell'area *Stati Uniti occidentali*, digitare:</span><span class="sxs-lookup"><span data-stu-id="61e97-134">To create a resource group named *myResourceGroup* in the *West US* region, type:</span></span>
+    <span data-ttu-id="67b95-134">un gruppo di risorse denominato toocreate *myResourceGroup* in hello *Stati Uniti occidentali* area, digitare:</span><span class="sxs-lookup"><span data-stu-id="67b95-134">toocreate a resource group named *myResourceGroup* in hello *West US* region, type:</span></span>
 
     ```powershell
     New-AzureRmResourceGroup -Name myResourceGroup -Location "West US"
     ```
 
-2. <span data-ttu-id="61e97-135">Creare un account di archiviazione denominato *mystorageaccount* in questo gruppo di risorse con il cmdlet [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount).</span><span class="sxs-lookup"><span data-stu-id="61e97-135">Create a storage account named *mystorageaccount* in this resource group by using the [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) cmdlet:</span></span>
+2. <span data-ttu-id="67b95-135">Creare un account di archiviazione denominato *mystorageaccount* in questo gruppo di risorse utilizzando hello [New AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) cmdlet:</span><span class="sxs-lookup"><span data-stu-id="67b95-135">Create a storage account named *mystorageaccount* in this resource group by using hello [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) cmdlet:</span></span>
    
     ```powershell
     New-AzureRmStorageAccount -ResourceGroupName myResourceGroup -Name mystorageaccount -Location "West US" `
         -SkuName "Standard_LRS" -Kind "Storage"
     ```
 
-### <a name="upload-the-vhd-to-your-storage-account"></a><span data-ttu-id="61e97-136">Caricare il disco rigido virtuale nell'account di archiviazione</span><span class="sxs-lookup"><span data-stu-id="61e97-136">Upload the VHD to your storage account</span></span> 
-<span data-ttu-id="61e97-137">Usare il cmdlet [Add-AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) per caricare il disco rigido virtuale in un contenitore nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="61e97-137">Use the [Add-AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) cmdlet to upload the VHD to a container in your storage account.</span></span> <span data-ttu-id="61e97-138">In questo esempio, il file *myVHD.vhd* viene caricato da `"C:\Users\Public\Documents\Virtual hard disks\"` a un account di archiviazione denominato *mystorageaccount* nel gruppo di risorse *myResourceGroup*.</span><span class="sxs-lookup"><span data-stu-id="61e97-138">This example uploads the file *myVHD.vhd* from `"C:\Users\Public\Documents\Virtual hard disks\"` to a storage account named *mystorageaccount* in the *myResourceGroup* resource group.</span></span> <span data-ttu-id="61e97-139">Il file viene archiviato nel contenitore denominato *mycontainer* e il nuovo nome del file sarà *myUploadedVHD.vhd*.</span><span class="sxs-lookup"><span data-stu-id="61e97-139">The file is stored in the container named *mycontainer* and the new file name will be *myUploadedVHD.vhd*.</span></span>
+### <a name="upload-hello-vhd-tooyour-storage-account"></a><span data-ttu-id="67b95-136">Caricare l'account di archiviazione tooyour hello disco rigido virtuale</span><span class="sxs-lookup"><span data-stu-id="67b95-136">Upload hello VHD tooyour storage account</span></span> 
+<span data-ttu-id="67b95-137">Hello utilizzare [Aggiungi AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) contenitore cmdlet tooupload hello VHD tooa nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="67b95-137">Use hello [Add-AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) cmdlet tooupload hello VHD tooa container in your storage account.</span></span> <span data-ttu-id="67b95-138">In questo esempio caricamenti hello file *myVHD.vhd* da `"C:\Users\Public\Documents\Virtual hard disks\"` tooa account di archiviazione denominato *mystorageaccount* in hello *myResourceGroup* gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="67b95-138">This example uploads hello file *myVHD.vhd* from `"C:\Users\Public\Documents\Virtual hard disks\"` tooa storage account named *mystorageaccount* in hello *myResourceGroup* resource group.</span></span> <span data-ttu-id="67b95-139">file Hello viene archiviato nel contenitore hello denominato *mycontainer* e sarà il nuovo nome di file hello *myUploadedVHD.vhd*.</span><span class="sxs-lookup"><span data-stu-id="67b95-139">hello file is stored in hello container named *mycontainer* and hello new file name will be *myUploadedVHD.vhd*.</span></span>
 
 ```powershell
 $resourceGroupName = "myResourceGroup"
@@ -97,12 +97,12 @@ Add-AzureRmVhd -ResourceGroupName $resourceGroupName -Destination $urlOfUploaded
 ```
 
 
-<span data-ttu-id="61e97-140">Se l'operazione riesce, si ottiene una risposta simile alla seguente:</span><span class="sxs-lookup"><span data-stu-id="61e97-140">If successful, you get a response that looks similar to this:</span></span>
+<span data-ttu-id="67b95-140">Se ha esito positivo, si otterrà una risposta simile toothis simile:</span><span class="sxs-lookup"><span data-stu-id="67b95-140">If successful, you get a response that looks similar toothis:</span></span>
 
 ```powershell
-MD5 hash is being calculated for the file C:\Users\Public\Documents\Virtual hard disks\myVHD.vhd.
+MD5 hash is being calculated for hello file C:\Users\Public\Documents\Virtual hard disks\myVHD.vhd.
 MD5 hash calculation is completed.
-Elapsed time for the operation: 00:03:35
+Elapsed time for hello operation: 00:03:35
 Creating new page blob of size 53687091712...
 Elapsed time for upload: 01:12:49
 
@@ -111,20 +111,20 @@ LocalFilePath           DestinationUri
 C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontainer/myUploadedVHD.vhd
 ```
 
-<span data-ttu-id="61e97-141">L'esecuzione del comando potrebbe richiedere del tempo, a seconda della connessione di rete e delle dimensioni del file VHD.</span><span class="sxs-lookup"><span data-stu-id="61e97-141">Depending on your network connection and the size of your VHD file, this command may take a while to complete</span></span>
+<span data-ttu-id="67b95-141">La connessione di rete e delle dimensioni di hello del file di disco rigido virtuale, questo comando potrebbe richiedere qualche minuto toocomplete</span><span class="sxs-lookup"><span data-stu-id="67b95-141">Depending on your network connection and hello size of your VHD file, this command may take a while toocomplete</span></span>
 
-### <a name="create-a-managed-disk-from-the-vhd"></a><span data-ttu-id="61e97-142">Creare un disco gestito dal disco rigido virtuale</span><span class="sxs-lookup"><span data-stu-id="61e97-142">Create a managed disk from the VHD</span></span>
+### <a name="create-a-managed-disk-from-hello-vhd"></a><span data-ttu-id="67b95-142">Creare un disco gestito da hello disco rigido virtuale</span><span class="sxs-lookup"><span data-stu-id="67b95-142">Create a managed disk from hello VHD</span></span>
 
-<span data-ttu-id="61e97-143">Creare un disco gestito dal disco rigido virtuale specializzato nell'account di archiviazione usando [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span><span class="sxs-lookup"><span data-stu-id="61e97-143">Create a managed disk from the specialized VHD in your storage account using [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span></span> <span data-ttu-id="61e97-144">Questo esempio usa **myOSDisk1** come nome del disco, inserisce il disco nella risorsa di archiviazione *StandardLRS* e usa *https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd* come URI per il disco rigido virtuale di origine.</span><span class="sxs-lookup"><span data-stu-id="61e97-144">This example uses **myOSDisk1** for the disk name, puts the disk in *StandardLRS* storage, and uses *https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd* as the URI for the source VHD.</span></span>
+<span data-ttu-id="67b95-143">Creare un disco gestito da hello specializzato di disco rigido virtuale in cui l'account di archiviazione utilizzando [New AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span><span class="sxs-lookup"><span data-stu-id="67b95-143">Create a managed disk from hello specialized VHD in your storage account using [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span></span> <span data-ttu-id="67b95-144">Questo esempio viene utilizzato **myOSDisk1** per il nome del disco hello, inserisce hello disco *StandardLRS* archiviazione e utilizza *https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd* come hello URI per l'origine hello disco rigido virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-144">This example uses **myOSDisk1** for hello disk name, puts hello disk in *StandardLRS* storage, and uses *https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd* as hello URI for hello source VHD.</span></span>
 
-<span data-ttu-id="61e97-145">Creare un nuovo gruppo di risorse per la nuova VM.</span><span class="sxs-lookup"><span data-stu-id="61e97-145">Create a new resource group for the new VM.</span></span>
+<span data-ttu-id="67b95-145">Creare un nuovo gruppo di risorse per hello nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-145">Create a new resource group for hello new VM.</span></span>
 
 ```powershell
 $destinationResourceGroup = 'myDestinationResourceGroup'
 New-AzureRmResourceGroup -Location $location -Name $destinationResourceGroup
 ```
 
-<span data-ttu-id="61e97-146">Creare il nuovo disco del sistema operativo dal disco rigido virtuale caricato.</span><span class="sxs-lookup"><span data-stu-id="61e97-146">Create the new OS disk from the uploaded VHD.</span></span> 
+<span data-ttu-id="67b95-146">Creare nuovo disco del sistema operativo hello da hello caricato disco rigido virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-146">Create hello new OS disk from hello uploaded VHD.</span></span> 
 
 ```powershell
 $sourceUri = https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd)
@@ -135,16 +135,16 @@ $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk `
     -ResourceGroupName $destinationResourceGroup
 ```
 
-## <a name="option-2-copy-an-existing-azure-vm"></a><span data-ttu-id="61e97-147">Opzione 2: Copiare una VM di Azure esistente</span><span class="sxs-lookup"><span data-stu-id="61e97-147">Option 2: Copy an existing Azure VM</span></span>
+## <a name="option-2-copy-an-existing-azure-vm"></a><span data-ttu-id="67b95-147">Opzione 2: Copiare una VM di Azure esistente</span><span class="sxs-lookup"><span data-stu-id="67b95-147">Option 2: Copy an existing Azure VM</span></span>
 
-<span data-ttu-id="61e97-148">È possibile creare una copia di una VM che usa dischi gestiti acquisendo uno snapshot della VM, quindi usando tale snapshot per creare un nuovo disco gestito e una nuova VM.</span><span class="sxs-lookup"><span data-stu-id="61e97-148">You can create a copy of a VM that uses managed disks by taking a snapshot of the VM, then using that snapshot to create a new managed disk and a new VM.</span></span>
+<span data-ttu-id="67b95-148">È possibile creare una copia di una macchina virtuale che utilizza dischi gestiti da creare uno snapshot di hello VM, quindi utilizza tale toocreate snapshot un nuovo gestito disco e una nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-148">You can create a copy of a VM that uses managed disks by taking a snapshot of hello VM, then using that snapshot toocreate a new managed disk and a new VM.</span></span>
 
 
-### <a name="take-a-snapshot-of-the-os-disk"></a><span data-ttu-id="61e97-149">Acquisire uno snapshot del disco del sistema operativo</span><span class="sxs-lookup"><span data-stu-id="61e97-149">Take a snapshot of the OS disk</span></span>
+### <a name="take-a-snapshot-of-hello-os-disk"></a><span data-ttu-id="67b95-149">Creare uno snapshot del disco del sistema operativo hello</span><span class="sxs-lookup"><span data-stu-id="67b95-149">Take a snapshot of hello OS disk</span></span>
 
-<span data-ttu-id="61e97-150">È possibile acquisire uno snapshot di un'intera VM (tutti i dischi inclusi) o solo di un singolo disco.</span><span class="sxs-lookup"><span data-stu-id="61e97-150">You can take a snapshot of and entire VM (including all disks) or of just a single disk.</span></span> <span data-ttu-id="61e97-151">I passaggi seguenti illustrano come acquisire uno snapshot solo del disco del sistema operativo della VM usando il cmdlet [New-AzureRmSnapshot](/powershell/module/azurerm.compute/new-azurermsnapshot).</span><span class="sxs-lookup"><span data-stu-id="61e97-151">The following steps show you how to take a snapshot of just the OS disk of your VM using the [New-AzureRmSnapshot](/powershell/module/azurerm.compute/new-azurermsnapshot) cmdlet.</span></span> 
+<span data-ttu-id="67b95-150">È possibile acquisire uno snapshot di un'intera VM (tutti i dischi inclusi) o solo di un singolo disco.</span><span class="sxs-lookup"><span data-stu-id="67b95-150">You can take a snapshot of and entire VM (including all disks) or of just a single disk.</span></span> <span data-ttu-id="67b95-151">Hello passaggi seguenti viene illustrato come tootake uno snapshot di appena hello del sistema operativo disco di macchina virtuale utilizzando hello [New AzureRmSnapshot](/powershell/module/azurerm.compute/new-azurermsnapshot) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="67b95-151">hello following steps show you how tootake a snapshot of just hello OS disk of your VM using hello [New-AzureRmSnapshot](/powershell/module/azurerm.compute/new-azurermsnapshot) cmdlet.</span></span> 
 
-<span data-ttu-id="61e97-152">Impostare alcuni parametri.</span><span class="sxs-lookup"><span data-stu-id="61e97-152">Set some parameters.</span></span> 
+<span data-ttu-id="67b95-152">Impostare alcuni parametri.</span><span class="sxs-lookup"><span data-stu-id="67b95-152">Set some parameters.</span></span> 
 
  ```powershell
 $resourceGroupName = 'myResourceGroup' 
@@ -153,50 +153,50 @@ $location = 'westus'
 $snapshotName = 'mySnapshot'  
 ```
 
-<span data-ttu-id="61e97-153">Ottenere l'oggetto macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="61e97-153">Get the VM object.</span></span>
+<span data-ttu-id="67b95-153">Ottenere l'oggetto macchina virtuale hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-153">Get hello VM object.</span></span>
 
 ```powershell
 $vm = Get-AzureRmVM -Name $vmName -ResourceGroupName $resourceGroupName
 ```
-<span data-ttu-id="61e97-154">Ottenere il nome del disco del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="61e97-154">Get the OS disk name.</span></span>
+<span data-ttu-id="67b95-154">Ottenere il nome del disco hello del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="67b95-154">Get hello OS disk name.</span></span>
 
  ```powershell
 $disk = Get-AzureRmDisk -ResourceGroupName $resourceGroupName -DiskName $vm.StorageProfile.OsDisk.Name
 ```
 
-<span data-ttu-id="61e97-155">Creare la configurazione dello snapshot.</span><span class="sxs-lookup"><span data-stu-id="61e97-155">Create the snapshot configuration.</span></span> 
+<span data-ttu-id="67b95-155">Creare hello snapshot configurazione.</span><span class="sxs-lookup"><span data-stu-id="67b95-155">Create hello snapshot configuration.</span></span> 
 
  ```powershell
 $snapshotConfig =  New-AzureRmSnapshotConfig -SourceUri $disk.Id -OsType Windows -CreateOption Copy -Location $location 
 ```
 
-<span data-ttu-id="61e97-156">Ottenere lo snapshot.</span><span class="sxs-lookup"><span data-stu-id="61e97-156">Take the snapshot.</span></span>
+<span data-ttu-id="67b95-156">Creare snapshot hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-156">Take hello snapshot.</span></span>
 
 ```powershell
 $snapShot = New-AzureRmSnapshot -Snapshot $snapshotConfig -SnapshotName $snapshotName -ResourceGroupName $resourceGroupName
 ```
 
 
-<span data-ttu-id="61e97-157">Se si prevede di usare lo snapshot per creare una macchina virtuale a prestazioni elevate, usare il parametro `-AccountType Premium_LRS` con il comando New-AzureRmSnapshot.</span><span class="sxs-lookup"><span data-stu-id="61e97-157">If you plan to use the snapshot to create a VM that needs to be high performing, use the parameter `-AccountType Premium_LRS` with the New-AzureRmSnapshot command.</span></span> <span data-ttu-id="61e97-158">Il parametro crea lo snapshot in modo tale che venga archiviato come un disco gestito Premium.</span><span class="sxs-lookup"><span data-stu-id="61e97-158">The parameter creates the snapshot so that it's stored as a Premium Managed Disk.</span></span> <span data-ttu-id="61e97-159">I dischi gestiti Premium sono più costosi di quelli Standard.</span><span class="sxs-lookup"><span data-stu-id="61e97-159">Premium Managed Disks are more expensive than Standard.</span></span> <span data-ttu-id="61e97-160">Assicurarsi quindi che l'opzione Premium sia realmente necessaria prima di usare il parametro.</span><span class="sxs-lookup"><span data-stu-id="61e97-160">So be sure you really need Premium before using the parameter.</span></span>
+<span data-ttu-id="67b95-157">Se si prevede di toouse hello snapshot toocreate una macchina virtuale che deve toobe a prestazioni elevate, utilizzare il parametro hello `-AccountType Premium_LRS` con il comando New-AzureRmSnapshot hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-157">If you plan toouse hello snapshot toocreate a VM that needs toobe high performing, use hello parameter `-AccountType Premium_LRS` with hello New-AzureRmSnapshot command.</span></span> <span data-ttu-id="67b95-158">il parametro Hello Crea snapshot hello in modo che viene archiviato come un disco gestito Premium.</span><span class="sxs-lookup"><span data-stu-id="67b95-158">hello parameter creates hello snapshot so that it's stored as a Premium Managed Disk.</span></span> <span data-ttu-id="67b95-159">I dischi gestiti Premium sono più costosi di quelli Standard.</span><span class="sxs-lookup"><span data-stu-id="67b95-159">Premium Managed Disks are more expensive than Standard.</span></span> <span data-ttu-id="67b95-160">Pertanto è necessario assicurarsi che occorre Premium prima di utilizzare il parametro hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-160">So be sure you really need Premium before using hello parameter.</span></span>
 
-### <a name="create-a-new-disk-from-the-snapshot"></a><span data-ttu-id="61e97-161">Creare un nuovo disco dallo snapshot</span><span class="sxs-lookup"><span data-stu-id="61e97-161">Create a new disk from the snapshot</span></span>
+### <a name="create-a-new-disk-from-hello-snapshot"></a><span data-ttu-id="67b95-161">Creare un nuovo disco da snapshot hello</span><span class="sxs-lookup"><span data-stu-id="67b95-161">Create a new disk from hello snapshot</span></span>
 
-<span data-ttu-id="61e97-162">Creare un disco gestito dallo snapshot usando [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span><span class="sxs-lookup"><span data-stu-id="61e97-162">Create a managed disk from the snapshot using [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span></span> <span data-ttu-id="61e97-163">Questo esempio usa *myOSDisk* come nome del disco.</span><span class="sxs-lookup"><span data-stu-id="61e97-163">This example uses *myOSDisk* for the disk name.</span></span>
+<span data-ttu-id="67b95-162">Creare un disco gestito da hello snapshot utilizzando [New AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span><span class="sxs-lookup"><span data-stu-id="67b95-162">Create a managed disk from hello snapshot using [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk).</span></span> <span data-ttu-id="67b95-163">Questo esempio viene utilizzato *myOSDisk* per il nome del disco hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-163">This example uses *myOSDisk* for hello disk name.</span></span>
 
-<span data-ttu-id="61e97-164">Creare un nuovo gruppo di risorse per la nuova VM.</span><span class="sxs-lookup"><span data-stu-id="61e97-164">Create a new resource group for the new VM.</span></span>
+<span data-ttu-id="67b95-164">Creare un nuovo gruppo di risorse per hello nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-164">Create a new resource group for hello new VM.</span></span>
 
 ```powershell
 $destinationResourceGroup = 'myDestinationResourceGroup'
 New-AzureRmResourceGroup -Location $location -Name $destinationResourceGroup
 ```
 
-<span data-ttu-id="61e97-165">Impostare il nome del disco del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="61e97-165">Set the OS disk name.</span></span> 
+<span data-ttu-id="67b95-165">Impostare il nome del disco hello del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="67b95-165">Set hello OS disk name.</span></span> 
 
 ```powershell
 $osDiskName = 'myOsDisk'
 ```
 
-<span data-ttu-id="61e97-166">Creare il disco gestito.</span><span class="sxs-lookup"><span data-stu-id="61e97-166">Create the managed disk.</span></span>
+<span data-ttu-id="67b95-166">Disco gestito hello creato.</span><span class="sxs-lookup"><span data-stu-id="67b95-166">Create hello managed disk.</span></span>
 
 ```powershell
 $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk `
@@ -206,22 +206,22 @@ $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk `
 ```
 
 
-## <a name="create-the-new-vm"></a><span data-ttu-id="61e97-167">Creare la nuova VM</span><span class="sxs-lookup"><span data-stu-id="61e97-167">Create the new VM</span></span> 
+## <a name="create-hello-new-vm"></a><span data-ttu-id="67b95-167">Creare hello nuova macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="67b95-167">Create hello new VM</span></span> 
 
-<span data-ttu-id="61e97-168">Creare le risorse di rete e le altre risorse da usare nella nuova VM.</span><span class="sxs-lookup"><span data-stu-id="61e97-168">Create networking and other VM resources to be used by the new VM.</span></span>
+<span data-ttu-id="67b95-168">Creare una rete e altri toobe risorse macchina virtuale utilizzato da hello nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-168">Create networking and other VM resources toobe used by hello new VM.</span></span>
 
-### <a name="create-the-subnet-and-vnet"></a><span data-ttu-id="61e97-169">Creare la subNet e la vNet</span><span class="sxs-lookup"><span data-stu-id="61e97-169">Create the subNet and vNet</span></span>
+### <a name="create-hello-subnet-and-vnet"></a><span data-ttu-id="67b95-169">Creare reti virtuali e la subNet hello</span><span class="sxs-lookup"><span data-stu-id="67b95-169">Create hello subNet and vNet</span></span>
 
-<span data-ttu-id="61e97-170">Creare la rete virtuale e la subnet della [rete virtuale](../../virtual-network/virtual-networks-overview.md).</span><span class="sxs-lookup"><span data-stu-id="61e97-170">Create the vNet and subNet of the [virtual network](../../virtual-network/virtual-networks-overview.md).</span></span>
+<span data-ttu-id="67b95-170">Creare reti virtuali hello e la subNet di hello [rete virtuale](../../virtual-network/virtual-networks-overview.md).</span><span class="sxs-lookup"><span data-stu-id="67b95-170">Create hello vNet and subNet of hello [virtual network](../../virtual-network/virtual-networks-overview.md).</span></span>
 
-<span data-ttu-id="61e97-171">Creare la subnet.</span><span class="sxs-lookup"><span data-stu-id="61e97-171">Create the subNet.</span></span> <span data-ttu-id="61e97-172">In questo esempio viene creata una subnet denominata **mySubNet** nel gruppo di risorse **myDestinationResourceGroup** e il prefisso dell'indirizzo della subnet viene impostato su **10.0.0.0/24**.</span><span class="sxs-lookup"><span data-stu-id="61e97-172">This example creates a subnet named **mySubNet**, in the resource group **myDestinationResourceGroup**, and sets the subnet address prefix to **10.0.0.0/24**.</span></span>
+<span data-ttu-id="67b95-171">Creare subNet hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-171">Create hello subNet.</span></span> <span data-ttu-id="67b95-172">Questo esempio viene creata una subnet denominata **mySubNet**, nel gruppo di risorse hello **myDestinationResourceGroup**, e set hello prefisso di indirizzo di subnet troppo**10.0.0.0/24**.</span><span class="sxs-lookup"><span data-stu-id="67b95-172">This example creates a subnet named **mySubNet**, in hello resource group **myDestinationResourceGroup**, and sets hello subnet address prefix too**10.0.0.0/24**.</span></span>
    
 ```powershell
 $subnetName = 'mySubNet'
 $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
 ```
 
-<span data-ttu-id="61e97-173">Creare la rete virtuale.</span><span class="sxs-lookup"><span data-stu-id="61e97-173">Create the vNet.</span></span> <span data-ttu-id="61e97-174">In questo esempio il nome della rete virtuale è **myVnetName**, la posizione specificata è **Stati Uniti occidentali** e il prefisso dell'indirizzo per la rete virtuale è **10.0.0.0/16**.</span><span class="sxs-lookup"><span data-stu-id="61e97-174">This example sets the virtual network name to be **myVnetName**, the location to **West US**, and the address prefix for the virtual network to **10.0.0.0/16**.</span></span> 
+<span data-ttu-id="67b95-173">Creare una rete virtuale hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-173">Create hello vNet.</span></span> <span data-ttu-id="67b95-174">In questo esempio imposta hello toobe nome di rete virtuale **myVnetName**, hello percorso troppo**Stati Uniti occidentali**, e hello prefisso dell'indirizzo per la rete virtuale hello troppo**10.0.0.0/16**.</span><span class="sxs-lookup"><span data-stu-id="67b95-174">This example sets hello virtual network name toobe **myVnetName**, hello location too**West US**, and hello address prefix for hello virtual network too**10.0.0.0/16**.</span></span> 
    
 ```powershell
 $vnetName = "myVnetName"
@@ -230,10 +230,10 @@ $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $destinatio
 ```    
 
 
-### <a name="create-the-network-security-group-and-an-rdp-rule"></a><span data-ttu-id="61e97-175">Creare il gruppo di sicurezza di rete e una regola RDP</span><span class="sxs-lookup"><span data-stu-id="61e97-175">Create the network security group and an RDP rule</span></span>
-<span data-ttu-id="61e97-176">Per essere in grado di accedere alla VM tramite RDP, è necessario disporre di una regola di sicurezza che consenta l'accesso RDP sulla porta 3389.</span><span class="sxs-lookup"><span data-stu-id="61e97-176">To be able to log in to your VM using RDP, you need to have a security rule that allows RDP access on port 3389.</span></span> <span data-ttu-id="61e97-177">Poiché il disco rigido virtuale per la nuova macchina virtuale è stato creato da una VM specializzata esistente, è possibile usare un account della macchina virtuale di origine per RDP.</span><span class="sxs-lookup"><span data-stu-id="61e97-177">Because the VHD for the new VM was created from an existing specialized VM, you can use an account from the source virtual machine for RDP.</span></span>
+### <a name="create-hello-network-security-group-and-an-rdp-rule"></a><span data-ttu-id="67b95-175">Creare gruppi di sicurezza di rete hello e una regola di RDP</span><span class="sxs-lookup"><span data-stu-id="67b95-175">Create hello network security group and an RDP rule</span></span>
+<span data-ttu-id="67b95-176">toobe toolog in grado di tooyour macchina virtuale tramite RDP, è necessario toohave una regola di sicurezza che consente l'accesso RDP sulla porta 3389.</span><span class="sxs-lookup"><span data-stu-id="67b95-176">toobe able toolog in tooyour VM using RDP, you need toohave a security rule that allows RDP access on port 3389.</span></span> <span data-ttu-id="67b95-177">Poiché hello VHD per hello nuova macchina virtuale è stato creato da una macchina virtuale specializzata esistente, è possibile utilizzare un account dalla macchina virtuale di origine hello per RDP.</span><span class="sxs-lookup"><span data-stu-id="67b95-177">Because hello VHD for hello new VM was created from an existing specialized VM, you can use an account from hello source virtual machine for RDP.</span></span>
 
-<span data-ttu-id="61e97-178">In questo esempio il nome NSG impostato è **myNsg**, mentre il nome della regola RDP è **myRdpRule**.</span><span class="sxs-lookup"><span data-stu-id="61e97-178">This example sets the NSG name to **myNsg** and the RDP rule name to **myRdpRule**.</span></span>
+<span data-ttu-id="67b95-178">In questo esempio imposta hello Nome gruppo troppo**myNsg** e hello RDP troppo nome regola**myRdpRule**.</span><span class="sxs-lookup"><span data-stu-id="67b95-178">This example sets hello NSG name too**myNsg** and hello RDP rule name too**myRdpRule**.</span></span>
 
 ```powershell
 $nsgName = "myNsg"
@@ -247,12 +247,12 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $destinationResourceGr
     
 ```
 
-<span data-ttu-id="61e97-179">Per altre informazioni sugli endpoint e sulle regole NSG, vedere [Apertura di porte a una VM tramite PowerShell](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="61e97-179">For more information about endpoints and NSG rules, see [Opening ports to a VM in Azure using PowerShell](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+<span data-ttu-id="67b95-179">Per ulteriori informazioni sugli endpoint e le regole di gruppo, vedere [apertura di porte tooa VM in Azure utilizzando PowerShell](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="67b95-179">For more information about endpoints and NSG rules, see [Opening ports tooa VM in Azure using PowerShell](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 
-### <a name="create-a-public-ip-address-and-nic"></a><span data-ttu-id="61e97-180">Creare un indirizzo IP pubblico e NIC</span><span class="sxs-lookup"><span data-stu-id="61e97-180">Create a public IP address and NIC</span></span>
-<span data-ttu-id="61e97-181">Per abilitare la comunicazione con la macchina virtuale nella rete virtuale, sono necessari un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) e un'interfaccia di rete.</span><span class="sxs-lookup"><span data-stu-id="61e97-181">To enable communication with the virtual machine in the virtual network, you need a [public IP address](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) and a network interface.</span></span>
+### <a name="create-a-public-ip-address-and-nic"></a><span data-ttu-id="67b95-180">Creare un indirizzo IP pubblico e NIC</span><span class="sxs-lookup"><span data-stu-id="67b95-180">Create a public IP address and NIC</span></span>
+<span data-ttu-id="67b95-181">comunicazione tooenable con hello di macchina virtuale nella rete virtuale hello, è necessario un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) e un'interfaccia di rete.</span><span class="sxs-lookup"><span data-stu-id="67b95-181">tooenable communication with hello virtual machine in hello virtual network, you need a [public IP address](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) and a network interface.</span></span>
 
-<span data-ttu-id="61e97-182">Creare l'IP pubblico.</span><span class="sxs-lookup"><span data-stu-id="61e97-182">Create the public IP.</span></span> <span data-ttu-id="61e97-183">In questo esempio, il nome dell'indirizzo IP pubblico è **myIP**.</span><span class="sxs-lookup"><span data-stu-id="61e97-183">In this example, the public IP address name is set to **myIP**.</span></span>
+<span data-ttu-id="67b95-182">Creare l'indirizzo IP pubblico hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-182">Create hello public IP.</span></span> <span data-ttu-id="67b95-183">In questo esempio, nome dell'indirizzo IP pubblico hello è troppo**myIP**.</span><span class="sxs-lookup"><span data-stu-id="67b95-183">In this example, hello public IP address name is set too**myIP**.</span></span>
    
 ```powershell
 $ipName = "myIP"
@@ -260,7 +260,7 @@ $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $destinationR
    -AllocationMethod Dynamic
 ```       
 
-<span data-ttu-id="61e97-184">Creare la scheda NIC.</span><span class="sxs-lookup"><span data-stu-id="61e97-184">Create the NIC.</span></span> <span data-ttu-id="61e97-185">In questo esempio, il nome specificato della scheda NIC è **myNicName**.</span><span class="sxs-lookup"><span data-stu-id="61e97-185">In this example, the NIC name is set to **myNicName**.</span></span>
+<span data-ttu-id="67b95-184">Creare una scheda di rete hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-184">Create hello NIC.</span></span> <span data-ttu-id="67b95-185">In questo esempio, il nome di interfaccia di rete hello è impostato troppo**myNicName**.</span><span class="sxs-lookup"><span data-stu-id="67b95-185">In this example, hello NIC name is set too**myNicName**.</span></span>
    
 ```powershell
 $nicName = "myNicName"
@@ -270,40 +270,40 @@ $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $destinatio
 
 
 
-### <a name="set-the-vm-name-and-size"></a><span data-ttu-id="61e97-186">Impostare il nome e le dimensioni della macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="61e97-186">Set the VM name and size</span></span>
+### <a name="set-hello-vm-name-and-size"></a><span data-ttu-id="67b95-186">Nome della macchina virtuale hello e le dimensioni</span><span class="sxs-lookup"><span data-stu-id="67b95-186">Set hello VM name and size</span></span>
 
-<span data-ttu-id="61e97-187">Questo esempio imposta il nome della macchina virtuale su *myVM* e le dimensioni su *Standard_A2*.</span><span class="sxs-lookup"><span data-stu-id="61e97-187">This example sets the VM name to *myVM* and the VM size to *Standard_A2*.</span></span>
+<span data-ttu-id="67b95-187">In questo esempio imposta hello nome della macchina virtuale troppo*myVM* e hello VM dimensioni troppo*Standard_A2*.</span><span class="sxs-lookup"><span data-stu-id="67b95-187">This example sets hello VM name too*myVM* and hello VM size too*Standard_A2*.</span></span>
 
 ```powershell
 $vmName = "myVM"
 $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A2"
 ```
 
-### <a name="add-the-nic"></a><span data-ttu-id="61e97-188">Aggiungere la scheda di interfaccia di rete</span><span class="sxs-lookup"><span data-stu-id="61e97-188">Add the NIC</span></span>
+### <a name="add-hello-nic"></a><span data-ttu-id="67b95-188">Aggiungere hello NIC</span><span class="sxs-lookup"><span data-stu-id="67b95-188">Add hello NIC</span></span>
     
 ```powershell
 $vm = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
 ```
     
 
-### <a name="add-the-os-disk"></a><span data-ttu-id="61e97-189">Aggiungere il disco del sistema operativo</span><span class="sxs-lookup"><span data-stu-id="61e97-189">Add the OS disk</span></span> 
+### <a name="add-hello-os-disk"></a><span data-ttu-id="67b95-189">Aggiungere il disco del sistema operativo hello</span><span class="sxs-lookup"><span data-stu-id="67b95-189">Add hello OS disk</span></span> 
 
-<span data-ttu-id="61e97-190">Aggiungere il disco del sistema operativo alla configurazione usando [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk).</span><span class="sxs-lookup"><span data-stu-id="61e97-190">Add the OS disk to the configuration using [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk).</span></span> <span data-ttu-id="61e97-191">In questo esempio le dimensioni del disco vengono impostate su *128 GB* e viene collegato il disco gestito come disco del sistema operativo *Windows*.</span><span class="sxs-lookup"><span data-stu-id="61e97-191">This example sets the size of the disk to *128 GB* and attaches the managed disk as a *Windows* OS disk.</span></span>
+<span data-ttu-id="67b95-190">Aggiungere hello del sistema operativo disco toohello configurazione tramite [Set AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk).</span><span class="sxs-lookup"><span data-stu-id="67b95-190">Add hello OS disk toohello configuration using [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk).</span></span> <span data-ttu-id="67b95-191">In questo esempio imposta dimensioni hello del disco hello troppo*128 GB* e collega disco gestito di hello come un *Windows* disco del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="67b95-191">This example sets hello size of hello disk too*128 GB* and attaches hello managed disk as a *Windows* OS disk.</span></span>
  
 ```powershell
 $vm = Set-AzureRmVMOSDisk -VM $vm -ManagedDiskId $osDisk.Id -StorageAccountType StandardLRS `
     -DiskSizeInGB 128 -CreateOption Attach -Windows
 ```
 
-### <a name="complete-the-vm"></a><span data-ttu-id="61e97-192">Completare la VM</span><span class="sxs-lookup"><span data-stu-id="61e97-192">Complete the VM</span></span> 
+### <a name="complete-hello-vm"></a><span data-ttu-id="67b95-192">Completare hello VM</span><span class="sxs-lookup"><span data-stu-id="67b95-192">Complete hello VM</span></span> 
 
-<span data-ttu-id="61e97-193">Creare la macchina virtuale usando le configurazioni [New-AzureRMVM](/powershell/module/azurerm.compute/new-azurermvm) appena create.</span><span class="sxs-lookup"><span data-stu-id="61e97-193">Create the VM using [New-AzureRMVM](/powershell/module/azurerm.compute/new-azurermvm)the configurations that we just created.</span></span>
+<span data-ttu-id="67b95-193">Creare hello VM utilizzando [New AzureRMVM](/powershell/module/azurerm.compute/new-azurermvm)hello configurazioni che abbiamo appena creato.</span><span class="sxs-lookup"><span data-stu-id="67b95-193">Create hello VM using [New-AzureRMVM](/powershell/module/azurerm.compute/new-azurermvm)hello configurations that we just created.</span></span>
 
 ```powershell
 New-AzureRmVM -ResourceGroupName $destinationResourceGroup -Location $location -VM $vm
 ```
 
-<span data-ttu-id="61e97-194">Se il comando ha esito positivo, viene visualizzato un output simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="61e97-194">If this command was successful, you'll see output like this:</span></span>
+<span data-ttu-id="67b95-194">Se il comando ha esito positivo, viene visualizzato un output simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="67b95-194">If this command was successful, you'll see output like this:</span></span>
 
 ```powershell
 RequestId IsSuccessStatusCode StatusCode ReasonPhrase
@@ -312,14 +312,14 @@ RequestId IsSuccessStatusCode StatusCode ReasonPhrase
 
 ```
 
-### <a name="verify-that-the-vm-was-created"></a><span data-ttu-id="61e97-195">Verificare che la VM sia stata creata</span><span class="sxs-lookup"><span data-stu-id="61e97-195">Verify that the VM was created</span></span>
-<span data-ttu-id="61e97-196">La VM appena creata verrà visualizzata nel [portale di Azure](https://portal.azure.com) in **Sfoglia** > **Macchine virtuali** oppure usando i comandi di PowerShell seguenti:</span><span class="sxs-lookup"><span data-stu-id="61e97-196">You should see the newly created VM either in the [Azure portal](https://portal.azure.com), under **Browse** > **Virtual machines**, or by using the following PowerShell commands:</span></span>
+### <a name="verify-that-hello-vm-was-created"></a><span data-ttu-id="67b95-195">Verificare che hello che è stata creata una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="67b95-195">Verify that hello VM was created</span></span>
+<span data-ttu-id="67b95-196">È consigliabile vedere hello appena creato VM in hello [portale di Azure](https://portal.azure.com), in **Sfoglia** > **macchine virtuali**, oppure utilizzando hello seguente PowerShell comandi:</span><span class="sxs-lookup"><span data-stu-id="67b95-196">You should see hello newly created VM either in hello [Azure portal](https://portal.azure.com), under **Browse** > **Virtual machines**, or by using hello following PowerShell commands:</span></span>
 
 ```powershell
 $vmList = Get-AzureRmVM -ResourceGroupName $destinationResourceGroup
 $vmList.Name
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="61e97-197">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="61e97-197">Next steps</span></span>
-<span data-ttu-id="61e97-198">Per accedere alla nuova macchina virtuale, passare alla VM nel [portale](https://portal.azure.com), fare clic su **Connetti**e aprire il file RDP di Desktop remoto.</span><span class="sxs-lookup"><span data-stu-id="61e97-198">To sign in to your new virtual machine, browse to the VM in the [portal](https://portal.azure.com), click **Connect**, and open the Remote Desktop RDP file.</span></span> <span data-ttu-id="61e97-199">Usare le credenziali dell'account della macchina virtuale originale per accedere alla nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="61e97-199">Use the account credentials of your original virtual machine to sign in to your new virtual machine.</span></span> <span data-ttu-id="61e97-200">Per altre informazioni, vedere [Come connettersi e accedere a una macchina virtuale di Azure che esegue Windows](connect-logon.md).</span><span class="sxs-lookup"><span data-stu-id="61e97-200">For more information, see [How to connect and log on to an Azure virtual machine running Windows](connect-logon.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="67b95-197">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="67b95-197">Next steps</span></span>
+<span data-ttu-id="67b95-198">toosign tooyour nuova macchina virtuale, toohello Sfoglia VM in hello [portale](https://portal.azure.com), fare clic su **Connetti**e il file desktop remoto aprire hello.</span><span class="sxs-lookup"><span data-stu-id="67b95-198">toosign in tooyour new virtual machine, browse toohello VM in hello [portal](https://portal.azure.com), click **Connect**, and open hello Remote Desktop RDP file.</span></span> <span data-ttu-id="67b95-199">Utilizzare le credenziali dell'account hello del toosign macchina virtuale originale tooyour nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="67b95-199">Use hello account credentials of your original virtual machine toosign in tooyour new virtual machine.</span></span> <span data-ttu-id="67b95-200">Per ulteriori informazioni, vedere [come tooconnect e tooan virtuali di Azure di accesso del computer che eseguono Windows](connect-logon.md).</span><span class="sxs-lookup"><span data-stu-id="67b95-200">For more information, see [How tooconnect and log on tooan Azure virtual machine running Windows](connect-logon.md).</span></span>
 

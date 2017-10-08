@@ -4,9 +4,9 @@
 ## [Domande frequenti](virtual-machines-windows-sql-server-iaas-faq.md)
  
 # Attività iniziali
-## [Effettuare il provisioning di una macchina virtuale nel portale di Azure](virtual-machines-windows-portal-sql-server-provision.md)
+## [Eseguire il provisioning di una macchina virtuale in hello portale di Azure](virtual-machines-windows-portal-sql-server-provision.md)
 ## [Effettuare il provisioning di una macchina virtuale con Azure PowerShell](virtual-machines-windows-ps-sql-create.md)
-## [Connettersi a una macchina virtuale](virtual-machines-windows-sql-connect.md)
+## [Connettersi tooa VM](virtual-machines-windows-sql-connect.md)
 ## [Eseguire la migrazione di un database SQL Server](virtual-machines-windows-migrate-sql.md)
 
 # Procedure
@@ -22,8 +22,8 @@
 ### Istanza del cluster di failover
 #### [Configurare](virtual-machines-windows-portal-sql-create-failover-cluster.md)
 
-## Manage
-### [Usare l'estensione Agente IaaS di SQL Server](virtual-machines-windows-sql-server-agent-extension.md)
+## Gestisci
+### [Utilizzare l'estensione di SQL Server IaaS Agent hello](virtual-machines-windows-sql-server-agent-extension.md)
 ### [Applicazione automatica delle patch](virtual-machines-windows-sql-automated-patching.md)
 ### [Configurare l'integrazione dell'insieme di credenziali delle chiavi di Azure](virtual-machines-windows-ps-sql-keyvault.md)
 ### [Considerazioni relative alla sicurezza](virtual-machines-windows-sql-security.md)

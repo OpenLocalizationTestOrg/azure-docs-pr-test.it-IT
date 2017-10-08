@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'archiviazione tabelle e ai servizi connessi di Visual Studio (ASP.NET Core) |Microsoft Docs
-description: Informazioni su come iniziare con il servizio di archiviazione tabelle di Azure in un progetto ASP.NET Core in Visual Studio dopo aver eseguito la connessione a un account di archiviazione con i servizi connessi di Visual Studio
+title: aaaHow tooget avviato con Visual Studio e l'archiviazione tabelle di servizi connessi (ASP.NET Core) | Documenti Microsoft
+description: "La modalità di avvio tooget con l'archiviazione tabelle di Azure in un progetto ASP.NET Core in Visual Studio dopo la connessione di account di archiviazione tooa utilizzando Visual Studio di servizi connessi"
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: kraigb
-ms.openlocfilehash: 8d05fe3ed9a5c66f186a930d4107162c1f322c05
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e3eb3f3e65456108dd3cde7e3e470f98ba456e35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-started-with-azure-table-storage-and-visual-studio-connected-services"></a><span data-ttu-id="637c1-103">Introduzione all'archiviazione tabelle di Azure e ai servizi relativi a Visual Studio</span><span class="sxs-lookup"><span data-stu-id="637c1-103">How to get started with Azure Table storage and Visual Studio connected services</span></span>
+# <a name="how-tooget-started-with-azure-table-storage-and-visual-studio-connected-services"></a><span data-ttu-id="735af-103">La modalità di avvio con l'archiviazione tabelle di Azure e Visual Studio tooget servizi connessi</span><span class="sxs-lookup"><span data-stu-id="735af-103">How tooget started with Azure Table storage and Visual Studio connected services</span></span>
 [!INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
-## <a name="overview"></a><span data-ttu-id="637c1-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="637c1-104">Overview</span></span>
-<span data-ttu-id="637c1-105">Questo articolo descrive come iniziare a usare l'archiviazione tabelle di Azure in Visual Studio dopo avere creato o fatto riferimento a un account di archiviazione di Azure in un progetto ASP.NET Core usando la finestra di dialogo **Aggiungi servizi connessi** di Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="637c1-105">This article describes how get started using Azure Table storage in Visual Studio after you have created or referenced an Azure storage account in an ASP.NET Core project by using the Visual Studio **Add Connected Services** dialog.</span></span>
+## <a name="overview"></a><span data-ttu-id="735af-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="735af-104">Overview</span></span>
+<span data-ttu-id="735af-105">Questo articolo viene descritto come ottenere avviato utilizzando tabelle di Azure in Visual Studio dopo aver creato o riferimento a un account di archiviazione di Azure in un progetto ASP.NET Core tramite archiviazione hello Visual Studio **aggiungere servizi connessi** finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="735af-105">This article describes how get started using Azure Table storage in Visual Studio after you have created or referenced an Azure storage account in an ASP.NET Core project by using hello Visual Studio **Add Connected Services** dialog.</span></span>
 
-<span data-ttu-id="637c1-106">Il servizio di archiviazione tabelle di Azure consente di archiviare grandi quantità di dati strutturati.</span><span class="sxs-lookup"><span data-stu-id="637c1-106">The Azure Table storage service enables you to store large amounts of structured data.</span></span> <span data-ttu-id="637c1-107">Il servizio è un datastore NoSQL che accetta chiamate autenticate dall'interno e dall'esterno del cloud di Azure.</span><span class="sxs-lookup"><span data-stu-id="637c1-107">The service is a NoSQL data store that accepts authenticated calls from inside and outside the Azure cloud.</span></span> <span data-ttu-id="637c1-108">Le tabelle di Azure sono ideali per l'archiviazione di dati strutturati non relazionali.</span><span class="sxs-lookup"><span data-stu-id="637c1-108">Azure tables are ideal for storing structured, non-relational data.</span></span>
+<span data-ttu-id="735af-106">servizio di archiviazione tabelle Azure Hello consente toostore grandi quantità di dati strutturati.</span><span class="sxs-lookup"><span data-stu-id="735af-106">hello Azure Table storage service enables you toostore large amounts of structured data.</span></span> <span data-ttu-id="735af-107">servizio Hello è un archivio dati NoSQL che accetta chiamate autenticate dall'interno ed esterno hello cloud di Azure.</span><span class="sxs-lookup"><span data-stu-id="735af-107">hello service is a NoSQL data store that accepts authenticated calls from inside and outside hello Azure cloud.</span></span> <span data-ttu-id="735af-108">Le tabelle di Azure sono ideali per l'archiviazione di dati strutturati non relazionali.</span><span class="sxs-lookup"><span data-stu-id="735af-108">Azure tables are ideal for storing structured, non-relational data.</span></span>
 
-<span data-ttu-id="637c1-109">L'operazione **Aggiungi servizi connessi** consente di installare i pacchetti NuGet appropriati per accedere all'archiviazione di Azure nel progetto e di aggiungere la stringa di connessione per l'account di archiviazione ai file di configurazione del progetto.</span><span class="sxs-lookup"><span data-stu-id="637c1-109">The **Add Connected Services** operation installs the appropriate NuGet packages to access Azure storage in your project and adds the connection string for the storage account to your project configuration files.</span></span>
+<span data-ttu-id="735af-109">Hello **aggiungere servizi connessi** operazione installa hello appropriato NuGet pacchetti tooaccess archiviazione di Azure nel progetto e aggiunge la stringa di connessione hello per hello dell'account di archiviazione tooyour i file di configurazione di progetto.</span><span class="sxs-lookup"><span data-stu-id="735af-109">hello **Add Connected Services** operation installs hello appropriate NuGet packages tooaccess Azure storage in your project and adds hello connection string for hello storage account tooyour project configuration files.</span></span>
 
-<span data-ttu-id="637c1-110">Per ulteriori informazioni generali sull'utilizzo dell'archiviazione tabelle di Azure, vedere [Introduzione all'archiviazione tabelle di Azure con .NET](../storage/storage-dotnet-how-to-use-tables.md).</span><span class="sxs-lookup"><span data-stu-id="637c1-110">For more general information about using Azure Table storage, see [Get started with Azure Table storage using .NET](../storage/storage-dotnet-how-to-use-tables.md).</span></span>
+<span data-ttu-id="735af-110">Per ulteriori informazioni generali sull'utilizzo dell'archiviazione tabelle di Azure, vedere [Introduzione all'archiviazione tabelle di Azure con .NET](../storage/storage-dotnet-how-to-use-tables.md).</span><span class="sxs-lookup"><span data-stu-id="735af-110">For more general information about using Azure Table storage, see [Get started with Azure Table storage using .NET](../storage/storage-dotnet-how-to-use-tables.md).</span></span>
 
-<span data-ttu-id="637c1-111">Per iniziare, è innanzitutto necessario creare una tabella nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="637c1-111">To get started, you first need to create a table in your storage account.</span></span> <span data-ttu-id="637c1-112">Verrà mostrato come creare una tabella di Azure nel codice.</span><span class="sxs-lookup"><span data-stu-id="637c1-112">We'll show you how to create an Azure table in code.</span></span> <span data-ttu-id="637c1-113">Infine verrà mostrato come eseguire operazioni relative alle tabelle e all'entità di base, come l'aggiunta, la modifica, la lettura e la lettura delle entità delle tabelle.</span><span class="sxs-lookup"><span data-stu-id="637c1-113">We'll also show you how to perform basic table and entity operations, such as adding, modifying, reading and reading table entities.</span></span> <span data-ttu-id="637c1-114">Negli esempi, scritti in codice C\# viene usata la libreria client di Archiviazione di Azure per .NET.</span><span class="sxs-lookup"><span data-stu-id="637c1-114">The samples are written in C\# code and use the Azure Storage Client Library for .NET.</span></span>
+<span data-ttu-id="735af-111">tooget avviato, è necessario innanzitutto toocreate una tabella nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="735af-111">tooget started, you first need toocreate a table in your storage account.</span></span> <span data-ttu-id="735af-112">Vi mostreremo come tabella di toocreate di Azure nel codice.</span><span class="sxs-lookup"><span data-stu-id="735af-112">We'll show you how toocreate an Azure table in code.</span></span> <span data-ttu-id="735af-113">È inoltre mostreremo come tabella di base tooperform e operazioni di entità, ad esempio aggiunta, modifica, lettura e la lettura della tabella entità.</span><span class="sxs-lookup"><span data-stu-id="735af-113">We'll also show you how tooperform basic table and entity operations, such as adding, modifying, reading and reading table entities.</span></span> <span data-ttu-id="735af-114">Hello esempi sono scritti in C\# del codice e utilizzare hello Azure Storage Client Library per .NET.</span><span class="sxs-lookup"><span data-stu-id="735af-114">hello samples are written in C\# code and use hello Azure Storage Client Library for .NET.</span></span>
 
-<span data-ttu-id="637c1-115">**NOTA:** alcune API che eseguono chiamate ad Archiviazione di Azure in ASP.NET Core sono asincrone.</span><span class="sxs-lookup"><span data-stu-id="637c1-115">**NOTE** - Some of the APIs that perform calls out to Azure storage in ASP.NET Core are asynchronous.</span></span> <span data-ttu-id="637c1-116">Per ulteriori informazioni, vedere [Programmazione asincrona con Async e Await](http://msdn.microsoft.com/library/hh191443.aspx) .</span><span class="sxs-lookup"><span data-stu-id="637c1-116">See [Asynchronous Programming with Async and Await](http://msdn.microsoft.com/library/hh191443.aspx) for more information.</span></span> <span data-ttu-id="637c1-117">Nel codice riportato di seguito si presuppone vengano utilizzati i metodi di programmazione asincrona.</span><span class="sxs-lookup"><span data-stu-id="637c1-117">The code below assumes Async programming methods are being used.</span></span>
+<span data-ttu-id="735af-115">**Nota** -alcune delle API che eseguono chiamate archiviazione tooAzure in ASP.NET Core hello sono asincrone.</span><span class="sxs-lookup"><span data-stu-id="735af-115">**NOTE** - Some of hello APIs that perform calls out tooAzure storage in ASP.NET Core are asynchronous.</span></span> <span data-ttu-id="735af-116">Per ulteriori informazioni, vedere [Programmazione asincrona con Async e Await](http://msdn.microsoft.com/library/hh191443.aspx) .</span><span class="sxs-lookup"><span data-stu-id="735af-116">See [Asynchronous Programming with Async and Await](http://msdn.microsoft.com/library/hh191443.aspx) for more information.</span></span> <span data-ttu-id="735af-117">codice Hello riportato di seguito si presuppone che vengono utilizzati i metodi di programmazione asincrono.</span><span class="sxs-lookup"><span data-stu-id="735af-117">hello code below assumes Async programming methods are being used.</span></span>
 
-## <a name="access-tables-in-code"></a><span data-ttu-id="637c1-118">Accesso alle tabelle nel codice</span><span class="sxs-lookup"><span data-stu-id="637c1-118">Access tables in code</span></span>
-<span data-ttu-id="637c1-119">Per accedere alle tabelle nei progetti ASP.NET Core, è necessario includere gli elementi seguenti ai file di origine C# che consentono di accedere all'archiviazione tabelle di Azure.</span><span class="sxs-lookup"><span data-stu-id="637c1-119">To access tables in ASP.NET Core projects, you need to include the following items to any C# source files that access Azure table storage.</span></span>
+## <a name="access-tables-in-code"></a><span data-ttu-id="735af-118">Accesso alle tabelle nel codice</span><span class="sxs-lookup"><span data-stu-id="735af-118">Access tables in code</span></span>
+<span data-ttu-id="735af-119">tooaccess nei progetti ASP.NET Core, è necessario che le tabelle hello tooinclude i seguenti file di origine c# tooany gli elementi che accedere all'archiviazione tabelle di Azure.</span><span class="sxs-lookup"><span data-stu-id="735af-119">tooaccess tables in ASP.NET Core projects, you need tooinclude hello following items tooany C# source files that access Azure table storage.</span></span>
 
-1. <span data-ttu-id="637c1-120">Assicurarsi che le dichiarazioni dello spazio dei nomi all'inizio del file C# includano queste istruzioni **using** .</span><span class="sxs-lookup"><span data-stu-id="637c1-120">Make sure the namespace declarations at the top of the C# file include these **using** statements.</span></span>
+1. <span data-ttu-id="735af-120">Verificare che le dichiarazioni dello spazio dei nomi hello all'inizio di hello del file hello c# includono queste **utilizzando** istruzioni.</span><span class="sxs-lookup"><span data-stu-id="735af-120">Make sure hello namespace declarations at hello top of hello C# file include these **using** statements.</span></span>
    
         using Microsoft.Framework.Configuration;
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Table;
         using System.Threading.Tasks;
         using LogLevel = Microsoft.Framework.Logging.LogLevel;
-2. <span data-ttu-id="637c1-121">Ottenere un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="637c1-121">Get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="637c1-122">Utilizzare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure.</span><span class="sxs-lookup"><span data-stu-id="637c1-122">Use the following code to get the your storage connection string and storage account information from the Azure service configuration.</span></span>
+2. <span data-ttu-id="735af-121">Ottenere un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="735af-121">Get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="735af-122">Hello utilizzare seguente tooget codice hello la stringa di connessione di archiviazione e informazioni sull'account di archiviazione dalla configurazione del servizio Azure hello.</span><span class="sxs-lookup"><span data-stu-id="735af-122">Use hello following code tooget hello your storage connection string and storage account information from hello Azure service configuration.</span></span>
    
         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
             CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
    
-    <span data-ttu-id="637c1-123">**NOTA:** utilizzare tutto il codice riportato in precedenza prima del codice indicato negli esempi seguenti.</span><span class="sxs-lookup"><span data-stu-id="637c1-123">**NOTE** - Use all of the above code in front of the code in the following samples.</span></span>
-3. <span data-ttu-id="637c1-124">Ottenere un oggetto **CloudTableClient** per fare riferimento agli oggetti delle tabelle nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="637c1-124">Get a **CloudTableClient** object to reference the table objects in your storage account.</span></span>  
+    <span data-ttu-id="735af-123">**Nota** -utilizzare tutti hello sopra codice codice hello in hello seguendo gli esempi.</span><span class="sxs-lookup"><span data-stu-id="735af-123">**NOTE** - Use all of hello above code in front of hello code in hello following samples.</span></span>
+3. <span data-ttu-id="735af-124">Ottenere un **CloudTableClient** tooreference hello tabella oggetti nell'account di archiviazione di oggetti.</span><span class="sxs-lookup"><span data-stu-id="735af-124">Get a **CloudTableClient** object tooreference hello table objects in your storage account.</span></span>  
    
-        // Create the table client.
+        // Create hello table client.
         CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-4. <span data-ttu-id="637c1-125">Ottenere un oggetto di riferimento **CloudTable** per fare riferimento a tabelle ed entità specifiche.</span><span class="sxs-lookup"><span data-stu-id="637c1-125">Get a **CloudTable** reference object to reference a specific table and entities.</span></span>
+4. <span data-ttu-id="735af-125">Ottenere un **CloudTable** fanno riferimento a entità e oggetto tooreference una tabella specifica.</span><span class="sxs-lookup"><span data-stu-id="735af-125">Get a **CloudTable** reference object tooreference a specific table and entities.</span></span>
    
-        // Get a reference to a table named "peopleTable"
+        // Get a reference tooa table named "peopleTable"
         CloudTable table = tableClient.GetTableReference("peopleTable");
 
-## <a name="create-a-table-in-code"></a><span data-ttu-id="637c1-126">Creazione di una tabella in codice</span><span class="sxs-lookup"><span data-stu-id="637c1-126">Create a table in code</span></span>
-<span data-ttu-id="637c1-127">Per creare la tabella di Azure, è sufficiente aggiungere una chiamata a **CreateIfNotExistsAsync()**.</span><span class="sxs-lookup"><span data-stu-id="637c1-127">To create the Azure table, just add a call to **CreateIfNotExistsAsync()**.</span></span>
+## <a name="create-a-table-in-code"></a><span data-ttu-id="735af-126">Creazione di una tabella in codice</span><span class="sxs-lookup"><span data-stu-id="735af-126">Create a table in code</span></span>
+<span data-ttu-id="735af-127">hello toocreate tabelle di Azure, è sufficiente aggiungere una chiamata troppo**CreateIfNotExistsAsync()**.</span><span class="sxs-lookup"><span data-stu-id="735af-127">toocreate hello Azure table, just add a call too**CreateIfNotExistsAsync()**.</span></span>
 
-    // Create the CloudTable if it does not exist
+    // Create hello CloudTable if it does not exist
     await table.CreateIfNotExistsAsync();
 
-## <a name="add-an-entity-to-a-table"></a><span data-ttu-id="637c1-128">Aggiungere un'entità a una tabella</span><span class="sxs-lookup"><span data-stu-id="637c1-128">Add an entity to a table</span></span>
-<span data-ttu-id="637c1-129">Per aggiungere un'entità a una classe, creare una classe che definisca le proprietà dell'entità.</span><span class="sxs-lookup"><span data-stu-id="637c1-129">To add an entity to a table you create a class that defines the properties of your entity.</span></span> <span data-ttu-id="637c1-130">Il codice seguente permette di definire una classe di entità denominata **CustomerEntity** che usa il nome e il cognome del cliente rispettivamente come chiave di riga e chiave di partizione.</span><span class="sxs-lookup"><span data-stu-id="637c1-130">The following code defines an entity class called **CustomerEntity** that uses the customer's first name as the row key and last name as the partition key.</span></span>
+## <a name="add-an-entity-tooa-table"></a><span data-ttu-id="735af-128">Aggiungere una tabella tooa entità</span><span class="sxs-lookup"><span data-stu-id="735af-128">Add an entity tooa table</span></span>
+<span data-ttu-id="735af-129">tooadd una tabella tooa entità si crea una classe che definisce le proprietà di hello dell'entità.</span><span class="sxs-lookup"><span data-stu-id="735af-129">tooadd an entity tooa table you create a class that defines hello properties of your entity.</span></span> <span data-ttu-id="735af-130">il codice seguente Hello definisce una classe di entità denominata **CustomerEntity** che utilizza hello nome del cliente come chiave di riga hello e il cognome come chiave di partizione hello.</span><span class="sxs-lookup"><span data-stu-id="735af-130">hello following code defines an entity class called **CustomerEntity** that uses hello customer's first name as hello row key and last name as hello partition key.</span></span>
 
     public class CustomerEntity : TableEntity
     {
@@ -85,49 +85,49 @@ ms.lasthandoff: 08/29/2017
         public string PhoneNumber { get; set; }
     }
 
-<span data-ttu-id="637c1-131">Per eseguire le operazioni su tabelle che interessano entità, viene utilizzato l'oggetto **CloudTable** creato in precedenza in "Accesso alle tabelle nel codice".</span><span class="sxs-lookup"><span data-stu-id="637c1-131">Table operations involving entities are done using the **CloudTable** object you created earlier in "Access tables in code."</span></span> <span data-ttu-id="637c1-132">L'oggetto **TableOperation** rappresenta l'operazione da eseguire.</span><span class="sxs-lookup"><span data-stu-id="637c1-132">The **TableOperation** object represents the operation to be done.</span></span> <span data-ttu-id="637c1-133">L'esempio di codice seguente mostra come creare un oggetto **CloudTable** e un oggetto **CustomerEntity**.</span><span class="sxs-lookup"><span data-stu-id="637c1-133">The following code example shows how to create a **CloudTable** object and a **CustomerEntity** object.</span></span> <span data-ttu-id="637c1-134">Per preparare l'operazione, viene creato un oggetto **TableOperation** per inserire l'entità customer nella tabella.</span><span class="sxs-lookup"><span data-stu-id="637c1-134">To prepare the operation, a **TableOperation** is created to insert the customer entity into the table.</span></span> <span data-ttu-id="637c1-135">Infine, per eseguire l'operazione viene chiamato CloudTable.ExecuteAsync.</span><span class="sxs-lookup"><span data-stu-id="637c1-135">Finally, the operation is executed by calling CloudTable.ExecuteAsync.</span></span>
+<span data-ttu-id="735af-131">Le operazioni di tabella che include le entità vengono eseguite utilizzando hello **CloudTable** dell'oggetto è stato creato in precedenza in "Tabelle di Access in codice".</span><span class="sxs-lookup"><span data-stu-id="735af-131">Table operations involving entities are done using hello **CloudTable** object you created earlier in "Access tables in code."</span></span> <span data-ttu-id="735af-132">Hello **TableOperation** oggetto rappresenta hello toobe di operazione eseguita.</span><span class="sxs-lookup"><span data-stu-id="735af-132">hello **TableOperation** object represents hello operation toobe done.</span></span> <span data-ttu-id="735af-133">Hello seguente esempio di codice viene illustrato come toocreate un **CloudTable** oggetto e un **CustomerEntity** oggetto.</span><span class="sxs-lookup"><span data-stu-id="735af-133">hello following code example shows how toocreate a **CloudTable** object and a **CustomerEntity** object.</span></span> <span data-ttu-id="735af-134">operazione di hello tooprepare, un **TableOperation** viene creata l'entità customer di tooinsert hello in tabella hello.</span><span class="sxs-lookup"><span data-stu-id="735af-134">tooprepare hello operation, a **TableOperation** is created tooinsert hello customer entity into hello table.</span></span> <span data-ttu-id="735af-135">Infine, l'operazione di hello viene eseguita chiamando CloudTable.ExecuteAsync.</span><span class="sxs-lookup"><span data-stu-id="735af-135">Finally, hello operation is executed by calling CloudTable.ExecuteAsync.</span></span>
 
     // Create a new customer entity.
     CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
     customer1.Email = "Walter@contoso.com";
     customer1.PhoneNumber = "425-555-0101";
 
-    // Create the TableOperation that inserts the customer entity.
+    // Create hello TableOperation that inserts hello customer entity.
     TableOperation insertOperation = TableOperation.Insert(customer1);
 
-    // Execute the insert operation.
+    // Execute hello insert operation.
     await peopleTable.ExecuteAsync(insertOperation);
 
-## <a name="insert-a-batch-of-entities"></a><span data-ttu-id="637c1-136">Inserire un batch di entità</span><span class="sxs-lookup"><span data-stu-id="637c1-136">Insert a batch of entities</span></span>
-<span data-ttu-id="637c1-137">È possibile inserire più entità in una tabella in una singola operazione di scrittura.</span><span class="sxs-lookup"><span data-stu-id="637c1-137">You can insert multiple entities into a table in a single write operation.</span></span> <span data-ttu-id="637c1-138">L'esempio di codice seguente crea due oggetti entità ("Jeff Smith" e "Ben Smith"), li aggiunge a un oggetto **TableBatchOperation** usando il metodo **Insert**, quindi avvia l'operazione richiamando CloudTable.ExecuteBatchAsync.</span><span class="sxs-lookup"><span data-stu-id="637c1-138">The following code example creates two entity objects ("Jeff Smith" and "Ben Smith"), adds them to a **TableBatchOperation** object using the **Insert** method, and then starts the operation by calling CloudTable.ExecuteBatchAsync.</span></span>
+## <a name="insert-a-batch-of-entities"></a><span data-ttu-id="735af-136">Inserire un batch di entità</span><span class="sxs-lookup"><span data-stu-id="735af-136">Insert a batch of entities</span></span>
+<span data-ttu-id="735af-137">È possibile inserire più entità in una tabella in una singola operazione di scrittura.</span><span class="sxs-lookup"><span data-stu-id="735af-137">You can insert multiple entities into a table in a single write operation.</span></span> <span data-ttu-id="735af-138">Crea due oggetti entità ("Jeff Smith" e "Cavaglieri Federico") Hello esempio di codice seguente, li aggiunge tooa **TableBatchOperation** oggetto utilizzando hello **inserire** (metodo), quindi avvia hello operazione da la chiamata CloudTable.ExecuteBatchAsync.</span><span class="sxs-lookup"><span data-stu-id="735af-138">hello following code example creates two entity objects ("Jeff Smith" and "Ben Smith"), adds them tooa **TableBatchOperation** object using hello **Insert** method, and then starts hello operation by calling CloudTable.ExecuteBatchAsync.</span></span>
 
-    // Create the batch operation.
+    // Create hello batch operation.
     TableBatchOperation batchOperation = new TableBatchOperation();
 
-    // Create a customer entity and add it to the table.
+    // Create a customer entity and add it toohello table.
     CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
     customer1.Email = "Jeff@contoso.com";
     customer1.PhoneNumber = "425-555-0104";
 
-    // Create another customer entity and add it to the table.
+    // Create another customer entity and add it toohello table.
     CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
     customer2.Email = "Ben@contoso.com";
     customer2.PhoneNumber = "425-555-0102";
 
-    // Add both customer entities to the batch insert operation.
+    // Add both customer entities toohello batch insert operation.
     batchOperation.Insert(customer1);
     batchOperation.Insert(customer2);
 
-    // Execute the batch operation.
+    // Execute hello batch operation.
     await peopleTable.ExecuteBatchAsync(batchOperation);
 
-## <a name="get-all-of-the-entities-in-a-partition"></a><span data-ttu-id="637c1-139">Ottenere tutte le entità di una partizione</span><span class="sxs-lookup"><span data-stu-id="637c1-139">Get all of the entities in a partition</span></span>
-<span data-ttu-id="637c1-140">Per eseguire una query su una tabella e recuperare tutte le entità di una partizione, usare un oggetto **TableQuery** .</span><span class="sxs-lookup"><span data-stu-id="637c1-140">To query a table for all of the entities in a partition, use a **TableQuery** object.</span></span> <span data-ttu-id="637c1-141">Nell'esempio di codice seguente viene specificato un filtro per le entità in cui la chiave di partizione è 'Smith'.</span><span class="sxs-lookup"><span data-stu-id="637c1-141">The following code example specifies a filter for entities where 'Smith' is the partition key.</span></span> <span data-ttu-id="637c1-142">Questo esempio consente di stampare sulla console i campi di ogni entità inclusa nei risultati della query.</span><span class="sxs-lookup"><span data-stu-id="637c1-142">This example prints the fields of each entity in the query results to the console.</span></span>
+## <a name="get-all-of-hello-entities-in-a-partition"></a><span data-ttu-id="735af-139">Ottenere tutte le entità hello in una partizione</span><span class="sxs-lookup"><span data-stu-id="735af-139">Get all of hello entities in a partition</span></span>
+<span data-ttu-id="735af-140">tooquery una tabella per tutte le entità hello in una partizione, utilizzare un **TableQuery** oggetto.</span><span class="sxs-lookup"><span data-stu-id="735af-140">tooquery a table for all of hello entities in a partition, use a **TableQuery** object.</span></span> <span data-ttu-id="735af-141">Hello esempio di codice seguente specifica un filtro per le entità in cui la chiave di partizione hello 'Smith'.</span><span class="sxs-lookup"><span data-stu-id="735af-141">hello following code example specifies a filter for entities where 'Smith' is hello partition key.</span></span> <span data-ttu-id="735af-142">In questo esempio visualizza i campi di ogni entità nella console di toohello risultati query hello hello.</span><span class="sxs-lookup"><span data-stu-id="735af-142">This example prints hello fields of each entity in hello query results toohello console.</span></span>
 
-    // Construct the query operation for all customer entities where PartitionKey="Smith".
+    // Construct hello query operation for all customer entities where PartitionKey="Smith".
     TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
 
-    // Print the fields for each customer.
+    // Print hello fields for each customer.
     TableContinuationToken token = null;
     do
     {
@@ -141,47 +141,47 @@ ms.lasthandoff: 08/29/2017
         }
     } while (token != null);
 
-## <a name="get-a-single-entity"></a><span data-ttu-id="637c1-143">Ottenere una singola entità</span><span class="sxs-lookup"><span data-stu-id="637c1-143">Get a single entity</span></span>
-<span data-ttu-id="637c1-144">È possibile scrivere una query per ottenere una singola entità specifica.</span><span class="sxs-lookup"><span data-stu-id="637c1-144">You can write a query to get a single, specific entity.</span></span> <span data-ttu-id="637c1-145">Il codice seguente usa un oggetto **TableOperation** per specificare un cliente denominato 'Ben Smith'.</span><span class="sxs-lookup"><span data-stu-id="637c1-145">The following code uses a **TableOperation** object to specify a customer named 'Ben Smith'.</span></span> <span data-ttu-id="637c1-146">Questo metodo restituisce solo un'entità, anziché una raccolta, e il valore restituito in **TableResult.Result** è un oggetto **CustomerEntity**.</span><span class="sxs-lookup"><span data-stu-id="637c1-146">This method returns just one entity, rather than a collection, and the returned value in **TableResult.Result** is a **CustomerEntity** object.</span></span> <span data-ttu-id="637c1-147">La specifica delle chiavi di partizione e di riga in una query costituisce la soluzione più rapida per recuperare una singola entità dal servizio **tabelle** .</span><span class="sxs-lookup"><span data-stu-id="637c1-147">Specifying both partition and row keys in a query is the fastest way to retrieve a single entity from the **Table** service.</span></span>
+## <a name="get-a-single-entity"></a><span data-ttu-id="735af-143">Ottenere una singola entità</span><span class="sxs-lookup"><span data-stu-id="735af-143">Get a single entity</span></span>
+<span data-ttu-id="735af-144">È possibile scrivere un tooget query un'entità singola e specifica.</span><span class="sxs-lookup"><span data-stu-id="735af-144">You can write a query tooget a single, specific entity.</span></span> <span data-ttu-id="735af-145">codice Hello seguente viene utilizzato un **TableOperation** toospecify un cliente denominata 'Ben Smith' dell'oggetto.</span><span class="sxs-lookup"><span data-stu-id="735af-145">hello following code uses a **TableOperation** object toospecify a customer named 'Ben Smith'.</span></span> <span data-ttu-id="735af-146">Questo metodo restituisce una sola entità, anziché una raccolta e hello ha restituito il valore in **TableResult.Result** è un **CustomerEntity** oggetto.</span><span class="sxs-lookup"><span data-stu-id="735af-146">This method returns just one entity, rather than a collection, and hello returned value in **TableResult.Result** is a **CustomerEntity** object.</span></span> <span data-ttu-id="735af-147">Specifica le chiavi di partizione e di riga in una query è tooretrieve modo più veloce di hello una singola entità da hello **tabella** servizio.</span><span class="sxs-lookup"><span data-stu-id="735af-147">Specifying both partition and row keys in a query is hello fastest way tooretrieve a single entity from hello **Table** service.</span></span>
 
     // Create a retrieve operation that takes a customer entity.
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-    // Execute the retrieve operation.
+    // Execute hello retrieve operation.
     TableResult retrievedResult = await peopleTable.ExecuteAsync(retrieveOperation);
 
-    // Print the phone number of the result.
+    // Print hello phone number of hello result.
     if (retrievedResult.Result != null)
        Console.WriteLine(((CustomerEntity)retrievedResult.Result).PhoneNumber);
     else
-       Console.WriteLine("The phone number could not be retrieved.");
+       Console.WriteLine("hello phone number could not be retrieved.");
 
-## <a name="delete-an-entity"></a><span data-ttu-id="637c1-148">Eliminare un'entità</span><span class="sxs-lookup"><span data-stu-id="637c1-148">Delete an entity</span></span>
-<span data-ttu-id="637c1-149">È possibile eliminare un'entità dopo averla individuata.</span><span class="sxs-lookup"><span data-stu-id="637c1-149">You can delete an entity after you find it.</span></span> <span data-ttu-id="637c1-150">Il codice seguente cerca un'entità customer denominata "Ben Smith" e, se la trova, la elimina.</span><span class="sxs-lookup"><span data-stu-id="637c1-150">The following code looks for a customer entity named "Ben Smith" and if it finds it, it deletes it.</span></span>
+## <a name="delete-an-entity"></a><span data-ttu-id="735af-148">Eliminare un'entità</span><span class="sxs-lookup"><span data-stu-id="735af-148">Delete an entity</span></span>
+<span data-ttu-id="735af-149">È possibile eliminare un'entità dopo averla individuata.</span><span class="sxs-lookup"><span data-stu-id="735af-149">You can delete an entity after you find it.</span></span> <span data-ttu-id="735af-150">Hello codice riportato di seguito per un'entità customer denominata "Ben Smith" e se viene trovata, questo viene eliminato.</span><span class="sxs-lookup"><span data-stu-id="735af-150">hello following code looks for a customer entity named "Ben Smith" and if it finds it, it deletes it.</span></span>
 
     // Create a retrieve operation that expects a customer entity.
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-    // Execute the operation.
+    // Execute hello operation.
     TableResult retrievedResult = peopleTable.Execute(retrieveOperation);
 
-    // Assign the result to a CustomerEntity object.
+    // Assign hello result tooa CustomerEntity object.
     CustomerEntity deleteEntity = (CustomerEntity)retrievedResult.Result;
 
-    // Create the Delete TableOperation and then execute it.
+    // Create hello Delete TableOperation and then execute it.
     if (deleteEntity != null)
     {
        TableOperation deleteOperation = TableOperation.Delete(deleteEntity);
 
-       // Execute the operation.
+       // Execute hello operation.
        await peopleTable.ExecuteAsync(deleteOperation);
 
        Console.WriteLine("Entity deleted.");
     }
 
     else
-       Console.WriteLine("Couldn't delete the entity.");
+       Console.WriteLine("Couldn't delete hello entity.");
 
-## <a name="next-steps"></a><span data-ttu-id="637c1-151">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="637c1-151">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="735af-151">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="735af-151">Next steps</span></span>
 [!INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]
 

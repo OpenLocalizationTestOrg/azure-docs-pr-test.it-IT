@@ -1,5 +1,5 @@
 ---
-title: Esercitazione di Istanze di contenitore di Azure - Preparare Registro contenitori di Azure | Microsoft Docs
+title: esercitazione per istanze di contenitori aaaAzure - preparare Registro di sistema contenitore di Azure | Documenti Microsoft
 description: Esercitazione di Istanze di contenitore di Azure - Preparare Registro contenitori di Azure
 services: container-instances
 documentationcenter: 
@@ -17,93 +17,93 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: cc96ba9f5abd45a7503ba3327b30e1f809391384
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2525626125740c3c861fad36aad207d0b587ff54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-use-azure-container-registry"></a><span data-ttu-id="9f6e7-104">Distribuire e usare il Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-104">Deploy and use Azure Container Registry</span></span>
+# <a name="deploy-and-use-azure-container-registry"></a><span data-ttu-id="c8bd1-104">Distribuire e usare il Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-104">Deploy and use Azure Container Registry</span></span>
 
-<span data-ttu-id="9f6e7-105">Questa è la parte due di un'esercitazione in tre parti.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-105">This is part two of a three-part tutorial.</span></span> <span data-ttu-id="9f6e7-106">Nel [passaggio precedente](./container-instances-tutorial-prepare-app.md) è stata creta un'immagine del contenitore per una semplice applicazione Web scritta in [Node.js](http://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-106">In the [previous step](./container-instances-tutorial-prepare-app.md), a container image was created for a simple web application written in [Node.js](http://nodejs.org).</span></span> <span data-ttu-id="9f6e7-107">In questa esercitazione viene eseguito il push di questa immagine in un'istanza di Registro contenitori di Azure.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-107">In this tutorial, this image is pushed to an Azure Container Registry.</span></span> <span data-ttu-id="9f6e7-108">Se l'immagine del contenitore non è stata creata, tornare all'[Esercitazione 1 - Creare l'immagine del contenitore](./container-instances-tutorial-prepare-app.md).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-108">If you have not created the container image, return to [Tutorial 1 – Create container image](./container-instances-tutorial-prepare-app.md).</span></span> 
+<span data-ttu-id="c8bd1-105">Questa è la parte due di un'esercitazione in tre parti.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-105">This is part two of a three-part tutorial.</span></span> <span data-ttu-id="c8bd1-106">In hello [passaggio precedente](./container-instances-tutorial-prepare-app.md), un'immagine contenitore è stata creata per un'applicazione web semplice scritta in [Node.js](http://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="c8bd1-106">In hello [previous step](./container-instances-tutorial-prepare-app.md), a container image was created for a simple web application written in [Node.js](http://nodejs.org).</span></span> <span data-ttu-id="c8bd1-107">In questa esercitazione, questa immagine viene inserita tooan del Registro di sistema contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-107">In this tutorial, this image is pushed tooan Azure Container Registry.</span></span> <span data-ttu-id="c8bd1-108">Se non è stato creato immagine contenitore hello, restituire troppo[esercitazione 1: immagine contenitore crea](./container-instances-tutorial-prepare-app.md).</span><span class="sxs-lookup"><span data-stu-id="c8bd1-108">If you have not created hello container image, return too[Tutorial 1 – Create container image](./container-instances-tutorial-prepare-app.md).</span></span> 
 
-<span data-ttu-id="9f6e7-109">Registro contenitori di Azure è un registro privato basato su Azure per le immagini del contenitore Docker.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-109">The Azure Container Registry is an Azure-based, private registry, for Docker container images.</span></span> <span data-ttu-id="9f6e7-110">Questa esercitazione illustra la distribuzione di un'istanza di Registro contenitori di Azure e il push di un'immagine del contenitore in essa.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-110">This tutorial walks through deploying an Azure Container Registry instance, and pushing a container image to it.</span></span> <span data-ttu-id="9f6e7-111">I passaggi completati comprendono:</span><span class="sxs-lookup"><span data-stu-id="9f6e7-111">Steps completed include:</span></span>
+<span data-ttu-id="c8bd1-109">Hello del Registro di sistema di Azure contenitore è un registro basato su Azure e privato, per le immagini contenitore Docker.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-109">hello Azure Container Registry is an Azure-based, private registry, for Docker container images.</span></span> <span data-ttu-id="c8bd1-110">In questa esercitazione vengono illustrati l'implementazione di un'istanza del Registro di sistema di Azure contenitore e inserendo un tooit immagine contenitore.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-110">This tutorial walks through deploying an Azure Container Registry instance, and pushing a container image tooit.</span></span> <span data-ttu-id="c8bd1-111">I passaggi completati comprendono:</span><span class="sxs-lookup"><span data-stu-id="c8bd1-111">Steps completed include:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="9f6e7-112">Distribuzione di un'istanza del Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-112">Deploying an Azure Container Registry instance</span></span>
-> * <span data-ttu-id="9f6e7-113">Assegnazione di un tag all'immagine del contenitore per Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-113">Tagging container image for Azure Container Registry</span></span>
-> * <span data-ttu-id="9f6e7-114">Caricamento dell'immagine in Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-114">Uploading image to Azure Container Registry</span></span>
+> * <span data-ttu-id="c8bd1-112">Distribuzione di un'istanza del Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-112">Deploying an Azure Container Registry instance</span></span>
+> * <span data-ttu-id="c8bd1-113">Assegnazione di un tag all'immagine del contenitore per Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-113">Tagging container image for Azure Container Registry</span></span>
+> * <span data-ttu-id="c8bd1-114">Caricamento tooAzure immagine contenitore del Registro di sistema</span><span class="sxs-lookup"><span data-stu-id="c8bd1-114">Uploading image tooAzure Container Registry</span></span>
 
-<span data-ttu-id="9f6e7-115">Nelle esercitazioni successive si distribuirà il contenitore dal registro privato a Istanze di contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-115">In subsequent tutorials, you deploy the container from your private registry to Azure Container Instances.</span></span>
+<span data-ttu-id="c8bd1-115">Nelle esercitazioni successive, distribuire contenitore hello dal tooAzure del Registro di sistema privata istanze di contenitori.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-115">In subsequent tutorials, you deploy hello container from your private registry tooAzure Container Instances.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="9f6e7-116">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="9f6e7-116">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="c8bd1-116">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="c8bd1-116">Before you begin</span></span>
 
-<span data-ttu-id="9f6e7-117">Questa esercitazione richiede l'interfaccia della riga di comando di Azure 2.0.4 o versioni successive.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-117">This tutorial requires that you are running the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="9f6e7-118">Eseguire `az --version` per trovare la versione.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-118">Run `az --version` to find the version.</span></span> <span data-ttu-id="9f6e7-119">Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-119">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span>
+<span data-ttu-id="c8bd1-117">Questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-117">This tutorial requires that you are running hello Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="c8bd1-118">Eseguire `az --version` versione hello toofind.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-118">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="c8bd1-119">Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="c8bd1-119">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span>
 
-## <a name="deploy-azure-container-registry"></a><span data-ttu-id="9f6e7-120">Distribuire il Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-120">Deploy Azure Container Registry</span></span>
+## <a name="deploy-azure-container-registry"></a><span data-ttu-id="c8bd1-120">Distribuire il Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-120">Deploy Azure Container Registry</span></span>
 
-<span data-ttu-id="9f6e7-121">Prima di distribuire un Registro contenitori di Azure, è necessario che esista un gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-121">When deploying an Azure Container Registry, you first need a resource group.</span></span> <span data-ttu-id="9f6e7-122">Un gruppo di risorse di Azure è una raccolta logica in cui le risorse di Azure vengono distribuite e gestite.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-122">An Azure resource group is a logical collection into which Azure resources are deployed and managed.</span></span>
+<span data-ttu-id="c8bd1-121">Prima di distribuire un Registro contenitori di Azure, è necessario che esista un gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-121">When deploying an Azure Container Registry, you first need a resource group.</span></span> <span data-ttu-id="c8bd1-122">Un gruppo di risorse di Azure è una raccolta logica in cui le risorse di Azure vengono distribuite e gestite.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-122">An Azure resource group is a logical collection into which Azure resources are deployed and managed.</span></span>
 
-<span data-ttu-id="9f6e7-123">Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-123">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="9f6e7-124">In questo esempio viene creato un gruppo di risorse denominato *myResourceGroup* nell'area *eastus*.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-124">In this example, a resource group named *myResourceGroup* is created in the *eastus* region.</span></span>
+<span data-ttu-id="c8bd1-123">Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-123">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="c8bd1-124">In questo esempio, un gruppo di risorse denominato *myResourceGroup* viene creato in hello *eastus* area.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-124">In this example, a resource group named *myResourceGroup* is created in hello *eastus* region.</span></span>
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-<span data-ttu-id="9f6e7-125">Creare un Registro contenitori di Azure con il comando [az acr create](/cli/azure/acr#create).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-125">Create an Azure Container registry with the [az acr create](/cli/azure/acr#create) command.</span></span> <span data-ttu-id="9f6e7-126">Il nome di un registro contenitori **deve essere univoco**.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-126">The name of a Container Registry **must be unique**.</span></span> <span data-ttu-id="9f6e7-127">Nell'esempio seguente si usa il nome *mycontainerregistry082*.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-127">In the following example, we use the name *mycontainerregistry082*.</span></span>
+<span data-ttu-id="c8bd1-125">Creare un registro di sistema del contenitore di Azure con hello [az acr creare](/cli/azure/acr#create) comando.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-125">Create an Azure Container registry with hello [az acr create](/cli/azure/acr#create) command.</span></span> <span data-ttu-id="c8bd1-126">nome di un contenitore del Registro di sistema di Hello **deve essere univoco**.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-126">hello name of a Container Registry **must be unique**.</span></span> <span data-ttu-id="c8bd1-127">Nel seguente esempio di hello, utilizziamo nome hello *mycontainerregistry082*.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-127">In hello following example, we use hello name *mycontainerregistry082*.</span></span>
 
 ```azurecli
 az acr create --resource-group myResourceGroup --name mycontainerregistry082 --sku Basic --admin-enabled true
 ```
 
-<span data-ttu-id="9f6e7-128">Nella parte restante di questa esercitazione si usa `<acrname>` come segnaposto per il nome del registro contenitori scelto.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-128">Throughout the rest of this tutorial, we use `<acrname>` as a placeholder for the container registry name that you chose.</span></span>
+<span data-ttu-id="c8bd1-128">Tutta hello di questa esercitazione, utilizziamo `<acrname>` come segnaposto per nome del Registro di sistema del contenitore hello scelto.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-128">Throughout hello rest of this tutorial, we use `<acrname>` as a placeholder for hello container registry name that you chose.</span></span>
 
-## <a name="container-registry-login"></a><span data-ttu-id="9f6e7-129">Accesso al registro contenitori</span><span class="sxs-lookup"><span data-stu-id="9f6e7-129">Container registry login</span></span>
+## <a name="container-registry-login"></a><span data-ttu-id="c8bd1-129">Accesso al registro contenitori</span><span class="sxs-lookup"><span data-stu-id="c8bd1-129">Container registry login</span></span>
 
-<span data-ttu-id="9f6e7-130">È necessario accedere all'istanza del Registro contenitori di Azure prima di eseguire il push di immagini in essa.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-130">You must log in to your ACR instance before pushing images to it.</span></span> <span data-ttu-id="9f6e7-131">Usare il comando [az acr login](https://docs.microsoft.com/en-us/cli/azure/acr#login) per completare l'operazione.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-131">Use the [az acr login](https://docs.microsoft.com/en-us/cli/azure/acr#login) command to complete the operation.</span></span> <span data-ttu-id="9f6e7-132">È necessario specificare il nome univoco assegnato al registro contenitori al momento della creazione.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-132">You need to provide the unique name given to the container registry when it was created.</span></span>
+<span data-ttu-id="c8bd1-130">È necessario accedere in istanza ACR tooyour prima push tooit immagini.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-130">You must log in tooyour ACR instance before pushing images tooit.</span></span> <span data-ttu-id="c8bd1-131">Hello utilizzare [accesso acr az](https://docs.microsoft.com/en-us/cli/azure/acr#login) operazione hello toocomplete di comando.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-131">Use hello [az acr login](https://docs.microsoft.com/en-us/cli/azure/acr#login) command toocomplete hello operation.</span></span> <span data-ttu-id="c8bd1-132">È necessario il nome univoco di tooprovide hello assegnato del Registro di sistema di toohello contenitore al momento della creazione.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-132">You need tooprovide hello unique name given toohello container registry when it was created.</span></span>
 
 ```azurecli
 az acr login --name <acrName>
 ```
 
-<span data-ttu-id="9f6e7-133">Al termine, il comando restituisce un messaggio di accesso riuscito.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-133">The command returns a 'Login Succeeded’ message once completed.</span></span>
+<span data-ttu-id="c8bd1-133">comando Hello restituisce un messaggio 'Accesso riuscito' una volta completato.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-133">hello command returns a 'Login Succeeded’ message once completed.</span></span>
 
-## <a name="tag-container-image"></a><span data-ttu-id="9f6e7-134">Assegnare tag all'immagine del contenitore</span><span class="sxs-lookup"><span data-stu-id="9f6e7-134">Tag container image</span></span>
+## <a name="tag-container-image"></a><span data-ttu-id="c8bd1-134">Assegnare tag all'immagine del contenitore</span><span class="sxs-lookup"><span data-stu-id="c8bd1-134">Tag container image</span></span>
 
-<span data-ttu-id="9f6e7-135">Per distribuire un'immagine del contenitore da un registro privato, all'immagine deve essere assegnato un tag con il nome `loginServer` del registro.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-135">To deploy a container image from a private registry, the image needs to be tagged with the `loginServer` name of the registry.</span></span>
+<span data-ttu-id="c8bd1-135">toodeploy un'immagine contenitore da un registro di sistema privato, l'immagine di hello deve essere contrassegnato con hello toobe `loginServer` nome del Registro di sistema hello.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-135">toodeploy a container image from a private registry, hello image needs toobe tagged with hello `loginServer` name of hello registry.</span></span>
 
-<span data-ttu-id="9f6e7-136">Per visualizzare un elenco di immagini correnti, usare il comando `docker images`.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-136">To see a list of current images, use the `docker images` command.</span></span>
+<span data-ttu-id="c8bd1-136">un elenco di immagini corrente, utilizzare hello toosee `docker images` comando.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-136">toosee a list of current images, use hello `docker images` command.</span></span>
 
 ```bash
 docker images
 ```
 
-<span data-ttu-id="9f6e7-137">Output:</span><span class="sxs-lookup"><span data-stu-id="9f6e7-137">Output:</span></span>
+<span data-ttu-id="c8bd1-137">Output:</span><span class="sxs-lookup"><span data-stu-id="c8bd1-137">Output:</span></span>
 
 ```bash
 REPOSITORY                   TAG                 IMAGE ID            CREATED              SIZE
 aci-tutorial-app             latest              5c745774dfa9        39 seconds ago       68.1 MB
 ```
 
-<span data-ttu-id="9f6e7-138">Per ottenere il nome loginServer, eseguire questo comando.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-138">To get the loginServer name, run the following command.</span></span>
+<span data-ttu-id="c8bd1-138">tooget hello loginServer nome eseguire hello comando seguente.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-138">tooget hello loginServer name, run hello following command.</span></span>
 
 ```azurecli
 az acr show --name <acrName> --query loginServer --output table
 ```
 
-<span data-ttu-id="9f6e7-139">Applicare all'immagine *aci-tutorial-app* il tag del server di accesso del registro contenitori.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-139">Tag the *aci-tutorial-app* image with the loginServer of the container registry.</span></span> <span data-ttu-id="9f6e7-140">Aggiungere anche `:v1` alla fine del nome dell'immagine.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-140">Also, add `:v1` to the end of the image name.</span></span> <span data-ttu-id="9f6e7-141">Questo tag indica il numero di versione dell'immagine.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-141">This tag indicates the image version number.</span></span>
+<span data-ttu-id="c8bd1-139">Hello tag *aci-esercitazione-app* immagine con loginServer hello del Registro di sistema di hello contenitore.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-139">Tag hello *aci-tutorial-app* image with hello loginServer of hello container registry.</span></span> <span data-ttu-id="c8bd1-140">Inoltre, aggiungere `:v1` toohello fine del nome dell'immagine hello.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-140">Also, add `:v1` toohello end of hello image name.</span></span> <span data-ttu-id="c8bd1-141">Questo tag indica numero di versione di hello immagine.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-141">This tag indicates hello image version number.</span></span>
 
 ```bash
 docker tag aci-tutorial-app <acrLoginServer>/aci-tutorial-app:v1
 ```
 
-<span data-ttu-id="9f6e7-142">Una volta applicato il tag, eseguire `docker images` per verificare l'operazione.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-142">Once tagged, run `docker images` to verify the operation.</span></span>
+<span data-ttu-id="c8bd1-142">Una volta contrassegnate, eseguire `docker images` operazione hello tooverify.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-142">Once tagged, run `docker images` tooverify hello operation.</span></span>
 
 ```bash
 docker images
 ```
 
-<span data-ttu-id="9f6e7-143">Output:</span><span class="sxs-lookup"><span data-stu-id="9f6e7-143">Output:</span></span>
+<span data-ttu-id="c8bd1-143">Output:</span><span class="sxs-lookup"><span data-stu-id="c8bd1-143">Output:</span></span>
 
 ```bash
 REPOSITORY                                                TAG                 IMAGE ID            CREATED             SIZE
@@ -111,25 +111,25 @@ aci-tutorial-app                                          latest              5c
 mycontainerregistry082.azurecr.io/aci-tutorial-app        v1                  a9dace4e1a17        7 minutes ago       68.1 MB
 ```
 
-## <a name="push-image-to-azure-container-registry"></a><span data-ttu-id="9f6e7-144">Eseguire il push dell'immagine in Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-144">Push image to Azure Container Registry</span></span>
+## <a name="push-image-tooazure-container-registry"></a><span data-ttu-id="c8bd1-144">Push tooAzure immagine contenitore del Registro di sistema</span><span class="sxs-lookup"><span data-stu-id="c8bd1-144">Push image tooAzure Container Registry</span></span>
 
-<span data-ttu-id="9f6e7-145">Eseguire il push dell'immagine *aci-tutorial-app* nel registro.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-145">Push the *aci-tutorial-app* image to the registry.</span></span>
+<span data-ttu-id="c8bd1-145">Push hello *aci-esercitazione-app* registro toohello di immagini.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-145">Push hello *aci-tutorial-app* image toohello registry.</span></span>
 
-<span data-ttu-id="9f6e7-146">Usando l'esempio seguente, sostituire il nome del server di accesso del registro contenitori con il nome del server di accesso dell'ambiente in uso.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-146">Using the following example, replace the container registry loginServer name with the loginServer from your environment.</span></span>
+<span data-ttu-id="c8bd1-146">Utilizza hello di esempio seguente, sostituire hello contenitore del Registro di sistema loginServer name con loginServer hello dall'ambiente in uso.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-146">Using hello following example, replace hello container registry loginServer name with hello loginServer from your environment.</span></span>
 
 ```bash
 docker push <acrLoginServer>/aci-tutorial-app:v1
 ```
 
-## <a name="list-images-in-azure-container-registry"></a><span data-ttu-id="9f6e7-147">Elencare le immagini in Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-147">List images in Azure Container Registry</span></span>
+## <a name="list-images-in-azure-container-registry"></a><span data-ttu-id="c8bd1-147">Elencare le immagini in Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-147">List images in Azure Container Registry</span></span>
 
-<span data-ttu-id="9f6e7-148">Per restituire un elenco di immagini di cui è stato eseguito il push nel Registro contenitori di Azure, usare il comando [az acr repository list](/cli/azure/acr/repository#list).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-148">To return a list of images that have been pushed to your Azure Container registry, user the [az acr repository list](/cli/azure/acr/repository#list) command.</span></span> <span data-ttu-id="9f6e7-149">Aggiornare il comando con il nome del registro contenitori.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-149">Update the command with the container registry name.</span></span>
+<span data-ttu-id="c8bd1-148">un elenco di immagini che sono stati inseriti tooyour Azure contenitore del Registro di sistema, hello utente tooreturn [elenco repository di az acr](/cli/azure/acr/repository#list) comando.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-148">tooreturn a list of images that have been pushed tooyour Azure Container registry, user hello [az acr repository list](/cli/azure/acr/repository#list) command.</span></span> <span data-ttu-id="c8bd1-149">Aggiornare il comando hello con il nome del Registro di sistema di hello contenitore.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-149">Update hello command with hello container registry name.</span></span>
 
 ```azurecli
 az acr repository list --name <acrName> --output table
 ```
 
-<span data-ttu-id="9f6e7-150">Output:</span><span class="sxs-lookup"><span data-stu-id="9f6e7-150">Output:</span></span>
+<span data-ttu-id="c8bd1-150">Output:</span><span class="sxs-lookup"><span data-stu-id="c8bd1-150">Output:</span></span>
 
 ```azurecli
 Result
@@ -137,13 +137,13 @@ Result
 aci-tutorial-app
 ```
 
-<span data-ttu-id="9f6e7-151">Per visualizzare i tag per un'immagine specifica, usare il comando [az acr repository show-tags](/cli/azure/acr/repository#show-tags).</span><span class="sxs-lookup"><span data-stu-id="9f6e7-151">And then to see the tags for a specific image, use the [az acr repository show-tags](/cli/azure/acr/repository#show-tags) command.</span></span>
+<span data-ttu-id="c8bd1-151">Quindi tag hello toosee per un'immagine specifica, utilizzare hello [az acr repository Mostra-tag](/cli/azure/acr/repository#show-tags) comando.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-151">And then toosee hello tags for a specific image, use hello [az acr repository show-tags](/cli/azure/acr/repository#show-tags) command.</span></span>
 
 ```azurecli
 az acr repository show-tags --name <acrName> --repository aci-tutorial-app --output table
 ```
 
-<span data-ttu-id="9f6e7-152">Output:</span><span class="sxs-lookup"><span data-stu-id="9f6e7-152">Output:</span></span>
+<span data-ttu-id="c8bd1-152">Output:</span><span class="sxs-lookup"><span data-stu-id="c8bd1-152">Output:</span></span>
 
 ```azurecli
 Result
@@ -151,16 +151,16 @@ Result
 v1
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="9f6e7-153">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="9f6e7-153">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c8bd1-153">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c8bd1-153">Next steps</span></span>
 
-<span data-ttu-id="9f6e7-154">In questa esercitazione è stata preparata un'istanza di Registro contenitori di Azure da usare con Istanze di contenitore di Azure. È stato inoltre eseguito il push dell'immagine del contenitore.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-154">In this tutorial, an Azure Container Registry was prepared for use with Azure Container Instances, and the container image was pushed.</span></span> <span data-ttu-id="9f6e7-155">Sono stati completati i passaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="9f6e7-155">The following steps were completed:</span></span>
+<span data-ttu-id="c8bd1-154">In questa esercitazione, un registro di sistema di contenitore di Azure è stata preparata per l'uso con istanze di contenitori di Azure e immagine contenitore hello è stato inserito.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-154">In this tutorial, an Azure Container Registry was prepared for use with Azure Container Instances, and hello container image was pushed.</span></span> <span data-ttu-id="c8bd1-155">sono stata completata Hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="c8bd1-155">hello following steps were completed:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="9f6e7-156">Distribuzione di un'istanza del Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-156">Deploying an Azure Container Registry instance</span></span>
-> * <span data-ttu-id="9f6e7-157">Assegnazione di un tag all'immagine del contenitore per Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-157">Tagging container image for Azure Container Registry</span></span>
-> * <span data-ttu-id="9f6e7-158">Caricamento dell'immagine in Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-158">Uploading image to Azure Container Registry</span></span>
+> * <span data-ttu-id="c8bd1-156">Distribuzione di un'istanza del Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-156">Deploying an Azure Container Registry instance</span></span>
+> * <span data-ttu-id="c8bd1-157">Assegnazione di un tag all'immagine del contenitore per Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="c8bd1-157">Tagging container image for Azure Container Registry</span></span>
+> * <span data-ttu-id="c8bd1-158">Caricamento tooAzure immagine contenitore del Registro di sistema</span><span class="sxs-lookup"><span data-stu-id="c8bd1-158">Uploading image tooAzure Container Registry</span></span>
 
-<span data-ttu-id="9f6e7-159">Passare alla prossima esercitazione per informazioni sulla distribuzione del contenitore in Azure con Istanze di contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="9f6e7-159">Advance to the next tutorial to learn about deploying the container to Azure using Azure Container Instances.</span></span>
+<span data-ttu-id="c8bd1-159">Spostare toohello Avanti toolearn esercitazione sulla distribuzione di hello contenitore tooAzure utilizzando istanze di contenitori di Azure.</span><span class="sxs-lookup"><span data-stu-id="c8bd1-159">Advance toohello next tutorial toolearn about deploying hello container tooAzure using Azure Container Instances.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="9f6e7-160">Distribuire contenitori in Istanze di contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="9f6e7-160">Deploy containers to Azure Container Instances</span></span>](./container-instances-tutorial-deploy-app.md)
+> [<span data-ttu-id="c8bd1-160">Distribuire i contenitori tooAzure istanze di contenitori</span><span class="sxs-lookup"><span data-stu-id="c8bd1-160">Deploy containers tooAzure Container Instances</span></span>](./container-instances-tutorial-deploy-app.md)

@@ -1,6 +1,6 @@
 ---
-title: Esempio di distribuzione di script dell'interfaccia della riga di comando di Azure Service Fabric
-description: Distribuire un'applicazione in un cluster di Azure Service Fabric usando l'interfaccia della riga di comando di Azure Service Fabric
+title: aaaAzure esempio distribuire uno Script del servizio dell'infrastruttura CLI
+description: Distribuire un cluster di Azure Service Fabric tooan applicazione utilizzando hello CLI di Azure Service Fabric
 services: service-fabric
 documentationcenter: 
 author: Thraka
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 08/22/2017
 ms.author: adegeo
 ms.custom: mvc
-ms.openlocfilehash: c77ecfccdf7d3e34b0b3133e9c63810a04fb1132
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aaec7042a4fd7ed32ad706cde70361f23d18fb48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-an-application-to-a-service-fabric-cluster"></a><span data-ttu-id="7deb9-103">Distribuire un'applicazione in un cluster di Service Fabric</span><span class="sxs-lookup"><span data-stu-id="7deb9-103">Deploy an application to a Service Fabric cluster</span></span>
+# <a name="deploy-an-application-tooa-service-fabric-cluster"></a><span data-ttu-id="a07be-103">Distribuire un cluster di Service Fabric tooa applicazione</span><span class="sxs-lookup"><span data-stu-id="a07be-103">Deploy an application tooa Service Fabric cluster</span></span>
 
-<span data-ttu-id="7deb9-104">Questo script di esempio copia un pacchetto dell'applicazione in un archivio immagini del cluster, registra il tipo di applicazione nel cluster e crea un'istanza di applicazione dal tipo di applicazione.</span><span class="sxs-lookup"><span data-stu-id="7deb9-104">This sample script copies an application package to a cluster image store, registers the application type in the cluster, and creates an application instance from the application type.</span></span> <span data-ttu-id="7deb9-105">Anche i servizi predefiniti vengono creati in questa fase.</span><span class="sxs-lookup"><span data-stu-id="7deb9-105">Any default services are also created at this time.</span></span>
+<span data-ttu-id="a07be-104">Questo script di esempio copia di un archivio di immagini dell'applicazione pacchetto tooa cluster, registra il tipo di applicazione hello cluster hello e crea un'istanza di applicazione dal tipo di applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="a07be-104">This sample script copies an application package tooa cluster image store, registers hello application type in hello cluster, and creates an application instance from hello application type.</span></span> <span data-ttu-id="a07be-105">Anche i servizi predefiniti vengono creati in questa fase.</span><span class="sxs-lookup"><span data-stu-id="a07be-105">Any default services are also created at this time.</span></span>
 
-<span data-ttu-id="7deb9-106">Se necessario, installare l'[interfaccia della riga di comando di Service Fabric](../service-fabric-cli.md).</span><span class="sxs-lookup"><span data-stu-id="7deb9-106">If needed, install the [Service Fabric CLI](../service-fabric-cli.md).</span></span>
+<span data-ttu-id="a07be-106">Se necessario, installare hello [servizio infrastruttura CLI](../service-fabric-cli.md).</span><span class="sxs-lookup"><span data-stu-id="a07be-106">If needed, install hello [Service Fabric CLI](../service-fabric-cli.md).</span></span>
 
-## <a name="sample-script"></a><span data-ttu-id="7deb9-107">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="7deb9-107">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="a07be-107">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="a07be-107">Sample script</span></span>
 
-<span data-ttu-id="7deb9-108">[!code-sh[main](../../../cli_scripts/service-fabric/deploy-application/deploy-application.sh "Distribuire un'applicazione in un cluster")]</span><span class="sxs-lookup"><span data-stu-id="7deb9-108">[!code-sh[main](../../../cli_scripts/service-fabric/deploy-application/deploy-application.sh "Deploy an application to a cluster")]</span></span>
+[!code-sh[main](../../../cli_scripts/service-fabric/deploy-application/deploy-application.sh "Deploy an application tooa cluster")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="7deb9-109">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="7deb9-109">Clean up deployment</span></span>
+## <a name="clean-up-deployment"></a><span data-ttu-id="a07be-108">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="a07be-108">Clean up deployment</span></span>
 
-<span data-ttu-id="7deb9-110">Al termine, è possibile usare lo script [remove](cli-remove-application.md) per rimuovere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="7deb9-110">When done, the [remove](cli-remove-application.md) script can be used to remove the application.</span></span> <span data-ttu-id="7deb9-111">Lo script remove elimina l'istanza dell'applicazione, annulla la registrazione del tipo di applicazione ed elimina il pacchetto dell'applicazione dall'archivio immagini.</span><span class="sxs-lookup"><span data-stu-id="7deb9-111">The remove script deletes the application instance, unregisters the application type, and deletes the application package from the image store.</span></span>
+<span data-ttu-id="a07be-109">Al termine, hello [rimuovere](cli-remove-application.md) script può essere un'applicazione hello tooremove utilizzato.</span><span class="sxs-lookup"><span data-stu-id="a07be-109">When done, hello [remove](cli-remove-application.md) script can be used tooremove hello application.</span></span> <span data-ttu-id="a07be-110">script di rimozione Hello Elimina istanza dell'applicazione hello, Annulla la registrazione di tipo di applicazione hello e pacchetto dell'applicazione hello dall'archivio immagini.</span><span class="sxs-lookup"><span data-stu-id="a07be-110">hello remove script deletes hello application instance, unregisters hello application type, and deletes hello application package from the image store.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="7deb9-112">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="7deb9-112">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a07be-111">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a07be-111">Next steps</span></span>
 
-<span data-ttu-id="7deb9-113">Per altre informazioni, vedere la [documentazione sull'interfaccia della riga di comando di Service Fabric](../service-fabric-cli.md).</span><span class="sxs-lookup"><span data-stu-id="7deb9-113">For more information, see the [Service Fabric CLI documentation](../service-fabric-cli.md).</span></span>
+<span data-ttu-id="a07be-112">Per ulteriori informazioni, vedere hello [documentazione servizio infrastruttura CLI](../service-fabric-cli.md).</span><span class="sxs-lookup"><span data-stu-id="a07be-112">For more information, see hello [Service Fabric CLI documentation](../service-fabric-cli.md).</span></span>
 
-<span data-ttu-id="7deb9-114">Altri esempi dell'interfaccia della riga di comando di Service Fabric per Azure Service Fabric sono disponibili negli [esempi dell'interfaccia della riga di comando di Service Fabric](../samples-cli.md).</span><span class="sxs-lookup"><span data-stu-id="7deb9-114">Additional Service Fabric CLI samples for Azure Service Fabric can be found in the [Service Fabric CLI samples](../samples-cli.md).</span></span>
+<span data-ttu-id="a07be-113">Esempi aggiuntivi di servizio dell'infrastruttura CLI per Azure Service Fabric sono reperibile in hello [esempi del servizio dell'infrastruttura CLI](../samples-cli.md).</span><span class="sxs-lookup"><span data-stu-id="a07be-113">Additional Service Fabric CLI samples for Azure Service Fabric can be found in hello [Service Fabric CLI samples](../samples-cli.md).</span></span>

@@ -1,6 +1,6 @@
 ---
-title: Come usare PowerShell per gestire Archiviazione file di Azure| Microsoft Docs
-description: Informazioni su come usare PowerShell per gestire Archiviazione file di Azure.
+title: aaaHow toouse PowerShell toomanage archiviazione di File di Azure | Documenti Microsoft
+description: Informazioni su archiviazione di File di Azure toouse PowerShell toomanage.
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: 148375b156c4ae1aa4bf203d215f7ed607a71b89
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 0e30e8796cf8bbf5f9249b26179d5e0f9077c8fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-powershell-to-manage-azure-file-storage"></a><span data-ttu-id="336eb-103">Come usare PowerShell per gestire Archiviazione file di Azure</span><span class="sxs-lookup"><span data-stu-id="336eb-103">How to use PowerShell to manage Azure File storage</span></span>
-<span data-ttu-id="336eb-104">È possibile usare Azure PowerShell per creare e gestire le condivisioni file.</span><span class="sxs-lookup"><span data-stu-id="336eb-104">You can use Azure PowerShell to create and manage file shares.</span></span>
+# <a name="how-toouse-powershell-toomanage-azure-file-storage"></a><span data-ttu-id="ea688-103">Come toouse PowerShell toomanage archiviazione di File di Azure</span><span class="sxs-lookup"><span data-stu-id="ea688-103">How toouse PowerShell toomanage Azure File storage</span></span>
+<span data-ttu-id="ea688-104">È possibile usare Azure PowerShell toocreate e gestire le condivisioni di file.</span><span class="sxs-lookup"><span data-stu-id="ea688-104">You can use Azure PowerShell toocreate and manage file shares.</span></span>
 
-## <a name="install-the-powershell-cmdlets-for-azure-storage"></a><span data-ttu-id="336eb-105">Installare i cmdlet di PowerShell per l'archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="336eb-105">Install the PowerShell cmdlets for Azure Storage</span></span>
-<span data-ttu-id="336eb-106">Per prepararsi all'uso di PowerShell, scaricare e installare i cmdlet di Azure PowerShell.</span><span class="sxs-lookup"><span data-stu-id="336eb-106">To prepare to use PowerShell, download and install the Azure PowerShell cmdlets.</span></span> <span data-ttu-id="336eb-107">Vedere [Come installare e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs) per le istruzioni relative al punto di installazione e all’installazione.</span><span class="sxs-lookup"><span data-stu-id="336eb-107">See [How to install and configure Azure PowerShell](/powershell/azureps-cmdlets-docs) for the install point and installation instructions.</span></span>
+## <a name="install-hello-powershell-cmdlets-for-azure-storage"></a><span data-ttu-id="ea688-105">Installare i cmdlet di PowerShell hello per l'archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="ea688-105">Install hello PowerShell cmdlets for Azure Storage</span></span>
+<span data-ttu-id="ea688-106">tooprepare toouse PowerShell, scaricare e installare i cmdlet di Azure PowerShell hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-106">tooprepare toouse PowerShell, download and install hello Azure PowerShell cmdlets.</span></span> <span data-ttu-id="ea688-107">Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs) per hello installare istruzioni sull'installazione e punto.</span><span class="sxs-lookup"><span data-stu-id="ea688-107">See [How tooinstall and configure Azure PowerShell](/powershell/azureps-cmdlets-docs) for hello install point and installation instructions.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="336eb-108">Si consiglia di scaricare e installare oppure aggiornare il modulo alla versione di Azure PowerShell più recente.</span><span class="sxs-lookup"><span data-stu-id="336eb-108">It's recommended that you download and install or upgrade to the latest Azure PowerShell module.</span></span>
+> <span data-ttu-id="ea688-108">È consigliabile scaricare e installare o aggiornare il modulo PowerShell di Azure più recente di toohello.</span><span class="sxs-lookup"><span data-stu-id="ea688-108">It's recommended that you download and install or upgrade toohello latest Azure PowerShell module.</span></span>
 > 
 > 
 
-<span data-ttu-id="336eb-109">Per aprire una finestra di Azure PowerShell, fare clic su **Start** e digitare **Windows PowerShell**.</span><span class="sxs-lookup"><span data-stu-id="336eb-109">Open an Azure PowerShell window by clicking **Start** and typing **Windows PowerShell**.</span></span> <span data-ttu-id="336eb-110">La finestra di PowerShell carica automaticamente il modulo Azure PowerShell.</span><span class="sxs-lookup"><span data-stu-id="336eb-110">The PowerShell window loads the Azure Powershell module for you.</span></span>
+<span data-ttu-id="ea688-109">Per aprire una finestra di Azure PowerShell, fare clic su **Start** e digitare **Windows PowerShell**.</span><span class="sxs-lookup"><span data-stu-id="ea688-109">Open an Azure PowerShell window by clicking **Start** and typing **Windows PowerShell**.</span></span> <span data-ttu-id="ea688-110">finestra di PowerShell Hello carica il modulo di Azure Powershell hello automaticamente.</span><span class="sxs-lookup"><span data-stu-id="ea688-110">hello PowerShell window loads hello Azure Powershell module for you.</span></span>
 
-## <a name="create-a-context-for-your-storage-account-and-key"></a><span data-ttu-id="336eb-111">Creare un contesto per l'account e la chiave di archiviazione</span><span class="sxs-lookup"><span data-stu-id="336eb-111">Create a context for your storage account and key</span></span>
-<span data-ttu-id="336eb-112">Creare il contesto dell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="336eb-112">Create the storage account context.</span></span> <span data-ttu-id="336eb-113">Il contesto incapsula il nome e la chiave dell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="336eb-113">The context encapsulates the storage account name and account key.</span></span> <span data-ttu-id="336eb-114">Per istruzioni sulla copia della chiave dell'account dal [portale di Azure](https://portal.azure.com), vedere [Visualizzare e copiare le chiavi di accesso alle risorse di archiviazione](storage-create-storage-account.md#view-and-copy-storage-access-keys).</span><span class="sxs-lookup"><span data-stu-id="336eb-114">For instructions on copying your account key from the [Azure portal](https://portal.azure.com), see [View and copy storage access keys](storage-create-storage-account.md#view-and-copy-storage-access-keys).</span></span>
+## <a name="create-a-context-for-your-storage-account-and-key"></a><span data-ttu-id="ea688-111">Creare un contesto per l'account e la chiave di archiviazione</span><span class="sxs-lookup"><span data-stu-id="ea688-111">Create a context for your storage account and key</span></span>
+<span data-ttu-id="ea688-112">Creare il contesto di account di archiviazione hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-112">Create hello storage account context.</span></span> <span data-ttu-id="ea688-113">contesto Hello incapsula hello chiave account di archiviazione nome e all'account.</span><span class="sxs-lookup"><span data-stu-id="ea688-113">hello context encapsulates hello storage account name and account key.</span></span> <span data-ttu-id="ea688-114">Per istruzioni su come copiare la chiave dell'account da hello [portale di Azure](https://portal.azure.com), vedere [chiavi di accesso di archiviazione di visualizzazione e copia](storage-create-storage-account.md#view-and-copy-storage-access-keys).</span><span class="sxs-lookup"><span data-stu-id="ea688-114">For instructions on copying your account key from hello [Azure portal](https://portal.azure.com), see [View and copy storage access keys](storage-create-storage-account.md#view-and-copy-storage-access-keys).</span></span>
 
-<span data-ttu-id="336eb-115">Sostituire `storage-account-name` e `storage-account-key` con il nome e la chiave dell'account di archiviazione nell'esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="336eb-115">Replace `storage-account-name` and `storage-account-key` with your storage account name and key in the following example.</span></span>
+<span data-ttu-id="ea688-115">Sostituire `storage-account-name` e `storage-account-key` con il nome account di archiviazione e la chiave nel seguente esempio hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-115">Replace `storage-account-name` and `storage-account-key` with your storage account name and key in hello following example.</span></span>
 
 ```powershell
 # create a context for account and key
 $ctx=New-AzureStorageContext storage-account-name storage-account-key
 ```
 
-## <a name="create-a-new-file-share"></a><span data-ttu-id="336eb-116">Creare una nuova condivisione file</span><span class="sxs-lookup"><span data-stu-id="336eb-116">Create a new file share</span></span>
-<span data-ttu-id="336eb-117">Creare la nuova condivisione, denominata `logs`.</span><span class="sxs-lookup"><span data-stu-id="336eb-117">Create the new share, named `logs`.</span></span>
+## <a name="create-a-new-file-share"></a><span data-ttu-id="ea688-116">Creare una nuova condivisione file</span><span class="sxs-lookup"><span data-stu-id="ea688-116">Create a new file share</span></span>
+<span data-ttu-id="ea688-117">Crea nuova condivisione hello, denominato `logs`.</span><span class="sxs-lookup"><span data-stu-id="ea688-117">Create hello new share, named `logs`.</span></span>
 
 ```powershell
 # create a new share
 $s = New-AzureStorageShare logs -Context $ctx
 ```
 
-<span data-ttu-id="336eb-118">A questo punto si ha una condivisione file nell'archiviazione file.</span><span class="sxs-lookup"><span data-stu-id="336eb-118">You now have a file share in File storage.</span></span> <span data-ttu-id="336eb-119">Vengono quindi aggiunti un file e una directory.</span><span class="sxs-lookup"><span data-stu-id="336eb-119">Next we'll add a directory and a file.</span></span>
+<span data-ttu-id="ea688-118">A questo punto si ha una condivisione file nell'archiviazione file.</span><span class="sxs-lookup"><span data-stu-id="ea688-118">You now have a file share in File storage.</span></span> <span data-ttu-id="ea688-119">Vengono quindi aggiunti un file e una directory.</span><span class="sxs-lookup"><span data-stu-id="ea688-119">Next we'll add a directory and a file.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="336eb-120">Il nome della condivisione file deve essere composto solo da caratteri minuscoli.</span><span class="sxs-lookup"><span data-stu-id="336eb-120">The name of your file share must be all lowercase.</span></span> <span data-ttu-id="336eb-121">Per dettagli su come denominare condivisioni e file, vedere [Denominazione e riferimento a condivisioni, directory, file e metadati](https://msdn.microsoft.com/library/azure/dn167011.aspx).</span><span class="sxs-lookup"><span data-stu-id="336eb-121">For complete details about naming file shares and files, see [Naming and Referencing Shares, Directories, Files, and Metadata](https://msdn.microsoft.com/library/azure/dn167011.aspx).</span></span>
+> <span data-ttu-id="ea688-120">nome Hello della condivisione file deve essere tutti in lettere minuscole.</span><span class="sxs-lookup"><span data-stu-id="ea688-120">hello name of your file share must be all lowercase.</span></span> <span data-ttu-id="ea688-121">Per dettagli su come denominare condivisioni e file, vedere [Denominazione e riferimento a condivisioni, directory, file e metadati](https://msdn.microsoft.com/library/azure/dn167011.aspx).</span><span class="sxs-lookup"><span data-stu-id="ea688-121">For complete details about naming file shares and files, see [Naming and Referencing Shares, Directories, Files, and Metadata](https://msdn.microsoft.com/library/azure/dn167011.aspx).</span></span>
 > 
 > 
 
-## <a name="create-a-directory-in-the-file-share"></a><span data-ttu-id="336eb-122">Creare una directory nella condivisione file</span><span class="sxs-lookup"><span data-stu-id="336eb-122">Create a directory in the file share</span></span>
-<span data-ttu-id="336eb-123">Creare una directory nella condivisione.</span><span class="sxs-lookup"><span data-stu-id="336eb-123">Create a directory in the share.</span></span> <span data-ttu-id="336eb-124">Nell'esempio seguente la directory è denominata `CustomLogs`.</span><span class="sxs-lookup"><span data-stu-id="336eb-124">In the following example, the directory is named `CustomLogs`.</span></span>
+## <a name="create-a-directory-in-hello-file-share"></a><span data-ttu-id="ea688-122">Creare una directory nella condivisione di file hello</span><span class="sxs-lookup"><span data-stu-id="ea688-122">Create a directory in hello file share</span></span>
+<span data-ttu-id="ea688-123">Creare una directory nella condivisione di hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-123">Create a directory in hello share.</span></span> <span data-ttu-id="ea688-124">Nell'esempio seguente di hello, denominato directory hello `CustomLogs`.</span><span class="sxs-lookup"><span data-stu-id="ea688-124">In hello following example, hello directory is named `CustomLogs`.</span></span>
 
 ```powershell
-# create a directory in the share
+# create a directory in hello share
 New-AzureStorageDirectory -Share $s -Path CustomLogs
 ```
 
-## <a name="upload-a-local-file-to-the-directory"></a><span data-ttu-id="336eb-125">Caricare un file locale nella directory</span><span class="sxs-lookup"><span data-stu-id="336eb-125">Upload a local file to the directory</span></span>
-<span data-ttu-id="336eb-126">Caricare un file locale nella directory.</span><span class="sxs-lookup"><span data-stu-id="336eb-126">Now upload a local file to the directory.</span></span> <span data-ttu-id="336eb-127">Nel seguente esempio viene caricato un file da `C:\temp\Log1.txt`.</span><span class="sxs-lookup"><span data-stu-id="336eb-127">The following example uploads a file from `C:\temp\Log1.txt`.</span></span> <span data-ttu-id="336eb-128">Modificare il percorso del file in modo che punti a un file valido nel computer locale.</span><span class="sxs-lookup"><span data-stu-id="336eb-128">Edit the file path so that it points to a valid file on your local machine.</span></span>
+## <a name="upload-a-local-file-toohello-directory"></a><span data-ttu-id="ea688-125">Caricare un file locale toohello una directory</span><span class="sxs-lookup"><span data-stu-id="ea688-125">Upload a local file toohello directory</span></span>
+<span data-ttu-id="ea688-126">Caricare un file locale toohello una directory.</span><span class="sxs-lookup"><span data-stu-id="ea688-126">Now upload a local file toohello directory.</span></span> <span data-ttu-id="ea688-127">esempio Hello carica un file da `C:\temp\Log1.txt`.</span><span class="sxs-lookup"><span data-stu-id="ea688-127">hello following example uploads a file from `C:\temp\Log1.txt`.</span></span> <span data-ttu-id="ea688-128">Modificare il percorso del file hello in modo che punti tooa file valido sul computer locale.</span><span class="sxs-lookup"><span data-stu-id="ea688-128">Edit hello file path so that it points tooa valid file on your local machine.</span></span>
 
 ```powershell
-# upload a local file to the new directory
+# upload a local file toohello new directory
 Set-AzureStorageFileContent -Share $s -Source C:\temp\Log1.txt -Path CustomLogs
 ```
 
-## <a name="list-the-files-in-the-directory"></a><span data-ttu-id="336eb-129">Elencare i file nella directory</span><span class="sxs-lookup"><span data-stu-id="336eb-129">List the files in the directory</span></span>
-<span data-ttu-id="336eb-130">Per visualizzare un file nella directory, è possibile elencare tutti i file della directory.</span><span class="sxs-lookup"><span data-stu-id="336eb-130">To see the file in the directory, you can list all of the directory's files.</span></span> <span data-ttu-id="336eb-131">Questo comando restituisce file e sottodirectory, se presenti, nella directory CustomLogs.</span><span class="sxs-lookup"><span data-stu-id="336eb-131">This command returns the files and subdirectories (if there are any) in the CustomLogs directory.</span></span>
+## <a name="list-hello-files-in-hello-directory"></a><span data-ttu-id="ea688-129">Elencare i file nella directory hello hello</span><span class="sxs-lookup"><span data-stu-id="ea688-129">List hello files in hello directory</span></span>
+<span data-ttu-id="ea688-130">file di hello toosee nella directory di hello, è possibile elencare tutti i file della directory hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-130">toosee hello file in hello directory, you can list all of hello directory's files.</span></span> <span data-ttu-id="ea688-131">Questo comando restituisce le sottodirectory e file hello se (esistono eventuali) nella directory CustomLogs hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-131">This command returns hello files and subdirectories (if there are any) in hello CustomLogs directory.</span></span>
 
 ```powershell
-# list files in the new directory
+# list files in hello new directory
 Get-AzureStorageFile -Share $s -Path CustomLogs | Get-AzureStorageFile
 ```
 
-<span data-ttu-id="336eb-132">Get-AzureStorageFile restituisce un elenco di file e directory per qualsiasi oggetto di directory passato.</span><span class="sxs-lookup"><span data-stu-id="336eb-132">Get-AzureStorageFile returns a list of files and directories for whatever directory object is passed in.</span></span> <span data-ttu-id="336eb-133">"Get-AzureStorageFile -Share $s" restituisce un elenco di file e directory nella directory radice.</span><span class="sxs-lookup"><span data-stu-id="336eb-133">"Get-AzureStorageFile -Share $s" returns a list of files and directories in the root directory.</span></span> <span data-ttu-id="336eb-134">Per ottenere un elenco di file in una sottodirectory, è necessario passare la sottodirectory a Get-AzureStorageFile.</span><span class="sxs-lookup"><span data-stu-id="336eb-134">To get a list of files in a subdirectory, you have to pass the subdirectory to Get-AzureStorageFile.</span></span> <span data-ttu-id="336eb-135">La prima parte del comando fino alla pipe restituisce un'istanza di directory della sottodirectory CustomLogs.</span><span class="sxs-lookup"><span data-stu-id="336eb-135">That's what this does -- the first part of the command up to the pipe returns a directory instance of the subdirectory CustomLogs.</span></span> <span data-ttu-id="336eb-136">Il comando viene quindi passato a Get-AzureStorageFile, che restituisce i file e le directory in CustomLogs.</span><span class="sxs-lookup"><span data-stu-id="336eb-136">Then that is passed into Get-AzureStorageFile, which returns the files and directories in CustomLogs.</span></span>
+<span data-ttu-id="ea688-132">Get-AzureStorageFile restituisce un elenco di file e directory per qualsiasi oggetto di directory passato.</span><span class="sxs-lookup"><span data-stu-id="ea688-132">Get-AzureStorageFile returns a list of files and directories for whatever directory object is passed in.</span></span> <span data-ttu-id="ea688-133">"Get-AzureStorageFile-condividere $s" restituisce un elenco di file e directory nella directory radice hello.</span><span class="sxs-lookup"><span data-stu-id="ea688-133">"Get-AzureStorageFile -Share $s" returns a list of files and directories in hello root directory.</span></span> <span data-ttu-id="ea688-134">tooget un elenco di file in una sottodirectory, è necessario toopass hello sottodirectory tooGet-AzureStorageFile.</span><span class="sxs-lookup"><span data-stu-id="ea688-134">tooget a list of files in a subdirectory, you have toopass hello subdirectory tooGet-AzureStorageFile.</span></span> <span data-ttu-id="ea688-135">In questo modo è: hello prima parte del comando hello della pipe toohello restituisce un'istanza di directory della sottodirectory hello CustomLogs.</span><span class="sxs-lookup"><span data-stu-id="ea688-135">That's what this does -- hello first part of hello command up toohello pipe returns a directory instance of hello subdirectory CustomLogs.</span></span> <span data-ttu-id="ea688-136">Che viene quindi passato Get-AzureStorageFile, che restituisce CustomLogs hello file e directory.</span><span class="sxs-lookup"><span data-stu-id="ea688-136">Then that is passed into Get-AzureStorageFile, which returns hello files and directories in CustomLogs.</span></span>
 
-## <a name="copy-files"></a><span data-ttu-id="336eb-137">Copiare i file</span><span class="sxs-lookup"><span data-stu-id="336eb-137">Copy files</span></span>
-<span data-ttu-id="336eb-138">A partire dalla versione 0.9.7 di Azure PowerShell, è possibile copiare un file in un altro file, un file in un BLOB o un BLOB in un file.</span><span class="sxs-lookup"><span data-stu-id="336eb-138">Beginning with version 0.9.7 of Azure PowerShell, you can copy a file to another file, a file to a blob, or a blob to a file.</span></span> <span data-ttu-id="336eb-139">Di seguito viene illustrato come eseguire queste operazioni di copia con i cmdlet di PowerShell.</span><span class="sxs-lookup"><span data-stu-id="336eb-139">Below we demonstrate how to perform these copy operations using PowerShell cmdlets.</span></span>
+## <a name="copy-files"></a><span data-ttu-id="ea688-137">Copiare i file</span><span class="sxs-lookup"><span data-stu-id="ea688-137">Copy files</span></span>
+<span data-ttu-id="ea688-138">A partire dalla versione 0.9.7 di Azure PowerShell, è possibile copiare un file con estensione tooanother, un blob tooa file o un file di blob tooa.</span><span class="sxs-lookup"><span data-stu-id="ea688-138">Beginning with version 0.9.7 of Azure PowerShell, you can copy a file tooanother file, a file tooa blob, or a blob tooa file.</span></span> <span data-ttu-id="ea688-139">Di seguito viene illustrato come questi tooperform copiare operazioni utilizzando i cmdlet di PowerShell.</span><span class="sxs-lookup"><span data-stu-id="ea688-139">Below we demonstrate how tooperform these copy operations using PowerShell cmdlets.</span></span>
 
 ```powershell
-# copy a file to the new directory
+# copy a file toohello new directory
 Start-AzureStorageFileCopy -SrcShareName srcshare -SrcFilePath srcdir/hello.txt -DestShareName destshare -DestFilePath destdir/hellocopy.txt -Context $srcCtx -DestContext $destCtx
 
-# copy a blob to a file directory
+# copy a blob tooa file directory
 Start-AzureStorageFileCopy -SrcContainerName srcctn -SrcBlobName hello2.txt -DestShareName hello -DestFilePath hellodir/hello2copy.txt -DestContext $ctx -Context $ctx
 ```
-## <a name="next-steps"></a><span data-ttu-id="336eb-140">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="336eb-140">Next steps</span></span>
-<span data-ttu-id="336eb-141">Vedere i collegamenti seguenti per ulteriori informazioni sull'archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="336eb-141">See these links for more information about Azure File storage.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ea688-140">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="ea688-140">Next steps</span></span>
+<span data-ttu-id="ea688-141">Vedere i collegamenti seguenti per ulteriori informazioni sull'archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="ea688-141">See these links for more information about Azure File storage.</span></span>
 
-* [<span data-ttu-id="336eb-142">Domande frequenti</span><span class="sxs-lookup"><span data-stu-id="336eb-142">FAQ</span></span>](storage-files-faq.md)
-* [<span data-ttu-id="336eb-143">Risoluzione dei problemi</span><span class="sxs-lookup"><span data-stu-id="336eb-143">Troubleshooting</span></span>](storage-troubleshoot-file-connection-problems.md)
+* [<span data-ttu-id="ea688-142">Domande frequenti</span><span class="sxs-lookup"><span data-stu-id="ea688-142">FAQ</span></span>](storage-files-faq.md)
+* [<span data-ttu-id="ea688-143">Risoluzione dei problemi</span><span class="sxs-lookup"><span data-stu-id="ea688-143">Troubleshooting</span></span>](storage-troubleshoot-file-connection-problems.md)

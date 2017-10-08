@@ -1,5 +1,5 @@
 ---
-title: Istanze di contenitore di Azure - Gruppo multicontenitore | Azure Docs
+title: Istanze di contenitori - gruppo multi-contenitore aaaAzure | Documenti di Azure
 description: Istanze di contenitore di Azure - Gruppo multicontenitore
 services: container-instances
 documentationcenter: 
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 07/26/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 140f58582645ea32f77e901eb13364ed145bbecf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 976f578cd2a9bf7f05ab97f24662139bb72062ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-container-group"></a>Distribuire un gruppo di contenitori
 
-Istanze di contenitore di Azure supporta la distribuzione di più contenitori in un singolo host usando un *gruppo di contenitori*. Ciò è utile quando si compila un contenitore collaterale dell'applicazione per la registrazione, il monitoraggio o qualsiasi altra configurazione in cui un servizio necessita di un secondo processo associato. 
+Istanze di contenitore di Azure supporta la distribuzione di hello di più contenitori in un singolo host usando un *gruppo contenitore*. Ciò è utile quando si compila un contenitore collaterale dell'applicazione per la registrazione, il monitoraggio o qualsiasi altra configurazione in cui un servizio necessita di un secondo processo associato. 
 
 Questo documento descrive come eseguire una configurazione multicontenitore con contenitore collaterale tramite un modello di Azure Resource Manager.
 
-## <a name="configure-the-template"></a>Configurare il modello
+## <a name="configure-hello-template"></a>Configurare il modello di hello
 
-Creare un file denominato `azuredeploy.json` e copiare il codice JSON seguente al suo interno. 
+Creare un file denominato `azuredeploy.json` e hello copia seguendo json al suo interno. 
 
-In questo esempio viene definito un gruppo di contenitori con due contenitori e un indirizzo IP pubblico. Il primo contenitore del gruppo esegue un'applicazione con connessione Internet. Il secondo contenitore, ovvero il contenitore collaterale, invia una richiesta HTTP all'applicazione Web principale tramite la rete locale del gruppo. 
+In questo esempio viene definito un gruppo di contenitori con due contenitori e un indirizzo IP pubblico. primo contenitore di Hello del gruppo di hello esegue un'applicazione con connessione internet. secondo contenitore Hello, Car hello, rende un'applicazione web principale di HTTP richiesta toohello tramite rete locale del gruppo di hello. 
 
-Questo esempio di contenitore collaterale può essere esteso per attivare un avviso se si riceve un codice di risposta HTTP diverso da 200 OK. 
+In questo esempio Car potrebbe essere tootrigger espanso un avviso se ricevuto un codice di risposta HTTP diversi da 200 OK. 
 
 ```json
 {
@@ -109,7 +109,7 @@ Questo esempio di contenitore collaterale può essere esteso per attivare un avv
   }
 ```
 
-Per usare un registro di immagini del contenitore privato, aggiungere un oggetto al documento JSON con il formato seguente.
+toouse un contenitore privato immagine del Registro di sistema, aggiungere un documento json di oggetti toohello con hello seguente formato.
 
 ```json
 "imageRegistryCredentials": [
@@ -121,15 +121,15 @@ Per usare un registro di immagini del contenitore privato, aggiungere un oggetto
 ]
 ```
 
-## <a name="deploy-the-template"></a>Distribuire il modello
+## <a name="deploy-hello-template"></a>Distribuire il modello di hello
 
-Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create).
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westus
 ```
 
-Distribuire il modello con il comando [az group deployment create](/cli/azure/group/deployment#create).
+Distribuire il modello di hello con hello [distribuzione gruppo az creare](/cli/azure/group/deployment#create) comando.
 
 ```azurecli-interactive
 az group deployment create --name myContainerGroup --resource-group myResourceGroup --template-file azuredeploy.json
@@ -139,7 +139,7 @@ Entro pochi secondi si riceverà una risposta iniziale da Azure.
 
 ## <a name="view-deployment-state"></a>Visualizzare lo stato della distribuzione
 
-Per visualizzare lo stato della distribuzione, usare il comando `az container show`. Il comando restituisce l'indirizzo IP pubblico con provisioning eseguito su cui è possibile accedere all'applicazione.
+stato hello tooview hello della distribuzione di, utilizzare hello `az container show` comando. Restituisce l'indirizzo IP pubblico hello provisioning su quale hello è possibile accedere all'applicazione.
 
 ```azurecli-interactive
 az container show --name myContainerGroup --resource-group myResourceGroup -o table
@@ -155,7 +155,7 @@ myContainerGroup  myResourceGrou2  Succeeded            microsoft/aci-tutorial-s
 
 ## <a name="view-logs"></a>Visualizzare i log   
 
-Visualizzare l'output del log di un contenitore con il comando `az container logs`. L'argomento `--container-name` specifica il contenitore da cui effettuare il pull dei log. In questo esempio viene specificato il primo contenitore. 
+Visualizzare l'output del log di un contenitore utilizzando hello hello `az container logs` comando. Hello `--container-name` argomento specifica contenitore hello dai quali registri toopull. In questo esempio viene specificato il primo contenitore di hello. 
 
 ```azurecli-interactive
 az container logs --name myContainerGroup --container-name aci-tutorial-app --resource-group myResourceGroup
@@ -171,7 +171,7 @@ istening on port 80
 ::1 - - [27/Jul/2017:17:35:38 +0000] "HEAD / HTTP/1.1" 200 1663 "-" "curl/7.54.0"
 ```
 
-Per visualizzare i log per il contenitore collaterale, eseguire lo stesso comando specificando il nome del secondo contenitore.
+hello toosee registri per il contenitore di lato car hello, eseguire hello specificando hello secondo nome del contenitore stesso comando.
 
 ```azurecli-interactive
 az container logs --name myContainerGroup --container-name aci-tutorial-sidecar --resource-group myResourceGroup
@@ -193,11 +193,11 @@ Last-Modified: Sun, 16 Jul 2017 02:08:22 GMT
 Date: Mon, 17 Jul 2017 18:27:36 GMT
 ```
 
-Come si può notare, il contenitore collaterale invia periodicamente una richiesta HTTP all'applicazione Web principale tramite la rete locale del gruppo per verificare che l'applicazione sia in esecuzione.
+Come si può notare, Car hello periodicamente esegue un'applicazione web principale di HTTP richiesta toohello tramite tooensure di rete locale del gruppo di hello in fase di esecuzione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questo documento sono stati illustrati i passaggi necessari per la distribuzione di un'istanza multicontenitore di Azure. Per un'esperienza end-to-end di Istanze di contenitore di Azure, vedere l'apposita esercitazione.
+Questo documento coperto passaggi hello necessari per la distribuzione di un multi-contenitore di istanza del contenitore di Azure. Per un fine tooend che esperienza di istanze di contenitori di Azure, vedere l'esercitazione di istanze di contenitori di Azure di hello.
 
 > [!div class="nextstepaction"]
 > [Esercitazione su Istanze di contenitore di Azure]: ./container-instances-tutorial-prepare-app.md

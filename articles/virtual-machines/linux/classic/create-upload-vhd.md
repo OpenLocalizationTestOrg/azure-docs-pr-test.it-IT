@@ -1,6 +1,6 @@
 ---
-title: Creazione e caricamento di un VHD Linux in Azure | Documentazione Microsoft
-description: Creare e caricare un disco rigido virtuale di Azure (VHD) contenente il sistema operativo Linux con il modello di distribuzione classica
+title: aaaCreate e caricare un tooAzure VHD Linux | Documenti Microsoft
+description: Creare e caricare un Azure disco rigido virtuale (VHD) che contiene sistema operativo Linux di hello utilizzando hello modello di distribuzione classica
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,35 +15,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: iainfou
-ms.openlocfilehash: 23c30c954875598ce3e01db137b0ef8cda9779f4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 77b01316386c4a6eb68c129fa68d42f0a8996edc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-and-uploading-a-virtual-hard-disk-that-contains-the-linux-operating-system"></a>Creazione e caricamento di un disco rigido virtuale che contiene il sistema operativo Linux
+# <a name="creating-and-uploading-a-virtual-hard-disk-that-contains-hello-linux-operating-system"></a>Creazione e caricamento di un disco rigido virtuale contenente hello del sistema operativo Linux
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. È anche possibile [caricare un'immagine disco personalizzata tramite Azure Resource Manager](../upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. È anche possibile [caricare un'immagine disco personalizzata tramite Azure Resource Manager](../upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Questo articolo illustra come creare e caricare un disco rigido virtuale (VHD) in modo da usarlo come immagine per la creazione di macchine virtuali in Azure. L'articolo fornisce istruzioni su come preparare il sistema operativo in modo da usarlo per la creazione di più macchine virtuali basate sull'immagine specificata. 
+Questo articolo illustra come toocreate e caricare un disco rigido virtuale (VHD), è possibile utilizzarlo come la propria immagine toocreate di macchine virtuali in Azure. Informazioni su come il sistema operativo hello tooprepare quindi è possibile usare toocreate più macchine virtuali in base che l'immagine. 
 
 
 ## <a name="prerequisites"></a>Prerequisiti
-In questo articolo si presuppone che l'utente disponga degli elementi seguenti:
+Questo articolo si presuppone di aver hello seguenti elementi:
 
-* **Sistema operativo Linux installato in un file .vhd**: è stata installata una [distribuzione di Linux approvata da Azure](../endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (oppure consultare le [informazioni sulle distribuzioni non approvate](../create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)) in un disco virtuale in formato VHD. Sono disponibili vari strumenti per la creazione di una VM e un file VHD:
-  * Installare e configurare [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) o [KVM](http://www.linux-kvm.org/page/RunningKVM), prestando attenzione a usare il disco rigido virtuale come formato di immagine. Se necessario, è possibile [convertire un'immagine](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) usando `qemu-img convert`.
+* **Sistema operativo Linux installato in un file con estensione vhd** -è stato installato un [distribuzione Linux approvate per Azure](../endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (o vedere [informazioni per distribuzioni non approvate](../create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)) disco virtuale tooa in formato VHD hello. Più strumenti esistono toocreate una macchina virtuale e disco rigido virtuale:
+  * Installare e configurare [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) o [KVM](http://www.linux-kvm.org/page/RunningKVM), prestando attenzione toouse il formato di immagine disco rigido virtuale. Se necessario, è possibile [convertire un'immagine](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) usando `qemu-img convert`.
   * È anche possibile usare Hyper-V [in Windows 10](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install) o [in Windows Server 2012/2012 R2](https://technet.microsoft.com/library/hh846766.aspx).
 
 > [!NOTE]
-> Il formato VHDX più recente non è supportato in Azure. Quando si crea una VM, specificare VHD come formato. Se necessario, è possibile convertire i dischi VHDX nel formato VHD usando [`qemu-img convert`](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) o il cmdlet [`Convert-VHD`](https://technet.microsoft.com/library/hh848454.aspx) di PowerShell. Inoltre, Azure non supporta il caricamento di VHD dinamici, pertanto è necessario convertire tali dischi in VHD statici prima del caricamento. Per convertire dischi dinamici durante il processo di caricamento in Azure, sono disponibili strumenti come [Azure VHD Utilities for GO](https://github.com/Microsoft/azure-vhd-utils-for-go) .
+> il formato VHDX più recente di Hello non è supportato in Azure. Quando si crea una macchina virtuale, è possibile specificare file VHD come formato hello. Se necessario, è possibile convertire VHDX dischi tooVHD con [ `qemu-img convert` ](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) o hello [ `Convert-VHD` ](https://technet.microsoft.com/library/hh848454.aspx) cmdlet di PowerShell. Inoltre, Azure non supporta il caricamento di dischi rigidi virtuali dinamici, pertanto è necessario tooconvert tali toostatic dischi VHD prima del caricamento. È possibile utilizzare strumenti come [utilità di disco rigido virtuale di Azure per passare](https://github.com/Microsoft/azure-vhd-utils-for-go) tooconvert dischi dinamici durante il processo di hello di caricamento tooAzure.
 
-* **Interfaccia della riga di comando di Azure** : installare l' [interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) più recente per caricare il VHD.
+* **Interfaccia della riga di comando di Azure** -hello installazione più recente [interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) hello tooupload disco rigido virtuale.
 
-<a id="prepimage"> </a>
+<a id="prepimage"></a>
 
-## <a name="step-1-prepare-the-image-to-be-uploaded"></a>Passaggio 1: preparare l'immagine da caricare
-Azure supporta svariate distribuzioni di Linux (vedere la sezione [Distribuzioni approvate](../endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)). Gli articoli seguenti forniscono le istruzioni per preparare le diverse distribuzioni Linux supportate in Azure. Dopo aver eseguito le procedure nelle guide seguenti, tornare qui quando è disponibile un file VHD pronto per essere caricato in Azure:
+## <a name="step-1-prepare-hello-image-toobe-uploaded"></a>Passaggio 1: Preparare hello immagine toobe caricato
+Azure supporta svariate distribuzioni di Linux (vedere la sezione [Distribuzioni approvate](../endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)). Hello seguenti articoli illustra come tooprepare hello diverse distribuzioni di Linux che sono supportate in Azure. Dopo aver completato i passaggi seguenti guide hello hello, sono disponibili qui dopo aver un file VHD che è pronto tooupload tooAzure:
 
 * **[Distribuzioni basate su CentOS](../create-upload-centos.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 * **[Debian Linux](../debian-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
@@ -54,28 +54,28 @@ Azure supporta svariate distribuzioni di Linux (vedere la sezione [Distribuzioni
 * **[Altro - Distribuzioni non approvate](../create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 
 > [!NOTE]
-> Il contratto di servizio della piattaforma Azure si applica alle macchine virtuali che eseguono il sistema operativo Linux solo quando una distribuzione approvata viene usata con i dettagli di configurazione specificati in "Versioni supportate" in [Linux in Azure - Distribuzioni supportate](../endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Tutte le distribuzioni di Linux disponibili nella raccolta immagini di Azure sono distribuzioni approvate con la configurazione richiesta.
+> contratto di servizio di piattaforma Azure Hello applica toovirtual computer hello viene utilizzato solo quando una delle hello approvate per le distribuzioni del sistema operativo Linux con i dettagli di configurazione hello come specificato nelle versioni supportate [Linux in distribuzioni Azure-Endorsed ](../endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Tutte le distribuzioni di Linux nella raccolta di immagini di Azure hello sono avallate distribuzioni con la configurazione richiesta hello.
 > 
 > 
 
-Vedere anche le **[Note generali sull'installazione di Linux](../create-upload-generic.md#general-linux-installation-notes)** per suggerimenti più generali sulla preparazione di immagini Linux per Azure.
+Vedere anche hello  **[note sull'installazione di Linux](../create-upload-generic.md#general-linux-installation-notes)**  per suggerimenti generali sulla preparazione di immagini Linux per Azure.
 
-<a id="connect"> </a>
+<a id="connect"></a>
 
-## <a name="step-2-prepare-the-connection-to-azure"></a>Passaggio 2: preparare la connessione ad Azure
-Assicurarsi di usare l'interfaccia della riga di comando di Azure nel modello di distribuzione classica (`azure config mode asm`), quindi accedere al proprio account:
+## <a name="step-2-prepare-hello-connection-tooazure"></a>Passaggio 2: Preparare hello connessione tooAzure
+Assicurarsi che si utilizza il modello di distribuzione classica hello Ciao CLI di Azure (`azure config mode asm`), quindi accedi tooyour account:
 
 ```azurecli
 azure login
 ```
 
 
-<a id="upload"> </a>
+<a id="upload"></a>
 
-## <a name="step-3-upload-the-image-to-azure"></a>Passaggio 3: caricare l'immagine in Azure
-È necessario un account di archiviazione in cui caricare il file VHD. È possibile usare un account di archiviazione esistente o [crearne uno nuovo](../../../storage/common/storage-create-storage-account.md).
+## <a name="step-3-upload-hello-image-tooazure"></a>Passaggio 3: Caricare hello immagine tooAzure
+È necessario un tooupload di account di archiviazione di file di disco rigido virtuale per. È possibile usare un account di archiviazione esistente o [crearne uno nuovo](../../../storage/common/storage-create-storage-account.md).
 
-Usare l'interfaccia della riga di comando di Azure per caricare l'immagine tramite il comando seguente:
+Usare hello Azure CLI tooupload hello immagine utilizzando hello comando seguente:
 
 ```azurecli
 azure vm image create <ImageName> `
@@ -83,14 +83,14 @@ azure vm image create <ImageName> `
     --os Linux <PathToVHDFile>
 ```
 
-Nell'esempio precedente:
+Nell'esempio precedente hello:
 
-* **BlobStorageURL** è l'URL dell'account di archiviazione che si prevede di usare.
-* **YourImagesFolder** è il contenitore all'interno dell'archiviazione BLOB in cui si vogliono archiviare le immagini.
-* **VHDName** è l'etichetta che identifica il disco rigido virtuale visualizzata nel portale.
-* **PathToVHDFile** è il percorso completo e il nome del file con estensione .vhd della macchina.
+* **BlobStorageURL** hello URL per l'account di archiviazione hello Prevedi toouse
+* **YourImagesFolder** è il contenitore di hello nell'archiviazione blob in cui si desidera toostore delle immagini
+* **VHDName** è hello etichetta visualizzata nel disco rigido virtuale di portale tooidentify hello.
+* **PathToVHDFile** è hello di percorso completo e il nome del file con estensione vhd hello nel computer.
 
-Il comando seguente illustra un esempio completo:
+Hello comando seguente viene illustrato un esempio completo:
 
 ```azurecli
 azure vm image create myImage `
@@ -98,19 +98,19 @@ azure vm image create myImage `
     --os Linux /home/ahmet/myimage.vhd
 ```
 
-## <a name="step-4-create-a-vm-from-the-image"></a>Passaggio 4: Creare una VM dall'immagine
-Creare una VM usando `azure vm create` come per una normale VM. Specificare il nome assegnato all'immagine nel passaggio precedente. Nell'esempio seguente viene usato il nome dell'immagine **myImage** assegnato nel passaggio precedente:
+## <a name="step-4-create-a-vm-from-hello-image"></a>Passaggio 4: Creare una macchina virtuale dall'immagine hello
+Si crea una macchina virtuale utilizzando `azure vm create` in hello esattamente come una macchina virtuale di regolare. Specificare nome hello assegnato l'immagine nel passaggio precedente hello. Nel seguente esempio di hello, utilizziamo hello **myImage** nome immagine fornito nel passaggio precedente hello:
 
 ```azurecli
 azure vm create --userName ops --password P@ssw0rd! --vm-size Small --ssh `
     --location "West US" "myDeployedVM" myImage
 ```
 
-Per creare le proprie VM, fornire nome utente e password, posizione, nome DNS e nome dell'immagine.
+toocreate le proprie macchine virtuali, fornire la propria username + password, indirizzo, nome DNS e nome dell'immagine.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altri dettagli, vedere [Riferimento all'interfaccia della riga di comando di Azure per il modello di distribuzione classica](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
+Per ulteriori informazioni, vedere [riferimento CLI di Azure per il modello di distribuzione classica Azure hello](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
 
-[Step 1: Prepare the image to be uploaded]:#prepimage
-[Step 2: Prepare the connection to Azure]:#connect
-[Step 3: Upload the image to Azure]:#upload
+[Step 1: Prepare hello image toobe uploaded]:#prepimage
+[Step 2: Prepare hello connection tooAzure]:#connect
+[Step 3: Upload hello image tooAzure]:#upload

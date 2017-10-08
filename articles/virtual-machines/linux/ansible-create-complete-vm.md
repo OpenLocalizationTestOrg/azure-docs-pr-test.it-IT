@@ -1,6 +1,6 @@
 ---
-title: Usare Ansible per creare una macchina virtuale Linux completa in Azure | Microsoft Docs
-description: Informazioni su come usare Ansible per creare e gestire un ambiente completo per la macchina virtuale Linux in Azure
+title: aaaUse Ansible toocreate una VM Linux completo in Azure | Documenti Microsoft
+description: Informazioni su come toouse Ansible toocreate e gestire un ambiente di macchina virtuale Linux completo in Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/25/2017
 ms.author: iainfou
-ms.openlocfilehash: b2fcc288b40c12a9b3f966156ee2eedf4acca313
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 970b0427f39fc23240f9faab868196ca4f444e0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-complete-linux-virtual-machine-environment-in-azure-with-ansible"></a>Creare un ambiente completo per la macchina virtuale Linux in Azure con Ansible
-Ansible consente di automatizzare la distribuzione e la configurazione delle risorse nell'ambiente in uso. È possibile usare Ansible per gestire le macchine virtuali in Azure, così come si farebbe con qualsiasi altra risorsa. In questo articolo viene illustrato come creare un ambiente Linux completo e le risorse di supporto con Ansible. È anche possibile apprendere come [creare una macchina virtuale di base con Ansible](ansible-create-vm.md).
+Ansible consente tooautomate hello distribuzione e la configurazione delle risorse nell'ambiente in uso. È possibile utilizzare Ansible toomanage le macchine virtuali (VM) in Azure, hello stesso come si farebbe con qualsiasi altra risorsa. In questo articolo illustra come toocreate un ambiente completo di Linux e le risorse con Ansible di supporto. Viene inoltre illustrato come troppo[creare una macchina virtuale di base con Ansible](ansible-create-vm.md).
 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per gestire le risorse di Azure con Ansible, è necessario:
+toomanage Azure risorse con Ansible, è necessario hello seguenti:
 
-- avere Ansible e i moduli dell'SDK Python di Azure installati nel sistema host.
+- Ansible e hello moduli Python di Azure SDK installati nel sistema host.
     - Installare Ansible su [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73) e [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)
-- configurare le credenziali di Azure e Ansible in modo che siano pronte all'uso.
+- Le credenziali di Azure e toouse Ansible configurato li.
     - [Creare le credenziali di Azure e configurare Ansible](ansible-install-configure.md#create-azure-credentials)
-- Versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. 
-    - Se è necessario eseguire l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). È anche possibile usare [Cloud Shell](/azure/cloud-shell/quickstart) dal browser.
+- Versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` versione hello toofind. 
+    - Se è necessario tooupgrade, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). È anche possibile usare [Cloud Shell](/azure/cloud-shell/quickstart) dal browser.
 
 
 ## <a name="create-virtual-network"></a>Creare una rete virtuale
-La sezione seguente in un playbook Ansible crea una rete virtuale denominata *myVnet* nello spazio degli indirizzi *10.0.0.0/16*:
+Nella sezione seguente in un playbook Ansible Hello crea una rete virtuale denominata *myVnet* in hello *10.0.0.0/16* lo spazio degli indirizzi:
 
 ```yaml
 - name: Create virtual network
@@ -47,7 +47,7 @@ La sezione seguente in un playbook Ansible crea una rete virtuale denominata *my
     address_prefixes: "10.10.0.0/16"
 ```
 
-Per aggiungere una subnet, la sezione seguente crea una subnet denominata *mySubnet* nella rete virtuale *myVnet*:
+tooadd una subnet, hello seguente sezione viene creata una subnet denominata *mySubnet* in hello *myVnet* rete virtuale:
 
 ```yaml
 - name: Add subnet
@@ -60,7 +60,7 @@ Per aggiungere una subnet, la sezione seguente crea una subnet denominata *mySub
 
 
 ## <a name="create-public-ip-address"></a>Creare un indirizzo IP pubblico
-Per accedere alle risorse in Internet, creare e assegnare un indirizzo IP pubblico alla macchina virtuale. La sezione seguente in un playbook Ansible crea un indirizzo IP pubblico denominato *myPublicIP*:
+risorse tooaccess tra hello Internet, creare e assegnare un tooyour di indirizzo IP pubblico macchina virtuale. Nella sezione seguente in un playbook Ansible Hello crea un indirizzo IP pubblico denominato *myPublicIP*:
 
 ```yaml
 - name: Create public IP address
@@ -72,7 +72,7 @@ Per accedere alle risorse in Internet, creare e assegnare un indirizzo IP pubbli
 
 
 ## <a name="create-network-security-group"></a>Creare un gruppo di sicurezza di rete
-I gruppi di sicurezza di rete consentono di controllare il flusso del traffico di rete in ingresso e in uscita dalla macchina virtuale. La sezione seguente in un playbook Ansible crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup* e definisce una regola per consentire il traffico SSH sulla porta TCP 22:
+Gruppi di sicurezza di rete controllano il flusso di hello del traffico di rete da e verso la macchina virtuale. Nella sezione seguente in un playbook Ansible Hello crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup* e definisce un traffico SSH tooallow regola sulla porta TCP 22:
 
 ```yaml
 - name: Create Network Security Group that allows SSH
@@ -90,7 +90,7 @@ I gruppi di sicurezza di rete consentono di controllare il flusso del traffico d
 
 
 ## <a name="create-virtual-network-interface-card"></a>Creare la scheda di interfaccia di rete virtuale
-Una scheda di interfaccia di rete virtuale, NIC, connette la macchina virtuale a una rete virtuale specifica, a un indirizzo IP pubblico e a un gruppo di sicurezza di rete. La sezione seguente in un playbook Ansible crea una scheda di rete virtuale denominata *myNIC* connessa alle risorse di rete virtuale create:
+Una scheda di interfaccia di rete virtuale (NIC) si connette tooa la macchina virtuale assegnato al gruppo di sicurezza di rete, indirizzo IP pubblico e rete virtuale. Nella sezione seguente in un playbook Ansible Hello crea una scheda di rete virtuale denominata *myNIC* connesso toohello virtuale le risorse di rete è stato creato:
 
 ```yaml
 - name: Create virtual network inteface card
@@ -105,7 +105,7 @@ Una scheda di interfaccia di rete virtuale, NIC, connette la macchina virtuale a
 
 
 ## <a name="create-virtual-machine"></a>Crea macchina virtuale
-Il passaggio finale consiste nel creare una macchina virtuale e usare tutte le risorse create. La sezione seguente in un playbook Ansible crea una macchina virtuale denominata *myVM* e associa la scheda di rete virtuale denominata *myNIC*. Immettere i propri dati della chiave pubblica nella coppia *key_data* come indicato di seguito:
+passaggio finale Hello è toocreate una macchina virtuale e usare tutte le risorse di hello create. Nella sezione seguente in un playbook Ansible Hello crea una macchina virtuale denominata *myVM* e collega hello NIC virtuale denominato *myNIC*. Immettere i propri dati di chiave pubblici in hello *key_data* coppia come indicato di seguito:
 
 ```yaml
 - name: Create VM
@@ -127,7 +127,7 @@ Il passaggio finale consiste nel creare una macchina virtuale e usare tutte le r
 ```
 
 ## <a name="complete-ansible-playbook"></a>Completare il playbook Ansible
-Per unire tutte queste sezioni, creare un playbook Ansible denominato *azure_create_vm.yml* e incollarvi i contenuti seguenti:
+toobring tutte queste sezioni insieme, creano un playbook Ansible denominato *azure_create_complete_vm.yml* e Incolla hello seguente contenuto:
 
 ```yaml
 - name: Create Azure VM
@@ -187,19 +187,19 @@ Per unire tutte queste sezioni, creare un playbook Ansible denominato *azure_cre
         version: latest
 ```
 
-Ansible deve distribuire tutte le risorse in un gruppo di risorse. Come prima cosa creare un gruppo di risorse con [az group create](/cli/azure/vm#create). L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella posizione *eastus*:
+Ansible è necessario tutte le risorse in un toodeploy gruppo di risorse. Come prima cosa creare un gruppo di risorse con [az group create](/cli/azure/vm#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Per creare l'ambiente completo per la macchina virtuale con Ansible, eseguire il playbook come segue:
+toocreate hello completo ambiente di VM con Ansible, eseguire playbook hello come segue:
 
 ```bash
 ansible-playbook azure_create_complete_vm.yml
 ```
 
-L'output è simile all'esempio seguente che mostra che la macchina virtuale è stata creata correttamente:
+output di Hello è simile toohello seguendo l'esempio che illustra hello che VM è stato creato correttamente:
 
 ```bash
 PLAY [Create Azure VM] ****************************************************
@@ -230,4 +230,4 @@ localhost                  : ok=7    changed=6    unreachable=0    failed=0
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo esempio viene creato un ambiente completo della macchina virtuale che include le risorse di rete virtuali necessarie. Per un esempio più diretto che illustri come creare una macchina virtuale nelle risorse di rete esistenti con le opzioni predefinite, vedere [Creare una macchina virtuale](ansible-create-vm.md).
+Questo esempio viene creato un ambiente di VM completo incluso hello necessarie risorse di rete virtuale. Per un toocreate esempio più diretto, una macchina virtuale in risorse di rete esistenti con le opzioni predefinite, vedere [creare una macchina virtuale](ansible-create-vm.md).

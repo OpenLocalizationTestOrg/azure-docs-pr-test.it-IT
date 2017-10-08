@@ -1,6 +1,6 @@
 ---
-title: "Uso di Configurazione dello stato desiderato (DSC) con i set di scalabilità di macchine virtuali | Microsoft Docs"
-description: "Utilizzo dei set di scalabilità di macchine virtuali con l'estensione DSC di Azure"
+title: "aaaUsing desiderato stato configurazione con scalabilità set di macchine virtuali | Documenti Microsoft"
+description: "Utilizzo di set di scalabilità di macchine virtuali con hello estensione DSC di Azure"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: zjalexander
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 04/05/2017
 ms.author: zachal
-ms.openlocfilehash: b61b0acf3072569ab733a13defb465c921d26187
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a35f1ca6700aa4889978032aa512882db50d6573
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-virtual-machine-scale-sets-with-the-azure-dsc-extension"></a>Utilizzo dei set di scalabilità di macchine virtuali con l'estensione DSC di Azure
-I [set di scalabilità di macchine virtuali](virtual-machine-scale-sets-overview.md) possono essere usati con il gestore dell'estensione [Azure Desired State Configuration (DSC)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Configurazione dello stato desiderato (DSC) di Azure). Il set di scalabilità di macchine virtuali consente di distribuire e gestire un numero elevato di macchine virtuali e di aumentare o ridurre la dimensione in risposta al carico. DSC viene usato per la configurazione delle VM mano a mano che sono in linea, in modo che eseguano il software di produzione.
+# <a name="using-virtual-machine-scale-sets-with-hello-azure-dsc-extension"></a>Utilizzo di set di scalabilità di macchine virtuali con hello estensione DSC di Azure
+[Set di scalabilità di macchine virtuali](virtual-machine-scale-sets-overview.md) può essere utilizzato con hello [Azure configurazione DSC (Desired State)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) gestore dell'estensione. Set di scalabilità di macchine virtuali forniscono un modo toodeploy e gestire un numero elevato di macchine virtuali ed elastico può aumentare e ridurre in tooload di risposta. DSC è hello tooconfigure usate le macchine virtuali man mano che arrivano online in modo che eseguono software di produzione hello.
 
-## <a name="differences-between-deploying-to-virtual-machines-and-virtual-machine-scale-sets"></a>Differenze tra la distribuzione di macchine virtuali e i set di scalabilità di macchine virtuali
-La struttura del modello sottostante di un set di scalabilità di macchine virtuali è leggermente diversa da quella di una singola VM. In particolare, una singola VM distribuisce le estensioni nel nodo "virtualMachines". È presente una voce del tipo "extensions" nella quale DSC viene aggiunto al modello:
+## <a name="differences-between-deploying-toovirtual-machines-and-virtual-machine-scale-sets"></a>Differenze tra la distribuzione di macchine tooVirtual e set di scalabilità di macchine virtuali
+struttura di modello per un set di scalabilità della macchina virtuale sottostante Hello è leggermente diversa da una singola macchina virtuale. In particolare, una singola macchina virtuale consente di distribuire le estensioni nel nodo "virtualMachines" hello. C'è una voce di tipo "estensioni" in cui DSC viene aggiunto il modello toohello
 
 ```
 "resources": [
@@ -65,7 +65,7 @@ La struttura del modello sottostante di un set di scalabilità di macchine virtu
       ]
 ```
 
-Il nodo di un set di scalabilità di macchine virtuali ha una sezione "properties" con gli attributi "VirtualMachineProfile", "extensionProfile". DSC viene aggiunto sotto "extensions":
+Un nodo di set di scalabilità macchina virtuale ha una sezione "proprietà" con "VirtualMachineProfile" attributo "extensionProfile" hello. DSC viene aggiunto sotto "extensions":
 
 ```
 "extensionProfile": {
@@ -97,14 +97,14 @@ Il nodo di un set di scalabilità di macchine virtuali ha una sezione "propertie
 ```
 
 ## <a name="behavior-for-a-virtual-machine-scale-set"></a>Comportamento di un set di scalabilità di macchine virtuali
-Il comportamento di un set di scalabilità di macchine virtuali è identico a quello di una singola macchina virtuale. Quando viene creata una nuova VM, il provisioning viene automaticamente eseguito con l'estensione DSC. Se l'estensione richiede una versione più recente del file WMF, la VM verrà riavviata prima di passare online. Una volta online, il file con estensione zip di configurazione DSC viene scaricato e ne viene eseguito il provisioning nella VM. Altre informazioni sono reperibili nella [panoramica sull'estensione DSC di Azure](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+comportamento di Hello per un set di scalabilità della macchina virtuale è toohello identiche per una singola macchina virtuale. Quando viene creata una nuova macchina virtuale, viene automaticamente associato hello estensione DSC. Se una versione più recente di WMF richiesti dall'estensione hello hello, hello macchina virtuale verrà riavviata prima di connettersi. Una volta in linea, Scarica hello DSC configurazione ZIP ed effettuare il provisioning in hello macchina virtuale. Ulteriori informazioni, vedere [hello Panoramica di estensione di Azure DSC](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Esaminare il [modello di Azure Resource Manager per l'estensione DSC](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Esaminare hello [il modello di gestione risorse di Azure per l'estensione DSC hello](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Informazioni su come l' [estensione DSC gestisce in modo sicuro le credenziali](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Informazioni su come hello [estensione DSC gestisce in modo sicuro le credenziali](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Per altre informazioni sul gestore dell'estensione DSC, vedere [Introduzione al gestore dell'estensione DSC (Desired State Configuration) di Azure](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Per ulteriori informazioni sul gestore di estensioni di hello DSC per Azure, vedere [gestore di estensioni di Azure DSC toohello Introduzione](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Per altre informazioni su PowerShell DSC, [vedere il centro di documentazione di PowerShell](https://msdn.microsoft.com/powershell/dsc/overview). 
+Per ulteriori informazioni su PowerShell DSC, [visitare Centro documentazione di PowerShell hello](https://msdn.microsoft.com/powershell/dsc/overview). 
 

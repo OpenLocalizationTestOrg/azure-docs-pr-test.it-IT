@@ -1,5 +1,5 @@
 ---
-title: Esercitazione di Istanze di contenitore di Azure - Preparare Registro contenitori di Azure | Microsoft Docs
+title: esercitazione per istanze di contenitori aaaAzure - preparare Registro di sistema contenitore di Azure | Documenti Microsoft
 description: Esercitazione di Istanze di contenitore di Azure - Preparare Registro contenitori di Azure
 services: container-instances
 documentationcenter: 
@@ -17,62 +17,62 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: cc96ba9f5abd45a7503ba3327b30e1f809391384
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2525626125740c3c861fad36aad207d0b587ff54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-use-azure-container-registry"></a>Distribuire e usare il Registro contenitori di Azure
 
-Questa è la parte due di un'esercitazione in tre parti. Nel [passaggio precedente](./container-instances-tutorial-prepare-app.md) è stata creta un'immagine del contenitore per una semplice applicazione Web scritta in [Node.js](http://nodejs.org). In questa esercitazione viene eseguito il push di questa immagine in un'istanza di Registro contenitori di Azure. Se l'immagine del contenitore non è stata creata, tornare all'[Esercitazione 1 - Creare l'immagine del contenitore](./container-instances-tutorial-prepare-app.md). 
+Questa è la parte due di un'esercitazione in tre parti. In hello [passaggio precedente](./container-instances-tutorial-prepare-app.md), un'immagine contenitore è stata creata per un'applicazione web semplice scritta in [Node.js](http://nodejs.org). In questa esercitazione, questa immagine viene inserita tooan del Registro di sistema contenitore di Azure. Se non è stato creato immagine contenitore hello, restituire troppo[esercitazione 1: immagine contenitore crea](./container-instances-tutorial-prepare-app.md). 
 
-Registro contenitori di Azure è un registro privato basato su Azure per le immagini del contenitore Docker. Questa esercitazione illustra la distribuzione di un'istanza di Registro contenitori di Azure e il push di un'immagine del contenitore in essa. I passaggi completati comprendono:
+Hello del Registro di sistema di Azure contenitore è un registro basato su Azure e privato, per le immagini contenitore Docker. In questa esercitazione vengono illustrati l'implementazione di un'istanza del Registro di sistema di Azure contenitore e inserendo un tooit immagine contenitore. I passaggi completati comprendono:
 
 > [!div class="checklist"]
 > * Distribuzione di un'istanza del Registro contenitori di Azure
 > * Assegnazione di un tag all'immagine del contenitore per Registro contenitori di Azure
-> * Caricamento dell'immagine in Registro contenitori di Azure
+> * Caricamento tooAzure immagine contenitore del Registro di sistema
 
-Nelle esercitazioni successive si distribuirà il contenitore dal registro privato a Istanze di contenitore di Azure.
+Nelle esercitazioni successive, distribuire contenitore hello dal tooAzure del Registro di sistema privata istanze di contenitori.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questa esercitazione richiede l'interfaccia della riga di comando di Azure 2.0.4 o versioni successive. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli).
+Questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 ## <a name="deploy-azure-container-registry"></a>Distribuire il Registro contenitori di Azure
 
 Prima di distribuire un Registro contenitori di Azure, è necessario che esista un gruppo di risorse. Un gruppo di risorse di Azure è una raccolta logica in cui le risorse di Azure vengono distribuite e gestite.
 
-Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). In questo esempio viene creato un gruppo di risorse denominato *myResourceGroup* nell'area *eastus*.
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. In questo esempio, un gruppo di risorse denominato *myResourceGroup* viene creato in hello *eastus* area.
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Creare un Registro contenitori di Azure con il comando [az acr create](/cli/azure/acr#create). Il nome di un registro contenitori **deve essere univoco**. Nell'esempio seguente si usa il nome *mycontainerregistry082*.
+Creare un registro di sistema del contenitore di Azure con hello [az acr creare](/cli/azure/acr#create) comando. nome di un contenitore del Registro di sistema di Hello **deve essere univoco**. Nel seguente esempio di hello, utilizziamo nome hello *mycontainerregistry082*.
 
 ```azurecli
 az acr create --resource-group myResourceGroup --name mycontainerregistry082 --sku Basic --admin-enabled true
 ```
 
-Nella parte restante di questa esercitazione si usa `<acrname>` come segnaposto per il nome del registro contenitori scelto.
+Tutta hello di questa esercitazione, utilizziamo `<acrname>` come segnaposto per nome del Registro di sistema del contenitore hello scelto.
 
 ## <a name="container-registry-login"></a>Accesso al registro contenitori
 
-È necessario accedere all'istanza del Registro contenitori di Azure prima di eseguire il push di immagini in essa. Usare il comando [az acr login](https://docs.microsoft.com/en-us/cli/azure/acr#login) per completare l'operazione. È necessario specificare il nome univoco assegnato al registro contenitori al momento della creazione.
+È necessario accedere in istanza ACR tooyour prima push tooit immagini. Hello utilizzare [accesso acr az](https://docs.microsoft.com/en-us/cli/azure/acr#login) operazione hello toocomplete di comando. È necessario il nome univoco di tooprovide hello assegnato del Registro di sistema di toohello contenitore al momento della creazione.
 
 ```azurecli
 az acr login --name <acrName>
 ```
 
-Al termine, il comando restituisce un messaggio di accesso riuscito.
+comando Hello restituisce un messaggio 'Accesso riuscito' una volta completato.
 
 ## <a name="tag-container-image"></a>Assegnare tag all'immagine del contenitore
 
-Per distribuire un'immagine del contenitore da un registro privato, all'immagine deve essere assegnato un tag con il nome `loginServer` del registro.
+toodeploy un'immagine contenitore da un registro di sistema privato, l'immagine di hello deve essere contrassegnato con hello toobe `loginServer` nome del Registro di sistema hello.
 
-Per visualizzare un elenco di immagini correnti, usare il comando `docker images`.
+un elenco di immagini corrente, utilizzare hello toosee `docker images` comando.
 
 ```bash
 docker images
@@ -85,19 +85,19 @@ REPOSITORY                   TAG                 IMAGE ID            CREATED    
 aci-tutorial-app             latest              5c745774dfa9        39 seconds ago       68.1 MB
 ```
 
-Per ottenere il nome loginServer, eseguire questo comando.
+tooget hello loginServer nome eseguire hello comando seguente.
 
 ```azurecli
 az acr show --name <acrName> --query loginServer --output table
 ```
 
-Applicare all'immagine *aci-tutorial-app* il tag del server di accesso del registro contenitori. Aggiungere anche `:v1` alla fine del nome dell'immagine. Questo tag indica il numero di versione dell'immagine.
+Hello tag *aci-esercitazione-app* immagine con loginServer hello del Registro di sistema di hello contenitore. Inoltre, aggiungere `:v1` toohello fine del nome dell'immagine hello. Questo tag indica numero di versione di hello immagine.
 
 ```bash
 docker tag aci-tutorial-app <acrLoginServer>/aci-tutorial-app:v1
 ```
 
-Una volta applicato il tag, eseguire `docker images` per verificare l'operazione.
+Una volta contrassegnate, eseguire `docker images` operazione hello tooverify.
 
 ```bash
 docker images
@@ -111,11 +111,11 @@ aci-tutorial-app                                          latest              5c
 mycontainerregistry082.azurecr.io/aci-tutorial-app        v1                  a9dace4e1a17        7 minutes ago       68.1 MB
 ```
 
-## <a name="push-image-to-azure-container-registry"></a>Eseguire il push dell'immagine in Registro contenitori di Azure
+## <a name="push-image-tooazure-container-registry"></a>Push tooAzure immagine contenitore del Registro di sistema
 
-Eseguire il push dell'immagine *aci-tutorial-app* nel registro.
+Push hello *aci-esercitazione-app* registro toohello di immagini.
 
-Usando l'esempio seguente, sostituire il nome del server di accesso del registro contenitori con il nome del server di accesso dell'ambiente in uso.
+Utilizza hello di esempio seguente, sostituire hello contenitore del Registro di sistema loginServer name con loginServer hello dall'ambiente in uso.
 
 ```bash
 docker push <acrLoginServer>/aci-tutorial-app:v1
@@ -123,7 +123,7 @@ docker push <acrLoginServer>/aci-tutorial-app:v1
 
 ## <a name="list-images-in-azure-container-registry"></a>Elencare le immagini in Registro contenitori di Azure
 
-Per restituire un elenco di immagini di cui è stato eseguito il push nel Registro contenitori di Azure, usare il comando [az acr repository list](/cli/azure/acr/repository#list). Aggiornare il comando con il nome del registro contenitori.
+un elenco di immagini che sono stati inseriti tooyour Azure contenitore del Registro di sistema, hello utente tooreturn [elenco repository di az acr](/cli/azure/acr/repository#list) comando. Aggiornare il comando hello con il nome del Registro di sistema di hello contenitore.
 
 ```azurecli
 az acr repository list --name <acrName> --output table
@@ -137,7 +137,7 @@ Result
 aci-tutorial-app
 ```
 
-Per visualizzare i tag per un'immagine specifica, usare il comando [az acr repository show-tags](/cli/azure/acr/repository#show-tags).
+Quindi tag hello toosee per un'immagine specifica, utilizzare hello [az acr repository Mostra-tag](/cli/azure/acr/repository#show-tags) comando.
 
 ```azurecli
 az acr repository show-tags --name <acrName> --repository aci-tutorial-app --output table
@@ -153,14 +153,14 @@ v1
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione è stata preparata un'istanza di Registro contenitori di Azure da usare con Istanze di contenitore di Azure. È stato inoltre eseguito il push dell'immagine del contenitore. Sono stati completati i passaggi seguenti:
+In questa esercitazione, un registro di sistema di contenitore di Azure è stata preparata per l'uso con istanze di contenitori di Azure e immagine contenitore hello è stato inserito. sono stata completata Hello alla procedura seguente:
 
 > [!div class="checklist"]
 > * Distribuzione di un'istanza del Registro contenitori di Azure
 > * Assegnazione di un tag all'immagine del contenitore per Registro contenitori di Azure
-> * Caricamento dell'immagine in Registro contenitori di Azure
+> * Caricamento tooAzure immagine contenitore del Registro di sistema
 
-Passare alla prossima esercitazione per informazioni sulla distribuzione del contenitore in Azure con Istanze di contenitore di Azure.
+Spostare toohello Avanti toolearn esercitazione sulla distribuzione di hello contenitore tooAzure utilizzando istanze di contenitori di Azure.
 
 > [!div class="nextstepaction"]
-> [Distribuire contenitori in Istanze di contenitore di Azure](./container-instances-tutorial-deploy-app.md)
+> [Distribuire i contenitori tooAzure istanze di contenitori](./container-instances-tutorial-deploy-app.md)

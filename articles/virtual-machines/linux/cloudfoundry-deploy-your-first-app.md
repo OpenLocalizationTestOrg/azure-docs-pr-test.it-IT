@@ -1,6 +1,6 @@
 ---
-title: Distribuire la prima app a Cloud Foundry in Microsoft Azure | Microsoft Docs
-description: Distribuire un'applicazione a Cloud Foundry in Azure
+title: aaaDeploy il primo tooCloud app Foundry in Microsoft Azure | Documenti Microsoft
+description: Distribuire un tooCloud applicazione Foundry in Azure
 services: virtual-machines-linux
 documentationcenter: 
 author: seanmck
@@ -16,136 +16,136 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: seanmck
-ms.openlocfilehash: b617127fc0a3f8dcae293e356ea669edcfa5deff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 878da38f6eabe32a339f02aa0ead811d6e5af9a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-your-first-app-to-cloud-foundry-on-microsoft-azure"></a>Distribuire la prima app a Cloud Foundry in Microsoft Azure
+# <a name="deploy-your-first-app-toocloud-foundry-on-microsoft-azure"></a>Distribuire il primo tooCloud app Foundry in Microsoft Azure
 
-[Cloud Foundry](http://cloudfoundry.org) è una popolare piattaforma di applicazioni open source disponibile in Microsoft Azure. In questo articolo viene illustrato come distribuire e gestire un'applicazione in Cloud Foundry in un ambiente Azure.
+[Cloud Foundry](http://cloudfoundry.org) è una popolare piattaforma di applicazioni open source disponibile in Microsoft Azure. In questo articolo viene illustrata la modalità toodeploy e gestire un'applicazione in Cloud Foundry in un ambiente Azure.
 
 ## <a name="create-a-cloud-foundry-environment"></a>Creare un ambiente Cloud Foundry
 
 Esistono diverse opzioni per la creazione di un ambiente Cloud Foundry in Azure:
 
-- Usare l'[offerta Pivotal Cloud Foundry][pcf-azuremarketplace] in Azure Marketplace per creare un ambiente standard che include PCF Operations Manager e il Service Broker di Azure. Per le [istruzioni complete][pcf-azuremarketplace-pivotaldocs] per la distribuzione dell'offerta del marketplace, vedere la documentazione di Pivotal.
+- Hello utilizzare [offerta Foundry Cloud fondamentale] [ pcf-azuremarketplace] in hello Azure Marketplace toocreate un ambiente standard che include PCF Operations Manager e hello Azure Service Broker. È possibile trovare [le istruzioni per] [ pcf-azuremarketplace-pivotaldocs] offrire hello documentazione fondamentale per la distribuzione di marketplace hello.
 - Creare un ambiente personalizzato [distribuendo manualmente Pivotal Cloud Foundry][pcf-custom].
-- [Distribuire i pacchetti open source di Cloud Foundry direttamente][oss-cf-bosh] impostando un [BOSH](http://bosh.io) director, una macchina virtuale che coordina la distribuzione dell'ambiente Cloud Foundry.
+- [Distribuire i pacchetti di hello open-source Foundry Cloud direttamente] [ oss-cf-bosh] impostando un [BOSH](http://bosh.io) director, una macchina virtuale che coordina distribuzione hello dell'ambiente Cloud Foundry hello.
 
 > [!IMPORTANT] 
-> Se si distribuisce PCF da Azure Marketplace, annotare il SYSTEMDOMAINURL e le credenziali amministratore necessarie per accedere al gestore di app di Pivotal, entrambi descritti nella Guida alla distribuzione dal marketplace. Questi elementi sono necessari per completare questa esercitazione. Per le distribuzioni dal marketplace, il SYSTEMDOMAINURL è nel formato https://system.*indirizzo-ip*.cf.pcfazure.com.
+> Se si distribuisce PCF hello Azure Marketplace, prendere nota di hello SYSTEMDOMAINURL e richieste di credenziali di amministratore hello tooaccess hello fondamentale Manager di App, di cui sono descritti nella Guida alla distribuzione di hello marketplace. Essi è toocomplete necessari in questa esercitazione. Per le distribuzioni di marketplace, hello SYSTEMDOMAINURL è https://system modulo hello. *indirizzo ip*. cf.pcfazure.com.
 
-## <a name="connect-to-the-cloud-controller"></a>Connettersi al controller del cloud
+## <a name="connect-toohello-cloud-controller"></a>Connettersi toohello Controller del Cloud
 
-Il controller del cloud è il punto di ingresso principale in un ambiente Cloud Foundry per la distribuzione e la gestione delle applicazioni. L'API del controller del cloud di base (CCAPI) è un'API REST, ma è accessibile attraverso vari strumenti. In questo caso, si interagisce con essa tramite l'[interfaccia della riga di comando di Cloud Foundry][cf-cli]. L'interfaccia della riga di comando può essere installata su Linux, MacOS o Windows, ma se si preferisce non installarla è disponibile preinstallata in [Azure Cloud Shell][cloudshell-docs].
+Hello Controller del Cloud è l'ambiente di Cloud Foundry tooa punto di ingresso principale hello per la distribuzione e la gestione delle applicazioni. core Hello Cloud Controller API (CCAPI) è un'API REST, ma è accessibile attraverso vari strumenti. In questo caso, si interagire con esso tramite hello [Cloud Foundry CLI][cf-cli]. È possibile installare hello CLI su Linux, MacOS o Windows, ma se si preferisce non tooinstall affatto, è disponibile preinstallato in hello [Azure Cloud Shell][cloudshell-docs].
 
-Per eseguire l'accesso, anteporre `api` al SYSTEMDOMAINURL ottenuto dalla distribuzione dal marketplace. Poiché la distribuzione predefinita usa un certificato autofirmato, è necessario includere anche l'istruzione `skip-ssl-validation`.
+toolog, anteporre `api` toohello SYSTEMDOMAINURL ottenuti dalla distribuzione marketplace hello. Poiché la distribuzione di hello predefinito utilizza un certificato autofirmato, è necessario includere anche hello `skip-ssl-validation` passare.
 
 ```bash
 cf login -a https://api.SYSTEMDOMAINURL --skip-ssl-validation
 ```
 
-Viene chiesto di accedere al controller del cloud. Usare le credenziali dell'account amministratore acquisite dalle fasi di distribuzione del marketplace.
+Si è richiesta toolog in toohello Controller del Cloud. Utilizzare le credenziali dell'account amministratore hello acquisito dalle fasi di distribuzione di hello marketplace.
 
-Cloud Foundry offre *organizzazioni* e *spazi* come spazi dei nomi per isolare i team e gli ambienti all'interno di una distribuzione condivisa. La distribuzione dal marketplace PCF include l'organizzazione *sistema* predefinita e un set di spazi creato per contenere i componenti di base, come il servizio di scalabilità automatica e il Service Broker di Azure. Per il momento, scegliere lo spazio *sistema*.
+Cloud Foundry fornisce *organizzazioni* e *spazi* come team hello tooisolate di spazi dei nomi e gli ambienti in una distribuzione condivisa. distribuzione di marketplace PCF Hello include predefinito hello *sistema* dell'organizzazione e un set di spazi creato toocontain i componenti di base hello, ad esempio servizio di scalabilità automatica hello e hello Azure service broker. Per il momento, scegliere hello *sistema* spazio.
 
 
 ## <a name="create-an-org-and-space"></a>Creare un'organizzazione e uno spazio
 
-Se si digita `cf apps`, viene visualizzato un set di applicazioni di sistema che sono state distribuite nello spazio di sistema all'interno dell'organizzazione sistema. 
+Se si digita `cf apps`, viene visualizzato un set di applicazioni di sistema che sono state distribuite nello spazio di sistema hello all'interno dell'organizzazione sistema hello 
 
-È consigliabile mantenere l'organizzazione *sistema* riservata per le applicazioni di sistema, pertanto creare un'organizzazione e uno spazio per ospitare l'applicazione di esempio.
+È consigliabile mantenere hello *sistema* org riservato per le applicazioni di sistema, quindi creare un toohouse org e spazio l'applicazione di esempio.
 
 ```bash
 cf create-org myorg
 cf create-space dev -o myorg
 ```
 
-Usare il comando di destinazione per passare alla nuova organizzazione e al nuovo spazio:
+Utilizzare hello destinazione comando tooswitch toohello nuova organizzazione e lo spazio:
 
 ```bash
 cf target -o testorg -s dev
 ```
 
-A questo punto, quando si distribuisce un'applicazione essa viene automaticamente creata nella nuova organizzazione e nel nuovo spazio. Per confermare che non sono attualmente presenti app nella nuova organizzazione/spazio, digitare nuovamente `cf apps`.
+A questo punto, quando si distribuisce un'applicazione, viene automaticamente creato nello spazio e hello nuova organizzazione. tooconfirm che sono attualmente alcuna App nello spazio/hello nuova organizzazione, non tipo `cf apps` nuovamente.
 
 > [!NOTE] 
-> Per altre informazioni sulle organizzazioni e gli spazi e su come possono essere usati per il controllo degli accessi in base al ruolo, vedere la [documentazione di Cloud Foundry][cf-orgs-spaces-docs].
+> Per ulteriori informazioni sulle organizzazioni e gli spazi e come possono essere utilizzati per il controllo di accesso basato sui ruoli (RBAC), vedere hello [documentazione Foundry Cloud][cf-orgs-spaces-docs].
 
 ## <a name="deploy-an-application"></a>Distribuire un'applicazione
 
-Usiamo un'applicazione Cloud Foundry di esempio chiamata Hello Spring Cloud, che viene scritta in Java ed è basata sul [framework Spring](http://spring.io) e su [Spring Boot](http://projects.spring.io/spring-boot/).
+Consente di usare un'applicazione di esempio Foundry Cloud chiamata Hello Spring Cloud, che viene scritto in linguaggio e in base a hello [Spring Framework](http://spring.io) e [avvio Spring](http://projects.spring.io/spring-boot/).
 
-### <a name="clone-the-hello-spring-cloud-repository"></a>Clonare il repository Hello Spring Cloud
+### <a name="clone-hello-hello-spring-cloud-repository"></a>Clonare il repository di hello Hello Spring Cloud
 
-L'applicazione di esempio Hello Spring Cloud è disponibile su GitHub. Clonarla nel proprio ambiente e modificarla nella nuova directory:
+applicazione di esempio Hello Spring Cloud Hello è disponibile su GitHub. Clonarla ambiente tooyour e modificare nella nuova directory hello:
 
 ```bash
 git clone https://github.com/cloudfoundry-samples/hello-spring-cloud
 cd hello-spring-cloud
 ```
 
-### <a name="build-the-application"></a>Compilare l'applicazione.
+### <a name="build-hello-application"></a>Compilare un'applicazione hello
 
-Compilare l'app mediante [Apache Maven](http://maven.apache.org).
+Compilazione hello app usando [Apache Maven](http://maven.apache.org).
 
 ```bash
 mvn clean package
 ```
 
-### <a name="deploy-the-application-with-cf-push"></a>Distribuire l'applicazione con cf push
+### <a name="deploy-hello-application-with-cf-push"></a>Distribuire un'applicazione hello con cf push
 
-È possibile distribuire la maggior parte delle applicazioni per Cloud Foundry tramite il comando `push`:
+È possibile distribuire la maggior parte delle applicazioni tooCloud Foundry utilizzando hello `push` comando:
 
 ```bash
 cf push
 ```
 
-Quando si *effettua il push* di un'applicazione, Cloud Foundry rileva il tipo di applicazione (in questo caso, un'app Java) e identifica le relative dipendenze (in questo caso, il framework Spring). Inserisce quindi in un pacchetto tutti gli elementi necessari per eseguire il codice in un'immagine del contenitore autonoma, denominata *droplet*. Infine, Cloud Foundry pianifica l'applicazione in uno dei computer disponibili nell'ambiente e crea un URL in cui è possibile raggiungerla, disponibile nell'output del comando.
+Quando si *push* un'applicazione, Cloud Foundry rileva hello tipo di applicazione (in questo caso, un'app Java) e identifica le relative dipendenze (in questo caso, framework di primavera hello). Viene quindi inserito tutto il necessario toorun il codice in un'immagine contenitore autonomo, nota come un *droplet*. Infine, le pianificazioni di Cloud Foundry hello applicazione su uno dei computer disponibili di hello nell'ambiente in uso e crea un URL in cui è possibile raggiungerli, disponibile nell'output di hello del comando hello.
 
 ![Output del comando push cf][cf-push-output]
 
-Per visualizzare l'applicazione hello-spring-cloud, aprire l'URL specificato nel browser:
+applicazione hello-spring-cloud hello toosee, aprire hello fornito URL nel browser:
 
 ![Interfaccia utente predefinita per Hello Spring Cloud][hello-spring-cloud-basic]
 
 > [!NOTE] 
-> Per altre informazioni su cosa accade durante `cf push`, vedere [How Applications Are Staged][cf-push-docs] (Come vengono gestite temporaneamente le applicazioni) nella documentazione di Cloud Foundry.
+> ulteriori informazioni su cosa accade durante toolearn `cf push`, vedere [installazione delle applicazioni] [ cf-push-docs] in hello documentazione Foundry Cloud.
 
 ## <a name="view-application-logs"></a>Visualizzare i registri applicazioni
 
-Per visualizzare i registri di un'applicazione in base al nome, è possibile usare l'interfaccia della riga di comando di Cloud Foundry:
+È possibile utilizzare i log di hello Cloud Foundry CLI tooview per un'applicazione in base al nome:
 
 ```bash
 cf logs hello-spring-cloud
 ```
 
-Per impostazione predefinita, il comando registri usa *tail*, che visualizza i nuovi registri man mano che vengono scritti. Per visualizzare i nuovi registri, aggiornare l'applicazione hello-spring-cloud nel browser.
+Per impostazione predefinita, hello Registra comando Usa *della parte finale del*, che mostra i nuovi log man mano che vengono scritte. toosee nuovi log visualizzati, aggiornare l'applicazione hello-spring-cloud hello nel browser hello.
 
-Per visualizzare i log che sono già stati scritti, aggiungere l'istruzione `recent`:
+registri tooview che sono già stati scritti, aggiungere hello `recent` passare:
 
 ```bash
 cf logs --recent hello-spring-cloud
 ```
 
-## <a name="scale-the-application"></a>Scalare l'applicazione
+## <a name="scale-hello-application"></a>Applicazione hello scala
 
-Per impostazione predefinita, `cf push` crea solo una singola istanza dell'applicazione. Per garantire la disponibilità elevata e consentire la scalabilità orizzontale per una velocità effettiva superiore, in genere è consigliabile eseguire più istanze delle applicazioni. È possibile scalare orizzontalmente le applicazioni già distribuite tramite il comando `scale`:
+Per impostazione predefinita, `cf push` crea solo una singola istanza dell'applicazione. tooensure la disponibilità elevata e scalabilità attiva per una velocità effettiva, in genere si desidera toorun più istanze delle applicazioni. È possibile ridimensionare le applicazioni già distribuite utilizzando hello `scale` comando:
 
 ```bash
 cf scale -i 2 hello-spring-cloud
 ```
 
-L'esecuzione del comando `cf app` nell'applicazione indica che Cloud Foundry sta creando un'altra istanza dell'applicazione. Dopo che l'applicazione è stata avviata, Cloud Foundry avvia automaticamente il bilanciamento del carico del traffico.
+In esecuzione hello `cf app` comando in un'applicazione hello mostra che il Cloud è la creazione di un'altra istanza di un'applicazione hello. Una volta avviata, un'applicazione hello Foundry Cloud avvia automaticamente il bilanciamento del carico del traffico tooit.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Leggere la documentazione di Cloud Foundry][cloudfoundry-docs]
-- [Configurare il plug-in Visual Studio Team Services per Cloud Foundry][vsts-plugin]
-- [Configurare il nozzle di Microsoft Log Analytics per Cloud Foundry][loganalytics-nozzle]
+- [Hello lettura documentazione Cloud Foundry][cloudfoundry-docs]
+- [Impostare i plug-in Visual Studio Team Services hello per Cloud Foundry][vsts-plugin]
+- [Configurare hello prolunga Analitica Log di Microsoft per il Cloud][loganalytics-nozzle]
 
 <!-- LINKS -->
 

@@ -1,6 +1,6 @@
 ---
-title: Creare una VM Linux in Azure da un modello | Microsoft Docs
-description: Procedura per usare l'interfaccia della riga di comando 2.0 di Azure per creare una VM Linux da un modello di Resource Manager
+title: aaaCreate una VM Linux di Azure da un modello | Documenti Microsoft
+description: Come toouse hello Azure CLI 2.0 toocreate una VM Linux da un modello di gestione risorse
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -16,29 +16,29 @@ ms.topic: article
 ms.date: 05/12/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 908a8a0c82b2d21fb25c9b33dbd714570d1ac272
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4b8c4103cccbae13c679ff2a2cac928a0e8e809
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-linux-virtual-machine-with-azure-resource-manager-templates"></a>Procedura per creare una macchina virtuale Linux con i modelli di Azure Resource Manager
-Questo articolo illustra come distribuire rapidamente una macchina virtuale (VM) Linux con i modelli di Azure Resource Manager e l'interfaccia della riga di comando 2.0 di Azure. È possibile anche eseguire questi passaggi tramite l'[interfaccia della riga di comando di Azure 1.0](create-ssh-secured-vm-from-template-nodejs.md).
+# <a name="how-toocreate-a-linux-virtual-machine-with-azure-resource-manager-templates"></a>Come toocreate una macchina virtuale Linux con modelli di gestione risorse di Azure
+Questo articolo illustra come tooquickly distribuire una macchina virtuale Linux (VM) con i modelli di gestione risorse di Azure e hello CLI di Azure 2.0. È anche possibile eseguire questi passaggi con hello [CLI di Azure 1.0](create-ssh-secured-vm-from-template-nodejs.md).
 
 
 ## <a name="templates-overview"></a>Panoramica dei modelli
-I modelli di Azure Resource Manager sono file JSON che definiscono l'infrastruttura e la configurazione della soluzione Azure. Usando il modello è possibile distribuire ripetutamente la soluzione nel corso del ciclo di vita garantendo al contempo che le risorse vengano distribuite in uno stato coerente. Per altre informazioni sul formato del modello e sulla sua costruzione, vedere [Creare il primo modello di Azure Resource Manager](../../azure-resource-manager/resource-manager-create-first-template.md). Per visualizzare la sintassi JSON per i tipi di risorse, vedere [Define resources in Azure Resource Manager templates](/azure/templates/) (Definire le risorse nei modelli di Azure Resource Manager).
+Modelli di gestione risorse di Azure sono i file JSON che definiscono l'infrastruttura di hello e configurazione della soluzione Azure. Usando il modello è possibile distribuire ripetutamente la soluzione nel corso del ciclo di vita garantendo al contempo che le risorse vengano distribuite in uno stato coerente. toolearn ulteriori informazioni sui formati di hello del modello hello e come creare l'oggetto, vedere [creare il primo modello di gestione risorse di Azure](../../azure-resource-manager/resource-manager-create-first-template.md). hello tooview sintassi JSON per i tipi di risorse, vedere [definire le risorse nei modelli di Azure Resource Manager](/azure/templates/).
 
 
 ## <a name="create-resource-group"></a>Creare un gruppo di risorse
-Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. Il gruppo di risorse deve essere creato prima della macchina virtuale. L'esempio seguente crea un gruppo di risorse denominato *myResourceGroupVM* nell'area *stati uniti orientali*:
+Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. Il gruppo di risorse deve essere creato prima della macchina virtuale. esempio Hello crea un gruppo di risorse denominato *myResourceGroupVM* in hello *eastus* area:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
 ## <a name="create-virtual-machine"></a>Crea macchina virtuale
-L'esempio seguente crea una VM da [questo modello di Azure Resource Manager](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-sshkey/azuredeploy.json) con [az group deployment create](/cli/azure/group/deployment#create). Fornire il valore della chiave pubblica SSH, ad esempio il contenuto di *~/.ssh/id_rsa.pub*. Se è necessario creare una coppia di chiavi SSH, vedere [Come creare e usare una coppia di chiavi SSH pubblica e privata per le VM Linux in Azure](mac-create-ssh-keys.md).
+esempio Hello crea una macchina virtuale da [questo modello di gestione risorse di Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-sshkey/azuredeploy.json) con [distribuzione gruppo az creare](/cli/azure/group/deployment#create). Fornire la propria chiave pubblica SSH, ad esempio contenuto hello del valore hello *~/.ssh/id_rsa.pub*. Se è necessario toocreate una coppia di chiavi SSH, vedere [come toocreate e utilizzare un SSH coppia di chiavi per le macchine virtuali Linux in Azure](mac-create-ssh-keys.md).
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup \
@@ -46,9 +46,9 @@ az group deployment create --resource-group myResourceGroup \
   --parameters '{"sshKeyData": {"value": "ssh-rsa AAAAB3N{snip}B9eIgoZ"}}'
 ```
 
-In questo esempio è stato specificato un modello archiviato in GitHub. È possibile anche scaricare o creare un modello e specificare il percorso locale con lo stesso parametro `--template-file`.
+In questo esempio è stato specificato un modello archiviato in GitHub. È anche possibile scaricare o creare un modello e specificare un percorso locale della hello con hello stesso `--template-file` parametro.
 
-Per la connessione SSH alla VM, ottenere l'indirizzo IP pubblico con [az network public-ip show](/cli/azure/network/public-ip#show):
+tooSSH tooyour macchina virtuale, ottenere l'indirizzo IP pubblico hello con [Mostra public-ip di rete az](/cli/azure/network/public-ip#show):
 
 ```azurecli
 az network public-ip show \
@@ -58,11 +58,11 @@ az network public-ip show \
     --output tsv
 ```
 
-È quindi possibile usare la connessione SSH alla VM nel modo usuale:
+È quindi possibile SSH tooyour VM come di consueto:
 
 ```bash
 ssh azureuser@<ipAddress>
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo esempio è stata creata una VM Linux di base. Per altri modelli di Resource Manager che includono i framework di applicazioni o creano ambienti più complessi, visitare la [Raccolta di modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/).
+In questo esempio è stata creata una VM Linux di base. Per ulteriori modelli di gestione risorse per l'inclusione di Framework applicazioni o creare ambienti più complessi, visitare hello [raccolta di modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/).

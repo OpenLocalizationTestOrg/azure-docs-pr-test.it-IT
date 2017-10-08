@@ -1,5 +1,5 @@
 ---
-title: Macchine virtuali Linux di Azure - Esercitazione .NET Core 1 | Documentazione Microsoft
+title: aaaAzure Linux macchina virtuale DotNet Core esercitazione 1 | Documenti Microsoft
 description: Macchine virtuali di Azure - Esercitazione DotNet Core
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,49 +16,49 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 928d90f4bee593f04a41254b5f37d9328e59e05e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7e6f047197336de1e93c50413b6eabb718230bc1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="automating-application-deployments-to-linux-virtual-machines"></a>Automazione della distribuzione di applicazioni nelle macchine virtuali Linux 
+# <a name="automating-application-deployments-toolinux-virtual-machines"></a>Automazione delle distribuzioni di applicazioni tooLinux macchine virtuali 
 
-Questa serie di quattro articoli descrive in dettaglio la distribuzione e la configurazione di risorse e applicazioni di Azure mediante modelli di Azure Resource Manager. In questa serie viene distribuito un modello di esempio e viene esaminato il modello di distribuzione. L'obiettivo di questa serie è illustrare la relazione tra le risorse di Azure e fornire suggerimenti pratici per la distribuzione di modelli di Azure Resource Manager completamente integrati. Questo documento presuppone un livello base di conoscenze relative ad Azure Resource Manager. Prima di iniziare questa esercitazione, acquisire familiarità con i concetti fondamentali di Azure Resource Manager. 
+Questa serie di quattro articoli descrive in dettaglio la distribuzione e la configurazione di risorse e applicazioni di Azure mediante modelli di Azure Resource Manager. In questa serie, un modello di esempio viene distribuito e hello esaminata modello di distribuzione. obiettivo di Hello di questa serie è tooeducate relazione hello tra le risorse di Azure e tooprovide trasmette sull'esperienza di distribuzione di modelli di Azure Resource Manager completamente integrata. Questo documento presuppone un livello base di conoscenze relative ad Azure Resource Manager. Prima di iniziare questa esercitazione, acquisire familiarità con i concetti fondamentali di Azure Resource Manager. 
 
 ## <a name="music-store-application"></a>Applicazione Music Store
-L'esempio usato in questa serie consiste in un'applicazione .NET Core che simula un'esperienza di acquisto su Music Store. L'applicazione può essere distribuita in un sistema virtuale Windows o Linux. Sono state create distribuzioni di esempio per entrambi i sistemi. L'applicazione include un'applicazione Web e un database SQL. Prima di leggere gli articoli di questa serie, distribuire l'applicazione usando il pulsante di distribuzione presente in questa pagina. Al termine della distribuzione, l'applicazione e l'architettura di Azure avranno una struttura simile al diagramma seguente. 
+esempio usato in questa serie Hello è .net application base simulando un negozio esperienza di acquisto. L'applicazione può essere distribuito tooeither un sistema virtuale Linux o Windows create per entrambe le distribuzioni di esempio. un'applicazione Hello include un'applicazione web e un database SQL. Prima di leggere gli articoli di hello in questa serie, distribuire l'applicazione hello utilizzando il pulsante di distribuzione hello presente in questa pagina. Quando è completamente distribuito, hello architettura applicazione / Azure è simile a hello seguente diagramma. 
 
-Per il modello Music Store di Resource Manager, accedere alla pagina [Music Store Linux Template](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db) (Modello Music Store per Linux)
+è disponibile in questo caso, il modello di gestione risorse di archiviazione musica Hello [musica archivio Linux modello](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db)
 
 ![Applicazione Music Store](./media/dotnet-core-1-landing/music-store.png)
 
-Ognuno di questi componenti, incluso il codice JSON associato al modello, viene esaminato nei quattro articoli seguenti.
+Ognuno di questi componenti, tra cui hello associare un modello JSON viene esaminato in hello seguenti quattro articoli.
 
-* [**Architettura dell'applicazione**](dotnet-core-2-architecture.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): i componenti di un'applicazione, ad esempio i siti Web e i database, devono essere ospitati nelle risorse del computer di Azure, vale a dire in macchine virtuali e database SQL di Azure. Questo documento illustra come mappare i requisiti di calcolo alle risorse di Azure e come distribuire queste risorse con un modello di Azure Resource Manager. 
-* [**Accesso e sicurezza**](dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): quando si esegue l'hosting di applicazioni in Azure, è necessario considerare in che modo si accede all'applicazione e come i vari componenti dell'applicazione eseguono l'accesso. Questo documento descrive come fornire e proteggere l'accesso Internet per un'applicazione e l'accesso tra i relativi componenti.
-* [**Disponibilità e scalabilità**](dotnet-core-4-availability-scale.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): queste due caratteristiche fanno riferimento alla capacità di un'applicazione di rimanere in esecuzione durante il tempo di inattività dell'infrastruttura e di ridimensionare le risorse di calcolo in base alla domanda. Questo documento descrive i componenti necessari per distribuire un'applicazione con carico bilanciato e disponibilità elevata.
-* [**Distribuzione dell'applicazione**](dotnet-core-5-app-deployment.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): quando si distribuiscono le applicazioni nelle macchine virtuali di Azure, è necessario considerare il metodo da usare per installare i file binari dell'applicazione nella macchina virtuale. Questo documento descrive come automatizzare l'installazione di applicazioni mediante le estensioni script personalizzate per le macchine virtuali di Azure.
+* [**Architettura dell'applicazione** ](dotnet-core-2-architecture.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : i componenti dell'applicazione, ad esempio siti web e database è necessario toobe ospitato nelle risorse del computer di Azure quali macchine virtuali e database SQL di Azure. Questo documento descrive come l'esigenza di calcolo di mapping, tooAzure risorse e la distribuzione di tali risorse con un modello di gestione risorse di Azure. 
+* [**Accesso e protezione** ](dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : durante l'hosting di applicazioni in Azure, è necessario tooconsider come avviene applicazione hello e come accedere ai componenti diversi dell'applicazione tra loro. Questo documento illustra in dettaglio fornendo e la protezione di internet accesso tooan accesso alle applicazioni e tra i componenti dell'applicazione.
+* [**Disponibilità e scalabilità** ](dotnet-core-4-availability-scale.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : disponibilità e scalabilità riferimento toohello toostay di possibilità di applicazioni in esecuzione durante i tempi di inattività dell'infrastruttura e hello possibilità tooscale richiesta applicazione toomeet di risorse di calcolo. Componenti di hello dettagli in questo documento è necessario toodeploy con bilanciamento del carico e delle applicazioni a disponibilità elevata.
+* [**Distribuzione di applicazioni** ](dotnet-core-5-app-deployment.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : quando è necessario considerare la distribuzione di applicazioni in macchine virtuali di Azure, il metodo hello per cui hello file binari dell'applicazione vengono installati nella macchina virtuale hello. Questo documento descrive come automatizzare l'installazione di applicazioni mediante le estensioni script personalizzate per le macchine virtuali di Azure.
 
-Quando si sviluppano modelli di Azure Resource Manager, l'obiettivo è quello di automatizzare la distribuzione dell'infrastruttura di Azure, nonché l'installazione e la configurazione delle applicazioni ospitate in questa infrastruttura. Le informazioni riportate in questi articoli offrono un esempio di questa esperienza.
+obiettivo di Hello durante lo sviluppo di modelli di gestione risorse di Azure è la distribuzione di hello tooautomate dell'infrastruttura di Azure e installazione hello e configurazione di tutte le applicazioni ospitate in questa infrastruttura di Azure. Le informazioni riportate in questi articoli offrono un esempio di questa esperienza.
 
-## <a name="deploy-the-music-store-application"></a>Distribuire l'applicazione Music Store
-Per distribuire l'applicazione Music Store è possibile usare questo pulsante.
+## <a name="deploy-hello-music-store-application"></a>Distribuire un'applicazione hello musica archivio
+applicazione di archiviazione di file musicali Hello può essere distribuito tramite questo pulsante.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Fdotnet-core-sample-templates%2Fmaster%2Fdotnet-core-music-linux%2Fazuredeploy.json" target="_blank"> <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-Per il modello di Azure Resource Manager è necessario impostare i valori dei parametri seguenti.
+modello di Azure Resource Manager Hello richiede hello seguente i valori dei parametri.
 
 | Nome parametro | Descrizione |
 | --- | --- |
-| SSHKEYDATA |Dati della chiave SSH usati per proteggere l'accesso alla macchina virtuale. Per informazioni sulla creazione di una coppia di chiavi SSH, vedere [Creare chiavi SSH in Linux e Mac per le VM Linux in Azure](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). |
-| ADMINUSERNAME |Nome utente dell'amministratore usato per la macchina virtuale e per il database SQL di Azure. |
-| SQLADMINPASSWORD |Password usata per il database SQL di Azure. |
-| NUMBEROFINSTANCES |Numero di macchine virtuali da creare. Ognuna di queste macchine ospita l'applicazione Web Music Store e tutto il traffico tra le macchine virtuali è sottoposto a bilanciamento del carico. |
-| PUBLICIPADDRESSDNSNAME |Nome DNS univoco globale associato all'indirizzo IP pubblico. |
+| SSHKEYDATA |Dati della chiave SSH utilizzata toosecure accesso toohello macchina virtuale. Per informazioni sulla creazione di una coppia di chiavi SSH, vedere [Creare chiavi SSH in Linux e Mac per le VM Linux in Azure](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). |
+| ADMINUSERNAME |Nome utente amministratore viene utilizzata nella macchina virtuale hello e hello Database SQL di Azure. |
+| SQLADMINPASSWORD |Password utilizzata nel Database SQL di Azure hello. |
+| NUMBEROFINSTANCES |numero di Hello di macchine virtuali toobe creato. Ognuno di tali applicazioni web, macchine virtuali host hello Negozio e tutto il traffico viene bilanciato tra loro. |
+| PUBLICIPADDRESSDNSNAME |Nome DNS univoco globale associato all'indirizzo IP pubblico hello. |
 
-Al termine della distribuzione del modello, passare all'indirizzo IP pubblico usando un browser Internet. Verrà visualizzato il sito Music Store .NET Core.
+Quando è stata completata la distribuzione dei modelli di hello, passare toohello l'indirizzo IP pubblico di usando qualsiasi browser internet. Hello .net Core musica sito verrà visualizzata.
 
 ## <a name="next-steps"></a>Passaggi successivi
 <hr>

@@ -1,5 +1,5 @@
 ---
-title: Risolvere gli errori quando si eliminano account di archiviazione, contenitori o dischi rigidi virtuali di Azure in una distribuzione Resource Manager | Microsoft Docs
+title: aaaTroubleshoot errori quando si elimina l'account di archiviazione di Azure, contenitori o i dischi rigidi virtuali | Documenti Microsoft
 description: Risolvere gli errori quando si eliminano account di archiviazione, contenitori o dischi rigidi virtuali di Azure
 services: storage
 documentationcenter: 
@@ -15,95 +15,95 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 11944dd38b1cc30106c0b76a108480c018ca39d4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 33261562a2dd2614b35bc1118924513f8c624d6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-errors-when-you-delete-azure-storage-accounts-containers-or-vhds"></a>Risolvere gli errori quando si eliminano account di archiviazione, contenitori o dischi rigidi virtuali di Azure
 
-Durante il tentativo di eliminazione di account di archiviazione, contenitori o dischi rigidi virtuali di Azure nel [portale di Azure](https://portal.azure.com) è possibile ricevere errori. Questo articolo fornisce indicazioni sulla risoluzione dei problemi in una distribuzione di Azure Resource Manager.
+È possibile ricevere errori quando si tenta di toodelete un account di archiviazione di Azure, un contenitore o un disco rigido virtuale (VHD) in hello [portale di Azure](https://portal.azure.com). Questo articolo fornisce la risoluzione di problemi di indicazioni toohelp resolve hello in una distribuzione di gestione risorse di Azure.
 
-Se il problema di Azure non viene risolto in questo articolo, visitare i forum di Azure su [MSDN e Stack Overflow](https://azure.microsoft.com/support/forums/). È possibile pubblicare il problema in questi forum o in @AzureSupport su Twitter. È anche possibile inviare una richiesta di supporto tecnico di Azure selezionando **Ottieni supporto** nel sito del [supporto tecnico di Azure](https://azure.microsoft.com/support/options/).
+Se in questo articolo non risolve il problema di Azure, visitare la pagina hello forum di Azure in [MSDN e l'Overflow dello Stack](https://azure.microsoft.com/support/forums/). È possibile registrare il problema in questi forum o too@AzureSupport su Twitter. Inoltre, è possibile inviare una richiesta di supporto tecnico di Azure selezionando **ottenere supporto** su hello [supporto tecnico di Azure](https://azure.microsoft.com/support/options/) sito.
 
 ## <a name="symptoms"></a>Sintomi
 ### <a name="scenario-1"></a>Scenario 1
-Quando si tenta di eliminare un disco rigido virtuale in un account di archiviazione di una distribuzione di Resource Manager, viene visualizzato un messaggio di errore simile al seguente:
+Quando si tenta di toodelete un disco rigido virtuale in un account di archiviazione in una distribuzione di gestione delle risorse, viene visualizzato hello seguente messaggio di errore:
 
-**Non è stato possibile eliminare il BLOB 'vhds/BlobName.vhd'. Errore: sul BLOB è ancora attivo un lease. Nessun ID lease è stato specificato nella richiesta.**
+**Non è stato possibile blob toodelete 'vhds/BlobName.vhd'. Errore: Non è presente un lease sul blob hello ed è stato specificato alcun ID lease nella richiesta di hello.**
 
-Questo problema può verificarsi perché una macchina virtuale dispone di un lease sul disco rigido virtuale che si sta tentando di eliminare.
+Questo problema può verificarsi perché la macchina virtuale (VM) è un lease sul disco rigido virtuale che si sta tentando di toodelete hello.
 
 ### <a name="scenario-2"></a>Scenario 2
-Quando si tenta di eliminare un contenitore in un account di archiviazione di una distribuzione di Resource Manager, viene visualizzato un messaggio di errore simile al seguente:
+Quando si tenta di toodelete un contenitore in un account di archiviazione in una distribuzione di gestione delle risorse, viene visualizzato hello seguente messaggio di errore:
 
-**Non è stato possibile eliminare il contenitore di archiviazione 'vhds'. Errore: sul contenitore è ancora attivo un lease. Nessun ID lease è stato specificato nella richiesta.**
+**Non è stato possibile toodelete archiviazione contenitore 'VHD'. Errore: Non è presente un lease sul contenitore hello ed è stato specificato alcun ID lease nella richiesta di hello.**
 
-Questo problema può verificarsi perché il contenitore dispone di un disco rigido virtuale bloccato nello stato di lease.
+Questo problema può verificarsi poiché hello contenitore dispone di un disco rigido virtuale che è stato bloccato nello stato di lease hello.
 
 ### <a name="scenario-3"></a>Scenario 3
-Quando si tenta di eliminare un account di archiviazione di una distribuzione di Resource Manager, viene visualizzato un messaggio di errore simile al seguente:
+Quando si tenta di toodelete un account di archiviazione in una distribuzione di gestione delle risorse, viene visualizzato hello seguente messaggio di errore:
 
-**Non è stato possibile eliminare l'account di archiviazione 'NomeAccountArchiviazione'. Errore: non è possibile eliminare l'account di archiviazione perché gli elementi sono in uso.**
+**Account di archiviazione toodelete 'StorageAccountName' non è riuscito. Errore: Impossibile eliminare l'account di archiviazione hello a causa di elementi tooits in uso.**
 
-Questo problema può verificarsi perché l'account di archiviazione dispone di un disco rigido virtuale in stato di lease.
+Questo problema può verificarsi perché l'account di archiviazione hello contiene un disco rigido virtuale che si trova in stato di lease hello.
 
 ## <a name="solution"></a>Soluzione 
-Per risolvere questi problemi, è necessario identificare il disco rigido virtuale che sta causando l'errore e la macchina virtuale associata. Quindi, scollegare il disco rigido virtuale dalla macchina virtuale (per i dischi dati) o eliminare la macchina virtuale che usa il disco rigido virtuale (per i dischi del sistema operativo). In questo modo, viene rimosso il lease dal disco rigido virtuale e se ne consente l'eliminazione. 
+tooresolve questi problemi, è necessario identificare hello disco rigido virtuale che ha causato l'errore hello e hello associati macchina virtuale. Quindi, scollegare hello disco rigido virtuale da hello VM (per i dischi di dati) o eliminare hello VM che utilizza hello disco rigido virtuale (per i dischi del sistema operativo). Questo rimuove lease hello hello disco rigido virtuale e ne consente toobe eliminato. 
 
-Per farlo, usare uno dei metodi seguenti:
+toodo questo, utilizzare uno dei seguenti metodi hello:
 
 ### <a name="method-1---use-azure-storage-explorer"></a>Metodo 1: usare Esplora archivi di Azure
 
-### <a name="step-1-identify-the-vhd-that-prevent-deletion-of-the-storage-account"></a>Passaggio 1: identificare il disco rigido virtuale che impedisce l'eliminazione dell'account di archiviazione
+### <a name="step-1-identify-hello-vhd-that-prevent-deletion-of-hello-storage-account"></a>Passaggio 1 identificare hello disco rigido virtuale che impediscono l'eliminazione dell'account di archiviazione hello
 
-1. Eliminando l'account di archiviazione, si riceverà una finestra di dialogo con messaggio come la seguente: 
+1. Quando si elimina l'account di archiviazione hello, si riceverà una finestra di messaggio come illustrato di seguito hello: 
 
-    ![Messaggio durante l'eliminazione dell'account di archiviazione](././media/storage-resource-manager-cannot-delete-storage-account-container-vhd/delete-storage-error.png) 
+    ![messaggio durante l'eliminazione di account di archiviazione hello](././media/storage-resource-manager-cannot-delete-storage-account-container-vhd/delete-storage-error.png) 
 
-2. Controllare l'**URL del disco** per identificare l'account di archiviazione e il disco rigido virtuale che impedisce di eliminare l'account di archiviazione. Nell'esempio seguente la stringa che precede ".blob.core.windows.net" è il nome dell'account di archiviazione, mentre "SCCM2012-2015-08-28.vhd" è il nome del disco rigido virtuale.  
+2. Controllare hello **disco URL** account di archiviazione tooidentify hello e hello disco rigido virtuale che non è possibile eliminare l'account di archiviazione di hello. Nell'esempio seguente di hello, hello stringa prima di ". n e t" nome account di archiviazione hello e "SCCM2012-2015-08-28.vhd" è il nome di file VHD hello.  
 
         https://portalvhds73fmhrw5xkp43.blob.core.windows.net/vhds/SCCM2012-2015-08-28.vhd
 
-### <a name="step-2-delete-the-vhd-by-using-azure-storage-explorer"></a>Passaggio 2: eliminare il disco rigido virtuale tramite Esplora archivi di Azure
+### <a name="step-2-delete-hello-vhd-by-using-azure-storage-explorer"></a>Hello di eliminazione passaggio 2 VHD tramite Esplora archivi Azure
 
-1. Scaricare e installare la versione più recente di [Esplora archivi di Azure](http://storageexplorer.com/). Questo strumento è un'app autonoma di Microsoft che consente di gestire facilmente dati di Archiviazione di Azure in Windows, macOS e Linux.
-2. Aprire Esplora archivi di Azure, selezionare ![icona account](./media/storage-resource-manager-cannot-delete-storage-account-container-vhd/account.png) nella barra sinistra, selezionare l'ambiente di Azure e quindi eseguire l'accesso.
+1. Download e installazione hello versione [Azure Storage Explorer](http://storageexplorer.com/). Questo strumento è un'applicazione autonoma di Microsoft che consente di utilizzare tooeasily dati di archiviazione di Azure in Windows, macOS e Linux.
+2. Aprire Esplora archivi di Azure, selezionare ![icona account](./media/storage-resource-manager-cannot-delete-storage-account-container-vhd/account.png) Nella barra sinistra hello, selezionare l'ambiente di Azure e quindi eseguire l'accesso.
 
-3. Selezionare tutte le sottoscrizioni oppure quella contenente l'account di archiviazione da eliminare.
+3. Selezionare tutte le sottoscrizioni o sottoscrizione hello che contiene l'account di archiviazione hello da toodelete.
 
     ![aggiungere sottoscrizione](./media/storage-resource-manager-cannot-delete-storage-account-container-vhd/addsub.png)
 
-4. Passare all'account di archiviazione ottenuto in precedenza dall'URL del disco, selezionare i **contenitori BLOB** > **dischi rigidi virtuali** e cercare il disco rigido virtuale che impedisce di eliminare l'account di archiviazione.
-5. Se viene trovato il disco rigido virtuale, controllare la colonna **Nome macchina virtuale** per trovare la macchina virtuale che sta usando tale disco rigido virtuale.
+4. Passare l'account di archiviazione toohello che sono stati ottenuti da hello disco URL precedenti, seleziona hello **contenitori Blob** > **dischi rigidi virtuali** e cercare hello disco rigido virtuale che impedisce di account di archiviazione hello di eliminazione.
+5. Se viene trovato hello disco rigido virtuale, controllare hello **nome della macchina virtuale** hello toofind colonna VM che utilizza questo disco rigido virtuale.
 
     ![Controllare la macchina virtuale](./media/storage-resource-manager-cannot-delete-storage-account-container-vhd/check-vm.png)
 
-6. Rimuovere il lease dal disco rigido virtuale tramite il portale di Azure. Per ulteriori informazioni, vedere [Rimuovere il lease dal disco rigido virtuale](#remove-the-lease-from-the-vhd). 
+6. Rimuovere il lease hello hello VHD tramite il portale di Azure. Per ulteriori informazioni, vedere [lease hello rimuovere dal disco rigido virtuale hello](#remove-the-lease-from-the-vhd). 
 
-7. Passare a Esplora archivi di Azure, fare clic con il tasto destro del mouse sul disco rigido virtuale e quindi selezionare Elimina.
+7. Passare toohello Azure Storage Explorer, fare doppio clic su hello disco rigido virtuale e quindi selezionare Elimina.
 
-8. Elimina l'account di archiviazione.
+8. Eliminare l'account di archiviazione hello.
 
 ### <a name="method-2---use-azure-portal"></a>Metodo 2: Usare il portale di Azure 
 
-#### <a name="step-1-identify-the-vhd-that-prevent-deletion-of-the-storage-account"></a>Passaggio 1: identificare il disco rigido virtuale che impedisce l'eliminazione dell'account di archiviazione
+#### <a name="step-1-identify-hello-vhd-that-prevent-deletion-of-hello-storage-account"></a>Passaggio 1: Identificare hello disco rigido virtuale che impediscono l'eliminazione dell'account di archiviazione hello
 
-1. Eliminando l'account di archiviazione, si riceverà una finestra di dialogo con messaggio come la seguente: 
+1. Quando si elimina l'account di archiviazione hello, si riceverà una finestra di messaggio come illustrato di seguito hello: 
 
-    ![Messaggio durante l'eliminazione dell'account di archiviazione](././media/storage-resource-manager-cannot-delete-storage-account-container-vhd/delete-storage-error.png) 
+    ![messaggio durante l'eliminazione di account di archiviazione hello](././media/storage-resource-manager-cannot-delete-storage-account-container-vhd/delete-storage-error.png) 
 
-2. Controllare l'**URL del disco** per identificare l'account di archiviazione e il disco rigido virtuale che impedisce di eliminare l'account di archiviazione. Nell'esempio seguente la stringa che precede ".blob.core.windows.net" è il nome dell'account di archiviazione, mentre "SCCM2012-2015-08-28.vhd" è il nome del disco rigido virtuale.  
+2. Controllare hello **disco URL** account di archiviazione tooidentify hello e hello disco rigido virtuale che non è possibile eliminare l'account di archiviazione di hello. Nell'esempio seguente di hello, hello stringa prima di ". n e t" nome account di archiviazione hello e "SCCM2012-2015-08-28.vhd" è il nome di file VHD hello.  
 
         https://portalvhds73fmhrw5xkp43.blob.core.windows.net/vhds/SCCM2012-2015-08-28.vhd
 
-2. Accedere al [portale di Azure](https://portal.azure.com).
-3. Scegliere **Tutte le risorse** dal menu Hub. Passare all'account di archiviazione e quindi selezionare **BLOB** > **dischi rigidi virtuali**.
+2. Accedi toohello [portale di Azure](https://portal.azure.com).
+3. Nel menu Hub hello, selezionare **tutte le risorse**. Account di archiviazione toohello scegliere quindi **BLOB** > **dischi rigidi virtuali**.
 
-    ![Schermata del portale, con l'account di archiviazione e il contenitore "vhds" evidenziato](./media/storage-resource-manager-cannot-delete-storage-account-container-vhd/opencontainer.png)
+    ![Schermata del portale di hello, con l'account di archiviazione hello e contenitore "VHD" hello evidenziato](./media/storage-resource-manager-cannot-delete-storage-account-container-vhd/opencontainer.png)
 
-4. Individuare il disco rigido virtuale ottenuto in precedenza dall'URL del disco. quindi determinare quale macchina virtuale sta usando il disco rigido virtuale. In genere, è possibile determinare la macchina virtuale che contiene il disco rigido virtuale selezionando il nome di tale disco:
+4. Individuare hello disco rigido virtuale che sono stati ottenuti dall'URL disco hello in precedenza. Quindi, determinare quale utilizza VM hello disco rigido virtuale. In genere, è possibile determinare la macchina virtuale contiene hello VHD controllando nome del disco rigido virtuale hello:
 
 Macchina virtuale nel modello di sviluppo di Resource Manager
 
@@ -115,38 +115,38 @@ Macchina virtuale nel modello di sviluppo classico
    * I dischi sistema operativo in genere seguono questa convenzione di denominazione: CloudServiceName-VMName-YYYY-MM-DD-HHMMSS.vhd
    * I dischi dati in genere seguono questa convenzione di denominazione: CloudServiceName-VMName-YYYY-MM-DD-HHMMSS.vhd
 
-#### <a name="step-2-remove-the-lease-from-the-vhd"></a>Passaggio 2: Rimuovere il lease dal disco rigido virtuale
+#### <a name="step-2-remove-hello-lease-from-hello-vhd"></a>Passaggio 2: Rimuovere i lease hello da hello disco rigido virtuale
 
-[Rimuovere il lease dal disco rigido virtuale](#remove-the-lease-from-the-vhd), quindi eliminare l'account di archiviazione.
+[Rimuovere il lease hello hello VHD](#remove-the-lease-from-the-vhd), quindi eliminare l'account di archiviazione hello.
 
 ## <a name="what-is-a-lease"></a>Che cos'è un lease?
-Un lease è un blocco che può essere usato per controllare l'accesso a un BLOB (ad esempio, un disco rigido virtuale). Quando un BLOB è in stato di lease, solo i proprietari del lease possono accedere al BLOB. Un lease è importante per i motivi seguenti:
+Un lease non è un blocco che può essere utilizzato toocontrol accesso tooa blob (ad esempio, un disco rigido virtuale). Quando esiste un lease per un blob, solo i proprietari di hello del lease hello possono accedere blob hello. Un lease è importante per hello seguenti motivi:
 
-* Impedisce il danneggiamento dei dati se più proprietari tentano di scrivere nella stessa parte del BLOB nello stesso momento.
-* Impedisce l'eliminazione del BLOB se in uso (ad esempio, da parte di una macchina virtuale).
-* Impedisce l'eliminazione dell'account di archiviazione se in uso (ad esempio, da parte di una macchina virtuale).
+* Impedisce il danneggiamento dei dati se più proprietari tenta toowrite toohello stessa parte di blob hello in hello contemporaneamente.
+* Blob hello impedisce che venga eliminato se si sta utilizzando attivamente il (ad esempio, una macchina virtuale).
+* Account di archiviazione hello impedisce che venga eliminato se si sta utilizzando attivamente il (ad esempio, una macchina virtuale).
 
-### <a name="remove-the-lease-from-the-vhd"></a>Rimuovere il lease dal disco rigido virtuale
-Se il disco rigido virtuale è un disco sistema operativo, è necessario eliminare la macchina virtuale per rimuovere il lease:
+### <a name="remove-hello-lease-from-hello-vhd"></a>Rimuovere il lease hello hello disco rigido virtuale
+Se hello disco rigido virtuale è un disco del sistema operativo, è necessario eliminare lease hello tooremove di hello VM:
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Dal menu **Hub** scegliere **Macchine virtuali**.
-3. Selezionare la macchina virtuale che contiene un lease sul disco rigido virtuale.
-4. Assicurarsi che la macchina virtuale non sia in uso e che non sia più necessaria.
-5. Nella parte superiore del pannello **VM details** (Dettagli macchina virtuale) selezionare **Elimina** e quindi fare clic su **Sì** per confermare.
-6. La macchina virtuale viene eliminata, ma il disco rigido virtuale può essere mantenuto. Tuttavia, nel disco rigido virtuale non deve più essere presente un lease. Il rilascio del lease può richiedere alcuni minuti. Per verificare che il lease sia stato rilasciato, passare a **Tutte le risorse** > **nome account di archiviazione** > **BLOB** > **dischi rigidi virtuali**. Nel riquadro **Proprietà BLOB** il valore **Stato lease** deve essere **Sbloccato**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. In hello **Hub** dal menu **macchine virtuali**.
+3. Selezionare una macchina virtuale che contiene un lease sul disco rigido virtuale hello hello.
+4. Assicurarsi che non sta utilizzando attivamente hello di macchina virtuale e che è non è più necessario hello macchina virtuale.
+5. Nella parte superiore di hello di hello **dettagli VM** pannello seleziona **eliminare**, quindi fare clic su **Sì** tooconfirm.
+6. Hello VM deve essere eliminato, ma può essere conservato hello disco rigido virtuale. Tuttavia, hello disco rigido virtuale non è più necessario disporre di un lease su di esso. Potrebbe richiedere alcuni minuti per hello lease toobe rilasciato. tooverify che hello lease viene rilasciato, andare troppo**tutte le risorse** > **nome Account di archiviazione** > **BLOB**  >  **dischi rigidi virtuali**. In hello **Blob proprietà** riquadro, hello **stato Lease** il valore deve essere **sbloccata**.
 
-Se il disco rigido virtuale è un disco dati, scollegarlo dalla macchina virtuale per rimuovere il lease:
+Se hello disco rigido virtuale è un disco dati, scollegare hello disco rigido virtuale da lease hello tooremove di hello VM:
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Dal menu **Hub** scegliere **Macchine virtuali**.
-3. Selezionare la macchina virtuale che contiene un lease sul disco rigido virtuale.
-4. Selezionare **Dischi** nel pannello **VM details** (Dettagli macchina virtuale).
-5. Selezionare il disco dati che contiene un lease sul disco rigido virtuale. È possibile determinare il disco rigido virtuale collegato al disco controllando l'URL del disco rigido virtuale.
-6. Stabilire con certezza che il disco dati non è in uso.
-7. Fare clic su **Scollega** nel pannello **Dettagli disco**.
-8. Il disco deve ora essere scollegato dalla macchina virtuale e nel disco rigido virtuale non deve più essere presente un lease. Il rilascio del lease può richiedere alcuni minuti. Per verificare che il lease sia stato rilasciato, passare a **Tutte le risorse** > **nome account di archiviazione** > **BLOB** > **dischi rigidi virtuali**. Nel riquadro **Proprietà BLOB** il valore **Stato lease** deve essere **Sbloccato**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. In hello **Hub** dal menu **macchine virtuali**.
+3. Selezionare una macchina virtuale che contiene un lease sul disco rigido virtuale hello hello.
+4. Selezionare **dischi** su hello **dettagli VM** blade.
+5. Selezionare i dischi dati hello che mantiene un lease su hello disco rigido virtuale. È possibile specificare quale disco rigido virtuale sia collegato in disco hello controllando URL hello di hello disco rigido virtuale.
+6. Stabilire con certezza che non sta utilizzando attivamente disco dati hello.
+7. Fare clic su **scollegamento** su hello **disco dettagli** blade.
+8. disco Hello deve ora essere disconnesse dal hello VM e hello disco rigido virtuale non è più necessario un lease su di esso. Potrebbe richiedere alcuni minuti per hello lease toobe rilasciato. è stata rilasciata tooverify che hello lease, andare troppo**tutte le risorse** > **nome Account di archiviazione** > **BLOB**  >  **dischi rigidi virtuali**. In hello **Blob proprietà** riquadro, hello **stato Lease** il valore deve essere **sbloccata**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Eliminare un account di archiviazione](storage-create-storage-account.md#delete-a-storage-account)
-* [Procedura: Interrompere il lease bloccato di archiviazione BLOB in Microsoft Azure (PowerShell)](https://gallery.technet.microsoft.com/scriptcenter/How-to-break-the-locked-c2cd6492)
+* [La modalità di blocco del lease dell'archiviazione blob toobreak hello in Microsoft Azure (PowerShell)](https://gallery.technet.microsoft.com/scriptcenter/How-to-break-the-locked-c2cd6492)

@@ -1,6 +1,6 @@
 ---
-title: Come scalare l'ambiente Time Series Insights di Azure | Microsoft Docs
-description: Questa esercitazione illustra come scalare l'ambiente Time Series Insights
+title: aaaHow tooscale ambiente Azure ora serie Insights | Documenti Microsoft
+description: Questa esercitazione sono trattati come tooscale l'ambiente Azure ora serie Insights
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/19/2017
 ms.author: edett
-ms.openlocfilehash: 8f6c66ea2173c98179ec899d6626c2ab6f7ec4b6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55eda388997589185bd34228762b95e182b228ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-scale-your-time-series-insights-environment"></a>Come scalare l'ambiente Time Series Insights
+# <a name="how-tooscale-your-time-series-insights-environment"></a>Come tooscale ambiente ora serie Insights
 
-Questa esercitazione illustra come scalare l'ambiente Time Series Insights.
+Questa esercitazione sono trattati come tooscale ambiente ora serie Insights.
 
 > [!NOTE]
 > La scalabilità verticale tra i tipi di SKU non è consentita. Un ambiente con uno SKU S1 non può essere convertito in un ambiente S2.
@@ -44,12 +44,12 @@ Questa esercitazione illustra come scalare l'ambiente Time Series Insights.
 
 La capacità ha una scalabilità lineare, pertanto uno SKU S1 con capacità 2 supporta una velocità in ingresso di 2 GB (2 milioni) di eventi al giorno e 60 GB (60 milioni) di eventi al mese.
 
-## <a name="changing-the-capacity-of-your-environment"></a>Modifica della capacità dell'ambiente
+## <a name="changing-hello-capacity-of-your-environment"></a>Capacità di hello dell'ambiente di modifica
 
-1. Nel portale di Azure selezionare l'ambiente di cui si intende modificare la capacità.
+1. Nel portale di Azure hello, selezionare hello ambiente la cui capacità desiderate toochange.
 1. In Impostazioni fare clic su Configura.
-1. Usare l'apposito dispositivo di scorrimento per selezionare la capacità che soddisfi i requisiti per la velocità in ingresso e la capacità di archiviazione.
+1. Utilizzare hello capacità dispositivo di scorrimento tooselect hello capacità che soddisfa i requisiti di hello per le tariffe in ingresso e la capacità di archiviazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Verificare che la nuova capacità sia sufficiente a impedire la limitazione delle richieste. Per altre informazioni, vedere la sezione *Your environment might be getting throttled* (L'ambiente potrebbe essere soggetto a limitazione delle richieste) [qui](time-series-insights-diagnose-and-solve-problems.md).
+* Verificare che sia sufficiente nuova capacità di hello tooprevent la limitazione delle richieste. Per ulteriori informazioni, vedere hello *ambiente potrebbe essere recupero limitata* sezione [qui](time-series-insights-diagnose-and-solve-problems.md).

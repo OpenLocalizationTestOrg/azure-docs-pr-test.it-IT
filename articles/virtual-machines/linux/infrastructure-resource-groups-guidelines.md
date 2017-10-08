@@ -1,6 +1,6 @@
 ---
-title: Gruppi di risorse per macchine virtuali Linux in Azure | Documentazione Microsoft
-description: Informazioni sulle principali linee guida di progettazione e implementazione per la distribuzione dei gruppi di risorse nei servizi di infrastruttura di Azure.
+title: gruppi aaaResource per le macchine virtuali Linux in Azure | Documenti Microsoft
+description: Informazioni su hello progettazione e implementazione di linee guida fondamentali per la distribuzione di gruppi di risorse in servizi di infrastruttura di Azure.
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,42 +16,42 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 452acde571164a3ab4ce2dcccf99d2aed90361fe
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8809cb5eeb9a166d2bcf1946cd26b0ee748f8cd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-group-guidelines-for-linux-vms"></a>Linee guida sui gruppi di risorse di Azure per macchine virtuali Linux 
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-Questo articolo si incentra su come creare in modo logico un ambiente e raggruppare tutti i componenti in gruppi di risorse.
+In questo articolo si incentra sulla comprensione come toologically orizzontale dell'ambiente di compilazione e raggruppare tutti i componenti di hello in gruppi di risorse.
 
 ## <a name="implementation-guidelines-for-resource-groups"></a>Linee guida sui gruppi di risorse
 Decisioni:
 
-* Si desidera creare gruppi di risorse con i componenti dell'infrastruttura di base oppure tramite la distribuzione di applicazioni complete?
-* È necessario limitare l'accesso ai gruppi di risorse usando controlli di accesso in base ai ruoli?
+* Verranno toobuild i gruppi di risorse dai componenti di infrastruttura core hello o dalla distribuzione di applicazione completa?
+* È necessario toorestrict accesso tooResource gruppi tramite i controlli di accesso basato sui ruoli?
 
 Attività:
 
 * Definire i componenti dell'infrastruttura di base e i gruppi di risorse dedicati necessari.
-* Esaminare la modalità di implementazione dei modelli di Resource Manager per ottenere distribuzioni coerenti e riproducibili.
-* Definire i ruoli di accesso utente necessari per controllare l'accesso ai gruppi di risorse.
-* Creare il set di gruppi di risorse usando la usando la convenzione di denominazione scelta. È possibile usare l'interfaccia della riga di comando o il portale di Azure.
+* Revisione come tooimplement i modelli di gestione risorse per le distribuzioni coerente e riproducibile.
+* Definire i ruoli di accesso utente è necessario per controllare l'accesso tooResource gruppi.
+* Creare set di hello di gruppi di risorse utilizzando la convenzione di denominazione. È possibile utilizzare hello CLI di Azure o il portale.
 
 ## <a name="resource-groups"></a>Gruppi di risorse
-Azure consente di raggruppare in modo logico risorse correlate, ad esempio account di archiviazione, reti virtuali e macchine virtuali per distribuirle, gestirle ed eseguirne la manutenzione come una singola entità. Questo approccio semplifica la distribuzione delle applicazioni e al contempo mantiene insieme tutte le risorse correlate per facilitarne la gestione o per consentire altri accessi al gruppo di risorse. I nomi dei gruppi di risorse non possono contenere più di 90 caratteri. Per informazioni complete sui gruppi di risorse, leggere la [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md).
+In Azure, logicamente risorse correlate, ad esempio gli account di archiviazione, reti virtuali e macchine virtuali (VM) toodeploy, gestire e li gestisce come una singola entità. Questo approccio rende un più semplice applicazioni toodeploy mentre mantenendo hello tutte risorse correlate insieme da una prospettiva di gestione o toogrant altri gruppo toothat di accesso di risorse. I nomi dei gruppi di risorse non possono contenere più di 90 caratteri. Per una comprensione più completa dei gruppi di risorse, è possibile leggere hello [Panoramica di gestione risorse di Azure](../../azure-resource-manager/resource-group-overview.md).
 
-Una funzionalità chiave dei gruppi di risorse è la possibilità di creare l'ambiente tramite un file JSON che dichiara le risorse di archiviazione, rete e calcolo. È anche possibile definire qualsiasi script personalizzato o configurazioni correlati da applicare. Tramite i modelli JSON è possibile creare distribuzioni coerenti e riproducibili delle applicazioni. Ciò consente la compilazione di un ambiente nella fase di sviluppo e l'uso dello stesso modello per creare una distribuzione di produzione, o viceversa. Per altre informazioni sull'uso dei modelli, leggere [la procedura dettagliata sui modelli](../../azure-resource-manager/resource-manager-template-walkthrough.md) che descrive i passaggi per la compilazione di un modello JSON.
+Una funzionalità chiave tooResource gruppi hello possibilità toobuild ambiente mediante un file JSON che dichiara hello reti di archiviazione, e le risorse di calcolo. È inoltre possibile definire qualsiasi script personalizzato correlati o tooapply configurazioni. Tramite i modelli JSON è possibile creare distribuzioni coerenti e riproducibili delle applicazioni. Questo approccio consente di creare un ambiente di sviluppo e quindi utilizzare tale toocreate modello stesso, una distribuzione di produzione, o viceversa. Per una migliore comprensione sull'utilizzo dei modelli, leggere [hello procedura dettagliata modello](../../azure-resource-manager/resource-manager-template-walkthrough.md) che illustra ogni passaggio della creazione di un modello JSON.
 
 Esistono due diversi approcci alla progettazione dell'ambiente con gruppi di risorse:
 
-* Gruppi di risorse per ogni distribuzione dell'applicazione, che contengono account di archiviazione, reti virtuali e subnet, macchine virtuali, servizi di bilanciamento del carico e così via.
+* Gruppi di risorse per ogni distribuzione dell'applicazione che combina hello account di archiviazione, reti virtuali e subnet, le macchine virtuali, caricare il bilanciamento del carico e così via.
 * Gruppi di risorse centralizzate che contengono la rete virtuale di base e le subnet oppure gli account di archiviazione. Le applicazioni si trovano quindi nei propri gruppi di risorse che contengono solo macchine virtuali, servizi di bilanciamento del carico, interfacce di rete e così via.
 
-Procedendo con la scalabilità orizzontale, i gruppi di risorse centralizzati contenenti la rete virtuale e le subnet semplificano la creazione di connessioni di rete cross-premise per opzioni di connettività ibrida. L'approccio alternativo prevede di avere singole applicazioni dotate di una propria rete virtuale che richiede configurazione e manutenzione. [I controlli di accesso in base al ruolo](../../active-directory/role-based-access-control-what-is.md) rappresentano una modalità granulare per controllare l'accesso ai gruppi di risorse. Per le applicazioni di produzione, è possibile controllare gli utenti che possono accedere alle risorse. Per le risorse dell'infrastruttura di base è possibile limitare l'accesso solo ai tecnici dell'infrastruttura che le usano. I proprietari dell'applicazione possono accedere solo ai componenti dell'applicazione nel proprio gruppo di risorse e non all'infrastruttura di Azure di base dell'ambiente. Quando si progetta l'ambiente, tenere in considerazione gli utenti che dovranno accedere alle risorse e creare gruppi di risorse adeguati. 
+La scalabilità orizzontale, la creazione di gruppi di risorse centralizzata per la rete virtuale e subnet rende più semplice toobuild cross-premise le connessioni per le opzioni di connettività ibrida di rete. approccio alternativo Hello è per ogni applicazione toohave la propria rete virtuale che richiede una configurazione e manutenzione. [I controlli di accesso basato sui ruoli](../../active-directory/role-based-access-control-what-is.md) forniscono un accesso toocontrol modo granulare tooResource gruppi. Per le applicazioni di produzione, è possibile controllare gli utenti di hello che possono accedere alle risorse, o per le risorse di infrastruttura di hello core è possibile limitare solo tecnici dell'infrastruttura toowork con essi. I proprietari delle applicazioni hanno solo accesso toohello componenti dell'applicazione nei propri non hello componenti di base dell'ambiente di infrastruttura di Azure e nel gruppo di risorse. Quando si progetta l'ambiente, considerare gli utenti di hello che richiedono l'accesso alle risorse di toohello e progettare di conseguenza i gruppi di risorse. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]

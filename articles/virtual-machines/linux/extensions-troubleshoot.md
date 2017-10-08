@@ -1,5 +1,5 @@
 ---
-title: Risoluzione degli errori delle estensioni della macchina virtuale Linux | Microsoft Docs
+title: VM Linux aaaTroubleshooting errori estensione | Documenti Microsoft
 description: Informazioni sulla risoluzione degli errori delle estensioni della macchina virtuale di Azure
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: 589890de379d0b729de1f1ba9e604e0ec0496f50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 29a0ca34207421e0014380000a313d3c44e7e594
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-azure-linux-vm-extension-failures"></a>Risoluzione degli errori delle estensioni della macchina virtuale Linux di Azure
 [!INCLUDE [virtual-machines-common-extensions-troubleshoot](../../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## <a name="viewing-extension-status"></a>Visualizzazione dello stato dell'estensione
-I modelli di Azure Resource Manager possono essere eseguiti dall'interfaccia della riga di comando di Azure. Una volta che il modello viene eseguito, è possibile visualizzare lo stato dell'estensione da Esplora risorse di Azure o dagli strumenti da riga di comando.
+Modelli di gestione risorse di Azure possono essere eseguiti da hello CLI di Azure. Quando viene eseguita modello hello, lo stato dell'estensione hello può essere visualizzato da Esplora inventario risorse di Azure o hello strumenti da riga di comando.
 
 Di seguito è fornito un esempio:
 
@@ -34,7 +34,7 @@ Interfaccia della riga di comando di Azure:
       azure vm get-instance-view
 
 
-Di seguito è riportato l'output di esempio:
+Ecco l'output di esempio hello:
 
       Extensions:  {
       "ExtensionType": "Microsoft.Compute.CustomScriptExtension",
@@ -60,14 +60,14 @@ Di seguito è riportato l'output di esempio:
   ]
 
 ## <a name="troubleshooting-extenson-failures"></a>Risoluzione degli errori delle Estensioni:
-### <a name="re-running-the-extension-on-the-vm"></a>Eseguire nuovamente l'estensione nella macchina virtuale
-Se si eseguono gli script nella macchina virtuale usando l'estensione script personalizzato, è possibile riscontrare in alcuni casi un errore in cui la creazione della macchina virtuale è riuscita, ma lo script ha avuto esito negativo. In queste condizioni, il metodo consigliato per risolvere il problema consiste nel rimuovere l'estensione e eseguire nuovamente il modello.
-Nota: In futuro, questa funzionalità potrebbe essere migliorata in modo da eliminare la necessità di disinstallazione dell'estensione.
+### <a name="re-running-hello-extension-on-hello-vm"></a>Eseguire nuovamente l'estensione hello in hello VM
+Se si eseguono gli script nella macchina virtuale utilizzando l'estensione dello Script personalizzata hello, in alcuni casi è possibile eseguire un errore in cui VM è stato creato ma script hello non è riuscita. In queste condizioni, hello consigliato modo toorecover da questo errore è tooremove hello estensione e nuovamente il modello di hello.
+Nota: In futuro, questa funzionalità sarebbe tooremove avanzata hello necessità di disinstallazione dell'estensione hello.
 
-#### <a name="remove-the-extension-from-azure-cli"></a>Rimuovere l'estensione dall'interfaccia della riga di comando di Azure
+#### <a name="remove-hello-extension-from-azure-cli"></a>Rimuovi estensione hello dalla CLI di Azure
       azure vm extension set --resource-group "KPRG1" --vm-name "kundanapdemo" --publisher-name "Microsoft.Compute.CustomScriptExtension" --name "myCustomScriptExtension" --version 1.4 --uninstall
 
-Dove "publsher-name" corrisponde al tipo di estensione dall'output di "azure vm get-instance-view" e nome è il nome della risorsa di estensione dal modello
+Dove "nome-per Publisher" corrispondente tipo di estensione toohello dall'output di hello di "get-istanza-view macchina virtuale di azure" e hello nome della risorsa di estensione hello dal modello hello
 
-Una volta rimossa l'estensione, il modello può essere eseguito nuovamente per eseguire gli script nella macchina virtuale.
+Una volta hello estensione è stata rimossa, il modello di hello può essere rieseguita toorun hello gli script hello VM.
 

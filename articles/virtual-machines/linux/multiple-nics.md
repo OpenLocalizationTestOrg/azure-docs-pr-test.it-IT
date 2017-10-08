@@ -1,6 +1,6 @@
 ---
-title: "Creare una VM Linux in Azure con più schede di interfaccia di rete | Documentazione Microsoft"
-description: "Informazioni su come creare una VM Linux con più schede di interfaccia di rete collegate usando l'interfaccia della riga di comando di Azure 2.0 o i modelli di Resource Manager."
+title: "una VM Linux di Azure con più schede di rete aaaCreate | Documenti Microsoft"
+description: "Informazioni su come toocreate una VM Linux con più schede di rete associata tooit modelli hello CLI di Azure 2.0 o gestione delle risorse."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 8a2931e462079c101c91497d459d7d3126234244
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2723405914777a5dce4354d4f5d8413e357f58e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-linux-virtual-machine-in-azure-with-multiple-network-interface-cards"></a>Come creare una macchina virtuale Linux in Azure con più schede di interfaccia di rete
-È possibile creare una macchina virtuale (VM) in Azure con più interfacce di rete virtuale (NIC) collegate. Uno scenario comune è quello di avere subnet diverse per la connettività front-end e back-end oppure una rete dedicata a una soluzione di monitoraggio o backup. Questo articolo illustra come creare una VM con più schede di interfaccia di rete collegate e come aggiungere o rimuovere le schede di interfaccia di rete da una VM esistente. Per informazioni dettagliate, incluse quelle sulla creazione di più schede di rete all'interno degli script di Bash, consultare la sezione dedicata alla [distribuzione di macchine virtuali con più schede di rete](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md). Le differenti [dimensioni della macchina virtuale](sizes.md) supportano un numero variabile di schede di rete, pertanto scegliere le dimensioni della macchina virtuale di conseguenza.
+# <a name="how-toocreate-a-linux-virtual-machine-in-azure-with-multiple-network-interface-cards"></a>Come toocreate una macchina virtuale di Linux in Azure con la rete di più schede di interfaccia
+È possibile creare una macchina virtuale (VM) in Azure con più tooit interfacce (NIC) collegate di rete virtuale. Uno scenario comune è toohave subnet diverse per la connettività front-end e back-end, o una rete dedicata tooa monitoraggio o una soluzione di backup. In questo articolo illustra in dettaglio come toocreate una macchina virtuale con più schede di rete associata tooit e come le schede NIC tooadd o rimuovere da una macchina virtuale esistente. Per informazioni dettagliate, incluso come toocreate più schede di rete all'interno del proprio Bash script, altre informazioni sui [la distribuzione di macchine virtuali multi-NIC](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md). Le differenti [dimensioni della macchina virtuale](sizes.md) supportano un numero variabile di schede di rete, pertanto scegliere le dimensioni della macchina virtuale di conseguenza.
 
-Questo articolo illustra come creare una macchina virtuale con più schede di interfaccia di rete usando l'interfaccia della riga di comando di Azure 2.0. È possibile anche eseguire questi passaggi tramite l'[interfaccia della riga di comando di Azure 1.0](multiple-nics-nodejs.md).
+In questo articolo illustra in dettaglio come toocreate una macchina virtuale con più schede di rete con hello CLI di Azure 2.0. È anche possibile eseguire questi passaggi con hello [CLI di Azure 1.0](multiple-nics-nodejs.md).
 
 
 ## <a name="create-supporting-resources"></a>Creare risorse di supporto
-Installare la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e accedere a un account Azure tramite il comando [az login](/cli/azure/#login).
+Hello installazione più recente [CLI di Azure 2.0](/cli/azure/install-az-cli2) e accedere con un account Azure tooan [accesso az](/cli/azure/#login).
 
-Nell'esempio seguente sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono *myResourceGroup*, *mystorageaccount* e *myVM*.
+In hello negli esempi seguenti, sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono *myResourceGroup*, *mystorageaccount* e *myVM*.
 
-Creare prima un gruppo di risorse con [az group create](/cli/azure/group#create). L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella posizione *eastus*:
+Creare prima un gruppo di risorse con [az group create](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Creare la rete virtuale con [az network vnet create](/cli/azure/network/vnet#create). L'esempio seguente crea una rete virtuale denominata *myVnet* e una subnet denominata *mySubnetFrontEnd*:
+Creare una rete virtuale di hello con [creazione della rete virtuale di rete az](/cli/azure/network/vnet#create). esempio Hello crea una rete virtuale denominata *myVnet* e subnet denominata *mySubnetFrontEnd*:
 
 ```azurecli
 az network vnet create \
@@ -48,7 +48,7 @@ az network vnet create \
     --subnet-prefix 192.168.1.0/24
 ```
 
-Creare una subnet per il traffico di back-end con il comando [az network vnet subnet create](/cli/azure/network/vnet/subnet#create). L'esempio seguente crea una subnet denominata *mySubnetBackEnd*:
+Creare una subnet per il traffico di back-end hello con [creare subnet della rete virtuale rete az](/cli/azure/network/vnet/subnet#create). esempio Hello crea una subnet denominata *mySubnetBackEnd*:
 
 ```azurecli
 az network vnet subnet create \
@@ -58,7 +58,7 @@ az network vnet subnet create \
     --address-prefix 192.168.2.0/24
 ```
 
-Creare un gruppo di sicurezza di rete con il comando [az network nsg create](/cli/azure/network/nsg#create). L'esempio seguente crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
+Creare un gruppo di sicurezza di rete con il comando [az network nsg create](/cli/azure/network/nsg#create). esempio Hello crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
 
 ```azurecli
 az network nsg create \
@@ -67,7 +67,7 @@ az network nsg create \
 ```
 
 ## <a name="create-and-configure-multiple-nics"></a>Creare e configurare più schede di interfaccia di rete
-Creare due schede di interfaccia di rete con il comando [az network nic create](/cli/azure/network/nic#create). L'esempio seguente crea due schede di interfaccia di rete, denominate *myNic1* e *myNic2*, connesse al gruppo di sicurezza di rete, con una scheda che si connette a ogni subnet:
+Creare due schede di interfaccia di rete con il comando [az network nic create](/cli/azure/network/nic#create). esempio Hello crea due schede di rete, denominati *myNic1* e *myNic2*connesse, gruppo di sicurezza rete hello, con una scheda di rete che connettono tooeach subnet:
 
 ```azurecli
 az network nic create \
@@ -84,10 +84,10 @@ az network nic create \
     --network-security-group myNetworkSecurityGroup
 ```
 
-## <a name="create-a-vm-and-attach-the-nics"></a>Creare una macchina virtuale e collegare le schede di interfaccia di rete
-Quando si crea la macchina virtuale, specificare le schede di interfaccia di rete create con `--nics`. L'utente deve anche fare attenzione quando seleziona la dimensione della macchina virtuale. Esistono dei limiti per quanto riguarda il numero totale di schede di rete che è possibile aggiungere. Ulteriori informazioni sulle [dimensioni delle macchine virtuali di Linux](sizes.md). 
+## <a name="create-a-vm-and-attach-hello-nics"></a>Creare una macchina virtuale e collegare le schede NIC hello
+Quando si crea hello macchina virtuale, specificare le schede NIC hello creato con `--nics`. È necessario anche tootake attenzione quando si seleziona hello dimensioni della macchina virtuale. Vi sono limiti per il numero totale di schede di rete che è possibile aggiungere VM tooa hello. Ulteriori informazioni sulle [dimensioni delle macchine virtuali di Linux](sizes.md). 
 
-Creare una macchina virtuale con il comando [az vm create](/cli/azure/vm#create). L'esempio seguente crea una VM denominata *myVM*:
+Creare una VM con il comando [az vm create](/cli/azure/vm#create). esempio Hello crea una macchina virtuale denominata *myVM*:
 
 ```azurecli
 az vm create \
@@ -100,10 +100,10 @@ az vm create \
     --nics myNic1 myNic2
 ```
 
-## <a name="add-a-nic-to-a-vm"></a>Aggiungere una scheda di interfaccia di rete a una VM
-I passaggi precedenti hanno consentito di creare una VM con più schede di interfaccia di rete. È anche possibile aggiungere schede di interfaccia di rete a una VM esistente con l'interfaccia della riga di comando di Azure 2.0. 
+## <a name="add-a-nic-tooa-vm"></a>Aggiungere un tooa NIC VM
+passaggi precedenti Hello creato una macchina virtuale con più schede di rete. È inoltre possibile aggiungere NIC tooan esistente VM con hello CLI di Azure 2.0. 
 
-Creare un'altra scheda di interfaccia di rete con [az network nic create](/cli/azure/network/nic#create). L'esempio seguente crea una scheda di interfaccia rete denominata *myNic3* connessa alla subnet back-end e al gruppo di sicurezza di rete creato nei passaggi precedenti:
+Creare un'altra scheda di interfaccia di rete con [az network nic create](/cli/azure/network/nic#create). esempio Hello crea una scheda di rete denominata *myNic3* connesso toohello subnet di back-end e il gruppo di sicurezza di rete creato nei passaggi precedenti hello:
 
 ```azurecli
 az network nic create \
@@ -114,13 +114,13 @@ az network nic create \
     --network-security-group myNetworkSecurityGroup
 ```
 
-Per aggiungere una scheda di interfaccia di rete a una VM esistente, deallocare prima di tutto la VM con [az vm deallocate](/cli/azure/vm#deallocate). L'esempio seguente dealloca la VM denominata *myVM*:
+tooadd tooan una scheda di rete macchina virtuale esistente, prima di deallocare hello macchina virtuale con [az vm deallocare](/cli/azure/vm#deallocate). esempio Hello dealloca hello macchina virtuale denominata *myVM*:
 
 ```azurecli
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-Aggiungere la scheda di interfaccia di rete con [az vm nic add](/cli/azure/vm/nic#add). L'esempio seguente aggiunge *myNic3* a *myVM*:
+Aggiungere NIC con hello [scheda nic vm az aggiungere](/cli/azure/vm/nic#add). Hello esempio aggiunge *myNic3* troppo*myVM*:
 
 ```azurecli
 az vm nic add \
@@ -129,20 +129,20 @@ az vm nic add \
     --nics myNic3
 ```
 
-Avviare la VM con [az vm start](/cli/azure/vm#start):
+Avvia macchina virtuale con hello [inizio vm az](/cli/azure/vm#start):
 
 ```azurecli
 az vm start --resource-group myResourceGroup --name myVM
 ```
 
 ## <a name="remove-a-nic-from-a-vm"></a>Rimuovere una scheda di interfaccia di rete da una VM
-Per rimuovere una scheda di interfaccia di rete da una VM esistente, deallocare prima di tutto la VM con [az vm deallocate](/cli/azure/vm#deallocate). L'esempio seguente dealloca la VM denominata *myVM*:
+tooremove una scheda di rete da una macchina virtuale esistente, prima di deallocare hello VM con [az vm deallocare](/cli/azure/vm#deallocate). esempio Hello dealloca hello macchina virtuale denominata *myVM*:
 
 ```azurecli
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-Rimuovere la scheda di interfaccia di rete con [az vm nic remove](/cli/azure/vm/nic#remove). L'esempio seguente rimuove *myNic3* da *myVM*:
+Rimuovere hello NIC con [rimuovere la scheda nic vm az](/cli/azure/vm/nic#remove). Hello esempio seguente viene rimosso *myNic3* da *myVM*:
 
 ```azurecli
 az vm nic remove \
@@ -151,7 +151,7 @@ az vm nic remove \
     --nics myNic3
 ```
 
-Avviare la VM con [az vm start](/cli/azure/vm#start):
+Avvia macchina virtuale con hello [inizio vm az](/cli/azure/vm#start):
 
 ```azurecli
 az vm start --resource-group myResourceGroup --name myVM
@@ -159,7 +159,7 @@ az vm start --resource-group myResourceGroup --name myVM
 
 
 ## <a name="create-multiple-nics-using-resource-manager-templates"></a>Creare più schede di interfaccia di rete usando i modelli di Resource Manager
-I modelli di Azure Resource Manager utilizzano i file JSON dichiarativi per definire l'ambiente. È possibile consultare una [panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md). I modelli di Resource Manager offrono un modo di creare più istanze di una risorsa durante la distribuzione, come ad esempio la creazione di più schede di rete. Utilizzare *Copia* per specificare il numero di istanze da creare:
+Modelli di gestione risorse di Azure utilizzano dichiarativa JSON file toodefine l'ambiente. È possibile consultare una [panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md). Modelli di gestione risorse forniscono un modo toocreate più istanze di una risorsa durante la distribuzione, ad esempio la creazione di più schede di rete. Utilizzare *copia* numero hello toospecify di toocreate istanze:
 
 ```json
 "copy": {
@@ -170,7 +170,7 @@ I modelli di Azure Resource Manager utilizzano i file JSON dichiarativi per defi
 
 Ulteriori informazioni sulla [creazione di più istanze utilizzando *Copia*](../../resource-group-create-multiple.md). 
 
-È inoltre possibile utilizzare un `copyIndex()` per poi aggiungere un numero al nome di una risorsa, che consente di creare `myNic1`, `myNic2`, e così via. Di seguito viene riportato un esempio di aggiunta del valore di indice:
+È inoltre possibile utilizzare un `copyIndex()` toothen aggiungere un nome di risorsa tooa numero, che consente di toocreate `myNic1`, `myNic2`, e così via hello seguito è riportato un esempio di aggiunta di valore di indice hello:
 
 ```json
 "name": "[concat('myNic', copyIndex())]", 
@@ -179,4 +179,4 @@ Ulteriori informazioni sulla [creazione di più istanze utilizzando *Copia*](../
 È possibile consultare un esempio completo di [creazione di più schede di rete utilizzando i modelli di Resource Manager](../../virtual-network/virtual-network-deploy-multinic-arm-template.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Quando si cerca di creare una macchina virtuale con più schede di rete, consultare [Dimensioni per le macchine virtuali di Linux](sizes.md). Prestare attenzione al numero massimo di schede di rete supportato per ogni dimensione della macchina virtuale. 
+Revisione [le dimensioni di VM Linux](sizes.md) durante il tentativo di toocreating una macchina virtuale con più schede di rete. Prestare attenzione toohello massimo NIC supporta ogni dimensione della macchina virtuale. 

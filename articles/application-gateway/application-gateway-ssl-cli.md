@@ -1,6 +1,6 @@
 ---
-title: Configurare l'offload SSL - Gateway applicazione di Azure - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: Questo articolo contiene le istruzioni per creare un gateway applicazione con l'offload SSL usando l'interfaccia della riga di comando di Azure 2.0
+title: -Gateway applicazione Azure - CLI di Azure 2.0 di offload SSL aaaConfigure | Documenti Microsoft
+description: Questa pagina fornisce istruzioni toocreate offload un gateway applicazione con SSL 2.0 CLI di Azure
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: e8c1ba09daef09ef5002e33345905772961c1d93
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f8d50e0c6ffef17c807938d816410e6d85321c9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-an-application-gateway-for-ssl-offload-by-using-azure-cli-20"></a>Configurare un gateway applicazione per l'offload SSL con l'interfaccia della riga di comando di Azure 2.0
 
@@ -27,39 +27,39 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell per Azure classico](application-gateway-ssl.md)
 > * [Interfaccia della riga di comando di Azure 2.0](application-gateway-ssl-cli.md)
 
-Il gateway applicazione di Azure può essere configurato per terminare la sessione Secure Sockets Layer (SSL) nel gateway ed evitare costose attività di decrittografia SSL nella Web farm. L'offload SSL semplifica anche la gestione dei certificati nel server front-end.
+Gateway applicazione Azure può essere configurato tooterminate hello Secure Sockets Layer (SSL) sessione hello gateway tooavoid costosi SSL decrittografia attività toohappen alla farm web hello. Offload SSL semplifica anche la gestione dei certificati server front-end hello.
 
-## <a name="prerequisite-install-the-azure-cli-20"></a>Prerequisito: installare l'interfaccia della riga di comando di Azure 2.0
+## <a name="prerequisite-install-hello-azure-cli-20"></a>Prerequisito: Installare hello Azure CLI 2.0
 
-Per eseguire i passaggi indicati in questo articolo è necessario [installare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows (interfaccia della riga di comando di Azure)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+hello tooperform i passaggi in questo articolo, è necessario troppo[installare hello interfaccia della riga di comando di Azure per Mac, Linux e Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="required-components"></a>Componenti richiesti
 
-* **Pool di server back-end:** elenco di indirizzi IP dei server back-end. Gli indirizzi IP elencati devono appartenere alla subnet della rete virtuale o devono essere indirizzi IP/VIP pubblici.
-* **Impostazioni del pool di server back-end:** ogni pool ha impostazioni come porta, protocollo e affinità basata sui cookie. Queste impostazioni sono associate a un pool e vengono applicate a tutti i server nel pool.
-* **Porta front-end:** porta pubblica aperta sul gateway applicazione. Il traffico raggiunge questa porta e quindi viene reindirizzato a uno dei server back-end.
-* **Listener** : ha una porta front-end, un protocollo (Http o Https, queste impostazioni fanno distinzione tra maiuscole e minuscole) e il nome del certificato SSL (se si configura l'offload SSL).
-* **Regola** : associa il listener e il pool di server back-end e definisce il pool di server back-end a cui deve essere indirizzato il traffico quando raggiunge un listener specifico. È attualmente supportata solo la regola *basic* . La regola *basic* è una distribuzione del carico di tipo round robin.
+* **Pool di server back-end:** elenco hello di indirizzi IP dei server back-end hello. gli indirizzi IP Hello elencati devono appartenere toohello subnet della rete virtuale o devono essere un indirizzo IP/VIP pubblico.
+* **Impostazioni del pool di server back-end:** ogni pool ha impostazioni quali porta, protocollo e affinità basata sui cookie. Queste impostazioni sono legato tooa pool e vengono applicati tooall server hello pool.
+* **Porta front-end:** questa porta è una porta pubblica hello aperta sul gateway applicazione hello. Traffico riscontri questa porta, e quindi ottiene reindirizzato tooone dei server back-end hello.
+* **Listener:** listener hello dispone di una porta front-end, un protocollo (Http o Https, queste impostazioni sono distinzione maiuscole/minuscole) e il nome certificato SSL hello (se la configurazione di SSL di offload).
+* **Regola:** regola hello associa listener hello e pool di server back-end hello e definisce il traffico di hello pool di server back-end deve essere diretto toowhen raggiunge un determinato listener. Attualmente, solo hello *base* regola supportata. Hello *base* regola è una distribuzione del carico round robin.
 
 **Note aggiuntive sulla configurazione**
 
-Per la configurazione dei certificati SSL, il protocollo in **HttpListener** deve essere sostituito con *Https* (distinzione tra maiuscole e minuscole). L'elemento **SslCertificate** viene aggiunto ad **HttpListener** con il valore della variabile configurato per il certificato SSL. La porta front-end deve essere impostata su 443.
+Per la configurazione di certificati SSL, hello protocollo **HttpListener** deve modificare troppo*Https* (maiuscole / minuscole). Hello **SslCertificate** elemento viene aggiunto troppo**HttpListener** con valore della variabile hello configurato per il certificato SSL hello. porta front-end di Hello deve essere aggiornato too443.
 
-**Per abilitare l'affinità basata sui cookie**: è possibile configurare un gateway applicazione per fare in modo che una richiesta proveniente da una sessione client sia sempre diretta alla stessa macchina virtuale nella Web farm. Questo scenario viene realizzato aggiungendo un cookie di sessione che consente al gateway di indirizzare il traffico in modo appropriato. Per abilitare l'affinità basata sui cookie, impostare **CookieBasedAffinity** su *Enabled* nell'elemento **BackendHttpSettings**.
+**affinità basato su cookie tooenable**: un gateway applicazione può essere configurato tooensure che una richiesta da una sessione client è sempre toohello diretto stessa macchina virtuale nella farm web hello. Questo scenario viene eseguito dall'inserimento di un cookie di sessione che consenta il traffico di toodirect di hello gateway in modo appropriato. impostata l'affinità basato su cookie tooenable, **CookieBasedAffinity** troppo*abilitato* in hello **BackendHttpSettings** elemento.
 
 ## <a name="configure-ssl-offload-on-an-existing-application-gateway"></a>Configurare l'offload SSL in un gateway applicazione
 
 ```azurecli-interactive
 #!/bin/bash
 
-# Create a new front end port to be used for SSL
+# Create a new front end port toobe used for SSL
 az network application-gateway frontend-port create \
   --name sslport \
   --port 443 \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Upload the .pfx certificate for SSL offload
+# Upload hello .pfx certificate for SSL offload
 az network application-gateway ssl-cert create \
   --name "newcert" \
   --cert-file /home/azureuser/self-signed/AdatumAppGatewayCert.pfx \
@@ -67,7 +67,7 @@ az network application-gateway ssl-cert create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Create a new listener referencing the port and certificate created earlier
+# Create a new listener referencing hello port and certificate created earlier
 az network application-gateway http-listener create \
   --frontend-ip "appGatewayFrontendIP" \
   --frontend-port sslport  \
@@ -76,14 +76,14 @@ az network application-gateway http-listener create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Create a new back-end pool to be used
+# Create a new back-end pool toobe used
 az network application-gateway address-pool create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG" \
   --name "appGatewayBackendPool2" \
   --servers 10.0.0.7 10.0.0.8
 
-# Create a new back-end HTTP settings using the new probe
+# Create a new back-end HTTP settings using hello new probe
 az network application-gateway http-settings create \
   --name "settings2" \
   --port 80 \
@@ -92,7 +92,7 @@ az network application-gateway http-settings create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Create a new rule linking the listener to the back-end pool
+# Create a new rule linking hello listener toohello back-end pool
 az network application-gateway rule create \
   --name "rule2" \
   --rule-type Basic \
@@ -106,7 +106,7 @@ az network application-gateway rule create \
 
 ## <a name="create-an-application-gateway-with-ssl-offload"></a>Creare un gateway applicazione con l'offload SSL
 
-L'esempio seguente crea un gateway applicazione con l'offload SSL.  Il certificato e la password del certificato devono essere aggiornati a una chiave privata valida.
+Hello seguente esempio crea un gateway applicazione con offload SSL.  certificato Hello e la password del certificato deve essere aggiornato tooa la chiave privata valida.
 
 ```azurecli-interactive
 #!/bin/bash
@@ -137,7 +137,7 @@ az network application-gateway create \
 
 ## <a name="get-application-gateway-dns-name"></a>Ottenere il nome DNS del gateway applicazione
 
-Dopo avere creato il gateway, il passaggio successivo prevede la configurazione del front-end per la comunicazione. Quando si usa un IP pubblico, il gateway applicazione richiede un nome DNS assegnato in modo dinamico, non descrittivo. Per assicurarsi che gli utenti finali possano raggiungere il gateway applicazione, è possibile usare un record CNAME per fare riferimento all'endpoint pubblico del gateway applicazione. [Configurazione di un nome di dominio personalizzato in Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). Per configurare un alias, recuperare i dettagli del gateway applicazione e il nome DNS e l'IP associati usando l'elemento PublicIPAddress collegato al gateway applicazione. Il nome DNS del gateway applicazione dovrà essere usato per creare un record CNAME che associa le due applicazioni Web a questo nome DNS. Non è consigliabile usare record A perché l'indirizzo VIP può cambiare al riavvio del gateway applicazione.
+Una volta creato il gateway hello passaggio successivo hello è tooconfigure hello front-end per la comunicazione. Quando si usa un IP pubblico, il gateway applicazione richiede un nome DNS assegnato in modo dinamico, non descrittivo. gli utenti finali tooensure possibile raggiungere il gateway di applicazione hello, un record CNAME può essere utilizzati toopoint endpoint pubblico di toohello di gateway applicazione hello. [Configurazione di un nome di dominio personalizzato in Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). tooconfigure un alias, recuperare i dettagli del gateway applicazione hello e il relativo nome IP/DNS associato usando hello PublicIPAddress elemento collegato toohello applicazioni gateway. nome DNS del gateway applicazione Hello deve essere utilizzato toocreate un record CNAME, il nome DNS punti hello due web applicazioni toothis. utilizzo di Hello del record non è consigliato poiché hello VIP potrebbe cambiare al riavvio del gateway applicazione.
 
 
 ```azurecli-interactive
@@ -182,7 +182,7 @@ az network public-ip show --name "pip" --resource-group "AdatumAppGatewayRG"
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per configurare un gateway applicazione da usare con un servizio di bilanciamento del carico interno, vedere [Creare un gateway applicazione con un servizio di bilanciamento del carico interno (ILB)](application-gateway-ilb.md).
+Se si desidera tooconfigure un toouse di gateway applicazione con un servizio di bilanciamento del carico interno (ILB), vedere [creare un gateway applicazione con un servizio di bilanciamento del carico interno (ILB)](application-gateway-ilb.md).
 
 Per altre informazioni generali sulle opzioni di bilanciamento del carico, vedere:
 

@@ -1,6 +1,6 @@
 ---
-title: Personalizzare le regole del web application firewall nel gateway applicazione Azure - PowerShell | Microsoft Docs
-description: Questo articolo descrive come personalizzare le regole del web application firewall nel gateway applicazione con PowerShell.
+title: regole del firewall applicazione web aaaCustomize in Gateway applicazione Azure - PowerShell | Documenti Microsoft
+description: Questo articolo fornisce informazioni sul funzionamento delle regole firewall di applicazione web toocustomize nel Gateway di applicazione con PowerShell.
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: 681625e40035b05c593c6161236cb80b7db576b9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f320e687b0f621515255469dac8e375cdd900dda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customize-web-application-firewall-rules-through-powershell"></a>Personalizzare le regole del web application firewall con PowerShell
 
@@ -27,21 +27,21 @@ ms.lasthandoff: 08/29/2017
 > * [PowerShell](application-gateway-customize-waf-rules-powershell.md)
 > * [Interfaccia della riga di comando di Azure 2.0](application-gateway-customize-waf-rules-cli.md)
 
-Il Web application firewall del gateway applicazione di Azure (WAF) fornisce la protezione per le Applicazioni Web. Queste protezioni vengono fornite dal Set di regole principali (CRS) di Open Web Application Security Project (OWASP). Alcune regole possono generare falsi positivi e bloccare il traffico reale. Per questo motivo, il gateway applicazione offre la possibilità di personalizzare regole e gruppi di regole. Per altre informazioni su regole e gruppi di regole specifici, vedere l'[Elenco di regole e gruppi di regole CRS del Web application firewall](application-gateway-crs-rulegroups-rules.md).
+firewall applicazione web di Hello Gateway applicazione Azure (WAF) fornisce protezione per le applicazioni web. Queste protezioni sono fornite da hello aprire Web applicazione sicurezza progetto (OWASP) Core regola impostata (CR). Alcune regole possono generare falsi positivi e bloccare il traffico reale. Per questo motivo, il Gateway applicazione fornisce le regole e gruppi di regole toocustomize funzionalità hello. Per ulteriori informazioni sui gruppi di regole specifici hello e sulle regole, vedere [elenco di regole e gruppi CRS regola firewall di applicazioni web](application-gateway-crs-rulegroups-rules.md).
 
 ## <a name="view-rule-groups-and-rules"></a>Visualizzare le regole e i gruppi di regole
 
-Gli esempi di codice seguenti illustrano come visualizzare le regole e i gruppi di regole configurabili in un gateway applicazione abilitato per il web application firewall (WAF).
+Hello esempi di codice seguente mostra come tooview regole e gruppi che possono essere configurati su un gateway applicazione WAF abilitata all'uso di regole.
 
 ### <a name="view-rule-groups"></a>Visualizzare i gruppi di regole
 
-L'esempio seguente mostra come visualizzare i gruppi di regole:
+Hello seguente esempio viene illustrato come i gruppi di regole tooview:
 
 ```powershell
 Get-AzureRmApplicationGatewayAvailableWafRuleSets
 ```
 
-Di seguito è riportata una parte di risposta dell'esempio precedente:
+Dopo l'output di Hello è una risposta troncata da hello sopra riportato:
 
 ```
 OWASP (Ver. 3.0):
@@ -81,7 +81,7 @@ OWASP (Ver. 2.2.9):
 
 ## <a name="disable-rules"></a>Disabilitare le regole
 
-L'esempio seguente disabilita le regole `910018` e `910017` in un gateway applicazione:
+esempio Hello disabilita le regole `910018` e `910017` su un gateway applicazione:
 
 ```azurecli
 az network application-gateway waf-config set --resource-group AdatumAppGatewayRG --gateway-name AdatumAppGateway --enabled true --rule-set-version 3.0 --disabled-rules 910018 910017
@@ -89,7 +89,7 @@ az network application-gateway waf-config set --resource-group AdatumAppGatewayR
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver configurato le regole disattivate, viene descritto come visualizzare i log WAF. Per altre informazioni, vedere [Diagnostica del gateway applicazione](application-gateway-diagnostics.md#diagnostic-logging).
+Dopo aver configurato le regole disabilitate, utili come tooview i log WAF. Per altre informazioni, vedere [Diagnostica del gateway applicazione](application-gateway-diagnostics.md#diagnostic-logging).
 
 [fig1]: ./media/application-gateway-customize-waf-rules-portal/1.png
 [1]: ./media/application-gateway-customize-waf-rules-portal/figure1.png

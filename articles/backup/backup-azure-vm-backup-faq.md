@@ -1,6 +1,6 @@
 ---
-title: Domande frequenti sul servizio Backup delle macchine virtuali di Azure | Microsoft Docs
-description: Risposte alle domande frequenti sul funzionamento del backup delle macchine virtuali di Azure, sulle relative limitazioni e su cosa accade quando si modificano i criteri
+title: domande frequenti su Backup di VM aaaAzure | Documenti Microsoft
+description: "Risposte alle domande toocommon sul: la modalità di funzionamento di backup di macchina virtuale di Azure, limitazioni e le conseguenze quando toopolicy modifiche si verificano"
 services: backup
 documentationcenter: 
 author: trinadhk
@@ -15,48 +15,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/18/2017
 ms.author: trinadhk;pullabhk;
-ms.openlocfilehash: 1372a9e05cb47f6c68240bffccd46b0fbebb5464
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a1ad2cb3a379577a8c4258c8207ce75809e11a4a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="questions-about-the-azure-vm-backup-service"></a>Domande sul servizio Backup delle macchine virtuali di Azure
-Questo articolo contiene risposte a domande comuni che consentiranno di comprendere rapidamente i componenti del servizio Backup delle macchine virtuali di Azure. Alcune risposte includono collegamenti ad articoli con informazioni complete. È anche possibile inserire le domande sul servizio Backup di Azure nel [forum di discussione](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup).
+# <a name="questions-about-hello-azure-vm-backup-service"></a>Domande su hello servizio Backup di VM di Azure
+In questo articolo ha risposte toocommon domande toohelp comprendere rapidamente i componenti di Backup di Azure VM hello. In alcune delle risposte hello, sono disponibili articoli toohello collegamenti con informazioni complete. È anche possibile pubblicare domande sul servizio Azure Backup hello in hello [forum di discussione](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup).
 
 ## <a name="configure-backup"></a>Configurare il backup
 ### <a name="do-recovery-services-vaults-support-classic-vms-or-resource-manager-based-vms-br"></a>Gli insiemi di credenziali di Servizi di ripristino supportano le macchine virtuali in modalità classica o quelle basate su Resource Manager? <br/>
-Gli insiemi di credenziali di Servizi di ripristino supportano entrambi modelli.  È possibile eseguire il backup di una macchina virtuale creata nel portale classico o di una macchina virtuale di Resource Manager creata nel portale di Azure nell'insieme di credenziali di Servizi di ripristino.
+Gli insiemi di credenziali di Servizi di ripristino supportano entrambi modelli.  È possibile eseguire il backup di una macchina virtuale classica (creato nel portale classico hello) o un tooa di VM Resource Manager (creato nel portale di Azure hello) dell'insieme di credenziali di servizi di ripristino.
 
 ### <a name="what-configurations-are-not-supported-by-azure-vm-backup-"></a>Quali configurazioni non sono supportate da servizio Backup delle macchine virtuali di Azure?
 Vedere i [sistemi operativi supportati](backup-azure-arm-vms-prepare.md#supported-operating-system-for-backup) e le [limitazioni del backup di macchine virtuali](backup-azure-arm-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm).
 
 ### <a name="why-cant-i-see-my-vm-in-configure-backup-wizard"></a>Perché non è possibile visualizzare la macchina virtuale nella configurazione guidata del backup?
 Nella configurazione guidata del backup, Backup di Azure elenca soltanto le macchine virtuali che:
-* Non sono già protette. Per verificare lo stato del backup di una macchina virtuale è possibile passare al pannello della macchina virtuale e controllare lo stato di backup dal menu Impostazioni del pannello. Altre informazioni su come [controllare lo stato del backup di una macchina virtuale](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-vm-management-blade).
-* Appartiene alla stessa area della macchina virtuale.
+* Non è già protetto, è possibile verificare lo stato del backup hello di una macchina virtuale passando tooVM blade e il controllo sullo stato di Backup dal Menu impostazioni del pannello hello. Altre informazioni su come troppo[controllare lo stato del backup di una macchina virtuale](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-vm-management-blade)
+* Appartiene toosame area come macchina virtuale
 
 ## <a name="backup"></a>Backup
 ### <a name="will-on-demand-backup-job-follow-same-retention-schedule-as-scheduled-backups"></a>Il processo di backup su richiesta seguirà la stessa pianificazione di conservazione dei backup pianificati?
-No. È necessario specificare l'intervallo di conservazione per un processo di backup su richiesta. Per impostazione predefinita, i backup attivati dal portale vengono conservati per 30 giorni. 
+No. Periodo di mantenimento hello toospecify è necessario per un processo di backup su richiesta. Per impostazione predefinita, i backup attivati dal portale vengono conservati per 30 giorni. 
 
-### <a name="i-recently-enabled-azure-disk-encryption-on-some-vms-will-my-backups-continue-to-work"></a>Di recente è stata abilitata la Crittografia dischi di Azure in alcune macchine virtuali. I backup continueranno a funzionare?
-È necessario concedere le autorizzazioni per permettere al servizio Backup di Azure di accedere a Key Vault. Per concedere tali autorizzazioni in PowerShell, è possibile seguire la procedura descritta nella sezione relativa all'*abilitazione del backup* nella documentazione di [PowerShell](backup-azure-vms-automation.md).
+### <a name="i-recently-enabled-azure-disk-encryption-on-some-vms-will-my-backups-continue-toowork"></a>Di recente è stata abilitata la Crittografia dischi di Azure in alcune macchine virtuali. I backup continueranno toowork?
+Sono necessarie autorizzazioni di toogive per Azure Backup service tooaccess insieme di credenziali chiave. Per concedere tali autorizzazioni in PowerShell, è possibile seguire la procedura descritta nella sezione relativa all'*abilitazione del backup* nella documentazione di [PowerShell](backup-azure-vms-automation.md).
 
-### <a name="i-migrated-disks-of-a-vm-to-managed-disks-will-my-backups-continue-to-work"></a>È stata eseguita la migrazione dei dischi di una macchina virtuale a Managed Disks. I backup continueranno a funzionare?
-Sì, i backup funzionano correttamente e non è necessario configurare nuovamente il backup. 
+### <a name="i-migrated-disks-of-a-vm-toomanaged-disks-will-my-backups-continue-toowork"></a>Eseguita la migrazione di dischi di dischi di toomanaged una macchina virtuale. I backup continueranno toowork?
+Sì, i backup si integrano completamente e non toore necessità-configurare il backup. 
 
 ## <a name="restore"></a>Ripristino
 ### <a name="how-do-i-decide-between-restoring-disks-versus-full-vm-restore"></a>Come scegliere tra il ripristino dei dischi e il ripristino completo della macchina virtuale?
-Il ripristino completo di una macchina virtuale di Azure è un modo per avere un'opzione di creazione rapida per la macchina virtuale ripristinata. L'opzione di ripristino della macchina virtuale modifica i nomi dei dischi e dei contenitori usati dai dischi, gli indirizzi IP pubblici e i nomi di interfaccia di rete per l'univocità delle risorse create come parte della creazione della macchina virtuale. Non aggiunge la macchina virtuale al set di disponibilità. 
+Il ripristino completo di una macchina virtuale di Azure è un modo per avere un'opzione di creazione rapida per la macchina virtuale ripristinata. Ripristinare una macchina virtuale modifica i nomi di hello dei dischi, contenitori di dischi, gli indirizzi IP pubblici, l'interfaccia di rete i nomi utilizzati per l'univocità delle risorse di recupero creati come parte della creazione della macchina virtuale. Verranno inoltre aggiunti non hello VM tooavailability set. 
 
 Usare i dischi di ripristino per eseguire queste operazioni:
-* Personalizzare la macchina virtuale che viene creata da una configurazione temporizzata, ad esempio modificando le dimensioni dalla configurazione di backup.
-* Aggiungere configurazioni non disponibili al momento del backup. 
-* Controllare la convenzione di denominazione per le risorse create.
-* Aggiungere la macchina virtuale al set di disponibilità.
+* Personalizzare hello macchina virtuale che viene creato dal punto di configurazione di tempo, ad esempio la modifica delle dimensioni di hello dalla configurazione del backup
+* Aggiungere le configurazioni di cui non sono presenti al momento di hello del backup 
+* Convenzione di denominazione controllo hello per le risorse create recupero
+* Aggiungere VM tooavailability set
 * Avere una configurazione che è possibile ottenere soltanto usando PowerShell o la definizione di un modello dichiarativo.
 
 ## <a name="manage-vm-backups"></a>Gestire i backup delle macchine virtuali
 ### <a name="what-happens-when-i-change-a-backup-policy-on-vms"></a>Cosa accade quando si modificano criteri di backup in una o più macchine virtuali?
-Quando vengono applicati nuovi criteri a una o più macchine virtuali, viene seguita la pianificazione e la conservazione stabilita dai nuovi criteri. Se il periodo di conservazione viene esteso, i punti di ripristino esistenti vengono contrassegnati in modo che vengano mantenuti in base ai nuovi criteri. Se il periodo di conservazione viene ridotto, vengono contrassegnati per l'eliminazione nel processo di pulizia successivo e verranno eliminati. 
+Quando un nuovo criterio viene applicato in macchine virtuali, pianificazione e alla conservazione dei nuovi criteri hello verrà seguite. Se viene estesa memorizzazione, punti di ripristino esistenti verranno contrassegnati tookeep loro in base ai nuovi criteri. Se conservazione viene ridotto, vengono contrassegnate per l'eliminazione nel processo di pulizia successivo hello e verranno eliminate. 

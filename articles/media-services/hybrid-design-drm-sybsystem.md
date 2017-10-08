@@ -1,5 +1,5 @@
 ---
-title: Uso di Servizi multimediali di Azure per la progettazione ibrida di sottosistemi DRM | Microsoft Docs
+title: aaaHybrid progettazione di servizi multimediali di Azure usando i sottosistemi DRM | Documenti Microsoft
 description: Questo articolo spiega come usare Servizi multimediali di Azure per la progettazione ibrida di sottosistemi DRM.
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: willzhan;juliako
-ms.openlocfilehash: 841b1164db6fd1a2c029b98392509c15f23158e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4206248420ccd4dbfc9a87a86f4763534c6254a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hybrid-design-of-drm-subsystems"></a>Progettazione ibrida di sottosistemi DRM
 
@@ -26,26 +26,26 @@ Questo articolo spiega come usare Servizi multimediali di Azure per la progettaz
 
 ## <a name="overview"></a>Panoramica
 
-Servizi multimediali di Azure offre supporto per i seguenti tre sistemi DRM:
+Servizi multimediali di Azure fornisce il supporto per i seguenti tre sistema DRM hello:
 
 * PlayReady
 * Widevine (modulare)
 * FairPlay
 
-Il supporto per DRM include la crittografia DRM (crittografia dinamica) e la distribuzione della licenza, quando Azure Media Player supporta tutti e 3 i DRM come un SDK per lettore di browser.
+supporto DRM Hello include crittografia DRM (crittografia dinamica) e il recapito di licenza, con Azure Media Player, che supporta tutti i 3 DRMs come un lettore di browser SDK.
 
-Per una spiegazione dettagliata della progettazione e implementazione dei sottosistemi DRM/CENC, vedere il documento intitolato [CENC with Multi-DRM and Access Control](media-services-cenc-with-multidrm-access-control.md) (CENC con più DRM e controllo dell'accesso).
+Per una trattazione dettagliata di DRM/CENC sottosistema progettazione e implementazione, vedere il documento hello intitolato [CENC con Multi-DRM e controllo di accesso](media-services-cenc-with-multidrm-access-control.md).
 
-Sebbene Microsoft offra un supporto completo per tutti e 3 i sistemi DRM, i clienti hanno talvolta l'esigenza di usare varie parti della propria infrastruttura/dei propri sottosistemi, oltre a Servizi multimediali di Azure, per creare un sottosistema DRM ibrido.
+Anche se è offrono supporto completo per i tre sistemi DRM, in alcuni casi i clienti devono toouse varie parti dell'infrastruttura/i propri sottosistemi toobuild di servizi multimediali tooAzure inoltre un sottosistema DRM ibrido.
 
 Di seguito sono riportate alcune delle domande comuni poste dai clienti:
 
 * "Posso usare i miei server licenze DRM?" (in questo caso, i clienti hanno investito in un farm di licenze server DRM con logica di business incorporata)
 * "Posso usare solo la funzionalità di distribuzione della licenza DRM di Servizi multimediali di Azure senza ospitare contenuti in AMS?"
 
-## <a name="modularity-of-the-ams-drm-platform"></a>Modularità della piattaforma DRM di AMS
+## <a name="modularity-of-hello-ams-drm-platform"></a>Modularità di hello piattaforma AMS DRM
 
-In quanto parte di una piattaforma video cloud completa, DRM di Servizi multimediali di Azure è stato progettato all'insegna della flessibilità e modularità. È possibile usare Servizi multimediali di Azure con una delle seguenti combinazioni diverse elencate nella seguente tabella (di seguito è riportata anche una spiegazione della notazione usata nella tabella). 
+In quanto parte di una piattaforma video cloud completa, DRM di Servizi multimediali di Azure è stato progettato all'insegna della flessibilità e modularità. È possibile utilizzare servizi multimediali di Azure con una delle seguenti combinazioni diverse, descritte nella seguente tabella hello (segue una spiegazione della notazione hello utilizzata nella tabella hello) hello. 
 
 |**Hosting e origine del contenuto**|**Crittografia del contenuto**|**Distribuzione di licenze DRM**|
 |---|---|---|
@@ -74,24 +74,24 @@ In quanto parte di una piattaforma video cloud completa, DRM di Servizi multimed
 
 ### <a name="content-key"></a>Chiave simmetrica
 
-La configurazione di una chiave simmetrica permette di controllare i seguenti attributi della crittografia dinamica e del servizio di distribuzione della licenza di AMS:
+La configurazione di una chiave simmetrica, è possibile controllare hello gli attributi di crittografia dinamica AMS sia il servizio di recapito licenza AMS seguenti:
 
-* Chiave simmetrica usata per la crittografia dinamica di DRM.
-* Contenuto della licenza DRM da distribuire tramite i servizi di distribuzione della licenza: diritti, chiave simmetrica e limitazioni.
+* chiave simmetrica Hello utilizzato per la crittografia dinamica DRM.
+* DRM licenza contenuto toobe recapitati da servizi multimediali di licenza: diritti, chiave simmetrica e le restrizioni.
 * Tipo di **limitazione dei criteri di autorizzazione della chiave simmetrica**: aperta, IP o limitazione del token.
-* Se si usa il **token** per la **limitazione dei criteri di autorizzazione della chiave simmetrica**, è necessario che venga soddisfatta **questa limitazione** prima che la licenza possa essere rilasciata.
+* Se **token** tipo **restrizione dei criteri di autorizzazione chiave del contenuto viene utilizzato**, hello **contenuto restrizione dei criteri di autorizzazione della chiave** devono essere soddisfatti prima del rilascio di una licenza.
 
 ### <a name="asset-delivery-policy"></a>Criteri di distribuzione degli asset
 
-La configurazione di criteri di distribuzione di un asset permette di controllare i seguenti attributi usati dalla creazione di pacchetti dinamica e dalla crittografia dinamica di AMS di un endpoint di streaming AMS:
+Tramite la configurazione di un criterio di recapito di asset, è possibile controllare hello gli attributi utilizzati da creazione dinamica dei pacchetti AMS e la crittografia dinamica di un sistema AMS di endpoint di streaming seguenti:
 
 * Combinazione di protocollo di streaming e crittografia DRM, come DASH in CENC (PlayReady e Widevine), Smooth Streaming in PlayReady, HLS in Widevine o PlayReady.
-* Gli URL di distribuzione della licenza predefiniti/incorporati per ciascuno dei DRM interessati.
+* Hello predefinito/incorporati licenza recapito URL per ogni hello coinvolti DRMs.
 * Presenza o meno di una stringa query per l'ID chiave (KID) di Widevine e Fairplay negli URL di acquisizione della licenza (LA_URL) nell'elenco di riproduzione DASH MPD o HLS.
 
 ## <a name="scenarios-and-samples"></a>Scenari ed esempi
 
-In base alle spiegazioni fornite nella sezione precedente, sono cinque gli scenari ibridi in cui vengono rispettivamente usate le combinazioni di configurazioni con **Chiave simmetrica**-**Criteri di distribuzione dell'asset** (gli esempi citati nell'ultima colonna seguono la tabella):
+In base a una spiegazione hello nella sezione precedente di hello, hello seguenti cinque scenari ibridi utilizza rispettivi **chiave simmetrica**-**criteri di distribuzione Asset** (Buongiorno combinazioni di configurazioni gli esempi indicati nell'ultima colonna hello seguono tabella hello):
 
 |**Hosting e origine del contenuto**|**Crittografia DRM**|**Distribuzione di licenze DRM**|**Configurare la chiave simmetrica**|**Configurare i criteri di distribuzione dell'asset**|**Esempio**|
 |---|---|---|---|---|---|
@@ -101,7 +101,7 @@ In base alle spiegazioni fornite nella sezione precedente, sono cinque gli scena
 |AMS|Terze parti|Esterno|No|No|Esempio 4|
 |Terze parti|Terze parti|AMS|Sì|No|    
 
-Negli esempi, la protezione PlayReady funziona sia per DASH che per Smooth Streaming. Gli URL del video mostrati di seguito sono URL Smooth Streaming. Per ottenere gli URL DASH corrispondenti, aggiungere semplicemente "(format=mpd-time-csf)". È possibile usare il [lettore multimediale di test di Azure](http://aka.ms/amtest) per effettuare il test nel browser. Consente di configurare il protocollo di streaming e specificare in quale tecnologia usarlo. IE11 e MS Edge in Windows 10 supportano PlayReady tramite EME. Per altre informazioni, vedere i [dettagli sullo strumento di test](https://blogs.msdn.microsoft.com/playready4/2016/02/28/azure-media-test-tool/).
+Negli esempi di hello, PlayReady protection funziona per DASH e smooth streaming. URL video Hello seguenti sono smooth streaming URL. tooget hello URL DASH corrispondenti, aggiungere solo "(formato = mpd-tempo-csf)". È possibile utilizzare hello [test di azure media player](http://aka.ms/amtest) tootest in un browser. Consente di tooconfigure cui streaming toouse di protocollo, in cui tecnico. IE11 e MS Edge in Windows 10 supportano PlayReady tramite EME. Per ulteriori informazioni, vedere [informazioni dettagliate su hello testare strumento](https://blogs.msdn.microsoft.com/playready4/2016/02/28/azure-media-test-tool/).
 
 ### <a name="sample-1"></a>Esempio 1
 

@@ -1,6 +1,6 @@
 ---
-title: Modificare la configurazione del dispositivo StorSimple | Microsoft Docs
-description: "Viene descritto come utilizzare il servizio StorSimple Manager per riconfigurare un dispositivo StorSimple che è già stato distribuito."
+title: configurazione del dispositivo StorSimple hello aaaModify | Documenti Microsoft
+description: "Viene descritto come toouse hello tooreconfigure servizio StorSimple Manager è già stato distribuito un dispositivo StorSimple."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/19/2017
 ms.author: v-sharos
-ms.openlocfilehash: 5bfbeb038dbedae2bf77016abbc19458c3dc22c9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 10a54c191260bf1baba58d28cdbfa0ed72217f48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-modify-your-storsimple-device-configuration"></a>Utilizzare il servizio StorSimple Manager per modificare la configurazione del dispositivo StorSimple
+# <a name="use-hello-storsimple-manager-service-toomodify-your-storsimple-device-configuration"></a>Utilizzare toomodify servizio StorSimple Manager di hello la configurazione del dispositivo StorSimple
 ## <a name="overview"></a>Panoramica
-La pagina **Configura** del portale di Azure classico contiene tutti i parametri del dispositivo che è possibile riconfigurare in un dispositivo StorSimple gestito da un servizio StorSimple Manager. In questa esercitazione viene illustrato come utilizzare la pagina **Configura** per eseguire le seguenti attività a livello di dispositivo:
+portale di Azure classico Hello **configura** pagina contiene tutti i parametri di dispositivo hello che è possibile riconfigurare in un dispositivo StorSimple è gestito da un servizio StorSimple Manager. In questa esercitazione viene illustrato come utilizzare hello **configura** hello tooperform pagina attività a livello di dispositivo seguenti:
 
 * Modificare le impostazioni del dispositivo 
 * Modificare le impostazioni di tempo 
@@ -31,54 +31,54 @@ La pagina **Configura** del portale di Azure classico contiene tutti i parametri
 * Sostituire o riassegnare indirizzi IP
 
 ## <a name="modify-device-settings"></a>Modificare le impostazioni del dispositivo
-Le impostazioni del dispositivo includono il nome descrittivo del dispositivo e la descrizione del dispositivo.
+le impostazioni del dispositivo Hello includono nome descrittivo di hello del dispositivo hello e una descrizione di dispositivo hello.
 
 > [!NOTE] 
-> Non è possibile modificare il nome del dispositivo nel portale di Azure classico. La ridenominazione del dispositivo non è supportata.
+> È possibile modificare il nome dispositivo hello in hello portale di Azure classico. Dispositivo hello ridenominazione non è supportata.
 
-Ad un dispositivo StorSimple connesso al servizio StorSimple Manager viene assegnato un nome predefinito. Il nome predefinito riflette in genere il numero di serie del dispositivo. Ad esempio, un nome di dispositivo predefinito che è composto da 15 caratteri, ad esempio 8600-SHX0991003G44HT indica quanto segue:
+Un dispositivo StorSimple toohello connesso servizio StorSimple Manager è assegnato un nome predefinito. Hello normalmente riflette il numero di serie hello del dispositivo hello. Ad esempio, un nome di dispositivo predefinito di 15 caratteri, ad esempio 8600-SHX0991003G44HT, indica seguente hello:
 
-* **8600** – indica il modello del dispositivo.
-* **SHX** – indica il sito di produzione.
+* **8600** : indica un modello di dispositivo hello.
+* **SHX** : sito di produzione indica hello.
 * **0991003** -indica un prodotto specifico.
-* **G44HT**-le ultime 5 cifre vengono aggiunte per creare numeri di serie univoci. Questo potrebbe non essere un insieme sequenziale.
+* **G44HT**: hello ultimi 5 cifre sono numeri di serie univoco toocreate incrementato. Questo potrebbe non essere un insieme sequenziale.
 
-È possibile specificare una descrizione del dispositivo. Una descrizione del dispositivo in genere consente di identificare il proprietario e il percorso fisico del dispositivo. Il campo descrizione deve contenere meno di 256 caratteri.
+È possibile specificare una descrizione del dispositivo. In genere una descrizione del dispositivo consente di identificare il proprietario di hello e posizione fisica di hello del dispositivo hello. campo Descrizione Hello deve contenere meno di 256 caratteri.
 
 ## <a name="modify-time-settings"></a>Modificare le impostazioni di tempo
-Il dispositivo deve sincronizzare l'ora per l'autenticazione con il provider di servizi di archiviazione cloud. Selezionare il fuso orario dall'elenco a discesa e specificare fino a due server di protocollo NTP (Network Time). Il server NTP primario è obbligatorio e viene specificato quando si utilizza Windows PowerShell per StorSimple per configurare il dispositivo. È possibile specificare il valore predefinito di Windows Server **time.windows.com** come server NTP. È possibile visualizzare la configurazione del server NTP primario tramite il portale di Azure classico, ma è necessario utilizzare l'interfaccia Windows PowerShell per modificarlo.
+Il dispositivo deve sincronizzare l'ora in ordine tooauthenticate con provider di servizi di archiviazione cloud. Selezionare il fuso orario dall'elenco a discesa hello e specificare i server di tootwo protocollo NTP (Network Time). server NTP primario Hello è obbligatorio e viene specificato quando si utilizza Windows PowerShell per StorSimple tooconfigure, il dispositivo. È possibile specificare il Server di Windows predefinito di hello **time.windows.com** come server NTP. È possibile visualizzare hello primario configurazione del server NTP tramite hello portale di Azure classico, ma è necessario utilizzare toochange di interfaccia di Windows PowerShell hello è.
 
-La configurazione del server NTP secondario è facoltativa. È possibile utilizzare il portale classico per configurare un server NTP secondario. 
+configurazione del server NTP secondario Hello è facoltativo. È possibile utilizzare tooconfigure portale classico hello un server NTP secondario. 
 
-Quando si configura il server NTP, assicurarsi che la rete consenta il traffico NTP dal Data Center a Internet. Quando si specifica un server NTP pubblico, è necessario assicurarsi che i firewall di rete e altri dispositivi di sicurezza siano configurati per consentire il traffico NTP da e verso la rete esterna. Se non è consentito il traffico NTP bidirezionale, è necessario utilizzare un server NTP interno (un controller di dominio di Windows fornisce questa funzione). Se il dispositivo non può sincronizzare l'ora, potrebbe non essere in grado di comunicare con il provider di archiviazione cloud.
+Quando si configura il server NTP hello, verificare che la rete consenta hello NTP traffico toopass dal toohello datacenter Internet. Quando si specifica un server NTP pubblico, è necessario assicurarsi che i firewall di rete e altri dispositivi di sicurezza siano configurati tooallow NTP traffico tootravel tooand da hello all'esterno di rete. Se non è consentito il traffico NTP bidirezionale, è necessario utilizzare un server NTP interno (un controller di dominio di Windows fornisce questa funzione). Se il dispositivo non è possibile sincronizzare l'ora, potrebbe non essere in grado di toocommunicate con il provider di archiviazione cloud.
 
-Per visualizzare un elenco dei server NTP pubblico, visitare il [Web server NTP](http://support.ntp.org/bin/view/Servers/WebHome). 
+un elenco dei server NTP pubblico, andare toohello toosee [Web server NTP](http://support.ntp.org/bin/view/Servers/WebHome). 
 
-### <a name="what-happens-if-the-device-is-deployed-in-a-different-time-zone"></a>Cosa accade se il dispositivo viene distribuito in un fuso orario diverso?
-Se il dispositivo viene distribuito in un fuso orario diverso, cambia il fuso orario del dispositivo. Dato che tutti i criteri di backup utilizzano il fuso orario del dispositivo, i criteri di backup verranno regolati automaticamente secondo il nuovo fuso orario. Non è necessario alcun intervento dell'utente.
+### <a name="what-happens-if-hello-device-is-deployed-in-a-different-time-zone"></a>Cosa accade se il dispositivo di hello viene distribuito in un fuso orario diverso?
+Se il dispositivo hello viene distribuito in un fuso orario diverso, verrà modificato hello fuso orario del dispositivo. Dato che tutti i criteri di backup hello utilizzano hello fuso orario del dispositivo, i criteri di backup hello verranno regolato automaticamente in base al nuovo fuso orario di hello. Non è necessario alcun intervento dell'utente.
 
 ## <a name="modify-dns-settings"></a>Modificare le impostazioni DNS
-Un server DNS viene utilizzato quando il dispositivo tenta di comunicare con il provider di servizi di archiviazione cloud. Per la disponibilità elevata, è necessario configurare il database primario e i server DNS secondari durante la distribuzione iniziale del dispositivo. Per riconfigurare il server DNS primario, occorre utilizzare l'interfaccia Windows PowerShell del dispositivo StorSimple.
+Un server DNS viene utilizzato quando il dispositivo tenta toocommunicate con provider di servizi di archiviazione cloud. Per la disponibilità elevata, è necessario tooconfigure entrambi hello primario ed hello server DNS secondari durante la distribuzione iniziale del dispositivo hello. tooreconfigure hello server DNS primario, sarà necessario interfaccia di Windows PowerShell hello toouse nel dispositivo StorSimple.
 
-Per modificare il server DNS secondario, è possibile utilizzare il portale di Azure classico.
+toomodify hello server DNS secondario, è possibile utilizzare hello portale di Azure classico.
 
 ## <a name="modify-network-interfaces"></a>Modificare le interfacce di rete
 Il dispositivo dispone di sei interfacce di rete del dispositivo, di cui quattro sono da 1 GbE e due sono da 10 GbE. Queste interfacce sono contrassegnate come DATA 0 - DATA 5. DATA 0, DATA 1, DATA 4 e DATA 5 sono da 1 GbE, mentre DATA 2 e DATA 3 sono interfacce di rete da 10 GbE.
 
-Configurare **Impostazioni interfaccia di rete** per ciascuna delle interfacce da utilizzare. Per garantire la disponibilità elevata, si consiglia di disporre di almeno due interfacce di iSCSI e due interfacce abilitate per cloud sul dispositivo. È consigliabile, ma non richiesta, la disabilitazione di interfacce inutilizzate.
+Configurare **impostazioni interfaccia di rete** per ognuna delle hello interfacce toobe utilizzato. tooensure la disponibilità elevata, si consiglia di disporre di almeno due interfacce iSCSI e due interfacce abilitata per il cloud nel dispositivo. È consigliabile, ma non richiesta, la disabilitazione di interfacce inutilizzate.
 
-Quando si configura una delle interfacce di rete, è necessario configurare un IP virtuale (VIP).
+Quando si configura una delle interfacce di rete hello, è necessario configurare un IP virtuale (VIP).
 
-DATA 0 è abilitata per il cloud per impostazione predefinita. Durante la configurazione di DATA 0, è inoltre necessario configurare due indirizzi IP fissi, uno per ogni controller. Questi indirizzi IP fissi possono essere utilizzati per accedere direttamente ai controller dei dispositivi e sono utili quando si installano gli aggiornamenti del dispositivo o quando si accede ai controller per la risoluzione dei problemi.
+DATA 0 è abilitata per il cloud per impostazione predefinita. Quando si configura DATA 0, vengono anche tooconfigure necessari due indirizzi IP fissi, uno per ogni controller. Questi indirizzi IP fissi può essere direttamente di controller del dispositivo hello tooaccess usato e sono utili quando si installano aggiornamenti nel dispositivo hello o quando si accede controller hello a scopo di hello di risoluzione dei problemi.
 
-In StorSimple 8000 serie Update 1 la metrica di routing di DATA 0 è impostata al valore più basso; Pertanto, se il dispositivo sta eseguendo StorSimple 8000 serie Update 1, tutto il traffico cloud verrà indirizzato tramite DATA 0. Tenere presente questo criterio se sono presenti più interfacce di rete abilitate per il cloud nel dispositivo StorSimple.
+StorSimple 8000 Series Update 1, metrica di routing hello di DATA 0 è impostato toohello più basso; Pertanto, se il dispositivo è in esecuzione StorSimple 8000 Series Update 1, tutto il traffico hello cloud verrà indirizzato tramite DATA 0. Tenere presente questo criterio se sono presenti più interfacce di rete abilitate per il cloud nel dispositivo StorSimple.
 
 > [!NOTE]
-> Gli indirizzi IP fissi per il controller vengono utilizzati per gestire gli aggiornamenti al dispositivo. Di conseguenza, gli indirizzi IP fissi devono essere instradabili e in grado di connettersi a Internet.
+> Hello indirizzi IP per il controller hello fissi vengono usati per gestire dispositivi toohello gli aggiornamenti di hello. Pertanto, hello indirizzi IP fissato deve essere instradabile e in grado di tooconnect toohello Internet.
 > 
 > 
 
-Per ogni interfaccia di rete, vengono visualizzati i seguenti parametri:
+Per ogni interfaccia di rete, viene visualizzato hello seguenti parametri:
 
 * **Velocità** : non è un parametro configurabile dall'utente. DATA 0, DATA 1, DATA 4 e DATA 5 sono sempre da 1 GbE, mentre DATA 2 e DATA 3 sono interfacce di rete da 10 GbE.
   
@@ -86,36 +86,36 @@ Per ogni interfaccia di rete, vengono visualizzati i seguenti parametri:
   > Velocità e duplex sono sempre sottoposti alla negoziazione automatica. Non sono supportati i frame Jumbo.
   > 
   > 
-* **Stato interfaccia** – un'interfaccia può essere abilitata o disabilitata. Se abilitata, il dispositivo tenterà di utilizzare l'interfaccia. Si consiglia di abilitare solo tali interfacce che sono connesse alla rete e utilizzati. Disabilitare tutte le interfacce che non sono in uso.
-* **Tipo di interfaccia** : questo parametro consente di isolare il traffico iSCSI dal traffico di archiviazione cloud. Questo parametro può essere uno dei seguenti:
+* **Stato interfaccia** – un'interfaccia può essere abilitata o disabilitata. Se abilitata, il dispositivo hello tenterà interfaccia hello toouse. È consigliabile che solo le interfacce di rete connessa toohello e usati sia attivato. Disabilitare tutte le interfacce che non sono in uso.
+* **Tipo di interfaccia** : questo parametro consente tooisolate il traffico iSCSI dal traffico di archiviazione cloud. Questo parametro può essere uno dei seguenti hello:
   
-  * **Abilitato per il cloud** – quando abilitato, il dispositivo utilizzerà questa interfaccia per comunicare con il cloud.
-  * **iSCSI abilitato** – quando abilitato, il dispositivo utilizzerà questa interfaccia per comunicare con l'host iSCSI.
+  * **Abilitato per il cloud** – se abilitata, il dispositivo di hello verrà utilizzato toocommunicate questa interfaccia con cloud hello.
+  * **abilitato per iSCSI** – se abilitata, il dispositivo di hello verrà utilizzato toocommunicate questa interfaccia con host iSCSI hello.
     
-    Si consiglia di isolare il traffico iSCSI dal traffico di archiviazione cloud. Si noti inoltre che se l'host è all'interno della stessa subnet del dispositivo, non è necessario assegnare un gateway. Tuttavia, se l'host si trova in una subnet diversa del dispositivo, è necessario assegnare un gateway.
-* **Indirizzo IP** : può trattarsi di IPv4 o IPv6 o entrambi. Sono supportate sia le famiglie di indirizzi IPv4 e sia IPv6 per le interfacce di rete del dispositivo. Quando si utilizza IPv4, specificare un indirizzo IP a 32 bit (*xxx.xxx.xxx.xxx*) in notazione decimale. Quando si utilizza IPv6, è sufficiente fornire un prefisso a 4 cifre e un indirizzo a 128 bit verrà generato automaticamente per l'interfaccia di rete del dispositivo in base al prefisso.
-* **Subnet** : si riferisce alla subnet mask e viene configurata tramite l'interfaccia Windows PowerShell.
-* **Gateway** : si tratta del gateway predefinito che deve essere utilizzato da tale interfaccia durante il tentativo di comunicare con i nodi che non sono nello stesso spazio di indirizzi IP (subnet). Il gateway predefinito deve essere nello stesso spazio degli indirizzi (subnet) dell'interfaccia indirizzo IP, come determinato dalla subnet mask.
-* **Indirizzo IP fisso** : questo campo è disponibile solo quando si configura l’interfaccia di DATA 0. Per operazioni come aggiornamenti o risoluzione dei problemi relativi al dispositivo, potrebbe essere necessario connettersi direttamente al controller del dispositivo. L'indirizzo IP fisso può essere utilizzato per accedere al controller attivo e passivo sul dispositivo.
+    Si consiglia di isolare il traffico iSCSI dal traffico di archiviazione cloud. Si noti inoltre che se l'host è all'interno di hello stessa subnet del dispositivo, non è necessario tooassign un gateway. Tuttavia, se l'host si trova in una subnet diversa rispetto a un dispositivo, è necessario un gateway tooassign.
+* **Indirizzo IP** : può trattarsi di IPv4 o IPv6 o entrambi. Hello IPv4 sia le famiglie di indirizzi IPv6 sono supportate per le interfacce di rete dispositivo hello. Quando si utilizza IPv4, specificare un indirizzo IP a 32 bit (*xxx.xxx.xxx.xxx*) in notazione decimale. Quando si utilizza IPv6, è sufficiente fornire un prefisso a 4 cifre e un indirizzo a 128 bit verrà generato automaticamente per l'interfaccia di rete del dispositivo in base al prefisso.
+* **Subnet** – questo fa riferimento toohello la subnet mask e viene configurato tramite l'interfaccia di Windows PowerShell hello.
+* **Gateway** – questo è il gateway predefinito hello che deve essere utilizzato da questa interfaccia durante il tentativo di toocommunicate con nodi che non rientrano hello stesso spazio di indirizzi IP (subnet). Hello gateway predefinito deve essere in hello stesso spazio indirizzi (subnet) come indirizzo IP dell'interfaccia hello, come determinato dalla subnet mask di hello.
+* **Indirizzo IP fisso** : questo campo è disponibile solo quando si configura hello DATA 0 interfaccia. Per le operazioni, ad esempio gli aggiornamenti o dispositivo hello sulla risoluzione dei problemi, potrebbe essere necessario tooconnect direttamente toohello controller del dispositivo. Hello indirizzo IP fissato può essere utilizzato tooaccess hello attivo sia controller passivo hello del dispositivo.
 
-È possibile riconfigurare il Controller 0 e il Controller 1 tramite il portale di Azure classico.
+È possibile riconfigurare Controller 0 e Controller 1 tramite hello portale di Azure classico.
 
 > [!NOTE]
-> * Per garantire il corretto funzionamento, verificare la velocità dell'interfaccia e duplex del commutatore a cui ogni interfaccia del dispositivo è connessa. Le interfacce del commutatore devono essere negoziate oppure configurate per Gigabit Ethernet (1000 Mbps) e devono essere full duplex. Le interfacce funzionanti a velocità più basse o half duplex comportano problemi di prestazioni.
-> * Per ridurre al minimo le interruzioni e tempi di inattività, è consigliabile abilitare portfast su ciascuna delle porte del commutatore a cui l'interfaccia di rete iSCSI del dispositivo sarà connessa. Ciò garantisce che la connettività di rete può essere stabilita rapidamente in caso di failover.
+> * tooensure il corretto funzionamento, verificare la velocità di interfaccia hello e duplex nel commutatore hello che ogni interfaccia del dispositivo è connesso a. Le interfacce del commutatore devono essere negoziate oppure configurate per Gigabit Ethernet (1000 Mbps) e devono essere full duplex. Le interfacce funzionanti a velocità più basse o half duplex comportano problemi di prestazioni.
+> * toominimize interruzioni e tempi di inattività, si consiglia di abilitare portfast su ogni opzione hello verranno connesso a porte hello interfaccia di rete iSCSI del dispositivo. Ciò garantisce che la connettività di rete può essere stabilita rapidamente in caso di hello di un failover.
 > 
 > 
 
 ## <a name="swap-or-reassign-ips"></a>Sostituire o riassegnare indirizzi IP
-Attualmente, se a qualsiasi interfaccia di rete nel controller viene assegnato un VIP è in uso (per lo stesso dispositivo o un altro dispositivo di rete), il controller avrà esito negativo. Pertanto, è necessario attenersi alla procedura appropriata se si scambiano indirizzi IP virtuali per l'interfaccia di rete del dispositivo, poiché si creerà una situazione di IP duplicata.
+Attualmente, se un'interfaccia di rete sul controller hello viene assegnato un indirizzo VIP già in uso (da hello stesso dispositivo o un altro dispositivo in rete hello), quindi controller hello verrà eseguito il failover. Pertanto, è necessario procedura corretta di hello toofollow se si preveda di scambiare gli indirizzi VIP per interfaccia di rete del dispositivo hello, poiché si creerà una situazione IP duplicata.
 
-Per sostituire o riassegnare i VIP per qualsiasi interfaccia di rete, procedere come segue:
+Eseguire i seguenti passaggi tooswap hello o riassegnare gli indirizzi VIP hello per le interfacce di rete hello:
 
-#### <a name="to-reassign-ips"></a>Per riassegnare indirizzi IP
-1. Deselezionare l'indirizzo IP per entrambe le interfacce.
-2. Dopo che gli indirizzi IP sono deselezionati, assegnare nuovi indirizzi IP alle rispettive interfacce.
+#### <a name="tooreassign-ips"></a>tooreassign gli indirizzi IP
+1. Indirizzo IP non crittografato hello per entrambe le interfacce.
+2. Dopo gli indirizzi IP hello siano deselezionati, assegnare nuovi indirizzi IP di hello toohello rispettive interfacce.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come [Configurare MPIO per il dispositivo StorSimple](storsimple-configure-mpio-windows-server.md).
-* Informazioni su come [utilizzare il servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Informazioni su come troppo[configurare MPIO per il dispositivo StorSimple](storsimple-configure-mpio-windows-server.md).
+* Informazioni su come troppo[utilizzare hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
 

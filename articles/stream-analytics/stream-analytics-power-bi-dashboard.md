@@ -1,6 +1,6 @@
 ---
-title: Dashboard di Power BI in Analisi di flusso di Azure | Microsoft Docs
-description: Utilizzare un dashboard di Power BI streaming in tempo reale per raccogliere intelligence aziendali e analizzare i dati di volumi elevati di un processo di Analisi di flusso.
+title: dashboard di Business Intelligence aaaPower in Analitica di flusso di Azure | Documenti Microsoft
+description: Utilizzare un in tempo reale streaming Power BI dashboard toogather business intelligence e analizzare i volumi elevati di dati da un processo di flusso Analitica.
 keywords: dashboard di analisi, dashboard in tempo reale
 services: stream-analytics
 documentationcenter: 
@@ -15,37 +15,37 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/27/2017
 ms.author: jeffstok
-ms.openlocfilehash: 874d9b8701a24deb3cc21aa74cb51870155c7c9c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb9127576230e9d327b437b674f31cc23869bfff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-analytics-and-power-bi-a-real-time-analytics-dashboard-for-streaming-data"></a>Analisi di flusso e Power BI: dashboard di analisi in tempo reale per lo streaming dei dati
-Analisi di flusso di Azure permette di usare uno dei principali strumenti di Business Intelligence, [Microsoft Power BI](https://powerbi.com/). Questo articolo illustra come creare strumenti di Business Intelligence usando Power BI come output per i processi di Analisi di flusso di Azure. Illustra anche come creare e usare un dashboard in tempo reale.
+Azure Analitica di flusso consente tootake sfruttare uno dei principali strumenti di business intelligence, hello [Microsoft Power BI](https://powerbi.com/). Questo articolo illustra come creare strumenti di Business Intelligence usando Power BI come output per i processi di Analisi di flusso di Azure. Verrà inoltre descritto come toocreate e utilizzare un dashboard in tempo reale.
 
-Questo articolo continua dall'esercitazione sul [rilevamento delle frodi in tempo reale](stream-analytics-real-time-fraud-detection.md) in Analisi di flusso. Esso si basa sul flusso di lavoro creato in tale esercitazione e aggiunge un output di Power BI in modo che sia possibile visualizzare le chiamate telefoniche fraudolente rilevate da un processo di Analisi di flusso. 
+In questo articolo continua dal flusso Analitica hello [delle frodi in tempo reale](stream-analytics-real-time-fraud-detection.md) esercitazione. Esso si basa sul flusso di lavoro hello creato in tale esercitazione e si aggiunge un output in modo che è possibile visualizzare fraudolente chiamate telefoniche rilevati da un processo di Streaming Analitica di Power BI. 
 
 È disponibile [un video](https://www.youtube.com/watch?v=SGUpT-a99MA) che illustra questo scenario.
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Prima di iniziare, verificare di disporre degli elementi seguenti:
+Prima di iniziare, verificare di che aver seguito hello:
 
 * Un account Azure.
 * Un account per Power BI. È possibile usare un account aziendale o dell'istituto di istruzione.
-* Una versione completata dell'esercitazione sul [rilevamento delle frodi in tempo reale](stream-analytics-real-time-fraud-detection.md). L'esercitazione include un'app che genera metadati di telefonate fittizie. Nell'esercitazione si crea un hub eventi e si inviano i dati delle telefonate all'hub eventi. Si scrive una query che rileva le chiamate fraudolente (chiamate effettuate dallo stesso numero nello stesso momento da posizioni diverse). 
+* Una versione completa di hello [delle frodi in tempo reale](stream-analytics-real-time-fraud-detection.md) esercitazione. esercitazione di Hello include un'applicazione che genera metadati telefonata fittizio. Nell'esercitazione di hello, creare un hub eventi e inviare hello streaming hub di eventi toohello dati chiamata telefonica. Scrivere una query che rileva chiamate fraudolente (chiamate da hello stesso numero di hello stesso periodo di tempo in posizioni diverse). 
 
 
 ## <a name="add-power-bi-output"></a>Aggiungere l’output Power BI
-Nell'esercitazione sul rilevamento delle frodi in tempo reale l'output viene inviato all'archiviazione BLOB di Azure. In questa sezione si aggiunge un output che invia informazioni a Power BI.
+Nell'esercitazione di rilevamento di frodi in tempo reale hello, output di hello viene inviato tooAzure nell'archiviazione Blob. In questa sezione aggiungere un output che invia informazioni tooPower BI.
 
-1. Nel portale di Azure aprire il processo di Analisi di flusso creato in precedenza. Se si usa il nome suggerito, il processo è denominato `sa_frauddetection_job_demo`.
+1. Nel portale di Azure hello, aprire il processo di Streaming Analitica hello creato in precedenza. Se si utilizza nome suggerito hello, il processo di hello viene denominato `sa_frauddetection_job_demo`.
 
-2. Selezionare la casella **Output** al centro del dashboard del processo e quindi selezionare **+ Aggiungi**.
+2. Seleziona hello **output** centro hello del dashboard processo hello e quindi selezionare **+ Aggiungi**.
 
-3. In **Alias di output** immettere `CallStream-PowerBI`. È possibile usare un nome diverso. In questo caso, tenerne traccia, poiché sarà necessario in un secondo momento. 
+3. In **Alias di output** immettere `CallStream-PowerBI`. È possibile usare un nome diverso. In caso contrario, prendere nota di esso, in quanto è necessario il nome di hello in un secondo momento. 
 
 4. In **Sink** selezionare **Power BI**.
 
@@ -55,113 +55,113 @@ Nell'esercitazione sul rilevamento delle frodi in tempo reale l'output viene inv
 
     Verrà visualizzata una finestra in cui è possibile specificare le credenziali di Azure per l'account aziendale o dell'istituto di istruzione. 
 
-    ![Immettere le credenziali per l'accesso a Power BI](./media/stream-analytics-power-bi-dashboard/authorize-area.png)
+    ![Immettere le credenziali per l'accesso tooPower BI](./media/stream-analytics-power-bi-dashboard/authorize-area.png)
 
-6. Immettere le credenziali. È necessario considerare che quando si immettono le credenziali, si autorizza il processo di Analisi di flusso ad accedere all'area di Power BI.
+6. Immettere le credenziali. Tenere quindi quando si immette le credenziali, anche fornendo d'autorizzazione toohello Streaming Analitica processo tooaccess della superficie di Power BI.
 
-7. Quando si torna al pannello **Nuovo output** immettere le informazioni seguenti:
+7. Quando si ritorna toohello **nuovo output** pannello immettere hello le seguenti informazioni:
 
-    * **Area di lavoro del gruppo**: selezionare un'area di lavoro nel tenant Power BI in cui si desidera creare il set di dati.
+    * **Gruppo dell'area di lavoro**: selezionare un'area di lavoro nel tenant di Power BI in cui si desidera toocreate hello set di dati.
     * **Nome set di dati**: immettere `sa-dataset`. È possibile usare un nome diverso. In questo caso prenderne nota perché servirà in un momento successivo.
     * **Nome tabella**: immettere `fraudulent-calls`. L'output di Power BI da processi di Analisi di flusso può avere al momento solo una tabella in un set di dati.
 
     ![Area di lavoro PBI](./media/stream-analytics-power-bi-dashboard/create-pbi-ouptut-with-dataset-table.png)
 
     > [!WARNING]
-    > Se Power BI dispone di un set di dati e di una tabella con gli stessi nomi specificati nel processo di Analisi di flusso, i dati esistenti vengono sovrascritti.
-    > È consigliabile non creare in modo esplicito il set di dati e la tabella nell'account di Power BI. Vengono creati automaticamente quando il processo di Analisi di flusso viene avviato e inizia a generare output in Power BI. Se la query del processo non genera alcun risultato, il set di dati e la tabella non vengono creati.
+    > Se Power BI dispone di un set di dati e tabella che dispone di hello stessi nomi hello quelle specificate nel processo di flusso Analitica hello, hello quelli esistenti viene sovrascritti.
+    > È consigliabile non creare in modo esplicito il set di dati e la tabella nell'account di Power BI. Vengono creati automaticamente quando si avvia il processo di flusso Analitica e hello inizia distribuzione output in Power BI. Se la query di processo non viene restituito alcun risultato, tabella e hello set di dati non vengono creati.
     >
 
 8. Fare clic su **Crea**.
 
-Il set di dati viene creato con le impostazioni seguenti:
+set di dati Hello viene creata con hello seguenti impostazioni:
 
 * **defaultRetentionPolicy: BasicFIFO**: dati FIFO, con un massimo di 200.000 righe.
-* **defaultMode: pushStreaming**: il set di dati supporta sia i riquadri in streaming che gli oggetti visivi tradizionali basati sui report, detti anche push.
+* **defaultMode: pushStreaming**: hello dataset supporta streaming riquadri e gli oggetti visivi report tradizionali (anche noto come push.
 
 Attualmente non è possibile creare set di dati con altri flag.
 
-Per altre informazioni sui set di dati di Power BI, vedere le informazioni di riferimento sull'[API REST di Power BI](https://msdn.microsoft.com/library/mt203562.aspx).
+Per ulteriori informazioni sui set di dati di Power BI, vedere hello [API REST di Power BI](https://msdn.microsoft.com/library/mt203562.aspx) riferimento.
 
 
-## <a name="write-the-query"></a>Scrivere la query
+## <a name="write-hello-query"></a>Scrivere query hello
 
-1. Chiudere il pannello **Output** e tornare al pannello del processo.
+1. Chiude hello **output** blade e blade processo toohello restituito.
 
-2. Fare clic sulla casella **Query**. 
+2. Fare clic su hello **Query** casella. 
 
-3. Immettere la query seguente. Questa query è simile alla query self-join che è stata creata nell'esercitazione sul rilevamento delle frodi. La differenza è che questa query invia i risultati al nuovo output creato (`CallStream-PowerBI`). 
+3. Immettere hello seguente query. Questa query è simile toohello self join creato nell'esercitazione di rilevamento di frodi hello. Hello differenza consiste nel fatto che questa query consente di inviare risultati toohello nuovo output creato (`CallStream-PowerBI`). 
 
     >[!NOTE]
-    >Se non è stato assegnato un nome all'input `CallStream` nell'esercitazione sul rilevamento delle frodi, sostituire il nome per `CallStream` nelle clausole **FROM** e **JOIN** della query.
+    >Se non si il nome hello input `CallStream` nell'esercitazione di rilevamento di frodi hello, sostituire il nome per `CallStream` in hello **FROM** e **JOIN** clausole query hello.
 
         /* Our criteria for fraud:
-        Calls made from the same caller to two phone switches in different locations (for example, Australia and Europe) within five seconds */
+        Calls made from hello same caller tootwo phone switches in different locations (for example, Australia and Europe) within five seconds */
 
         SELECT System.Timestamp AS WindowEnd, COUNT(*) AS FraudulentCalls
         INTO "CallStream-PowerBI"
         FROM "CallStream" CS1 TIMESTAMP BY CallRecTime
         JOIN "CallStream" CS2 TIMESTAMP BY CallRecTime
 
-        /* Where the caller is the same, as indicated by IMSI (International Mobile Subscriber Identity) */
+        /* Where hello caller is hello same, as indicated by IMSI (International Mobile Subscriber Identity) */
         ON CS1.CallingIMSI = CS2.CallingIMSI
 
         /* ...and date between CS1 and CS2 is between one and five seconds */
         AND DATEDIFF(ss, CS1, CS2) BETWEEN 1 AND 5
 
-        /* Where the switch location is different */
+        /* Where hello switch location is different */
         WHERE CS1.SwitchNum != CS2.SwitchNum
         GROUP BY TumblingWindow(Duration(second, 1))
 
 4. Fare clic su **Salva**.
 
 
-## <a name="test-the-query"></a>Testare la query
+## <a name="test-hello-query"></a>Query hello del test
 Questa sezione è facoltativa ma consigliata. 
 
-1. Se l'app TelcoStreaming non è attualmente in esecuzione, avviarla seguendo questa procedura:
+1. Se hello TelcoStreaming app non è attualmente in esecuzione, avviarlo attenendosi alla procedura seguente:
 
     * Aprire una finestra di comando.
-    * Passare alla cartella in cui si trovano il file telcogenerator.exe e il file modificato telcodatagen.exe.config.
-    * Eseguire il comando seguente:
+    * Passare toohello cartella in cui sono telcogenerator.exe hello e i file modificati telcodatagen.exe.config.
+    * Eseguire hello comando seguente:
 
             telcodatagen.exe 1000 .2 2
 
-2. Nel pannello **Query** fare clic sui puntini di sospensione accanto all'input `CallStream` e quindi selezionare **Campiona dati da input**.
+2. In hello **Query** pannello, fare clic su Avanti toohello di hello punti `CallStream` di input e quindi selezionare **dati da un input di esempio**.
 
-3. Specificare che si desidera ottenere i dati di tre minuti e fare clic su **OK**. Attendere fino a quando non si riceve la notifica che i dati sono stati campionati.
+3. Specificare che si desidera ottenere i dati di tre minuti e fare clic su **OK**. Attendere fino a quando non si riceverà una notifica che dati hello campionati.
 
 4. Fare clic su **Test** e assicurarsi di ottenere i risultati.
 
 
-## <a name="run-the-job"></a>Eseguire il processo
+## <a name="run-hello-job"></a>Eseguire il processo di hello
 
-1. Assicurarsi che l'app TelcoStreaming sia in esecuzione.
+1. Verificare che tale app TelcoStreaming hello è in esecuzione.
 
-2. Chiudere il pannello **Query**.
+2. Chiude hello **Query** blade.
 
-3. Nel pannello del processo fare clic su **Avvia**.
+3. Nel Pannello di hello processo, fare clic su **avviare**.
 
-    ![Avviare il processo di analisi di flusso](./media/stream-analytics-power-bi-dashboard/stream-analytics-sa-job-start-output.png)
+    ![Avviare il processo di flusso Analitica hello](./media/stream-analytics-power-bi-dashboard/stream-analytics-sa-job-start-output.png)
 
-Il processo di Analisi di flusso inizia a cercare le chiamate fraudolente nel flusso in ingresso. Il processo crea anche il set di dati e la tabella in Power BI e inizia a inviare loro i dati relativi alle chiamate fraudolente.
+Il processo di Streaming Analitica inizia cercando fraudolente chiamate nel flusso in ingresso hello. processo Hello inoltre creati set di dati hello e una tabella in Power BI e inizia a inviare i dati relativi a toothem chiamate fraudolenti hello.
 
 
-## <a name="create-the-dashboard-in-power-bi"></a>Creare il dashboard in Power BI
+## <a name="create-hello-dashboard-in-power-bi"></a>Creare dashboard hello in Power BI
 
-1. Passare a [Powerbi.com](https://powerbi.com) e accedere con l'account aziendale o dell'istituto di istruzione. Se la query del processo di Analisi di flusso produce risultati, si noterà che il set di dati è già creato:
+1. Andare troppo[Powerbi.com](https://powerbi.com) e accedere con l'account aziendale o dell'istituto di istruzione. Query di processo di flusso Analitica hello restituisce risultati, vedrai che il set di dati è già stato creato:
 
     ![Streaming del set di dati in Power BI](./media/stream-analytics-power-bi-dashboard/streaming-dataset.png)
 
 2. Nell'area di lavoro fare clic su **+&nbsp;Crea**.
 
-    ![Pulsante Crea nell'area di lavoro di Power BI](./media/stream-analytics-power-bi-dashboard/pbi-create-dashboard.png)
+    ![pulsante Crea Hello nell'area di lavoro di Power BI](./media/stream-analytics-power-bi-dashboard/pbi-create-dashboard.png)
 
 3. Creare un nuovo dashboard e denominarlo `Fraudulent Calls`.
 
     ![Creare un dashboard e assegnargli un nome nell'area di lavoro di Power BI](./media/stream-analytics-power-bi-dashboard/pbi-create-dashboard-name.png)
 
-4. Nella parte superiore della finestra, fare clic su **Aggiungi riquadro**, selezionare **DATI IN STREAMING PERSONALIZZATI**, quindi fare clic su **Avanti**.
+4. Nella parte superiore di hello della finestra hello, fare clic su **Aggiungi riquadro**selezionare **dati in STREAMING personalizzati**, quindi fare clic su **Avanti**.
 
     ![Set di dati di streaming personalizzato](./media/stream-analytics-power-bi-dashboard/custom-streaming-data.png)
 
@@ -169,7 +169,7 @@ Il processo di Analisi di flusso inizia a cercare le chiamate fraudolente nel fl
 
     ![Set di dati di streaming](./media/stream-analytics-power-bi-dashboard/your-streaming-dataset.png)
 
-6. In **Tipo di visualizzazione** selezionare **Scheda** e quindi nell'elenco **Campi** selezionare **fraudulentcalls**.
+6. In **tipo di visualizzazione**selezionare **scheda**e quindi in hello **campi** elenco, selezionare **fraudulentcalls**.
 
     ![Dettagli di visualizzazione per il nuovo riquadro](./media/stream-analytics-power-bi-dashboard/add-fraud.png)
 
@@ -185,49 +185,49 @@ Il processo di Analisi di flusso inizia a cercare le chiamate fraudolente nel fl
 
     ![Contatore di frodi](./media/stream-analytics-power-bi-dashboard/fraud-counter.png)
 
-8. Seguire di nuovo la procedura per aggiungere un riquadro (partendo dal passaggio 4). Questa volta eseguire le operazioni seguenti:
+8. Hello seguire i passaggi del nuovo tooadd un riquadro (a partire dal passaggio 4). Questa volta, hello seguenti:
 
-    * Quando si accede a **Tipo di visualizzazione** selezionare **Grafico a linee**. 
+    * Quando si ottengono troppo**tipo di visualizzazione**selezionare **grafico a linee**. 
     * Aggiungere un asse e selezionare **windowend**. 
     * Aggiungere un valore e selezionare **fraudulentcalls**.
-    * Per **Intervallo di tempo da visualizzare**  selezionare gli ultimi 10 minuti.
+    * Per **toodisplay finestra ora**selezionare hello ultimi 10 minuti.
 
     ![Creare il riquadro per il grafico a linee](./media/stream-analytics-power-bi-dashboard/pbi-create-tile-line-chart.png)
 
 9. Fare clic su **Avanti**, aggiungere un titolo e un sottotitolo e fare clic su **Applica**.
 
-    Il dashboard di Power BI offre ora due visualizzazioni di dati sulle chiamate fraudolente in base al rilevamento nei dati di streaming.
+    dashboard di Power BI Hello ora offre due visualizzazioni dei dati sulle chiamate fraudolente come rilevato nel flusso di dati hello.
 
     ![Dashboard di Power BI completo che mostra due riquadri per le chiamate fraudolente](./media/stream-analytics-power-bi-dashboard/pbi-dashboard-fraudulent-calls-finished.png)
 
 
 ## <a name="learn-more-about-power-bi"></a>Altre informazioni su Power BI
 
-Questa esercitazione mostra come creare solo alcuni tipi di visualizzazioni per un set di dati. Power BI consente di creare altri strumenti di business intelligence per clienti per l'organizzazione. Per altre informazioni, vedere le risorse seguenti:
+Questa esercitazione viene illustrato come toocreate solo alcuni tipi di visualizzazioni per un set di dati. Power BI consente di creare altri strumenti di business intelligence per clienti per l'organizzazione. Per ulteriori informazioni, vedere hello seguenti risorse:
 
-* Per visualizzare un altro esempio di dashboard Power BI, guardare il video [Introduzione a Power BI](https://youtu.be/L-Z_6P56aas?t=1m58s) .
-* Per altre informazioni sulla configurazione dell'output di Analisi di flusso in Power BI e sull'uso dei gruppi di Power BI, vedere la sezione [Power BI](stream-analytics-define-outputs.md#power-bi) dell'articolo relativo agli [output di Analisi di flusso](stream-analytics-define-outputs.md). 
+* Per un altro esempio di un dashboard di Power BI, eseguire il controllo hello [Introduzione a Power BI](https://youtu.be/L-Z_6P56aas?t=1m58s) video.
+* Per ulteriori informazioni sulla configurazione di Streaming Analitica processo tooPower output BI e utilizzano i gruppi di Power BI, esaminare hello [Power BI](stream-analytics-define-outputs.md#power-bi) sezione di hello [Analitica di flusso di output](stream-analytics-define-outputs.md) articolo. 
 * Per informazioni sull'utilizzo di Power BI in generale, vedere [Dashboard in Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-dashboards/).
 
 
 ## <a name="learn-about-limitations-and-best-practices"></a>Informazioni sulle limitazioni e le procedure consigliate
-Attualmente, è possibile chiamare Power BI approssimativamente una volta al secondo. Gli oggetti visivi di streaming supportano pacchetti da 15 KB. Oltre tale limite, gli oggetti visivi di streaming hanno esito negativo, ma il push continua a funzionare. A causa di queste limitazioni, Power BI è più adatto ai casi in cui Analisi di flusso di Azure riduce notevolmente il carico di dati. È consigliabile usare la finestra a cascata o la finestra di salto per assicurarsi che il push di dati avvenga al massimo una volta al secondo e che la query rientri nei requisiti di velocità effettiva.
+Attualmente, è possibile chiamare Power BI approssimativamente una volta al secondo. Gli oggetti visivi di streaming supportano pacchetti da 15 KB. Tuttavia, gli oggetti visivi streaming esito negativo (ma push continua toowork). A causa di queste limitazioni, Power BI si presta più naturalmente toocases in Azure flusso Analitica svolge un riduce il carico di dati in modo significativo. È consigliabile utilizzare una finestra a cascata o Hopping finestra tooensure che push di dati è al massimo un push al secondo e che la query inserita all'interno di requisiti di velocità effettiva di hello.
 
-Per calcolare il valore e visualizzare la finestra in secondi, è possibile usare questa equazione:
+È possibile utilizzare la finestra seguente equazione toocompute hello valore toogive hello in secondi:
 
 ![Equazione 1](./media/stream-analytics-power-bi-dashboard/equation1.png)  
 
 Ad esempio:
 
 * Sono presenti 1.000 dispositivi che inviano dati a intervalli di un secondo.
-* Si usa lo SKU di Power BI Pro che supporta 1.000.000 righe l'ora.
-* Si vuole pubblicare la quantità di dati medi per ogni dispositivo in Power BI.
+* Si sta utilizzando hello Power BI Pro SKU che supporta 1.000.000 di righe all'ora.
+* Si desidera quantità hello toopublish dei dati medi per ogni dispositivo tooPower BI.
 
-L'equazione diventa quindi la seguente:
+Di conseguenza, l'equazione hello diventa:
 
 ![Equazione 2](./media/stream-analytics-power-bi-dashboard/equation2.png)  
 
-Con questa configurazione è possibile modificare la query originale come segue:
+In base a questa configurazione, è possibile modificare i seguenti toohello query originale di hello:
 
     SELECT
         MAX(hmdt) AS hmdt,
@@ -243,17 +243,17 @@ Con questa configurazione è possibile modificare la query originale come segue:
 
 
 ### <a name="renew-authorization"></a>Rinnovare l'autorizzazione
-Se la password è stata modificata dopo la creazione o l'ultima autenticazione del processo, è necessario autenticare nuovamente l'account Power BI. Se Azure Multi-Factor Authentication è configurato nel tenant di Azure Active Directory (Azure AD), è anche necessario rinnovare l'autorizzazione di Power BI ogni due settimane. Se non viene rinnovata, si potrebbero verificare problemi come la mancanza di output dei processi o un `Authenticate user error` nei log delle operazioni.
+Password hello è stato modificato dopo il processo di creazione o dell'ultima autenticazione, è necessario tooreauthenticate account di Power BI. Se Azure multi-Factor Authentication è configurato per il tenant di Azure Active Directory (Azure AD), è necessario anche l'autorizzazione di Power BI toorenew ogni due settimane. Se non viene rinnovata, si potrebbe verificare sintomi, ad esempio la mancanza di output del processo o un `Authenticate user error` nel log delle operazioni hello.
 
-Se si tenta di avviare un processo dopo che il token è scaduto, si verifica un errore e l'avvio del processo ha esito negativo. Per risolvere questo problema, arrestare il processo in esecuzione e passare all'output di Power BI. Per evitare la perdita di dati, fare clic sul collegamento **Rinnova autorizzazione** e riavviare il processo selezionando **Ora ultimo arresto**.
+Analogamente, se un processo viene avviato dopo hello token è scaduto, si verifica un errore e ha esito negativo processo hello. tooresolve questo problema, arrestare il processo di hello che è in esecuzione e passare tooyour output di Power BI. tooavoid perdita di dati, seleziona hello **rinnovare l'autorizzazione** collegamento e quindi riavviare il processo da hello **ora ultimo arresto**.
 
-Dopo aver aggiornato l'autorizzazione con Power BI, viene visualizzato un avviso verde nell'area di autorizzazione che indica che il problema è stato risolto.
+Dopo l'autorizzazione di hello è stato aggiornato con Power BI, verde viene visualizzato un avviso in hello autorizzazione area tooreflect che problema hello è stato risolto.
 
 ## <a name="get-help"></a>Ottenere aiuto
 Per ulteriore assistenza, provare il [Forum di Analisi dei flussi di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi di flusso di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

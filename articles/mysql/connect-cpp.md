@@ -1,6 +1,6 @@
 ---
-title: Connettersi a Database di Azure per MySQL da C++ | Microsoft Docs
-description: "Questa guida introduttiva offre un esempio di codice C++ che è possibile usare per connettersi ed eseguire query sui dati da Database di Azure per MySQL."
+title: La connessione tooAzure Database MySQL da C++ | Documenti Microsoft
+description: "Questa Guida rapida fornisce un esempio di codice C++, è possibile utilizzare tooconnect ed eseguire query di dati dal Database di Azure per MySQL."
 services: mysql
 author: seanli1988
 ms.author: seal
@@ -11,18 +11,18 @@ ms.custom: mvc
 ms.devlang: C++
 ms.topic: hero-article
 ms.date: 08/03/2017
-ms.openlocfilehash: 63388b83b913d95136140fa4c56af0dbebbdad81
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d027597bf02b1eacab9b8808957399f6e54e63cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-connectorc-to-connect-and-query-data"></a>Database di Azure per MySQL: usare Connector/C++ per connettersi ed eseguire query sui dati
-Questa guida introduttiva illustra come connettersi a un database di Azure per MySQL usando un'applicazione C++. Spiega come usare le istruzioni SQL per eseguire query, inserire, aggiornare ed eliminare dati nel database. Le procedure descritte in questo articolo presuppongono che si abbia familiarità con lo sviluppo con C++, ma non con Database di Azure per MySQL.
+# <a name="azure-database-for-mysql-use-connectorc-tooconnect-and-query-data"></a>Il Database di Azure per MySQL: dati tooconnect e query di utilizzare connettore/C++
+Questa Guida introduttiva illustra come Database di Azure tooconnect tooan per MySQL mediante un'applicazione C++. Viene illustrato come toouse tooquery di istruzioni SQL, inserire, aggiornare ed eliminare dati nel database di hello. Hello passaggi in questo articolo si presuppone che si ha familiarità con lo sviluppo usando C++ e che siano tooworking nuovo con il Database di Azure per MySQL.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa guida introduttiva usa le risorse create in una delle guide seguenti come punto di partenza:
-- [Creare un database di Azure per il server MySQL tramite il portale di Azure](./quickstart-create-mysql-server-database-using-azure-portal.md)
+Questa Guida rapida utilizza risorse di hello create in una di queste guide come punto di partenza:
+- [Create an Azure Database for MySQL server using Azure portal](./quickstart-create-mysql-server-database-using-azure-portal.md) (Creare un database di Azure per il server MySQL usando il portale di Azure)
 - [Creare un database di Azure per il server MySQL tramite l'interfaccia della riga di comando di Azure](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 È anche necessario:
@@ -32,35 +32,35 @@ Questa guida introduttiva usa le risorse create in una delle guide seguenti come
 - Installare [Boost](http://www.boost.org/)
 
 ## <a name="install-visual-studio-and-net"></a>Installare Visual Studio e .NET
-La procedura descritta in questa sezione presuppone che si abbia familiarità con lo sviluppo con .NET.
+passaggi di Hello in questa sezione si presuppongono che si abbia familiarità con lo sviluppo con .NET.
 
 ### <a name="windows"></a>**Windows**
-1. Installare Visual Studio 2017 Community, che è un IDE gratuito, con funzionalità complete ed estendibile per creare applicazioni moderne per Android, iOS, Windows, oltre ad applicazioni Web e database e servizi cloud. È possibile installare la versione completa di .NET Framework o solamente .NET Core. I frammenti di codice nella guida introduttiva sono compatibili con entrambe le versioni. Se Visual Studio è già installato nel computer, ignorare i due passaggi successivi.
-   - Scaricare il [programma di installazione di Visual Studio 2017](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15). 
-   - Eseguire il programma di installazione e seguire le richieste di installazione per completare l'operazione.
+1. Installare Visual Studio 2017 Community, che è un IDE gratuito, con funzionalità complete ed estendibile per creare applicazioni moderne per Android, iOS, Windows, oltre ad applicazioni Web e database e servizi cloud. È possibile installare hello completa di .NET Framework o solo a .NET Core. frammenti di codice Hello hello Guida introduttiva di lavoro con uno. Se si dispone già di Visual Studio installati nel computer, ignorare hello due passaggi successivi.
+   - Scaricare hello [programma di installazione di Visual Studio 2017](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15). 
+   - Eseguire il programma di installazione hello e seguire hello installazione richieste toocomplete hello installazione.
 
 ### <a name="configure-visual-studio"></a>**Configurare Visual Studio**
-1. Da Visual Studio, Proprietà progetto > Proprietà di configurazione > C/C++ > Linker > Generale > Directory librerie aggiuntive, aggiungere la directory lib\opt (ad esempio: C:\Programmi (x86)\MySQL\MySQL Connector C++ 1.1.9\lib\opt) del connettore C++.
+1. Da Visual Studio, proprietà del progetto > proprietà di configurazione > C/C++ > linker > generale > Directory librerie aggiuntive, aggiungere directory lib\opt hello (ad esempio: C:\Program Files (x86) \MySQL\MySQL connettore C++ 1.1.9\lib\opt) di hello c + + connettore.
 2. Da Visual Studio, Proprietà progetto > Proprietà di configurazione > C/C++ > Generale > Directory di inclusione aggiuntive
    - Aggiungere la directory include/ del connettore C++ (ad esempio: C:\Programmi (x86)\MySQL\MySQL Connector C++ 1.1.9\include\)
    - Aggiungere la directory radice della libreria Boost (ad esempio: C:\boost_1_64_0\)
-3. Da Visual Studio, Proprietà progetto > Proprietà di configurazione > C/C++ > Linker > Input > Dipendenze aggiuntive, aggiungere mysqlcppconn.lib nel campo di testo
-4. Copiare mysqlcppconn.dll dalla cartella della libreria del connettore C++ del passaggio 3 alla stessa directory del file eseguibile dell'applicazione oppure aggiungerlo alla variabile di ambiente in modo che l'applicazione possa trovarlo.
+3. Da Visual Studio, proprietà del progetto > proprietà di configurazione > C/C++ > linker > Input > dipendenze aggiuntive, aggiungere mysqlcppconn.lib nel campo di testo hello
+4. Entrambi mysqlcppconn.dll copia dalla hello c + + connettore cartella libreria nel passaggio 3 toohello stessa directory del file eseguibile dell'applicazione hello o aggiungere la variabile di ambiente toohello poterlo trovare l'applicazione.
 
 ## <a name="get-connection-information"></a>Ottenere informazioni di connessione
-Ottenere le informazioni di connessione necessarie per connettersi al database di Azure per MySQL. Sono necessari il nome del server completo e le credenziali di accesso.
+Ottenere hello connessione le informazioni necessarie tooconnect toohello Database di Azure per MySQL. È necessario hello le credenziali di nome e l'account di accesso completo del server.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Nel menu a sinistra nel portale di Azure fare clic su **Tutte le risorse** e cercare il server creato, ad esempio **myserver4demo**.
-3. Fare clic sul nome del server.
-4. Selezionare la pagina **Proprietà** del server. Annotare il **Nome server** e il **nome di accesso dell'amministratore del server**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Dal menu a sinistra di hello nel portale di Azure, fare clic su **tutte le risorse** e Cerca server hello sia stato creato, ad esempio **myserver4demo**.
+3. Fare clic su nome hello del server.
+4. Server di selezionare hello **proprietà** pagina. Prendere nota di hello **nome Server** e **nome account di accesso di amministratore Server**.
  ![Nome del server del database di Azure per MySQL](./media/connect-cpp/1_server-properties-name-login.png)
-5. Se si dimenticano le informazioni di accesso per il server, passare alla pagina **Panoramica** per visualizzare il nome di accesso dell'amministratore del server e, se necessario, reimpostare la password.
+5. Se si dimenticano le informazioni di accesso del server, passare toohello **Panoramica** pagina nome account di accesso amministratore di tooview hello Server e, se necessario, reimpostare la password di hello.
 
 ## <a name="connect-create-table-and-insert-data"></a>Connettersi, creare tabelle e inserire dati
-Usare il codice seguente per connettersi e caricare i dati usando le istruzioni SQL **CREATE TABLE** e **INSERT INTO**. Il codice usa la classe sql::Driver con il metodo connect() per stabilire una connessione a MySQL. Il codice usa quindi il metodo createStatement() e il metodo execute() per eseguire i comandi di database. 
+Seguente hello utilizzare codice tooconnect e caricare i dati di hello usando **CREATE TABLE** e **INSERT INTO** istruzioni SQL. codice Hello Usa la classe sql::Driver con hello Connect () metodo tooestablish tooMySQL una connessione. Codice hello utilizza quindi metodo Execute () e createStatement() toorun hello i comandi di database. 
 
-Sostituire i parametri Host, DBName, User e Password con i valori specificati al momento della creazione del server e del database. 
+Sostituire i parametri di Host, DBName, utente e Password hello con i valori hello specificato al momento della creazione hello server e database. 
 
 ```c++
 #include <stdlib.h>
@@ -83,12 +83,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }
@@ -125,9 +125,9 @@ int main()
 
 ## <a name="read-data"></a>Leggere i dati
 
-Usare il codice seguente per connettersi e leggere i dati usando un'istruzione SQL **SELECT**. Il codice usa la classe sql::Driver con il metodo connect() per stabilire una connessione a MySQL. Il codice usa quindi il metodo prepareStatement() e il metodo executeQuery() per eseguire i comandi di selezione. Il codice usa infine next() per passare ai record nei risultati. Il codice usa quindi getInt() e getString() per analizzare i valori nel record.
+Seguente hello utilizzare codice tooconnect e leggere hello dati utilizzando un **selezionare** istruzione SQL. codice Hello Usa la classe sql::Driver con hello Connect () metodo tooestablish tooMySQL una connessione. Quindi codice hello Usa metodo prepareStatement() ed executeQuery() toorun hello selezionare comandi. Codice di hello utilizzerà infine Next tooadvance toohello record nei risultati di hello. Codice hello Usa quindi i valori hello tooparse getInt() e GetString () nel record di hello.
 
-Sostituire i parametri Host, DBName, User e Password con i valori specificati al momento della creazione del server e del database. 
+Sostituire i parametri di Host, DBName, utente e Password hello con i valori hello specificato al momento della creazione hello server e database. 
 
 ```csharp
 #include <stdlib.h>
@@ -151,12 +151,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }   
@@ -177,9 +177,9 @@ int main()
 ```
 
 ## <a name="update-data"></a>Aggiornare i dati
-Usare il codice seguente per connettersi e leggere i dati usando un'istruzione SQL **UPDATE**. Il codice usa la classe sql::Driver con il metodo connect() per stabilire una connessione a MySQL. Il codice usa quindi il metodo prepareStatement() e il metodo executeQuery() per eseguire i comandi di aggiornamento. 
+Seguente hello utilizzare codice tooconnect e leggere hello dati utilizzando un **aggiornamento** istruzione SQL. codice Hello Usa la classe sql::Driver con hello Connect () metodo tooestablish tooMySQL una connessione. Codice hello utilizza quindi metodo prepareStatement() ed executeQuery() toorun hello i comandi di aggiornamento. 
 
-Sostituire i parametri Host, DBName, User e Password con i valori specificati al momento della creazione del server e del database. 
+Sostituire i parametri di Host, DBName, utente e Password hello con i valori hello specificato al momento della creazione hello server e database. 
 
 ```csharp
 #include <stdlib.h>
@@ -201,12 +201,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }   
@@ -227,9 +227,9 @@ int main()
 
 
 ## <a name="delete-data"></a>Eliminare i dati
-Usare il codice seguente per connettersi e leggere i dati usando un'istruzione SQL **DELETE**. Il codice usa la classe sql::Driver con il metodo connect() per stabilire una connessione a MySQL. Il codice usa quindi il metodo prepareStatement() e il metodo executeQuery() per eseguire i comandi di eliminazione.
+Seguente hello utilizzare codice tooconnect e leggere hello dati utilizzando un **eliminare** istruzione SQL. codice Hello Usa la classe sql::Driver con hello Connect () metodo tooestablish tooMySQL una connessione. Usa metodo prepareStatement() quindi codice hello executeQuery() toorun hello comandi e delete.
 
-Sostituire i parametri Host, DBName, User e Password con i valori specificati al momento della creazione del server e del database. 
+Sostituire i parametri di Host, DBName, utente e Password hello con i valori hello specificato al momento della creazione hello server e database. 
 
 ```csharp
 #include <stdlib.h>
@@ -253,12 +253,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }
@@ -279,4 +279,4 @@ int main()
 
 ## <a name="next-steps"></a>Passaggi successivi
 > [!div class="nextstepaction"]
-> [Eseguire la migrazione del database MySQL a Database di Azure per MySQL usando dump e ripristino](concepts-migrate-dump-restore.md)
+> [Eseguire la migrazione del tooAzure database MySQL Database per utilizzo dump e ripristino di MySQL](concepts-migrate-dump-restore.md)

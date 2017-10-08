@@ -1,5 +1,5 @@
 ---
-title: Usare i dati di riferimento e le tabelle di ricerca in analisi di flusso | Microsoft Docs
+title: aaaUse dati e ricerca tabelle di riferimento nel flusso Analitica | Documenti Microsoft
 description: Usare i dati di riferimento in una query di Analisi di flusso
 keywords: tabella di ricerca, dati di riferimento
 services: stream-analytics
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 3fd9c869be68d624a59ffb09ee53e31cd5a2f71b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fb1d18fba920db5e097d0c95d333e8e8390d1589
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-reference-data-or-lookup-tables-in-a-stream-analytics-input-stream"></a>Uso dei dati di riferimento o delle tabelle di ricerca in un flusso di input di Analisi di flusso
-I dati di riferimento (noti anche come tabella di ricerca) sono un set di dati limitato di natura statica o che cambiano molto lentamente, usati per eseguire una ricerca o la correlazione con il flusso di dati. Per usare i dati di riferimento in un processo di Analisi di flusso di Azure, si usa in genere un [JOIN dei dati di riferimento](https://msdn.microsoft.com/library/azure/dn949258.aspx) nella query. Analisi di flusso usa l'archivio BLOB di Azure come livello di archiviazione per i dati di riferimento e Azure Data Factory consente di trasformare e/o copiare nell'archivio BLOB di Azure i dati da usare come dati di riferimento da [qualsiasi numero di archivi dati locali e basati sul cloud](../data-factory/data-factory-data-movement-activities.md). I dati di riferimento sono modellati come una sequenza di BLOB (definiti nella configurazione di input) in ordine crescente in base alla data/ora specificata nel nome di BLOB. Supporta **solo** l'aggiunta alla fine della sequenza usando una data/ora **successiva** rispetto a quella specificata dall'ultimo BLOB nella sequenza.
+Dati di riferimento (noto anche come una tabella di ricerca) sono un set di dati limitato è statico o rallentando modifica in natura, utilizza tooperform una ricerca o toocorrelate con il flusso dei dati. utilizzo di toomake di dati di riferimento nel processo Analitica di flusso di Azure, in genere si utilizzerà un [Join dei dati di riferimento](https://msdn.microsoft.com/library/azure/dn949258.aspx) nella Query. Analitica di flusso usa l'archiviazione Blob di Azure come livello di archiviazione hello per dati di riferimento e con riferimento a Data Factory di Azure i dati possono essere archiviazione Blob tooAzure trasformato e/o copiato, per utilizzarli come dati di riferimento, di [un numero qualsiasi di basato su cloud e archivi dati locali](../data-factory/data-factory-data-movement-activities.md). Dati di riferimento viene modellati come una sequenza di oggetti BLOB (definita nella configurazione di input hello) in ordine crescente di hello data/ora specificato nel nome di blob hello. Si **solo** supporta l'aggiunta di toohello fine della sequenza di hello utilizzando una data/ora **maggiore** rispetto a quello specificato dal blob ultimo hello in sequenza hello hello.
 
-Analisi di flusso ha un **limite di 100 MB per BLOB**, ma i processi possono elaborare più BLOB di riferimento usando la proprietà del **modello di percorso**.
+Flusso Analitica ha un **limite di 100 MB per ogni blob** ma processi possono elaborare più BLOB di riferimento utilizzando hello **il modello del percorso** proprietà.
 
 
 ## <a name="configuring-reference-data"></a>Configurazione dei dati di riferimento
-Per configurare i dati di riferimento, è prima di tutto necessario creare un input che sia di tipo **Dati di riferimento**. La tabella seguente illustra ogni proprietà che è necessario fornire durante la creazione di input di dati di riferimento con la relativa descrizione:
+tooconfigure i dati di riferimento, è necessario innanzitutto un input di tipo toocreate **dati di riferimento**. tabella Hello riportata di seguito viene illustrato ogni proprietà che è necessario tooprovide durante la creazione di input di dati di riferimento hello con la relativa descrizione:
 
 
 <table>
@@ -39,69 +39,69 @@ Per configurare i dati di riferimento, è prima di tutto necessario creare un in
 </tr>
 <tr>
 <td>Alias di input</td>
-<td>Nome descrittivo che verrà usato nella query di processo per fare riferimento a questo input.</td>
+<td>Nome descrittivo che può essere utilizzato nei hello processo query tooreference che questo input.</td>
 </tr>
 <tr>
 <td>Account di archiviazione</td>
-<td>Nome dell'account di archiviazione in cui si trovano i BLOB. Se è incluso nella stessa sottoscrizione del processo di Analisi di flusso, può essere selezionato nell'elenco a discesa.</td>
+<td>nome Hello hello dell'account di archiviazione in cui si trovano i BLOB. Se si trova in hello stessa sottoscrizione del processo di flusso Analitica, è possibile selezionarlo dall'elenco a discesa hello.</td>
 </tr>
 <tr>
 <td>Chiave dell'account di archiviazione</td>
-<td>Chiave privata associata all'account di archiviazione. Viene compilata automaticamente se l'account di archiviazione si trova nella stessa sottoscrizione del processo di analisi di flusso.</td>
+<td>chiave segreta Hello associata con l'account di archiviazione hello. Ciò viene compilata automaticamente se l'account di archiviazione hello in hello stessa sottoscrizione del processo di flusso Analitica.</td>
 </tr>
 <tr>
 <td>Contenitore di archiviazione</td>
-<td>I contenitori forniscono un raggruppamento logico per gli oggetti BLOB archiviati nel servizio BLOB di Microsoft Azure. Quando si carica un oggetto BLOB nel servizio BLOB, è necessario specificare un contenitore per il BLOB.</td>
+<td>I contenitori forniscono un raggruppamento logico dei blob archiviati nel servizio Blob di Microsoft Azure hello. Quando si carica un toohello blob del servizio Blob, è necessario specificare un contenitore per il blob.</td>
 </tr>
 <tr>
 <td>Modello di percorso</td>
-<td>Percorso usato per individuare i BLOB nel contenitore specificato. All'interno del percorso è possibile scegliere di specificare una o più istanze delle 2 variabili seguenti:<BR>{date}, {time}<BR>Esempio 1: products/{date}/{time}/product-list.csv<BR>Esempio 2: products/{date}/product-list.csv
+<td>Utilizzare il percorso di Hello toolocate i BLOB nel contenitore specificato hello. Nel percorso di hello, è possibile scegliere toospecify uno o più istanze di hello 2 variabili seguenti:<BR>{date}, {time}<BR>Esempio 1: products/{date}/{time}/product-list.csv<BR>Esempio 2: products/{date}/product-list.csv
 </tr>
 <tr>
 <td>Formato data [facoltativo]</td>
-<td>Se è stata usata la variabile {date} nel modello di percorso specificato, è possibile selezionare il formato di data in cui sono organizzati i BLOB nell'elenco a discesa dei formati supportati.<BR>Esempio: AAAA/MM/GG, MM/GG/AAAA e così via</td>
+<td>Se è stato usato {date} all'interno di hello il modello del percorso specificato, è possibile selezionare il formato di data hello in cui i BLOB sono organizzati da hello elenco a discesa dei formati supportati.<BR>Esempio: AAAA/MM/GG, MM/GG/AAAA e così via</td>
 </tr>
 <tr>
 <td>Formato ora [facoltativo]</td>
-<td>Se è stata usata la variabile {time} nel modello di percorso specificato, è possibile selezionare il formato di ora in cui sono organizzati i BLOB nell'elenco a discesa dei formati supportati.<BR>Esempio: HH, HH/mm o HH-mm</td>
+<td>Se è stato usato {time} all'interno di hello il modello del percorso specificato, è possibile selezionare il formato di ora hello in cui i BLOB sono organizzati da hello elenco a discesa dei formati supportati.<BR>Esempio: HH, HH/mm o HH-mm</td>
 </tr>
 <tr>
 <td>Formato di serializzazione eventi</td>
-<td>Per accertarsi che le query funzionino come previsto, l'analisi di flusso deve conoscere il formato di serializzazione usato per i flussi di dati in entrata. Per i dati di riferimento, i formati dati supportati sono CSV e JSON.</td>
+<td>toomake che le query funzionino come hello che previsto, flusso Analitica deve tooknow il formato di serializzazione per i flussi di dati in ingresso in uso. Per i dati di riferimento, i formati di hello supportato sono CSV e JSON.</td>
 </tr>
 <tr>
 <td>Codifica</td>
-<td>Al momento UTF-8 è l'unico formato di codifica supportato</td>
+<td>UTF-8 è hello formato di codifica è supportata solo in questo momento</td>
 </tr>
 </tbody>
 </table>
 
 ## <a name="generating-reference-data-on-a-schedule"></a>Generazione di dati di riferimento in una pianificazione
-Se i dati di riferimento sono costituiti da un set di dati che cambia lentamente, è possibile abilitare il supporto per l'aggiornamento dei dati di riferimento specificando un modello di percorso nella configurazione di input con i token di sostituzione {date} e {time}. Analisi di flusso seleziona le definizioni dei dati di riferimento aggiornate in base a questo modello di percorso. Ad esempio, un modello `sample/{date}/{time}/products.csv` con formato di data **"AAAA-MM-GG"** e formato di ora **"HH-mm"** indica ad Analisi di flusso di selezionare il BLOB aggiornato `sample/2015-04-16/17-30/products.csv` alle 17.30 del 16 aprile 2015 nel fuso orario UTC.
+Se i dati di riferimento sono un set di dati a modifica lenta, è abilitato il supporto per l'aggiornamento dei dati di riferimento specificando un modello del percorso nella configurazione di input hello utilizzando hello {date} e il token di sostituzione {time}. Flusso Analitica preleva dalle definizioni dei dati di riferimento hello aggiornato in base a questo modello del percorso. Ad esempio, un modello di `sample/{date}/{time}/products.csv` con un formato di data **"Aaaa-MM-GG"** e un formato di ora di **"HH: mm"** indica toopick Analitica flusso BLOB hello aggiornato `sample/2015-04-16/17-30/products.csv` 5:30 PM aprile fuso orario di 16, 2015 UTC.
 
 > [!NOTE]
-> Attualmente i processi di analisi di flusso cercano l'aggiornamento del BLOB solo quando la data/ora del computer precede quella codificata nel nome del BLOB. Ad esempio, il processo cercherà `sample/2015-04-16/17-30/products.csv` non appena possibile ma non prima delle 17.30 del 16 aprile 2015 nel fuso orario UTC. Il processo non cercherà *mai* un BLOB con data/ora codificata precedente all'ultima individuata.
+> Attualmente i processi di flusso Analitica cercano aggiornamento blob hello solo quando l'ora macchina hello anticipa il tempo di toohello codificato nel nome di blob hello. Ad esempio, il processo di hello cercherà `sample/2015-04-16/17-30/products.csv` non appena possibile ma non precedente rispetto a 5:30 PM il 16 aprile 2015 UTC il fuso orario. Si verifica un *mai* cercare un blob con un tempo codificato anteriori hello ultima che viene individuato.
 > 
-> Ad esempio, quando il processo trova il BLOB `sample/2015-04-16/17-30/products.csv` ignora tutti i file con data/ora codificata precedente alle 17.30 del 16 aprile 2015. Di conseguenza, se nello stesso contenitore viene creato un BLOB `sample/2015-04-16/17-25/products.csv` arrivato in ritardo, questo non viene usato dal processo.
+> Ad esempio, una volta processo hello rilevata blob hello `sample/2015-04-16/17-30/products.csv` lo ignora tutti i file con una data con codifica precedente a 5:30 PM il 16 aprile 2015, pertanto se un che arrivano in ritardo `sample/2015-04-16/17-25/products.csv` blob viene creato in hello stesso processo hello contenitore non verrà utilizzate.
 > 
-> Analogamente, se il file `sample/2015-04-16/17-30/products.csv` viene generato solo alle 22.03 del 16 aprile 2015, ma nel contenitore non è presente alcun BLOB con data/ora precedente, il processo usa questo file a partire dalle 22.03 del 16 aprile 2015 e i dati di riferimento precedenti fino a quel momento.
+> Allo stesso modo se `sample/2015-04-16/17-30/products.csv` viene generato solo 10:03 PM il 16 aprile 2015, ma nessun blob con una data precedente è presente nel contenitore di hello, processo hello utilizzerà questo file a partire da 10:03 PM il 16 aprile 2015 e utilizzare dati di riferimento precedente hello fino a quel momento.
 > 
-> Un'eccezione a questo si verifica quando il processo deve elaborare nuovamente dei dati indietro nel tempo o quando il processo viene in primo luogo avviato. All'avvio, il processo cerca il BLOB più recente generato prima dell'ora di inizio del processo specificata. Questa operazione viene eseguita per verificare la presenza di un set di dati di riferimento **non vuoto** all'avvio del processo. Se non viene trovato, il processo restituisce il messaggio di diagnostica seguente: `Initializing input without a valid reference data blob for UTC time <start time>`.
+> Toothis un'eccezione è quando il processo di hello deve toore elaborare dati indietro nel tempo o al primo avvio processo hello. All'inizio processo hello ora esegue la ricerca di blob più recente di hello prodotti prima del processo di hello ora di inizio specificata. Questa operazione viene eseguita tooensure che vi sia un **non vuoto** fanno riferimento a set di dati quando viene avviato il processo di hello. Se non viene trovato uno, il processo di hello Visualizza hello seguente diagnostica: `Initializing input without a valid reference data blob for UTC time <start time>`.
 > 
 > 
 
-È possibile usare [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) per orchestrare l'attività di creazione dei BLOB aggiornati richiesti da Analisi di flusso per aggiornare le definizioni dei dati di riferimento. Data factory è un servizio di integrazione delle informazioni basato sul cloud che permette di automatizzare lo spostamento e la trasformazione dei dati. Data factory supporta la [connessione a un numero elevato di archivi dati basati su cloud e locali](../data-factory/data-factory-data-movement-activities.md) e il semplice trasferimento dei dati in base a una pianificazione regolare specificata dall'utente. Per altre informazioni e per istruzioni dettagliate su come configurare una pipeline di Data factory per generare dati di riferimento per l'analisi di flusso che vengano aggiornati in base a una pianificazione predefinita, consultare questo [esempio di GitHub](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ReferenceDataRefreshForASAJobs).
+[Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) può essere utilizzato tooorchestrate hello attività di creazione BLOB hello aggiornato necessari per le definizioni dei dati di riferimento tooupdate Analitica di flusso. Data Factory è un servizio di integrazione di dati basato su cloud che Orchestra e automatizza lo spostamento di hello e trasformazione dei dati. Data Factory supporta [connessione tooa numerosi basato sul cloud e archivi dati locali](../data-factory/data-factory-data-movement-activities.md) e spostare facilmente i dati a intervalli regolari specificato. Per ulteriori informazioni e istruzioni dettagliate su come tooset di una Data Factory pipeline toogenerate dati di riferimento per Analitica di flusso che viene aggiornato a intervalli predefiniti, vedere questo [esempio GitHub](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ReferenceDataRefreshForASAJobs).
 
 ## <a name="tips-on-refreshing-your-reference-data"></a>Suggerimenti sull'aggiornamento dei dati di riferimento
-1. Sovrascrittura dei BLOB dei dati di riferimento non farà verificare l’analisi di flusso per ricaricare il BLOB e in alcuni casi può comportare il mancato completamento del processo. Il modo consigliato per modificare i dati di riferimento è quello di aggiungere un nuovo BLOB usando lo stesso contenitore e il modello di percorso definito nell'input del processo e usare una data/ora **maggiore** rispetto a quella specificata dall'ultimo BLOB nella sequenza.
-2. I BLOB dei dati di riferimento **non** vengono ordinati in base all'ora dell'ultima modifica del BLOB, ma solo in base all'ora e alla data specificate nel nome del BLOB con le sostituzioni di {date} e {time}.
+1. Sovrascrivere il BLOB di dati di riferimento non comporterà Analitica flusso tooreload hello blob e in alcuni casi può causare toofail processo hello. Hello consigliabile dei dati di riferimento toochange sono tooadd un nuovo blob utilizzando hello stesso modello di contenitore e il percorso definito nell'input processo hello e utilizzano una data/ora **maggiore** rispetto a quello specificato dal blob ultimo hello in sequenza hello hello.
+2. I BLOB di dati di riferimento sono **non** ordinati in base al tempo del blob hello "Ultima modifica", ma solo data specificata nel nome di blob hello utilizzando sostituzioni di {time} e {date} hello e l'ora di hello.
 3. In alcuni casi un processo deve tornare indietro nel tempo, quindi i BLOB dei dati di riferimento non devono essere modificati o eliminati.
 
 ## <a name="get-help"></a>Ottenere aiuto
 Per assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-È stato presentato Analisi di flusso, un servizio gestito per l'analisi di flusso su dati provenienti da Internet delle cose. Per altre informazioni su questo servizio, vedere:
+Sono state introdotte tooStream Analitica, un servizio gestito per lo streaming analitica dei dati di hello Internet delle cose. toolearn ulteriori informazioni su questo servizio, vedere:
 
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)

@@ -1,6 +1,6 @@
 ---
-title: Panoramica della sicurezza di Azure Service Fabric | Microsoft Docs
-description: Questo articolo offre una panoramica della sicurezza di Azure Service Fabric.
+title: Cenni preliminari sulla sicurezza dell'infrastruttura di servizio aaaAzure | Documenti Microsoft
+description: In questo articolo viene fornita una panoramica di hello protezione dell'infrastruttura del servizio di Azure.
 services: security
 documentationcenter: na
 author: unifycloud
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/04/2017
 ms.author: tomsh
-ms.openlocfilehash: 4cbd2791649c6d2dd005521cedb44c17aa874073
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ec5355983c5d59f4e0c3b855965f03ac47f1a4c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-fabric-security-overview"></a>Panoramica della sicurezza di Azure Service Fabric
-[Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-overview) è una piattaforma di sistemi distribuiti che semplifica la creazione di pacchetti, la distribuzione e la gestione di microservizi scalabili e affidabili. Service Fabric fa fronte alle principali problematiche correlate allo sviluppo e alla gestione delle applicazioni cloud. Gli sviluppatori e gli amministratori non devono più occuparsi di risolvere complessi problemi di infrastruttura e possono concentrarsi sull'implementazione di carichi di lavoro cruciali e impegnativi, con la certezza di assicurare scalabilità, affidabilità e gestibilità.
+[Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-overview) è una piattaforma di sistemi distribuiti che rende facile toopackage, distribuire e gestire servizi micro scalabili e affidabili. Service Fabric per affrontare sfide significativi di hello nello sviluppo e la gestione delle applicazioni cloud. Gli sviluppatori e gli amministratori non devono più occuparsi di risolvere complessi problemi di infrastruttura e possono concentrarsi sull'implementazione di carichi di lavoro cruciali e impegnativi, con la certezza di assicurare scalabilità, affidabilità e gestibilità.
 
-Questa panoramica della sicurezza di Azure Service Fabric è incentrata sulle aree seguenti:
+Cenni preliminari sulla sicurezza di Azure Service Fabric viene descritta la hello seguenti aree:
 
 -   Protezione del cluster
 -   Monitoraggio e diagnostica
@@ -34,144 +34,144 @@ Questa panoramica della sicurezza di Azure Service Fabric è incentrata sulle ar
 -   Protezione della comunicazione per i servizi nella sicurezza di Azure Service Fabric
 
 ## <a name="securing-your-cluster"></a>Protezione del cluster
-Azure Service Fabric è un sistema di orchestrazione di servizi in un cluster di computer. Per impedire a utenti non autorizzati di connettersi ai cluster, è necessario proteggere i cluster, in particolare quando sono in esecuzione carichi di lavoro di produzione. La creazione di cluster non protetti, anche se possibile, consente a utenti anonimi di connettersi a un cluster che espone gli endpoint di gestione a Internet pubblico.
+Azure Service Fabric è un agente di orchestrazione dei servizi in un cluster di macchine, i cluster devono essere utenti tooprevent protetto non autorizzato dalla connessione tooyour cluster, in particolare quando dispone i carichi di lavoro in esecuzione su di esso. Sebbene sia possibile toocreate un cluster non protetto, in questo modo consente agli utenti anonimi tooconnect tooit, se espone Gestione endpoint toohello rete Internet pubblica.
 
-Questo articolo offre una panoramica degli scenari di sicurezza per i cluster autonomi o in esecuzione in Azure e delle varie tecnologie usate per implementare tali scenari. Gli scenari di sicurezza del cluster sono:
+In questa sezione viene fornita una panoramica di hello scenari di sicurezza per i cluster in esecuzione in Azure o autonomo e hello varie tecnologie utilizzate tooimplement tali scenari. scenari di sicurezza cluster Hello sono:
 
 -   Sicurezza da nodo a nodo
 -   Sicurezza da client a nodo
 
 ### <a name="node-to-node-security"></a>Sicurezza da nodo a nodo
-Protegge la comunicazione tra le VM o i computer del cluster. Assicura che solo i computer autorizzati a connettersi al cluster possono partecipare all'hosting di applicazioni e servizi nel cluster.
+Consente di proteggere la comunicazione tra macchine virtuali hello o computer cluster hello. In questo modo si garantisce che solo i computer che sono autorizzati toojoin hello cluster possono prendere parte all'hosting di applicazioni e servizi in cluster hello.
 
 I cluster eseguiti in Azure o i cluster autonomi eseguiti in Windows possono usare la [sicurezza basata su certificati](https://msdn.microsoft.com/library/ff649801.aspx) o la [sicurezza di Windows](https://msdn.microsoft.com/library/ff649396.aspx) per computer Windows Server.
 
 **Sicurezza basata su certificati da nodo a nodo**
 
-Service Fabric usa i certificati server X.509 specificati durante le configurazioni del tipo di nodo quando si crea un cluster. Questo articolo include una rapida panoramica di questi certificati e di [come è possibile acquisirli o crearli](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/working-with-certificates).
+Service Fabric utilizza i certificati server x. 509 specificato come parte delle configurazioni di tipo di nodo hello quando si crea un cluster. Questo articolo include una rapida panoramica di questi certificati e di [come è possibile acquisirli o crearli](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/working-with-certificates).
 
-La sicurezza basata su certificati viene configurata durante la creazione del cluster tramite il portale di Azure, i modelli di Azure Resource Manager o un modello JSON autonomo. È possibile specificare un certificato primario e un certificato secondario facoltativo che viene usato per i rollover dei certificati. I certificati primario e secondario specificati devono essere diversi dai certificati client di amministrazione e dai certificati client di sola lettura specificati per la [sicurezza da client a nodo](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-security).
+Sicurezza di certificato è stata configurata durante la creazione di cluster hello tramite hello portale di Azure, i modelli di gestione risorse di Azure o un modello JSON autonoma. È possibile specificare un certificato primario e un certificato secondario facoltativo che viene usato per i rollover dei certificati. Hello certificati primari e secondari, si specifica devono essere diversi da client di amministrazione di hello e i certificati client di sola lettura specificati per [sicurezza Client a nodo](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-security).
 
 ### <a name="client-to-node-security"></a>Sicurezza da client a nodo
-La sicurezza da client a nodo viene configurata usando le identità dei client. Per stabilire l'attendibilità tra un client e il cluster, è necessario configurare il cluster in modo che riconosca quali identità di client può considerare attendibili. È possibile, a questo scopo, eseguire una delle due operazioni seguenti:
+Sicurezza toonode client viene configurato tramite le identità del Client. tooestablish attendibilità tra un client e hello cluster, è necessario configurare hello cluster tooknow quali identità del client che è attendibile. È possibile, a questo scopo, eseguire una delle due operazioni seguenti:
 
--   Specificare gli utenti del gruppo di dominio che possono connettersi.
--   Specificare gli utenti del nodo del dominio che possono connettersi.
+-   Specificare gli utenti al gruppo di dominio hello in grado di connettersi o
+-   Specificare gli utenti al nodo di dominio hello in grado di connettersi.
 
-Service Fabric supporta due tipi di controllo di accesso diversi per i client connessi a un cluster di Service Fabric:
+Service Fabric supporta due tipi di controllo di accesso diversi per i client appartenenti a cluster di Service Fabric tooa connessa:
 
 -   Amministratore
 -   Utente
 
-La funzionalità di controllo di accesso consente all'amministratore del cluster di limitare l'accesso a determinati tipi di operazioni del cluster per diversi gruppi di utenti, rendendo il cluster più sicuro. Gli amministratori hanno accesso completo alle funzionalità di gestione, incluse funzionalità di lettura/scrittura. Gli utenti, per impostazione predefinita, hanno solo l'accesso in lettura alle funzionalità di gestione, ad esempio funzionalità di query, e la possibilità di risolvere applicazioni e servizi.
+Controllo di accesso offre possibilità hello hello tipi cluster amministratore toolimit accesso toocertain delle operazioni di cluster per diversi gruppi di utenti, di rendere più sicuro cluster hello. Gli amministratori hanno capacità di toomanagement accesso completo (incluse le funzionalità di lettura/scrittura). Gli utenti, per impostazione predefinita, dispongono solo dell'accesso in lettura toomanagement funzionalità (ad esempio, funzionalità di query), hello possibilità tooresolve applicazioni e servizi e.
 
 **Sicurezza basata su certificati da client a nodo**
 
-La sicurezza basata su certificati da client a nodo viene configurata durante la creazione del cluster tramite il portale di Azure, i modelli di Resource Manager o un modello JSON autonomo specificando un certificato client di amministrazione e/o un certificato client utente. I certificati client di amministrazione e i certificati client utente specificati devono essere diversi dai certificati primario e secondario specificati per la sicurezza da nodo a nodo.
+Certificato client da nodo sicurezza configurata durante la creazione di cluster hello tramite hello portale di Azure, modelli di gestione risorse o un modello JSON autonoma specificando un certificato client di amministrazione e/o di un certificato client utente. Hello amministrazione utente client i certificati client e che si specifica devono essere diversi rispetto ai certificati primari e secondari hello specificate per la sicurezza del nodo per nodo.
 
-I client che si connettono al cluster con il certificato di amministrazione hanno accesso completo alle funzionalità di gestione. I client che si connettono al cluster con il certificato client utente di sola lettura hanno solo l'accesso in lettura alle funzionalità di gestione. Questi certificati vengono, in altre parole, usati per il controllo degli accessi in base al ruolo.
+Client che si connettono toohello cluster utilizzando il certificato di amministrazione hello dispongano di funzionalità di toomanagement accesso completo. Client che si connettono toohello cluster utilizzando hello utente di sola lettura del certificato client dispone solo dell'accesso in lettura toomanagement funzionalità. In altre parole, che questi certificati vengono usati per hello ruolo si basa il controllo di accesso (RBAC).
 
-Per informazioni su come configurare la sicurezza basata su certificati in un cluster per Azure, vedere [Configurare un cluster di Service Fabric usando un modello di Azure Resource Manager](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-creation-via-arm) .
+Per leggere Azure [configurazione di un cluster utilizzando un modello di gestione risorse di Azure](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-creation-via-arm) toolearn tooconfigure come certificato di sicurezza in un cluster.
 
 **Sicurezza di Azure Active Directory (AAD) da client a nodo in Azure**
 
-I cluster eseguiti in Azure possono inoltre proteggere l'accesso agli endpoint di gestione usando Azure Active Directory (AAD). Per informazioni su come creare i necessari elementi di AAD, su come popolarli durante la creazione dei cluster e su come connettersi a tali cluster in seguito, vedere [Configurare un cluster di Service Fabric usando un modello di Azure Resource Manager](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-creation-via-arm) .
+I cluster in esecuzione in Azure possono inoltre proteggere accesso toohello gli endpoint di gestione tramite Azure Active Directory (AAD). Vedere [configurazione di un cluster utilizzando un modello di gestione risorse di Azure](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-creation-via-arm) per informazioni su come toocreate hello gli elementi necessari di AAD, come toopopulate durante cluster la creazione e la modalità tooconnect toothose cluster in un secondo momento.
 
-AAD consente alle organizzazioni, note come tenant, di gestire l'accesso degli utenti alle applicazioni, che si dividono in applicazioni con un'interfaccia utente di accesso basata sul Web e applicazioni con un'esperienza client nativa.
+AAD consente alle organizzazioni (note come tenant) toomanage utente accesso tooapplications, sono suddivise nelle applicazioni con un account di accesso dell'interfaccia utente basata sul web e applicazioni con un'esperienza di native client.
 
-Un cluster di Service Fabric offre numerosi punti di ingresso alle relative funzionalità di gestione, tra cui Service Fabric Explorer basato sul Web e Visual Studio. Verranno quindi create due applicazioni AAD per controllare l'accesso al cluster, un'applicazione Web e un'applicazione nativa.
-Per i cluster di Azure è consigliabile usare la sicurezza di AAD per l'autenticazione dei client e dei certificati per la sicurezza da nodo a nodo.
+Un cluster di Service Fabric offre tooits punti di ingresso diverse funzionalità di gestione, tra cui hello basata sul web Service Fabric Explorer e Visual Studio. Di conseguenza, creare due AAD applicazioni toocontrol accesso toohello cluster, un'applicazione web e un'applicazione nativa.
+Per i cluster di Azure, è consigliabile usare i client tooauthenticate di sicurezza di Azure ad e i certificati per la sicurezza del nodo per nodo.
 
 Per i cluster di Windows Server autonomi è consigliabile usare la sicurezza di Windows con account gestiti di gruppo, se sono presenti Windows Server 2012 R2 e Active Directory. In caso contrario, usare comunque la sicurezza di Windows con account di Windows.
 
 ## <a name="monitoring-and-diagnostics-for-azure-service-fabric"></a>Monitoraggio e diagnostica in Azure Service Fabric
-Il [monitoraggio e la diagnostica](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-overview) sono essenziali per lo sviluppo, il test e la distribuzione di applicazioni e servizi in qualsiasi ambiente. Le soluzioni di Service Fabric funzionano meglio quando si pianifica e si implementa il monitoraggio e la diagnostica che consentono di verificare che le applicazioni e i servizi funzionino come previsto in un ambiente di sviluppo locale o in fase di produzione.
+[Monitoraggio e diagnostica](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-overview) sono critici toodeveloping, test e distribuzione di applicazioni e servizi in qualsiasi ambiente. Le soluzioni di Service Fabric funzionano meglio quando si pianifica e si implementa il monitoraggio e la diagnostica che consentono di verificare che le applicazioni e i servizi funzionino come previsto in un ambiente di sviluppo locale o in fase di produzione.
 
-Dal punto di vista della sicurezza, gli obiettivi principali del monitoraggio e della diagnostica sono:
+Da una prospettiva di sicurezza, hello obiettivi principali di monitoraggio e la diagnostica:
 
--   Rilevare e diagnosticare i problemi di infrastruttura e hardware che potrebbero essere generati da un evento di sicurezza.
+-   Rilevare e diagnosticare i problemi di hardware e l'infrastruttura che potrebbero essere dovuti tooa eventi di protezione.
 -   Rilevare i problemi di app e software che potrebbero presentare indicatori di compromissione (IoC).
--   Analizzare l'utilizzo delle risorse per prevenire eventi involontari di tipo denial of service.
+-   Risorse di comprendere il consumo toohelp impedire accidentale di tipo denial of service.
 
-Il flusso di lavoro generale di monitoraggio e diagnostica è costituito da tre passaggi:
+Hello generale del flusso di lavoro di monitoraggio e diagnostica è costituito da tre passaggi:
 
--   **Generazione di eventi**: sono inclusi eventi, ovvero log, tracce, eventi personalizzati, sia a livello di infrastruttura, cioè cluster, che a livello di applicazione/servizio. Per comprendere ciò che viene offerto e come aggiungere altri strumenti leggere altre informazioni su [eventi a livello di infrastruttura](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-generation-infra) ed [eventi a livello di applicazione](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-generation-app).
--   **Aggregazione di eventi**: gli eventi generati devono essere raccolti e aggregati prima di poter essere visualizzati. È in genere consigliabile usare [Diagnostica di Azure](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-aggregation-wad) (più simile a una raccolta di log basati su agenti) o [EventFlow](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-aggregation-eventflow) (la raccolta di log in-process).
--   **Analisi**: gli eventi devono essere visualizzati e accessibili in alcuni formati, per consentirne l'analisi e la visualizzazione in base alle esigenze specifiche. Per quanto riguarda l'analisi e la visualizzazione dei dati di monitoraggio e diagnostica, nel mercato esistono diverse piattaforme molto funzionali. I due consigliati sono [OMS](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-analysis-oms) e [Application Insights](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-analysis-appinsights) perché si integrano meglio con Service Fabric.
+-   **Generazione di eventi:** infrastruttura hello (cluster) sia a livello di applicazione / servizio sono inclusi gli eventi (log, le tracce, gli eventi personalizzati). Altre informazioni sui [eventi a livello di infrastruttura](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-generation-infra) e [eventi a livello di applicazione](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-generation-app) toounderstand quello fornito e come tooadd ulteriormente strumentazione.
+-   **Aggregazione evento:** gli eventi generati necessario toobe raccolti e aggregati prima che possano essere visualizzati. In genere, è consigliabile utilizzare [diagnostica Azure](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-aggregation-wad) (raccolta di log basato su tooagent più simile) o [EventFlow](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-aggregation-eventflow) (in-process la raccolta di log).
+-   **Analisi:** gli eventi devono toobe visualizzato e accessibile in un formato, tooallow per l'analisi e visualizzazione in base alle esigenze. Esistono diverse piattaforme grande che esistono nel mercato hello per quanto riguarda toohello analisi e la visualizzazione dei dati di monitoraggio e diagnostica. Hello consigliati sono due [OMS](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-analysis-oms) e [Application Insights](https://docs.microsoft.com/azure/service-fabric/service-fabric-diagnostics-event-analysis-appinsights) scadenza tootheir una migliore integrazione con Service Fabric.
 
-È possibile usare [Monitoraggio di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview) per monitorare molte delle risorse di Azure in cui viene creato un cluster di Service Fabric.
+È inoltre possibile utilizzare [Monitor Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview) toomonitor molte delle risorse di Azure in cui viene compilato un cluster di Service Fabric di hello.
 
-Un watchdog è un servizio separato che può controllare l'integrità e il carico tra servizi e creare report di integrità per l'intera gerarchia di modello. Questo consente di evitare errori che non verrebbero rilevati visualizzando un singolo servizio. Anche i watchdog sono utili per ospitare il codice che esegue azioni correttive senza l'intervento dell'utente, ad esempio, la cancellazione dei file di log nell'archiviazione a determinati intervalli di tempo. È possibile trovare un'implementazione di esempio del servizio watchdog [qui](https://azure.microsoft.com/resources/samples/service-fabric-watchdog-service/).
+Un controllo è un servizio separato che può controllare l'integrità e il carico tra servizi e segnalare l'integrità per tutti gli elementi nella gerarchia del modello di integrità hello. Ciò consente di evitare gli errori che non verrebbero rilevati in base a visualizzazione hello di un singolo servizio. Watchdog sono inoltre un codice di toohost buona che esegue le azioni correttive senza interazione dell'utente (ad esempio, pulizia dei file di log nell'archiviazione a determinati intervalli di tempo). È possibile trovare un'implementazione di esempio del servizio watchdog [qui](https://azure.microsoft.com/resources/samples/service-fabric-watchdog-service/).
 
 ## <a name="secure-using-certificates"></a>Protezione con certificati
-Questo articolo descrive come proteggere la comunicazione tra i diversi nodi del cluster di Windows autonomo e come autenticare i client che si connettono a questo cluster usando certificati X.509. In questo modo, solo gli utenti autorizzati possano accedere al cluster e alle applicazioni distribuite ed eseguire attività di gestione. La sicurezza basata su certificati deve essere abilitata nel cluster durante la creazione del cluster.
+Utilizzo di certificati, viene indicato come toosecure hello comunicazione hello vari nodi del cluster di Windows autonoma, nonché il modo tooauthenticate client che si connettono toothis cluster, utilizzando i certificati x. 509. Ciò garantisce che solo gli utenti autorizzati possono accedere cluster hello, hello applicazioni distribuite e attività di gestione. Sicurezza di certificato deve essere abilitata nel cluster hello quando viene creato il cluster hello.
 
 ### <a name="x509-certificates-and-service-fabric"></a>Certificati X.509 e Service Fabric
-I certificati digitali X509 vengono comunemente usati per autenticare client e server e per crittografare e firmare digitalmente i messaggi.
+I certificati digitali x. 509 sono utilizzati tooauthenticate client e server e tooencrypt e firmare digitalmente i messaggi.
 
-La tabella seguente include un elenco dei certificati necessari per la configurazione del cluster:
+Hello nella tabella seguente elenca i certificati di hello che sarà necessario nel programma di installazione del cluster:
 
 |Impostazione Informazioni sul certificato |Descrizione|
 |-------------------------------|-----------|
-|ClusterCertificate|    Questo certificato è necessario per proteggere la comunicazione tra i nodi di un cluster. È possibile usare due diversi certificati, uno primario e uno secondario per l'aggiornamento.|
-|ServerCertificate| Questo certificato viene presentato al client quando tenta di connettersi al cluster. È possibile usare due diversi certificati del server, uno primario e uno secondario per l'aggiornamento.|
-|ClientCertificateThumbprints|  Si tratta di un set di certificati che da installare nei client autenticati.|
-|ClientCertificateCommonNames|  Impostare il nome comune del primo certificato client per CertificateCommonName. CertificateIssuerThumbprint è l'identificazione personale dell'autorità emittente del certificato.|
-|ReverseProxyCertificate|   Si tratta di un certificato facoltativo che è possibile specificare se si vuole proteggere il [proxy inverso](https://docs.microsoft.com/azure/service-fabric/service-fabric-reverseproxy).|
+|ClusterCertificate|    Questo certificato è obbligatorio toosecure hello comunicazione tra i nodi di hello in un cluster. È possibile usare due diversi certificati, uno primario e uno secondario per l'aggiornamento.|
+|ServerCertificate| Questo certificato viene presentato toohello client durante il tentativo di tooconnect toothis cluster. È possibile usare due diversi certificati del server, uno primario e uno secondario per l'aggiornamento.|
+|ClientCertificateThumbprints|  Si tratta di un set di certificati che si desidera tooinstall nei client hello autenticato.|
+|ClientCertificateCommonNames|  Impostare hello nome comune del certificato client prima di hello hello CertificateCommonName. Hello CertificateIssuerThumbprint è l'identificazione personale hello per emittente hello del certificato.|
+|ReverseProxyCertificate|   Si tratta di un certificato facoltativo che può essere specificato se si desidera toosecure il [Proxy inverso](https://docs.microsoft.com/azure/service-fabric/service-fabric-reverseproxy).|
 
 Per altre informazioni sulla protezione dei certificati, [fare clic qui](https://docs.microsoft.com/azure/service-fabric/service-fabric-windows-cluster-x509-security).
 
 ## <a name="role-based-access-control-rbac"></a>Controllo degli accessi in base al ruolo
-Il Controllo di accesso consente all'amministratore del cluster di limitare l'accesso a determinate operazioni del cluster per diversi gruppi di utenti, rendendo più sicuro il cluster. Per i client che si connettono a un cluster, sono supportati due tipi di controllo di accesso diversi: il ruolo di amministratore e il ruolo utente.
+Controllo degli accessi consente hello cluster amministratore toolimit accesso toocertain le operazioni del cluster per diversi gruppi di utenti, di rendere più sicuro cluster hello. Sono supportati due tipi di controllo di accesso diverso per client che si connettono tooa cluster: ruolo di amministratore e il ruolo utente.
 
-Gli amministratori hanno accesso completo alle funzionalità di gestione, incluse funzionalità di lettura/scrittura. Gli utenti, per impostazione predefinita, hanno solo l'accesso in lettura alle funzionalità di gestione, ad esempio funzionalità di query, e la possibilità di risolvere applicazioni e servizi.
+Gli amministratori hanno capacità di toomanagement accesso completo (incluse le funzionalità di lettura/scrittura). Gli utenti, per impostazione predefinita, dispongono solo dell'accesso in lettura toomanagement funzionalità (ad esempio, funzionalità di query), hello possibilità tooresolve applicazioni e servizi e.
 
-I ruoli client amministratore e utente vengono specificati al momento della creazione del cluster fornendo per ognuno identità separate, ad esempio certificati, AAD e così via. Per altre informazioni sulle impostazioni predefinite del controllo di accesso e su come modificarle, vedere [Controllo di accesso basato sui ruoli per i client di Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-security-roles).
+Specificare hello ruoli amministratore e utente client in fase di creazione del cluster di hello fornendo identità separate (certificati, e così via AAD) per ognuno. Per ulteriori informazioni su impostazioni di controllo di accesso predefinito hello e come toochange hello le impostazioni predefinite, vedere [controllo di accesso basato sui ruoli per i client di Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-security-roles).
 
 ## <a name="secure-standalone-cluster-using-windows-security"></a>Protezione di un cluster con la sicurezza di Windows
-Per impedire l'accesso non autorizzato a un cluster di Service Fabric, è necessario proteggere il cluster. La sicurezza è importante soprattutto quando il cluster esegue carichi di lavoro di produzione. Questo articolo descrive come configurare la sicurezza da nodo a nodo e da client a nodo usando la sicurezza di Windows nel file ClusterConfig.JSON.
+cluster di Service Fabric tooa accesso non autorizzato di tooprevent, è necessario proteggere il cluster hello. Protezione è particolarmente importante quando il cluster hello esegue i carichi di lavoro. Vengono descritte la sicurezza del nodo a nodo e al nodo client tooconfigure utilizzando la sicurezza in Windows hello file Clusterconfig.
 
 **Configurare la sicurezza di Windows usando l'approccio account del servizio gestito di gruppo**
 
-La sicurezza da nodo a nodo viene configurata impostando [ClustergMSAIdentity](https://docs.microsoft.com/azure/service-fabric/service-fabric-windows-cluster-windows-security) quando l'infrastruttura di servizi deve essere eseguita nell'account del servizio gestito di gruppo. Per creare relazioni di trust tra i nodi, è necessario che si riconoscano.
+Tramite l'impostazione viene configurata la sicurezza di toonode nodo [ClustergMSAIdentity](https://docs.microsoft.com/azure/service-fabric/service-fabric-windows-cluster-windows-security) quando service fabric deve toorun in gMSA. In ordine toobuild le relazioni di trust tra i nodi, è necessario essere informati del loro.
 
-La sicurezza da client a nodo viene configurata tramite le identità dei client. Per stabilire un trust tra un client e il cluster, è necessario configurare il cluster in modo che riconosca quali identità dei client può considerare attendibili.
+Sicurezza toonode client viene configurato tramite ClientIdentities. In ordine tooestablish trust tra un client e hello di cluster, è necessario configurare hello cluster tooknow quali identità del client che è attendibile.
 
 **Configurare la sicurezza di Windows usando un gruppo di computer**
 
-La sicurezza da nodo a nodo viene configurata con ClusterIdentity se si vuole usare un gruppo di computer all'interno di un dominio di Active Directory. Per altre informazioni, vedere l'articolo su come [Creare un gruppo di computer in Active Directory](https://msdn.microsoft.com/library/aa545347).
+Sicurezza toonode del nodo è configurato per l'impostazione utilizzando ClusterIdentity se si desidera toouse un gruppo di computer all'interno di un dominio Active Directory. Per altre informazioni, vedere l'articolo su come [Creare un gruppo di computer in Active Directory](https://msdn.microsoft.com/library/aa545347).
 
-La sicurezza da client a nodo viene configurata tramite le identità dei client. Per stabilire una relazione di trust tra un client e il cluster, è necessario configurare il cluster in modo che riconosca le identità dei client che il cluster può considerare attendibili. È possibile stabilire una relazione di trust in due modi diversi:
+La sicurezza da client a nodo viene configurata tramite le identità dei client. tooestablish attendibilità tra un client e hello cluster, è necessario configurare hello cluster tooknow hello client identità hello cluster è attendibile. È possibile stabilire una relazione di trust in due modi diversi:
 
--   Specificare gli utenti del gruppo di dominio che possono connettersi.
--   Specificare gli utenti del nodo del dominio che possono connettersi.
+-   Specificare gli utenti al gruppo di dominio hello in grado di connettersi.
+-   Specificare gli utenti al nodo di dominio hello in grado di connettersi.
 
 ## <a name="configure-application-security-in-service-fabric"></a>Configurazione della sicurezza dell'applicazione in Service Fabric
 ### <a name="managing-secrets-in-service-fabric-applications"></a>Gestione dei segreti nelle applicazioni di Service Fabric
 Questa modalità consente di gestire i segreti in un'applicazione di Service Fabric. I segreti possono essere informazioni riservate, ad esempio le stringhe di connessione di archiviazione, le password o altri valori che non devono essere gestiti in testo normale.
 
-Questo approccio usa [Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-whatis) per gestire chiavi e segreti. L'uso di segreti in un'applicazione è tuttavia indipendente dalla piattaforma cloud e ciò consente alle applicazioni di essere distribuite in un cluster ospitato in un punto qualsiasi. In questo flusso sono presenti quattro passaggi principali:
+Questo approccio utilizza [insieme credenziali chiavi Azure](https://docs.microsoft.com/azure/key-vault/key-vault-whatis) toomanage chiavi e segreti. Tuttavia, utilizzando i segreti in un'applicazione è cluster cloud tooallow indipendente dalla piattaforma applicazioni toobe distribuito tooa con ospitati in qualsiasi punto. In questo flusso sono presenti quattro passaggi principali:
 
 -   Ottenere un certificato di crittografia dei dati.
--   Installare il certificato nel cluster.
--   Crittografare i valori dei segreti quando si distribuisce un'applicazione con il certificato e inserirli nel file di configurazione Settings.xml del servizio.
--   Leggere i valori crittografati risultati da Settings. XML eseguendo la decrittografia con lo stesso certificato di crittografia.
+-   Installare il certificato di hello del cluster.
+-   Crittografare i valori dei segreti quando si distribuisce un'applicazione con certificato hello e li inserisce nel file di configurazione di un servizio Settings.
+-   I valori di lettura crittografato fuori Settings decrittografando con hello stesso certificato di crittografia.
 
 >[!Note]
 >Per altre informazioni, vedere [Gestione dei segreti nelle applicazioni di Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-application-secret-management).
 
 ### <a name="configure-security-policies-for-your-application"></a>Configurare i criteri di sicurezza per l'applicazione
-La sicurezza di Azure Service Fabric aiuta a proteggere le applicazioni che vengono eseguite nel cluster con account utente diversi. La sicurezza di Service Fabric aiuta anche a proteggere le risorse che vengono usate dalle applicazioni in fase di distribuzione con l'account utente, ad esempio file, directory e certificati. In questo modo le applicazioni in esecuzione, anche in un ambiente ospitato condiviso, sono reciprocamente protette.
-I passaggi includono:
+Utilizzando la protezione dell'infrastruttura di Azure servizio, è possibile la protezione delle applicazioni che sono in esecuzione in cluster hello con account utente diversi. Protezione dell'infrastruttura del servizio consente inoltre di hello sicuro le risorse usate dalle applicazioni in fase di hello della distribuzione con account utente di hello, ad esempio, file, directory e i certificati. In questo modo le applicazioni in esecuzione, anche in un ambiente ospitato condiviso, sono reciprocamente protette.
+Hello passaggi includono:
 
--   Configurare i criteri per il punto di ingresso dell'installazione del servizio.
+-   Configurare i criteri di hello per un punto di ingresso del programma di installazione del servizio.
 -   Avviare i comandi di PowerShell da un punto di ingresso dell'installazione.
 -   Usare il reindirizzamento della console per il debug locale.
 -   Configurare i criteri per i pacchetti di codice del servizio.
 -   Assegnare criteri di accesso di sicurezza per gli endpoint HTTP e HTTPS.
 
 ## <a name="secure-communication-for-services-in-azure-service-fabric-security"></a>Protezione della comunicazione per i servizi nella sicurezza di Azure Service Fabric
-La sicurezza è uno degli aspetti essenziali delle comunicazioni. Il framework delle applicazioni Reliable Services offre alcuni strumenti e stack di comunicazione predefiniti che è possibile usare per migliorare la sicurezza.
+La sicurezza è uno degli aspetti più importanti di hello di comunicazione. Hello servizi affidabili application framework fornisce alcuni stack di comunicazione predefiniti e gli strumenti che possono essere utilizzati tooimprove sicurezza.
 
 -   [Proteggere un servizio quando si usa la comunicazione remota dei servizi](https://docs.microsoft.com/azure/service-fabric/service-fabric-reliable-services-secure-communication).
 -   [Proteggere un servizio quando si usa uno stack di comunicazione basato su WCF](https://docs.microsoft.com/azure/service-fabric/service-fabric-reliable-services-secure-communication#help-secure-a-service-when-youre-using-a-wcf-based-communication-stack).

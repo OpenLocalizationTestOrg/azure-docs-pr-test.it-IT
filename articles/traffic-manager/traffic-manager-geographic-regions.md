@@ -1,5 +1,5 @@
 ---
-title: Gerarchia di paesi/aree geografiche usata nel tipo di routing Geografico di Gestione traffico di Azure| Microsoft Docs
+title: gerarchia aaaCountry/area geografica utilizzata dal tipo di routing geografica di Azure Traffic Manager | Documenti Microsoft
 description: In questo articolo viene riportata la gerarchia di paesi/aree geografiche usata nel tipo di routing Geografico di Gestione traffico di Azure
 services: traffic-manager
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: kumud
-ms.openlocfilehash: 93db099e9e25856e13c398c4a03a5728d178e5dd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d09fc896951fa1086822d69316468e7a98861591
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="countryregion-hierarchy-used-by-azure-traffic-manager-for-geographic-traffic-routing-method"></a>Gerarchia di paesi/aree geografiche usata da Gestione traffico di Azure per il metodo di routing del traffico Geografico
 
-In questo articolo sono elencati i paesi e le regioni usati nel metodo di routing del traffico **Geografico** in Gestione traffico di Azure. È possibile ottenere queste informazioni anche in modo programmatico effettuando una chiamata all'[API REST di Gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/). 
+Questo articolo vengono elencati i paesi hello, utilizzato da hello **geografico** Traffic Manager di Azure di metodo di routing del traffico. È possibile ottenere queste informazioni anche in modo programmatico effettuando una chiamata all'[API REST di Gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/). 
 
 - WORLD (mondo)
 
@@ -384,7 +384,7 @@ In questo articolo sono elencati i paesi e le regioni usati nel metodo di routin
 
             - US-WY (Wyoming)
 
-        - VC (Saint Vincent e Grenadine)
+        - VC (Saint Vincent e Grenadine hello)
 
         - VG (Isole Vergini Britanniche)
 

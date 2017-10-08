@@ -1,6 +1,6 @@
 ---
-title: Acquisire un'immagine di una macchina virtuale Linux | Microsoft Docs
-description: Informazioni su come acquisire un'immagine di una macchina virtuale di Azure basata su Linux creata con il modello di distribuzione classica.
+title: aaaCapture un'immagine di una VM Linux | Documenti Microsoft
+description: Informazioni su come toocapture creata un'immagine di una basata su Linux Azure macchina virtuale (VM) con il modello di distribuzione classica hello.
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: iainfou
-ms.openlocfilehash: ecde5dd3211bfbb290e6910d7d55136d079c6cf3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 33c4059d5bb919a86bdc3492abca540750f365ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-capture-a-classic-linux-virtual-machine-as-an-image"></a>Come acquisire una macchina virtuale Linux classica come immagine
+# <a name="how-toocapture-a-classic-linux-virtual-machine-as-an-image"></a>Come toocapture una macchina virtuale di Linux classica come un'immagine
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Informazioni su come [eseguire questa procedura con il modello di Resource Manager](../capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Informazioni su come troppo[eseguire questi passaggi tramite il modello di gestione risorse di hello](../capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Questo articolo illustra come acquisire una macchina virtuale di Azure classica che esegue Linux come un'immagine per creare altre macchine virtuali. Tale immagine include il disco del sistema operativo e i dischi dati collegati alla macchina virtuale. Poiché la configurazione di rete non è inclusa, è necessario definirla quando si crea l'altra macchina virtuale dall'immagine.
+In questo articolo illustra come toocapture una classica macchina virtuale di Azure (VM) che eseguono Linux come un'immagine toocreate altre macchine virtuali. Questa immagine include disco del sistema operativo hello e dischi dati collegati toohello macchina virtuale. Configurazione di rete, non include pertanto è necessario tooconfigure che quando si crea hello altra macchina virtuale dall'immagine hello.
 
-Azure archivia l'immagine in **Immagini**, insieme a tutte le immagini caricate. Per altre informazioni sulle immagini, vedere [Informazioni sulle immagini di macchine virtuali in Azure][About Virtual Machine Images in Azure].
+Archivi Azure hello immagine in **immagini**, insieme a tutte le immagini caricate dall'utente. Per altre informazioni sulle immagini, vedere [Informazioni sulle immagini di macchine virtuali in Azure][About Virtual Machine Images in Azure].
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Questa procedura presuppone che sia stata creata una macchina virtuale di Azure tramite il modello di distribuzione classica e che sia stato configurato il sistema operativo, inclusi gli eventuali dischi dati connessi. Se è necessario creare una macchina virtuale, leggere l'articolo [Come creare una macchina virtuale Linux][How to Create a Linux Virtual Machine].
+Questa procedura presuppone di aver già creato una macchina virtuale di Azure con modello di distribuzione classica hello e del sistema operativo configurato hello, incluso il collegamento a eventuali dischi dati. Se è necessario toocreate una macchina virtuale, leggere [come una macchina virtuale Linux tooCreate][How tooCreate a Linux Virtual Machine].
 
-## <a name="capture-the-virtual-machine"></a>Acquisizione della macchina virtuale
-1. [Connettersi alla macchina virtuale](../mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) usando un client SSH di propria scelta.
-2. Nella finestra di SSH digitare il comando seguente. L'output di `waagent` può variare leggermente, in base alla versione dell'utilità:
+## <a name="capture-hello-virtual-machine"></a>Acquisire una macchina virtuale hello
+1. [Connettersi toohello VM](../mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) utilizzando un client SSH di propria scelta.
+2. Nella finestra hello SSH, digitare hello comando seguente. l'output di Hello `waagent` possono variare leggermente a seconda della versione di hello di questa utilità:
 
     ```bash
     sudo waagent -deprovision+user
     ```
 
-    Il comando precedente prova a pulire il sistema per renderlo idoneo per un nuovo provisioning. Questa operazione esegue le attività seguenti:
+    Hello precedente comando tenta di sistema hello tooclean e rendono adatto per la riconfigurazione. Questa operazione esegue hello seguenti attività:
 
-   * Rimuove le chiavi host SSH (se Provisioning.RegenerateSshHostKeyPair è 'y' nel file di configurazione)
+   * Rimuove le chiavi SSH host (se Provisioning.RegenerateSshHostKeyPair 'y' nel file di configurazione hello)
    * Cancella la configurazione NameServer in /etc/resolv.conf
-   * Rimuove la password `root` dell'utente da /etc/shadow (se Provisioning.DeleteRootPassword è 'y' nel file di configurazione)
+   * Rimuove hello `root` password utente di ecc/shadow (se Provisioning.DeleteRootPassword 'y' nel file di configurazione hello)
    * Rimuove i lease client DHCP memorizzati nella cache
-   * Ripristina il nome host su localhost.localdomain
-   * Elimina anche l'ultimo account utente (ottenuto da /var/lib/waagent) di cui è stato effettuato il provisioning **e i dati associati**.
+   * Reimposta host toolocalhost.localdomain nome
+   * Elimina account provisioning utente ultimo hello (ottenuto dal /var/lib/waagent) **e i dati associati**.
 
      > [!NOTE]
-     > Il deprovisioning elimina file e dati per "generalizzare" l'immagine. Eseguire questo comando solo su una macchina virtuale da acquisire come nuovo modello di immagine. Ciò non garantisce che dall'immagine vengano cancellate tutte le informazioni sensibili o che l'immagine sia adatta per la ridistribuzione a terze parti.
+     > Deprovisioning Elimina i file e dati troppo "generalizzare" hello immagine. Solo il seguente comando in una macchina virtuale che si desidera toocapture come nuovo modello di immagine. Non garantisce che l'immagine hello viene cancellato di tutte le informazioni riservate o adatto per le parti toothird di ridistribuzione.
 
-3. Digitare **y** per continuare. È possibile aggiungere il parametro `-force` per evitare questo passaggio di conferma.
-4. Digitare **Exit** per chiudere il client SSH.
-
-   > [!NOTE]
-   > I restanti passaggi presuppongono che l' [interfaccia della riga di comando di Azure](../../../cli-install-nodejs.md) sia stata già installata sul computer client. Tutti i passaggi seguenti possono essere eseguiti anche nel [Portale di Azure](http://portal.azure.com).
-
-5. Dal computer client, aprire l'interfaccia della riga di comando di Azure ed eseguire l'accesso alla sottoscrizione di Azure. Per informazioni dettagliate, leggere [Connettersi a una sottoscrizione Azure dall'interfaccia della riga di comando di Azure](../../../xplat-cli-connect.md).
+3. Tipo **y** toocontinue. È possibile aggiungere hello `-force` tooavoid parametro questo passaggio di conferma.
+4. Tipo **uscita** client di tooclose hello SSH.
 
    > [!NOTE]
-   > Accedere al Portale di Azure.
+   > Hello rimanenti passaggi si presuppone che si dispone già di [installato hello Azure CLI](../../../cli-install-nodejs.md) nel computer client. Hello tutti i passaggi può essere eseguite anche in hello [portale di Azure](http://portal.azure.com).
+
+5. Dal computer client, aprire Azure CLI e account di accesso tooyour sottoscrizione di Azure. Per informazioni dettagliate, leggere [connettersi tooan sottoscrizione di Azure da hello Azure CLI](../../../xplat-cli-connect.md).
+
+   > [!NOTE]
+   > Nel portale di Azure hello, accedi toohello portale.
 
 6. Assicurarsi che sia attiva la modalità Gestione dei servizi:
 
@@ -69,45 +69,45 @@ Questa procedura presuppone che sia stata creata una macchina virtuale di Azure 
     azure config mode asm
     ```
 
-7. Arrestare la macchina virtuale già sottoposta a deprovisioning. Nell'esempio seguente viene arrestata la macchina virtuale denominata `myVM`:
+7. Arrestare hello macchina virtuale che è già sottoposta a deprovisioning. Hello seguente arresta macchina virtuale denominata hello `myVM`:
 
     ```azurecli
     azure vm shutdown myVM
     ```
-   Se necessario, è possibile visualizzare un elenco di tutte le macchine virtuali create nella propria sottoscrizione tramite il comando `azure vm list`
+   Se necessario, è possibile visualizzare un elenco di hello tutte le macchine virtuali creato nella sottoscrizione mediante`azure vm list`
 
    > [!NOTE]
-   > Se si usa il Portale di Azure, selezionare la macchina virtuale e fare clic su **Arresta** per arrestarla.
+   > Se si usa hello portale di Azure, selezionare hello macchina virtuale e fare clic su **arrestare** arrestare hello macchina virtuale.
 
-8. Quando la macchina virtuale viene arrestata, acquisire l'immagine. Nell'esempio seguente viene acquisita la macchina virtuale denominata `myVM` e viene creata un'immagine generalizzata denominata `myNewVM`:
+8. Quando viene arrestato hello VM, acquisire l'immagine di hello. Hello dopo le acquisizioni di esempio hello macchina virtuale denominata `myVM` e crea un'immagine generalizzata denominata `myNewVM`:
 
     ```azurecli
     azure vm capture -t myVM myNewVM
     ```
 
-    Il sottocomando `-t` consente di eliminare la macchina virtuale originale.
+    Hello `-t` sottocomando eliminazioni hello macchina virtuale originale.
 
     > [!NOTE]
-    > Nel Portale di Azure è possibile acquisire un'immagine selezionando **Immagine** dal menu Hub. Per l'immagine è necessario specificare le informazioni seguenti: nome, gruppo di risorse, posizione, tipo di sistema operativo e percorso BLOB di archiviazione.
+    > Nel portale di Azure hello, è possibile acquisire un'immagine selezionando **immagine** dal menu di hub hello. È necessario hello toosupply le seguenti informazioni per l'immagine di hello: nome gruppo di risorse, posizione, tipo di sistema operativo e percorso di archiviazione blob.
 
-9. La nuova immagine è ora disponibile nell'elenco di immagini che possono essere usate per configurare nuove macchine virtuali. È possibile visualizzarla con il comando:
+9. Hello nuova immagine è ora disponibile nell'elenco di hello delle immagini che possono essere tooconfigure di utilizzare qualsiasi nuova macchina virtuale. È possibile visualizzarli con il comando hello:
 
    ```azurecli
    azure vm image list
    ```
 
-   Nel [portale di Azure](http://portal.azure.com) la nuova immagine viene visualizzata in **Immagini VM (classico)** che appartiene a **Servizi di calcolo**. Per accedere a **Immagini VM (classico)**, fare clic su _Altri servizi_ nella parte inferiore dell'elenco di servizi di Azure e quindi eseguire una ricerca in **Servizi di calcolo**.   
+   In hello [portale di Azure](http://portal.azure.com), hello nuova immagine viene visualizzata in hello **immagini di macchina virtuale (classico)** appartenente toohello **calcolo** servizi. È possibile accedere a **immagini di macchina virtuale (classico)** facendo _più servizi_ nella parte inferiore di hello di hello Azure service elenco e quindi cercare nella hello **calcolo** servizi.   
 
    ![Acquisizione dell'immagine eseguita correttamente](./media/capture-image/VMCapturedImageAvailable.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-L'immagine può ora essere usata per creare macchine virtuali. È possibile usare il comando `azure vm create` dell'interfaccia della riga di comando di Azure e indicare il nome dell'immagine creata. Per altre informazioni, vedere [Uso dell'interfaccia della riga di comando di Azure con il modello di distribuzione classica](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
+immagine di Hello è pronto toobe utilizzato toocreate macchine virtuali. È possibile utilizzare il comando di Azure CLI hello `azure vm create` e specificare il nome dell'immagine hello creato. Per ulteriori informazioni, vedere [Using hello CLI di Azure con il modello di distribuzione classica](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
 
-In alternativa, usare il [Portale di Azure](http://portal.azure.com) per creare una macchina virtuale personalizzata tramite il metodo **Image** e selezionando l'immagine creata. Per altre informazioni, vedere [Come creare una macchina virtuale personalizzata][How to Create a Custom Virtual Machine].
+In alternativa, utilizzare hello [portale di Azure](http://portal.azure.com) toocreate una macchina virtuale personalizzata tramite hello **immagine** (metodo) e selezionando hello immagine creata. Per ulteriori informazioni, vedere [come una macchina virtuale personalizzata tooCreate][How tooCreate a Custom Virtual Machine].
 
 **Vedere anche:** [Manuale dell'utente dell'agente Linux di Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [About Virtual Machine Images in Azure]:../../virtual-machines-linux-classic-about-images.md
-[How to Create a Custom Virtual Machine]:create-custom.md
-[How to Attach a Data Disk to a Virtual Machine]:attach-disk.md
-[How to Create a Linux Virtual Machine]:create-custom.md
+[How tooCreate a Custom Virtual Machine]:create-custom.md
+[How tooAttach a Data Disk tooa Virtual Machine]:attach-disk.md
+[How tooCreate a Linux Virtual Machine]:create-custom.md

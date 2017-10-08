@@ -1,6 +1,6 @@
 ---
-title: Risoluzione dei problemi relativi a Istanze di contenitore di Azure
-description: Informazioni su come risolvere i problemi relativi a Istanze di contenitore di Azure
+title: aaaTroubleshooting istanze di contenitori di Azure
+description: Informazioni su come tootroubleshoot problemi con le istanze di contenitore di Azure
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 86fa4b7dca7c362f95c0243a33f03d1f2dd3ab42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfec636a0a174c74a6f2e9d9c4da6e871f8d2fda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a>Risolvere i problemi di distribuzione in Istanze di contenitore di Azure
 
-Questo articolo mostra come risolvere i problemi durante la distribuzione di contenitori in Istanze di contenitore di Azure e illustra alcuni problemi comuni che è possibile incontrare.
+Questo articolo illustra come tootroubleshoot problemi durante la distribuzione di contenitori tooAzure istanze di contenitori. Vengono inoltre descritti alcuni dei problemi comuni di hello che si verifichino.
 
 ## <a name="getting-diagnostic-events"></a>Recupero degli eventi di diagnostica
 
-Per visualizzare i log generati dal codice dell'applicazione all'interno di un contenitore, è possibile usare il comando [az container logs](/cli/azure/container#logs). Se tuttavia il contenitore non viene distribuito correttamente, è necessario esaminare le informazioni di diagnostica fornite dal provider di risorse Istanze di contenitore di Azure. Per visualizzare gli eventi per il proprio contenitore, eseguire questo comando:
+log tooview dal codice dell'applicazione in un contenitore, è possibile utilizzare hello [az contenitore registri](/cli/azure/container#logs) comando. Ma se il contenitore non viene distribuito correttamente, è necessario informazioni di diagnostica hello tooreview fornite dal provider di risorse hello istanze di contenitori di Azure. eventi di hello tooview per il contenitore, eseguire hello comando seguente:
 
 ```azurecli-interactive
 az container show -n mycontainername -g myresourcegroup
 ```
 
-L'output include le proprietà principali del contenitore e gli eventi di distribuzione:
+output di Hello include proprietà principali hello del contenitore, insieme agli eventi di distribuzione:
 
 ```bash
 {
@@ -91,9 +91,9 @@ L'output include le proprietà principali del contenitore e gli eventi di distri
 
 La maggior parte degli errori riscontrati durante la distribuzione è dovuta ad alcuni problemi comuni.
 
-### <a name="unable-to-pull-image"></a>Non è possibile eseguire il pull dell'immagine
+### <a name="unable-toopull-image"></a>Non è possibile toopull immagine
 
-Se Istanze di contenitore di Azure non è inizialmente in grado di eseguire il pull dell'immagine, ripete il tentativo per un certo periodo di tempo prima di generare un errore. Se il pull dell'immagine non può essere eseguito, vengono visualizzati eventi simili al seguente:
+Se le istanze di contenitore di Azure è Impossibile toopull immagine inizialmente, eseguire un nuovo tentativo per un certo periodo prima che alla fine. Se non è possibile effettuare il pull di immagine hello, vengono visualizzati gli eventi hello seguente:
 
 ```bash
 "events": [
@@ -108,7 +108,7 @@ Se Istanze di contenitore di Azure non è inizialmente in grado di eseguire il p
     "count": 1,
     "firstTimestamp": "2017-08-03T22:19:32+00:00",
     "lastTimestamp": "2017-08-03T22:19:32+00:00",
-    "message": "Failed: Failed to pull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
+    "message": "Failed: Failed toopull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
     "type": "Warning"
   },
   {
@@ -121,11 +121,11 @@ Se Istanze di contenitore di Azure non è inizialmente in grado di eseguire il p
 ]
 ```
 
-Per risolvere il problema, eliminare il contenitore e ripetere il tentativo di distribuzione, facendo attenzione a digitare correttamente il nome dell'immagine.
+tooresolve, eliminare il contenitore di hello e ripetere la distribuzione, che sia stato digitato correttamente il nome di immagine hello pagante attenzione.
 
 ### <a name="container-continually-exits-and-restarts"></a>Il contenitore viene continuamente chiuso e riavviato
 
-Istanze di contenitore di Azure supporta attualmente solo servizi a esecuzione prolungata. Se il contenitore termina l'esecuzione e si chiude, viene riavviato in automatico ed eseguito nuovamente. In questo caso, vengono visualizzati eventi simili ai seguenti. Si noti che il contenitore viene avviato correttamente e quindi riavviato con rapidità. L'API di Istanze di contenitore include una proprietà `retryCount` che indica il numero di volte in cui un determinato contenitore è stato riavviato.
+Istanze di contenitore di Azure supporta attualmente solo servizi a esecuzione prolungata. Se il contenitore esegue toocompletion e viene chiusa, viene automaticamente riavviata e viene eseguito di nuovo. In questo caso, vengono visualizzati eventi simili ai seguenti. Nota che il contenitore hello si avvia, viene riavviato rapidamente. Hello contenitore istanze API include un `retryCount` proprietà che indica quante volte un determinato contenitore è stato riavviato.
 
 ```bash
 "events": [
@@ -189,13 +189,13 @@ Istanze di contenitore di Azure supporta attualmente solo servizi a esecuzione p
 ```
 
 > [!NOTE]
-> La maggior parte delle immagini di contenitore per le distribuzioni di Linux imposta una shell, ad esempio bash, come comando predefinito. Poiché una shell non è di per sé un servizio a esecuzione prolungata, questi contenitori vengono chiusi immediatamente e sono soggetti a un riavvio ciclico.
+> La maggior parte delle immagini contenitore per le distribuzioni di Linux impostare una shell, come bash, come comando predefinito hello. Poiché una shell non è di per sé un servizio a esecuzione prolungata, questi contenitori vengono chiusi immediatamente e sono soggetti a un riavvio ciclico.
 
-### <a name="container-takes-a-long-time-to-start"></a>L'avvio di un contenitore richiede molto tempo
+### <a name="container-takes-a-long-time-toostart"></a>Contenitore accetta un toostart molto tempo
 
-Se per avviare il contenitore è necessario molto tempo, ma alla fine l'operazione ha esito positivo, esaminare innanzitutto la dimensione dell'immagine del contenitore. Poiché Istanze di contenitore di Azure esegue il pull dell'immagine del contenitore su richiesta, il tempo di avvio rilevato è direttamente correlato alla dimensione dell'immagine.
+Se il contenitore richiede un toostart molto tempo, ma andrà a buon fine, iniziare esaminando dimensioni hello dell'immagine contenitore. Poiché le istanze di contenitore di Azure effettua il pull dell'immagine del contenitore su richiesta, si verificano tempi di avvio di hello sono tooits direttamente correlate, dimensioni.
 
-Per visualizzare la dimensione dell'immagine del contenitore è possibile usare l'interfaccia della riga di comando di Docker:
+È possibile visualizzare dimensioni hello dell'immagine contenitore con Docker CLI hello:
 
 ```bash
 docker images
@@ -208,6 +208,6 @@ REPOSITORY                             TAG                 IMAGE ID            C
 microsoft/aci-helloworld               latest              7f78509b568e        13 days ago         68.1MB
 ```
 
-Il modo migliore per limitare le dimensioni delle immagini è quello di evitare che l'immagine finale contenga dati che non sono necessari in fase di esecuzione. A tale scopo è possibile eseguire [compilazioni in più fasi](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). Le compilazioni di questo tipo consentono di assicurarsi che l'immagine finale contenga solo gli elementi necessari per l'applicazione, escludendo altro contenuto richiesto in fase di compilazione.
+dimensioni dell'immagine di Hello tookeeping chiave piccole consiste nel garantire che l'immagine finale non può contenere dati che non è necessaria in fase di esecuzione. Un modo toodo con [compilazioni a più fasi](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). Le compilazioni a più fasi rendono tooensure semplice che immagine finale hello contenga solo elementi hello è necessario per l'applicazione e non hello aggiuntivo di contenuto che è stato richiesto al momento della compilazione.
 
-L'altro modo per ridurre l'impatto del pull dell'immagine sul tempo di avvio del contenitore è quello di ospitare l'immagine del contenitore usando il Registro contenitori di Azure nella stessa area in cui si intende usare Istanze di contenitore di Azure. Ciò consente di ridurre il percorso dell'immagine del contenitore attraverso la rete e quindi di limitare notevolmente il tempo di download.
+altri effetti di hello tooreduce modo di hello immagine pull ora di avvio del contenitore Hello sono toohost hello contenitore immagine utilizzando Ciao del Registro di sistema di Azure contenitore hello stessa area in cui si intende toouse istanze di contenitori di Azure. Questo riduce percorso di rete hello hello tootravel di esigenze immagine contenitore, ridurre notevolmente i tempi di download hello.

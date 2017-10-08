@@ -1,6 +1,6 @@
 ---
-title: Creare un registro per contenitori Docker privati in Azure - Interfaccia della riga di comando di Azure | Microsoft Docs
-description: Introduzione alla creazione e gestione dei registri per contenitori Docker privati con l'interfaccia della riga di comando di Azure 2.0
+title: aaaCreate registro contenitore privato Docker - CLI di Azure | Documenti Microsoft
+description: Iniziare a creare e gestire i registri contenitore Docker privati con hello Azure CLI 2.0
 services: container-registry
 documentationcenter: 
 author: neilpeterson
@@ -17,27 +17,27 @@ ms.workload: na
 ms.date: 07/11/2017
 ms.author: nepeters
 ms.custom: na
-ms.openlocfilehash: c7cdb1b13bf32388d18c2a25af28337a81861c1e
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 2cadf42db0681a09c95486510f1e65c6f87c5280
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-managed-container-registry-using-the-azure-cli"></a>Creare un registro contenitori gestito con l'interfaccia della riga di comando di Azure
+# <a name="create-a-managed-container-registry-using-hello-azure-cli"></a>Creare un registro di sistema di contenitore gestito mediante hello CLI di Azure
 
-Registro contenitori di Azure è un servizio gestito di registri contenitori Docker usato per l'archiviazione di immagini di un contenitore Docker privato. Questa guida descrive la creazione di un'istanza gestita di Registro contenitori di Azure con l'interfaccia della riga di comando di Azure.
+Registro contenitori di Azure è un servizio gestito di registri contenitori Docker usato per l'archiviazione di immagini di un contenitore Docker privato. Questa guida descrive la creazione di un'istanza gestita di Azure del Registro di sistema contenitore utilizzando hello CLI di Azure.
 
 I registri contenitori di Azure gestiti sono in anteprima e non disponibili in tutte le aree di Azure.
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa guida introduttiva è necessario eseguire la versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa Guida rapida richiede che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
 
-L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *westcentralus*.
+esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *westcentralus* percorso.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location westcentralus
@@ -45,18 +45,18 @@ az group create --name myResourceGroup --location westcentralus
 
 ## <a name="create-a-container-registry"></a>Creare un registro di contenitori
 
-Creare un'istanza di Registro contenitori di Azure usando il comando [azure acr create](/cli/azure/acr#create).
+Creare un'istanza di record con hello [az acr creare](/cli/azure/acr#create) comando.
 
 > [!NOTE]
 > Quando si crea un registro, specificare un nome di dominio univoco globale di primo livello, contenente solo lettere e numeri.
 
- Il nome del registro nell'esempio è *myContainerRegistry1*, ma è necessario sostituirlo con un nome univoco personalizzato.
+ nome del Registro di sistema Hello nell'esempio hello è *myContainerRegistry1*, sostituire con un nome univoco del proprio.
 
 ```azurecli
 az acr create --name myContainerRegistry1 --resource-group myResourceGroup --sku Managed_Standard
 ```
 
-Quando viene creato il registro, l'output è simile al seguente:
+Quando viene creato il registro hello, l'output di hello è simile toohello seguenti:
 
 ```azurecli
 {
@@ -78,28 +78,28 @@ Quando viene creato il registro, l'output è simile al seguente:
 }
 ```
 
-## <a name="log-in-to-acr-instance"></a>Accedere all'istanza di Registro contenitori di Azure
+## <a name="log-in-tooacr-instance"></a>Accedi tooACR istanza
 
-Prima di eseguire il push e il pull delle immagini del contenitore, è necessario accedere all'istanza di Registro contenitori di Azure. A tale scopo usare il comando [az acr login](/cli/azure/acr#login).
+Prima di push e pull immagini contenitore, è necessario accedere nell'istanza di record toohello. toodo in tal caso, utilizzare hello [accesso acr az](/cli/azure/acr#login) comando.
 
 ```azurecli-interactive
 az acr login --name myAzureContainerRegistry1
 ```
 
-Al termine, il comando restituisce un messaggio di accesso riuscito.
+comando Hello restituisce un messaggio 'Accesso riuscito' una volta completato.
 
 ## <a name="use-azure-container-registry"></a>Usare Registro contenitori di Azure
 
 ### <a name="list-container-images"></a>Elencare le immagini del contenitore
 
-Usare i comandi dell'interfaccia della riga di comando `az acr` per eseguire query su immagini e tag in un repository.
+Hello utilizzare `az acr` contiene i comandi CLI immagini hello tooquery e tag in un repository.
 
 > [!NOTE]
-> Attualmente, il servizio Container Registry non supporta il comando `docker search` per eseguire query relative a immagini e tag.
+> Registro di sistema di contenitore non supporta attualmente hello `docker search` comando tooquery per immagini e i tag.
 
 ### <a name="list-repositories"></a>Elencare repository
 
-L'esempio seguente elenca i repository in un registro, in formato JSON (JavaScript Object Notation):
+Hello esempio seguente vengono elencati i repository hello nel Registro di sistema, in formato JSON (JavaScript Object Notation):
 
 ```azurecli
 az acr repository list -n myContainerRegistry1 -o json
@@ -107,7 +107,7 @@ az acr repository list -n myContainerRegistry1 -o json
 
 ### <a name="list-tags"></a>Elencare tag
 
-L'esempio seguente elenca i tag sul repository **samples/nginx**, in formato JSON:
+Hello esempio seguente vengono elencati i tag hello in hello **esempi/nginx** repository, in formato JSON:
 
 ```azurecli
 az acr repository show-tags -n myContainerRegistry1 --repository samples/nginx -o json
@@ -115,7 +115,7 @@ az acr repository show-tags -n myContainerRegistry1 --repository samples/nginx -
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa guida introduttiva è stata creata un'istanza gestita di Registro contenitori di Azure con l'interfaccia della riga di comando di Azure.
+In questa Guida introduttiva è stata creata un'istanza gestita di Azure del Registro di sistema contenitore utilizzando hello CLI di Azure.
 
 > [!div class="nextstepaction"]
-> [Effettuare il push della prima immagine tramite l'interfaccia della riga di comando di Docker](container-registry-get-started-docker-cli.md)
+> [La prima immagine usando Docker CLI hello push](container-registry-get-started-docker-cli.md)

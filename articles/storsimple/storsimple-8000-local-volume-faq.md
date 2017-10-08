@@ -1,6 +1,6 @@
 ---
-title: Domande frequenti sui volumi aggiunti in locale di StorSimple|Microsoft Docs
-description: Fornisce risposte alle domande frequenti sui volumi aggiunti in locale di StorSimple.
+title: aaaStorSimple localmente bloccato volumi domande frequenti | Documenti Microsoft
+description: Fornisce le risposte toofrequently frequenti domande su StorSimple locale aggiunto volumi.
 services: storsimple
 documentationcenter: NA
 author: manuaery
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/26/2017
 ms.author: manuaery
-ms.openlocfilehash: 857647e89b7ac5d9bc72bc4b2ace0ea7279353f9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3a6557ca15e7e1947b45dcfd005640103c09591
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storsimple-locally-pinned-volumes-frequently-asked-questions-faq"></a>Volumi aggiunti in locale di StorSimple: domande frequenti
 ## <a name="overview"></a>Panoramica
-Ecco alcune domande e risposte relative alla creazione di un volume aggiunto in locale di StorSimple, alla conversione di un volume a livelli in un volume aggiunto in locale (e viceversa) o al backup e ripristino di un volume aggiunto in locale.
+di seguito Hello sono domande e risposte che possono verificarsi quando si crea un volume aggiunto in locale StorSimple, conversione di un volume a livelli tooa aggiunto in locale (e viceversa), o eseguire il backup e ripristino di un volume aggiunto in locale.
 
-Le domande e le risposte sono suddivise nelle categorie seguenti
+Domande e risposte sono disposti in hello seguenti categorie
 
 * Creazione di un volume aggiunto in locale
 * Backup di un volume aggiunto in locale
-* Conversione di un volume a livelli in un volume aggiunto in locale
+* Conversione di un volume aggiunto in locale tooa volume a livelli
 * Ripristino di un volume aggiunto in locale
 * Failover di un volume aggiunto in locale
 
 ## <a name="questions-about-creating-a-locally-pinned-volume"></a>Domande sulla creazione di un volume aggiunto in locale
-**D.** Qual è la dimensione massima di un volume aggiunto in locale che è possibile creare nei dispositivi della serie 8000?
+**D.** Che cos'è una dimensione massima di hello di un volume aggiunto in locale che è possibile creare su dispositivi serie 8000 hello?
 
-**R** Nei dispositivi che eseguono l'aggiornamento 3.0 di StorSimple serie 8000 è possibile effettuare il provisioning di volumi aggiunti in locale fino a 8,5 TB o di volumi a livelli fino a 200 TB nel dispositivo 8100. Nel dispositivo 8600 più grande è possibile effettuare il provisioning di volumi aggiunti in locale fino a 22,5 TB o di volumi a livelli fino a 500 TB.
+**Oggetto** nei dispositivi che eseguono StorSimple 8000 Series Update 3.0, è possibile effettuare il provisioning di volumi aggiunti in locale fino too8.5 TB o i volumi a livelli di too200 TB sul dispositivo 8100 hello. Nel dispositivo 8600 hello più grande, è possibile eseguire il provisioning di volumi aggiunti in locale fino too22.5 TB o i volumi a livelli di too500 TB.
 
-**D.** Di recente il dispositivo 8100 è stato aggiornato con l'aggiornamento 3.0; quando si tenta di creare un volume aggiunto in locale, la dimensione massima disponibile è di 6 TB e non di 8,5 TB. Perché non è possibile creare un volume di 8.5 TB?
+**D.** Aggiornato di recente my tooUpdate dispositivo 8100 3.0 e quando si tenta di toocreate un volume aggiunto in locale, dimensione massima disponibile di hello è solo 6 TB e non 8,5 TB. Perché non è possibile creare un volume di 8.5 TB?
 
-**R** Nei dispositivi che eseguono l'aggiornamento 3.0 è possibile effettuare il provisioning di volumi aggiunti in locale fino a 8,5 TB O di volumi a livelli fino a 200 TB nel dispositivo 8100. Se il dispositivo include già volumi a livello, lo spazio disponibile per la creazione di un volume aggiunto in locale sarà proporzionalmente più bassa di questo limite massimo. Se, ad esempio, è già stato effettuato il provisioning di circa 106 TB di volumi a livelli nel dispositivo 8100 (pari a metà della capacità a livelli), la dimensione massima di un volume locale che è possibile creare nel dispositivo 8100 sarà di conseguenza ridotta a 4 TB (circa metà della capacità massima del volume aggiunto in locale).
+**Oggetto** se il dispositivo sta eseguendo l'aggiornamento 3.0, è possibile eseguire il provisioning di volumi aggiunti in locale fino too8.5 TB o i volumi a livelli di too200 TB in hello dispositivo 8100. Se il dispositivo ha già a livelli volumi, spazio hello disponibile per la creazione di un volume aggiunto in locale sarà proporzionalmente inferiore a questo limite massimo. Ad esempio, se circa 106 TB dei volumi a livelli è già stato eseguito il provisioning sul dispositivo 8100 (che rappresenta la metà di hello a più livelli capacità), quindi hello la dimensione massima di un volume locale che è possibile creare il dispositivo 8100 hello sarà ridotto too4 TB ( circa la metà del numero massimo di hello localmente bloccata capacità del volume).
 
-Poiché parte dello spazio locale del dispositivo viene usato per ospitare il working set di volumi a livelli, lo spazio disponibile per la creazione di un volume aggiunto in locale è ridotta se il dispositivo include volumi a livelli. Al contrario, la creazione di un volume aggiunto in locale riduce in proporzione lo spazio disponibile per i volumi a livelli. La tabella seguente riepiloga la capacità a livelli disponibile nei dispositivi 8100 e 8600 quando vengono creati volumi aggiunti in locale.
+Poiché alcuni spazio locale nel dispositivo hello è hello toohost usato l'utilizzo di set di volumi a livelli, lo spazio disponibile di hello per la creazione di un volume aggiunto in locale viene ridotto se il dispositivo hello è a più livelli di volumi. Al contrario, la creazione di un volume aggiunto in locale in modo proporzionale riduce lo spazio disponibile di hello per i volumi a livelli. Hello le tabelle seguenti vengono riepilogate capacità a più livelli hello disponibile nei dispositivi hello 8100 e 8600 quando vengono creati i volumi aggiunti in locale.
 
 #### <a name="update-30"></a>Aggiornamento 3.0 
-| Capacità volumi aggiunti in locale di cui è stato effettuato il provisioning | Capacità disponibile di cui effettuare il provisioning per volumi a livelli - 8100 | Capacità disponibile di cui effettuare il provisioning per volumi a livelli - 8600 |
+| Capacità volumi aggiunti in locale di cui è stato effettuato il provisioning | Capacità disponibile toobe effettuato il provisioning per i volumi a livelli - 8100 | Capacità disponibile toobe effettuato il provisioning per i volumi a livelli - 8600 |
 | --- | --- | --- |
 | 0 |200 TB |500 TB |
 | 1 TB |176.5 TB |477.8 TB |
@@ -56,148 +56,148 @@ Poiché parte dello spazio locale del dispositivo viene usato per ospitare il wo
 
 **D.** Perché la creazione di un volume aggiunto in locale è un'operazione di lunga durata?
 
-**R.** Viene effettuato il thick provisioning dei volumi aggiunti in locale. Per creare spazio nei livelli locali del dispositivo, è possibile che venga effettuato il push di alcuni dati dai volumi a livelli esistenti al cloud durante il processo di provisioning, e, poiché questo dipende dalla dimensione del volume di cui effettuare il provisioning, dai dati esistenti nel dispositivo e dalla larghezza di banda disponibile per il cloud, la creazione di un volume locale può richiedere diverse ore.
+**R.** Viene effettuato il thick provisioning dei volumi aggiunti in locale. spazio toocreate su hello livelli locali del dispositivo hello, alcuni dati dai volumi a livelli esistenti potrebbero essere inseriti toohello cloud durante il processo di provisioning hello. E poiché questo dipende dalla dimensione di hello del volume hello in corso il provisioning dei dati esistenti di hello sul dispositivo e hello larghezza di banda disponibile toohello cloud, il tempo di hello impiegato toocreate che un volume locale può essere diverse ore.
 
-**D.** Quanto tempo è necessario per creare un volume aggiunto in locale?
+**D.** Quanto tempo occorre toocreate un volume aggiunto in locale?
 
-**R.** Poiché viene effettuato il thick provisioning dei volumi aggiunti in locale, è possibile che venga effettuato il push di alcuni dati esistenti dai volumi a livelli al cloud durante il processo di provisioning. Il tempo necessario per creare un volume aggiunto in locale dipende quindi da più fattori, inclusi la dimensione del volume, i dati sul dispositivo e la larghezza di banda disponibile. In un dispositivo appena installato senza volumi, il tempo necessario per creare un volume aggiunto in locale è di circa 10 minuti per ogni terabyte di dati. La creazione di volumi locali, tuttavia, può richiedere diverse ore a seconda dei fattori illustrati sopra in un dispositivo in uso.
+**R.** Poiché i volumi aggiunti in locale sono stati sottoposti a thick provisioning, alcuni dati dai volumi a livelli esistenti potrebbero inseriti toohello cloud durante il processo di provisioning hello. Pertanto, hello scattato toocreate un volume aggiunto in locale dipende da vari fattori, tra cui hello dimensione del volume di hello, hello dati nel dispositivo e hello larghezza di banda disponibile. In un dispositivo appena installato che non dispone di alcun volume, hello tempo toocreate un volume aggiunto in locale è di circa 10 minuti per terabyte di dati. Tuttavia, la creazione di volumi locali può richiedere diverse ore in base a fattori hello illustrati in precedenza in un dispositivo in uso.
 
-**D.** Si vuole creare un volume aggiunto in locale. Esistono procedure consigliate da tenere in considerazione?
+**D.** Si desidera toocreate un volume aggiunto in locale. Sono presenti eventuali procedure consigliate, che è necessario conoscere toobe?
 
-**R.** I volumi aggiunti in locale sono adatti ai carichi di lavoro che richiedono sempre garanzie locali per i dati e sono sensibili alle latenze cloud. Quando si considera l'utilizzo di volumi locali per i carichi di lavoro, tenere presente quanto segue:
+**R.** I volumi aggiunti in locale sono adatti per carichi di lavoro che richiedono garanzie locale dei dati in qualsiasi momento e sono riservate toocloud latenze. Prendendo in considerazione l'utilizzo di volumi locali per tutti i carichi di lavoro, tenere presente i seguenti hello:
 
-* Viene effettuato il thick provisioning dei volumi aggiunti in locale e la creazione di volumi locali ha effetto sullo spazio disponibile per i volumi a livelli. È quindi consigliabile iniziare con volumi più piccoli e aumentarli parallelamente ai requisiti di archiviazione.
-* Il provisioning di volumi locali è un'operazione di lunga durata che può comportare il push dei dati esistenti dai volumi a livelli al cloud. Di conseguenza, questi volumi possono subire un calo delle prestazioni.
-* Il provisioning di volumi locali è un'operazione dispendiosa in termini di tempo. Il tempo effettivo richiesto dipende da più fattori: la dimensione del volume di cui effettuare il provisioning, i dati nel dispositivo e la larghezza di banda disponibile. Se non è stato eseguito il backup dei volumi esistenti nel cloud, la creazione dei volumi è più lenta. Prima del provisioning di un volume locale, è consigliabile acquisire snapshot nel cloud dei volumi esistenti.
-* È possibile convertire i volumi a livelli esistenti in volumi aggiunti in locale. Questa conversione comporta il provisioning di spazio nel dispositivo per il volume aggiunto in locale risultante, oltre a trasferire eventuali dati a livello dal cloud. Questa è poi un'operazione di lunga durata che dipende dai fattori illustrati sopra. È consigliabile eseguire il backup dei volumi esistenti prima della conversione perché il processo sarà ancora più lento senza il backup dei volumi esistenti. Il dispositivo può anche subire un calo delle prestazioni durante questo processo.
+* Volumi aggiunti in locale sono stati sottoposti a thick provisioning e la creazione di volumi locali influisce sullo spazio disponibile di hello per i volumi a livelli. È quindi consigliabile iniziare con volumi più piccoli e aumentarli parallelamente ai requisiti di archiviazione.
+* Il provisioning dei volumi locali è un'operazione a esecuzione prolungata che può comportare il push dei dati esistenti dal cloud toohello volumi a livelli. Di conseguenza, questi volumi possono subire un calo delle prestazioni.
+* Il provisioning di volumi locali è un'operazione dispendiosa in termini di tempo. Hello effettivo tempi dipendono da numerosi fattori: hello dimensione del volume hello in corso il provisioning, i dati sul dispositivo e larghezza di banda disponibile. Se non è stato effettuato il backup del cloud di toohello volumi esistenti, la creazione del volume è più lenta. Prima del provisioning di un volume locale, è consigliabile acquisire snapshot nel cloud dei volumi esistenti.
+* È possibile convertire i volumi toolocally bloccato volumi a livelli esistenti e questa conversione comporta il provisioning di spazio sul dispositivo hello per hello risultante volume aggiunto in locale (in aggiunta toobringing verso il basso di dati a più livelli, se presente, dal cloud hello). Questa è poi un'operazione di lunga durata che dipende dai fattori illustrati sopra. Si consiglia di eseguire il backup del tooconversion precedente di volumi esistenti come processo hello risulterà anche più lenta se i volumi esistenti non vengono sottoposti a backup. Il dispositivo può anche subire un calo delle prestazioni durante questo processo.
 
-Sono disponibili altre informazioni su come [creare un volume aggiunto in locale](storsimple-8000-manage-volumes-u2.md#add-a-volume)
+Ulteriori informazioni su come troppo[creare un volume aggiunto in locale](storsimple-8000-manage-volumes-u2.md#add-a-volume)
 
-**D.** È possibile creare più volumi aggiunti in locale contemporaneamente?
+**D.** È possibile creare più volumi aggiunti in locale in hello contemporaneamente?
 
 **R.** Sì, ma tutti i processi di creazione ed espansione dei volumi aggiunti in locale vengono elaborati in sequenza.
 
-Poiché viene effettuato il thick provisioning dei volumi aggiunti in locale, è necessario creare spazio locale nel dispositivo (con la possibilità che venga effettuato il push dei dati esistenti dai volumi a livelli al cloud durante il processo di provisioning). Se quindi è in corso un processo di provisioning, gli altri processi di creazione di volumi locali verranno accodati fino al termine di tale processo.
+Volumi aggiunti in locale sono stati sottoposti a thick provisioning e ciò richiede la creazione dello spazio locale nel dispositivo hello (che potrebbe comportare dati esistenti di volumi a livelli toobe inserito toohello cloud durante il processo di provisioning hello). Se quindi è in corso un processo di provisioning, gli altri processi di creazione di volumi locali verranno accodati fino al termine di tale processo.
 
-Allo stesso modo, se è in corso l'espansione di un volume locale esistente o la conversione di un volume a livelli in un volume aggiunto in locale, la creazione di un nuovo volume aggiunto in locale viene accodata fino al completamento del processo precedente. L'espansione di un volume aggiunto in locale comporta l'espansione dello spazio locale esistente per tale volume. La conversione da un volume a livelli a uno aggiunto in locale comporta anche la creazione di spazio locale per il volume aggiunto in locale risultante. In entrambe le operazioni la creazione o l'espansione dello spazio locale è un processo di lunga durata.
+Analogamente, se un volume locale esistente viene espansa o viene convertito un volume a livelli localmente tooa aggiunta volume, quindi hello creazione di un nuovo volume aggiunto in locale è in coda fino al completamento di processo precedente hello. Espansione hello spazio hello esistente locale per il volume è necessario espandere hello dimensioni di un volume aggiunto in locale. Conversione da un volume a livelli toolocally bloccato implica anche la creazione di hello dello spazio locale per hello risultante volume aggiunto in locale. In entrambe le operazioni la creazione o l'espansione dello spazio locale è un processo di lunga durata.
 
-È possibile visualizzare questi processi nella pagina **Processi** del servizio Gestione dispositivi StorSimple. Il processo di cui è in corso l'elaborazione viene continuamente aggiornato per riflettere l'avanzamento del provisioning dello spazio. I rimanenti processi dei volumi aggiunti in locale vengono contrassegnati come in esecuzione, ma l'avanzamento viene bloccato e i processi vengono prelevati in base all'ordine di accodamento.
+È possibile visualizzare tali processi in hello **processi** blade di hello del servizio di gestione di dispositivi StorSimple. Hello processo attivamente elaborati viene continuamente aggiornato lo stato di avanzamento di tooreflect hello del provisioning di spazio. Hello rimanenti processi volume aggiunto in locale viene contrassegnato come in esecuzione, ma lo stato di avanzamento è bloccato e vengono prelevati in ordine di hello che vengono messe in coda.
 
-**D.** È stato eliminato un volume aggiunto in locale. Perché lo spazio recuperato non viene visualizzato nello spazio disponibile quando si cerca di creare un nuovo volume?
+**D.** È stato eliminato un volume aggiunto in locale. Perché non è presente spazio hello recuperato riflessi nello spazio disponibile hello quando si tenta di toocreate un nuovo volume?
 
-**R.** Se si elimina un volume aggiunto in locale, lo spazio disponibile per i nuovi volumi potrebbe non essere immediatamente aggiornato. Il servizio Gestione dispositivi StorSimple aggiorna lo spazio locale disponibile circa ogni ora. È consigliabile attendere un'ora prima di creare il nuovo volume.
+**R.** Se si elimina un volume aggiunto in locale, spazio hello disponibile per nuovi volumi non può essere aggiornato immediatamente. Servizio di gestione di dispositivi StorSimple Hello Aggiorna hello locale spazio circa ogni ora. Si consiglia di attendere un'ora prima di tentare di nuovo volume di toocreate hello.
 
-**D.** I volumi aggiunti in locale sono supportati nell'appliance cloud?
+**D.** I volumi aggiunti in locale sono supportati nel dispositivo cloud hello?
 
-**R.** I volumi aggiunti in locale non sono supportati nell'appliance cloud (dispositivi 8010 e 8020 chiamati in precedenza dispositivi virtuali StorSimple).
+**R.** I volumi aggiunti in locale non sono supportati nel dispositivo cloud hello (8010 e 8020 dispositivi indicati in precedenza tooas hello dispositivo virtuale StorSimple).
 
-**D.** È possibile usare i cmdlet di Azure PowerShell per creare e gestire volumi aggiunti in locale?
+**D.** È possibile utilizzare toocreate i cmdlet di Azure PowerShell hello e gestire i volumi aggiunti in locale?
 
-**R.** No, non è possibile creare volumi aggiunti in locale con i cmdlet di Azure PowerShell. Eventuali volumi creati con Azure PowerShell sono a livelli. È anche consigliabile non usare i cmdlet di Azure PowerShell per modificare le proprietà di un volume aggiunto in locale, perché in questo modo il tipo di volume verrà modificato in volume a livelli.
+**R.** No, non è possibile creare volumi aggiunti in locale con i cmdlet di Azure PowerShell. Eventuali volumi creati con Azure PowerShell sono a livelli. È inoltre consigliabile non utilizzare hello Azure PowerShell cmdlet toomodify tutte le proprietà di un volume aggiunto in locale, come che verranno hanno hello indesiderato effetto della modifica hello volume tipo tootiered.
 
 ## <a name="questions-about-backing-up-a-locally-pinned-volume"></a>Domande sul backup di un volume aggiunto in locale
 **D.** Gli snapshot locali dei volumi aggiunti in locale sono supportati?
 
-**R.** Sì, è possibile acquisire gli snapshot locali dei volumi aggiunti in locale. È tuttavia consigliabile eseguire periodicamente il backup dei volumi aggiunti in locale con gli snapshot cloud per assicurarsi che i dati siano protetti in caso di emergenza.
+**R.** Sì, è possibile acquisire gli snapshot locali dei volumi aggiunti in locale. Tuttavia, è consigliabile che hello è regolarmente eseguire il backup dei volumi aggiunti in locale con tooensure gli snapshot cloud che la protezione dei dati nell'eventualità di una situazione di emergenza.
 
-Si noti che gli snapshot locali di volumi aggiunti in locale possono estendersi anche al cloud e non è garantito che rimangano nel livello locale del dispositivo.
+Si noti che gli snapshot locali di volumi aggiunti in locale possono anche livello out toohello cloud e non sono garantiti toostay al livello locale del dispositivo hello hello.
 
 **D.** Esistono linee guida per la gestione degli snapshot locali per i volumi aggiunti in locale?
 
-**R.** Snapshot locali frequenti insieme a un tasso elevato di varianza dati nel volume aggiunto in locale potrebbero comportare un rapido consumo dello spazio locale nel dispositivo e il push dei dati dai volumi a livelli al cloud. È quindi consigliabile ridurre al minimo il numero di snapshot locali.
+**R.** Snapshot locali frequenti insieme a una frequenza elevata di dati varianza hello localmente volume aggiunto potrebbe causare hello dispositivo toobe rapido esaurimento dello spazio locale e dati dai volumi a livelli vengano applicati toohello cloud. Si consiglia pertanto che ridurre al minimo il numero di hello di snapshot locali.
 
 **D.** È stato ricevuto un avviso che informa che gli snapshot locali dei volumi aggiunti in locale potrebbero essere invalidati. Quando può accadere?
 
-**R.** Snapshot locali frequenti insieme a un tasso elevato di varianza dati nel volume aggiunto in locale potrebbero comportare un rapido consumo dello spazio locale nel dispositivo. Se i livelli locali del dispositivo vengono usati molto, con un'interruzione estesa del cloud è possibile che il dispositivo si riempia e le operazioni di scrittura in ingresso nel volume potrebbero comportare l'invalidamento degli snapshot (perché non esiste spazio per aggiornare gli snapshot in modo che facciano riferimento ai precedenti blocchi di dati che sono stati sovrascritti). In una situazione di questo genere, le scritture nel volume continueranno a essere supportate, ma gli snapshot locali potrebbero non essere validi. Non ci sono conseguenze sugli snapshot cloud esistenti.
+**R.** Snapshot locali frequenti insieme a una frequenza elevata di dati varianza hello localmente volume aggiunto potrebbe portare lo spazio locale nel toobe dispositivo hello consumati velocemente. Se vengono utilizzati i livelli locale hello del dispositivo hello, potrebbe comportare un'interruzione del servizio cloud estesa dispositivo hello esaurisca e volume toohello di scritture in arrivo potrebbe comportare l'invalidamento di snapshot hello (come tooupdate hello snapshot toorefer è presente alcuno spazio toohello precedenti blocchi di dati che sono stati sovrascritti). In tali hello una situazione scritture toohello volume continuerà toobe servite, ma gli snapshot locali hello potrebbero non essere validi. Non vi è alcun impatto tooyour cloud gli snapshot esistenti.
 
-L'avviso serve a notificare che tale situazione può verificarsi e ad assicurarsi che venga affrontata tempestivamente riesaminando le pianificazioni degli snapshot locali per acquisirli meno di frequente o eliminando gli snapshot locali precedenti non più necessari.
+avviso di Hello è toonotify è che tale situazione può verificarsi e verificare che indirizzo hello stesso in modo tempestivo entrambi esaminando gli snapshot locali pianifica tootake meno snapshot locali frequenti o l'eliminazione snapshot locali meno recenti che non sono più Obbligatorio.
 
-Se gli snapshot locali vengono invalidati, si riceverà un avviso informativo che notifica che gli snapshot locali per il criterio di backup specifico sono stati invalidati insieme all'elenco di timestamp degli snapshot locali invalidati. Questi snapshot vengono automaticamente eliminati e non sarà più possibile visualizzarli nel pannello **Cataloghi di backup** nel portale di Azure.
+Se gli snapshot locali hello vengono invalidati, si riceverà un avviso informativo del tipo di notifica che sono stati invalidati gli snapshot locali hello per il criterio di backup specifico di hello insieme elenco hello del timestamp degli snapshot locali hello che sono stati invalidati. Questi snapshot verrà eliminato automaticamente e non sarà in grado di tooview nel hello **cataloghi di Backup** pannello in hello portale di Azure.
 
-## <a name="questions-about-converting-a-tiered-volume-to-a-locally-pinned-volume"></a>Domande sulla conversione di un volume a livelli in un volume aggiunto in locale
-**D.** È stata osservata una certa lentezza sul dispositivo durante la conversione di un volume a livelli in un volume aggiunto in locale. Perché accade?
+## <a name="questions-about-converting-a-tiered-volume-tooa-locally-pinned-volume"></a>Domande sulla conversione di un volume aggiunto in locale tooa volume a livelli
+**D.** È osservare alcuni lentezza nel dispositivo hello durante la conversione di un volume aggiunto in locale tooa volume a livelli. Perché accade?
 
-**R.** Il processo di conversione include due passaggi:
+**R.** il processo di conversione Hello prevede due passaggi:
 
-1. Provisioning di spazio sul dispositivo per il volume aggiunto in locale da convertire a breve.
-2. Download dei dati a livelli dal cloud per assicurare le garanzie locali.
+1. Provisioning di spazio sul dispositivo hello per hello, volume appena-a--convertire aggiunto in locale.
+2. Download di tutti i dati a più livelli da hello cloud tooensure locale garantisce.
 
-Entrambi i passaggi sono operazioni di lunga durata che dipendono dalla dimensione del volume da convertire, dai dati sul dispositivo e dalla larghezza di banda disponibile. Poiché alcuni dati dei volumi a livelli esistenti possono essere distribuiti nel cloud durante il processo di provisioning, è possibile che il dispositivo subisca un calo delle prestazioni in questa fase. Il processo di conversione può essere più lento anche quando:
+Entrambi questi passaggi sono lunghi in esecuzione di operazioni che dipendono dalla dimensione hello del volume hello convertito, dati sul dispositivo hello e larghezza di banda disponibile. Poiché alcuni dati dai volumi a livelli esistenti potrebbero spill toohello cloud come parte del processo di provisioning hello, il dispositivo potrebbe riscontrare una riduzione delle prestazioni durante l'operazione. Inoltre, il processo di conversione hello può risultare più lento se:
 
-* Non è stato eseguito il backup dei volumi esistenti nel cloud. È quindi consigliabile eseguire il backup dei volumi prima di avviare una conversione.
-* Sono stati applicati criteri di limitazione della larghezza di banda, che possono vincolare la larghezza di banda disponibile al cloud. È quindi consigliabile avere una connessione al cloud dedicata di almeno 40 Mbps.
-* Il processo di conversione può richiedere diverse ore a causa dei numerosi fattori illustrati sopra, quindi è consigliabile eseguire questa operazione in momenti non di picco o nel fine settimana per evitare l'impatto sugli utenti finali.
+* I volumi esistenti non sottoposti a backup toohello cloud. pertanto è consigliabile che il tooinitiating precedenti una conversione di volumi di backup.
+* Sono stati applicati i criteri di limitazione della larghezza di banda, che potrebbero vincolare cloud toohello di hello larghezza di banda disponibile. è pertanto consigliabile che acquisire una 40 Mbps dedicato o più cloud toohello di connessione.
+* il processo di conversione Hello può richiedere diverse ore a causa di fattori più toohello illustrati in precedenza; Pertanto, è consigliabile eseguire questa operazione durante i periodi di non picchi o tooavoid un fine settimana hello impatto su utenti finali.
 
-Sono disponibili altre informazioni su come [convertire un volume a livelli in un volume aggiunto in locale](storsimple-8000-manage-volumes-u2.md#change-the-volume-type)
+Ulteriori informazioni su come troppo[convertire un volume aggiunto in locale tooa volume a livelli](storsimple-8000-manage-volumes-u2.md#change-the-volume-type)
 
-**D.** È possibile annullare l'operazione di conversione del volume?
+**D.** È possibile annullare l'operazione di conversione volume hello?
 
-**R.** No, non è possibile annullare l'operazione di conversione una volta avviata. Come descritto nella domanda precedente, tenere presenti i potenziali problemi di prestazioni che potrebbero sorgere durante il processo e seguire le procedure consigliate elencate sopra quando si pianifica la conversione.
+**R.** No, è possibile hello operazione di annullamento conversione hello una volta avviata. Come descritto nella domanda precedente hello, prestare attenzione hello potenziali problemi di prestazioni che si verificano durante il processo di hello e seguire le procedure consigliate hello elencate sopra, quando si pianifica la conversione.
 
-**D.** Che cosa accade al volume se l'operazione di conversione non riesce?
+**D.** Volume toomy cosa accade se si verifica un errore di operazione di conversione hello?
 
-**R.** La conversione del volume può non riuscire a causa di problemi di connettività cloud. Il dispositivo potrebbe arrestare il processo di conversione dopo una serie di tentativi non riusciti di trasferire i dati a livelli dal cloud. In tale scenario il tipo di volume continuerà a essere il tipo di volume di origine precedente alla conversione e:
+**R.** Conversione del volume può non riuscire a causa di problemi di connettività toocloud. dispositivo Hello può infine arrestare il processo di conversione hello dopo una serie di tentativi non riusciti toobring dati a più livelli di cloud hello. In questo caso, il tipo di volume hello continuerà toobe hello origine volume tipo precedente tooconversion, e:
 
-* Verrà generato un avviso critico per notificare l'errore di conversione del volume. Sono disponibili altre informazioni sugli [avvisi correlati ai volumi aggiunti in locale](storsimple-8000-manage-alerts.md#locally-pinned-volume-alerts)
-* Se si sta convertendo un volume a livelli in uno aggiunto in locale, il volume continuerà a presentare le proprietà di un volume a livelli perché i dati potrebbero ancora trovarsi nel cloud. È consigliabile risolvere i problemi di connettività e quindi riprovare l'operazione di conversione.
-* Analogamente, quando la conversione da un volume aggiunto in locale in uno a livelli non riesce, anche se il volume verrà contrassegnato come volume aggiunto in locale, funzionerà come volume a livelli (perché è possibile che i dati siano stati distribuiti nel cloud), ma continuerà a occupare spazio nei livelli locali del dispositivo. Questo spazio non sarà disponibile per gli altri volumi aggiunti in locale. È consigliabile ritentare questa operazione per assicurarsi che la conversione del volume sia stata completata e che lo spazio locale sul dispositivo possa essere recuperato.
+* Un avviso critico sarà generato toonotify di errore di conversione del volume hello. Ulteriori informazioni su [gli avvisi di volumi correlati toolocally bloccato](storsimple-8000-manage-alerts.md#locally-pinned-volume-alerts)
+* Se si esegue la conversione di un volume a livelli tooa aggiunto in locale, volume hello continuerà tooexhibit proprietà di un volume a livelli come dati potrebbero comunque a risiedere nel cloud hello. Si consiglia risolvere i problemi di connettività hello e quindi ripetere l'operazione di conversione hello.
+* Analogamente, quando la conversione da un tooa aggiunto in locale a livelli ha esito negativo di volume, anche se il volume di hello verrà contrassegnato come volume aggiunto in locale, funzionerà come un volume a livelli (poiché dati potrebbero avere distribuito toohello cloud). Tuttavia, continueranno spazio toooccupy nei livelli di hello locale del dispositivo hello. Questo spazio non sarà disponibile per gli altri volumi aggiunti in locale. È consigliabile che si riprova tooensure questa operazione hello locale nel dispositivo hello è espressamente che la conversione del volume hello sia completezza.
 
 ## <a name="questions-about-restoring-a-locally-pinned-volume"></a>Domande sul ripristino di un volume aggiunto in locale
 **D.** I volumi aggiunti in locale vengono ripristinati immediatamente?
 
-**R.** Sì, i volumi aggiunti in locale vengono ripristinati immediatamente. Non appena dal cloud viene effettuato il pull delle informazioni sui metadati per il volume durante l'operazione di ripristino, il volume passa online ed è accessibile dall'host, ma le garanzie locali per i dati del volume saranno presenti solo dopo che tutti i dati saranno stati scaricati dal cloud ed è possibile che questi volumi subiscano un calo delle prestazioni durante il ripristino.
+**R.** Sì, i volumi aggiunti in locale vengono ripristinati immediatamente. Non appena le informazioni dei metadati hello hello volume viene effettuato il pull dal cloud hello come parte dell'operazione di ripristino hello, volume hello viene portato in linea e accessibile dall'host hello. Tuttavia, le garanzie locale per il volume di hello dati non sarà presenti fino a quando tutti i dati di hello è stato scaricato dal cloud hello e che si verifichi una riduzione delle prestazioni su tali volumi per durata hello del ripristino di hello.
 
-**D.** Quanto tempo è necessario per ripristinare un volume aggiunto in locale?
+**D.** Quanto tempo occorre toorestore un volume aggiunto in locale?
 
-**R.** I volumi aggiunti in locale vengono ripristinati immediatamente e passano online non appena le informazioni sui metadati dei volume vengono recuperate dal cloud, mentre i dati dei volumi continuano a essere scaricati in background. Quest'ultima parte dell'operazione di ripristino (ricevere le garanzie locali per i dati del volume) è di lunga durata e possono essere necessarie diverse ore per impostare nuovamente tutti i dati come locali. Il tempo necessario per completare l'operazione dipende da più fattori, ad esempio la dimensione del volume da ripristinare e la larghezza di banda disponibile. Se il volume originale da ripristinare è stato eliminato, servirà altro tempo per creare lo spazio locale sul dispositivo durante l'operazione di ripristino.
+**R.** I volumi aggiunti in locale vengono ripristinati immediatamente e portati online come metadati informazioni sul volume di hello viene recuperati dal cloud hello, mentre i dati di volume hello continuano toobe scaricato in background di hello. Questa seconda parte dell'operazione di ripristino hello - ottenere per i dati di volume hello - garanzie locale hello è un'operazione a esecuzione prolungata e potrebbe richiedere alcune ore per tutti i toobe dati hello reso locale. Hello scattato toocomplete hello stesso dipende da vari fattori, ad esempio dimensioni hello del volume di hello in fase di ripristino e hello larghezza di banda disponibile. Se è stato eliminato volume originale hello da ripristinare, ulteriore tempo accederà toocreate hello locale spazio sul hello dispositivo come parte dell'operazione di ripristino hello.
 
-**D.** È necessario ripristinare il volume esistente aggiunto in locale a uno snapshot precedente (acquisito quando il volume era a livelli). In questo caso, il volume verrà ripristinato a livelli?
+**D.** È necessario toorestore locale del proprio account bloccato snapshot meno recente tooan del volume (eseguito quando è stata a livelli a volume hello). Volume hello verrà ripristinato come livelli in questo caso?
 
-**R.** No, il volume verrà ripristinato come volume aggiunto in locale. Anche se lo snapshot risale al periodo in cui il volume era a livelli, durante il ripristino dei volumi esistenti, StorSimple usa sempre il tipo di volume corrente sul disco.
+**R.** No, verrà ripristinato il volume di hello come volume aggiunto in locale. Sebbene hello snapshot ora toohello date quando volume hello stato a più livelli, durante il ripristino di volumi esistenti, StorSimple utilizza sempre il tipo di hello del volume su disco hello attualmente esistente.
 
-**D.** Di recente il volume aggiunto in locale è stato esteso, ma ora è necessario ripristinare uno stato dei dati precedente, quando la dimensione era inferiore. Il ripristino ridimensionerà il volume corrente e sarà necessario estendere la dimensione del volume una volta completato il ripristino?
+**D.** Esteso il volume aggiunto in locale di recente, ma è ora necessario toorestore hello dati tooa ora volume hello dimensioni minori. Verrà ripristino ridimensionare il volume corrente hello e sarà necessario dimensioni hello tooextend del volume hello una volta completato il ripristino di hello?
 
-**R.** Sì, il ripristino ridimensionerà il volume e sarà necessario estendere la dimensione del volume una volta completato il ripristino.
+**R.** Sì, ripristino hello verrà ridimensionare il volume di hello e sarà necessario dimensioni hello tooextend del volume hello dopo il completamento del ripristino hello.
 
-**D.** È possibile modificare il tipo di un volume durante il ripristino?
+**D.** È possibile modificare il tipo di hello di un volume durante il ripristino?
 
-**R.**No, non è possibile modificare il tipo di volume durante il ripristino.
+**R.**No, non è possibile modificare il tipo di volume hello durante il ripristino.
 
-* I volumi eliminati vengono ripristinati con il tipo archiviato nello snapshot.
-* I volumi esistenti vengono ripristinati in base al tipo corrente, indipendentemente dal tipo archiviato nello snapshot (vedere le due domande precedenti).
+* Volumi che sono stati eliminati vengono ripristinati come tipo hello archiviato nello snapshot hello.
+* I volumi esistenti vengono ripristinati in base al tipo corrente, indipendentemente dal tipo di hello archiviato nello snapshot hello (vedere domande toohello due precedenti).
 
-**D.** È necessario ripristinare il volume aggiunto in locale, ma è stato selezionato uno snapshot temporizzato non corretto. È possibile annullare l'operazione di ripristino corrente?
+**D.** È necessario toorestore il volume aggiunto in locale, ma si è scelto un punto corretto nello snapshot di tempo. È possibile annullare l'operazione di ripristino corrente hello?
 
-**R.** Sì, è possibile annullare un'operazione di ripristino in corso. Verrà eseguito il rollback dello stato del volume in corrispondenza dell'avvio del ripristino, ma le operazioni di scrittura eseguite nel volume durante il ripristino andranno perse.
+**R.** Sì, è possibile annullare un'operazione di ripristino in corso. lo stato di Hello del volume hello verrà rollback toohello stato all'avvio di hello del ripristino hello. Tuttavia, le scritture eseguite toohello volume durante il ripristino di hello andranno persi.
 
 **D.** È stata avviata un'azione di ripristino su uno dei volumi aggiunti in locale e ora viene visualizzato uno snapshot nel catalogo backlog che non si ricorda di avere creato. A che cosa serve?
 
-**R.** Si tratta dello snapshot temporaneo creato prima dell'operazione di ripristino e usato per il rollback nel caso in cui il ripristino venga annullato o non riesca. Non eliminare questo snapshot che verrà eliminato automaticamente al termine del ripristino. Questo comportamento può verificarsi se il processo di ripristino dispone solo di volumi associati in locale o di una combinazione di volumi associati in locale e a livelli. Se il processo di ripristino include solo i volumi a livelli, questo comportamento non si verificherà.
+**R.** Si tratta di snapshot temporanei hello viene creato l'operazione di ripristino toohello precedente e viene usato per eseguire il rollback in caso di ripristino hello è stato annullato o ha esito negativo. Non eliminare questo snapshot. verrà automaticamente eliminato una volta completato il ripristino di hello. Questo comportamento può verificarsi se il processo di ripristino dispone solo di volumi associati in locale o di una combinazione di volumi associati in locale e a livelli. Se il processo di ripristino hello include solo i volumi a livelli, questo comportamento non verrà eseguita.
 
 **D.** È possibile clonare un volume aggiunto in locale?
 
-**R.** Sì, ma il volume aggiunto in locale verrà duplicato come volume a livelli per impostazione predefinita. Sono disponibili altre informazioni su come [clonare un volume aggiunto in locale](storsimple-8000-clone-volume-u2.md)
+**R.** Sì, Tuttavia, verrà clonate come un volume a livelli volume hello aggiunto in locale per impostazione predefinita. Ulteriori informazioni su come troppo[clonare un volume aggiunto in locale](storsimple-8000-clone-volume-u2.md)
 
 ## <a name="questions-about-failing-over-a-locally-pinned-volume"></a>Domande sul failover di un volume aggiunto in locale
-**D.** È necessario effettuare il failover del dispositivo in un altro dispositivo fisico. Dei volumi aggiunti in locale verrà effettuato il failover come volumi aggiunti in locale o a livelli?
+**D.** È necessario toofail sul dispositivo fisico tooanother dispositivo. Dei volumi aggiunti in locale verrà effettuato il failover come volumi aggiunti in locale o a livelli?
 
-**R.** Il failover dei volumi aggiunti in locale viene eseguito nel sistema locale se il dispositivo di destinazione esegue l'aggiornamento 3 di StorSimple serie 8000 o versione successiva.
+**R.** volumi Hello aggiunto in locale vengono eseguiti il failover nel sistema locale è bloccato se il dispositivo di destinazione hello è in esecuzione aggiornamento serie StorSimple 8000 3 o versione successiva.
 
 Sono disponibili altre informazioni sugli [failover e ripristino di emergenza dei volumi aggiunti in locale nelle diverse versioni](storsimple-8000-device-failover-disaster-recovery.md#device-failover-across-software-versions)
 
 **D.** I volumi aggiunti in locale vengono ripristinati immediatamente durante il ripristino di emergenza?
 
-**R.** Sì, i volumi aggiunti in locale vengono ripristinati immediatamente durante il failover. Non appena dal cloud viene effettuato il pull delle informazioni sui metadati per il volume durante l'operazione di failover, il volume passa online sul dispositivo di destinazione ed è accessibile dall'host. Nel frattempo, i dati del volume continueranno a essere scaricati in background ed è possibile che questi volumi subiscano un calo delle prestazioni durante il failover.
+**R.** Sì, i volumi aggiunti in locale vengono ripristinati immediatamente durante il failover. Non appena le informazioni dei metadati hello hello volume viene effettuato il pull dal cloud hello come parte dell'operazione di failover di hello, volume hello viene portata online nel dispositivo di destinazione hello e sono accessibili dall'host hello. Nel frattempo, dati di volume hello continuerà in background hello toodownload e si verifichi una riduzione delle prestazioni su tali volumi per la durata di hello di hello failover.
 
-**D.** Il processo di failover è stato completato. Come è possibile tenere traccia dell'avanzamento del volume aggiunto in locale di cui è in corso il ripristino sul dispositivo di destinazione?
+**D.** Viene visualizzato il processo di failover hello completato, come è possibile tenere traccia del corso hello del volume aggiunto in locale che viene ripristinato nel dispositivo di destinazione hello?
 
-**R.** Durante un'operazione di failover, il processo di failover viene contrassegnato come completo una volta che tutti i volumi nel set di failover siano stati immediatamente ripristinati e siano passati online sul dispositivo di destinazione, inclusi i volumi aggiunti in locale di cui potrebbe essere stato effettuato il failover, ma le garanzie locali dei dati saranno disponibili solo quando tutti i dati del volume saranno stati scaricati. È possibile tenere traccia di questo avanzamento per ogni volume aggiunto in locale di cui è stato effettuato il failover monitorando i corrispondenti processi di ripristino creati durante il failover. Questi singoli processi di ripristino verranno creati solo per i volumi aggiunti in locale.
+**R.** Durante un'operazione di failover, il processo di failover di hello viene contrassegnato come completato dopo che tutti i volumi di hello in set di failover hello sono stati ripristinati e portati online nel dispositivo di destinazione hello immediatamente. Sono inclusi i volumi aggiunti in locale che è stati eseguiti. Tuttavia, le garanzie locale dei dati hello sarà disponibile solo quando tutti i dati per il volume di hello hello è stato scaricato. È possibile monitorare lo stato di avanzamento per ciascun volume aggiunto in locale che è stato eseguito da monitoraggio dei processi di ripristino corrispondente hello che vengono creati come parte del failover hello. Questi singoli processi di ripristino verranno creati solo per i volumi aggiunti in locale.
 
-**D.** È possibile modificare il tipo di un volume durante il failover?
+**D.** È possibile modificare il tipo di hello di un volume durante il failover?
 
-**R.** No, non è possibile modificare il tipo di volume durante un failover. Se si sta effettuando il failover in un altro dispositivo fisico che esegue l'aggiornamento 3 di StorSimple serie 8000, il failover dei volumi verrà eseguito in base al tipo di volume archiviato nello snapshot.
+**R.** No, non è possibile modificare il tipo di volume hello durante un failover. Se hanno esito negativo su tooanother un dispositivo fisico che esegue StorSimple serie 8000 aggiornamento 3, volumi hello vengono eseguiti il failover in base al tipo di volume hello archiviato nello snapshot hello.
 
-**D.** È possibile effettuare il failover di un contenitore di volumi con volumi aggiunti in locale nell'appliance cloud?
+**D.** È possibile failover un contenitore di volumi con appliance di cloud toohello volumi aggiunti in locale?
 
-**R.** Sì, Il failover dei volumi aggiunti in locale viene effettuato come volumi a livelli. Sono disponibili altre informazioni sugli [failover e ripristino di emergenza dei volumi aggiunti in locale nelle diverse versioni](storsimple-8000-device-failover-disaster-recovery.md#common-considerations-for-device-failover)
+**R.** Sì, volumi Hello aggiunto in locale verranno eseguiti il failover come volumi a livelli. Sono disponibili altre informazioni sugli [failover e ripristino di emergenza dei volumi aggiunti in locale nelle diverse versioni](storsimple-8000-device-failover-disaster-recovery.md#common-considerations-for-device-failover)
 

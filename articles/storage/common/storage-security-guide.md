@@ -1,6 +1,6 @@
 ---
-title: Guida alla sicurezza di Archiviazione di Azure | Microsoft Docs
-description: Descrive in dettaglio i vari metodi di protezione di Archiviazione di Azure, incluse ad esempio Crittografia del servizio di archiviazione, crittografia lato client, SMB 3.0 e Crittografia dischi di Azure.
+title: Guida alla protezione di archiviazione aaaAzure | Documenti Microsoft
+description: Dettagli hello molti metodi di sicurezza di archiviazione di Azure, inclusi, a titolo esemplificativo, tooRBAC, la crittografia del servizio di archiviazione, crittografia lato Client, SMB 3.0 e crittografia del disco di Azure.
 services: storage
 documentationcenter: .net
 author: robinsh
@@ -14,132 +14,132 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: e71d9baf36ea7acb8dc8fa1daf9ddde3a2856f85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f5a4e724e00ea6d16f5511b9120154f89441758
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-security-guide"></a>Guida alla sicurezza di Archiviazione di Azure
 ## <a name="overview"></a>Panoramica
-Archiviazione di Azure fornisce un set completo di funzionalità di sicurezza, che consentono agli sviluppatori di creare applicazioni sicure. Lo stesso account di archiviazione può essere protetto tramite il controllo degli accessi in base al ruolo e Azure Active Directory. È possibile proteggere i dati in transito tra un'applicazione e Azure usando la [crittografia lato client](../storage-client-side-encryption.md), HTTPS o SMB 3.0. I dati possono essere impostati per la crittografia automatica quando vengono scritti in Archiviazione di Azure con [Crittografia del servizio di archiviazione di Azure (SSE)](storage-service-encryption.md). I dischi dati e del sistema operativo usati dalle macchine virtuali possono essere impostati per essere crittografati con [Crittografia dischi di Azure](../../security/azure-security-disk-encryption.md). È possibile concedere l'accesso delegato agli oggetti dati nell'archiviazione di Azure usando [firme di accesso condiviso](../storage-dotnet-shared-access-signature-part-1.md).
+Archiviazione di Azure fornisce un set completo di funzionalità di sicurezza che insieme consentono agli sviluppatori di applicazioni sicure toobuild. account di archiviazione Hello stesso può essere protetto tramite controllo di accesso basato sui ruoli e Azure Active Directory. È possibile proteggere i dati in transito tra un'applicazione e Azure usando la [crittografia lato client](../storage-client-side-encryption.md), HTTPS o SMB 3.0. Dati possono essere impostati toobe crittografato automaticamente quando scritto utilizzando archiviazione tooAzure [crittografia del servizio di archiviazione (SSE)](storage-service-encryption.md). I dischi del sistema operativo e i dati utilizzati dalle macchine virtuali possono essere impostati toobe crittografati utilizzando [crittografia del disco Azure](../../security/azure-security-disk-encryption.md). È possono concedere l'accesso delegato toohello dati oggetti nell'archiviazione di Azure utilizzando [firme di accesso condiviso](../storage-dotnet-shared-access-signature-part-1.md).
 
-Questo articolo include una panoramica di ognuna di queste funzionalità di sicurezza che possono essere usate con Archiviazione di Azure. Sono disponibili i collegamenti ad articoli contenenti informazioni dettagliate per ogni funzionalità, per poter approfondire facilmente i concetti per ogni argomento.
+Questo articolo include una panoramica di ognuna di queste funzionalità di sicurezza che possono essere usate con Archiviazione di Azure. Vengono forniti i collegamenti tooarticles in grado di offrire dettagli di ogni funzionalità in modo da poter facilmente ulteriori indagini condotte su ogni argomento.
 
-Ecco gli argomenti trattati in questo articolo:
+Di seguito sono illustrate in questo articolo di hello argomenti toobe:
 
 * [Sicurezza del piano di gestione](#management-plane-security) : proteggere l'account di archiviazione
 
-  Il piano di gestione è costituito dalle risorse usate per gestire l'account di archiviazione. Questa sezione illustra il modello di distribuzione Azure Resource Manager e come usare il controllo degli accessi in base al ruolo per controllare l'accesso agli account di archiviazione. Descrive anche la gestione delle chiavi dell'account di archiviazione e come rigenerarle.
-* [Sicurezza del piano dati](#data-plane-security) : proteggere l'accesso ai dati
+  il piano di gestione di Hello è costituito da toomanage le risorse usate hello account di archiviazione. In questa sezione verrà descritto come modello di distribuzione Azure Resource Manager hello e modalità di accesso di account di archiviazione tooyour toouse toocontrol di controllo di accesso basato sui ruoli (RBAC). Verranno inoltre presentati gestire le chiavi di account di archiviazione e come tooregenerate li.
+* [Piano di sicurezza dei dati](#data-plane-security) – tooYour protezione dell'accesso ai dati
 
-  Questa sezione illustra come concedere l'accesso agli oggetti dati effettivi nell'account di archiviazione, ad esempio BLOB, file, code e tabelle, usando firme di accesso condiviso e criteri di accesso archiviati. Vengono trattate anche le firme di accesso condiviso sia a livello di servizio che di account. Viene inoltre spiegato come limitare l'accesso a un indirizzo IP specifico o un intervallo di indirizzi IP, come limitare il protocollo usato per HTTPS e come revocare una firma di accesso condiviso senza attenderne la scadenza.
+  In questa sezione verrà esaminato consentire l'accesso agli oggetti di dati effettivi di toohello nell'account di archiviazione, ad esempio BLOB, file, code e tabelle, tramite firme di accesso condiviso e criteri di accesso archiviati. Vengono trattate anche le firme di accesso condiviso sia a livello di servizio che di account. Si noterà anche come toolimit accedere tooa specifico indirizzo IP (o un intervallo di indirizzi IP), come protocollo di hello toolimit utilizzato tooHTTPS e come toorevoke una firma di accesso condiviso senza attendere che tooexpire.
 * [Crittografia in transito](#encryption-in-transit)
 
-  Questa sezione descrive come proteggere i dati durante il trasferimento da e verso Archiviazione di Azure. Si esaminano l'uso consigliato di HTTPS e la crittografia usata da SMB 3.0 per le condivisioni file di Azure. Si osserverà anche la crittografia lato client, che consente di crittografare i dati prima che siano trasferiti nel servizio di archiviazione in un'applicazione client e di decrittografarli dopo il trasferimento dal servizio di archiviazione.
+  Questa sezione viene descritto come toosecure dati durante il trasferimento da o verso l'archiviazione di Azure. Parleremo hello consigliato l'utilizzo della crittografia hello e HTTPS utilizzata da SMB 3.0 per condivisioni File di Azure. È inoltre verrà dare un'occhiata crittografia lato Client, che consentono di tooencrypt hello prima di essere trasferiti nell'account di archiviazione in un'applicazione client e toodecrypt hello dati dopo che viene trasferita all'esterno di archiviazione.
 * [Crittografia di dati inattivi](#encryption-at-rest)
 
-  Si discuterà di Crittografia del servizio di archiviazione (SSE) e come è possibile abilitarla per un account di archiviazione, determinando la crittografia automatica dei BLOB in blocchi, BLOB di pagine e BLOB aggiunti al momento della scrittura nell'Archiviazione di Azure. Verrà illustrato anche come è possibile usare Crittografia dischi di Azure e si esamineranno differenze di base e casi relativi a Crittografia dischi rispetto a SSE e alla crittografia lato client. Si esaminerà brevemente la conformità FIPS per i computer del Governo degli Stati Uniti.
-* Uso [di Analisi archiviazione](#storage-analytics) per controllare l'accesso dell'archiviazione di Azure
+  Si parlerà crittografia del servizio di archiviazione (SSE) e come è possibile abilitare la funzionalità per un account di archiviazione, pertanto i BLOB in blocchi, BLOB di pagine e aggiungere BLOB viene crittografato automaticamente quando scritti tooAzure archiviazione. Verranno inoltre esaminati come è possibile utilizzare la crittografia del disco di Azure e analizzare le differenze di base hello e casi di crittografia del disco e SSE e crittografia lato Client. Si esaminerà brevemente la conformità FIPS per i computer del Governo degli Stati Uniti.
+* Utilizzando [archiviazione Analitica](#storage-analytics) tooaudit accesso di archiviazione di Azure
 
-  Questa sezione illustra come trovare informazioni nei log di Analisi archiviazione per una richiesta. Si osservano dati dei log di Analisi archiviazione reali e si vedrà come distinguere se una richiesta viene eseguita con la chiave dell'account di archiviazione, con una firma di accesso condiviso oppure in modo anonimo e se è riuscita o meno.
+  Questa sezione illustra come informazioni di toofind in analitica archiviazione hello log per una richiesta. Verrà dare un'occhiata analitica archiviazione reale dati di log e vedere come toodiscern se viene effettuata una richiesta con hello archiviazione chiave, con una firma di accesso condiviso, account o in modo anonimo e se l'esito positivo o non è riuscita.
 * [Abilitazione dei client basati su browser tramite CORS](#Cross-Origin-Resource-Sharing-CORS)
 
-  Questa sezione descrive come consentire la condivisione risorse tra le origini (CORS). Viene descritto l'accesso tra domini e come gestirlo con le funzionalità CORS integrate in Archiviazione di Azure.
+  In questa sezione si indica come risorse di tooallow multiorigine (CORS) di condivisione. Parleremo accesso tra domini, e come toohandle con funzionalità CORS hello compilata nell'archiviazione di Azure.
 
 ## <a name="management-plane-security"></a>Sicurezza del piano di gestione
-Il piano di gestione è costituito da operazioni che interessano lo stesso account di archiviazione. Ad esempio, è possibile creare o eliminare un account di archiviazione, ottenere un elenco di account di archiviazione in una sottoscrizione, recuperare le chiavi dell'account di archiviazione o rigenerarle.
+il piano di gestione di Hello è costituita da operazioni che influiscono sull'account di archiviazione hello stesso. Ad esempio, è possibile creare o eliminare un account di archiviazione, ottenere un elenco di account di archiviazione in una sottoscrizione, recuperare chiavi dell'account di archiviazione hello o rigenerare chiavi di account di archiviazione hello.
 
-Quando si crea un nuovo account di archiviazione, si seleziona un modello di distribuzione classica o di Azure Resource Manager. Il modello di distribuzione classica per la creazione di risorse in Azure consente solo l'accesso di tipo "tutto o niente" alla sottoscrizione e, di conseguenza, all'account di archiviazione.
+Quando si crea un nuovo account di archiviazione, si seleziona un modello di distribuzione classica o di Azure Resource Manager. il modello classico Hello di creazione di risorse in Azure consente solo di sottoscrizione toohello accesso radicale e hello a sua volta, l'account di archiviazione.
 
-Questa guida è incentrata sul modello di Resource Manager, ovvero il mezzo consigliato per la creazione di account di archiviazione. Con gli account di archiviazione di Resource Manager, invece di concedere l'accesso all'intera sottoscrizione, è possibile controllare l'accesso al piano di gestione in base a un livello più limitato usando il controllo degli accessi in base al ruolo.
+Questa guida è incentrata sul modello di gestione delle risorse hello è hello consigliato mezzi per la creazione di account di archiviazione. Con gli account di archiviazione di gestione risorse di hello, invece che la sottoscrizione intera toohello accesso, è possibile controllare l'accesso su un piano di gestione toohello di livello più limitato tramite controllo di accesso basato sui ruoli (RBAC).
 
-### <a name="how-to-secure-your-storage-account-with-role-based-access-control-rbac"></a>Come proteggere l'account di archiviazione con il controllo degli accessi in base al ruolo
-Viene ora spiegato cos'è il controllo degli accessi in base al ruolo e come usarlo. Ogni sottoscrizione di Azure è associata a un'istanza di Azure Active Directory. A utenti, gruppi e applicazioni in questa directory può essere consentito l'accesso per gestire le risorse nella sottoscrizione di Azure che usa il modello di distribuzione di Resource Manager. Questo approccio è detto controllo degli accessi in base al ruolo. Per gestire l'accesso è possibile usare il [portale di Azure](https://portal.azure.com/), gli [strumenti dell'interfaccia della riga di comando di Azure](../../cli-install-nodejs.md), [PowerShell](/powershell/azureps-cmdlets-docs) o le [API REST del provider di risorse di Archiviazione di Azure](https://msdn.microsoft.com/library/azure/mt163683.aspx).
+### <a name="how-toosecure-your-storage-account-with-role-based-access-control-rbac"></a>Come toosecure account di archiviazione con il controllo di accesso basato sui ruoli (RBAC)
+Viene ora spiegato cos'è il controllo degli accessi in base al ruolo e come usarlo. Ogni sottoscrizione di Azure è associata a un'istanza di Azure Active Directory. Gli utenti, gruppi e applicazioni da tale directory possono essere concesse le risorse di toomanage accesso hello sottoscrizione di Azure che utilizzano modelli di distribuzione di gestione risorse hello. Si tratta di cui viene fatto riferimento tooas controllo di accesso basato sui ruoli (RBAC). toomanage accedere a questo, è possibile utilizzare hello [portale di Azure](https://portal.azure.com/), hello [strumenti di Azure CLI](../../cli-install-nodejs.md), [PowerShell](/powershell/azureps-cmdlets-docs), o hello [API di REST di Provider di risorse di archiviazione di Azure ](https://msdn.microsoft.com/library/azure/mt163683.aspx).
 
-Con il modello di Resource Manager si inserisce l'account di archiviazione in un gruppo di risorse e si controlla l'accesso al piano di quell'account di archiviazione specifico tramite Azure Active Directory. Ad esempio, è possibile concedere a utenti specifici la possibilità di accedere alle chiavi dell'account di archiviazione, mentre altri utenti possono visualizzare le informazioni sull'account di archiviazione, ma non accedere alle relative chiavi.
+Con il modello di gestione risorse hello, inserire l'account di archiviazione hello in una risorsa gruppo e controllo accesso toohello piano di gestione di account di archiviazione specifico tramite Azure Active Directory. Ad esempio, è possibile assegnare utenti specifici hello possibilità tooaccess hello chiavi account di archiviazione, mentre altri utenti possono visualizzare le informazioni sull'account di archiviazione hello, ma non è possibile accedere alle chiavi dell'account di archiviazione hello.
 
 #### <a name="granting-access"></a>Concessione dell'accesso
-L’accesso viene concesso assegnando i ruoli RBAC appropriati a utenti, gruppi e applicazioni nell'ambito corretto. Per concedere l'accesso all'intera sottoscrizione, assegnare un ruolo a livello di sottoscrizione. È possibile concedere l'accesso a tutte le risorse in un gruppo di risorse concedendo le autorizzazioni al gruppo stesso. È anche possibile assegnare ruoli specifici a risorse specifiche, come gli account di archiviazione.
+Assegnando hello appropriato RBAC ruolo toousers, gruppi e applicazioni, nell'ambito corretto hello è concesso l'accesso. toogrant accesso toohello intera sottoscrizione, si assegna un ruolo a livello di sottoscrizione hello. È possibile concedere accesso tooall delle risorse di hello in un gruppo di risorse tramite la concessione di autorizzazioni toohello risorse gruppo. È inoltre possibile assegnare ruoli specifici toospecific risorse, ad esempio gli account di archiviazione.
 
-Ecco i punti principali che occorre conoscere sull'uso del controllo degli accessi in base al ruolo per accedere alle operazioni di gestione di un account di archiviazione di Azure:
+Di seguito sono punti di hello principali che è necessario tooknow sull'utilizzo RBAC tooaccess hello le operazioni di gestione di un account di archiviazione di Azure:
 
-* Quando si assegna l'accesso, si assegna essenzialmente un ruolo all'account a cui si vuole accedere. È possibile controllare l'accesso alle operazioni usate per gestire quell'account di archiviazione, ma non agli oggetti dati nell'account. Ad esempio, è possibile concedere l'autorizzazione per recuperare le proprietà dell'account di archiviazione, ad esempio la ridondanza, ma non a un contenitore o ai dati all'interno di un contenitore nell'archivio BLOB.
-* A chiunque abbia l'autorizzazione di accesso agli oggetti dati nell'account di archiviazione è possibile concedere l'autorizzazione di lettura delle chiavi dell'account di archiviazione. Questo utente potrà quindi usare le chiavi per accedere a BLOB, code, tabelle e file.
-* I ruoli possono essere assegnati a un account utente specifico, a un gruppo di utenti o a un'applicazione specifica.
-* Per ogni ruolo è disponibile un elenco di azioni e non azioni. Per il ruolo Collaboratore Macchina virtuale, ad esempio, è disponibile un'azione "listKeys" che consente la lettura delle chiavi dell'account di archiviazione. Per il ruolo Collaboratore sono disponibili "non azioni", come l'aggiornamento dell'accesso per gli utenti in Active Directory.
-* I ruoli per l'archiviazione includono, tra le altre, le operazioni seguenti:
+* Quando si assegna l'accesso, è fondamentalmente assegnare un account di toohello di ruolo che si vuole toohave accesso. È possibile controllare l'accesso toohello operazioni toomanage tale account di archiviazione, ma non i dati toohello oggetti nell'account hello. Ad esempio, è possibile concedere l'autorizzazione proprietà hello tooretrieve dell'account di archiviazione di hello (ad esempio ridondanza), ma non tooa contenitore o dati all'interno di un contenitore all'interno dell'archiviazione Blob.
+* Per un utente toohave autorizzazione tooaccess hello oggetti dati nell'account di archiviazione hello, è possibile assegnare le chiavi di account di archiviazione di autorizzazione tooread hello e tale utente può quindi utilizzare tali chiavi tooaccess hello BLOB, code, tabelle e i file.
+* I ruoli possono essere assegnati tooa specifico account utente, un gruppo di utenti o tooa specifica applicazione.
+* Per ogni ruolo è disponibile un elenco di azioni e non azioni. Ad esempio, il ruolo di collaboratore alla macchina virtuale hello ha un'azione di "elenco chiavi del" che consente di leggere hello storage account chiavi toobe. Hello Collaboratore dispone di "Non azioni", come l'aggiornamento di access hello per gli utenti hello Active Directory.
+* Ruoli per l'archiviazione includono (ma non sono limitati a) seguente hello:
 
   * Proprietario: può gestire qualsiasi elemento, compreso l'accesso.
-  * Collaboratore: può eseguire tutte le operazioni consentite al proprietario, tranne l'assegnazione dell'accesso. Un utente con questo ruolo può visualizzare e rigenerare le chiavi dell'account di archiviazione. Con le chiavi di account di archiviazione può accedere gli oggetti dati.
-  * Lettore: può visualizzare le informazioni sull'account di archiviazione, tranne i segreti. Se ad esempio si assegna a un utente un ruolo con autorizzazioni di lettura per l'account di archiviazione, l'utente potrà visualizzare le proprietà dell'account di archiviazione, ma non apportare modifiche alle proprietà o visualizzare le chiavi dell'account di archiviazione.
-  * Collaboratore Account di archiviazione: può gestire l'account di archiviazione, leggere i gruppi di risorse e le risorse della sottoscrizione, nonché creare e gestire distribuzioni di gruppi di risorse della sottoscrizione. Potendo accedere alle chiavi dell'account di archiviazione, può accedere anche al piano dati.
-  * Amministratore Accesso utenti: può gestire l'accesso degli utenti all'account di archiviazione. Ad esempio, può concedere l'accesso in lettura a un utente specifico.
-  * Collaboratore Macchina virtuale: può gestire le macchine virtuali, ma non l'account di archiviazione a cui è connesso. Questo ruolo consente di elencare le chiavi dell'account di archiviazione e ciò significa che l'utente al quale si assegna questo ruolo può aggiornare il piano dati.
+  * Collaboratore – è possibile eseguire alcuna operazione proprietario hello possibile tranne che assegna l'accesso. Un utente con questo ruolo può visualizzare e rigenerare chiavi di account di archiviazione hello. Con chiavi di account di archiviazione hello, possono accedere gli oggetti dati hello.
+  * Lettore – possono visualizzare informazioni sull'account di archiviazione hello, tranne i segreti. Ad esempio, se si assegna un ruolo con autorizzazioni di lettura sul toosomeone account di archiviazione hello, possono visualizzare le proprietà di hello hello dell'account di archiviazione, ma non può apportare modifiche di proprietà toohello né visualizzare chiavi dell'account di archiviazione hello.
+  * Collaboratore di Account di archiviazione: possano gestire account di archiviazione hello: possono leggere hello gruppi di risorse della sottoscrizione e risorse, creare e gestire le distribuzioni gruppo di risorse di sottoscrizione. Che può accedere anche alle chiavi dell'account archiviazione hello, che a sua volta significa che poter accedere piano dati hello.
+  * Amministratore di accesso utente: possono gestire account di archiviazione toohello accesso utente. Ad esempio, possono concedere utente specifico tooa accesso di lettura.
+  * Macchina virtuale collaboratore – possono gestire le macchine virtuali ma non hello storage account toowhich che sono connessi. Questo ruolo è possibile elencare chiavi dell'account di archiviazione hello, che significa che hello toowhom utente assegnare questo ruolo è possibile aggiornare piano dati hello.
 
-    Per creare una macchina virtuale, un utente deve poter creare il file VHD corrispondente in un account di archiviazione. A questo scopo, dovrà essere in grado di recuperare la chiave dell'account di archiviazione e passarla all'API per la creazione della VM. Deve quindi avere questa autorizzazione per poter elencare le chiavi dell'account di archiviazione.
-* La capacità di definire ruoli personalizzati è una funzionalità che consente di comporre un set di azioni da un elenco di azioni disponibili che possono essere eseguite sulle risorse di Azure.
-* L'utente deve essere configurato in Azure Active Directory prima di potergli assegnare un ruolo.
-* È possibile creare un creare un report di chi ha concesso o revocato un tipo di accesso e a chi e in quale ambito usando PowerShell o l'interfaccia della riga di comando di Azure.
+    Affinché un toocreate utente una macchina virtuale, hanno toobe toocreate in grado di hello corrispondente file VHD in un account di archiviazione. toodo, necessità di archiviazione di hello in grado di tooretrieve toobe chiave account e passare l'API toohello hello VM di creazione. Pertanto, devono avere l'autorizzazione in modo che l'elenco di chiavi dell'account di archiviazione hello.
+* ruoli personalizzati toodefine possibilità di Hello è una funzionalità che consente di toocompose un set di azioni da un elenco di azioni disponibili che possono essere eseguite su risorse di Azure.
+* utente Hello è toobe configurare Azure Active Directory prima di poter assegnare toothem un ruolo.
+* È possibile creare un report che ha concesso o revocato il tipo di accesso e a/da cui l'ambito di utilizzo di PowerShell o hello CLI di Azure.
 
 #### <a name="resources"></a>Risorse
 * [Controllo degli accessi in base al ruolo di Azure Active Directory](../../active-directory/role-based-access-control-configure.md)
 
-  Questo articolo descrive il controllo degli accessi in base al ruolo di Azure Active Directory e il relativo funzionamento.
+  Questo articolo spiega hello controllo di accesso basato sui ruoli di Azure Active Directory e il relativo funzionamento.
 * [RBAC: Ruoli predefiniti](../../active-directory/role-based-access-built-in-roles.md)
 
-  Questo articolo illustra tutti i ruoli predefiniti disponibili nel controllo degli accessi in base al ruolo.
+  In questo articolo illustra in dettaglio tutti i ruoli predefiniti hello disponibili in RBAC.
 * [Comprendere la distribuzione di Gestione delle risorse e distribuzione classica](../../azure-resource-manager/resource-manager-deployment-model.md)
 
-  In questo articolo sono illustrati i modelli di distribuzione classica e Resource Manager e sono descritti i vantaggi dell'uso di Resource Manager e dei gruppi di risorse. Viene spiegato il funzionamento dei provider di calcolo, rete e archiviazione di Azure nel modello di Resource Manager.
-* [Gestione del controllo degli accessi in base al ruolo con l'API REST](../../active-directory/role-based-access-control-manage-access-rest.md)
+  In questo articolo illustra la distribuzione di gestione risorse di hello e modelli di distribuzione classica e spiega hello vantaggi dell'utilizzo di gruppi di gestione risorse e risorse hello. Descrive il modo hello calcolo di Azure, rete e i provider di archiviazione nel modello di gestione risorse di hello.
+* [Controllo degli accessi basato sui ruoli con hello API REST di gestione](../../active-directory/role-based-access-control-manage-access-rest.md)
 
-  Questo articolo illustra come usare l'API REST per gestire il controllo degli accessi in base al ruolo.
+  Questo articolo illustra come toouse hello toomanage API REST sui ruoli.
 * [Informazioni di riferimento sulle API REST del provider di risorse di archiviazione di Azure](https://msdn.microsoft.com/library/azure/mt163683.aspx)
 
-  Questo è il riferimento per le API che è possibile usare per gestire l'account di archiviazione a livello di codice.
-* [Guida per gli sviluppatori sull'autenticazione con l'API di Azure Resource Manager](http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/)
+  Si tratta di riferimento di hello per le API che è possibile utilizzare toomanage account di archiviazione a livello di codice hello.
+* [Tooauth Guida per gli sviluppatori con API di gestione risorse di Azure](http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/)
 
-  Questo articolo illustra come eseguire l'autenticazione con le API di Resource Manager.
+  Questo articolo viene illustrato come tramite tooauthenticate hello le API di gestione risorse.
 * [Controllo degli accessi in base al ruolo per Microsoft Azure da Ignite](https://channel9.msdn.com/events/Ignite/2015/BRK2707)
 
-  Questo è un collegamento a un video su Channel 9 della conferenza Microsoft Ignite 2015. In questa sessione vengono illustrate le funzionalità di creazione report e gestione degli accessi di Azure, oltre alle procedure consigliate per la protezione dell'accesso alle sottoscrizioni di Azure con Azure Active Directory.
+  Si tratta di un video su Channel 9 conferenza Ignite 2015 MS hello tooa di collegamento. In questa sessione, si parla di accedere alle funzionalità di reporting in Azure e gestione e l'esplorazione di procedure consigliate per la protezione dell'accesso tooAzure sottoscrizioni tramite Azure Active Directory.
 
 ### <a name="managing-your-storage-account-keys"></a>Rigenerazione delle chiavi dell'account di archiviazione
-Le chiavi dell'account di archiviazione sono stringhe a 512 bit create da Azure che, insieme al nome dell'account di archiviazione, possono essere usate per accedere agli oggetti dati archiviati nell'account di archiviazione, ad esempio BLOB, entità all'interno di una tabella, messaggi nella coda e file in una condivisione file di Azure. Il controllo dell'accesso alle chiavi dell'account di archiviazione consente di controllare l'accesso al piano dati di tale account di archiviazione.
+Account di archiviazione chiavi sono stringhe a 512 bit create da Azure che, insieme ai archiviazione hello, nome dell'account può essere tooaccess utilizzati hello dati archiviati nell'account di archiviazione hello, ad esempio BLOB, le entità all'interno di una tabella, i messaggi in coda e i file in una condivisione di File di Azure. Controlli di chiavi di controllo dell'accesso toohello archiviazione account di accesso piano dati toohello per tale account di archiviazione.
 
-Per ogni account di archiviazione sono disponibili due chiavi, dette "Chiave 1" e "Chiave 2" nel [portale di Azure](http://portal.azure.com/) e nei cmdlet di PowerShell. Queste possono essere rigenerate manualmente usando uno dei diversi metodi disponibili, inclusi ad esempio il [portale di Azure](https://portal.azure.com/), PowerShell, l'interfaccia della riga di comando di Azure, oppure a livello di codice con la libreria del client di archiviazione per .NET o l'API REST dei servizi di archiviazione di Azure.
+Ogni account di archiviazione dispone di due chiavi di cui tooas "Chiave 1" e "Chiave 2" in hello [portale di Azure](http://portal.azure.com/) e hello i cmdlet di PowerShell. Questi possono essere rigenerati manualmente utilizzando uno dei diversi metodi, inclusi, ma non limitata toousing hello [portale di Azure](https://portal.azure.com/), PowerShell, hello CLI di Azure o a livello di programmazione utilizzando hello libreria Client di archiviazione .NET o hello Azure API REST di servizi di archiviazione.
 
-Esistono diversi motivi per rigenerare le chiavi dell'account di archiviazione.
+Esistono vari motivi tooregenerate le chiavi di account di archiviazione.
 
 * Si possono rigenerarle a intervalli regolari per motivi di sicurezza.
-* È necessario rigenerare le chiavi dell'account di archiviazione se un utente riesce a violare un'applicazione e a recuperare la chiave hardcoded o salvata in un file di configurazione, ottenendo così l'accesso completo all'account di archiviazione.
-* Un altro caso per la rigenerazione delle chiave si verifica se il team usa un'applicazione di Storage Explorer che mantiene la chiave dell'account di archiviazione e un membro del team lascia l'organizzazione. L'applicazione continuerà a funzionare, consentendo l'accesso all'account di archiviazione dopo che il membro del team se ne è andato. Questo è in effetti il motivo principale per cui sono state create le firme di accesso condiviso a livello di account. È possibile usare una firma di accesso condiviso a livello di account invece di archiviare le chiavi di accesso in un file di configurazione.
+* Si si rigenerano le chiavi di account di archiviazione se un utente gestito toohack in un'applicazione e recuperare chiave hello hardcoded o salvato in un file di configurazione, agli account di archiviazione tooyour accesso completo.
+* Un altro caso di rigenerazione della chiave è se il team utilizza un'applicazione di esplorazione dell'archiviazione che mantiene una chiave dell'account di archiviazione hello e uno dei membri del team hello lascia. un'applicazione Hello continuerebbe toowork, agli account di archiviazione tooyour accesso dopo che sia troppo tardi. Questa è effettivamente hello principalmente che sono create firme di accesso condiviso a livello di account, è possibile utilizzare una firma di accesso condiviso a livello di account anziché l'archiviazione delle chiavi di accesso di hello in un file di configurazione.
 
 #### <a name="key-regeneration-plan"></a>Piano di rigenerazione delle chiavi
-È consigliabile non rigenerare semplicemente la chiave in uso senza una pianificazione. Se lo si fa, è possibile che venga completamente interrotto l'accesso all'account di archiviazione, con il rischio di causare gravi interruzioni. È per questo motivo che sono disponibili due chiavi ed è consigliabile rigenerarne una alla volta.
+Non si desidera chiave rigenerare hello toojust in uso senza una pianificazione. Se a tale scopo, è stato troncato tutti toothat storage account di accesso, che possono causare problemi principali. È per questo motivo che sono disponibili due chiavi ed è consigliabile rigenerarne una alla volta.
 
-Prima di rigenerare le chiavi, assicurarsi di avere un elenco di tutte le applicazioni che dipendono dall'account di archiviazione, nonché di tutti gli altri servizi usati in Azure. Ad esempio, se si usa Servizi multimediali di Azure che dipende dall'account di archiviazione, è necessario risincronizzare le chiavi di accesso con il proprio servizio multimediale dopo la rigenerazione delle chiavi. Anche per le eventuali applicazioni usate come strumento di esplorazione dovranno essere fornite nuove chiavi. Si noti che se sono disponibili VM i cui file VHD sono archiviati nell'account di archiviazione, queste non saranno interessate dalla rigenerazione delle chiavi dell'account di archiviazione.
+Prima di rigenerare le chiavi, assicurarsi di disporre di un elenco di tutte le applicazioni che dipendono da account di archiviazione hello, nonché tutti gli altri servizi in uso in Azure. Ad esempio, se si utilizza servizi multimediali di Azure che dipendono da account di archiviazione, è necessario risincronizzare le chiavi di accesso hello con il servizio multimediale dopo aver rigenerato la chiave hello. Se si utilizza tutte le applicazioni, ad esempio l'esplorazione dell'archiviazione, è necessario tooprovide hello nuove chiavi toothose applicazioni nonché. Si noti che se si dispone di macchine virtuali i cui file VHD vengono archiviati nell'account di archiviazione hello, non verrà influenzato da la rigenerazione delle chiavi dell'account di archiviazione hello.
 
-È possibile rigenerare le chiavi nel portale di Azure. Una volta che le chiavi sono state rigenerate, per la sincronizzazione con i servizi di archiviazione potrebbero essere necessari fino a 10 minuti.
+È possibile rigenerare le chiavi di hello portale di Azure. Una volta che le chiavi vengono rigenerate possibile occupino too10 toobe minuti sincronizzati tra servizi di archiviazione.
 
-Quando si è pronti, seguire la procedura generale che illustra in dettaglio come deve essere modificata la chiave. In questo caso, si presuppone che attualmente sia in uso la Chiave 1 e si voglia cambiare tutto per usare invece la Chiave 2.
+Quando si è pronti, ecco processo generale di hello che riporta in dettaglio come si deve modificare la chiave. In questo caso, presupposto hello è che 1 chiave attualmente in uso e si sta toochange tutto toouse chiave invece di 2.
 
-1. Rigenerare la Chiave 2 per assicurarsi che sia protetta. Questa operazione può essere eseguita nel portale di Azure.
-2. Modificare la chiave di archiviazione in tutte le applicazioni in cui è archiviata, in modo da usare il nuovo valore della Chiave 2. Testare e pubblicare l'applicazione.
-3. Una volta che le applicazioni e i servizi sono tutti operativi, rigenerare la Chiave 1. Ciò garantisce che chiunque non abbia ricevuto espressamente la nuova chiave non potrà più accedere all'account di archiviazione.
+1. Rigenerare tooensure chiave 2 è sicuro. È possibile farlo in hello portale di Azure.
+2. In tutte le applicazioni di hello in cui è archiviata la chiave di archiviazione hello, modificare il nuovo valore hello archiviazione toouse chiave chiave 2. Verificare e pubblicare un'applicazione hello.
+3. Dopo che tutti di hello applicazioni e servizi siano e in esecuzione correttamente, rigenerare la chiave 1. In questo modo, chiunque toowhom non espressamente hanno nuova chiave hello non sarà più possibile accedere toohello account di archiviazione.
 
-Se attualmente si usa la Chiave 2, è possibile usare lo stesso processo, ma invertendo i nomi delle chiavi.
+Se si utilizza attualmente 2 di chiave, è possibile utilizzare hello stessa procedura, ma i nomi delle chiavi di hello inversa.
 
-Si può eseguire la migrazione nell'arco di un paio di giorni, modificando ogni applicazione per l'uso della nuova chiave e pubblicandola. Una volta modificate tutte le applicazioni, si dovrà rigenerare la chiave precedente in modo che non funzioni più.
+È possibile eseguire la migrazione in un paio di giorni, ogni toouse hello nuovo tasto di modifica e la sua pubblicazione. Dopo tutti gli elementi, è necessario tornare indietro e rigenerare la chiave precedente hello in modo non funziona più.
 
-Un'altra opzione consiste nell'inserire la chiave dell'account di archiviazione in un [insieme di credenziali delle chiavi di Azure](https://azure.microsoft.com/services/key-vault/) come chiave privata e fare in modo che le applicazioni recuperino la chiave da quella posizione. Di conseguenza, quando si rigenera la chiave e si aggiorna l'insieme di credenziali delle chiave di Azure, non sarà necessario ridistribuire le applicazioni, perché acquisiranno automaticamente la nuova chiave dall'insieme di credenziali delle chiavi di Azure. Si noti che è possibile fare in modo che l'applicazione legga la chiave ogni volta che è necessario oppure memorizzarla nella cache e in caso di errore quando viene usata, recuperarla di nuovo dall'insieme di credenziali delle chiavi di Azure.
+Un'altra opzione consiste chiave account di archiviazione tooput hello in un [insieme credenziali chiavi Azure](https://azure.microsoft.com/services/key-vault/) come una chiave privata e dispone della chiave di hello recuperare di applicazioni da qui. Quando si rigenera la chiave hello e aggiorna hello insieme di credenziali chiave di Azure, quindi applicazioni hello non necessario toobe ridistribuito perché si selezionerà hello nuova chiave dall'insieme di credenziali chiave di Azure hello automaticamente. Si noti che è possibile disporre di un'applicazione hello leggere chiave hello ogni volta che è necessario, è possibile memorizzarlo nella cache in memoria e in caso di errore quando si utilizza, recuperare nuovamente chiave hello dal hello insieme credenziali chiavi Azure.
 
-L'uso dell'insieme di credenziali delle chiavi di Azure aggiunge anche un altro livello di sicurezza per le chiavi di archiviazione. Se si usa questo metodo, non si avrà mai una chiave di archiviazione hardcoded in un file di configurazione, eliminando la possibilità che qualcuno possa ottenere l'accesso alle chiavi senza un'autorizzazione specifica.
+L'uso dell'insieme di credenziali delle chiavi di Azure aggiunge anche un altro livello di sicurezza per le chiavi di archiviazione. Se si utilizza questo metodo, che non è hardcoded chiave di archiviazione hello in un file di configurazione, che rimuove tale via di qualcuno riesca ad accedere chiavi toohello senza autorizzazione specifica.
 
-Un altro vantaggio dell'uso dell'insieme di credenziali delle chiavi di Azure consiste nella possibilità di controllare anche l'accesso alle chiavi tramite Azure Active Directory. Ciò significa che è possibile concedere l'accesso al numero limitato di applicazioni che devono recuperare le chiavi dall'insieme di credenziali delle chiavi di Azure, sapendo che altre applicazioni non potranno accedere alle chiavi se a queste non vengono concesse autorizzazioni in modo specifico.
+Un altro vantaggio dell'utilizzo dell'insieme di credenziali chiave di Azure è che è inoltre possibile controllare le chiavi tooyour accesso tramite Azure Active Directory. Ciò significa che è possibile concedere alcuni toohello accesso delle applicazioni che necessitano di chiavi hello tooretrieve dall'insieme di credenziali chiave di Azure e sapere che altre applicazioni non saranno in grado di tooaccess le chiavi di hello senza concedere loro autorizzazioni in modo specifico.
 
-Nota: è consigliabile usare solo una delle chiavi in tutte le applicazioni contemporaneamente. Se si usa la Chiave 1 in alcune posizioni e la Chiave 2 in altre, non si potranno ruotare le chiavi senza quale applicazione perda l'accesso.
+Nota: è consigliabile toouse solo uno di hello chiavi in tutte le applicazioni in hello stesso tempo. Se si utilizza chiave 1 in alcune occasioni e 2 di chiave in altri, è necessario non essere in grado di toorotate delle chiavi senza un'applicazione di perdere l'accesso.
 
 #### <a name="resources"></a>Risorse
 * [Informazioni sugli account di archiviazione di Azure](storage-create-storage-account.md#regenerate-storage-access-keys)
@@ -147,49 +147,49 @@ Nota: è consigliabile usare solo una delle chiavi in tutte le applicazioni cont
   Questo articolo fornisce una panoramica degli account di archiviazione e illustra le operazioni di visualizzazione, copia e rigenerazione delle chiavi di accesso alle risorse di archiviazione.
 * [Informazioni di riferimento sulle API REST del provider di risorse di archiviazione di Azure](https://msdn.microsoft.com/library/mt163683.aspx)
 
-  Questo articolo contiene collegamenti ad articoli specifici sul recupero delle chiavi dell'account di archiviazione e sulla rigenerazione delle chiavi dell'account di archiviazione per un account di Azure usando l'API REST. Nota: quanto detto vale per gli account di archiviazione di Resource Manager.
+  Questo articolo contiene collegamenti toospecific di articoli sulle durante il recupero delle chiavi dell'account di archiviazione hello e la rigenerazione della chiavi dell'account di archiviazione hello per un Account di Azure mediante hello API REST. Nota: quanto detto vale per gli account di archiviazione di Resource Manager.
 * [Operazioni sugli account di archiviazione](https://msdn.microsoft.com/library/ee460790.aspx)
 
-  Questo articolo nelle informazioni di riferimento sulle API REST di gestione dei servizi di archiviazione contiene collegamenti ad articoli specifici relativi alle operazioni di recupero e rigenerazione delle chiavi dell'account di archiviazione tramite l'API REST. Nota: riguarda gli account di archiviazione della versione classica.
-* [Addio per gestione delle chiavi: come gestire l'accesso ai dati di archiviazione di Azure con Azure AD](http://www.dushyantgill.com/blog/2015/04/26/say-goodbye-to-key-management-manage-access-to-azure-storage-data-using-azure-ad/)
+  Questo articolo in Gestione servizi di archiviazione REST API Reference hello contiene articoli toospecific collegamenti sul recupero e la rigenerazione delle chiavi dell'account di archiviazione hello utilizzando hello API REST. Nota: Questa è per gli account di archiviazione di hello classica.
+* [Ad esempio Gestione tookey goodbye: gestire i dati di archiviazione tooAzure accesso tramite Azure AD](http://www.dushyantgill.com/blog/2015/04/26/say-goodbye-to-key-management-manage-access-to-azure-storage-data-using-azure-ad/)
 
-  Questo articolo illustra come usare Active Directory per controllare l'accesso alle chiavi di archiviazione di Azure nell'insieme di credenziali delle chiavi di Azure. Illustra anche come usare un processo di Automazione di Azure per rigenerare le chiavi su base oraria.
+  Questo articolo illustra come toouse Active Directory toocontrol tooyour le chiavi di archiviazione di Azure nell'insieme di credenziali chiave di Azure di accesso. Viene inoltre illustrato come un'automazione di Azure toouse processo chiavi hello tooregenerate su base oraria.
 
 ## <a name="data-plane-security"></a>Sicurezza del piano dati
-La sicurezza del piano dati riguarda i metodi usati per proteggere gli oggetti dati archiviati in Archiviazione di Azure: BLOB, code, tabelle e file. Sono stati esaminati i metodi per crittografare i dati e per la sicurezza durante la trasmissione di dati, ora si vedrà come fare per consentire l'accesso agli oggetti stessi.
+Piano di sicurezza dei dati fa riferimento a metodi toohello gli oggetti dati di hello toosecure utilizzati archiviati in archiviazione di Azure, file, code, tabelle e BLOB hello. Abbiamo visto metodi tooencrypt hello dati e sicurezza durante il transito dei dati di hello, ma come procedere per informazioni su come consentire l'accesso toohello oggetti?
 
-Esistono essenzialmente due metodi per controllare l'accesso agli oggetti dati. Il primo consiste nel controllare l'accesso alle chiavi dell'account di archiviazione, mentre il secondo usa firme di accesso condiviso per concedere l'accesso a oggetti dati specifici per un determinato periodo di tempo.
+Esistono due metodi per controllare gli oggetti dati toohello accesso autonomamente. da chiavi account di archiviazione toohello di controllo dell'accesso per primo è Hello e hello secondo utilizza gli oggetti dati toospecific di firme di accesso condiviso toogrant accesso per un periodo di tempo specifico.
 
-Un'eccezione importante riguarda la possibilità di consentire l'accesso pubblico ai BLOB impostando di conseguenza il livello di accesso per il contenitore che contiene i BLOB. Se si imposta l'accesso per un contenitore su BLOB o Contenitore, sarà consentito l'accesso pubblico in lettura ai BLOB in quel contenitore. Ciò significa che chiunque abbia un URL che punta a un BLOB in quel contenitore potrà aprirlo in un browser senza usare una firma di accesso condiviso o con le chiavi dell'account di archiviazione.
+Un'eccezione toonote è che è possibile consentire l'accesso pubblico tooyour BLOB impostando il livello di accesso hello per hello contenitore di BLOB hello di conseguenza. Se si imposta l'accesso per un contenitore tooBlob o il contenitore, sarà possibile l'accesso in lettura pubblico per i BLOB hello in tale contenitore. Ciò significa che qualsiasi utente con un URL che punta tooa blob presenti nel contenitore può aprire in un browser senza utilizzare una firma di accesso condiviso o disporre di chiavi di account di archiviazione hello.
 
 ### <a name="storage-account-keys"></a>Chiavi dell'account di archiviazione
-Le chiavi dell'account di archiviazione sono stringhe a 512 bit create da Azure che, insieme al nome dell'account di archiviazione, possono essere usate per accedere agli oggetti dati archiviati nell'account di archiviazione.
+Chiavi dell'account di archiviazione sono stringhe a 512 bit create da Azure che, insieme a nome di account di archiviazione hello, può essere tooaccess utilizzato hello dati archiviati nell'account di archiviazione hello.
 
-Ad esempio, è possibile leggere BLOB, scrivere nelle code, creare tabelle e modificare file. Molte di queste azioni possono essere eseguite tramite il portale di Azure o una delle numerose applicazioni di Storage Explorer. Per eseguire queste operazioni è anche possibile scrivere codice per usare l'API REST o una delle librerie client di archiviazione.
+Ad esempio, è possibile leggere i BLOB, scrivere tooqueues, creare tabelle e modificare file. Molte di queste azioni possono essere eseguite tramite hello Azure portal o utilizzando una delle numerose applicazioni di esplorazione dell'archiviazione. È anche possibile scrivere hello toouse codice API REST o uno dei hello le librerie Client di archiviazione tooperform queste operazioni.
 
-Come illustrato nella sezione [Sicurezza del piano di gestione](#management-plane-security), l'accesso alle chiavi di archiviazione per un account di archiviazione della versione classica può essere concesso fornendo l'accesso completo alla sottoscrizione di Azure. L'accesso alle chiavi di archiviazione per un account di archiviazione con il modello di Azure Resource Manager può essere controllato tramite il controllo degli accessi in base al ruolo.
+Come illustrato nella sezione hello in hello [gestione piano di sicurezza](#management-plane-security), le chiavi di archiviazione toohello di accesso per un account di archiviazione classico può essere concesse fornendo accesso completo toohello sottoscrizione di Azure. È possibile controllare le chiavi di archiviazione toohello di accesso per un account di archiviazione utilizzando il modello di gestione risorse di Azure hello con il controllo dell'accesso basato sui ruoli (RBAC).
 
-### <a name="how-to-delegate-access-to-objects-in-your-account-using-shared-access-signatures-and-stored-access-policies"></a>Come delegare l'accesso agli oggetti nell'account usando firme di accesso condiviso e criteri di accesso archiviati
-Una firma di accesso condiviso è una stringa contenente un token di sicurezza, che può essere collegato a un URI che consente di delegare l'accesso a oggetti di archiviazione e specificare limitazioni, ad esempio le autorizzazioni e l'intervallo di data/ora di accesso.
+### <a name="how-toodelegate-access-tooobjects-in-your-account-using-shared-access-signatures-and-stored-access-policies"></a>Modalità di accesso tooobjects nell'account di utilizzo di firme di accesso condiviso e criteri di accesso archiviati toodelegate
+Una firma di accesso condiviso è una stringa contenente un token di sicurezza che può essere collegati tooa URI che consente di accedere a toodelegate toostorage oggetti e specificare i vincoli, ad esempio le autorizzazioni di hello e hello un intervallo di data/ora di accesso.
 
-È possibile concedere l'accesso a BLOB, contenitori messaggi della coda, file e tabelle. Con le tabelle è effettivamente possibile concedere l'autorizzazione per accedere a un intervallo di entità nella tabella specificando gli intervalli di chiavi di partizione e di riga per cui si vuole concedere l'accesso all'utente. Ad esempio, se sono disponibili dati archiviati con una chiave di partizione di uno stato, è possibile concedere l'accesso ai dati solo per la California.
+È possibile concedere accesso tooblobs, contenitori, messaggi in coda, file e tabelle. Con le tabelle, è possibile effettivamente concedere autorizzazioni tooaccess un intervallo di entità nella tabella hello specificando hello riga e partizione intervalli di chiavi toowhich si desidera l'accesso utente toohave hello. Ad esempio, se si dispone di dati archiviati con una chiave di partizione dello stato geografica, si potrebbe concedere a un utente hello toojust di accedere ai dati della California.
 
-In un altro esempio, si può fornire un a un'applicazione Web un token di firma di accesso condiviso che consente di scrivere entità in una coda e fornire a un'applicazione ruolo di lavoro un token di firma di accesso condiviso per ottenere messaggi dalla coda ed elaborarli. In alternativa si può fornire a un cliente un token di firma di accesso condiviso che potrà essere usato per caricare immagini in un contenitore nell'archivio BLOB e fornire a un'applicazione Web l'autorizzazione per leggere quelle immagini. In entrambi i casi, esiste una separazione dei compiti: a ogni applicazione può essere fornito solo l'accesso necessario per eseguire attività specifiche. Ciò è possibile con l'uso delle firme di accesso condiviso.
+In un altro esempio, potrebbe fornire un token di firma di accesso condiviso che consente a tale coda tooa di toowrite le voci di un'applicazione web e assegnare un processo di lavoro applicazione ruolo un messaggi tooget token SAS da hello coda e li elaborano. Oppure si può fornire un token di firma di accesso condiviso possono utilizzare contenitore tooa di immagini tooupload nell'archiviazione Blob e assegnare un tooread di autorizzazione dell'applicazione web di tali immagini a un cliente. In entrambi i casi, c'è una separazione delle problematiche: ogni applicazione è possibile assegnare solo hello di accesso necessario in ordine tooperform relativa attività. Questo è possibile tramite l'utilizzo di hello di firme di accesso condiviso.
 
-#### <a name="why-you-want-to-use-shared-access-signatures"></a>Perché usare le firme di accesso condiviso
-Perché si dovrebbe voler usare una firma di accesso condiviso invece di fornire semplicemente la chiave dell'account di archiviazione, che è un'operazione molto più semplice? Fornire la chiave dell'account di archiviazione è come condividere le chiavi dell'ambito di archiviazione, infatti concede l'accesso completo. Un utente può usare le chiavi e caricare l'intero catalogo musicale nell'account di archiviazione. Può anche sostituire i file con versioni infette da virus o rubare i dati. Fornire l'accesso illimitato all'account di archiviazione è una scelta che non dovrebbe essere presa alla leggera.
+#### <a name="why-you-want-toouse-shared-access-signatures"></a>Motivo per cui si desidera toouse firme di accesso condiviso
+Perché è consigliabile toouse una firma di accesso condiviso anziché assegnare solo la chiave di account di archiviazione, è pertanto molto più semplice? Assegnare la chiave di account di archiviazione è simile a chiavi hello del unito archiviazione di condivisione. infatti concede l'accesso completo. È Impossibile usare le chiavi e caricare il proprio account di archiviazione di tutta la libreria tooyour. Può anche sostituire i file con versioni infette da virus o rubare i dati. Fornire account di accesso illimitato tooyour archiviazione è un elemento che non deve essere sottovalutare.
 
-Con le firme di accesso condiviso è possibile assegnare a un client solo le autorizzazioni necessarie per un periodo di tempo limitato. Ad esempio, se un utente deve caricare un BLOB nel proprio account, è possibile concedere l'accesso in scrittura per un periodo di tempo sufficiente caricare il BLOB, considerando naturalmente le dimensioni del BLOB. Se si cambia idea, è possibile revocare l'accesso.
+Con firme di accesso condiviso, è possibile assegnare un client solo le autorizzazioni di hello necessarie per un periodo di tempo limitato. Ad esempio, se un utente è il caricamento di un account tooyour blob, è possibile concedere loro l'accesso in scrittura per il blob di hello tooupload sufficiente tempo (in base alle dimensioni di hello del blob hello, naturalmente). Se si cambia idea, è possibile revocare l'accesso.
 
-È anche possibile specificare che le richieste eseguite con una firma di accesso condiviso sono limitate a un determinato indirizzo IP o un intervallo di indirizzi IP all'esterno di Azure. Si può anche specificare che le richieste devono essere eseguite con un protocollo specifico (HTTPS o HTTP/HTTPS). Ciò significa che se si vuole consentire il traffico HTTPS, è possibile impostare il protocollo richiesto solo su HTTPS e il traffico HTTP verrà bloccato.
+Inoltre, è possibile specificare che le richieste effettuate utilizzando una firma di accesso condiviso sono limitata tooa determinato tooAzure esterno intervallo di indirizzi IP o l'indirizzo IP. Si può anche specificare che le richieste devono essere eseguite con un protocollo specifico (HTTPS o HTTP/HTTPS). Ciò significa che se si desidera solo il traffico HTTPS tooallow, è possibile impostare hello necessario protocollo tooHTTPS solo e verrà bloccato il traffico HTTP.
 
 #### <a name="definition-of-a-shared-access-signature"></a>Definizione di firma di accesso condiviso
-Una firma di accesso condiviso è un set di parametri di query aggiunto all'URL che punta alla risorsa.
+Una firma di accesso condiviso è che un set di parametri di query aggiunto toohello URL che punta alla risorsa hello
 
-Fornisce informazioni sull'accesso consentito e sul periodo di tempo per cui è consentito l'accesso. Ecco un esempio di URI che fornisce l'accesso in lettura a un BLOB per cinque minuti. Si noti che i parametri di query della firma di accesso condiviso devono essere con codifica URL, ad esempio %3A per due punti (:) o %20 per lo spazio.
+che fornisce informazioni sull'accesso hello consentiti e hello periodo di tempo per cui hello è consentito l'accesso. Di seguito è riportato un esempio; Questo URI fornisce l'accesso in lettura tooa blob per cinque minuti. Si noti che i parametri di query della firma di accesso condiviso devono essere con codifica URL, ad esempio %3A per due punti (:) o %20 per lo spazio.
 
 ```
-http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
+http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL toohello blob)
 ?sv=2015-04-05 (storage service version)
 &st=2015-12-10T22%3A18%3A26Z (start time, in UTC time and URL encoded)
 &se=2015-12-10T22%3A23%3A26Z (end time, in UTC time and URL encoded)
@@ -197,139 +197,139 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 &sp=r (read access)
 &sip=168.1.5.60-168.1.5.70 (requests can only come from this range of IP addresses)
 &spr=https (only allow HTTPS requests)
-&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for the authentication of the SAS)
+&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for hello authentication of hello SAS)
 ```
 
-#### <a name="how-the-shared-access-signature-is-authenticated-by-the-azure-storage-service"></a>Modalità di autenticazione della firma di accesso condiviso tramite il servizio di archiviazione di Azure
-Quando il servizio di archiviazione riceve la richiesta, accetta i parametri di query di input e crea una firma usando lo stesso metodo del programma chiamante, quindi confronta le due firme. Se concordano, il servizio di archiviazione può controllare la versione del servizio di archiviazione per assicurarsi che sia valida, verificare che la data e l'ora correnti rientrino nell'intervallo specificato, assicurarsi che l'accesso richiesto corrisponda alla richiesta eseguita e così via.
+#### <a name="how-hello-shared-access-signature-is-authenticated-by-hello-azure-storage-service"></a>Come hello firma di accesso condiviso è stata autenticata da hello il servizio di archiviazione di Azure
+Quando il servizio di archiviazione hello riceve una richiesta di hello, accetta parametri di query di input hello e viene creata una firma utilizzando hello stesso metodo come hello programma chiamante. Consente quindi di confrontare due firme hello. Se si accetta, hello servizio di archiviazione è possibile verificare che sia valido toomake versione Servizio archiviazione hello, verificare che hello data e ora correnti all'interno di finestra specificato hello, verificare che accesso hello richiesto corrisponde toohello richiesta effettuata e così via.
 
-Ad esempio, se l'URL precedente puntasse a un file invece che a un BLOB, la richiesta non riuscirebbe perché specifica che la firma di accesso condiviso è per un BLOB. Se il comando REST chiamato doveva aggiornare un BLOB, non sarebbe riuscito perché la firma di accesso condiviso specifica che è consentito solo l'accesso in lettura.
+Ad esempio, con l'URL precedente, se URL hello riferimento tooa file anziché un blob, la richiesta avrà esito negativo perché specifica tale hello che firma di accesso condiviso è per un blob. Se hello comando REST chiamato tooupdate un blob, avrà esito negativo perché hello firma di accesso condiviso consente di specificare che è consentito solo l'accesso in lettura.
 
 #### <a name="types-of-shared-access-signatures"></a>Tipi di firme di accesso condiviso
-* Una firma di accesso condiviso a livello di servizio può essere usata per accedere a risorse specifiche in un account di archiviazione. Alcuni esempi consistono nel recuperare un elenco di BLOB in un contenitore, scaricare un BLOB, aggiornare un'entità in una tabella, aggiungere messaggi a una coda o caricare un file in una condivisione file.
-* Una firma di accesso condiviso a livello di account può essere usata per accedere a tutto ciò per cui può essere usata una firma di accesso condiviso a livello di servizio. Può anche fornire opzioni a risorse non consentite con una firma di accesso condiviso a livello di servizio, ad esempio la possibilità di creare contenitori, tabelle, code e condivisioni file. È anche possibile specificare l'accesso a più servizi contemporaneamente. Ad esempio, è possibile consentire a un utente di accedere a BLOB e file nell'account di archiviazione.
+* Una firma di accesso condiviso a livello di servizio può essere utilizzato tooaccess risorse specifiche in un account di archiviazione. Alcuni esempi di questo recuperato un elenco di BLOB in un contenitore, il download di un blob, aggiornamento di un'entità in una tabella, aggiunta tooa coda dei messaggi o caricamento di una condivisione di file tooa file.
+* Una firma di accesso condiviso a livello di account può essere utilizzato tooaccess tutto ciò che può essere utilizzato una firma di accesso condiviso a livello di servizio per. Inoltre, può fornire tooresources opzioni che non sono consentite con una firma di accesso condiviso a livello di servizio, ad esempio hello possibilità toocreate contenitori, tabelle, code e le condivisioni di file. È anche possibile specificare toomultiple di access services in una sola volta. Ad esempio, è possibile assegnare un utente tooboth Accedi ai BLOB e i file nell'account di archiviazione.
 
 #### <a name="creating-an-sas-uri"></a>Creazione di un URI di firma di accesso condiviso
-1. È possibile creare un URI ad hoc su richiesta, definendo ogni volta tutti i parametri di query.
+1. È possibile creare un URI ad hoc su richiesta, definire tutti i parametri di query hello ogni volta.
 
    Questo approccio è molto flessibile, ma se è disponibile un set logico di parametri simili ogni volta, l'uso di criteri di accesso archiviati è preferibile.
-2. È possibile creare criteri di accesso archiviati per un intero contenitore, una condivisione file, una tabella o una coda, che potranno quindi essere usati come base per gli URI di firma di accesso condiviso creati. Le autorizzazioni basate su criteri di accesso archiviati possono essere revocate facilmente. In ogni contenitore, coda, tabella o condivisione di file possono essere definiti fino a 5 criteri.
+2. È possibile creare criteri di accesso archiviati per un intero contenitore, una condivisione file, una tabella o una coda, Quindi è possibile utilizzare questo come base hello per hello crei gli URI di firma di accesso condiviso. Le autorizzazioni basate su criteri di accesso archiviati possono essere revocate facilmente. È possibile disporre di criteri too5 definiti in ogni contenitore, coda, tabella o una condivisione di backup.
 
-   Se ad esempio si prevede che molte persone leggano i BLOB in un contenitore specifico, è possibile creare criteri di accesso archiviati con l'indicazione "concedere l'accesso in lettura" e qualsiasi altra impostazione che sarà uguale ogni volta. È quindi possibile creare un URI di firma di accesso condiviso usando le impostazioni dei criteri di accesso archiviati e specificando la data/ora di scadenza. Il vantaggio di questo approccio è che non è necessario specificare ogni volta tutti i parametri di query.
+   Ad esempio, se si prevede di toohave molte persone leggono BLOB hello in un contenitore specifico, è possibile creare un criterio di accesso archiviati che afferma "concedere l'accesso in lettura" e tutte le altre impostazioni che saranno hello stesso ogni volta. È quindi possibile creare un URI SAS utilizzando hello impostazioni di criteri di accesso archiviato hello e specificando hello data/ora di scadenza. Hello questo vantaggio è che non è necessario toospecify tutti hello parametri di query ogni volta.
 
 #### <a name="revocation"></a>Revoca
-Si supponga che la firma di accesso condiviso sia stata compromessa o si voglia modificarla a causa dei requisiti di conformità alle normative o di sicurezza aziendale. Come si revoca l'accesso a una risorsa con quella firma di accesso condiviso? Dipende da come è stato creato l'URI di firma di accesso condiviso.
+Si supponga che sia stata compromessa la firma di accesso condiviso o si desidera toochange, a causa di requisiti normativi o di sicurezza aziendali. Come revocare l'accesso tooa risorsa utilizzando tale firma di accesso condiviso Dipende dal modo creato hello URI SAS.
 
-Se si usa un URI ad hoc, sono disponibili tre opzioni. È possibile rilasciare token di firma di accesso condiviso con criteri di scadenza breve e attendere semplicemente che la firma scada. È possibile rinominare o eliminare la risorsa, presupponendo che l'ambito del token sia imitato a un singolo oggetto. È possibile modificare le chiavi dell'account di archiviazione. Quest'ultima opzione può avere un impatto significativo, a seconda di quanti servizi usano l'account di archiviazione ed è probabilmente una scelta che presuppone un'attività di pianificazione.
+Se si usa un URI ad hoc, sono disponibili tre opzioni. È possibile rilasciare token di firma di accesso condiviso con criteri di scadenza breve e attendere semplicemente tooexpire SAS hello. È possibile rinominare o eliminare la risorsa hello (supponendo che il token hello sia singolo oggetto con ambito tooa). È possibile modificare chiavi dell'account di archiviazione hello. Quest'ultima opzione può avere un impatto di grandi dimensioni, a seconda di quanti servizi utilizza tale account di archiviazione e probabilmente non è un elemento da toodo senza una pianificazione.
 
-Se si usa una firma di accesso condiviso derivata da criteri di accesso archiviati, è possibile rimuovere l'accesso revocando i criteri. Si può semplicemente modificarla in modo che risulti già scaduta o rimuoverla completamente. Questa operazione ha effetto immediato e invalida qualsiasi firma di accesso condiviso creata con tali criteri di accesso archiviati. L'aggiornamento o la rimozione dei criteri di accesso archiviati può avere un impatto sugli utenti che accedono al contenitore, alla condivisione file, alla tabella o alla coda specifica con la firma di accesso condiviso, ma se i client sono configurati per richiedere una nuova firma di accesso condiviso quando quella precedente non è più valida, questa operazione funzionerà correttamente.
+Se si utilizza una firma di accesso condiviso derivato da un criterio di accesso archiviati, è possibile rimuovere l'accesso revocando hello i criteri di accesso archiviato – è possibile modificare solo in modo che è già scaduta o rimuoverlo completamente. Questa operazione ha effetto immediato e invalida qualsiasi firma di accesso condiviso creata con tali criteri di accesso archiviati. L'aggiornamento o rimozione di hello criterio di accesso archiviato può influire sulle persone l'accesso a tale contenitore specifico, una condivisione file, una tabella o coda tramite firma di accesso condiviso, ma se hello client vengono scritti in modo che lo richiedono una nuova firma di accesso condiviso quando hello precedente diventa non valido, questo funzionerà correttamente.
 
-Poiché l'uso di una firma di accesso condiviso derivata da criteri di accesso archiviati offre la possibilità di revocare immediatamente la firma di accesso condiviso, è consigliabile usare sempre i criteri di accesso archiviati, quando possibile.
+Poiché l'utilizzo di una SAS derivata da un criterio di accesso archiviato offre toorevoke possibilità hello che firma di accesso condiviso immediatamente, è hello consigliata best practice tooalways utilizzare criteri di accesso archiviati quando possibile.
 
 #### <a name="resources"></a>Risorse
-Per informazioni più dettagliate sull'uso di firme di accesso condiviso e criteri di accesso archiviati, con esempi, vedere gli articoli seguenti:
+Per informazioni più dettagliate sull'uso di firme di accesso condiviso e archiviati i criteri di accesso, vengono forniti esempi, fare riferimento toohello seguenti articoli:
 
-* Ecco gli articoli di riferimento.
+* Questi sono gli articoli di riferimento hello.
 
   * [Firma di accesso condiviso del servizio.](https://msdn.microsoft.com/library/dn140256.aspx)
 
     Questo articolo fornisce esempi dell'uso di una firma di accesso condiviso a livello di servizio con BLOB, messaggi della coda, intervalli di tabelle e file.
   * [Creazione di una firma di accesso condiviso del servizio](https://msdn.microsoft.com/library/dn140255.aspx)
   * [Creazione di una firma di accesso condiviso dell'account](https://msdn.microsoft.com/library/mt584140.aspx)
-* Si tratta di esercitazioni per l'uso della libreria client .NET per creare firme di accesso condiviso e criteri di accesso archiviati.
+* Si tratta di esercitazioni per l'utilizzo di hello .NET client libreria toocreate firme di accesso condiviso e criteri di accesso archiviati.
 
   * [Uso delle firme di accesso condiviso](../storage-dotnet-shared-access-signature-part-1.md)
-  * [Firme di accesso condiviso, parte 2: creare e usare una firma di accesso condiviso con il servizio BLOB](../blobs/storage-dotnet-shared-access-signature-part-2.md)
+  * [Condiviso firme di accesso, parte 2: Creare e utilizzare una firma di accesso condiviso con hello servizio Blob](../blobs/storage-dotnet-shared-access-signature-part-2.md)
 
-    Questo articolo contiene una spiegazione del modello di firma di accesso condiviso, esempi di firme di accesso condiviso e suggerimenti per la procedura consigliata da usare per le firme di accesso condiviso. È descritta anche la revoca dell'autorizzazione concessa.
+    In questo articolo include una spiegazione del modello di firma di accesso condiviso hello, esempi di firme di accesso condiviso e indicazioni per la procedura consigliata hello di firma di accesso condiviso. Inoltre descritti è revoca hello di autorizzazione di hello.
 * Limitazione dell'accesso con un indirizzo IP (ACL IP)
 
   * [Che cos'è un elenco di controllo di accesso (ACL) di endpoint?](../../virtual-network/virtual-networks-acl.md)
   * [Creazione di una firma di accesso condiviso del servizio](https://msdn.microsoft.com/library/azure/dn140255.aspx)
 
-    Questo è un articolo di riferimento per la firma di accesso condiviso a livello di servizio. Include un esempio di ACL di IP.
+    Si tratta di articolo di riferimento hello per la firma di accesso condiviso a livello di servizio; include un esempio di ACLing IP.
   * [Creazione di una firma di accesso condiviso dell'account](https://msdn.microsoft.com/library/azure/mt584140.aspx)
 
-    Questo è un articolo di riferimento per la firma di accesso condiviso a livello di account. Include un esempio di ACL di IP.
+    Si tratta di articolo di riferimento hello per la firma di accesso condiviso a livello di account; include un esempio di ACLing IP.
 * Autenticazione
 
-  * [Autenticazione per i servizi di archiviazione di Azure](https://msdn.microsoft.com/library/azure/dd179428.aspx)
+  * [Autenticazione per hello servizi di archiviazione di Azure](https://msdn.microsoft.com/library/azure/dd179428.aspx)
 * Esercitazione introduttiva sulle firme di accesso condiviso
 
   * [Esercitazione introduttiva sulle firme di accesso condiviso](https://github.com/Azure-Samples/storage-dotnet-sas-getting-started)
 
 ## <a name="encryption-in-transit"></a>Crittografia in transito
 ### <a name="transport-level-encryption--using-https"></a>Crittografia a livello di trasporto: uso di HTTPS
-Un altro passaggio da adottare per garantire la sicurezza dei dati di archiviazione di Azure consiste nel crittografare i dati tra il client e l'archiviazione di Azure. Il primo suggerimento consiste nell'usare sempre il protocollo [HTTPS](https://en.wikipedia.org/wiki/HTTPS) che garantisce una comunicazione protetta sulla rete Internet pubblica.
+Un altro passaggio, è necessario intraprendere sicurezza hello tooensure dei dati di archiviazione di Azure è dati hello tooencrypt tra client hello e l'archiviazione di Azure. Hello prima si consiglia di tooalways utilizzare hello [HTTPS](https://en.wikipedia.org/wiki/HTTPS) hello di protocollo, che assicura una comunicazione protetta tramite Internet pubblico.
 
-Per avere un canale di comunicazione sicuro, è consigliabile usare sempre HTTPS quando si chiamano le API REST o si accede a oggetti nella risorsa di archiviazione. Le **firme di accesso condiviso**, che possono essere usate per delegare l'accesso a oggetti di archiviazione di Azure, includono anche un'opzione per specificare che quando si usano firme di accesso condiviso si può usare solo il protocollo HTTPS, assicurando che chiunque invii collegamenti con token di firma di accesso condiviso userà il protocollo corretto.
+toohave un canale di comunicazione sicuro, è necessario utilizzare sempre HTTPS durante la chiamata API REST hello o accede agli oggetti nel servizio di archiviazione. Inoltre, **firme di accesso condiviso**, che può essere utilizzato toodelegate accedere agli oggetti di archiviazione tooAzure, includono un'opzione toospecify tale hello solo quando si usano firme di accesso condiviso, assicurando che chiunque è possibile utilizzare il protocollo HTTPS l'invio di collegamenti con i token di firma di accesso condiviso Usa protocollo corretto hello.
 
-È possibile imporre l'uso di HTTPS quando si chiamano le API REST per accedere a oggetti negli account di archiviazione abilitando l'opzione [Trasferimento sicuro obbligatorio](../storage-require-secure-transfer.md) per l'account di archiviazione. Una volta abilitata l'opzione, le connessioni che usano il protocollo HTTP verranno rifiutate.
+È possibile imporre l'uso di hello del protocollo HTTPS durante la chiamata di oggetti tooaccess API REST di hello negli account di archiviazione, consentendo [necessario trasferimento sicuro](../storage-require-secure-transfer.md) hello account di archiviazione. Una volta abilitata l'opzione, le connessioni che usano il protocollo HTTP verranno rifiutate.
 
 ### <a name="using-encryption-during-transit-with-azure-file-shares"></a>Uso della crittografia durante la trasmissione con condivisioni file di Azure
-Il servizio di archiviazione file di Azure supporta HTTPS quando si usa l'API REST, ma è più comunemente usato come una condivisione file SMB collegata a una VM. SMB 2.1 non supporta la crittografia, quindi le connessioni sono consentite solo all'interno della stessa area in Azure. Tuttavia, SMB 3.0 supporta la crittografia ed è disponibile in Windows Server 2012 R2, Windows 8, Windows 8.1 e Windows 10, consentendo l'accesso tra aree e anche l'accesso sul desktop.
+Archiviazione di File di Azure supporta HTTPS, quando si utilizza l'API REST di hello, ma è più comunemente utilizzati come una condivisione file SMB collegato tooa macchina virtuale. SMB 2.1 non supporta la crittografia, pertanto le connessioni sono consentite solo all'interno di hello stessa area in Azure. Tuttavia, SMB 3.0 supporta la crittografia, è disponibile in Windows Server 2012 R2 e Windows 8, Windows 8.1 e Windows 10, consentendo tra aree di accesso e anche l'accesso sul desktop hello.
 
-Si noti che mentre le condivisioni file Azure possono essere usate con Unix, il client SMB Linux non supporta ancora la crittografia, quindi l'accesso è consentito solo all'interno di un'area di Azure. Il supporto della crittografia per Linux fa parte del programma degli sviluppatori Linux responsabili della funzionalità di SMB. Quando verrà aggiunta la crittografia, si avrà la stessa possibilità di accesso a una condivisione file di Azure in Linux, come avviene per Windows.
+Si noti che mentre condivisioni File di Azure possono essere utilizzate con Unix, hello client SMB Linux non ancora supporta la crittografia, pertanto l'accesso è consentito solo all'interno di un'area di Azure. Supporto della crittografia per Linux è roadmap hello di sviluppatori Linux responsabili per la funzionalità SMB. Quando si aggiunge la crittografia, sarà necessario hello stesso possibilità per l'accesso a una condivisione di File di Azure in Linux, come avviene per Windows.
 
-È possibile imporre l'uso della crittografia con il servizio File di Azure abilitando l'opzione [Trasferimento sicuro obbligatorio](../storage-require-secure-transfer.md) per l'account di archiviazione. Se si usano le API REST, è necessario usare il protocollo HTTPS. Per SMB, solo le connessioni SMB che supportano la crittografia saranno stabilite correttamente.
+È possibile imporre l'uso di hello della crittografia con il servizio file di Azure hello abilitando [necessario trasferimento sicuro](../storage-require-secure-transfer.md) hello account di archiviazione. Se tramite hello API REST, HTTPs è obbligatorio. Per SMB, solo le connessioni SMB che supportano la crittografia saranno stabilite correttamente.
 
 #### <a name="resources"></a>Risorse
-* [Come usare Archiviazione file di Azure con Linux](../storage-how-to-use-files-linux.md)
+* [Come toouse archiviazione di File di Azure con Linux](../storage-how-to-use-files-linux.md)
 
-  Questo articolo illustra come montare una condivisione file di Azure in un sistema Linux e caricare o scaricare file.
+  Questo articolo illustra come un File di Azure toomount condividere in un sistema e caricare e scaricare i file di Linux.
 * [Introduzione ad Archiviazione file di Azure in Windows](../storage-dotnet-how-to-use-files.md)
 
-  Questo articolo fornisce una panoramica delle condivisioni file di Azure e come montarle e usarle con PowerShell e .NET.
-* [Analisi di archiviazione file di Azure](https://azure.microsoft.com/blog/inside-azure-file-storage/)
+  In questo articolo viene fornita una panoramica delle condivisioni File di Azure e come toomount e usarli tramite PowerShell e .NET.
+* [Inside Azure File storage (Analisi di Archiviazione file di Azure)](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 
-  Questo articolo annuncia la disponibilità a livello generale di Archiviazione file di Azure e fornisce dettagli tecnici sulla crittografia in SMB 3.0.
+  In questo articolo annuncia hello disponibilità generale di archiviazione di File di Azure e vengono forniti dettagli tecnici sulla crittografia hello SMB 3.0.
 
-### <a name="using-client-side-encryption-to-secure-data-that-you-send-to-storage"></a>Uso della crittografia lato client per proteggere i dati inviati alla risorsa di archiviazione
-Un'altra opzione che consente di assicurarsi che i dati siano protetti durante il trasferimento tra un'applicazione client e la risorsa di archiviazione è la crittografia lato client. I dati vengono crittografati prima di essere trasferiti nell'archiviazione di Azure. Quando si recuperano i dati dall'archiviazione di Azure, vengono decrittografati dopo la ricezione sul lato client. Anche se i dati vengono crittografati mentre sono in transito, è consigliabile usare anche HTTPS, perché incorpora controlli di integrità dei dati che contribuiscono a ridurre gli errori di rete che interessano l'integrità dei dati.
+### <a name="using-client-side-encryption-toosecure-data-that-you-send-toostorage"></a>Utilizzando i dati di toosecure crittografia lato Client che si invia toostorage
+Un'altra opzione che consente di assicurarsi che i dati siano protetti durante il trasferimento tra un'applicazione client e la risorsa di archiviazione è la crittografia lato client. Hello dati vengono crittografati prima di essere trasferiti nell'archiviazione di Azure. Quando si recuperano dati hello da archiviazione di Azure, dati hello viene decrittografati dopo la ricezione sul lato client hello. Anche se crittografia dei dati hello passare attraverso la rete hello, è consigliabile usare anche HTTPS, perché contiene i controlli di integrità dei dati incorporati che aiutano a ridurre gli errori di rete che interessano l'integrità dei dati hello hello.
 
-La crittografia lato client è anche un metodo per crittografare i dati inattivi, perché i dati vengono archiviati in formato crittografato. Verranno fornite informazioni più dettagliate nella sezione [Crittografia di dati inattivi](#encryption-at-rest).
+Crittografia client-side è anche un metodo per la crittografia dei dati inattivi, hello vengono memorizzati in forma crittografata. Parleremo questo più dettagliatamente nella sezione hello in [crittografia](#encryption-at-rest).
 
 ## <a name="encryption-at-rest"></a>Crittografia di dati inattivi
-Esistono tre funzionalità di Azure che consentono di crittografare dati inattivi. Crittografia dischi di Azure viene usata per crittografare i dischi dati e del sistema operativo nelle macchine virtuali IaaS. Le altre due, ovvero SSE e crittografia lato client, vengono entrambe usate per crittografare i dati nell'archiviazione di Azure. Si esaminerà ognuna di queste funzionalità, eseguendo quindi un confronto per vedere quando usare ognuna di esse.
+Esistono tre funzionalità di Azure che consentono di crittografare dati inattivi. Azure crittografia del disco è utilizzato tooencrypt hello del sistema operativo e i dischi dati in macchine virtuali IaaS. altri due Hello di crittografia lato Client e SSE – tooencrypt utilizzati sia i dati in archiviazione di Azure. Si esaminerà ognuna di queste funzionalità, eseguendo quindi un confronto per vedere quando usare ognuna di esse.
 
-Anche se è possibile usare la crittografia lato client per crittografare i dati in transito, che vengono anche archiviati in forma crittografata nella risorsa di archiviazione, è preferibile usare semplicemente HTTPS durante il trasferimento e configurare un modo per crittografare automaticamente i dati quando sono archiviati. Esistono due modi per eseguire questa operazione: SSE e Crittografia dischi di Azure. Una viene usata per crittografare direttamente i dati sui dischi dati e del sistema operativo usati dalle VM e l'altra viene usata per crittografare i dati scritti nell'archivio BLOB di Azure.
+Sebbene sia possibile utilizzare i dati di crittografia lato Client tooencrypt hello in transito (che viene inoltre archiviato in formato crittografato nel servizio di archiviazione), è possibile preferiscono utilizzare toosimply HTTPS durante il trasferimento di hello e ha un modo per toobe dati hello crittografato automaticamente quando è archiviati. Esistono due modi toodo questo - crittografia del disco di Azure e SSE. Viene utilizzato uno toodirectly crittografare i dati di hello nei dischi del sistema operativo e i dati utilizzati dalle macchine virtuali e hello altri dati utilizzati tooencrypt scritti tooAzure nell'archiviazione Blob.
 
 ### <a name="storage-service-encryption-sse"></a>Crittografia del servizio di archiviazione di Azure (SSE)
-SSE consente di richiedere che il servizio di archiviazione crittografi automaticamente i dati durante la scrittura nell'archiviazione di Azure. Quando si leggono i dati dall'archiviazione di Azure, verranno decrittografati dal servizio di archiviazione prima di essere restituiti. Ciò consente di proteggere i dati senza dover modificare il codice o aggiungere codice alle applicazioni.
+SSE consente che il servizio di archiviazione hello crittografa automaticamente i dati hello durante la scrittura di archiviazione tooAzure toorequest. Quando si leggono dati hello da archiviazione di Azure, verrà decrittografato dal servizio di archiviazione hello prima della restituzione. In questo modo toosecure i dati senza dovere toomodify codice o aggiungono codice tooany applicazioni.
 
-Questa impostazione si applica all'intero account di archiviazione. È possibile abilitare e disabilitare questa funzionalità modificando il valore dell'impostazione. A questo scopo si può usare il portale di Azure, PowerShell, l'interfaccia della riga di comando di Azure, l'API REST del provider di risorse di archiviazione o la libreria del client di archiviazione per .NET. Per impostazione predefinita, la funzionalità SSE è disattivata.
+Si tratta di un'impostazione che applica l'account di archiviazione intero toohello. È possibile abilitare e disabilitare questa funzionalità modificando il valore di hello dell'impostazione di hello. toodo, è possibile utilizzare hello portale di Azure PowerShell, hello CLI di Azure, hello API REST di Provider di risorse di archiviazione o hello libreria Client di archiviazione .NET. Per impostazione predefinita, la funzionalità SSE è disattivata.
 
-Al momento, le chiavi usate per la crittografia sono gestite da Microsoft. Le chiavi vengono generate in origine e viene gestita l'archiviazione protetta delle chiavi, nonché la rotazione regolare secondo quanto definito dai criteri interni di Microsoft. In futuro, sarà possibile gestire le proprie chiavi di crittografia e verrà fornito un percorso di migrazione dalle chiavi gestite da Microsoft alle chiavi gestite dal cliente.
+In questo momento, chiavi di crittografia di hello hello vengono gestite da Microsoft. Si genera chiavi di hello originariamente e gestione l'archiviazione sicura hello di chiavi hello nonché rotazione regolare hello come definito dai criteri di Microsoft interno. In futuro hello, consente di ottenere hello possibilità toomanage proprie chiavi di crittografia e di fornire un percorso di migrazione dalle chiavi di gestione di Microsoft gestito toocustomer le chiavi.
 
-Questa funzionalità è disponibile per gli account di archiviazione Premium e Standard creati con il modello di distribuzione di Resource Manager. SSE viene applicato solo per BLOB in blocchi, BLOB di pagine e BLOB di aggiunta. Altri tipi di dati, tra cui tabelle, code e file, non verranno crittografati.
+Questa funzionalità è disponibile per gli account Standard e Premium archiviazione creati utilizzando hello modello di distribuzione di gestione delle risorse. SSE si applica solo tooblock i BLOB, BLOB di pagine e BLOB di aggiunta. Hello altri tipi di dati, inclusi tabelle, code e i file, non verranno crittografati.
 
-I dati vengono crittografati solo quando SSE è abilitata e i dati vengono scritti nell'archiviazione BLOB. L'abilitazione o la disabilitazione di SSE non influisce sui dati esistenti. In altre parole, quando si abilita la crittografia, non tornare indietro e crittografare i dati che esistono già. né per decrittografare i dati già presenti quando si disabilita SSE.
+Dati vengono crittografati solo quando è abilitata SSE e dati hello tooBlob archiviazione. L'abilitazione o la disabilitazione di SSE non influisce sui dati esistenti. In altre parole, quando si abilita la crittografia, non torna indietro né crittografare i dati che è già presente. né per decrittografare dati hello già presenti quando si disabilita SSE.
 
-Se si vuole usare questa funzionalità con un account di archiviazione classico, è possibile creare un nuovo account di archiviazione di Resource Manager e usare AzCopy per copiare i dati nel nuovo account.
+Se si desidera toouse questa funzionalità con un account di archiviazione classica, è possibile creare un nuovo account di archiviazione di gestione delle risorse e usare AzCopy toocopy hello toohello dati nuovo account.
 
 ### <a name="client-side-encryption"></a>crittografia lato client
-La crittografia lato client è stata citata nella discussione riguardante la crittografia dei dati in transito. Questa funzionalità consente di crittografare a livello di codice i dati in un'applicazione client prima dell'invio in rete per la scrittura nell'archiviazione di Azure e di decrittografare i dati a livello di codice dopo il recupero dall'archiviazione di Azure.
+Quando si parla di crittografia hello dei dati di hello in transito accennato crittografia lato client. Questa funzionalità consente tooprogrammatically per crittografare i dati in un'applicazione client prima di inviarlo in hello transito toobe scritto tooAzure archiviazione e tooprogrammatically decrittografare i dati dopo averli recuperati dall'archiviazione di Azure.
 
-In questo modo è disponibile la crittografia in transito, ma anche la funzionalità di crittografia dei dati inattivi. Si noti che anche se i dati vengono crittografati in transito, è comunque consigliabile usare HTTPS per sfruttare i controlli di integrità dei dati incorporati, che contribuiscono a ridurre gli errori di rete che interessano l'integrità dei dati.
+Questo fornisce la crittografia in transito, ma fornisce anche funzionalità hello di crittografia. Si noti che benché hello dati vengono crittografati in transito, è comunque consigliabile utilizzare controlli di integrità dei dati incorporati hello che aiutano a ridurre gli errori di rete che interessano l'integrità dei dati hello hello sfruttare tootake HTTPS.
 
-Un esempio d'uso di questa opzione è la disponibilità di un'applicazione Web che archivia e recupera i BLOB e si vuole proteggere l'applicazione e i dati nel miglior modo possibile. In questo caso, si userà la crittografia lato client. Il traffico tra il client e il servizio BLOB di Azure contiene la risorsa crittografata e nessuno può interpretare i dati in transito e ricostituirli nei BLOB privati.
+Un esempio di in cui è possibile utilizzare questa opzione è se si dispone di un'applicazione web per l'archiviazione BLOB e recupera i BLOB e si desidera che un'applicazione hello e toobe dati il più sicuro possibile. In questo caso, si userà la crittografia lato client. il traffico tra hello client e il servizio Blob di Azure hello Hello contiene risorse crittografato hello e nessuno può interpretare dati hello in transito e viene ricostituire nei blob privati.
 
-La crittografia lato client è incorporata nelle librerie client di archiviazione per .NET e Java, che a loro volta usano le API dell'insieme di credenziali delle chiavi di Azure, rendendo l'implementazione piuttosto semplice. Il processo di crittografia e decrittografia dei dati usa la tecnica delle envelope e archivia i metadati usati per la crittografia in ogni oggetto di archiviazione. Ad esempio, per i BLOB li archivia nei metadati del BLOB, mentre per le code li aggiunge a ogni messaggio nella coda.
+Crittografia lato client viene compilata in Java hello e hello archiviazione client librerie .NET, che a sua volta utilizza hello API insieme di credenziali chiave di Azure, rendendola un'operazione abbastanza semplice per è tooimplement. il processo di Hello di crittografare e decrittografare dati hello utilizza hello busta tecnica e archivia i metadati utilizzati da crittografia hello in ogni oggetto di archiviazione. Ad esempio, per i BLOB, li archivia in hello i metadati del blob, mentre per le code, viene aggiunto tooeach messaggio della coda.
 
-Per la crittografia stessa, è possibile generare e gestire chiavi di crittografia personalizzate. È anche possibile usare le chiavi generate dalla libreria client di archiviazione di Azure oppure è possibile impostare la generazione delle chiavi usando l'insieme di credenziali delle chiavi di Azure. Si possono archiviare le chiavi di crittografia nell'archiviazione chiavi locale oppure in un insieme di credenziali delle chiavi di Azure. L'insieme di credenziali delle chiavi di Azure consente di concedere l'accesso ai segreti nello stesso insieme di credenziali delle chiavi Azure a utenti specifici usando Azure Active Directory. Ciò significa che non tutti possono leggere Azure Key Vault e recuperare le chiavi usate per la crittografia lato client.
+Per la crittografia hello stesso, è possibile generare e gestire le proprie chiavi di crittografia. È inoltre possibile utilizzare le chiavi generate da hello Azure Storage Client Library oppure è possibile disporre di hello insieme credenziali chiavi Azure genera chiavi di hello. Si possono archiviare le chiavi di crittografia nell'archiviazione chiavi locale oppure in un insieme di credenziali delle chiavi di Azure. Insieme di credenziali chiave di Azure consente di segreti di toohello toogrant accesso degli utenti toospecific insieme credenziali chiavi Azure tramite Azure Active Directory. Ciò significa che non solo a chiunque può leggere hello insieme credenziali chiavi Azure e recuperare le chiavi di hello che si utilizza per la crittografia lato client.
 
 #### <a name="resources"></a>Risorse
 * [Crittografare e decrittografare i BLOB in Archiviazione di Microsoft Azure tramite l'insieme di credenziali chiave di Azure](../blobs/storage-encrypt-decrypt-blobs-key-vault.md)
 
-  Questo articolo illustra come usare la crittografia lato client con l'insieme di credenziali delle chiavi di Azure, inclusa la creazione della chiave di crittografia della chiave e la relativa archiviazione nell'insieme di credenziali tramite PowerShell.
+  Questo articolo viene illustrato come crittografia lato client toouse insieme di credenziali chiave di Azure, incluso come toocreate hello KEK e archiviarla nell'insieme di credenziali hello tramite PowerShell.
 * [Crittografia lato client e Insieme di credenziali chiave Azure per Archiviazione di Microsoft Azure](../storage-client-side-encryption.md)
 
-  Questo articolo fornisce una spiegazione della crittografia lato client, con esempi d'uso della libreria client di archiviazione per crittografare e decrittografare le risorse dai quattro servizi di archiviazione. Illustra anche l'insieme di credenziali delle chiavi di Azure.
+  In questo articolo fornisce una spiegazione della crittografia lato client e vengono forniti esempi dell'utilizzo di hello client libreria tooencrypt e decrittografare le risorse di archiviazione da servizi di archiviazione quattro hello. Illustra anche l'insieme di credenziali delle chiavi di Azure.
 
-### <a name="using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines"></a>Uso di Crittografia dischi di Azure per crittografare i dischi usati dalle macchine virtuali
-Crittografia dischi di Azure è una nuova funzionalità. Questa funzionalità consente di crittografare i dischi dati e del sistema operativo usati da una macchina virtuale IaaS. Per Windows, le unità vengono crittografate mediante la tecnologia di crittografia BitLocker standard del settore. Per Linux, i dischi vengono crittografati mediante la tecnologia DM-Crypt, integrata nell'insieme di credenziali delle chiavi per consentire il controllo e la gestione delle chiavi di crittografia del disco.
+### <a name="using-azure-disk-encryption-tooencrypt-disks-used-by-your-virtual-machines"></a>Utilizzando la crittografia del disco di Azure tooencrypt dischi utilizzano da macchine virtuali
+Crittografia dischi di Azure è una nuova funzionalità. Questa funzionalità permette di dischi del sistema operativo di tooencrypt hello e i dischi di dati utilizzati da una macchina virtuale IaaS. Per Windows, hello unità vengono crittografate mediante la tecnologia di crittografia BitLocker standard del settore. Per Linux, dischi hello vengono crittografati mediante la tecnologia hello Crypt di data mining. Questo è integrato con insieme credenziali chiavi Azure tooallow è toocontrol e gestire chiavi di crittografia disco hello.
 
-La soluzione supporta gli scenari seguenti per le macchine virtuali IaaS, se abilitati in Microsoft Azure:
+soluzione Hello supporta hello seguenti scenari per le macchine virtuali IaaS quando sono abilitati in Microsoft Azure:
 
 * Integrazione dell'insieme di credenziali delle chiavi di Azure.
 * Macchine virtuali di livello Standard: [serie A, D, DS, G, GS e così via per VM IaaS](https://azure.microsoft.com/pricing/details/virtual-machines/)
@@ -343,17 +343,17 @@ La soluzione supporta gli scenari seguenti per le macchine virtuali IaaS, se abi
 * Abilitazione della crittografia nelle macchine virtuali Windows configurate usando spazi di archiviazione
 * Sono supportate tutte le aree geografiche pubbliche di Azure
 
-La soluzione non supporta gli scenari, le funzionalità e la tecnologia seguenti in questa versione:
+soluzione Hello non supporta i seguenti scenari, le funzionalità e tecnologie in versione di hello hello:
 
 * VM IaaS del piano Basic
 * Disabilitazione della crittografia in un'unità del sistema operativo per le VM IaaS Linux
-* Macchine virtuali IaaS create usando il metodo di creazione classico per le macchine virtuali
+* Macchine virtuali IaaS che vengono creati utilizzando il metodo di creazione hello classico di VM
 * Integrazione con il servizio di gestione delle chiavi locale.
 * Archiviazione file di Azure (file system condiviso), file system di rete (NFS, Network File System), volumi dinamici e macchine virtuali Windows configurate con sistemi RAID basati su software
 
 
 > [!NOTE]
-> La crittografia del disco del sistema operativo Linux è attualmente supportata nelle distribuzioni Linux seguenti: RHEL 7.2, CentOS 7.2n e Ubuntu 16.04.
+> Crittografia del disco del sistema operativo Linux è attualmente supportata in hello seguenti distribuzioni Linux: RHEL 7.2, CentOS 7.2n e Ubuntu 16.04.
 >
 >
 
@@ -364,115 +364,115 @@ Questa funzionalità garantisce che tutti i dati presenti sui dischi delle macch
 
 ### <a name="comparison-of-azure-disk-encryption-sse-and-client-side-encryption"></a>Confronto tra Crittografia dischi di Azure, SSE e crittografia lato client
 #### <a name="iaas-vms-and-their-vhd-files"></a>VM IaaS e i relativi file VHD
-Per i dischi usati dalle VM IaaS è consigliabile usare Crittografia dischi di Azure. La funzionalità SSE può essere attivata per crittografare i file VHD usati per eseguire il backup di questi dischi nell'Archiviazione di Azure, ma permette di crittografare solo dati appena scritti. Ciò significa che se si crea una VM e quindi si abilita SSE nell'account di archiviazione che contiene il file VHD, verranno crittografate solo le modifiche, non il file VHD originale.
+Per i dischi usati dalle VM IaaS è consigliabile usare Crittografia dischi di Azure. È possibile attivare SSE tooencrypt hello file VHD utilizzati tooback tali dischi nell'archiviazione di Azure, ma crittografa solo i dati appena scritti. Ciò significa che se si crea una macchina virtuale e quindi Abilita SSE nell'account di archiviazione hello che contiene i file VHD hello, solo le modifiche di hello verranno crittografate, non hello file disco rigido virtuale originale.
 
-Se si crea una VM utilizzando un'immagine proveniente da Azure Marketplace, Azure esegue una [copia superficiale](https://en.wikipedia.org/wiki/Object_copying) dell'immagine nell'account di archiviazione in Archiviazione di Azure senza crittografarla, anche se è abilitata la funzionalità SSE. Dopo aver creato la VM e avviato l'aggiornamento dell'immagine, SSE inizierà a crittografare i dati. Per questo motivo, è consigliabile usare Crittografia dischi di Azure nelle VM create da immagini in Azure Marketplace, se si vuole che siano completamente crittografate.
+Se si crea una macchina virtuale usando un'immagine da hello Azure Marketplace, Azure esegue un [superficialmente copia](https://en.wikipedia.org/wiki/Object_copying) di hello immagine tooyour account di archiviazione in archiviazione di Azure e non crittografati anche se si dispone di SSE abilitato. Dopo aver hello VM crea e avvia l'aggiornamento di immagine hello, SSE inizierà la crittografia dei dati di hello. Per questo motivo, è migliore toouse che crittografia del disco di Azure nelle macchine virtuali creata da immagini in Azure Marketplace hello se si desidera completamente crittografato.
 
-Se si sposta una macchina virtuale pre-crittografata dall'ambiente locale in Azure, si potranno caricare le chiavi di crittografia nell'insieme di credenziali delle chiavi di Azure e continuare a usare la crittografia usata in locale per quella VM. Crittografia dischi di Azure viene abilitata per gestire questo scenario.
+Se si sposta una macchina virtuale di pre-crittografata in Azure locale, si verrà tooAzure le chiavi di crittografia hello tooupload in grado di insieme di credenziali chiave e continuare a utilizzare la crittografia hello per la macchina virtuale che è stata usata in locale. Crittografia disco Azure viene abilitato toohandle questo scenario.
 
-Se sono disponibili file VHD non crittografati dall'ambiente locale, è possibile caricarli nella raccolta come immagine personalizzata ed effettuare il provisioning di una VM dalla raccolta. Se si esegue questa operazione usando i modelli di Resource Manager, è possibile richiedere l'attivazione di Crittografia dischi di Azure all'avvio della VM.
+Se si dispone di file VHD non crittografati da on-premise, è possibile caricarlo nella raccolta di hello come un'immagine personalizzata e il provisioning di una macchina virtuale da esso. Se si esegue questa operazione utilizzando i modelli di gestione risorse di hello, è possibile chiedere la tooturn sulla crittografia del disco di Azure durante l'avvio hello macchina virtuale.
 
-Quando si aggiunge un disco dati e lo si monta nella VM, è possibile attivare Crittografia dischi di Azure su quel disco dati. Verrà crittografato prima di tutto il disco dati in locale e quindi il livello di gestione del servizio eseguirà una scrittura lazy nell'archiviazione in modo che il relativo contenuto venga crittografato.
+Quando si aggiunge un disco dati e montarlo in hello VM, è possibile attivare la crittografia del disco di Azure su tale disco dati. Da crittografare innanzitutto tale disco dati in locale e quindi livello di Gestione servizio hello eseguire un'operazione di scrittura Lazywriter nel servizio di archiviazione in modo hello archiviazione contenuto viene crittografato.
 
-#### <a name="client-side-encryption"></a>crittografia lato client
-La crittografia lato client è il metodo più sicuro per crittografare i dati, perché li crittografa prima della trasmissione e crittografa i dati inattivi. Richiede tuttavia l'aggiunta di codice alle applicazioni tramite l'archiviazione, un'operazione che si potrebbe non voler eseguire. In questi casi, è possibile usare HTTPS per i dati in transito e la funzionalità SSE per crittografare i dati inattivi.
+#### <a name="client-side-encryption"></a>Crittografia lato client
+Crittografia lato client è un metodo più sicuro hello della crittografia dei dati, perché viene crittografata prima di transito e crittografa i dati di hello inattivi. È necessario aggiungere applicazioni tooyour codice utilizzando l'archiviazione, potrebbe non essere necessario toodo. In questi casi, è possibile utilizzare HTTPs per i dati in transito e SSE tooencrypt hello inattivi.
 
-Grazie alla crittografia lato client, è possibile crittografare entità tabella, messaggi nella coda e BLOB. SSE consente di crittografare solo i BLOB. Se è necessario crittografare i dati di tabelle e code, è necessario usare la crittografia lato client.
+Grazie alla crittografia lato client, è possibile crittografare entità tabella, messaggi nella coda e BLOB. SSE consente di crittografare solo i BLOB. Se è necessaria una tabella e coda toobe dati crittografati, è consigliabile usare la crittografia lato client.
 
-La crittografia lato client viene gestita completamente dall'applicazione. Questo è l'approccio più sicuro, ma è necessario apportare modifiche all'applicazione a livello di codice e implementare processi di gestione delle chiavi. Usare questo approccio quando si vuole avere la massima sicurezza per i dati in transito e garantire che i dati archiviati siano crittografati.
+Crittografia lato client viene gestita interamente da un'applicazione hello. Questo è l'approccio più sicuro hello, ma richiede applicazione tooyour di toomake modifiche a livello di codice e implementare i processi di gestione delle chiavi. Utilizzare questo quando si desidera hello aggiuntiva di sicurezza durante il transito e si desidera toobe i dati archiviati crittografati.
 
-La crittografia lato client comporta un carico maggiore sul client ed è necessario considerare questo aspetto nei piani di scalabilità, soprattutto se viene crittografata e trasferita una grande quantità di dati.
+Crittografia lato client è un carico maggiore sul client hello e si hanno tooaccount per questo nei piani di scalabilità, soprattutto se si ha la crittografia e il trasferimento di una grande quantità di dati.
 
 #### <a name="storage-service-encryption-sse"></a>Crittografia del servizio di archiviazione di Azure (SSE)
-La crittografia del servizio di archiviazione è gestita da Archiviazione di Azure. SSE non solo garantisce la sicurezza dei dati in transito, ma permette di crittografare i dati al momento della scrittura in Archiviazione di Azure. L'uso di questa funzionalità non incide in alcun modo sulle prestazioni.
+La crittografia del servizio di archiviazione è gestita da Archiviazione di Azure. Utilizza SSE non fornisce sicurezza hello dei dati di hello in transito, ma esegue la crittografia dati hello durante la scrittura tooAzure archiviazione. Non è presente alcun impatto sulle prestazioni di hello quando si utilizza questa funzionalità.
 
-SSE permette di crittografare solo BLOB in blocchi, BLOB di aggiunta e BLOB di pagine. Se è necessario crittografare dati di tabelle o di code, è consigliabile usare la crittografia lato client.
+SSE permette di crittografare solo BLOB in blocchi, BLOB di aggiunta e BLOB di pagine. Se è necessario tooencrypt dati della tabella o dati della coda, è consigliabile usare la crittografia lato client.
 
-Se è disponibile un archivio o una raccolta di file VHD usati come base per la creazione di nuove macchine virtuali, è possibile creare un nuovo account di archiviazione, abilitare SSE e quindi caricare i file VHD in quell'account. Questi file VHD saranno crittografati da Archiviazione di Azure.
+Se si dispone di un archivio o una raccolta di file di disco rigido virtuale utilizzato come base per la creazione di nuove macchine virtuali, creare un nuovo account di archiviazione, abilitare SSE e quindi caricare account toothat file VHD di hello. Questi file VHD saranno crittografati da Archiviazione di Azure.
 
-Se Crittografia dischi di Azure è abilitata per i dischi in una VM e la funzionalità SSE è abilitata nell'account di archiviazione che contiene i file VHD, tutti i nuovi dati scritti saranno crittografati due volte.
+Se si dispone di crittografia del disco di Azure abilitata per i dischi di hello in una macchina virtuale e SSE abilitato nell'account di archiviazione hello hello cui risiedono i file VHD, funzionerà correttamente; si verificherà in tutti i dati appena scritto da crittografati due volte.
 
 ## <a name="storage-analytics"></a>di Analisi archiviazione
-### <a name="using-storage-analytics-to-monitor-authorization-type"></a>Uso di Analisi archiviazione per monitorare il tipo di autorizzazione
-Per ogni account di archiviazione è possibile abilitare Analisi archiviazione di Azure per eseguire la registrazione e archiviare dati di metrica. Questo è uno strumento molto utile da usare quando si vogliono controllare le metriche delle prestazioni di un account di archiviazione o è necessario risolvere i problemi di un account di archiviazione perché si verificano problemi di prestazioni.
+### <a name="using-storage-analytics-toomonitor-authorization-type"></a>Utilizzando il tipo di autorizzazione toomonitor Analitica di archiviazione
+Per ogni account di archiviazione, è possibile abilitare la registrazione tooperform Analitica di archiviazione di Azure e archiviare i dati di metrica. Questo è toouse un ottimo strumento quando si vuole che le metriche delle prestazioni di hello toocheck di un account di archiviazione o necessario tootroubleshoot un account di archiviazione perché si sono verificati problemi di prestazioni.
 
-Un'altra parte di dati che è possibile visualizzare nel log di Analisi archiviazione è il metodo di autenticazione usato da un utente quando accede alla risorsa di archiviazione. Ad esempio, con l'archivio BLOB è possibile vedere se è stata usata una firma di accesso condiviso o le chiavi dell'account di archiviazione o se il BLOB usato era pubblico.
+Un altro blocco di dati che è possibile visualizzare in hello archiviazione analitica log è il metodo di autenticazione hello utilizzato da un utente durante l'accesso di archiviazione. Ad esempio, con archiviazione Blob, è possibile vedere se utilizzati una firma di accesso condiviso o chiavi dell'account di archiviazione hello, o se il blob hello cui si accede è pubblico.
 
-Queste informazioni possono essere molto utili se l'accesso alla risorsa di archiviazione e strettamente protetto. Ad esempio, nell'archivio BLOB è possibile impostare tutti i contenitori su privato e implementare l'uso di un servizio di firma di accesso condiviso per tutte le applicazioni. È quindi possibile controllare i log regolarmente per verificare se l'accesso ai BLOB viene eseguito con chiavi dell'account di archiviazione, cosa che può indicare una violazione della sicurezza, o se i BLOB sono pubblici ma non dovrebbero esserlo.
+Può essere molto utile se si è strettamente protegge toostorage di accesso. Ad esempio, nell'archiviazione Blob, è possibile impostare tutte tooprivate contenitori hello e implementare l'utilizzo di hello di un servizio di firma di accesso condiviso all'interno delle applicazioni. È quindi possibile controllare hello registra regolarmente toosee se i BLOB sono accessibili tramite chiavi account di archiviazione di hello che potrebbero indicare una violazione della sicurezza, o se BLOB hello sono pubblici, ma non deve essere.
 
-#### <a name="what-do-the-logs-look-like"></a>Aspetto dei log
-Dopo avere abilitato le metriche dell'account di archiviazione e la registrazione tramite il portale di Azure, i dati di analisi inizieranno ad accumularsi rapidamente. La registrazione e le metriche per ogni servizio sono separate. La registrazione viene scritta solo quando si verificano attività nell'account di archiviazione, mentre le metriche vengono registrate ogni minuto, ogni ora oppure ogni giorno, a seconda della configurazione.
+#### <a name="what-do-hello-logs-look-like"></a>Hello registri aspetto?
+Dopo che si abilita metriche di account di archiviazione hello e la registrazione tramite il portale di Azure hello, analitica dei dati inizierà tooaccumulate rapidamente. registrazione di Hello e le metriche per ogni servizio è separato; registrazione di Hello viene scritto solo quando l'attività è in tale account di archiviazione, mentre le metriche hello verranno registrate ogni minuto, ogni ora o ogni giorno, a seconda della configurazione.
 
-I log sono archiviati in BLOB in blocchi in un contenitore denominato $logs nell'account di archiviazione. Questo contenitore viene creato automaticamente quando si abilita Analisi archiviazione. Dopo che il contenitore è stato creato, non sarà possibile eliminarlo, anche se si può eliminare il relativo contenuto.
+Hello log vengono archiviati in BLOB in blocchi in un contenitore denominato $logs nell'account di archiviazione hello. Questo contenitore viene creato automaticamente quando si abilita Analisi archiviazione. Dopo che il contenitore è stato creato, non sarà possibile eliminarlo, anche se si può eliminare il relativo contenuto.
 
-Nel contenitore $logs è presente una cartella per ogni servizio e sono disponibili le sottocartelle per anno/mese/giorno/ora. Nella cartella delle ore i log sono semplicemente numerati. Ecco come apparirà la struttura di directory:
+Nel contenitore hello $logs è una cartella per ogni servizio e quindi esistono le sottocartelle per hello anno/mese/giorno/ora. In ore, i registri di hello semplicemente sono numerati. Si tratta di quali hello sarà simile a struttura di directory:
 
 ![Visualizzazione dei file di log](./media/storage-security-guide/image1.png)
 
-Viene registrata ogni richiesta all'archiviazione di Azure viene registrata. Ecco uno snapshot di un file di log che mostra i primi campi.
+Viene registrato ogni tooAzure richiesta archiviazione. Di seguito è riportato uno snapshot di un file di log, che mostra hello prima alcuni campi.
 
 ![Snapshot di un file di log](./media/storage-security-guide/image2.png)
 
-Si noterà che è possibile usare i registri per rilevare qualsiasi tipo di chiamate a un account di archiviazione.
+È possibile vedere che è possibile utilizzare hello registri tootrack qualsiasi tipo di account di archiviazione tooa chiamate.
 
 #### <a name="what-are-all-of-those-fields-for"></a>Scopo di tutti questi campi
-Le risorse indicate di seguito includono un articolo che fornisce l'elenco dei molti campi disponibili nei log e lo scopo per cui vengono usati. Ecco l'elenco dei campi in ordine:
+C'è un articolo elencato in risorse hello seguenti che possono essere elencate hello di hello molti campi nei registri di hello e vengono utilizzati per. Ecco hello elenco di campi nell'ordine:
 
 ![Snapshot dei campi in un file di log](./media/storage-security-guide/image3.png)
 
-In questo caso, sono interessanti le voci per GetBlob e come vengono autenticate, quindi occorre cercare le voci con tipo di operazione "Get-Blob" e controllare lo stato della richiesta (4<sup>a</sup> colonna) e il tipo di autorizzazione (8<sup>a</sup> colonna).
+Siamo interessati a voci hello per GetBlob, e come vengono autenticati, pertanto è necessario toolook per le voci con tipo di operazione "Get-Blob" e controllare la stato della richiesta di hello (4<sup>th</sup> colonna) e il tipo di autorizzazione hello (8<sup>th</sup> colonna).
 
-Nelle prime righe nell'elenco precedente, ad esempio, request-status è "Success" e authorization-type è "authenticated". Ciò significa che la richiesta è stata convalidata con la chiave dell'account di archiviazione.
+Ad esempio, in hello innanzitutto alcune righe nell'elenco di hello sopra, stato della richiesta di hello è "Success" e il tipo di autorizzazione hello "autenticazione". Ciò significa che la richiesta hello è stata convalidata tramite chiave dell'account di archiviazione hello.
 
 #### <a name="how-are-my-blobs-being-authenticated"></a>Modalità di autenticazione dei BLOB
 Sono tre i casi interessanti in questo caso.
 
-1. Il BLOB è pubblico e vi si accede tramite un URL senza una firma di accesso condiviso. In questo caso, request-status è "AnonymousSuccess" e authorization-type è "anonymous".
+1. Hello blob sia pubblico e vi si accede tramite un URL senza una firma di accesso condiviso. In questo caso, stato della richiesta di hello è "AnonymousSuccess" e il tipo di autorizzazione hello è "anonimo".
 
    1.0;2015-11-17T02:01:29.0488963Z;GetBlob;**AnonymousSuccess**;200;124;37;**anonymous**;;mystorage…
-2. Il BLOB è privato ed è stato usato con una firma di accesso condiviso. In questo caso, request-status è "SASSuccess" e authorization-type è "sas".
+2. blob Hello è privata ed è stata usata con una firma di accesso condiviso. In questo caso, stato della richiesta di hello è "SASSuccess" e il tipo di autorizzazione hello è "sa".
 
    1.0;2015-11-16T18:30:05.6556115Z;GetBlob;**SASSuccess**;200;416;64;**sas**;;mystorage…
-3. Il BLOB è privato ed è stata usata la chiave di archiviazione per accedervi. In questo caso, request-status è "**Success**" e authorization-type è "**authenticated**".
+3. blob Hello è privata e chiave di archiviazione hello tooaccess usato è. In questo caso, stato della richiesta di hello è "**successo**"e il tipo di autorizzazione hello è"**autenticato**".
 
    1.0;2015-11-16T18:32:24.3174537Z;GetBlob;**Success**;206;59;22;**authenticated**;mystorage…
 
-È possibile usare Microsoft Message Analyzer per visualizzare e analizzare i log. Include funzionalità di ricerca e filtro. Ad esempio, è possibile cercare le istanze di GetBlob per verificare se l'utilizzo è quello previsto, ovvero per assicurarsi che un utente non acceda all'account di archiviazione in modo non appropriato.
+È possibile utilizzare tooview Microsoft Message Analyzer hello e analizzare i log. Include funzionalità di ricerca e filtro. Ad esempio, è possibile toosearch per le istanze di toosee GetBlob se utilizzo hello è quello previsto, ad esempio toomake che un utente non accede a account di archiviazione non corretta.
 
 #### <a name="resources"></a>Risorse
 * [Analisi archiviazione](../storage-analytics.md)
 
-  Questo articolo fornisce una panoramica di Analisi archiviazione e come abilitarla.
+  In questo articolo viene fornita una panoramica di analitica di archiviazione e come tooenable li.
 * [Formato log Analisi archiviazione](https://msdn.microsoft.com/library/azure/hh343259.aspx)
 
-  Questo articolo illustra il formato dei log di Analisi archiviazione e descrive in dettaglio i campi disponibili, ad esempio authentication-type che indica il tipo di autenticazione usato per la richiesta.
-* [Monitorare un account di archiviazione nel portale di Azure](../storage-monitor-storage-account.md)
+  Questo articolo illustra il formato di Log di archiviazione Analitica hello e dettagli hello campi disponibili al suo interno, tra cui tipo di autenticazione, che indica il tipo di hello di autenticazione utilizzato per la richiesta di hello.
+* [Monitoraggio di un Account di archiviazione nel portale di Azure hello](../storage-monitor-storage-account.md)
 
-  Questo articolo illustra come configurare il monitoraggio delle metriche e la registrazione per un account di archiviazione.
+  Questo articolo viene illustrato come tooconfigure delle metriche di monitoraggio e registrazione per un account di archiviazione.
 * [Risoluzione dei problemi end-to-end mediante le metriche e la registrazione di Archiviazione di Azure, AzCopy e Message Analyzer](../storage-e2e-troubleshooting.md)
 
-  Questo articolo descrive la risoluzione dei problemi mediante Analisi archiviazione e illustra come usare Microsoft Message Analyzer.
+  In questo articolo parla di risoluzione dei problemi mediante hello archiviazione Analitica e Mostra come toouse hello Microsoft Message Analyzer.
 * [Guida operativa di Microsoft Message Analyzer](https://technet.microsoft.com/library/jj649776.aspx)
 
-  Questo è l'articolo di riferimento per Microsoft Message Analyzer e include collegamenti a un'esercitazione, procedure di avvio rapido e un riepilogo delle funzionalità.
+  In questo articolo è riferimento hello per hello Microsoft Message Analyzer e include esercitazione tooa collegamenti, avvio rapido e il riepilogo delle funzionalità.
 
 ## <a name="cross-origin-resource-sharing-cors"></a>Condivisione risorse tra le origini (CORS)
 ### <a name="cross-domain-access-of-resources"></a>Accesso tra domini alle risorse
-Quando un Web browser in esecuzione in un dominio invia una richiesta HTTP per una risorsa da un dominio diverso, viene definita richiesta HTTP tra le origini. Ad esempio, una pagina HTML servita da contoso.com esegue una richiesta per un'immagine JPEG ospitata in fabrikam.blob.core.windows.net. Per motivi di sicurezza, i browser limitano le richieste HTTP tra le origini avviate da script, ad esempio JavaScript. Ciò significa che quando il codice JavaScript in una pagina Web in contoso.com richiede tale immagine JPEG in fabrikam.blob.core.windows.net, il browser non consentirà la richiesta.
+Quando un Web browser in esecuzione in un dominio invia una richiesta HTTP per una risorsa da un dominio diverso, viene definita richiesta HTTP tra le origini. Ad esempio, una pagina HTML servita da contoso.com esegue una richiesta per un'immagine JPEG ospitata in fabrikam.blob.core.windows.net. Per motivi di sicurezza, i browser limitano le richieste HTTP tra le origini avviate da script, ad esempio JavaScript. Ciò significa che quando un codice JavaScript in una pagina web in contoso.com richiede tale jpeg su fabrikam.blob.core.windows.net, browser hello non consentirà hello richiesta.
 
-Cosa ha a che fare questo comportamento con Archiviazione di Azure? Anche se si archiviano asset statici, ad esempio file di dati JSON o XML nell'archiviio BLOB con un account di archiviazione denominato Fabrikam, il dominio per gli asset sarà fabrikam.blob.core.windows.net e l'applicazione Web contoso.com non potrà accedervi tramite JavaScript, perché i domini sono diversi. Questo vale anche se si prova a chiamare uno dei servizi di Archiviazione di Azure, ad esempio l'archivio tabelle, che restituisce dati JSON da elaborare con il client JavaScript.
+Questa funzione sono toodo con archiviazione di Azure? Anche se si desidera archiviare risorse statiche, ad esempio i file di dati JSON o XML nell'archiviazione Blob utilizzando un account di archiviazione denominato Fabrikam dominio hello per le risorse di hello sarà fabrikam.blob.core.windows.net e un'applicazione web contoso.com hello non saranno in grado di tooaccess li utilizzo di JavaScript perché hello domini sono diversi. Questo vale anche se si sta toocall uno dei servizi di archiviazione di Azure, ad esempio archiviazione tabelle – hello che restituiscono JSON toobe di dati elaborati da client JavaScript hello.
 
 #### <a name="possible-solutions"></a>Possibili soluzioni
-Un modo per risolvere questo problema consiste nell'assegnare un dominio personalizzato come "storage.contoso.com" a fabrikam.blob.core.windows.net. Il problema è dovuto al fatto che è possibile assegnare solo quel dominio personalizzato a un solo account di archiviazione. Cosa accade se gli asset vengono archiviati in più account di archiviazione?
+Un modo tooresolve si tratta di un dominio personalizzato come "storage.contoso.com" toofabrikam.blob.core.windows.net tooassign. problema di Hello è che è possibile assegnare solo account di archiviazione tooone dominio personalizzato. Cosa accade se vengono archiviate le risorse di hello in più account di archiviazione?
 
-Un altro modo per risolvere il problema consiste nell'impostare l'applicazione Web come proxy per le chiamate di archiviazione. Ciò significa che se si carica un file nell'archivio BLOB, l'applicazione Web lo scriverà in locale e quindi lo copierà nell'archivio BLOB oppure lo leggerà completamente in memoria e quindi lo scriverà nell'archivio BLOB. In alternativa, è possibile scrivere un'applicazione Web dedicato, ad esempio un'API Web, che carica i file in locale e li scrive nell'archivio BLOB. In entrambi i casi, è necessario considerare questa funzione nel determinare le esigenze di scalabilità.
+Un altro modo tooresolve questo comporta toohave hello web dell'applicazione come proxy per le chiamate di archiviazione hello. Pertanto se si sta caricando un tooBlob file archiviazione, un'applicazione web hello sarebbe di scriverlo in locale e quindi copiarlo tooBlob archiviazione o sarebbe tutti i relativi letto in memoria e scrivere quindi tooBlob archiviazione. In alternativa, è possibile scrivere un'applicazione web dedicato (ad esempio un'API Web) che consente di caricare file hello in locale e li scrive tooBlob archiviazione. In entrambi i casi, è tooaccount per tale funzione quando è necessario determinare la scalabilità di hello.
 
 #### <a name="how-can-cors-help"></a>Utilità di CORS
-Archiviazione di Azure consente di abilitare CORS (Condivisione risorse tra le origini). Per ogni account di archiviazione è possibile specificare i domini che possono accedere alle risorse in tale account di archiviazione. Ad esempio, nel caso descritto in precedenza, è possibile abilitare CORS nell'account di archiviazione fabrikam.blob.core.windows.net e configurarlo per consentire l'accesso a contoso.com. L'applicazione Web contoso.com può quindi accedere direttamente alle risorse in fabrikam.blob.core.windows.net.
+Archiviazione di Azure consente tooenable CORS – Cross Origin Resource Sharing. Per ogni account di archiviazione, è possibile specificare i domini che possono accedere alle risorse di hello in tale account di archiviazione. Ad esempio, in questo caso descritto in precedenza, è possibile attivare l'account di archiviazione fabrikam.blob.core.windows.net hello CORS e configurarlo tooallow toocontoso.com di accesso. Quindi hello web applicazione contoso.com può direttamente accedere alle risorse di hello in fabrikam.blob.core.windows.net.
 
-Una cosa da notare è che CORS consente l'accesso, ma non fornisce l'autenticazione necessaria per l'accesso non pubblico delle risorse di archiviazione. Ciò significa che è possibile accedere ai BLOB solo se sono pubblici oppure si include una firma di accesso condiviso che fornisce l'autorizzazione appropriata. Tabelle, code e i file non hanno accesso pubblico e richiedono una firma di accesso condiviso.
+Una cosa toonote è che CORS consente l'accesso, ma non fornisce autenticazione, è necessario per tutti i accesso non pubblico di risorse di archiviazione. Ciò significa che è possibile accedere solo BLOB se sono pubblici o se si include una firma di accesso condiviso è hello le autorizzazioni appropriate. Tabelle, code e i file non hanno accesso pubblico e richiedono una firma di accesso condiviso.
 
-Per impostazione predefinita, CORS è disabilitato in tutti i servizi. È possibile abilitare CORS con l'API REST o la libreria client di archiviazione per chiamare uno dei metodi che impostano i criteri del servizio. In questo caso, includere una regola CORS, in formato XML. Ecco un esempio di una regola CORS impostata con l'operazione di impostazione delle proprietà del servizio per il servizio BLOB per un account di archiviazione. È possibile eseguire questa operazione usando la libreria client di archiviazione o le API REST per Archiviazione di Azure.
+Per impostazione predefinita, CORS è disabilitato in tutti i servizi. È possibile abilitare CORS utilizzando hello API REST o hello storage client library toocall uno dei criteri del servizio hello tooset metodi hello. In questo caso, includere una regola CORS, in formato XML. Di seguito è riportato un esempio di una regola CORS che è stata impostata tramite l'operazione Set Service Properties hello per hello servizio Blob per un account di archiviazione. È possibile eseguire tale operazione utilizzando libreria client di archiviazione hello o hello API REST per l'archiviazione di Azure.
 
 ```xml
 <Cors>    
@@ -488,38 +488,38 @@ Per impostazione predefinita, CORS è disabilitato in tutti i servizi. È possib
 
 Ecco il significato di ogni riga:
 
-* **AllowedOrigins** : indica i domini non corrispondenti che possono richiedere e ricevere dati dal servizio di archiviazione. Significa che contoso.com e fabrikam.com possono richiedere dati dall'archivio BLOB per un account di archiviazione specifico. È anche possibile impostare questo parametro su un carattere jolly (\*) per consentire a tutti i domini di accedere alle richieste.
-* **AllowedMethods** : si tratta dell'elenco di metodi (verbi di richiesta HTTP) che si possono usare quando si esegue la richiesta. In questo esempio, sono consentiti solo PUT e GET. È possibile impostarlo su un carattere jolly (\*) per consentire l'uso di tutti i metodi.
-* **AllowedHeaders** : sono le intestazioni della richiesta che possono essere specificate dal dominio di origine quando si esegue la richiesta. In questo esempio, sono consentite tutte le intestazioni dei di metadati che iniziano con x-ms-meta-data, x-ms-meta-target e x-ms-meta-abc. Il carattere jolly (\*) indica che è permessa qualsiasi intestazione che inizi col prefisso consentito.
-* **ExposedHeaders** : indica quali intestazioni della risposta devono essere esposte al richiedente dal browser. In questo esempio vengono esposte tutte le intestazioni che iniziano con "x-ms-meta-".
-* **MaxAgeInSeconds** : indica il periodo massimo di memorizzazione della richiesta OPTIONS preliminare nella cache di un browser. Per altre informazioni sulla richiesta preliminare, vere il primo articolo di seguito.
+* **AllowedOrigins** indica quali domini senza corrispondenza è possono richiedere e ricevere dati dal servizio di archiviazione hello. Significa che contoso.com e fabrikam.com possono richiedere dati dall'archivio BLOB per un account di archiviazione specifico. È inoltre possibile impostare il carattere jolly tooa (\*) le richieste di tutti i domini tooaccess tooallow.
+* **AllowedMethods** si tratta di hello elenco di metodi (verbi di richiesta HTTP) che può essere usato quando si effettua la richiesta hello. In questo esempio, sono consentiti solo PUT e GET. È possibile impostare il carattere jolly tooa (\*) tooallow toobe di tutti i metodi utilizzati.
+* **AllowedHeaders** hello richiesta le intestazioni che hello dominio di origine è possono specificare quando si effettua la richiesta hello. In questo esempio, sono consentite tutte le intestazioni dei di metadati che iniziano con x-ms-meta-data, x-ms-meta-target e x-ms-meta-abc. Hello carattere jolly (\*) indica che qualsiasi intestazione che inizi con hello specificato è consentito un prefisso.
+* **ExposedHeaders** in questo modo le intestazioni di risposta devono essere esposto dell'autorità di certificazione di hello browser toohello richiesta. In questo esempio vengono esposte tutte le intestazioni che iniziano con "x-ms-meta-".
+* **MaxAgeInSeconds** ovvero hello quantità massima di tempo che un browser verrà memorizzati nella cache richiesta OPTIONS preliminare hello. (Per ulteriori informazioni sulla richiesta preliminare hello, controllare hello primo articolo riportato di seguito).
 
 #### <a name="resources"></a>Risorse
-Per altre informazioni su CORS e su come abilitarlo, vedere queste risorse.
+Per ulteriori informazioni su CORS e la modalità tooenable, estrarre queste risorse.
 
-* [Supporto della condivisione risorse tra le origini (CORS) per i servizi di archiviazione di Azure in Azure.com](../storage-cors-support.md)
+* [Supporto di condivisione delle risorse Multiorigine (CORS) per servizi di archiviazione di Azure in Azure.com hello](../storage-cors-support.md)
 
-  Questo articolo fornisce una panoramica di CORS e illustra come impostare le regole per i diversi servizi di archiviazione.
-* [Supporto della condivisione risorse tra le origini (CORS) per i servizi di archiviazione di Azure in MSDN](https://msdn.microsoft.com/library/azure/dn535601.aspx)
+  In questo articolo viene fornita una panoramica di CORS e funzionamento delle regole per i servizi di archiviazione diversi hello tooset hello.
+* [Supporto di condivisione delle risorse Multiorigine (CORS) per hello servizi di archiviazione di Azure su MSDN](https://msdn.microsoft.com/library/azure/dn535601.aspx)
 
-  Si tratta della documentazione di riferimento per il supporto di CORS per i servizi di archiviazione di Azure. Include i collegamenti ad articoli applicabili a ogni servizio di archiviazione e illustra un esempio descrivendo ogni elemento nel file CORS.
+  Si tratta di documentazione di riferimento hello per supporto CORS per servizi di archiviazione di Azure hello. Questo è l'applicazione di servizio di archiviazione tooeach tooarticles di collegamenti e viene illustrato un esempio e viene descritto ogni elemento nel file CORS hello.
 * [Archiviazione di Microsoft Azure: Introduzione a CORS](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/02/03/windows-azure-storage-introducing-cors.aspx)
 
-  Questo è un collegamento all'articolo relativo al blog iniziale che annuncia CORS e illustra come usarlo.
+  Si tratta di un articolo di blog iniziale toohello collegamento annuncio CORS e la visualizzazione come toouse è.
 
 ## <a name="frequently-asked-questions-about-azure-storage-security"></a>Domande frequenti sulla sicurezza di Archiviazione di Azure
-1. **Come è possibile verificare l'integrità dei BLOB trasferiti e recuperati in Archiviazione di Azure se non è possibile usare il protocollo HTTPS?**
+1. **Come è possibile verificare l'integrità di BLOB hello che consapevole trasferimento interno o all'esterno di archiviazione di Azure se non è possibile utilizzare il protocollo HTTPS hello hello?**
 
-   Se per qualsiasi motivo è necessario utilizzare il protocollo HTTP anziché HTTPS e si utilizzano BLOB in blocchi, è possibile utilizzare il controllo MD5 per verificare l'integrità dei BLOB in fase di trasferimento. Ciò contribuisce a proteggere dagli errori a livello di rete/trasporto, ma non necessariamente dalle violazioni.
+   Se per qualsiasi motivo è necessario toouse HTTP anziché HTTPS e si lavora con i BLOB in blocchi, è possibile utilizzare il controllo MD5 toohelp verificare l'integrità di hello del BLOB hello trasferiti. Ciò contribuisce a proteggere dagli errori a livello di rete/trasporto, ma non necessariamente dalle violazioni.
 
    Se è possibile utilizzare HTTPS, che fornisce la protezione a livello di trasporto, il controllo MD5 è ridondante e superfluo.
 
-   Per altre informazioni, vedere il blog relativo alla [panoramica di MD5 per i BLOB di Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/02/18/windows-azure-blob-md5-overview.aspx).
-2. **Come viene gestita la conformità FIPS per il Governo degli Stati Uniti?**
+   Per ulteriori informazioni, vedere out hello [Panoramica MD5 del Blob di Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/02/18/windows-azure-blob-md5-overview.aspx).
+2. **Per quanto riguarda la conformità FIPS per Stati Uniti hello Governo degli Stati Uniti?**
 
-   I FIPS (Federal Information Processing Standard) degli Stati Uniti definiscono gli algoritmi di crittografia approvati per l'uso nei sistemi informatici del Governo degli Stati Uniti per la protezione dei dati sensibili. L'abilitazione della modalità FIPS su un desktop o un server Windows indica al sistema operativo che devono essere usati solo gli algoritmi di crittografia convalidati per FIPS. Se un'applicazione usa algoritmi non conformi, le applicazioni verranno interrotte. Con .NET Framework 4.5.2 o versione successiva, quando il computer è in modalità FIPS l'applicazione cambia automaticamente gli algoritmi di crittografia in modo che vengano usati di algoritmi conformi a FIPS.
+   Hello United States FIPS Federal Information Processing Standard () definisce gli algoritmi di crittografia approvati per l'utilizzo da Stati Uniti Sistemi di computer governo federale per la protezione dei dati sensibili hello. Abilitazione FIPS la modalità Windows server o desktop indica hello del sistema operativo che è necessario utilizzare gli algoritmi di crittografia FIPS convalidati solo. Se un'applicazione utilizza algoritmi non conformi, applicazioni hello verranno interrotti. Le versioni con.NET Framework 4.5.2 o versioni successive, un'applicazione hello passa automaticamente algoritmi conformi a FIPS toouse algoritmi di crittografia hello quando hello computer è in modalità FIPS.
 
-   Microsoft lascia che ogni cliente decida se abilitare la modalità FIPS. Non esiste apparentemente alcun motivo valido per indurre i clienti che non sono soggetti alle norme governative ad abilitare la modalità FIPS per impostazione predefinita.
+   Microsoft lasciandolo backup tooeach cliente toodecide se tooenable la modalità FIPS. Riteniamo che vi è alcun motivo Impellente per i clienti che non sono modalità FIPS tooenable soggetto toogovernment normative per impostazione predefinita.
 
    **Risorse**
 
@@ -528,7 +528,7 @@ Per altre informazioni su CORS e su come abilitarlo, vedere queste risorse.
   Questo articolo di blog fornisce una panoramica di FIPS e spiega perché non viene più abilitata la modalità FIPS per impostazione predefinita.
 * [Convalida FIPS 140](https://technet.microsoft.com/library/cc750357.aspx)
 
-  Questo articolo fornisce informazioni sulla conformità dei prodotti e dei moduli di crittografia Microsoft allo standard FIPS per il Governo Federale degli Stati Uniti.
+  Questo articolo fornisce informazioni su come i prodotti Microsoft e i moduli di crittografia conformi allo standard FIPS hello per Stati Uniti hello Governo Federale degli Stati Uniti.
 * [Effetti delle impostazioni di sicurezza "Crittografia di sistema: usa algoritmi FIPS conformi per crittografia, hash e firma" in Windows XP e versioni successive di Windows](https://support.microsoft.com/kb/811833)
 
-  Questo articolo illustra l'uso della modalità FIPS in computer Windows meno recenti.
+  In questo articolo discute relative all'utilizzo di hello della modalità FIPS in computer Windows meno recenti.

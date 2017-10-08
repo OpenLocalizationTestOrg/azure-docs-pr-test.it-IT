@@ -1,6 +1,6 @@
 ---
-title: "Distribuire un'app nei set di scalabilità di macchine virtuali"
-description: "Usare le estensioni per distribuire un'app nel set di scalabilità della macchina virtuale di Azure."
+title: "Imposta aaaDeploy un'app su scalabilità della macchina virtuale"
+description: "Utilizzare le estensioni toodepoy un'app nel set di scalabilità di macchine virtuali di Azure."
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: thraka
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/26/2017
 ms.author: adegeo
-ms.openlocfilehash: fa7d9d3bef4cb326844ede76171e8c566e87116b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5f3988b9511d80370a8be1fc042c21fee212506e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-your-application-on-virtual-machine-scale-sets"></a>Distribuire l'applicazione nei set di scalabilità delle macchine virtuali
 
-Questo articolo descrive diverse modalità di installazione di software durante il provisioning del set di scalabilità.
+In questo articolo descrive diversi modi di impostazione software tooinstall hello hello scala viene eseguito il provisioning.
 
-È possibile esaminare l'articolo [Panoramica sulla progettazione del set di scalabilità](virtual-machine-scale-sets-design-overview.md) che descrive alcuni dei limiti imposti dal set di scalabilità della macchina virtuale.
+È opportuno hello tooreview [Panoramica sulla progettazione di Set di scalabilità](virtual-machine-scale-sets-design-overview.md) articolo vengono descritti alcuni dei limiti di hello imposti dal set di scalabilità di macchine virtuali.
 
 ## <a name="capture-and-reuse-an-image"></a>Acquisire e riusare un'immagine
 
-È possibile usare una macchina virtuale disponibile in Azure per preparare un'immagine di base per il set di scalabilità. Questo processo crea un disco gestito nell'account di archiviazione, a cui è possibile fare riferimento come immagine di base per il set di scalabilità. 
+È possibile utilizzare una macchina virtuale che in Azure tooprepare un'immagine di base per la scala impostate. Questo processo crea un disco gestito nell'account di archiviazione, è possibile fare riferimento come immagine di base hello per il set di scalabilità. 
 
-Seguire anche questa procedura:
+Hello i passaggi seguenti:
 
 1. Creare una macchina virtuale di Azure
    * [Linux][linux-vm-create]
    * [Windows][windows-vm-create]
 
-2. Connettersi da remoto alla macchina virtuale e personalizzare il sistema in base alle esigenze.
+2. Remoto in hello macchina virtuale e personalizzare desiderato di tooyour sistema hello.
 
-   Se lo si desidera, a questo punto è possibile installare l'applicazione. Tuttavia, tenere presente che per installare l'applicazione a questo punto potrebbe essere necessario un'operazione di aggiornamento più complessa perché potrebbe essere prima necessario rimuoverla. In alternativa, è possibile usare questo passaggio per installare i prerequisiti necessari all'applicazione, ad esempio una funzionalità specifica di runtime o del sistema operativo.
+   Se lo si desidera, a questo punto è possibile installare l'applicazione. Può tuttavia sapere che con l'installazione dell'applicazione a questo punto, è possibile effettuare l'aggiornamento, l'applicazione più complessa poiché potrebbe essere necessario tooremove il primo. In alternativa, è possibile utilizzare tooinstall questo passaggio gli eventuali prerequisiti che dell'applicazione potrebbe essere necessario, ad esempio una funzionalità di runtime o del sistema operativo specifica.
 
-3. Seguire l'esercitazione "Acquisire una macchina" per [Linux][linux-vm-capture] o [Windows][windows-vm-capture].
+3. Seguire l'esercitazione "acquisire una macchina" hello per uno [Linux] [ linux-vm-capture] o [Windows][windows-vm-capture].
 
-4. Creare un [set di scalabilità della macchina virtuale][vmss-create] con l'URI dell'immagine acquisito nel passaggio precedente.
+4. Creare un [Set di scalabilità della macchina virtuale] [ vmss-create] con hello immagine acquisita nel passaggio precedente hello URI.
 
 Per altre informazioni sui dischi, vedere [Panoramica di Managed Disks](../virtual-machines/windows/managed-disks-overview.md) e [Usare dischi dati collegati](virtual-machine-scale-sets-attached-disks.md).
 
-## <a name="install-when-the-scale-set-is-provisioned"></a>Installare quando viene eseguito il provisioning del set di scalabilità
+## <a name="install-when-hello-scale-set-is-provisioned"></a>Installare quando viene eseguito il provisioning di set di scalabilità hello
 
-Le estensioni della macchina virtuale possono essere applicate a un set di scalabilità della macchina virtuale. Con un'estensione della macchina virtuale, è possibile personalizzare le macchine virtuali in un set di scalabilità come gruppo intero. Per altre informazioni sulle estensioni, vedere [Estensioni della macchina virtuale](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Le estensioni di macchina virtuale possono essere applicato tooa set di scalabilità della macchina virtuale. Con un'estensione della macchina virtuale, è possibile personalizzare hello le macchine virtuali in un set come un intero gruppo di scalabilità. Per altre informazioni sulle estensioni, vedere [Estensioni della macchina virtuale](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 È possibile usare tre principali estensioni, a seconda che il sistema operativo si basi su Windows o Linux.
 
 ### <a name="windows"></a>Windows
 
-Per un sistema operativo basato su Windows, usare l'estensione **Custom Script v1.8** o l'estensione **PowerShell DSC**.
+Per un sistema operativo basato su Windows, utilizzare uno hello **v 1.8 Custom Script** estensione o hello **PowerShell DSC** estensione.
 
 #### <a name="custom-script"></a>Custom Script
 
-L'estensione Custom Script esegue uno script in ogni istanza della macchina virtuale nel set di scalabilità. Un file di configurazione o una variabile indica i file che vengono scaricati nella macchina virtuale, quindi il comando eseguito. Questi vengono usati ad esempio per eseguire un programma di installazione, uno script, un file batch o un file eseguibile.
+estensione Script personalizzata Hello esegue uno script in ogni istanza di macchina virtuale nel set di scalabilità hello. Un file di configurazione o una variabile indica quali file sono macchina virtuale toohello scaricato, quindi viene eseguito il comando. È possibile utilizzare ad esempio un programma di installazione questo toorun, uno script, un file batch, qualsiasi file eseguibile.
 
-PowerShell usa una tabella hash per le impostazioni. Questo esempio configura l'estensione dello script personalizzato per eseguire uno script di PowerShell che consente di installare IIS.
+PowerShell utilizza una tabella hash per le impostazioni di hello. In questo esempio Configura toorun di estensione script personalizzata hello uno script di PowerShell che consente di installare IIS.
 
 ```powershell
 # Setup extension configuration hashtable variable
@@ -70,20 +70,20 @@ $customConfig = @{
   "commandToExecute" = "PowerShell -ExecutionPolicy Unrestricted .\install-iis.ps1 >> `"%TEMP%\StartupLog.txt`" 2>&1";
 };
 
-# Add the extension to the config
+# Add hello extension toohello config
 Add-AzureRmVmssExtension -VirtualMachineScaleSet $vmssConfig -Publisher Microsoft.Compute -Type CustomScriptExtension -TypeHandlerVersion 1.8 -Name "customscript1" -Setting $customConfig
 
-# Send the new config to Azure
+# Send hello new config tooAzure
 Update-AzureRmVmss -ResourceGroupName $rg -Name "MyVmssTest143"  -VirtualMachineScaleSet $vmssConfig
 ```
 
 >[!IMPORTANT]
->Usare lo switch `-ProtectedSetting` per tutte le impostazioni che potrebbero contenere informazioni riservate.
+>Hello utilizzare `-ProtectedSetting` passare per tutte le impostazioni che potrebbero contenere informazioni riservate.
 
 ---------
 
 
-L'interfaccia della riga di comando di Azure usa un file JSON per le impostazioni. Questo esempio configura l'estensione dello script personalizzato per eseguire uno script di PowerShell che consente di installare IIS. Salvare il file JSON seguente come _settings.json_.
+CLI di Azure Usa un file json per le impostazioni di hello. In questo esempio Configura toorun di estensione script personalizzata hello uno script di PowerShell che consente di installare IIS. Salvare i seguenti file json come hello _Settings_.
 
 ```json
 {
@@ -101,13 +101,13 @@ az vmss extension set --publisher Microsoft.Compute --version 1.8 --name CustomS
 ```
 
 >[!IMPORTANT]
->Usare lo switch `--protected-settings` per tutte le impostazioni che potrebbero contenere informazioni riservate.
+>Hello utilizzare `--protected-settings` passare per tutte le impostazioni che potrebbero contenere informazioni riservate.
 
 ### <a name="powershell-dsc"></a>PowerShell DSC
 
-È possibile usare PowerShell DSC per personalizzare le istanze della macchina virtuale del set di scalabilità. L'estensione **DSC** pubblicata da **Microsoft.Powershell** distribuisce ed esegue la configurazione DSC indicata in ogni istanza della macchina virtuale. Un file di configurazione o una variabile indica l'estensione in cui si trova il pacchetto *.zip* e la combinazione di _funzione e script_ da eseguire.
+È possibile utilizzare le istanze di macchina virtuale di PowerShell DSC toocustomize hello scala set. Hello **DSC** estensione pubblicato da **PowerShell** distribuisce ed esegue configurazione DSC hello fornito in ogni istanza di macchina virtuale. Estensione hello indica a un file di configurazione o una variabile in cui *zip* pacchetto è e quali _funzione di script_ toorun combinazione.
 
-PowerShell usa una tabella hash per le impostazioni. Questo esempio distribuisce un pacchetto DSC che consente di installare IIS.
+PowerShell utilizza una tabella hash per le impostazioni di hello. Questo esempio distribuisce un pacchetto DSC che consente di installare IIS.
 
 ```powershell
 # Setup extension configuration hashtable variable
@@ -120,19 +120,19 @@ $dscConfig = @{
   };
 }
 
-# Add the extension to the config
+# Add hello extension toohello config
 Add-AzureRmVmssExtension -VirtualMachineScaleSet $vmssConfig -Publisher Microsoft.Powershell -Type DSC -TypeHandlerVersion 2.24 -Name "dsc1" -Setting $dscConfig
 
-# Send the new config to Azure
+# Send hello new config tooAzure
 Update-AzureRmVmss -ResourceGroupName $rg -Name "myscaleset1"  -VirtualMachineScaleSet $vmssConfig
 ```
 
 >[!IMPORTANT]
->Usare lo switch `-ProtectedSetting` per tutte le impostazioni che potrebbero contenere informazioni riservate.
+>Hello utilizzare `-ProtectedSetting` passare per tutte le impostazioni che potrebbero contenere informazioni riservate.
 
 -----------
 
-L'interfaccia della riga di comando di Azure usa un file JSON per le impostazioni. Questo esempio distribuisce un pacchetto DSC che consente di installare IIS. Salvare il file JSON seguente come _settings.json_.
+CLI di Azure Usa un formato json per le impostazioni di hello. Questo esempio distribuisce un pacchetto DSC che consente di installare IIS. Salvare i seguenti file json come hello _Settings_.
 
 ```json
 {
@@ -152,17 +152,17 @@ az vmss extension set --publisher Microsoft.Powershell --version 2.24 --name DSC
 ```
 
 >[!IMPORTANT]
->Usare lo switch `--protected-settings` per tutte le impostazioni che potrebbero contenere informazioni riservate.
+>Hello utilizzare `--protected-settings` passare per tutte le impostazioni che potrebbero contenere informazioni riservate.
 
 ### <a name="linux"></a>Linux
 
-Durante la creazione Linux può usare l'estensione **Custom Script v2.0** o **cloud-init**.
+Linux è possibile utilizzare entrambi hello **v 2.0 Custom Script** estensione oppure utilizzare **cloud init** durante la creazione.
 
-Custom script è un'estensione semplice che scarica i file per istanze di macchine virtuali ed esegue un comando.
+Script personalizzato è un'estensione semplice che scarica istanze di macchine virtuali di file toohello ed esegue un comando.
 
 #### <a name="custom-script"></a>Custom Script
 
-Salvare il file JSON seguente come _settings.json_.
+Salvare i seguenti file json come hello _Settings_.
 
 ```json
 {
@@ -174,20 +174,20 @@ Salvare il file JSON seguente come _settings.json_.
 }
 ```
 
-Usare l'interfaccia della riga di comando di Azure per aggiungere questa estensione a un set di scalabilità della macchina virtuale esistente. Ogni macchina virtuale nel set di scalabilità esegue automaticamente l'estensione.
+Utilizzare hello Azure CLI tooadd tooan questa estensione set di scalabilità della macchina virtuale esistente. Ogni macchina virtuale in scala di hello impostate automaticamente estensione hello viene eseguito.
 
 ```azurecli
 az vmss extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --resource-group myResourceGroup --vmss-name myScaleSet --settings @settings.json
 ```
 
 >[!IMPORTANT]
->Usare lo switch `--protected-settings` per tutte le impostazioni che potrebbero contenere informazioni riservate.
+>Hello utilizzare `--protected-settings` passare per tutte le impostazioni che potrebbero contenere informazioni riservate.
 
 #### <a name="cloud-init"></a>cloud-init
 
-Cloud-Init viene usata durante la creazione del set di scalabilità. Innanzitutto, creare un file locale denominato _cloud-init.txt_ e aggiungere la configurazione. Ad esempio, vedere [questo gist](https://gist.github.com/Thraka/27bd66b1fb79e11904fb62b7de08a8a6#file-cloud-init-txt)
+Cloud-inizializzazione viene utilizzato quando viene creato il set di scalabilità di hello. Innanzitutto, creare un file locale denominato _cloud init.txt_ e aggiungere il tooit di configurazione. Ad esempio, vedere [questo gist](https://gist.github.com/Thraka/27bd66b1fb79e11904fb62b7de08a8a6#file-cloud-init-txt)
 
-Usare l'interfaccia della riga di comando di Azure per creare un set di scalabilità. Il campo `--custom-data` accetta il nome del file di uno script cloud-init.
+Imposta hello utilizzare Azure CLI toocreate una scala. Hello `--custom-data` campo accetta il nome file hello di uno script di inizializzazione di cloud.
 
 ```azurecli
 az vmss create \
@@ -202,22 +202,22 @@ az vmss create \
 
 ## <a name="how-do-i-manage-application-updates"></a>Gestione degli aggiornamenti dell'applicazione
 
-Se l'applicazione è stata distribuita tramite un'estensione, modificare la definizione dell'estensione. Questa modifica fa sì che l'estensione venga ridistribuita a tutte le istanze della macchina virtuale. **È necessario** modificare alcuni elementi dell'estensione, ad esempio è possibile rinominare un file di riferimento, altrimenti Azure non vede la modifica apportata all'estensione.
+Se è stata distribuita l'applicazione tramite un'estensione, è possibile modificare la definizione di estensione hello in qualche modo. Questa modifica impedisce a istanze di macchine virtuali tooall hello estensione toobe ridistribuita. Un elemento **deve** modificato sull'estensione hello, ad esempio la ridenominazione di un file di cui viene fatto riferimento, in caso contrario, Azure fa non vedere che hello estensione è stata modificata.
 
-Se è stato eseguito un backup dell'applicazione nell'immagine del sistema operativo, usare una pipeline di distribuzione automatica per gli aggiornamenti dell'applicazione. Progettare l'architettura per facilitare il passaggio rapido di un set di scalabilità temporaneo in produzione. Un buon esempio di questo approccio è rappresentato dall'[uso del driver Spinnaker di Azure](https://github.com/spinnaker/deck/tree/master/app/scripts/modules/azure) - [http://www.spinnaker.io/](http://www.spinnaker.io/).
+Se si baked applicazione hello nella propria immagine del sistema operativo, è possibile utilizzare una pipeline di distribuzione automatica degli aggiornamenti dell'applicazione. Progettare il toofacilitate architettura rapido la sostituzione di una scala di gestione temporanea impostata nell'ambiente di produzione. Un buon esempio di questo approccio è hello [lavoro driver Azure Spinnaker](https://github.com/spinnaker/deck/tree/master/app/scripts/modules/azure) - [http://www.spinnaker.io/](http://www.spinnaker.io/).
 
-[Packer](https://www.packer.io/) e [Terraform](https://www.terraform.io/) supportano Azure Resource Manager; pertanto, è anche possibile definire le immagini "come codice" e compilarle in Azure, quindi usare il disco rigido virtuale nel set di scalabilità. Tuttavia, tale approccio diventerebbe problematico per le immagini Marketplace, in cui gli script personalizzati/le estensioni acquistano importanza in quanto i bit non vengono modificati direttamente da Marketplace.
+[Chi](https://www.packer.io/) e [Terraform](https://www.terraform.io/) supporto Azure Resource Manager, pertanto è possibile anche definire le immagini "come"codice e compilarle in Azure, quindi utilizzare hello disco rigido virtuale nel set di scalabilità. Tuttavia, tale approccio diventerebbe problematico per le immagini Marketplace, in cui gli script personalizzati/le estensioni acquistano importanza in quanto i bit non vengono modificati direttamente da Marketplace.
 
 ## <a name="what-happens-when-a-scale-set-scales-out"></a>Cosa accade in caso di aumento della capacità di un set di scalabilità
-Quando si aggiungono una o più macchine virtuali a un set di scalabilità, l'applicazione viene installata automaticamente. Se ad esempio il set di scalabilità ha estensioni definite, queste vengono eseguite ogni volta che viene creata una nuova macchina virtuale. Se il set di scalabilità è basato su un'immagine personalizzata, qualsiasi nuova macchina virtuale è una copia dell'immagine di origine personalizzata. Se le macchine virtuali del set di scalabilità sono host del contenitore, potrebbe essere necessario il codice di avvio per caricare i contenitori in un'estensione Custom Script. In alternativa, un'estensione potrebbe installare un agente che esegue la registrazione con un agente di orchestrazione del cluster, ad esempio il servizio contenitore di Azure.
+Quando si aggiunge uno o più set di scalabilità di tooa macchine virtuali, un'applicazione hello viene installata automaticamente. Per esempio se il set di scalabilità hello include le estensioni definite, eseguono in una nuova macchina virtuale ogni volta che viene creato. Se il set di scalabilità di hello è basato su un'immagine personalizzata, qualsiasi nuova macchina virtuale è una copia dell'immagine di hello origine personalizzata. Se le macchine virtuali di set di scalabilità di hello host contenitore, avere contenitori hello tooload codice di avvio in un'estensione Script personalizzata. In alternativa, un'estensione potrebbe installare un agente che esegue la registrazione con un agente di orchestrazione del cluster, ad esempio il servizio contenitore di Azure.
 
 
 ## <a name="how-do-you-roll-out-an-os-update-across-update-domains"></a>Come distribuire un aggiornamento del sistema operativo nei domini di aggiornamento
-Si supponga di voler aggiornare un'immagine del sistema operativo mantenendo in esecuzione il set di scalabilità della macchina virtuale. PowerShell e l'interfaccia della riga di comando di Azure possono aggiornare le immagini della macchina virtuale, per una macchina virtuale alla volta. L'articolo [Aggiornare un set di scalabilità di macchine virtuali](./virtual-machine-scale-sets-upgrade-scale-set.md) include altre informazioni sulle opzioni disponibili per eseguire aggiornamenti del sistema operativo in un set di scalabilità della macchina virtuale.
+Si supponga di che voler tooupdate l'immagine del sistema operativo mantenendo scalabilità della macchina virtuale hello impostata in esecuzione. PowerShell e hello CLI di Azure è possibile aggiornare le immagini di macchina virtuale hello, una macchina virtuale alla volta. Hello [aggiornare un Set di scalabilità della macchina virtuale](./virtual-machine-scale-sets-upgrade-scale-set.md) articolo inoltre fornisce ulteriori informazioni su quali opzioni sono disponibili tooperform l'aggiornamento di un sistema operativo in un set di scalabilità della macchina virtuale.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Usare PowerShell per gestire il set di scalabilità.](virtual-machine-scale-sets-windows-manage.md)
+* [Utilizzare PowerShell toomanage il set di scalabilità.](virtual-machine-scale-sets-windows-manage.md)
 * [Creare un modello del set di scalabilità.](virtual-machine-scale-sets-mvss-start.md)
 
 

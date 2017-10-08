@@ -1,6 +1,6 @@
 ---
-title: Aggiornare un insieme di credenziali di Site Recovery a un insieme di credenziali di Servizi di ripristino di Azure
-description: Informazioni su come aggiornare un insieme di credenziali di Site Recovery a un insieme di credenziali di Servizi di ripristino
+title: insieme di credenziali di servizi di ripristino di Azure tooan aaaUpgrade un insieme di credenziali di Site Recovery
+description: Informazioni su come un insieme di credenziali di Azure Site Recovery tooupgrade tooa servizi di ripristino dell'insieme di credenziali
 documentationcenter: 
 author: rajani-janaki-ram
 manager: rochakm
@@ -13,32 +13,32 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/31/2017
 ms.author: rajani-janaki-ram
-ms.openlocfilehash: fdb33ea0d08353b491f2934fcf885fcb6910b9a2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a18a923ee3bad91873e654c9b9b5bf8b83acc123
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upgrade-a-site-recovery-vault-to-an-azure-resource-manager-based-recovery-services-vault"></a>Aggiornare un insieme di credenziali di Site Recovery a un insieme di credenziali di Servizi di ripristino basato su Azure Resource Manager
+# <a name="upgrade-a-site-recovery-vault-tooan-azure-resource-manager-based-recovery-services-vault"></a>L'aggiornamento di un archivio di servizi di ripristino basate su Gestione risorse di Azure Site Recovery tooan insieme di credenziali
 
-Questo articolo descrive come aggiornare gli insiemi di credenziali di Azure Site Recovery agli insiemi di credenziali di Servizi di ripristino basati su Azure Resource Manager senza alcun impatto sulla replica in corso. Per altre informazioni sulle funzionalità e sui vantaggi di Azure Resource Manager, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+In questo articolo viene descritto come tooupgrade Azure Site Recovery insiemi di credenziali di insiemi di credenziali del servizio di ripristino basate su Gestione risorse tooAzure senza alcun impatto sulla replica in corso. Per altre informazioni sulle funzionalità e sui vantaggi di Azure Resource Manager, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
 
 ## <a name="introduction"></a>Introduzione
-Un insieme di credenziali di Servizi di ripristino è una risorsa di Azure Resource Manager che consente di gestire il backup e il ripristino di emergenza in modo nativo nel cloud. È un insieme di credenziali unificato che è possibile usare nel nuovo portale di Azure e sostituisce i classici insiemi di credenziali di backup e Site Recovery.
+Un insieme di credenziali di servizi di ripristino è una risorsa di gestione risorse di Azure per la gestione dei backup e ripristino di emergenza in modo nativo nel cloud hello. È un insieme di credenziali unificata che è possibile utilizzare in hello nuovo portale di Azure e sostituisce backup classico hello e insiemi di credenziali di Site Recovery.
 
 Gli insiemi di credenziali di Servizi di ripristino offrono una nuova gamma di funzionalità, elencate di seguito:
 
 * Supporto di Azure Resource Manager: è possibile proteggere ed eseguire il failover delle macchine virtuali e dei computer fisici in uno stack di Azure Resource Manager.
 
-* Esclusione del disco: se si hanno file temporanei o dati ad alta varianza per i quali non si vuole usare tutta la larghezza di banda, è possibile escludere volumi dalla replica. Questa funzionalità è attualmente abilitata negli scenari *da VMware ad Azure* e *da Hyper-V ad Azure* ed è estesa anche ad altri scenari.
+* Escludere il disco: se si dispone di file temporanei o elevata varianza dei dati che non si desidera toouse tutta la larghezza di banda per, è possibile escludere i volumi di replica. Questa funzionalità è stata abilitata in *VMware tooAzure* e *tooAzure Hyper-V* e viene estesa anche scenari tooother.
 
-* Supporto per l'archiviazione Premium e con ridondanza locale: è possibile ora proteggere i server in account di archiviazione Premium che consentono agli utenti di proteggere le applicazioni con valori di input/output al secondo più elevati. Questa funzionalità è attualmente abilitata nello scenario *da VMware ad Azure*.
+* Supporto per premium e l'archiviazione con ridondanza locale: È ora possibile proteggere i server nel servizio di archiviazione premium gli account che consentono agli utenti di applicazioni tooprotect con versioni successive operazioni di input/output al secondo (IOPS). Questa funzionalità è attualmente abilitata *tooAzure VMware*.
 
-* Attività iniziali semplificate: le attività iniziali sono state progettate per facilitare la configurazione del ripristino di emergenza.
+* Guida introduttiva esperienza semplificata: hello avanzata esperienza di Guida introduttiva è stata progettata l'installazione di ripristino di emergenza toomake semplice.
 
-* Gestione di Backup e Site Recovery dallo stesso insieme di credenziali: è ora possibile proteggere i server per il ripristino di emergenza o il backup dallo stesso insieme di credenziali, riducendo in modo significativo il sovraccarico di gestione.
+* Backup e gestione di ripristino del sito da hello stesso insieme di credenziali: È ora possibile proteggere i server per il ripristino di emergenza o eseguire il backup da hello stesso insieme di credenziali, che può ridurre il sovraccarico in modo significativo la gestione.
 
-Per altre informazioni sull'esperienza e sulle funzionalità aggiornate, vedere il blog [Storage, Backup, and Recovery](https://azure.microsoft.com/blog/azure-site-recovery-now-available-in-a-new-experience-with-support-for-arm-and-csp/) (Archiviazione, backup e ripristino).
+Per ulteriori informazioni sull'esperienza hello aggiornato e le funzionalità, vedere hello [blog di archiviazione, Backup e ripristino](https://azure.microsoft.com/blog/azure-site-recovery-now-available-in-a-new-experience-with-support-for-arm-and-csp/).
 
 ## <a name="salient-features"></a>Funzionalità principali
 
@@ -46,142 +46,142 @@ Per altre informazioni sull'esperienza e sulle funzionalità aggiornate, vedere 
 
 * Nessun costo aggiuntivo: è possibile ottenere un intero set di funzionalità aggiornate senza costi aggiuntivi.
 
-* Nessuna perdita di dati: trattandosi di un processo di aggiornamento e non di migrazione, i punti di ripristino e le impostazioni esistenti della replica rimangono invariate durante e dopo l'aggiornamento.
+* Senza perdita di dati: poiché questo processo è un aggiornamento e non una migrazione, punti di ripristino esistenti di replica e le impostazioni rimangono invariate durante e dopo l'aggiornamento di hello.
 
 
-## <a name="what-happens-during-the-vault-upgrade"></a>Che cosa accade durante l'aggiornamento dell'insieme di credenziali
+## <a name="what-happens-during-hello-vault-upgrade"></a>Cosa accade durante l'aggiornamento dell'insieme di credenziali hello?
 
-Durante l'aggiornamento, non è possibile eseguire operazioni come la registrazione di un nuovo server o l'abilitazione della replica per una macchina virtuale. Le operazioni che implicano la lettura o la scrittura di dati nell'insieme di credenziali, come la replica in corso di elementi protetti nell'insieme di credenziali, continuano invece senza interruzioni.
+Durante l'aggiornamento di hello, è possibile eseguire operazioni quali la registrazione di un nuovo server o l'abilitazione della replica per una macchina virtuale (VM). Le operazioni che coinvolgono la lettura o di scrittura dati toohello insieme di credenziali, ad esempio la replica in corso dell'insieme di credenziali toohello gli elementi protetti, senza interruzioni.
 
-### <a name="changes-to-automation-and-tooling-after-the-upgrade"></a>Modifiche all'automazione e agli strumenti dopo l'aggiornamento
-Quando si aggiorna il tipo di insieme di credenziali dal modello di distribuzione classica al modello di distribuzione Resource Manager, aggiornare l'automazione o gli strumenti esistenti per accertarsi che continuino a funzionare anche dopo l'aggiornamento.
+### <a name="changes-tooautomation-and-tooling-after-hello-upgrade"></a>Tooautomation modifiche e gli strumenti dopo l'aggiornamento di hello
+Come si aggiorna il tipo di insieme di credenziali hello dal modello di distribuzione di gestione delle risorse modello toohello hello distribuzione classica, aggiornare automazione esistente hello o tooensure gli strumenti che continui toowork dopo l'aggiornamento di hello.
 
-### <a name="prepare-your-environment-for-the-upgrade"></a>Preparare l'ambiente per l'aggiornamento
+### <a name="prepare-your-environment-for-hello-upgrade"></a>Preparare l'ambiente per l'aggiornamento di hello
 
-* [Installare PowerShell o aggiornarlo alla versione 5 o successiva](https://www.microsoft.com/download/details.aspx?id=50395)
-* [Installare la versione più recente del file MSI di Azure PowerShell](https://github.com/Azure/azure-powershell/releases)
-* [Scaricare lo script di aggiornamento dell'insieme di credenziali di Servizi di ripristino](https://aka.ms/vaultupgradescript)
+* [Installare PowerShell o l'aggiornamento tooversion 5 o versione successiva](https://www.microsoft.com/download/details.aspx?id=50395)
+* [Installare hello la versione più recente di Azure PowerShell MSI](https://github.com/Azure/azure-powershell/releases)
+* [Scaricare script di aggiornamento dell'insieme di credenziali di servizi di ripristino hello](https://aka.ms/vaultupgradescript)
 
 ### <a name="prerequisites"></a>Prerequisiti
-Per eseguire l'aggiornamento da insiemi di credenziali di Site Recovery a insiemi di credenziali di Servizi di ripristino basati su Azure Resource Manager, è necessario soddisfare i requisiti seguenti:
+gli insiemi di credenziali del servizio di ripristino basate su Gestione risorse tooAzure insiemi di credenziali di tooupgrade da Site Recovery, è necessario soddisfare i seguenti requisiti hello:
 
-* Versione minima dell'agente: la versione del provider di Azure Site Recovery installata nel server deve essere 5.1.1700.0 o successiva.
+* Versione minima dell'agente: versione di hello del Provider di Azure Site Recovery installato nel server deve essere 5.1.1700.0 o versione successiva.
 
 * Configurazione supportata: non è possibile configurare l'insieme di credenziali con la rete di archiviazione (SAN) o i gruppi di disponibilità AlwaysOn di SQL Server. Sono supportate tutte le altre configurazioni.
 
     >[!NOTE]
-    >Dopo l'aggiornamento, è possibile gestire il mapping dell'archiviazione solo tramite PowerShell.
+    >Dopo l'aggiornamento di hello, è possibile gestire i mapping di archiviazione solo tramite PowerShell.
 
-* Scenario di distribuzione supportato: l'insieme di credenziali non deve essere il modello di distribuzione legacy *da VMware ad Azure*. Prima di continuare, passare al modello di distribuzione avanzata.
+* Scenario di distribuzione supportati: l'insieme di credenziali non devono essere hello *tooAzure VMware* modello di distribuzione legacy. Prima di procedere, spostare innanzitutto il modello di distribuzione avanzata di toohello.
 
-* Nessun processo attivo avviato dall'utente che coinvolga operazioni del piano di gestione: poiché durante l'aggiornamento l'accesso al piano di gestione è limitato, completare tutte le azioni del piano di gestione prima di attivare l'aggiornamento. Questo processo non include la replica in corso.
+* Nessun processo attivo avviata dall'utente che coinvolgono gestione piano operations: perché il piano di gestione toohello di accesso è limitato durante l'aggiornamento, completare tutte le azioni del piano di gestione prima attivare l'aggiornamento di hello. Questo processo non include la replica in corso.
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
 
 **L'aggiornamento influisce sulla replica in corso?**
 
-No. Durante e dopo l'aggiornamento, la replica in corso continua ininterrottamente.
+No. La replica in corso continua senza interruzioni durante e dopo l'aggiornamento di hello.
 
-**Che cosa accade alle impostazioni di rete, ad esempio alle impostazioni IP e VPN da sito a sito?**
+**Cosa accade toonetwork impostazioni, ad esempio le impostazioni IP e VPN da sito a sito?**
 
-L'aggiornamento non influisce sulle impostazioni di rete. Tutte le connessioni da Azure a locale rimangono inalterate.
+aggiornamento di Hello non influenza le impostazioni di rete hello. Tutte le connessioni da Azure a locale rimangono inalterate.
 
-**Che cosa accade agli insiemi di credenziali se non si prevede un aggiornamento a breve?**
+**Gli insiemi di credenziali toomy cosa accade se non è previsto tooupgrade in hello prossimo futuro?**
 
-Il supporto per l'insieme di credenziali di Site Recovery nella versione precedente del portale di Azure sarà deprecato a partire dal mese di settembre 2017. È consigliabile usare la funzionalità di aggiornamento per passare al nuovo portale.
+Supporto per l'insieme di credenziali di Site Recovery nel portale di Azure precedente hello verrà deprecato a partire settembre 2017. È consigliabile utilizzare hello funzionalità di aggiornamento toomove toohello nuovo portale.
 
 **Qual è l'impatto di questo piano di migrazione per gli strumenti esistenti?**  
 
-L'aggiornamento degli strumenti al modello di distribuzione Resource Manager è una delle modifiche più importanti da tenere in considerazione per i piani di aggiornamento. Gli insiemi di credenziali di Servizi di ripristino si basano sul modello di distribuzione Resource Manager. 
+L'aggiornamento del modello di distribuzione di gestione delle risorse toohello strumenti è una delle modifiche più importanti hello che è necessario tener conto nei piani di aggiornamento. gli insiemi di credenziali di Hello servizi di ripristino sono basati sul modello di distribuzione di gestione risorse hello. 
 
-**Quale durata ha il tempo di inattività del piano di gestione?**
+**Il tempo hello tempi di inattività gestione piano ultimo?**
 
-L'aggiornamento richiede in genere da 15 a 30 minuti circa, fino a un massimo di un'ora.
+aggiornamento di Hello richiede in genere circa 15 minuti too30 e potrebbero richiedere tooa massima di un'ora.
 
 **È possibile eseguire il ripristino dello stato precedente dopo l'aggiornamento?**
 
-No. Il ripristino dello stato precedente non è supportato dopo il completamento dell'aggiornamento delle risorse.
+No. Eseguire il rollback non è supportato dopo risorse hello sono state aggiornate.
 
-**È possibile convalidare la sottoscrizione o le risorse per verificare se possono essere aggiornate?**
+**È possibile convalidare la sottoscrizione o risorse toosee se possono essere aggiornate?**
 
-Sì. Nell'opzione di aggiornamento supportata dalla piattaforma, il primo passaggio prevede di verificare che le risorse siano idonee per un aggiornamento. In caso di esito negativo dell'operazione di convalida, si riceveranno appositi messaggi di errore o avvisi.
+Sì. In hello piattaforma supportata l'opzione di aggiornamento, hello innanzitutto l'aggiornamento di hello è toovalidate che le risorse di hello siano in grado di un aggiornamento. Se la convalida di hello non riesce, si riceverà i messaggi di errore appropriato o avvisi.
 
-**Come è possibile segnalare un problema in fase di aggiornamento?**
+**Come è possibile segnalare un problema con l'aggiornamento di hello?**
 
-Se si verifica un errore durante l'aggiornamento, prendere nota dell'ID dell'operazione elencato nell'errore. Il supporto tecnico Microsoft si impegnerà per risolvere il problema. È anche possibile contattare il supporto tecnico indicando l'ID della sottoscrizione, il nome dell'insieme di credenziali e l'ID dell'operazione. Il supporto tecnico si impegnerà per cercare di risolvere il problema il prima possibile. Non ripetere l'operazione a meno che non venga esplicitamente richiesto da Microsoft.
+Se si verificano eventuali errori durante l'aggiornamento di hello, notare l'ID operazione hello elencato in errore hello. Supporto Microsoft funzionerà in modo proattivo sulla risoluzione problema hello. È anche possibile contattare il team di supporto hello con l'ID sottoscrizione, nome insieme di credenziali e l'ID dell'operazione. Supporto funzionerà problema hello tooresolve più rapidamente possibile. Non ripetere l'operazione di hello a meno che non si è toodo in modo esplicito istruzioni riportata in questo caso da Microsoft.
 
-## <a name="run-the-script"></a>Esecuzione dello script
+## <a name="run-hello-script"></a>Eseguire script hello
 
-In PowerShell eseguire questo comando:
+In PowerShell eseguire hello comando seguente:
 
     PS > .\RecoveryServicesVaultUpgrade-1.0.0.ps1 -SubscriptionID <subscriptionID>  -VaultName <vaultname> -Location <location> -ResourceType HyperVRecoveryManagerVault -TargetResourceGroupName <rgname>
 
-* SubscriptionID: ID della sottoscrizione associato all'insieme di credenziali che si sta aggiornando.
+* SubscriptionID: hello ID sottoscrizione associato a credenziali hello che si esegue l'aggiornamento.
 
-* VaultName: nome dell'insieme di credenziali che si sta aggiornando.
+* VaultName: nome di hello dell'insieme di credenziali hello che si esegue l'aggiornamento.
 
-* Location: posizione dell'insieme di credenziali che si sta aggiornando.
+* : Hello posizione dell'insieme di credenziali hello che si esegue l'aggiornamento.
 
 * ResourceType: HyperVRecoveryManagerVault per gli insiemi di credenziali di Site Recovery.
 
-* TargetResourceGroupName: gruppo di risorse in cui si vuole inserire l'insieme di credenziali aggiornato. TargetResourceGroupName può essere un gruppo di risorse esistente in Azure Resource Manager o uno nuovo. Se il valore TargetResourceGroupName specificato non esiste, viene creato nel corso del processo di aggiornamento nello stesso percorso dell'insieme di credenziali. Per altre informazioni, vedere la sezione "Gruppi di risorse" di [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md#resource-groups).
+* TargetResourceGroupName: gruppo di risorse hello in cui si desidera hello aggiornato toobe insieme di credenziali inserito. TargetResourceGroupName può essere un gruppo di risorse esistente in Azure Resource Manager o uno nuovo. Se hello TargetResourceGroupName fornito non esiste, viene creato come parte dell'aggiornamento hello in hello stessa località dell'insieme di credenziali hello. Per ulteriori informazioni, vedere sezione "Gruppi di risorse" hello [Panoramica di gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md#resource-groups).
 
     >[!NOTE]
-    >La denominazione del gruppo di risorse è soggetta a determinati vincoli. Per evitare l'errore di aggiornamento dell'insieme di credenziali, assicurarsi di rispettare la convenzione di denominazione,
+    >Denominazione di gruppo di risorse è vincoli toocertain soggetto. insieme di credenziali tooprevent aggiornare errore, essere attentamente che hello tooobserve convenzione di denominazione.
     >
     >ad esempio:
     >
     >.\RecoveryServicesVaultUpgrade-1.0.0.ps1 -SubscriptionId 1234-54123-354354-56416-8645 -VaultName gen2dr -Location "north europe" -ResourceType hypervrecoverymanagervault -TargetResourceGroupName abc
 
-In alternativa, è possibile usare lo script seguente. Immettere i valori per i parametri obbligatori.
+In alternativa, è possibile eseguire lo script seguente hello. Per i parametri di hello richiesto, immettere i valori di hello.
 
     PS > .\RecoveryServicesVaultUpgrade-1.0.0.ps1
     cmdlet RecoveryServicesVaultUpgrade-1.0.0.ps1 at command pipeline position 1
 
-    Supply values for the following parameters:
+    Supply values for hello following parameters:
     SubscriptionId:
     VaultName:
     Location:
     ResourceType:
     TargetResourceGroupName:
 
-1. Lo script di PowerShell richiede di immettere le credenziali. Immetterle due volte, la prima per l'account del modello di distribuzione classica, la seconda per l'account di Azure Resource Manager.
+1. Hello script di PowerShell richiesto è tooenter le credenziali. Immetterli due volte, una volta per conto del modello di distribuzione classica hello e una volta per hello account di gestione risorse di Azure.
 
-2. Dopo avere immesso le credenziali, lo script esegue un controllo per determinare se la configurazione dell'infrastruttura soddisfa i requisiti descritti prima.
+2. Dopo aver immesso le credenziali, script hello viene eseguito un toodetermine di controllo se il hello soddisfa il programma di installazione di infrastruttura indicato in precedenza requisiti.
 
-3. Dopo che i prerequisiti sono stati controllati e confermati, viene chiesto di continuare con l'aggiornamento dell'insieme di credenziali. Il processo di aggiornamento avvia l'aggiornamento dell'insieme di credenziali. L'aggiornamento viene completato in 15-30 minuti.
+3. Dopo prerequisiti hello sono stati verificati e confermati, si è tooproceed richiesta con l'aggiornamento dell'insieme di credenziali hello. processo di aggiornamento Hello avvia l'insieme di credenziali di aggiornamento. intero aggiornamento Hello può richiedere 15 too30 minuti toocomplete.
 
-4. Al termine del processo di aggiornamento, è possibile accedere all'insieme di credenziali aggiornato nel nuovo portale di Azure.
+4. Dopo l'aggiornamento di hello è stata completata, è possibile accedere hello aggiornato dell'insieme di credenziali nel portale di Azure nuova hello.
 
 ## <a name="post-upgrade-vault-management"></a>Gestione dell'insieme di credenziali successiva all'aggiornamento
 
-### <a name="replicate-by-using-azure-site-recovery-in-the-recovery-services-vault"></a>Eseguire la replica usando Azure Site Recovery nell'insieme di credenziali di Servizi di ripristino
+### <a name="replicate-by-using-azure-site-recovery-in-hello-recovery-services-vault"></a>La replica tramite Azure Site Recovery in hello che insieme di credenziali di servizi di ripristino
 
-* È ora possibile proteggere le macchine virtuali di Azure da un'area a un'altra. Per altre informazioni, vedere [Eseguire la replica delle VM di Azure tra le aree con Azure Site Recovery](site-recovery-azure-to-azure.md).
+* È ora possibile proteggere le macchine virtuali di Azure da un'area tooanother. Per altre informazioni, vedere [Eseguire la replica delle VM di Azure tra le aree con Azure Site Recovery](site-recovery-azure-to-azure.md).
 
-* Per altre informazioni sulla replica di macchine virtuali VMware in Azure, vedere [Replicare VM VMware in Azure con Site Recovery](vmware-walkthrough-overview.md).
+* Per ulteriori informazioni sulla replica tooAzure le macchine virtuali VMware, vedere [tooAzure di replicare le macchine virtuali VMware con il ripristino del sito](vmware-walkthrough-overview.md).
 
-* Per altre informazioni sulla replica di macchine virtuali Hyper-V (senza VMM) in Azure, vedere [Eseguire la replica di macchine virtuali Hyper-V (senza VMM) in Azure](hyper-v-site-walkthrough-overview.md).
+* Per ulteriori informazioni sulla replica tooAzure macchine virtuali Hyper-V (senza VMM), vedere [replica Hyper-V le macchine virtuali (senza VMM) tooAzure](hyper-v-site-walkthrough-overview.md).
 
-* Per altre informazioni sulla replica di macchine virtuali Hyper-V (con VMM) in Azure, vedere [Eseguire la replica di macchine virtuali Hyper-V nei cloud VMM in Azure tramite Site Recovery nel portale di Azure](vmm-to-azure-walkthrough-overview.md).
+* Per ulteriori informazioni sulla replica tooAzure macchine virtuali Hyper-V (con VMM), vedere [hello di macchine virtuali di replica Hyper-V in VMM cloud tooAzure usando Site Recovery nel portale di Azure](vmm-to-azure-walkthrough-overview.md).
 
-* Per altre informazioni sulla replica di macchine virtuali Hyper-V (con VMM) in un sito secondario, vedere [Eseguire la replica di macchine virtuali Hyper-V in cloud VMM in un sito VMM secondario usando il portale di Azure](site-recovery-vmm-to-vmm.md).
+* Per ulteriori informazioni sulla replica sito secondario tooa di Hyper-macchine virtuali (con VMM), vedere [hello di macchine virtuali di replica Hyper-V in VMM cloud tooa secondario VMM del sito utilizzando il portale di Azure](site-recovery-vmm-to-vmm.md).
 
-* Per altre informazioni sulla replica di macchine virtuali VMware in un sito secondario, vedere [Eseguire la replica di macchine virtuali VMware locali o server fisici in un sito secondario nel portale di Azure classico](site-recovery-vmware-to-vmware.md).
+* Per ulteriori informazioni sulla replica sito secondario di tooa le macchine virtuali VMware, vedere [replica locale macchine virtuali VMware o un sito secondario di server fisici tooa nel portale di Azure classico hello](site-recovery-vmware-to-vmware.md).
 
 ### <a name="view-your-replicated-items"></a>Visualizzare gli elementi replicati
 
-L'immagine seguente mostra la pagina del dashboard dell'insieme di credenziali di Servizi di ripristino in cui vengono visualizzate le entità principali relative all'insieme di credenziali. Per visualizzare un elenco delle entità protette nell'insieme di credenziali, selezionare **Site Recovery** > **Elementi replicati**.
+Hello immagine seguente mostra la pagina hello servizi di ripristino dell'insieme di credenziali dashboard che consente di visualizzare le entità di chiave per l'insieme di credenziali hello. Selezionare un elenco di entità protetti nell'insieme di credenziali hello tooview **Site Recovery** > **gli elementi replicati**.
 
 
 ![Elementi replicati](./media/upgrade-site-recovery-vaults/replicateditems.png)
 
-L'immagine seguente illustra il flusso di lavoro per visualizzare gli elementi replicati e il comando **Failover** per avviare un failover.
+Hello immagine seguente viene illustrato del flusso di lavoro hello per la visualizzazione delle elementi replicati e hello **Failover** comando per avviare un failover.
 
 ![Elementi replicati](./media/upgrade-site-recovery-vaults/failover.png)
 
 ### <a name="view-your-replication-settings"></a>Visualizzare le impostazioni di replica
 
-Nell'insieme di credenziali di Site Recovery ogni gruppo protezione dati è configurato con frequenza di copia, conservazione del punto di ripristino, frequenza degli snapshot coerenti con l'applicazione e altre impostazioni di replica. Nell'insieme di credenziali di Servizi di ripristino queste impostazioni sono configurate come criteri di replica. Il nome dei criteri corrisponde al nome del gruppo protezione dati o a *primarycloud_Policy*.
+Nell'insieme di credenziali Site Recovery hello ogni gruppo protezione dati è configurato con la frequenza di copia, conservazione del punto di ripristino, frequenza di snapshot coerenti dell'applicazione e altre impostazioni di replica. Nell'insieme di credenziali di hello servizi di ripristino, queste impostazioni sono configurate come un criterio di replica. nome di Hello del criterio di hello è il nome di hello del gruppo protezione dati hello o hello *primarycloud_Policy*.
 
-Per altre informazioni sui criteri di replica, vedere [Gestire i criteri di replica per VMware in Azure](site-recovery-setup-replication-settings-vmware.md).
+Per ulteriori informazioni sui criteri di replica, vedere [gestire criteri di replica per VMware tooAzure](site-recovery-setup-replication-settings-vmware.md).

@@ -1,5 +1,5 @@
 ---
-title: Sicurezza e autenticazione di Griglia di eventi di Azure
+title: autenticazione e sicurezza griglia eventi aaaAzure
 description: Vengono descritti il servizio Griglia di eventi di Azure e i concetti correlati.
 services: event-grid
 author: banisadr
@@ -8,11 +8,11 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: babanisa
-ms.openlocfilehash: b6e1c7587c0b47d04862b4850741aaa3b7d191a8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 74f692c7e3a30856c3a80cbbfe82a26bf4c1c9b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-security-and-authentication"></a>Sicurezza e autenticazione di Griglia di eventi 
 
@@ -24,47 +24,47 @@ Griglia di eventi di Azure ha tre tipi di autenticazione:
 
 ## <a name="webhook-event-delivery"></a>Recapito eventi webhook
 
-I webhook sono uno dei modi per ricevere gli eventi in tempo reale da Griglia di eventi di Azure.
+Webhook sono uno dei molti eventi di tooreceive modi in tempo reale dalla griglia di eventi di Azure.
 
-Ogni volta che un nuovo evento è pronto per essere recapitato, Griglia di eventi invia al webhook una richiesta HTTP nel cui corpo è contenuto l'evento.
+Ogni volta che è presente un nuovo toobe pronto evento recapitato, griglia eventi invia una richiesta HTTP con tooyour WebHook con evento hello nel corpo di hello.
 
-Quando si registra l'endpoint del webhook con Griglia di eventi, viene inviata una richiesta POST con un semplice codice di convalida per dimostrare la proprietà dell'endpoint. È necessario che l'app risponda rimandando il codice di convalida. Griglia di eventi non recapiterà gli eventi agli endpoint del webhook che non hanno superato la convalida.
+Quando si registra il proprio endpoint WebHook con griglia di eventi, invia una richiesta POST con un codice di convalida semplice della proprietà di endpoint tooprove ordine. L'app deve toorespond visualizzando il codice di convalida hello indietro. Griglia di eventi non fornirà eventi tooWebHook endpoint che non hanno superato la convalida di hello.
  
 ### <a name="validation-details"></a>Informazioni di convalida:
 
-* In fase di creazione/aggiornamento della sottoscrizione dell'evento, Griglia di eventi pubblica un evento "SubscriptionValidationEvent" nell'endpoint di destinazione.
-* L'evento contiene un valore di intestazione "Event-Type: Validation".
-* Il corpo dell'evento ha lo stesso schema degli altri eventi di Griglia di eventi.
-* I dati dell'evento includono una proprietà "ValidationCode" con una stringa generata in modo casuale, ad esempio "ValidationCode: acb13…".
+* In fase di hello di creazione/aggiornamento della sottoscrizione evento, evento griglia registra un endpoint di destinazione "SubscriptionValidationEvent" toohello evento.
+* evento Hello contiene un valore di intestazione "Convalida di tipo di evento:".
+* corpo dell'evento Hello è hello stesso schema di altri eventi di griglia di eventi.
+* dati dell'evento Hello includono una proprietà di "ValidationCode" con una stringa generata in modo casuale, ad esempio "ValidationCode: acb13…".
 
-Per dimostrare la proprietà dell'endpoint, rimandare il codice di convalida, ad esempio "ValidationResponse: acb13…".
+In proprietà di endpoint tooprove ordine, echo ad esempio di codice convalida hello Indietro "ValidationResponse: acb13...".
 
-È infine importante notare che Griglia di eventi di Azure supporta solo endpoint di webhook HTTPS.
+Infine, è importante toonote che griglia di eventi di Azure supporta solo l'endpoint webhook HTTPS.
 ## <a name="event-subscription"></a>Sottoscrizione dell'evento
 
-Per sottoscrivere un evento, è necessaria l'autorizzazione **Microsoft.EventGrid/EventSubscriptions/Write** per la risorsa richiesta. Questa autorizzazione è necessaria perché si sta scrivendo una nuova sottoscrizione nell'ambito della risorsa. La risorsa necessaria è diversa a seconda del fatto che si sottoscriva un argomento di sistema o un argomento personalizzato. Entrambi i tipi sono descritti in questa sezione.
+evento tooan toosubscribe, è necessario disporre hello **Microsoft.EventGrid/EventSubscriptions/Write** risorsa necessaria l'autorizzazione in hello. Questa autorizzazione è necessaria poiché si sta creando una nuova sottoscrizione nell'ambito di hello della risorsa hello. Hello necessarie risorse varia in base al se si effettua la sottoscrizione dell'argomento di sistema di tooa o argomento personalizzato. Entrambi i tipi sono descritti in questa sezione.
 
 ### <a name="system-topics-azure-service-publishers"></a>Argomenti di sistema (entità di pubblicazione dei servizi di Azure)
 
-Per gli argomenti di sistema, è necessaria l'autorizzazione per scrivere una nuova sottoscrizione di evento nell'ambito della risorsa che pubblica l'evento. Il formato della risorsa è: `/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider}/{resource-type}/{resource-name}`
+Gli argomenti di sistema, è necessario autorizzazione toowrite una nuova sottoscrizione di eventi nell'ambito di hello dell'evento di hello hello risorse pubblicazione. formato Hello della risorsa hello è:`/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider}/{resource-type}/{resource-name}`
 
-Per sottoscrivere, ad esempio, un evento in un account di archiviazione denominato **myacct**, è necessaria l'autorizzazione Microsoft.EventGrid/EventSubscriptions/Write per: `/subscriptions/####/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/myacct`
+Ad esempio, toosubscribe tooan evento su un account di archiviazione denominato **myacct**, è richiesta l'autorizzazione di Microsoft.EventGrid/EventSubscriptions/Write hello in:`/subscriptions/####/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/myacct`
 
 ### <a name="custom-topics"></a>Argomenti personalizzati
 
-Per gli argomenti personalizzati, è necessaria l'autorizzazione per scrivere una nuova sottoscrizione di evento nell'ambito dell'argomento di Griglia di eventi. Il formato della risorsa è: `/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.EventGrid/topics/{topic-name}`
+Per argomenti personalizzati, è necessario autorizzazione toowrite una nuova sottoscrizione di eventi nell'ambito di hello di argomento evento griglia hello. formato Hello della risorsa hello è:`/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.EventGrid/topics/{topic-name}`
 
-Per sottoscrivere, ad esempio, un argomento personalizzato denominato **mytopic**, è necessaria l'autorizzazione Microsoft.EventGrid/EventSubscriptions/Write per: `/subscriptions/####/resourceGroups/testrg/providers/Microsoft.EventGrid/topics/mytopic`
+Ad esempio, toosubscribe tooa argomento personalizzato denominato **mytopic**, è richiesta l'autorizzazione di Microsoft.EventGrid/EventSubscriptions/Write hello in:`/subscriptions/####/resourceGroups/testrg/providers/Microsoft.EventGrid/topics/mytopic`
 
 ## <a name="topic-publishing"></a>Pubblicazione di argomenti
 
 Gli argomenti usano la firma di accesso condiviso o l'autenticazione della chiave. È consigliabile la firma di accesso condiviso, ma l'autenticazione della chiave fornisce una programmazione semplice ed è compatibile con molte entità di pubblicazione di webhook esistenti. 
 
-Il valore dell'autenticazione viene incluso nell'intestazione HTTP. Per la firma di accesso condiviso, usare **aeg-sas-token** per il valore dell'intestazione. Per l'autenticazione della chiave, usare **aeg-sas-key** per il valore dell'intestazione.
+Includere il valore di autenticazione hello nell'intestazione HTTP hello. Per la firma di accesso condiviso, utilizzare **token di firma di accesso condiviso aeg** per il valore dell'intestazione hello. Per l'autenticazione con chiave, utilizzare **chiave di firma di accesso condiviso aeg** per il valore dell'intestazione hello.
 
 ### <a name="key-authentication"></a>Autenticazione della chiave
 
-L'autenticazione della chiave è la forma più semplice di autenticazione. Usare il formato: `aeg-sas-key: <your key>`
+L'autenticazione con chiave è più semplice di autenticazione hello. Utilizzare il formato: hello`aeg-sas-key: <your key>`
 
 Ad esempio, passare una chiave con: 
 
@@ -74,11 +74,11 @@ aeg-sas-key: VXbGWce53249Mt8wuotr0GPmyJ/nDT4hgdEj9DpBeRr38arnnm5OFg==
 
 ### <a name="sas-tokens"></a>Token di firma di accesso condiviso
 
-I token di firma di accesso condiviso per Griglia di eventi includono la risorsa, un'ora di scadenza e una firma. Il formato del token di firma di accesso condiviso è: `r={resource}&e={expiration}&s={signature}`.
+I token di firma di accesso condiviso per griglia di eventi includono risorse hello, un'ora di scadenza e una firma. Hello formato del token di firma di accesso condiviso hello è: `r={resource}&e={expiration}&s={signature}`.
 
-La risorsa è il percorso dell'argomento a cui si inviano gli eventi. Un percorso di risorsa valido, ad esempio, è: `https://<yourtopic>.<region>.eventgrid.azure.net/eventGrid/api/events`
+risorsa Hello è il percorso di hello per hello argomento toowhich si invia eventi. Un percorso di risorsa valido, ad esempio, è: `https://<yourtopic>.<region>.eventgrid.azure.net/eventGrid/api/events`
 
-La firma viene generata da una chiave.
+Firma hello generate da una chiave.
 
 Un valore **aeg-sas-token** valido, ad esempio, è:
 
@@ -86,7 +86,7 @@ Un valore **aeg-sas-token** valido, ad esempio, è:
 aeg-sas-token: r=https%3a%2f%2fmytopic.eventgrid.azure.net%2feventGrid%2fapi%2fevent&e=6%2f15%2f2017+6%3a20%3a15+PM&s=a4oNHpRZygINC%2fBPjdDLOrc6THPy3tDcGHw1zP4OajQ%3d
 ``` 
 
-L'esempio seguente crea un token di firma di accesso condiviso per l'uso con Griglia di eventi:
+Hello di esempio seguente crea un token di firma di accesso condiviso per l'utilizzo con griglia eventi:
 
 ```cs
 static string BuildSharedAccessSignature(string resource, DateTime expirationUtc, string key)
@@ -112,11 +112,11 @@ static string BuildSharedAccessSignature(string resource, DateTime expirationUtc
 
 ## <a name="management-access-control"></a>Controllo di accesso per la gestione
 
-Griglia di eventi di Azure consente di controllare il livello di accesso assegnato ai diversi utenti per eseguire svariate operazioni di gestione, ad esempio elencare sottoscrizioni di eventi, crearne di nuove e generare chiavi. Griglia di eventi utilizza a questo scopo il controllo degli accessi in base al ruolo di Azure.
+Azure griglia di eventi consente si toocontrol hello livello di accesso assegnato toodifferent utenti toodo varie operazioni di gestione, ad esempio le sottoscrizioni di eventi di elenco, crearne di nuovi e generare le chiavi. Griglia di eventi utilizza a questo scopo il controllo degli accessi in base al ruolo di Azure.
 
 ### <a name="operation-types"></a>Tipi di operazioni
 
-Griglia di eventi di Azure supporta le azioni seguenti:
+Griglia di eventi di Azure supporta hello seguenti azioni:
 
 * Microsoft.EventGrid/*/read 
 * Microsoft.EventGrid/*/write 
@@ -125,15 +125,15 @@ Griglia di eventi di Azure supporta le azioni seguenti:
 * Microsoft.EventGrid/topics/listKeys/action 
 * Microsoft.EventGrid/topics/regenerateKey/action
 
-Le ultime tre operazioni restituiscono informazioni potenzialmente riservate che vengono filtrate dalle normali operazioni di lettura. È consigliabile limitare l'accesso a queste operazioni. I ruoli personalizzati possono essere creati usando [Azure PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md), [l'interfaccia della riga di comando di Azure (CLI)](../active-directory/role-based-access-control-manage-access-azure-cli.md) e la [API REST](../active-directory/role-based-access-control-manage-access-rest.md).
+Hello ultime tre operazioni restituito potenzialmente informazioni segrete Ottiene filtrato da normale operazioni di lettura. È consigliabile per consentire operazioni di toothese toorestrict accesso. È possibile creare ruoli personalizzati utilizzando [Azure PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md), [Azure interfaccia della riga di comando (CLI)](../active-directory/role-based-access-control-manage-access-azure-cli.md), hello e [API REST](../active-directory/role-based-access-control-manage-access-rest.md).
 
 ### <a name="enforcing-role-based-access-check-rbac"></a>Applicazione del controllo degli accessi in base al ruolo
 
-Usare i passaggi seguenti per applicare il controllo degli accessi in base al ruolo per utenti diversi:
+Utilizzare hello seguendo i passaggi tooenforce RBAC per utenti diversi:
 
 #### <a name="create-a-custom-role-definition-file-json"></a>Creare un file di definizione del ruolo personalizzato (JSON)
 
-Le seguenti sono definizioni del ruolo di Griglia di eventi che consentono agli utenti di eseguire set diversi di azioni.
+di seguito Hello sono definizioni di ruolo della griglia di eventi di esempio che consentono agli utenti tooperform diversi set di azioni.
 
 **EventGridReadOnlyRole.json**: consente solo operazioni di sola lettura.
 ```json
@@ -196,18 +196,18 @@ Le seguenti sono definizioni del ruolo di Griglia di eventi che consentono agli 
 } 
 ```
 
-#### <a name="install-and-login-to-azure-cli"></a>Installare e accedere all'interfaccia della riga di comando di Azure
+#### <a name="install-and-login-tooazure-cli"></a>Installazione e account di accesso tooAzure CLI
 
-* Usare la versione 0.8.8 o successiva dell'interfaccia della riga di comando di Azure. Per installare la versione più recente e associarla alla sottoscrizione di Azure, vedere [Installare e configurare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
-* Azure Resource Manager nell'interfaccia della riga di comando di Azure. Per altre informazioni, vedere [Uso dell'interfaccia della riga di comando di Azure con Resource Manager](../xplat-cli-azure-resource-manager.md)
+* Usare la versione 0.8.8 o successiva dell'interfaccia della riga di comando di Azure. versione più recente di tooinstall hello e associare con la sottoscrizione di Azure, vedere [installare e configurare hello Azure CLI](../cli-install-nodejs.md).
+* Azure Resource Manager nell'interfaccia della riga di comando di Azure. Andare troppo[Using hello CLI di Azure con Gestione risorse di hello](../xplat-cli-azure-resource-manager.md) per altri dettagli.
 
 #### <a name="create-a-custom-role"></a>Creare un ruolo personalizzato
 
-Per creare un ruolo personalizzato, usare:
+toocreate un ruolo personalizzato, utilizzare:
 
     azure role create --inputfile <file path>
 
-#### <a name="assign-the-role-to-a-user"></a>Assegnare il ruolo a un utente
+#### <a name="assign-hello-role-tooa-user"></a>Assegnare hello ruolo tooa utente
 
 
     azure role assignment create --signInName  <user email address> --roleName "<name of role>" --resourceGroup <resource group name>
@@ -215,4 +215,4 @@ Per creare un ruolo personalizzato, usare:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per un'introduzione a Griglia di eventi, vedere [Informazioni su Griglia di eventi](overview.md).
+* Per un'introduzione tooEvent griglia, vedere [sulla griglia di eventi](overview.md)

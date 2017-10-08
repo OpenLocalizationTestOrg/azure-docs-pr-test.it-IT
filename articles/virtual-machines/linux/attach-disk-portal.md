@@ -1,6 +1,6 @@
 ---
-title: Collegare un disco dati a una macchina virtuale Linux | Microsoft Docs
-description: Come collegare un disco dati nuovo o esistente a una macchina virtuale Linux nel portale di Azure tramite il modello di distribuzione di Resource Manager.
+title: aaaAttach un tooa disco dati VM Linux | Documenti Microsoft
+description: Tooattach dati nuovi o esistenti disco tooa VM Linux in Azure mediante portale hello hello come modello di distribuzione di gestione risorse.
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/07/2017
 ms.author: cynthn
-ms.openlocfilehash: 1599ee241c3d9fb3623ebd89ae30f2795cae1930
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 069c3c6f5e71a8c495342e6d0c6f3d92c4ed5053
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-attach-a-data-disk-to-a-linux-vm-in-the-azure-portal"></a>Come collegare un disco dati a una macchina virtuale Linux nel portale di Azure
-In questo articolo viene illustrato come collegare dischi nuovi o esistenti a una macchina virtuale Linux tramite il portale di Azure. È possibile anche [collegare un disco dati a una macchina virtuale Windows nel portale di Azure](../windows/attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). È possibile scegliere di usare Azure Managed Disks o dischi non gestiti. La funzionalità Managed Disks viene gestita dalla piattaforma Azure e non richiede alcuna pianificazione o alcuna posizione per l'archiviazione. I dischi non gestiti richiedono un account di archiviazione e presentano alcune [quote e limiti applicati](../../azure-subscription-service-limits.md#storage-limits). Per altre informazioni su Azure Managed Disks, vedere [Azure Managed Disks overview](../windows/managed-disks-overview.md) (Panoramica di Azure Managed Disks).
+# <a name="how-tooattach-a-data-disk-tooa-linux-vm-in-hello-azure-portal"></a>Funzionamento dei dischi tooa VM Linux nel portale di Azure hello tooattach un tipo di dati
+Questo articolo illustra come tooattach sia nuovi che esistenti dischi di macchina virtuale di Linux tooa tramite hello portale di Azure. È anche possibile [collegare un tooa di disco dati macchina virtuale di Windows nel portale di Azure hello](../windows/attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). È possibile scegliere toouse entrambi i dischi di Azure gestiti o non gestito di dischi. Dischi gestiti vengono gestiti dal hello piattaforma Azure e non richiedono alcun toostore preparazione o percorso li. I dischi non gestiti richiedono un account di archiviazione e presentano alcune [quote e limiti applicati](../../azure-subscription-service-limits.md#storage-limits). Per altre informazioni su Azure Managed Disks, vedere [Azure Managed Disks overview](../windows/managed-disks-overview.md) (Panoramica di Azure Managed Disks).
 
-Prima di collegare i dischi alla macchina virtuale, leggere i seguenti suggerimenti:
+Prima di collegare i dischi tooyour VM, esaminare i seguenti suggerimenti:
 
-* La dimensione della macchina virtuale controlla il numero di dischi dati che è possibile collegare. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Per usare l'archiviazione Premium, è necessaria una macchina virtuale della serie DS o GS. Con queste macchine virtuali, è possibile usare dischi Premium e Standard. L’archiviazione Premium è disponibile solo in determinate aree geografiche. Per ulteriori informazioni, vedere [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../../storage/common/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* I dischi collegati a macchine virtuali sono effettivamente file con estensione VHD archiviati in Azure. Per informazioni dettagliate, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* dimensioni di Hello della macchina virtuale hello controlla il numero di dischi dati è possibile collegare. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* toouse archiviazione Premium, è necessario una macchina virtuale serie DS o GS-series. Con queste macchine virtuali, è possibile usare dischi Premium e Standard. L’archiviazione Premium è disponibile solo in determinate aree geografiche. Per ulteriori informazioni, vedere [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../../storage/common/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* I dischi collegati toovirtual macchine sono effettivamente i file con estensione vhd archiviati in Azure. Per informazioni dettagliate, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 
-## <a name="find-the-virtual-machine"></a>Trovare la macchina virtuale
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Scegliere **Macchine virtuali**dal menu Hub.
-3. Selezionare la macchina virtuale dall'elenco.
-4. Nel pannello Macchine virtuali di **Essentials** fare clic su **Dischi**.
+## <a name="find-hello-virtual-machine"></a>Trovare la macchina virtuale hello
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Nel menu Hub hello, fare clic su **macchine virtuali**.
+3. Selezionare macchina virtuale hello hello elenco.
+4. toohello virtuale macchine pannello **Essentials**, fare clic su **dischi**.
    
     ![Aprire le impostazioni del disco](./media/attach-disk-portal/find-disk-settings.png)
 
@@ -45,57 +45,57 @@ Continuare seguendo le istruzioni per il collegamento di un [disco gestito](#use
 
 ### <a name="attach-a-new-disk"></a>Collegare un nuovo disco
 
-1. Nel pannello **Dischi** fare clic su **+ Add data disk** (+ Aggiungi disco dati).
-2. Fare clic sul menu a discesa **Nome** e selezionare **Crea disco**:
+1. In hello **dischi** pannello, fare clic su **+ Aggiungi disco di dati**.
+2. Fare clic sul menu a discesa hello **nome** e selezionare **Crea disco**:
 
     ![Creare un disco gestito Azure](./media/attach-disk-portal/create-new-md.png)
 
-3. Immettere un nome per il disco gestito. Esaminare le impostazioni predefinite, aggiornare se necessario e quindi fare clic su **Crea**.
+3. Immettere un nome per il disco gestito. Esaminare le impostazioni predefinite di hello, aggiornare, se necessario e quindi fare clic su **crea**.
    
    ![Esaminare le impostazioni del disco](./media/attach-disk-portal/create-new-md-settings.png)
 
-4. Fare clic su **Salva** per creare il disco gestito e aggiornare la configurazione della macchina virtuale:
+4. Fare clic su **salvare** toocreate hello gestiti disco e aggiornamento configurazione della macchina virtuale hello:
 
    ![Salvare il nuovo disco gestito Azure](./media/attach-disk-portal/confirm-create-new-md.png)
 
-5. Dopo che Azure crea il disco e lo collega alla macchina virtuale, il nuovo disco viene elencato nella sezione Impostazioni disco della macchina virtuale in **Dischi dati**. Dal momento che i dischi gestiti sono una risorsa di livello superiore, il disco viene visualizzato nella directory principale del gruppo di risorse:
+5. Dopo che Azure crea un disco hello e lo collega macchina virtuale toohello, nuovo disco hello è elencato nelle impostazioni del disco della macchina virtuale hello in **dischi dati**. I dischi gestiti sono una risorsa di primo livello e disco hello viene visualizzato nella radice di hello hello del gruppo di risorse:
 
    ![Disco gestito Azure nel gruppo di risorse](./media/attach-disk-portal/view-md-resource-group.png)
 
 ### <a name="attach-an-existing-disk"></a>Collegare un disco esistente
-1. Nel pannello **Dischi** fare clic su **+ Add data disk** (+ Aggiungi disco dati).
-2. Fare clic sul menu a discesa **Nome** per visualizzare un elenco di dischi gestiti esistenti a cui è possibile accedere con la sottoscrizione di Azure. Selezionare il disco gestito da collegare:
+1. In hello **dischi** pannello, fare clic su **+ Aggiungi disco di dati**.
+2. Fare clic sul menu a discesa hello **nome** tooview un elenco esistente gestito dischi accessibili tooyour sottoscrizione di Azure. Seleziona hello gestito tooattach disco:
 
    ![Collegare il disco gestito di Azure](./media/attach-disk-portal/select-existing-md.png)
 
-3. Fare clic su **Salva** per collegare il disco gestito esistente e aggiornare la configurazione della macchina virtuale:
+3. Fare clic su **salvare** tooattach hello esistenti gestiti disco e aggiornamento configurazione della macchina virtuale hello:
    
    ![Salvare gli aggiornamenti del disco gestito Azure](./media/attach-disk-portal/confirm-attach-existing-md.png)
 
-4. Dopo che Azure collega il disco alla macchina virtuale, esso viene elencato nella sezione Impostazioni disco della macchina virtuale in **Dischi dei dati**.
+4. Dopo il collega Azure hello macchina virtuale di toohello disco, viene elencata per le impostazioni del disco della macchina virtuale hello in **dischi dati**.
 
 ## <a name="use-unmanaged-disks"></a>Usare i dischi non gestiti
 
 ### <a name="attach-a-new-disk"></a>Collegare un nuovo disco
 
-1. Nel pannello **Dischi** fare clic su **+ Add data disk** (+ Aggiungi disco dati).
-2. Esaminare le impostazioni predefinite, aggiornare se necessario e quindi fare clic su **OK**.
+1. In hello **dischi** pannello, fare clic su **+ Aggiungi disco di dati**.
+2. Esaminare le impostazioni predefinite di hello, aggiornare, se necessario e quindi fare clic su **OK**.
    
    ![Esaminare le impostazioni del disco](./media/attach-disk-portal/attach-new.png)
-3. Dopo che Azure crea il disco e lo collega alla macchina virtuale, il nuovo disco viene elencato nella sezione Impostazioni disco della macchina virtuale in **Dischi dati**.
+3. Dopo che Azure crea un disco hello e lo collega macchina virtuale toohello, nuovo disco hello è elencato nelle impostazioni del disco della macchina virtuale hello in **dischi dati**.
 
 ### <a name="attach-an-existing-disk"></a>Collegare un disco esistente
-1. Nel pannello **Dischi** fare clic su **+ Add data disk** (+ Aggiungi disco dati).
+1. In hello **dischi** pannello, fare clic su **+ Aggiungi disco di dati**.
 2. In **Collega un disco esistente** fare clic su **File VHD**.
    
    ![Collegare un disco esistente](./media/attach-disk-portal/attach-existing.png)
-3. In **Account di archiviazione**, selezionare l'account e un contenitore che contiene il file con estensione vhd.
+3. In **gli account di archiviazione**, selezionare account hello e contenitore che include i file con estensione vhd hello.
    
    ![Individuare il percorso di un VHD](./media/attach-disk-portal/find-storage-container.png)
-4. Selezionare il file con estensione vhd.
-5. In **Collega un disco esistente** il file appena selezionato è elencato in **File VHD**. Fare clic su **OK**.
-6. Dopo che Azure collega il disco alla macchina virtuale, esso viene elencato nella sezione Impostazioni disco della macchina virtuale in **Dischi dei dati**.
+4. Selezionare i file con estensione vhd hello.
+5. In **collegare un disco esistente**, file hello appena selezionata è elencato in **File VHD**. Fare clic su **OK**.
+6. Dopo il collega Azure hello macchina virtuale di toohello disco, viene elencata per le impostazioni del disco della macchina virtuale hello in **dischi dati**.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver aggiunto il disco, è necessario prepararlo per l'uso. Per ulteriori informazioni, vedere [Procedura: inizializzare un nuovo disco dati in Linux](add-disk.md).
+Dopo aver aggiunto il disco di hello, è necessario tooprepare l'utilizzo. Per ulteriori informazioni, vedere [Procedura: inizializzare un nuovo disco dati in Linux](add-disk.md).

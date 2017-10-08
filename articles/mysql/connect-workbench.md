@@ -1,6 +1,6 @@
 ---
-title: Connettersi al database di Azure per MySQL da MySQL Workbench | Microsoft Docs
-description: Questa guida introduttiva illustra come usare MySQL Workbench per connettersi ed eseguire query sui dati dal database di Azure per MySQL.
+title: La connessione tooAzure Database MySQL da MySQL Workbench | Documenti Microsoft
+description: Questa Guida rapida fornisce hello passaggi toouse MySQL Workbench tooconnect ed eseguire query sui dati dal Database di Azure per MySQL.
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -10,44 +10,44 @@ ms.service: mysql-database
 ms.custom: mvc
 ms.topic: article
 ms.date: 08/23/2017
-ms.openlocfilehash: 20a1f31ce42abb924504c4008f85420fc49aec89
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c64fcb9bb99ba06aa3a95eec420d5d5ef4a31d14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-mysql-workbench-to-connect-and-query-data"></a>Database di Azure per MySQL: usare MySQL Workbench per connettersi ed eseguire query sui dati
-Questa guida introduttiva illustra come connettersi a un database di Azure per MySQL usando un'applicazione MySQL Workbench. 
+# <a name="azure-database-for-mysql-use-mysql-workbench-tooconnect-and-query-data"></a>Il Database di Azure per MySQL: dati di utilizzo MySQL Workbench tooconnect e query
+Questa Guida introduttiva illustra come tooconnect tooan Database di Azure per l'utilizzo di MySQL hello applicazione Workbench di MySQL. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa guida introduttiva usa le risorse create in una delle guide seguenti come punto di partenza:
-- [Creare un database di Azure per il server MySQL tramite il portale di Azure](./quickstart-create-mysql-server-database-using-azure-portal.md)
+Questa Guida rapida utilizza risorse di hello create in una di queste guide come punto di partenza:
+- [Create an Azure Database for MySQL server using Azure portal](./quickstart-create-mysql-server-database-using-azure-portal.md) (Creare un database di Azure per il server MySQL usando il portale di Azure)
 - [Creare un database di Azure per il server MySQL tramite l'interfaccia della riga di comando di Azure](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 ## <a name="install-mysql-workbench"></a>Installare MySQL Workbench
-Scaricare e installare MySQL Workbench nel computer dal [sito Web di MySQL](https://dev.mysql.com/downloads/workbench/).
+Scaricare e installare MySQL Workbench nel computer in uso da [sito Web di MySQL hello](https://dev.mysql.com/downloads/workbench/).
 
 ## <a name="get-connection-information"></a>Ottenere informazioni di connessione
-Ottenere le informazioni di connessione necessarie per connettersi al database di Azure per MySQL. Sono necessari il nome del server completo e le credenziali di accesso.
+Ottenere hello connessione le informazioni necessarie tooconnect toohello Database di Azure per MySQL. È necessario hello le credenziali di nome e l'account di accesso completo del server.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
 
-2. Nel menu a sinistra nel portale di Azure fare clic su **Tutte le risorse** e cercare il server creato, ad esempio **myserver4demo**.
+2. Dal menu a sinistra di hello nel portale di Azure, fare clic su **tutte le risorse** e Cerca server hello sia stato creato, ad esempio **myserver4demo**.
 
-3. Fare clic sul nome del server.
+3. Fare clic su nome hello del server.
 
-4. Selezionare la pagina **Proprietà** del server. Annotare il **Nome server** e il **nome di accesso dell'amministratore del server**.
+4. Server di selezionare hello **proprietà** pagina. Prendere nota di hello **nome Server** e **nome account di accesso di amministratore Server**.
 
  ![Nome del server del database di Azure per MySQL](./media/connect-workbench/1-server-properties-name-login.png)
  
-5. Se si dimenticano le informazioni di accesso per il server, passare alla pagina **Panoramica** per visualizzare il nome di accesso dell'amministratore del server e, se necessario, reimpostare la password.
+5. Se si dimenticano le informazioni di accesso del server, passare toohello **Panoramica** pagina nome account di accesso amministratore di tooview hello Server e, se necessario, reimpostare la password di hello.
 
-## <a name="connect-to-the-server-using-mysql-workbench"></a>Connettersi al server con MySQL Workbench 
-Per connettersi al server MySQL di Azure con lo strumento dell'interfaccia utente grafica MySQL Workbench:
+## <a name="connect-toohello-server-using-mysql-workbench"></a>Connessione server toohello utilizzando Workbench di MySQL 
+utilizzo dello strumento GUI hello Workbench di MySQL server tooconnect tooAzure MySQL:
 
-1.  Avviare l'applicazione MySQL Workbench nel computer. 
+1.  Avviare hello applicazione Workbench di MySQL nel computer in uso. 
 
-2.  Nella finestra di dialogo **Setup New Connection** (Configura nuova connessione) immettere le informazioni seguenti nella scheda **Parameters** (Parametri):
+2.  In **il programma di installazione nuova connessione** finestra di dialogo immettere le seguenti informazioni su hello hello **parametri** scheda:
 
     ![Setup New Connection (Configura nuova connessione)](./media/connect-workbench/2-setup-new-connection.png)
 
@@ -55,26 +55,26 @@ Per connettersi al server MySQL di Azure con lo strumento dell'interfaccia utent
     |---|---|---|
     |   Connection Name (Nome connessione) | Demo Connection | Specificare un'etichetta per la connessione. |
     | Connection Method (Metodo di connessione) | Standard (TCP/IP) | Standard (TCP/IP) è sufficiente. |
-    | Nome host | *nome del server* | Specificare il valore del nome del server usato in precedenza al momento della creazione del database di Azure per MySQL. Il server di esempio visualizzato è myserver4demo.mysql.database.azure.com. Usare il nome di dominio completo (\*.mysql.database.azure.com) come nell'esempio. Se non si ricorda il nome del server, seguire la procedura illustrata nella sezione precedente per ottenere le informazioni di connessione.  |
-    | Porta | 3306 | Usare sempre la porta 3306 per la connessione al database di Azure per MySQL. |
-    | Username |  *nome di accesso amministratore server* | Digitare il nome utente di accesso amministratore server specificato in precedenza al momento della creazione del database di Azure per MySQL. Il nome utente dell'esempio è myadmin@myserver4demo. Se non si ricorda il nome utente, seguire la procedura illustrata nella sezione precedente per ottenere le informazioni di connessione. Il formato è *username@servername*.
-    | Password | Immettere la password. | Fare clic sul pulsante **Store in Vault...** (Archivia nell'insieme di credenziali) per salvare la password. |
+    | Nome host | *nome del server* | Specificare hello server valore del nome è stato utilizzato durante la creazione hello Database di Azure per MySQL in precedenza. Il server di esempio visualizzato è myserver4demo.mysql.database.azure.com. Utilizza il nome di dominio completo hello (\*. mysql.database.azure.com) come illustrato nell'esempio hello. Seguire i passaggi di hello in hello precedente sezione tooget hello le informazioni di connessione se non si ricorda il nome del server.  |
+    | Porta | 3306 | Utilizzare sempre porta 3306 durante la connessione di Database tooAzure per MySQL. |
+    | Username |  *nome di accesso amministratore server* | Digitare nome utente account di accesso amministratore server hello specificato durante la creazione del Database di Azure hello per MySQL in precedenza. Il nome utente dell'esempio è myadmin@myserver4demo. Seguire i passaggi di hello in hello precedente sezione tooget hello le informazioni di connessione se non si ricorda hello username. formato hello è  *username@servername* .
+    | Password | Immettere la password. | Fare clic su **archivio nell'insieme di credenziali...**  password hello toosave di pulsante. |
 
-3.   Fare clic su **Test Connection** (Test connessione) per verificare che tutti i parametri siano configurati correttamente. 
+3.   Fare clic su **Test connessione** tootest se tutti i parametri siano configurati correttamente. 
 
-4.   Fare clic su **OK** per salvare la connessione. 
+4.   Fare clic su **OK** connessione hello toosave. 
 
-5.   Nell'elenco delle **connessioni MySQL** fare clic sul riquadro corrispondente al server e attendere che venga stabilita la connessione.
+5.   Nell'elenco di hello di **connessioni MySQL**, fare clic su server tooyour corrispondente di hello riquadro e attendere hello toobe di connessione stabilita.
 
 6.   Verrà visualizzata una nuova scheda SQL con un editor vuoto in cui è possibile digitare le query.
 
     > [!NOTE]
-    > Per impostazione predefinita, in Database di Azure per il server MySQL è necessaria e viene applicata la sicurezza della connessione SSL. Non sono in genere necessarie configurazioni aggiuntive con certificati SSL per la connessione di MySQL Workbench al server. Per altre informazioni su SSL, vedere [Configurare la connettività SSL nell'applicazione per la connessione sicura a Database di Azure per MySQL](./howto-configure-ssl.md).  Se è necessario disabilitare SSL, visitare il portale di Azure e fare clic sulla pagina Sicurezza connessione per disabilitare l'interruttore Imponi connessione SSL.
+    > Per impostazione predefinita, in Database di Azure per il server MySQL è necessaria e viene applicata la sicurezza della connessione SSL. In genere alcuna configurazione aggiuntiva con i certificati SSL non è necessario per tooyour tooconnect del Workbench di MySQL server. Per ulteriori informazioni su SSL, vedere [connettività configurare SSL in toosecurely l'applicazione connessione tooAzure Database MySQL](./howto-configure-ssl.md).  Se è necessario toodisable SSL, visitare il portale di Azure hello e fare clic su hello connessione sicurezza pagina toodisable hello applicare SSL connessione interruttore.
 
 ## <a name="create-a-table-insert-data-read-data-update-data-delete-data"></a>Creare una tabella e inserire, leggere, aggiornare ed eliminare dati
-1. Copiare e incollare il codice SQL di esempio in una scheda SQL vuota per illustrare alcuni dati di esempio.
+1. Copiare e incollare hello SQL esempio un vuoto tooillustrate scheda SQL alcuni dati di esempio.
 
-    Il codice crea un database vuoto denominato quickstartdb, quindi crea una tabella di esempio denominata inventory. Inserisce alcune righe e quindi le legge. Modifica i dati con un'istruzione update e legge nuovamente le righe. Infine, elimina una riga e legge nuovamente le righe.
+    Il codice crea un database vuoto denominato quickstartdb, quindi crea una tabella di esempio denominata inventory. Consente di inserire alcune righe, quindi legge righe hello. Modifica dati hello con un'istruzione update e letture hello righe nuovamente. Infine viene eliminata una riga e legge le righe di hello nuovamente.
     
     ```sql
     -- Create a database
@@ -101,15 +101,15 @@ Per connettersi al server MySQL di Azure con lo strumento dell'interfaccia utent
     SELECT * FROM inventory;
     ```
 
-    Lo screenshot mostra un esempio di codice SQL in MySQL Workbench e l'output dopo l'esecuzione.
+    schermata di Hello illustra un esempio di codice SQL hello nell'output di SQL Workbench e hello dopo che è stato eseguito.
     
-    ![Scheda SQL in MySQL Workbench per l'esecuzione del codice SQL di esempio](media/connect-workbench/3-workbench-sql-tab.png)
+    ![Codice SQL di esempio toorun scheda SQL Workbench di MySQL](media/connect-workbench/3-workbench-sql-tab.png)
 
-2. Per eseguire l'esempio di codice SQL, fare clic sull'icona saetta nella barra degli strumenti della scheda **File SQL**.
-3. Si notino i tre risultati a schede nella sezione **Griglia risultati** nella parte centrale della pagina. 
-4. Si noti l'elenco **Output** nella parte inferiore della pagina. Viene visualizzato lo stato di ogni comando. 
+2. esempio hello toorun codice SQL, fare clic su hello schiarire sull'icona nella barra degli strumenti hello di hello **File SQL** scheda.
+3. Si noti hello tre risultati a schede in hello **griglia dei risultati** sezione della pagina hello intermedio hello. 
+4. Hello preavviso **Output** elenco hello parte inferiore della pagina hello. viene visualizzato lo stato di Hello di ogni comando. 
 
-A questo punto è stata stabilita la connessione al database di Azure per MySQL tramite MySQL Workbench ed è stata eseguita una query sui dati con il linguaggio SQL.
+A questo punto, si è connessi tooAzure Database per MySQL mediante MySQL Workbench e dati usando il linguaggio SQL hello sono sottoposti a query.
 
 ## <a name="next-steps"></a>Passaggi successivi
 > [!div class="nextstepaction"]

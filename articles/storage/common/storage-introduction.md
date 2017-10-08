@@ -1,6 +1,6 @@
 ---
-title: Introduzione ad Archiviazione di Azure | Documentazione Microsoft
-description: Introduzione ad Archiviazione di Azure, la risorsa di archiviazione dei dati Microsoft sul cloud.
+title: aaaIntroduction tooAzure archiviazione | Documenti Microsoft
+description: Introduzione tooAzure archiviazione, l'archiviazione dei dati di Microsoft nel cloud hello.
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,89 +14,89 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: robinsh
-ms.openlocfilehash: 163f35682a4fdaa971f715c7429153bfdcf6a584
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f61324f98d0a8eb24023e4344acdb4ca58bb27f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-<!-- this is the same version that is in the MVC branch -->
-# <a name="introduction-to-microsoft-azure-storage"></a>Introduzione ad Archiviazione di Microsoft Azure
+<!-- this is hello same version that is in hello MVC branch -->
+# <a name="introduction-toomicrosoft-azure-storage"></a>Introduzione tooMicrosoft di archiviazione di Azure
 
 Archiviazione di Microsoft Azure è un servizio cloud gestito da Microsoft che offre risorse di archiviazione a disponibilità, sicurezza, durabilità, scalabilità e ridondanza elevate. Microsoft si occupa della manutenzione e gestisce i problemi critici per conto dell'utente. 
 
-Archiviazione di Azure è costituito da tre servizi dati: archiviazione BLOB, archiviazione file e archiviazione code. L'archiviazione BLOB supporta le risorse di archiviazione Standard e Premium e l'archiviazione Premium usa solo unità SSD per offrire le prestazioni più veloci possibili. È disponibile anche la funzionalità delle risorse di archiviazione ad accesso sporadico, che consente di archiviare quantità elevate di dati a cui si accede raramente a un costo inferiore.
+Archiviazione di Azure è costituito da tre servizi dati: archiviazione BLOB, archiviazione file e archiviazione code. Archiviazione BLOB supporta l'archiviazione standard e premium, con archiviazione premium utilizzando solo unità SSD i tempi delle prestazioni hello. Un'altra caratteristica è interessante spazio di archiviazione, consentendo toostorage grandi quantità di dati a cui si accede raramente per un costo inferiore.
 
-In questo articolo sono disponibili informazioni sugli argomenti seguenti:
-* Servizi di Archiviazione di Azure
-* Tipi di account di archiviazione
+In questo articolo viene illustrato come segue hello:
+* servizi di archiviazione Azure Hello
+* tipi di Hello di account di archiviazione
 * Accesso a BLOB, code e file
 * Crittografia
 * Replica 
 * Trasferimento di dati verso e dalle risorse di archiviazione
-* Numerose librerie client di archiviazione disponibili 
+* Hello molti le librerie client di archiviazione disponibile. 
 
 
 <!-- RE-ENABLE THESE AFTER MVC GOES LIVE 
-To get up and running with Azure Storage quickly, check out one of the following Quickstarts:
+tooget up and running with Azure Storage quickly, check out one of hello following Quickstarts:
 * [Create a storage account using PowerShell](storage-quick-create-storage-account-powershell.md)
 * [Create a storage account using CLI](storage-quick-create-storage-account-cli.md)
 -->
 
 
-## <a name="introducing-the-azure-storage-services"></a>Introduzione ai servizi di archiviazione di Azure
+## <a name="introducing-hello-azure-storage-services"></a>Introduzione a servizi di archiviazione Azure hello
 
-Per usare i servizi forniti da Archiviazione di Azure, ovvero archiviazione BLOB, archiviazione file e archiviazione code, è prima di tutto necessario creare un account di archiviazione e quindi è possibile trasferire i dati verso/da un servizio specifico in tale account di archiviazione. 
+uno dei servizi hello fornito dal servizio di archiviazione Azure - archiviazione Blob di archiviazione di File e archiviazione delle code - toouse prima di creare un account di archiviazione e quindi è possibile trasferire dati da e verso un servizio specifico di tale account di archiviazione. 
 
 ## <a name="blob-storage"></a>Archiviazione BLOB
 
-I BLOB sono essenzialmente file simili a quelli archiviati nel computer o nel tablet, nel dispositivo mobile e così via. Possono essere file di qualsiasi tipo, ad esempio immagini, file di Microsoft Excel, file HTML, dischi rigidi virtuali, Big Data come log, backup dei database. I BLOB vengono archiviati nei contenitori, che sono simili alle cartelle. 
+I BLOB sono essenzialmente file simili a quelli archiviati nel computer o nel tablet, nel dispositivo mobile e così via. Possono essere file di qualsiasi tipo, ad esempio immagini, file di Microsoft Excel, file HTML, dischi rigidi virtuali, Big Data come log, backup dei database. BLOB vengono archiviati in contenitori, che sono toofolders simile. 
 
-Dopo l'archiviazione dei file nell'archivio BLOB, è possibile accedere a tali file ovunque ci si trovi, tramite URL, interfaccia REST o una delle librerie client di archiviazione di Azure SDK. Le librerie client di archiviazione sono disponibili per molti linguaggi, tra cui Node.js, Java, PHP, Ruby, Python e .NET. 
+Dopo l'archiviazione dei file nell'archiviazione Blob, è possibile accedervi ovunque nel mondo hello tramite URL, hello interfaccia REST o una delle librerie client di archiviazione Azure SDK hello. Le librerie client di archiviazione sono disponibili per molti linguaggi, tra cui Node.js, Java, PHP, Ruby, Python e .NET. 
 
 Esistono tre tipi di BLOB, ovvero i BLOB in blocchi, i BLOB di aggiunta
 e i BLOB di pagine (usati per i file VHD).
 
-* I BLOB in blocchi vengono usati per contenere file normali con dimensioni fino a 4,7 TB. 
-* I BLOB di pagine vengono usati per contenere file ad accesso casuale con dimensioni fino a 8 TB. Vengono usati per i file VHD su cui si basano le VM.
-* I BLOB di aggiunta sono costituiti da blocchi, analogamente ai BLOB in blocchi, ma sono ottimizzati per le operazioni di aggiunta. Vengono usati per la registrazione di informazioni nello stesso BLOB da più VM.
+* BLOB in blocchi sono utilizzati toohold normali file di backup tooabout 4,7 TB. 
+* BLOB di pagine sono file di accesso casuale toohold utilizzato backup too8 TB nella dimensione. Vengono utilizzati per i file VHD hello che eseguire il backup di macchine virtuali.
+* Aggiungere i BLOB sono costituiti da blocchi come BLOB in blocchi hello, ma sono ottimizzati per operazioni di aggiunta. Vengono utilizzati per elementi quali la registrazione di informazioni toohello stesso blob da più macchine virtuali.
 
-Se sono presenti set di dati molto grandi e i vincoli della rete ne impediscono il caricamento o il download in archivi BLOB tramite una connessione, è possibile spedire un set di unità disco rigido a Microsoft per importare o esportare i dati direttamente dal data center. Vedere [Usare il servizio di importazione/esportazione di Microsoft Azure per trasferire i dati nell'archiviazione BLOB](../storage-import-export-service.md).
+Per grandi set di dati in cui i vincoli di rete assicurarsi di caricare o scaricare l'archiviazione dei dati tooBlob rete hello poco realistico, è possibile fornire un set di dischi rigidi tooMicrosoft tooimport o esportare i dati direttamente dal centro dati hello. Vedere [utilizzare hello servizio importazione/esportazione di Microsoft Azure tooTransfer dati tooBlob archiviazione](../storage-import-export-service.md).
 
 ## <a name="file-storage"></a>Archiviazione file
 
-Il servizio File di Azure consente di configurare condivisioni file di rete a disponibilità elevata a cui è possibile accedere usando il protocollo Server Message Block (SMB) standard. Più VM possono quindi condividere gli stessi file con accesso sia in lettura che in scrittura. È possibile leggere i file usando l'interfaccia REST o le librerie dei client di archiviazione. 
+Hello servizio file di Azure consente tooset le condivisioni di file di rete a disponibilità elevata che è possibile accedere tramite il protocollo Server Message Block (SMB) standard di hello. Che indica che è possono condividere più macchine virtuali hello stesso file con accesso in lettura e scrittura. È inoltre possibile leggere i file di hello usando l'interfaccia REST hello o le librerie client di archiviazione hello. 
 
-Una delle differenze tra Archiviazione file di Azure e i file in una condivisione file aziendale è la possibilità di accedere ai file da qualsiasi parte del mondo usando un URL che punta al file e include un token di firma di accesso condiviso. È possibile generare token di firma di accesso condiviso, che consentono l'accesso specifico a un asset privato per un periodo di tempo specifico. 
+Una cosa che distingue l'archiviazione di File di Azure dal file in una condivisione file aziendale è che è possibile accedere ai file di hello ovunque nel mondo hello tramite un URL che punta a file toohello e include un token di firma di accesso condiviso. È possibile generare token di firma di accesso condiviso; consentono asset privata tooa di accesso specifici per un periodo di tempo specifico. 
 
 Le condivisioni file possono essere usate per molti scenari comuni: 
 
-* Molte applicazioni locali usano condivisioni file. Questa funzionalità semplifica la migrazione ad Azure di tali applicazioni che condividono i dati. Se si monta la condivisione file nella stessa lettera di unità usata dall'applicazione locale, la parte dell'applicazione che accede alla condivisione file funzionerà con modifiche tutt'al più minime.
+* Molte applicazioni locali usano condivisioni file. Questa funzionalità rende più semplice toomigrate le applicazioni che condividono dati tooAzure. Se si monta hello toohello condivisione file stessa lettera di hello di unità locale che utilizza, parte hello dell'applicazione che accede a una condivisione di hello dovrebbe funzionare con modifiche minime, se presente.
 
-* È possibile archiviare i file di configurazione in una condivisione di file e accedervi da più macchine virtuali. Gli strumenti e le utilità usati da più sviluppatori in un gruppo possono essere archiviati in una condivisione file, assicurandosi che tutti riescano a trovarli e che usino la stessa versione.
+* È possibile archiviare i file di configurazione in una condivisione di file e accedervi da più macchine virtuali. Strumenti e utilità utilizzata da più sviluppatori in un gruppo possono essere archiviate in una condivisione di file, assicurando che tutti gli utenti possano trovarli, e che usano hello stessa versione.
 
-* Log di diagnostica, metriche e dump di arresto anomalo del sistema sono solo tre esempi di dati che possono essere scritti in una condivisione file ed elaborati o analizzati in un secondo momento.
+* I log di diagnostica, metriche e i dump di arresto anomalo del sistema sono sufficienti tre esempi di dati che possono essere scritti in una condivisione tooa ed elaborati o analizzati in seguito.
 
-L'autenticazione basata su Active Directory e gli elenchi di controllo di accesso attualmente non sono supportati, ma lo saranno in futuro. Le credenziali dell'account di archiviazione vengono usate per fornire l'autenticazione per l'accesso alla condivisione file. Chiunque abbia la condivisione montata avrà quindi accesso completo in lettura/scrittura alla condivisione.
+In questa fase, l'autenticazione basata su Active Directory e l'accesso (ACL) di elenchi di controllo non sono supportati, ma saranno in un momento nel futuro hello. le credenziali dell'account di archiviazione Hello sono autenticazione tooprovide utilizzato per la condivisione di file toohello di accesso. Ciò significa che chiunque con condivisione hello montato avrà condivisione toohello di accesso in lettura/scrittura.
 
 ## <a name="queue-storage"></a>Archiviazione code
 
-Il servizio di accodamento di Azure viene usato per archiviare e recuperare i messaggi. La dimensione massima dei messaggi nella coda può essere di 64 KB e una coda può contenere milioni di messaggi. Le code vengono in genere usate per archiviare elenchi di messaggi da elaborare in modo asincrono. 
+servizio di Accodamento Azure Hello è utilizzato toostore e recuperare i messaggi. Messaggi in coda possono essere too64 KB di dimensioni e una coda può contenere milioni di messaggi. Le code sono elenchi toostore utilizzato in genere di toobe i messaggi elaborati in modo asincrono. 
 
-Si supponga ad esempio che si voglia consentire ai clienti di caricare immagini e che si voglia creare un'anteprima per ogni immagine. È possibile creare le anteprime lasciando in attesa il cliente durante il caricamento delle immagini oppure usare una coda. Quando il cliente completa il caricamento, viene scritto un messaggio alla coda. Funzioni di Azure recupera quindi il messaggio dalla coda e crea le anteprime. Ogni parte di questa elaborazione può essere ridimensionata separatamente, offrendo un maggiore controllo per l'ottimizzazione ai fini dell'utilizzo.
+Ad esempio si desidera le immagini in grado di tooupload toobe di clienti e si desidera toocreate anteprime di ogni immagine. È possibile che il cliente si anteprime hello toocreate attendere durante il caricamento di immagini hello. In alternativa sarebbe toouse una coda. Al termine del suo caricamento cliente hello, scrivere una coda di messaggi toohello. Recuperare il messaggio hello dalla coda hello e creare miniature hello che quindi sia una funzione di Azure. Ciascuna delle parti di hello di questo tipo di elaborazione può essere scalato separatamente, fornendo un controllo maggiore durante l'ottimizzazione, per l'utilizzo.
 
-<!-- this bookmark is used by other articles; you'll need to update them before this goes into production ROBIN-->
+<!-- this bookmark is used by other articles; you'll need tooupdate them before this goes into production ROBIN-->
 ## <a name="table-storage"></a>Archiviazione tabelle
-<!-- add a link to the old table storage to this paragraph once it's moved -->
-L'archiviazione tabelle di Azure Standard è ora inclusa in Cosmos DB. Sono anche disponibili tabelle Premium per l'archiviazione tabelle di Azure, che offrono tabelle ottimizzate per la velocità effettiva, distribuzione globale e indici secondari automatici. Per altre informazioni e per provare la nuova esperienza Premium, vedere [Azure Cosmos DB: API di tabella](https://aka.ms/premiumtables).
+<!-- add a link toohello old table storage toothis paragraph once it's moved -->
+L'archiviazione tabelle di Azure Standard è ora inclusa in Cosmos DB. Sono anche disponibili tabelle Premium per l'archiviazione tabelle di Azure, che offrono tabelle ottimizzate per la velocità effettiva, distribuzione globale e indici secondari automatici. ulteriori toolearn e provare hello nuova esperienza, il check-out [DB Cosmos Azure: tabella API](https://aka.ms/premiumtables).
 
 ## <a name="disk-storage"></a>Archiviazione su disco
 
-Il team di Archiviazione di Azure è proprietario anche dei dischi, incluse tutte le funzionalità dei dischi gestiti e non gestiti usate dalle macchine virtuali. Per altre informazioni su queste funzionalità, vedere la [documentazione sul servizio di calcolo](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
+il team di archiviazione di Azure Hello possiede anche i dischi, che include tutti hello gestito e le funzionalità disco non gestite utilizzate da macchine virtuali. Per ulteriori informazioni su queste funzionalità, vedere hello [documentazione del servizio di calcolo](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
 
 ## <a name="types-of-storage-accounts"></a>Tipi di account di archiviazione 
 
-Questa tabella mostra i diversi tipi di account di archiviazione e gli oggetti che possono essere usati con ogni tipo.
+Questa tabella mostra hello vari tipi di account di archiviazione e gli oggetti che possono essere utilizzati con ognuno.
 
 |**Tipo di account di archiviazione**|**Utilizzo generico Standard**|**Utilizzo generico Premium**|**Archiviazione BLOB, livelli ad accesso frequente e ad accesso sporadico**|
 |-----|-----|-----|-----|
@@ -109,105 +109,105 @@ Sono disponibili due tipi di account di archiviazione per utilizzo generico.
 
 #### <a name="standard-storage"></a>Archiviazione standard 
 
-Gli account di archiviazione più usati sono account di archiviazione Standard, che possono essere usati per tutti i tipi di dati. Gli account di archiviazione Standard usano supporti di memorizzazione magnetici per archiviare i dati.
+gli account di archiviazione Hello più diffuse sono gli account di archiviazione standard, che possono essere utilizzati per tutti i tipi di dati. Gli account di archiviazione standard utilizzano dati di supporto magnetico toostore.
 
 #### <a name="premium-storage"></a>Archiviazione Premium
 
-L'Archiviazione Premium fornisce risorse di archiviazione a prestazioni elevate per i BLOB di pagine, usati principalmente per i file VHD. Gli account di archiviazione Premium usano unità SSD per archiviare i dati. Microsoft consiglia di usare l'Archiviazione Premium per tutte le VM.
+L'Archiviazione Premium fornisce risorse di archiviazione a prestazioni elevate per i BLOB di pagine, usati principalmente per i file VHD. Account di archiviazione Premium utilizzare dati toostore unità SSD. Microsoft consiglia di usare l'Archiviazione Premium per tutte le VM.
 
 ### <a name="blob-storage-accounts"></a>Account di archiviazione BLOB
 
-L'account di archiviazione BLOB è un account di archiviazione specializzato, usato per archiviare BLOB in blocchi e BLOB di aggiunta. Non è possibile archiviare i BLOB di pagine in questi account e quindi non è possibile archiviare file VHD. Questi account consentono di impostare il livello di accesso su accesso frequente o accesso sporadico. È possibile modificare il livello in qualsiasi momento. 
+account di archiviazione Blob Hello è un account di archiviazione specializzata utilizzata toostore BLOB in blocchi e BLOB di aggiunta. Non è possibile archiviare i BLOB di pagine in questi account e quindi non è possibile archiviare file VHD. Questi account consentono di tooset tooHot di livello un accesso o Cool; livello di Hello può essere modificato in qualsiasi momento. 
 
-Il livello ad accesso frequente viene usato per i file a cui si accede spesso. Le risorse di archiviazione hanno un costo superiore, ma il costo per l'accesso ai BLOB è decisamente inferiore. Per i BLOB archiviati nel livello ad accesso sporadico il costo per l'accesso ai BLOB è superiore, ma le risorse di archiviazione hanno un costo decisamente inferiore.
+livello di accesso frequente Hello viene utilizzato per i file che si accede di frequente - si paga un costo superiore per l'archiviazione, ma il costo di hello di accedere agli oggetti BLOB hello è molto inferiore. Per i BLOB archiviati nel livello di accesso sporadico hello, si paga un costo superiore per l'accesso ai BLOB hello, ma costo hello dell'archiviazione è molto inferiore.
 
 ## <a name="accessing-your-blobs-files-and-queues"></a>Accesso a BLOB, file e code
 
-Ogni account di archiviazione include due chiavi di autenticazione, che possono essere usate per qualsiasi operazione. Sono disponibili due chiavi per consentire il rollover occasionale delle chiavi per migliorare la sicurezza. È fondamentale mantenere protette le chiavi, perché il loro possesso, insieme al nome dell'account, consente l'accesso illimitato a tutti i dati nell'account di archiviazione. 
+Ogni account di archiviazione include due chiavi di autenticazione, che possono essere usate per qualsiasi operazione. Esistono due chiavi in modo è possibile eseguire il rollback su hello chiavi occasionalmente tooenhance sicurezza. È fondamentale che queste chiavi occorre mantenere la sicurezza perché possesso, insieme al nome account hello, consente di accesso illimitato tooall dati nell'account di archiviazione hello. 
 
-Questa sezione esamina due modi per proteggere l'account di archiviazione e i rispettivi dati. Per informazioni dettagliate sulla protezione dell'account di archiviazione e dei dati, vedere [Azure Storage security guide](storage-security-guide.md) (Guida alla sicurezza di Archiviazione di Azure).
+Questa sezione vengono illustrati due account di archiviazione hello di toosecure modi e i relativi dati. Per informazioni dettagliate sulla sicurezza dell'account di archiviazione e i dati, vedere hello [Guida alla protezione di archiviazione di Azure](storage-security-guide.md).
 
-### <a name="securing-access-to-storage-accounts-using-azure-ad"></a>Protezione dell'accesso agli account di archiviazione tramite Azure AD
+### <a name="securing-access-toostorage-accounts-using-azure-ad"></a>Protezione dell'accesso account toostorage mediante Azure AD
 
-Uno dei modi per proteggere l'accesso ai dati di archiviazione è costituito dal controllo dell'accesso alle chiavi degli account di archiviazione. Il controllo degli accessi in base al ruolo di Resource Manager consente di assegnare ruoli a utenti, gruppi o applicazioni. Questi ruoli sono associati a un insieme specifico di azioni consentite o non consentite. L'uso del controllo degli accessi in base al ruolo per concedere l'accesso a un account di archiviazione consente solo di eseguire le operazioni di gestione per tale account di archiviazione, ad esempio la modifica del livello di accesso. Non è possibile usare il controllo degli accessi in base al ruolo per concedere l'accesso a oggetti dati come un contenitore specifico o una condivisione di file. È tuttavia possibile usare il controllo degli accessi in base al ruolo per concedere l'accesso alle chiavi dell'account di archiviazione, che possono essere quindi usate per leggere gli oggetti dati. 
+Dati di archiviazione tooyour accesso toosecure unidirezionale sono mediante il controllo di accesso toohello chiavi account di archiviazione. Con Gestione risorse di controllo di accesso basato sui ruoli (RBAC), è possibile assegnare ruoli toousers, gruppi o applicazioni. Questi ruoli sono collegati tooa set specifico di azioni che sono consentiti o non consentiti. RBAC tramite account di archiviazione tooa toogrant accesso gestisce solo le operazioni di gestione per tale account di archiviazione, ad esempio la modifica a livello di accesso hello hello. È possibile usare RBAC toogrant accesso toodata gli oggetti come una condivisione di file o contenitore specifico. Tuttavia, è possibile utilizzare RBAC toogrant accesso toohello chiavi account di archiviazione, che possono essere utilizzati tooread hello dati oggetti. 
 
 ### <a name="securing-access-using-shared-access-signatures"></a>Protezione dell'accesso tramite le firme di accesso condiviso 
 
-È possibile usare le firme di accesso condiviso e i criteri di accesso archiviati per proteggere gli oggetti dati. Una firma di accesso condiviso è una stringa contenente un token di sicurezza, che può essere collegato a un URI per un asset che consente di delegare l'accesso a oggetti di archiviazione specifici e specificare limitazioni, ad esempio le autorizzazioni e l'intervallo di data/ora di accesso. Questa funzionalità offre capacità estese. Per informazioni dettagliate, vedere [Using Shared Access Signatures (SAS)](storage-dotnet-shared-access-signature-part-1.md) (Uso delle firme di accesso condiviso).
+È possibile utilizzare le firme di accesso condiviso e archiviati gli oggetti di data di toosecure di criteri di accesso. Una firma di accesso condiviso (SAS) è una stringa contenente un token di sicurezza che può essere collegati toohello URI per un asset che consente di oggetti di archiviazione toospecific toodelegate accesso e i vincoli di toospecify, ad esempio le autorizzazioni e l'intervallo di data/ora hello di accesso. Questa funzionalità offre capacità estese. Per informazioni dettagliate, vedere troppo[tramite firme di accesso condiviso (SAS)](storage-dotnet-shared-access-signature-part-1.md).
 
-### <a name="public-access-to-blobs"></a>Accesso pubblico ai BLOB
+### <a name="public-access-tooblobs"></a>Accesso pubblico tooblobs
 
-Il servizio BLOB consente di fornire l'accesso pubblico a un contenitore e ai rispettivi BLOB o a un BLOB specifico. Quando si indica che un contenitore o un BLOB è pubblico, qualsiasi utente lo potrà leggere in forma anonima, in quanto non è necessaria l'autenticazione. Questo approccio è ideale ad esempio se si ha un sito Web che usa immagini, video o documenti dall'archivio BLOB. Per altre informazioni, vedere [Gestire l'accesso in lettura anonimo a contenitori e BLOB](../blobs/storage-manage-access-to-resources.md). 
+Servizio Blob Hello consente tooprovide accesso pubblico tooa contenitore e i relativi BLOB o un blob specifico. Quando si indica che un contenitore o un BLOB è pubblico, qualsiasi utente lo potrà leggere in forma anonima, in quanto non è necessaria l'autenticazione. Un esempio di cui vuoi toodo è quando si dispone di un sito Web che utilizza immagini, video o documenti dall'archiviazione Blob. Per ulteriori informazioni, vedere [gestire l'accesso in lettura anonimo toocontainers e BLOB](../blobs/storage-manage-access-to-resources.md) 
 
 ## <a name="encryption"></a>Crittografia
 
-Sono disponibili alcuni tipi di crittografia di base per i servizi di archiviazione. 
+Sono disponibili due tipi di base di crittografia per i servizi di archiviazione hello. 
 
 ### <a name="encryption-at-rest"></a>Crittografia di dati inattivi 
 
-È possibile abilitare Crittografia del servizio di archiviazione nel servizio file (anteprima) o nel servizio BLOB per un account di archiviazione di Azure. Se questa opzione è abilitata, tutti i dati scritti nel servizio specifico vengono crittografati prima della scrittura. In caso di lettura, i dati vengono crittografati prima della restituzione. 
+È possibile abilitare la crittografia del servizio di archiviazione (SSE) su dei servizi file hello (anteprima) o hello servizio Blob per un account di archiviazione di Azure. Se abilitata, tutti i dati scritti toohello di servizio specifico viene crittografato prima della scrittura. Quando si leggono dati hello, questo viene decrittografato prima restituito. 
 
 ### <a name="client-side-encryption"></a>Crittografia lato client
 
-Le librerie client di archiviazione includono metodi che possono essere chiamati per crittografare i dati a livello di codice prima del transito dal client ad Azure. I dati vengono archiviati crittografati, ovvero sono crittografati anche quando inattivi. Durante la lettura dei dati, le informazioni vengono decrittografate dopo la ricezione. 
+salve le librerie client di archiviazione dispongono di metodi è possibile chiamare tooprogrammatically crittografare i dati prima di inviarlo in transito hello da hello client tooAzure. I dati vengono archiviati crittografati, ovvero sono crittografati anche quando inattivi. Durante la lettura di backup dei dati hello, decrittografare le informazioni di hello dopo averlo ricevuto. 
 
 ### <a name="encryption-in-transit-with-azure-file-shares"></a>Crittografia in transito con le condivisioni file di Azure
 
-Per altre informazioni sulle firme di accesso condiviso, vedere [Using Shared Access Signatures (SAS)](../storage-dotnet-shared-access-signature-part-1.md) (Uso di firme di accesso condiviso). Per altre informazioni sull'accesso sicuro all'account di archiviazione, vedere [Gestire l'accesso in lettura anonimo a contenitori e BLOB](../blobs/storage-manage-access-to-resources.md) e [Autenticazione per i servizi di archiviazione di Azure](https://msdn.microsoft.com/library/azure/dd179428.aspx).
+Per altre informazioni sulle firme di accesso condiviso, vedere [Using Shared Access Signatures (SAS)](../storage-dotnet-shared-access-signature-part-1.md) (Uso di firme di accesso condiviso). Vedere [gestire BLOB e accesso in lettura anonimo toocontainers](../blobs/storage-manage-access-to-resources.md) e [l'autenticazione per i servizi di archiviazione Azure hello](https://msdn.microsoft.com/library/azure/dd179428.aspx) per ulteriori informazioni sull'account di archiviazione tooyour proteggere l'accesso.
 
-Per altre informazioni sulla protezione dell'account di archiviazione e sulla crittografia, vedere [Azure Storage security guide](storage-security-guide.md) (Guida alla sicurezza di Archiviazione di Azure).
+Per ulteriori informazioni sulla protezione dell'account di archiviazione e la crittografia, vedere hello [Guida alla protezione di archiviazione di Azure](storage-security-guide.md).
 
 ## <a name="replication"></a>Replica
 
-Per assicurare che i dati siano durevoli, Archiviazione di Azure può mantenere e gestire più copie dei dati. Questo approccio viene definito replica o ridondanza. Quando si configura l'account di archiviazione, si seleziona il tipo di replica. Nella maggior parte dei casi questa impostazione può essere modificata dopo la configurazione dell'account di archiviazione. 
+In ordine tooensure che i dati siano durevoli, archiviazione di Azure è hello possibilità tookeep (e gestire) più copie dei dati. Questo approccio viene definito replica o ridondanza. Quando si configura l'account di archiviazione, si seleziona il tipo di replica. Nella maggior parte dei casi, questa impostazione può essere modificata dopo l'impostazione di account di archiviazione hello. 
 
-Tutti gli account di archiviazione hanno l'**archiviazione con ridondanza locale**. Tre copie dei dati vengono quindi gestite da Archiviazione di Azure nel data center specificato durante la configurazione dell'account di archiviazione. Quando viene eseguito il commit delle modifiche in una copia, le altre due copie vengono aggiornate prima della restituzione dell'esito positivo. Le tre repliche sono quindi sempre sincronizzate. Le tre copie si trovano inoltre in domini di errore e domini di aggiornamento separati e sono quindi disponibili anche in caso di errore o spostamento offline per aggiornamento di un nodo di archiviazione che include i dati. 
+Tutti gli account di archiviazione hanno l'**archiviazione con ridondanza locale**. Ciò significa tre copie dei dati gestite da archiviazione di Azure nel data center di hello specificato quando è stato impostato hello account di archiviazione. Quando le modifiche sono tooone commit copiare, hello altri due copie vengono aggiornate prima di restituire l'esito positivo. Ciò significa che le tre repliche di hello sono sempre sincronizzate. Inoltre, hello tre copie si trovano in domini di errore e domini di aggiornamento, ovvero che i dati sono disponibili anche se ha esito negativo di un nodo di archiviazione che contiene i dati o è uscito toobe offline aggiornato. 
 
 **Archiviazione con ridondanza locale (LRS)**
 
-Come illustrato in precedenza, l'archiviazione con ridondanza locale fornisce tre copie dei dati in un singolo data center. Ciò consente di gestire il problema della mancata disponibilità dei dati in caso di errore o di spostamento offline di un nodo per l'aggiornamento, ma non in caso di mancata disponibilità di un intero data center.
+Come illustrato in precedenza, l'archiviazione con ridondanza locale fornisce tre copie dei dati in un singolo data center. In grado di gestire il problema di hello dei dati non sono più disponibili se un nodo di archiviazione ha esito negativo o viene portato non in linea toobe aggiornato, ma non hello caso di un intero Data Center diventi non disponibile.
 
 **Archiviazione con ridondanza della zona**
 
-L'archiviazione con ridondanza della zona gestisce tre copie locali dei dati, oltre a un altro set di tre copie dei dati. Il secondo set di tre copie viene replicato in modo asincrono nei data center in una o due aree. Si noti che l'archiviazione con ridondanza della zona è disponibile solo per i BLOB in blocchi negli account di archiviazione per utilizzo generico. Dopo aver creato l'account di archiviazione e selezionato l'archiviazione con ridondanza della zona, non è inoltre possibile convertirlo per usarlo con un altro tipo di replica o viceversa.
+Archiviazione con ridondanza della zona (ZRS) gestisce hello tre copie dei dati oltre a un altro set di tre copie dei dati. Hello secondo set di tre copie vengono replicati in modo asincrono in Data Center all'interno di uno o due aree. Si noti che l'archiviazione con ridondanza della zona è disponibile solo per i BLOB in blocchi negli account di archiviazione per utilizzo generico. Inoltre, dopo aver creato l'account di archiviazione e selezionato ZRS, è possibile convertirlo toouse tooany altri tipo di replica o viceversa.
 
 L'archiviazione con ridondanza della zona fornisce una durabilità superiore rispetto all'archiviazione con ridondanza locale, ma gli account di archiviazione con ridondanza della zona non includono metriche o funzionalità di registrazione. 
 
 **Archiviazione con ridondanza geografica (GRS)**
 
-L'archiviazione con ridondanza geografica gestisce tre copie locali dei dati in un'area primaria e un altro set di tre copie di dati in un'area secondaria a centinaia di chilometri di distanza rispetto all'area primaria. In caso di errore nell'area primaria, il servizio di archiviazione di Azure eseguirà il failover all'area secondaria. 
+Archiviazione con ridondanza geografica (GRS) gestisce hello tre copie dei dati in un'area primaria oltre a un altro set di tre copie dei dati in un'area secondaria a centinaia di miglia di distanza area primaria hello. In caso di hello di un errore in area primaria hello, archiviazione di Azure eseguirà il failover area secondaria toohello. 
 
 **Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).** 
 
-L'archiviazione con ridondanza geografica e accesso in lettura è esattamente uguale all'archiviazione con ridondanza geografica, ma si ottiene l'accesso in lettura ai dati nella posizione secondaria. Se il data center primario risulta temporaneamente non disponibile, è possibile continuare a leggere i dati dalla posizione secondaria. Questo approccio può risultare molto utile. È ad esempio possibile che sia presente un'applicazione Web che passa alla modalità di sola lettura e fa riferimento a una copia secondaria, consentendo l'accesso parziale, anche se gli aggiornamenti non sono disponibili. 
+Archiviazione con ridondanza geografica e accesso in lettura è identico a quello di archiviazione con ridondanza geografica, ad eccezione del fatto che sia possibile ottenere l'accesso in lettura toohello dati nella posizione secondaria hello. Se hello data center primario diventa temporaneamente non disponibile, è possibile continuare dati hello tooread dal percorso secondario hello. Questo approccio può risultare molto utile. Ad esempio, potrebbe avere un'applicazione web che viene modificato in modalità di sola lettura e copia secondaria toohello, consentendo l'accesso, anche se non sono disponibili aggiornamenti. 
 
 > [!IMPORTANT]
-> È possibile cambiare la modalità di replica dei dati dopo la creazione dell'account di archiviazione, a meno che non sia stata specificata l'archiviazione con ridondanza della zona al momento della creazione dell'account. Si noti tuttavia che se si passa dall'archiviazione con ridondanza locale all'archiviazione con ridondanza geografica o all'archiviazione con ridondanza geografica e accesso in lettura, potrebbe essere addebitato un costo una tantum per il trasferimento dei dati.
+> È possibile modificare come i dati vengono replicati dopo aver creato l'account di archiviazione, a meno che non è specificato ZRS durante la creazione di account hello. Si noti tuttavia che si può incorrere in costi se si passa dall'archiviazione con ridondanza locale tooGRS o RA-GRS un trasferimento di dati occasionale aggiuntivi.
 >
 
 Per altre informazioni sulla replica, vedere [Replica di Archiviazione di Azure](storage-redundancy.md).
 
-Per informazioni sul ripristino di emergenza, vedere [Cosa fare se si verifica un'interruzione di Archiviazione di Azure](storage-disaster-recovery-guidance.md).
+Per informazioni di ripristino di emergenza, vedere [quali toodo se si verifica un'interruzione di servizio di archiviazione Azure](storage-disaster-recovery-guidance.md).
 
-Per un esempio su come usare l'archiviazione con ridondanza geografica e accesso in lettura per assicurare la disponibilità elevata, vedere [Progettazione di applicazioni a disponibilità elevata con RA-GRS](storage-designing-ha-apps-with-ragrs.md).
+Per un esempio di come tooleverage RA-GRS archiviazione tooensure la disponibilità elevata, vedere [progettazione altamente disponibile di applicazioni utilizzando RA-GRS](storage-designing-ha-apps-with-ragrs.md).
 
-## <a name="transferring-data-to-and-from-azure-storage"></a>Trasferimento dei dati da e verso Archiviazione di Azure
+## <a name="transferring-data-tooand-from-azure-storage"></a>Trasferimento dati tooand da archiviazione di Azure
 
-È possibile usare l'utilità della riga di comando AzCopy per copiare BLOB e dati di file all'interno dell'account di archiviazione o tra account di archiviazione. Per istruzioni, vedere uno degli articoli seguenti:
+È possibile utilizzare hello AzCopy utilità della riga di comando toocopy blob e i dati di file all'interno dell'account di archiviazione o tra account di archiviazione. Uno dei seguenti hello articoli per la Guida, vedere:
 
 * [Transfer data with AzCopy for Windows](storage-use-azcopy.md) (Trasferire dati con AzCopy per Windows)
 * [Transfer data with AzCopy for Linux](storage-use-azcopy-linux.md) (Trasferire dati con AzCopy per Linux)
 
-AzCopy si basa sulla [libreria di spostamento dei dati di Azure](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/), attualmente disponibile in anteprima.
+AzCopy è basato su hello [raccolta lo spostamento dei dati di Azure](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/), che è attualmente disponibile in anteprima.
 
-Il servizio Importazione/Esportazione di Azure può essere usato per importare o esportare quantità elevate di dati di BLOB verso o dall'account di archiviazione. È possibile preparare e inviare più dischi rigidi a un data center di Azure, in cui i dati verranno trasferiti verso/dai dischi rigidi e i dischi rigidi verranno restituiti all'utente. Per altre informazioni sul servizio di importazione/esportazione, vedere [Usare il servizio di importazione/esportazione di Microsoft Azure per trasferire dati nell'archivio BLOB](../storage-import-export-service.md).
+Hello servizio importazione/esportazione di Azure può essere utilizzato tooimport o l'esportazione di grandi tooor dati blob dall'account di archiviazione. Preparare e di posta elettronica più unità disco rigido tooan data center di Azure, in cui verranno trasferiti dati hello in/da dischi rigidi hello e inviare nuovamente i dischi rigidi hello tooyou. Per ulteriori informazioni su hello servizio importazione/esportazione, vedere [utilizzare hello servizio importazione/esportazione di Microsoft Azure tooTransfer dati tooBlob archiviazione](../storage-import-export-service.md).
 
 ## <a name="pricing"></a>Prezzi
 
-Per informazioni dettagliate sui prezzi per Archiviazione di Azure, vedere la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/storage/blobs/).
+Per informazioni dettagliate sui prezzi di archiviazione di Azure, vedere hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/storage/blobs/).
 
 ## <a name="storage-apis-libraries-and-tools"></a>API di archiviazione, librerie e strumenti
-Le risorse di archiviazione di Azure sono accessibile da qualsiasi linguaggio in grado di eseguire richieste HTTP/HTTPS. In Archiviazione di Azure sono inoltre disponibili librerie di programmazione per diversi linguaggi comuni. Tali librerie semplificano molti aspetti dell'utilizzo di Archiviazione di Azure gestendo dettagli come la chiamata sincrona e asincrona, l'esecuzione delle operazioni in batch, la gestione delle eccezioni, la ripetizione automatica dei tentativi, il comportamento operativo e così via. Le librerie attualmente disponibili riguardano i linguaggi e le piattaforme seguenti, ma presto ne saranno disponibili altre:
+Le risorse di archiviazione di Azure sono accessibile da qualsiasi linguaggio in grado di eseguire richieste HTTP/HTTPS. In Archiviazione di Azure sono inoltre disponibili librerie di programmazione per diversi linguaggi comuni. Tali librerie semplificano molti aspetti dell'utilizzo di Archiviazione di Azure gestendo dettagli come la chiamata sincrona e asincrona, l'esecuzione delle operazioni in batch, la gestione delle eccezioni, la ripetizione automatica dei tentativi, il comportamento operativo e così via. Librerie sono attualmente disponibili per hello seguenti linguaggi e piattaforme, con altri utenti nella pipeline di hello:
 
 ### <a name="azure-storage-data-services"></a>Servizi dati di Archiviazione di Azure
 * [API REST dei servizi di archiviazione](/rest/api/storageservices/)
@@ -228,14 +228,14 @@ Le risorse di archiviazione di Azure sono accessibile da qualsiasi linguaggio in
 * [Learn more about Blob storage (Altre informazioni sull'archiviazione code)](../queues/storage-queues-introduction.md)
 
 <!-- RE-ENABLE THESE AFTER MVC GOES LIVE 
-To get up and running with Azure Storage quickly, check out one of the following Quickstarts:
+tooget up and running with Azure Storage quickly, check out one of hello following Quickstarts:
 * [Create a storage account using PowerShell](storage-quick-create-storage-account-powershell.md)
 * [Create a storage account using CLI](storage-quick-create-storage-account-cli.md)
 -->
 
-<!-- FIGURE OUT WHAT TO DO WITH ALL THESE LINKS.
+<!-- FIGURE OUT WHAT tooDO WITH ALL THESE LINKS.
 
-Azure Storage resources can be accessed by any language that can make HTTP/HTTPS requests. Additionally, Azure Storage offers programming libraries for several popular languages. These libraries simplify many aspects of working with Azure Storage by handling details such as synchronous and asynchronous invocation, batching of operations, exception management, automatic retries, operational behavior and so forth. Libraries are currently available for the following languages and platforms, with others in the pipeline:
+Azure Storage resources can be accessed by any language that can make HTTP/HTTPS requests. Additionally, Azure Storage offers programming libraries for several popular languages. These libraries simplify many aspects of working with Azure Storage by handling details such as synchronous and asynchronous invocation, batching of operations, exception management, automatic retries, operational behavior and so forth. Libraries are currently available for hello following languages and platforms, with others in hello pipeline:
 
 ### Azure Storage data services
 * [Storage Services REST API](https://docs.microsoft.com/rest/api/storageservices/)
@@ -259,7 +259,7 @@ Azure Storage resources can be accessed by any language that can make HTTP/HTTPS
 * [Storage Data Movement Client Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
 
 ### Tools and utilities
-* [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.
+* [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you toowork visually with Azure Storage data on Windows, macOS, and Linux.
 * [Azure Storage Client Tools](../storage-explorers.md)
 * [Azure SDKs and Tools](https://azure.microsoft.com/tools/)
 * [Azure Storage Emulator](http://www.microsoft.com/download/details.aspx?id=43709)
@@ -267,14 +267,14 @@ Azure Storage resources can be accessed by any language that can make HTTP/HTTPS
 * [AzCopy Command-Line Utility](http://aka.ms/downloadazcopy)
 
 ## Next steps
-To learn more about Azure Storage, explore these resources:
+toolearn more about Azure Storage, explore these resources:
 
 ### Documentation
 * [Azure Storage Documentation](https://azure.microsoft.com/documentation/services/storage/)
 * [Create a storage account](../storage-create-storage-account.md)
 
-<!-- after our quick starts are available, replace this link with a link to one of those. 
-Had to remove this article, it refers to the VS quickstarts, and they've stopped publishing them. Robin --> 
+<!-- after our quick starts are available, replace this link with a link tooone of those. 
+Had tooremove this article, it refers toohello VS quickstarts, and they've stopped publishing them. Robin --> 
 <!--* [Get started with Azure Storage in five minutes](storage-getting-started-guide.md)
 -->
 
@@ -289,29 +289,29 @@ Had to remove this article, it refers to the VS quickstarts, and they've stopped
 * [Introduzione ad Archiviazione file di Azure in Windows](../storage-dotnet-how-to-use-files.md)
 
 ### <a name="for-javaandroid-developers"></a>Per sviluppatori Java/Android
-* [Come usare l'archiviazione BLOB da Java](../blobs/storage-java-how-to-use-blob-storage.md)
-* [Come usare l'archiviazione tabelle da Java](../../cosmos-db/table-storage-how-to-use-java.md)
-* [Come usare l'archiviazione di accodamento da Java](../storage-java-how-to-use-queue-storage.md)
-* [Come usare l'archiviazione file da Java](../storage-java-how-to-use-file-storage.md)
+* [Come toouse archiviazione Blob da Java](../blobs/storage-java-how-to-use-blob-storage.md)
+* [Come toouse archiviazione tabelle da Java](../../cosmos-db/table-storage-how-to-use-java.md)
+* [Come toouse l'archiviazione delle code da Java](../storage-java-how-to-use-queue-storage.md)
+* [Come toouse archiviazione di File da Java](../storage-java-how-to-use-file-storage.md)
 
 ### <a name="for-nodejs-developers"></a>Per sviluppatori Node.js
-* [Come usare l'archiviazione BLOB da Node.js](../blobs/storage-nodejs-how-to-use-blob-storage.md)
-* [Come usare l'archiviazione tabelle da Node.js](../../cosmos-db/table-storage-how-to-use-nodejs.md)
-* [Come usare l'archiviazione di accodamento da Node.js](../storage-nodejs-how-to-use-queues.md)
+* [Come toouse archiviazione Blob da Node.js](../blobs/storage-nodejs-how-to-use-blob-storage.md)
+* [Come toouse archiviazione tabelle da Node.js](../../cosmos-db/table-storage-how-to-use-nodejs.md)
+* [Come toouse archiviazione delle code da Node.js](../storage-nodejs-how-to-use-queues.md)
 
 ### <a name="for-php-developers"></a>Per sviluppatori PHP
-* [Come usare l'archiviazione BLOB da PHP](../blobs/storage-php-how-to-use-blobs.md)
-* [Come usare l'archiviazione tabelle da PHP](../../cosmos-db/table-storage-how-to-use-php.md)
-* [Come usare l'archiviazione di accodamento da PHP](../storage-php-how-to-use-queues.md)
+* [Come toouse archiviazione Blob da PHP](../blobs/storage-php-how-to-use-blobs.md)
+* [Come toouse archiviazione tabelle da PHP](../../cosmos-db/table-storage-how-to-use-php.md)
+* [Come toouse l'archiviazione delle code da PHP](../storage-php-how-to-use-queues.md)
 
 ### <a name="for-ruby-developers"></a>Per sviluppatori Ruby
-* [Come usare l'archiviazione BLOB da Ruby](../blobs/storage-ruby-how-to-use-blob-storage.md)
-* [Come usare l'archiviazione tabelle da Ruby](../../cosmos-db/table-storage-how-to-use-ruby.md)
-* [Come usare l'archiviazione di accodamento da Ruby](../storage-ruby-how-to-use-queue-storage.md)
+* [Come toouse archiviazione Blob da Ruby](../blobs/storage-ruby-how-to-use-blob-storage.md)
+* [Come archiviazione tabella da Ruby toouse](../../cosmos-db/table-storage-how-to-use-ruby.md)
+* [Come l'archiviazione delle code da Ruby toouse](../storage-ruby-how-to-use-queue-storage.md)
 
 ### <a name="for-python-developers"></a>Per sviluppatori Python
-* [Come usare l'archiviazione BLOB da Python](../blobs/storage-python-how-to-use-blob-storage.md)
-* [Come usare l'archiviazione tabelle da Python](../../cosmos-db/table-storage-how-to-use-python.md)
-* [Come usare l'archiviazione di accodamento da Python](../storage-python-how-to-use-queue-storage.md)   
-* [Come usare l'archiviazione file da Python](../storage-python-how-to-use-file-storage.md) 
+* [Come toouse archiviazione Blob da Python](../blobs/storage-python-how-to-use-blob-storage.md)
+* [Come toouse archiviazione tabelle da Python](../../cosmos-db/table-storage-how-to-use-python.md)
+* [Come toouse l'archiviazione delle code da Python](../storage-python-how-to-use-queue-storage.md)   
+* [Come toouse archiviazione di File da Python](../storage-python-how-to-use-file-storage.md) 
 -->

@@ -1,6 +1,6 @@
 ---
-title: Criteri di accesso ai dati in Azure Time Series Insights | Microsoft Docs
-description: Questa esercitazione illustra come gestire i criteri di accesso ai dati in Time Series Insights
+title: i criteri di accesso aaaData in Azure ora serie Insights | Documenti Microsoft
+description: "In questa esercitazione, è illustrato toomanage criteri di accesso ai dati in fase di Insights di serie"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/01/2017
 ms.author: omravi
-ms.openlocfilehash: e975c6d8f217bc73948c0c046204b16b1a742bc7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f286d26c8c5c851c523e9384760dc4b10711fa3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-data-access-to-a-time-series-insights-environment-using-azure-portal"></a>Concedere l'accesso ai dati in un ambiente Time Series Insights con il portale di Azure
+# <a name="grant-data-access-tooa-time-series-insights-environment-using-azure-portal"></a>Concedere l'ambiente di data access tooa Insights serie ora tramite il portale di Azure
 
 Gli ambienti Time Series Insights hanno due tipologie indipendenti di criteri di accesso:
 
 * Criteri di accesso di gestione
 * Criteri di accesso ai dati
 
-Entrambi criteri concedono alle entità di sicurezza di Azure Active Directory (utenti e app) varie autorizzazioni per un determinato ambiente. Le entità di sicurezza (utenti e app) devono appartenere all'istanza di Active Directory ("tenant di Azure") associata alla sottoscrizione contenente l'ambiente.
+Entrambi criteri concedono alle entità di sicurezza di Azure Active Directory (utenti e app) varie autorizzazioni per un determinato ambiente. salve le entità (utenti e applicazioni) devono appartenere toohello active directory (o "Tenant di Azure") associato alla sottoscrizione hello contenente ambiente hello.
 
-I criteri di accesso di gestione concedono le autorizzazioni relative alla configurazione dell'ambiente, che includono:
-*   Creazione ed eliminazione dell'ambiente, delle origini evento e dei set di dati di riferimento
-*   Gestione dei criteri di accesso ai dati.
+I criteri di accesso Gestione concedono configurazione toohello correlate le autorizzazioni dell'ambiente di hello, ad esempio
+*   Creazione e l'eliminazione dell'ambiente di hello, origini eventi, fare riferimento a set di dati, e
+*   Gestione dei criteri di accesso ai dati hello.
 
-I criteri di accesso ai dati concedono le autorizzazioni per eseguire query sui dati, modificare i dati di riferimento nell'ambiente e condividere le prospettive e le query salvate associate all'ambiente.
+Criteri di accesso ai dati concedono le autorizzazioni di query di data tooissue, modificano i dati di riferimento nell'ambiente di hello e condividono le query salvate e alle prospettive associate ambiente hello.
 
-Le due tipologie di criteri consentono una netta separazione tra l'accesso alla gestione dell'ambiente e l'accesso ai dati all'interno di esso. È ad esempio possibile configurare un ambiente in modo che il relativo proprietario/creatore sia rimosso dall'accesso ai dati. Analogamente, a utenti e servizi a cui è consentita la lettura dei dati dell'ambiente può non essere concesso l'accesso alla configurazione dell'ambiente.
+due tipi di Hello di criteri consentono una netta separazione tra la gestione dell'ambiente hello toohello di accesso e accedere ai dati toohello hello ambiente. Ad esempio, è possibile toosetup un ambiente tale proprietario hello/creatore dell'ambiente hello viene rimosso dall'accesso ai dati hello. Oltre a utenti e servizi che sono consentiti dati tooread hello ambiente non può essere concessa alcuna configurazione di accesso toohello dell'ambiente hello.
 
 ## <a name="grant-data-access"></a>Concedere l'accesso ai dati
-La procedura seguente illustra come concedere l'accesso ai dati per un'entità utente:
+Hello passaggi seguenti viene illustrato come accedere a dati toogrant per un'entità utente:
 
-1.  Accedere al [portale di Azure](https://portal.azure.com).
-2.  Fare clic su "Tutte le risorse" nel menu sul lato sinistro del portale di Azure.
+1.  Accedi toohello [portale di Azure](https://portal.azure.com).
+2.  Fare clic su "Tutte le risorse" nel menu hello sul lato sinistro di hello di hello portale di Azure.
 3.  Selezionare l'ambiente Time Series Insights.
 
-  ![Gestire l'origine Time Series Insights: ambiente](media/data-access/getstarted-grant-data-access1.png)
+  ![Gestire l'origine ora serie Insights hello - ambiente](media/data-access/getstarted-grant-data-access1.png)
 
 4.  Selezionare "Accesso al piano dati" e fare clic su "Aggiungi".
 
-  ![Gestire l'origine Time Series Insights: aggiunta](media/data-access/getstarted-grant-data-access2.png)
+  ![Gestire l'origine ora serie Insights hello - Aggiungi](media/data-access/getstarted-grant-data-access2.png)
 
 5.  Fare clic su "Seleziona utente".
-6.  Cercare e selezionare l'utente in base all'indirizzo di posta elettronica.
+6.  Ricerca e selezionare l'utente tramite posta elettronica hello.
 7.  Fare clic su "Seleziona" nel pannello "Selezionare l'utente".
 
-  ![Gestire l'origine Time Series Insights: selezione dell'utente](media/data-access/getstarted-grant-data-access3.png)
+  ![Gestire l'origine ora serie Insights hello - selezionare l'utente](media/data-access/getstarted-grant-data-access3.png)
 
 8.  Fare clic su "Seleziona ruolo".
-9.  Selezionare "Collaboratore" se si vuole consentire all'utente di modificare i dati di riferimento e condividere le prospettive e le query salvate con altri utenti dell'ambiente. In alternativa, selezionare "Lettore" per consentire all'utente di eseguire query sui dati e salvare query personali (non condivise) nell'ambiente.
-10. Fare clic su "OK" nel pannello "Selezionare un ruolo".
+9.  Se si desidera che i dati di riferimento tooallow utente toochange condividere query salvate e prospettive con altri utenti dell'ambiente di hello, selezionare "Collaboratore". In caso contrario, selezionare i dati di query di "Lettura" tooallow utente nell'ambiente di hello e salvare query (non condivisa) personali nell'ambiente di hello.
+10. Nel pannello "Selezionare il ruolo" hello, fare clic su "Ok".
 
-  ![Gestire l'origine Time Series Insights: selezione del ruolo](media/data-access/getstarted-grant-data-access4.png)
+  ![Gestire origine ora serie Insights hello - selezione ruolo](media/data-access/getstarted-grant-data-access4.png)
 
-11. Fare clic su "OK" nel pannello "Selezionare il ruolo utente".
+11. Nel pannello "Selezionare il ruolo utente" hello, fare clic su "Ok".
 12. Dovrebbe essere visualizzato:
 
-  ![Gestire l'origine Time Series Insights: risultati](media/data-access/getstarted-grant-data-access5.png)
+  ![Gestire l'origine ora serie Insights hello - risultati](media/data-access/getstarted-grant-data-access5.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * [Creare un'origine evento](time-series-insights-add-event-source.md)
-* [Inviare eventi](time-series-insights-send-events.md) all'origine evento
+* [Invio di eventi](time-series-insights-send-events.md) origine evento toohello
 * Visualizzare l'ambiente nel [portale di Time Series Insights](https://insights.timeseries.azure.com)

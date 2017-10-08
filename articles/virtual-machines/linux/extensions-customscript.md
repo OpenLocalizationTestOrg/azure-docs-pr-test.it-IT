@@ -1,6 +1,6 @@
 ---
-title: Eseguire script personalizzati nelle macchine virtuali Linux | Microsoft Docs
-description: "Automatizzare le attività di configurazione delle macchine virtuali Linux usando l'estensione script personalizzata"
+title: gli script personalizzati aaaRun nelle macchine virtuali Linux in Azure | Documenti Microsoft
+description: "Automatizzare le attività di configurazione Linux VM utilizzando l'estensione dello Script personalizzata hello"
 services: virtual-machines-linux
 documentationcenter: 
 author: neilpeterson
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-ms.openlocfilehash: 1dde64aac72c11ccfccf4fdb676279692befaadd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f2c273a5fbd4cd1695aea48fa4bd08e691511e5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-custom-script-extension-with-linux-virtual-machines"></a>Uso dell'estensione script personalizzata di Azure con macchine virtuali Linux
-L'estensione script personalizzata scarica ed esegue script sulle macchine virtuali di Azure. Questa estensione è utile per la configurazione post-distribuzione, l'installazione di software o qualsiasi altra attività di configurazione o gestione. Gli script possono essere scaricati dall'archiviazione di Azure, o da un altro percorso Internet accessibile, oppure possono essere forniti al runtime dell'estensione. L'estensione script personalizzata è integrabile nei modelli di Azure Resource Manager e può essere eseguita anche tramite l'interfaccia della riga di comando di Azure, PowerShell, il portale di Azure o l'API REST di Macchine virtuali di Azure.
+# <a name="using-hello-azure-custom-script-extension-with-linux-virtual-machines"></a>Utilizzo di hello estensione Script personalizzata di Azure con le macchine virtuali Linux
+Estensione dello Script personalizzata Hello Scarica ed esegue gli script in macchine virtuali di Azure. Questa estensione è utile per la configurazione post-distribuzione, l'installazione di software o qualsiasi altra attività di configurazione o gestione. Gli script possono essere scaricati dall'archiviazione di Azure o un altro percorso internet accessibile o forniti estensione toohello fase di esecuzione. estensione Script personalizzata Hello si integra con i modelli di gestione risorse di Azure e può essere eseguito anche tramite hello Azure CLI, PowerShell, il portale di Azure o hello API REST di macchina virtuale di Azure.
 
-Questo documento descrive come usare l'estensione script personalizzata dall'interfaccia della riga di comando di Azure, e da un modello di Azure Resource Manager, e inoltre illustra i passaggi per la risoluzione dei problemi nei sistemi Linux.
+Questo documento illustra come toouse hello estensione Script personalizzata da hello CLI di Azure e un modello di gestione risorse di Azure, nonché dettagli risoluzione dei problemi in sistemi Linux.
 
 ## <a name="extension-configuration"></a>Configurazione dell'estensione
-La configurazione dell'estensione script personalizzata specifica informazioni come il percorso dello script e il comando da eseguire. Questa configurazione può essere archiviata nei file di configurazione, specificata sulla riga di comando o definita in un modello di Azure Resource Manager. I dati sensibili possono essere archiviati in una configurazione protetta, che verrà crittografata e decrittografata solo all'interno della macchina virtuale. La configurazione protetta è utile quando il comando di esecuzione include segreti, ad esempio una password.
+configurazione di estensione dello Script personalizzata Hello specifica come percorso dello script e hello toobe di comando eseguire. Questa configurazione può essere archiviata nei file di configurazione specificati nella riga di comando hello o in un modello di gestione risorse di Azure. Dati sensibili possono essere archiviati in una configurazione protetta, che verrà crittografata e decrittografata solo macchina virtuale hello. la configurazione protetta Hello è utile quando il comando di esecuzione hello include segreti, ad esempio una password.
 
 ### <a name="public-configuration"></a>Configurazione pubblica
 Schema:
 
-**Nota**: questi nomi di proprietà fanno distinzione tra maiuscole e minuscole. Usare i nomi come sono riportati sotto per evitare problemi di distribuzione.
+**Nota**: questi nomi di proprietà fanno distinzione tra maiuscole e minuscole. Utilizzare nomi di hello, come illustrato di seguito tooavoid problemi di distribuzione.
 
-* **commandToExecute**: (obbligatorio, stringa) script del punto di ingresso da eseguire.
-* **fileUris**: (facoltativo, matrice di stringhe) URL relativi ai file da scaricare.
-* **timestamp** : (facoltativo, intero) usare questo campo solo per attivare una nuova esecuzione dello script modificando il valore del campo.
+* **commandToExecute**: (obbligatorio, string) hello tooexecute script punto di ingresso
+* **fileUris**: (facoltativa, matrice di stringhe) hello URL per il file toobe scaricato.
+* **timestamp** (intero facoltativo) utilizzare questo tootrigger solo una riesecuzione dello script hello di campo tramite la modifica del valore di questo campo.
 
 ```json
 {
@@ -48,11 +48,11 @@ Schema:
 ### <a name="protected-configuration"></a>Configurazione protetta
 Schema:
 
-**Nota**: questi nomi di proprietà fanno distinzione tra maiuscole e minuscole. Usare i nomi come sono riportati sotto per evitare problemi di distribuzione.
+**Nota**: questi nomi di proprietà fanno distinzione tra maiuscole e minuscole. Utilizzare nomi di hello, come illustrato di seguito tooavoid problemi di distribuzione.
 
-* **commandToExecute**: (facoltativo, stringa) script del punto di ingresso da eseguire. Usare in alternativa questo campo se il comando contiene segreti, ad esempio password.
-* **storageAccountName**: (facoltativo, stringa) nome dell'account di archiviazione. Se si specificano credenziali di archiviazione, tutti i valori di fileUris devono essere URL relativi a BLOB di Azure.
-* **storageAccountKey**: (facoltativo, stringa) chiave di accesso dell'account di archiviazione.
+* **commandToExecute**: (facoltativa, string) hello tooexecute script punto di ingresso. Usare in alternativa questo campo se il comando contiene segreti, ad esempio password.
+* **storageAccountName**: (facoltativa, string) nome hello dell'account di archiviazione. Se si specificano credenziali di archiviazione, tutti i valori di fileUris devono essere URL relativi a BLOB di Azure.
+* **storageAccountKey**: (facoltativa, string) la chiave di accesso hello dell'account di archiviazione.
 
 ```json
 {
@@ -63,13 +63,13 @@ Schema:
 ```
 
 ## <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
-Quando si usa l'interfaccia della riga di comando di Azure per eseguire l'estensione script personalizzata, creare uno o più file di configurazione contenenti almeno il relativo URI e il comando di esecuzione dello script.
+Quando si utilizza hello toorun di hello Azure CLI estensione Script personalizzata, creare un file di configurazione o file contenenti uri di file minimo hello e comando di esecuzione di script hello.
 
 ```azurecli
 az vm extension set --resource-group myResourceGroup --vm-name myVM --name customScript --publisher Microsoft.Azure.Extensions --settings ./script-config.json
 ```
 
-Le impostazioni possono essere specificate facoltativamente nel comando come una stringa in formato JSON. Ciò consente di specificare la configurazione durante l'esecuzione e senza un file di configurazione separato.
+Facoltativamente impostazioni hello possono essere specificate nel comando hello sotto forma di stringa in formato JSON. In questo modo toobe configurazione hello specificato durante l'esecuzione e senza un file di configurazione separato.
 
 ```azurecli
 az vm extension set '
@@ -111,7 +111,7 @@ Comando dell'interfaccia della riga di comando di Azure:
 az vm extension set --resource-group myResourceGroup --vm-name myVM --name customScript --publisher Microsoft.Azure.Extensions --settings ./script-config.json
 ```
 
-**Esempio 3** : vengono usati un file di configurazione pubblica per specificare l'URI del file di script e un file di configurazione protetta per specificare il comando da eseguire.
+**Esempio 3** : un file di configurazione pubblico è l'URI di file di script hello toospecify utilizzato e un file di configurazione protetto è utilizzato toospecify hello comando toobe eseguita.
 
 File di configurazione pubblica:
 
@@ -136,7 +136,7 @@ az vm extension set --resource-group myResourceGroup --vm-name myVM --name custo
 ```
 
 ## <a name="resource-manager-template"></a>Modello di Resource Manager
-L'estensione script personalizzata di Azure può essere eseguita durante la fase di distribuzione della macchina virtuale usando un modello di Resource Manager. A tale scopo, aggiungere una risorsa JSON formattata correttamente al modello di distribuzione.
+è possibile eseguire l'estensione dello Script di Azure personalizzata Hello in fase di distribuzione di macchina virtuale utilizzando un modello di gestione risorse. toodo in tal caso, aggiungere modello di distribuzione toohello JSON formattato correttamente.
 
 ### <a name="resource-manager-examples"></a>Esempi di Resource Manager
 **Esempio 1** : configurazione pubblica.
@@ -199,32 +199,32 @@ L'estensione script personalizzata di Azure può essere eseguita durante la fase
 }
 ```
 
-Per un esempio completo, vedere la demo di .NET Core Music Store: [Demo di Music Store](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db).
+Vedere hello .net Core negozio Demo per un esempio completo - [musica Store Demo](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db).
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-Quando viene eseguita l'estensione script personalizzata, lo script viene creato o scaricato in una directory simile all'esempio seguente. Anche l'output del comando viene salvato in questa directory, nei file `stdout` e `stderr`.
+Quando viene eseguita l'estensione dello Script personalizzata hello, script hello viene creato o scaricati in un toohello simile directory esempio seguente. output del comando Hello viene salvato anche in questa directory `stdout` e `stderr` file.
 
 ```bash
 /var/lib/waagent/custom-script/download/0/
 ```
 
-L'estensione script di Azure genera un log che è possibile trovare nella directory seguente.
+Estensione dello Script di Azure Hello produce un log, che è disponibili qui.
 
 ```bash
 /var/log/azure/custom-script/handler.log
 ```
 
-Lo stato dell'esecuzione dell'estensione script personalizzata può essere recuperato anche con l'interfaccia della riga di comando di Azure.
+Inoltre, è possibile recuperare lo stato di esecuzione di Hello di hello estensione Script personalizzata con hello CLI di Azure.
 
 ```azurecli
 az vm extension list -g myResourceGroup --vm-name myVM
 ```
 
-L'output ha un aspetto simile al testo seguente:
+output di Hello è simile hello seguente testo:
 
 ```azurecli
 info:    Executing command vm extension get
-+ Looking up the VM "scripttst001"
++ Looking up hello VM "scripttst001"
 data:    Publisher                   Name                                      Version  State
 data:    --------------------------  ----------------------------------------  -------  ---------
 data:    Microsoft.Azure.Extensions  CustomScript                              2.0      Succeeded

@@ -1,6 +1,6 @@
 ---
-title: "Ridimensionare i processi di analisi di flusso per aumentare la velocità effettiva | Microsoft Docs"
-description: "Informazioni su come ridimensionare i processi di Analisi di flusso configurando partizioni di input, ottimizzando la definizione di query e impostando le unità di streaming del processo."
+title: "velocità effettiva tooincrease i processi di flusso Analitica aaaScale | Documenti Microsoft"
+description: "Informazioni su come i processi di flusso Analitica tooscale per la configurazione delle partizioni di input, l'ottimizzazione di definizione della query hello e impostazione processo unità di streaming."
 keywords: flusso di dati, elaborazione del flusso di dati, ottimizzare analisi
 services: stream-analytics
 documentationcenter: 
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/22/2017
 ms.author: jeffstok
-ms.openlocfilehash: ab894976c72ea3785d7f58e51b3dd64511e1e8e3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4ba8f6b2f8bfebd52cfa07696b501b42cda21f75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="scale-azure-stream-analytics-jobs-to-increase-stream-data-processing-throughput"></a>Ridimensionare i processi di Analisi di flusso di Azure per aumentare la velocità effettiva dell'elaborazione dei flussi di dati
-Questo articolo illustra come ottimizzare una query per aumentare la velocità effettiva per i processi di Analisi di flusso. Si apprenderà come ridimensionare tali processi configurando partizioni di input, ottimizzando la definizione di query, calcolando e impostando le *unità di streaming* dei processi. 
+# <a name="scale-azure-stream-analytics-jobs-tooincrease-stream-data-processing-throughput"></a>Velocità effettiva di elaborazione dei dati di scala Analitica di flusso di Azure processi tooincrease flusso
+In questo articolo viene illustrato come eseguire una query tooincrease velocità effettiva per i processi di Streaming Analitica tootune Analitica un flusso. Si apprenderà come tooscale Analitica di flusso dei processi tramite la configurazione di input di partizioni, definizione di query di ottimizzazione analitica hello e processo di calcolo e l'impostazione *unità di streaming* (SUs). 
 
-## <a name="what-are-the-parts-of-a-stream-analytics-job"></a>Quali sono le parti di un processo di Analisi di flusso?
-Una definizione del processo di Analisi di flusso include input, query e output. Gli input sono le origini da cui il processo legge il flusso di dati, la query viene usata per trasformare il flusso di input dei dati e l'output è la destinazione a cui il processo invia i risultati.  
+## <a name="what-are-hello-parts-of-a-stream-analytics-job"></a>Quali sono le parti di un processo di flusso Analitica hello?
+Una definizione del processo di Analisi di flusso include input, query e output. Gli input sono in cui il processo di hello legge il flusso di dati hello da. query Hello è usato tootransform hello dati flusso di input e output di hello è quale processo hello invia i risultati del processo hello per.  
 
-Un processo richiede almeno un'origine di input per il flusso dei dati. L'origine dell'input del flusso dei dati può essere archiviata in un hub eventi di Azure o in una risorsa di archiviazione BLOB di Azure. Per altre informazioni, vedere [Introduzione all'analisi di flusso di Azure](stream-analytics-introduction.md) e [Introduzione all'uso dell'analisi di flusso di Azure](stream-analytics-real-time-fraud-detection.md).
+Un processo richiede almeno un'origine di input per il flusso dei dati. Hello origine di input flusso di dati può essere archiviati in un hub di eventi di Azure o nell'archiviazione blob di Azure. Per ulteriori informazioni, vedere [tooAzure introduzione Analitica flusso](stream-analytics-introduction.md) e [iniziare a usare Azure flusso Analitica](stream-analytics-real-time-fraud-detection.md).
 
 ## <a name="partitions-in-event-hubs-and-azure-storage"></a>Partizioni negli hub eventi e nell'archiviazione di Azure
-Il ridimensionamento di un processo di Analisi di flusso sfrutta i vantaggi offerti dall'uso di partizioni nell'input o nell'output. Il partizionamento consente di suddividere i dati in subset in base a una chiave di partizione. Un processo che utilizza i dati, come avviene per i processi di Analisi di flusso, può utilizzare diverse partizioni e scrivervi in parallelo, aumentando così la velocità effettiva. Quando si usa Analisi di flusso, è possibile sfruttare il partizionamento negli hub eventi e nell'archiviazione BLOB. 
+Ridimensionamento di un processo di flusso Analitica si avvale di partizioni hello input o output. Il partizionamento consente di suddividere i dati in subset in base a una chiave di partizione. Un processo che utilizza dati hello (ad esempio, un processo di Streaming Analitica) può utilizzare e scrivere le varie partizioni in parallelo, con conseguente aumento della velocità effettiva. Quando si usa Analisi di flusso, è possibile sfruttare il partizionamento negli hub eventi e nell'archiviazione BLOB. 
 
-Per altre informazioni sulle partizioni, vedere gli articoli seguenti:
+Per ulteriori informazioni sulle partizioni, vedere hello seguenti articoli:
 
 * [Panoramica delle funzionalità di Hub eventi](../event-hubs/event-hubs-features.md#partitions)
 * [Partizionamento dei dati](https://docs.microsoft.com/azure/architecture/best-practices/data-partitioning#partitioning-azure-blob-storage)
 
 
 ## <a name="streaming-units-sus"></a>Unità di streaming
-Le unità di streaming rappresentano le risorse e la potenza di elaborazione necessarie per eseguire un processo di Analisi di flusso di Azure. Le unità di streaming descrivono la capacità relativa di elaborazione di eventi in base a una misurazione combinata di CPU, memoria e frequenze di lettura e scrittura. Ogni unità di streaming corrisponde a circa 1 MB al secondo di velocità effettiva. 
+Unità (SUs) rappresentano hello risorse di flusso e di elaborazione necessarie in ordine tooexecute un processo Analitica di flusso di Azure. SUs forniscono un modo toodescribe hello relativo evento basata su una misura combinata di CPU, memoria, capacità di elaborazione, leggere e scrivere tariffe. Ogni SU corrisponde tooroughly 1 MB al secondo di velocità effettiva. 
 
-Il numero di unità di streaming necessarie per un particolare processo dipende dalla configurazione delle partizioni per gli input e dalla query definita per il processo. È prevista una quota massima di unità di streaming che è possibile selezionare per un processo. Per impostazione predefinita, ogni sottoscrizione di Azure ha una quota massima di 50 unità di streaming per tutti i processi di analisi in un'area specifica. Per superare la quota massima di unità di streaming per le sottoscrizioni, contattare il [supporto tecnico Microsoft](http://support.microsoft.com). I valori validi di unità di streaming per processo sono 1, 3, 6 e poi a salire, con incrementi di 6.
+Scelta di SUs quanti sono necessari per un determinato processo dipende dalla configurazione della partizione per gli input hello hello e hello query definita per il processo di hello. È possibile selezionare le quote tooyour in SUs per un processo. Per impostazione predefinita, ogni sottoscrizione di Azure prevede una quota di backup SUs too50 per tutti i processi di hello analitica in un'area specifica. tooincrease SUs per le sottoscrizioni oltre questa quota, contattare [supporto Microsoft](http://support.microsoft.com). I valori validi di unità di streaming per processo sono 1, 3, 6 e poi a salire, con incrementi di 6.
 
 ## <a name="embarrassingly-parallel-jobs"></a>Processi perfettamente paralleli
-Un processo *perfettamente parallelo* è lo scenario più scalabile che può presentarsi in Analisi di flusso di Azure. Connette una partizione dell'input inviato a un'istanza della query a una partizione dell'output. Questo parallelismo presenta i requisiti seguenti:
+Un *imbarazzantemente parallele* processo è uno scenario di hello più scalabile in Azure flusso Analitica è disponibile. Si connette una partizione di istanza di input tooone hello della partizione di tooone hello query di output di hello. Il parallelismo è hello seguenti requisiti:
 
-1. Se la logica di query richiede che la stessa chiave venga elaborata dalla stessa istanza di query, è necessario verificare che gli eventi siano diretti alla stessa partizione dell'input. Per gli hub eventi, questo significa che per i dati di evento deve essere impostata la proprietà **PartitionKey**. In alternativa, è possibile usare mittenti partizionati. Per l'archiviazione BLOB, questo significa che gli eventi vengono inviati alla stessa cartella di partizione. Se la logica di query non richiede che la stessa chiave venga elaborata dalla stessa istanza di query, è possibile ignorare questo requisito. Un esempio di questa logica è offerto da una query semplice select-project-filter.  
+1. Se la logica di query dipende dalla stessa chiave in fase di elaborazione hello da hello stessa istanza di query, è necessario assicurarsi che gli eventi di hello vanno toohello stessa partizione dell'input. Per gli hub di eventi, ciò significa che i dati di evento hello devono disporre di hello **PartitionKey** valore impostato. In alternativa, è possibile usare mittenti partizionati. Per l'archiviazione blob, ciò significa che gli eventi di hello vengono inviati toohello stessa cartella della partizione. Se la logica di query non richiede la stessa chiave toobe elaborati hello da hello stessa istanza di query, è possibile ignorare questo requisito. Un esempio di questa logica è offerto da una query semplice select-project-filter.  
 
-2. Quando i dati sono disposti a livello di input, si deve verificare che la query sia partizionata. A questo scopo, è necessario usare la clausola **Partition By** in tutti i passaggi. È possibile eseguire più passaggi, ma tutti devono essere partizionati con la stessa chiave. Per ottenere un processo completamente parallelo, è attualmente necessario impostare la chiave di partizionamento su **PartitionId**.  
+2. Una volta dati hello sono disposto sul lato di input hello, è necessario assicurarsi che la query è partizionata. Questa operazione richiede il toouse **Partition By** in tutte le fasi di hello. Sono consentiti più passaggi, ma essi devono essere partizionati da hello stessa chiave. Attualmente, hello chiave di partizionamento deve essere impostato troppo**PartitionId** affinché hello processo toobe completamente parallelo.  
 
-3. Solo gli hub eventi e l'archiviazione BLOB supportano attualmente l'output partizionato. Per l'output degli hub eventi, è necessario configurare la chiave di partizione come **PartitionId**. Per l'output dell'archiviazione BLOB, non è necessario eseguire operazioni.  
+3. Solo gli hub eventi e l'archiviazione BLOB supportano attualmente l'output partizionato. Per l'output di hub eventi, è necessario configurare toobe chiave di partizione hello **PartitionId**. Per l'output di archiviazione blob, non è necessario toodo nulla.  
 
-4. Il numero delle partizioni di input deve essere uguale a quello delle partizioni di output. L'output dell'archiviazione BLOB attualmente non supporta le partizioni, ma questo non è un problema perché lo schema di partizionamento viene ereditato dalla query upstream. Ecco alcuni esempi di valori di partizioni che consentono un processo perfettamente parallelo:  
+4. numero di Hello di partizioni di input deve essere uguale hello numero di partizioni di output. L'output dell'archiviazione BLOB attualmente non supporta le partizioni, Ma che non costituisce un problema, perché eredita hello schema della query a monte hello di partizionamento. Ecco alcuni esempi di valori di partizioni che consentono un processo perfettamente parallelo:  
 
    * 8 partizioni di input di hub eventi e 8 partizioni di output di hub eventi
    * 8 partizioni di input di hub eventi e output di archiviazione BLOB  
    * 8 partizioni di input di archiviazione BLOB e output di archiviazione BLOB  
    * 8 partizioni di input di archiviazione BLOB e 8 partizioni di output di hub eventi  
 
-Le sezioni seguenti illustrano alcuni esempi di scenari perfettamente paralleli.
+Hello nelle sezioni seguenti vengono illustrano alcuni scenari di esempio imbarazzantemente parallele.
 
 ### <a name="simple-query"></a>Query semplice
 
@@ -72,7 +72,7 @@ Query:
     FROM Input1 Partition By PartitionId
     WHERE TollBoothId > 100
 
-Questa query è un filtro semplice. Non è pertanto necessario preoccuparsi del partizionamento dell'input inviato all'hub eventi. Si noti che la query include la clausola **Partition By PartitionId** e quindi il requisito 2 illustrato in precedenza è pienamente soddisfatto. A livello di output, è necessario configurare l'output dell'hub eventi nel processo in modo che la chiave di partizione sia impostata su **PartitionId**. È infine necessario verificare che il numero delle partizioni di input sia uguale a quello delle partizioni di output.
+Questa query è un filtro semplice. Pertanto, non è necessario tooworry sul partizionamento input hello inviato toohello hub di eventi. Sono incluse query hello **partizione da PartitionId**, in modo che soddisfi i requisiti #2 precedenti. Per l'output di hello, dobbiamo output di hub di eventi tooconfigure hello in hello processo toohave hello partizione set di chiavi troppo**PartitionId**. Ultimo uno controllo è toomake assicurarsi che il numero di hello delle partizioni di input sia uguale toohello numero di partizioni di output.
 
 ### <a name="query-with-a-grouping-key"></a>Query con chiave di raggruppamento
 
@@ -85,7 +85,7 @@ Query:
     FROM Input1 Partition By PartitionId
     GROUP BY TumblingWindow(minute, 3), TollBoothId, PartitionId
 
-Questa query include una chiave di raggruppamento. La stessa chiave deve pertanto essere elaborata dalla stessa istanza di query. Ciò significa che gli eventi devono essere inviati all'hub eventi in modo partizionato. Ma quale chiave è necessario usare? **PartitionId** corrisponde a un concetto della logica di processo. La chiave effettiva di cui occuparsi è **TollBoothId** e quindi il valore di **PartitionKey** dei dati di evento deve essere **TollBoothId**. A questo scopo è necessario impostare **Partition By** su **PartitionId** nella query. Poiché l'output è costituito dall'archiviazione BLOB, non occorre preoccuparsi di configurare un valore di chiave di partizione, come definito dal requisito 4.
+Questa query include una chiave di raggruppamento. Pertanto, hello stesso toobe esigenze chiave elaborati dalla stessa query di istanza, il che significa che gli eventi devono essere inviati toohello hub di eventi in modo partizionato hello. Ma quale chiave è necessario usare? **PartitionId** corrisponde a un concetto della logica di processo. chiave Hello interessante effettivamente **TollBoothId**, pertanto hello **PartitionKey** valore dei dati di evento hello deve essere **TollBoothId**. Prepariamo queste query hello impostando **Partition By** troppo**PartitionId**. Poiché l'output di hello nell'archiviazione blob, non è necessario tooworry sulla configurazione di un valore di chiave di partizione, in base ai requisiti #4.
 
 ### <a name="multi-step-query-with-a-grouping-key"></a>Query a più passaggi con chiave di raggruppamento
 * Input: hub eventi con 8 partizioni
@@ -103,17 +103,17 @@ Query:
     FROM Step1 Partition By PartitionId
     GROUP BY TumblingWindow(minute, 3), TollBoothId, PartitionId
 
-Questa query include una chiave di raggruppamento ed è quindi necessario che la stessa chiave venga elaborata dalla stessa istanza di query. È possibile adottare la stessa strategia usata nell'esempio precedente. In questo caso, la query è articolata in più passaggi. Per ogni passaggio è presente la clausola **Partition By PartitionID**? Sì, quindi la query soddisfa il requisito 3. A livello di output, è necessario impostare la chiave di partizione su **PartitionId**, come descritto in precedenza. Si può anche osservare che il numero di partizioni dell'output è identico a quello dell'input.
+La query contiene una chiave di raggruppamento, pertanto hello stesso toobe esigenze chiave elaborata hello stessa istanza di query. È possibile utilizzare hello stessa strategia esempio hello precedente. In questo caso, query hello prevede diversi passaggi. Per ogni passaggio è presente la clausola **Partition By PartitionID**? Sì, in modo da query hello soddisfa requisito #3. Per l'output di hello, dobbiamo chiave di partizione hello tooset troppo**PartitionId**, come descritto in precedenza. È inoltre possibile notare che hello stesso numero di partizioni come input hello.
 
 ## <a name="example-scenarios-that-are-not-embarrassingly-parallel"></a>Esempi di scenari *non* perfettamente paralleli
 
-Nella sezione precedente sono stati presentati alcuni scenari perfettamente paralleli. In questa sezione si illustreranno scenari che non soddisfano tutti i requisiti di parallelismo perfetto. 
+Nella sezione precedente hello, abbiamo anche mostrato alcuni scenari imbarazzantemente parallele. In questa sezione sono illustrati scenari che non soddisfano tutti hello requisiti toobe imbarazzantemente parallele. 
 
 ### <a name="mismatched-partition-count"></a>Numero di partizioni non corrispondente
 * Input: hub eventi con 8 partizioni
 * Output: hub eventi con 32 partizioni
 
-In questo caso, la query non è rilevante. Se il numero delle partizioni di input non corrisponde a quello delle partizioni di output, la topologia non è perfettamente parallela.
+In questo caso, non è importante è la query che hello. Se il numero di partizioni di input di hello non corrisponde a numero di partizioni di output di hello, non è una topologia hello imbarazzantemente parallela.
 
 ### <a name="not-using-event-hubs-or-blob-storage-as-output"></a>Uso di un output diverso da hub eventi o archiviazione BLOB
 * Input: hub eventi con 8 partizioni
@@ -137,15 +137,15 @@ Query:
     FROM Step1 Partition By TollBoothId
     GROUP BY TumblingWindow(minute, 3), TollBoothId
 
-Come è possibile osservare, il secondo passaggio usa **TollBoothId** come chiave di partizionamento, a differenza del primo passaggio. È quindi necessario eseguire una riproduzione in ordine casuale. 
+Come si può notare, secondo passaggio hello Usa **TollBoothId** come chiave di partizionamento hello. Questo passaggio è non hello stesso come primo passaggio hello e pertanto richiede ci toodo una casuale. 
 
-Gli esempi precedenti illustrano alcuni processi di Analisi di flusso che sono o non sono conformi a una topologia perfettamente parallela. Se sono conformi, possono raggiungere il livello massimo di scalabilità. Per i processi che non rientrano in nessuno di questi profili, in futuro saranno disponibili aggiornamenti con le linee guida per il ridimensionamento. Per il momento, seguire le indicazioni generali riportate nelle sezioni seguenti.
+Hello esempi precedenti alcuni processi di flusso Analitica conformi troppo (o non) una topologia imbarazzantemente parallela. Se devono essere conformi, hanno potenziale hello per la massima scalabilità. Per i processi che non rientrano in nessuno di questi profili, in futuro saranno disponibili aggiornamenti con le linee guida per il ridimensionamento. Per il momento, utilizzare indicazioni generali hello hello le sezioni seguenti.
 
-## <a name="calculate-the-maximum-streaming-units-of-a-job"></a>Calcolare il numero massimo di unità di streaming di un processo
-Il numero totale di unità di streaming che possono essere usate da un processo di Analisi dei flussi dipende dal numero di passaggi nella query definita per il processo e dal numero di partizioni per ogni passaggio.
+## <a name="calculate-hello-maximum-streaming-units-of-a-job"></a>Unità di streaming massimo hello di un processo di calcolo
+numero totale di Hello di unità di streaming che può essere utilizzato da un processo di flusso Analitica dipende dal numero di hello dei passaggi in query hello è definito per il processo di hello e numero di hello di partizioni per ogni passaggio.
 
 ### <a name="steps-in-a-query"></a>Passaggi in una query
-Una query può includere uno o più passaggi. Ogni passaggio è una sottoquery definita mediante la parola chiave **WITH**. Anche la query esterna alla parola chiave **WITH** (una sola query) viene contata come passaggio. Ad esempio, l'istruzione **SELECT** nella query seguente:
+Una query può includere uno o più passaggi. Ogni passaggio è una sottoquery definita da hello **WITH** (parola chiave). query di Hello di fuori di hello **WITH** (parola chiave) (solo per una query) è anch'essa conteggiata come un passaggio, ad esempio hello **selezionare** istruzione hello seguente query:
 
     WITH Step1 AS (
         SELECT COUNT(*) AS Count, TollBoothId
@@ -160,54 +160,54 @@ Una query può includere uno o più passaggi. Ogni passaggio è una sottoquery d
 Questa query include due passaggi.
 
 > [!NOTE]
-> Questa query viene illustrata in dettaglio più avanti nell'articolo.
+> Questa query viene illustrata in dettaglio più avanti in articolo hello.
 >  
 
 ### <a name="partition-a-step"></a>Partizionamento di un passaggio
-Il partizionamento di un passaggio richiede le condizioni seguenti:
+Partizionamento di un passaggio necessario hello seguenti condizioni:
 
-* L'origine di input deve essere partizionata. 
-* L'istruzione **SELECT** della query deve leggere da un'origine di input partizionata.
-* La query all'interno del passaggio deve includere la parola chiave **Partition By**.
+* origine di input Hello deve essere partizionato. 
+* Hello **selezionare** istruzione di query hello deve leggere da un'origine di input partizionata.
+* query di Hello all'interno di passaggio hello deve avere hello **Partition By** (parola chiave).
 
-Quando una query è partizionata, gli eventi di input vengono elaborati e aggregati in gruppi separati di partizioni e per ogni gruppo vengono generati eventi di output. Se si vuole un aggregato combinato, è necessario creare un secondo passaggio non partizionato per l'aggregazione.
+Quando una query è partizionata, gli eventi di input hello sono partizione separata elaborati e aggregati in gruppi e gli eventi di output vengono generati per ognuno dei gruppi di hello. Se si desidera una funzione di aggregazione combinato, è necessario creare un secondo tooaggregate passaggio non partizionata.
 
-### <a name="calculate-the-max-streaming-units-for-a-job"></a>Calcolare il numero massimo di unità di streaming per un processo
-Per un processo di Analisi di flusso, l'insieme di tutti i passaggi non partizionati può raggiungere un massimo di sei unità di streaming. Per aggiungere altre unità, è necessario partizionare un passaggio. Ogni partizione può includere sei unità di streaming.
+### <a name="calculate-hello-max-streaming-units-for-a-job"></a>Calcolare il numero massimo hello unità per un processo di streaming
+Tutti i passaggi non partizionata insieme possono scalare in verticale toosix unità (SUs) per un processo di flusso Analitica di streaming. SUs tooadd, un passaggio devono essere partizionati. Ogni partizione può includere sei unità di streaming.
 
 <table border="1">
-<tr><th>Query</th><th>Numero massimo di unità di streaming per il processo</th></td>
+<tr><th>Query</th><th>SUs Max per processo hello</th></td>
 
 <tr><td>
 <ul>
-<li>La query contiene un unico passaggio.</li>
-<li>Il passaggio non è partizionato.</li>
+<li>query Hello contiene un unico passaggio.</li>
+<li>passaggio di Hello non è partizionata.</li>
 </ul>
 </td>
 <td>6</td></tr>
 
 <tr><td>
 <ul>
-<li>Il flusso di dati di input è suddiviso in 3 partizioni.</li>
-<li>La query contiene un unico passaggio.</li>
-<li>Il passaggio è partizionato.</li>
+<li>flusso di dati di input Hello viene partizionata in base a 3.</li>
+<li>query Hello contiene un unico passaggio.</li>
+<li>passaggio di Hello è partizionata.</li>
 </ul>
 </td>
 <td>18</td></tr>
 
 <tr><td>
 <ul>
-<li>La query contiene due passaggi.</li>
-<li>Nessuno dei passaggi è partizionato.</li>
+<li>query Hello contiene due passi.</li>
+<li>Nessuno dei passaggi di hello è partizionata.</li>
 </ul>
 </td>
 <td>6</td></tr>
 
 <tr><td>
 <ul>
-<li>Il flusso di dati di input è suddiviso in 3 partizioni.</li>
-<li>La query contiene due passaggi. Il passaggio di input viene partizionato, al contrario del secondo passaggio.</li>
-<li>L'istruzione <strong>SELECT</strong> legge dall'input partizionato.</li>
+<li>flusso di dati di input Hello viene partizionata in base a 3.</li>
+<li>query Hello contiene due passi. passaggio di input Hello è partizionata e secondo passaggio hello non lo è.</li>
+<li>Hello <strong>selezionare</strong> istruzione legge da un input hello partizionata.</li>
 </ul>
 </td>
 <td>24 (18 per i passaggi partizionati + 6 per i passaggi non partizionati)</td></tr>
@@ -215,21 +215,21 @@ Per un processo di Analisi di flusso, l'insieme di tutti i passaggi non partizio
 
 ### <a name="examples-of-scaling"></a>Esempi di ridimensionamento
 
-La query seguente calcola il numero di automobili che passano per una stazione di pedaggio con tre caselli in un intervallo di tre minuti. Il numero di unità di streaming di questa query può essere aumentato fino a sei.
+Hello nella query seguente calcola il numero di hello di automobili in una finestra di tre minuti passando un casello con tre tollbooths. Questa query può essere ridimensionato verso l'alto toosix SUs.
 
     SELECT COUNT(*) AS Count, TollBoothId
     FROM Input1
     GROUP BY TumblingWindow(minute, 3), TollBoothId, PartitionId
 
-Per usare più unità di streaming per la query, è necessario che il flusso di dati di input e la query siano entrambi partizionati. Se il partizionamento del flusso di dati è impostato su 3, la query modificata seguente può essere ridimensionata fino a un massimo di 18 unità di streaming:
+toouse più SUs per hello query, entrambi hello flusso dati di input e query hello devono essere partizionati. Poiché la partizione di flusso di dati hello è impostata too3, hello query modificata seguente può essere ridimensionato verso l'alto too18 SUs:
 
     SELECT COUNT(*) AS Count, TollBoothId
     FROM Input1 Partition By PartitionId
     GROUP BY TumblingWindow(minute, 3), TollBoothId, PartitionId
 
-Quando una query è partizionata, gli eventi di input vengono elaborati e aggregati in gruppi di partizioni separati e vengono anche generati eventi di output per ognuno dei gruppi. Quando il campo **GROUP BY** non corrisponde alla chiave di partizione nel flusso di dati di input, il partizionamento può causare risultati imprevisti. Ad esempio, il campo **TollBoothId** nella query precedente non corrisponde alla chiave di partizione **Input1**. I dati provenienti dal casello 1 possono pertanto essere distribuiti in più partizioni.
+Quando una query è partizionata, gli eventi di input hello vengono elaborati e aggregati in gruppi di una partizione separata. Gli eventi di output vengono inoltre generati per ognuno dei gruppi di hello. Partizionamento può causare alcuni risultati imprevisti quando hello **GROUP BY** campo non è una chiave di partizione hello nel flusso di dati di input hello. Ad esempio, hello **TollBoothId** campo nella query precedente hello non è una chiave di partizione hello di **Input1**. il risultato di Hello è tale hello dati da casello #1 possono essere distribuiti in più partizioni.
 
-Le singole partizioni di **Input1** verranno elaborate separatamente da Analisi di flusso. Verranno pertanto creati più record del conteggio relativo al passaggio di automobili dallo stesso casello nella stessa finestra a cascata. Se la chiave di partizione di input non può essere modificata, è possibile risolvere questo problema aggiungendo un altro passaggio non di partizione, come nell'esempio seguente:
+Ognuno di hello **Input1** partizioni saranno elaborate separatamente dal flusso Analitica. Di conseguenza, più record del numero di automobili hello per hello stesso casello in hello stessa finestra a cascata verrà creato. Se non è possibile modificare la chiave di partizione input hello, questo problema può essere risolto aggiungendo un passaggio non partizione, come in hello di esempio seguente:
 
     WITH Step1 AS (
         SELECT COUNT(*) AS Count, TollBoothId
@@ -241,42 +241,42 @@ Le singole partizioni di **Input1** verranno elaborate separatamente da Analisi 
     FROM Step1
     GROUP BY TumblingWindow(minute, 3), TollBoothId
 
-Per questa query è possibile aumentare il numero di unità di streaming fino a 24.
+Questa query può essere scalato too24 SUs.
 
 > [!NOTE]
-> Se si uniscono due flussi, verificare che tali flussi siano partizionati in base alla chiave di partizione della colonna usata per le unioni. Controllare inoltre che in entrambi i flussi sia presente lo stesso numero di partizioni.
+> Se si siano unendo in join due flussi, assicurarsi che i flussi di hello vengono partizionati dalla chiave di partizione hello della colonna hello utilizzare toocreate hello join. Assicurarsi inoltre di aver hello stesso numero di partizioni in entrambi i flussi.
 > 
 > 
 
 ## <a name="configure-stream-analytics-streaming-units"></a>Configurare le unità di streaming di Analisi di flusso
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Nell'elenco delle risorse trovare il processo di Analisi di flusso da ridimensionare e aprirlo.
-3. Nel pannello del processo, in **Configura**, fare clic su **Scale** (Ridimensiona).
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. Nell'elenco di hello delle risorse, trovare il processo di flusso Analitica di hello tooscale desiderati e quindi aprirlo.
+3. In hello processo pannello in **configura**, fare clic su **scala**.
 
     ![Configurazione del processo di Analisi di flusso nel portale di Azure][img.stream.analytics.preview.portal.settings.scale]
 
-4. Usare il dispositivo di scorrimento per impostare le unità di streaming per il processo. Si noti che è possibile definire solo impostazioni specifiche delle unità di streaming.
+4. Utilizzare hello dispositivo di scorrimento tooset hello SUs per processo hello. Si noti che le impostazioni SU toospecific limitato.
 
 
 ## <a name="monitor-job-performance"></a>Monitorare le prestazioni del processo
-Nel portale di Azure è possibile rilevare la velocità effettiva di un processo:
+Utilizza hello portale di Azure, è possibile tenere traccia della velocità effettiva hello di un processo:
 
 ![Processi di monitoraggio di Analisi dei flussi di Azure][img.stream.analytics.monitor.job]
 
-Calcolare la velocità effettiva prevista del carico di lavoro. Se la velocità effettiva è inferiore al previsto, ottimizzare la partizione di input e la query, quindi aggiungere unità di streaming al processo.
+Calcolare la velocità effettiva hello previsto del carico di lavoro hello. Se la velocità effettiva hello è inferiore al previsto, ottimizzare partizione input hello, ottimizzare la query hello e aggiungere SUs tooyour processo.
 
 
-## <a name="visualize-stream-analytics-throughput-at-scale-the-raspberry-pi-scenario"></a>Visualizzare la velocità effettiva di Analisi di flusso su larga scala: scenario Raspberry Pi
-Per illustrare la scalabilità dei processi di Analisi di flusso, è stato eseguito un esperimento in base all'input di un dispositivo Raspberry Pi. L'esperimento ha consentito di osservare l'effetto prodotto da più unità di streaming e partizioni sulla velocità effettiva.
+## <a name="visualize-stream-analytics-throughput-at-scale-hello-raspberry-pi-scenario"></a>Visualizzare la velocità effettiva Analitica flusso a livello di scalabilità: scenario Pi Raspberry hello
+toohelp che è comprendere le modalità di scalabilità dei processi di flusso Analitica, è stata eseguita un esperimento in base all'input da un dispositivo Raspberry Pi. Questo esperimento farci vedere hello effetto sulla velocità effettiva di più unità di streaming e partizioni.
 
-In questo scenario il dispositivo invia i dati dei sensori (client) a un hub eventi. Analisi di flusso elabora i dati e invia come output un avviso o dati statistici a un altro hub eventi. 
+In questo scenario, il dispositivo hello invia hub di eventi tooan sensore dati (client). Streaming Analitica elabora dati hello e invia un avviso o nelle statistiche come un hub di eventi di output tooanother. 
 
-Il client invia i dati dei sensori in formato JSON e anche l'output dei dati è in formato JSON. L'aspetto dei dati sarà simile al seguente:
+client Hello invia i dati del sensore in formato JSON. anche l'output di Hello dati è in formato JSON. dati Hello sono simile al seguente:
 
     {"devicetime":"2014-12-11T02:24:56.8850110Z","hmdt":42.7,"temp":72.6,"prss":98187.75,"lght":0.38,"dspl":"R-PI Olivier's Office"}
 
-La query seguente consente di inviare un avviso quando una luce si spegne:
+Hello seguente query è toosend usato un avviso quando una luce è disattivata:
 
     SELECT AVG(lght),
      "LightOff" as AlertText
@@ -287,9 +287,9 @@ La query seguente consente di inviare un avviso quando una luce si spegne:
 
 ### <a name="measure-throughput"></a>Misurare la velocità effettiva
 
-In questo contesto la velocità effettiva è la quantità di dati di input elaborata da Analisi di flusso in un determinato intervallo di tempo (10 minuti). Per ottenere la velocità effettiva di elaborazione ottimale per i dati di input, l'input del flusso dei dati e la query sono stati partizionati. Nella query è stato incluso **COUNT()** per misurare il numero di eventi di input che sono stati elaborati. Per essere certi che il processo non rimanesse semplicemente in attesa dell'arrivo di eventi di input, ogni partizione dell'hub eventi di input è stata precaricata con circa 300 MB di dati di input.
+In questo contesto, velocità effettiva è quantità hello dei dati di input elaborati dal flusso Analitica in un periodo di tempo stabilito. (È misurato per 10 minuti). dati di input tooachieve hello migliore elaborazione velocità effettiva per hello, sia i dati hello flusso di input e sono stati partizionati query hello. Sono inclusi **Count ()** in hello query toomeasure sono stati elaborati come molti eventi di input. processo hello che toomake non semplicemente attendendo toocome gli eventi di input, ogni partizione dell'hub di eventi di input hello è stato precaricato con circa 300 MB di dati di input.
 
-La tabella seguente mostra i risultati ottenuti aumentando il numero di unità di streaming e il numero di partizioni corrispondenti negli hub eventi.  
+Hello nella tabella seguente sono illustrati i risultati di hello che è stato illustrato quando è stato aumentato il numero di hello di unità di streaming e partizione corrispondente hello conteggi nell'hub eventi.  
 
 <table border="1">
 <tr><th>Partizioni di input</th><th>Partizioni di output</th><th>Unità di streaming</th><th>Velocità effettiva sostenuta
@@ -332,7 +332,7 @@ La tabella seguente mostra i risultati ottenuti aumentando il numero di unità d
 </tr>
 </table>
 
-Il grafico seguente illustra la relazione tra unità di streaming e velocità effettiva.
+E hello grafico seguente viene illustrata una visualizzazione della relazione hello tra SUs e la velocità effettiva.
 
 ![img.stream.analytics.perfgraph][img.stream.analytics.perfgraph]
 
@@ -340,7 +340,7 @@ Il grafico seguente illustra la relazione tra unità di streaming e velocità ef
 Per ulteriore assistenza, provare il [Forum di Analisi dei flussi di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Informazioni di riferimento sulle API REST di gestione di Analisi di flusso di Azure](https://msdn.microsoft.com/library/azure/dn835031.aspx)

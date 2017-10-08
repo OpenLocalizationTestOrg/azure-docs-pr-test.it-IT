@@ -1,6 +1,6 @@
 ---
-title: Esempio di distribuzione di script dell'interfaccia della riga di comando di Azure Service Fabric
-description: Distribuire un'applicazione in un cluster di Azure Service Fabric usando l'interfaccia della riga di comando di Azure Service Fabric
+title: aaaAzure esempio distribuire uno Script del servizio dell'infrastruttura CLI
+description: Distribuire un cluster di Azure Service Fabric tooan applicazione utilizzando hello CLI di Azure Service Fabric
 services: service-fabric
 documentationcenter: 
 author: Thraka
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 08/22/2017
 ms.author: adegeo
 ms.custom: mvc
-ms.openlocfilehash: c77ecfccdf7d3e34b0b3133e9c63810a04fb1132
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aaec7042a4fd7ed32ad706cde70361f23d18fb48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-an-application-to-a-service-fabric-cluster"></a>Distribuire un'applicazione in un cluster di Service Fabric
+# <a name="deploy-an-application-tooa-service-fabric-cluster"></a>Distribuire un cluster di Service Fabric tooa applicazione
 
-Questo script di esempio copia un pacchetto dell'applicazione in un archivio immagini del cluster, registra il tipo di applicazione nel cluster e crea un'istanza di applicazione dal tipo di applicazione. Anche i servizi predefiniti vengono creati in questa fase.
+Questo script di esempio copia di un archivio di immagini dell'applicazione pacchetto tooa cluster, registra il tipo di applicazione hello cluster hello e crea un'istanza di applicazione dal tipo di applicazione hello. Anche i servizi predefiniti vengono creati in questa fase.
 
-Se necessario, installare l'[interfaccia della riga di comando di Service Fabric](../service-fabric-cli.md).
+Se necessario, installare hello [servizio infrastruttura CLI](../service-fabric-cli.md).
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-sh[main](../../../cli_scripts/service-fabric/deploy-application/deploy-application.sh "Distribuire un'applicazione in un cluster")]
+[!code-sh[main](../../../cli_scripts/service-fabric/deploy-application/deploy-application.sh "Deploy an application tooa cluster")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione
 
-Al termine, è possibile usare lo script [remove](cli-remove-application.md) per rimuovere l'applicazione. Lo script remove elimina l'istanza dell'applicazione, annulla la registrazione del tipo di applicazione ed elimina il pacchetto dell'applicazione dall'archivio immagini.
+Al termine, hello [rimuovere](cli-remove-application.md) script può essere un'applicazione hello tooremove utilizzato. script di rimozione Hello Elimina istanza dell'applicazione hello, Annulla la registrazione di tipo di applicazione hello e pacchetto dell'applicazione hello dall'archivio immagini.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni, vedere la [documentazione sull'interfaccia della riga di comando di Service Fabric](../service-fabric-cli.md).
+Per ulteriori informazioni, vedere hello [documentazione servizio infrastruttura CLI](../service-fabric-cli.md).
 
-Altri esempi dell'interfaccia della riga di comando di Service Fabric per Azure Service Fabric sono disponibili negli [esempi dell'interfaccia della riga di comando di Service Fabric](../samples-cli.md).
+Esempi aggiuntivi di servizio dell'infrastruttura CLI per Azure Service Fabric sono reperibile in hello [esempi del servizio dell'infrastruttura CLI](../samples-cli.md).

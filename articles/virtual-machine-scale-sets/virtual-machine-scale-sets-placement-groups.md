@@ -1,6 +1,6 @@
 ---
-title: "Uso di set di scalabilità di macchine virtuali di Azure di grandi dimensioni | Documentazione Microsoft"
-description: "Informazioni utili per usare set di scalabilità di macchine virtuali di Azure di grandi dimensioni"
+title: "aaaWorking con grandi set di scalabilità macchina virtuale di Azure | Documenti Microsoft"
+description: "È necessario set di scalabilità tooknow toouse grandi dimensioni macchina virtuale di Azure"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -15,52 +15,52 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 2/7/2017
 ms.author: guybo
-ms.openlocfilehash: 9e9eae1623e55c1c05e97aa0b836819ce5dc16f9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a39aab25925d7fc50763f0a20148b1f2213b492f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-large-virtual-machine-scale-sets"></a>Uso di set di scalabilità di macchine virtuali di grandi dimensioni
-È ora possibile creare [set di scalabilità di macchine virtuali](/azure/virtual-machine-scale-sets/) di Azure con capacità fino a 1.000 VM. In questo documento è definito _set di scalabilità di macchine virtuali di grandi dimensioni_ un set di scalabilità ridimensionabile fino a oltre 100 VM. Tale funzionalità è impostata da una proprietà del set di scalabilità (_singlePlacementGroup=False_). 
+È ora possibile creare Azure [set di scalabilità di macchine virtuali](/azure/virtual-machine-scale-sets/) con una capacità di backup too1, 000 macchine virtuali. In questo documento, un _set di scalabilità della macchina virtuale di grandi dimensioni_ è definito come un set di scalabilità toogreater di 100 macchine virtuali in grado di supportare di scalabilità. Tale funzionalità è impostata da una proprietà del set di scalabilità (_singlePlacementGroup=False_). 
 
-Nei set di scalabilità di grandi dimensioni, alcuni aspetti, come il bilanciamento del carico e i domini di errore, presentano un comportamento diverso rispetto ai set di scalabilità standard. Questo documento illustra le caratteristiche dei set di scalabilità di grandi dimensioni e offre informazioni utili per usarli correttamente nelle applicazioni. 
+Alcuni aspetti di su larga scala imposta, ad esempio domini di errore e bilanciamento del carico si comportano in modo diverso tooa scala standard set. Questo documento illustra le caratteristiche di hello del set su larga scala e descrive ciò che si necessario tooknow toosuccessfully usarli nelle applicazioni. 
 
-Un approccio comune per distribuire un'infrastruttura cloud su larga scala consiste nel creare un set di _unità di scala_, ad esempio creando più set di scalabilità di macchine virtuali in più reti virtuali e account di archiviazione. Questo approccio offre una gestione più semplice rispetto alle VM singole e la presenza di più unità di scala è utile per numerose applicazioni, in particolare per quelle che richiedono altri componenti organizzabili in stack come più reti virtuali ed endpoint. Se l'applicazione richiede un singolo cluster di grandi dimensioni, tuttavia, può essere più semplice distribuire un singolo set di scalabilità con un massimo di 1.000 VM. Gli scenari di esempio includono distribuzioni centralizzate di Big Data o griglie di calcolo che richiedono una gestione semplice di un esteso pool di nodi di lavoro. In combinazione con i [dischi dati collegati](virtual-machine-scale-sets-attached-disks.md) dei set di scalabilità di macchine virtuali, i set di scalabilità di grandi dimensioni consentono di distribuire un'infrastruttura scalabile costituita da migliaia di core e petabyte di spazio di archiviazione in un'unica operazione.
+Un approccio comune per la distribuzione dell'infrastruttura cloud in larga scala è toocreate un set di _unità di scala_, ad esempio ridimensionare set in più reti virtuali e gli account di archiviazione tramite la creazione di più macchine virtuali. Questo approccio fornisce più semplice gestione confrontati toosingle macchine virtuali e più unità di scala sono utili per molte applicazioni, in particolare quelle che richiedono altri componenti duplicabile come più reti virtuali e gli endpoint. Se l'applicazione richiede un singolo cluster di grandi dimensioni, tuttavia, può essere più semplice toodeploy una singola scala di imposta too1, 000 macchine virtuali. Gli scenari di esempio includono distribuzioni centralizzate di Big Data o griglie di calcolo che richiedono una gestione semplice di un esteso pool di nodi di lavoro. Combinata con set di scalabilità della macchina virtuale [i dischi dati collegati](virtual-machine-scale-sets-attached-disks.md), set di scalabilità di grandi dimensioni consentono di toodeploy un'infrastruttura scalabile, composta da migliaia di core e petabyte di spazio di archiviazione, come una singola operazione.
 
 ## <a name="placement-groups"></a>Gruppi di posizionamento 
-La caratteristica distintiva di un set di scalabilità _di grandi dimensioni_ non è il numero di VM, ma il numero di _gruppi di posizionamento_ che contiene. Un gruppo di posizionamento è un costrutto simile a un set di disponibilità di Azure, con specifici domini di errore e di aggiornamento. Per impostazione predefinita, un set di scalabilità è costituito da un singolo gruppo di posizionamento con una dimensione massima di 100 VM. Se la proprietà del set di scalabilità denominata _singlePlacementGroup_ è impostata su _false_, il set può essere costituito da più gruppi di posizionamento con un intervallo da 0 a 1.000 VM. Quando la proprietà è impostata sul valore predefinito _true_, un set di scalabilità è costituito da un singolo gruppo di posizionamento, con un intervallo da 0 a 100 VM.
+Il modo in cui un _grandi_ set speciale di scalabilità non è il numero di hello di macchine virtuali, ma il numero di hello di _gruppi posizionamento_ contiene. Un gruppo di selezione host è un costrutto simile tooan Azure set di disponibilità, con i propri domini di errore e domini di aggiornamento. Per impostazione predefinita, un set di scalabilità è costituito da un singolo gruppo di posizionamento con una dimensione massima di 100 VM. Se una scala impostata chiamato _singlePlacementGroup_ è impostato too_false_, set di scalabilità hello può essere composto da più gruppi di posizionamento e dispone di un intervallo di 0-1000 macchine virtuali. Impostare quando il valore predefinito toohello di _true_, un set di scalabilità è costituito da un gruppo di selezione host singolo e dispone di un intervallo 0-100 macchine virtuali.
 
 ## <a name="checklist-for-using-large-scale-sets"></a>Elenco di controllo per l'uso di set di scalabilità di grandi dimensioni
-Per stabilire se l'applicazione può usare in modo efficace set di scalabilità di grandi dimensioni, considerare i requisiti seguenti:
+toodecide se l'applicazione può stabilire un uso efficace di set su larga scala, considerare hello seguenti requisiti:
 
-- I set di scalabilità di grandi dimensioni richiedono Azure Managed Disks. Per i set di scalabilità non creati con Managed Disks sono necessari più account di archiviazione (uno ogni 20 VM). I set di scalabilità di grandi dimensioni sono progettati per usare esclusivamente Managed Disks, per ridurre il sovraccarico nella gestione dell'archiviazione ed evitare il rischio di raggiungere i limiti della sottoscrizione per gli account di archiviazione. Se non si usa Managed Disks, il set di scalabilità è limitato a 100 VM.
-- I set di scalabilità creati da immagini di Azure Marketplace sono ridimensionabili fino a 1.000 VM.
-- I set di scalabilità creati da immagini personalizzate (ossia immagini di VM create e caricate dall'utente) sono attualmente ridimensionabili fino a 100 VM.
-- Il bilanciamento del carico di livello 4 con Azure Load Balancer non è ancora supportato per i set di scalabilità costituiti da più gruppi di posizionamento. Se è necessario usare Azure Load Balancer, verificare che il set di scalabilità sia configurato per l'uso di un singolo gruppo di posizionamento, come da impostazione predefinita.
-- Il bilanciamento del carico di livello 7 con il gateway applicazione di Azure è supportato per tutti i set di scalabilità.
-- Un set di scalabilità è definito con una singola subnet. Verificare che lo spazio indirizzi della subnet sia sufficiente per tutte le VM necessarie. Per impostazione predefinita, un set di scalabilità effettua un provisioning eccessivo (ossia crea VM aggiuntive, per cui non vengono applicati addebiti, in fase di distribuzione o quando si aumenta il numero di istanze) per migliorare l'affidabilità e le prestazioni della distribuzione. Prevedere uno spazio indirizzi superiore del 20% rispetto al numero di VM a cui si intende eseguire il ridimensionamento.
-- Se si pianifica di distribuire molte VM, potrebbe essere necessario aumentare i limiti di quota dei core di calcolo.
-- I domini di errore e di aggiornamento sono coerenti solo all'interno di un gruppo di posizionamento. Questa architettura non modifica la disponibilità generale di un set di scalabilità, perché le VM sono distribuite in modo uniforme su hardware fisico distinto. Se è necessario garantire che due VM risiedano in hardware diverso, tuttavia, verificare che si trovino in domini di errore diversi nello stesso gruppo di posizionamento. Il dominio di errore e l'ID del gruppo di posizionamento sono riportati nella _visualizzazione dell'istanza_ di una VM del set di scalabilità. La visualizzazione dell'istanza di una VM del set di scalabilità è disponibile in [Esplora risorse di Azure](https://resources.azure.com/).
+- I set di scalabilità di grandi dimensioni richiedono Azure Managed Disks. Per i set di scalabilità non creati con Managed Disks sono necessari più account di archiviazione (uno ogni 20 VM). Imposta su larga scala è toowork progettato esclusivamente con i dischi gestiti tooreduce limita il rischio di hello overhead di gestione e tooavoid archiviazione della sottoscrizione per gli account di archiviazione. Se non si utilizzano dischi gestiti, il set di scalabilità è macchine virtuali too100 limitato.
+- Set di scalabilità di create da immagini di Azure Marketplace possono applicare la scalabilità verticale too1, 000 macchine virtuali.
+- Set di scalabilità di create da immagini personalizzate (immagini di macchina virtuale creare e caricare manualmente) attualmente è possibile ridimensionare le VM too100.
+- Livello 4 bilanciamento del carico con hello bilanciamento del carico di Azure non è ancora supportata per i set di scalabilità composti da più gruppi di posizionamento. Se è necessario hello toouse bilanciamento del carico di Azure rendere scala hello che è un gruppo di posizionamento singolo, che è l'impostazione predefinita hello toouse configurato.
+- Livello 7 bilanciamento del carico con hello Gateway applicazione Azure è supportata per tutti i set di scalabilità.
+- Un set di scalabilità è definito con una sola subnet, verificare che la subnet disponga di uno spazio degli indirizzi sufficiente per tutte le macchine virtuali hello è necessario. Per impostazione predefinita, una scala impostata overprovisions (Crea ulteriori macchine virtuali in fase di distribuzione o quando la scalabilità orizzontale, che non vengono addebitati i) tooimprove distribuzione affidabilità e prestazioni. Consente un maggiore numero hello di macchine virtuali che si prevede di tooscale a indirizzo spazio 20%.
+- Se si intende toodeploy più macchine virtuali, i limiti di quota core di calcolo potrebbe essere necessario toobe aumentato.
+- I domini di errore e di aggiornamento sono coerenti solo all'interno di un gruppo di posizionamento. Questa architettura non modifica hello complessiva set di disponibilità di una scala, come le macchine virtuali sono distribuite uniformemente tra i componenti hardware fisici distinti, ma non significa che se è necessario tooguarantee due macchine virtuali sono in un hardware diverso, assicurarsi che siano in errore i domini hello nello stesso gruppo di posizionamento. ID gruppo di dominio e il posizionamento di errore vengono visualizzati in hello _Vista istanza_ di scala di una set di VM. È possibile visualizzare visualizzazione hello dell'istanza di un set di scalabilità della macchina virtuale in hello [Esplora inventario risorse di Azure](https://resources.azure.com/).
 
 
 ## <a name="creating-a-large-scale-set"></a>Creazione di un set di scalabilità di grandi dimensioni
-Quando si crea un set di scalabilità nel portale di Azure, è possibile consentire il ridimensionamento a più gruppi di posizionamento impostando l'opzione _Limit to a single placement group_ (Limita a singolo gruppo di posizionamento) su _False_ nel pannello _Informazioni di base_. Con questa opzione impostata su _False_, è possibile specificare un valore fino a 1.000 in _Numero di istanze_.
+Quando si crea un set nel portale di Azure hello di scalabilità, è possibile consentirne gruppi di posizionamento toomultiple tooscale dall'impostazione hello _gruppo di selezione host singolo limite tooa_ too_False_ opzione in hello _nozioni di base_ blade. Con too_False_ impostare questa opzione, è possibile specificare un _numero_ valore backup too1, 000.
 
 ![](./media/virtual-machine-scale-sets-placement-groups/portal-large-scale.png)
 
-È possibile creare un set di scalabilità di macchine virtuali di grandi dimensioni con il comando _az vmss create_ dell'[interfaccia della riga di comando di Azure](https://github.com/Azure/azure-cli). Questo comando configura impostazioni predefinite intelligenti, ad esempio dimensioni di subnet basate sull'argomento _instance-count_:
+È possibile creare una vasta gamma di macchina virtuale impostata utilizzando hello [CLI di Azure](https://github.com/Azure/azure-cli) _vmss az creare_ comando. Questo comando imposta le impostazioni predefinite intelligenti, ad esempio la dimensione della subnet in base a hello _-conteggio delle istanze_ argomento:
 
 ```bash
 az group create -l southcentralus -n biginfra
 az vmss create -g biginfra -n bigvmss --image ubuntults --instance-count 1000
 ```
-Si noti che il comando _vmss create_ imposta alcuni valori di configurazione predefiniti se non vengono specificati dall'utente. Per visualizzare le opzioni che possono essere sostituite, provare il comando seguente:
+Si noti che hello _vmss creare_ comando per impostazione predefinita di determinati valori di configurazione, se non si specifica. toosee hello opzioni disponibili che è possibile eseguire l'override, provare:
 ```bash
 az vmss create --help
 ```
 
-Se si crea un set di scalabilità di grandi dimensioni componendo un modello di Azure Resource Manager, verificare che il modello crei un set di scalabilità basato su Azure Managed Disks. È possibile impostare la proprietà _singlePlacementGroup_ su _false_ nella sezione _properties_ della risorsa _Microsoft.Compute/virtualMAchineScaleSets_. Il frammento JSON seguente mostra l'inizio di un modello di set di scalabilità, con una capacità di 1.000 VM e l'impostazione _"singlePlacementGroup": false_:
+Se si sta creando una su larga scala impostata tramite la composizione di un modello di gestione risorse di Azure, assicurarsi che il modello di hello consente di creare un set di scalabilità in base a dischi gestiti di Azure. È possibile impostare hello _singlePlacementGroup_ too_false_ proprietà in hello _proprietà_ sezione di hello _Microsoft.Compute/virtualMAchineScaleSets_ risorse. il frammento JSON seguente Hello viene inizio hello di un modello di set di scalabilità, tra cui la capacità di macchine Virtuali hello 1.000 e hello _"singlePlacementGroup": false_ impostazione:
 ```json
 {
   "type": "Microsoft.Compute/virtualMachineScaleSets",
@@ -77,12 +77,12 @@ Se si crea un set di scalabilità di grandi dimensioni componendo un modello di 
       "mode": "Automatic"
     }
 ```
-Per un esempio completo di modello di set di scalabilità di grandi dimensioni, vedere [https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json](https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json).
+Per un esempio completo di una vasta gamma di modello di set, fare riferimento troppo[https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json](https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json).
 
-## <a name="converting-an-existing-scale-set-to-span-multiple-placement-groups"></a>Conversione di un set di scalabilità esistente per includere più gruppi di posizionamento
-Per consentire il ridimensionamento di un set di scalabilità di macchine virtuali esistente a più di 100 VM, è necessario modificare la proprietà _singlePlacementGroup_ impostandola su _false_ nel modello di set di scalabilità. È possibile testare la modifica di questa proprietà con [Esplora risorse di Azure](https://resources.azure.com/). Trovare un set di scalabilità esistente, selezionare _Edit_ (Modifica) e modificare la proprietà _singlePlacementGroup_. Se questa proprietà non è visualizzata, è possibile che si stia visualizzando il set di scalabilità con una versione precedente dell'API Microsoft.Compute.
+## <a name="converting-an-existing-scale-set-toospan-multiple-placement-groups"></a>Conversione di una scala esistente impostare toospan più gruppi di posizionamento
+toomake una scalabilità della macchina virtuale esistente definito che consenta di ridimensionamento toomore di 100 macchine virtuali, è necessario hello toochange _singplePlacementGroup_ too_false_ proprietà nella scala hello impostare modello. È possibile verificare la modifica della proprietà con hello [Esplora inventario risorse di Azure](https://resources.azure.com/). Trovare un set scala esistente, selezionare _modifica_ e modificare hello _singlePlacementGroup_ proprietà. Se questa proprietà non viene visualizzata, è possibile che visualizzare hello set di scalabilità con una versione precedente di hello API Microsoft. COMPUTE.
 
 >[!NOTE] 
-È possibile modificare una set di scalabilità passando dal supporto di un singolo gruppo di posizionamento (comportamento predefinito) al supporto di più gruppi di posizionamento, ma non eseguire la conversione inversa. Di conseguenza, prima di effettuare la conversione è importante comprendere le proprietà dei set di scalabilità di grandi dimensioni. In particolare, verificare che non sia necessario il bilanciamento del carico di livello 4 con Azure Load Balancer.
+È possibile modificare un set di supportare una singola posizione gruppo solo (comportamento predefinito di hello) tooa che supporta più gruppi di posizionamento di scalabilità, ma non è possibile convertire hello viceversa. Verificare pertanto che la conoscenza delle proprietà hello dei set di grandi dimensioni prima della conversione. Verificare in particolare, che non è necessario con bilanciamento del carico di Azure hello di bilanciamento del carico di livello 4.
 
 

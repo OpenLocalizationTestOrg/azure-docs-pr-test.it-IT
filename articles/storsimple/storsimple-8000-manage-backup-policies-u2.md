@@ -1,6 +1,6 @@
 ---
-title: Gestire i criteri di backup di StorSimple serie 8000 | Microsoft Docs
-description: Illustra come usare il servizio Gestione dispositivi StorSimple per creare e gestire backup manuali, pianificazioni di backup e conservazione dei backup nei dispositivi StorSimple serie 8000.
+title: criteri di backup aaaManage StorSimple 8000 series | Documenti Microsoft
+description: Viene illustrato come utilizzare toocreate servizio di gestione di dispositivi StorSimple hello e gestire i backup manuali, pianificazioni di backup e conservazione dei backup in un dispositivo StorSimple serie 8000.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 569dbfdeb7dcd526cb5a54b487ea1bfb59b13cc6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7c56365abb6ba69d02008829ca6ae703d4632705
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-in-azure-portal-to-manage-backup-policies"></a>Usare il servizio Gestione dispositivi StorSimple nel portale di Azure per gestire i criteri di backup
+# <a name="use-hello-storsimple-device-manager-service-in-azure-portal-toomanage-backup-policies"></a>Utilizzare il servizio di gestione di dispositivi StorSimple hello in Criteri di backup toomanage portale di Azure
 
 
 ## <a name="overview"></a>Panoramica
 
-Questa esercitazione illustra come usare il pannello **criteri di Backup** del servizio Gestione dispositivi StorSimple per controllare i processi di backup e le regole di conservazione dei backup per i volumi StorSimple. Viene inoltre descritto come eseguire un backup manuale.
+In questa esercitazione viene illustrato come toouse hello del servizio di gestione di dispositivi StorSimple **criteri di Backup** i processi di backup toocontrol pannello e alla conservazione dei backup per i volumi StorSimple. Viene inoltre descritto come toocomplete un backup manuale.
 
-Quando si esegue il backup di un volume, è possibile scegliere di creare uno snapshot locale o uno snapshot nel cloud. Se si esegue il backup di un volume aggiunto in locale, è consigliabile specificare uno snapshot nel cloud. Se si crea un numero elevato di snapshot locali di un volume aggiunto in locale e tali snapshot sono associati a un set di dati che dispone di molte varianze, si determinerà una situazione favorevole all'esaurimento rapido dello spazio locale. Se si sceglie di creare snapshot locali, è consigliabile creare meno snapshot giornalieri per eseguire il backup dello stato più recente, conservarli per un giorno e quindi eliminarli.
+Quando si esegue il backup di un volume, è possibile scegliere toocreate uno snapshot locale o uno snapshot nel cloud. Se si esegue il backup di un volume aggiunto in locale, è consigliabile specificare uno snapshot nel cloud. Se si crea un numero elevato di snapshot locali di un volume aggiunto in locale e tali snapshot sono associati a un set di dati che dispone di molte varianze, si determinerà una situazione favorevole all'esaurimento rapido dello spazio locale. Se si sceglie tootake gli snapshot locali, è consigliabile richiedere meno tooback snapshot giornalieri fino allo stato più recente di hello, conservarli per un giorno e quindi eliminarli.
 
-Quando si crea uno snapshot nel cloud di un volume aggiunto in locale, copiare solo i dati modificati nel cloud, in cui è deduplicato e compresso.
+Quando si utilizza uno snapshot nel cloud di un volume aggiunto in locale, copiare solo hello modificato dati toohello nel cloud, in cui è deduplicato e compressi.
 
-## <a name="the-backup-policy-blade"></a>Pannello Criteri di backup
+## <a name="hello-backup-policy-blade"></a>pannello dei criteri di Backup Hello
 
-Il pannello **Criteri di Backup** del dispositivo StorSimple consente di gestire i criteri di backup e pianificare gli snapshot in locale e nel cloud. I criteri di backup vengono usati per configurare le pianificazioni dei backup e la regole di conservazione dei backup per una raccolta di volumi. I criteri di backup consentono di creare uno snapshot di più volumi contemporaneamente. Questo significa che i backup creati con un criterio di backup saranno copie coerenti con l'arresto anomalo.
+Hello **criteri di Backup** pannello per il dispositivo StorSimple consente toomanage i criteri di backup e di pianificazione locale e di snapshot nel cloud. Criteri di backup sono pianificazioni di backup utilizzato tooconfigure e conservazione dei backup per una raccolta di volumi. Criteri di backup consentono di tootake uno snapshot di più volumi contemporaneamente. Ciò significa che i backup hello creati da un criterio di backup sarà copie coerenti con l'arresto anomalo del sistema.
 
-L'elenco tabulare dei criteri di backup consente anche di filtrare i criteri di backup esistenti in base a uno o più dei seguenti campi:
+Elenco tabulare di criteri di backup Hello consente inoltre di toofilter hello criteri di backup esistenti da uno o più dei seguenti campi hello:
 
-* **Nome criterio** : il nome associato al criterio. I diversi tipi di criteri includono:
+* **Nome criterio** : hello nome associato a criteri hello. Hello diversi tipi di criteri includono:
 
-  * Criteri pianificati, vengono creati esplicitamente dall'utente.
-  * Criteri importati, che sono stati originariamente creati in Gestione Snapshot StorSimple. Hanno un tag che descrive l'host di gestione Snapshot StorSimple che i criteri sono stati importati da.
+  * Criteri pianificati, creati esplicitamente dall'utente hello.
+  * Importare i criteri che sono stati originariamente creati in hello gestione Snapshot StorSimple. Questi disponga di un tag che descrive l'host di gestione Snapshot StorSimple hello che sono stati importati criteri hello da.
 
   > [!NOTE]
-  > I criteri di backup automatici o predefiniti non sono più abilitati al momento della creazione del volume.
+  > Criteri di backup automatico o predefinito non sono più abilitati in fase di hello della creazione del volume.
 
-* **Ultimo backup completato** : la data e l'ora dell'ultimo backup riuscito è stato creato con questo criterio.
+* **Ultimo backup riuscito** : hello data e l'ora di hello ultimo backup completato che è stato creato con questo criterio.
 
-* **Backup successivo** : data e ora del successivo backup pianificato verrà avviato da questo criterio.
+* **Backup successivo** : hello data e l'ora di hello backup pianificato successivo che verrà avviato da questo criterio.
 
-* **Volumi** – i volumi associati al criterio. Tutti i volumi associati a un criterio di backup vengono raggruppati quando vengono creati i backup.
+* **Volumi** : hello volumi associati criteri hello. Tutti i volumi di hello associati a un criterio di backup vengono raggruppati quando vengono creati i backup.
 
-* **Pianificazioni** – il numero di pianificazioni associate al criterio di backup.
+* **Le pianificazioni** : numero di pianificazioni associate al criterio di backup hello hello.
 
-Le operazioni più comuni che è possibile eseguire con i criteri di backup sono:
+Hello utilizzato di frequente operazioni che è possibile eseguire per i criteri di backup sono:
 
 * Aggiungere un criterio di backup
 * Aggiungere o modificare una pianificazione
@@ -63,39 +63,39 @@ Le operazioni più comuni che è possibile eseguire con i criteri di backup sono
 
 ## <a name="add-a-backup-policy"></a>Aggiungere un criterio di backup
 
-Aggiungere un criterio di backup per la pianificazione automatica dei backup. Al volume creato per la prima volta non è associato alcun criterio di backup predefinito. È necessario aggiungere e assegnare un criterio di backup per proteggere i dati del volume.
+Aggiungere una pianificazione di criteri di backup tooautomatically i backup. Al volume creato per la prima volta non è associato alcun criterio di backup predefinito. È necessario tooadd e assegnare i dati di volume tooprotect un criterio di backup.
 
-Attenersi alla procedura seguente nel portale di Azure per aggiungere un criterio di backup per il dispositivo StorSimple. Dopo aver aggiunto i criteri, è possibile definire una pianificazione (vedere [Aggiungere o modificare una pianificazione](#add-or-modify-a-schedule)).
+Eseguire i passaggi hello tooadd portale Azure un criterio di backup per il dispositivo StorSimple hello. Dopo aver aggiunto i criteri di hello, è possibile definire una pianificazione (vedere [aggiungere o modificare una pianificazione](#add-or-modify-a-schedule)).
 
 [!INCLUDE [storsimple-8000-add-backup-policy-u2](../../includes/storsimple-8000-add-backup-policy-u2.md)]
 
 ## <a name="add-or-modify-a-schedule"></a>Aggiungere o modificare una pianificazione
 
-È possibile aggiungere o modificare una pianificazione che è collegata a un criterio di backup nel dispositivo StorSimple. Attenersi alla procedura seguente nel portale di Azure per aggiungere o modificare una pianificazione.
+È possibile aggiungere o modificare una pianificazione che viene collegato tooan criteri di backup esistenti nel dispositivo StorSimple. Eseguire i passaggi hello tooadd portale Azure hello o modificare una pianificazione.
 
 [!INCLUDE [storsimple-8000-add-modify-backup-schedule](../../includes/storsimple-8000-add-modify-backup-schedule-u2.md)]
 
 
 ## <a name="add-or-remove-a-volume"></a>Aggiungere o rimuovere un volume
 
-È possibile aggiungere o rimuovere un volume assegnato a un criterio di backup nel dispositivo StorSimple. Attenersi alla procedura seguente nel portale di Azure per aggiungere o rimuovere un volume.
+È possibile aggiungere o rimuovere un volume assegnato tooa i criteri di backup nel dispositivo StorSimple. Eseguire i passaggi hello tooadd portale Azure hello o rimozione di un volume.
 
 [!INCLUDE [storsimple-8000-add-volume-backup-policy-u2](../../includes/storsimple-8000-add-remove-volume-backup-policy-u2.md)]
 
 
 ## <a name="delete-a-backup-policy"></a>Eliminare un criterio di backup
 
-Attenersi alla procedura seguente nel portale di Azure per eliminare un criterio di backup nel dispositivo StorSimple.
+Eseguire i passaggi hello toodelete portale Azure un criterio di backup nel dispositivo StorSimple hello.
 
 [!INCLUDE [storsimple-8000-delete-backup-policy](../../includes/storsimple-8000-delete-backup-policy.md)]
 
 ## <a name="take-a-manual-backup"></a>Creazione di un backup manuale
 
-Attenersi alla procedura seguente nel portale di Azure per creare un backup manuale su richiesta per un singolo volume.
+Eseguire i passaggi backup (manuale) di hello toocreate portale Azure una richiesta per un singolo volume hello.
 
 [!INCLUDE [storsimple-8000-create-manual-backup](../../includes/storsimple-8000-create-manual-backup.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Altre informazioni sull'[utilizzo del servizio Gestione dispositivi StorSimple per la gestione del dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+Altre informazioni, vedere [utilizzando hello tooadminister servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
 

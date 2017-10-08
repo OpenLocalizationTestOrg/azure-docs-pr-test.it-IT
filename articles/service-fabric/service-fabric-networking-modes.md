@@ -1,6 +1,6 @@
 ---
-title: "Configurare le modalità di rete per i servizi del contenitore di Azure Service Fabric | Microsoft Docs"
-description: "Informazioni su come configurare le diverse modalità di rete supportate da Azure Service Fabric."
+title: "le modalità per servizi di Azure Service Fabric contenitore aaaConfigure | Documenti Microsoft"
+description: "Informazioni su come toosetup hello diverse modalità di rete di Azure Service Fabric supporta."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: f792f9604a5d6e62551ed92c1049d6e2b4216417
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5c5dd4c590c7698a947503cbe8ef66ff7d6b503a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-container-networking-modes"></a>Modalità di rete del contenitore di Service Fabric
 
-La modalità del servizio di rete predefinita offerta nel cluster di Service Fabric per i servizi del contenitore è la modalità di rete `nat`. Con la modalità di rete `nat`, la presenza di più di un servizio di contenitori in ascolto per gli stessi risultati di porta comporta errori di distribuzione. Per eseguire diversi servizi in ascolto sulla stessa porta, Service Fabric supporta la modalità di rete `open` (versione 5.7 o versioni successive). Con la modalità di rete `open`, ogni servizio del contenitore ottiene un indirizzo IP assegnato dinamicamente internamente, consentendo più servizi in ascolto sulla stessa porta.   
+Hello modalità di rete predefinite disponibili in Service Fabric hello cluster per i servizi contenitore è hello `nat` modalità di rete. Con hello `nat` modalità, con toohello di ascolto di più contenitori del servizio di rete stessa porta genera errori di distribuzione. Per l'esecuzione di diversi servizi in ascolto sulla stessa porta, Service Fabric supporta hello hello `open` modalità di rete (versione 5.7 o versioni successive). Con hello `open` modalità di rete, ogni servizio contenitore ottiene un indirizzo IP assegnato dinamicamente internamente che consente più servizi toolisten toohello stessa porta.   
 
-Pertanto, con un singolo tipo di servizio con un endpoint statico definito nel manifesto del servizio, è possibile creare ed eliminare nuovi servizi senza errori di distribuzione tramite la modalità di rete `open`. Analogamente, è possibile usare lo stesso file `docker-compose.yml` con il mapping delle porte statiche per la creazione di più servizi.
+Pertanto, con un singolo tipo di servizio con un endpoint statico definito nel manifesto del servizio hello, nuovi servizi possono essere creati ed eliminati senza errori di distribuzione utilizzando hello `open` modalità di rete. Analogamente, è possibile utilizzare hello stesso `docker-compose.yml` file con mapping di porta statica per la creazione di più servizi.
 
-Usare l'IP assegnato dinamicamente per individuare i servizi non è consigliabile poiché l'indirizzo IP cambia quando il servizio viene riavviato o viene spostato in un altro nodo. Usare solo **Service Fabric Naming Service** o il **servizio DNS** per l'individuazione del servizio. 
+Utilizzando hello assegnato dinamicamente servizi toodiscover IP non è consigliabile poiché le modifiche all'indirizzo IP hello quando servizio hello riavvia o si sposta il nodo tooanother. Utilizzare solo hello **servizio Service Fabric denominazione** o hello **servizio DNS** per l'individuazione del servizio. 
 
 
 > [!WARNING]
-> È consentito solo un totale di 4096 indirizzi IP per ogni rete virtuale in Azure. Di conseguenza, la somma del numero di nodi e il numero di istanze del servizio contenitore (con rete `open`) non può superare i 4096 all'interno di una rete virtuale. Per questi scenari ad alta densità, si consiglia la modalità di rete `nat`.
+> È consentito solo un totale di 4096 indirizzi IP per ogni rete virtuale in Azure. Di conseguenza, hello somma hello numero di nodi e numero di hello contenitore di istanze del servizio (con `open` rete) non può superare i 4096 all'interno di una rete virtuale. Per tali scenari ad alta densità, hello `nat` è consigliata la modalità di rete.
 >
 
 ## <a name="setting-up-open-networking-mode"></a>Configurazione della modalità di rete aperta
 
-1. Configurare il modello di Azure Resource Manager, abilitando il servizio DNS e il provider di IP in `fabricSettings`. 
+1. Impostare il modello di gestione risorse di Azure hello abilitando il servizio DNS e hello IP Provider in `fabricSettings`. 
 
     ```json
     "fabricSettings": [
@@ -78,7 +78,7 @@ Usare l'IP assegnato dinamicamente per individuare i servizi non è consigliabil
             ],
     ```
 
-2. Configurare la sezione del profilo di rete per consentire la configurazione di più indirizzi IP in ogni nodo del cluster. Nell'esempio seguente si configurano cinque indirizzi IP per ogni nodo (pertanto è possibile avere cinque istanze del servizio in ascolto della porta su ogni nodo) per un cluster di Windows Service Fabric.
+2. Impostare la sezione hello rete profilo tooallow con più indirizzi toobe configurato in ogni nodo del cluster di hello. Hello questo esempio viene impostata cinque indirizzi IP per ogni nodo (in questo modo è possibile avere cinque istanze di servizio in ascolto sulla porta toohello in ogni nodo) per un cluster di Windows Service Fabric.
 
     ```json
     "variables": {
@@ -175,7 +175,7 @@ Usare l'IP assegnato dinamicamente per individuare i servizi non è consigliabil
               }
     ```
 
-    Per i cluster di Linux, viene aggiunta un'altra configurazione dell'IP pubblico per consentire la connettività in uscita. Il frammento di codice seguente configura cinque indirizzi IP per ogni nodo per un cluster di Linux:
+    Per i cluster Linux, un'ulteriore configurazione IP pubblica viene aggiunto tooallow di connettività in uscita. Hello frammento di codice seguente imposta cinque indirizzi IP per ogni nodo per un cluster Linux:
 
     ```json
     "networkProfile": {
@@ -292,14 +292,14 @@ Usare l'IP assegnato dinamicamente per individuare i servizi non è consigliabil
               }
     ```
 
-3. Solo per i cluster di Windows, configurare una regola del gruppo di sicurezza di rete aprendo la porta UDP/53 per la rete virtuale con i valori seguenti:
+3. Per i cluster consente di configurare solo un gruppo Windows regola aprire la porta UDP 53/per la rete virtuale hello con hello seguenti valori:
 
    | Priorità |    Nome    |    Sorgente      |  Destination   |   Service    | Azione |
    |:--------:|:----------:|:--------------:|:--------------:|:------------:|:------:|
    |     2000 | Custom_Dns | VirtualNetwork | VirtualNetwork | DNS (UDP/53) | CONSENTI  |
 
 
-4. Specificare la modalità di rete nel manifesto dell'app per ogni servizio `<NetworkConfig NetworkType="open">`.  La modalità `open` consente al servizio di ottenere un indirizzo IP dedicato. Se non si specifica una modalità, viene impostata la modalità predefinita di base `nat`. Pertanto, nell'esempio di manifesto seguente, `NodeContainerServicePackage1` e `NodeContainerServicePackage2` possono essere in ascolto sulla stessa porta (entrambi i servizi sono in ascolto su `Endpoint1`).
+4. Specificare le modalità di rete hello nel manifesto dell'applicazione hello per ogni servizio `<NetworkConfig NetworkType="open">`.  modalità Hello `open` comporta servizio hello ottenere un indirizzo IP dedicato. Se non è specificata una modalità, il valore predefinito toohello base `nat` modalità. Pertanto, nell'esempio di manifesto seguente hello `NodeContainerServicePackage1` e `NodeContainerServicePackage2` possibile ogni toohello ascolto stessa porta (entrambi i servizi sono in attesa sulla `Endpoint1`).
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -329,7 +329,7 @@ Usare l'IP assegnato dinamicamente per individuare i servizi non è consigliabil
       </ServiceManifestImport>
     </ApplicationManifest>
     ```
-È possibile combinare e abbinare diverse modalità di rete tra servizi all'interno di un'applicazione per un cluster di Windows. Pertanto, è possibile avere alcuni servizi sulla modalità `open` e alcuni sulla modalità di rete `nat`. Quando un servizio è configurato con `nat`, la porta su cui è in ascolto deve essere univoca. La combinazione di modalità di rete per diversi servizi non è supportata nei cluster di Linux. 
+È possibile combinare e abbinare diverse modalità di rete tra servizi all'interno di un'applicazione per un cluster di Windows. Pertanto, è possibile avere alcuni servizi sulla modalità `open` e alcuni sulla modalità di rete `nat`. Quando un servizio è configurato con `nat`, porta hello è in ascolto toomust essere univoco. La combinazione di modalità di rete per diversi servizi non è supportata nei cluster di Linux. 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
@@ -337,5 +337,5 @@ In questo articolo sono state fornite informazioni sulle modalità di rete offer
 
 * [Modello di applicazione di Service Fabric](service-fabric-application-model.md)
 * [Risorse del manifesto del servizio di Service Fabric](service-fabric-application-model.md)
-* [Distribuire un contenitore Windows in Service Fabric su Windows Server 2016](service-fabric-get-started-containers.md)
-* [Distribuire un contenitore Docker in Service Fabric su Linux](service-fabric-get-started-containers-linux.md)
+* [Distribuire un tooService di contenitore di Windows Fabric in Windows Server 2016](service-fabric-get-started-containers.md)
+* [Distribuire un tooService contenitore Docker dell'infrastruttura in Linux](service-fabric-get-started-containers-linux.md)

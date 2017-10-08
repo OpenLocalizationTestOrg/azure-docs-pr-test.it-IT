@@ -1,6 +1,6 @@
 ---
-title: Desktop remoto per una macchina virtuale Linux | Microsoft Docs
-description: Informazioni sull'installazione e la configurazione di Desktop remoto per la connessione a una macchina virtuale Linux di Microsoft Azure per il modello di distribuzione classica
+title: aaaRemote Desktop tooa VM Linux | Documenti Microsoft
+description: Informazioni su come tooinstall e configurare Desktop remoto tooconnect tooa VM Linux di Microsoft Azure per modello di distribuzione classica hello
 services: virtual-machines-linux
 documentationcenter: 
 author: SuperScottz
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: mingzhan
-ms.openlocfilehash: 68031d548bdbeda9a83d1bceaaea7c5bbcab3188
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aadd6e87883cf9cacf9d198b680669d594206e61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-remote-desktop-to-connect-to-a-microsoft-azure-linux-vm"></a>Uso di Desktop remoto per connettersi a una macchina virtuale Linux di Microsoft Azure.
+# <a name="using-remote-desktop-tooconnect-tooa-microsoft-azure-linux-vm"></a>Utilizzo di Desktop remoto tooconnect tooa VM Linux di Microsoft Azure
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per la versione aggiornata di questo articolo relativa a Resource Manager, vedere [qui](../use-remote-desktop.md).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per hello aggiornata la versione di gestione risorse di questo articolo, vedere [qui](../use-remote-desktop.md).
 
 ## <a name="overview"></a>Panoramica
-Il protocollo RDP (Remote Desktop Protocol) è un protocollo proprietario utilizzato per Windows. Come si può utilizzare RDP per connettersi a una VM (macchina virtuale) Linux in modalità remota?
+Il protocollo RDP (Remote Desktop Protocol) è un protocollo proprietario utilizzato per Windows. Come possiamo usare RDP tooconnect tooa VM Linux (macchina virtuale) in modalità remota?
 
-L'articolo seguente risponderà a questa domanda. Illustrerà come installare e configurare xrdp su una macchina virtuale Linux di Microsoft Azure in modo da connettersi a essa con Desktop remoto da un computer Windows. Utilizzeremo una macchina virtuale Linux che esegue Ubuntu o OpenSUSE come nell'esempio riportato in questa guida.
+Questa Guida verrà fornite risposte hello! Questo risulterà utile xrdp tooinstall e file di configurazione nella macchina virtuale Linux di Microsoft Azure, che consente di connettersi tooit con Desktop remoto da un computer Windows. Si utilizzerà VM Linux in esecuzione Ubuntu o OpenSUSE come esempio hello in questa Guida.
 
-Lo strumento xrdp è un server RDP open source che consente di connettere il server Linux con Desktop remoto da un computer Windows. RDP offre prestazioni migliori di VNC (Virtual Network Computing). VNC esegue il rendering usando una grafica di qualità JPEG e può risultare lento, mentre RDP è veloce e nitido.
+strumento xrdp Hello è open source server RDP che consente di tooconnect server Linux con Desktop remoto da un computer Windows. RDP offre prestazioni migliori di VNC (Virtual Network Computing). VNC esegue il rendering usando una grafica di qualità JPEG e può risultare lento, mentre RDP è veloce e nitido.
 
 > [!NOTE]
-> È necessario disporre di una macchina virtuale di Microsoft Azure che esegue Linux. Vedere l'[esercitazione relativa alle macchine virtuali Linux di Azure](createportal.md)per creare e impostare una macchina virtuale Linux.
+> È necessario disporre di una macchina virtuale di Microsoft Azure che esegue Linux. toocreate e impostare una VM Linux, vedere hello [esercitazione VM Linux di Azure](createportal.md).
 > 
 > 
 
 ## <a name="create-an-endpoint-for-remote-desktop"></a>Creare un endpoint per Desktop remoto
-In questo documento verrà usato l'endpoint predefinito 3389 per Desktop remoto. Configurare l'endpoint 3389 come `Remote Desktop` per la macchina virtuale Linux nel modo seguente:
+Si utilizzerà l'endpoint predefinito hello 3389 per Desktop remoto in questo documento. Configurare un endpoint 3389 come `Remote Desktop` tooyour VM Linux come il seguente:
 
 ![immagine](./media/remote-desktop/endpoint-for-linux-server.png)
 
-Per informazioni su come configurare un endpoint per la macchina virtuale, vedere [queste indicazioni](setup-endpoints.md).
+Se non si conosce tooset un endpoint per la macchina virtuale, vedere [questa Guida](setup-endpoints.md).
 
 ## <a name="install-gnome-desktop"></a>Installare Gnome Desktop
-Connettersi alla macchina virtuale Linux tramite `putty` e installare `Gnome Desktop`.
+Tooyour VM Linux di connettersi tramite `putty`e installare `Gnome Desktop`.
 
 Per Ubuntu, utilizzare:
 
@@ -65,7 +65,7 @@ Per Ubuntu, utilizzare:
 Per OpenSUSE, usare:
 
 > [!NOTE]
-> Aggiornare la versione OpenSUSE con la versione in uso nel comando seguente. Di seguito è riportato un comando di esempio per `OpenSUSE 13.2`.
+> Aggiornare versione OpenSUSE hello con la versione di hello utilizzate nel comando seguente hello. esempio Hello seguente riguarda `OpenSUSE 13.2`.
 > 
 > 
 
@@ -82,9 +82,9 @@ Per OpenSUSE, usare:
 Per Ubuntu, xrdp verrà avviato e abilitato automaticamente al momento dell'avvio dopo l'installazione.
 
 ## <a name="using-xfce-if-you-are-using-an-ubuntu-version-later-than-ubuntu-1204lts"></a>Uso di xfce se si usa una versione di Ubuntu successiva a Ubuntu 12.04LTS
-Poiché attualmente xrdp non supporta Gnome Desktop per le versioni di Ubuntu successive a Ubuntu 12.04LTS, verrà usato Desktop `xfce`.
+Poiché hello versione corrente di xrdp non supporta Desktop Gnome per Ubuntu versioni successiva Ubuntu 12.04LTS, si utilizzerà `xfce` Desktop invece.
 
-Per installare `xfce`, usare questo comando:
+tooinstall `xfce`, utilizzare questo comando:
 
     #sudo apt-get install xubuntu-desktop
 
@@ -92,23 +92,23 @@ Quindi abilitare `xfce` usando questo comando:
 
     #echo xfce4-session >~/.xsession
 
-Modificare il file di configurazione `/etc/xrdp/startwm.sh`:
+Modificare il file di configurazione di hello `/etc/xrdp/startwm.sh`:
 
     #sudo vi /etc/xrdp/startwm.sh   
 
-Aggiungere la riga `xfce4-session` prima della riga `/etc/X11/Xsession`.
+Aggiungere la riga hello `xfce4-session` prima riga hello `/etc/X11/Xsession`.
 
-Per riavviare il servizio xrdp, usare:
+toorestart hello xrdp servizio, usare questa opzione:
 
     #sudo service xrdp restart
 
 
 ## <a name="connect-your-linux-vm-from-a-windows-machine"></a>Connettersi alla macchina virtuale Linux da un computer Windows
-In un computer Windows avviare il client Desktop remoto e immettere il nome DNS della macchina virtuale Linux oppure passare al dashboard della macchina virtuale nel portale di Azure e fare clic su `Connect` per connettere la macchina virtuale Linux. In questo caso verrà visualizzata la finestra di accesso:
+In un computer Windows, avviare il client Desktop remoto hello e il nome DNS VM Linux di input. O toohello Dashboard della macchina virtuale nel portale di Azure hello, fare clic su `Connect` tooconnect VM Linux. In tal caso, si vedere la finestra di accesso hello:
 
 ![immagine](./media/remote-desktop/no2.png)
 
-Accedere con il nome utente e la password della macchina virtuale Linux.
+Accedere con il nome di utente hello e la password della VM Linux.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni sull'uso di xrdp, vedere [http://www.xrdp.org/](http://www.xrdp.org/).

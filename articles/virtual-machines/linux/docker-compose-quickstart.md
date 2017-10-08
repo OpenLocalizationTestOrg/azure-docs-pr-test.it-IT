@@ -1,6 +1,6 @@
 ---
-title: Usare Docker Compose in una VM Linux in Azure | Documentazione Microsoft
-description: Come usare Docker e Compose in macchine virtuali Linux con l'interfaccia della riga di comando di Azure
+title: aaaUse Docker Compose in una VM Linux di Azure | Documenti Microsoft
+description: Come toouse Docker e composizione nelle macchine virtuali Linux con hello CLI di Azure
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 541722cb02dd991228726e62a2304b49cdd806f2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cf7254ad4813ccdc641fcacbb06ed1514a93cee5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-docker-and-compose-to-define-and-run-a-multi-container-application-in-azure"></a>Introduzione a Docker e Compose per la definizione e l'esecuzione di un'applicazione multi-contenitore in Azure
-Con [Compose](http://github.com/docker/compose) si usa un file di testo semplice per definire un'applicazione costituita da più contenitori Docker. Si avvia quindi l'applicazione mediante un unico comando che effettua le operazioni necessarie per distribuire l'ambiente definito. Come esempio, questo articolo illustra come configurare rapidamente un blog WordPress con un database SQL MariaDB back-end in una macchina virtuale di Ubuntu. È possibile usare Compose anche per configurare applicazioni più complesse.
+# <a name="get-started-with-docker-and-compose-toodefine-and-run-a-multi-container-application-in-azure"></a>Ottenere avviato con toodefine Docker e di scrittura e l'esecuzione di un'applicazione multi-contenitore in Azure
+Con [comporre](http://github.com/docker/compose), utilizzare un toodefine di file di testo semplice un'applicazione composta da più contenitori di Docker. Quindi di creare rapidamente l'applicazione in un unico comando che esegue tutti gli elementi toodeploy l'ambiente definito. Ad esempio, questo articolo illustra come tooquickly impostare un blog di WordPress con un back-end del database SQL MariaDB in una VM Ubuntu. È anche possibile utilizzare tooset comporre le applicazioni più complesse.
 
 
 ## <a name="set-up-a-linux-vm-as-a-docker-host"></a>Configurare una macchina virtuale Linux come host Docker
-È possibile usare diverse procedure di Azure e le immagini o i modelli di Resource Manager disponibili in Azure Markeplace per creare una macchina virtuale di Linux da configurare come host Docker. Ad esempio, vedere [Using the Docker VM Extension to deploy your environment](dockerextension.md) (Uso dell'estensione di VM Docker per distribuire l'ambiente) per creare rapidamente una VM Ubuntu con l'estensione VM Docker di Azure tramite un [modello di avvio rapido](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu). 
+È possibile utilizzare varie procedure di Azure e le immagini disponibili o modelli di gestione risorse in hello Azure Marketplace toocreate una VM Linux e configurarlo come host Docker. Ad esempio, vedere [utilizzando l'ambiente di hello estensione della macchina virtuale Docker toodeploy](dockerextension.md) tooquickly creare una VM Ubuntu con hello estensione della macchina virtuale Docker di Azure utilizzando un [modello delle Guide rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu). 
 
-Quando si usa l'estensione di VM Docker, la macchina virtuale viene automaticamente configurata come host Docker e Compose è già installato.
+Quando si utilizza l'estensione della macchina virtuale Docker hello, la macchina virtuale viene impostata automaticamente come un host Docker e comporre è già installato.
 
 
 ### <a name="create-docker-host-with-azure-cli-20"></a>Creare un host Docker con l'interfaccia della riga di comando di Azure 2.0
-Installare la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e accedere a un account Azure tramite il comando [az login](/cli/azure/#login).
+Hello installazione più recente [CLI di Azure 2.0](/cli/azure/install-az-cli2) e accedere con un account Azure tooan [accesso az](/cli/azure/#login).
 
-Innanzitutto, creare un gruppo di risorse per l'ambiente di Docker con il comando [az group create](/cli/azure/group#create). L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella posizione *westus*:
+Innanzitutto, creare un gruppo di risorse per l'ambiente di Docker con il comando [az group create](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *westus* percorso:
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-Successivamente, distribuire una macchina virtuale con il comando [az group deployment create](/cli/azure/group/deployment#create) che include l'estensione di VM Docker di Azure da [questo modello di Azure Resource Manager su GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu). Specificare i propri valori per *newStorageAccountName*, *adminUsername*, *adminPassword* e *dnsNameForPublicIP*:
+Successivamente, distribuire una macchina virtuale con [distribuzione gruppo az creare](/cli/azure/group/deployment#create) che include l'estensione della macchina virtuale Docker di Azure hello da [questo modello di gestione risorse di Azure su GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu). Specificare i propri valori per *newStorageAccountName*, *adminUsername*, *adminPassword* e *dnsNameForPublicIP*:
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup \
@@ -51,9 +51,9 @@ az group deployment create --resource-group myResourceGroup \
   --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
 ```
 
-L'operazione di distribuzione richiede alcuni minuti. Al termine della distribuzione, [procedere al passaggio successivo](#verify-that-compose-is-installed) per configurare SSH sulla macchina virtuale. 
+Sono necessari alcuni minuti per hello toofinish di distribuzione. Una volta terminata la distribuzione di hello, [Sposta passaggio toonext](#verify-that-compose-is-installed) tooSSH tooyour macchina virtuale. 
 
-Facoltativamente, per restituire il controllo al prompt e per consentire la distribuzione continua in background, aggiungere il flag `--no-wait` al comando precedente. Questo processo consente di eseguire altre operazioni nell'interfaccia della riga di comando mentre la distribuzione continua per alcuni minuti. È possibile visualizzare i dettagli sullo stato dell'host Docker con il comando [az vm show](/cli/azure/vm#show). L'esempio seguente controlla lo stato della macchina virtuale denominata *myDockerVM* (il nome predefinito del modello, non modificare questo nome) che appartiene al gruppo di risorse *myResourceGroup*:
+Facoltativamente, prompt dei comandi di tooinstead controllo restituito toohello e distribuzione hello let continuano in background hello, aggiungere hello `--no-wait` flag toohello precedente comando. Questo processo consente tooperform altre operazioni in hello CLI mentre hello distribuzione continua per alcuni minuti. È quindi possibile visualizzare i dettagli sullo stato dell'host Docker hello con [Mostra vm az](/cli/azure/vm#show). esempio Hello Controlla stato hello della macchina virtuale denominata hello *myDockerVM* (nome predefinito dal modello hello hello, non modificare questo nome) nel gruppo di risorse hello denominato *myResourceGroup*:
 
 ```azurecli
 az vm show \
@@ -63,44 +63,44 @@ az vm show \
     --output tsv
 ```
 
-Quando questo comando restituisce *Succeeded*, la distribuzione è stata completata ed è possibile configurare SSH sulla macchina virtuale nel passaggio seguente.
+Quando questo comando restituisce *Succeeded*, distribuzione hello è terminata ed è possibile SSH toohello VM in hello riportata dopo il passaggio.
 
 
 ## <a name="verify-that-compose-is-installed"></a>Verificare che Compose sia installato
-Al termine della distribuzione, stabilire una connessione SSH al nuovo host Docker con il nome DNS specificato durante la distribuzione. È possibile usare `az vm show -g myResourceGroup -n myDockerVM -d --query [fqdns] -o tsv` per visualizzare i dettagli della VM, incluso il nome DNS.
+Una volta terminata la distribuzione di hello, SSH tooyour nuovo host Docker con il nome DNS hello fornite durante la distribuzione. È possibile utilizzare `az vm show -g myResourceGroup -n myDockerVM -d --query [fqdns] -o tsv` tooview dettagli della macchina virtuale, incluso il nome DNS hello.
 
 ```bash
 ssh azureuser@mypublicdns.westus.cloudapp.azure.com
 ```
 
-Per verificare l'installazione di Compose nella macchina virtuale, eseguire il comando seguente:
+toocheck che compongono è installato nel hello macchina virtuale, eseguire hello comando seguente:
 
 ```bash
 docker-compose --version
 ```
 
-Si ottiene un output simile a *docker-compose 1.6.2, build 4d72027*.
+Viene visualizzato un output simile*docker-comporre 1.6.2, compilazione 4D 72027*.
 
 > [!TIP]
-> Se è stato usato un altro metodo per creare un host Docker ed è necessario installare Compose manualmente, vedere la [Compose documentation](https://github.com/docker/compose/blob/882dc673ce84b0b29cd59b6815cb93f74a6c4134/docs/install.md)(Documentazione di Compose).
+> Se è stato utilizzato un altro metodo toocreate un host Docker e necessario tooinstall comporre manualmente, vedere hello [comporre documentazione](https://github.com/docker/compose/blob/882dc673ce84b0b29cd59b6815cb93f74a6c4134/docs/install.md).
 
 
 ## <a name="create-a-docker-composeyml-configuration-file"></a>Creare un file di configurazione docker-compose.yml
-In seguito viene creato un file `docker-compose.yml` , che è semplicemente un file di configurazione di testo, per definire i contenitori Docker ed eseguirli nella macchina virtuale. Il file specifica l'immagine da eseguire su ciascun contenitore (o può essere una compilazione da un file Docker), le variabili d'ambiente, le dipendenze necessarie, le porte e i collegamenti tra i contenitori. Per informazioni dettagliate sulla sintassi dei file YML, vedere [Compose file reference](https://docs.docker.com/compose/compose-file/)(Informazioni di riferimento sui file di Compose).
+Successivamente è possibile creare un `docker-compose.yml` file, è sufficiente un file di testo, toodefine hello Docker contenitori toorun su hello macchina virtuale. file Hello specifica hello immagine toorun su ciascun contenitore oppure può trattarsi di una compilazione di un Dockerfile, variabili di ambiente necessarie e le dipendenze, porte e collegamenti hello tra contenitori. Per informazioni dettagliate sulla sintassi dei file YML, vedere [Compose file reference](https://docs.docker.com/compose/compose-file/)(Informazioni di riferimento sui file di Compose).
 
-Creare il file *docker-compose.yml* come segue:
+Creare hello *docker compose.yml* file come segue:
 
 ```bash
 touch docker-compose.yml
 ```
 
-Usare un editor di testo per aggiungere dati al file. L'esempio seguente usa l'editor *vi*:
+Utilizzare il tooadd editor di testo preferito alcuni file di dati toohello. esempio Hello utilizza hello *vi* editor:
 
 ```bash
 vi docker-compose.yml
 ```
 
-Incollare l'esempio seguente nel file di testo. Questa configurazione utilizza le immagini del [Registro di sistema DockerHub](https://registry.hub.docker.com/_/wordpress/) per installare WordPress (il sistema di creazione blog e gestione del contenuto open source) e un database SQL MariaDB back-end collegato. Immettere il proprio valore *MYSQL_ROOT_PASSWORD* come segue:
+Incollare l'esempio seguente nel file di testo hello. Questa configurazione usa le immagini hello [Registro di sistema DockerHub](https://registry.hub.docker.com/_/wordpress/) tooinstall WordPress (hello Apri origine blog e contenuto management system) e un back-end collegato MariaDB SQL database. Immettere il proprio valore *MYSQL_ROOT_PASSWORD* come segue:
 
 ```sh
 wordpress:
@@ -116,14 +116,14 @@ db:
     MYSQL_ROOT_PASSWORD: <your password>
 ```
 
-## <a name="start-the-containers-with-compose"></a>Avviare i contenitori con Compose
-Nella stessa directory del file *docker-compose.yml* eseguire il comando seguente (a seconda dell'ambiente, può essere necessario eseguire `docker-compose` usando `sudo`):
+## <a name="start-hello-containers-with-compose"></a>Inizio hello contenitori con composizione
+In hello stessa directory come la *docker compose.yml* file, eseguire hello comando seguente (a seconda dell'ambiente, potrebbe essere necessario toorun `docker-compose` utilizzando `sudo`):
 
 ```bash
 docker-compose up -d
 ```
 
-Il comando avvia i contenitori Docker specificati in *docker-compose.yml*. L'esecuzione di questo passaggio richiede un paio di minuti. L'output sarà simile all'esempio seguente:
+Questo comando Avvia contenitori Docker hello specificati nella *docker compose.yml*. Accetta un o due minuti per toocomplete questo passaggio. Vedrai toohello simili di output esempio seguente:
 
 ```bash
 Creating wordpress_db_1...
@@ -132,10 +132,10 @@ Creating wordpress_wordpress_1...
 ```
 
 > [!NOTE]
-> Assicurarsi di utilizzare l’opzione **-d** all'avvio in modo che i contenitori vengano eseguiti in background continuamente.
+> Essere certi hello toouse **-d** opzione all'avvio in modo che hello contenitori vengono eseguiti in background hello in modo continuo.
 
 
-Per verificare che i contenitori siano attivi, digitare `docker-compose ps`. Dovrebbe essere visualizzata una schermata analoga alla seguente:
+tooverify che sono contenitori di hello, tipo `docker-compose ps`. Dovrebbe essere visualizzata una schermata analoga alla seguente:
 
 ```bash
         Name                       Command               State         Ports
@@ -144,14 +144,14 @@ azureuser_db_1          docker-entrypoint.sh mysqld      Up      3306/tcp
 azureuser_wordpress_1   docker-entrypoint.sh apach ...   Up      0.0.0.0:80->80/tcp
 ```
 
-Ora è possibile connettersi a WordPress direttamente nella VM dalla porta 80. Aprire un Web browser e immettere il nome DNS della VM (ad esempio `http://mypublicdns.westus.cloudapp.azure.com`). Viene visualizzata la schermata di avvio di WordPress, in cui è possibile completare l'installazione e iniziare a utilizzare l’applicazione.
+È ora possibile connettersi tooWordPress direttamente nella macchina virtuale sulla porta 80 hello. Aprire un web browser e immettere il nome DNS hello della macchina virtuale (ad esempio `http://mypublicdns.westus.cloudapp.azure.com`). Dovrebbe essere hello che WordPress avviare schermo, in cui è possibile completare l'installazione di hello e iniziare con un'applicazione hello.
 
 ![Schermata iniziale di WordPress][wordpress_start]
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Vedere la [Docker VM extension user guide](https://github.com/Azure/azure-docker-extension/blob/master/README.md) (Guida dell'utente dell'estensione di VM Docker) per altre opzioni di configurazione di Docker e Compose nella VM Docker. Ad esempio, un'opzione consiste nell'inserire il file YML di Compose (convertito in JSON) direttamente nella configurazione dell'estensione della VM Docker.
-* Per altri esempi di compilazione e distribuzione di app multi-contenitore, vedere [Compose command-line reference](http://docs.docker.com/compose/reference/) (Informazioni di riferimento sulla riga di comando di Compose) e la [guida dell'utente](http://docs.docker.com/compose/).
-* Utilizzare un modello di Gestione risorse di Azure, quello proprio o uno fornito dalla [community](https://azure.microsoft.com/documentation/templates/), per distribuire una macchina virtuale di Azure con Docker e un'applicazione configurata con Compose. Ad esempio, il modello [Distribuire un blog WordPress con Docker](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-wordpress-mysql) utilizza Docker e Compose per distribuire rapidamente WordPress con un back-end MySQL in una VM Ubuntu.
+* Passare toohello [Guida dell'utente dell'estensione VM Docker](https://github.com/Azure/azure-docker-extension/blob/master/README.md) per altre opzioni tooconfigure Docker e nella macchina virtuale Docker Compose. Ad esempio, un'opzione è tooput hello comporre yml file (convertito tooJSON) direttamente nella configurazione di hello di hello estensione della macchina virtuale Docker.
+* Estrarre hello [comporre riferimento della riga di comando](http://docs.docker.com/compose/reference/) e [manuale dell'utente](http://docs.docker.com/compose/) per ulteriori esempi di compilazione e distribuzione di applicazioni multi-contenitore.
+* Utilizzare un modello di gestione risorse di Azure, ovvero il proprio o uno provengono da hello [community](https://azure.microsoft.com/documentation/templates/), toodeploy una macchina virtuale di Azure con Docker e un'applicazione è configurato con la composizione. Ad esempio, hello [distribuire un blog di WordPress con Docker](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-wordpress-mysql) modello Usa Docker e comporre tooquickly distribuire WordPress con un back-end di MySQL in una VM Ubuntu.
 * Provare a integrare Docker Compose con un cluster Docker Swarm. Per gli scenari, vedere [Using Compose with Swarm](https://docs.docker.com/compose/swarm/) (Uso di Swarm con Compose).
 
 <!--Image references-->

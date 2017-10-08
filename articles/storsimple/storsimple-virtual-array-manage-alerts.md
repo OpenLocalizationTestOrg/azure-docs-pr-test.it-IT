@@ -1,6 +1,6 @@
 ---
-title: Visualizzare e gestire gli avvisi dell'array virtuale Microsoft Azure StorSimple | Documentazione Microsoft
-description: "Vengono descritte le condizioni di avviso dell'array virtuale StorSimple e la loro gravità. Viene inoltre illustrato come usare il servizio StorSimple Manager per gestire gli avvisi."
+title: aaaView e gestire gli avvisi di Microsoft Azure StorSimple Virtual Array | Documenti Microsoft
+description: "Descrive le condizioni di avviso Array virtuale StorSimple e gravità e la modalità del servizio Avvisi toomanage toouse hello StorSimple Manager."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,110 +15,110 @@ ms.workload: NA
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3062c7c060c3730c5edef3ada16f3a5077cf5558
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0fb5b1b9064f33df1d8fa7ace45f0d72b0a1622
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-device-manager-to-manage-alerts-for-the-storsimple-virtual-array"></a>Usare Gestione dispositivi StorSimple per gestire gli avvisi per l'array virtuale StorSimple
+# <a name="use-storsimple-device-manager-toomanage-alerts-for-hello-storsimple-virtual-array"></a>Utilizzare Gestione periferiche di StorSimple toomanage avvisi per hello Array virtuale StorSimple
 
 ## <a name="overview"></a>Panoramica
 
-La funzione Avvisi del servizio Gestione dispositivi StorSimple offre un modo per esaminare e cancellare in tempo reale gli avvisi correlati all'array virtuale StorSimple. È possibile usare gli avvisi nel pannello di **riepilogo servizio** per monitorare in modo centralizzato i problemi di integrità degli array virtuali StorSimple e la soluzione Microsoft Azure StorSimple complessiva.
+funzionalità di avvisi Hello in hello del servizio di gestione di dispositivi StorSimple offre un modo per si tooreview e cancellare avvisi correlati tooStorSimple array virtuale in tempo reale. È possibile utilizzare gli avvisi di hello in hello **riepilogo servizio** toocentrally pannello monitorare problemi di integrità hello degli array virtuale StorSimple e hello soluzione globale di Microsoft Azure StorSimple.
 
-Questa esercitazione descrive come configurare le notifiche di avviso, le condizioni di avviso comuni e i livelli di gravità degli avvisi. Descrive inoltre come visualizzare e tenere traccia degli avvisi. Sono inoltre incluse le tabelle di riferimento rapido degli avvisi che consentono di individuare rapidamente uno specifico avviso e rispondere in modo appropriato.
+Questa esercitazione viene descritto come tooconfigure le notifiche di avviso, le condizioni di avviso comuni, livelli di gravità di avviso e come tooview e tenere traccia degli avvisi. Sono inoltre incluse avviso riferimento rapido, tabelle, che consentono di tooquickly individuare un avviso specifico e rispondono in modo appropriato.
 
 ![Pagina degli avvisi](./media/storsimple-virtual-array-manage-alerts/alerts1.png)
 
 ## <a name="configure-alert-settings"></a>Configurare le impostazioni degli avvisi
 
-È possibile scegliere se ricevere le notifiche delle condizioni di avviso tramite posta elettronica per ogni array virtuale StorSimple. È anche possibile identificare altri destinatari delle notifiche di avviso immettendo i relativi indirizzi di posta elettronica nella casella **Altri destinatari di posta elettronica**, separandoli con un punto e virgola.
+È possibile scegliere se si desidera toobe una notifica tramite posta elettronica hello delle condizioni di avviso per ogni array virtuale di StorSimple. Inoltre, è possibile identificare altri destinatari delle notifiche di avviso immettendo i relativi indirizzi di posta elettronica in hello **destinatari di posta elettronica aggiuntivi** casella, separati da punti e virgola.
 
 > [!NOTE]
 > È possibile immettere un massimo di 20 indirizzi di posta elettronica per ogni array virtuale.
 
 
-Dopo aver attivato la notifica di posta elettronica per un array virtuale, i membri dell'elenco delle notifiche riceveranno un messaggio di posta elettronica ogni volta che si verifica un avviso critico. I messaggi verranno inviati da *storsimple-alerts-noreply@mail.windowsazure.com* e conterranno una descrizione della condizione di avviso. I destinatari possono fare clic su **Annulla sottoscrizione** per essere rimossi dall'elenco delle notifiche e-mail.
+Dopo aver abilitato la notifica tramite posta elettronica per un array virtuale, i membri dell'elenco di notifica hello riceveranno un messaggio di posta elettronica ogni volta che si verifica un avviso critico. verranno inviati messaggi Hello da  *storsimple-alerts-noreply@mail.windowsazure.com*  e descriveranno la condizione dell'avviso hello. I destinatari possono fare clic su **Unsubscribe** tooremove stessi dall'elenco di notifica di posta elettronica hello.
 
-#### <a name="to-enable-email-notification-for-alerts"></a>Per abilitare la notifica di posta elettronica degli avvisi
+#### <a name="tooenable-email-notification-for-alerts"></a>notifica tramite posta elettronica tooenable per gli avvisi
 
-1. Accedere al servizio Gestione dispositivi StorSimple e nella sezione **Gestione** selezionare e fare clic su **Dispositivi**. Nell'elenco dei dispositivi visualizzato selezionare e fare clic sul dispositivo.
+1. Passare tooyour dispositivo StorSimple Manager service e hello **Management** sezione, selezionare e fare clic su **dispositivi**. Hello l'elenco di dispositivi visualizzato, selezionare e fare clic sul dispositivo.
    
     ![Impostazione avvisi](./media/storsimple-virtual-array-manage-alerts/alerts2.png)
-2. Viene visualizzato il pannello **Impostazioni**. Nella sezione **Impostazioni del dispositivo** selezionare **Generale**. Viene visualizzato il pannello **Impostazioni generali**.
+2. Verrà visualizzata hello **impostazioni** blade. In hello **le impostazioni del dispositivo** selezionare **generale**. Verrà visualizzata hello **impostazioni generali** blade.
    
     ![configurazione delle notifiche degli avvisi](./media/storsimple-virtual-array-manage-alerts/alerts4.png)
-3. Nel pannello **Impostazioni generali** passare alla sezione **Impostazioni avvisi** e impostare le opzioni seguenti:
+3. In hello **impostazioni generali** pannello andare troppo**Impostazioni avviso** sezione e impostare hello seguenti:
    
-   1. Nel campo **Abilita notifica e-mail** selezionare **SÌ**.
-   2. Nel campo **Invia messaggio di posta elettronica agli amministratori del servizio** selezionare **SÌ** se si vuole che l'amministratore del servizio e tutti i co-amministratori ricevano le notifiche di avviso.
-   3. Nel campo **Altri destinatari di posta elettronica** immettere gli indirizzi di posta elettronica di tutti gli altri destinatari che devono ricevere le notifiche di avviso. Immettere i nomi nel formato *someone@somewhere.com*. Utilizzare il punto e virgola per separare gli indirizzi di posta elettronica. È possibile configurare un massimo di 20 indirizzi di posta elettronica per ogni dispositivo virtuale.
+   1. In hello **Abilita notifica posta elettronica** campi, selezionare **Sì**.
+   2. In hello **gli amministratori del servizio di posta elettronica** campi, selezionare **Sì** se si desidera l'amministratore del servizio toohave hello e tutti i coamministratori ricevano le notifiche di avviso hello.
+   3. In hello **destinatari di posta elettronica aggiuntivi** immettere indirizzi di posta elettronica hello di tutti gli altri destinatari che riceveranno le notifiche di avviso hello. Immettere i nomi nel formato di hello  *someone@somewhere.com* . Utilizzare gli indirizzi di posta elettronica di un punto e virgola tooseparate hello. È possibile configurare un massimo di 20 indirizzi di posta elettronica per ogni dispositivo virtuale.
       
        ![configurazione delle notifiche degli avvisi](./media/storsimple-virtual-array-manage-alerts/alerts6.png)
-   4. Per inviare una notifica di posta elettronica di prova, fare clic su **Invia messaggio di posta elettronica di prova**. Il servizio Gestione dispositivi StorSimple visualizza i messaggi di stato e li inoltra alla 	notifica test.
+   4. Fare clic su una notifica di posta elettronica di prova, toosend **invia posta elettronica di prova**. Hello del servizio di gestione di dispositivi StorSimple verrà visualizzati messaggi di stato durante l'inoltro di notifica di prova hello.
       
        ![Messaggio di posta elettronica di prova della notifica di avviso inviato](./media/storsimple-virtual-array-manage-alerts/alerts7.png)
       
       > [!NOTE]
-      > Se non è possibile inviare il messaggio di notifica test, il servizio Gestione dispositivi StorSimple visualizza un messaggio appropriato. Fare clic su **OK**, attendere alcuni minuti e provare a inviare nuovamente il messaggio di notifica di prova.
+      > Se test hello messaggio di notifica non inviare, il servizio di gestione di dispositivi StorSimple hello verrà visualizzato un messaggio appropriato. Fare clic su **OK**, attendere qualche minuto e riprovare toosend il messaggio di notifica di test.
       > 
       > 
-   5. Fare clic su **Salva** nella parte inferiore della pagina per salvare la configurazione. Alla richiesta di conferma fare clic su **Sì**.
+   5. Nella parte inferiore di hello della pagina hello, fare clic su **salvare** toosave la configurazione. Alla richiesta di conferma fare clic su **Sì**.
       
       ![Messaggio di posta elettronica di prova della notifica di avviso inviato](./media/storsimple-virtual-array-manage-alerts/alerts10.png)
 
 ## <a name="common-alert-conditions"></a>Condizioni di avviso comuni
 
-L'array virtuale StorSimple genera avvisi in risposta a una varietà di condizioni. Di seguito sono indicati i tipi più comuni delle condizioni di avviso:
+L'Array virtuale StorSimple genera avvisi in condizioni diverse tooa risposta. di seguito Hello sono tipi di condizioni di avviso più comuni di hello:
 
-* **Problemi di connettività** : questi avvisi vengono generati in caso di difficoltà di trasferimento dei dati. Possono verificarsi problemi di comunicazione durante il trasferimento dei dati da un account di archiviazione di Azure e viceversa oppure a causa della mancanza di connettività tra i dispositivi virtuali e il servizio Gestione dispositivi StorSimple. I problemi di comunicazione sono tra i più difficili da risolvere poiché sono presenti numerosi punti di errore. Verificare sempre che la connettività di rete e l'accesso a Internet siano disponibili prima di proseguire con la risoluzione dei problemi più avanzati. Per altre informazioni sulle impostazioni delle porte e del firewall, vedere [Requisiti di sistema dell'array virtuale StorSimple (anteprima)](storsimple-ova-system-requirements.md). Per informazioni sulla risoluzione dei problemi, vedere [Risoluzione dei problemi con il cmdlet Test-Connection](storsimple-troubleshoot-deployment.md).
+* **Problemi di connettività** : questi avvisi vengono generati in caso di difficoltà di trasferimento dei dati. Problemi di comunicazione possono verificarsi durante il trasferimento dei dati tooand da account di archiviazione di Azure hello o scadenza toolack di connettività tra i dispositivi virtuali hello e servizio di gestione di dispositivi StorSimple hello. Problemi di comunicazione sono alcuni dei più difficili toofix di hello poiché esistono molti punti di errore. Verificare sempre prima che la connettività di rete e accesso a Internet siano disponibili prima di proseguire toomore risoluzione avanzata dei problemi. Per informazioni sulle porte e le impostazioni del firewall, visitare troppo[requisiti di sistema StorSimple Virtual Array](storsimple-ova-system-requirements.md). Per informazioni sulla risoluzione dei problemi, andare troppo[risoluzione dei problemi con il cmdlet Test-Connection hello](storsimple-troubleshoot-deployment.md).
 * **Problemi di prestazioni** : questi avvisi vengono generati quando le prestazioni del sistema non sono ottimali, ad esempio in presenza di un forte carico.
 
-Inoltre, possono essere generati avvisi relativi a sicurezza, aggiornamenti o errori di processi.
+Inoltre, si potrebbe visualizzare toosecurity correlati gli avvisi, aggiornamenti o errori nel processo.
 
 ## <a name="alert-severity-levels"></a>Livelli di gravità dell'avviso
 
-Gli avvisi possono avere diversi livelli di gravità, in base all'impatto determinato dalla situazione di avviso e alla necessità di una risposta all'avviso. I livelli di gravità sono:
+Gli avvisi hanno diversi livelli di gravità, a seconda di impatto hello hello situazione di avviso verrà e hello necessità di un avviso di toohello di risposta. livelli di gravità Hello sono:
 
-* **Critico** : questo avviso viene generato in risposta a una condizione che influenza negativamente le prestazioni del sistema. È richiesta un'azione per garantire che il servizio StorSimple non venga interrotto.
-* **Avviso** : questa condizione potrebbe diventare critica se non viene risolta. È necessario analizzare la situazione ed eseguire qualsiasi azione necessaria per eliminare il problema.
+* **Critico** : questo avviso è in condizione di tooa risposta che influisce sulle prestazioni del sistema hello. Azione è necessario tooensure che il servizio di StorSimple hello non è stato interrotto.
+* **Avviso** : questa condizione potrebbe diventare critica se non viene risolta. È consigliabile esaminare la situazione hello e richiedere qualsiasi problema di hello tooclear azione richiesta.
 * **Informazioni** : questo avviso contiene informazioni che possono essere utili per la verifica e la gestione del sistema.
 
 ## <a name="view-and-track-alerts"></a>Visualizzare e tenere traccia degli avvisi
 
-Il pannello di riepilogo servizio di Gestione dispositivi StorSimple offre un rapido riepilogo del numero di avvisi sui dispositivi virtuali, organizzati per livello di gravità.
+Pannello riepilogo servizio di gestione di dispositivi StorSimple Hello fornisce un riepilogo rapido numero hello di avvisi su dispositivi virtuali, disposti in base al livello di gravità.
 
 ![Dashboard degli avvisi](./media/storsimple-virtual-array-manage-alerts/alerts14.png)
 
-Fare clic sul livello di gravità per aprire il pannello **Avvisi**. I risultati includono solo gli avvisi che corrispondono al livello di gravità scelto.
+Fare clic su hello tooopen livello di gravità hello **avvisi** blade. i risultati di Hello includono solo gli avvisi di hello che soddisfano tale livello di gravità.
 
-![Report avvisi in base al tipo di avviso](./media/storsimple-virtual-array-manage-alerts/alerts15.png)
+![Report avvisi con ambito di tipo tooalert](./media/storsimple-virtual-array-manage-alerts/alerts15.png)
 
-Fare clic su un avviso nell'elenco per ottenere altri dettagli sull'avviso, inclusi l'ora di segnalazione dell'ultimo avviso, il numero di occorrenze dell'avviso sul dispositivo e l'azione consigliata per risolvere l'avviso.
+Fare clic su un avviso in hello elenco tooget ulteriori dettagli per l'avviso hello, tra cui hello ora dell'ultimo avviso hello è stato segnalato, il numero di hello di occorrenze dell'avviso hello sul dispositivo hello e hello azione consigliata tooresolve hello avviso.
 
 ![Elenco degli avvisi e dettagli](./media/storsimple-virtual-array-manage-alerts/alerts16.png)
 
-Se è necessario inviare le informazioni al supporto tecnico Microsoft, è possibile copiare i dettagli dell'avviso in un file di testo. Dopo avere seguito i suggerimenti e risolto la condizione di avviso in locale, è necessario cancellare l'avviso dall'elenco. Selezionare l'avviso nell'elenco e fare clic su **Cancella**. Per cancellare più avvisi, fare clic su qualsiasi colonna tranne **Avviso**, selezionare tutti gli avvisi da cancellare e fare clic su **Cancella**.
+È possibile copiare i file di testo tooa hello dettagli dell'avviso se è necessario toosend hello informazioni tooMicrosoft supporto. Dopo aver seguito raccomandazione hello e risolto una condizione di avviso hello in locale, è necessario cancellare l'avviso hello dall'elenco di hello. Selezionare avviso hello hello elenco e quindi fare clic su **deselezionare**. tooclear più avvisi, selezionare ogni avviso, fare clic su qualsiasi colonna eccetto hello **avviso** colonna e quindi fare clic su **deselezionare** dopo aver selezionato tutti hello toobe avvisi deselezionata.
 
-Quando si fa clic su **Cancella**si ha la possibilità di fornire commenti sull'avviso e i passaggi eseguiti per risolvere il problema. 
+Quando fa clic su **deselezionare**, si disporrà di commenti di tooprovide hello opportunità su avviso hello e hello passaggi che tooresolve hello problema. 
 
 ![commenti degli avvisi](./media/storsimple-virtual-array-manage-alerts/alerts17.png)
 
-Alcuni eventi verranno cancellati dal sistema se un altro evento viene attivato con nuove informazioni. 
+Alcuni eventi vengono cancellati dal sistema hello se viene attivato un altro evento con nuove informazioni. 
 
 ## <a name="sort-and-review-alerts"></a>Ordinare e rivedere gli avvisi
 
-Nel pannello **Avvisi** può essere visualizzato un massimo di 250 avvisi. Se è stato superato il numero di avvisi, non tutti gli avvisi verranno inclusi nella visualizzazione predefinita. È possibile combinare i campi seguenti per personalizzare quali avvisi vengono visualizzati:
+Hello **avvisi** pannello è possibile visualizzare avvisi too250. Se è stato superato il numero di avvisi, non tutti gli avvisi verranno visualizzati nella visualizzazione predefinita hello. È possibile combinare hello toocustomize campi vengono visualizzati gli avvisi seguenti:
 
-* **Stato**: è possibile visualizzare gli avvisi di tipo **Attivo** o **Cancellato**. Gli avvisi attivi vengono ancora attivati nel sistema, mentre gli avvisi deselezionati sono stati cancellati manualmente da un amministratore o a livello di programmazione, in quanto la condizione di avviso è stata aggiornata dal sistema con nuove informazioni.
+* **Stato**: è possibile visualizzare gli avvisi di tipo **Attivo** o **Cancellato**. Gli avvisi attivi vengono ancora attivati sul sistema, mentre gli avvisi cancellati sono stati cancellati manualmente da un amministratore o a livello di codice deselezionati, in quanto il sistema hello aggiornato condizione di avviso hello con nuove informazioni.
 * **Gravità** : è possibile visualizzare gli avvisi di tutti i livelli di gravità (critico, avviso, informazioni) o solo di una determinata gravità, ad esempio solo gli avvisi critici.
-* **Origine**: è possibile visualizzare gli avvisi generati da tutte le origini. In alternativa, è possibile visualizzare soltanto quelli che provengono dal servizio oppure da uno o tutti i dispositivi virtuali.
-* **Intervallo di tempo**: specificando le date e i timestamp in **Da** e **A**, è possibile esaminare gli avvisi generati durante il periodo di tempo specificato.
+* **Origine** : È possibile visualizzare gli avvisi da tutte le origini o limitare hello avvisi toothose che provengono dal servizio hello o uno o tutti hello dispositivi virtuali.
+* **Intervallo di tempo** : specificando hello **da** e **a** date e time stamp, è possibile esaminare gli avvisi durante il periodo di tempo che si è interessati a hello.
 
 ## <a name="alerts-quick-reference"></a>Riferimento rapido degli avvisi
 
-Nelle tabelle seguenti sono elencati alcuni avvisi di StorSimple che potrebbero essere visualizzati e le raccomandazioni e le informazioni aggiuntive eventualmente disponibili. Gli avvisi relativi all'array virtuale StorSimple rientrano in una delle categorie seguenti:
+Hello le tabelle seguenti elenca alcuni degli avvisi di StorSimple hello che possono verificarsi, nonché consigli e informazioni aggiuntive in cui è disponibile. Gli avvisi di StorSimple Virtual Array rientrano in una delle seguenti categorie di hello:
 
 * [Avvisi di connettività cloud](#cloud-connectivity-alerts)
 * [Avvisi di configurazione](#configuration-alerts)
@@ -131,43 +131,43 @@ Nelle tabelle seguenti sono elencati alcuni avvisi di StorSimple che potrebbero 
 
 | Testo dell'avviso | Evento | Ulteriori informazioni/Azioni consigliate |
 |:--- |:--- |:--- |
-| Il dispositivo *<device name>* non è connesso al cloud. |Il dispositivo denominato non può connettersi al cloud. |Impossibile connettersi al cloud. L'inconveniente potrebbe essere causato da uno dei motivi seguenti:<ul><li>Potrebbe essersi verificato un problema con le impostazioni di rete sul dispositivo.</li><li>Potrebbe essersi verificato un problema con le credenziali dell'account di archiviazione.</li></ul>Per altre informazioni sulle risoluzione dei problemi di connettività, vedere l' [interfaccia utente Web locale](storsimple-ova-web-ui-admin.md) del dispositivo. |
+| Dispositivo  *<device name>*  è toohello cloud non è connesso. |Hello denominato dispositivo non è possibile connettersi toohello cloud. |Impossibile connettersi toohello cloud. Questo potrebbe essere stato causato tooone seguenti hello:<ul><li>Potrebbe esserci un problema con le impostazioni di rete hello sul dispositivo.</li><li>Potrebbe esserci un problema con le credenziali dell'account di archiviazione hello.</li></ul>Per ulteriori informazioni sulla risoluzione dei problemi di connettività, visitare toohello [interfaccia utente web locale](storsimple-ova-web-ui-admin.md) del dispositivo hello. |
 
 ### <a name="configuration-alerts"></a>Avvisi di configurazione
 
 | Testo dell'avviso | Evento | Ulteriori informazioni/Azioni consigliate |
 |:--- |:--- |:--- |
-| Configurazione del servizio virtuale locale non supportata. |Rallentamento delle prestazioni. |La configurazione corrente può influire negativamente sulle prestazioni. Assicurarsi che il server soddisfi i requisiti minimi di configurazione. Per altre informazioni, vedere [Requisiti di sistema dell'array virtuale StorSimple](storsimple-ova-system-requirements.md). |
-| Lo spazio su disco di cui è stato eseguito il provisioning in <*nome dispositivo*> è quasi esaurito. |Avviso relativo allo spazio su disco. |Sta per esaurirsi lo spazio su disco con provisioning. Per liberare spazio, provare a spostare i carichi di lavoro su un altro volume oppure a condividere o eliminare dei dati. |
+| Configurazione del servizio virtuale locale non supportata. |Rallentamento delle prestazioni. |la configurazione corrente di Hello può comportare una riduzione delle prestazioni. Verificare che il server soddisfi i requisiti minimi delle configurazioni di hello. Per ulteriori informazioni, visitare troppo[StorSimple Virtual Array requisiti](storsimple-ova-system-requirements.md). |
+| Lo spazio su disco di cui è stato eseguito il provisioning in <*nome dispositivo*> è quasi esaurito. |Avviso relativo allo spazio su disco. |Sta per esaurirsi lo spazio su disco con provisioning. toofree spazio, provare a spostare i carichi di lavoro tooanother volume o condivisione file o l'eliminazione dei dati. |
 
 ### <a name="job-failure-alerts"></a>Avvisi di errore di processo
 
 | Testo dell'avviso | Evento | Ulteriori informazioni/Azioni consigliate |
 |:--- |:--- |:--- |
-| Non è stato possibile completare il backup di <*nome dispositivo*>. |Il processo di backup non è riuscito. |Non è stato possibile creare un backup. Considerare uno degli aspetti seguenti:<ul><li>I problemi di connettività potrebbero impedire il completamento dell'operazione di backup. Assicurarsi che non siano presenti problemi di connettività. Per altre informazioni sulle risoluzione dei problemi di connettività, vedere l'[interfaccia utente Web locale](storsimple-ova-web-ui-admin.md) del dispositivo virtuale.</li><li>È stato raggiunto il limite di archiviazione disponibile. Provare a eliminare i backup che non sono più necessari per liberare spazio.</li></ul> Risolvere i problemi, cancellare l'avviso e ripetere l'operazione. |
-| Non è stato possibile completare la creazione del clone di <*nome dispositivo*>. |Il processo di clonazione non è riuscito. |Impossibile creare un clone. Considerare uno degli aspetti seguenti:<ul><li>L'elenco di backup potrebbe non essere valido. Aggiornare l'elenco per verificare che sia ancora valido.</li><li>I problemi di connettività potrebbero impedire il completamento dell'operazione di clonazione. Assicurarsi che non siano presenti problemi di connettività.</li><li>È stato raggiunto il limite di archiviazione disponibile. Provare a eliminare i backup che non sono più necessari per liberare spazio.</li></ul>Risolvere i problemi, cancellare l'avviso e ripetere l'operazione. |
+| Non è stato possibile completare il backup di <*nome dispositivo*>. |Il processo di backup non è riuscito. |Non è stato possibile creare un backup. Considerare una delle seguenti hello:<ul><li>Problemi di connettività potrebbero impedire di operazione di backup hello completato. Assicurarsi che non siano presenti problemi di connettività. Per ulteriori informazioni sulla risoluzione dei problemi di connettività, visitare toohello [interfaccia utente web locale](storsimple-ova-web-ui-admin.md) per il dispositivo virtuale.</li><li>È stato raggiunto il limite di archiviazione disponibile hello. toofree spazio, prendere in considerazione l'eliminazione di tutti i backup che non sono più necessari.</li></ul> Risolvere i problemi di hello, cancellare hello avviso e ripetere l'operazione di hello. |
+| Non è stato possibile completare la creazione del clone di <*nome dispositivo*>. |Il processo di clonazione non è riuscito. |Impossibile creare un clone. Considerare una delle seguenti hello:<ul><li>L'elenco di backup potrebbe non essere valido. Aggiornare tooverify elenco hello è ancora valido.</li><li>Problemi di connettività potrebbero impedire il completamento dell'operazione clone hello. Assicurarsi che non siano presenti problemi di connettività.</li><li>È stato raggiunto il limite di archiviazione disponibile hello. toofree spazio, prendere in considerazione l'eliminazione di tutti i backup che non sono più necessari.</li></ul>Risolvere i problemi di hello, cancellare hello avviso e ripetere l'operazione di hello. |
 
 ### <a name="performance-alerts"></a>Avvisi di prestazioni
 
 | Testo dell'avviso | Evento | Ulteriori informazioni/Azioni consigliate |
 |:--- |:--- |:--- |
-| Si stanno verificando ritardi imprevisti nel trasferimento dei dati. |Trasferimento dati lento. |Gli errori di limitazione si verificano quando si superano gli obiettivi di scalabilità di un servizio di archiviazione. In questo modo il servizio di archiviazione assicura che nessun client o tenant possa usare il servizio a spese di altri. Per altre informazioni sulla risoluzione dei problemi relativi all'account di archiviazione di Azure, vedere [Monitorare, diagnosticare e risolvere i problemi dell'Archiviazione di Microsoft Azure](../storage/common/storage-monitoring-diagnosing-troubleshooting.md). |
-| Lo spazio su disco riservato in locale in <*nome dispositivo*> è quasi esaurito. |Tempo di risposta lento. |Il 10% delle dimensioni totali di cui è stato eseguito il provisioning per <*nome dispositivo*> è riservato nel dispositivo locale e al momento lo spazio riservato è quasi esaurito. Il carico di lavoro in <*nome dispositivo*> sta generando un'elevata varianza o è possibile che di recente sia stata eseguita la migrazione di una grande quantità di dati causando una riduzione delle prestazioni. Questo può comportare una riduzione delle prestazioni. Per risolvere questo problema, provare a eseguire una delle azioni seguenti:<ul><li>Aumentare la larghezza di banda cloud sul dispositivo.</li><li>Ridurre o spostare i carichi di lavoro in un altro volume o condivisione.</li></ul> |
+| Si stanno verificando ritardi imprevisti nel trasferimento dei dati. |Trasferimento dati lento. |Quando si superano le destinazioni di scalabilità hello di un servizio di archiviazione, si verificano errori di limitazione delle richieste. il servizio di archiviazione Hello effettua questo tooensure che nessun client o tenant può usare servizio hello spese hello di altri utenti. Per ulteriori informazioni sulla risoluzione dei problemi di account di archiviazione Azure, visitare troppo[Monitor, diagnosticare e risolvere i problemi di archiviazione di Microsoft Azure](../storage/common/storage-monitoring-diagnosing-troubleshooting.md). |
+| Lo spazio su disco riservato in locale in <*nome dispositivo*> è quasi esaurito. |Tempo di risposta lento. |10% di hello totale dimensioni provisioning per <*nome dispositivo*> è riservato in hello dispositivo locale e si sta esaurendo hello spazio riservato. carico di lavoro Hello <*nome dispositivo*> è la generazione di una maggiore frequenza di varianza o si potrebbe avere eseguita di recente una grande quantità di dati. Questo può comportare una riduzione delle prestazioni. Considerare una delle hello seguenti azioni tooresolve questo:<ul><li>Aumentare hello cloud del dispositivo toothis della larghezza di banda.</li><li>Ridurre o spostare i carichi di lavoro tooanother volume o condivisione.</li></ul> |
 
 ### <a name="security-alerts"></a>Avvisi di sicurezza
 
 | Testo dell'avviso | Evento | Ulteriori informazioni/Azioni consigliate |
 |:--- |:--- |:--- |
-| La password per <*nome dispositivo*> scadrà tra <*numero*> giorni. |Avviso relativo alla password. |La password scadrà tra <numero> giorni. Provare a modificare la password. Per altre informazioni, vedere [Modificare la password amministratore del dispositivo array virtuale StorSimple](storsimple-virtual-array-change-device-admin-password.md). |
+| La password per <*nome dispositivo*> scadrà tra <*numero*> giorni. |Avviso relativo alla password. |La password scadrà tra <numero> giorni. Provare a modificare la password. Per ulteriori informazioni, visitare troppo[password amministratore del dispositivo StorSimple Virtual Array hello modifica](storsimple-virtual-array-change-device-admin-password.md). |
 
 ### <a name="update-alerts"></a>Avvisi di aggiornamento
 
 | Testo dell'avviso | Evento | Ulteriori informazioni/Azioni consigliate |
 |:--- |:--- |:--- |
-| Sono disponibili nuovi aggiornamenti per il dispositivo. |Sono disponibili aggiornamenti per l'array virtuale StorSimple. |È possibile installare i nuovi aggiornamenti dalla pagina **Manutenzione** . |
-| Non è stato possibile verificare la disponibilità di nuovi aggiornamenti in <*nome dispositivo*>. |Errore durante l'aggiornamento. |Errore durante l'installazione di nuovi aggiornamenti. È possibile installare manualmente gli aggiornamenti. Se il problema persiste, contattare il [supporto Microsoft](storsimple-contact-microsoft-support.md). |
+| Sono disponibili nuovi aggiornamenti per il dispositivo. |Aggiornamenti toohello Array virtuale StorSimple sono disponibili. |È possibile installare nuovi aggiornamenti da hello **manutenzione** pagina. |
+| Non è stato possibile verificare la disponibilità di nuovi aggiornamenti in <*nome dispositivo*>. |Errore durante l'aggiornamento. |Errore durante l'installazione di nuovi aggiornamenti. È possibile installare manualmente gli aggiornamenti di hello. Se hello problema persiste, contattare [supporto Microsoft](storsimple-contact-microsoft-support.md). |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Informazioni sull'array virtuale StorSimple](storsimple-ova-overview.md).
+* [Informazioni su StorSimple Virtual Array hello](storsimple-ova-overview.md).
 

@@ -1,5 +1,5 @@
 ---
-title: Elaborare in batch i messaggi come gruppo o raccolta - App per la logica di Azure | Microsoft Docs
+title: aaaBatch elaborare i messaggi a un gruppo o raccolta - App Azure per la logica | Documenti Microsoft
 description: Inviare e ricevere messaggi per l'elaborazione in batch nelle app per la logica
 keywords: batch, processo batch
 author: jonfancey
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/7/2017
 ms.author: LADocs; estfan; jonfan
-ms.openlocfilehash: 480ffce5dbe7c25181bb0ba5639de884e98ff4e6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2603db71ee0659d5b6bf5ce3d32f1b0d13c34194
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-receive-and-batch-process-messages-in-logic-apps"></a>Inviare, ricevere ed elaborare in batch i messaggi nelle app per la logica
 
-Per elaborare i messaggi in gruppi, è possibile inviare elementi di dati o messaggi a un *batch* e quindi elaborarli come batch. Questo approccio è utile quando si desidera che gli elementi di dati vengano raggruppati secondo una modalità specifica ed elaborati insieme. 
+messaggi tooprocess riuniti in gruppi, è possibile inviare dati elementi o i messaggi, tooa *batch*e quindi elaborare tali elementi come un batch. Questo approccio è utile quando si desidera toomake gli elementi di dati che vengono raggruppati in modo specifico e vengono elaborati insieme. 
 
-È possibile creare app per la logica che ricevono gli elementi in batch usando il trigger **Batch**. È possibile creare quindi app per la logica che inviano elementi a un batch usando l'azione **Batch**.
+È possibile creare App per la logica che ricevono gli elementi come un batch utilizzando hello **Batch** trigger. È quindi possibile creare App per la logica che inviano elementi tooa batch utilizzando hello **Batch** azione.
 
 Questo argomento illustra come compilare una soluzione di invio in batch mediante l'esecuzione di queste attività: 
 
-* [Creare un'app per la logica che riceve e raccoglie gli elementi in batch](#batch-receiver). Nell'app per la logica "ricevente il batch" si specificano il nome del batch e i criteri di rilascio da soddisfare perché l'app ricevente rilasci ed elabori gli elementi. 
+* [Creare un'app per la logica che riceve e raccoglie gli elementi in batch](#batch-receiver). Questa app "ricevitore batch" per la logica specifica hello batch nome e la versione criteri toomeet prima hello ricevitore logica app rilascia ed elabora gli elementi. 
 
-* [Creare un'app per la logica che invia elementi a un batch](#batch-sender). Nell'app per la logica "mittente del batch" si specifica dove inviare gli elementi. La destinazione degli elementi deve essere un'app per la logica ricevente esistente. È inoltre possibile specificare una chiave univoca, ad esempio un numero cliente, per "partizionare" o suddividere il batch di destinazione in subset in base alla chiave. Tutti gli elementi con questa chiave verranno così raccolti ed elaborati insieme. 
+* [Creare un'app di logica che invia gli elementi tooa batch](#batch-sender). Questa app "mittente batch" per la logica specifica dove toosend elementi, che devono essere un'app di logica di ricevitore batch esistente. Si può inoltre specificare una chiave univoca, ad esempio un numero cliente, troppo "partizione" o divide, batch di destinazione hello in subset in base a tale chiave. Tutti gli elementi con questa chiave verranno così raccolti ed elaborati insieme. 
 
 ## <a name="requirements"></a>Requisiti
 
-Per seguire questo esempio, è necessario disporre di questi elementi:
+toofollow in questo esempio, è necessario di questi elementi:
 
 * Una sottoscrizione di Azure. Se non si ha una sottoscrizione, è possibile [creare un account Azure gratuito](https://azure.microsoft.com/free/). In alternativa, è possibile [iscriversi per ottenere una sottoscrizione con pagamento in base al consumo](https://azure.microsoft.com/pricing/purchase-options/).
 
-* Conoscenza di base di [come creare le app per la logica](../logic-apps/logic-apps-create-a-logic-app.md) 
+* Conoscenza di base [come toocreate logica App](../logic-apps/logic-apps-create-a-logic-app.md) 
 
 * Un account di posta elettronica con un [provider di posta elettronica supportato da App per la logica di Azure](../connectors/apis-list.md)
 
@@ -47,32 +47,32 @@ Per seguire questo esempio, è necessario disporre di questi elementi:
 
 ## <a name="create-logic-apps-that-receive-messages-as-a-batch"></a>Creare app per la logica che ricevono messaggi in batch
 
-Prima di poter inviare messaggi a un batch, è necessario creare un'app per la logica "ricevente il batch" con il trigger **Batch**. Sarà possibile in questo modo selezionare questa app ricevente quando si creerà l'app per la logica mittente. Nell'app ricevente occorre specificare il nome del batch, i criteri di rilascio e altre impostazioni. 
+Prima di poter inviare batch di messaggi tooa, è innanzitutto necessario creare un'app di logica "ricevitore batch" con hello **Batch** trigger. In questo modo, quando si crea un'app di hello mittente logica, è possibile selezionare questa app logica ricevitore. Per i ricevitori di hello, specificare nome batch hello, criteri di rilascio e altre impostazioni. 
 
-Nelle app per la logica mittenti è necessario specificare dove inviare gli elementi, mentre in quelle riceventi non è necessario aggiungere informazioni sulle app mittenti.
+Mittente logica App necessario sapere dove gli elementi toosend, mentre ricevitore logica App non è necessario tooknow qualsiasi valore sulla mittenti hello.
 
-1. Nel [portale di Azure](https://portal.azure.com) creare un'app per la logica con questo nome: "BatchReceiver" 
+1. In hello [portale di Azure](https://portal.azure.com), creare un'app logica con questo nome: "BatchReceiver" 
 
-2. Nella finestra Progettazione app per la logica aggiungere il trigger **batch**, che avvia il flusso di lavoro dell'app per la logica. Nella casella di ricerca digitare "batch" come filtro. Selezionare il trigger: **Batch - Messaggi batch**
+2. Nella finestra di progettazione di logica di App, aggiungere hello **Batch** trigger, che avvia il flusso di lavoro logica app. Nella casella di ricerca hello, immettere "batch" come filtro. Selezionare il trigger: **Batch - Messaggi batch**
 
    ![Aggiungere il trigger Batch](./media/logic-apps-batch-process-send-receive-messages/add-batch-receiver-trigger.png)
 
-3. Specificare un nome per il batch e specificare i criteri per il rilascio del batch, ad esempio:
+3. Specificare un nome per il batch di hello e specificare i criteri per il rilascio di batch di hello, ad esempio:
 
-   * **Nome batch**: il nome usato per identificare il batch, in questo esempio "TestBatch".
-   * **Numero messaggi**: il numero di messaggi da inserire in un batch prima del rilascio per l'elaborazione, in questo esempio "5".
+   * **Nome batch**: hello nome utilizzato tooidentify hello batch, ovvero "TestBatch" in questo esempio.
+   * **Numero di messaggi**: hello numero di messaggi toohold come un batch prima del rilascio per l'elaborazione, ovvero "5" in questo esempio.
 
    ![Specificare i dettagli del trigger Batch](./media/logic-apps-batch-process-send-receive-messages/receive-batch-trigger-details.png)
 
-4. Aggiungere un'altra azione che invia un messaggio di posta elettronica quando viene attivato il trigger Batch. Ogni volta che il batch contiene cinque elementi, l'app per la logica invia un messaggio di posta elettronica.
+4. Aggiungere un'altra azione che invia un messaggio di posta elettronica quando viene attivato il trigger di batch hello. Ogni batch di hello ora ha cinque elementi, hello logica app invia un messaggio di posta elettronica.
 
-   1. Nel trigger batch scegliere **+ Nuovo passaggio** > **Aggiungi un'azione**.
+   1. In trigger batch hello, scegliere **+ nuovo passaggio** > **aggiungere un'azione**.
 
-   2. Nella casella di ricerca digitare "email" come filtro.
+   2. Nella casella di ricerca hello, immettere "email" come filtro.
    In base al provider di posta elettronica in uso, selezionare un connettore di posta elettronica.
    
-      Se si dispone, ad esempio, di un account aziendale o dell'istituto di istruzione, selezionare il connettore Office 365 Outlook. 
-      Se si dispone di un account Gmail, selezionare il connettore Gmail.
+      Ad esempio, se si dispone di un account aziendale o dell'istituto di istruzione, selezionare il connettore di Office 365 Outlook hello. 
+      Se si dispone di un account Gmail, selezionare il connettore di Gmail hello.
 
    3. Selezionare questa azione per il connettore: **{*provider di posta elettronica*} - Invia messaggio di posta elettronica**,
 
@@ -82,26 +82,26 @@ Nelle app per la logica mittenti è necessario specificare dove inviare gli elem
 
 5. Se non è stata creata prima una connessione per il provider di posta elettronica, immettere al prompt le credenziali per l'autenticazione. Leggere altre informazioni sull'[autenticazione delle credenziali di posta elettronica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-6. Impostare le proprietà per l'azione appena aggiunta.
+6. Impostare le proprietà hello azione hello che appena aggiunto.
 
-   * Nella casella **A** immettere l'indirizzo di posta elettronica del destinatario. 
+   * In hello **a** , immettere l'indirizzo di posta elettronica del destinatario hello. 
    AI fini del test delle app è possibile indicare il proprio indirizzo di posta elettronica.
 
-   * Nella casella **Oggetto**, quando viene visualizzato l'elenco **Contenuto dinamico**, selezionare il campo **Nome partizione**.
+   * In hello **soggetto** casella quando hello **contenuto dinamico** viene visualizzato l'elenco, selezionare hello **nome partizione** campo.
 
-     ![Nell'elenco "Contenuto dinamico" selezionare "Nome partizione"](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details.png)
+     ![Selezionare "Nome di partizione" hello "Contenuto dinamico" elenco](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details.png)
 
-     In una sezione più avanti si specificherà una chiave di partizione univoca che divide il batch di destinazione in set logici a cui inviare i messaggi. 
-     Ogni set è associato a un numero univoco che viene generato dall'app per la logica mittente. 
-     Questa funzionalità consente di usare un unico batch con più subset e di assegnare a ogni subset il nome desiderato.
+     In una sezione successiva, è possibile specificare una chiave di partizione univoca che divide hello batch di destinazione in logico imposta toowhere è possibile inviare messaggi. 
+     Ogni set ha un numero univoco generato da hello mittente logica app. 
+     Questa funzionalità consente di utilizzare un singolo batch con più sottoinsiemi e definire ogni subset con nome hello specificata dall'utente.
 
-   * Nella casella **Corpo**, quando viene visualizzato l'elenco **Contenuto dinamico**, selezionare il campo **ID messaggio**.
+   * In hello **corpo** casella quando hello **contenuto dinamico** viene visualizzato l'elenco, selezionare hello **Id messaggio** campo.
 
      ![Per la casella "Body" selezionare "ID messaggio"](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details-for-each.png)
 
-     Poiché l'input per l'azione di invio del messaggio di posta elettronica è una matrice, la finestra di progettazione aggiunge automaticamente un ciclo **For each** per l'azione **Invia un messaggio di posta elettronica**. 
-     Questo ciclo esegue l'azione interna su ogni elemento nel batch. 
-     Con il trigger batch impostato su cinque elementi, si ottengono quindi cinque messaggi di posta elettronica ogni volta che viene attivato il trigger.
+     Poiché l'input hello per azione di hello invio messaggio di posta elettronica è una matrice, hello viene automaticamente aggiunta una **per ogni** cerchio attorno hello **invia un messaggio di posta elettronica** azione. 
+     Questo ciclo esegue l'azione interna hello su ogni elemento nel batch hello. 
+     In tal caso, con elementi di toofive set trigger batch hello, sono disponibili cinque messaggi di posta elettronica che viene attivato ogni trigger hello ora.
 
 7.  Ora che è stata creata un'app per la logica ricevente, occorre salvarla.
 
@@ -109,61 +109,61 @@ Nelle app per la logica mittenti è necessario specificare dove inviare gli elem
 
 <a name="batch-sender"></a>
 
-## <a name="create-logic-apps-that-send-messages-to-a-batch"></a>Creare app per la logica che inviano messaggi a un batch
+## <a name="create-logic-apps-that-send-messages-tooa-batch"></a>Creare App per la logica che inviano batch di messaggi tooa
 
-Creare a questo punto una o più app per la logica che inviano elementi al batch definito dall'app per la logica ricevente. Nell'app mittente specificare il nome del batch e dell'app per la logica ricevente, il contenuto del messaggio ed eventuali altre impostazioni. È possibile specificare anche una chiave di partizione univoca per dividere il batch in subset che raccolgano gli elementi a cui è assegnata tale chiave.
+Creare uno o più App per la logica che inviano batch toohello elementi definiti da hello ricevitore logica app. Per il mittente di hello, si specifica hello ricevitore logica app e nome del batch, il contenuto del messaggio e tutte le altre impostazioni. È anche possibile specificare un batch di hello toodivide chiave di partizione univoca negli elementi toocollect subset con tale chiave.
 
-Nelle app per la logica mittenti è necessario specificare dove inviare gli elementi, mentre in quelle riceventi non è necessario aggiungere informazioni sulle app mittenti.
+Mittente logica App necessario sapere dove gli elementi toosend, mentre ricevitore logica App non è necessario tooknow qualsiasi valore sulla mittenti hello.
 
 1. Creare un'altra app per la logica con questo nome: "BatchSender"
 
-   1. Nella casella di ricerca digitare "ricorrenza" come filtro. 
+   1. Nella casella di ricerca hello, immettere "recurrence" come filtro. 
    Selezionare il trigger **Pianificazione - Ricorrenza**
 
-      ![Aggiungere il trigger "Pianificazione - Ricorrenza"](./media/logic-apps-batch-process-send-receive-messages/add-schedule-trigger-batch-receiver.png)
+      ![Aggiungere trigger hello "Ricorrenza pianificazione"](./media/logic-apps-batch-process-send-receive-messages/add-schedule-trigger-batch-receiver.png)
 
-   2. Impostare la frequenza e l'intervallo in modo da eseguire l'app per la logica mittente ogni minuto.
+   2. Impostare la frequenza di hello e intervallo toorun hello mittente logica app ogni minuto.
 
       ![Impostare la frequenza e l'intervallo del trigger di ricorrenza](./media/logic-apps-batch-process-send-receive-messages/recurrence-trigger-batch-receiver-details.png)
 
-2. Aggiungere un nuovo passaggio per l'invio di messaggi a un batch.
+2. Aggiungere un nuovo passaggio per l'invio di batch di messaggi tooa.
 
-   1. Nel trigger ricorrenza scegliere **+ Nuovo passaggio** > **Aggiungi un'azione**.
+   1. Trigger di ricorrenza hello, scegliere **+ nuovo passaggio** > **aggiungere un'azione**.
 
-   2. Nella casella di ricerca digitare "batch" come filtro. 
+   2. Nella casella di ricerca hello, immettere "batch" come filtro. 
 
-   3. Selezionare l'azione **Invia messaggi al batch - Scegliere un flusso di lavoro delle app per la logica con un trigger batch**
+   3. Selezionare l'azione: **inviare messaggi toobatch: scegliere un flusso di lavoro App per la logica con trigger batch**
 
-      ![Selezionare "Invia messaggi al batch"](./media/logic-apps-batch-process-send-receive-messages/send-messages-batch-action.png)
+      ![Selezionare "Invia messaggi toobatch"](./media/logic-apps-batch-process-send-receive-messages/send-messages-batch-action.png)
 
    4. Selezionare a questo punto l'app per la logica "BatchReceiver" creata in precedenza, che ora viene visualizzata sotto forma di azione.
 
       ![Selezionare l'app per la logica "ricevente il batch"](./media/logic-apps-batch-process-send-receive-messages/send-batch-select-batch-receiver.png)
 
       > [!NOTE]
-      > L'elenco mostra anche tutte le altre app per la logica che dispongono di trigger batch.
+      > elenco di Hello Mostra anche le altre app di logica a cui sono presenti trigger batch.
 
-3. Impostare le proprietà del batch.
+3. Impostare le proprietà batch hello.
 
-   * **Nome batch**: il nome del batch definito dall'app per la logica ricevente, che in questo esempio è "TestBatch" e viene convalidato in fase di esecuzione.
+   * **Nome batch**: nome batch hello definito dall'applicazione logica ricevitore hello, "TestBatch" in questo esempio e viene convalidato in fase di esecuzione.
 
      > [!IMPORTANT]
-     > Assicurarsi di non modificare il nome del batch in quanto deve corrispondere al nome batch specificato dall'app per la logica ricevente.
-     > Se si modifica il nome del batch, l'esecuzione dell'app per la logica mittente ha esito negativo.
+     > Assicurarsi di non modificare il nome batch hello, che deve corrispondere al nome specificato da hello ricevitore logica app batch hello.
+     > Modifica nome batch di hello fa sì che il mittente hello logica app toofail.
 
-   * **Contenuto messaggio**: il contenuto del messaggio che si desidera inviare. 
-   Per questo esempio aggiungere questa espressione che inserisce la data e l'ora correnti nel contenuto del messaggio da inviare al batch:
+   * **Contenuto del messaggio**: hello che si desidera toosend il contenuto del messaggio. 
+   Per questo esempio, aggiungere l'espressione che inserimenti hello data e ora correnti nel messaggio hello del contenuto che si invia toohello batch:
 
-     1. Quando viene visualizzato l'elenco **Contenuto dinamico**, scegliere **Espressione**. 
-     2. Immettere l'espressione **utcnow()** e scegliere **OK**. 
+     1. Quando hello **contenuto dinamico** viene visualizzato l'elenco, scegliere **espressione**. 
+     2. Immettere l'espressione hello **utcnow()**e scegliere **OK**. 
 
         ![In "Contenuto messaggio" scegliere "Espressione". Immettere "utcnow()".](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-details.png)
 
-4. Configurare a questo punto una partizione per il batch. Nell'azione "BatchReceiver" scegliere **Mostra opzioni avanzate**.
+4. Ora consente di impostare una partizione per il batch di hello. Nell'azione "BatchReceiver" hello, scegliere **Visualizza le opzioni avanzate**.
 
-   * **Nome partizione**: una chiave di partizione univoca facoltativa da usare per la suddivisione del batch di destinazione. Per questo esempio aggiungere un'espressione che genera un numero casuale compreso tra uno e cinque.
+   * **Nome di partizione**: un toouse chiave di partizione univoco facoltativo per la suddivisione del batch di destinazione hello. Per questo esempio aggiungere un'espressione che genera un numero casuale compreso tra uno e cinque.
    
-     1. Quando viene visualizzato l'elenco **Contenuto dinamico**, scegliere **Espressione**.
+     1. Quando hello **contenuto dinamico** viene visualizzato l'elenco, scegliere **espressione**.
      2. Immettere l'espressione **rand(1,6)**
 
         ![Configurare una partizione per il batch di destinazione](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-partition-advanced-options.png)
@@ -174,18 +174,18 @@ Nelle app per la logica mittenti è necessario specificare dove inviare gli elem
    * **ID messaggio**: un identificatore di messaggio facoltativo e GUID generato quando vuoto. 
    Per questo esempio lasciare vuota questa casella.
 
-5. Salvare l'app per la logica. L'app per la logica appare ora simile a questo esempio:
+5. Salvare l'app per la logica. Logica app mittente sarà esempio toothis simile:
 
    ![Salvare l'app per la logica mittente](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-details-finished.png)
 
 ## <a name="test-your-logic-apps"></a>Testare le app per la logica
 
-Per testare la soluzione per l'invio in batch, lasciare in esecuzione le app per la logica per alcuni minuti. Si inizierà presto a ricevere messaggi di posta elettronica a gruppi di cinque, tutti con la stessa chiave di partizione.
+tootest l'invio in batch di soluzione, lasciare l'App in esecuzione per alcuni minuti per la logica. Presto iniziare il recupero di messaggi di posta elettronica nei gruppi di cinque, tutti con hello stessa chiave di partizione.
 
-L'app per la logica BatchSender viene eseguita ogni minuto, genera un numero casuale compreso tra uno e cinque e lo usa come chiave di partizione per il batch di destinazione a cui vengono inviati i messaggi. Ogni volta che il batch contiene cinque elementi con la stessa chiave di partizione, l'app per la logica BatchReceiver si attiva e invia posta elettronica per ogni messaggio.
+Logica app BatchSender viene eseguito ogni minuto, genera un numero casuale compreso tra uno e cinque e viene utilizzato questo numero generato come chiave di partizione hello per il batch di destinazione hello in cui i messaggi vengono inviati. Ogni volta che il batch hello ha cinque elementi con hello stessa chiave di partizione, BatchReceiver logica app genera e invia posta elettronica per ogni messaggio.
 
 > [!IMPORTANT]
-> Al termine dei test, assicurarsi di disabilitare l'app per la logica BatchSender per arrestare l'invio di messaggi ed evitare il sovraccarico della casella di posta in arrivo.
+> Al termine di test, assicurarsi di disattivare hello BatchSender logica app toostop l'invio di messaggi e di evitare il sovraccarico di posta in arrivo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

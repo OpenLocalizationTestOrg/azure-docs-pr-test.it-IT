@@ -1,6 +1,6 @@
 ---
-title: "Che cos'è Gestione traffico | Microsoft Docs"
-description: Questo articolo fornisce informazioni su Gestione traffico e permette di determinare se sia la scelta giusta per il routing del traffico dell'applicazione
+title: "aaaWhat è Traffic Manager | Documenti Microsoft"
+description: "In questo articolo consentirà di comprendere che cos'è Gestione traffico e se è scelta di routing del traffico destra hello per l'applicazione"
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/15/2017
 ms.author: kumud
-ms.openlocfilehash: 50d7f14d0d4234ee98d8a46e903b5f916cb02fab
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8e63ed11cdcdc03ae9cd28f88f0d1f9dc2cd44ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-traffic-manager"></a>Panoramica di Gestione traffico
 
-Gestione traffico di Microsoft Azure consente di controllare la distribuzione del traffico utente per gli endpoint di servizio in diversi data center. Gli endpoint di servizio supportati da Gestione traffico includono servizi cloud, app Web e macchine virtuali di Azure. È anche possibile usare Gestione traffico con endpoint esterni, non di Azure.
+Gestione traffico di Microsoft Azure consente di distribuzione hello toocontrol del traffico utente per gli endpoint del servizio in diversi Data Center. Gli endpoint di servizio supportati da Gestione traffico includono servizi cloud, app Web e macchine virtuali di Azure. È anche possibile usare Gestione traffico con endpoint esterni, non di Azure.
 
-Gestione traffico usa il sistema DNS (Domain Name System) per indirizzare le richieste del client all'endpoint più appropriato in base a un metodo di routing del traffico e all'integrità degli endpoint. Gestione traffico offre diversi [metodi di routing del traffico](traffic-manager-routing-methods.md) e [opzioni di monitoraggio degli endpoint](traffic-manager-monitoring.md) per soddisfare le diverse esigenze delle applicazioni e i modelli di failover automatico. Gestione traffico è resiliente agli errori, incluso l'errore di un'intera area di Azure.
+Gestione traffico Usa hello sistema DNS (Domain Name) toodirect client richieste toohello più endpoint appropriato in base a un metodo di routing del traffico e l'integrità di hello degli endpoint hello. Traffic Manager fornisce una gamma di [metodi di routing del traffico](traffic-manager-routing-methods.md) e [opzioni di monitoraggio endpoint](traffic-manager-monitoring.md) toosuit altra applicazione alle esigenze e i modelli di failover automatico. Gestione traffico è toofailure resilienti, ad esempio hello malfunzionamento di un'intera regione di Azure.
 
 ## <a name="traffic-manager-benefits"></a>Vantaggi di Gestione traffico
 
@@ -36,69 +36,69 @@ Con Gestione traffico è possibile:
 
 * **Migliorare la velocità di risposta delle applicazioni a prestazioni elevate**
 
-    Azure consente di eseguire servizi cloud o siti Web in datacenter di tutto il mondo. Gestione traffico può migliorare la velocità di risposta delle applicazioni indirizzando il traffico all'endpoint con la minore latenza di rete per il client.
+    Azure consente di siti Web o servizi cloud toorun in dislocati in tutto il mondo hello. Gestione traffico migliora la velocità di risposta dell'applicazione indirizzando endpoint toohello traffico con latenza di rete più bassa di hello per client hello.
 
 * **Eseguire la manutenzione dei servizi senza tempi di inattività**
 
-    È possibile eseguire le operazioni pianificate di manutenzione delle applicazioni senza tempi di inattività. Durante l'esecuzione delle operazioni di manutenzione, Gestione traffico indirizza il traffico verso endpoint alternativi.
+    È possibile eseguire le operazioni pianificate di manutenzione delle applicazioni senza tempi di inattività. Gestione traffico indirizza gli endpoint tooalternative traffico mentre manutenzione hello è in corso.
 
 * **Combinare applicazioni locali e applicazioni basate sul cloud**
 
-    Gestione traffico supporta anche endpoint esterni, non di Azure, e può quindi essere usato con distribuzioni cloud ibride e locali, inclusi gli scenari di tipo "burst nel cloud", "migrazione nel cloud" o "failover nel cloud".
+    Gestione traffico supporta esterno, gli endpoint di Azure non abilitarlo toobe utilizzato ibridi di cloud e locali distribuzioni, tra cui hello "burst-to-cloud," "eseguire la migrazione a cloud," e "failover sul cloud" scenari.
 
 * **Distribuire il traffico in distribuzioni complesse e di grandi dimensioni**
 
-    Usando i [profili di Gestione traffico annidati](traffic-manager-nested-profiles.md) è possibile combinare metodi di routing del traffico per creare regole sofisticare e flessibili in grado di supportare le esigenze di distribuzioni più complesse e di maggiori dimensioni.
+    Utilizzando [profili di gestione traffico nidificati](traffic-manager-nested-profiles.md), metodi di routing del traffico possono essere combinato toocreate sofisticate e hello toosupport flessibile regole deve delle distribuzioni più grandi e complesse.
 
 ## <a name="how-traffic-manager-works"></a>Modalità di funzionamento di Gestione traffico
 
-Gestione traffico di Azure consente di controllare in che modo il traffico viene distribuito tra gli endpoint dell'applicazione. Un endpoint è un servizio con connessione Internet ospitato all'interno o all'esterno di Azure.
+Gestione traffico di Azure consente distribuzione hello toocontrol del traffico tra l'endpoint dell'applicazione. Un endpoint è un servizio con connessione Internet ospitato all'interno o all'esterno di Azure.
 
 Gestione traffico offre due vantaggi principali:
 
-1. Distribuzione del traffico in base a uno dei diversi [metodi di routing del traffico](traffic-manager-routing-methods.md)
+1. Distribuzione del traffico in base tooone di diversi [metodi di routing del traffico](traffic-manager-routing-methods.md)
 2. [Monitoraggio continuo dell'integrità degli endpoint](traffic-manager-monitoring.md) e failover automatico quando si verificano errori sugli endpoint.
 
-Quando un client tenta di connettersi a un servizio, è necessario prima risolvere il nome DNS del servizio a un indirizzo IP. Il client si connette quindi a questo indirizzo IP per accedere al servizio.
+Quando un client tenta tooconnect tooa servizio, innanzitutto necessario risolvere il nome DNS hello dell'indirizzo IP del servizio tooan hello. client Hello si connette quindi il servizio hello tooaccess di toothat IP indirizzo.
 
-**Il punto più importante da comprendere è che Gestione traffico lavora a livello di DNS.**  Gestione traffico usa DNS per indirizzare i client a specifici endpoint di servizio in base alle regole del metodo di routing del traffico. I client si connettono quindi **direttamente** all'endpoint selezionato. Gestione traffico non è un proxy o un gateway. Gestione traffico non visualizza il traffico tra il client e il servizio.
+**Hello toounderstand di punto più importante è che a livello DNS hello funzionamento di gestione traffico.**  Gli endpoint in base alle regole di hello del metodo di routing del traffico hello del servizio Gestione traffico Usa DNS toodirect client toospecific. I client si connettono endpoint toohello selezionato **direttamente**. Gestione traffico non è un proxy o un gateway. Gestione traffico non vedere il passaggio tra hello client e servizio di hello del traffico hello.
 
 ### <a name="traffic-manager-example"></a>Esempio di Gestione traffico
 
-Contoso Corp ha sviluppato un nuovo portale per i partner. L'URL per questo portale è https://partners.contoso.com/login.aspx. L'applicazione è ospitata in tre aree di Azure. Per migliorare la disponibilità e ottimizzare le prestazioni globali, viene usato Gestione traffico per distribuire il traffico client all'endpoint disponibile più vicino.
+Contoso Corp ha sviluppato un nuovo portale per i partner. URL di Hello per questo portale è https://partners.contoso.com/login.aspx. un'applicazione Hello è ospitata in tre aree di Azure. disponibilità tooimprove e ottimizzare le prestazioni globali, usare Gestione traffico toodistribute client traffico toohello endpoint più vicino disponibile.
 
-Per ottenere questa configurazione, si completa la seguente procedura:
+tooachieve questa configurazione, vengono completate hello alla procedura seguente:
 
-1. Distribuire tre istanze del servizio. I nomi DNS di queste distribuzioni sono 'contoso-us.cloudapp.net', 'contoso-eu.cloudapp.net' e 'contoso-asia.cloudapp.net'.
-2. Creare un profilo di Gestione traffico con il nome "contoso.trafficmanager.net", e configurarlo per usare il metodo di routing del traffico "Prestazioni" tra i 3 endpoint.
-* Configurare il nome di dominio personale "partners.contoso.com" in modo che punti a "contoso.trafficmanager.net" tramite il record DNS CNAME.
+1. Distribuire tre istanze del servizio. i nomi DNS Hello di queste distribuzioni sono 'contoso-us.cloudapp .net', 'contoso-eu.cloudapp .net' e 'contoso-asia.cloudapp .net'.
+2. Creare un profilo di Traffic Manager, denominato 'contoso.trafficmanager.net' e configurarlo in metodo di routing del traffico "Performance" hello toouse tra gli endpoint hello tre.
+* Configurare il nome di dominio personale, 'partners.contoso.com', toopoint too'contoso.trafficmanager.net', con un record DNS CNAME.
 
 ![Configurazione DNS di Gestione traffico][1]
 
 > [!NOTE]
-> Quando si usa un dominio personale con Gestione traffico di Azure, è necessario usare un record CNAME per scegliere il nome del dominio personale sul nome di dominio di Gestione traffico. Gli standard DNS non consentono di creare un record CNAME al "vertice" (o alla radice) di un dominio. Non è quindi possibile creare un record CNAME per "contoso.com", detto anche dominio "naked". È possibile creare solo un record CNAME per un dominio in "contoso.com", ad esempio "www.contoso.com". Per risolvere questa limitazione, è consigliabile usare un semplice reindirizzamento HTTP per indirizzare le richieste di "contoso.com" su un nome alternativo, ad esempio "www.contoso.com".
+> Quando si utilizza un dominio personale con gestione traffico di Azure, è necessario utilizzare un toopoint CNAME il nome di dominio personale dominio nome tooyour Traffic Manager. Standard DNS non è un record CNAME in hello 'apice' toocreate (o radice) di un dominio. Non è quindi possibile creare un record CNAME per "contoso.com", detto anche dominio "naked". È possibile creare solo un record CNAME per un dominio in "contoso.com", ad esempio "www.contoso.com". toowork risolvere questa limitazione, è consigliabile utilizzare una semplice richieste toodirect di reindirizzamento HTTP per il nome alternativo di tooan 'contoso.com', ad esempio 'www.contoso.com'.
 
 ### <a name="how-clients-connect-using-traffic-manager"></a>Come si connettono i client tramite Gestione traffico
 
-Per continuare l'esempio precedente, quando un client richiede la pagina https://partners.contoso.com/login.aspx, il client esegue i passaggi seguenti per risolvere il nome DNS e stabilire una connessione:
+Continuando dall'esempio precedente hello, quando un client richiede hello pagina https://partners.contoso.com/login.aspx, client hello esegue hello dopo il nome DNS di passaggi tooresolve hello e stabilire una connessione:
 
 ![Stabilire una connessione tramite Gestione traffico][2]
 
-1. Il client invia una query DNS al relativo servizio DNS ricorsivo configurato per risolvere il nome "partners.contoso.com". Un servizio DNS ricorsivo, denominato anche servizio "DNS locale", non ospita direttamente i domini DNS, ma delega il lavoro di contattare i vari servizi DNS autorevoli su Internet necessari per risolvere un nome DNS.
-2. Per risolvere il nome DNS, il servizio DNS ricorsivo cerca i server dei nomi per il dominio "contoso.com". A questo punto, il servizio contatta i server dei nomi per richiedere il record DNS di "partners.contoso.com". I server DNS contoso.com restituiscono il record CNAME che punta a contoso.trafficmanager.net.
-3. Il servizio DNS ricorsivo quindi trova i server dei nomi per il dominio "trafficmanager, net", che vengono forniti dal servizio Gestione traffico di Azure. Quindi invia una richiesta per il record DNS "contoso.trafficmanager.net" a questi server DNS.
-4. I server dei nomi di Gestione traffico ricevono la richiesta. Scelgono un endpoint in base a:
+1. client Hello invia ricorsiva di tooits configurato una query DNS DNS servizio tooresolve hello nome 'partners.contoso.com'. Un servizio DNS ricorsivo, denominato anche servizio "DNS locale", non ospita direttamente i domini DNS, Invece, il client hello off-loads lavoro hello contattato hello DNS autorevole vari servizi su hello necessaria Internet tooresolve un nome DNS.
+2. nome DNS di hello tooresolve, il servizio DNS di hello ricorsivo Trova server dei nomi hello per il dominio 'contoso.com' hello. Contatta quindi i record DNS di nome server toorequest hello 'partners.contoso.com'. i server DNS di contoso.com Hello restituiscono i record CNAME hello che punta toocontoso.trafficmanager.net.
+3. Successivamente, il servizio DNS di hello ricorsivo Trova server dei nomi hello per il dominio 'trafficmanager.net' hello, che sono fornite da hello del servizio di gestione traffico di Azure. Quindi invia una richiesta di hello 'contoso.trafficmanager.net' DNS record toothose server DNS.
+4. Server dei nomi Hello Traffic Manager di ricezione richiesta hello. Scelgono un endpoint in base a:
 
-    - Lo stato configurato di ogni endpoint (gli endpoint disabilitati non vengono restituiti)
-    - L'integrità corrente di ogni endpoint, determinata dai controlli di integrità di Gestione traffico. Per altre informazioni, vedere [Informazioni sul monitoraggio di Gestione traffico](traffic-manager-monitoring.md).
-    - Il metodo di routing del traffico scelto. Per altre informazioni, vedere [Metodi di routing di Gestione traffico](traffic-manager-routing-methods.md).
+    - stato Hello configurato di ogni endpoint (non vengono restituiti endpoint disabilitato)
+    - controlli di integrità corrente di Hello di ogni endpoint, come determinato dall'integrità di gestione traffico hello. Per altre informazioni, vedere [Informazioni sul monitoraggio di Gestione traffico](traffic-manager-monitoring.md).
+    - Hello scelto il metodo di routing del traffico. Per altre informazioni, vedere [Metodi di routing di Gestione traffico](traffic-manager-routing-methods.md).
 
-5. L'endpoint scelto viene restituito come un altro record DNS CNAME. In questo caso, si supponga che venga restituito contoso-us.cloudapp.net.
-6. Il servizio DNS ricorsivo cerca quindi i server dei nomi per il dominio "cloudapp.net". Il servizio contatta questi server dei nomi per richiedere il record DNS "contoso-us.cloudapp.net". Viene restituito un record DNS "A" contenente l'indirizzo IP dell'endpoint di servizio situato negli Stati Uniti.
-7. Il servizio DNS ricorsivo consente di consolidare i risultati e restituisce una singola risposta DNS al client.
-8. Il client riceve i risultati DNS e si connette all'indirizzo IP specificato. Il client si connette all'endpoint di servizio dell'applicazione in modo diretto, senza passare per Gestione traffico. Poiché si tratta di un endpoint HTTPS, il client esegue l'handshake SSL/TLS necessario e quindi esegue una richiesta HTTP GET per la pagina "/login.aspx".
+5. endpoint Hello scelto viene restituito come un altro record DNS CNAME. In questo caso, si supponga che venga restituito contoso-us.cloudapp.net.
+6. Successivamente, il servizio DNS di hello ricorsivo Trova server dei nomi hello per il dominio 'cloudapp.net' hello. Contatta tali hello toorequest di nome server 'contoso-us.cloudapp .net' record DNS. Viene restituito un record DNS 'A' contenente l'indirizzo IP hello hello statunitense dell'endpoint del servizio.
+7. il servizio DNS di Hello ricorsivo consente di consolidare i risultati di hello e restituisce un singolo client di toohello risposta DNS.
+8. client Hello riceve i risultati di DNS hello e si connette toohello indirizzo IP specificato. Hello client si connette toohello endpoint del servizio dell'applicazione non viene direttamente, non tramite Traffic Manager. Poiché si tratta di un endpoint HTTPS, hello client esegue l'handshake SSL/TLS hello necessaria e quindi effettua una richiesta HTTP GET per hello ' / login ' pagina.
 
-Il servizio DNS ricorsivo memorizza nella cache le risposte DNS ricevute. Il resolver DNS nel dispositivo client memorizza nella cache anche il risultato. Il caching consente alle query DNS successive di ricevere risposte più rapide usando i dati dalla cache al posto di query ad altri server dei nomi. La durata della memorizzazione nella cache è determinata dalla proprietà "Durata" (TTL) di ogni record DNS. Valori più bassi implicano una scadenza della cache più breve e pertanto più round trip ai server dei nomi di Gestione traffico. Valori più alti indicano che potrebbe essere necessario più tempo per indirizzare il traffico da un endpoint non riuscito. Gestione traffico consente di configurare la durata (TTL) delle risposte DNS di Gestione traffico affinché siano di un minimo di 0 secondi e di un massimo di 2.147.483.647 secondi (con l'intervallo massimo conforme [RFC-1035](https://www.ietf.org/rfc/rfc1035.txt)), per permettere all'utente di scegliere il valore ideale per bilanciare meglio le esigenze dell'applicazione.
+il servizio DNS di Hello ricorsivo memorizza nella cache le risposte DNS hello che riceve. resolver DNS Hello nel dispositivo client hello memorizza anche nella cache il risultato di hello. Consente di rispondere più rapidamente utilizzando i dati dalla cache di hello anziché di una query su altri server di nome successive toobe di query DNS. durata Hello della cache di hello è determinata dalla proprietà di (durata TTL) 'time-to-live' hello di ogni record DNS. Valori più brevi determinano la scadenza della cache più veloce e pertanto più round trip toohello Traffic Manager nome server. Valori più lunghi significa che può richiedere traffico toodirect più lontano da un endpoint non riuscito. Gestione traffico consente tooconfigure hello durata (TTL) utilizzato in toobe le risposte DNS di Traffic Manager minimo di 0 secondi e a un massimo di 2.147.483.647 secondi (hello intervallo massimo conforme con [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt)), consentendo il valore di hello toochoose che bilancia meglio alle esigenze dell'applicazione hello.
 
 ## <a name="pricing"></a>Prezzi
 
@@ -114,7 +114,7 @@ Altre informazioni sul [monitoraggio degli endpoint e sul failover automatico](t
 
 Altre informazioni sui [metodi di routing](traffic-manager-routing-methods.md)di Gestione traffico.
 
-Informazioni su alcune altre [funzionalità di rete](../networking/networking-overview.md) chiave di Azure.
+Informazioni su alcune delle hello altre chiavi [funzionalità di rete](../networking/networking-overview.md) di Azure.
 
 <!--Image references-->
 [1]: ./media/traffic-manager-how-traffic-manager-works/dns-configuration.png

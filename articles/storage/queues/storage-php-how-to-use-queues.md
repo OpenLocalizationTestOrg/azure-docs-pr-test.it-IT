@@ -1,6 +1,6 @@
 ---
-title: Come usare l'archiviazione code da PHP | Microsoft Docs
-description: Informazioni su come usare il servizio di accodamento di Azure per creare ed eliminare code e per inserire, visualizzare ed eliminare messaggi. Gli esempi sono scritti in PHP.
+title: aaaHow toouse l'archiviazione delle code da PHP | Documenti Microsoft
+description: Informazioni su come toouse hello coda di Azure storage service toocreate e le code di delete e insert, ottenere ed eliminare i messaggi. Gli esempi sono scritti in PHP.
 documentationcenter: php
 services: storage
 author: robinsh
@@ -14,42 +14,42 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 12ebb905184e74da534cd44e8314335145f7042d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8daabcc9b3b4de121a309f21bb3325242cff06f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-php"></a>Come usare l'archiviazione di accodamento da PHP
+# <a name="how-toouse-queue-storage-from-php"></a>Come toouse l'archiviazione delle code da PHP
 [!INCLUDE [storage-selector-queue-include](../../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>Panoramica
-Questa guida illustra diversi scenari di utilizzo comuni del servizio di archiviazione code di Azure. Gli esempi sono scritti utilizzando le classi di Windows SDK per PHP Gli scenari presentati includono l'inserimento, la visualizzazione, il recupero e l'eliminazione dei messaggi in coda, oltre alle procedure di creazione ed eliminazione di code.
+Questa guida illustra come gli scenari comuni di tooperform usando hello servizio di archiviazione code di Azure. esempi di Hello vengono scritte tramite le classi da hello Windows SDK per PHP. Hello coperti scenari includono inserimento, visualizzazione, recupero e l'eliminazione di messaggi in coda, nonché creazione e l'eliminazione di code.
 
 [!INCLUDE [storage-queue-concepts-include](../../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>Creare un'applicazione PHP
-Per creare un'applicazione PHP che accede al Servizio di accodamento di Azure, è sufficiente fare riferimento alle classi di Azure SDK per PHP dall'interno del codice. Per creare l'applicazione, è possibile usare qualsiasi strumento di sviluppo, incluso il Blocco note.
+Hello solo requisito per la creazione di un'applicazione PHP che accede l'archiviazione delle code di Azure è hello che fanno riferimento a classi di hello Azure SDK per PHP all'interno del codice. È possibile utilizzare qualsiasi toocreate di strumenti di sviluppo dell'applicazione, inclusi il blocco note.
 
 In questa guida si useranno le funzionalità del Servizio di accodamento che possono essere chiamate in un'applicazione PHP in locale o nel codice in esecuzione in un ruolo Web, in un ruolo di lavoro o in un sito Web di Azure.
 
-## <a name="get-the-azure-client-libraries"></a>Acquisire le librerie client di Azure
+## <a name="get-hello-azure-client-libraries"></a>Recuperare le librerie Client di hello Azure
 [!INCLUDE [get-client-libraries](../../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-queue-storage"></a>Configurare l'applicazione per l'accesso all'archiviazione di accodamento
-Per utilizzare le API per l'archiviazione di accodamento di Azure, è necessario:
+## <a name="configure-your-application-tooaccess-queue-storage"></a>Configurare l'archiviazione delle code di tooaccess applicazione
+hello toouse API per l'archiviazione delle code di Azure, è necessario:
 
-1. Fare riferimento al file autoloader mediante l'istruzione [require_once].
+1. File di riferimento hello autoloader utilizzando hello [require_once] istruzione.
 2. Fare riferimento a tutte le eventuali classi utilizzabili.
 
-Nell'esempio seguente viene indicato come includere il file autoloader e fare riferimento alla classe **ServicesBuilder** .
+Hello esempio seguente viene illustrato come tooinclude hello hello di file e riferimento autoloader **ServicesBuilder** classe.
 
 > [!NOTE]
-> In questo esempio (e in altri esempi in questo articolo) si presuppone che siano state installate le librerie client PHP per Azure tramite Composer. Se le librerie sono state installate manualmente, sarà necessario fare riferimento al file autoloader `WindowsAzure.php` .
+> In questo esempio (e altri esempi in questo articolo) si presuppone di aver installato le librerie Client di PHP hello per Azure tramite creazione. Se è stato installato manualmente le librerie di hello, sarà necessario tooreference hello `WindowsAzure.php` autoloader file.
 > 
 > 
 
@@ -59,10 +59,10 @@ use WindowsAzure\Common\ServicesBuilder;
 
 ```
 
-Nei seguenti esempi l'istruzione `require_once` verrà sempre visualizzata, ma si farà riferimento solo alle classi necessarie per eseguire l'esempio.
+Negli esempi di hello riportato di seguito, hello `require_once` istruzione verrà sempre visualizzata, ma solo le classi di hello necessari per tooexecute esempio hello verranno fatto riferimento.
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di archiviazione di Azure
-Per creare un'istanza di un client del Servizio di accodamento di Azure, è necessario innanzitutto disporre di una stringa di connessione valida. Il formato della stringa di connessione del servizio di accodamento è:
+tooinstantiate un client di archiviazione della coda di Azure, è innanzitutto necessario una stringa di connessione valido. formato stringa di connessione del servizio coda hello Hello è come indicato di seguito.
 
 Per accedere a un servizio attivo:
 
@@ -70,20 +70,20 @@ Per accedere a un servizio attivo:
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-Per accedere alla memoria dell'emulatore:
+Per l'accesso all'archiviazione di emulatore hello:
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-Per creare un client di servizio di Azure, è necessario usare la classe **ServicesBuilder** . È possibile utilizzare le tecniche seguenti:
+toocreate qualsiasi client del servizio di Azure, è necessario hello toouse **ServicesBuilder** classe. È possibile utilizzare una delle seguenti tecniche hello:
 
-* Passare la stringa di connessione direttamente.
-* Utilizzare **CloudConfigurationManager (CCM)** per cercare la stringa di connessione in più origini esterne:
+* Passare la connessione hello tooit direttamente di stringa.
+* Utilizzare **CloudConfigurationManager (CCM)** toocheck origini dati esterne di più origini per la stringa di connessione hello:
   * Per impostazione predefinita, viene fornito con il supporto per un'origine esterna, ovvero le variabili ambientali
-  * è possibile aggiungere nuove origini estendendo la classe **ConnectionStringSource**
+  * È possibile aggiungere nuove origini estendendo hello **ConnectionStringSource** classe.
 
-Per gli esempi illustrati in questo articolo, la stringa di connessione verrà passata direttamente.
+Per esempi di hello descritti di seguito, la stringa di connessione hello verrà passata direttamente.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -94,7 +94,7 @@ $queueRestProxy = ServicesBuilder::getInstance()->createQueueService($connection
 ```
 
 ## <a name="create-a-queue"></a>Creare una coda
-Un oggetto **QueueRestProxy** consente di creare una coda usando il metodo **createQueue**. Quando si crea una coda, è possibile impostare le opzioni per la coda, anche se tale operazione non è necessaria. Nell'esempio seguente viene illustrato come impostare i metadati in una coda.
+Oggetto **QueueRestProxy** oggetto consente di creare una coda utilizzando hello **createQueue** metodo. Quando si crea una coda, è possibile impostare le opzioni nella coda di hello, ma non è necessario. (hello di esempio seguente viene illustrato come tooset metadati in una coda.)
 
 ```php
 require_once 'vendor/autoload.php';
@@ -126,12 +126,12 @@ catch(ServiceException $e){
 ```
 
 > [!NOTE]
-> Non basarsi sulla distinzione maiuscole/minuscole nelle chiavi di metadati. Il servizio legge tutte le chiavi come scritte in minuscolo.
+> Non basarsi sulla distinzione maiuscole/minuscole nelle chiavi di metadati. Tutte le chiavi vengono lette dal servizio hello in lettere minuscole.
 > 
 > 
 
-## <a name="add-a-message-to-a-queue"></a>Aggiungere un messaggio a una coda
-Per aggiungere un messaggio a una coda, usare **QueueRestProxy->createMessage**. Il metodo utilizza il nome della coda, il testo del messaggio e le opzioni messaggio (facoltative).
+## <a name="add-a-message-tooa-queue"></a>Aggiungere una coda di messaggi tooa
+utilizzare una coda di messaggi tooa, tooadd **QueueRestProxy -> createMessage**. metodo Hello accetta il nome di coda hello, testo del messaggio hello e opzioni di messaggio (che sono facoltative).
 
 ```php
 require_once 'vendor/autoload.php';
@@ -158,8 +158,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="peek-at-the-next-message"></a>Visualizzare il messaggio successivo
-È possibile visualizzare il messaggio (o i messaggi successivi) in cima a una coda senza rimuoverlo dalla coda chiamando il metodo **QueueRestProxy->peekMessages**. Per impostazione predefinita, il metodo **peekMessage** restituisce un solo messaggio, ma è possibile modificare tale valore con il metodo **PeekMessagesOptions->setNumberOfMessages**.
+## <a name="peek-at-hello-next-message"></a>Leggere il messaggio hello successivo
+È possibile anche visualizzare un messaggio (o i messaggi) nella parte anteriore hello di una coda senza rimuoverlo dalla coda hello chiamando **QueueRestProxy -> peekMessages**. Per impostazione predefinita, hello **peekMessage** metodo restituisce un singolo messaggio, ma è possibile modificare tale valore utilizzando hello **PeekMessagesOptions -> setNumberOfMessages** metodo.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -204,8 +204,8 @@ else{
 }
 ```
 
-## <a name="de-queue-the-next-message"></a>Rimuovere il messaggio successivo dalla coda
-Il codice consente di rimuovere un messaggio da una coda in due passaggi. Chiamare **QueueRestProxy->listMessages** per rendere il messaggio invisibile a tutte le altre letture del codice dalla coda. Per impostazione predefinita, il messaggio rimane invisibile per 30 secondi. (Se il messaggio non viene eliminato in questo periodo di tempo, diventerà nuovamente visibile nella coda.) Per completare la rimozione del messaggio dalla coda, è necessario chiamare **QueueRestProxy->deleteMessage**. Questo processo in due passaggi di rimozione di un messaggio assicura che, qualora l'elaborazione di un messaggio abbia esito negativo a causa di errori hardware o software, un'altra istanza del codice sia in grado di ottenere lo stesso messaggio e di riprovare. Il codice chiama **deleteMessage** immediatamente dopo l'elaborazione del messaggio.
+## <a name="de-queue-hello-next-message"></a>Annullato l'accodamento messaggio successivo hello
+Il codice consente di rimuovere un messaggio da una coda in due passaggi. In primo luogo, si chiama **QueueRestProxy -> listMessages**, rendendo hello messaggio invisibile tooany altro codice che legge dalla coda hello. Per impostazione predefinita, il messaggio rimane invisibile per 30 secondi. (Se il messaggio hello non viene eliminato in questo periodo di tempo, sarà nuovamente visibile nella coda di hello.) toofinish messaggio hello rimozione dalla coda di hello, è necessario chiamare **QueueRestProxy -> deleteMessage**. Questo processo in due passaggi della rimozione di un messaggio assicura che quando il tooprocess ha esito negativo di codice un messaggio a causa di un errore toohardware o software, un'altra istanza del codice è possibile ottenere hello stesso messaggio e provare nuovamente. Il codice chiama **deleteMessage** subito dopo il messaggio hello è stato elaborato.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -243,8 +243,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="change-the-contents-of-a-queued-message"></a>Cambiare il contenuto di un messaggio in coda
-È possibile modificare il contenuto di un messaggio inserito nella coda chiamando **QueueRestProxy->updateMessage**. Se il messaggio rappresenta un'attività di lavoro, è possibile utilizzare questa funzionalità per aggiornarne lo stato. Il codice seguente consente di aggiornare il messaggio in coda con nuovo contenuto e di impostarne il timeout di visibilità per prolungarlo di altri 60 secondi. In questo modo lo stato del lavoro associato al messaggio viene salvato e il client ha a disposizione un altro minuto per continuare l'elaborazione del messaggio. È possibile usare questa tecnica per tenere traccia di flussi di lavoro composti da più passaggi nei messaggi in coda, senza la necessità di ricominciare dall'inizio se un passaggio di elaborazione non riesce a causa di errori hardware o software. In genere, è consigliabile mantenere anche un conteggio dei tentativi, in modo da eliminare i messaggi per cui vengono effettuati più di *n* tentativi. In questo modo è possibile evitare che un messaggio attivi un errore dell'applicazione ogni volta che viene elaborato.
+## <a name="change-hello-contents-of-a-queued-message"></a>Modificare il contenuto di hello di un messaggio in coda
+È possibile modificare il contenuto di hello di un messaggio sul posto nella coda di hello chiamando **QueueRestProxy -> updateMessage**. Se il messaggio hello rappresenta un'attività di lavoro, è possibile utilizzare questo stato hello tooupdate della funzionalità dell'attività di lavoro hello. Hello seguente codice aggiorna il messaggio di coda hello con nuovo contenuto e imposta tooextend timeout di visibilità hello un'altra 60 secondi. In questo modo lo stato di hello del lavoro che è associata a messaggi hello e offre un'altra toocontinue minuto lavorando messaggio hello al client hello. È possibile utilizzare flussi di lavoro di più passaggi tootrack questa tecnica per i messaggi della coda, senza la necessità di toostart dall'inizio di hello se un passaggio di elaborazione non riesce a causa di un errore toohardware o software. In genere, è consigliabile mantenere un numero di tentativi anche, e se hello messaggio viene ripetuto più  *n*  volte, è possibile eliminare. In questo modo è possibile evitare che un messaggio attivi un errore dell'applicazione ogni volta che viene elaborato.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -287,7 +287,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="additional-options-for-de-queuing-messages"></a>Opzioni aggiuntive per rimuovere i messaggi dalla coda
-È possibile personalizzare il recupero di messaggi da una coda in due modi. Innanzitutto, è possibile recuperare un batch di messaggi (massimo 32). In secondo luogo, è possibile impostare un timeout di visibilità più lungo o più breve assegnando al codice più o meno tempo per l'elaborazione completa di ogni messaggio. Nell'esempio di codice seguente viene utilizzato il metodo **getMessages** per recuperare 16 messaggi con una sola chiamata. Quindi, ogni messaggio viene elaborato con un ciclo **for** . Per ogni messaggio, inoltre, il timeout di invisibilità viene impostato su cinque minuti.
+È possibile personalizzare il recupero di messaggi da una coda in due modi. In primo luogo, è possibile ottenere un batch di messaggi (in alto too32). In secondo luogo, è possibile impostare un timeout di visibilità superiori o inferiori, consentendo al codice più o meno toofully ora elaborare ogni messaggio. esempio di codice seguente Hello utilizza hello **getMessages** messaggi tooget 16 metodo in un'unica chiamata. Quindi, ogni messaggio viene elaborato con un ciclo **for** . Imposta inoltre hello invisibilità timeout toofive in minuti per ogni messaggio.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -335,7 +335,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="get-queue-length"></a>Recuperare la lunghezza della coda
-È possibile ottenere una stima sul numero di messaggi presenti in una coda. Il metodo **QueueRestProxy->getQueueMetadata** chiede al servizio di accodamento di restituire i metadati relativi alla coda. La chiamata al metodo **getApproximateMessageCount** sull'oggetto restituito fornisce il numero di messaggi presenti in una coda. Il conteggio è solo approssimativo, poiché è possibile aggiungere o rimuovere messaggi dopo la risposta del servizio di accodamento.
+È possibile ottenere una stima del numero di hello dei messaggi in una coda. Hello **QueueRestProxy -> getQueueMetadata** metodo richiede metadati tooreturn di hello coda del servizio sulla coda hello. Chiamare il metodo hello **getApproximateMessageCount** metodo su hello ha restituito l'oggetto fornisce un conteggio del numero di messaggi è in una coda. conteggio Hello è solo approssimativo perché i messaggi possono essere aggiunti o rimossi dopo che il servizio di Accodamento di hello risponde tooyour richiesta.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -364,7 +364,7 @@ echo $approx_msg_count;
 ```
 
 ## <a name="delete-a-queue"></a>Eliminare una coda
-Per eliminare una coda e tutti i messaggi che contiene, chiamare il metodo **QueueRestProxy->deleteQueue**.
+chiamate di una coda e tutti i messaggi hello in essa contenuti, toodelete hello **QueueRestProxy -> deleteQueue** metodo.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -390,11 +390,11 @@ catch(ServiceException $e){
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, dopo aver appreso le nozioni di base sull'archiviazione delle code, visitare i collegamenti seguenti per altre informazioni sulle attività di archiviazione più complesse.
+Ora che si sono appreso i concetti fondamentali di hello dell'archiviazione delle code di Azure, seguire questi toolearn collegamenti sulle attività più complesse di archiviazione:
 
-* [Blog del team di Archiviazione di Azure](http://blogs.msdn.com/b/windowsazurestorage/).
+* Visitare hello [blog del Team di archiviazione di Azure](http://blogs.msdn.com/b/windowsazurestorage/).
 
-Per ulteriori informazioni, vedere anche il [Centro per sviluppatori di PHP](/develop/php/).
+Per ulteriori informazioni, vedere anche hello [Centro sviluppatori PHP](/develop/php/).
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [require_once]: http://www.php.net/manual/en/function.require-once.php

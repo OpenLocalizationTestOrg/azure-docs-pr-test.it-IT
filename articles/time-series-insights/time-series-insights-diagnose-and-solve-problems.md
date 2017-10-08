@@ -1,6 +1,6 @@
 ---
-title: Diagnostica e risoluzione dei problemi | Documentazione Microsoft
-description: Questa esercitazione illustra come diagnosticare e risolvere i problemi nell'ambiente Time Series Insights
+title: aaaDiagnose e risolvere i problemi | Documenti Microsoft
+description: Questa esercitazione sono trattati come toodiagnose e risolvere i problemi nell'ambiente di tempo serie Insights
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/24/2017
 ms.author: venkatja
-ms.openlocfilehash: 4b8d5fdab1744b2db658917f91d6dac05db30d2f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00893d4bec497f5f8bf7093be5b96f1844446d13
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnose-and-solve-problems-in-your-time-series-insights-environment"></a>Diagnosticare e risolvere i problemi nell'ambiente Time Series Insights
 
 ## <a name="i-dont-see-my-data"></a>Non vengono visualizzati i dati
-Ecco alcuni motivi per cui i dati potrebbero non essere visualizzati nel proprio ambiente nel [portale di Azure Time Series Insights](https://insights.timeseries.azure.com).
+Ecco alcuni motivi per cui potrebbero non essere visibili i dati nell'ambiente in hello [portale Azure ora serie Insights](https://insights.timeseries.azure.com).
 
 ### <a name="your-event-source-doesnt-have-data-in-json-format"></a>L'origine evento non dispone di dati in formato JSON
 Azure Time Series Insights al momento supporta solo i dati in formato JSON. Per alcuni esempi di dati in formato JSON, vedere [Forme JSON supportate](time-series-insights-send-events.md#supported-json-shapes).
 
-### <a name="when-you-registered-your-event-source-you-didnt-provide-the-key-that-has-the-required-permission"></a>Durante la registrazione dell'origine evento non è stata fornita la chiave con l'autorizzazione necessaria
-* Per un hub IoT è necessario fornire la chiave con l'autorizzazione di **connessione al servizio**.
+### <a name="when-you-registered-your-event-source-you-didnt-provide-hello-key-that-has-hello-required-permission"></a>Quando l'origine evento è stato registrato, non è stato fornito chiave hello che dispone dell'autorizzazione necessaria hello
+* Per un hub IoT, è necessario chiave hello tooprovide con **servizio connettersi** autorizzazione.
 
    ![Autorizzazione di connessione al servizio hub IoT](media/diagnose-and-solve-problems/iothub-serviceconnect-permissions.png)
 
-   Come illustrato nell'immagine precedente, entrambi i criteri **iothubowner** e **service** possono funzionare, in quanto entrambi dispongono dell'autorizzazione di **connessione al servizio**.
-* Per un hub eventi è necessario fornire la chiave con l'autorizzazione di **ascolto**.
+   Come mostrato nella precedente immagine, hello uno dei criteri di hello **iothubowner** e **servizio** funzionerà, perché entrambi hanno **servizio connettersi** autorizzazione.
+* Per un hub di eventi, è necessario chiave hello tooprovide con **ascolto** autorizzazione.
 
    ![Autorizzazione di ascolto per l'hub eventi](media/diagnose-and-solve-problems/eventhub-listen-permissions.png)
 
-   Come illustrato nell'immagine precedente, entrambi i criteri **read** e **manage** potrebbero funzionare, in quanto entrambi dispongono dell'autorizzazione di **ascolto**.
+   Come mostrato nella precedente immagine, hello uno dei criteri di hello **leggere** e **gestire** funzionerà, perché entrambi hanno **ascolto** autorizzazione.
 
-### <a name="the-provided-consumer-group-is-not-exclusive-to-time-series-insights"></a>Il gruppo di consumer fornito non è esclusivo di Time Series Insights
-Per un hub IoT o un hub eventi, durante la registrazione viene richiesto di specificare il gruppo di consumer da usare per la lettura dei dati. Questo gruppo di consumer non deve essere condiviso. Se viene condiviso, l'hub eventi sottostante disconnette automaticamente uno dei lettori in modo casuale.
+### <a name="hello-provided-consumer-group-is-not-exclusive-tootime-series-insights"></a>Hello fornito gruppo di consumer non è esclusivo tooTime serie Insights
+Per un hub IoT o un hub eventi, durante la registrazione è necessario per gruppo di consumer hello toospecify che deve essere utilizzato per la lettura dei dati. Questo gruppo di consumer non deve essere condiviso. Se viene condiviso, hub eventi sottostante hello disconnette automaticamente uno dei lettori di hello in modo casuale.
 
 ## <a name="i-see-my-data-but-theres-a-lag"></a>I dati vengono visualizzati, ma c'è un ritardo
-Ecco i motivi per cui potrebbero essere visualizzati dati parziali nel proprio ambiente nel [portale di Time Series Insights](https://insights.timeseries.azure.com).
+Ecco i motivi perché si potrebbe vedere parziale dei dati nell'ambiente in hello [portale ora serie Insights](https://insights.timeseries.azure.com).
 
 ### <a name="your-environment-is-getting-throttled"></a>L'ambiente è in fase di limitazione
-La limitazione viene applicata in base alla capacità e al tipo di SKU dell'ambiente. Tutte le origini evento all'interno dell'ambiente condividono questa capacità. Se l'origine evento dell'hub IoT e dell'hub eventi esegue il push dei dati oltre il limite imposto, si verificheranno una limitazione e un ritardo.
+Hello limite viene applicato in base a tipo SKU e la capacità dell'ambiente hello. Tutte le origini di eventi nell'ambiente di hello condividono questa capacità. Se l'origine evento hello per l'evento o l'hub IoT sono push dei dati oltre i limiti di hello applicato, vedere la limitazione delle richieste e un ritardo.
 
-Il diagramma seguente mostra un ambiente Time Series Insights con uno SKU S1 e una capacità pari a 3. È consentito l'ingresso di 3 milioni di eventi al giorno.
+Hello seguente diagramma mostra un ambiente di Insights di serie di tempo che dispone di una SKU di S1 e una capacità di 3. È consentito l'ingresso di 3 milioni di eventi al giorno.
 
 ![Capacità corrente dello SKU dell'ambiente](media/diagnose-and-solve-problems/environment-sku-current-capacity.png)
 
-Si supponga che questo ambiente stia ricevendo messaggi da un hub eventi con la velocità di ingresso indicata nel diagramma seguente:
+Si supponga che questo ambiente è l'inserimento messaggi da un hub eventi con velocità in ingresso hello mostrato nel seguente diagramma hello:
 
 ![Velocità di ingresso di esempio per un hub eventi](media/diagnose-and-solve-problems/eventhub-ingress-rate.png)
 
-Come illustrato nel diagramma, la frequenza in ingresso giornaliera è pari a circa 67.000 messaggi. Questa velocità si traduce approssimativamente in 46 messaggi al minuto. Se ogni messaggio dell'hub eventi viene appiattito a un singolo evento Time Series Insights, questo ambiente non sperimenterà alcuna limitazione. Se ogni messaggio dell'hub eventi viene appiattito a 100 eventi Time Series Insights , devono essere inseriti 4.600 eventi ogni minuto. Un ambiente SKU S1 con una capacità pari a 3 consente l'ingresso di soli 2.100 eventi al minuto (1 milione di eventi al giorno = 700 eventi al minuto in 3 unità = 2.100 eventi al minuto). Pertanto si osserverà un ritardo dovuto alla limitazione. 
+Come illustrato nel diagramma hello, frequenza in ingresso giornaliero hello è ~ 67,000 messaggi. Questa velocità si traduce approssimativamente messaggi too46 ogni minuto. Se ogni messaggio di hub eventi è bidimensionale tooa singolo evento di Insights di serie di tempo, questo ambiente non rileva Nessuna limitazione. Se ogni messaggio di evento hub eventi tempo serie Insights too100 bidimensionale, quindi 4.600 eventi devono essere caricamento ogni minuto. Un ambiente SKU S1 con una capacità pari a 3 consente l'ingresso di soli 2.100 eventi al minuto (1 milione di eventi al giorno = 700 eventi al minuto in 3 unità = 2.100 eventi al minuto). Di conseguenza viene visualizzato un intervallo di scadenza toothrottling. 
 
 Per una descrizione generale di come funziona la logica di appiattimento, vedere [Forme JSON supportate](time-series-insights-send-events.md#supported-json-shapes).
 
 #### <a name="recommended-steps"></a>Procedure consigliate
-Per correggere il ritardo, aumentare la capacità SKU dell'ambiente. Per altre informazioni, vedere [Come scalare l'ambiente Time Series Insights](time-series-insights-how-to-scale-your-environment.md).
+ritardo di hello toofix, hello aumento della capacità SKU dell'ambiente. Per ulteriori informazioni, vedere [come tooscale ambiente ora serie Insights](time-series-insights-how-to-scale-your-environment.md).
 
 ### <a name="youre-pushing-historical-data-and-causing-slow-ingress"></a>Il push dei dati cronologici sta causando lentezza nell'ingresso
-Se ci si connette a un'origine evento esistente, è probabile che l'hub IoT o l'hub eventi contenga già dati. Di conseguenza, l'ambiente inizia a eseguire il pull dei dati dall'inizio del periodo di conservazione dei messaggi dell'origine eventi. 
+Se ci si connette a un'origine evento esistente, è probabile che l'hub IoT o l'hub eventi contenga già dati. Avvio estrazione dei dati dall'inizio di hello del periodo di memorizzazione di messaggi dell'origine evento hello così hello dell'ambiente. 
 
-Questo comportamento è quello predefinito e non è possibile eseguirne l'override. Potrebbe attivarsi la limitazione e potrebbe essere necessario un po' di tempo per l'inserimento dei dati cronologici.
+Questo comportamento è il comportamento predefinito di hello e non può essere sottoposto a override. È possibile coinvolgere la limitazione delle richieste e potrebbe richiedere un po' di tempo toocatch backup sull'inserimento di dati cronologici.
 
 #### <a name="recommended-steps"></a>Procedure consigliate
-Per correggere il ritardo, procedere come segue:
-1. Aumentare la capacità SKU fino al valore massimo consentito (10 in questo caso). Dopo aver aumentato la capacità, il processo di ingresso inizia a essere molto più veloce. È possibile vedere tale rapidità nel grafico della disponibilità nel [portale di Time Series Insights](https://insights.timeseries.azure.com). La maggiore capacità sarà addebitata.
-2. Dopo aver recuperato il ritardo, diminuire nuovamente la capacità SKU secondo la velocità di ingresso normale.
+ritardo di hello toofix, hello take alla procedura seguente:
+1. Aumentare hello SKU capacità toohello valore massimo consentito (10 in questo caso). Dopo aver hello viene aumentata, il processo di ingresso hello avvia recuperando molto più veloce. È possibile visualizzare rapidità con cui sta recuperando tramite grafico disponibilità hello in hello [portale ora serie Insights](https://insights.timeseries.azure.com). Vengono addebitati i hello maggiore capacità.
+2. Dopo il ritardo di hello viene aggiornato, ridurre la frequenza in ingresso normale hello SKU capacità tooyour indietro.
 
 ## <a name="my-event-sources-timestamp-property-name-setting-doesnt-work"></a>L'impostazione del *nome della proprietà Timestamp* dell'origine evento non funziona
-Verificare che il nome e il valore siano conformi alle regole seguenti:
-* Il nome della proprietà Timestamp _fa distinzione fra maiuscole e minuscole_.
-* Il valore della proprietà Timestamp proveniente dall'origine evento, come stringa JSON, deve avere il formato _aaaa-MM-ggTHH:mm:ss.FFFFFFFK_. Un esempio di tale stringa è "2008-04-12T12:53Z".
+Verificare che hello nome e valore siano conformi alle regole toohello:
+* nome della proprietà timestamp Hello _tra maiuscole e minuscole_.
+* valore della proprietà timestamp Hello provenienti dall'origine evento, come una stringa JSON, deve avere il formato di hello _AAAA-MM-ggTHH. FFFFFFFK_. Un esempio di tale stringa è "2008-04-12T12:53Z".

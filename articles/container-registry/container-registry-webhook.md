@@ -1,5 +1,5 @@
 ---
-title: Webhook del registro contenitori di Azure | Microsoft Docs
+title: aaaAzure contenitore del Registro di sistema webhook | Documenti Microsoft
 description: Webhook del registro contenitori di Azure
 services: container-registry
 documentationcenter: 
@@ -16,41 +16,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/06/2017
 ms.author: nepeters
-ms.openlocfilehash: d0190f5725671c320d92b897f0dcef7a526a86e3
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: adc2afec486007e2d54cd689e6f7ef8b1098db06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-container-registry-webhooks---azure-portal"></a>Utilizzo dei webhook del registro contenitori di Azure - Portale di Azure
 
-Un registro contenitori di Azure archivia e gestisce le immagini dei contenitori Docker private, in modo analogo a come Docker Hub archivia le immagini Docker pubbliche. Usando i webhook, è possibile attivare eventi specifici quando in uno dei repository del registro si verificano determinate azioni. I webhook possono rispondere agli eventi a livello di registro oppure possono essere limitati a un tag di repository specifico. 
+Un registro di sistema del contenitore di Azure archivia e gestisce immagini contenitore Docker private, analogamente toohello Hub Docker archivia le immagini Docker pubbliche. Utilizzare gli eventi di tootrigger webhook quando determinate azioni si verificano in un repository del Registro di sistema. Webhook possono rispondere tooevents a livello del Registro di sistema hello o possono essere limitati tag repository specifico tooa verso il basso. 
 
-Per altre informazioni di base e concetti, vedere la [panoramica](./container-registry-intro.md).
+Per altre sfondo e i concetti, vedere hello [Panoramica](./container-registry-intro.md).
 
 ## <a name="prerequisites"></a>Prerequisiti 
 
-- Un registro contenitori gestito in Azure: creare un registro contenitori gestito nella sottoscrizione di Azure usando, ad esempio, il portale di Azure o l'interfaccia della riga di comando di Azure 2.0. 
-- Interfaccia della riga di comando di Docker: per configurare il computer locale come host Docker e accedere ai comandi della riga di comando di Docker, installare Docker Engine. 
+- Un registro contenitori gestito in Azure: creare un registro contenitori gestito nella sottoscrizione di Azure Ad esempio, utilizzare hello portale di Azure o hello CLI di Azure 2.0. 
+- Docker CLI - tooset del computer locale come un host e accesso hello Docker CLI i comandi di Docker, installare il motore Docker. 
 
 ## <a name="create-webhook-azure-portal"></a>Creare un webhook tramite il portale di Azure
 
-1. Accedere al portale di Azure e passare al registro in cui si vuole creare i webhook. 
+1. Accedi al portale di Azure toohello e passare toohello del Registro di sistema in cui si desidera toocreate webhook. 
 
-2. Nel pannello del contenitore selezionare la scheda "Webhook". 
+2. Nel Pannello di contenitore hello, selezionare scheda "Webhook" hello. 
 
-3. Selezionare "Aggiungi" nella barra degli strumenti del pannello relativo al webhook. 
+3. Selezionare "Aggiungi" dalla barra degli strumenti di hello webhook blade. 
 
-4. Completare il modulo *Create Webhook* (Crea webhook) con le informazioni seguenti:
+4. Hello completo *Webhook creare* form con hello le seguenti informazioni:
 
 | Valore | Descrizione |
 |---|---|
-| Nome | Il nome da assegnare al webhook. Può contenere solo lettere minuscole e numeri e avere una lunghezza compresa tra 5 e 50 caratteri. |
-| URI del servizio | L'URI in cui il webhook deve inviare le notifiche POST. |
-| Intestazioni personalizzate | Le intestazioni che si vuole passare insieme alla richiesta POST. Devono essere nel formato "chiave: valore". |
-| Azioni trigger | Le azioni che attivano il webhook. Attualmente i webhook possono essere attivati tramite azioni di push e/o eliminazione in un'immagine. |
-| Stato | Lo stato del webhook dopo che è stato creato. Questa opzione è abilitata per impostazione predefinita. |
-| Scope | L'ambito in cui viene applicato il webhook. Per impostazione predefinita, l'ambito comprende tutti gli eventi del registro. Può essere limitato a un repository o un tag usando il formato "repository: tag". |
+| Nome | nome Hello da toogive toohello webhook. Può contenere solo lettere minuscole e numeri e avere una lunghezza compresa tra 5 e 50 caratteri. |
+| URI del servizio | Hello URI in cui hello webhook per l'invio di notifiche POST. |
+| Intestazioni personalizzate | Intestazioni desiderato toopass insieme richiesta POST hello. Devono essere nel formato "chiave: valore". |
+| Azioni trigger | Azioni che attivano hello webhook. Attualmente webhook possono essere attivati da push e/o eliminare azioni tooan immagine. |
+| Stato | stato Hello hello webhook dopo averlo creato. Questa opzione è abilitata per impostazione predefinita. |
+| Scope | ambito Hello il cui funzionamento webhook hello. Per impostazione predefinita l'ambito di hello è per tutti gli eventi nel Registro di sistema hello. Può essere specificato per un repository o da un tag con formato hello "repository: tag". |
 
 Modulo di webhook di esempio:
 
@@ -58,7 +58,7 @@ Modulo di webhook di esempio:
 
 ## <a name="create-webhook-azure-cli"></a>Creare un webhook usando l'interfaccia della riga di comando di Azure
 
-Per creare un webhook usando l'interfaccia della riga di comando di Azure, usare il comando [az acr webhook create](/cli/azure/acr/webhook#create).
+un webhook utilizzando toocreate hello CLI di Azure, utilizzare hello [creare az acr webhook](/cli/azure/acr/webhook#create) comando.
 
 ```azurecli-interactive
 az acr webhook create --registry mycontainerregistry --name myacrwebhook01 --actions delete --uri http://webhookuri.com
@@ -68,21 +68,21 @@ az acr webhook create --registry mycontainerregistry --name myacrwebhook01 --act
 
 ### <a name="azure-portal"></a>Portale di Azure
 
-Prima di usare il webhook in azioni di push o eliminazione di un'immagine del contenitore, è possibile testarlo tramite il pulsante **Ping**. Quando viene usato, il comando Ping invia una richiesta POST generica all'endpoint specificato e registra la risposta. In questo modo è possibile verificare che il webhook sia stato configurato correttamente.
+Webhook hello toousing precedente nel contenitore immagine push e azioni di eliminazione, possono essere testata usando hello **Ping** pulsante. Quando si, hello Ping Invia che un toohello richiesta post generico specificato endpoint e i registri hello risposta. Questa opzione è utile tooverify che hello webhook è stato configurato correttamente.
 
-1. Selezionare il webhook da testare. 
-2. Nella barra degli strumenti superiore selezionare l'azione "Ping". 
-3. Verificare la richiesta e la risposta.
+1. Selezionare webhook hello desiderato tootest. 
+2. Nella barra degli strumenti superiore hello, selezionare l'azione "Ping" hello. 
+3. Controllare hello richiesta e risposta.
 
 ### <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
 
-Per testare un webhook del registro contenitori di Azure con l'interfaccia della riga di comando di Azure, usare il comando [az acr webhook ping](/cli/azure/acr/webhook#ping).
+tootest un webhook di record con hello CLI di Azure, utilizzare hello [ping di az acr webhook](/cli/azure/acr/webhook#ping) comando.
 
 ```azurecli-interactive
 az acr webhook ping --registry mycontainerregistry --name myacrwebhook01
 ```
 
-Per visualizzare i risultati, usare il comando [az acr webhook list-events](/cli/azure/acr/webhook#list-events). 
+risultati di hello toosee, utilizzare hello [elenco eventi az acr webhook](/cli/azure/acr/webhook#list-events) comando. 
 
 ```azurecli-interactive
 az acr webhook list-events --registry mycontainerregistry08 --name myacrwebhook01
@@ -92,7 +92,7 @@ az acr webhook list-events --registry mycontainerregistry08 --name myacrwebhook0
 
 ### <a name="azure-portal"></a>Portale di Azure
 
-Per eliminare un webhook, è possibile selezionarlo e usare il pulsante di eliminazione disponibile nel portale di Azure.
+È possibile eliminare ogni webhook selezionando webhook hello e quindi il pulsante Elimina hello in hello portale di Azure.
 
 ### <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
 

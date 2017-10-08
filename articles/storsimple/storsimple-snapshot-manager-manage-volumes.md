@@ -1,6 +1,6 @@
 ---
-title: StorSimple Snapshot Manager e volumi | Documentazione Microsoft
-description: Illustra come usare lo snap-in MMC StorSimple Snapshot Manager per visualizzare e gestire i volumi e per configurare i backup.
+title: aaaStorSimple volumi e gestione Snapshot | Documenti Microsoft
+description: Viene descritto come toouse hello tooview snap-in MMC di StorSimple Snapshot Manager e gestire volumi e backup tooconfigure.
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 04/18/2016
 ms.author: v-sharos
-ms.openlocfilehash: 2c0b211bced99d272a73a7b018a22f99d8d58aa9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b8ce102d082b7c773d667a9d3ec747be9e1d3064
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-to-view-and-manage-volumes"></a>Utilizzare StorSimple Snapshot Manager per visualizzare e gestire i volumi
+# <a name="use-storsimple-snapshot-manager-tooview-and-manage-volumes"></a>Utilizzare Gestione Snapshot StorSimple tooview e gestire volumi
 ## <a name="overview"></a>Panoramica
-È possibile usare il nodo **Volumi** di StorSimple Snapshot Manager (nel riquadro **Ambito**) per selezionare i volumi e visualizzare le relative informazioni. I volumi vengono presentati come unità che corrispondono ai volumi montati dall'host. Il nodo **Volumi** indica i volumi locali e i tipi di volume supportati da StorSimple, compresi i volumi individuati tramite l'uso di iSCSI e di un dispositivo. 
+È possibile usare Gestione Snapshot StorSimple hello **volumi** nodo (in hello **ambito** riquadro) tooselect volumi e visualizzare le relative informazioni. Hello volumi vengono presentati come unità che corrispondono toohello volumi montati dall'host hello. Hello **volumi** nodo vengono mostrati i volumi locali e tipi di volume supportati da StorSimple, ad esempio volumi individuati tramite l'utilizzo di hello di iSCSI e un dispositivo. 
 
-Per altre informazioni sui volumi supportati, passare al [supporto per più tipi di volume](storsimple-what-is-snapshot-manager.md#support-for-multiple-volume-types).
+Per ulteriori informazioni sui volumi supportati, visitare troppo[il supporto per più tipi di volume](storsimple-what-is-snapshot-manager.md#support-for-multiple-volume-types).
 
 ![Elenco volumi nel riquadro dei Risultati](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Volume_node.png)
 
-Il nodo **Volumi** consente inoltre di ripetere l'analisi o eliminare i volumi dopo l'individuazione da parte di StorSimple Snapshot Manager. 
+Hello **volumi** nodo consente inoltre di eseguire nuovamente la scansione o eliminare i volumi dopo li individua gestione Snapshot StorSimple. 
 
 Questo tutorial spiega come montare, inizializzare e formattare volumi e quindi usare StorSimple Snapshot Manager per:
 
@@ -39,174 +39,174 @@ Questo tutorial spiega come montare, inizializzare e formattare volumi e quindi 
 * Configurare un volume con mirroring dinamico e una copia di backup
 
 > [!NOTE]
-> Tutte le azioni del nodo **Volumi** sono disponibili anche nel riquadro **Azioni**.
+> Tutti i hello **Volume** nodo sono inoltre disponibili nelle azioni hello **azioni** riquadro.
 > 
 > 
 
 ## <a name="mount-volumes"></a>Montare i volumi
-Usare la procedura seguente per montare, inizializzare e formattare volumi StorSimple. Questa procedura usa Gestione disco, un'utilità di sistema per la gestione dei dischi rigidi e dei volumi o delle partizioni corrispondenti. Per altre informazioni su Gestione disco, vedere [Gestione Disco](https://technet.microsoft.com/library/cc770943.aspx) nel sito Web Microsoft TechNet.
+Hello utilizzare seguendo procedure toomount, inizializzare e formattare volumi StorSimple. Questa procedura utilizza Gestione disco, un'utilità di sistema per la gestione dei dischi rigidi e i volumi corrispondenti hello o partizioni. Per ulteriori informazioni su Gestione disco, andare troppo[Gestione disco](https://technet.microsoft.com/library/cc770943.aspx) nel sito Web Microsoft TechNet hello.
 
-#### <a name="to-mount-volumes"></a>Montare volumi
-1. Sul computer, avviare iSCSI Microsoft Initiator.
-2. Specificare uno degli indirizzi IP di interfaccia come portale di destinazione o indirizzo IP di individuazione e connettersi al dispositivo. Dopo che il dispositivo è connesso, i volumi sono accessibili nel sistema di Windows. Per altre informazioni sull'uso dell'iniziatore iSCSI Microsoft, vedere la sezione "Connecting to an iSCSI target device" (Connessione a un dispositivo di destinazione iSCSI) in [Installing and Configuring Microsoft iSCSI Initiator][1] (Installazione e configurazione dell'iniziatore iSCSI Microsoft).
-3. Per avviare Gestione Disco, usare una delle opzioni seguenti:
+#### <a name="toomount-volumes"></a>volumi toomount
+1. Nel computer host avviare l'iniziatore iSCSI Microsoft di hello.
+2. Specificare uno degli indirizzi IP dell'interfaccia di hello come portale destinazione hello o indirizzo IP di individuazione e connettere il dispositivo toohello. Dopo aver hello dispositivo è connesso, volumi hello sarà accessibile tooyour sistema di Windows. Per ulteriori informazioni sull'uso dell'iniziatore iSCSI Microsoft di hello, visitare toohello sezione "Connessione tooan dispositivo di destinazione iSCSI" in [installazione e configurazione iniziatore iSCSI Microsoft][1].
+3. Utilizzare una delle seguenti opzioni toostart Gestione disco hello:
    
-   * DigitareDiskmgmt.msc nella casella **Esegui**.
-   * Avviare Server Manager, espandere il nodo **Archiviazione** e quindi selezionare **Gestione disco**.
-   * Avviare **Strumenti di amministrazione**, espandere il nodo **Gestione computer** e quindi selezionare **Gestione disco**. 
+   * Digitare Diskmgmt.msc hello **eseguire** casella.
+   * Avviare Server Manager, espandere hello **archiviazione** nodo e quindi selezionare **Gestione disco**.
+   * Avviare **strumenti di amministrazione**, espandere hello **Gestione Computer** nodo e quindi selezionare **Gestione disco**. 
      
      > [!NOTE]
-     > È necessario usare i privilegi di amministratore per eseguire Gestione disco.
+     > È necessario utilizzare i privilegi di amministratore toorun Gestione disco.
      > 
      > 
-4. Portare i volumi online:
+4. Eseguire uno o più volumi hello online:
    
    1. In Gestione disco, fare doppio clic su un volume contrassegnato **Offline**.
-   2. Scegliere **Riattiva disco specificato**. Il disco deve essere contrassegnato come **Online** dopo la riattivazione.
-5. Inizializzare il/i volume/i:
+   2. Scegliere **Riattiva disco specificato**. deve essere contrassegnato come disco Hello **Online** dopo disco hello viene riattivato.
+5. Inizializzare i volumi di hello:
    
-   1. Fare clic con il pulsante destro del mouse sui volumi individuati.
-   2. Nel menu selezionare **Inizializza Disco**.
-   3. Nella finestra di dialogo **Inizializza disco** selezionare i dischi da inizializzare e quindi fare clic su **OK**.
+   1. Fare doppio clic su volumi hello individuato.
+   2. Selezionare menu hello **Inizializza disco**.
+   3. In hello **Inizializza disco** della finestra di dialogo dischi selezionare hello che desidera tooinitialize e quindi fare clic su **OK**.
 6. Formattare volumi semplici:
    
-   1. Fare clic con il pulsante destro del mouse su un volume da formattare.
-   2. Nel menu selezionare **Nuovo Volume Semplice**.
-   3. Usare la procedura guidata Nuovo Volume Semplice per formattare il volume:
+   1. Fare doppio clic su un volume che si desidera tooformat.
+   2. Selezionare menu hello **nuovo Volume semplice**.
+   3. Utilizzare il volume hello tooformat di hello nuovo Volume semplice procedura guidata:
       
-      * Specificare le dimensioni del volume.
+      * Specificare la dimensione del volume hello.
       * Specificare una lettera di unità.
-      * Selezionare il file system NTFS.
+      * Selezionare file system NTFS hello.
       * Specificare una dimensione unità di allocazione pari a 64 KB.
       * Eseguire una formattazione veloce.
-7. Formattare volumi con più partizioni. Per istruzioni, vedere la sezione "Partizioni e Volumi" in [Esecuzione Gestione Disco](https://msdn.microsoft.com/library/dd163556.aspx).
+7. Formattare volumi con più partizioni. Per istruzioni, vedere la sezione toohello, "Partizioni e volumi" in [implementazione di Gestione disco](https://msdn.microsoft.com/library/dd163556.aspx).
 
 ## <a name="view-information-about-your-volumes"></a>Visualizzare informazioni sui volumi
-Utilizzare la procedura seguente per visualizzare informazioni sui volumi locali e di Azure StorSimple di Azure.
+Utilizzare le seguenti procedure tooview informazioni sulle locale e sui volumi StorSimple di Azure hello.
 
-#### <a name="to-view-volume-information"></a>Per visualizzare le informazioni del volume
-1. Fare clic sull’icona del desktop per avviare StorSimple Snapshot Manager. 
-2. Nel riquadro **Ambito** fare clic sul nodo **Volumi**. Viene visualizzato un elenco di volumi locali e montati, compresi tutti i volumi StorSimple di Azure, nel **riquadro** Risultati. Le colonne nel **riquadro** Risultati sono configurabili. Fare clic con il pulsante destro del mouse sul nodo **Volumi**, selezionare **Visualizza**, quindi scegliere **Aggiungi/Rimuovi colonne**.
+#### <a name="tooview-volume-information"></a>informazioni sul volume tooview
+1. Fare clic su hello icona sul desktop toostart gestione Snapshot StorSimple. 
+2. In hello **ambito** riquadro, fare clic su hello **volumi** nodo. Viene visualizzato un elenco di volumi locali e montati, inclusi tutti i volumi StorSimple di Azure, in hello **risultati** riquadro. Hello colonne hello **risultati** riquadro sono configurabili. (Hello rapida **volumi** nodo, seleziona **vista**, quindi selezionare **Aggiungi/Rimuovi colonne**.)
    
-    ![Configurare le colonne](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_View_volumes.png)
+    ![Configurare le colonne di hello](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_View_volumes.png)
    
    | Colonna risultati | Descrizione |
    |:--- |:--- |
-   |  Nome |Il **colonna** Nome, contiene la lettera di unità assegnata a ogni volume individuato. |
-   |  Dispositivo |La **colonna** dispositivo contiene l'indirizzo IP del dispositivo connesso al computer. |
-   |  Nome Dispositivo Volume |La **Colonna** Nome Dispositivo Volume contiene il nome del volume del dispositivo a cui appartiene il volume selezionato. Questo è il nome del volume definito nel portale di Azure per il volume specifico. |
-   |  Percorsi di accesso |La **colonna** Percorsi di Accesso mostra il percorso di accesso al volume. Si tratta del punto di montaggio o lettera di unità in cui il volume è accessibile nel computer. |
+   |  Nome |Hello **nome** colonna contiene volume tooeach individuati lettera di unità hello. |
+   |  Dispositivo |Hello **dispositivo** colonna contiene l'indirizzo IP di hello del computer host di hello dispositivo toohello connesso. |
+   |  Nome Dispositivo Volume |Hello **nome Volume dispositivo** colonna contiene il nome di hello di hello dispositivo volume toowhich hello selezionata appartiene volume. Questo è il nome di volume hello definito nel portale di Azure per il volume specifico hello. |
+   |  Percorsi di accesso |Hello **percorsi di accesso** colonna Visualizza hello accesso percorso toohello volume. Si tratta di hello unità lettera o punto di montaggio in cui hello volume sia accessibile nel computer host hello. |
 
 ## <a name="delete-a-volume"></a>Eliminare un volume
-Utilizzare la procedura seguente per eliminare un volume da StorSimple Snapshot Manager.
+Utilizzare hello seguendo procedure toodelete un volume da StorSimple Snapshot Manager.
 
 > [!NOTE]
-> Non è possibile eliminare un volume se fa parte di un gruppo di volumi. (L'opzione di eliminazione non è disponibile per i volumi che sono membri di un gruppo di volumi). È necessario eliminare l'intero gruppo di volumi per eliminare il volume.
+> Non è possibile eliminare un volume se fa parte di un gruppo di volumi. (opzione di eliminazione hello non è disponibile per i volumi che sono membri di un gruppo di volumi.) È necessario eliminare il volume hello toodelete di hello volume intero gruppo.
 
-#### <a name="to-delete-a-volume"></a>Per eliminare un volume
-1. Fare clic sull’icona del desktop per avviare StorSimple Snapshot Manager.
-2. Nel riquadro **Ambito** fare clic sul nodo **Volumi**. 
-3. Nel riquadro **Risultati** fare clic con il pulsante destro del mouse sul volume da eliminare.
-4. Scegliere **Elimina**dal menu. 
+#### <a name="toodelete-a-volume"></a>toodelete un volume
+1. Fare clic su hello icona sul desktop toostart gestione Snapshot StorSimple.
+2. In hello **ambito** riquadro, fare clic su hello **volumi** nodo. 
+3. In hello **risultati** riquadro, volume hello rapida che si desidera toodelete.
+4. Scegliere dal menu hello **eliminare**. 
    
     ![Eliminare un volume](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Delete_volume.png) 
-5. Viene visualizzata la finestra di dialogo **Elimina volume** . Digitare **Conferma** nella casella di testo e quindi fare clic su **OK**.
-6. Come impostazione predefinita, StorSimple Snapshot Manager esegue il backup di un volume prima di eliminarlo. Questa precauzione consente di proteggere dalla perdita di dati se l'eliminazione è accidentale. StorSimple Snapshot Manager, consente di visualizzare uno **Snapshot automatico** messaggio di stato durante l'esecuzione del backup del volume. 
+5. Hello **Elimina Volume** viene visualizzata la finestra di dialogo. Tipo **conferma** in hello casella di testo e quindi fare clic su **OK**.
+6. Come impostazione predefinita, StorSimple Snapshot Manager esegue il backup di un volume prima di eliminarlo. Questa precauzione consente di evitare la perdita di dati se l'eliminazione di hello sia stata non intenzionale. Gestione Snapshot StorSimple consente di visualizzare un **Snapshot automatico** messaggio di stato durante l'esecuzione del backup volume hello. 
    
     ![Messaggio di snapshot automatico](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Automatic_snap.png) 
 
 ## <a name="rescan-volumes"></a>Ripetere la scansione dei volumi
-Per ripetere l'analisi dei volumi connessi a StorSimple Snapshot Manager, seguire questa procedura.
+Utilizzare hello seguendo procedure toorescan hello volumi connessi tooStorSimple gestione Snapshot.
 
-#### <a name="to-rescan-the-volumes"></a>Ripetere l'analisi dei volumi
-1. Fare clic sull’icona del desktop per avviare StorSimple Snapshot Manager.
-2. Nel riquadro **Ambito**, fare clic col tasto destro del mouse su **Volumi**, quindi fare clic su **Nuova scansione volumi**.
+#### <a name="toorescan-hello-volumes"></a>volumi hello toorescan
+1. Fare clic su hello icona sul desktop toostart gestione Snapshot StorSimple.
+2. In hello **ambito** riquadro destro **volumi**, quindi fare clic su **Ripeti analisi dei volumi**.
    
     ![Ripetere la scansione dei volumi](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Rescan_volumes.png)
    
-    Questa procedura consente di sincronizzare l'elenco di volumi con StorSimple Snapshot Manager. Le modifiche, ad esempio creazione o eliminazione di volumi, verranno mostrate nei risultati.
+    Questa procedura Sincronizza l'elenco dei volumi hello con StorSimple Snapshot Manager. Si rifletteranno le modifiche, ad esempio volumi nuovi o eliminati, nei risultati di hello.
 
 ## <a name="configure-and-back-up-a-basic-volume"></a>Configurare ed eseguire il backup di un volume di base
-Utilizzare la procedura seguente per configurare il backup di un volume di base e avviare immediatamente un backup o creare un criterio per i backup programmati.
+Utilizzare hello seguendo procedure tooconfigure un backup di un volume di base, quindi avviare immediatamente un backup o creare un criterio per i backup pianificati.
 
 ### <a name="prerequisites"></a>Prerequisiti
 Prima di iniziare:
 
-* Assicurarsi che il dispositivo StorSimple, dispositivi e il computer siano configurati correttamente. Per altre informazioni, vedere [Distribuire un dispositivo StorSimple locale](storsimple-deployment-walkthrough-u2.md).
-* Installare e configurare Snapshot StorSimple Manager. Per altre informazioni, vedere l'argomento relativo alla [distribuzione di StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md).
+* Assicurarsi che il dispositivo StorSimple hello e computer host siano configurati correttamente. Per ulteriori informazioni, visitare troppo[distribuire il dispositivo StorSimple locale](storsimple-deployment-walkthrough-u2.md).
+* Installare e configurare Snapshot StorSimple Manager. Per ulteriori informazioni, visitare troppo[distribuire StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md).
 
-#### <a name="to-configure-backup-of-a-basic-volume"></a>Per configurare il backup di un volume di base
-1. Creare un volume di base nel dispositivo StorSimple.
-2. Montare, inizializzare e formattare il volume come descritto in [Montare i volumi](#mount-volumes). 
-3. Fare clic sull’icona StorSimple Snapshot Manager sul desktop. Verrà visualizzata la finestra di StorSimple Snapshot Manager. 
-4. Nel riquadro **Ambito** fare clic con il pulsante destro del mouse sul nodo **Volumi** e quindi scegliere **Nuova scansione volumi**. Al termine dell'analisi, nel riquadro **Risultati** dovrebbe apparire un elenco di volumi. 
-5. Nel riquadro **Risultati** fare clic con il pulsante destro del mouse sul volume e quindi scegliere **Crea gruppo di volumi**. 
+#### <a name="tooconfigure-backup-of-a-basic-volume"></a>tooconfigure backup di un volume di base
+1. Creare un volume di base nel dispositivo StorSimple hello.
+2. Montare, inizializzare e formattare il volume di hello, come descritto in [montare i volumi](#mount-volumes). 
+3. Fare clic sull'icona di gestione Snapshot StorSimple hello sul desktop. verrà visualizzata la finestra di gestione Snapshot StorSimple Hello. 
+4. In hello **ambito** riquadro, hello rapida **volumi** nodo e quindi selezionare **Ripeti analisi dei volumi**. Al termine dell'analisi di hello, un elenco di volumi deve essere visualizzato in hello **risultati** riquadro. 
+5. In hello **risultati** riquadro volume hello e quindi scegliere **Crea gruppo di volumi**. 
    
     ![Crea gruppo di volumi](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Create_volume_group.png) 
-6. Nella finestra di dialogo **Crea gruppo di volumi** digitare un nome per il gruppo di volumi, assegnare i volumi e quindi fare clic su **OK**.
-7. Nel riquadro **Ambito** espandere il nodo **Gruppi di volumi**. Il nuovo gruppo di volumi dovrebbe essere visualizzato nel nodo **Gruppi di volumi** . 
-8. Fare clic sul nome del gruppo di volumi.
+6. In hello **Crea gruppo di volumi** nella finestra di dialogo digitare un nome per il gruppo di volumi di hello, assegnare tooit volumi e quindi fare clic su **OK**.
+7. In hello **ambito** riquadro espandere hello **gruppi di volumi** nodo. nuovo gruppo di volumi Hello dovrebbe essere visualizzato sotto hello **gruppi di volumi** nodo. 
+8. Fare clic sul nome del gruppo di volumi hello.
    
-   * Per avviare un processo di backup interattivo (su richiesta), fare clic su **Esegui backup**. 
-   * Per pianificare un backup automatico, fare clic su **Crea criteri di backup**. Nella pagina **Generale** selezionare un gruppo di volumi dall'elenco. Nella pagina **Pianificazione** immettere i dettagli della pianificazione. Al termine, fare clic su **OK**. 
-9. Per verificare che il processo di backup sia stato avviato, espandere il nodo **Processi** nel riquadro **Ambito** e quindi fare clic sul nodo **In esecuzione**. Nel riquadro **Risultati** apparirà l'elenco dei processi in esecuzione. 
+   * Fare clic su un processo interattivo di backup (su richiesta), toostart **Esegui Backup**. 
+   * Fare clic su un backup automatico, tooschedule **Crea criteri di Backup**. In hello **generale** pagina, selezionare un gruppo di volumi dall'elenco di hello. In hello **pianificazione** pagina, immettere i dettagli della pianificazione hello. Al termine, fare clic su **OK**. 
+9. tooconfirm che hello processo di backup è stato avviato, espandere hello **processi** nodo hello **ambito** riquadro, quindi fare clic su hello **esecuzione** nodo. viene visualizzato l'elenco di Hello di processi in esecuzione in hello **risultati** riquadro. 
 
 ## <a name="configure-and-back-up-a-dynamic-mirrored-volume"></a>Configurare ed eseguire il backup di un volume con mirroring dinamico
-Per configurare il backup di un volume con mirroring dinamico, seguire questa procedura:
+Completare hello successivo backup tooconfigure passaggi di un volume con mirroring dinamico:
 
-* Passaggio 1: Usare Gestione disco per creare un volume con mirroring dinamico. 
-* Passaggio 2: Usare StorSimple Snapshot Manager per configurare il backup.
+* Passaggio 1: Utilizzare Gestione disco toocreate un volume con mirroring dinamico. 
+* Passaggio 2: Tooconfigure usare Gestione Snapshot StorSimple backup.
 
 ### <a name="prerequisites"></a>Prerequisiti
 Prima di iniziare:
 
-* Assicurarsi che il dispositivo StorSimple, dispositivi e il computer siano configurati correttamente. Per altre informazioni, vedere [Distribuire un dispositivo StorSimple locale](storsimple-8000-deployment-walkthrough-u2.md).
-* Installare e configurare Snapshot StorSimple Manager. Per altre informazioni, vedere l'argomento relativo alla [distribuzione di StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md).
-* Configurare due volumi sul dispositivo StorSimple. Negli esempi i volumi disponibili sono **Disco 1** e **Disco 2**. 
+* Assicurarsi che il dispositivo StorSimple hello e computer host siano configurati correttamente. Per ulteriori informazioni, visitare troppo[distribuire il dispositivo StorSimple locale](storsimple-8000-deployment-walkthrough-u2.md).
+* Installare e configurare Snapshot StorSimple Manager. Per ulteriori informazioni, visitare troppo[distribuire StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md).
+* Configurare due volumi nel dispositivo StorSimple hello. (Negli esempi di hello, sono disponibili volumi di hello **disco 1** e **disco 2**.) 
 
-### <a name="step-1-use-disk-management-to-create-a-dynamic-mirrored-volume"></a>Passaggio 1: Utilizzare Gestione Disco per creare un volume con mirroring dinamico
-Gestione disco è un'utilità di sistema per la gestione dei dischi rigidi e i volumi o partizioni in essi contenuti. Per altre informazioni su Gestione disco, vedere [Gestione Disco](https://technet.microsoft.com/library/cc770943.aspx) nel sito Web Microsoft TechNet.
+### <a name="step-1-use-disk-management-toocreate-a-dynamic-mirrored-volume"></a>Passaggio 1: Utilizzare Gestione disco toocreate un volume con mirroring dinamico
+Gestione disco è un'utilità di sistema per la gestione dei dischi rigidi e i volumi di hello o partizioni in essi contenuti. Per ulteriori informazioni su Gestione disco, andare troppo[Gestione disco](https://technet.microsoft.com/library/cc770943.aspx) nel sito Web Microsoft TechNet hello.
 
-#### <a name="to-create-a-dynamic-mirrored-volume"></a>Per creare un volume con mirroring dinamico
-1. Per avviare Gestione Disco, usare una delle opzioni seguenti: 
+#### <a name="toocreate-a-dynamic-mirrored-volume"></a>toocreate un volume con mirroring dinamico
+1. Utilizzare una delle seguenti opzioni toostart Gestione disco hello: 
    
-   * Aprire la casella **Esegui**, digitare **Diskmgmt.msc** e premere Invio.
-   * Avviare Server Manager, espandere il nodo **Archiviazione** e quindi selezionare **Gestione disco**. 
-   * Avviare **Strumenti di amministrazione**, espandere il nodo **Gestione computer** e quindi selezionare **Gestione disco**. 
-2. Assicurarsi che siano disponibili due volumi nel dispositivo StorSimple. Nell'esempio i volumi disponibili sono **Disco 1** e **Disco 2**. 
-3. Nella finestra Gestione disco, nella colonna di destra del riquadro inferiore, fare clic con il pulsante destro del mouse sul **Disco 1** e scegliere **Nuovo volume con mirroring**. 
+   * Aprire hello **eseguire** digitare **Diskmgmt.msc**, e premere INVIO.
+   * Avviare Server Manager, espandere hello **archiviazione** nodo e quindi selezionare **Gestione disco**. 
+   * Avviare **strumenti di amministrazione**, espandere hello **Gestione Computer** nodo e quindi selezionare **Gestione disco**. 
+2. Assicurarsi di disporre di due volumi disponibili nel dispositivo StorSimple hello. (Nell'esempio hello sono volumi disponibili hello **disco 1** e **disco 2**.) 
+3. Nella finestra Gestione disco hello, nella colonna a destra del riquadro inferiore hello, hello destro **disco 1** e selezionare **nuovo Volume con mirroring**. 
    
     ![Nuovo volume con mirroring](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_New_mirrored_volume.png) 
-4. Nella pagina **Nuovo volume con mirroring** della procedura guidata fare clic su **Avanti**.
-5. Nella pagina **Seleziona dischi** selezionare **Disco 2** nel riquadro **Selezionati**, fare clic su **Aggiungi** e quindi su **Avanti**. 
-6. Nella pagina **Assegna lettera o percorso unità** accettare le impostazioni predefinite e quindi fare clic su **Avanti**. 
-7. Nella pagina **Formatta volume** nella casella **Dimensioni unità di allocazione** selezionare **64K**. Selezionare la casella di controllo **Esegui formattazione veloce** e quindi fare clic su **Avanti**. 
-8. Nella pagina **Completamento della Creazione guidata nuovo volume con mirroring** esaminare le impostazioni e quindi fare clic su **Fine**. 
-9. Viene visualizzato un messaggio per indicare che il disco di base verrà convertito in un disco dinamico. Fare clic su **Sì**.
+4. In hello **nuovo Volume con mirroring** pagina della procedura guidata, fare clic su **Avanti**.
+5. In hello **Seleziona dischi** selezionare **disco 2** in hello **selezionati** riquadro, fare clic su **Aggiungi**e quindi fare clic su **Avanti**. 
+6. In hello **Assegna lettera di unità o percorso** pagina, accettare le impostazioni predefinite hello e quindi fare clic su **Avanti**. 
+7. In hello **formatta Volume** pagina hello **dimensioni unità di allocazione** , quindi selezionare **64K**. Seleziona hello **eseguire una formattazione veloce** casella di controllo e quindi fare clic su **Avanti**. 
+8. In hello **completamento hello nuovo Volume con mirroring** pagina, rivedere le impostazioni e quindi fare clic su **fine**. 
+9. Viene visualizzato un messaggio tooindicate che hello disco di base sarà convertito tooa disco dinamico. Fare clic su **Sì**.
    
     ![Messaggi di conversione del disco dinamico](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Disk_management_msg.png) 
-10. In Gestione disco, verificare che Disco 1 e Disco 2 vengano visualizzati come volumi con mirroring dinamico. Nella colonna dello stato dovrebbe essere visualizzata la dicitura**Dinamico** e le barre di capacità dovrebbero diventare rosse a indicare un volume con mirroring. 
+10. In Gestione disco, verificare che Disco 1 e Disco 2 vengano visualizzati come volumi con mirroring dinamico. (**Dinamica** dovrebbe essere visualizzato nella colonna Stato hello e colore della barra di capacità hello debba modificare toored, indicare un volume con mirroring.) 
     
     ![Dischi dinamici con mirroring di Gestione disco](./media/storsimple-snapshot-manager-manage-volumes/HCS_SSM_Verify_dynamic_disks_2.png) 
 
-### <a name="step-2-use-storsimple-snapshot-manager-to-configure-backup"></a>Passaggio 2: Utilizzare StorSimple Snapshot Manager per configurare il backup
-Utilizzare la procedura seguente per configurare un volume con mirroring dinamico, avviare immediatamente un backup o creare un criterio per i backup pianificati.
+### <a name="step-2-use-storsimple-snapshot-manager-tooconfigure-backup"></a>Passaggio 2: Usare Gestione Snapshot StorSimple tooconfigure backup
+Utilizzare hello seguendo procedure tooconfigure un volume con mirroring dinamico, quindi avviare immediatamente un backup o creare un criterio per i backup pianificati.
 
-#### <a name="to-configure-backup-of-a-dynamic-mirrored-volume"></a>Per configurare il backup di un volume con mirroring dinamico
-1. Fare clic sull’icona StorSimple Snapshot Manager sul desktop. Verrà visualizzata la finestra di StorSimple Snapshot Manager. 
-2. Nel riquadro **Ambito** fare clic con il pulsante destro del mouse sul nodo **Volumi** e scegliere **Nuova scansione volumi**. Al termine dell'analisi, nel riquadro **Risultati** dovrebbe apparire un elenco di volumi. Il volume con mirroring dinamico viene elencato come un singolo volume. 
-3. Nel riquadro **Risultati**, cliccare col tasto destro del mouse sul volume con mirroring dinamico e quindi fare clic su **Crea gruppo di volumi**. 
-4. Nella finestra di dialogo **Crea gruppo di volumi** digitare un nome per il gruppo di volumi, assegnare il volume con mirroring dinamico al gruppo e quindi fare clic su **OK**. 
-5. Nel riquadro **Ambito** espandere il nodo **Gruppi di volumi**. Il nuovo gruppo di volumi dovrebbe essere visualizzato nel nodo **Gruppi di volumi**. 
-6. Fare clic sul nome del gruppo di volumi. 
+#### <a name="tooconfigure-backup-of-a-dynamic-mirrored-volume"></a>tooconfigure backup di un volume con mirroring dinamico
+1. Fare clic sull'icona di gestione Snapshot StorSimple hello sul desktop. verrà visualizzata la finestra di gestione Snapshot StorSimple Hello. 
+2. In hello **ambito** riquadro, hello rapida **volumi** nodo e selezionare **Ripeti analisi dei volumi**. Al termine dell'analisi di hello, un elenco di volumi deve essere visualizzato in hello **risultati** riquadro. volume con mirroring dinamico Hello è elencato come un singolo volume. 
+3. In hello **risultati** riquadro destro volume con mirroring dinamico hello e quindi fare clic su **Crea gruppo di volumi**. 
+4. In hello **Crea gruppo di volumi** nella finestra di dialogo digitare un nome per il gruppo di volumi hello assegnare hello volume con mirroring dinamico toothis gruppo e quindi fare clic su **OK**. 
+5. In hello **ambito** riquadro espandere hello **gruppi di volumi** nodo. nuovo gruppo di volumi Hello dovrebbe essere visualizzato sotto hello **gruppi di volumi** nodo. 
+6. Fare clic sul nome del gruppo di volumi hello. 
    
-   * Per avviare un processo di backup interattivo (su richiesta), fare clic su **Esegui backup**. 
-   * Per pianificare un backup automatico, fare clic su **Crea criteri di backup**. Nella Pagina **Generale** , selezionare il gruppo di volumi dall'elenco. Nella pagina **Pianificazione** immettere i dettagli della pianificazione. Al termine, fare clic su **OK**. 
-7. È possibile monitorare il processo di backup durante l'esecuzione. Nel riquadro **Ambito** espandere il nodo **Processi** e quindi fare clic su **In esecuzione**, vengono visualizzati i dettagli del processo nel riquadro **Risultati**. Al termine del processo di backup, i dettagli vengono trasferiti nella lista **ultime 24 ore** . 
+   * Fare clic su un processo interattivo di backup (su richiesta), toostart **Esegui Backup**. 
+   * Fare clic su un backup automatico, tooschedule **Crea criteri di Backup**. In hello **generale** pagina, il gruppo di volumi hello selezionare dall'elenco di hello. In hello **pianificazione** pagina, immettere i dettagli della pianificazione hello. Al termine, fare clic su **OK**. 
+7. È possibile monitorare i processi di backup hello mentre è in esecuzione. In hello **ambito** riquadro espandere hello **processi** nodo e quindi fare clic su **esecuzione**, vengono visualizzati i dettagli dei processi hello in hello **risultati** riquadro. Termine del processo di backup hello, dettagli hello vengono trasferito toohello **ultime 24** ore di lavoro elenco. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come [usare StorSimple Snapshot Managerper amministrare la soluzione StorSimple](storsimple-snapshot-manager-admin.md).
-* Informazioni su come [usare StorSimple Snapshot Manager per creare e gestire gruppi di volumi](storsimple-snapshot-manager-manage-volume-groups.md).
+* Informazioni su come troppo[usare Gestione Snapshot StorSimple tooadminister la soluzione StorSimple](storsimple-snapshot-manager-admin.md).
+* Informazioni su come troppo[toocreate StorSimple Snapshot Manager di utilizzare e gestire gruppi di volumi](storsimple-snapshot-manager-manage-volume-groups.md).
 
 <!--Reference links-->
 [1]: https://msdn.microsoft.com/library/ee338480(v=ws.10).aspx

@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi di una VM Linux di Azure classica collegando il disco del sistema operativo a una VM di ripristino | Microsoft Docs
-description: Informazioni su come risolvere i problemi di una VM Linux di Azure classica collegando il disco del sistema operativo in una VM di ripristino
+title: una macchina virtuale Linux di Azure classica di tramite il collegamento di ripristino di tooa dischi hello del sistema operativo VM aaaTroubleshoot | Documenti Microsoft
+description: Informazioni su come una macchina virtuale Linux di Azure classica di collegando tootroubleshoot hello ripristino tooa di dischi del sistema operativo VM
 services: virtual-machines-linux
 documentationCenter: 
 authors: genlin
@@ -13,17 +13,17 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/21/2017
 ms.author: genli
-ms.openlocfilehash: 04b21c9e3bc3ccb317494bac0dbc93e3e4cda377
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: b08075de859ad64ab99f598dc58946c149fb6122
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-a-linux-classic-vm-by-attaching-the-os-disk-to-a-recovery-vm"></a>Risolvere i problemi di una VM Linux classica collegando il disco del sistema operativo in una VM di ripristino
+# <a name="troubleshoot-a-linux-classic-vm-by-attaching-hello-os-disk-tooa-recovery-vm"></a>Risolvere i problemi relativi a una VM Linux di classico collegando ripristino tooa di dischi del sistema operativo hello VM
 
 [!INCLUDE [virtual-machines-classic-recovery-disks-portal](../../../../includes/virtual-machines-classic-recovery-disks-portal.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si verificano problemi di connessione alla VM, vedere [Risolvere i problemi di connessione SSH a una macchina virtuale Linux di Azure che ha esito negativo, presenta errori o è stata rifiutata](../troubleshoot-ssh-connection.md). 
+Se si verificano problemi di connessione tooyour VM, vedere [tooan connessioni risolvere SSH VM Linux di Azure non riesce, gli errori, che viene rifiutato](../troubleshoot-ssh-connection.md). 
 
 In caso di problemi di accesso alle applicazioni in esecuzione nella VM, vedere [Risolvere i problemi di connettività delle applicazioni in una macchina virtuale Linux in Azure](../troubleshoot-app-connection.md).

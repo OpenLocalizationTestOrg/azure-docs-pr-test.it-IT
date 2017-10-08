@@ -1,6 +1,6 @@
 ---
-title: Errore RequestDisallowedByPolicy con i criteri delle risorse di Azure | Microsoft Docs
-description: Descrive la causa dell'errore RequestDisallowedByPolicy.
+title: Errore aaaRequestDisallowedByPolicy criteri delle risorse di Azure | Documenti Microsoft
+description: Descrive la causa hello di hello RequestDisallowedByPolicy errore.
 services: azure-resource-manager,azure-portal
 documentationcenter: 
 author: genlin
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: genli
-ms.openlocfilehash: 182a27e444c2f5db66d518a1a0c608d3e319d553
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 7870e40205cf433ccb4ba02376b5fe809f20d0df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="requestdisallowedbypolicy-error-with-azure-resource-policy"></a>Errore RequestDisallowedByPolicy con i criteri delle risorse di Azure
 
-Questo articolo descrive la causa dell'errore RequestDisallowedByPolicy e indica la relativa soluzione.
+Questo articolo descrive la causa di hello di hello RequestDisallowedByPolicy errore, nonché soluzioni per l'errore.
 
 ## <a name="symptom"></a>Sintomo
 
-Quando si tenta di eseguire un'azione durante la distribuzione, è possibile che venga visualizzato un errore **RequestDisallowedByPolicy** che impedisce l'esecuzione dell'azione. Di seguito è riportato un esempio dell'errore:
+Quando si tenta di toodo un'azione durante la distribuzione, è possibile ricevere un **RequestDisallowedByPolicy** errore che impedisce l'azione di hello essere eseguita. di seguito Hello è un esempio di errore hello:
 
 ```
 {
   "statusCode": "Forbidden",
   "serviceRequestId": null,
-  "statusMessage": "{\"error\":{\"code\":\"RequestDisallowedByPolicy\",\"message\":\"The resource action 'Microsoft.Network/publicIpAddresses/write' is disallowed by one or more policies. Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition'.\"}}",
-  "responseBody": "{\"error\":{\"code\":\"RequestDisallowedByPolicy\",\"message\":\"The resource action 'Microsoft.Network/publicIpAddresses/write' is disallowed by one or more policies. Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition'.\"}}"
+  "statusMessage": "{\"error\":{\"code\":\"RequestDisallowedByPolicy\",\"message\":\"hello resource action 'Microsoft.Network/publicIpAddresses/write' is disallowed by one or more policies. Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition'.\"}}",
+  "responseBody": "{\"error\":{\"code\":\"RequestDisallowedByPolicy\",\"message\":\"hello resource action 'Microsoft.Network/publicIpAddresses/write' is disallowed by one or more policies. Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition'.\"}}"
 }
 ```
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-Per recuperare i dettagli sui criteri bloccati nella distribuzione, usare uno dei metodi seguenti:
+tooretrieve dettagli sui criteri hello bloccati la distribuzione, hello utilizzare uno dei metodi di hello seguenti:
 
 ### <a name="method-1"></a>Metodo 1
 
-In PowerShell specificare l'identificatore di criteri come parametro **Id** per recuperare i dettagli relativi al criterio che ha bloccato la distribuzione.
+In PowerShell, fornire tale identificatore dei criteri come hello **Id** dettagli sui criteri hello bloccati distribuzione tooretrieve del parametro.
 
 ```PowerShell
 (Get-AzureRmPolicyDefinition -Id "/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition").Properties.policyRule | ConvertTo-Json
@@ -50,7 +50,7 @@ In PowerShell specificare l'identificatore di criteri come parametro **Id** per 
 
 ### <a name="method-2"></a>Metodo 2 
 
-Nell'interfaccia della riga di comando di Azure 2.0 specificare il nome della definizione del criterio: 
+In Azure CLI 2.0, specificare il nome di hello della definizione di criteri hello: 
 
 ```azurecli
 az policy definition show --name regionPolicyAssignment
@@ -58,11 +58,11 @@ az policy definition show --name regionPolicyAssignment
 
 ## <a name="solution"></a>Soluzione
 
-Per assicurare la sicurezza o la conformità, il reparto IT può applicare un criterio di risorsa che impedisce la creazione di indirizzi IP pubblici, gruppi di sicurezza di rete, route definite dall'utente o tabelle di routing. Nell'esempio di messaggio di errore descritto nella sezione "Sintomi", il criterio è denominato **regionPolicyDefinition**, ma potrebbe essere diverso.
-Per risolvere questo problema, collaborare con il reparto IT per controllare i criteri delle risorse e determinare come eseguire l'azione richiesta in conformità con questi criteri.
+Per assicurare la sicurezza o la conformità, il reparto IT può applicare un criterio di risorsa che impedisce la creazione di indirizzi IP pubblici, gruppi di sicurezza di rete, route definite dall'utente o tabelle di routing. Nell'esempio hello hello messaggio di errore descritto nella sezione "Sintomo" hello, denominato criteri hello **regionPolicyDefinition**, ma potrebbe essere diversa.
+tooresolve questo problema, collaborare con i criteri delle risorse hello tooreview reparto IT e determinare come hello tooperform richiesta azione in conformità con i criteri.
 
 
-Per altre informazioni, vedere gli articoli seguenti:
+Per ulteriori informazioni, vedere hello seguenti articoli:
 
 - [Cenni preliminari sui criteri delle risorse](resource-manager-policy.md)
 - [Errori di distribuzione comuni -RequestDisallowedByPolicy](resource-manager-common-deployment-errors.md#requestdisallowedbypolicy)

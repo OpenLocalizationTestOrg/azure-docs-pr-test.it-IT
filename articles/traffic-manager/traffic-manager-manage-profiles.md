@@ -1,5 +1,5 @@
 ---
-title: Gestire i profili di Gestione Traffico di Azure | Documentazione Microsoft
+title: i profili di Traffic Manager di Azure aaaManage | Documenti Microsoft
 description: Questo articolo illustra come creare, disabilitare, abilitare ed eliminare un profilo di Gestione traffico di Azure.
 services: traffic-manager
 documentationcenter: 
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/10/2017
 ms.author: kumud
-ms.openlocfilehash: a5164282264124835692bc72a4ab61891aa7af9d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0c6ab0c451581d039514a9de0b525b3937e45a85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-an-azure-traffic-manager-profile"></a>Gestire un profilo di Gestione traffico di Azure
 
-I profili di Gestione traffico di Azure usano metodi di routing del traffico per controllare la distribuzione del traffico verso i servizi cloud o gli endpoint di siti Web. Questo articolo illustra come creare e gestire tali profili.
+Profili di gestione traffico utilizzano routing del traffico distribuzione hello toocontrol metodi di servizi cloud di traffico tooyour o gli endpoint del sito Web. Questo articolo viene illustrato come toocreate e gestire i profili.
 
 ## <a name="create-a-traffic-manager-profile"></a>Creare un profilo di Gestione traffico
 
-È possibile creare un profilo di Gestione traffico usando il portale di Azure. Dopo aver creato il profilo è possibile configurare endpoint, il monitoraggio e altre impostazioni nel portale di Azure. Gestione traffico supporta fino a 200 endpoint per profilo. Tuttavia, la maggior parte degli scenari di utilizzo richiede solo un numero ridotto di endpoint.
+È possibile creare un profilo di gestione traffico mediante hello portale di Azure. Dopo la creazione del profilo, è possibile configurare gli endpoint, monitoraggio e altre impostazioni in hello portale di Azure. Gestione traffico supporta too200 degli endpoint per il profilo. Tuttavia, la maggior parte degli scenari di utilizzo richiede solo un numero ridotto di endpoint.
 
-### <a name="to-create-a-traffic-manager-profile"></a>Per creare un profilo di Gestione traffico
+### <a name="toocreate-a-traffic-manager-profile"></a>toocreate un profilo di Traffic Manager
 
-1. Da un browser accedere al [portale di Azure](http://portal.azure.com). Se non si ha già di un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita della durata di un mese](https://azure.microsoft.com/free/). 
-2. Nel menu **Hub** fare clic su **Nuovo** > **Reti** > **Vedi tutto**, fare clic su **Profilo di Gestione traffico** per aprire il pannello **Crea profilo di Gestione traffico** e quindi fare clic su **Crea**.
-3. Nel pannello **Crea profilo di Gestione traffico** procedere come segue:
-    1. In **Nome** specificare un nome per il profilo. Questo nome deve essere univoco all'interno della zona trafficmanager.net e determina il nome DNS <name>, trafficmanager.net, che viene usato per accedere al profilo di Gestione traffico.
-    2. In **Metodo di routing** selezionare il metodo di routing **Priorità**.
-    3. In **Sottoscrizione** selezionare la sottoscrizione in cui si vuole creare il profilo.
-    4. In **Gruppo di risorse** creare un nuovo gruppo di risorse in cui aggiungere il profilo.
-    5. In **Località del gruppo di risorse** selezionare la località del gruppo di risorse. Questa impostazione indica la località del gruppo di risorse e non ha alcun impatto sul profilo di Gestione traffico che sarà distribuito a livello globale.
+1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com). Se non si ha già di un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita della durata di un mese](https://azure.microsoft.com/free/). 
+2. In hello **Hub** menu, fare clic su **New** > **rete** > **vedere tutti**, fare clic su **traffico Gestione** hello tooopen profilo **profilo di Traffic Manager creare** pannello, quindi fare clic su **crea**.
+3. In hello **profilo di Traffic Manager creare** pannello completo come segue:
+    1. In **Nome** specificare un nome per il profilo. Questo nome deve toobe univoco all'interno di zona trafficmanager.net hello e restituisce il nome DNS hello <name>, trafficmanager.net, che viene utilizzato tooaccess profilo di Traffic Manager.
+    2. In **il metodo di Routing**selezionare hello **priorità** metodo di routing.
+    3. In **sottoscrizione**, selezionare la sottoscrizione di hello desiderato toocreate questo profilo
+    4. In **gruppo di risorse**, creare un nuovo tooplace gruppo di risorse di questo profilo.
+    5. In **percorso del gruppo di risorse**, selezionare il percorso di hello hello del gruppo di risorse. Questa impostazione fa riferimento il percorso toohello hello del gruppo di risorse e non ha alcun impatto su hello profilo di Traffic Manager che verrà distribuito a livello globale.
     6. Fare clic su **Crea**.
-    7. Una volta completata la distribuzione globale del profilo di Gestione traffico, il profilo sarà elencato nel rispettivo gruppo di risorse come una delle risorse.
+    7. Una volta completata la distribuzione globale di hello del profilo di Traffic Manager, è elencato nel gruppo di risorse corrispondente come una delle risorse di hello.
 
 ## <a name="disable-enable-or-delete-a-profile"></a>Disabilitare, abilitare o eliminare un profilo
 
-È possibile disabilitare un profilo di Gestione traffico esistente in modo che non indirizzi le richieste dell'utente agli endpoint configurati. Quando si disabilita un profilo di Gestione traffico, il profilo stesso e le informazioni in esso contenute rimangono invariati e possono essere modificati nell'interfaccia di Gestione traffico.  I riferimenti vengono ripristinati quando si riabilita il profilo. Un profilo di Gestione traffico creato nel portale di Azure viene abilitato automaticamente. Se si decide che un profilo non sarà più necessario, è possibile eliminarlo.
+È possibile disabilitare un profilo esistente in modo che Traffic Manager non fa riferimento endpoint toohello configurato di richieste utente. Quando si disabilita un profilo di Traffic Manager, profilo hello e hello contenute nel profilo hello rimangono invariate e modificabili nell'interfaccia di Traffic Manager hello.  I riferimenti riprendere quando si riabilita profilo hello. Quando si crea un profilo di gestione traffico nel portale di Azure hello, viene abilitata automaticamente. Se si decide che un profilo non sarà più necessario, è possibile eliminarlo.
 
-### <a name="to-disable-a-profile"></a>Per disabilitare un profilo
+### <a name="toodisable-a-profile"></a>toodisable un profilo
 
-1. Se si usa un nome di dominio personalizzato, modificare il record CNAME per il server DNS Internet in modo che non punti più al profilo di Gestione traffico.
-2. Il traffico non sarà più indirizzato agli endpoint attraverso le impostazioni del profilo di Gestione traffico.
-3. Da un browser accedere al [portale di Azure](http://portal.azure.com).
-2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
-3. Nel pannello **Profilo di Gestione traffico** fare clic su **Panoramica**. Nel pannello Panoramica fare clic su **Disabilita** e quindi confermare la disabilitazione del profilo di Gestione traffico.
+1. Se si utilizza un nome di dominio personalizzato, modificare il record CNAME hello del server DNS Internet in modo che non punta più tooyour profilo di gestione traffico.
+2. Arrestare il traffico è indirizzato toohello endpoint tramite impostazioni profilo di Traffic Manager hello.
+3. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com).
+2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello risultati che hello visualizzato.
+3. In hello **profilo di gestione traffico** pannello, fare clic su **Panoramica**, nel pannello della panoramica hello fare clic su **disabilitare**, quindi confermare il profilo di gestione traffico di toodisable hello.
 
-### <a name="to-enable-a-profile"></a>Per abilitare un profilo
+### <a name="tooenable-a-profile"></a>tooenable un profilo
 
-1. Da un browser accedere al [portale di Azure](http://portal.azure.com).
-2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
-3. Nel pannello **Profilo di Gestione traffico** fare clic su **Panoramica** e nel pannello Panoramica fare clic su **Abilita**.
-5. Se si usa un nome di dominio personalizzato, creare un record di risorse CNAME sul server DNS Internet in modo da puntare al nome di dominio del profilo di Gestione traffico.
-6. Il traffico verrà nuovamente indirizzato verso gli endpoint.
+1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com).
+2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello risultati che hello visualizzato.
+3. In hello **profilo di gestione traffico** pannello, fare clic su **Panoramica**e quindi, nel pannello della panoramica hello fare clic su **abilitare**.
+5. Se si utilizza un nome di dominio personalizzato, creare un record di risorse CNAME al nome di dominio DNS Internet server toopoint toohello del profilo di Traffic Manager.
+6. Il traffico è indirizzato toohello endpoint nuovamente.
 
-### <a name="to-delete-a-profile"></a>Per eliminare un profilo
+### <a name="toodelete-a-profile"></a>toodelete un profilo
 
-1. Assicurarsi che il record di risorse DNS sul server DNS Internet non usi più un record di risorse CNAME che punta al nome di dominio del profilo di Gestione traffico.
-2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
-3. Nel pannello **Profilo di Gestione traffico** fare clic su **Panoramica**. Nel pannello Panoramica fare clic su **Elimina** e quindi confermare l'eliminazione del profilo di Gestione traffico.
+1. Verificare che i record di risorse DNS hello del server DNS Internet non utilizza non è più un record di risorse CNAME che punta il nome di dominio toohello del profilo di Traffic Manager.
+2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello risultati che hello visualizzato.
+3. In hello **profilo di gestione traffico** pannello, fare clic su **Panoramica**, nel pannello della panoramica hello fare clic su **eliminare**, quindi confermare il profilo di gestione traffico di toodelete hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

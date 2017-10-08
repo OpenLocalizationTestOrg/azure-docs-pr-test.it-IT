@@ -1,5 +1,5 @@
 ---
-title: Elaborazione degli eventi in tempo reale con l'elaborazione degli eventi dell'analisi di flusso | Microsoft Docs
+title: evento aaaReal-tempo di elaborazione con l'elaborazione degli eventi di flusso Analitica | Documenti Microsoft
 description: "Informazioni su come un set di servizi di Azure è in grado di interagire per consentire l’elaborazione e l’analisi in tempo reale degli eventi."
 keywords: elaborazione in tempo reale, elaborazione di eventi, architettura di riferimento
 services: stream-analytics,event-hubs,storage,sql-database
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/24/2017
 ms.author: jeffstok
-ms.openlocfilehash: b3057be995e551aac0761c3ce40a8dbf828a5f29
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a43c503d709609ba61e9932822d30bc2208906ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reference-architecture-real-time-event-processing-with-microsoft-azure-stream-analytics"></a>Architettura di riferimento: elaborazione di eventi in tempo reale con Analisi di flusso di Microsoft Azure
-L'architettura di riferimento per l'elaborazione di eventi in tempo reale con Analisi dei flussi di Azure è destinata a fornire un progetto generico per la distribuzione in tempo reale di una soluzione di elaborazione dei flussi PaaS con Microsoft Azure.
+architettura di riferimento per l'elaborazione con Azure Analitica di flusso di eventi in tempo reale di Hello è previsto tooprovide generico linee guida per la distribuzione di una piattaforma in tempo reale come una soluzione di elaborazione del flusso di servizio (PaaS) con Microsoft Azure.
 
 ## <a name="summary"></a>Riepilogo
-In genere, le soluzioni di analisi sono basate su funzionalità, ad esempio ETL (estrazione, trasformazione e caricamento) e data warehouse, in cui sono archiviati i dati prima dell'analisi. Le esigenze di modifica, tra cui i dati in arrivo con una maggiore rapidità, spingono al limite il modello esistente. Una soluzione è rappresentata dalla possibilità di analizzare i dati all'interno di flussi in movimento prima dell'archiviazione, e sebbene non si tratti di una nuova funzionalità, l'approccio non è stato adottato ampiamente in tutti i settori industriali verticali. 
+Tradizionalmente, soluzioni analitica sono basate sulle funzionalità, ad esempio ETL (extract, transform, load) e data warehouse, in cui i dati sono stored tooanalysis precedente. Modifica di requisiti, inclusi i dati più rapidamente in arrivo sono push questo limite di toohello modello esistente. anche se non è una nuova funzionalità, approccio hello non è stato ampiamente adottato nei tutti i settori verticali Hello possibilità tooanalyze dati mobile toostorage precedente di flussi sono una soluzione. 
 
-Microsoft Azure fornisce un catalogo esteso di tecnologie di analisi in grado di supportare una matrice di scenari di soluzioni e requisiti diversi. Scegliere i servizi Azure da distribuire per una soluzione end-to-end può essere difficile data la vasta gamma di offerte. Questo documento è progettato per descrivere le funzionalità e l'interazione tra i vari servizi Azure che supportano una soluzione di flusso di eventi. Vengono inoltre illustrati alcuni degli scenari in cui i clienti possono trarre vantaggio da questo tipo di approccio.
+Microsoft Azure fornisce un catalogo esteso di tecnologie di analisi in grado di supportare una matrice di scenari di soluzioni e requisiti diversi. Selezione toodeploy quali servizi di Azure per una soluzione end-to-end può rappresentare un problema dato breadth hello delle offerte. In questo documento è progettato toodescribe hello funzionalità e l'interoperabilità di hello vari servizi di Azure che supportano una soluzione flusso di eventi. Vengono inoltre illustrati alcuni degli scenari di hello in cui i clienti possono trarre vantaggio da questo tipo di approccio.
 
 ## <a name="contents"></a>Sommario
 * Sunto
-* Introduzione all'analisi in tempo reale
+* Introduzione tooReal fase Analitica
 * Proposta di valore dei dati in tempo reale in Azure
 * Scenari comuni per l’analisi in tempo reale
 * Architettura e componenti
@@ -54,7 +54,7 @@ Microsoft Azure fornisce un catalogo esteso di tecnologie di analisi in grado di
 Per assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

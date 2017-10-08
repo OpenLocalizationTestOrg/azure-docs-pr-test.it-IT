@@ -1,6 +1,6 @@
 ---
-title: Estensione macchina virtuale Azure Network Watcher Agent per Linux | Microsoft Docs
-description: Distribuire Network Watcher Agent in una macchina virtuale Linux usando un'estensione macchina virtuale.
+title: estensione dell'agente di controllo di rete della macchina virtuale per Linux aaaAzure | Documenti Microsoft
+description: Distribuire hello agente di controllo di rete nella macchina virtuale di Linux mediante un'estensione di macchina virtuale.
 services: virtual-machines-linux
 documentationcenter: 
 author: dennisg
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/14/2017
 ms.author: dennisg
-ms.openlocfilehash: eaadd531b9e05a54446e61f98584ae9d75470a5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84bed132cbda83d0917be490f9a50914578952a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="network-watcher-agent-virtual-machine-extension-for-linux"></a>Estensione macchina virtuale Network Watcher Agent per Linux
 
 ## <a name="overview"></a>Panoramica
 
-[Azure Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/) è un servizio di monitoraggio delle prestazioni di rete, diagnostica e analisi che consente di monitorare le reti di Azure. L'estensione macchina virtuale Network Watcher Agent è un requisito per alcune funzionalità di Network Watcher nelle macchine virtuali di Azure, tra cui l'acquisizione del traffico di rete su richiesta e altre funzionalità avanzate.
+[Azure Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/) è un servizio di monitoraggio delle prestazioni di rete, diagnostica e analisi che consente di monitorare le reti di Azure. Hello estensione della macchina virtuale dell'agente di controllo di rete è un requisito per alcune delle funzionalità di hello Watcher di rete in macchine virtuali di Azure. Include l'acquisizione del traffico di rete su richiesta e altre funzionalità avanzate.
 
-Questo documento descrive in dettaglio le piattaforme e le opzioni di distribuzione supportate per l'estensione macchina virtuale Network Watcher Agent per Linux.
+Per Linux, hello di dettagli in questo documento supporta piattaforme e le opzioni di distribuzione per hello estensione della macchina virtuale dell'agente di controllo di rete.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 ### <a name="operating-system"></a>Sistema operativo
 
-L'estensione Network Watcher Agent può essere eseguita per le distribuzioni di Linux seguenti:
+Hello estensione Agent Watcher di rete può essere eseguita su queste distribuzioni Linux:
 
 | Distribuzione | Versione |
 |---|---|
@@ -49,11 +49,11 @@ Si noti che CoreOS non è attualmente supportato.
 
 ### <a name="internet-connectivity"></a>Connettività Internet
 
-Alcune delle funzionalità di Network Watcher Agent richiedono che la macchina virtuale di destinazione sia connessa a Internet. Se non vi è la possibilità di stabilire connessioni in uscita, alcune funzionalità di Network Watcher Agent potrebbero non funzionare correttamente o non essere disponibili. Per maggiori dettagli, vedere la [documentazione di Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/).
+Alcune delle funzionalità dell'agente di controllo rete hello richiede tale macchina virtuale di destinazione hello connesso toohello Internet. Senza connessioni in uscita di hello possibilità tooestablish alcune delle funzionalità dell'agente di controllo rete hello malfunzionamento o non sono più disponibili. Per ulteriori informazioni, vedere hello [documentazione Watcher di rete](https://review.docs.microsoft.com/en-us/azure/network-watcher/).
 
 ## <a name="extension-schema"></a>Schema dell'estensione
 
-Lo schema JSON seguente illustra lo schema dell'estensione Network Watcher Agent. Al momento, l'estensione non richiede né supporta impostazioni fornite dall'utente e si basa sulla configurazione predefinita.
+Hello JSON seguente mostra lo schema di hello per hello estensione Agent Watcher di rete. estensione di Hello non richiede né supporta le impostazioni fornite dall'utente in questo momento e si basa sulla configurazione predefinita.
 
 ```json
 {
@@ -84,11 +84,11 @@ Lo schema JSON seguente illustra lo schema dell'estensione Network Watcher Agent
 
 ## <a name="template-deployment"></a>Distribuzione del modello
 
-Le estensioni macchina virtuale di Azure possono essere distribuite con i modelli di Azure Resource Manager. Lo schema JSON descritto in dettaglio nella sezione precedente può essere usato in un modello di Azure Resource Manager per eseguire l'estensione Network Watcher Agent durante la distribuzione di un modello di Azure Resource Manager.
+Le estensioni macchina virtuale di Azure possono essere distribuite con i modelli di Azure Resource Manager. schema JSON Hello descritta in dettaglio nella sezione precedente hello è utilizzabile in un hello toorun modello di gestione risorse di Azure estensione Agent Watcher di rete durante la distribuzione di un modello di gestione risorse di Azure.
 
 ## <a name="azure-cli-deployment"></a>Distribuzione dell'interfaccia della riga di comando di Azure
 
-L'interfaccia della riga di comando di Azure può essere usata per distribuire l'estensione macchina virtuale Network Watcher Agent in una macchina virtuale esistente.
+Hello CLI di Azure può essere utilizzato toodeploy hello rete Watcher agente VM estensione tooan macchina virtuale esistente.
 
 ```azurecli
 azure vm extension set myResourceGroup1 myVM1 NetworkWatcherAgentLinux Microsoft.Azure.NetworkWatcher 1.4
@@ -98,13 +98,13 @@ azure vm extension set myResourceGroup1 myVM1 NetworkWatcherAgentLinux Microsoft
 
 ### <a name="troubleshooting"></a>Risoluzione dei problemi
 
-I dati sullo stato delle distribuzioni dell'estensione possono essere recuperati nel portale di Azure e tramite l'interfaccia della riga di comando di Azure. Per visualizzare lo stato di distribuzione delle estensioni per una determinata macchina virtuale, eseguire il comando seguente nell'interfaccia della riga di comando di Azure.
+Dati sullo stato di hello delle distribuzioni di estensione possono essere recuperati dal portale di Azure hello e, utilizzando hello CLI di Azure. lo stato di distribuzione hello toosee delle estensioni per una macchina virtuale specificata, eseguire hello seguente comando utilizzando hello CLI di Azure.
 
 ```azurecli
 azure vm extension get myResourceGroup1 myVM1
 ```
 
-L'output dell'esecuzione dell'estensione viene registrato nei file presenti nella directory seguente:
+Esecuzione di estensione di output è toofiles registrati nell'hello seguente directory:
 
 `
 /var/log/azure/Microsoft.Azure.NetworkWatcher.NetworkWatcherAgentLinux/
@@ -112,4 +112,4 @@ L'output dell'esecuzione dell'estensione viene registrato nei file presenti nell
 
 ### <a name="support"></a>Supporto
 
-Per ricevere assistenza più approfondita su qualsiasi punto dell'articolo, fare riferimento alla documentazione su Network Watcher o contattare gli esperti di Azure nei [forum di Azure su MSDN e Stack Overflow](https://azure.microsoft.com/en-us/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Accedere al [sito del supporto di Azure](https://azure.microsoft.com/en-us/support/options/) e selezionare l'opzione desiderata per ottenere supporto. Per informazioni sull'uso del supporto di Azure, leggere le [Domande frequenti sul supporto di Azure](https://azure.microsoft.com/en-us/support/faq/).
+Se è necessario ulteriore assistenza in qualsiasi punto in questo articolo, è possibile consultare la documentazione di toohello Watcher di rete o contattare hello Azure esperti hello [forum MSDN di Azure e di Overflow dello Stack](https://azure.microsoft.com/en-us/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare toohello [sito del supporto tecnico di Azure](https://azure.microsoft.com/en-us/support/options/) e scegliere supporto tecnico. Per informazioni sull'utilizzo di supporto di Azure, leggere hello [supporto tecnico di Microsoft Azure domande frequenti su](https://azure.microsoft.com/en-us/support/faq/).

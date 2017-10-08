@@ -1,6 +1,6 @@
 ---
-title: Sostituzione di un PCM nel dispositivo StorSimple serie 8000 | Microsoft Docs
-description: Viene illustrato come rimuovere e sostituire il modulo di alimentazione e raffreddamento (PCM, Power and Cooling Module) nel dispositivo StorSimple
+title: un PCM sul dispositivo serie StorSimple 8000 aaaReplace | Documenti Microsoft
+description: Viene illustrato come tooremove e sostituire hello Power e modulo di raffreddamento (PCM) nel dispositivo StorSimple
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.openlocfilehash: 7d181e6e434c998573dbea4b541cfacf7a28ee66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 474fd09787c5361a81efda4de74356027ac60f47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="replace-a-power-and-cooling-module-on-your-storsimple-device"></a>Sostituzione di un modulo di alimentazione e raffreddamento nel dispositivo StorSimple
 ## <a name="overview"></a>Panoramica
-Il modulo di alimentazione e raffreddamento (PCM, Power and Cooling Module) nel dispositivo Microsoft Azure StorSimple è costituito da un alimentatore e ventole di raffreddamento controllati attraverso gli chassis principale e EBOD. Esiste un solo modello di PCM certificato per ciascuno chassis. Lo chassis principale è certificato per un PCM 764 W e lo chassis EBOD è certificato per un PCM 580 W. Sebbene i PCM per lo chassis principale e lo chassis EBOD siano diversi, la procedura di sostituzione è identica.
+Hello alimentazione e raffreddamento modulo PCM () nel dispositivo Microsoft Azure StorSimple costituito da un alimentatore e raffreddamento controllati tramite hello primario e l'enclosure EBOD. Esiste un solo modello di PCM certificato per ciascuno chassis. enclosure principale Hello è certificata per un PCM a 764 W ed enclosure EBOD hello è certificata per un PCM a 580 W. Anche se hello PCM enclosure principale hello e hello dell'enclosure EBOD sono diversi, la procedura di sostituzione hello è identica.
 
 In questa esercitazione viene illustrato come:
 
@@ -30,35 +30,35 @@ In questa esercitazione viene illustrato come:
 * Installare un PCM sostitutivo
 
 > [!IMPORTANT]
-> Prima di rimuovere e sostituire un PCM, esaminare le informazioni di sicurezza descritte in [Sostituzione dei componenti hardware di StorSimple](storsimple-8000-hardware-component-replacement.md).
+> Prima di rimozione e sostituzione di un PCM, esaminare le informazioni di sicurezza hello in [sostituzione dei componenti hardware StorSimple](storsimple-8000-hardware-component-replacement.md).
 
 
 ## <a name="before-you-replace-a-pcm"></a>Prima di sostituire un PCM:
-Prima di sostituire il PCM, tenere presente i seguenti aspetti importanti:
+Tenere hello seguenti problemi importanti prima di sostituire il PCM:
 
-* Se l'alimentatore del PCM è guasto, lasciare il modulo guasto installato, ma rimuovere il cavo di alimentazione. La ventola continuerà a ricevere alimentazione dallo chassis e a fornire il raffreddamento appropriato. Se la ventola è guasta, il PCM deve essere sostituito immediatamente.
-* Prima di rimuovere il PCM, disconnettere l'alimentazione da PCM disattivando l'interruttore principale (se presente) oppure rimuovendo fisicamente il cavo di alimentazione. Ciò determina la visualizzazione di un avviso sul sistema indicante che è imminente un'interruzione dell'alimentazione.
-* Assicurarsi che l'altro PCM sia funzionale per un funzionamento continuato del sistema prima di sostituire il PCM guasto. Un PCM guasto deve essere sostituito con un PCM completamente funzionante appena possibile.
-* La sostituzione del modulo PCM richiede solo alcuni minuti, ma deve essere completata entro 10 minuti dalla rimozione del PCM guasto per impedire il surriscaldamento.
-* Notare che i moduli 764 W PCM di sostituzione forniti dal produttore non contengono il modulo batteria di backup. È necessario rimuovere la batteria dal PCM non funzionante, quindi inserirla nel modulo di sostituzione prima di eseguire la sostituzione. Per altre informazioni, vedere come [rimuovere e inserire un modulo batteria di backup](storsimple-8000-battery-replacement.md).
+* Alimentatore hello di hello guasto PCM, lasciare hello modulo non funzionante installato, ma rimuovere il cavo di alimentazione hello. ventola Hello continuerà alimentazione tooreceive enclosure hello e continuare tooprovide corretto raffreddamento. Se ha esito negativo della ventola hello, hello PCM deve toobe sostituito immediatamente.
+* Prima di rimuovere hello PCM, scollegare hello alimentazione hello PCM disattivando interruttore hello (se presente) o rimuovendo il cavo di alimentazione hello. Ciò fornisce un sistema di tooyour di avviso che è imminente interruzione dell'alimentazione.
+* Verificare che tale hello che è funzionale per l'altro PCM costantemente il funzionamento del sistema prima di sostituire hello PCM non funzionante. Un PCM guasto deve essere sostituito con un PCM completamente funzionante appena possibile.
+* Sostituzione di un modulo PCM richiede solo pochi minuti toocomplete, ma deve essere completata entro 10 minuti dalla rimozione non riuscita hello PCM tooprevent surriscaldamento.
+* Si noti che hello sostituzione 764 W i moduli PCM forniti dalla factory hello non contengano hello modulo batteria di backup. Sarà anche necessario batteria hello tooremove dal PCM non funzionante e quindi inserirla sostituzione hello di hello sostituzione modulo tooperforming precedente. Per ulteriori informazioni, vedere come troppo[rimuovere e inserire un modulo batteria di backup](storsimple-8000-battery-replacement.md).
 
 ## <a name="remove-a-pcm"></a>Rimuovere un PCM
-Per rimuovere un modulo di alimentazione e raffreddamento (PCM, Power and Cooling Module) dal dispositivo Microsoft Azure StorSimple, seguire queste istruzioni.
+Quando si è pronti tooremove una potenza e modulo di raffreddamento (PCM) dal dispositivo di Microsoft Azure StorSimple, seguire queste istruzioni.
 
 > [!NOTE]
-> Prima di rimuovere il PCM, verificare di disporre di una sostituzione appropriata (764 W per lo chassis principale o 580 W per lo chassis EBOD).
+> Prima di rimuovere il PCM, verificare di disporre di un componente sostitutivo corretto (764 W per l'enclosure principale hello) o 580 W per hello enclosure EBOD.
 
-#### <a name="to-remove-a-pcm"></a>Per rimuovere un PCM:
-1. Nel portale di Azure classico, fare clic su **Impostazioni > Monitoraggio > Integrità hardware**. Controllare lo stato dei componenti del PCM sotto **Componenti condivisi** per identificare quale PCM è guasto:
+#### <a name="tooremove-a-pcm"></a>tooremove un PCM
+1. Nel portale di Azure classico hello, fare clic su **Impostazioni > monitoraggio > stato di Hardware**. Controllare lo stato di hello dei componenti PCM hello sotto **dei componenti condivisi di** tooidentify quello non funzionante:
    
-   * Se un alimentatore in PCM 0 è guasto, lo stato di **Alimentatore in PCM 0** sarà rosso.
-   * Se un alimentatore in PCM 1 è guasto, lo stato di **Alimentatore in PCM 1** sarà rosso.
-   * Se la ventola in PCM 1 è guasta, lo stato di **Raffreddamento 0 per PCM 0** o **Raffreddamento 1 per PCM 0** sarà rosso.
-2. Individuare il PCM guasto nella parte posteriore dello chassis principale. Se si esegue un modello 8600, identificare lo chassis principale controllando il numero di identificazione unità di sistema mostrato sul display LED del pannello anteriore. L'ID unità predefinito visualizzato sullo chassis principale è **00**, mentre l'ID unità predefinito visualizzato sullo chassis EBOD è **01**. Nel diagramma e nella tabella seguenti viene illustrato il pannello anteriore del display LED.
+   * Se un alimentatore in PCM 0 non è riuscita, hello stato **alimentatore in PCM 0** sarà di colore rosso.
+   * Se un alimentatore in PCM 1 non è riuscita, hello stato **alimentatore in PCM 1** sarà di colore rosso.
+   * Se la ventola hello in PCM 1 non è riuscita, hello indicatore di stato del **raffreddamento 0 PCM 0** o **raffreddamento 1 PCM 0** sarà di colore rosso.
+2. Individuare hello PCM non funzionante in hello eseguire il backup dell'enclosure principale hello. Se si esegue un modello 8600, identificare l'enclosure principale hello esaminando hello mostrato sul display LED sul pannello anteriore hello numero identificativo dell'unità del sistema. Hello predefinito visualizzato sull'enclosure principale hello è **00**, mentre il valore predefinito di hello ID di unità visualizzate nella hello enclosure EBOD è **01**. Hello diagramma e la tabella seguenti illustrano pannello anteriore di hello del display LED hello.
    
     ![ID del sistema sul pannello anteriore delle operazioni](./media/storsimple-power-cooling-module-replacement/IC740991.png)
    
-     **Figura 1** Pannello anteriore del dispositivo  
+     **Figura 1** pannello anteriore del dispositivo hello  
    
    | Etichetta | Descrizione |
    |:--- |:--- |
@@ -67,7 +67,7 @@ Per rimuovere un modulo di alimentazione e raffreddamento (PCM, Power and Coolin
    | 3 |Errore del modulo |
    | 4 |Errore logico |
    | 5 |Display ID unità |
-3. I LED degli indicatori di monitoraggio nella parte posteriore dello chassis principale possono inoltre essere utilizzati per identificare il PCM guasto. Vedere il diagramma e la tabella seguenti per comprendere come utilizzare i LED per individuare il PCM guasto. Ad esempio, se il LED corrispondente a **Guasto ventola** è attivo, la ventola è guasta. Allo stesso modo, se il LED corrispondente a **Guasto CA** è attivo, l'alimentatore è guasto. 
+3. può essere utilizzato anche il monitoraggio di indicatori LED di hello parte posteriore dell'enclosure principale hello Hello tooidentify hello PCM non funzionante. Vedere hello seguente diagramma e tabella come toounderstand toouse hello LED toolocate hello PCM non funzionante. Ad esempio, se hello LED corrispondente toohello **guasto ventola** è acceso, significa che la ventola hello non è riuscita. Analogamente, se hello LED corrispondente troppo**guasto AC** è acceso, significa che alimentatore hello non è riuscita. 
    
     ![Backplane degli indicatori LED di monitoraggio del PCM del dispositivo](./media/storsimple-power-cooling-module-replacement/IC740992.png)
    
@@ -81,7 +81,7 @@ Per rimuovere un modulo di alimentazione e raffreddamento (PCM, Power and Coolin
    | 4 |PCM OK |
    | 5 |Guasto dell'alimentazione CC |
    | 6 |Integrità della batteria |
-4. Fare riferimento al diagramma seguente relativo alla parte posteriore del dispositivo StorSimple per individuare il modulo PCM guasto. PCM 0 è a sinistra e PCM 1 è a destra. Nella tabella seguente vengono illustrati i moduli.
+4. Fare riferimento toohello seguente diagramma di hello parte posteriore modulo PCM di hello StorSimple dispositivo toolocate hello non riuscita. PCM 0 si trova a sinistra di hello e PCM 1 è hello destra. tabella Hello che segue vengono illustrati i moduli di hello.
    
      ![Backplane dei moduli dello chassis principale del dispositivo](./media/storsimple-power-cooling-module-replacement/IC740994.png)
    
@@ -93,50 +93,50 @@ Per rimuovere un modulo di alimentazione e raffreddamento (PCM, Power and Coolin
    | 2 |PCM 1 |
    | 3 |Controller 0 |
    | 4 |Controller 1 |
-5. Disattivare il PCM guasto e disconnettere il cavo di alimentazione. È ora possibile rimuovere il PCM.
-6. Afferrare il chiavistello e il lato del punto di manipolazione del PCM tra il pollice e l'indice, quindi stringerli insieme per aprire il punto di manipolazione.
+5. Attivare off hello PCM non funzionante e scollegare cavo di alimentazione hello. È possibile rimuovere hello PCM.
+6. Afferrare latch hello e lato hello di hello gestire PCM tra il pollice e l'indice, quindi premerli handle hello tooopen insieme.
    
     ![Apertura del punto di manipolazione del PCM](./media/storsimple-power-cooling-module-replacement/IC740995.png)
    
-    **Figura 4** Apertura del punto di manipolazione del PCM
-7. Afferrare il punto di manipolazione e rimuovere il PCM.
+    **Figura 4** gestire hello apertura PCM
+7. Tirare la maniglia hello e rimuovere hello PCM.
    
     ![Rimozione del PCM del dispositivo](./media/storsimple-power-cooling-module-replacement/IC740996.png)
    
-    **Figura 5** Rimozione del PCM
+    **Figura 5** rimozione hello PCM
 
 ## <a name="install-a-replacement-pcm"></a>Installare un PCM sostitutivo
-Seguire queste istruzioni per installare un PCM nel dispositivo StorSimple. Verificare di avere inserito il modulo batteria di backup prima di installare il PCM di sostituzione (si applica solo a 764 W PCM). Per altre informazioni, vedere come [rimuovere e inserire un modulo batteria di backup](storsimple-8000-battery-replacement.md).
+Seguire questi tooinstall istruzioni un PCM del dispositivo StorSimple. Assicurarsi di avere inserito hello batteria di backup precedenti tooinstalling hello sostituzione di un modulo PCM (si applica solo PCM W too764). Per ulteriori informazioni, vedere come troppo[rimuovere e inserire un modulo batteria di backup](storsimple-8000-battery-replacement.md).
 
-#### <a name="to-install-a-pcm"></a>Per installare un PCM:
-1. Verificare di disporre del PCM sostitutivo corretto per questo chassis. Per lo chassis principale è necessario un PCM 764 W e per lo chassis EBOD un PCM 580 W. Non tentare di utilizzare il PCM 580 W nello chassis principale o il PCM 764 W nello chassis EBOD. Nell'immagine seguente viene illustrato come identificare queste informazioni sull'etichetta apposta sul PCM.
+#### <a name="tooinstall-a-pcm"></a>tooinstall un PCM
+1. Verificare di aver hello PCM sostitutivo appropriato per questa enclosure. enclosure principale di Hello richiede un PCM a 764 W e hello enclosure EBOD deve un PCM a 580 W. Non è consigliabile tentare toouse hello PCM a 580 W enclosure principale hello o hello PCM 764 W in hello enclosure EBOD. Hello seguente immagine mostra se queste informazioni in hello etichetta ovvero tooidentify apposta toohello PCM.
    
     ![Etichetta del PCM del dispositivo](./media/storsimple-power-cooling-module-replacement/IC740973.png)
    
     **Figura 6** Etichetta del PCM
-2. Verifica la presenza di danni sullo chassis, prestando particolare attenzione ai connettori. 
+2. Controllare per enclosure toohello danni, prestando particolare attenzione toohello connettori. 
    
    > [!NOTE]
-   > **Non installare il modulo se i perni dei connettori sono piegati.**
+   > **Se qualsiasi connettore presenta pin piegati, non installare il modulo di hello.**
    > 
    > 
-3. Con il punto di manipolazione del PCM in posizione aperta, far scorrere il modulo nello chassis.
+3. Con hello PCM gestire nel hello aprire posizione, il modulo hello diapositiva in enclosure hello.
    
     ![Installazione del PCM del dispositivo](./media/storsimple-power-cooling-module-replacement/IC740975.png)
    
-    **Figura 7** Installazione del PCM
-4. Chiudere manualmente il punto di manipolazione del PCM. Quando il punto di manipolazione viene attivato si dovrebbe ascoltare un clic.
+    **Figura 7** installazione hello PCM
+4. Chiudere manualmente maniglia del PCM hello. Quando hello handle fermo scatta, si sente un clic.
    
    > [!NOTE]
-   > Per assicurasi che i perni dei connettori siano attivati, è possibile tirare delicatamente il punto di manipolazione senza rilasciare il chiavistello. Se il PCM scorre fuori, il chiavistello è stato chiuso prima dell'attivazione dei connettori.
+   > si sono impegnati tooensure che hello pin dei connettori, è possibile tirare leggermente hello handle senza rilascio del latch hello. Se hello PCM scorre verso l'esterno, significa che il latch hello è stata chiusa prima hello connettori venissero inseriti.
    
-5. Connettere i cavi di alimentazione alla fonte di alimentazione e al PCM.
-6. Fissare in posizione le fascette di serraggio.
-7. Accendere il PCM.
-8. Verificare che la sostituzione sia stata completata correttamente: nel portale di Azure del servizio Gestione dispositivi StorSimple, passare a **Impostazioni > Monitoraggio > Integrità hardware**. In **Componenti condivisi**, lo stato del PCM dovrebbe essere verde.
+5. Connettere hello cavi toohello power alimentazione e toohello PCM.
+6. Proteggere ceppo hello Balle rilievo.
+7. Attivare hello PCM.
+8. Verifica della corretta sostituzione hello: nel portale di Azure del servizio di gestione di dispositivi StorSimple hello, spostarsi tooyour dispositivo e quindi troppo**Impostazioni > monitoraggio > stato di Hardware**. In hello **dei componenti condivisi di**, stato hello di hello PCM deve essere di colore verde.
    
    > [!NOTE]
-   > L'inizializzazione completa del PCM sostitutivo potrebbe richiedere alcuni minuti.
+   > Potrebbe richiedere alcuni minuti per l'inizializzazione di toocompletely PCM sostitutivo hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Leggere ulteriori informazioni sulla [Sostituzione dei componenti hardware di StorSimple](storsimple-8000-hardware-component-replacement.md).

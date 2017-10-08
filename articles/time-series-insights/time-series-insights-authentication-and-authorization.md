@@ -1,6 +1,6 @@
 ---
-title: Configurare l'autenticazione e l'autorizzazione per un'applicazione personalizzata che chiama l'API Azure Time Series Insights | Microsoft Docs
-description: Questa esercitazione illustra come configurare l'autenticazione e l'autorizzazione per un'applicazione personalizzata che chiama l'API Azure Time Series Insights
+title: aaaConfigure autenticazione e autorizzazione per un'applicazione personalizzata che chiama hello Azure ora serie Insights API | Documenti Microsoft
+description: In questa esercitazione viene illustrato come tooconfigure autenticazione e autorizzazione per un'applicazione personalizzata che chiama hello Azure ora serie Insights API
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,75 +15,75 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/24/2017
 ms.author: dmden
-ms.openlocfilehash: 4dd4865dc556e09a31d2cb7a32768aeb19ba9900
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5043468bfc2af3c0d27e8602508d92ba2848409e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authentication-and-authorization-for-azure-time-series-insights-api"></a>Autenticazione e autorizzazione per l'API Azure Time Series Insights
 
-Questo articolo illustra come configurare un'applicazione personalizzata che chiama l'API Azure Time Series Insights.
+In questo articolo viene illustrato come un'applicazione personalizzata che chiama tooconfigure hello Azure ora serie Insights API.
 
 ## <a name="service-principal"></a>Entità servizio
 
-Questa sezione illustra come configurare un'applicazione per accedere all'API Time Series Insights per conto dell'applicazione. L'applicazione può quindi eseguire query sui dati o pubblicare dati di riferimento nell'ambiente Time Series Insights con le credenziali dell'applicazione e non con quelle dell'utente.
+Questa sezione viene illustrato come tooconfigure tooaccess un'applicazione hello ora serie Insights API per conto di un'applicazione hello. un'applicazione Hello può quindi eseguire query sui dati o pubblicare dati di riferimento nell'ambiente di tempo serie Insights hello con le credenziali dell'applicazione e non le credenziali utente hello.
 
-Quando un'applicazione deve accedere a Time Series Insights, è necessario configurare un'applicazione Azure Active Directory a cui assegnare i criteri di accesso ai dati nell'ambiente Time Series Insights. Questo approccio è preferibile all'esecuzione dell'app con le credenziali dell'utente per i motivi seguenti:
+Quando si dispone di un'applicazione che richiede tooaccess ora serie Insights, è necessario configurare un'applicazione Azure Active Directory e assegnare criteri di accesso ai dati hello nell'ambiente di tempo serie Insights hello. Questo approccio è preferibile toorunning hello app con le proprie credenziali perché:
 
-* È possibile assegnare all'identità dell'app autorizzazioni diverse rispetto a quelle dell'utente. Tali autorizzazioni sono in genere limitate alle specifiche operazioni che devono essere eseguite dall'app. Ad esempio, è possibile consentire all'app solo di leggere i dati in un particolare ambiente Time Series Insights.
-* Non è necessario modificare le credenziali dell'app in caso di cambiamento delle responsabilità dell'utente.
-* È possibile usare un certificato o una chiave dell'applicazione per automatizzare l'autenticazione in caso di esecuzione di uno script automatico.
+* È possibile assegnare le autorizzazioni di identità app toohello che sono diverse dalle autorizzazioni personalizzate. In genere, queste autorizzazioni sono limitate tooexactly quali app hello deve toodo. Ad esempio, è possibile consentire hello app tooonly leggere i dati in un ambiente di Insights di serie di tempo specifico.
+* Non si dispone delle credenziali dell'applicazione hello toochange se Modifica responsabilità dell'utente.
+* Quando si esegue uno script automatico, è possibile utilizzare un certificato o l'autenticazione chiave tooautomate un'applicazione.
 
-Questo articolo illustra come eseguire questa procedura tramite il portale di Azure. È incentrato su un'applicazione con un tenant singolo dove si prevede che l'applicazione venga eseguita all'interno di una sola organizzazione. Le applicazioni con un tenant singolo si usano in genere per applicazioni line-of-business eseguite all'interno dell'organizzazione.
+Questo articolo illustra come quelli passaggi tooperform hello portale di Azure. Si concentra in un'applicazione single-tenant in cui un'applicazione hello è toorun previsti in una sola organizzazione. Le applicazioni con un tenant singolo si usano in genere per applicazioni line-of-business eseguite all'interno dell'organizzazione.
 
-Il flusso di configurazione è costituito da tre passaggi generali:
+flusso di programma di installazione di Hello è costituito da tre passaggi generali:
 
 1. Creare un'applicazione in Azure Active Directory.
-2. Autorizzare questa applicazione ad accedere all'ambiente Time Series Insights.
-3. Usare l'ID e la chiave dell'applicazione per acquisire un token per un destinatario o una risorsa `"https://api.timeseries.azure.com/"`. Il token può quindi essere usato per chiamare l'API Time Series Insights.
+2. Autorizzare l'ambiente di applicazione tooaccess hello ora serie Insights.
+3. Utilizzare l'ID applicazione hello e la chiave tooacquire toohello un token `"https://api.timeseries.azure.com/"` destinatario o una risorsa. token Hello può quindi essere utilizzato toocall hello ora serie Insights API.
 
-Ecco di seguito i passaggi dettagliati:
+Ecco i passaggi dettagliati hello:
 
-1. Nel portale di Azure selezionare **Azure Active Directory** > **Registrazioni per l'app** > **Registrazione nuova applicazione**.
+1. Nel portale di Azure hello, selezionare **Azure Active Directory** > **registrazioni di App** > **nuova registrazione applicazione**.
 
    ![Registrazione di una nuova applicazione in Azure Active Directory](media/authentication-and-authorization/active-directory-new-application-registration.png)  
 
-2. Assegnare un nome all'applicazione, selezionare il tipo **App Web/API**, selezionare un URI valido in **URL di accesso** e fare clic su **Crea**.
+2. Assegnare un'applicazione hello toobe di tipo un nome, selezionare hello **app Web / API**, selezionare qualsiasi URI valido per **Sign-on URL**, fare clic su **crea**.
 
-   ![Creare l'applicazione in Azure Active Directory](media/authentication-and-authorization/active-directory-create-web-api-application.png)
+   ![Creare un'applicazione hello in Azure Active Directory](media/authentication-and-authorization/active-directory-create-web-api-application.png)
 
-3. Selezionare l'applicazione appena creata e copiare il relativo ID in un editor di testo.
+3. Selezionare l'applicazione appena creata e copiare il relativo editor di testo preferito tooyour ID applicazione.
 
-   ![Copiare l'ID applicazione](media/authentication-and-authorization/active-directory-copy-application-id.png)
+   ![Copiare l'ID dell'applicazione hello](media/authentication-and-authorization/active-directory-copy-application-id.png)
 
-4. Selezionare **Chiavi**, immettere il nome della chiave, selezionare la scadenza e fare clic su **Salva**.
+4. Selezionare **chiavi**, immettere nome chiave hello, scadenza hello select e fare clic su **salvare**.
 
    ![Selezionare le chiavi dell'applicazione](media/authentication-and-authorization/active-directory-application-keys.png)
 
-   ![Immettere il nome e la scadenza della chiave e fare clic su Salva](media/authentication-and-authorization/active-directory-application-keys-save.png)
+   ![Immettere nome della chiave hello e la scadenza e fare clic su Salva](media/authentication-and-authorization/active-directory-application-keys-save.png)
 
-5. Copiare la chiave in un editor di testo.
+5. Editor di testo preferito tooyour chiave hello copia.
 
-   ![Copiare la chiave dell'applicazione](media/authentication-and-authorization/active-directory-copy-application-key.png)
+   ![Chiave dell'applicazione hello copia](media/authentication-and-authorization/active-directory-copy-application-key.png)
 
-6. Per l'ambiente Time Series Insights, selezionare **Criteri di accesso ai dati** e fare clic su **Aggiungi**.
+6. Per ambiente ora serie Insights hello, selezionare **i criteri di accesso dati** e fare clic su **Aggiungi**.
 
-   ![Aggiungere nuovi criteri di accesso ai dati per l'ambiente Time Series Insights](media/authentication-and-authorization/time-series-insights-data-access-policies-add.png)
+   ![Aggiungere nuovi dati accesso criteri toohello ora serie Insights ambiente](media/authentication-and-authorization/time-series-insights-data-access-policies-add.png)
 
-7. Nella finestra di dialogo **Seleziona utente** incollare il nome dell'applicazione (dal passaggio 2) o l'ID dell'applicazione (dal passaggio 3).
+7. In hello **Seleziona utente** la finestra di dialogo, nome dell'applicazione hello Incolla (dal passaggio 2) o ID dell'applicazione (dal passaggio 3).
 
-   ![Trovare un'applicazione nella finestra di dialogo Seleziona utente](media/authentication-and-authorization/time-series-insights-data-access-policies-select-user.png)
+   ![Trovare un'applicazione nella finestra di dialogo Seleziona utente hello](media/authentication-and-authorization/time-series-insights-data-access-policies-select-user.png)
 
-8. Selezionare il ruolo (**Lettore** per eseguire query sui dati, **Collaboratore** per eseguire query sui dati e modificare i dati di riferimento) e fare clic su **Ok**.
+8. Ruolo selezionare hello (**lettore** per eseguire query sui dati, **collaboratore** per eseguire query sui dati e la modifica di dati di riferimento) e fare clic su **Ok**.
 
-   ![Selezionare Lettore o Collaboratore nella finestra di dialogo Selezionare un ruolo](media/authentication-and-authorization/time-series-insights-data-access-policies-select-role.png)
+   ![Selezionare lettore o collaboratore nella finestra di dialogo selezionare il ruolo di hello](media/authentication-and-authorization/time-series-insights-data-access-policies-select-role.png)
 
-9. Salvare il criterio facendo clic su **Ok**.
+9. Salvare il criterio di hello facendo **Ok**.
 
-10. Usare l'ID dell'applicazione (dal passaggio 3) e la chiave dell'applicazione (dal passaggio 5) per acquisire il token per conto dell'applicazione. Il token può quindi essere passato nell'intestazione `Authorization` quando l'applicazione chiama l'API Time Series Insights.
+10. Utilizzare l'ID dell'applicazione hello (dal passaggio 3) e token hello tooacquire chiave (dal passaggio 5) dell'applicazione per conto di un'applicazione hello. Hello token può quindi essere passato in hello `Authorization` intestazione quando l'applicazione hello chiama hello ora serie Insights API.
 
-    Se si usa C#, è possibile usare il codice seguente per acquisire il token per conto dell'applicazione. Per un esempio completo, vedere [Eseguire query sui dati tramite C#](time-series-insights-query-data-csharp.md).
+    Se si usa c#, è possibile utilizzare i seguenti token hello tooacquire di codice per conto di un'applicazione hello hello. Per un esempio completo, vedere [Eseguire query sui dati tramite C#](time-series-insights-query-data-csharp.md).
 
     ```csharp
     var authenticationContext = new AuthenticationContext(
@@ -91,12 +91,12 @@ Ecco di seguito i passaggi dettagliati:
         TokenCache.DefaultShared);
 
     AuthenticationResult token = await authenticationContext.AcquireTokenAsync(
-        // Set the resource URI to the Azure Time Series Insights API
+        // Set hello resource URI toohello Azure Time Series Insights API
         resource: "https://api.timeseries.azure.com/", 
         clientCredential: new ClientCredential(
             // Application ID of application registered in Azure Active Directory
             clientId: "1bc3af48-7e2f-4845-880a-c7649a6470b8", 
-            // Application key of the application that's registered in Azure Active Directory
+            // Application key of hello application that's registered in Azure Active Directory
             clientSecret: "aBcdEffs4XYxoAXzLB1n3R2meNCYdGpIGBc2YC5D6L2="));
 
     string accessToken = token.AccessToken;
@@ -104,9 +104,9 @@ Ecco di seguito i passaggi dettagliati:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Usare l'ID e la chiave dell'applicazione nella propria applicazione. Per un esempio di codice che chiama l'API Time Series Insights, vedere [Eseguire query sui dati tramite C#](time-series-insights-query-data-csharp.md).
+Utilizzare l'ID applicazione hello e la chiave nell'applicazione. Per esempio di codice che chiama hello ora serie Insights API, vedere [eseguire query sui dati utilizzando il linguaggio c#](time-series-insights-query-data-csharp.md).
 
 ## <a name="see-also"></a>Vedere anche
 
-* [API di query](/rest/api/time-series-insights/time-series-insights-reference-queryapi) per informazioni di riferimento complete sulle API di query
-* [Creare un'entità servizio nel portale di Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md)
+* [Le query API](/rest/api/time-series-insights/time-series-insights-reference-queryapi) per riferimento API di Query completo hello
+* [Creare un servizio principale in hello portale di Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md)

@@ -1,6 +1,6 @@
 ---
-title: Dimensioni delle macchine virtuali Linux | Documentazione Microsoft
-description: Elenca le diverse dimensioni disponibili per le macchine virtuali Linux in Azure.
+title: dimensioni aaaLinux VM in Azure | Documenti Microsoft
+description: Elenca le diverse dimensioni hello disponibili per le macchine virtuali Linux in Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: fe7a92901ae25aa99ef71f09c416e6c6ad30d39b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 56cbe0a0d7d34def07636edba74c4c699e336012
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sizes-for-linux-virtual-machines-in-azure"></a>Dimensioni delle macchine virtuali Linux in Azure
-Questo articolo descrive le dimensioni e le opzioni disponibili per le macchine virtuali di Azure che è possibile usare per eseguire le app Linux e i carichi di lavoro. Offre anche considerazioni sulla distribuzione da tenere presenti quando si prevede di usare queste risorse. Questo articolo è disponibile anche per le [macchine virtuali Windows](../windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+In questo articolo descrive le dimensioni disponibili hello e le opzioni di hello macchine virtuali di Azure è possibile utilizzare toorun Linux App e i carichi di lavoro. Fornisce inoltre toobe considerazioni sulla distribuzione conoscere quando si pianifica toouse queste risorse. Questo articolo è disponibile anche per le [macchine virtuali Windows](../windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 
 | Tipo                     | Dimensioni           |    Descrizione       |
 |--------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| [Utilizzo generico](sizes-general.md)          | Dsv3, Dv3, DSv2, Dv2, DS, D, Av2, A0-7  | Rapporto equilibrato tra CPU e memoria. Soluzione ideale per test e sviluppo, database medio-piccoli e server Web con traffico da medio a ridotto. |
+| [Utilizzo generico](sizes-general.md)          | Dsv3, Dv3, DSv2, Dv2, DS, D, Av2, A0-7  | Rapporto equilibrato tra CPU e memoria. Ideale per i test e sviluppo, i database di piccole dimensioni toomedium e toomedium bassa il traffico web server. |
 | [Ottimizzate per il calcolo](sizes-compute.md)        | Fs, F             | Rapporto elevato tra CPU e memoria. Soluzione idonea per server Web con livelli medi di traffico, dispositivi di rete, processi batch e server applicazioni.        |
-| [Ottimizzate per la memoria](sizes-memory.md)         | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D   | Rapporto elevato tra memoria e CPU. Soluzione ideale per server di database relazionali, cache medio-grandi e analisi in memoria.                 |
+| [Ottimizzate per la memoria](sizes-memory.md)         | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D   | Rapporto elevato tra memoria e CPU. Ideale per i server di database relazionale, cache toolarge medium e analitica in memoria.                 |
 | [Ottimizzate per l'archiviazione](sizes-storage.md)        | Ls                | I/O e velocità effettiva del disco elevati. Ideale per Big Data, database SQL e NoSQL.                                                         |
 | [GPU](sizes-gpu.md)            | NV, NC            | Macchine virtuali specializzate ottimizzate per livelli intensivi di rendering della grafica e modifica di video, disponibili con GPU singole o più GPU.       |
 | [High Performance Computing (HPC)](sizes-hpc.md) | H, A8-11          | Le nostre macchine virtuali con CPU più veloci e potenti, con interfacce di rete ad alta velocità effettiva facoltative (RDMA). 
 
 <br>
 
-- Per informazioni sui prezzi di varie dimensioni, vedere [Prezzi di Macchine virtuali](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux). 
+- Per informazioni sui prezzi di hello diverse dimensioni, vedere [macchine virtuali: prezzi](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux). 
 - Per la disponibilità delle dimensioni di VM nelle aree di Azure, vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/).
-- Per trovare i limiti generali delle VM di Azure, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../../azure-subscription-service-limits.md).
+- toosee limiti generali in macchine virtuali di Azure, vedere [sottoscrizione di Azure e limiti dei servizi, quote e vincoli](../../azure-subscription-service-limits.md).
 - Altre informazioni su come le [unità di calcolo di Azure](../windows/acu.md) consentono di confrontare le prestazioni di calcolo negli SKU di Azure.
 
 
 ## <a name="rest-api"></a>API REST
 
-Per informazioni sull'uso dell'API REST per query relative alle dimensioni delle macchine virtuali, vedere gli argomenti seguenti:
+Per informazioni sull'utilizzo di hello tooquery di API REST per dimensioni di macchina virtuale, vedere l'esempio hello:
 
 - [List available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-list-sizes-for-resizing) (Elencare le dimensioni delle macchine virtuali disponibili per il ridimensionamento)
 - [List available virtual machine sizes for a subscription](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-list-sizes-region) (Elencare le dimensioni delle macchine virtuali disponibili per una sottoscrizione)
@@ -57,7 +57,7 @@ Altre informazioni su come le [unità di calcolo di Azure](acu.md) consentono di
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Altre informazioni sulle diverse dimensioni di macchina virtuale disponibili:
+Altre informazioni sulle dimensioni della VM diverse hello disponibili:
 - [Utilizzo generico](sizes-general.md)
 - [Ottimizzate per il calcolo](sizes-compute.md)
 - [Ottimizzate per la memoria](sizes-memory.md)

@@ -1,6 +1,6 @@
 ---
-title: Creare una macchina virtuale Windows personalizzata | Microsoft Docs
-description: Informazioni su come creare una macchina virtuale Windows personalizzata dal portale di Azure usando il modello di distribuzione classico.
+title: una macchina virtuale Windows personalizzata aaaCreate | Documenti Microsoft
+description: Informazioni su come una macchina virtuale Windows personalizzata da hello Azure mediante portale toocreate hello modello di distribuzione classica.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: cynthn
-ms.openlocfilehash: 4d7b7a17751cc476d0365cbcbff3fcf23dd0c6ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1496516ddfea8caf3fe1c4e673c18ea60d56abb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-virtual-machine-running-windows-using-the-classic-deployment-model"></a>Creare una macchina virtuale personalizzata che esegue Windows usando il modello di distribuzione classico
+# <a name="create-a-custom-virtual-machine-running-windows-using-hello-classic-deployment-model"></a>Creare una macchina virtuale personalizzata che esegue Windows usando il modello di distribuzione classica hello
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
 
 [!INCLUDE [virtual-machines-common-classic-createportal](../../../../includes/virtual-machines-common-classic-createportal.md)]
 

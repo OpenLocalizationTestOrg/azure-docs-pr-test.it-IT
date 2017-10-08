@@ -1,6 +1,6 @@
 ---
-title: Usare l'estensione di macchina virtuale Docker in Azure con l'interfaccia della riga di comando di Azure 1.0 | Documentazione Microsoft
-description: Informazioni su come usare l'estensione di VM Docker per distribuire in modo rapido e sicuro un ambiente Docker in Azure con i modelli di Resource Manager.
+title: hello aaaUse estensione della macchina virtuale Docker di Azure con hello Azure CLI 1.0 | Documenti Microsoft
+description: Informazioni su come toouse hello tooquickly estensione VM Docker e distribuire in modo sicuro un ambiente di Docker in Azure utilizzando i modelli di gestione risorse.
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: a3cbcf63533f4042dcd695e141655c5814bd7068
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2133cdb1af741fe30093910fae5c3b2c91e8d5fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-docker-environment-in-azure-using-the-docker-vm-extension-with-the-azure-cli-10"></a>Creare un ambiente Docker in Azure usando l'estensione di macchina virtuale Docker con l'interfaccia della riga di comando di Azure 1.0
-Docker è una nota piattaforma di creazione dell'immagine e gestione di contenitori che consente di lavorare rapidamente con contenitori in Linux (e anche Windows). L'ambiente Azure offre vari modi per distribuire Docker a seconda delle proprie esigenze. Questo articolo si concentra sull'uso dell'estensione di VM Docker e dei modelli di Azure Resource Manager. 
+# <a name="create-a-docker-environment-in-azure-using-hello-docker-vm-extension-with-hello-azure-cli-10"></a>Creare un ambiente di Docker in Azure utilizzando l'estensione della macchina virtuale Docker hello con hello Azure CLI 1.0
+Docker è una gestione dei contenitori più diffusi e immagini piattaforma che consente di utilizzare tooquickly contenitori in Linux (e anche Windows). In Azure, esistono diversi modi per distribuire Docker in base alle esigenze tooyour. In questo articolo è incentrato sull'uso di estensione della macchina virtuale Docker hello e modelli di gestione risorse di Azure. 
 
-Per altre informazioni sui diversi metodi di distribuzione, incluso l'uso di Docker Machine e i servizi contenitore di Azure, vedere gli articoli seguenti:
+Per ulteriori informazioni sui metodi di distribuzione diversi hello, incluso l'utilizzo di Docker computer e servizi di contenitore di Azure, vedere hello seguenti articoli:
 
-* Per creare rapidamente il prototipo di un'applicazione, è possibile creare un singolo host di Docker usando [Docker Machine](docker-machine.md).
-* Per gli ambienti più stabili ed estesi è possibile usare l'estensione di VM Docker di Azure che supporta anche [Docker Compose](https://docs.docker.com/compose/overview/) per generare distribuzioni di contenitore coerenti. Questo articolo descrive come usare l'estensione di VM Docker di Azure.
-* Per creare ambienti scalabili e pronti per la produzione che offrono maggiori strumenti di pianificazione e gestione, è possibile distribuire un [cluster Docker Swarm nei servizi contenitore di Azure](../../container-service/dcos-swarm/container-service-deployment.md).
+* prototipo tooquickly un'app, è possibile creare un singolo host Docker usando [Docker macchina](docker-machine.md).
+* Per gli ambienti più grandi e più stabili, è possibile utilizzare l'estensione della macchina virtuale Docker di Azure hello, che supporta inoltre [Docker Compose](https://docs.docker.com/compose/overview/) toogenerate le distribuzioni di contenitore coerente. Questo articolo presenta utilizzando l'estensione della macchina virtuale Docker di Azure hello.
+* toobuild ambiente di produzione, scalabile ambienti che forniscono gli strumenti di pianificazione e di gestione aggiuntivi, è possibile distribuire un [Docker Swarm cluster in servizi di Azure contenitore](../../container-service/dcos-swarm/container-service-deployment.md).
 
-## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando:
+## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI
+È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello:
 
-- [Interfaccia della riga di comando di Azure 1.0](#azure-docker-vm-extension-overview): l'interfaccia della riga di comando per i modelli di distribuzione classica e di gestione delle risorse (questo articolo)
-- [Interfaccia della riga di comando di Azure 2.0](dockerextension.md): interfaccia della riga di comando di prossima generazione per il modello di distribuzione di Gestione risorsa 
+- [Azure CLI 1.0](#azure-docker-vm-extension-overview) : l'interfaccia CLI per hello classic risorse Gestione modelli di distribuzione e (in questo articolo)
+- [Azure CLI 2.0](dockerextension.md) -la prossima generazione CLI per modello di distribuzione di gestione risorse hello 
 
 ## <a name="azure-docker-vm-extension-overview"></a>Panoramica dell'estensione di VM Docker di Azure
-L'estensione di VM Docker di Azure installa e configura il daemon Docker, il client Docker e Docker Compose nella macchina virtuale (VM) Linux. L'uso dell'estensione di VM Docker di Azure permette di ottenere un livello di controllo superiore e un maggior numero di funzionalità rispetto a quanto offerto dal semplice uso di Docker Machine o dalla creazione di un host Docker. Questi funzionalità aggiuntive, come ad esempio [Docker Compose](https://docs.docker.com/compose/overview/), rendono l'estensione di VM Docker di Azure la soluzione ideale per ambienti di sviluppo o di produzione più solidi.
+estensione della macchina virtuale Docker di Azure Hello installa e configura il daemon di Docker hello client Docker e Docker Compose nella macchina virtuale Linux (VM). Tramite l'estensione della macchina virtuale Docker di Azure hello, si dispone di più controllo e funzionalità rispetto a semplicemente tramite Docker macchina o la creazione di host Docker hello manualmente. Queste ulteriori funzionalità, ad esempio [Docker Compose](https://docs.docker.com/compose/overview/), assicurarsi di estensione della macchina virtuale Docker di Azure hello adatto per ambienti di sviluppo o di produzione più affidabili.
 
-I modelli di Azure Resource Manager definiscono l'intera struttura dell'ambiente. I modelli consentono di creare e configurare le risorse, ad esempio le VM dell'host Docker, l'archiviazione, i controlli degli accessi in base al ruolo (RBAC) e la diagnostica. È possibile riusare questi modelli per creare distribuzioni aggiuntive in modo coerente. Per altre informazioni su Azure Resource Manager e relativi modelli, vedere la [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md). 
+Modelli di gestione risorse di Azure definiscono l'intera struttura di hello dell'ambiente. I modelli consentono di toocreate e configurare le risorse, ad esempio host Docker hello macchine virtuali, archiviazione, i controlli di accesso basato sui ruoli (RBAC) e diagnostica. È possibile riutilizzare le distribuzioni di modelli toocreate aggiuntive in modo coerente. Per altre informazioni su Azure Resource Manager e relativi modelli, vedere la [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md). 
 
-## <a name="deploy-a-template-with-the-azure-docker-vm-extension"></a>Distribuire un modello con l'estensione di VM Docker di Azure
-Usare un modello di avvio rapido esistente per creare una macchina virtuale Ubuntu che usa l'estensione di VM Docker di Azure per installare e configurare l'host Docker. Per visualizzare il modello, vedere [Distribuzione semplice di una VM Ubuntu con Docker](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu). 
+## <a name="deploy-a-template-with-hello-azure-docker-vm-extension"></a>Distribuire un modello con hello estensione della macchina virtuale Docker di Azure
+Si utilizza un toocreate di modello di avvio rapido una VM Ubuntu che utilizza tooinstall estensione di macchina virtuale Docker di Azure hello esistente e configurare host Docker hello. È possibile visualizzare qui modello hello: [distribuzione semplice di una VM Ubuntu con Docker](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu). 
 
-È necessario installare e registrare l'[interfaccia della riga di comando Azure più recente](../../cli-install-nodejs.md) usando la modalità di Resource Manager nel modo seguente:
+È necessario hello [CLI di Azure più recenti](../../cli-install-nodejs.md) installato e registrato con modalità di gestione risorse di hello come indicato di seguito:
 
 ```azurecli
 azure config mode arm
 ```
 
-Distribuire il modello con l'interfaccia della riga di comando di Azure, specificando l'URI del modello. L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella posizione *westus*. Usare il nome e la posizione del gruppo di risorse nel modo seguente:
+Distribuire il modello di hello utilizzando hello CLI di Azure, specificare il modello di hello URI. esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *westus* percorso. Usare il nome e la posizione del gruppo di risorse nel modo seguente:
 
 ```azurecli
 azure group create \
@@ -58,14 +58,14 @@ azure group create \
     --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
 ```
 
-Rispondere ai prompt di richiesta di rinominare l'account di archiviazione, fornire il nome utente e la password e specificare il nome DNS. L'output è simile all'esempio seguente:
+Risposte hello richieste tooname account di archiviazione, fornire un nome utente e una password e specificare un nome DNS. Hello l'output è simile toohello seguente esempio:
 
 ```azurecli
 info:    Executing command group create
 + Getting resource group myResourceGroup
 + Updating resource group myResourceGroup
 info:    Updated resource group myResourceGroup
-info:    Supply values for the following parameters
+info:    Supply values for hello following parameters
 newStorageAccountName: mystorageaccount
 adminUsername: azureuser
 adminPassword: P@ssword!
@@ -82,21 +82,21 @@ data:
 info:    group create command OK
 ```
 
-L'interfaccia della riga di comando di Azure fa tornare l'utente al menu principale di prompt dopo alcuni secondi, ma l'host Docker viene comunque creato e configurato dall'estensione di VM Docker di Azure. L'operazione di distribuzione richiede alcuni minuti. È possibile visualizzare i dettagli sullo stato dell'host Docker con il comando `azure vm show`.
+Hello CLI di Azure restituisce toohello prompt dopo pochi secondi, ma l'host Docker ancora viene creato e configurato da hello estensione della macchina virtuale Docker di Azure. Sono necessari alcuni minuti per hello toofinish di distribuzione. È possibile visualizzare i dettagli sullo stato dell'host Docker hello utilizzando hello `azure vm show` comando.
 
-L'esempio seguente controlla lo stato della macchina virtuale denominata *myDockerVM* (il nome predefinito del modello, non modificare questo nome) che appartiene al gruppo di risorse *myResourceGroup*. Immettere il nome del gruppo di risorse creato nel passaggio precedente:
+esempio Hello Controlla stato hello della macchina virtuale denominata hello *myDockerVM* (nome predefinito dal modello hello hello, non modificare questo nome) nel gruppo di risorse hello denominato *myResourceGroup*. Immettere il nome di hello hello del gruppo di risorse creato nel passaggio precedente hello:
 
 ```azurecli
 azure vm show --resource-group myResourceGroup --name myDockerVM
 ```
 
-L'output del comando `azure vm show` sarà simile all'esempio seguente:
+output di hello Hello `azure vm show` è simile toohello seguente esempio di comando:
 
 ```azurecli
 info:    Executing command vm show
-+ Looking up the VM "myDockerVM"
-+ Looking up the NIC "myVMNicD"
-+ Looking up the public ip "myPublicIPD"
++ Looking up hello VM "myDockerVM"
++ Looking up hello NIC "myVMNicD"
++ Looking up hello public ip "myPublicIPD"
 data:    Id                              :/subscriptions/guid/resourceGroups/myresourcegroup/providers/Microsoft.Compute/virtualMachines/MyDockerVM
 data:    ProvisioningState               :Succeeded
 data:    Name                            :MyDockerVM
@@ -119,27 +119,27 @@ data:    Diagnostics Instance View:
 info:    vm show command OK
 ```
 
-Nella parte superiore dell'output viene visualizzato il valore **ProvisioningState** della VM. Quando viene visualizzato *Succeeded*, la distribuzione è stata completata ed è possibile usare SSH per la VM.
+Parte superiore di hello di output di hello, vedrai hello **ProvisioningState** di hello macchina virtuale. Quando si visualizza *Succeeded*, distribuzione hello è terminata ed è possibile SSH toohello macchina virtuale.
 
-Verso la fine dell'output, *FQDN* visualizza il nome di dominio completo dell'host Docker. Questo è l'FQDN che si usa per accedere tramite SSH all'host Docker nei passaggi successivi.
+Verso la fine hello dell'output di hello, *FQDN* Visualizza hello nome di dominio completo dell'host Docker. Questo nome di dominio completo è ciò che si usa tooSSH tooyour Docker host hello rimanenti passaggi.
 
 ## <a name="deploy-your-first-nginx-container"></a>Distribuire il primo contenitore nginx
-Al termine della distribuzione, accedere tramite SSH al nuovo host Docker dal computer locale. Immettere il nome utente e l'FQDN nel modo seguente:
+Una volta distribuzione hello è stata completata, SSH tooyour nuovo host Docker da un computer locale. Immettere il nome utente e l'FQDN nel modo seguente:
 
 ```bash
 ssh ops@mypublicdns.westus.cloudapp.azure.com
 ```
 
-Dopo aver effettuato l'accesso all'host Docker, eseguire un contenitore nginx:
+Una volta effettuato l'accesso toohello host Docker, eseguire un contenitore nginx:
 
 ```bash
 sudo docker run -d -p 80:80 nginx
 ```
 
-L'output è simile all'esempio seguente quando l'immagine nginx viene scaricata e un contenitore viene avviato:
+output di Hello è simile toohello seguente esempio come hello nginx immagine viene scaricata e un contenitore di avvio:
 
 ```bash
-Unable to find image 'nginx:latest' locally
+Unable toofind image 'nginx:latest' locally
 latest: Pulling from library/nginx
 efd26ecc9548: Pull complete
 a3ed95caeb02: Pull complete
@@ -150,25 +150,25 @@ Status: Downloaded newer image for nginx:latest
 b6ed109fb743a762ff21a4606dd38d3e5d35aff43fa7f12e8d4ed1d920b0cd74
 ```
 
-Per controllare lo stato dei contenitori in esecuzione sull'host Docker, fare come segue:
+Controllare lo stato di hello di contenitori di hello in esecuzione sull'host Docker come indicato di seguito:
 
 ```bash
 sudo docker ps
 ```
 
-L'output è simile all'esempio seguente, in cui viene mostrato che il contenitore nginx è in esecuzione e viene eseguito l'inoltro alle porte TCP 80 e 443:
+output di Hello è simile toohello esempio seguente, che mostra che il contenitore nginx hello sia in esecuzione e le porte TCP 80 e 443 e inoltrati:
 
 ```bash
 CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                         NAMES
 b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp, 443/tcp   adoring_payne
 ```
 
-Per vedere il contenitore in azione, aprire un Web browser e immettere il nome FQDN dell'host Docker:
+Aprire il contenitore in azione, toosee fino a un web browser e immettere il nome FQDN hello dell'host Docker:
 
 ![Esecuzione di un contenitore ngnix](./media/dockerextension/nginxrunning.png)
 
 ## <a name="azure-docker-vm-extension-template-reference"></a>Riferimento al modello dell'estensione di VM Docker di Azure
-Nell'esempio precedente è stato usato un modello di avvio rapido esistente. È anche possibile distribuire l'estensione di VM Docker di Azure con i propri modelli di Resource Manager. Per questo scopo, aggiungere quanto segue ai modello di Resource Manager, definendo in modo appropriato il *vmName* della VM:
+Hello esempio precedente Usa un modello di avvio rapido esistente. È inoltre possibile distribuire l'estensione della macchina virtuale Docker di Azure hello con i propri modelli di gestione risorse. toodo in tal caso, aggiungere hello seguenti modelli di gestione risorse tooyour, la definizione di hello *vmName* della macchina virtuale in modo appropriato:
 
 ```json
 {
@@ -193,11 +193,11 @@ Nell'esempio precedente è stato usato un modello di avvio rapido esistente. È 
 Per altre procedure dettagliate relative all'uso di modelli di Resource Manager, vedere [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se lo si desidera, [configurare la porta TCP del daemon Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/bind-docker-to-another-hostport-or-a-unix-socket), comprendere le [informazioni di sicurezza di Docker](https://docs.docker.com/engine/security/security/) oppure distribuire i contenitori con [Docker Compose](https://docs.docker.com/compose/overview/). Per altre informazioni sull'estensione di VM Docker di Azure, vedere il [Progetto GitHub](https://github.com/Azure/azure-docker-extension/).
+Potrebbe essere troppo[configurare la porta TCP di daemon Docker hello](https://docs.docker.com/engine/reference/commandline/dockerd/#/bind-docker-to-another-hostport-or-a-unix-socket), comprendere [sicurezza Docker](https://docs.docker.com/engine/security/security/), o distribuire contenitori usando [Docker Compose](https://docs.docker.com/compose/overview/). Per ulteriori informazioni sull'estensione della macchina virtuale Docker Azure stesso hello, vedere hello [GitHub progetto](https://github.com/Azure/azure-docker-extension/).
 
-Per altre informazioni sulle opzioni di distribuzione di Docker aggiuntive in Azure, leggere:
+Altre informazioni hello aggiuntive Docker opzioni di distribuzione in Azure:
 
-* [Usare Docker Machine con il driver di Azure](docker-machine.md)  
-* [Introduzione a Docker e Compose per definire ed eseguire un'applicazione multi-contenitore in una macchina virtuale di Azure](docker-compose-quickstart.md).
+* [Utilizzare computer Docker con hello Azure driver](docker-machine.md)  
+* [Introduzione a Docker e comporre toodefine e di eseguire un'applicazione multi-contenitore in una macchina virtuale Azure](docker-compose-quickstart.md).
 * [Distribuire un cluster del servizio contenitore di Azure](../../container-service/dcos-swarm/container-service-deployment.md)
 

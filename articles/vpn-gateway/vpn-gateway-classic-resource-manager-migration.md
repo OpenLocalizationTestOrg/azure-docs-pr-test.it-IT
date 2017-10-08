@@ -1,6 +1,6 @@
 ---
-title: Migrazione dal modello classico al modello Resource Manager con gateway VPN| Microsoft Docs
-description: Questa pagina fornisce una panoramica della migrazione dal modello classico al modello Resource Manager con Gateway VPN.
+title: aaaVPN Gateway classico tooResource migrazione Manager | Documenti Microsoft
+description: Questa pagina viene fornita una panoramica di hello VPN Gateway classico tooResource migrazione di gestione.
 documentationcenter: na
 services: vpn-gateway
 author: amsriva
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/02/2017
 ms.author: amsriva
-ms.openlocfilehash: 1164fc24355657af22b6befaad74685ebbc2b5cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c1d84bf5315224c5c8faac53d7957b496ed205ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="vpn-gateway-classic-to-resource-manager-migration"></a>Migrazione dal modello classico al modello Resource Manager con gateway VPN
-I gateway VPN possono ora essere migrati dal modello di distribuzione classica a quello Resource Manager. Altre informazioni su [funzionalità e vantaggi di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md). Questo articolo descrive in dettaglio come eseguire la migrazione da distribuzioni classiche al modello più recente basato su Resource Manager. 
+# <a name="vpn-gateway-classic-tooresource-manager-migration"></a>Gateway VPN classico tooResource migration Manager
+Gateway VPN possono ora essere migrati da tooResource classico modello di distribuzione di gestione. Altre informazioni su [funzionalità e vantaggi di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md). In questo articolo è descrivere in dettaglio come toomigrate da distribuzioni classico toonewer Gestione risorse basato sul modello. 
 
-I gateway VPN vengono migrati come parte della migrazione della rete virtuale dal modello classico a quello Resource Manager. Viene eseguita la migrazione di una rete virtuale alla volta. Non esiste alcun requisito aggiuntivo in termini di strumenti o prerequisiti alla migrazione. I passaggi di migrazione sono identici alla migrazione di rete virtuale esistente e sono documentati nella [pagina sulla migrazione delle risorse IaaS](../virtual-machines/windows/migration-classic-resource-manager-ps.md). La migrazione non comporta un tempo di inattività del percorso di dati e quindi i carichi di lavoro esistenti continueranno a funzionare senza perdita della connettività locale durante la migrazione. L'indirizzo IP pubblico associato al gateway VPN non cambia durante il processo di migrazione. Non è quindi necessario riconfigurare il router locale dopo il completamento della migrazione.  
+Gateway VPN vengono migrate come parte della migrazione di rete virtuale da classico tooResource Manager. Viene eseguita la migrazione di una rete virtuale alla volta. Non è necessario aggiuntivo in termini di toomigration strumenti o i prerequisiti. I passaggi della migrazione sono identici tooexisting la migrazione di rete virtuale e sono documentati in [pagina migrazione di risorse IaaS](../virtual-machines/windows/migration-classic-resource-manager-ps.md). È presente alcun tempo di inattività di percorso di dati durante la migrazione e pertanto i carichi di lavoro esistente continua a toofunction senza perdita di connettività locale durante la migrazione. indirizzo IP pubblico Hello associata al gateway VPN hello rimane invariato durante il processo di migrazione hello. Ciò implica che non è necessario tooreconfigure il router locale dopo aver eseguita la migrazione di hello.  
 
-Il modello Resource Manager è diverso dal modello classico ed è composto da gateway di rete virtuale, gateway di rete locale e risorse di connessione. Questi rappresentano il gateway VPN stesso, il sito locale che rappresenta rispettivamente lo spazio di indirizzi locale e la connettività tra i due elementi. Dopo il completamento della migrazione, i gateway non saranno disponibili nel modello classico e tutte le operazioni di gestione nei gateway di rete virtuale, nei gateway di rete locale e gli oggetti di connessione devono essere eseguite usando il modello Resource Manager.
+il modello di Hello in Gestione risorse è diverso dal modello classico ed è composto da gateway di rete virtuale, gateway di rete locale e le risorse di connessione. Questi rappresentano i gateway VPN hello stesso, hello che rappresentano rispettivamente su spazio degli indirizzi locale e la connettività tra hello due siti locali. Dopo il completamento della migrazione, i gateway non saranno disponibili nel modello classico e tutte le operazioni di gestione nei gateway di rete virtuale, nei gateway di rete locale e gli oggetti di connessione devono essere eseguite usando il modello Resource Manager.
 
 ## <a name="supported-scenarios"></a>Scenari supportati
-La migrazione dal modello classico a quello Resource Manager supporta gli scenari di connettività VPN più comuni. Gli scenari supportati includono:
+Più comuni scenari di connettività VPN rientrano tooResource classico migrazione di gestione. gli scenari di Hello supportato includono:
 
-* Connettività da punto a sito
-* Connettività da sito a sito con il gateway VPN connesso a una posizione locale
-* Connettività da rete virtuale a rete virtuale tra due reti virtuali usando i gateway VPN
-* Più reti virtuali connesse alla stessa posizione locale
+* Connettività toosite punto
+* Connettività toosite con Gateway VPN da sito connesso sede locale tooon
+* Connettività di rete virtuale tooVNet tra due reti virtuali mediante gateway VPN
+* Più reti virtuali connesse toosame nel percorso locale
 * Connessione multisito
 * Reti virtuali abilitate per il tunneling forzato
 
 Gli scenari non supportati includono:  
 
 * La rete virtuale con il gateway ExpressRoute e Gateway VPN al momento non è supportata.
-* Scenari di transito in cui le estensioni di VM sono connesse ai server locali. Le limitazioni relative alla connettività VPN di transito sono descritte di seguito.
+* Scenari di transito in cui le estensioni VM sono i server connessi tooon locale. Le limitazioni relative alla connettività VPN di transito sono descritte di seguito.
 
 > [!NOTE]
-> La convalida CIDR nel modello Resource Manager è più rigida rispetto a quella nel modello classico. Prima di eseguire la migrazione verificare che gli intervalli di indirizzi classici specificati siano conformi al formato CIDR valido prima di iniziare la migrazione. È possibile convalidare CIDR usando qualsiasi validator CIDR comune. La rete virtuale o i siti locali con intervalli CIDR non validi durante la migrazione generano uno stato di errore.
+> Convalida CIDR nel modello di gestione risorse è più rigida hello uno nel modello classico. Prima della migrazione di garantire che gli intervalli di indirizzi classico specificati conformità formato CIDR toovalid prima di iniziare la migrazione di hello. È possibile convalidare CIDR usando qualsiasi validator CIDR comune. La rete virtuale o i siti locali con intervalli CIDR non validi durante la migrazione generano uno stato di errore.
 > 
 > 
 
-## <a name="vnet-to-vnet-connectivity-migration"></a>Migrazione della connettività da rete virtuale a rete virtuale
-La connettività da rete virtuale a rete virtuale in modalità classica è stata ottenuta creando una rappresentazione nel sito locale della rete virtuale connessa. È stato richiesto ai clienti di creare due siti locali che rappresentano le due reti virtuali da collegare. Sono stati quindi connessi alle reti virtuali corrispondenti usando il tunnel IPsec per stabilire la connettività tra le due reti virtuali. Questo modello presenta problemi di gestibilità poiché le modifiche all'intervallo di indirizzi in una rete virtuale devono essere gestite anche nella rappresentazione del sito locale corrispondente. Nel modello Resource Manager questa soluzione non è più necessaria. La connessione tra le due reti virtuali può essere ottenuta direttamente usando il tipo di connessione "Vnet2Vnet" nella risorsa di connessione. 
+## <a name="vnet-toovnet-connectivity-migration"></a>Migrazione di connettività di rete virtuale tooVNet
+Connettività di rete virtuale tooVNet classica è stata ottenuta tramite la creazione di un sito locale rappresentazione hello connessi a reti virtuali. I clienti sono stati necessari toocreate due siti locali rappresentato hello due reti virtuali necessarie toobe connesse tra loro. Questi sono stati quindi connesso toohello corrispondente reti virtuali con connettività di tooestablish tunnel IPsec tra due reti virtuali hello. Questo modello ha problemi di gestibilità in quanto le modifiche di intervallo di indirizzi in una rete virtuale devono anche essere mantenute nella rappresentazione di hello corrispondente sito locale. Nel modello Resource Manager questa soluzione non è più necessaria. connessione Hello tra due reti virtuali possono essere direttamente hello ottenuta usando il tipo di connessione 'Vnet2Vnet' nella risorsa di connessione. 
 
-![Screenshot della migrazione da rete virtuale a rete virtuale.](./media/vpn-gateway-migration/migration1.png)
+![Migrazione tooVNet schermata della rete virtuale.](./media/vpn-gateway-migration/migration1.png)
 
-Durante la migrazione della rete virtuale viene rilevato che l'entità connessa al gateway VPN della rete di virtuale corrente è un'altra rete virtuale; assicurarsi che al termine della migrazione di entrambe le reti virtuali, i due siti locali che rappresentano l'altra rete virtuale non siano più visualizzati. Il modello classico di due gateway VPN, due siti locali e due connessioni tra loro viene trasformato nel modello Resource Manager con due gateway VPN e due connessioni di tipo Vnet2Vnet.
+Durante la migrazione di rete virtuale è rilevare che hello entità connessa gateway VPN della rete virtuale toocurrent un'altra rete virtuale e verificare che al termine della migrazione di entrambe le reti virtuali, non sarà più visualizzato due siti locali che rappresenta hello altra rete virtuale. il modello classico di Hello di due gateway VPN, i due siti locali e due connessioni tra di essi è trasformato tooResource modello di gestione con due gateway VPN e due connessioni di tipo Vnet2Vnet.
 
 ## <a name="transit-vpn-connectivity"></a>Connettività VPN di transito
-È possibile configurare i gateway VPN in una topologia in modo da ottenere la connettività locale per una rete virtuale tramite la connessione a un'altra rete virtuale che è connessa direttamente alle risorse locali. Si tratta di connettività VPN di transito in cui le istanze nella prima rete virtuale vengono connesse alle risorse locali tramite il transito al gateway VPN nella rete virtuale connessa, che è connessa direttamente alle risorse locali. Per ottenere questa configurazione nel modello di distribuzione classica, è necessario creare un sito locale che dispone di prefissi aggregati che rappresentano sia la rete virtuale connessa sia lo spazio di indirizzi locali. Questo sito locale di rappresentazione viene quindi connesso alla rete virtuale per ottenere la connettività di transito. Anche il modello classico presenta problemi di gestibilità simili poiché qualsiasi modifica all'intervallo di indirizzi locali deve essere gestita anche nel sito locale che rappresenta l'aggregazione di rete virtuale e risorse locali. L'introduzione del supporto del protocollo BGP nei gateway supportati da Resource Manager semplifica la gestibilità poiché i gateway connessi possono apprendere le route da locale senza modificare manualmente i prefissi.
+È possibile configurare un gateway VPN in una topologia in modo che la connettività locale per una rete virtuale viene ottenuta tramite la connessione di rete virtuale che è direttamente connessi tooon locale tooanother. Si tratta di transito connettività VPN in cui le istanze nella rete virtuale prima sono risorse connessi tooon locale tramite gateway VPN toohello di transito nella rete virtuale connessa che è direttamente connessi tooon locale. tooachieve questa configurazione nel modello di distribuzione classica, occorre toocreate un sito locale che dispone di aggregati di prefissi che rappresenta entrambi spazio indirizzo hello connesso in locale e di rete virtuale. Questo sito locale representational è connettività di transito connesso toohello tooachieve di rete virtuale. Il modello classico presenta problemi di gestibilità simili poiché qualsiasi modifica intervallo di indirizzi locali debba essere gestito anche nel sito locale di hello che rappresenta aggregazione hello di rete virtuale e in locale. L'introduzione del supporto BGP nel gateway di gestione di risorse supportati semplifica la gestibilità poiché hello gateway connessi possono apprendono le route da in locale senza tooprefixes modifica manuale.
 
 ![Screenshot dello scenario di routing di transito.](./media/vpn-gateway-migration/migration2.png)
 
-Poiché la connettività da rete virtuale a rete virtuale viene trasformata senza richiedere siti locali, lo scenario di transito perde la connettività locale per la rete virtuale connessa indirettamente alle risorse locali. Al termine della migrazione, la perdita di connettività può essere attenuata procedendo nei due modi seguenti: 
+Poiché la connettività di rete virtuale tooVNet trasformare senza siti locali, uno scenario di transito hello perde la connettività locale per la rete virtuale che è indirettamente connessi tooon locale. Hello perdita di connettività può essere ridotti in hello seguenti due modi, dopo aver completata la migrazione: 
 
-* Abilitare il protocollo BGP sui gateway VPN connessi tra loro e alle risorse locali. L'abilitazione del protocollo BGP ripristina la connettività senza apportare altre modifiche di configurazione poiché le route vengono apprese e annunciate tra i gateway di rete virtuale. Si noti che l'opzione BGP è disponibile solo per le unità SKU standard e versioni successive.
-* Stabilire una connessione esplicita dalla rete virtuale interessata al gateway di rete locale che rappresenta la posizione locale. Per creare e configurare il tunnel IPsec, potrebbe essere necessario anche modificare la configurazione del router locale.
+* Abilitare BGP nel gateway VPN che sono connesse tra loro e tooon locale. L'abilitazione del protocollo BGP ripristina la connettività senza apportare altre modifiche di configurazione poiché le route vengono apprese e annunciate tra i gateway di rete virtuale. Si noti che l'opzione BGP è disponibile solo per le unità SKU standard e versioni successive.
+* Stabilire una connessione esplicita dal gateway di rete locale a toohello interessati rete virtuale che rappresenta il percorso locale. Potrebbe anche richiedere la modifica di configurazione in hello locale router toocreate e configurare tunnel IPsec hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo le informazioni sul supporto della migrazione di gateway VPN, leggere [Migrazione di risorse IaaS supportata dalla piattaforma dal modello classico a quello di Resource Manager](../virtual-machines/windows/migration-classic-resource-manager-ps.md) per iniziare.
+Dopo avere imparare a supporto della migrazione gateway VPN, andare troppo[piattaforma supportata la migrazione di risorse IaaS tooResource classico Manager](../virtual-machines/windows/migration-classic-resource-manager-ps.md) tooget avviato.
 

@@ -1,6 +1,6 @@
 ---
-title: Stato e componenti hardware di StorSimple serie 8000| Microsoft Docs
-description: Informazioni su come monitorare i componenti hardware del dispositivo StorSimple tramite il servizio Gestione dispositivi StorSimple.
+title: aaaStorSimple 8000 componenti hardware di serie e lo stato | Documenti Microsoft
+description: Informazioni su come toomonitor hello componenti hardware del dispositivo StorSimple tramite il servizio di gestione di dispositivi StorSimple hello.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,136 +14,136 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/04/2017
 ms.author: alkohli
-ms.openlocfilehash: 90724099842eac513c39dccf113ad1c0a63983f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 85b398e4b1a6b8921792b8945331325940082eb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-monitor-hardware-components-and-status"></a>Usare il servizio Gestione dispositivi StorSimple per monitorare i componenti hardware e lo stato
+# <a name="use-hello-storsimple-device-manager-service-toomonitor-hardware-components-and-status"></a>Utilizzare i componenti hardware di hello dispositivo StorSimple Manager servizio toomonitor e stato
 ## <a name="overview"></a>Panoramica
-Questo articolo descrive i vari componenti fisici e logici del dispositivo StorSimple serie 8000 in locale. Viene inoltre spiegato come monitorare lo stato del componente del dispositivo tramite il pannello **Stato e integrità hardware** nel servizio Gestione dispositivi StorSimple.
+Questo articolo descrive hello vari componenti fisici e logici nel dispositivo locale serie StorSimple 8000. Viene inoltre spiegato come toomonitor hello lo stato dei componenti di dispositivo utilizzando hello **hardware e lo stato di integrità** pannello nel servizio di gestione di dispositivi StorSimple hello.
 
-Nel pannello **Stato e integrità hardware** è indicato lo stato dell'hardware di tutti i componenti del dispositivo StorSimple.
+Hello **hardware e lo stato di integrità** pannello Mostra stato hardware hello di tutti i componenti del dispositivo StorSimple hello.
 
-Nell'elenco dei componenti per 8100, sono disponibili tre sezioni che descrivono:
+Nell'elenco di hello dei componenti per 8100, sono disponibili tre sezioni che descrivono:
 
-* **Componenti condivisi** : questi non fanno parte dei controller, ad esempio unità disco, chassis, componenti PCM e sensori di temperatura PCM, tensione linea e corrente linea.
-* **Componenti controller 0** : i componenti che si trovano nel controller 0, ad esempio controller, espansore SAS e connettore, sensori di temperatura controller e le varie interfacce di rete.
-* **Componenti controller 1** : i componenti che costituiscono il controller 1, simili a quelli indicati per il controller 0.
+* **I componenti condivisi** – questi non fanno parte del controller di hello, ad esempio unità disco, enclosure, componenti PCM e temperatura PCM, tensione di linea e sensori di corrente di riga.
+* **Componenti controller 0** – componenti hello che si trovano nel Controller 0, ad esempio controller, espansore e connettore SAS, sensori di temperatura del controller e hello varie interfacce di rete.
+* **Componenti controller 1** : hello componenti che costituiscono Controller 1, analoghi toothose dettagliate per il Controller 0.
 
-Un dispositivo 8600 dispone di componenti aggiuntivi che corrispondono allo chassis EBOD (Extended Bunch of Disks). Nell'elenco dei componenti, sono disponibili cinque sezioni. Di queste, tre solo le sezioni che contengono i componenti nello chassis principale e sono identici a quelli descritti per 8100. Esistono due sezioni aggiuntive per lo chassis EBOD che descrivono:
+Un dispositivo 8600 dispone di componenti aggiuntivi corrispondenti toohello enclosure EBOD Extended Bunch of dischi (). Nell'elenco di hello dei componenti, sono disponibili cinque sezioni. Le opzioni sono disponibili tre sezioni che contengono componenti hello enclosure principale hello e sono identico toohello quelli descritti per 8100. Esistono due sezioni aggiuntive per l'enclosure EBOD hello che descrivono:
 
-* **Componenti controller 0** : i componenti che si trovano nello chassis EBOD 0, ad esempio controller EBOD, espansore SAS e connettore, sensori di temperatura controller.
-* **Componenti controller 1** : i componenti che costituiscono lo chassis EBOD 1, simili a quelli indicati per lo chassis EBOD 0.
-* **Componenti condivisi dello chassis EBOD** : i componenti presenti nello chassis EBOD e in PCM che non fanno parte del controller EBOD.
+* **Componenti Controller 0 EBOD** : hello componenti che si trovano sull'enclosure EBOD 0, ad esempio controller EBOD hello, sensori di temperatura espansore e connettore e controller SAS.
+* **Componenti Controller 1 EBOD** : hello componenti che costituiscono l'enclosure EBOD 1, analoghi toothose dettagliate per l'enclosure EBOD 0.
+* **Componenti condivisi enclosure EBOD** : hello componenti presenti nell'enclosure EBOD hello e nel PCM che non fanno parte del controller EBOD hello.
 
 > [!NOTE]
-> **Lo stato dell'hardware non è disponibile per un'appliance cloud StorSimple (8010/8020).**
+> **stato dell'hardware Hello non è disponibile per un'applicazione Cloud StorSimple (8010: spazio/8020).**
 
 
-## <a name="monitor-the-hardware-status"></a>Monitorare lo stato dell'hardware
-Per visualizzare lo stato dell'hardware di un componente del dispositivo, procedere come segue:
+## <a name="monitor-hello-hardware-status"></a>Monitorare lo stato dell'hardware hello
+Eseguire hello stato dell'hardware hello tooview passaggi di un componente di dispositivo seguenti:
 
-1. Passare a **Dispositivi**e selezionare uno specifico dispositivo StorSimple. Passare a **Monitoraggio > Integrità hardware**.
+1. Passare troppo**dispositivi**, selezionare un dispositivo StorSimple specifico. Andare troppo**monitoraggio > stato di Hardware**.
 
     ![](./media/storsimple-8000-monitor-hardware-status/hw-health1.png)
 
-2. Individuare la sezione **Componenti hardware** e scegliere tra i componenti disponibili. Fare clic sull'etichetta del componente per espandere l'elenco e visualizzare lo stato dei vari componenti del dispositivo. Vedere l'[elenco dettagliato dei componenti per l'enclosure principale](#component-list-for-primary-enclosure-of-storsimple-device) e l'[elenco dettagliato dei componenti per l'enclosure EBOD](#component-list-for-ebod-enclosure-of-storsimple-device).
+2. Individuare hello **componenti Hardware** sezione e scegliere tra i componenti disponibili hello. Semplicemente fare clic su elenco hello tooexpand etichetta dei componenti hello e visualizzare lo stato di hello di hello vari componenti del dispositivo. Vedere hello [elenco dettagliata dei componenti per l'enclosure principale hello](#component-list-for-primary-enclosure-of-storsimple-device) hello e [elenco dettagliata dei componenti per l'enclosure EBOD hello](#component-list-for-ebod-enclosure-of-storsimple-device).
 
     ![](./media/storsimple-8000-monitor-hardware-status/hw-health2.png)
 
-3. Per interpretare lo stato del componente, usare lo schema di codifica a colori seguente:
+3. Utilizzare hello seguente lo stato del componente toointerpret lo schema di codifica a colori hello:
    
    * **Segno di spunta verde**: indica che un componente è integro con lo stato **OK**.
    * **Giallo**: indica un componente danneggiato con lo stato **Avviso**.
    * **Punto esclamativo rosso**: indica che un componente è nello stato di **Errore**.
    * **Bianco con testo nero** : indica che un componente non è presente.
    
-   La schermata seguente mostra un dispositivo con componenti negli stati **OK**, **Avviso** ed **Errore**.
+   Hello schermata riportata di seguito viene illustrato un dispositivo che dispone di componenti in **OK**, **avviso**, e **errore** stato.
        
    ![](./media/storsimple-8000-monitor-hardware-status/hw-health3.png)
 
-   Espandendo l'**elenco dei componenti condivisi**, è possibile vedere che NVRAM e il cluster sono danneggiati.
+   Espansione hello **elenco di componenti condivisi**, possiamo vedere che hello NVRAM e hello cluster sono danneggiati.
 
    ![](./media/storsimple-8000-monitor-hardware-status/hw-health5.png)
 
-   Espandendo l'elenco **Componenti Controller 1** è possibile vedere che il nodo del cluster è in errore.  
+   Espansione hello **componenti Controller 1** elenco, possiamo vedere quel nodo cluster hello non è riuscita.  
 
    ![](./media/storsimple-8000-monitor-hardware-status/hw-health4.png)  
 
-4. Se si rileva un componente che non si trova in uno stato **Integro** , contattare il supporto tecnico Microsoft. Se gli avvisi sono attivati sul dispositivo, si riceverà un messaggio di avviso. Se è necessario sostituire un componente hardware in errore, vedere la [Guida alla sostituzione di componenti hardware](storsimple-hardware-component-replacement.md).
+4. Se si rileva un componente che non si trova in uno stato **Integro** , contattare il supporto tecnico Microsoft. Se gli avvisi sono attivati sul dispositivo, si riceverà un messaggio di avviso. Se è necessario tooreplace un componente hardware non riusciti, vedere [sostituzione dei componenti hardware StorSimple](storsimple-hardware-component-replacement.md).
 
 ## <a name="component-list-for-primary-enclosure-of-storsimple-device"></a>Elenco di componenti per l’enclosure principale del dispositivo StorSimple
-La tabella seguente indica i componenti fisici e logici contenuti nell'enclosure principale, presente nei dispositivi 8100 e 8600, del dispositivo StorSimple in locale.
+Hello tabella seguente vengono illustrati hello componenti fisici e logici contenuti enclosure hello principale (presente in 8100 e 8600) del dispositivo StorSimple locale.
 
 | Componente | Modulo | Tipo | Percorso | Unità sostituibile sul campo (FRU)? | Descrizione |
 | --- | --- | --- | --- | --- | --- |
-| Unità in slot [0-11] |Unità disco |Fisico |Condiviso |Sì |Viene visualizzata una riga per ogni unità SSD o le unità disco rigido nello chassis principale. |
-| Sensore di temperatura ambientale |Chassis |Fisico |Condiviso |No |Misura la temperatura all'interno dello chassis. |
-| Sensore di temperatura piano intermedio |Chassis |Fisico |Condiviso |No |Misura la temperatura del piano intermedio. |
-| Allarme acustico |Chassis |Fisico |Condiviso |No |Indica se il sottosistema di allarme acustico all'interno dello chassis è funzionale. |
-| Chassis |Chassis |Fisico |Condiviso |Sì |Indica la presenza di uno chassis. |
-| Impostazioni chassis |Chassis |Fisico |Condiviso |No |Fa riferimento al pannello anteriore dello chassis. |
-| Sensori di tensione linea |PCM |Fisico |Condiviso |No |Numerosi sensori di tensione linea hanno lo stato visualizzato, che indica se la tensione misurata è compresa nella tolleranza. |
-| Sensori di corrente linea |PCM |Fisico |Condiviso |No |Numerosi sensori di corrente linea hanno lo stato visualizzato, che indica se la corrente misurata è compresa nella tolleranza. |
-| Sensori di temperatura in PCM |PCM |Fisico |Condiviso |No |Numerosi sensori di temperatura come i sensori Inlet e Hotspot hanno lo stato visualizzato, che indica se la temperatura misurata è compresa nella tolleranza. |
-| Alimentazione [0-1] |PCM |Fisico |Condiviso |Sì |Viene visualizzata una riga per ogni alimentatore nei due PCM presenti sulla parte posteriore del dispositivo. |
-| Raffreddamento [0-1] |PCM |Fisico |Condiviso |Sì |Viene visualizzata una riga per ognuno delle quattro ventole di raffreddamento che risiedono nei due PCM. |
-| Batteria [0-1] |PCM |Fisico |Condiviso |Sì |Viene visualizzata una riga per ognuno dei moduli della batteria di backup inseriti nel PCM. |
-| Metis |N/D |Logico |Condiviso |N/D |Visualizza lo stato delle batterie: se devono essere messe in carica e se si stanno avvicinando alla fine del ciclo di vita. |
-| HDInsight |N/D |Logico |Condiviso |N/D |Visualizza lo stato del cluster creato tra i due moduli controller integrato. |
-| Nodo del cluster |N/D |Logico |Condiviso |N/D |Indica lo stato del controller come parte del cluster. |
-| Quorum del cluster |N/D |Logico | |N/D |Indica la presenza dell'appartenenza di maggioranza del disco nel pool di archiviazione di unità disco rigido. |
-| Spazio dati unità disco rigido |N/D |Logico |Condiviso |N/D |Lo spazio di archiviazione utilizzato per i dati nel pool di archiviazione di unità disco rigido (HDD). |
-| Spazio di gestione di unità disco rigido |N/D |Logico |Condiviso |N/D |Lo spazio riservato nel pool di archiviazione di unità disco rigido per le attività di gestione. |
-| Spazio quorum unità disco rigido |N/D |Logico |Condiviso |N/D |Lo spazio riservato nel pool di archiviazione di unità disco rigido per il quorum del cluster. |
-| Spazio sostituzione unità disco rigido |N/D |Logico |Condiviso |N/D |Lo spazio riservato nel pool di archiviazione di unità disco rigido per la sostituzione del controller. |
-| Spazio dati unità SSD |N/D |Logico |Condiviso |N/D |Lo spazio di archiviazione utilizzato per i dati nel pool di archiviazione di unità SSD. |
-| Spazio NVRAM SSD |N/D |Logico |Condiviso |N/D |Lo spazio di archiviazione nel pool di archiviazione di unità SSD dedicato per la logica NVRAM. |
-| Pool di archiviazione di unità disco rigido |N/D |Logico |Condiviso |N/D |Visualizza lo stato del pool di archiviazione logica creato dal dispositivo HDD. |
-| Pool di archiviazione di unità SSD |N/D |Logico |Condiviso |N/D |Visualizza lo stato del pool di archiviazione logica creato dal dispositivo SSD. |
-| Controller [0-1] [stato] |I/O |Fisico |Controller |Sì |Visualizza lo stato del controller e se è in modalità attiva o standby all'interno dello chassis. |
-| Sensori di temperatura nel controller |I/O |Fisico |Controller |No |Numerosi sensori di temperatura, ad esempio modulo I/O, temperatura CPU, sensori DIMM e PCIe hanno lo stato visualizzato, che indica se la temperatura rilevata è compresa o meno nella tolleranza. |
-| Espansore SAS |I/O |Fisico |Controller |No |Indica lo stato dell'espansore SCSI associato seriale (SAS), che viene utilizzato per connettere al controller l'archiviazione integrata. |
-| Connettore SAS [0-1] |I/O |Fisico |Controller |No |Indica lo stato di ogni connettore SAS, che viene utilizzato per la connessione dell'archiviazione integrata all'espansore SAS. |
-| Interconnessione piano intermedio SBB |I/O |Fisico |Controller |No |Indica lo stato del connettore del piano intermedio, che viene utilizzato per connettere ogni controller al piano intermedio. |
-| Core del processore |I/O |Fisico |Controller |No |Indica lo stato dei core del processore all'interno di ogni controller. |
-| Alimentatore elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato del sistema di alimentazione dello chassis. |
-| Diagnostica elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato dei sottosistemi di diagnostica fornite dal controller. |
-| Baseboard Management Controller (BMC) |I/O |Fisico |Controller |No |Indica lo stato del controller BMC (Baseboard Management Controller), che è un processore di servizio specializzato che consente di monitorare il dispositivo hardware tramite sensori e comunica con l'amministratore di sistema tramite una connessione indipendente. |
-| Ethernet |I/O |Fisico |Controller |No |Indica lo stato di ciascuna delle interfacce di rete, vale a dire le porte di gestione e dati fornite sul controller. |
-| NVRAM |I/O |Fisico |Controller |No |Indica lo stato di NVRAM, una memoria RAM non volatile sottoposta a backup tramite la batteria che serve per mantenere le informazioni critiche dell'applicazione in caso di interruzione dell'alimentazione. |
+| Unità in slot [0-11] |Unità disco |Fisico |Condiviso |Sì |Viene visualizzata una riga per ogni unità SSD hello o nelle unità HDD hello enclosure principale hello. |
+| Sensore di temperatura ambientale |Chassis |Fisico |Condiviso |No |Le misure hello temperatura all'interno dello chassis hello. |
+| Sensore di temperatura piano intermedio |Chassis |Fisico |Condiviso |No |Le misure hello temperatura del midplane hello. |
+| Allarme acustico |Chassis |Fisico |Condiviso |No |Indica se il sottosistema di allarme acustico hello all'interno dello chassis hello è funzionale. |
+| Chassis |Chassis |Fisico |Condiviso |Sì |Indica la presenza di hello dello chassis. |
+| Impostazioni chassis |Chassis |Fisico |Condiviso |No |Si riferisce toohello pannello anteriore dello chassis hello. |
+| Sensori di tensione linea |PCM |Fisico |Condiviso |No |Molti sensori di tensione di linea sono visualizzato lo stato che indica se hello misurata tensione è all'interno di tolleranza. |
+| Sensori di corrente linea |PCM |Fisico |Condiviso |No |Molti sensori di corrente di linea sono visualizzato lo stato che indica se hello corrente misurata rientra tolleranza di errore. |
+| Sensori di temperatura in PCM |PCM |Fisico |Condiviso |No |Molti sensori di temperatura come i sensori di entrata e l'area sensibile hanno visualizzato lo stato che indica se hello misurata temperatura è all'interno di tolleranza. |
+| Alimentazione [0-1] |PCM |Fisico |Condiviso |Sì |Per ognuno degli alimentatori hello in hello viene visualizzata una riga due moduli PCM nella hello parte posteriore dispositivo hello. |
+| Raffreddamento [0-1] |PCM |Fisico |Condiviso |Sì |Per ogni hello viene visualizzata una riga quattro ventole di raffreddamento situate in hello due moduli PCM. |
+| Batteria [0-1] |PCM |Fisico |Condiviso |Sì |Viene visualizzata una riga per ognuno dei moduli di hello batteria di backup situato nel PCM hello. |
+| Metis |N/D |Logico |Condiviso |N/D |Mostra lo stato di hello delle batterie hello: se necessari ad addebitare i costi e si stanno avvicinando fine del ciclo di vita. |
+| HDInsight |N/D |Logico |Condiviso |N/D |Consente di visualizzare hello stato del cluster hello creato tra due moduli controller integrati di hello. |
+| Nodo del cluster |N/D |Logico |Condiviso |N/D |Indica lo stato di hello del controller hello come parte del cluster di hello. |
+| Quorum del cluster |N/D |Logico | |N/D |Indica la presenza di hello di hello maggioranza disco l'appartenenza al pool di archiviazione delle unità disco rigido hello. |
+| Spazio dati unità disco rigido |N/D |Logico |Condiviso |N/D |spazio di archiviazione Hello che viene utilizzato per i dati nel pool di archiviazione di hello unità disco rigido (HDD). |
+| Spazio di gestione di unità disco rigido |N/D |Logico |Condiviso |N/D |Hello riservato in hello pool di archiviazione delle unità disco rigido per attività di gestione. |
+| Spazio quorum unità disco rigido |N/D |Logico |Condiviso |N/D |Hello riservato in hello pool di archiviazione delle unità disco rigido per il quorum del cluster. |
+| Spazio sostituzione unità disco rigido |N/D |Logico |Condiviso |N/D |Hello riservato in hello pool di archiviazione unità disco rigido per la sostituzione del controller. |
+| Spazio dati unità SSD |N/D |Logico |Condiviso |N/D |spazio di archiviazione Hello utilizzato per i dati nel pool di archiviazione di hello SSD unità SSD. |
+| Spazio NVRAM SSD |N/D |Logico |Condiviso |N/D |spazio di archiviazione Hello in hello pool di archiviazione SSD dedicato alla logica NVRAM. |
+| Pool di archiviazione di unità disco rigido |N/D |Logico |Condiviso |N/D |Consente di visualizzare hello stato del pool di archiviazione logico hello creato dalle unità disco rigido del dispositivo. |
+| Pool di archiviazione di unità SSD |N/D |Logico |Condiviso |N/D |Consente di visualizzare hello lo stato del pool di archiviazione logico hello creata dall'unità SSD del dispositivo. |
+| Controller [0-1] [stato] |I/O |Fisico |Controller |Sì |Mostra lo stato di hello del controller hello, e se è in modalità attiva o standby all'interno dello chassis hello. |
+| Sensori di temperatura nel controller |I/O |Fisico |Controller |No |Molti sensori di temperatura come modulo dei / o, temperatura CPU, sensori DIMM e PCIe hanno lo stato visualizzato, che indica se è o meno temperatura hello rilevata nei limiti di tolleranza. |
+| Espansore SAS |I/O |Fisico |Controller |No |Indica stato hello di hello seriale collegato SCSI (SAS) espansore tooconnect utilizzati hello archiviazione integrata toohello controller. |
+| Connettore SAS [0-1] |I/O |Fisico |Controller |No |Indica lo stato di hello di ogni connettore SAS, ovvero espansore SAS toohello di archiviazione utilizzato tooconnect integrato. |
+| Interconnessione piano intermedio SBB |I/O |Fisico |Controller |No |Indica lo stato di hello del connettore midplane hello è tooconnect usato ogni midplane toohello controller. |
+| Core del processore |I/O |Fisico |Controller |No |Indica lo stato di hello hello di core del processore all'interno di ogni controller. |
+| Alimentatore elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato di hello del sistema di alimentazione hello usato dall'enclosure hello. |
+| Diagnostica elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato di hello dei sottosistemi di diagnostica hello fornito dal controller hello. |
+| Baseboard Management Controller (BMC) |I/O |Fisico |Controller |No |Indica lo stato di hello di hello baseboard management controller (BMC), che è un processore di servizio specializzato che consente di monitorare i dispositivi hardware hello mediante sensori e comunica con l'amministratore di sistema hello tramite una connessione indipendente. |
+| Ethernet |I/O |Fisico |Controller |No |Indica lo stato di hello di ognuna delle interfacce di rete hello, vale a dire gestione hello e le porte dati fornite nel controller hello. |
+| NVRAM |I/O |Fisico |Controller |No |Indica lo stato di hello della NVRAM, una memoria ad accesso casuale non volatile backup dalla batteria hello che svolge informazioni importanti delle applicazioni tooretain nell'evento hello dell'interruzione dell'alimentazione. |
 
 ## <a name="component-list-for-ebod-enclosure-of-storsimple-device"></a>Elenco di componenti per l’enclosure EBOD del dispositivo StorSimple
-Nella tabella seguente vengono descritti i componenti fisici e logici contenuti nell'enclosure EBOD (presente solo nel modello 8600) del dispositivo StorSimple in locale.
+Hello tabella seguente vengono illustrati hello componenti fisici e logici contenuti in hello enclosure EBOD (presente solo nel modello 8600) del dispositivo StorSimple locale.
 
 | Componente | Modulo | Tipo | Percorso | FRU? | Descrizione |
 | --- | --- | --- | --- | --- | --- |
-| Unità in slot [0-11] |Unità disco |Fisico |Condiviso |Sì |Viene visualizzata una riga per ogni unità HDD nella parte anteriore dello chassis EBOD. |
-| Sensore di temperatura ambientale |Chassis |Fisico |Condiviso |No |Misura la temperatura all'interno dello chassis. |
-| Sensore di temperatura piano intermedio |Chassis |Fisico |Condiviso |No |Misura la temperatura del piano intermedio. |
-| Allarme acustico |Chassis |Fisico |Condiviso |No |Indica se il sottosistema di allarme acustico all'interno dello chassis è funzionale. |
-| Chassis |Chassis |Fisico |Condiviso |Sì |Indica la presenza di uno chassis. |
-| Impostazioni chassis |Chassis |Fisico |Condiviso |No |Fa riferimento alle operazioni o al pannello anteriore dello chassis. |
-| Sensori di tensione linea |PCM |Fisico |Condiviso |No |Numerosi sensori di tensione linea hanno lo stato visualizzato, che indica se la tensione misurata è compresa nella tolleranza. |
-| Sensori di corrente linea |PCM |Fisico |Condiviso |No |Numerosi sensori di corrente linea hanno lo stato visualizzato, che indica se la corrente misurata è compresa nella tolleranza. |
-| Sensori di temperatura in PCM |PCM |Fisico |Condiviso |No |Numerosi sensori di temperatura, ad esempio i sensori Inlet e Hotspot hanno lo stato visualizzato, che indica se la temperatura misurata è compresa nella tolleranza. |
-| Alimentazione [0-1] |PCM |Fisico |Condiviso |Sì |Viene visualizzata una riga per ogni alimentatore nei due PCM presenti sulla parte posteriore del dispositivo. |
-| Raffreddamento [0-1] |PCM |Fisico |Condiviso |Sì |Viene visualizzata una riga per ognuno delle quattro ventole di raffreddamento che risiedono nei due PCM. |
-| Archiviazione locale [HDD] |N/D |Logico |Condiviso |N/D |Visualizza lo stato del pool di archiviazione logica creato dal dispositivo HDD. |
-| Controller [0-1] [stato] |I/O |Fisico |Controller |Sì |Visualizza lo stato dei controller nel modulo EBOD. |
-| Sensori di temperatura in EBOD |I/O |Fisico |Controller |No |Numerosi sensori di temperatura di ogni controller hanno lo stato visualizzato, che indica se la temperatura misurata è compresa nella tolleranza. |
-| Espansore SAS |I/O |Fisico |Controller |No |Indica lo stato dell'espansore SAS, che viene utilizzato per connettere al controller l'archiviazione integrata. |
-| Connettore SAS [0-2] |I/O |Fisico |Controller |No |Indica lo stato di ogni connettore SAS, che viene utilizzato per la connessione dell'archiviazione integrata all'espansore SAS. |
-| Interconnessione piano intermedio SBB |I/O |Fisico |Controller |No |Indica lo stato del connettore del piano intermedio, che viene utilizzato per connettere ogni controller al piano intermedio. |
-| Alimentatore elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato del sistema di alimentazione dello chassis. |
-| Diagnostica elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato dei sottosistemi di diagnostica fornite dal controller. |
-| Connessione al controller del dispositivo |I/O |Fisico |Controller |No |Indica lo stato della connessione tra il modulo I/O EBOD e il controller del dispositivo. |
+| Unità in slot [0-11] |Unità disco |Fisico |Condiviso |Sì |Viene visualizzata una riga per ogni unità HDD in primo piano hello hello enclosure EBOD hello. |
+| Sensore di temperatura ambientale |Chassis |Fisico |Condiviso |No |Le misure hello temperatura all'interno dello chassis hello. |
+| Sensore di temperatura piano intermedio |Chassis |Fisico |Condiviso |No |Le misure hello temperatura del midplane hello. |
+| Allarme acustico |Chassis |Fisico |Condiviso |No |Indica se il sottosistema di allarme acustico hello all'interno dello chassis hello è funzionale. |
+| Chassis |Chassis |Fisico |Condiviso |Sì |Indica la presenza di hello dello chassis. |
+| Impostazioni chassis |Chassis |Fisico |Condiviso |No |Si riferisce toohello OPS o il pannello anteriore di hello dello chassis hello. |
+| Sensori di tensione linea |PCM |Fisico |Condiviso |No |Molti sensori di tensione di linea sono visualizzato lo stato che indica se hello misurata tensione è all'interno di tolleranza. |
+| Sensori di corrente linea |PCM |Fisico |Condiviso |No |Molti sensori di corrente di linea sono visualizzato lo stato che indica se hello corrente misurata rientra tolleranza di errore. |
+| Sensori di temperatura in PCM |PCM |Fisico |Condiviso |No |Molti sensori di temperatura come i sensori di entrata e l'area sensibile hanno lo stato visualizzato, che indica se hello misurata temperatura è all'interno di tolleranza. |
+| Alimentazione [0-1] |PCM |Fisico |Condiviso |Sì |Per ognuno degli alimentatori hello in hello viene visualizzata una riga due moduli PCM nella hello parte posteriore dispositivo hello. |
+| Raffreddamento [0-1] |PCM |Fisico |Condiviso |Sì |Per ogni hello viene visualizzata una riga quattro ventole di raffreddamento situate in hello due moduli PCM. |
+| Archiviazione locale [HDD] |N/D |Logico |Condiviso |N/D |Consente di visualizzare hello stato del pool di archiviazione logico hello creato dalle unità disco rigido del dispositivo. |
+| Controller [0-1] [stato] |I/O |Fisico |Controller |Sì |Consente di visualizzare hello stato dei controller hello nel modulo EBOD hello. |
+| Sensori di temperatura in EBOD |I/O |Fisico |Controller |No |Molti sensori di temperatura da ogni controller hanno lo stato visualizzato, che indica se temperatura di hello rilevata rientra nei limiti di tolleranza. |
+| Espansore SAS |I/O |Fisico |Controller |No |Indica lo stato di hello dell'espansore SAS hello tooconnect utilizzati hello archiviazione integrata toohello controller. |
+| Connettore SAS [0-2] |I/O |Fisico |Controller |No |Indica lo stato di hello di ogni connettore SAS, ovvero espansore SAS toohello di archiviazione utilizzato tooconnect integrato. |
+| Interconnessione piano intermedio SBB |I/O |Fisico |Controller |No |Indica lo stato di hello del connettore midplane hello è tooconnect usato ogni midplane toohello controller. |
+| Alimentatore elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato di hello del sistema di alimentazione hello usato dall'enclosure hello. |
+| Diagnostica elettronica dello chassis |I/O |Fisico |Controller |No |Indica lo stato di hello dei sottosistemi di diagnostica hello fornito dal controller hello. |
+| Controller toodevice connessione |I/O |Fisico |Controller |No |Indica lo stato di hello della connessione hello tra il modulo dei / o EBOD hello e controller del dispositivo hello. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per usare il servizio Gestione dispositivi StorSimple per la gestione del dispositivo, passare all'articolo relativo all'[uso del servizio Gestione dispositivi StorSimple per gestire il dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
-* Se è necessario risolvere i problemi relativi a un componente del dispositivo con lo stato danneggiato o guasto, fare riferimento a [Indicatori di monitoraggio di StorSimple](storsimple-monitoring-indicators.md).
-* Per sostituire un componente hardware guasto, vedere la [Guida alla sostituzione di componenti hardware di StorSimple](storsimple-hardware-component-replacement.md).
-* Se si continuano a riscontrare problemi nei dispositivi, [contattare il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md).
+* toouse hello tooadminister servizio di gestione di dispositivi StorSimple il dispositivo, andare troppo[utilizzare hello tooadminister servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+* Se è necessario tootroubleshoot un componente di dispositivi con stato ridotto o non riuscito, fare riferimento troppo[indicatori di monitoraggio di StorSimple](storsimple-monitoring-indicators.md).
+* tooreplace un componente hardware non riusciti, vedere [sostituzione dei componenti hardware StorSimple](storsimple-hardware-component-replacement.md).
+* Se si continuano, problemi dei dispositivi tooexperience [contattare il supporto Microsoft](storsimple-8000-contact-microsoft-support.md).
 

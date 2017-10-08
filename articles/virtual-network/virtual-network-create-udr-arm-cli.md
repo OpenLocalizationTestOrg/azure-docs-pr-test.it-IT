@@ -1,6 +1,6 @@
 ---
-title: Controllare il routing e i dispositivi virtuali usando l'interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: Informazioni su come controllare il routing e i dispositivi virtuali mediante l'interfaccia della riga di comando di Azure 2.0.
+title: Appliance virtuale e routing aaaControl utilizzando hello Azure CLI 2.0 | Documenti Microsoft
+description: Informazioni su come Appliance virtuale e routing toocontrol utilizzando hello CLI di Azure 2.0.
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/12/2017
 ms.author: jdial
-ms.openlocfilehash: e5d9519998346619093f443b740c8904283f76e8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 79b908848932a4365dab1b7497b6a0dbf44bbaf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-user-defined-routes-udr-using-the-azure-cli-20"></a>Creare route definite dall'utente con l'interfaccia della riga di comando di Azure 2.0
+# <a name="create-user-defined-routes-udr-using-hello-azure-cli-20"></a>Creare le route definite dall'utente (UDR) utilizzando hello Azure CLI 2.0
 
 > [!div class="op_single_selector"]
 > * [PowerShell](virtual-network-create-udr-arm-ps.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell (distribuzione classica)](virtual-network-create-udr-classic-ps.md)
 > * [Interfaccia della riga di comando (distribuzione classica)](virtual-network-create-udr-classic-cli.md)
 
-## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività 
+## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI 
 
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando: 
+È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello: 
 
-- [Interfaccia della riga di comando di Azure 1.0](virtual-network-create-udr-arm-cli-nodejs.md): l'interfaccia della riga di comando per i modelli di distribuzione classici e di gestione delle risorse 
-- [Interfaccia della riga di comando di Azure 2.0](#Create-the-UDR-for-the-front-end-subnet): interfaccia avanzata per il modello di distribuzione di gestione delle risorse (questo articolo)
+- [Azure CLI 1.0](virtual-network-create-udr-arm-cli-nodejs.md) – la CLI per hello classic e risorse Gestione modelli di distribuzione 
+- [Azure CLI 2.0](#Create-the-UDR-for-the-front-end-subnet) -la prossima generazione CLI per modello di distribuzione Gestione risorse hello (in questo articolo)
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
@@ -45,13 +45,13 @@ ms.lasthandoff: 08/18/2017
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-I comandi di esempio dell'interfaccia della riga di comando di Azure riportati di seguito prevedono un ambiente semplice già creato in base allo scenario precedente. Se si desidera eseguire i comandi così come sono visualizzati in questo documento, creare innanzitutto l'ambiente di test distribuendo [questo modello](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), fare clic su **Distribuisci in Azure**, sostituire i valori di parametro predefiniti, se necessario e seguire le istruzioni nel portale.
+Hello esempio CLI di Azure comandi riportati di seguito prevedono un ambiente semplice già creato in base a uno scenario di hello precedente. Se si desidera comandi hello toorun così come sono visualizzati in questo documento, creare innanzitutto ambiente di test di hello distribuendo [questo modello](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), fare clic su **distribuire tooAzure**, sostituire i valori dei parametri predefiniti hello Se necessario e seguire le istruzioni di hello in hello portale.
 
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>Creare la route definita dall'utente per la subnet front-end
-Per creare la tabella di route e la route necessarie per la subnet front-end in base allo scenario precedente, attenersi alla procedura seguente.
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Creare hello UDR per subnet front-end hello
+tabella di route toocreate hello e route necessarie per la subnet front-end hello a seconda dello scenario hello precedente, seguire i passaggi di hello seguenti.
 
-1. Creare una tabella di route per la subnet front-end con il comando [az network route-table create](/cli/azure/network/route-table#create):
+1. Creare una tabella di route per la subnet front-end hello con hello [-tabella di route az rete creare](/cli/azure/network/route-table#create) comando:
 
     ```azurecli
     az network route-table create \
@@ -77,7 +77,7 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
     }
     ```
 
-2. Creare una route che invia tutto il traffico destinato alla subnet back-end (192.168.2.0/24) alla VM **FW1** (192.168.0.4) usando il comando [az network route-table route create](/cli/azure/network/route-table/route#create):
+2. Creare una route che invia tutto il traffico destinato toohello subnet back-end (192.168.2.0/24) toohello **FW1** VM (192.168.0.4) utilizzando hello [creare route della tabella di route di rete az](/cli/azure/network/route-table/route#create) comando:
 
     ```azurecli 
     az network route-table route create \
@@ -105,12 +105,12 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
     ```
     Parametri
 
-    * **--route-table-name**. Nome della tabella di route in cui verrà aggiunta la route. Per questo scenario, *UDR-FrontEnd*.
-    * **--address-prefix**. Prefisso di indirizzo della subnet alla quale sono destinati i pacchetti. Per questo scenario, *192.168.2.0/24*.
+    * **--route-table-name**. Nome della tabella di routing hello in cui verrà aggiunti route hello. Per questo scenario, *UDR-FrontEnd*.
+    * **--address-prefix**. Prefisso dell'indirizzo per subnet hello in cui i pacchetti sono destinati a. Per questo scenario, *192.168.2.0/24*.
     * **--next-hop-type**. Tipo di oggetto al quale verrà inviato il traffico. I valori possibili sono *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet* o *None*.
     * **--next-hop-ip-address**. Indirizzo IP per l'hop successivo. Per questo scenario, *192.168.0.4*.
 
-3. Eseguire il comando [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) per associare la tabella di route creata in precedenza alla subnet **FrontEnd**:
+3. Eseguire hello [aggiornare subnet rete virtuale di rete az](/cli/azure/network/vnet/subnet#update) tabella di routing di comandi tooassociate hello creato in precedenza con hello **front-end** subnet:
 
     ```azurecli
     az network vnet subnet update \
@@ -150,13 +150,13 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
 
     Parametri
     
-    * **--vnet-name**. Nome della rete virtuale in cui si trova la subnet. Per questo scenario, *TestVNet*.
+    * **--vnet-name**. Nome della rete virtuale in cui si trova subnet hello hello. Per questo scenario, *TestVNet*.
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>Creare la route definita dall'utente per la subnet back-end
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Creare hello UDR per subnet back-end hello
 
-Per creare la tabella di route e la route necessarie per la subnet back-end in base allo scenario precedente, seguire questa procedura:
+hello toocreate tabella di route e indirizzare necessari per la subnet di back-end hello a seconda dello scenario di hello sopra, hello completo alla procedura seguente:
 
-1. Per creare una tabella di route per la subnet back-end, eseguire il comando seguente:
+1. Eseguire hello successivo comando toocreate una tabella di route per la subnet di back-end hello:
 
     ```azurecli
     az network route-table create \
@@ -165,7 +165,7 @@ Per creare la tabella di route e la route necessarie per la subnet back-end in b
     --location centralus
     ```
 
-2. Eseguire il comando seguente per creare una route nella tabella della route creata in precedenza per inviare tutto il traffico destinato alla subnet front-end (192.168.1.0/24) alla VM **FW1** (192.168.0.4):
+2. Eseguire hello successivo comando toocreate una route in toosend tabella di route hello tutto il traffico destinato toohello subnet front-end (192.168.1.0/24) toohello **FW1** VM (192.168.0.4):
 
     ```azurecli
     az network route-table route create \
@@ -177,7 +177,7 @@ Per creare la tabella di route e la route necessarie per la subnet back-end in b
     --next-hop-ip-address 192.168.0.4
     ```
 
-3. Eseguire il comando seguente per associare la tabella di route creata in precedenza alla subnet **BackEnd**:
+3. Esecuzione hello seguenti tabella di routing di comandi tooassociate hello con hello **back-end** subnet:
 
     ```azurecli
     az network vnet subnet update \
@@ -189,9 +189,9 @@ Per creare la tabella di route e la route necessarie per la subnet back-end in b
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>Abilitare l'inoltro dell'indirizzo IP su FW1
 
-Per abilitare l'inoltro dell'indirizzo IP nella scheda di interfaccia di rete usata da **FW1**, seguire questa procedura:
+inoltro dell'indirizzo IP nella scheda di rete utilizzata da hello tooenable **FW1**completa hello i passaggi seguenti:
 
-1. Eseguire il comando [az network nic show](/cli/azure/network/nic#show) con un filtro JMESPATH per visualizzare il valore **enable-ip-forwarding** corrente per **Enable IP forwarding** (Abilita inoltro IP). Il valore deve essere impostato su *false*.
+1. Eseguire hello [Mostra scheda di rete az](/cli/azure/network/nic#show) comando con un hello toodisplay filtro JMESPATH corrente **inoltro dell'indirizzo ip enable** valore per **inoltro IP abilitare**. Deve essere impostato troppo*false*.
 
     ```azurecli
     az network nic show \
@@ -204,7 +204,7 @@ Per abilitare l'inoltro dell'indirizzo IP nella scheda di interfaccia di rete us
 
         false
 
-2. Eseguire il comando seguente per abilitare l'inoltro dell'indirizzo IP:
+2. Eseguire hello inoltro dell'indirizzo IP tooenable comando seguente:
 
     ```azurecli
     az network nic update \
@@ -213,7 +213,7 @@ Per abilitare l'inoltro dell'indirizzo IP nella scheda di interfaccia di rete us
     --ip-forwarding true
     ```
 
-    È possibile esaminare l'output trasferito alla console o semplicemente ripetere il test per lo specifico valore **enableIpForwarding**:
+    È possibile esaminare console toohello con flusso di output hello, o semplicemente nuovamente per hello specifico **enableIpForwarding** valore:
 
     ```azurecli
     az network nic show -g testrg -n nicfw1 --query 'enableIpForwarding' -o tsv

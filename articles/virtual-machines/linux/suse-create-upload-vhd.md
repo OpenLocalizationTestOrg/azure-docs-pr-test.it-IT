@@ -1,6 +1,6 @@
 ---
-title: Creazione e caricamento di un VHD SUSE Linux in Azure
-description: Informazioni su come creare e caricare un disco rigido virtuale (VHD) di Azure che contiene un sistema operativo SUSE Linux.
+title: aaaCreate e caricare un disco rigido virtuale di SUSE Linux in Azure
+description: Informazioni su toocreate e caricare un Azure disco rigido virtuale (VHD) che contiene un sistema operativo SUSE Linux.
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,58 +15,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: szark
-ms.openlocfilehash: c829f5d9a90b4260c6f41b2d9e511a0c6cb48f18
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9185c7e67279357f00db0f43e944e96c58f0dd60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="prepare-a-sles-or-opensuse-virtual-machine-for-azure"></a>Preparare una macchina virtuale SLES o openSUSE per Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="prerequisites"></a>Prerequisiti
-In questo articolo si presuppone che l'utente abbia già installato un sistema operativo Linux SUSE od openSUSE in un disco rigido virtuale. Sono disponibili vari strumenti per creare file con estensione vhd, ad esempio una soluzione di virtualizzazione come Hyper-V. Per istruzioni, vedere [Installare il ruolo Hyper-V e configurare una macchina virtuale](http://technet.microsoft.com/library/hh846766.aspx).
+Questo articolo si presuppone che è già stato installato un SUSE o il disco rigido virtuale di Linux del sistema operativo tooa openSUSE. Più strumenti esistono toocreate file con estensione vhd, ad esempio una soluzione di virtualizzazione come Hyper-V. Per istruzioni, vedere [hello ruolo Hyper-V di installare e configurare una macchina virtuale](http://technet.microsoft.com/library/hh846766.aspx).
 
 ### <a name="sles--opensuse-installation-notes"></a>Note di installazione di SLES/openSUSE
 * Vedere anche [Note generali sull'installazione di Linux](create-upload-generic.md#general-linux-installation-notes) per altri suggerimenti sulla preparazione di Linux per Azure.
-* Il formato VHDX non è supportato in Azure, solo nei **VHD fissi**.  È possibile convertire il disco in formato VHD tramite la console di gestione di Hyper-V o il cmdlet convert-vhd.
-* Durante l'installazione del sistema operativo Linux è consigliabile usare partizioni standard anziché LVM, che spesso è la scelta predefinita per numerose installazioni. In questo modo sarà possibile evitare conflitti di nome LVM con le macchine virtuali clonate, in particolare se fosse necessario collegare un disco del sistema operativo a un'altra macchina virtuale per la risoluzione dei problemi. Se si preferisce, su dischi di dati si può usare [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) o [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Non configurare una partizione swap nel disco del sistema operativo. L'agente Linux può essere configurato in modo da creare un file swap sul disco temporaneo delle risorse.  Altre informazioni su questo argomento sono disponibili nei passaggi seguenti.
-* Tutti i dischi rigidi virtuali devono avere dimensioni multiple di 1 MB.
+* formato VHDX Hello non è supportato solo in Azure, **disco rigido virtuale fisso**.  È possibile convertire il formato hello disco tooVHD con gestione Hyper-V o hello cmdlet convert-vhd.
+* Quando si installa il sistema di Linux hello è consigliabile utilizzare partizioni standard anziché LVM (spesso predefinito hello per numerose installazioni). Questo modo si evita i conflitti di nome LVM con macchine virtuali clonate, in particolare se un sistema operativo disco mai necessario tooanother toobe collegato VM per la risoluzione dei problemi. Se si preferisce, su dischi di dati si può usare [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) o [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* Non si configura una partizione di scambio su disco del sistema operativo hello. agente Linux di Hello può essere configurato toocreate un file di swapping sul disco di risorse temporaneo hello.  Ulteriori informazioni su questo sono reperibile in passaggi hello riportati di seguito.
+* Tutti i dischi rigidi virtuali hello devono avere dimensioni che sono multipli di 1 MB.
 
 ## <a name="use-suse-studio"></a>Usare SUSE Studio
-[SUSE Studio](http://www.susestudio.com) consente di creare e gestire facilmente le immagini SLES e openSUSE per Azure e Hyper-V. Questo è l'approccio consigliato per personalizzare le proprie immagini SLES e openSUSE.
+[SUSE Studio](http://www.susestudio.com) consente di creare e gestire facilmente le immagini SLES e openSUSE per Azure e Hyper-V. Si tratta di hello approccio per personalizzare le proprie immagini SLES e openSUSE consigliato.
 
-In alternativa alla creazione di un disco rigido virtuale, SUSE pubblica anche immagini BYOS (portare la propria sottoscrizione) per SLES in [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007).
+Come un'alternativa toobuilding proprio file VHD, SUSE pubblica anche le immagini BYOS (portare il propria sottoscrizione) per SLES in [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007).
 
 ## <a name="prepare-suse-linux-enterprise-server-11-sp4"></a>Preparare SUSE Linux Enterprise Server 11 SP4
-1. Nel riquadro centrale della console di gestione di Hyper-V selezionare la macchina virtuale.
-2. Fare clic su **Connect** per aprire la finestra della macchina virtuale.
-3. Registrare il sistema SUSE Linux Enterprise per scaricare gli aggiornamenti e installare i pacchetti.
-4. Aggiornare il sistema con tutte le patch più recenti:
+1. Nel riquadro centrale di hello di gestione di Hyper-V, selezionare macchina virtuale hello.
+2. Fare clic su **Connetti** finestra hello tooopen per la macchina virtuale hello.
+3. Registrare il tooallow sistema SUSE Linux Enterprise è toodownload aggiornamenti e i pacchetti di installazione.
+4. Aggiornare il sistema di hello con patch più recenti di hello:
    
         # sudo zypper update
-5. Installare l'agente Linux di Azure dal repository SLES:
+5. Installare hello agente Linux di Azure dal repository SLES hello:
    
         # sudo zypper install WALinuxAgent
-6. Controllare se l'agente waagent è impostato su "on" in chkconfig e, in caso contrario, abilitarlo per l'avvio automatico:
+6. Controllare se waagent viene impostato troppo "on" in chkconfig e, in caso contrario, abilitare la funzionalità per l'avvio automatico:
    
         # sudo chkconfig waagent on
 7. Controllare se il servizio waagent è in esecuzione e, in caso contrario, avviarlo: 
    
         # sudo service waagent start
-8. Modificare la riga di avvio del kernel nella configurazione GRUB per includere ulteriori parametri del kernel per Azure. A questo scopo, aprire "/boot/grub/menu.lst" in un editor di testo e verificare che il kernel predefinito includa i parametri seguenti:
+8. Modificare i parametri di kernel aggiuntive tooinclude grub hello kernel avvio riga per Azure. aprire questo toodo "/ boot/grub/menu.lst" in un editor di testo e assicurarsi che kernel predefinito hello includa hello seguenti parametri:
    
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300
    
-    In questo modo si garantisce che tutti i messaggi della console vengano inviati alla prima porta seriale, agevolando così il supporto di Azure nella risoluzione dei problemi di debug.
-9. Verificare che /boot/grub/menu.lst e /etc/fstab facciano riferimento al disco tramite il relativo UUID (by-uuid) anziché l'ID disco (by-id). 
+    In questo modo tutti i messaggi della console vengono inviati toohello prima porta seriale, che consentono di Azure supporto con il debug dei problemi.
+9. Verificare che fstab /boot/grub/menu.lst e via/entrambi disco hello riferimento utilizzando il relativo UUID (da-uuid) anziché l'ID disco hello (da-id). 
    
     Ottenere l'UUID disco
    
         # ls /dev/disk/by-uuid/
    
-    Se si usa /dev/disk/by-id/, aggiornare sia /boot/grub/menu.lst sia /etc/fstab con il valore by-uuid corretto
+    Se /dev/disk/by-id è utilizzato, aggiornare fstab /boot/grub/menu.lst e via/con il valore appropriato da uuid hello
    
     Prima della modifica
    
@@ -75,34 +75,34 @@ In alternativa alla creazione di un disco rigido virtuale, SUSE pubblica anche i
     Dopo la modifica
    
         root=/dev/disk/by-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-10. Modificare le regole udev per evitare la generazione di regole statiche per l'interfaccia Ethernet. Le regole seguenti possono provocare problemi quando si clona una macchina virtuale in Microsoft Azure o Hyper-V:
+10. Modificare udev regole tooavoid la generazione di regole statiche per hello interfacce Ethernet. Le regole seguenti possono provocare problemi quando si clona una macchina virtuale in Microsoft Azure o Hyper-V:
     
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
-11. Si consiglia di modificare il file "/etc/sysconfig/network/dhcp" e modificare il parametro `DHCLIENT_SET_HOSTNAME` come segue:
+11. È consigliabile file hello tooedit "/ e così via e sysconfig/rete/dhcp" e modificare hello `DHCLIENT_SET_HOSTNAME` seguente toohello parametro:
     
      DHCLIENT_SET_HOSTNAME="no"
-12. In "/etc/sudoers" rimuovere o impostare come commento le righe seguenti, se esistenti:
+12. In "e così via/file", impostare come commento o rimuovere hello seguenti righe se sono presenti:
     
-     Defaults targetpw   # chiedere la password dell'utente di destinazione vale a dire root ALL    ALL=(ALL) ALL   # WARNING! Usare solo insieme a "Defaults targetpw".
-13. Verificare che il server SSH sia installato e configurato per l'esecuzione all'avvio.  Questo è in genere il valore predefinito.
-14. Non creare l'area di swap sul disco del sistema operativo.
+     Per impostazione predefinita targetpw # richiesta hello password dell'utente di destinazione hello radice, ovvero tutti ALL=(ALL) tutti # avviso! Usare solo insieme a "Defaults targetpw".
+13. Verificare che server SSH hello sia installato e configurato toostart in fase di avvio.  Si tratta in genere predefinito hello.
+14. Non creare lo spazio di swapping sul disco del sistema operativo hello.
     
-    L'agente Linux di Azure può configurare automaticamente l'area di swap utilizzando il disco risorse locale collegato alla VM dopo il provisioning in Azure. Si noti che il disco risorse locale è un disco *temporaneo* e potrebbe essere svuotato in seguito al deprovisioning della macchina virtuale. Dopo aver installato l'agente Linux di Azure come illustrato nel passaggio precedente, modificare i parametri seguenti in /etc/waagent.conf in modo appropriato:
+    Hello agente Linux di Azure può configurare automaticamente lo spazio di swapping utilizzando il disco di risorsa locale hello è collegato toohello VM dopo il provisioning in Azure. Si noti il disco di risorsa locale hello è un *temporaneo* del disco e può essere svuotata quando hello VM è deprovisioning. Dopo l'installazione di hello agente Linux di Azure (vedere il passaggio precedente), modificare hello seguenti parametri in /etc/waagent.conf in modo appropriato:
     
-     ResourceDisk.Format=y  ResourceDisk.Filesystem=ext4  ResourceDisk.MountPoint=/mnt/resource  ResourceDisk.EnableSwap=y  ResourceDisk.SwapSizeMB=2048    ## NOTA: da impostare laddove richiesto.
-15. Eseguire i comandi seguenti per effettuare il deprovisioning della macchina virtuale e prepararla per il provisioning in Azure:
+     ResourceDisk.Format=y ResourceDisk.Filesystem=ext4 ResourceDisk.MountPoint=/mnt/resource ResourceDisk.EnableSwap=y ResourceDisk.SwapSizeMB=&#2048; # Nota: impostare questo toowhatever è necessario toobe.
+15. Eseguire hello seguente macchina virtuale di comandi toodeprovision hello e prepararlo per il provisioning in Azure:
     
     # <a name="sudo-waagent--force--deprovision"></a>sudo waagent -force -deprovision
     # <a name="export-histsize0"></a>export HISTSIZE=0
     # <a name="logout"></a>logout
-16. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il file VHD Linux è ora pronto per il caricamento in Azure.
+16. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il VHD Linux è ora pronto toobe caricato tooAzure.
 
 - - -
 ## <a name="prepare-opensuse-131"></a>Preparare openSUSE 13.1+
-1. Nel riquadro centrale della console di gestione di Hyper-V selezionare la macchina virtuale.
-2. Fare clic su **Connect** per aprire la finestra della macchina virtuale.
-3. Nella shell eseguire il comando '`zypper lr`'. Se questo comando restituisce un output simile al seguente, i repository vengono configurati come previsto e non sono necessarie modifiche. Si noti che i numeri di versione possono variare:
+1. Nel riquadro centrale di hello di gestione di Hyper-V, selezionare macchina virtuale hello.
+2. Fare clic su **Connetti** finestra hello tooopen per la macchina virtuale hello.
+3. In shell hello, eseguire il comando di hello '`zypper lr`'. Se questo comando restituisce l'output seguente, quindi i repository hello sono configurati come previsto, non sono necessarie rettifiche toohello simile (si noti che i numeri di versione possono variare):
    
         # | Alias                 | Name                  | Enabled | Refresh
         --+-----------------------+-----------------------+---------+--------
@@ -110,54 +110,54 @@ In alternativa alla creazione di un disco rigido virtuale, SUSE pubblica anche i
         2 | openSUSE_13.1_OSS     | openSUSE_13.1_OSS     | Yes     | Yes
         3 | openSUSE_13.1_Updates | openSUSE_13.1_Updates | Yes     | Yes
    
-    Se il comando restituisce un messaggio simile a "Nessun archivio definito..." usare i comandi seguenti per aggiungere gli archivi:
+    Se il comando hello non restituisce "Alcun repository definito..." utilizzare hello tooadd i comandi seguenti questi repository:
    
         # sudo zypper ar -f http://download.opensuse.org/repositories/Cloud:Tools/openSUSE_13.1 Cloud:Tools_13.1
         # sudo zypper ar -f http://download.opensuse.org/distribution/13.1/repo/oss openSUSE_13.1_OSS
         # sudo zypper ar -f http://download.opensuse.org/update/13.1 openSUSE_13.1_Updates
    
-    Sarà quindi possibile verificare che i repository siano stati aggiunti eseguendo nuovamente il comando '`zypper lr`' . Se uno degli archivi di aggiornamento pertinenti non è abilitato, abilitarlo con il comando seguente:
+    È quindi possibile verificare il repository hello è stati aggiunti tramite il comando hello '`zypper lr`' nuovamente. Nel caso in cui uno degli archivi di hello rilevanti aggiornamento non è abilitato, abilitarla con il comando seguente:
    
         # sudo zypper mr -e [NUMBER OF REPOSITORY]
-4. Aggiornare il kernel all'ultima versione disponibile:
+4. Aggiornare hello kernel toohello versione disponibile più recente:
    
         # sudo zypper up kernel-default
    
-    Oppure per aggiornare il sistema con tutte le patch più recenti:
+    Sistema di hello tooupdate con tutte le patch più recente di hello o:
    
         # sudo zypper update
-5. Installare l'agente Linux di Azure.
+5. Installare hello agente Linux di Azure.
    
    # <a name="sudo-zypper-install-walinuxagent"></a>sudo zypper install WALinuxAgent
-6. Modificare la riga di avvio del kernel nella configurazione GRUB per includere ulteriori parametri del kernel per Azure. A questo scopo, aprire "/boot/grub/menu.lst" in un editor di testo e verificare che il kernel predefinito includa i parametri seguenti:
+6. Modificare i parametri di kernel aggiuntive tooinclude grub hello kernel avvio riga per Azure. toodo, aprire "/ boot/grub/menu.lst" in un editor di testo e assicurarsi che kernel predefinito hello includa hello seguenti parametri:
    
      console=ttyS0 earlyprintk=ttyS0 rootdelay=300
    
-   In questo modo si garantisce che tutti i messaggi della console vengano inviati alla prima porta seriale, agevolando così il supporto di Azure nella risoluzione dei problemi di debug. Rimuovere inoltre i messaggi seguenti dalla riga di avvio del kernel, se presenti:
+   In questo modo tutti i messaggi della console vengono inviati toohello prima porta seriale, che consentono di Azure supporto con il debug dei problemi. Inoltre, rimuovere hello seguenti parametri dalla riga di avvio del kernel hello se esistono:
    
      libata.atapi_enabled=0 reserve=0x1f0,0x8
-7. Si consiglia di modificare il file "/etc/sysconfig/network/dhcp" e modificare il parametro `DHCLIENT_SET_HOSTNAME` come segue:
+7. È consigliabile file hello tooedit "/ e così via e sysconfig/rete/dhcp" e modificare hello `DHCLIENT_SET_HOSTNAME` seguente toohello parametro:
    
      DHCLIENT_SET_HOSTNAME="no"
-8. **Importante** : in "/etc/sudoers" rimuovere o impostare come commento le righe seguenti, se esistenti:
+8. **Importante:** In "e così via/file", impostare come commento o rimuovere hello seguenti righe se sono presenti:
    
-     Defaults targetpw   # chiedere la password dell'utente di destinazione vale a dire root ALL    ALL=(ALL) ALL   # WARNING! Usare solo insieme a "Defaults targetpw".
-9. Verificare che il server SSH sia installato e configurato per l'esecuzione all'avvio.  Questo è in genere il valore predefinito.
-10. Non creare l'area di swap sul disco del sistema operativo.
+     Per impostazione predefinita targetpw # richiesta hello password dell'utente di destinazione hello radice, ovvero tutti ALL=(ALL) tutti # avviso! Usare solo insieme a "Defaults targetpw".
+9. Verificare che server SSH hello sia installato e configurato toostart in fase di avvio.  Si tratta in genere predefinito hello.
+10. Non creare lo spazio di swapping sul disco del sistema operativo hello.
     
-    L'agente Linux di Azure può configurare automaticamente l'area di swap utilizzando il disco risorse locale collegato alla VM dopo il provisioning in Azure. Si noti che il disco risorse locale è un disco *temporaneo* e potrebbe essere svuotato in seguito al deprovisioning della macchina virtuale. Dopo aver installato l'agente Linux di Azure come illustrato nel passaggio precedente, modificare i parametri seguenti in /etc/waagent.conf in modo appropriato:
+    Hello agente Linux di Azure può configurare automaticamente lo spazio di swapping utilizzando il disco di risorsa locale hello è collegato toohello VM dopo il provisioning in Azure. Si noti il disco di risorsa locale hello è un *temporaneo* del disco e può essere svuotata quando hello VM è deprovisioning. Dopo l'installazione di hello agente Linux di Azure (vedere il passaggio precedente), modificare hello seguenti parametri in /etc/waagent.conf in modo appropriato:
     
-     ResourceDisk.Format=y  ResourceDisk.Filesystem=ext4  ResourceDisk.MountPoint=/mnt/resource  ResourceDisk.EnableSwap=y  ResourceDisk.SwapSizeMB=2048    ## NOTA: da impostare laddove richiesto.
-11. Eseguire i comandi seguenti per effettuare il deprovisioning della macchina virtuale e prepararla per il provisioning in Azure:
+     ResourceDisk.Format=y ResourceDisk.Filesystem=ext4 ResourceDisk.MountPoint=/mnt/resource ResourceDisk.EnableSwap=y ResourceDisk.SwapSizeMB=&#2048; # Nota: impostare questo toowhatever è necessario toobe.
+11. Eseguire hello seguente macchina virtuale di comandi toodeprovision hello e prepararlo per il provisioning in Azure:
     
     # <a name="sudo-waagent--force--deprovision"></a>sudo waagent -force -deprovision
     # <a name="export-histsize0"></a>export HISTSIZE=0
     # <a name="logout"></a>logout
-12. Verificare che l'agente Linux di Azure venga eseguito all'avvio:
+12. Verificare hello che agente Linux di Azure viene eseguito all'avvio:
     
         # sudo systemctl enable waagent.service
-13. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il file VHD Linux è ora pronto per il caricamento in Azure.
+13. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il VHD Linux è ora pronto toobe caricato tooAzure.
 
 ## <a name="next-steps"></a>Passaggi successivi
-È ora possibile usare il disco rigido virtuale SUSE Linux per creare nuove macchine virtuali in Azure. Se è la prima volta che si carica il file VHD in Azure, vedere i passaggi 2 e 3 nell'articolo [Creazione e caricamento di un disco rigido virtuale che contiene il sistema operativo Linux](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+Si è ora pronto toouse SUSE Linux disco rigido virtuale toocreate nuove macchine virtuali in Azure. Se si tratta hello prima volta che si sta caricando tooAzure file con estensione vhd di hello, vedere i passaggi 2 e 3 in [creazione e caricamento di un disco rigido virtuale contenente il sistema operativo Linux di hello](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 

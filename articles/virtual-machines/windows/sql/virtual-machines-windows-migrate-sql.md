@@ -1,6 +1,6 @@
 ---
-title: Eseguire la migrazione di un database di SQL Server a SQL Server in una macchina virtuale di Azure | Microsoft Docs
-description: Leggere le informazioni su come eseguire la migrazione di un database utente locale a SQL Server in una macchina virtuale di Azure.
+title: aaaMigrate un tooSQL database Server SQL Server in una macchina virtuale | Documenti Microsoft
+description: Informazioni su come un utente locale toomigrate database tooSQL Server in una macchina virtuale di Azure.
 services: virtual-machines-windows
 documentationcenter: 
 author: sabotta
@@ -15,87 +15,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: carlasab
-ms.openlocfilehash: 68767534298783083a441aa295611914d0df9db0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9c7aba30304ea40796412d2ddc885f6d4a58be2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-a-sql-server-database-to-sql-server-in-an-azure-vm"></a>Eseguire la migrazione di un database di SQL Server a SQL Server in una macchina virtuale di Azure
+# <a name="migrate-a-sql-server-database-toosql-server-in-an-azure-vm"></a>Eseguire la migrazione di un tooSQL database Server SQL Server in una macchina virtuale di Azure
 
-Esistono diversi metodi per eseguire la migrazione di un database utente di SQL Server locale a SQL Server in una macchina virtuale di Azure. Questo articolo illustra brevemente vari metodi e consiglia quello più adatto ai diversi scenari.
+Esistono diversi metodi toomigrate un tooSQL di database utente di SQL Server on-premise Server in una macchina virtuale di Azure. In questo articolo verrà descrivere brevemente vari metodi e consigliabile migliore hello per vari scenari.
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
-## <a name="what-are-the-primary-migration-methods"></a>Quali sono i metodi di migrazione principali?
-I metodi di migrazione principali sono:
+## <a name="what-are-hello-primary-migration-methods"></a>Quali sono i metodi di migrazione primario hello?
+metodi di migrazione primario Hello sono:
 
-* Esecuzione del backup locale tramite la compressione e copia manuale del file di backup nella macchina virtuale di Azure
-* Esecuzione di un backup nell’URL e ripristino nella macchina virtuale di Azure dall'URL
-* Scollegamento e successiva copia dei dati e dei file di log sull’archivio BLOB di Azure, quindi collegamento a SQL Server nella macchina virtuale di Azure dall'URL
-* Conversione della macchina fisica locale a disco rigido virtuale Hyper-V, caricamento sull'archivio BLOB di Azure e successiva distribuzione come nuova macchina virtuale tramite il disco rigido virtuale caricato
+* Eseguire il backup in locale utilizzando la compressione e manualmente file di backup di copia hello in hello macchina virtuale di Azure
+* Eseguire un backup tooURL e il ripristino nella macchina virtuale di Azure dall'URL hello hello
+* Scollegare e quindi copiare hello dati e log file tooAzure archiviazione blob e quindi ricollegare tooSQL Server nella macchina virtuale di Azure dall'URL
+* Convertire fisico locale computer VHD tooHyper-V, caricare tooAzure nell'archiviazione Blob e quindi distribuire come nuova macchina virtuale con caricamento VHD
 * Spedizione del disco rigido tramite il servizio di Importazione/Esportazione di Windows
-* Se si ha una distribuzione locale di AlwaysOn, uso dell' [aggiunta guidata di una replica di Azure](../classic/sql-onprem-availability.md) per creare una replica in Azure e quindi eseguire il failover, indirizzando gli utenti all'istanza del database di Azure
-* Uso della [replica transazionale](https://msdn.microsoft.com/library/ms151176.aspx) di SQL Server per configurare l'istanza del server SQL di Azure come server di sottoscrizione e quindi disabilitare la replica, indirizzando gli utenti all'istanza del database di Azure
+* Se dispone di una distribuzione di AlwaysOn locale, utilizzare hello [Aggiungi Replica Azure](../classic/sql-onprem-availability.md) toocreate una replica in Azure e quindi il failover, verso l'istanza del database Azure toohello utenti
+* Utilizzo di SQL Server [la replica transazionale](https://msdn.microsoft.com/library/ms151176.aspx) tooconfigure hello Azure SQL Server come server di sottoscrizione dell'istanza e quindi disabilitare la replica, scegliendo l'istanza del database Azure toohello utenti
 
 > [!TIP]
-> È possibile anche usare queste tecniche per spostare database tra diverse macchine virtuali di SQL Server in Azure. Ad esempio, non esiste un modo supportato per aggiornare una macchina virtuale immagine della raccolta di SQL Server da una versione/edizione a un'altra. In questo caso si deve creare una nuova macchina virtuale di SQL Server con la nuova versione/edizione e usare una delle tecniche di migrazione descritte in questo articolo per spostare i database. 
+> È inoltre possibile utilizzare questi stessi database toomove tecniche tra macchine virtuali di SQL Server in Azure. Non è ad esempio, una macchina virtuale immagine della raccolta di SQL Server da una versione o edizione tooanother di tooupgrade metodo supportato. In questo caso, si deve creare una nuova macchina virtuale di SQL Server con hello/edizione della nuova versione e quindi usare una delle tecniche di migrazione hello in questo articolo di toomove dei database. 
 
 ## <a name="choosing-your-migration-method"></a>Scelta del metodo di migrazione
-Per prestazioni ottimali di trasferimento dei dati, eseguire la migrazione dei file del database alla macchina virtuale di Azure usando un file di backup compresso.
+Prestazioni di trasferimento ottimale, eseguire la migrazione di file di database hello in hello macchina virtuale di Azure utilizzando un file di backup compresso.
 
-Per ridurre al minimo il tempo di inattività durante il processo di migrazione del database, usare l'opzione AlwaysOn o la replica transazionale.
+tempo di inattività toominimize durante il processo di migrazione di database hello, utilizzare l'opzione AlwaysOn hello o hello la replica transazionale.
 
-Se non è possibile usare i metodi sopra indicati, eseguire manualmente la migrazione del database. Se si adotta questo metodo, per prima cosa si esegue il backup del database, quindi si copia il backup del database in Azure e infine si esegue un ripristino del database. In alternativa, è possibile copiare i file del database in Azure e collegarli. Esistono diversi metodi che consentono di eseguire questo processo di migrazione manuale di un database in una macchina virtuale di Azure.
+Se non è possibile toouse hello sopra metodi, eseguire manualmente la migrazione del database. In questo modo, verranno in genere iniziano con un backup del database seguito da una copia di backup del database hello in Azure e quindi eseguire un ripristino del database. È possibile anche copiare i file di database hello stessi in Azure e quindi collegarli. Esistono diversi metodi che consentono di eseguire questo processo di migrazione manuale di un database in una macchina virtuale di Azure.
 
 > [!NOTE]
-> Durante l'aggiornamento a SQL Server 2014 o SQL Server 2016 da versioni precedenti di SQL Server, è necessario considerare se sono necessarie modifiche. È consigliabile prendere in considerazione tutte le dipendenze sulle funzionalità non supportate dalla nuova versione di SQL Server come parte del progetto di migrazione. Per altre informazioni sulle edizioni e sugli scenari supportati, vedere [Aggiornamento a SQL Server](https://msdn.microsoft.com/library/bb677622.aspx).
+> Quando si esegue l'aggiornamento da versioni precedenti di SQL Server tooSQL Server 2014 o SQL Server 2016, è necessario considerare se sono necessarie modifiche. È consigliabile indirizzare tutte le dipendenze sulle funzionalità non supportate dalla nuova versione di hello di SQL Server come parte del progetto di migrazione. Per ulteriori informazioni sulle edizioni supportata di hello e sugli scenari, vedere [aggiornamento tooSQL Server](https://msdn.microsoft.com/library/bb677622.aspx).
 
-Nella tabella seguente sono elencati tutti i principali metodi di migrazione e viene illustrato quando l'utilizzo di ciascun metodo è più appropriato.
+Hello nella tabella seguente elenca ogni metodo di migrazione primario hello e viene descritto quando utilizzare hello di ogni metodo è più appropriato.
 
 | Metodo | Versione del database di origine | Versione del database di destinazione | Vincolo di dimensioni del backup del database di origine | Note |
 | --- | --- | --- | --- | --- |
-| [Esecuzione del backup locale tramite la compressione e copia manuale del file di backup nella macchina virtuale di Azure](#backup-and-restore) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) | È una tecnica molto semplice e ben collaudata per spostare i database tra più computer. |
-| [Esecuzione di un backup nell’URL e ripristino nella macchina virtuale di Azure dall'URL](#backup-to-url-and-restore) |SQL Server 2012 SP1 CU2 o versione successiva |SQL Server 2012 SP1 CU2 o versione successiva |< 12.8 TB per SQL Server 2016, in caso contrario < 1 TB | Questo è un altro metodo per spostare il file di backup nella macchina virtuale usando l'archiviazione di Azure. |
-| [Scollegamento e successiva copia dei dati e dei file di log sull’archivio BLOB di Azure, quindi collegamento a SQL Server nella macchina virtuale di Azure dall'URL](#detach-and-attach-from-url) |SQL Server 2005 o versione successiva |SQL Server 2014 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Usare questo metodo quando si prevede di [archiviare i file tramite il servizio di archiviazione BLOB di Azure](https://msdn.microsoft.com/library/dn385720.aspx) e di collegarli a SQL Server in esecuzione su una macchina virtuale di Azure, in particolare con database di grandi dimensioni. |
-| [Conversione della macchina locale a dischi rigidi virtuali Hyper-V, caricamento sull'archivio BLOB di Azure e successiva distribuzione di una nuova macchina virtuale tramite il disco rigido virtuale caricato](#convert-to-vm-and-upload-to-url-and-deploy-as-new-vm) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Usare per la [propria licenza di SQL Server](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md), per la migrazione di un database che verrà eseguito su una versione precedente di SQL Server o per la migrazione combinata dei database di sistema e utente nell'ambito della migrazione di database dipendenti da altri database utente e/o di sistema. |
-| [Spedizione del disco rigido tramite il servizio di Importazione/Esportazione di Windows](#ship-hard-drive) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Usare il [servizio di importazione/esportazione di Windows](../../../storage/common/storage-import-export-service.md) quando il metodo della copia manuale è troppo lento, ad esempio con database di grandi dimensioni |
-| [Uso della procedura guidata per l'aggiunta della replica di Azure](../classic/sql-onprem-availability.md) |SQL Server 2012 o versione successiva |SQL Server 2012 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Riduce al minimo il tempo di inattività; da usare quando si ha una distribuzione locale di AlwaysOn |
-| [Uso della replica transazionale di SQL Server](https://msdn.microsoft.com/library/ms151176.aspx) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Da usare quando è necessario ridurre al minimo il tempo di inattività e si ha una distribuzione locale di AlwaysOn |
+| [Eseguire il backup in locale utilizzando la compressione e manualmente file di backup di copia hello in hello macchina virtuale di Azure](#backup-and-restore) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) | È una tecnica molto semplice e ben collaudata per spostare i database tra più computer. |
+| [Eseguire un backup tooURL e il ripristino nella macchina virtuale di Azure dall'URL hello hello](#backup-to-url-and-restore) |SQL Server 2012 SP1 CU2 o versione successiva |SQL Server 2012 SP1 CU2 o versione successiva |< 12.8 TB per SQL Server 2016, in caso contrario < 1 TB | Questo metodo è solo un altro modo toomove hello file di backup toohello VM utilizzando l'archiviazione di Azure. |
+| [Scollegare e quindi copiare hello dati e log file tooAzure archiviazione blob e quindi ricollegare tooSQL Server nella macchina virtuale di Azure dall'URL](#detach-and-attach-from-url) |SQL Server 2005 o versione successiva |SQL Server 2014 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Utilizzare questo metodo quando si pianifica troppo[archiviare questi file tramite il servizio di archiviazione Blob di Azure hello](https://msdn.microsoft.com/library/dn385720.aspx) e collegarli tooSQL Server in esecuzione in una macchina virtuale di Azure, in particolare con i database di dimensioni molto grandi |
+| [Converti locale computer i dischi rigidi virtuali tooHyper-V, caricare tooAzure nell'archiviazione Blob e quindi distribuire una nuova macchina virtuale con disco rigido virtuale caricato](#convert-to-vm-and-upload-to-url-and-deploy-as-new-vm) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Quando utilizzare [riportare la propria licenza di SQL Server](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md), durante la migrazione di un database a cui verrà eseguita in una versione precedente di SQL Server o quando la migrazione dei database di sistema e utente come parte di hello migrazione del database dipende da altri i database utente e/o i database di sistema. |
+| [Spedizione del disco rigido tramite il servizio di Importazione/Esportazione di Windows](#ship-hard-drive) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Hello utilizzare [Windows servizio di importazione/esportazione](../../../storage/common/storage-import-export-service.md) quando il metodo di copia manuale è troppo lento, ad esempio con i database di dimensioni molto grandi |
+| [Utilizzare hello Aggiungi Replica Azure](../classic/sql-onprem-availability.md) |SQL Server 2012 o versione successiva |SQL Server 2012 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Riduce al minimo il tempo di inattività; da usare quando si ha una distribuzione locale di AlwaysOn |
+| [Uso della replica transazionale di SQL Server](https://msdn.microsoft.com/library/ms151176.aspx) |SQL Server 2005 o versione successiva |SQL Server 2005 o versione successiva |[Limite di archiviazione della macchina virtuale di Azure](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |Utilizzare questa opzione quando è necessario toominimize i tempi di inattività e non dispone di una distribuzione locale di AlwaysOn |
 
 ## <a name="backup-and-restore"></a>Backup e ripristino
-Eseguire il backup del database con la compressione, copiare il backup nella macchina virtuale e ripristinare il database. Se il file di backup è superiore a 1 TB, è necessario eseguirne lo striping perché le dimensioni massime del disco di una macchina virtuale sono pari a 1 TB. Per eseguire la migrazione di un database utente tramite il metodo manuale, attenersi ai passaggi generali seguenti:
+Eseguire il backup del database con la compressione, copiare hello backup toohello macchina virtuale e quindi ripristinare il database di hello. Se il file di backup è maggiore di 1 TB, è necessario eseguire lo striping perché hello la dimensione massima di un disco di macchina virtuale è di 1 TB. Utilizzare hello seguendo i passaggi generali toomigrate un database utente utilizzando il metodo manuale:
 
-1. Eseguire un backup completo del database su una posizione locale.
-2. Creare o caricare una macchina virtuale con la versione di SQL Server desiderata.
-3. Configurare la connettività in base ai requisiti specifici. Vedere [Connettersi a una macchina virtuale di SQL Server in Azure (Resource Manager)](virtual-machines-windows-sql-connect.md).
-4. Copiare i file di backup sulla macchina virtuale utilizzando il desktop remoto, Esplora risorse o il comando di copia da un prompt dei comandi.
+1. Eseguire un percorso locale di tooan backup completo del database.
+2. Creare o caricare una macchina virtuale con la versione di hello di SQL Server desiderato.
+3. Configurare la connettività in base ai requisiti specifici. Vedere [connessione macchina virtuale di SQL Server in Azure (gestione delle risorse) tooa](virtual-machines-windows-sql-connect.md).
+4. Copiare il tooyour di file di backup VM comando remote desktop, in Esplora risorse o hello copia da un prompt dei comandi.
 
-## <a name="backup-to-url-and-restore"></a>Backup nell’URL e ripristino
-Invece di eseguire il backup in un file locale è possibile usare il [backup nell'URL](https://msdn.microsoft.com/library/dn435916.aspx) e quindi eseguire il ripristino dall'URL alla macchina virtuale. Con SQL Server 2016, i set di backup con striping sono supportati, sono consigliati per le prestazioni e necessari per superare i limiti di dimensione per BLOB. Per i database di dimensioni molto grandi è consigliabile usare il [servizio di importazione/esportazione di Windows](../../../storage/common/storage-import-export-service.md) .
+## <a name="backup-toourl-and-restore"></a>TooURL backup e ripristino
+Invece il backup dei file locale tooa, è possibile usare hello [tooURL backup](https://msdn.microsoft.com/library/dn435916.aspx) e quindi ripristinare dall'URL toohello macchina virtuale. Con SQL Server 2016, il set di backup con striping è supportato, è consigliato per le prestazioni e necessari limiti delle dimensioni hello tooexceed per ogni blob. Per i database di dimensioni molto grandi, hello l'uso di hello [Windows servizio di importazione/esportazione](../../../storage/common/storage-import-export-service.md) è consigliato.
 
 ## <a name="detach-and-attach-from-url"></a>Rimuovere e allegare dall'URL
-Rimuovere il database e i file di log e trasferirli nell'[archivio BLOB di Azure](https://msdn.microsoft.com/library/dn385720.aspx). Allegare il database dall'URL nella macchina virtuale di Azure. Usare questa opzione se si desidera che i file del database fisico risiedano nell'archivio BLOB. Ciò può risultare utile per i database di dimensioni molto grandi. Per eseguire la migrazione di un database utente tramite il metodo manuale, attenersi ai passaggi generali seguenti:
+I file di database e log di scollegamento e li trasferiscono troppo[archiviazione Blob di Azure](https://msdn.microsoft.com/library/dn385720.aspx). Quindi, collegare il database di hello dall'URL hello nella macchina virtuale di Azure. Utilizzare questo metodo se si desidera tooreside i file di database fisico hello nell'archiviazione Blob. Ciò può risultare utile per i database di dimensioni molto grandi. Utilizzare hello seguendo i passaggi generali toomigrate un database utente utilizzando il metodo manuale:
 
-1. Scollegare i file del database dall'istanza del database locale.
-2. Copiare i file del database scollegati nell'archivio BLOB di Azure usando l' [utilità della riga di comando AZCopy](../../../storage/common/storage-use-azcopy.md).
-3. Collegare i file del database dall'URL di Azure all'istanza di SQL Server nella macchina virtuale di Azure.
+1. Scollegare il file di database hello dall'istanza del database locale hello.
+2. Copiare i file del database scollegato hello nell'archiviazione blob di Azure utilizzando hello [utilità della riga di comando di AZCopy](../../../storage/common/storage-use-azcopy.md).
+3. Collegare i file del database hello dall'istanza di SQL Server hello Azure URL toohello in hello macchina virtuale di Azure.
 
-## <a name="convert-to-vm-and-upload-to-url-and-deploy-as-new-vm"></a>Conversione alla macchina virtuale, caricamento nell’URL e distribuzione come nuova macchina virtuale
-Utilizzare questo metodo per eseguire la migrazione di tutti i database di sistema e utente in un'istanza di SQL Server locale alla macchina virtuale Azure. Per eseguire la migrazione di un'intera istanza di SQL Server utilizzando il metodo manuale, attenersi ai passaggi generali seguenti:
+## <a name="convert-toovm-and-upload-toourl-and-deploy-as-new-vm"></a>Convertire tooVM e tooURL di caricare e distribuire come nuova macchina virtuale
+Utilizzare questo toomigrate metodo tutti i database utente e di sistema in una macchina virtuale di tooAzure istanza di SQL Server di on-premise. Utilizzare hello seguendo i passaggi generali toomigrate un'intera istanza di SQL Server utilizzando il metodo manuale:
 
-1. Convertire le macchine fisiche o virtuali in dischi rigidi virtuali Hyper-V usando [Microsoft Virtual Machine Converter](https://technet.microsoft.com/library/dn874008(v=ws.11).aspx).
-2. Caricare i file dei dischi rigidi virtuali su Archiviazione di Azure usando il [cmdlet Add-AzureVHD](https://msdn.microsoft.com/library/windowsazure/dn495173.aspx).
-3. Distribuire una nuova macchina virtuale utilizzando il disco rigido virtuale caricato.
+1. Converti fisico o virtuale macchine dischi rigidi virtuali tooHyper-V utilizzando [Microsoft Virtual Machine Converter](https://technet.microsoft.com/library/dn874008(v=ws.11).aspx).
+2. Caricare il file di disco rigido virtuale tooAzure archiviazione usando hello [cmdlet Add-AzureVHD](https://msdn.microsoft.com/library/windowsazure/dn495173.aspx).
+3. Distribuire una nuova macchina virtuale tramite hello caricato disco rigido virtuale.
 
 > [!NOTE]
-> Per eseguire la migrazione di un'intera applicazione, è consigliabile usare [Azure Site Recovery](../../../site-recovery/site-recovery-overview.md).
+> toomigrate un'intera applicazione, è consigliabile utilizzare [Azure Site Recovery](../../../site-recovery/site-recovery-overview.md)].
 
 ## <a name="ship-hard-drive"></a>Spedizione del disco rigido
-Usare il [metodo del servizio di importazione/esportazione di Windows](../../../storage/common/storage-import-export-service.md) per trasferire grandi quantità di dati di file sull'archivio BLOB di Azure in situazioni in cui il caricamento in rete è eccessivamente costoso o non è possibile. Con questo servizio, è possibile inviare uno o più dischi rigidi contenenti tali dati a un datacenter di Azure, dove i dati verranno caricati sull'account di archiviazione.
+Hello utilizzare [metodo del servizio di importazione/esportazione Windows](../../../storage/common/storage-import-export-service.md) tootransfer grandi quantità di dati di file tooAzure nell'archiviazione Blob in situazioni in cui caricamento hello rete viene impedito perché costoso o difficile da effettuare. Con questo servizio, si invia uno o più unità disco rigido contenente tale dati tooan data center di Azure, in cui i dati verranno caricati tooyour account di archiviazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni sull'esecuzione di SQL Server in Macchine virtuali di Azure, vedere [Panoramica di SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-server-iaas-overview.md).
 
-Per istruzioni sulla creazione di una macchina virtuale di SQL Server di Azure da un'immagine acquisita, vedere [Tips & Tricks on 'cloning' Azure SQL virtual machines from captured images](https://blogs.msdn.microsoft.com/psssql/2016/07/06/tips-tricks-on-cloning-azure-sql-virtual-machines-from-captured-images/) (Suggerimenti per clonare macchine virtuali di SQL Server di Azure da immagini acquisite) nel blog dei tecnici di SQL Server CSS.
+Per istruzioni sulla creazione di una macchina virtuale di Azure SQL Server da un'immagine acquisita, vedere [suggerimenti sulla clonazione macchine virtuali di SQL Azure da immagini acquisite](https://blogs.msdn.microsoft.com/psssql/2016/07/06/tips-tricks-on-cloning-azure-sql-virtual-machines-from-captured-images/) sul blog di ingegneri di SQL Server hello.
 

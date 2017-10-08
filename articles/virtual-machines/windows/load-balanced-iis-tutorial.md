@@ -1,6 +1,6 @@
 ---
-title: "Esercitazione: Creare un'applicazione a disponibilità elevata nelle VM di Azure | Microsoft Docs"
-description: "Informazioni su come creare un'applicazione sicura e a disponibilità elevata in tre macchine virtuali Windows con un servizio di bilanciamento del carico in Azure"
+title: "aaaTutorial - compilazione di applicazioni a disponibilità elevata in macchine virtuali di Azure | Documenti Microsoft"
+description: "Informazioni su come toocreate un'applicazione a elevata disponibilità e sicura tra tre macchine virtuali di Windows con un bilanciamento del carico in Azure"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: davidmu1
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 03/30/2017
 ms.author: davidmu
-ms.openlocfilehash: 4b8690a11ec0e711782a112622e1193c24292289
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9eff96be4f3999651c4108f0334e4eaa1a39c0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-load-balanced-highly-available-application-on-windows-virtual-machines-in-azure"></a>Creare un'applicazione con un servizio di bilanciamento del carico a disponibilità elevata in macchine virtuali Windows in Azure
 
-In questa esercitazione viene creata un'applicazione a disponibilità elevata resiliente agli eventi di manutenzione. L'app usa un servizio di bilanciamento del carico, un set di disponibilità e tre macchine virtuali (VM) Windows. Questa esercitazione installa IIS ma può essere usata per distribuire un diverso framework applicazione sfruttando le stesse linee guida e gli stessi componenti a disponibilità elevata. 
+In questa esercitazione è creare un'applicazione a disponibilità elevata resilienti toomaintenance eventi. app Hello utilizza un bilanciamento del carico, un set di disponibilità e tre macchine virtuali di Windows (VM). In questa esercitazione viene installato IIS, sebbene sia possibile utilizzare questa esercitazione toodeploy un framework di applicazioni diverso utilizzando hello linee guida e i componenti di un'elevata disponibilità stesso. 
 
 ## <a name="step-1---azure-prerequisites"></a>Passaggio 1: Prerequisiti di Azure
 
-Per completare questa esercitazione, verificare di aver installato l'ultima versione del modulo [Azure PowerShell](/powershell/azure/overview).
+toocomplete questa esercitazione, assicurarsi di avere installato più recente hello [Azure PowerShell](/powershell/azure/overview) modulo.
 
-Accedere prima alla sottoscrizione di Azure con il comando Login-AzureRmAccount e seguire le istruzioni visualizzate.
+Innanzitutto, accedi tooyour sottoscrizione di Azure con il comando account di accesso AzureRmAccount hello e seguire hello le direzioni.
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. Per poter creare qualsiasi altra risorsa di Azure, è necessario prima creare un gruppo di risorse con [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). L'esempio seguente crea un gruppo di risorse denominato `myResourceGroup` nell'area `westeurope`: 
+Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. Prima di poter creare altre risorse di Azure, è necessario toocreate un gruppo di risorse con [New AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). esempio Hello crea un gruppo di risorse denominato `myResourceGroup` in hello `westeurope` area: 
 
 ```powershell
 New-AzureRmResourceGroup -ResourceGroupName myResourceGroup -Location westeurope
@@ -43,9 +43,9 @@ New-AzureRmResourceGroup -ResourceGroupName myResourceGroup -Location westeurope
 
 ## <a name="step-2---create-availability-set"></a>Passaggio 2: Creare un set di disponibilità
 
-Le macchine virtuali possono essere create in domini logici di errore e di aggiornamento. Ogni dominio logico rappresenta una parte dell'hardware del data center di Azure sottostante. Quando si creano due o più VM, le risorse di calcolo e di archiviazione vengono distribuite in tali domini. Questa distribuzione assicura la disponibilità dell'app in caso di manutenzione di un componente hardware. I set di disponibilità consentono di definire questi domini logici di errore e di aggiornamento.
+Le macchine virtuali possono essere create in domini logici di errore e di aggiornamento. Ogni dominio logico rappresenta una parte dell'hardware nel Data Center di Azure sottostante hello. Quando si creano due o più VM, le risorse di calcolo e di archiviazione vengono distribuite in tali domini. Questa distribuzione mantiene la disponibilità di hello dell'app se un componente hardware necessità di manutenzione. I set di disponibilità consentono di definire questi domini logici di errore e di aggiornamento.
 
-Creare un set di disponibilità con [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). Nell'esempio seguente viene creato un set di disponibilità chiamato `myAvailabilitySet`:
+Creare un set di disponibilità con [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). esempio Hello crea un set denominato di disponibilità `myAvailabilitySet`:
 
 ```powershell
 $availabilitySet = New-AzureRmAvailabilitySet `
@@ -59,11 +59,11 @@ $availabilitySet = New-AzureRmAvailabilitySet `
 
 ## <a name="step-3---create-load-balancer"></a>Passaggio 3: Creare il servizio di bilanciamento del carico
 
-Un servizio di bilanciamento del carico di Azure distribuisce il traffico tra un set di VM definite usando regole di bilanciamento del carico. Un probe di integrità monitora una determinata porta in ogni VM e distribuisce il traffico solo a una VM operativa.
+Un servizio di bilanciamento del carico di Azure distribuisce il traffico tra un set di VM definite usando regole di bilanciamento del carico. Un probe di integrità esegue il monitoraggio di una determinata porta in ogni macchina virtuale e vengono distribuiti solo il traffico tooan operativo VM.
 
 ### <a name="create-public-ip-address"></a>Creare un indirizzo IP pubblico
 
-Per accedere all'app in Internet, assegnare un indirizzo IP pubblico al servizio di bilanciamento del carico. Creare un indirizzo IP pubblico con [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress). L'esempio seguente crea un indirizzo IP pubblico denominato `myPublicIP`:
+tooaccess l'app in hello Internet, assegnare un bilanciamento del carico toohello indirizzo IP pubblico. Creare un indirizzo IP pubblico con [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress). esempio Hello crea un indirizzo IP pubblico denominato `myPublicIP`:
 
 ```powershell
 $pip = New-AzureRmPublicIpAddress `
@@ -75,19 +75,19 @@ $pip = New-AzureRmPublicIpAddress `
 
 ### <a name="create-load-balancer"></a>Creare un servizio di bilanciamento del carico
 
-Creare un indirizzo IP di front-end con [New-AzureRmLoadBalancerFrontendIpConfig](/powershell/module/azurerm.network/new-azurermloadbalancerfrontendipconfig). L'esempio seguente crea un indirizzo IP front-end denominato `myFrontEndPool`: 
+Creare un indirizzo IP di front-end con [New-AzureRmLoadBalancerFrontendIpConfig](/powershell/module/azurerm.network/new-azurermloadbalancerfrontendipconfig). esempio Hello crea un indirizzo IP di front-end denominato `myFrontEndPool`: 
 
 ```powershell
 $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name myFrontEndPool -PublicIpAddress $pip
 ```
 
-Creare un pool di indirizzi back-end con [New-AzureRmLoadBalancerBackendAddressPoolConfig](/powershell/module/azurerm.network/new-azurermloadbalancerbackendaddresspoolconfig). L'esempio seguente crea un pool di indirizzi IP back-end denominato `myBackEndPool`:
+Creare un pool di indirizzi back-end con [New-AzureRmLoadBalancerBackendAddressPoolConfig](/powershell/module/azurerm.network/new-azurermloadbalancerbackendaddresspoolconfig). esempio Hello crea un pool di indirizzi back-end denominato `myBackEndPool`:
 
 ```powershell
 $backendPool = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name myBackEndPool
 ```
 
-Creare il servizio di bilanciamento del carico con [New-AzureRmLoadBalancer](/powershell/module/azurerm.network/new-azurermloadbalancer). L'esempio seguente crea un servizio di bilanciamento del carico denominato `myLoadBalancer` con l'indirizzo `myPublicIP`:
+A questo punto, creare bilanciamento del carico hello con [New AzureRmLoadBalancer](/powershell/module/azurerm.network/new-azurermloadbalancer). esempio Hello crea un bilanciamento del carico denominato `myLoadBalancer` utilizzando hello `myPublicIP` indirizzo:
 
 ```powershell
 $lb = New-AzureRmLoadBalancer `
@@ -100,9 +100,9 @@ $lb = New-AzureRmLoadBalancer `
 
 ### <a name="create-health-probe"></a>Creare un probe integrità
 
-Per consentire al servizio di bilanciamento del carico di monitorare lo stato dell'app, si usa un probe di integrità. Il probe di integrità aggiunge o rimuove in modo dinamico le VM nella rotazione del servizio di bilanciamento del carico in base alla rispettiva risposta ai controlli di integrità. Per impostazione predefinita, una VM viene rimossa dalla distribuzione del servizio di bilanciamento del carico dopo due errori consecutivi a intervalli di 15 secondi.
+tooallow hello bilanciamento toomonitor hello stato di caricamento dell'app, utilizzare un probe di integrità. probe di integrità Hello dinamicamente aggiunge o rimuove le macchine virtuali dalla rotazione di bilanciamento del carico hello in base alle loro controlli toohealth di risposta. Per impostazione predefinita, una macchina virtuale viene rimosso dalla distribuzione del servizio di bilanciamento del carico hello dopo due tentativi consecutivi non riusciti a intervalli di 15 secondi.
 
-Creare un probe integrità con [Add-AzureRmLoadBalancerProbeConfig](/powershell/module/azurerm.network/add-azurermloadbalancerprobeconfig). L'esempio seguente crea un probe di integrità denominato `myHealthProbe` che monitora ogni VM:
+Creare un probe integrità con [Add-AzureRmLoadBalancerProbeConfig](/powershell/module/azurerm.network/add-azurermloadbalancerprobeconfig). esempio Hello crea un probe di integrità denominato `myHealthProbe` che consente di monitorare ogni macchina virtuale:
 
 ```powershell
 Add-AzureRmLoadBalancerProbeConfig -Name myHealthProbe `
@@ -115,9 +115,9 @@ Add-AzureRmLoadBalancerProbeConfig -Name myHealthProbe `
 
 ### <a name="create-load-balancer-rule"></a>Creare le regole del bilanciamento del carico
 
-Una regola di bilanciamento del carico consente di definire come il traffico verrà distribuito alle VM.
+Una regola di bilanciamento del carico è toodefine utilizzato come il traffico è toohello distribuita le macchine virtuali.
 
-Creare una regola di bilanciamento del carico con [Add-AzureRmLoadBalancerRuleConfig](/powershell/module/azurerm.network/add-azurermloadbalancerruleconfig). L'esempio seguente crea una regola di bilanciamento del carico denominata `myLoadBalancerRule` e bilancia il traffico sulla porta `80`:
+Creare una regola di bilanciamento del carico con [Add-AzureRmLoadBalancerRuleConfig](/powershell/module/azurerm.network/add-azurermloadbalancerruleconfig). esempio Hello crea una regola di bilanciamento del carico denominata `myLoadBalancerRule` e consente di bilanciare il traffico sulla porta `80`:
 
 ```powershell
 Add-AzureRmLoadBalancerRuleConfig -Name myLoadBalancerRule `
@@ -129,7 +129,7 @@ Add-AzureRmLoadBalancerRuleConfig -Name myLoadBalancerRule `
   -BackendPort 80
 ```
 
-Creare il servizio di bilanciamento del carico con [Set-AzureRmLoadBalancer](/powershell/module/azurerm.network/set-azurermloadbalancer):
+Aggiorna bilanciamento del carico hello con [Set AzureRmLoadBalancer](/powershell/module/azurerm.network/set-azurermloadbalancer):
 
 ```powershell
 Set-AzureRmLoadBalancer -LoadBalancer $lb
@@ -137,17 +137,17 @@ Set-AzureRmLoadBalancer -LoadBalancer $lb
 
 ## <a name="step-4---configure-networking"></a>Passaggio 4: Configurare la rete
 
-Ogni VM ha una o più schede di interfaccia di rete (NIC) virtuali per la connessione a una rete virtuale. Tale rete virtuale è protetta in modo da filtrare il traffico in base alle regole di accesso definite.
+Ogni macchina virtuale ha uno o più virtuale schede di rete (NIC) che si connettono tooa di rete virtuale. Questa rete virtuale è protetta toofilter traffico in base alle regole di accesso definito.
 
 ### <a name="create-virtual-network"></a>Creare una rete virtuale
 
-Per prima cosa, configurare una subnet con [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig). Nell'esempio seguente viene creata una subnet denominata `mySubnet`:
+Per prima cosa, configurare una subnet con [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig). esempio Hello crea una subnet denominata `mySubnet`:
 
 ```powershell
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name mySubnet -AddressPrefix 192.168.1.0/24
 ```
 
-Per fornire la connettività di rete alle macchine virtuali, creare una rete virtuale con [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork). L'esempio seguente crea una rete virtuale denominata `myVnet` con `mySubnet`:
+tooyour di connettività di rete tooprovide le macchine virtuali, creare una rete virtuale con [New AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork). esempio Hello crea una rete virtuale denominata `myVnet` con `mySubnet`:
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork `
@@ -162,7 +162,7 @@ $vnet = New-AzureRmVirtualNetwork `
 
 Un [gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md) di Azure consente di controllare il traffico in ingresso e in uscita per una o più macchine virtuali. Le regole di un gruppo di sicurezza di rete consentono o impediscono il traffico di rete su una porta specifica o un intervallo di porte. Queste regole possono includere un prefisso dell'indirizzo di origine, in modo che solo il traffico proveniente da un'origine specificata possa comunicare con una macchina virtuale.
 
-Per consentire al traffico Web di raggiungere l'app, creare una regola del gruppo di sicurezza di rete con [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig). L'esempio seguente crea una regola del gruppo di sicurezza di rete denominata `myNetworkSecurityGroupRule`:
+tooallow web tooreach traffico l'app, creare una regola gruppo di sicurezza di rete con [New AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig). esempio Hello crea una regola di gruppo di sicurezza di rete denominata `myNetworkSecurityGroupRule`:
 
 ```powershell
 $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
@@ -177,7 +177,7 @@ $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
   -Access Allow
 ```
 
-Creare un gruppo di sicurezza di rete con [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup). L'esempio seguente crea un gruppo di sicurezza di rete denominato `myNetworkSecurityGroup`:
+Creare un gruppo di sicurezza di rete con [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup). esempio Hello crea un gruppo denominato `myNetworkSecurityGroup`:
 
 ```powershell
 $nsg = New-AzureRmNetworkSecurityGroup `
@@ -187,7 +187,7 @@ $nsg = New-AzureRmNetworkSecurityGroup `
   -SecurityRules $nsgRule
 ```
 
-Aggiungere il gruppo di sicurezza di rete alla subnet con [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig):
+Aggiungi subnet hello rete sicurezza gruppo toohello con [Set AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig):
 
 ```powershell
 Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet `
@@ -196,7 +196,7 @@ Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet `
   -AddressPrefix 192.168.1.0/24
 ```
 
-Aggiornare la rete virtuale con [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork):
+Rete virtuale hello di Update con [Set AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork):
 
 ```powershell
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -204,9 +204,9 @@ Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 ### <a name="create-virtual-network-interface-cards"></a>Creare le schede di interfaccia di rete virtuali
 
-Per il funzionamento dei servizi di bilanciamento del carico viene usata la risorsa NIC virtuale anziché la VM effettiva. La scheda di interfaccia di rete virtuale è connessa al servizio di bilanciamento del carico e quindi collegata a una VM.
+Caricare una funzione di bilanciamento del carico con risorse di interfaccia di rete virtuale hello anziché hello VM effettivo. Hello NIC virtuale è connessa toohello bilanciamento del carico e quindi collegato tooa macchina virtuale.
 
-Creare una scheda di interfaccia di rete virtuale con [New AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface). L'esempio seguente crea tre schede di interfaccia di rete virtuali, una per ogni VM creata per l'app nei passaggi successivi:
+Creare una scheda di interfaccia di rete virtuale con [New AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface). Hello esempio crea tre schede di rete virtuale. (Una scheda di rete virtuale per ogni macchina virtuale creato per l'app in hello seguendo i passaggi):
 
 
 ```powershell
@@ -223,15 +223,15 @@ for ($i=1; $i -le 3; $i++)
 
 ## <a name="step-5---create-virtual-machines"></a>Passaggio 5 - Creare le macchine virtuali
 
-Dopo aver implementato tutti i componenti sottostanti, è possibile creare VM a disponibilità elevata per eseguire l'app. 
+Con hello tutti i componenti sul posto sottostante, è ora possibile creare toorun macchine virtuali a disponibilità elevata dell'app. 
 
-Ottenere il nome utente e la password necessari per l'account amministratore nella macchina virtuale con [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
+Ottenere hello username e password necessari per l'account di amministratore hello nella macchina virtuale hello con [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
 
 ```powershell
 $cred = Get-Credential
 ```
 
-Creare le macchine virtuali con [New-AzureRmVMConfig](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/new-azurermvmconfig), [Set-AzureRmVMOperatingSystem](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/set-azurermvmoperatingsystem), [Set-AzureRmVMSourceImage](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/set-azurermvmsourceimage), [Set-AzureRmVMOSDisk](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/set-azurermvmosdisk), [Add-AzureRmVMNetworkInterface](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/add-azurermvmnetworkinterface) e [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). L'esempio seguente crea tre macchine virtuali:
+Creare le macchine virtuali hello con [New AzureRmVMConfig](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/new-azurermvmconfig), [Set AzureRmVMOperatingSystem](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/set-azurermvmoperatingsystem), [Set AzureRmVMSourceImage](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/set-azurermvmsourceimage), [Set-AzureRmVMOSDisk](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/set-azurermvmosdisk), [AzureRmVMNetworkInterface aggiungere](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.8.0/add-azurermvmnetworkinterface), e [nuova AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). Hello seguente esempio crea tre macchine virtuali:
 
 ```powershell
 for ($i=1; $i -le 3; $i++)
@@ -247,13 +247,13 @@ for ($i=1; $i -le 3; $i++)
 
 ```
 
-La creazione e la configurazione di tutte e tre le macchine virtuali richiedono vari minuti. Il probe di integrità del servizio di bilanciamento del carico rileva quando l'app è in esecuzione in ogni VM. Quando l'app è in esecuzione, la regola di bilanciamento del carico inizia a distribuire il traffico.
+Accetta diversi minuti toocreate e configurare tutte le tre macchine virtuali. Hello probe di integrità di bilanciamento del carico rileva automaticamente quando l'applicazione hello è in esecuzione in ogni macchina virtuale. Dopo l'applicazione hello è in esecuzione, regola di bilanciamento del carico hello avvia toodistribute traffico.
 
-### <a name="install-the-app"></a>Installare l'app 
+### <a name="install-hello-app"></a>Installare l'applicazione hello 
 
-Le estensioni delle macchine virtuali di Azure vengono usate per automatizzare le attività di configurazione delle macchine virtuali, ad esempio l'installazione di applicazioni e la configurazione del sistema operativo. L'[estensione personalizzata dello script per Windows](./../virtual-machines-windows-extensions-customscript.md) viene usata per eseguire qualsiasi script PowerShell in una macchina virtuale. Lo script può essere salvato nell'archiviazione di Azure, in qualsiasi endpoint HTTP accessibile o incorporato nella configurazione dell'estensione dello script personalizzata. Quando si usa l'estensione dello script personalizzata, l'agente VM di Azure gestisce l'esecuzione dello script.
+Le estensioni di macchina virtuale di Azure sono attività di configurazione macchina virtuale tooautomate utilizzato, ad esempio l'installazione di applicazioni e la configurazione del sistema operativo hello. Hello [estensione script personalizzato per Windows](./../virtual-machines-windows-extensions-customscript.md) è toorun usato qualsiasi script di PowerShell nella macchina virtuale hello. script Hello può essere archiviato in archiviazione di Azure, qualsiasi endpoint HTTP accessibile, o incorporato in configurazione dell'estensione script personalizzata hello. Quando si utilizza l'estensione script personalizzata hello, l'agente VM di Azure hello gestisce l'esecuzione dello script hello.
 
-Usare [AzureRmVMExtension Set](/powershell/module/azurerm.compute/set-azurermvmextension) per installare l'estensione dello script personalizzata. L'estensione esegue `powershell Add-WindowsFeature Web-Server` per l'installazione del server Web IIS:
+Utilizzare [Set AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) tooinstall hello un'estensione personalizzata. Hello estensione esecuzioni `powershell Add-WindowsFeature Web-Server` server Web IIS di hello tooinstall:
 
 ```powershell
 for ($i=1; $i -le 3; $i++)
@@ -271,59 +271,59 @@ for ($i=1; $i -le 3; $i++)
 
 ### <a name="test-your-app"></a>Test dell'app
 
-Ottenere l'indirizzo IP pubblico del servizio di bilanciamento del carico con [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). L'esempio seguente ottiene l'indirizzo IP `myPublicIP` creato in precedenza:
+Ottenere l'indirizzo IP pubblico di hello del servizio di bilanciamento del carico con [Get AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). esempio Hello Ottiene hello di indirizzo IP per `myPublicIP` creato in precedenza:
 
 ```powershell
 Get-AzureRmPublicIPAddress -ResourceGroupName myResourceGroup -Name myPublicIP | select IpAddress
 ```
 
-Immettere l'indirizzo IP pubblico in un Web browser. Dopo aver aggiunto la regola del gruppo di sicurezza di rete, viene visualizzato il sito Web IIS predefinito. 
+Immettere l'indirizzo IP pubblico hello nel browser web tooa. Con hello NSG regola, viene visualizzato il sito Web IIS predefinito hello. 
 
 ![Sito IIS predefinito](media/load-balanced-iis-tutorial/iis.png)
 
 ## <a name="step-6--management-tasks"></a>Passaggio 6 - Attività di gestione
 
-Potrebbe essere necessario eseguire attività di manutenzione sulle VM che eseguono l'app, ad esempio per installare aggiornamenti del sistema operativo, oppure aggiungere altre VM per gestire un aumento del traffico verso l'app. Questa sezione illustra come rimuovere o aggiungere una VM nel servizio di bilanciamento del carico. 
+È possibile la manutenzione tooperform hello macchine virtuali in esecuzione l'app, ad esempio l'installazione di aggiornamenti del sistema operativo. toodeal con un aumento del traffico tooyour app, potrebbe essere necessario tooadd altre macchine virtuali. In questa sezione illustra come tooremove o aggiungere una macchina virtuale dal servizio di bilanciamento del carico hello. 
 
-### <a name="remove-a-vm-from-the-load-balancer"></a>Rimuovere una VM dal servizio di bilanciamento del carico
+### <a name="remove-a-vm-from-hello-load-balancer"></a>Rimuovere una macchina virtuale dal servizio di bilanciamento del carico hello
 
-Rimuovere una macchina virtuale dal pool di indirizzi back-end reimpostando la proprietà LoadBalancerBackendAddressPools della scheda di interfaccia di rete.
+Rimuovere una macchina virtuale dal pool di indirizzi back-end hello reimpostando proprietà LoadBalancerBackendAddressPools hello hello scheda di rete.
 
-Ottenere una scheda di interfaccia di rete con [Get-AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface):
+Ottenere l'interfaccia di rete di hello con [Get AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface):
 
 ```powershell
 $nic = Get-AzureRmNetworkInterface -ResourceGroupName myResourceGroup -Name myNic2
 ``` 
 
-Impostare la proprietà LoadBalancerBackendAddressPools della scheda di interfaccia di rete su $null:
+Impostare la proprietà di LoadBalancerBackendAddressPools hello della scheda di interfaccia di rete hello troppo null$:
 
 ```powershell
 $nic.Ipconfigurations[0].LoadBalancerBackendAddressPools=$null
 ```
 
-Aggiornare la scheda di interfaccia di rete:
+Aggiorna scheda di interfaccia di rete hello:
 
 ```powershell
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
 
-### <a name="add-a-vm-to-the-load-balancer"></a>Aggiungere una VM al servizio di bilanciamento del carico
+### <a name="add-a-vm-toohello-load-balancer"></a>Aggiungere un bilanciamento del carico VM toohello
 
-Al termine della manutenzione di una macchina virtuale o se è necessario espandere la capacità, aggiungere la scheda di interfaccia di rete di una macchina virtuale al pool di indirizzi back-end del servizio di bilanciamento del carico.
+Dopo l'esecuzione della manutenzione di macchina virtuale o se è necessario tooexpand capacità, aggiunta hello NIC del pool di indirizzi back-end toohello VM di bilanciamento del carico hello.
 
-Ottenere il servizio di bilanciamento del carico:
+Ottieni bilanciamento del carico hello:
 
 ```powershell
 $lb = Get-AzureRMLoadBalancer -ResourceGroupName myResourceGroup -Name myLoadBalancer 
 ```
 
-Aggiungere il pool di indirizzi back-end del servizio di bilanciamento del carico alla scheda di interfaccia di rete:
+Aggiungere pool di indirizzi back-end hello della scheda di interfaccia di rete toohello bilanciamento di carico hello:
 
 ```powershell
 $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$lb.BackendAddressPools[0]
 ```
 
-Aggiornare la scheda di interfaccia di rete:
+Aggiorna scheda di interfaccia di rete hello:
 
 ```powershell
 Set-AzureRmNetworkInterface -NetworkInterface $nic

@@ -1,6 +1,6 @@
 ---
-title: Reimpostare un'istanza di gateway VPN di Azure per ristabilire tunnel IPsec | Microsoft Docs
-description: Questo articolo descrive la reimpostazione di Gateway VPN di Azure per ristabilire i tunnel IPsec. L'articolo riguarda i gateway VPN nei modelli di distribuzione classica e Resource Manager.
+title: Reimpostare un tooreestablish gateway VPN di Azure tunnel IPsec | Documenti Microsoft
+description: In questo articolo illustra la reimpostazione del tunnel IPsec di tooreestablish Gateway VPN di Azure. articolo Hello applica gateway tooVPN hello classic e modelli di distribuzione di gestione risorse di hello.
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,53 +15,53 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: cherylmc
-ms.openlocfilehash: 7c5ba9310568571991708ab54a5275df6ea84a39
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 84dd741f0bebd6b18cb235216a68a88da5fe17b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reset-a-vpn-gateway"></a>Reimpostare un gateway VPN
 
-La reimpostazione del gateway VPN di Azure è utile se si perde la connettività VPN cross-premise in uno o più tunnel VPN da sito a sito. In questa situazione tutti i dispositivi VPN funzionano correttamente, ma non sono in grado di stabilire tunnel IPsec con i gateway VPN di Azure. Questo articolo consente di reimpostare il gateway VPN.
+La reimpostazione del gateway VPN di Azure è utile se si perde la connettività VPN cross-premise in uno o più tunnel VPN da sito a sito. In questo caso, i dispositivi VPN locali sono tutte le funzioni correttamente, ma sono tooestablish non è possibile tunnel IPsec con gateway VPN di Azure hello. Questo articolo consente di reimpostare il gateway VPN.
 
 ### <a name="what-happens-during-a-reset"></a>Cosa accade durante un ripristino
 
-Un gateway VPN di Azure è costituito da due istanze di macchina virtuale in esecuzione in una configurazione di standby attivo. Quando si reimposta il gateway, quest'ultimo viene riavviato e gli vengono riapplicate le configurazioni cross-premise. Il gateway mantiene l'indirizzo IP pubblico già disponibile. Non sarà quindi necessario aggiornare la configurazione del router VPN con un nuovo indirizzo IP pubblico per il gateway VPN di Azure.
+Un gateway VPN di Azure è costituito da due istanze di macchina virtuale in esecuzione in una configurazione di standby attivo. Quando si reimposta il gateway di hello, riavvio gateway hello e quindi riapplica hello cross-premise tooit configurazioni. gateway Hello mantiene l'indirizzo IP pubblico hello che è già stato assegnato. Ciò significa che non è necessario configurazione del router VPN hello tooupdate con un nuovo indirizzo IP pubblico per il gateway VPN di Azure.
 
-Dopo l'emissione del comando per ripristinare il gateway, l'istanza attualmente attiva del gateway VPN di Azure viene riavviata immediatamente. Si verificherà un breve intervallo durante il failover dall'istanza attiva (in fase di riavvio) all'istanza di standby. L'intervallo dovrebbe essere inferiore a un minuto.
+Quando si esegue gateway di hello tooreset comando hello, hello attivo corrente del gateway VPN di Azure hello è stato riavviato immediatamente. Vi sarà un gap breve durante il failover hello dal hello active istanza (in corso il riavvio), toohello standby. gap Hello deve essere inferiore al minuto.
 
-Se la connessione non viene ripristinata dopo il primo riavvio, emettere di nuovo lo stesso comando per riavviare la seconda istanza della VM, ovvero il nuovo gateway attivo. Se vengono richiesti due riavvii uno dopo l'altro, il periodo necessario per il riavvio di entrambe le istanze della VM (attiva e di standby) sarà leggermente più lungo. Si verificherà quindi un intervallo più lungo nella connettività VPN, dai 2 ai 4 minuti, in attesa del completamento dei riavvii.
+Se la connessione hello non viene ripristinata dopo il riavvio del primo hello, problema hello stesso comando nuovamente tooreboot hello seconda VM istanza (hello nuovo gateway active). Se due riavvii hello richiesto tooback indietro, esisterà un periodo leggermente più lungo in entrambe le istanze di macchina virtuale (attive e standby) sono in corso il riavvio. In questo modo un gap più connettività VPN hello, backup too2 too4 minuti per il riavvio di hello toocomplete macchine virtuali.
 
-Dopo due riavvii, se si verificano ancora problemi di connettività cross-premise, aprire una richiesta di supporto dal portale di Azure.
+Dopo due riavvii, se si verificano ancora problemi di connettività tra più sedi locali, aprire una richiesta di supporto da hello portale di Azure.
 
 ## <a name="before"></a>Prima di iniziare
 
-Prima di reimpostare il gateway, verificare gli elementi chiave elencati di seguito per ogni tunnel VPN da sito a sito (S2S) IPsec. Eventuali mancate corrispondenze negli elementi provocherà la disconnessione dei tunnel VPN S2S. La verifica e la correzione delle configurazioni per i gateway locali e VPN di Azure evitano riavvii non necessari e interruzioni per le altre connessioni funzionanti nei gateway.
+Prima di ripristinare il gateway, verificare gli elementi chiave hello elencati di seguito per ogni tunnel VPN IPsec da sito a sito (S2S). Mancata corrispondenza negli elementi hello comporterà la disconnessione di hello di tunnel VPN S2S. Verifica e la correzione delle configurazioni di hello per le sedi locali e i gateway VPN di Azure consente di riavvii non necessari e interruzioni per hello altre connessioni di lavoro nei gateway hello.
 
-Verificare gli elementi seguenti prima di reimpostare il gateway:
+Verificare i seguenti elementi prima di reimpostare il gateway hello:
 
-* Gli indirizzi IP virtuali per il gateway VPN di Azure e il gateway VPN locale devono essere configurati correttamente nei criteri VPN di Azure e locali.
-* La chiave precondivisa deve essere uguale nei gateway VPN di Azure e locali.
-* Se si applica una configurazione IPsec/IKE specifica, ad esempio la crittografia, gli algoritmi hash e PFS (Perfect Forward Secrecy), assicurarsi che i gateway VPN di Azure e locali abbiano le stesse configurazioni.
+* Hello Internet IP (VIP) per entrambi gateway VPN di Azure hello e che hello locale gateway VPN siano configurate correttamente in entrambi hello Azure e hello locale VPN i criteri.
+* chiave precondivisa Hello devono essere hello stesso nei gateway VPN di Azure sia in locale.
+* Se si applica configurazione IPsec/IKE specifico, ad esempio la crittografia, algoritmi di hash e PFS (Perfect Forward Secrecy), assicurarsi che entrambi hello Azure e i gateway VPN locale disponga hello stesse configurazioni.
 
 ## <a name="portal"></a>Portale di Azure
 
-È possibile reimpostare un gateway VPN di Resource Manager tramite il portale di Azure. Se si desidera reimpostare un gateway classico, vedere la procedura di [PowerShell](#resetclassic).
+È possibile reimpostare un gateway di gestione risorse VPN tramite hello portale di Azure. Se si desidera tooreset un gateway classico, vedere hello [PowerShell](#resetclassic) passaggi.
 
 ### <a name="resource-manager-deployment-model"></a>Modello di distribuzione di Gestione risorse
 
-1. Aprire il [portale di Azure](https://portal.azure.com) e passare al gateway di rete virtuale di Resource Manager che si desidera reimpostare.
-2. Nel pannello per il gateway di rete virtuale fare clic su "Reimposta".
+1. Aprire hello [portale di Azure](https://portal.azure.com) e passare toohello gateway di rete virtuale di gestione risorse che si desidera tooreset.
+2. Nel Pannello di hello per gateway di rete virtuale hello, fare clic su 'Reset'.
 
   ![Pannello di reimpostazione gateway VPN](./media/vpn-gateway-howto-reset-gateway/reset-vpn-gateway-portal.png)
-3. Nel pannello Reimposta, fare clic sul pulsante **Reimposta**.
+3. In hello reimpostare pannello, fare clic su hello **reimpostare** pulsante.
 
 ## <a name="ps"></a>PowerShell
 
 ### <a name="resource-manager-deployment-model"></a>Modello di distribuzione di Gestione risorse
 
-Il cmdlet per la reimpostazione di un gateway è **Reset-AzureRmVirtualNetworkGateway**. Prima di eseguire un ripristino assicurarsi di avere la versione più recente dei [cmdlet di PowerShell per Azure Resource Manager](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.0.0). Nell'esempio seguente viene ripristinato un gateway di rete virtuale denominato VNet1GW nel gruppo di risorse TestRG1:
+Hello cmdlet per la reimpostazione di un gateway è **reimpostazione AzureRmVirtualNetworkGateway**. Prima di eseguire una reimpostazione, assicurarsi di disporre hello l'ultima versione di hello [cmdlet PowerShell di gestione risorse](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.0.0). Hello seguente esempio mostra come reimpostare un gateway di rete virtuale denominato VNet1GW nel gruppo di risorse TestRG1 hello:
 
 ```powershell
 $gw = Get-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroup TestRG1
@@ -70,11 +70,11 @@ Reset-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw
 
 Risultato:
 
-Quando si riceve un valore restituito, si può presupporre che il ripristino del gateway abbia avuto esito positivo. Tuttavia, non c'è alcun elemento nel risultato restituito che indica in modo esplicito che il ripristino è riuscito. Se si desidera esaminare attentamente la cronologia per trovare il momento preciso in cui si è verificato il ripristino del gateway, è possibile visualizzare l'informazione nel [portale di Azure](https://portal.azure.com). Nel portale, passare a **"GatewayName" -> Integrità risorse**.
+Quando si riceve un valore restituito, si può presupporre hello gateway reimpostazione è stata eseguita correttamente. Tuttavia, non è nothing nel risultato restituito hello che indica in modo esplicito tale reimpostazione hello ha avuto esito positivo. Se si desidera toolook strettamente in hello cronologia toosee esattamente quando gateway hello reimpostazione si è verificato, è possibile visualizzare tali informazioni in hello [portale di Azure](https://portal.azure.com). Nel portale di hello passare troppo**'GatewayName' -> integrità delle risorse**.
 
 ### <a name="resetclassic"></a>Modello di distribuzione classica
 
-Il cmdlet per la reimpostazione di un gateway è **Reset-AzureVNetGateway**. Prima di eseguire un ripristino assicurarsi di avere la versione più recente dei [cmdlet di PowerShell per Gestione servizi](https://docs.microsoft.com/powershell/azure/install-azure-ps?view=azuresmps-3.7.0). L'esempio seguente reimposta il gateway per la rete virtuale denominata "ContosoVNet":
+Hello cmdlet per la reimpostazione di un gateway è **Reset-AzureVNetGateway**. Prima di eseguire una reimpostazione, assicurarsi di disporre hello l'ultima versione di hello [i cmdlet PowerShell di gestione del servizio (SM)](https://docs.microsoft.com/powershell/azure/install-azure-ps?view=azuresmps-3.7.0). Hello esempio seguente viene reimpostato gateway hello per una rete virtuale denominata "ContosoVNet":
 
 ```powershell
 Reset-AzureVNetGateway –VnetName “ContosoVNet”
@@ -93,7 +93,7 @@ StatusCode     : OK
 
 ## <a name="cli"></a>
 
-Per reimpostare il gateway, usare il comando [az network vnet-gateway reset](https://docs.microsoft.com/cli/azure/network/vnet-gateway#reset). Nell'esempio seguente viene ripristinato un gateway di rete virtuale denominato VNet5GW nel gruppo di risorse TestRG5:
+gateway hello tooreset, utilizzare hello [az-gateway di rete virtuale rete reimpostare](https://docs.microsoft.com/cli/azure/network/vnet-gateway#reset) comando. Hello seguente esempio mostra come reimpostare un gateway di rete virtuale denominato VNet5GW nel gruppo di risorse TestRG5 hello:
 
 ```azurecli
 az network vnet-gateway reset -n VNet5GW -g TestRG5
@@ -101,4 +101,4 @@ az network vnet-gateway reset -n VNet5GW -g TestRG5
 
 Risultato:
 
-Quando si riceve un valore restituito, si può presupporre che il ripristino del gateway abbia avuto esito positivo. Tuttavia, non c'è alcun elemento nel risultato restituito che indica in modo esplicito che il ripristino è riuscito. Se si desidera esaminare attentamente la cronologia per trovare il momento preciso in cui si è verificato il ripristino del gateway, è possibile visualizzare l'informazione nel [portale di Azure](https://portal.azure.com). Nel portale, passare a **"GatewayName" -> Integrità risorse**.
+Quando si riceve un valore restituito, si può presupporre hello gateway reimpostazione è stata eseguita correttamente. Tuttavia, non è nothing nel risultato restituito hello che indica in modo esplicito tale reimpostazione hello ha avuto esito positivo. Se si desidera toolook strettamente in hello cronologia toosee esattamente quando gateway hello reimpostazione si è verificato, è possibile visualizzare tali informazioni in hello [portale di Azure](https://portal.azure.com). Nel portale di hello passare troppo**'GatewayName' -> integrità delle risorse**.

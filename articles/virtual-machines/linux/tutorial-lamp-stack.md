@@ -1,6 +1,6 @@
 ---
-title: Distribuire LAMP in una macchina virtuale Linux in Azure | Microsoft Docs
-description: 'Esercitazione: installare lo stack LAMP in una macchina virtuale Linux in Azure'
+title: aaaDeploy LAMP in una macchina virtuale di Linux in Azure | Documenti Microsoft
+description: Esercitazione - stack LAMP hello di installazione in una VM Linux in Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: dlepow
@@ -15,34 +15,34 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: danlep
-ms.openlocfilehash: 9148ac9646e4e1cfeff8f20c096e390499437e78
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a3d0ecb3277f15bd0a2fdc0d85b738a760e68865
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-a-lamp-web-server-on-an-azure-vm"></a>Installare un server Web LAMP in una macchina virtuale di Azure
-Questo articolo illustra come distribuire un server Web Apache, MySQL e PHP (lo stack LAMP) in una VM Ubuntu in Azure. Se si preferisce il server Web NGINX, vedere l'esercitazione [LEMP stack](tutorial-lemp-stack.md) (Stack LEMP). Per verificare il funzionamento del server LAMP, è facoltativamente possibile installare e configurare un sito WordPress. In questa esercitazione si apprenderà come:
+In questo articolo illustra come toodeploy un Apache web server, MySQL e PHP (stack LAMP hello) in una VM Ubuntu in Azure. Se si preferisce server web NGINX di hello, vedere hello [stack LEMP](tutorial-lemp-stack.md) esercitazione. server di luce toosee hello in azione, è facoltativamente possibile installare e configurare un sito WordPress. In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
-> * Creare una VM Ubuntu ("L" nello stack LAMP)
+> * Creare una VM Ubuntu (Buongiorno "L" nello stack LAMP hello)
 > * Aprire la porta 80 per il traffico Web
 > * Installare Apache, MySQL e PHP
 > * Verificare l'installazione e la configurazione
-> * Installare WordPress nel server LAMP
+> * Installa WordPress nel server di luce hello
 
 
-Per altre informazioni sullo stack LAMP, incluse le raccomandazioni per un ambiente di produzione, vedere la [documentazione di Ubuntu](https://help.ubuntu.com/community/ApacheMySQLPHP).
+Per ulteriori informazioni su stack LAMP hello, incluse le raccomandazioni per un ambiente di produzione, vedere hello [Ubuntu documentazione](https://help.ubuntu.com/community/ApacheMySQLPHP).
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 [!INCLUDE [virtual-machines-linux-tutorial-stack-intro.md](../../../includes/virtual-machines-linux-tutorial-stack-intro.md)]
 
 ## <a name="install-apache-mysql-and-php"></a>Installare Apache, MySQL e PHP
 
-Usare il comando seguente per aggiornare le origini dei pacchetti Ubuntu e installare Apache, MySQL e PHP. Si noti l'accento circonflesso (^) alla fine del comando.
+Eseguire le seguenti origini di comando tooupdate Ubuntu pacchetto hello e installare Apache, MySQL e PHP. Si noti hello punto di inserimento (^) alla fine di hello del comando hello.
 
 
 ```bash
@@ -51,7 +51,7 @@ sudo apt update && sudo apt install lamp-server^
 
 
 
-Viene chiesto di installare i pacchetti e le altre dipendenze. Quando viene richiesto, impostare una password radice per MySQL e quindi premere [INVIO] per continuare. Seguire i prompt rimanenti. In questo modo vengono installate le estensioni PHP minime richieste per l'uso di PHP con MySQL. 
+Sono pacchetti hello tooinstall richiesta e altre dipendenze. Quando richiesto, è possibile impostare una password radice per MySQL e toocontinue [INVIO]. Seguire hello prompt rimanenti. Questo processo installa hello minimo richiesto PHP necessite estensioni toouse PHP con MySQL. 
 
 ![Pagina della password radice per MySQL][1]
 
@@ -60,55 +60,55 @@ Viene chiesto di installare i pacchetti e le altre dipendenze. Quando viene rich
 
 ### <a name="apache"></a>Apache
 
-Controllare la versione di Apache con il comando seguente:
+Controllare la versione di hello di Apache con hello comando seguente:
 ```bash
 apache2 -v
 ```
 
-Con Apache installato e la porta 80 aperta per la macchina virtuale, è ora possibile accedere al server Web da Internet. Per visualizzare Apache2 Ubuntu Default Page (Pagina predefinita Apache2 Ubuntu), aprire un Web browser e immettere l'indirizzo IP pubblico della VM. Usare l'indirizzo IP pubblico usato per stabilire la connessione SSH alla VM:
+In quest'ultimo installato e la porta 80 aprire tooyour VM, server web hello è ora possibile accedere da hello internet. Ciao tooview Apache2 Ubuntu predefinito pagina, aprire un web browser e immettere l'indirizzo IP pubblico hello di hello macchina virtuale. Utilizzare l'indirizzo IP pubblico hello utilizzato tooSSH toohello VM:
 
 ![Pagina predefinita di Apache][3]
 
 
 ### <a name="mysql"></a>MySQL
 
-Controllare la versione di MySQL con il comando seguente. Si noti il parametro `V` in maiuscolo:
+Controllare la versione di hello di MySQL con hello comando seguente (si noti il capitale hello `V` parametro):
 
 ```bash
 msql -V
 ```
 
-È consigliabile eseguire lo script seguente per proteggere l'installazione di MySQL:
+Si consiglia di eseguire script toohelp hello sicuro al termine dell'installazione di MySQL hello:
 
 ```bash
 mysql_secure_installation
 ```
 
-Immettere la password radice per MySQL e configurare le impostazioni di sicurezza per l'ambiente.
+Immettere la password radice MySQL e configurare le impostazioni di sicurezza hello per l'ambiente.
 
-Per creare un database MySQL, aggiungere utenti o modificare le impostazioni di configurazione, accedere a MySQL:
+Se si desidera toocreate un database MySQL, gli utenti di aggiungere o modificare le impostazioni di configurazione, account di accesso tooMySQL:
 
 ```bash
 mysql -u root -p
 ```
 
-Al termine, chiudere il prompt mysql digitando `\q`.
+Al termine, uscire dal prompt dei comandi mysql hello immettendo `\q`.
 
 ### <a name="php"></a>PHP
 
-Controllare la versione di PHP con il comando seguente:
+Controllare la versione di hello di PHP con hello comando seguente:
 
 ```bash
 php -v
 ```
 
-Per eseguire altri test, creare rapidamente una pagina di informazioni PHP da visualizzare in un browser. Il comando seguente crea la pagina di informazioni di PHP:
+Se si desidera tootest ulteriormente, creare un rapido tooview pagina informazioni PHP in un browser. Hello comando seguente crea una pagina di informazioni di hello PHP:
 
 ```bash
 sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
 ```
 
-Ora è possibile controllare la pagina di informazioni di PHP creata. Aprire un browser e passare a `http://yourPublicIPAddress/info.php`. Sostituire l'indirizzo IP pubblico della VM. Dovrebbe avere un aspetto simile a questa immagine.
+Ora è possibile controllare pagina delle info PHP hello che è stato creato. Aprire un browser e andare troppo`http://yourPublicIPAddress/info.php`. Sostituire l'indirizzo IP pubblico hello della macchina virtuale. Dovrebbe essere simile toothis immagine.
 
 ![Pagina di informazioni di PHP][2]
 
@@ -124,9 +124,9 @@ In questa esercitazione si è distribuito un server LAMP in Azure. Si è appreso
 > * Aprire la porta 80 per il traffico Web
 > * Installare Apache, MySQL e PHP
 > * Verificare l'installazione e la configurazione
-> * Installare WordPress nel server LAMP
+> * Installa WordPress nel server di luce hello
 
-Passare all'esercitazione successiva per apprendere come proteggere i server Web con i certificati SSL.
+Spostare toolearn esercitazione successiva toohello come server web toosecure con certificati SSL.
 
 > [!div class="nextstepaction"]
 > [Secure web server with SSL (Proteggere il server Web con SSL)](tutorial-secure-web-server.md)

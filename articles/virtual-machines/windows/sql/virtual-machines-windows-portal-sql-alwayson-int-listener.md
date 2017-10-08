@@ -1,5 +1,5 @@
 ---
-title: "Creare un listener per i gruppi di disponibilità di SQL Server nelle macchine virtuali di Azure | Microsoft Docs"
+title: "aaaCreate un listener del gruppo di disponibilità di SQL Server in macchine virtuali di Azure | Documenti Microsoft"
 description: "Istruzioni dettagliate per creare un listener per un gruppo di disponibilità Always On per SQL Server nelle macchine virtuali di Azure"
 services: virtual-machines
 documentationcenter: na
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/01/2017
 ms.author: mikeray
-ms.openlocfilehash: 09fed7e785708d4afe64905de973becc188181d7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c6a44dc5c7c18b572c2bf5772b4651b7210aacbd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-load-balancer-for-an-always-on-availability-group-in-azure"></a>Configurare un servizio di bilanciamento del carico interno per un gruppo di disponibilità Always On in Azure
-In questo articolo viene illustrato come creare un servizio di bilanciamento del carico per un gruppo di disponibilità SQL Server Always On nelle macchine virtuali in esecuzione con Azure Resource Manager. Un gruppo di disponibilità richiede un servizio di bilanciamento del carico quando le istanze di SQL Server sono in macchine virtuali di Azure. Il servizio di bilanciamento del carico archivia l'indirizzo IP per il listener del gruppo di disponibilità. Se un gruppo di disponibilità si estende su più aree, è necessario un servizio di bilanciamento del carico per ogni area.
+Questo articolo viene illustrato come un bilanciamento del carico per un gruppo di disponibilità SQL Server Always On in Azure virtuale toocreate computer che eseguono con Gestione risorse di Azure. Un gruppo di disponibilità richiede un bilanciamento del carico quando si trovano le istanze di SQL Server hello in macchine virtuali di Azure. servizio di bilanciamento del carico Hello archivia l'indirizzo IP hello per listener del gruppo di disponibilità hello. Se un gruppo di disponibilità si estende su più aree, è necessario un servizio di bilanciamento del carico per ogni area.
 
-Per completare questa attività, è necessario disporre di un gruppo di disponibilità di SQL Server distribuito nelle macchine virtuali di Azure in esecuzione con Resource Manager. Entrambe le macchine virtuali di SQL Server devono appartenere allo stesso set di disponibilità. È possibile usare il [modello di Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) per creare automaticamente il gruppo di disponibilità in Resource Manager. Questo modello crea automaticamente un servizio di bilanciamento del carico interno. 
+toocomplete questa attività, è necessario un gruppo di disponibilità di SQL Server è distribuito in macchine virtuali di Azure che eseguono con Gestione risorse di toohave. Entrambe le macchine virtuali di SQL Server deve appartenere toohello stesso set di disponibilità. È possibile utilizzare hello [modello Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) tooautomatically creare il gruppo di disponibilità di hello in Gestione risorse. Questo modello crea automaticamente un servizio di bilanciamento del carico interno. 
 
 Se si preferisce, è possibile [configurare manualmente un gruppo di disponibilità](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md).
 
@@ -34,83 +34,83 @@ Gli argomenti correlati includono:
 * [Configurare i gruppi di disponibilità Always On in una macchina virtuale di Azure, GUI](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)   
 * [Configurare una connessione da VNet a VNet tramite Azure Resource Manager e PowerShell](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)
 
-Completando questo articolo si creerà e configurerà un servizio di bilanciamento del carico nel portale di Azure. Al termine del processo, si configurerà il cluster per usare l'indirizzo IP dal servizio di bilanciamento del carico per il listener del gruppo di disponibilità.
+Esaminando questo articolo, creare e configurare un bilanciamento del carico in hello portale di Azure. Una volta completato il processo di hello, configurare hello toouse hello indirizzo IP del cluster di bilanciamento del carico hello per listener del gruppo di disponibilità hello.
 
-## <a name="create-and-configure-the-load-balancer-in-the-azure-portal"></a>Creare e configurare il servizio di bilanciamento del carico nel portale di Azure
-In questa parte dell'attività eseguire questi passaggi:
+## <a name="create-and-configure-hello-load-balancer-in-hello-azure-portal"></a>Creare e configurare Bilanciamento carico di hello in hello portale di Azure
+In questa parte dell'attività hello hello seguenti:
 
-1. Nel portale di Azure creare il servizio di bilanciamento del carico e configurare l'indirizzo IP.
-2. Configurare il pool back-end.
-3. Creare il probe. 
-4. Impostare le regole di bilanciamento del carico.
+1. Nel portale di Azure hello, bilanciamento del carico hello creare e configurare l'indirizzo IP di hello.
+2. Configurare il pool di back-end hello.
+3. Creare il probe hello. 
+4. Impostare regole di bilanciamento del carico di hello.
 
 > [!NOTE]
-> Se le istanze di SQL Server si trova in diverse aree e gruppi di risorse, eseguire ogni passaggio due volte, una volta per ogni gruppo di risorse.
+> Se le istanze di SQL Server hello in più gruppi di risorse e le aree, eseguire ogni passaggio due volte, una volta in ogni gruppo di risorse.
 > 
 > 
 
-### <a name="step-1-create-the-load-balancer-and-configure-the-ip-address"></a>Passaggio1: Creare il servizio di bilanciamento del carico e configurare l'indirizzo IP
-Per prima cosa creare il servizio di bilanciamento del carico. 
+### <a name="step-1-create-hello-load-balancer-and-configure-hello-ip-address"></a>Passaggio 1: Creare bilanciamento del carico hello e configurare l'indirizzo IP hello
+Innanzitutto, creare bilanciamento del carico hello. 
 
-1. Nel portale di Azure aprire il gruppo di risorse contenente le macchine virtuali di SQL Server. 
+1. Nel portale di Azure hello, aprire gruppo di risorse hello contenente hello macchine virtuali di SQL Server. 
 
-2. Nel gruppo di risorse fare clic su **Aggiungi**.
+2. Nel gruppo di risorse hello, fare clic su **Aggiungi**.
 
-3. Nei risultati della ricerca cercare il **bilanciamento del carico** e selezionare **Servizio di bilanciamento del carico**, pubblicato da **Microsoft**.
+3. Cercare **bilanciamento del carico** nei risultati della ricerca hello, quindi selezionare **bilanciamento del carico**, che viene pubblicato da **Microsoft**.
 
-4. Nel pannello **Servizio di bilanciamento del carico** fare clic su**Crea**.
+4. In hello **bilanciamento del carico** pannello, fare clic su **crea**.
 
-5. Bella finestra di dialogo **Crea servizio di bilanciamento del carico** configurare il servizio di bilanciamento del carico come segue:
+5. In hello **Crea servizio di bilanciamento del carico** finestra di dialogo casella, configurare il bilanciamento del carico di hello come indicato di seguito:
 
    | Impostazione | Valore |
    | --- | --- |
-   | **Nome** |Nome che rappresenta il servizio di bilanciamento del carico. Ad esempio **sqlLB**. |
-   | **Tipo** |**Interno**: la maggior parte delle implementazioni usano un servizio di bilanciamento del carico interno, che consente alle applicazioni all'interno della stessa rete virtuale di connettersi al gruppo di disponibilità.  </br> **Esterno**: consente alle applicazioni di connettersi al gruppo di disponibilità tramite una connessione Internet pubblica. |
-   | **Rete virtuale** |Selezionare la rete virtuale in cui si trovano le istanze di SQL Server. |
-   | **Subnet** |Selezionare la subnet in cui si trovano le istanze di SQL Server. |
+   | **Nome** |Un nome di testo che rappresenta di bilanciamento del carico hello. Ad esempio **sqlLB**. |
+   | **Tipo** |**Interno**: la maggior parte delle implementazioni usano un servizio di bilanciamento del carico interno, che consente alle applicazioni all'interno di hello stesso gruppo di disponibilità toohello di tooconnect rete virtuale.  </br> **Esterno**: consente di gruppo di disponibilità di applicazioni tooconnect toohello tramite una connessione Internet pubblica. |
+   | **Rete virtuale** |Selezionare hello la rete virtuale che si trovano in istanze di SQL Server hello. |
+   | **Subnet** |Selezionare subnet hello presenti istanze di SQL Server hello. |
    | **Assegnazione indirizzi IP** |**Statico** |
-   | **Indirizzo IP privato** |Specificare un indirizzo IP disponibile della subnet. che verrà usato quando si creerà un listener nel cluster. Più avanti in questo articolo si userà questo indirizzo per la variabile `$ILBIP` in uno script di PowerShell. |
-   | **Sottoscrizione** |Se si hanno più sottoscrizioni, può essere visualizzato questo campo. Selezionare la sottoscrizione da associare a questa risorsa. In genere è la stessa sottoscrizione di tutte le risorse del gruppo di disponibilità. |
-   | **Gruppo di risorse** |Selezionare il gruppo di risorse in cui si trovano le istanze di SQL Server. |
-   | **Posizione** |Selezionare il percorso di Azure in cui si trovano le istanze di SQL Server. |
+   | **Indirizzo IP privato** |Specificare un indirizzo IP disponibile dalla subnet hello. Utilizzare questo indirizzo IP quando si crea un listener in cluster hello. In uno script di PowerShell, più avanti in questo articolo, utilizzare questo indirizzo per hello `$ILBIP` variabile. |
+   | **Sottoscrizione** |Se si hanno più sottoscrizioni, può essere visualizzato questo campo. Selezionare una sottoscrizione di hello che si desidera tooassociate con questa risorsa. Come tutte le risorse di hello per il gruppo di disponibilità hello in genere è hello stessa sottoscrizione. |
+   | **Gruppo di risorse** |Selezionare gruppo di risorse hello presenti istanze di SQL Server hello. |
+   | **Posizione** |Selezionare una località di Azure che sono istanze di SQL Server hello in hello. |
 
 6. Fare clic su **Crea**. 
 
-Azure crea il servizio di bilanciamento del carico. Il servizio di bilanciamento del carico appartiene a una rete, a una subnet, a un gruppo di risorse e a una località specifici. Quando Azure termina l'attività, verificare le impostazioni del servizio di bilanciamento del carico in Azure. 
+Azure Crea servizio di bilanciamento del carico hello. servizio di bilanciamento del carico Hello appartiene tooa di rete specifica, subnet, gruppo di risorse e percorso. Al termine dell'attività hello Azure, verificare le impostazioni del servizio di bilanciamento carico di hello in Azure. 
 
-### <a name="step-2-configure-the-back-end-pool"></a>Passaggio 2: Configurare il pool back-end
-In Azure il pool di indirizzi back-end è chiamato *pool back-end*. In questo caso, il pool back-end è costituito dagli indirizzi delle due istanze di SQL Server nel gruppo di disponibilità. 
+### <a name="step-2-configure-hello-back-end-pool"></a>Passaggio 2: Configurare i pool di back-end hello
+Le chiamate Azure hello pool di indirizzi back-end *pool back-end*. In questo caso, il pool di back-end hello è indirizzi hello hello due istanze di SQL Server nel gruppo di disponibilità. 
 
-1. Nel gruppo di risorse fare clic sul servizio di bilanciamento del carico creato. 
+1. Nel gruppo di risorse, fare clic su servizio di bilanciamento del carico hello creato. 
 
 2. In **Impostazioni** fare clic su **Pool back-end**.
 
-3. In **Pool back-end** fare clic su **Aggiungi** per creare un pool di indirizzi back-end. 
+3. In **pool back-end**, fare clic su **Aggiungi** toocreate un pool di indirizzi back-end. 
 
-4. In **Aggiungi pool back-end**, in **Nome** digitare un nome per il pool back-end.
+4. In **aggiungere pool back-end**in **nome**, digitare un nome per il pool back-end hello.
 
 5. In **Macchine virtuali** fare clic su **Aggiungi una macchina virtuale**. 
 
-6. In **Scegli macchine virtuali** fare clic su **Scegli un set di disponibilità** e specificare il set di disponibilità a cui appartengono le macchine virtuali di SQL Server.
+6. In **scegliere macchine virtuali**, fare clic su **scegliere un set di disponibilità**, quindi specificare set di disponibilità di hello che hello macchine virtuali di SQL Server deve appartenere a.
 
-7. Dopo aver scelto il set di disponibilità, fare clic su **Scegli le macchine virtuali**, selezionare le due macchine virtuali che ospitano le istanze di SQL Server nel gruppo di disponibilità e quindi fare clic su **Seleziona**. 
+7. Dopo aver scelto il set di disponibilità di hello, fare clic su **scegliere macchine virtuali hello**, selezionare hello due macchine virtuali che ospitano istanze di SQL Server hello nel gruppo di disponibilità hello e quindi fare clic su **selezionare**. 
 
-8. Fare clic su **OK** per chiudere i pannelli per **Scegliere le macchine virtuali** e **Aggiungi pool back-end**. 
+8. Fare clic su **OK** pannelli hello tooclose per **scegliere macchine virtuali**, e **aggiungere pool back-end**. 
 
-Azure aggiorna le impostazioni per il pool di indirizzi back-end. Il set di disponibilità ora include un pool di due istanze di SQL Server.
+Azure Aggiorna le impostazioni di hello per il pool di indirizzi back-end di hello. Il set di disponibilità ora include un pool di due istanze di SQL Server.
 
 ### <a name="step-3-create-a-probe"></a>Passaggio 3: Creare un probe
-Il probe definisce come Azure deve verificare quali istanze di SQL Server sono attualmente proprietarie del listener del gruppo di disponibilità. Azure esamina il servizio in base all'indirizzo IP su una porta definita quando si crea il probe.
+probe Hello definisce come Azure verifica hello istanze di SQL Server attualmente proprietario del listener del gruppo di disponibilità hello. Azure le ricerche basato sull'indirizzo IP hello su una porta definiti durante la creazione di probe hello del servizio di hello.
 
-1. Nel pannello **Impostazioni** del servizio di bilanciamento del carico fare clic su **Probe integrità**. 
+1. In hello bilanciamento del carico **impostazioni** pannello, fare clic su **probe di integrità**. 
 
-2. Nel pannello **Probe integrità** fare clic su **Aggiungi**.
+2. In hello **probe di integrità** pannello, fare clic su **Aggiungi**.
 
-3. Configurare il probe nel pannello **Aggiungi probe** . Usare i valori seguenti per configurare il probe.
+3. Configurare il probe hello in hello **Aggiungi probe** blade. Hello utilizzare valori tooconfigure hello probe seguenti:
 
    | Impostazione | Valore |
    | --- | --- |
-   | **Nome** |Nome che rappresenta il probe. Ad esempio **SQLAlwaysOnEndPointProbe**. |
+   | **Nome** |Un nome di testo che rappresenta il probe hello. Ad esempio **SQLAlwaysOnEndPointProbe**. |
    | **Protocollo** |**TCP** |
    | **Porta** |È possibile usare qualsiasi porta disponibile. Ad esempio *59999*. |
    | **Interval** |*5* |
@@ -119,156 +119,156 @@ Il probe definisce come Azure deve verificare quali istanze di SQL Server sono a
 4.  Fare clic su **OK**. 
 
 > [!NOTE]
-> Verificare che la porta specificata sia aperta nel firewall di entrambe le istanze di SQL Server. Per entrambe le istanze è necessaria una regola in ingresso per la porta TCP usata. Per altre informazioni, vedere [Aggiungere o modificare una regola del firewall](http://technet.microsoft.com/library/cc753558.aspx). 
+> Assicurarsi che porta hello specificata sia aperta nel firewall hello di entrambe le istanze di SQL Server. Entrambe le istanze richiedono una regola in ingresso per hello la porta TCP in uso. Per altre informazioni, vedere [Aggiungere o modificare una regola del firewall](http://technet.microsoft.com/library/cc753558.aspx). 
 > 
 > 
 
-Azure crea il probe e lo usa per verificare quale istanza di SQL Server possieda il listener per il gruppo di disponibilità.
+Azure crea probe hello e viene utilizzata l'istanza di SQL Server ha listener hello per il gruppo di disponibilità hello tootest.
 
-### <a name="step-4-set-the-load-balancing-rules"></a>Passaggio 4: Impostare le regole di bilanciamento del carico
-Le regole di bilanciamento del carico determinano come il servizio di bilanciamento del carico instrada il traffico alle istanze di SQL Server. Per questo servizio di bilanciamento del carico abilitare Direct Server Return perché solo una per volta delle due istanze di SQL Server è proprietaria della risorsa listener del gruppo di disponibilità.
+### <a name="step-4-set-hello-load-balancing-rules"></a>Passaggio 4: Impostare le regole di bilanciamento del carico di hello
+regole di bilanciamento del carico Hello configurare come servizio di bilanciamento del carico hello instrada le istanze di SQL Server toohello di traffico. Per il bilanciamento del carico, abilitare direct server return perché solo uno di due istanze di SQL Server hello proprietario risorsa listener del gruppo di disponibilità hello alla volta.
 
-1. Nel pannello **Impostazioni** del servizio di bilanciamento del carico fare clic su **Regole di bilanciamento del carico**. 
+1. In hello bilanciamento del carico **impostazioni** pannello, fare clic su **regole di bilanciamento del carico**. 
 
-2. Nel pannello **Regole di bilanciamento del carico** fare clic su **Aggiungi**.
+2. In hello **regole di bilanciamento del carico** pannello, fare clic su **Aggiungi**.
 
-3. Nel pannello **Aggiungi regola di bilanciamento del carico** configurare la regola di bilanciamento del carico. Usare le seguenti impostazioni: 
+3. In hello **regole di bilanciamento del carico di Aggiungi** pannello, configurare una regola di bilanciamento del carico di hello. Utilizzare hello seguenti impostazioni: 
 
    | Impostazione | Valore |
    | --- | --- |
-   | **Nome** |Nome che rappresenta la regola di bilanciamento del carico. Ad esempio **SQLAlwaysOnEndPointListener**. |
+   | **Nome** |Un nome di testo che rappresenta le regole di bilanciamento del carico di hello. Ad esempio **SQLAlwaysOnEndPointListener**. |
    | **Protocollo** |**TCP** |
    | **Porta** |*1433* |
    | **Porta back-end** |*1433*. Questo valore verrà ignorato perché questa regola usa **IP mobile (Direct Server Return)**. |
-   | **Probe** |Usare il nome del probe creato per questo servizio di bilanciamento del carico. |
+   | **Probe** |Utilizzare il nome di hello del probe hello creato per il bilanciamento del carico. |
    | **Persistenza della sessione** |**Nessuno** |
    | **Timeout di inattività (minuti)** |*4* |
    | **IP mobile (Direct Server Return)** |**Enabled** |
 
    > [!NOTE]
-   > Potrebbe essere necessario scorrere il pannello verso il basso per visualizzare tutte le impostazioni.
+   > Potrebbe essere tooscroll verso il basso hello pannello tooview tutte le impostazioni di hello.
    > 
 
 4. Fare clic su **OK**. 
-5. Azure configura la regola di bilanciamento del carico. Ora il servizio di bilanciamento del carico è configurato per instradare il traffico all'istanza di SQL Server che ospita il listener per il gruppo di disponibilità. 
+5. Azure Configura regola di bilanciamento del carico di hello. Bilanciamento del carico hello è ora configurato tooroute traffico toohello istanza di SQL Server ospita hello listener per gruppo di disponibilità hello. 
 
-A questo punto il gruppo di risorse dispone di un servizio di bilanciamento del carico, che si connette a entrambi i computer SQL Server. Il servizio di bilanciamento del carico contiene anche un indirizzo IP per il listener del gruppo di disponibilità SQL Server Always On in modo che entrambi i computer possano rispondere alle richieste per i gruppi di disponibilità.
+A questo punto, il gruppo di risorse hello dispone di un bilanciamento del carico che si connette tooboth macchine di SQL Server. servizio di bilanciamento del carico Hello contiene anche un indirizzo IP per hello SQL Server Always On listener gruppo di disponibilità, in modo che entrambi i computer possano rispondere toorequests per gruppi di disponibilità hello.
 
 > [!NOTE]
-> Se le istanze di SQL Server si trovano in due aree separate, ripetere i passaggi nell'altra area. Ogni area richiede un servizio di bilanciamento del carico. 
+> Se le istanze di SQL Server sono in due aree distinte, ripetere i passaggi di hello in hello altre aree. Ogni area richiede un servizio di bilanciamento del carico. 
 > 
 > 
 
-## <a name="configure-the-cluster-to-use-the-load-balancer-ip-address"></a>Configurare il cluster per usare l'indirizzo IP del servizio di bilanciamento del carico
-Il passaggio successivo consiste nel configurare il listener nel cluster e nel portare il listener online. Eseguire le operazioni seguenti: 
+## <a name="configure-hello-cluster-toouse-hello-load-balancer-ip-address"></a>Configurare hello toouse hello carico bilanciamento del carico indirizzo IP del cluster
+passaggio successivo Hello tooconfigure hello listener in cluster hello e portare hello listener online. Hello seguenti: 
 
-1. Creare il listener del gruppo di disponibilità nel cluster di failover. 
+1. Creare listener del gruppo di disponibilità hello nel cluster di failover hello. 
 
-2. Portare online il listener.
+2. Portare hello listener online.
 
-### <a name="step-5-create-the-availability-group-listener-on-the-failover-cluster"></a>Passaggio 5: Creare il listener del gruppo di disponibilità nel cluster di failover
-In questo passaggio si creerà manualmente il listener del gruppo di disponibilità in Gestione cluster di failover e SQL Server Management Studio.
+### <a name="step-5-create-hello-availability-group-listener-on-hello-failover-cluster"></a>Passaggio 5: Creare listener del gruppo di disponibilità hello nel cluster di failover hello
+In questo passaggio, creare manualmente listener del gruppo di disponibilità di hello in Gestione Cluster di Failover e SQL Server Management Studio.
 
 [!INCLUDE [ag-listener-configure](../../../../includes/virtual-machines-ag-listener-configure.md)]
 
-### <a name="verify-the-configuration-of-the-listener"></a>Verificare la configurazione del listener
+### <a name="verify-hello-configuration-of-hello-listener"></a>Verificare la configurazione del listener hello hello
 
-Se le risorse del cluster e le dipendenze sono configurate correttamente, dovrebbe essere visualizzato il listener in SQL Server Management Studio. Per impostare la porta del listener, procedere come segue:
+Se le dipendenze e le risorse cluster hello siano configurate correttamente, dovrebbe essere in grado di tooview listener di hello in SQL Server Management Studio. tooset hello porta del listener, hello seguenti:
 
-1. Avviare SQL Server Management Studio e connettersi alla replica primaria.
+1. Avviare SQL Server Management Studio e connettiti toohello replica primaria.
 
-2. Passare a **Disponibilità elevata AlwaysOn** > **Gruppi di disponibilità** > **Listener gruppo di disponibilità**.  
-    Viene visualizzato il nome del listener creato in Gestione Cluster di Failover. 
+2. Andare troppo**disponibilità elevata AlwaysOn** > **gruppi di disponibilità** > **listener del gruppo di disponibilità**.  
+    Viene visualizzato il nome del listener hello creati in Gestione Cluster di Failover. 
 
-3. Fare clic con il pulsante destro del mouse sul nome del listener e quindi su **Proprietà**.
+3. Il nome del listener hello destro e quindi fare clic su **proprietà**.
 
-4. Nella casella **Porta** specificare il numero di porta per il listener del gruppo di disponibilità usando il valore $EndpointPort usato in precedenza, l'impostazione predefinita era 1433, quindi fare clic su **OK**.
+4. In hello **porta** , specificare il numero di porta hello del listener del gruppo di disponibilità hello utilizzando hello $EndpointPort utilizzato in precedenza (1433 è predefinito hello), quindi fare clic su **OK**.
 
 Ora si ha un gruppo di disponibilità nelle macchine virtuali di Azure in esecuzione in modalità Resource Manager. 
 
-## <a name="test-the-connection-to-the-listener"></a>Testare la connessione al listener
-Verificare la connessione effettuando le operazioni seguenti:
+## <a name="test-hello-connection-toohello-listener"></a>Listener toohello connessione hello di test
+Test connessione hello eseguendo hello seguenti:
 
-1. Usare RDP per connettersi a un'istanza di SQL Server che si trova nella stessa rete virtuale, ma non è proprietaria della replica. Può trattarsi dell'altra istanza di SQL Server nel cluster.
+1. Istanza di SQL Server tooa RDP in hello stesso virtuale di rete, ma non non replica hello personalizzati. Questo server può essere hello altra istanza SQL Server in cluster hello.
 
-2. Usare l'utilità **sqlcmd** per testare la connessione. Lo script seguente, ad esempio, stabilisce una connessione **sqlcmd** alla replica primaria tramite il listener con l'autenticazione di Windows:
+2. Utilizzare **sqlcmd** connessione hello tootest di utilità. Ad esempio, lo script seguente hello stabilisce un **sqlcmd** replica primaria toohello di connessione tramite il listener hello con l'autenticazione di Windows:
    
         sqlcmd -S <listenerName> -E
 
-La connessione SQLCMD si connette automaticamente all'istanza di SQL Server che ospita la replica primaria. 
+connessione SQLCMD Hello si connette automaticamente toohello istanza di SQL Server che ospita la replica primaria hello. 
 
 ## <a name="create-an-ip-address-for-an-additional-availability-group"></a>Creare un indirizzo IP per un gruppo di disponibilità aggiuntivo
 
-Ogni gruppo di disponibilità usa un listener diverso. Ogni listener ha un proprio indirizzo IP. Usare lo stesso bilanciamento del carico per contenere l'indirizzo IP per altri listener. Dopo aver creato un gruppo di disponibilità, aggiungere l'indirizzo IP al bilanciamento del carico e quindi configurare il listener.
+Ogni gruppo di disponibilità usa un listener diverso. Ogni listener ha un proprio indirizzo IP. Utilizzare hello stesso carica l'indirizzo IP di bilanciamento del carico toohold hello per listener aggiuntivi. Dopo aver creato un gruppo di disponibilità, aggiungere toohello hello IP indirizzo il bilanciamento del carico e quindi configurare il listener hello.
 
-Per aggiungere un indirizzo IP a un bilanciamento del carico con il portale di Azure, completare i passaggi seguenti:
+tooadd un bilanciamento del carico IP indirizzo tooa con il portale di Azure, hello hello seguenti:
 
-1. Nel portale di Azure aprire il gruppo di risorse che contiene il bilanciamento del carico e fare clic sul bilanciamento del carico. 
+1. Nel portale di Azure hello, aprire gruppo di risorse hello contenente bilanciamento del carico hello e quindi fare clic su servizio di bilanciamento del carico hello. 
 
 2. In **IMPOSTAZIONI** fare clic su **Pool di indirizzi IP front-end** e quindi su **Aggiungi**. 
 
-3. In **Aggiungi indirizzo IP front-end** assegnare un nome per il front-end. 
+3. In **Aggiungi indirizzo IP di front-end**, assegnare un nome front-end hello. 
 
-4. Verificare che **Rete virtuale** e **Subnet** siano le stesse delle istanze di SQL Server.
+4. Verificare che hello **rete virtuale** hello e **Subnet** sono hello stesso hello istanze di SQL Server.
 
-5. Impostare l'indirizzo IP per il listener. 
+5. Impostare l'indirizzo IP hello per listener hello. 
    
    >[!TIP]
-   >È possibile impostare l'indirizzo IP come statico e digitare un indirizzo che non sia attualmente utilizzato nella subnet. In alternativa è possibile impostare l'indirizzo IP come dinamico e salvare il nuovo pool di indirizzi IP front-end. In questo caso il portale di Azure assegna automaticamente un indirizzo IP disponibile al pool. È quindi possibile riaprire il pool di indirizzi IP front-end e modificare l'assegnazione in statico. 
+   >È possibile impostare toostatic indirizzo IP di hello e digitare un indirizzo che non è attualmente usato nella subnet hello. In alternativa, è possibile impostare toodynamic indirizzo IP di hello e salvare il pool IP di hello nuovo front-end. Quando si esegue questa operazione, hello portale di Azure assegna automaticamente un pool di toohello di indirizzi IP disponibile. È quindi possibile riaprire il pool IP front-end di hello e modificare toostatic assegnazione hello. 
 
-6. Salvare l'indirizzo IP per il listener. 
+6. Salva l'indirizzo IP hello per listener hello. 
 
-7. Aggiungere un probe integrità usando le impostazioni seguenti:
+7. Aggiungere un probe di integrità tramite hello seguenti impostazioni:
 
    |Impostazione |Valore
    |:-----|:----
-   |**Nome** |Un nome per identificare il probe.
+   |**Nome** |Probe di hello tooidentify un nome.
    |**Protocollo** |TCP
-   |**Porta** |Una porta TCP non usata che deve essere disponibile in tutte le macchine virtuali. Non può essere usata per altri scopi. Due listener non possono usare la stessa porta probe. 
-   |**Interval** |L'intervallo di tempo tra i tentativi di probe. Usare il valore predefinito (5).
-   |**Soglia non integra** |Il numero di soglie consecutive che devono essere superate prima che una macchina virtuale venga considerata non integra.
+   |**Porta** |Una porta TCP non usata che deve essere disponibile in tutte le macchine virtuali. Non può essere usata per altri scopi. Nessun due listener può utilizzare hello stessa porta probe. 
+   |**Interval** |tenta di Hello periodo di tempo tra probe. Usare hello predefinito (5).
+   |**Soglia non integra** |numero di Hello delle soglie consecutive che devono verificarsi prima di una macchina virtuale viene considerata non integra.
 
-8. Fare clic su **OK** per salvare il probe. 
+8. Fare clic su **OK** probe hello toosave. 
 
 9. Creare una regola di bilanciamento del carico. Fare clic su **Regole di bilanciamento del carico** e quindi fare clic su **Aggiungi**.
 
-10. Configurare la nuova regola di bilanciamento del carico con le seguenti impostazioni:
+10. Configurare hello nuovo bilanciamento del carico regola utilizzando hello seguenti impostazioni:
 
    |Impostazione |Valore
    |:-----|:----
-   |**Nome** |Un nome per identificare la regola di bilanciamento del carico. 
-   |**Indirizzo IP front-end IP** |Selezionare l'indirizzo IP che è stato creato. 
+   |**Nome** |Un hello tooidentify nome caricare la regola di bilanciamento del carico. 
+   |**Indirizzo IP front-end IP** |Selezionare l'indirizzo IP hello che è stato creato. 
    |**Protocollo** |TCP
-   |**Porta** |Usare la porta che viene utilizzata dalle istanze di SQL Server. Un'istanza predefinita utilizza la porta 1433, a meno che non venga modificata. 
-   |**Porta back-end** |Usare lo stesso valore di **Porta**.
-   |**Pool back-end** |Il pool che contiene le macchine virtuali con le istanze di SQL Server. 
-   |**Probe di integrità** |Scegliere il probe che è stato creato.
+   |**Porta** |Utilizzare hello porta che utilizzano le istanze di SQL Server hello. Un'istanza predefinita utilizza la porta 1433, a meno che non venga modificata. 
+   |**Porta back-end** |Hello utilizzare lo stesso valore **porta**.
+   |**Pool back-end** |pool di Hello contenente macchine virtuali hello con istanze di SQL Server hello. 
+   |**Probe di integrità** |Scegliere probe hello che è stato creato.
    |**Persistenza della sessione** |Nessuno
    |**Timeout di inattività (minuti)** |Valore predefinito (4)
-   |**IP mobile (Direct Server Return)** | Attivato
+   |**IP mobile (Direct Server Return)** | Enabled
 
-### <a name="configure-the-availability-group-to-use-the-new-ip-address"></a>Configurare il gruppo di disponibilità affinché usi il nuovo indirizzo IP
+### <a name="configure-hello-availability-group-toouse-hello-new-ip-address"></a>Configurare hello disponibilità gruppo toouse hello nuovo indirizzo IP
 
-Per completare la configurazione del cluster, ripetere i passaggi eseguiti per la creazione del primo gruppo di disponibilità. Ovvero configurare il [cluster affinché usi il nuovo indirizzo IP](#configure-the-cluster-to-use-the-load-balancer-ip-address). 
+toofinish configurazione cluster hello, passaggi ripetizione hello eseguiti dopo il primo gruppo di disponibilità hello effettuato. Vale a dire, configurare hello [toouse hello nuovo indirizzo IP del cluster](#configure-the-cluster-to-use-the-load-balancer-ip-address). 
 
-Dopo aver aggiunto un indirizzo IP al listener, configurare il gruppo di disponibilità aggiuntivo effettuando le operazioni seguenti: 
+Dopo aver aggiunto un indirizzo IP del listener hello, configurare il gruppo di disponibilità aggiuntiva hello eseguendo hello seguenti: 
 
-1. Verificare che la porta probe per il nuovo indirizzo IP sia aperta in entrambe le macchine virtuali di SQL Server. 
+1. Verificare che la porta probe hello nuovo indirizzo IP di hello è aperta in entrambe le macchine virtuali di SQL Server. 
 
-2. [In Cluster Manager aggiungere il punto di accesso client](#addcap).
+2. [In Gestione Cluster di aggiungere il punto di accesso client hello](#addcap).
 
-3. [Configurare la risorsa IP per il gruppo di disponibilità](#congroup).
+3. [Configurare la risorsa IP hello per il gruppo di disponibilità hello](#congroup).
 
    >[!IMPORTANT]
-   >Quando si crea l'indirizzo IP, usare l'indirizzo IP che è stato aggiunto al bilanciamento del carico.  
+   >Quando si crea l'indirizzo IP di hello, utilizzare l'indirizzo IP hello aggiunto toohello servizio di bilanciamento del carico.  
 
-4. [Rendere la risorsa del gruppo di disponibilità di SQL Server dipendente dal punto di accesso client](#dependencyGroup).
+4. [Rendere dipendente nel punto di accesso client hello risorsa gruppo di disponibilità SQL Server hello](#dependencyGroup).
 
-5. [Rendere la risorsa del punto di accesso client dipendente dall'indirizzo IP](#listname).
+5. [Rendere l'accesso ai client di hello punto risorsa dipendente dalla risorsa indirizzo IP hello](#listname).
  
-6. [Impostare i parametri del cluster in PowerShell](#setparam).
+6. [Impostare i parametri del cluster hello in PowerShell](#setparam).
 
-Dopo avere configurato il gruppo di disponibilità per usare il nuovo indirizzo IP, configurare la connessione al listener. 
+Dopo aver configurato hello disponibilità gruppo toouse hello nuovo indirizzo IP, configurare toohello listener della connessione hello. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 

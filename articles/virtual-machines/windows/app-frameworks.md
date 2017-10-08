@@ -1,6 +1,6 @@
 ---
-title: Distribuire framework applicazioni su macchine virtuali Windows in Azure | Microsoft Docs
-description: Creare framework applicazioni comuni su macchine virtuali Windows usando i modelli di Azure Resource Manager per installare Active Directory, Docker e molto altro.
+title: Framework applicazione aaaDeploy nelle macchine virtuali di Windows in Azure | Documenti Microsoft
+description: "Creare il framework di applicazioni più diffusi in macchine virtuali di Windows utilizzando tooinstall di modelli di gestione risorse di Azure Active Directory, Docker e molto altro ancora."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: dlepow
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 275342413c6f4a9efc7a056bdc80b6489536576f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cfc7f044cca36b7743d9acc25a27e2d589e866c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-popular-application-frameworks-on-windows-using-azure-resource-manager-templates"></a>Distribuire framework applicazioni comuni in Windows usando i modelli di Azure Resource Manager 
 
-I carichi di lavoro in genere richiedono molte risorse per funzionare come dovrebbero. I modelli di Gestione risorse di Azure consentono non solo di definire come configurare le applicazioni, ma anche come vengono distribuite le risorse per supportare le applicazioni configurate. Questo articolo illustra i modelli più usati della raccolta e fornisce informazioni per usare il portale di Azure, l'interfaccia della riga di comando di Azure o PowerShell per la relativa distribuzione.
+In genere, i carichi di lavoro richiedono molte risorse toofunction, in base toodesign. Azure Resource Manager modelli consentono solo toonot definiscono come le applicazioni sono configurate, ma anche come risorse hello distribuite applicazioni toosupport configurato. In questo articolo illustra i modelli più diffusi toohello nella raccolta hello e vengono fornite informazioni per l'utilizzo di hello portale di Azure, Azure CLI o PowerShell toodeploy li.
 
 [!INCLUDE [virtual-machines-common-app-frameworks](../../../includes/virtual-machines-common-app-frameworks.md)]
 

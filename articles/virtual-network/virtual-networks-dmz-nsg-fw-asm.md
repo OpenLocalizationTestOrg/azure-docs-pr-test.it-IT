@@ -1,5 +1,5 @@
 ---
-title: 'Esempio di rete perimetrale: Creare una rete perimetrale per proteggere le applicazioni con un firewall e gruppi di sicurezza di rete | Documentazione Microsoft'
+title: 'Esempio: aaaDMZ applicazioni tooprotect una rete Perimetrale con un Firewall e NSGs | Documenti Microsoft'
 description: Creare una rete perimetrale con un firewall e gruppi di sicurezza di rete
 services: virtual-network
 documentationcenter: na
@@ -14,228 +14,228 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor;sivae
-ms.openlocfilehash: cc0e8a3fa749eb2e6f65ef92c2d3cb404cfc8bc0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 18f116dc3897567bff14a509ae8c13f449182bfb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="example-2--build-a-dmz-to-protect-applications-with-a-firewall-and-nsgs"></a>Esempio 2: Creare una rete perimetrale per proteggere le applicazioni con un firewall e gruppi di sicurezza di rete
-[Tornare alla pagina relativa alle procedure consigliate sui limiti di sicurezza][HOME]
+# <a name="example-2--build-a-dmz-tooprotect-applications-with-a-firewall-and-nsgs"></a>Esempio 2 – applicazioni tooprotect una rete Perimetrale con un Firewall e NSGs
+[Restituire la pagina sicurezza limite Best Practices toohello][HOME]
 
-Questo esempio illustra come creare una rete perimetrale con un firewall, quattro server Windows e gruppi di sicurezza di rete. Illustra in dettaglio anche ogni comando rilevante per favorire una comprensione più approfondita di ogni passaggio. È disponibile anche una sezione sugli scenari di traffico con istruzioni dettagliate sul percorso seguito dal traffico attraverso i livelli di difesa della rete perimetrale. La sezione Riferimenti, infine, include tutto il codice e istruzioni complete per creare l'ambiente per testare e sperimentare vari scenari. 
+Questo esempio illustra come creare una rete perimetrale con un firewall, quattro server Windows e gruppi di sicurezza di rete. Ogni tooprovide comandi rilevanti hello in modo dettagliato anche una comprensione più approfondita di ogni passaggio. È inoltre disponibile un Scenario di traffico sezione tooprovide un'analisi approfondita dettagliate come traffico procede attraverso i livelli di difesa hello hello rete Perimetrale. Infine, nella sezione dei riferimenti hello è codice completo hello e istruzione toobuild questo ambiente tootest e sperimentare vari scenari. 
 
 ![Rete Perimetrale in ingresso con NVA e gruppo][1]
 
 ## <a name="environment-description"></a>Descrizione dell'ambiente
-In questo esempio è presente una sottoscrizione che include gli elementi seguenti:
+In questo esempio è associata una sottoscrizione che contiene la seguente sintassi hello:
 
 * Due servizi cloud, "FrontEnd001" e "BackEnd001"
 * Una rete virtuale, "CorpNetwork", con due subnet: "FrontEnd" e "BackEnd"
-* Un singolo gruppo di sicurezza di rete applicato a entrambe le subnet.
-* Un dispositivo virtuale di rete, in questo esempio Barracuda NextGen Firewall, connesso alla subnet FrontEnd
+* Un unico gruppo di sicurezza di rete che viene applicato tooboth subnet
+* Un accessorio virtuale di rete, in questo esempio un Firewall, NextGen Barracuda connesso subnet front-end toohello
 * Un server Windows che rappresenta un server Web applicazioni ("IIS01").
 * Due server Windows che rappresentano server back-end applicazioni ("AppVM01", "AppVM02")
-* Un server Windows che rappresenta un server DNS ("DNS01").
+* Un server Windows che rappresenta un server DNS ("DNS01")
 
 > [!NOTE]
-> Anche se in questo esempio si usa Barracuda NextGen Firewall, possono essere usati molti altri dispositivi virtuali di rete.
+> Sebbene questo esempio viene utilizzato un NextGen Firewall Barracuda, molti dei diversi dispositivi virtuali di rete può essere usati per questo esempio hello.
 > 
 > 
 
-Nella sezione Riferimenti alla fine dell'articolo è disponibile uno script di PowerShell per creare la maggior parte dell'ambiente descritto sopra. La creazione di macchine virtuali e reti virtuali, anche se eseguita dallo script di esempio, non è descritta in dettaglio in questo documento.
+Nella sezione dei riferimenti hello sotto è uno script di PowerShell che compilerà la maggior parte dell'ambiente hello descritto in precedenza. Macchine virtuali hello di compilazione e le reti virtuali, anche se vengono eseguite dallo script di esempio hello, non sono descritti in dettaglio in questo documento.
 
-Per creare l'ambiente, eseguire queste operazioni:
+ambiente di hello toobuild:
 
-1. Salvare il file XML di configurazione di rete incluso nella sezione Riferimenti, aggiornandolo con i nomi, il percorso e gli indirizzi IP corrispondenti allo scenario specifico.
-2. Aggiornare le variabili utente incluse nello script in modo che corrispondano all'ambiente in cui lo script verrà eseguito, ad esempio sottoscrizioni, nomi dei servizi e così via.
-3. Eseguire lo script in PowerShell.
+1. Salvare file xml configurazione rete hello inclusi nella sezione dei riferimenti hello (aggiornata con i nomi, la posizione e scenario hello dato toomatch di indirizzi IP)
+2. Le variabili utente di aggiornamento hello nello script di hello script toomatch hello ambiente hello è toobe eseguite (sottoscrizioni, nomi di servizio e così via)
+3. Eseguire script hello in PowerShell
 
-**Nota**: l'area indicata nello script di PowerShell deve corrispondere all'area indicata nel file XML di configurazione di rete.
+**Nota**: area hello indicato nell'hello script di PowerShell deve corrispondere area hello indicato nel file xml di configurazione rete hello.
 
-Dopo l'esecuzione corretta dello script, si potranno eseguire i passaggi successivi allo script seguenti:
+Una volta hello script viene eseguito correttamente può essere prelevato hello post-script come segue:
 
-1. Configurare le regole del firewall illustrate nella sezione seguente intitolata Regole del firewall.
-2. Facoltativamente, nella sezione Riferimenti sono disponibili due script per configurare il server Web e il server applicazioni per consentire l'esecuzione dei test con questa configurazione della rete perimetrale.
+1. Impostare le regole firewall hello, questa attività viene descritta in hello sezione seguente: le regole del Firewall.
+2. Facoltativamente, nella sezione dei riferimenti hello sono due script tooset hello web server e il server di app con un tooallow di applicazione web semplice test con questa configurazione di rete Perimetrale.
 
-La sezione successiva descrive la maggior parte delle istruzioni dello script relativamente ai gruppi di sicurezza di rete.
+la sezione successiva di Hello spiega la maggior parte delle hello script istruzioni relativo tooNetwork gruppi di sicurezza.
 
-## <a name="network-security-groups-nsg"></a>Gruppi di sicurezza di rete
+## <a name="network-security-groups-nsg"></a>Gruppi di sicurezza di rete (NGS)
 Per questo esempio viene creato un gruppo di sicurezza di rete, in cui vengono poi caricate sei regole. 
 
 > [!TIP]
-> In genere, è consigliabile creare prima di tutto le regole specifiche di tipo "Consenti" e infine le regole di tipo "Nega" più generiche. La priorità assegnata determina quali regole vengono valutate per prime. Quando si rileva che al traffico è applicabile una determinata regola, non vengono valutate altre regole. Le regole del gruppo di sicurezza di rete possono essere applicate nella direzione in ingresso o in uscita, dal punto di vista della subnet.
+> In genere, si deve creare regole "Consenti" specifiche prima e quindi hello ultima più generico "Deny" regole. Hello assegnata la priorità determina quali regole vengono valutate per prime. Una volta traffico trovato tooapply tooa specifica regola, non vengono valutate altre regole. Possono essere applicate regole di gruppo in hello nella direzione in ingresso o in uscita (dalla prospettiva di hello della subnet hello).
 > 
 > 
 
-A livello dichiarativo, per il traffico in ingresso vengono create le righe seguenti:
+In modo dichiarativo, hello segue le regole è compilato per il traffico in ingresso:
 
 1. Il traffico DNS interno (porta 53) è consentito.
-2. Il traffico RDP (porta 3389) da Internet a qualsiasi VM è consentito.
-3. Il traffico HTTP (porta 80) da Internet al dispositivo virtuale di rete (firewall) è consentito.
-4. Tutto il traffico (tutte le porte) da IIS01 ad AppVM1 è consentito.
-5. Tutto il traffico (tutte le porte) da Internet all'intera rete virtuale (entrambe le subnet) viene bloccato.
-6. Tutto il traffico (tutte le porte) dalla subnet front-end alla subnet back-end viene bloccato.
+2. È consentito il traffico RDP (porta 3389) da hello Internet tooany VM
+3. È consentito il traffico HTTP (porta 80) da hello Internet toohello NVA (firewall)
+4. È consentito qualsiasi tipo di traffico (tutte le porte) da IIS01 tooAppVM1
+5. Qualsiasi tipo di traffico (tutte le porte) da hello Internet toohello viene negato l'intera rete virtuale (entrambi subnet)
+6. Qualsiasi tipo di traffico (tutte le porte) dalla subnet di back-end toohello subnet front-end hello negato
 
-Con queste regole associate a ogni subnet, se una richiesta HTTP proviene da Internet verso il server Web, le regole 3 (consenti) e 5 (nega) saranno applicabili, ma poiché la regola 3 ha una priorità maggiore, verrà applicata solo tale regola e la regola 5 non verrà presa in considerazione. La richiesta HTTP verrà quindi consentita sul firewall. Se lo stesso traffico prova a raggiungere il server DNS01, la regola 5 (nega) sarà la prima applicabile e il traffico non sarà autorizzato a passare al server. La regola 6 (nega) impedisce alla subnet front-end di comunicare con la subnet back-end (ad eccezione del traffico consentito nelle regole 1 e 4), proteggendo la rete back-end nel caso in cui un utente malintenzionato comprometta l'applicazione Web sul front-end. L'utente malintenzionato avrà infatti accesso limitato alla rete "protetta" back-end, ovvero solo alle risorse esposte nel server AppVM01.
+Con queste subnet associata tooeach regole, se una richiesta HTTP in ingresso dal server web toohello Internet hello entrambi regole 3 (Consenti) e 5 (Nega) verrà applicata, ma poiché la regola 3 ha una priorità più alta solo esso viene applicato e regola 5 sarebbe non entrano in gioco. In questo modo la richiesta HTTP hello sia possibile usare toohello firewall. Se il traffico stesso cercava server DNS01 di hello tooreach, regola 5 (Nega) sarebbe hello prima tooapply hello il traffico e non sarebbe consentito toopass toohello server. Regola 6 (Nega) blocchi hello subnet front-end dalla conversazione toohello subnet di back-end (ad eccezione di traffico consentito nelle regole 1 e 4), consente di proteggere rete back-end hello nel caso in cui un'utente malintenzionato compromette hello applicazione web sul front-end hello autore dell'attacco hello avrebbe accesso limitato toohello back-end "protetto" rete (solo tooresources esposte nel server AppVM01 hello).
 
-Esiste una regola in uscita predefinita che consente il traffico in uscita verso Internet. Per questo esempio si consente il traffico in uscita e non si modificano le regole in uscita. Per bloccare il traffico in entrambe le direzioni, è richiesto il routing definito dall'utente. Questo aspetto viene esaminato in un esempio diverso, disponibile nel [documento sui principali limiti della sicurezza][HOME].
+Una regola in uscita predefinito che consente il traffico in uscita toohello internet. Per questo esempio si consente il traffico in uscita e non si modificano le regole in uscita. toolock verso il basso il traffico in entrambe le direzioni, Routing definito dall'utente è obbligatorio, questo viene esaminato in un esempio di diversi che è possibile trovare in hello [documento limite di sicurezza principale][HOME].
 
-Le regole per i gruppi di sicurezza di rete illustrate sopra sono molto simili a quelle descritte nell'[Esempio 1: Creare una semplice rete perimetrale con gruppi di sicurezza di rete][Example1]. Vedere anche la descrizione relativa ai gruppi di sicurezza di rete in quel documento per un'analisi dettagliata della regola sui gruppi di sicurezza di rete e i relativi attributi.
+Hello sopra descritto NSG le regole sono molto simili toohello NSG in [esempio 1: creare una rete Perimetrale semplice con NSGs][Example1]. Esaminare hello NSG descrizione in tale documento per ogni regola di gruppo e gli attributi di un'analisi approfondita.
 
 ## <a name="firewall-rules"></a>Regole del firewall
-È necessario installare un client di gestione in un PC per controllare il firewall e creare le configurazioni necessarie. Per informazioni sulla gestione del dispositivo, vedere la documentazione del fornitore del firewall o di un altro dispositivo virtuale di rete. Il resto di questa sezione descrive la configurazione del firewall stesso tramite il client di gestione dei fornitori, non del portale di Azure o di PowerShell.
+Un client di gestione sarà necessario toobe installato su un firewall di hello toomanage PC e creare configurazioni di hello necessarie. Vedere fornitore documentazione fornita dal firewall (o altri NVA) hello in modo toomanage hello dispositivo. resto Hello di questa sezione descrivono la configurazione hello di firewall hello stesso, tramite il client Gestione fornitori hello (ossia, non hello portale di Azure o PowerShell).
 
-Le istruzioni per scaricare il client e connettersi all'applicazione Barracuda usata in questo esempio sono disponibili qui: [Barracuda NG Admin](https://techlib.barracuda.com/NG61/NGAdmin)
+Istruzioni per il download di client e connessione toohello Barracuda utilizzato in questo esempio sono disponibili qui: [Barracuda NG Admin](https://techlib.barracuda.com/NG61/NGAdmin)
 
-Sul firewall sarà necessario creare regole di inoltro. Poiché questo esempio indirizza solo il traffico Internet in ingresso verso il firewall e quindi verso il server Web, sarà necessaria solo una regola del processo NAT di inoltro. Nel dispositivo Barracuda NextGen Firewall usato in questo esempio, per passare il traffico viene usata una regola Destination NAT ("Dst NAT").
+Regole di inoltro sul firewall hello, saranno necessario toobe creato. Poiché in questo esempio viene distribuito solo il traffico in entrata toohello firewall internet, quindi toohello web server, è necessario solo un inoltro regola NAT. In hello Barracuda NextGen Firewall utilizzato in hello in questo esempio regola sarebbe un NAT di destinazione della regola toopass ("ora legale NAT") il traffico.
 
-Per creare la regola seguente, o verificare le regole predefinite esistenti, dal dashboard del client Barracuda NG Admin passare alla scheda di configurazione, quindi nella sezione Operational Configuration fare clic su Ruleset. Una griglia denominata "Main Rules" mostrerà le regole esistenti attive e disattivate nel firewall. Nell'angolo in alto a destra della griglia è presente un piccolo pulsante verde "+" sul quale occorre fare clic per creare una nuova regola. Notare che il firewall potrebbe essere "bloccato" per modifiche. Se è visualizzato un pulsante contrassegnato con "Lock" e non si riescono a creare o modificare regole, fare clic sul pulsante per "sbloccare" il set di regole e consentire la modifica. Se si vuole modificare una regola esistente, selezionarla, fare clic con il pulsante destro del mouse e scegliere Edit Rule.
+seguente hello toocreate regola (o verificare le regole predefinite esistente), a partire dal dashboard di hello Barracuda NG amministratore client, passare scheda Configurazione toohello, hello configurazione operativa sezione selezionare il set di regole. Chiamata di una griglia, "Main regole" mostrerà hello regole attive e disattivate il firewall hello esistente. In hello angolo superiore destro di questa griglia è una piccola verde "+" fare clic su questo toocreate una nuova regola (Nota: il firewall può essere "bloccato" per le modifiche, se viene visualizzato un pulsante contrassegnato come "Blocco" e toocreate Impossibile o modificare le regole, fare clic su questo pulsante troppo "sbloccare" hello set di regole e consentire la modifica). Se si desidera tooedit una regola esistente, selezionare la regola, fare doppio clic su e scegliere Modifica regola.
 
 Creare una nuova regola e specificare un nome, ad esempio "WebTraffic". 
 
-Icona regola NAT di destinazione è simile al seguente: ![icona NAT di destinazione][2]
+icona della regola NAT destinazione Hello è simile al seguente: ![icona NAT di destinazione][2]
 
-La regola stessa dovrebbe essere simile alla schermata seguente:
+regola di Hello stessa avrà un aspetto simile al seguente:
 
 ![Regola del firewall][3]
 
-In questo caso, qualsiasi indirizzo di origine in ingresso che accede al firewall nel tentativo di raggiungere HTTP (porta 80 o 443 per HTTPS) verrà trasmesso all'interfaccia "DHCP1 Local IP" del firewall e reindirizzato al server Web con l'indirizzo IP 10.0.1.5. Poiché il traffico arriva sulla porta 80 e viene inoltrato al server Web sulla porta 80, non sono necessarie modifiche della porta. Il campo Target List poteva tuttavia essere 10.0.1.5:8080 se il server Web fosse stato in ascolto sulla porta 8080, convertendo così la porta in ingresso 80 sul firewall nella porta in ingresso 8080 sul server Web.
+Qui qualsiasi indirizzo in ingresso che riscontri hello Firewall tooreach HTTP (porta 80 o 443 per HTTPS) durante il tentativo verrà inviato hello interfaccia "IP locale DHCP1" e toohello reindirizzato il Server Web con indirizzo IP del 10.0.1.5 hello del Firewall. Poiché hello traffico in ingresso sulla porta 80 e server web di toohello corso sulla porta 80 è necessario apportare alcuna modifica porta. Tuttavia, hello elenco destinazione avrebbe potuto essere 10.0.1.5:8080 se il Server Web resta in attesa su una porta 8080 in questo modo la traduzione hello in ingresso porta 80 in hello firewall tooinbound porta 8080 hello web server.
 
-È necessario definire un valore in Connection Method. Come regola di destinazione da Internet la più appropriata è "Dynamic SNAT". 
+Un metodo di connessione devono anche essere indicato, per hello regola di destinazione da Internet, hello "SNAT dinamici" è più appropriato. 
 
-Anche se è stata creata una sola regola, è importante impostarne la priorità correttamente. Se nella griglia di tutte le regole sul firewall questa nuova regola si trova in basso, sotto la regola "BLOCKALL", non verrà mai applicata. Assicurarsi che la regola appena creata per il traffico Web si trovi sopra la regola BLOCKALL.
+Anche se è stata creata una sola regola, è importante impostarne la priorità correttamente. Se nella griglia hello di tutte le regole firewall hello che è la nuova regola nella parte inferiore di hello (sotto regola "BLOCKALL" hello) non verrà mai entrano in gioco. Verificare la regola hello appena creato per il traffico web sia superiore regola BLOCKALL hello.
 
-Una volta che la regola è stata creata, è necessario effettuarne il push al firewall e quindi attivarla. In caso contrario, la modifica della regola non sarà applicata. Il processo di push e attivazione è descritto nella sezione successiva.
+Dopo aver creata la regola hello, deve essere inserito toohello firewall e quindi attivato, se ciò non avviene regola hello modifica non avrà alcun effetto. il processo di attivazione e push Hello è descritto nella sezione successiva hello.
 
 ## <a name="rule-activation"></a>Attivazione delle regole
-Dopo aver modificato il set di regole per aggiungervi questa regola, è necessario caricarlo nel firewall e attivarlo.
+Con hello ruleset modificato tooadd questa regola, hello ruleset deve essere caricato toohello firewall e attivato.
 
 ![Attivazione delle regole firewall][4]
 
-Nell'angolo in alto a destra del client di gestione è disponibile un gruppo di pulsanti. Fare clic sul pulsante "Send Changes" per inviare le regole modificate al firewall, quindi fare clic sul pulsante "Activate".
+Nell'angolo superiore destra hello del client di gestione di hello sono un cluster di pulsanti. Fare clic su hello "inviare modifiche" pulsante toosend hello modificato regole toohello firewall, quindi fare clic sul pulsante "Attiva" hello.
 
-Con l'attivazione del set di regole del firewall, la compilazione dell'ambiente di esempio è completata. Facoltativamente, è possibile eseguire gli script successivi alla compilazione disponibili nella sezione Riferimenti per aggiungere un'applicazione a questo ambiente e testare gli scenari di traffico seguenti.
+Con l'attivazione del set di regole firewall hello hello è stata completata la compilazione di ambiente di esempio. Facoltativamente, gli script di compilazione post hello in hello sezione può essere riferimenti esegue tooadd un'applicazione toothis ambiente tootest hello scenari di traffico seguenti.
 
 > [!IMPORTANT]
-> È importante comprendere che non si raggiungerà il server Web direttamente. Quando un browser richiede una pagina HTTP da FrontEnd001.CloudApp.Net, l'endpoint HTTP (porta 80) passa questo traffico al firewall, non al server Web. Il firewall inoltra quindi la richiesta tramite NAT al server Web, in base alla regola creata sopra.
+> È toorealize critico che non verrà raggiunto di direttamente server web hello. Quando un browser richiede una pagina HTTP da FrontEnd001.CloudApp.Net, passa di endpoint (porta 80) HTTP hello questo firewall toohello traffico non hello web server. Hello firewall, quindi in base a regole toohello creato in precedenza, NAT che richiedono toohello Server Web.
 > 
 > 
 
 ## <a name="traffic-scenarios"></a>Scenari di traffico
-#### <a name="allowed-web-to-web-server-through-firewall"></a>(Consentito) Da Web a server Web tramite il firewall
+#### <a name="allowed-web-tooweb-server-through-firewall"></a>(Consentito) TooWeb Web Server con Firewall
 1. L'utente Internet richiede una pagina HTTP a FrontEnd001.CloudApp.Net (servizio cloud per Internet).
-2. Il servizio cloud passa il traffico attraverso l'endpoint aperto sulla porta 80 all'interfaccia locale del firewall su 10.0.1.4:80.
+2. Traffico passa del servizio cloud tramite endpoint aperto sull'interfaccia locale di toofirewall la porta 80 in 10.0.1.4:80
 3. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-   1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
-   2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
-   3. Regola gruppo di sicurezza di rete 3 (da Internet a firewall) applicabile, il traffico è consentito, l'elaborazione della regola si arresta.
-4. Il traffico raggiunge l'indirizzo IP interno del firewall (10.0.1.4).
-5. La regola di inoltro al firewall riconosce il traffico per la porta 80 e lo reindirizza al server Web IIS01.
-6. IIS01 è in ascolto del traffico Web, riceve la richiesta e ne avvia l'elaborazione.
-7. IIS01 chiede informazioni a SQL Server in AppVM01.
+   1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
+   2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
+   3. Applicare NSG regola 3 (tooFirewall Internet), il traffico è l'elaborazione della regola consentita, arresto
+4. Traffico raggiunge l'indirizzo IP interno del firewall hello (10.0.1.4)
+5. Regola di inoltro di firewall vedere questa operazione è traffico sulla porta 80, lo reindirizza il server web toohello IIS01
+6. Iis01 è in ascolto per il traffico web, riceve la richiesta e avvia l'elaborazione richiesta hello
+7. Iis01 richiede SQL Server hello su AppVM01 per informazioni
 8. Non sono impostate regole in uscita sulla subnet front-end, il traffico è consentito.
-9. La subnet back-end inizia l'elaborazione delle regole in ingresso:
-   1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
-   2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
-   3. Regola gruppo di sicurezza di rete 3 (da Internet a firewall), non applicabile, passa alla regola successiva.
-   4. Regola gruppo di sicurezza di rete 4 (da IIS01 ad AppVM01) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
-10. AppVM01 riceve la query SQL e risponde.
-11. Non essendoci regole in uscita sulla subnet back-end, la risposta è consentita.
+9. subnet di back-end Hello inizia l'elaborazione della regola in ingresso:
+   1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
+   2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
+   3. GRUPPO regola 3 (tooFirewall Internet) non è applicabile, spostare toonext regola
+   4. Applicare la regola gruppo 4 (IIS01 tooAppVM01), il traffico è l'elaborazione della regola consentita, arresto
+10. AppVM01 riceve hello Query SQL e risponde
+11. Poiché esistono non è consentito alcun regole in uscita su hello risposta hello subnet di back-end
 12. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-    1. Non sono presenti regole del gruppo di sicurezza di rete applicabili al traffico in ingresso dalla subnet back-end alla subnet front-end, quindi nessuna regola del gruppo di sicurezza di rete è applicabile.
-    2. La regola di sistema predefinita che consente il traffico tra le subnet consentirebbe questo tipo di traffico, perciò è consentito.
-13. Il server IIS riceve la risposta SQL, completa la risposta HTTP e la invia al richiedente.
-14. Essendo una sessione NAT dal firewall, la destinazione della risposta (inizialmente) è il firewall.
-15. Il firewall riceve la risposta dal server Web e la restituisce all'utente Internet.
-16. Non essendoci regole in uscita sulla subnet front-end, la risposta è consentita e l'utente Internet riceve la pagina Web richiesta.
+    1. Nessuna regola di gruppo che si applica tooInbound traffico dalla subnet front-end toohello di subnet back-end di hello, pertanto nessuna delle regole NSG hello applicabile
+    2. regola di sistema predefinito Hello consenta il traffico tra subnet consente il traffico in modo hello traffico è consentito.
+13. server IIS Hello riceve risposta SQL hello e completa di risposta HTTP hello e invia toohello richiedente
+14. Poiché si tratta di una sessione NAT dal firewall hello, destinazione risposta hello è (inizialmente) per hello Firewall
+15. firewall Hello riceve hello risposta dal Server Web hello e inoltra toohello indietro utente Internet
+16. Poiché esistono non è consentito alcun regole in uscita su hello risposta hello di subnet front-end e hello utente Internet riceve hello web pagina richiesta.
 
-#### <a name="allowed-rdp-to-backend"></a>(Consentito) Da RDP a back-end
-1. L'amministratore del server su Internet richiede una sessione RDP ad AppVM01 su BackEnd001.CloudApp.Net:xxxxx, dove xxxxx è il numero di porta assegnato casualmente per RDP a AppVM01. Si può trovare la porta assegnata sul portale di Azure o tramite PowerShell.
-2. Poiché il firewall è in ascolto solo dell'indirizzo FrontEnd001.CloudApp.Net, non è interessato da questo flusso di traffico.
+#### <a name="allowed-rdp-toobackend"></a>(Consentito) TooBackend RDP
+1. Amministratore del server su internet richiede tooAppVM01 sessione RDP in BackEnd001.CloudApp.Net:xxxxx dove xxxxx è il numero di porta hello assegnato in modo casuale per RDP tooAppVM01 (porta hello assegnato è reperibile nel portale di Azure hello o tramite PowerShell)
+2. Poiché hello che firewall è in ascolto solo hello indirizzo FrontEnd001.CloudApp.Net, non è coinvolta con questo flusso di traffico
 3. La subnet back-end inizia l'elaborazione delle regole in ingresso:
-   1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
+   1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
    2. Regola gruppo di sicurezza di rete 2 (RDP) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
 4. Senza regole in uscita, sono applicabili le regole predefinite e il traffico restituito è consentito.
 5. La sessione RDP è abilitata.
 6. AppVM01 richiede il nome utente e la password.
 
 #### <a name="allowed-web-server-dns-lookup-on-dns-server"></a>(Consentito) Ricerca DNS del server Web sul server DNS
-1. Il server Web, IIS01, richiede un feed di dati all'indirizzo www.data.gov, ma deve risolvere l'indirizzo.
-2. La configurazione di rete per la rete virtuale elenca DNS01 (10.0.2.4 nella subnet back-end) come server DNS primario, IIS01 invia la richiesta DNS a DNS01.
+1. Web Server, IIS01, necessita di un feed di dati in www.data.gov, ma è necessario tooresolve hello indirizzo.
+2. Hello configurazione di rete per gli elenchi di rete virtuale hello DNS01 (10.0.2.4 nella subnet back-end hello) come server DNS primario hello, IIS01 invia hello DNS richiesta tooDNS01
 3. Non sono impostate regole in uscita sulla subnet front-end, il traffico è consentito.
 4. La subnet back-end inizia l'elaborazione delle regole in ingresso:
    1. Regola gruppo di sicurezza di rete 1 (DNS) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
-5. Il server DNS riceve la richiesta.
-6. Il server DNS non ha l'indirizzo memorizzato nella cache e invia la richiesta a un server DNS radice su Internet.
+5. Server DNS riceve una richiesta di hello
+6. Server DNS non dispone di indirizzo hello memorizzati nella cache e richiede un server radice DNS su hello internet
 7. Non sono impostate regole in uscita sulla subnet back-end, il traffico è consentito.
-8. Il server DNS Internet risponde perché la sessione è stata avviata internamente, la risposta è consentita.
-9. Il server DNS memorizza la risposta nella cache e restituisce a IIS01 la risposta alla richiesta iniziale.
+8. Server DNS Internet risponde, poiché questa sessione è stata avviata internamente, la risposta hello è consentita
+9. Server DNS memorizza nella cache la risposta hello e risponde toohello richiesta iniziale indietro tooIIS01
 10. Non sono impostate regole in uscita sulla subnet back-end, il traffico è consentito.
 11. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-    1. Non sono presenti regole del gruppo di sicurezza di rete applicabili al traffico in ingresso dalla subnet back-end alla subnet front-end, quindi nessuna regola del gruppo di sicurezza di rete è applicabile.
-    2. La regola di sistema predefinita che consente il traffico tra le subnet consentirebbe questo tipo di traffico, perciò è consentito.
-12. IIS01 riceve la risposta da DNS01.
+    1. Nessuna regola di gruppo che si applica tooInbound traffico dalla subnet front-end toohello di subnet back-end di hello, pertanto nessuna delle regole NSG hello applicabile
+    2. regola di sistema predefinito Hello consenta il traffico tra subnet consente il traffico in modo hello traffico è consentito
+12. Iis01 riceve risposta hello da DNS01
 
 #### <a name="allowed-web-server-access-file-on-appvm01"></a>(Consentito) Il server Web richiede l'accesso a un file su AppVM01
 1. IIS01 richiede un file su AppVM01.
 2. Non sono impostate regole in uscita sulla subnet front-end, il traffico è consentito.
-3. La subnet back-end inizia l'elaborazione delle regole in ingresso:
-   1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
-   2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
-   3. Regola gruppo di sicurezza di rete 3 (da Internet a firewall), non applicabile, passa alla regola successiva.
-   4. Regola gruppo di sicurezza di rete 4 (da IIS01 ad AppVM01) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
-4. AppVM01 riceve la richiesta e risponde con il file (presupponendo che l'accesso sia autorizzato).
-5. Non essendoci regole in uscita sulla subnet back-end, la risposta è consentita.
+3. subnet di back-end Hello inizia l'elaborazione della regola in ingresso:
+   1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
+   2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
+   3. GRUPPO regola 3 (tooFirewall Internet) non è applicabile, spostare toonext regola
+   4. Applicare la regola gruppo 4 (IIS01 tooAppVM01), il traffico è l'elaborazione della regola consentita, arresto
+4. AppVM01 riceve la richiesta di hello e risponde con il file (presupponendo che l'accesso è autorizzato)
+5. Poiché esistono non è consentito alcun regole in uscita su hello risposta hello subnet di back-end
 6. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-   1. Non sono presenti regole del gruppo di sicurezza di rete applicabili al traffico in ingresso dalla subnet back-end alla subnet front-end, quindi nessuna regola del gruppo di sicurezza di rete è applicabile.
-   2. La regola di sistema predefinita che consente il traffico tra le subnet consentirebbe questo tipo di traffico, perciò è consentito.
-7. Il server IIS riceve il file.
+   1. Nessuna regola di gruppo che si applica tooInbound traffico dalla subnet front-end toohello di subnet back-end di hello, pertanto nessuna delle regole NSG hello applicabile
+   2. regola di sistema predefinito Hello consenta il traffico tra subnet consente il traffico in modo hello traffico è consentito.
+7. server IIS Hello riceve file hello
 
-#### <a name="denied-web-direct-to-web-server"></a>(Negato) Traffico Web diretto al server Web
-Poiché il server Web, IIS01, e il firewall si trovano nello stesso servizio cloud, condividono lo stesso indirizzo IP pubblico. Tutto il traffico HTTP verrà quindi indirizzato al firewall. Anche se la richiesta viene servita correttamente, non può passare direttamente al server Web. Come progettato, passa prima attraverso il firewall. Per il flusso di traffico, vedere il primo scenario in questa sezione.
+#### <a name="denied-web-direct-tooweb-server"></a>(Negato) TooWeb diretto Web Server
+Poiché hello Server Web, IIS01 e hello Firewall sono in hello nello stesso servizio Cloud condividono hello stesso indirizzo IP pubblico. In questo modo sarebbe possibile indirizzare tutto il traffico HTTP toohello firewall. Mentre la richiesta hello viene fornita correttamente, non è possibile associarla direttamente toohello Server Web, viene passato, come previsto, tramite hello del Firewall prima di tutto. Vedere hello primo Scenario in questa sezione per il flusso del traffico hello.
 
-#### <a name="denied-web-to-backend-server"></a>(Negato) Traffico Web al server back-end
-1. L'utente Internet prova ad accedere a un file su AppVM01 tramite il servizio BackEnd001.CloudApp.Net.
-2. Non essendoci endpoint aperti per la condivisione file, il traffico non passa attraverso il servizio cloud e non raggiunge il server.
-3. In caso di apertura degli endpoint per qualunque motivo, la regola del gruppo di sicurezza di rete 5 (da Internet a rete virtuale) bloccherà questo traffico.
+#### <a name="denied-web-toobackend-server"></a>(Negato) TooBackend Web Server
+1. Utente Internet tenta di un file in AppVM01 tramite hello servizio BackEnd001.CloudApp.Net tooaccess
+2. Poiché non sono presenti endpoint aperto per la condivisione file, questo non raggiungerebbe hello servizio Cloud e non raggiunga il server di hello
+3. Se gli endpoint hello erano aperti per qualche motivo, la regola gruppo 5 (Internet tooVNet) bloccano il traffico
 
 #### <a name="denied-web-dns-lookup-on-dns-server"></a>(Negato) Ricerca DNS Web sul server DNS
-1. L'utente Internet prova a cercare un record DNS interno su DNS01 tramite il servizio BackEnd001.CloudApp.Net.
-2. Non essendoci endpoint aperti per DNS, il traffico non passa attraverso il servizio cloud e non raggiunge il server.
-3. In caso di apertura degli endpoint per qualunque motivo, la regola del gruppo di sicurezza di rete 5 (da Internet a rete virtuale) bloccherà questo traffico. Si noti che la regola 1 (DNS) non è applicabile per due motivi, prima di tutto l'indirizzo di origine è Internet e questa regola si applica solo quando l'origine è la rete virtuale locale, poi questa è una regola di tipo Consenti e quindi non bloccherà mai il traffico.
+1. Utente Internet tenta un record DNS interno nella DNS01 tramite hello servizio BackEnd001.CloudApp.Net toolookup
+2. Poiché non sono presenti endpoint aperto per DNS, questo non raggiungerebbe hello servizio Cloud e non raggiunga il server di hello
+3. Se gli endpoint hello erano aperti per qualche motivo, la regola gruppo 5 (Internet tooVNet) bloccano il traffico (Nota: la regola 1 (DNS) potrebbero non applicarsi per due motivi, primo indirizzo di origine hello è hello internet, questa regola si applica solo a toohello anche rete locale virtuale come hello di origine si tratta di una regola di assenso, non potrebbe negare il traffico mai)
 
-#### <a name="denied-web-to-sql-access-through-firewall"></a>(Negato) Accesso dal Web a SQL tramite il firewall
+#### <a name="denied-web-toosql-access-through-firewall"></a>(Negato) Accesso tooSQL Web tramite Firewall
 1. L'utente Internet richiede dati SQL a FrontEnd001.CloudApp.Net (servizio cloud per Internet).
-2. Non essendoci endpoint aperti per SQL, il traffico non passa attraverso il servizio cloud e non raggiunge il firewall.
-3. Se gli endpoint sono aperti per qualunque motivo, la subnet front-end inizia l'elaborazione delle regole in ingresso:
-   1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
-   2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
-   3. Regola gruppo di sicurezza di rete 2 (da Internet a firewall) applicabile, il traffico è consentito, l'elaborazione della regola si arresta.
-4. Il traffico raggiunge l'indirizzo IP interno del firewall (10.0.1.4).
-5. Il firewall non ha regole di inoltro per SQL ed elimina il traffico.
+2. Poiché non sono presenti endpoint aperto per SQL, questo non raggiungerebbe hello servizio Cloud e non raggiunga firewall hello
+3. Se gli endpoint sono stati aperti per qualche motivo, subnet front-end hello inizia l'elaborazione della regola in ingresso:
+   1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
+   2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
+   3. Applicare la regola gruppo 2 (tooFirewall Internet), il traffico è l'elaborazione della regola consentita, arresto
+4. Traffico raggiunge l'indirizzo IP interno del firewall hello (10.0.1.4)
+5. Firewall non dispone di alcuna regola di inoltro per SQL ed Elimina hello traffico
 
 ## <a name="conclusion"></a>Conclusioni
-Questo è un modo relativamente semplice per proteggere l'applicazione con un firewall e isolare la subnet back-end dal traffico in ingresso.
+Questo è un modo relativamente semplice di protezione delle applicazioni con un firewall e l'isolamento di subnet di back-end hello dal traffico in ingresso.
 
 Altri esempi e una panoramica dei limiti di sicurezza della rete sono disponibili [qui][HOME].
 
 ## <a name="references"></a>Riferimenti
 ### <a name="main-script-and-network-config"></a>Script principale e configurazione di rete
-Salvare lo script completo in un file di script PowerShell. Salvare la configurazione di rete in un file denominato "NetworkConf2.xml".
-Modificare le variabili definite dall'utente secondo le esigenze. Eseguire lo script, quindi seguire le istruzioni per la configurazione delle regole del firewall.
+Salvare uno Script completo di hello in un file di script di PowerShell. Salvare hello configurazione di rete in un file denominato "NetworkConf2.xml".
+Modificare le variabili definite dall'utente di hello in base alle esigenze. Eseguire script hello, quindi seguire istruzioni di programma di installazione di un regola Firewall di hello precedente.
 
 #### <a name="full-script"></a>Script completo
-In base alle variabili definite dall'utente, lo script consente di:
+Questo script verrà, in base alle variabili definite dall'utente hello:
 
-1. Connettersi a una sottoscrizione di Azure
-2. Creare un nuovo account di archiviazione
-3. Creare una nuova rete virtuale e due subnet, come definito nel file di configurazione di rete.
+1. Connettersi tooan sottoscrizione di Azure
+2. Creare un nuovo account di archiviazione.
+3. Creare una nuova rete virtuale e due subnet, come definito nel file di configurazione di rete hello
 4. Creare 4 macchine virtuali di Windows Server.
 5. Configurare il gruppo di sicurezza di rete eseguendo queste operazioni:
    * Creazione di un gruppo di sicurezza di rete
    * Inserimento delle regole.
-   * Associazione del gruppo di sicurezza di rete alle subnet appropriate
+   * Subnet appropriata toohello associazione hello NSG
 
 Questo script di PowerShell deve essere eseguito localmente in un server o un PC connesso a Internet.
 
@@ -254,20 +254,20 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
        - Two new cloud services
        - Two Subnets (FrontEnd and BackEnd subnets)
        - A Network Virtual Appliance (NVA), in this case a Barracuda NextGen Firewall
-       - One server on the FrontEnd Subnet (plus the NVA on the FrontEnd subnet)
-       - Three Servers on the BackEnd Subnet
-       - Network Security Groups to allow/deny traffic patterns as declared
+       - One server on hello FrontEnd Subnet (plus hello NVA on hello FrontEnd subnet)
+       - Three Servers on hello BackEnd Subnet
+       - Network Security Groups tooallow/deny traffic patterns as declared
 
-      Before running script, ensure the network configuration file is created in
-      the directory referenced by $NetworkConfigFile variable (or update the
-      variable to reflect the path and file name of the config file being used).
+      Before running script, ensure hello network configuration file is created in
+      hello directory referenced by $NetworkConfigFile variable (or update the
+      variable tooreflect hello path and file name of hello config file being used).
 
      .Notes
       Security requirements are different for each use case and can be addressed in a
       myriad of ways. Please be sure that any sensitive data or applications are behind
-      the appropriate layer(s) of protection. This script serves as an example of some
-      of the techniques that can be used, but should not be used for all scenarios. You
-      are responsible to assess your security needs and the appropriate protections
+      hello appropriate layer(s) of protection. This script serves as an example of some
+      of hello techniques that can be used, but should not be used for all scenarios. You
+      are responsible tooassess your security needs and hello appropriate protections
       needed, and then effectively implement those protections.
 
       FrontEnd Service (FrontEnd subnet 10.0.1.0/24)
@@ -282,7 +282,7 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
     #>
 
     # Fixed Variables
-        $LocalAdminPwd = Read-Host -Prompt "Enter Local Admin Password to be used for all VMs"
+        $LocalAdminPwd = Read-Host -Prompt "Enter Local Admin Password toobe used for all VMs"
         $VMName = @()
         $ServiceName = @()
         $VMFamily = @()
@@ -292,8 +292,8 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
         $VMIP = @()
 
     # User Defined Global Variables
-      # These should be changes to reflect your subscription and services
-      # Invalid options will fail in the validation section
+      # These should be changes tooreflect your subscription and services
+      # Invalid options will fail in hello validation section
 
       # Subscription Access Details
         $subID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -323,17 +323,17 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
         $NSGName = "MyVNetSG"
 
     # User Defined VM Specific Config
-        # Note: To ensure proper NSG Rule creation later in this script:
-        #       - The Web Server must be VM 1
-        #       - The AppVM1 Server must be VM 2
-        #       - The DNS server must be VM 4
+        # Note: tooensure proper NSG Rule creation later in this script:
+        #       - hello Web Server must be VM 1
+        #       - hello AppVM1 Server must be VM 2
+        #       - hello DNS server must be VM 4
         #
-        #       Otherwise the NSG rules in the last section of this
-        #       script will need to be changed to match the modified
-        #       VM array numbers ($i) so the NSG Rule IP addresses
-        #       are aligned to the associated VM IP addresses.
+        #       Otherwise hello NSG rules in hello last section of this
+        #       script will need toobe changed toomatch hello modified
+        #       VM array numbers ($i) so hello NSG Rule IP addresses
+        #       are aligned toohello associated VM IP addresses.
 
-        # VM 0 - The Network Virtual Appliance (NVA)
+        # VM 0 - hello Network Virtual Appliance (NVA)
           $VMName += "myFirewall"
           $ServiceName += $FrontEndService
           $VMFamily += "Firewall"
@@ -342,7 +342,7 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
           $SubnetName += $FESubnet
           $VMIP += "10.0.1.4"
 
-        # VM 1 - The Web Server
+        # VM 1 - hello Web Server
           $VMName += "IIS01"
           $ServiceName += $FrontEndService
           $VMFamily += "Windows"
@@ -351,7 +351,7 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
           $SubnetName += $FESubnet
           $VMIP += "10.0.1.5"
 
-        # VM 2 - The First Appliaction Server
+        # VM 2 - hello First Appliaction Server
           $VMName += "AppVM01"
           $ServiceName += $BackEndService
           $VMFamily += "Windows"
@@ -360,7 +360,7 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
           $SubnetName += $BESubnet
           $VMIP += "10.0.2.5"
 
-        # VM 3 - The Second Appliaction Server
+        # VM 3 - hello Second Appliaction Server
           $VMName += "AppVM02"
           $ServiceName += $BackEndService
           $VMFamily += "Windows"
@@ -369,7 +369,7 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
           $SubnetName += $BESubnet
           $VMIP += "10.0.2.6"
 
-        # VM 4 - The DNS Server
+        # VM 4 - hello DNS Server
           $VMName += "DNS01"
           $ServiceName += $BackEndService
           $VMFamily += "Windows"
@@ -395,8 +395,8 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
         Else {Write-Host "Creating Storage Account" -ForegroundColor Cyan 
               New-AzureStorageAccount -Location $DeploymentLocation -StorageAccountName $StorageAccountName}
 
-      # Update Subscription Pointer to New Storage Account
-        Write-Host "Updating Subscription Pointer to New Storage Account" -ForegroundColor Cyan 
+      # Update Subscription Pointer tooNew Storage Account
+        Write-Host "Updating Subscription Pointer tooNew Storage Account" -ForegroundColor Cyan 
         Set-AzureSubscription –SubscriptionId $subID -CurrentStorageAccountName $StorageAccountName -ErrorAction Stop
 
     # Validation
@@ -407,28 +407,28 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
          $FatalError = $true}
 
     If (Test-AzureName -Service -Name $FrontEndService) { 
-        Write-Host "The FrontEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
+        Write-Host "hello FrontEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
         $FatalError = $true}
-    Else { Write-Host "The FrontEndService service name is valid for use." -ForegroundColor Green}
+    Else { Write-Host "hello FrontEndService service name is valid for use." -ForegroundColor Green}
 
     If (Test-AzureName -Service -Name $BackEndService) { 
-        Write-Host "The BackEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
+        Write-Host "hello BackEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
         $FatalError = $true}
-    Else { Write-Host "The BackEndService service name is valid for use." -ForegroundColor Green}
+    Else { Write-Host "hello BackEndService service name is valid for use." -ForegroundColor Green}
 
     If (-Not (Test-Path $NetworkConfigFile)) { 
-        Write-Host 'The network config file was not found, please update the $NetworkConfigFile variable to point to the network config xml file.' -ForegroundColor Yellow
+        Write-Host 'hello network config file was not found, please update hello $NetworkConfigFile variable toopoint toohello network config xml file.' -ForegroundColor Yellow
         $FatalError = $true}
-    Else { Write-Host "The network config file was found" -ForegroundColor Green
+    Else { Write-Host "hello network config file was found" -ForegroundColor Green
             If (-Not (Select-String -Pattern $DeploymentLocation -Path $NetworkConfigFile)) {
-                Write-Host 'The deployment location was not found in the network config file, please check the network config file to ensure the $DeploymentLocation varible is correct and the netowrk config file matches.' -ForegroundColor Yellow
+                Write-Host 'hello deployment location was not found in hello network config file, please check hello network config file tooensure hello $DeploymentLocation varible is correct and hello netowrk config file matches.' -ForegroundColor Yellow
                 $FatalError = $true}
-            Else { Write-Host "The deployment location was found in the network config file." -ForegroundColor Green}}
+            Else { Write-Host "hello deployment location was found in hello network config file." -ForegroundColor Green}}
 
     If ($FatalError) {
-        Write-Host "A fatal error has occured, please see the above messages for more information." -ForegroundColor Red
+        Write-Host "A fatal error has occured, please see hello above messages for more information." -ForegroundColor Red
         Return}
-    Else { Write-Host "Validation passed, now building the environment." -ForegroundColor Green}
+    Else { Write-Host "Validation passed, now building hello environment." -ForegroundColor Green}
 
     # Create VNET
         Write-Host "Creating VNET" -ForegroundColor Cyan 
@@ -450,16 +450,16 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
                     Set-AzureSubnet  –SubnetNames $SubnetName[$i] | `
                     Set-AzureStaticVNetIP -IPAddress $VMIP[$i] | `
                     New-AzureVM –ServiceName $ServiceName[$i] -VNetName $VNetName -Location $DeploymentLocation
-                # Set up all the EndPoints we'll need once we're up and running
-                # Note: Web traffic goes through the firewall, so we'll need to set up a HTTP endpoint.
-                #       Also, the firewall will be redirecting web traffic to a new IP and Port in a
-                #       forwarding rule, so the HTTP endpoint here will have the same public and local
-                #       port and the firewall will do the NATing and redirection as declared in the
+                # Set up all hello EndPoints we'll need once we're up and running
+                # Note: Web traffic goes through hello firewall, so we'll need tooset up a HTTP endpoint.
+                #       Also, hello firewall will be redirecting web traffic tooa new IP and Port in a
+                #       forwarding rule, so hello HTTP endpoint here will have hello same public and local
+                #       port and hello firewall will do hello NATing and redirection as declared in the
                 #       firewall rule.
                 Add-AzureEndpoint -Name "MgmtPort1" -Protocol tcp -PublicPort 801  -LocalPort 801  -VM (Get-AzureVM -ServiceName $ServiceName[$i] -Name $VMName[$i]) | Update-AzureVM
                 Add-AzureEndpoint -Name "MgmtPort2" -Protocol tcp -PublicPort 807  -LocalPort 807  -VM (Get-AzureVM -ServiceName $ServiceName[$i] -Name $VMName[$i]) | Update-AzureVM
                 Add-AzureEndpoint -Name "HTTP"      -Protocol tcp -PublicPort 80   -LocalPort 80   -VM (Get-AzureVM -ServiceName $ServiceName[$i] -Name $VMName[$i]) | Update-AzureVM
-                # Note: A SSH endpoint is automatically created on port 22 when the appliance is created.
+                # Note: A SSH endpoint is automatically created on port 22 when hello appliance is created.
                 }
             Else
                 {
@@ -476,65 +476,65 @@ Questo script di PowerShell deve essere eseguito localmente in un server o un PC
         }
 
     # Configure NSG
-        Write-Host "Configuring the Network Security Group (NSG)" -ForegroundColor Cyan
+        Write-Host "Configuring hello Network Security Group (NSG)" -ForegroundColor Cyan
 
-      # Build the NSG
-        Write-Host "Building the NSG" -ForegroundColor Cyan
+      # Build hello NSG
+        Write-Host "Building hello NSG" -ForegroundColor Cyan
         New-AzureNetworkSecurityGroup -Name $NSGName -Location $DeploymentLocation -Label "Security group for $VNetName subnets in $DeploymentLocation"
 
       # Add NSG Rules
-        Write-Host "Writing rules into the NSG" -ForegroundColor Cyan
+        Write-Host "Writing rules into hello NSG" -ForegroundColor Cyan
         Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable Internal DNS" -Type Inbound -Priority 100 -Action Allow `
             -SourceAddressPrefix VIRTUAL_NETWORK -SourcePortRange '*' `
             -DestinationAddressPrefix $VMIP[4] -DestinationPortRange '53' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable RDP to $VNetName VNet" -Type Inbound -Priority 110 -Action Allow `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable RDP too$VNetName VNet" -Type Inbound -Priority 110 -Action Allow `
             -SourceAddressPrefix INTERNET -SourcePortRange '*' `
             -DestinationAddressPrefix VIRTUAL_NETWORK -DestinationPortRange '3389' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable Internet to $($VMName[0])" -Type Inbound -Priority 120 -Action Allow `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable Internet too$($VMName[0])" -Type Inbound -Priority 120 -Action Allow `
             -SourceAddressPrefix Internet -SourcePortRange '*' `
             -DestinationAddressPrefix $VMIP[0] -DestinationPortRange '*' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable $($VMName[1]) to $($VMName[2])" -Type Inbound -Priority 130 -Action Allow `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable $($VMName[1]) too$($VMName[2])" -Type Inbound -Priority 130 -Action Allow `
             -SourceAddressPrefix $VMIP[1] -SourcePortRange '*' `
             -DestinationAddressPrefix $VMIP[2] -DestinationPortRange '*' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate the $VNetName VNet from the Internet" -Type Inbound -Priority 140 -Action Deny `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate hello $VNetName VNet from hello Internet" -Type Inbound -Priority 140 -Action Deny `
             -SourceAddressPrefix INTERNET -SourcePortRange '*' `
             -DestinationAddressPrefix VIRTUAL_NETWORK -DestinationPortRange '*' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate the $FESubnet subnet from the $BESubnet subnet" -Type Inbound -Priority 150 -Action Deny `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate hello $FESubnet subnet from hello $BESubnet subnet" -Type Inbound -Priority 150 -Action Deny `
             -SourceAddressPrefix $FEPrefix -SourcePortRange '*' `
             -DestinationAddressPrefix $BEPrefix -DestinationPortRange '*' `
             -Protocol *
 
-        # Assign the NSG to the Subnets
-            Write-Host "Binding the NSG to both subnets" -ForegroundColor Cyan
+        # Assign hello NSG toohello Subnets
+            Write-Host "Binding hello NSG tooboth subnets" -ForegroundColor Cyan
             Set-AzureNetworkSecurityGroupToSubnet -Name $NSGName -SubnetName $FESubnet -VirtualNetworkName $VNetName
             Set-AzureNetworkSecurityGroupToSubnet -Name $NSGName -SubnetName $BESubnet -VirtualNetworkName $VNetName
 
     # Optional Post-script Manual Configuration
       # Configure Firewall
-      # Install Test Web App (Run Post-Build Script on the IIS Server)
-      # Install Backend resource (Run Post-Build Script on the AppVM01)
+      # Install Test Web App (Run Post-Build Script on hello IIS Server)
+      # Install Backend resource (Run Post-Build Script on hello AppVM01)
       Write-Host
       Write-Host "Build Complete!" -ForegroundColor Green
       Write-Host
       Write-Host "Optional Post-script Manual Configuration Steps" -ForegroundColor Gray
       Write-Host " - Configure Firewall" -ForegroundColor Gray
-      Write-Host " - Install Test Web App (Run Post-Build Script on the IIS Server)" -ForegroundColor Gray
-      Write-Host " - Install Backend resource (Run Post-Build Script on the AppVM01)" -ForegroundColor Gray
+      Write-Host " - Install Test Web App (Run Post-Build Script on hello IIS Server)" -ForegroundColor Gray
+      Write-Host " - Install Backend resource (Run Post-Build Script on hello AppVM01)" -ForegroundColor Gray
       Write-Host
 
 
 #### <a name="network-config-file"></a>File di configurazione di rete
-Salvare questo file XML con il percorso aggiornato e aggiungere il collegamento a questo file nella variabile $NetworkConfigFile dello script precedente.
+Salvare il file xml con posizione aggiornata e aggiungere hello collegamento toothis file toohello $NetworkConfigFile variabile nello script hello precedente.
 
     <NetworkConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/ServiceHosting/2011/07/NetworkConfiguration">
       <VirtualNetworkConfiguration>
@@ -567,7 +567,7 @@ Salvare questo file XML con il percorso aggiornato e aggiungere il collegamento 
     </NetworkConfiguration>
 
 #### <a name="sample-application-scripts"></a>Script di applicazione di esempio
-Se si vuole installare un'applicazione di esempio per questo e altri esempi di rete perimetrale, è possibile trovarne una in [Script di applicazione di esempio][SampleApp]
+Se si desidera tooinstall un'applicazione di esempio per questo e altri esempi di rete Perimetrale, ne è stato fornito al collegamento hello: [Script dell'applicazione di esempio][SampleApp]
 
 <!--Image References-->
 [1]: ./media/virtual-networks-dmz-nsg-fw-asm/example2design.png "Rete perimetrale in ingresso con gruppo di sicurezza di rete"

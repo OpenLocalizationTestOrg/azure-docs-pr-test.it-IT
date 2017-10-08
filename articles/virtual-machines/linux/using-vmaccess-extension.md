@@ -1,6 +1,6 @@
 ---
-title: Reimpostare l'accesso a una macchina virtuale Linux di Azure | Microsoft Docs
-description: Come gestire gli utenti e ripristinare l'accesso in VM Linux mediante l'estensione VMAccess e l'interfaccia della riga di comando di Azure 2.0
+title: aaaReset accesso tooan VM Linux di Azure | Documenti Microsoft
+description: Come gli utenti toomanage e Reimposta accesso sull'uso di macchine virtuali Linux hello estensione VMAccess e hello Azure CLI 2.0
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -15,28 +15,28 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: danlep
-ms.openlocfilehash: 587c73278a9a92776276a811c5c4c8d3db773de3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2f8db01b9fac20bf547d8b1926e5c0b3c5d18280
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-users-ssh-and-check-or-repair-disks-on-linux-vms-using-the-vmaccess-extension-with-the-azure-cli-20"></a>Gestire utenti, SSH e dischi di controllo o di ripristino in VM Linux mediante l'estensione VMAccess con l'interfaccia della riga di comando di Azure 2.0
-Il disco della VM Linux genera errori. In qualche modo la password radice della VM Linux è stata reimpostata o la chiave privata SSH è stata eliminata accidentalmente. In passato, quando nel data center si verificava questa situazione, era necessario accedere all'unità e quindi aprire il KVM per raggiungere la console del server. L'estensione VMAccess di Azure può essere concepita come il commutatore tastiera, video e mouse che consente di accedere alla console per reimpostare l'accesso a Linux o eseguire la manutenzione a livello di disco.
+# <a name="manage-users-ssh-and-check-or-repair-disks-on-linux-vms-using-hello-vmaccess-extension-with-hello-azure-cli-20"></a>Gestire utenti, SSH e controllo o i dischi di ripristino sull'uso di macchine virtuali Linux hello estensione VMAccess con hello Azure CLI 2.0
+disco Hello nella VM Linux verrà visualizzati errori. È in qualche modo reimpostare la password radice hello per le VM Linux o eliminato la chiave privata SSH. In tal caso, in giorni hello del Data Center di hello, si sarebbe necessario toodrive non esiste e quindi aprire hello KVM tooget alla console di server hello. Hello estensione VMAccess Azure può essere paragonato a tale commutatore KVM consente tooaccess hello console tooreset accesso tooLinux o eseguire la manutenzione a livello di disco.
 
-Questo articolo illustra come usare l'estensione VMAccess di Azure per controllare o ripristinare un disco, reimpostare l'accesso utente, gestire gli account utente o reimpostare la configurazione dei dischi SSH in Linux. È possibile anche eseguire questi passaggi tramite l'[interfaccia della riga di comando di Azure 1.0](using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Questo articolo illustra come toouse hello toocheck estensione VMAccess Azure o ripristinare un disco, reimpostare l'accesso utente, gestire gli account utente o Reimposta configurazione SSH hello in Linux. È anche possibile eseguire questi passaggi con hello [CLI di Azure 1.0](using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 
-## <a name="ways-to-use-the-vmaccess-extension"></a>Modi di usare l'estensione VMAccess
-Esistono due modi per usare l'estensione VMAccess nelle VM Linux:
+## <a name="ways-toouse-hello-vmaccess-extension"></a>Modi toouse hello estensione VMAccess
+Esistono due modi, che è possibile utilizzare l'estensione VMAccess hello in macchine virtuali Linux:
 
-* Usare l'interfaccia della riga di comando di Azure 2.0 e i parametri richiesti.
-* [Usare file JSON non elaborati che l'estensione VMAccess elaborerà](#use-json-files-and-the-vmaccess-extension) e su cui baserà le sue operazioni.
+* Utilizzare hello Azure CLI 2.0 e i parametri di hello necessario.
+* [JSON non elaborata di utilizzare i file che il processo di estensione VMAccess hello](#use-json-files-and-the-vmaccess-extension) e quindi agire su.
 
-L'esempio seguente usa i comandi [az vm user](/cli/azure/vm/user). Per eseguire questi passaggi è necessario aver installato la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e aver effettuato l'accesso a un account Azure con il comando [az login](/cli/azure/#login).
+Dopo l'utilizzo di esempi di Hello [utente vm az](/cli/azure/vm/user) comandi. tooperform questi passaggi, è necessario hello più recente [CLI di Azure 2.0](/cli/azure/install-az-cli2) installato e registrato con un account Azure tooan [accesso az](/cli/azure/#login).
 
 ## <a name="reset-ssh-key"></a>Ripristinare la chiave SSH
-L'esempio seguente ripristina la chiave SSH per l'utente `azureuser` nella VM denominata `myVM`:
+esempio Hello Reimposta chiave SSH hello per utente hello `azureuser` nella macchina virtuale denominata hello `myVM`:
 
 ```azurecli
 az vm user update \
@@ -47,7 +47,7 @@ az vm user update \
 ```
 
 ## <a name="reset-password"></a>Reimpostazione delle password
-L'esempio seguente ripristina la password per l'utente `azureuser` nella VM denominata `myVM`:
+esempio Hello Reimposta password hello hello utente `azureuser` nella macchina virtuale denominata hello `myVM`:
 
 ```azurecli
 az vm user update \
@@ -58,7 +58,7 @@ az vm user update \
 ```
 
 ## <a name="restart-ssh"></a>Riavviare SSH
-L'esempio seguente riavvia il daemon SSH e reimposta la configurazione SSH sui valori predefiniti in una macchina virtuale denominata `myVM`:
+esempio Hello riavvia il daemon SSH hello e reimposta hello i valori di toodefault configurazione SSH in una macchina virtuale denominata `myVM`:
 
 ```azurecli
 az vm user reset-ssh \
@@ -67,7 +67,7 @@ az vm user reset-ssh \
 ```
 
 ## <a name="create-a-user"></a>Creare un utente
-L'esempio seguente crea un utente denominato `myNewUser` usando una chiave SSH per l'autenticazione nella VM denominata `myVM`:
+esempio Hello crea un utente denominato `myNewUser` usando una chiave SSH per l'autenticazione nella macchina virtuale denominata hello `myVM`:
 
 ```azurecli
 az vm user update \
@@ -78,7 +78,7 @@ az vm user update \
 ```
 
 ## <a name="delete-a-user"></a>Eliminare un utente
-L'esempio seguente elimina un utente denominato `myNewUser` nella VM denominata `myVM`:
+esempio Hello Elimina un utente denominato `myNewUser` nella macchina virtuale denominata hello `myVM`:
 
 ```azurecli
 az vm user delete \
@@ -88,13 +88,13 @@ az vm user delete \
 ```
 
 
-## <a name="use-json-files-and-the-vmaccess-extension"></a>Usare file JSON e l'estensione VMAccess
-Gli esempi seguenti usano file JSON non elaborati. Usare [az vm extension set](/cli/azure/vm/extension#set) per chiamare in seguito i file JSON. Questi file JSON possono essere chiamati anche dai modelli di Azure. 
+## <a name="use-json-files-and-hello-vmaccess-extension"></a>Utilizzare i file JSON e hello estensione VMAccess
+seguono esempi Hello utilizza file JSON non elaborati. Utilizzare [az vm estensione set](/cli/azure/vm/extension#set) toothen chiamare i file JSON. Questi file JSON possono essere chiamati anche dai modelli di Azure. 
 
 ### <a name="reset-user-access"></a>Ripristinare l'accesso utente
-Se si è perso l'accesso alla radice della VM Linux è possibile avviare uno script VMAccess per reimpostare la chiave SSH o la password di un utente.
+Se si smarrisce accesso tooroot nella VM Linux, è possibile avviare un tooreset script VMAccess chiave SSH o la password dell'utente.
 
-Per reimpostare la chiave pubblica SSH di un utente, creare un file denominato `reset_ssh_key.json` e aggiungere le impostazioni nel formato seguente. Usare valori personalizzati per i parametri `username` e `ssh_key`:
+chiave pubblica SSH hello di tooreset di un utente, creare un file denominato `reset_ssh_key.json` e aggiungere le impostazioni nel seguente formato hello. Sostituire i valori per hello `username` e `ssh_key` parametri:
 
 ```json
 {
@@ -103,7 +103,7 @@ Per reimpostare la chiave pubblica SSH di un utente, creare un file denominato `
 }
 ```
 
-Eseguire lo script VMAccess con:
+Eseguire lo script di VMAccess hello con:
 
 ```azurecli
 az vm extension set \
@@ -115,7 +115,7 @@ az vm extension set \
   --protected-settings reset_ssh_key.json
 ```
 
-Per reimpostare la password di un utente, creare un file denominato `reset_user_password.json` e aggiungere le impostazioni nel formato seguente. Usare valori personalizzati per i parametri `username` e `password`:
+tooreset una password utente, creare un file denominato `reset_user_password.json` e aggiungere le impostazioni nel seguente formato hello. Sostituire i valori per hello `username` e `password` parametri:
 
 ```json
 {
@@ -124,7 +124,7 @@ Per reimpostare la password di un utente, creare un file denominato `reset_user_
 }
 ```
 
-Eseguire lo script VMAccess con:
+Eseguire lo script di VMAccess hello con:
 
 ```azurecli
 az vm extension set \
@@ -137,7 +137,7 @@ az vm extension set \
 ```
 
 ### <a name="restart-ssh"></a>Riavviare SSH
-Per riavviare il daemon SSH e reimpostare la configurazione SSH sui valori predefiniti, creare un file denominato `reset_sshd.json`. Aggiungere il contenuto seguente:
+toorestart hello daemon SSH e reimpostare i valori hello SSH configurazione toodefault, creare un file denominato `reset_sshd.json`. Aggiungere hello seguente contenuto:
 
 ```json
 {
@@ -145,7 +145,7 @@ Per riavviare il daemon SSH e reimpostare la configurazione SSH sui valori prede
 }
 ```
 
-Eseguire lo script VMAccess con:
+Eseguire lo script di VMAccess hello con:
 
 ```azurecli
 az vm extension set \
@@ -159,7 +159,7 @@ az vm extension set \
 
 ### <a name="manage-users"></a>Gestire gli utenti
 
-Per creare un utente che esegua l'autenticazione con una chiave SSH, creare un file denominato `create_new_user.json` e aggiungere impostazioni nel formato seguente. Usare valori personalizzati per i parametri `username` e `ssh_key`:
+toocreate un utente che usa una chiave SSH per l'autenticazione, creare un file denominato `create_new_user.json` e aggiungere le impostazioni nel seguente formato hello. Sostituire i valori per hello `username` e `ssh_key` parametri:
 
 ```json
 {
@@ -169,7 +169,7 @@ Per creare un utente che esegua l'autenticazione con una chiave SSH, creare un f
 }
 ```
 
-Eseguire lo script VMAccess con:
+Eseguire lo script di VMAccess hello con:
 
 ```azurecli
 az vm extension set \
@@ -181,7 +181,7 @@ az vm extension set \
   --protected-settings create_new_user.json
 ```
 
-Per eliminare un utente, creare un file denominato `delete_user.json` e aggiungere il contenuto seguente. Usare un valore personalizzato per il parametro `remove_user`:
+toodelete un utente, creare un file denominato `delete_user.json` e aggiungere hello dopo contenuto. Sostituire il valore per hello `remove_user` parametro:
 
 ```json
 {
@@ -189,7 +189,7 @@ Per eliminare un utente, creare un file denominato `delete_user.json` e aggiunge
 }
 ```
 
-Eseguire lo script VMAccess con:
+Eseguire lo script di VMAccess hello con:
 
 ```azurecli
 az vm extension set \
@@ -201,10 +201,10 @@ az vm extension set \
   --protected-settings delete_user.json
 ```
 
-### <a name="check-or-repair-the-disk"></a>Controllare o riparare il disco
-Tramite VMAccess è anche possibile controllare e riparare un disco aggiunto alla macchina virtuale Linux.
+### <a name="check-or-repair-hello-disk"></a>Verificare o riparare hello disco
+Uso di VMAccess è anche possibile controllare e ripristinare un disco di cui sono stati aggiunti toohello VM Linux.
 
-Per controllare e quindi riparare il disco, creare un file denominato `disk_check_repair.json` e aggiungere impostazioni nel formato seguente. Usare un valore personalizzato per il nome di `repair_disk`:
+toocheck quindi hello disco, creare un file denominato `disk_check_repair.json` e aggiungere le impostazioni nel seguente formato hello. Sostituire il valore per nome hello `repair_disk`:
 
 ```json
 {
@@ -213,7 +213,7 @@ Per controllare e quindi riparare il disco, creare un file denominato `disk_chec
 }
 ```
 
-Eseguire lo script VMAccess con:
+Eseguire lo script di VMAccess hello con:
 
 ```azurecli
 az vm extension set \
@@ -226,11 +226,11 @@ az vm extension set \
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-L'aggiornamento di Linux mediante l'estensione VMAccess di Azure è un metodo per apportare modifiche a una VM Linux in esecuzione. È inoltre possibile usare strumenti come cloud-init e modelli di Azure Resource Manager per modificare la VM Linux in fase di avvio.
+L'aggiornamento di Linux mediante hello estensione VMAccess Azure è un metodo toomake viene modificato in una VM Linux in esecuzione. È anche possibile usare strumenti come cloud-inizializzazione e Gestione risorse di Azure modelli toomodify VM Linux all'avvio del sistema.
 
 [Estensioni e funzionalità delle macchine virtuali per Linux](extensions-features.md)
 
 [Creazione di modelli di Azure Resource Manager con le estensioni di VM Linux](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[Uso di cloud-init per personalizzare una VM Linux durante la creazione](using-cloud-init.md)
+[Utilizzo di cloud init toocustomize una VM Linux durante la creazione](using-cloud-init.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Creare e gestire una macchina virtuale Windows in Azure usando Python | Microsoft Docs
-description: Informazioni sull'uso di Python per creare e gestire una macchina virtuale Windows in Azure.
+title: aaaCreate e gestire una macchina virtuale Windows in Azure usando Python | Documenti Microsoft
+description: Informazioni toouse Python toocreate e gestire una macchina virtuale Windows in Azure.
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: davidmu
-ms.openlocfilehash: bb777d41570d7b1dc97402d532519488912948e3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c5553e4e7361e6b9a7183cd935be382f967160cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-python"></a>Creare e gestire macchine virtuali Windows in Azure usando Python
 
@@ -32,35 +32,35 @@ Una [macchina virtuale di Azure](overview.md?toc=%2fazure%2fvirtual-machines%2fw
 > * Creare le risorse
 > * Eseguire le attività di gestione
 > * Eliminare le risorse
-> * Eseguire l'applicazione
+> * Eseguire un'applicazione hello
 
-L'esecuzione di questi passaggi richiede circa 20 minuti.
+Sono necessari circa 20 minuti toodo questi passaggi.
 
 ## <a name="create-a-visual-studio-project"></a>Creare un progetto di Visual Studio
 
-1. Se non è già installato, installare [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Selezionare **Sviluppo Python** nella pagina Carichi di lavoro e quindi fare clic su **Installa**. Nel riepilogo si noti che **Python 3 a 64 bit (3.6.0)** viene selezionato automaticamente. Se Visual Studio è già stato installato, è possibile aggiungere il carico di lavoro Python usando l'utilità di avvio di Visual Studio.
+1. Se non è già installato, installare [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Selezionare **sviluppo Python** hello pagina carichi di lavoro e quindi fare clic su **installare**. In hello riepilogo, è possibile vedere che **Python 3 64-bit (3.6.0)** viene selezionato automaticamente. Se già stato installato Visual Studio, è possibile aggiungere hello Python il carico di lavoro hello utilità di avvio di Visual Studio.
 2. Dopo aver installato e avviato Visual Studio, fare clic su **File** > **Nuovo** > **Progetto**.
-3. Fare clic su **Modelli** > **Python** > **Applicazione Python**, immettere *myPythonProject* come nome del progetto, selezionare il percorso del progetto e quindi fare clic su **OK**.
+3. Fare clic su **modelli** > **Python** > **applicazione Python**, immettere *myPythonProject* per nome hello hello progetto di, selezionare il percorso di hello del progetto hello e quindi fare clic su **OK**.
 
 ## <a name="install-packages"></a>Installare i pacchetti
 
 1. In Esplora soluzioni, in *myPythonProject*, fare clic con il pulsante destro del mouse su **Ambienti Python** e quindi selezionare **Aggiungi ambiente virtuale**.
-2. Nella schermata Aggiungi ambiente virtuale accettare il nome predefinito *env*, verificare che *Python 3.6 (64 bit)* sia selezionato per l'interprete di base e quindi fare clic su **Crea**.
-3. Fare clic con il pulsante destro del mouse sull'ambiente *env* appena creato, fare clic su **Installa pacchetto Python**, immettere *azure* nella casella di ricerca e quindi premere INVIO.
+2. Nella schermata Aggiungi ambiente virtuale hello, accettare il nome predefinito hello di *env*, assicurarsi che *3.6 Python (64 bit)* è selezionata per l'interprete base hello e quindi fare clic su **crea**.
+3. Pulsante destro del mouse hello *env* ambiente che è stato creato, fare clic su **Installa pacchetto Python**, immettere *azure* in hello casella di ricerca e quindi premere INVIO.
 
-La corretta installazione dei pacchetti di Azure verrà indicata nelle finestre di output. 
+Verrà visualizzato nella finestra di output di hello che i pacchetti hello azure sono stati installati correttamente. 
 
 ## <a name="create-credentials"></a>Creare le credenziali
 
-Prima di iniziare questo passaggio, verificare di disporre di un'[entità servizio Active Directory](../../azure-resource-manager/resource-group-create-service-principal-portal.md). È inoltre necessario registrare l'ID dell'applicazione, la chiave di autenticazione e l'ID del tenant che saranno necessari in un passaggio successivo.
+Prima di iniziare questo passaggio, verificare di disporre di un'[entità servizio Active Directory](../../azure-resource-manager/resource-group-create-service-principal-portal.md). È inoltre necessario registrare l'ID applicazione hello, chiave di autenticazione hello e ID tenant hello che è necessario in un passaggio successivo.
 
-1. Aprire il file *myPythonProject.py* che è stato creato e quindi aggiungere questo codice per consentire l'esecuzione dell'applicazione:
+1. Aprire *myPythonProject.py* file che è stato creato, quindi aggiungere questo codice tooenable toorun l'applicazione:
 
     ```python
     if __name__ == "__main__":
     ```
 
-2. Per importare il codice necessario, aggiungere queste istruzioni all'inizio del file con estensione py:
+2. codice hello tooimport che è necessario aggiungere questi top toohello istruzioni del file. py hello:
 
     ```python
     from azure.common.credentials import ServicePrincipalCredentials
@@ -70,7 +70,7 @@ Prima di iniziare questo passaggio, verificare di disporre di un'[entità serviz
     from azure.mgmt.compute.models import DiskCreateOption
     ```
 
-3. Nel file con estensione py aggiungere quindi le variabili dopo le istruzioni di importazione per specificare i valori comuni usati nel codice:
+3. Nel file hello. py aggiungere variabili dopo le istruzioni import hello toospecify comuni valori utilizzati nel codice di hello:
    
     ```
     SUBSCRIPTION_ID = 'subscription-id'
@@ -81,7 +81,7 @@ Prima di iniziare questo passaggio, verificare di disporre di un'[entità serviz
 
     Sostituire **subscription-id** con l'identificatore della sottoscrizione.
 
-4. Per creare le credenziali di Active Directory necessarie per inoltrare le richieste, aggiungere questa funzione dopo le variabili nel file con estensione py:
+4. le credenziali di Active Directory hello toocreate toomake richieste, è necessario aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def get_credentials():
@@ -94,9 +94,9 @@ Prima di iniziare questo passaggio, verificare di disporre di un'[entità serviz
         return credentials
     ```
 
-    Sostituire **application-id**, **authentication-key** e **tenant-id** con i valori raccolti durante la creazione dell'entità servizio di Azure Active Directory.
+    Sostituire **id applicazione**, **chiave di autenticazione**, e **id tenant** con valori hello raccolti in precedenza durante la creazione di Azure Active Directory entità servizio.
 
-5. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+5. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     credentials = get_credentials()
@@ -106,7 +106,7 @@ Prima di iniziare questo passaggio, verificare di disporre di un'[entità serviz
  
 ### <a name="initialize-management-clients"></a>Inizializzare i client di gestione
 
-I client di gestione sono necessari per creare e gestire le risorse tramite Python SDK in Azure. Per creare i client di gestione, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+Client di gestione sono necessari toocreate e gestire risorse utilizzando hello SDK Python in Azure. client di gestione di hello toocreate, aggiungere questo codice sotto hello **se** istruzione quindi fine del file. py hello:
 
 ```python
 resource_group_client = ResourceManagementClient(
@@ -123,11 +123,11 @@ compute_client = ComputeManagementClient(
 )
 ```
 
-### <a name="create-the-vm-and-supporting-resources"></a>Creare la macchina virtuale e le risorse di supporto
+### <a name="create-hello-vm-and-supporting-resources"></a>Creare VM hello e risorse di supporto
 
 Tutte le risorse devono essere contenute in un [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md).
 
-1. Per creare un gruppo di risorse, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toocreate un gruppo di risorse, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def create_resource_group(resource_group_client):
@@ -138,16 +138,16 @@ Tutte le risorse devono essere contenute in un [gruppo di risorse](../../azure-r
         )
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     create_resource_group(resource_group_client)
-    input('Resource group created. Press enter to continue...')
+    input('Resource group created. Press enter toocontinue...')
     ```
 
-I [set di disponibilità](tutorial-availability-sets.md) semplificano la manutenzione delle macchine virtuali usate dall'applicazione.
+[Set di disponibilità](tutorial-availability-sets.md) rendono più semplice per l'utente nelle macchine virtuali di hello toomaintain utilizzate dall'applicazione.
 
-1. Per creare un set di disponibilità, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toocreate una disponibilità set, aggiungere questa funzione dopo le variabili di hello in file di py hello:
    
     ```python
     def create_availability_set(compute_client):
@@ -163,17 +163,17 @@ I [set di disponibilità](tutorial-availability-sets.md) semplificano la manuten
         )
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     create_availability_set(compute_client)
     print("------------------------------------------------------")
-    input('Availability set created. Press enter to continue...')
+    input('Availability set created. Press enter toocontinue...')
     ```
 
-Un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) è necessario per comunicare con la macchina virtuale.
+Oggetto [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) è necessario toocommunicate con la macchina virtuale hello.
 
-1. Per creare un indirizzo IP pubblico per la macchina virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toocreate un indirizzo IP pubblico per la macchina virtuale hello, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def create_public_ip_address(network_client):
@@ -190,18 +190,18 @@ Un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-ov
         return creation_result.result()
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     creation_result = create_public_ip_address(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
 Una macchina virtuale deve essere inclusa in una subnet di una [rete virtuale](../../virtual-network/virtual-networks-overview.md).
 
-1. Per creare una rete virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toocreate una rete virtuale, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def create_vnet(network_client):
@@ -219,16 +219,16 @@ Una macchina virtuale deve essere inclusa in una subnet di una [rete virtuale](.
         return creation_result.result()
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
    
     ```python
     creation_result = create_vnet(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-3. Per aggiungere una subnet alla rete virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+3. tooadd una rete virtuale toohello subnet, aggiungere questa funzione dopo le variabili di hello in file di py hello:
     
     ```python
     def create_subnet(network_client):
@@ -245,18 +245,18 @@ Una macchina virtuale deve essere inclusa in una subnet di una [rete virtuale](.
         return creation_result.result()
     ```
         
-4. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+4. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
    
     ```python
     creation_result = create_subnet(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-Una macchina virtuale richiede un'interfaccia di rete per comunicare nella rete virtuale.
+Una macchina virtuale richiede un toocommunicate di interfaccia di rete nella rete virtuale hello.
 
-1. Per creare un'interfaccia di rete, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toocreate un'interfaccia di rete, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def create_nic(network_client):
@@ -288,18 +288,18 @@ Una macchina virtuale richiede un'interfaccia di rete per comunicare nella rete 
         return creation_result.result()
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     creation_result = create_nic(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-Dopo avere creato tutte le risorse di supporto, è possibile creare una macchina virtuale.
+Dopo aver creato hello tutte le risorse di supporto, è possibile creare una macchina virtuale.
 
-1. Per creare una macchina virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toocreate hello macchina virtuale, aggiungere questa funzione dopo le variabili di hello nel file. py hello:
    
     ```python
     def create_vm(network_client, compute_client):  
@@ -348,26 +348,26 @@ Dopo avere creato tutte le risorse di supporto, è possibile creare una macchina
     ```
 
     > [!NOTE]
-    > Questa esercitazione illustra come creare una macchina virtuale in cui è in esecuzione una versione del sistema operativo Windows Server. Per altre informazioni sulla selezione di altre immagini, vedere [Esplorare e selezionare immagini delle macchine virtuali di Azure con Windows PowerShell e l'interfaccia della riga di comando di Azure](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+    > Questa esercitazione consente di creare una macchina virtuale in esecuzione una versione del sistema operativo di Windows Server hello. toolearn più sulla selezione di altre immagini, vedere [Naviga e selezionare le immagini di macchina virtuale di Azure con Windows PowerShell e hello Azure CLI](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
     > 
     > 
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     creation_result = create_vm(network_client, compute_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
 ## <a name="perform-management-tasks"></a>Eseguire le attività di gestione
 
-Durante il ciclo di vita di una macchina virtuale si eseguono attività di gestione come l'avvio, l'arresto o l'eliminazione della macchina virtuale. È inoltre possibile creare codice per automatizzare le attività ripetitive o complesse.
+Durante il ciclo di vita hello di una macchina virtuale, è opportuno toorun attività di gestione, ad esempio avvio, arresto o l'eliminazione di una macchina virtuale. Inoltre, è consigliabile toocreate codice tooautomate attività ripetitive o complesse.
 
-### <a name="get-information-about-the-vm"></a>Ottenere informazioni sulla VM
+### <a name="get-information-about-hello-vm"></a>Ottenere informazioni su hello VM
 
-1. Per ottenere informazioni sulla macchina virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. tooget informazioni hello macchina virtuale, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def get_vm(compute_client):
@@ -420,59 +420,59 @@ Durante il ciclo di vita di una macchina virtuale si eseguono attività di gesti
             print("  code: ", stat.code)
             print("  displayStatus: ", stat.display_status)
     ```
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     get_vm(compute_client)
     print("------------------------------------------------------")
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="stop-the-vm"></a>Arrestare la VM
+### <a name="stop-hello-vm"></a>Arrestare VM hello
 
-È possibile arrestare una macchina virtuale e mantenere tutte le sue impostazioni, pur continuando a vedersela addebitata oppure è possibile arrestare una macchina virtuale e deallocarla. Quando una macchina virtuale viene deallocata, lo stesso viene fatto per tutte le risorse associate e la fatturazione termina.
+È possibile arrestare una macchina virtuale e mantenere tutte le relative impostazioni, ma continuare toobe addebitato oppure è possibile arrestare una macchina virtuale e deallocarlo. Quando una macchina virtuale viene deallocata, lo stesso viene fatto per tutte le risorse associate e la fatturazione termina.
 
-1. Per arrestare la macchina virtuale senza deallocarla, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. macchina virtuale di hello toostop senza deallocarlo, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def stop_vm(compute_client):
         compute_client.virtual_machines.power_off(GROUP_NAME, VM_NAME)
     ```
 
-    Per deallocare la macchina virtuale, sostituire la chiamata power_off con il codice seguente:
+    Se si desidera una macchina virtuale di hello toodeallocate, modificare il codice di toothis hello power_off chiamata:
 
     ```python
     compute_client.virtual_machines.deallocate(GROUP_NAME, VM_NAME)
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     stop_vm(compute_client)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="start-the-vm"></a>Avviare la VM
+### <a name="start-hello-vm"></a>Avviare hello VM
 
-1. Per avviare la macchina virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. toostart hello macchina virtuale, aggiungere questa funzione dopo le variabili di hello nel file. py hello:
 
     ```python
     def start_vm(compute_client):
         compute_client.virtual_machines.start(GROUP_NAME, VM_NAME)
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     start_vm(compute_client)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="resize-the-vm"></a>Ridimensionare la VM
+### <a name="resize-hello-vm"></a>Ridimensionare hello VM
 
 Al momento di decidere le dimensioni della macchina virtuale, è necessario considerare molti aspetti della distribuzione. Per altre informazioni, vedere [Dimensioni delle macchine virtuali](sizes.md).
 
-1. Per modificare le dimensioni della macchina virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. dimensioni hello toochange della macchina virtuale hello, aggiungere questa funzione dopo le variabili di hello in file di py hello:
 
     ```python
     def update_vm(compute_client):
@@ -487,20 +487,20 @@ Al momento di decidere le dimensioni della macchina virtuale, è necessario cons
     return update_result.result()
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     update_result = update_vm(compute_client)
     print("------------------------------------------------------")
     print(update_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="add-a-data-disk-to-the-vm"></a>Aggiungere un disco dati alla VM
+### <a name="add-a-data-disk-toohello-vm"></a>Aggiungere un toohello disco dati VM
 
 Le macchine virtuali possono disporre di uno o più [dischi dati](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) archiviati in dischi rigidi virtuali.
 
-1. Per aggiungere un disco dati alla macchina virtuale, aggiungere questa funzione dopo le variabili nel file con estensione py: 
+1. tooadd una macchina virtuale toohello disco dati, aggiungere questa funzione dopo le variabili di hello in file di py hello: 
 
     ```python
     def add_datadisk(compute_client):
@@ -533,27 +533,27 @@ Le macchine virtuali possono disporre di uno o più [dischi dati](about-disks-an
         return add_result.result()
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
 
     ```python
     add_result = add_datadisk(compute_client)
     print("------------------------------------------------------")
     print(add_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
 ## <a name="delete-resources"></a>Eliminare le risorse
 
-Dal momento che le risorse usate in Azure vengono addebitate, è sempre consigliabile eliminare le risorse non più necessarie. Per eliminare le macchine virtuali e tutte le risorse di supporto, è sufficiente eliminare il gruppo di risorse.
+Poiché vengono addebitate per le risorse utilizzate in Azure, è sempre un risorse toodelete buona norma che non sono più necessari. Se si desidera toodelete hello le macchine virtuali e hello tutte le risorse di supporto, si dispone di toodo è gruppo di risorse hello di eliminazione.
 
-1. Per eliminare il gruppo di risorse e tutte le risorse, aggiungere questa funzione dopo le variabili nel file con estensione py:
+1. gruppo di risorse toodelete hello e tutte le risorse, è possibile aggiungere questa funzione dopo le variabili di hello in file di py hello:
    
     ```python
     def delete_resources(resource_group_client):
         resource_group_client.resource_groups.delete(GROUP_NAME)
     ```
 
-2. Per chiamare la funzione aggiunta in precedenza, aggiungere questo codice sotto l'istruzione **if** alla fine del file con estensione py:
+2. funzione hello toocall aggiunto in precedenza, aggiungere questo codice sotto hello **se** istruzione alla fine di hello del file. py hello:
    
     ```python
     delete_resources(resource_group_client)
@@ -561,17 +561,17 @@ Dal momento che le risorse usate in Azure vengono addebitate, è sempre consigli
 
 3. Salvare *myPythonProject.py*.
 
-## <a name="run-the-application"></a>Eseguire l'applicazione
+## <a name="run-hello-application"></a>Eseguire un'applicazione hello
 
-1. Per eseguire l'applicazione console, fare clic su **Avvia** in Visual Studio.
+1. un'applicazione console hello toorun, fare clic su **avviare** in Visual Studio.
 
-2. Premere **INVIO** dopo che è stato restituito lo stato di ogni risorsa. Nelle informazioni sullo stato dovrebbe essere visualizzato lo stato di provisioning **Completato**. Dopo che la macchina virtuale è stata creata, si avrà l'opportunità di eliminare tutte le risorse create. Prima di premere **INVIO** per iniziare a eliminare le risorse, è consigliabile dedicare qualche minuto alla verifica della loro creazione nel portale di Azure. Se il portale di Azure è aperto, potrebbe essere necessario aggiornare il pannello per visualizzare le nuove risorse.  
+2. Premere **invio** dopo che viene restituito lo stato di hello di ogni risorsa. In informazioni sullo stato di hello, vedrai un **Succeeded** lo stato di provisioning. Dopo la creazione di macchine virtuali hello, si dispone di hello opportunità toodelete tutte le risorse di hello creati. Prima di premere **invio** toostart eliminato le risorse, si potrebbe richiedere alcuni minuti tooverify relativa creazione in hello portale di Azure. Se si hanno hello Apri portale di Azure, potrebbe essere toorefresh hello pannello toosee nuove risorse.  
 
-    L'esecuzione completa dell'applicazione console dall'inizio alla fine richiederà circa cinque minuti. L'eliminazione di tutte le risorse e del gruppo di risorse potrebbe richiedere alcuni minuti dopo l'esecuzione completa dell'applicazione.
+    Richiede circa cinque minuti per questo toorun di applicazione console completamente dall'inizio toofinish. Potrebbe richiedere alcuni minuti dopo l'applicazione hello è terminata prima di tutte le risorse di hello e gruppo di risorse hello vengono eliminati.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Se si sono verificati problemi con la distribuzione, è consigliabile vedere come [risolvere i problemi della distribuzione di gruppi di risorse con il portale di Azure](../../resource-manager-troubleshoot-deployments-portal.md)
-- Altre informazioni sulla [libreria Python di Azure](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)
+- Se si sono verificati problemi con la distribuzione di hello, un passaggio successivo consisterebbe toolook in [risoluzione dei problemi delle distribuzioni del gruppo di risorse con il portale di Azure](../../resource-manager-troubleshoot-deployments-portal.md)
+- Altre informazioni su hello [libreria Python di Azure](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)
 

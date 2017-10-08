@@ -1,6 +1,6 @@
 ---
-title: Uso dei servizi di bilanciamento del carico in Azure | Microsoft Docs
-description: 'Questa esercitazione illustra come creare uno scenario tramite il portafoglio di soluzioni Azure per il bilanciamento del carico: Gestione traffico, il gateway applicazione e Load Balancer.'
+title: servizi di bilanciamento del carico aaaUsing in Azure | Documenti Microsoft
+description: 'Questa esercitazione viene illustrato come toocreate uno scenario con hello portfolio di bilanciamento del carico Azure: gestione traffico Gateway applicazione e servizio di bilanciamento del carico.'
 services: traffic-manager
 documentationcenter: 
 author: liumichelle
@@ -14,194 +14,194 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/27/2016
 ms.author: limichel
-ms.openlocfilehash: ae9bd30b76786f94f0d836a39137da696fdb94a2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d217047102d8c4828250dc0733e8ec9ee1e84b3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-load-balancing-services-in-azure"></a>Uso dei servizi di bilanciamento del carico in Azure
 
 ## <a name="introduction"></a>Introduzione
 
-Microsoft Azure offre numerosi servizi che consentono di gestire la distribuzione del traffico e il bilanciamento del carico. È possibile usare questi servizi singolarmente o combinarne i metodi in base alle esigenze, così da realizzare una soluzione ottimale.
+Microsoft Azure offre numerosi servizi che consentono di gestire la distribuzione del traffico e il bilanciamento del carico. È possibile utilizzare i servizi singolarmente o combinare i relativi metodi, a seconda delle esigenze, soluzione ottimale di toobuild hello.
 
-In questa esercitazione viene innanzitutto illustrato un caso d'uso di un cliente e viene mostrato in che modo è possibile assicurare maggiore affidabilità e prestazioni più elevate mediante il portafoglio di soluzioni Azure per il bilanciamento del carico: Gestione traffico, il gateway applicazione e Load Balancer. Vengono quindi illustrate istruzioni dettagliate per la creazione di una distribuzione che sia geograficamente ridondante, distribuisca il traffico alle macchine virtuali e aiuti a gestire differenti tipi di richieste.
+In questa esercitazione, è innanzitutto definire un caso d'uso del cliente e visualizzare come è possibile renderla più affidabile e ad alte prestazioni tramite hello seguente portfolio di bilanciamento del carico Azure: gestione traffico Gateway applicazione e servizio di bilanciamento del carico. È quindi possibile fornire istruzioni dettagliate per la creazione di una distribuzione geograficamente ridondanti, distribuisce il traffico tooVMs, che consente di gestiscono diversi tipi di richieste.
 
-A livello concettuale, ognuno di questi servizi svolge un ruolo distinto nella gerarchia di bilanciamento del carico.
+A livello concettuale, ognuno di questi servizi svolge un ruolo distinto nella gerarchia di bilanciamento del carico hello.
 
-* **Gestione traffico** offre il bilanciamento del carico DNS globale. Esamina le richieste DNS in ingresso e risponde con un endpoint integro e in base ai criteri di routing selezionati dal cliente. Le opzioni per i metodi di routing sono le seguenti:
-  * Routing delle prestazioni per reindirizzare il richiedente all'endpoint più vicino in termini di latenza.
-  * Priorità di routing per indirizzare tutto il traffico a un endpoint, con altri endpoint come backup.
-  * Routing round robin ponderato, che distribuisce il traffico in base alla ponderazione assegnata a ciascun endpoint.
+* **Gestione traffico** offre il bilanciamento del carico DNS globale. Esegue la ricerca in richieste DNS in ingresso e risponde con un endpoint integro, in base alle hello routing cliente hello di criteri selezionato. Le opzioni per i metodi di routing sono le seguenti:
+  * Prestazioni routing toosend hello richiedente toohello endpoint più vicino in termini di latenza.
+  * Priorità routing toodirect tutti traffico tooan endpoint con altri endpoint come backup.
+  * Ponderato round robin routing, che distribuisce il traffico in base hello peso assegnato tooeach endpoint.
 
-  Il client si connette direttamente a tale endpoint. Gestione traffico di Azure rileva gli endpoint non integri e reindirizza i client a un'altra istanza integra. Per altre informazioni sul servizio, vedere [Gestione traffico di Azure](traffic-manager-overview.md).
-* Il **gateway applicazione** offre un servizio di controller per la distribuzione di applicazioni con numerose funzionalità di bilanciamento del carico di livello 7. Consente ai clienti di ottimizzare la produttività delle Web farm tramite l'offload della terminazione SSL con uso elevato di CPU al gateway applicazione. Altre funzionalità di routing di livello 7 includono la distribuzione round robin del traffico in ingresso, l'affinità di sessione basata su cookie, il routing basato su percorso URL e la possibilità di ospitare più siti Web dietro un unico gateway applicazione. Il gateway applicazione può essere configurato come gateway con connessione Internet, come gateway solo interno o come una combinazione di queste due opzioni. È completamente gestito in Azure e offre scalabilità e disponibilità elevata, oltre a un set completo di funzionalità di registrazione e diagnostica che ne migliorano la gestibilità.
-* **Load Balancer** è parte integrante dello stack SDN di azure e offre servizi di bilanciamento del carico di livello 4 a elevate prestazioni e bassa latenza per tutti i protocolli UDP e TCP. Gestisce le connessioni in ingresso e in uscita. È possibile configurare endpoint pubblici e interni con carico bilanciato e definire regole per mappare le connessioni in ingresso a destinazioni pool back-end con opzioni di probe dell'integrità TCP e HTTP per gestire la disponibilità del servizio.
+  client di Hello si connette direttamente toothat endpoint. Gestione traffico di Azure rileva se un endpoint non è integro e quindi reindirizzamenti hello istanza integro tooanother di client. Fare riferimento troppo[documentazione di Azure Traffic Manager](traffic-manager-overview.md) toolearn ulteriori informazioni sul servizio hello.
+* Il **gateway applicazione** offre un servizio di controller per la distribuzione di applicazioni con numerose funzionalità di bilanciamento del carico di livello 7. Consente ai clienti la produttività di toooptimize web farm tramite l'offload di gateway applicazione toohello di terminazione SSL con utilizzo intensivo della CPU. Altre funzionalità di routing di livello 7 includono la distribuzione round-robin del traffico in ingresso, l'affinità di sessione basato su cookie, il routing basato sul percorso URL e hello possibilità toohost più siti Web protetti da un gateway singola applicazione. Il gateway applicazione può essere configurato come gateway con connessione Internet, come gateway solo interno o come una combinazione di queste due opzioni. È completamente gestito in Azure e offre scalabilità e disponibilità elevata, oltre a un set completo di funzionalità di registrazione e diagnostica che ne migliorano la gestibilità.
+* **Bilanciamento del carico** è parte integrante dello stack SDN Azure hello, che forniscono prestazioni elevate, bassa latenza livello 4 bilanciamento del carico servizi per i protocolli TCP e UDP di tutte. Gestisce le connessioni in ingresso e in uscita. È possibile configurare gli endpoint con bilanciamento del carico pubblici e interni e definire toomap regole connessioni in entrata le destinazioni di pool di connessioni tooback-end utilizzando HTTP e TCP probe di integrità opzioni toomanage la disponibilità del servizio.
 
 ## <a name="scenario"></a>Scenario
 
-In questo scenario di esempio viene usato un semplice sito Web che gestisce due tipi di contenuto: immagini e pagine Web con rendering dinamico. Questo sito Web deve essere geograficamente ridondante e deve servire gli utenti dalla località ad essi più vicina (latenza più bassa). Lo sviluppatore dell'applicazione ha deciso che qualsiasi URL corrispondente al pattern /images/* venga servito da un pool dedicato di macchine virtuali separato dal resto della Web farm.
+In questo scenario di esempio viene usato un semplice sito Web che gestisce due tipi di contenuto: immagini e pagine Web con rendering dinamico. sito Web di Hello devono essere geograficamente ridondanti e deve essere utilizzati per gli utenti da hello più vicino (latenza più bassa) toothem percorso. Hello sviluppatore di applicazioni ha deciso che tutti gli URL che corrispondono a hello modello/immagini / * vengono gestite da un pool dedicato di macchine virtuali che sono diverse da rest hello di web farm di hello.
 
-Inoltre, il pool predefinito di macchine virtuali che rende disponibile il contenuto dinamico deve comunicare con un database back-end ospitato in un cluster a disponibilità elevata. La configurazione dell'intera distribuzione viene eseguita tramite Azure Resource Manager.
+Inoltre, i pool di macchine Virtuali predefinito hello del contenuto dinamico hello deve database back-end di tooa tootalk che è ospitato in un cluster a disponibilità elevata. intera distribuzione di Hello è viene configurata tramite Gestione risorse di Azure.
 
-L'uso di Gestione traffico, del gateway applicazione e di Load Balancer consente al sito Web di raggiungere gli obiettivi di progettazione seguenti:
+L'utilizzo di gestione traffico Gateway applicazione e servizio di bilanciamento del carico consente tooachieve questo sito Web questi obiettivi di progettazione:
 
-* **Ridondanza multi-geografica**: se un'area geografica risulta non disponibile, Gestione traffico reindirizza senza problemi il traffico all'area geografica appropriata più vicina senza alcun intervento da parte del proprietario dell'applicazione.
-* **Latenza ridotta**: il cliente viene automaticamente indirizzato da Gestione traffico all'area geografica più vicina. Per questo motivo, quando il cliente richiede il contenuto delle pagine Web, si registra una latenza più bassa.
-* **Scalabilità indipendente**: poiché il carico di lavoro delle applicazioni Web è separato in base al tipo di contenuto, il proprietario dell'applicazione può ridimensionare i carichi di lavoro relativi alle richieste in modo indipendente l'uno dall'altro. Il gateway applicazione assicura che il traffico venga indirizzato ai pool corretti in base alle regole specificate e all'integrità dell'applicazione.
-* **Bilanciamento del carico interno**: con il posizionamento di Load Balancer davanti al cluster a disponibilità elevata, viene esposto all'applicazione solo l'endpoint attivo e integro per un database. Inoltre, un amministratore del database può ottimizzare il carico di lavoro distribuendo le repliche attive e passive nel cluster indipendentemente dall'applicazione front-end. Load Balancer offre connessioni al cluster a disponibilità elevata e assicura che soltanto i database integri ricevano le richieste di connessione.
+* **Ridondanza geografica più**: se si arresta un'area, gestione traffico instrada il traffico facilmente toohello area più vicina senza l'intervento dal proprietario dell'applicazione hello.
+* **Una latenza ridotta**: perché Gestione traffico indirizza automaticamente regione più vicina di hello cliente toohello, hello si verifica una latenza più bassa per la richiesta di contenuto di hello pagina Web.
+* **La scalabilità indipendente**: perché il carico di lavoro dell'applicazione web hello è separato dal tipo di contenuto, proprietario dell'applicazione hello adattabile hello richiesta i carichi di lavoro indipendenti tra loro. Gateway applicazione assicura che il traffico hello sia indirizzato toohello pool di destra in base hello specificato regole e l'integrità di hello di un'applicazione hello.
+* **Bilanciamento del carico interno**: bilanciamento del carico perché è davanti cluster a disponibilità elevata, hello solo endpoint attivi e integro hello, per un database è esposto toohello applicazione. Inoltre, un amministratore di database possibile ottimizzare il carico di lavoro di hello distribuendo attive e passive repliche tra cluster hello indipendente di un'applicazione front-end hello. Servizio di bilanciamento del carico offre un cluster a disponibilità elevata toohello connessioni e assicura che solo i database integro ricevano richieste di connessione.
 
-Il diagramma seguente illustra l'architettura di questi scenario:
+Hello diagramma seguente mostra hello architettura di questo scenario:
 
 ![Diagramma dell'architettura di bilanciamento del carico](./media/traffic-manager-load-balancing-azure/scenario-diagram.png)
 
 > [!NOTE]
-> Questo esempio è solo una delle numerose configurazioni possibili dei servizi di bilanciamento del carico offerti da Azure. È possibile combinare e associare Gestione traffico, il gateway applicazione e Load Balancer per soddisfare al meglio le specifiche esigenze di bilanciamento del carico. Se, ad esempio, l'offload SSL o l'elaborazione di livello 7 non sono necessari, è possibile usare Load Balancer al posto del gateway applicazione.
+> Questo esempio è solo uno dei numerosi possibili configurazioni di servizi di bilanciamento del carico hello che offre Azure. Gestione traffico Gateway applicazione e servizio di bilanciamento del carico possono essere combinate e toobest corrispondente in base alle esigenze di bilanciamento del carico. Se, ad esempio, l'offload SSL o l'elaborazione di livello 7 non sono necessari, è possibile usare Load Balancer al posto del gateway applicazione.
 
-## <a name="setting-up-the-load-balancing-stack"></a>Impostazione dello stack di bilanciamento del carico
+## <a name="setting-up-hello-load-balancing-stack"></a>Impostazione dello stack di bilanciamento del carico hello
 
 ### <a name="step-1-create-a-traffic-manager-profile"></a>Passaggio 1: creare un profilo di Gestione traffico
 
-1. Nel portale di Azure, fare clic su **Nuovo**, e cercare "Profilo di Gestione traffico" in Marketplace.
-2. Nel pannello **Crea profilo di Gestione traffico**, inserire le seguenti informazioni di base:
+1. Nel portale di Azure hello, fare clic su **New**e quindi ricerca hello marketplace "Profilo di gestione traffico."
+2. In hello **profilo di Traffic Manager creare** pannello, immettere le seguenti informazioni di base hello:
 
   * **Nome**: assegnare al profilo di Gestione traffico un nome del prefisso DNS.
-  * **Metodo di routing**: selezionare il criterio per il metodo di routing del traffico. Per altre informazioni sui metodi, vedere [Informazioni sui metodi di routing del traffico di Gestione traffico](traffic-manager-routing-methods.md).
-  * **Sottoscrizione**: selezionare la sottoscrizione contenente il profilo.
-  * **Gruppo di risorse**: selezionare il gruppo di risorse contenente il profilo. Può trattarsi di un gruppo di risorse nuovo o esistente.
-  * **Percorso gruppo di risorse**: il servizio Gestione traffico è globale e non legato a una località. Tuttavia, è necessario specificare un'area per il gruppo in cui risiedono i metadati associati al profilo di Gestione traffico. La località non ha alcun impatto sulla disponibilità di runtime del profilo.
+  * **Metodo di routing**: selezionare hello criteri metodo di routing del traffico. Per ulteriori informazioni sui metodi di hello, vedere [i metodi di routing del traffico su gestione traffico](traffic-manager-routing-methods.md).
+  * **Sottoscrizione**: selezionare hello sottoscrizione che contiene il profilo di hello.
+  * **Gruppo di risorse**: gruppo di risorse hello Select che contiene il profilo di hello. Può trattarsi di un gruppo di risorse nuovo o esistente.
+  * **Percorso del gruppo di risorse**: servizio di gestione traffico è percorso tooa globale e non è associato. Tuttavia, è necessario specificare un'area per il gruppo di hello in cui si trovano hello metadati associati al profilo di gestione traffico hello. Questo percorso non ha alcun impatto sulla disponibilità di runtime hello del profilo di hello.
 
-3. Fare clic su **Crea** per generare il profilo di Gestione traffico.
+3. Fare clic su **crea** toogenerate hello profilo di gestione traffico.
 
   ![Pannello "Crea profilo di Gestione traffico"](./media/traffic-manager-load-balancing-azure/s1-create-tm-blade.png)
 
-### <a name="step-2-create-the-application-gateways"></a>Passaggio 2: creare il gateway applicazione
+### <a name="step-2-create-hello-application-gateways"></a>Passaggio 2: Creare hello gateway applicazione
 
-1. Nel portale di Azure fare clic su **Nuovo** > **Rete** > **Gateway applicazione** nel pannello a sinistra.
-2. Inserire le seguenti informazioni di base sul gateway applicazione:
+1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su **New** > **rete** > **Gateway applicazione**.
+2. Immettere le seguenti informazioni di base sul gateway applicazione hello hello:
 
-  * **Nome** : nome del gateway applicazione.
-  * **Dimensioni SKU**: dimensioni del gateway applicazione. Le opzioni disponibili sono Small, Medium e Large.
-  * **Numero di istanze**: il numero di istanze, un valore da 2 a 10.
-  * **Gruppo di risorse**: il gruppo di risorse che contiene il gateway applicazione. Può trattarsi di un gruppo di risorse nuovo o esistente.
-  * **Posizione**: l'area del gateway applicazione. È la stessa posizione del gruppo di risorse. La posizione è importante perché la rete virtuale e l'IP pubblico devono trovarsi nella stessa posizione del gateway.
+  * **Nome**: nome hello del gateway applicazione hello.
+  * **Dimensioni di SKU**: hello dimensioni del gateway applicazione hello, disponibile come Small, Medium o Large.
+  * **Numero di istanza**: hello numero di istanze, un valore da 2 a 10.
+  * **Gruppo di risorse**: gruppo di risorse hello che contiene i gateway applicazione hello. Può trattarsi di un gruppo di risorse nuovo o esistente.
+  * **Percorso**: area hello per il gateway applicazione hello, che è hello stesso percorso del gruppo di risorse hello. percorso Hello è importante, perché la rete virtuale hello e indirizzo IP pubblico devono trovarsi in hello gateway hello stesso percorso.
 3. Fare clic su **OK**.
-4. Definire le configurazioni della rete virtuale, della subnet, dell'IP front-end e del listener per il gateway applicazione. In questo scenario l'indirizzo IP front-end è **Pubblico**. Questo consente, in un secondo tempo, di aggiungerlo come endpoint al profilo di Gestione traffico.
-5. Configurare il listener con una delle opzioni seguenti:
-    * Se si usa HTTP, non sono necessarie configurazioni. Fare clic su **OK**.
-    * Se si usa HTTPS sono necessarie operazioni di configurazione aggiuntive. Fare riferimento a [Creare un gateway applicazione](../application-gateway/application-gateway-create-gateway-portal.md), a partire dal passaggio 9. Una volta completata la configurazione, fare clic su **OK**.
+4. Definire la rete virtuale hello, subnet, IP front-end e configurazioni del listener per il gateway applicazione hello. In questo scenario, è l'indirizzo IP front-end hello **pubblica**, che consente toobe aggiunto come un profilo di gestione traffico di toohello endpoint in un secondo momento.
+5. Configurare il listener hello con una delle seguenti opzioni hello:
+    * Se si Usa HTTP, non è necessario tooconfigure. Fare clic su **OK**.
+    * Se si usa HTTPS sono necessarie operazioni di configurazione aggiuntive. Fare riferimento troppo[creare un gateway applicazione](../application-gateway/application-gateway-create-gateway-portal.md), iniziando dal passaggio 9. Dopo aver completato la configurazione hello, fare clic su **OK**.
 
 #### <a name="configure-url-routing-for-application-gateways"></a>Configurare il routing degli URL per i gateway applicazione
 
-Quando si sceglie un pool back-end, un gateway applicazione configurato con una regola basata sul percorso tiene conto non solo della distribuzione round robin ma anche del modello di percorso dell'URL della richiesta. In questo scenario viene aggiunta una regola basata sul percorso per indirizzare qualsiasi URL con "/images/\*" al pool di server di immagine. Per altre informazioni sulla configurazione del routing degli URL in base al percorso per un gateway applicazione, vedere [Creare una regola basata sul percorso per un gateway applicazione](../application-gateway/application-gateway-create-url-route-portal.md).
+Quando si sceglie un pool back-end, un gateway di applicazione che viene configurato con una regola di percorso ha un modello del percorso dell'URL di richiesta hello nella distribuzione round-robin tooround aggiunta. In questo scenario, si aggiungono toodirect una regola di percorso basato su un qualsiasi URL con "/images/\*" pool di server toohello immagine. Per ulteriori informazioni sulla configurazione di URL di routing basato sul percorso per un gateway di applicazione, fare riferimento troppo[creare una regola basata sul percorso per un gateway applicazione](../application-gateway/application-gateway-create-url-route-portal.md).
 
 ![Diagramma di livello Web del gateway applicazione](./media/traffic-manager-load-balancing-azure/web-tier-diagram.png)
 
-1. Dal gruppo di risorse passare all'istanza del gateway applicazione creata nella sezione precedente.
-2. Nella sezione **Impostazioni** selezionare **Pool back-end**, quindi selezionare **Aggiungi** per aggiungere le macchine virtuali da associare ai pool back-end di livello Web.
-3. Nel pannello **Aggiungi pool back-end** immettere il nome del pool back-end e tutti gli indirizzi IP dei computer presenti nel pool. In questo scenario vengono connessi due pool back-end di server di macchine virtuali.
+1. Il gruppo di risorse, passare toohello istanza del gateway applicazione hello creato nella precedente sezione hello.
+2. In **impostazioni**selezionare **pool back-end**, quindi selezionare **Aggiungi** tooadd hello macchine virtuali che si desidera tooassociate con pool back-end web a livello di hello.
+3. In hello **aggiungere pool back-end** pannello, immettere il nome di hello del pool back-end hello e tutti gli indirizzi IP hello macchine hello che risiedono nel pool di hello. In questo scenario vengono connessi due pool back-end di server di macchine virtuali.
 
   ![Pannello "Aggiungi pool back-end" del gateway applicazione](./media/traffic-manager-load-balancing-azure/s2-appgw-add-bepool.png)
 
-4. Nella sezione **Impostazioni** del gateway applicazione selezionare **Regole** e quindi fare clic sul pulsante **Basata sul percorso** per aggiungere una nuova regola.
+4. In **impostazioni** di gateway applicazione hello, selezionare **regole**e quindi fare clic su hello **percorso basato su** tooadd pulsante una regola.
 
   ![Pulsante "Basata sul percorso", regole del gateway applicazione](./media/traffic-manager-load-balancing-azure/s2-appgw-add-pathrule.png)
 
-5. Nel pannello **Aggiungi regola basata sul percorso** immettere le informazioni seguenti per configurare la regola.
+5. In hello **Aggiungi regola di percorso basato su** pannello, configurare la regola hello fornendo hello le seguenti informazioni.
 
    Impostazioni di base:
 
-   + **Nome**: nome descrittivo della regola accessibile nel portale.
-   + **Listener**: listener usato per la regola.
-   + **Pool back-end predefinito**: pool back-end da usare con la regola predefinita.
-   + **Impostazioni HTTP predefinite**: impostazioni HTTP da usare con la regola predefinita.
+   + **Nome**: nome descrittivo di hello della regola hello è accessibile nel portale di hello.
+   + **Listener**: listener hello utilizzato per la regola di hello.
+   + **Predefinito pool back-end**: hello toobe pool back-end utilizzato con la regola predefinita di hello.
+   + **Impostazioni HTTP predefinite**: toobe impostazioni hello HTTP utilizzato con la regola predefinita di hello.
 
    Regole basate sul percorso:
 
-   + **Nome**: nome descrittivo della regola basata sul percorso.
-   + **Percorsi**: regola basata sul percorso usata per l'inoltro del traffico.
-   + **Pool back-end**: pool back-end da usare con questa regola.
-   + **Impostazione HTTP**: impostazioni HTTP da usare con questa regola.
+   + **Nome**: nome descrittivo di hello della regola di percorso basato su hello.
+   + **Percorsi**: regola di percorso hello utilizzata per inoltrare il traffico.
+   + **Pool back-end**: hello toobe pool back-end utilizzato con questa regola.
+   + **Le impostazioni HTTP**: toobe impostazioni hello HTTP utilizzato con questa regola.
 
    > [!IMPORTANT]
-   > Percorsi: i percorsi validi devono iniziare con "/". Il carattere jolly "\*" è consentito solo alla fine del percorso. Alcuni esempi validi: /xyz, /xyz\* o /xyz/\*.
+   > Percorsi: i percorsi validi devono iniziare con "/". carattere jolly Hello "\*" è consentita solo alla fine di hello. Alcuni esempi validi: /xyz, /xyz\* o /xyz/\*.
 
    ![Pannello "Aggiungi regola basata sul percorso" del gateway applicazione](./media/traffic-manager-load-balancing-azure/s2-appgw-pathrule-blade.png)
 
-### <a name="step-3-add-application-gateways-to-the-traffic-manager-endpoints"></a>Passaggio 3: aggiungere gateway applicazione agli endpoint di Gestione traffico
+### <a name="step-3-add-application-gateways-toohello-traffic-manager-endpoints"></a>Passaggio 3: Aggiungere endpoint di gestione traffico toohello gateway applicazione
 
-In questo scenario Gestione traffico è connesso ai gateway applicazione (come configurati nei passaggi precedenti) presenti in aree geografiche diverse. Dopo aver configurato i gateway applicazione, il passaggio successivo consiste nel connettere tali gateway al profilo di Gestione traffico.
+In questo scenario, gestione traffico è gateway tooapplication connesso (come configurato in hello passaggi precedenti) che si trovano in aree diverse. Ora che sono configurati i gateway applicazione hello, hello sarà tooconnect li tooyour profilo di gestione traffico.
 
-1. Aprire il profilo di Gestione traffico. A tale scopo, esaminare il gruppo di risorse o cercare il nome del profilo di Gestione traffico in **Tutte le risorse**.
-2. Nel riquadro a sinistra, selezionare **Endpoint** e fare clic su **Aggiungi** per aggiungere un endpoint.
+1. Aprire il profilo di Gestione traffico. toodo Cerca in tal caso, nel gruppo di risorse o ricerca per nome hello del profilo di Traffic Manager hello da **tutte le risorse**.
+2. Nel riquadro sinistro hello selezionare **endpoint**, quindi fare clic su **Aggiungi** tooadd un endpoint.
 
   ![Pulsante "Aggiungi" per gli endpoint di Gestione traffico](./media/traffic-manager-load-balancing-azure/s3-tm-add-endpoint.png)
 
-3. Nel pannello **Aggiungi endpoint** immettere le informazioni seguenti per creare un endpoint:
+3. In hello **aggiungere endpoint** pannello, creare un endpoint tramite l'immissione di hello le seguenti informazioni:
 
-  * **Tipo**: selezionare il tipo di endpoint per il bilanciamento del carico. In questo scenario selezionare **Endpoint di Azure** perché ci si sta connettendo alle istanze del gateway applicazione configurate in precedenza.
-  * **Nome**: inserire il nome dell'endpoint.
-  * **Tipo di risorsa di destinazione**: selezionare **Indirizzo IP pubblico**, quindi, nell'impostazione **Risorsa di destinazione**, selezionare l'IP pubblico del gateway applicazione configurato in precedenza.
+  * **Tipo**: selezionare il tipo di hello di endpoint tooload bilanciamento. In questo scenario, selezionare **endpoint Azure** perché ci si sono connettendo le istanze di gateway applicazione toohello che sono state configurate in precedenza.
+  * **Nome**: immettere il nome di hello dell'endpoint di hello.
+  * **Tipo di risorsa di destinazione**: selezionare **indirizzo IP pubblico** e quindi in **risorsa di destinazione**, selezionare hello indirizzo IP pubblico del gateway applicazione hello configurata in precedenza.
 
    ![Pannello "Aggiungi endpoint" di Gestione traffico](./media/traffic-manager-load-balancing-azure/s3-tm-add-endpoint-blade.png)
 
-4. È ora possibile testare la configurazione accedendovi con il DNS del profilo di Gestione traffico, in questo esempio TrafficManagerScenario.trafficmanager.net. È possibile inviare nuovamente le richieste, attivare/disattivare le macchine virtuali e i server Web creati in aree geografiche differenti e modificare le impostazioni del profilo di Gestione traffico per testare la configurazione.
+4. Ora è possibile verificare l'impostazione accedendovi con hello DNS del profilo di Traffic Manager (in questo esempio: TrafficManagerScenario.trafficmanager.net). È possibile inviare di nuovo le richieste, visualizzata o arrestare le macchine virtuali e i server web che sono stati creati in aree diverse e modificare l'impostazione dei tootest impostazioni profilo Traffic Manager di hello.
 
 ### <a name="step-4-create-a-load-balancer"></a>Passaggio 4: creare un servizio di bilanciamento del carico
 
-In questo scenario Load Balancer distribuisce le connessioni dal livello Web al database all'interno di un cluster a disponibilità elevata.
+In questo scenario, bilanciamento del carico distribuisce le connessioni da database toohello a livello web hello all'interno di un cluster a disponibilità elevata.
 
-Se il cluster di database a disponibilità elevata usa SQL Server AlwaysOn, per istruzioni dettagliate vedere [Configurare uno o più listener nei gruppi di disponibilità AlwaysOn](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md).
+Se il cluster a disponibilità elevata database utilizza SQL Server AlwaysOn, fare riferimento troppo[configurare uno o più sempre sul listener](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md) per istruzioni dettagliate.
 
-Per altri dettagli sulla configurazione di un servizio di bilanciamento del carico interno, vedere [Creare un servizio di bilanciamento del carico interno nel portale di Azure](../load-balancer/load-balancer-get-started-ilb-arm-portal.md).
+Per ulteriori informazioni sulla configurazione di un servizio di bilanciamento del carico interno, vedere [creare un servizio di bilanciamento del carico interno nel portale di Azure hello](../load-balancer/load-balancer-get-started-ilb-arm-portal.md).
 
-1. Nel portale di Azure fare clic su **Nuovo** > **Rete** > **Bilanciamento del carico** nel pannello a sinistra.
-2. Nel pannello **Crea servizio di bilanciamento del carico** scegliere un nome per il servizio di bilanciamento del carico.
-3. Impostare **Tipo** su **Interno** e scegliere la rete virtuale e la subnet appropriate per il servizio di bilanciamento del carico.
+1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su **New** > **rete** > **bilanciamento del carico**.
+2. In hello **Crea servizio di bilanciamento del carico** pannello, scegliere un nome per il bilanciamento del carico.
+3. Set hello **tipo** troppo**interno**e scegliere la rete virtuale appropriata di hello e subnet per tooreside del servizio di bilanciamento carico di hello in.
 4. In **Assegnazione indirizzo IP** selezionare **Dinamico** o **Statico**.
-5. In **Gruppo di risorse** scegliere il gruppo di risorse per il servizio di bilanciamento del carico.
-6. In **Località** scegliere l'area geografica appropriata per il servizio di bilanciamento del carico.
-7. Al termine, fare clic su **Crea** per generare il servizio di bilanciamento del carico.
+5. In **gruppo di risorse**, scegliere il gruppo di risorse hello di bilanciamento del carico hello.
+6. In **percorso**, scegliere hello area appropriata per servizio di bilanciamento del carico hello.
+7. Fare clic su **crea** toogenerate bilanciamento del carico di hello.
 
-#### <a name="connect-a-back-end-database-tier-to-the-load-balancer"></a>Connettere un livello del database back-end al servizio di bilanciamento del carico
+#### <a name="connect-a-back-end-database-tier-toohello-load-balancer"></a>Connettersi a un bilanciamento del carico toohello di livello database back-end
 
-1. Dal gruppo di risorse individuare il servizio di bilanciamento del carico creato nei passaggi precedenti.
-2. Nella sezione **Impostazioni** fare clic su **Pool back-end** e quindi fare clic su **Aggiungi** per aggiungere un nuovo pool back-end.
+1. Dal gruppo di risorse, trovare il servizio di bilanciamento del carico hello creato nei passaggi precedenti hello.
+2. In **impostazioni**, fare clic su **pool back-end**, quindi fare clic su **Aggiungi** tooadd un pool back-end.
 
   ![Pannello "Aggiungi pool back-end" di Load Balancer](./media/traffic-manager-load-balancing-azure/s4-ilb-add-bepool.png)
 
-3. Nel pannello **Aggiungi pool back-end** immettere il nome del pool back-end.
-4. Aggiungere singoli computer o un set di disponibilità per il pool back-end.
+3. In hello **aggiungere pool back-end** pannello, immettere il nome di hello del pool back-end hello.
+4. Aggiungere singoli computer o un pool di back-end toohello set di disponibilità.
 
 #### <a name="configure-a-probe"></a>Configurare un probe
 
-1. Nella sezione **Impostazioni** del servizio di bilanciamento del carico selezionare **Probe** e quindi selezionare **Aggiungi** per aggiungere un nuovo probe.
+1. Nel servizio di bilanciamento del carico, in **impostazioni**selezionare **probe**, quindi fare clic su **Aggiungi** tooadd un probe.
 
  ![Pannello "Aggiungi probe" di Load Balancer](./media/traffic-manager-load-balancing-azure/s4-ilb-add-probe.png)
 
-2. Nel pannello **Aggiungi probe** immettere il nome del probe.
-3. Selezionare il **Protocollo** per il probe. Per un database, può essere preferibile un probe TCP anziché un probe HTTP. Per altre informazioni sui probe del servizio di bilanciamento del carico, vedere [Probe del servizio di bilanciamento del carico](../load-balancer/load-balancer-custom-probe-overview.md).
-4. Immettere la **Porta** del database da usare per l'accesso al probe.
-5. In **Intervallo** specificare la frequenza di probe per l'applicazione.
-6. In **Soglia di non integrità** specificare il numero di tentativi continui di probe non riusciti che possono verificarsi prima che una macchina virtuale back-end venga considerata non integra.
-7. Fare clic su **OK** per creare il probe.
+2. In hello **Aggiungi probe** pannello, immettere nome hello hello probe.
+3. Seleziona hello **protocollo** per il probe hello. Per un database, può essere preferibile un probe TCP anziché un probe HTTP. toolearn ulteriori informazioni su probe di bilanciamento del carico, fare riferimento troppo[probe di bilanciamento del carico comprendere](../load-balancer/load-balancer-custom-probe-overview.md).
+4. Immettere hello **porta** di toobe il database utilizzato per l'accesso a probe hello.
+5. In **intervallo**, specificare la frequenza con cui tooprobe hello dell'applicazione.
+6. In **soglia non integra**, specificare il numero di hello di errori di probe continua che deve verificarsi per hello back-end VM toobe considerato non integro.
+7. Fare clic su **OK** probe hello toocreate.
 
-#### <a name="configure-the-load-balancing-rules"></a>Configurare le regole del servizio di bilanciamento del carico
+#### <a name="configure-hello-load-balancing-rules"></a>Configurare le regole di bilanciamento del carico hello
 
-1. Nella sezione **Impostazioni** del servizio di bilanciamento del carico selezionare **Regole di bilanciamento del carico** e quindi selezionare **Aggiungi** per creare una regola.
-2. Nel pannello **Aggiungi regola di bilanciamento del carico** immettere il **Nome** della regola di bilanciamento del carico.
-3. Impostare le opzioni **Indirizzo IP front-end** del servizio di bilanciamento del carico, **Protocollo** e **Porta**.
-4. In **Porta back-end** specificare la porta da usare nel pool di back-end.
-5. Selezionare il **Pool back-end** e il **Probe** creati nei passaggi precedenti per applicarvi la regola.
-6. In **Salvataggio permanente sessione** scegliere la modalità di salvataggio delle sessioni.
-7. In **Timeout di inattività** specificare il numero di minuti prima di un timeout di inattività.
+1. In **impostazioni** del servizio di bilanciamento del carico, selezionare **regole di bilanciamento del carico**, quindi fare clic su **Aggiungi** toocreate una regola.
+2. In hello **regola di bilanciamento del carico di Aggiungi** pannello immettere hello **nome** per la regola di bilanciamento del carico hello.
+3. Scegliere hello **indirizzo IP di front-end** di hello bilanciamento del carico, **protocollo**, e **porta**.
+4. In **porta back-end**, specificare hello porta toobe utilizzati nel pool back-end hello.
+5. Seleziona hello **pool back-end** hello e **Probe** che sono stati creati in hello precedenti passaggi tooapply hello regola.
+6. In **persistenza della sessione**, scegliere la modalità di hello sessioni toopersist.
+7. In **i timeout di inattività**, specificare il numero di hello di minuti prima di un timeout di inattività.
 8. Per **Indirizzo IP mobile** selezionare **Disabilitato** o **Abilitato**.
-9. Fare clic su **OK** per creare la regola.
+9. Fare clic su **OK** regola hello toocreate.
 
-### <a name="step-5-connect-web-tier-vms-to-the-load-balancer"></a>Passaggio 5: connettere macchine virtuali di livello Web al servizio di bilanciamento del carico
+### <a name="step-5-connect-web-tier-vms-toohello-load-balancer"></a>Passaggio 5: Bilanciamento del carico toohello di livello web le macchine virtuali di connettersi
 
-Vengono ora configurati l'indirizzo IP e la porta font-end del servizio di bilanciamento del carico nell'applicazione in esecuzione sulle macchine virtuali di livello Web per qualsiasi connessione di database. Questa configurazione è specifica delle applicazioni in esecuzione su tali macchine virtuali. Per configurare l'indirizzo IP e la porta di destinazione, fare riferimento alla documentazione dell'applicazione. Per individuare l'indirizzo IP del front-end, passare al pool di indirizzi IP front-end nel **pannello delle impostazioni del servizio di bilanciamento del carico** nel portale di Azure.
+Ora è stato possibile configurare porte di front-end di hello IP indirizzo e bilanciamento del carico in applicazioni hello che eseguono le macchine virtuali di livello web per tutte le connessioni di database. Questa configurazione è toohello specifiche applicazioni eseguite su queste macchine virtuali. indirizzo IP di destinazione tooconfigure hello e la porta, consultare la documentazione dell'applicazione toohello. indirizzo IP di hello toofind del front-end hello, nel portale di Azure hello andare pool IP front-end toohello hello **impostazioni del servizio di bilanciamento carico** blade.
 
 ![Riquadro "Pool di indirizzi IP front-end" di Load Balancer](./media/traffic-manager-load-balancing-azure/s5-ilb-frontend-ippool.png)
 

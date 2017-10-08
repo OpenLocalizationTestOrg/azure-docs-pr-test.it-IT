@@ -1,6 +1,6 @@
 ---
-title: Eseguire la migrazione a Resource Manager con PowerShell | Microsoft Docs
-description: Questo articolo illustra la migrazione di risorse IaaS supportata dalla piattaforma come macchine virtuali (VM), reti virtuali (VNET) e account di archiviazione dal modello di distribuzione classica ad Azure Resource Manager (ARM) tramite comandi di Azure PowerShell
+title: aaaMigrate tooResource gestione con PowerShell | Documenti Microsoft
+description: Questo articolo descrive la migrazione hello supportata dalla piattaforma IaaS risorse quali macchine virtuali (VM), le reti virtuali (reti virtuali) e gli account di archiviazione da tooAzure classico Resource Manager (ARM) utilizzando i comandi di PowerShell di Azure
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,90 +15,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: kasing
-ms.openlocfilehash: 489e6cc6bd3c5b36635f5f7e398d08fed681d2e7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b5b2987da292f1c241be71a354b0c2e1a96a07c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-iaas-resources-from-classic-to-azure-resource-manager-by-using-azure-powershell"></a>Eseguire la migrazione di risorse IaaS dal modello classico al modello di Azure Resource Manager tramite Azure PowerShell
-Questi passaggi mostrano come usare i comandi di Azure PowerShell per eseguire la migrazione di risorse IaaS (infrastruttura distribuita come servizio) dal modello di distribuzione classica al modello di distribuzione Azure Resource Manager.
+# <a name="migrate-iaas-resources-from-classic-tooazure-resource-manager-by-using-azure-powershell"></a>Eseguire la migrazione di risorse IaaS da tooAzure classico Gestione risorse tramite Azure PowerShell
+Queste procedure illustrano di funzionamento dei comandi toomigrate infrastruttura come un servizio (IaaS) alle risorse dal modello di distribuzione Azure Resource Manager hello distribuzione classica modello toohello toouse Azure PowerShell.
 
-È anche possibile eseguire la migrazione delle risorse usando l' [interfaccia della riga di comando di Azure](../linux/migration-classic-resource-manager-cli.md).
+Se si desidera, è anche possibile eseguire la migrazione alle risorse utilizzando hello [Azure interfaccia della riga di comando (CLI di Azure)](../linux/migration-classic-resource-manager-cli.md).
 
-* Per informazioni di base su scenari di migrazione supportati, vedere [Migrazione di risorse IaaS supportata dalla piattaforma dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-overview.md).
-* Per una guida approfondita e la procedura dettagliata di migrazione, vedere [Approfondimento tecnico sulla migrazione supportata dalla piattaforma dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-deep-dive.md).
+* Per informazioni generali sugli scenari di migrazione supportati, vedere [migrazione supportata dalla piattaforma IaaS risorse tooAzure classico Gestione risorse di](migration-classic-resource-manager-overview.md).
+* Per istruzioni dettagliate e informazioni dettagliate sulla migrazione, vedere [tecnica di informazioni approfondite su piattaforma supportata la migrazione da Gestione risorse di tooAzure classico](migration-classic-resource-manager-deep-dive.md).
 * [Rivedere gli errori di migrazione più comuni](migration-classic-resource-manager-errors.md)
 
 <br>
-Ecco un diagramma di flusso per identificare l'ordine di esecuzione dei passaggi durante un processo di migrazione
+Ecco un ordine di hello tooidentify diagramma di flusso in cui è necessario passaggi toobe eseguite durante un processo di migrazione
 
-![Screenshot that shows the migration steps](media/migration-classic-resource-manager/migration-flow.png)
+![Schermata che illustra i passaggi della migrazione hello](media/migration-classic-resource-manager/migration-flow.png)
 
 ## <a name="step-1-plan-for-migration"></a>Passaggio 1: Pianificare la migrazione
-Ecco alcune procedure consigliate per valutare la migrazione delle risorse IaaS dal modello classico al modello di Resource Manager:
+Ecco alcune procedure consigliate che è consigliabile quando si valutano la migrazione di risorse IaaS da tooResource classico Manager:
 
-* Leggere con attenzione le [funzionalità e configurazioni supportate e non supportate](migration-classic-resource-manager-overview.md). Se sono disponibili macchine virtuali che usano configurazioni o funzionalità non supportate, è consigliabile attendere l'annuncio del supporto di tali configurazioni o funzionalità. In alternativa, in base alle esigenze è possibile rimuovere tale funzionalità o uscire da tale configurazione per abilitare la migrazione.
-* Se si hanno script automatizzati che consentono di distribuire subito l'infrastruttura e le applicazioni, provare a creare una configurazione di test simile usando questi script per la migrazione. In alternativa, è anche possibile configurare ambienti di esempio tramite il portale di Azure.
+* Leggere hello [supportate e non supportate funzionalità e configurazioni](migration-classic-resource-manager-overview.md). Se si dispone di macchine virtuali che utilizzano le configurazioni non supportate o funzionalità, è consigliabile attendere hello e configurazione delle funzionalità supporto toobe annunciato. In alternativa, se adatto alle proprie esigenze, rimuovere tale funzionalità o esce da tale migrazione tooenable della configurazione.
+* Se si sono state automatizzate script da distribuire l'infrastruttura e le applicazioni oggi, provare a toocreate una configurazione di test simile utilizzando gli script per la migrazione. In alternativa, è possibile impostare gli ambienti di esempio di tramite hello portale di Azure.
 
 > [!IMPORTANT]
-> I gateway applicazione non sono attualmente supportati per la migrazione dal modello di distribuzione classica a Resource Manager. Per eseguire la migrazione di una rete virtuale classica con un gateway applicazione, rimuovere il gateway prima di eseguire un'operazione di preparazione dello spostamento della rete. Dopo aver completato la migrazione, riconnettere il gateway in Azure Resource Manager.
+> Gateway applicazione non sono attualmente supportati per la migrazione da tooResource classico Manager. toomigrate una rete virtuale classica con un gateway di applicazione, rimuovere gateway hello prima dell'esecuzione di una rete di hello toomove operazione Prepare. Dopo aver completato la migrazione di hello, riconnettersi gateway hello in Gestione risorse di Azure.
 >
->Non è possibile eseguire la migrazione automatica di gateway ExpressRoute che si connettono a circuiti ExpressRoute in un'altra sottoscrizione. In tal caso, rimuovere il gateway ExpressRoute, eseguire la migrazione della rete virtuale e ricreare il gateway. Per altre informazioni, vedere [Eseguire la migrazione di circuiti ExpressRoute e delle reti virtuali associate dalla distribuzione classica al modello di distribuzione Resource Manager](../../expressroute/expressroute-migration-classic-resource-manager.md).
+>Gateway ExpressRoute connessione tooExpressRoute circuiti in un'altra sottoscrizione non è possibile eseguire la migrazione automaticamente. In questi casi, è possibile rimuovere gateway ExpressRoute hello, la migrazione della rete virtuale hello e ricreare il gateway di hello. Vedere [ExpressRoute di eseguire la migrazione di circuiti e associate reti virtuali dal modello di distribuzione di gestione risorse toohello classico hello](../../expressroute/expressroute-migration-classic-resource-manager.md) per ulteriori informazioni.
 >
 >
 
-## <a name="step-2-install-the-latest-version-of-azure-powershell"></a>Passaggio 2: Installare la versione più recente di Azure PowerShell
-Per l'installazione di Azure PowerShell sono previste due opzioni principali: [PowerShell Gallery](https://www.powershellgallery.com/profiles/azure-sdk/) e [Installazione guidata piattaforma Web (WebPI)](http://aka.ms/webpi-azps). WebPI riceve aggiornamenti mensili. PowerShell Gallery riceve aggiornamenti su base continua. Questo articolo si basa su Azure PowerShell versione 2.1.0.
+## <a name="step-2-install-hello-latest-version-of-azure-powershell"></a>Passaggio 2: Installare una versione più recente di hello di Azure PowerShell
+Esistono due opzioni principali tooinstall Azure PowerShell: [PowerShell Gallery](https://www.powershellgallery.com/profiles/azure-sdk/) o [installazione guidata piattaforma Web (WebPI)](http://aka.ms/webpi-azps). WebPI riceve aggiornamenti mensili. PowerShell Gallery riceve aggiornamenti su base continua. Questo articolo si basa su Azure PowerShell versione 2.1.0.
 
-Per le istruzioni di installazione, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+Per istruzioni sull'installazione, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
 <br>
 
-## <a name="step-3-ensure-that-you-are-an-administrator-for-the-subscription-in-azure-portal"></a>Passaggio 3: Assicurarsi di essere un amministratore della sottoscrizione nel portale di Azure
-Per eseguire la migrazione, è necessario essere aggiunti come coamministratori della sottoscrizione nel [portale di Azure](https://portal.azure.com).
+## <a name="step-3-ensure-that-you-are-an-administrator-for-hello-subscription-in-azure-portal"></a>Passaggio 3: Assicurarsi che sia un amministratore per la sottoscrizione di hello nel portale di Azure
+tooperform questa migrazione, è necessario essere aggiunto come coamministratore della sottoscrizione hello in hello [portale di Azure](https://portal.azure.com).
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Nel menu Hub, selezionare **Sottoscrizione**. Se questa voce non viene visualizzata, selezionare **Altri servizi**.
-3. Cercare la voce di sottoscrizione appropriata, quindi esaminare il campo **Ruolo personale**. Per un coamministratore, il valore deve essere _amministratore account_.
+1. Sign in hello [portale di Azure](https://portal.azure.com).
+2. Nel menu Hub hello, selezionare **sottoscrizione**. Se questa voce non viene visualizzata, selezionare **Altri servizi**.
+3. Trovare la voce di hello sottoscrizione appropriata, quindi esaminare hello **ruolo MY** campo. Per un coamministratore, deve essere il valore di hello _amministratore dell'Account_.
 
-Se non è possibile aggiungere un coamministratore, contattare un amministratore o un coamministratore del servizio per essere aggiunti alla sottoscrizione.   
+Se non si è in grado di tooadd un coamministratore, quindi contattare un amministratore del servizio o coamministratore per tooget sottoscrizione hello aggiunti manualmente.   
 
 ## <a name="step-4-set-your-subscription-and-sign-up-for-migration"></a>Passaggio 4: impostare la sottoscrizione e iscriversi per la migrazione
-Avviare prima un prompt di PowerShell. Per la migrazione è necessario configurare l'ambiente per il modello classico e di Resource Manager.
+Avviare prima un prompt di PowerShell. Per la migrazione, è necessario tooset dell'ambiente per entrambi classico e Gestione risorse.
 
-Accedere con l'account per il modello di Resource Manager.
+Eseguire l'accesso tooyour account per il modello di gestione risorse hello.
 
 ```powershell
     Login-AzureRmAccount
 ```
 
-È possibile ottenere le sottoscrizioni disponibili usando il comando seguente:
+Ottenere le sottoscrizioni disponibili hello utilizzando hello comando seguente:
 
 ```powershell
     Get-AzureRMSubscription | Sort Name | Select Name
 ```
 
-Impostare la sottoscrizione di Azure per la sessione corrente. In questo esempio viene impostato il nome **My Azure Subscription** per la sottoscrizione predefinita. Sostituire il nome della sottoscrizione di esempio con il nome della propria sottoscrizione.
+Impostare la sottoscrizione di Azure per hello sessione corrente. In questo esempio imposta hello nome predefinito della sottoscrizione troppo**iscrizione Azure**. Sostituire nome sottoscrizione di esempio hello con valori personalizzati.
 
 ```powershell
     Select-AzureRmSubscription –SubscriptionName "My Azure Subscription"
 ```
 
 > [!NOTE]
-> La registrazione è un passaggio da eseguire una sola volta, ma è necessario provvedervi prima di tentare la migrazione. Senza la registrazione, verrà visualizzato il seguente messaggio di errore:
+> La registrazione è un passaggio da eseguire una sola volta, ma è necessario provvedervi prima di tentare la migrazione. Senza registrazione, vedrai hello seguente messaggio di errore:
 >
 > *BadRequest: Subscription is not registered for migration* (Richiesta non valida: la sottoscrizione non è registrata per la migrazione)
 >
 >
 
-Registrarsi con il provider di risorse di migrazione usando il comando seguente:
+Registrare con provider di risorse di migrazione hello utilizzando hello comando seguente:
 
 ```powershell
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
 ```
 
-Attendere cinque minuti che la registrazione venga completata. È possibile controllare lo stato dell'approvazione con il comando seguente:
+Attendere cinque minuti per hello toofinish di registrazione. È possibile controllare lo stato di hello dell'approvazione hello utilizzando hello comando seguente:
 
 ```powershell
     Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
@@ -106,19 +106,19 @@ Attendere cinque minuti che la registrazione venga completata. È possibile cont
 
 Assicurarsi che RegistrationState sia `Registered` prima di procedere.
 
-Accedere ora con l'account per il modello classico.
+Accedi a questo punto tooyour account per il modello classico hello.
 
 ```powershell
     Add-AzureAccount
 ```
 
-È possibile ottenere le sottoscrizioni disponibili usando il comando seguente:
+Ottenere le sottoscrizioni disponibili hello utilizzando hello comando seguente:
 
 ```powershell
     Get-AzureSubscription | Sort SubscriptionName | Select SubscriptionName
 ```
 
-Impostare la sottoscrizione di Azure per la sessione corrente. In questo esempio viene impostato **My Azure Subscription** come sottoscrizione predefinita. Sostituire il nome della sottoscrizione di esempio con il nome della propria sottoscrizione.
+Impostare la sottoscrizione di Azure per hello sessione corrente. In questo esempio imposta sottoscrizione predefinita hello troppo**iscrizione Azure**. Sostituire nome sottoscrizione di esempio hello con valori personalizzati.
 
 ```powershell
     Select-AzureSubscription –SubscriptionName "My Azure Subscription"
@@ -126,29 +126,29 @@ Impostare la sottoscrizione di Azure per la sessione corrente. In questo esempio
 
 <br>
 
-## <a name="step-5-make-sure-you-have-enough-azure-resource-manager-virtual-machine-cores-in-the-azure-region-of-your-current-deployment-or-vnet"></a>Passaggio 5: verificare che siano disponibili sufficienti memorie centrali delle macchine virtuali di Azure Resource Manager nell'area di Azure di cui fa parte la distribuzione corrente o la rete virtuale
-È possibile usare il comando PowerShell seguente per controllare il numero corrente di memorie centrali in Azure Resource Manager. Per altre informazioni sulle quote di memoria centrale, vedere [Limiti e Azure Resource Manager](../../azure-subscription-service-limits.md#limits-and-the-azure-resource-manager).
+## <a name="step-5-make-sure-you-have-enough-azure-resource-manager-virtual-machine-cores-in-hello-azure-region-of-your-current-deployment-or-vnet"></a>Passaggio 5: Assicurarsi di disporre di core a sufficienza macchina virtuale di gestione risorse di Azure in hello area della distribuzione corrente o rete virtuale di Azure
+È possibile utilizzare hello seguente PowerShell comando toocheck hello numero corrente di core che nel gestore di risorse di Azure. toolearn più sulle quote di core, vedere [limiti e hello Azure Resource Manager](../../azure-subscription-service-limits.md#limits-and-the-azure-resource-manager).
 
-In questo esempio viene verificata la disponibilità nell'area **Stati Uniti occidentali**. Sostituire il nome dell'area di esempio con il nome della propria area.
+Questo esempio viene verificata la disponibilità di hello in hello **Stati Uniti occidentali** area. Sostituire nome dell'area esempio hello con valori personalizzati.
 
 ```powershell
 Get-AzureRmVMUsage -Location "West US"
 ```
 
-## <a name="step-6-run-commands-to-migrate-your-iaas-resources"></a>Passaggio 6: eseguire i comandi per la migrazione delle risorse IaaS
+## <a name="step-6-run-commands-toomigrate-your-iaas-resources"></a>Passaggio 6: Eseguire i comandi toomigrate le risorse IaaS
 > [!NOTE]
-> Tutte le operazioni descritte di seguito sono idempotenti. Se vengono rilevati errori diversi da una funzionalità non supportata o un errore di configurazione, è consigliabile provare a ripetere l'operazione di preparazione, interruzione o commit. La piattaforma tenterà di ripetere l'azione.
+> Tutte le operazioni descritte di seguito hello sono idempotenti. Se si dispone di un problema diverso da una funzionalità non supportata o un errore di configurazione, è consigliabile che si riprova hello preparare, interrompere o l'operazione di commit. piattaforma Hello tenta quindi di nuovo l'azione hello.
 >
 >
 
 ## <a name="step-61-option-1---migrate-virtual-machines-in-a-cloud-service-not-in-a-virtual-network"></a>Passaggio 6.1: Opzione 1 - Eseguire la migrazione delle macchine virtuali in un servizio cloud (non in una rete virtuale)
-Ottenere l'elenco dei servizi cloud con il comando seguente e selezionare il servizio cloud di cui si vuole eseguire la migrazione. Se le VM nel servizio cloud si trovano in una rete virtuale o hanno ruoli Web o di lavoro, il comando restituisce un messaggio di errore.
+Ottenere un elenco di servizi cloud tramite hello comando seguente, quindi selezione hello cloud servizio che si desidera toomigrate hello. Se è hello macchine virtuali nel servizio cloud hello in una rete virtuale o se hanno ruoli web o di lavoro, il comando di hello restituisce un messaggio di errore.
 
 ```powershell
     Get-AzureService | ft Servicename
 ```
 
-Ottenere il nome della distribuzione per il servizio cloud. In questo esempio il nome del servizio è **My Service**. Sostituire il nome del servizio di esempio con il nome del proprio servizio.
+Ottenere il nome distribuzione hello per il servizio cloud hello. In questo esempio, è il nome di servizio hello **servizio**. Sostituire nome del servizio di esempio hello con il proprio nome di servizio.
 
 ```powershell
     $serviceName = "My Service"
@@ -156,11 +156,11 @@ Ottenere il nome della distribuzione per il servizio cloud. In questo esempio il
     $deploymentName = $deployment.DeploymentName
 ```
 
-Preparare le macchine virtuali nel servizio cloud per la migrazione. È possibile scegliere tra due opzioni.
+Preparare le macchine virtuali hello nel servizio cloud hello per la migrazione. Si dispone di due opzioni toochoose da.
 
-* **Opzione 1. Eseguire la migrazione delle VM a una rete virtuale creata dalla piattaforma**
+* **Opzione 1. Eseguire la migrazione di hello macchine virtuali tooa piattaforma rete virtuale creata**
 
-    Per prima cosa, verificare se è possibile eseguire la migrazione del servizio cloud usando i comandi seguenti:
+    In primo luogo, verificare se è possibile eseguire la migrazione del servizio cloud hello utilizzando hello seguenti comandi:
 
     ```powershell
     $validate = Move-AzureService -Validate -ServiceName $serviceName `
@@ -168,15 +168,15 @@ Preparare le macchine virtuali nel servizio cloud per la migrazione. È possibil
     $validate.ValidationMessages
     ```
 
-    Il comando precedente visualizza eventuali avvisi ed errori che bloccano la migrazione. Se la convalida ha esito positivo, è possibile passare alla fase di **preparazione**:
+    Hello comando precedente consente di visualizzare eventuali avvisi ed errori che blocca la migrazione. Se la convalida ha esito positivo, è possibile spostare toohello **Prepare** passaggio:
 
     ```powershell
     Move-AzureService -Prepare -ServiceName $serviceName `
         -DeploymentName $deploymentName -CreateNewVirtualNetwork
     ```
-* **Opzione 2. Eseguire la migrazione a una rete virtuale esistente nel modello di distribuzione Resource Manager**
+* **Opzione 2. Eseguire la migrazione tooan rete virtuale esistente nel modello di distribuzione di gestione risorse di hello**
 
-    In questo esempio vengono impostati il nome **myResourceGroup** per il gruppo di risorse, il nome **myVirtualNetwork** per la rete virtuale e il nome **mySubNet** per la subnet. Sostituire i nomi dell'esempio con i nomi delle proprie risorse.
+    In questo esempio imposta hello Nome gruppo di risorse troppo**myResourceGroup**, hello nome di rete virtuale troppo**myVirtualNetwork** e hello nome di subnet troppo**mySubNet**. Sostituire i nomi di hello nell'esempio hello con nomi hello delle proprie risorse.
 
     ```powershell
     $existingVnetRGName = "myResourceGroup"
@@ -184,7 +184,7 @@ Preparare le macchine virtuali nel servizio cloud per la migrazione. È possibil
     $subnetName = "mySubNet"
     ```
 
-    Per prima cosa, verificare se sia possibile eseguire la migrazione della rete virtuale usando il comando seguente:
+    In primo luogo, verificare se è possibile eseguire la migrazione di rete virtuale di hello utilizzando hello comando seguente:
 
     ```powershell
     $validate = Move-AzureService -Validate -ServiceName $serviceName `
@@ -192,7 +192,7 @@ Preparare le macchine virtuali nel servizio cloud per la migrazione. È possibil
     $validate.ValidationMessages
     ```
 
-    Il comando precedente visualizza eventuali avvisi ed errori che bloccano la migrazione. Se la convalida ha esito positivo, è possibile procedere con il seguente passaggio di preparazione:
+    Hello comando precedente consente di visualizzare eventuali avvisi ed errori che blocca la migrazione. Se la convalida ha esito positivo, è possibile procedere con hello riportata dopo il passaggio di preparazione:
 
     ```powershell
         Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName `
@@ -200,9 +200,9 @@ Preparare le macchine virtuali nel servizio cloud per la migrazione. È possibil
         -VirtualNetworkName $vnetName -SubnetName $subnetName
     ```
 
-Dopo aver completato la procedura di preparazione tramite una delle opzioni precedenti, eseguire una query dello stato di migrazione delle VM, verificando che sia `Prepared`.
+Dopo l'operazione di preparazione hello ha esito positivo con uno dei precedenti opzioni hello, eseguire una query dello stato di migrazione hello di hello macchine virtuali. Verificare che siano in hello `Prepared` stato.
 
-In questo esempio viene impostato il nome **myVM** per la VM. Sostituire il nome di esempio con il nome della propria VM.
+In questo esempio imposta hello nome della macchina virtuale troppo**myVM**. Sostituire il nome di esempio hello con il proprio nome di macchina virtuale.
 
 ```powershell
     $vmName = "myVM"
@@ -210,13 +210,13 @@ In questo esempio viene impostato il nome **myVM** per la VM. Sostituire il nome
     $vm.VM.MigrationState
 ```
 
-Controllare la configurazione per le risorse preparate tramite PowerShell o il portale di Azure. Se non si è pronti per la migrazione e si vuole tornare allo stato precedente, usare il comando seguente:
+Controllare la configurazione di hello hello preparata risorse con PowerShell o hello portale di Azure. Se non si è pronti per la migrazione e si desidera lo stato precedente di toogo toohello indietro, utilizzare hello comando seguente:
 
 ```powershell
     Move-AzureService -Abort -ServiceName $serviceName -DeploymentName $deploymentName
 ```
 
-Se la configurazione preparata appare corretta, è possibile procedere ed eseguire il commit delle risorse usando il comando seguente:
+Se si verificano problemi configurazione preparata hello, è possibile spostarsi in avanti e commit risorse hello utilizzando hello comando seguente:
 
 ```powershell
     Move-AzureService -Commit -ServiceName $serviceName -DeploymentName $deploymentName
@@ -224,66 +224,66 @@ Se la configurazione preparata appare corretta, è possibile procedere ed esegui
 
 ## <a name="step-61-option-2---migrate-virtual-machines-in-a-virtual-network"></a>Passaggio 6.1: Opzione 2 - Eseguire la migrazione delle macchine virtuali in un una rete virtuale
 
-Per eseguire la migrazione delle macchine virtuali in una rete virtuale, migrare la rete virtuale. Le macchine virtuali migreranno automaticamente con la rete virtuale. Selezionare la rete virtuale per cui si vuole eseguire la migrazione.
+macchine virtuali toomigrate in una rete virtuale, la migrazione della rete virtuale hello. macchine virtuali Hello eseguire automaticamente la migrazione con la rete virtuale hello. Selezione hello rete virtuale che si desidera toomigrate.
 > [!NOTE]
-> [Eseguire la migrazione della singola macchina virtuale classica](migrate-single-classic-to-resource-manager.md) creando una nuova macchina virtuale di Resource Manager con dischi gestiti usando i file VHD (sistema operativo e dati) della macchina virtuale.
+> [Eseguire la migrazione di una macchina virtuale classica](migrate-single-classic-to-resource-manager.md) creando una nuova macchina virtuale di gestione delle risorse con i dischi gestiti utilizzando hello (sistema operativo e dati) i file VHD della macchina virtuale hello.
 <br>
 
 > [!NOTE]
-> Il nome della rete virtuale potrebbe essere diverso da quello mostrato nel nuovo portale. Il nuovo portale di Azure visualizza il nome come `[vnet-name]` ma il nome effettivo della rete virtuale è di tipo `Group [resource-group-name] [vnet-name]`. Prima della migrazione, controllare il nome effettivo della rete virtuale usando il comando `Get-AzureVnetSite | Select -Property Name` o visualizzarlo nel portale di Azure precedente. 
+> nome della rete virtuale Hello potrebbe essere diverso rispetto a quanto mostrato in hello nuovo portale. nuovo portale di Azure Hello Visualizza nome hello come `[vnet-name]` ma il nome di rete virtuale effettivo hello è di tipo `Group [resource-group-name] [vnet-name]`. Prima della migrazione, nome di rete virtuale effettivo hello di ricerca usando il comando di hello `Get-AzureVnetSite | Select -Property Name` oppure visualizzarlo in hello vecchio portale di Azure. 
 
-In questo esempio viene impostato il nome **myVnet** per la rete virtuale. Sostituire il nome della rete virtuale di esempio con il nome della propria rete virtuale.
+In questo esempio imposta hello nome di rete virtuale troppo**myVnet**. Sostituire nome di rete virtuale di esempio hello con valori personalizzati.
 
 ```powershell
     $vnetName = "myVnet"
 ```
 
 > [!NOTE]
-> Se la rete virtuale contiene ruoli Web o di lavoro, o VM con configurazioni non supportate, viene visualizzato un messaggio di errore di convalida.
+> Se la rete virtuale hello contiene web o ruoli di lavoro o macchine virtuali con configurazioni non supportate, viene visualizzato un messaggio di errore di convalida.
 >
 >
 
-Per prima cosa, verificare se sia possibile eseguire la migrazione della rete virtuale usando il comando seguente:
+In primo luogo, verificare se è possibile eseguire la migrazione di rete virtuale hello utilizzando hello comando seguente:
 
 ```powershell
     Move-AzureVirtualNetwork -Validate -VirtualNetworkName $vnetName
 ```
 
-Il comando precedente visualizza eventuali avvisi ed errori che bloccano la migrazione. Se la convalida ha esito positivo, è possibile procedere con il seguente passaggio di preparazione:
+Hello comando precedente consente di visualizzare eventuali avvisi ed errori che blocca la migrazione. Se la convalida ha esito positivo, è possibile procedere con hello riportata dopo il passaggio di preparazione:
 
 ```powershell
     Move-AzureVirtualNetwork -Prepare -VirtualNetworkName $vnetName
 ```
 
-Controllare la configurazione per le macchine virtuali preparate usando Azure PowerShell o il portale di Azure. Se non si è pronti per la migrazione e si vuole tornare allo stato precedente, usare il comando seguente:
+Controllare la configurazione di hello hello preparata macchine virtuali con Azure PowerShell o hello portale di Azure. Se non si è pronti per la migrazione e si desidera lo stato precedente di toogo toohello indietro, utilizzare hello comando seguente:
 
 ```powershell
     Move-AzureVirtualNetwork -Abort -VirtualNetworkName $vnetName
 ```
 
-Se la configurazione preparata appare corretta, è possibile procedere ed eseguire il commit delle risorse usando il comando seguente:
+Se si verificano problemi configurazione preparata hello, è possibile spostarsi in avanti e commit risorse hello utilizzando hello comando seguente:
 
 ```powershell
     Move-AzureVirtualNetwork -Commit -VirtualNetworkName $vnetName
 ```
 
 ## <a name="step-62-migrate-a-storage-account"></a>Passaggio 6.2: Eseguire la migrazione di un account di archiviazione
-Dopo aver completato la migrazione delle macchine virtuali, si consiglia di migrare gli account di archiviazione.
+Dopo avere utilizzato la migrazione di macchine virtuali hello, si consiglia di che migrare gli account di archiviazione hello.
 
-Prima di eseguire la migrazione dell'account di archiviazione, eseguire i controlli dei prerequisiti:
+Prima di eseguire la migrazione di account di archiviazione hello, eseguire prima i controlli dei prerequisiti:
 
-* **Eseguire la migrazione di macchine virtuali classiche con dischi archiviati nell'account di archiviazione**
+* **Eseguire la migrazione di macchine virtuali classiche cui dischi vengono archiviati nell'account di archiviazione hello**
 
-    Il comando precedente restituisce le proprietà RoleName e DiskName di tutti i dischi delle VM classiche nell'account di archiviazione. RoleName è il nome della macchina virtuale a cui il disco è collegato. Se il comando precedente restituisce uno o più dischi, assicurarsi che le macchine virtuali a cui sono collegati tali dischi siano migrate prima della migrazione degli account di archiviazione.
+    Comando precedente restituisce RoleName e DiskName proprietà di tutti i dischi di macchina virtuale classici hello nell'account di archiviazione hello. RoleName è il nome di hello di hello toowhich di macchina virtuale che è collegato un disco. Se il comando precedente restituisce dischi Assicurarsi quindi che toowhich di macchine virtuali sono collegati i dischi vengono migrati prima della migrazione hello account di archiviazione.
     ```powershell
      $storageAccountName = 'yourStorageAccountName'
       Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Select-Object -ExpandProperty AttachedTo -Property `
       DiskName | Format-List -Property RoleName, DiskName
 
     ```
-* **Eliminare i dischi di VM classiche archiviati nell'account di archiviazione**
+* **Eliminare classico scollegati dischi di macchina virtuale archiviati nell'account di archiviazione hello**
 
-    Trovare i dischi di VM classiche nello spazio di archiviazione account tramiti il seguente comando:
+    Trovare i dischi di macchina virtuale classici nell'archiviazione hello account tramiti il seguente comando:
 
     ```powershell
         $storageAccountName = 'yourStorageAccountName'
@@ -295,56 +295,56 @@ Prima di eseguire la migrazione dell'account di archiviazione, eseguire i contro
     ```powershell
        Remove-AzureDisk -DiskName 'yourDiskName'
     ```
-* **Eliminare immagini di VM archiviate nell'account di archiviazione**
+* **Immagini di macchina virtuale di eliminazione archiviate nell'account di archiviazione hello**
 
-    Il comando precedente restituisce tutte le immagini di VM con il disco del sistema operativo archiviato nell'account di archiviazione.
+    Comando precedente restituisce tutte le immagini di macchina virtuale hello con disco del sistema operativo archiviato nell'account di archiviazione hello.
      ```powershell
         Get-AzureVmImage | Where-Object { $_.OSDiskConfiguration.MediaLink -ne $null -and $_.OSDiskConfiguration.MediaLink.Host.Contains($storageAccountName)`
                                 } | Select-Object -Property ImageName, ImageLabel
      ```
-     Il comando precedente restituisce tutte le immagini di VM con il disco dei dati archiviato nell'account di archiviazione.
+     Comando precedente restituisce tutte le immagini di macchina virtuale hello con dischi di dati archiviati nell'account di archiviazione hello.
      ```powershell
 
         Get-AzureVmImage | Where-Object {$_.DataDiskConfigurations -ne $null `
                                          -and ($_.DataDiskConfigurations | Where-Object {$_.MediaLink -ne $null -and $_.MediaLink.Host.Contains($storageAccountName)}).Count -gt 0 `
                                         } | Select-Object -Property ImageName, ImageLabel
      ```
-    Eliminare tutte le immagini di VM restituite dal comando precedente tramite il seguente comando:
+    Eliminare tutte le immagini VM hello restituite da sopra i comandi usando il comando precedente:
     ```powershell
     Remove-AzureVMImage -ImageName 'yourImageName'
     ```
 
-Convalidare ogni account di archiviazione per la migrazione con il comando che segue. In questo esempio il nome dell'account di archiviazione è **myStorageAccount**. Sostituire il nome di esempio con il nome del proprio account di archiviazione.
+Convalidare ogni account di archiviazione per la migrazione utilizzando hello comando seguente. In questo esempio, nome account di archiviazione hello è **myStorageAccount**. Sostituire il nome di esempio hello con nome hello dell'account di archiviazione.
 
 ```powershell
     $storageAccountName = "myStorageAccount"
     Move-AzureStorageAccount -Validate -StorageAccountName $storageAccountName
 ```
 
-Il passaggio successivo consiste nella preparazione dell'account di archiviazione per la migrazione.
+Passaggio successivo è l'account di archiviazione hello tooPrepare per la migrazione
 
 ```powershell
     $storageAccountName = "myStorageAccount"
     Move-AzureStorageAccount -Prepare -StorageAccountName $storageAccountName
 ```
 
-Controllare la configurazione per l'account di archiviazione preparato tramite Azure PowerShell o il portale di Azure. Se non si è pronti per la migrazione e si vuole tornare allo stato precedente, usare il comando seguente:
+Controllare la configurazione di hello hello preparata con Azure PowerShell o hello Azure portale account di archiviazione. Se non si è pronti per la migrazione e si desidera lo stato precedente di toogo toohello indietro, utilizzare hello comando seguente:
 
 ```powershell
     Move-AzureStorageAccount -Abort -StorageAccountName $storageAccountName
 ```
 
-Se la configurazione preparata appare corretta, è possibile procedere ed eseguire il commit delle risorse usando il comando seguente:
+Se si verificano problemi configurazione preparata hello, è possibile spostarsi in avanti e commit risorse hello utilizzando hello comando seguente:
 
 ```powershell
     Move-AzureStorageAccount -Commit -StorageAccountName $storageAccountName
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Overview of platform-supported migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Panoramica sulla migrazione supportata dalla piattaforma per risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager)
-* [Approfondimento tecnico sulla migrazione supportata dalla piattaforma dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Planning for migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Pianificazione della migrazione delle risorse IaaS dal modello di distribuzione classica al modello di distribuzione Azure Resource Manager)
-* [Usare l'interfaccia della riga di comando per eseguire la migrazione di risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](../linux/migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Community tools for assisting with migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Strumenti della community per assistenza alla migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager)
+* [Panoramica della migrazione supportata dalla piattaforma IaaS risorse tooAzure classico Gestione risorse di](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Tecnica di informazioni approfondite su piattaforma supportata la migrazione da Gestione risorse di tooAzure classico](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Pianificazione della migrazione delle risorse IaaS da Gestione risorse di tooAzure classico](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Utilizzare le risorse IaaS toomigrate CLI da Gestione risorse di tooAzure classico](../linux/migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Strumenti della community per facilitare la migrazione delle risorse IaaS da Gestione risorse di tooAzure classico](migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Rivedere gli errori di migrazione più comuni](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Esaminare le domande frequenti sulla migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Hello revisione più domande frequenti su IaaS la migrazione di risorse da Gestione risorse di tooAzure classico](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)

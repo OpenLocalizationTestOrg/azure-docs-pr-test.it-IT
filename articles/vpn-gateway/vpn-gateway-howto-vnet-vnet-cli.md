@@ -1,5 +1,5 @@
 ---
-title: 'Connettere una rete virtuale a un''altra rete virtuale: interfaccia della riga di comando di Azure | Microsoft Docs'
+title: 'La connessione di rete virtuale tooanother rete virtuale: CLI di Azure | Documenti Microsoft'
 description: Questo articolo illustra la connessione tra reti virtuali tramite Azure Resource Manager e l'interfaccia della riga di comando di Azure.
 services: vpn-gateway
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: cherylmc
-ms.openlocfilehash: ae42f661b39e8b6170fd415d758404fb33009ccc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 70113914bcae03c80f9ad133ff081d1cf37fc309
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-vnet-to-vnet-vpn-gateway-connection-using-azure-cli"></a>Configurare una connessione gateway VPN tra reti virtuali usando l'interfaccia della riga di comando di Azure
 
-Questo articolo descrive come creare una connessione gateway VPN tra reti virtuali. Le reti virtuali possono trovarsi in aree geografiche uguali o diverse e in sottoscrizioni uguali o diverse. Quando si connettono reti virtuali da sottoscrizioni diverse, non è necessario che le sottoscrizioni siano associate allo stesso tenant di Active Directory. 
+In questo articolo illustra come toocreate una connessione gateway VPN tra reti virtuali. Hello reti virtuali possono essere hello stesso o in aree diverse in e da hello uguali o diverse sottoscrizioni. Quando le reti virtuali connessione da sottoscrizioni diverse, le sottoscrizioni di hello non necessaria toobe associato hello stesso tenant di Active Directory. 
 
-La procedura illustrata in questo articolo si applica al modello di distribuzione Resource Manager e usano l'interfaccia della riga di comando di Azure. È anche possibile creare questa configurazione usando strumenti o modelli di distribuzione diversi selezionando un'opzione differente nell'elenco seguente:
+passaggi di Hello in questo articolo si applicano al modello di distribuzione di gestione delle risorse toohello e utilizzano CLI di Azure. È inoltre possibile creare questa configurazione tramite uno strumento di distribuzione diverso o un modello di distribuzione selezionando un'opzione diversa da hello seguente elenco:
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
@@ -37,43 +37,43 @@ La procedura illustrata in questo articolo si applica al modello di distribuzion
 >
 >
 
-La connessione di una rete virtuale a un'altra rete virtuale (da rete virtuale a rete virtuale) è simile alla connessione di una rete virtuale a un percorso di sito locale. Entrambi i tipi di connettività utilizzano un gateway VPN per fornire un tunnel sicuro tramite IPsec/IKE. Se le reti virtuali si trovano nella stessa area, è consigliabile considerare la possibilità di connetterle tramite peering reti virtuali. Peering reti virtuali non usa un gateway VPN. Per altre informazioni, vedere [Peering reti virtuali](../virtual-network/virtual-network-peering-overview.md).
+La connessione di una rete virtuale (VNet a VNet) tooanother di rete virtuale è simile tooconnecting un percorso di rete virtuale tooan locale del sito. Entrambi i tipi di connettività di utilizzare un tooprovide gateway VPN un tunnel sicuro tramite IPsec/IKE. Se le reti virtuali si trovano in hello stessa area, è opportuno tooconsider collegarli tramite Peering reti virtuali. Peering reti virtuali non usa un gateway VPN. Per altre informazioni, vedere [Peering reti virtuali](../virtual-network/virtual-network-peering-overview.md).
 
-La comunicazione tra reti virtuali può essere associata a configurazioni multisito. In questo modo è possibile definire topologie di rete che consentono di combinare la connettività cross-premise con la connettività tra reti virtuali, come illustrato nel diagramma seguente:
+La comunicazione tra reti virtuali può essere associata a configurazioni multisito. Consente di stabilire le topologie di rete che combinano connettività cross-premise con connettività di rete virtuale tra, come illustrato nel seguente diagramma hello:
 
 ![Informazioni sulle connessioni](./media/vpn-gateway-howto-vnet-vnet-cli/aboutconnections.png)
 
 ### <a name="why"></a>Perché connettere reti virtuali?
 
-È possibile connettere reti virtuali per i seguenti motivi:
+Si consiglia le reti virtuali tooconnect per hello seguenti motivi:
 
 * **Presenza e ridondanza in più aree geografiche**
 
   * È possibile configurare la sincronizzazione o la replica geografica con connettività sicura senza passare da endpoint con connessione Internet.
-  * Con Gestione traffico e il servizio di bilanciamento del carico di Azure è possibile configurare il carico di lavoro a disponibilità elevata con ridondanza geografica in più aree di Azure. Un esempio importante è rappresentato dalla configurazione SQL AlwaysOn con gruppi di disponibilità distribuiti in più aree di Azure.
+  * Con Gestione traffico e il servizio di bilanciamento del carico di Azure è possibile configurare il carico di lavoro a disponibilità elevata con ridondanza geografica in più aree di Azure. Un esempio importante è tooset SQL Always on con gruppi di disponibilità, la distribuzione tra più aree di Azure.
 * **Applicazioni multilivello in singole aree geografiche con isolamento o limite amministrativo**
 
-  * All'interno di una stessa area è possibile configurare applicazioni multilivello con più reti virtuali connesse tra loro a causa dell'isolamento o di requisiti amministrativi.
+  * Hello nella stessa area, è possibile configurare applicazioni multilivello con più reti virtuali connesse a causa di tooisolation o i requisiti amministrativi.
 
-Per altre informazioni sulle connessioni da rete virtuale a rete virtuale, vedere la sezione [Domande frequenti relative alla connessione da rete virtuale a rete virtuale](#faq) alla fine di questo articolo.
+Per ulteriori informazioni sulle connessioni di rete virtuale a, vedere hello [domande frequenti per rete virtuale a](#faq) alla fine di hello di questo articolo.
 
 ### <a name="which-set-of-steps-should-i-use"></a>Quale procedura è consigliabile seguire?
 
-Questo articolo riporta due diverse procedure. Una per le [reti virtuali che si trovano nella stessa sottoscrizione](#samesub) e un'altra per le [reti virtuali che si trovano in sottoscrizioni diverse](#difsub).
+Questo articolo riporta due diverse procedure. Un set di passaggi per [hello di reti virtuali che si trovano nella stessa sottoscrizione](#samesub)e un altro per [reti virtuali che risiedono in diverse sottoscrizioni](#difsub).
 
-## <a name="samesub"></a>Connettere reti virtuali che si trovano nella stessa sottoscrizione
+## <a name="samesub"></a>Connettere reti virtuali presenti hello stessa sottoscrizione
 
 ![Diagramma V2V](./media/vpn-gateway-howto-vnet-vnet-cli/v2vrmps.png)
 
 ### <a name="before-you-begin"></a>Prima di iniziare
 
-Prima di iniziare, installare la versione più recente dei comandi dell'interfaccia della riga di comando (2.0 o successiva). Per informazioni sull'installazione dei comandi dell'interfaccia della riga di comando, vedere [Install Azure CLI 2.0](/cli/azure/install-azure-cli) (Installare l'interfaccia della riga di comando di Azure 2.0).
+Prima di iniziare, installare hello versione i comandi CLI hello (2.0 o versione successivo). Per informazioni sull'installazione di comandi CLI hello, vedere [installare Azure CLI 2.0](/cli/azure/install-azure-cli).
 
 ### <a name="Plan"></a>Pianificare gli intervalli di indirizzi IP
 
-Nei passaggi seguenti vengono create due reti virtuali con le rispettive subnet del gateway e le configurazioni. Viene quindi configurata una connessione VPN tra le due reti virtuali. È importante pianificare gli intervalli di indirizzi IP per la configurazione di rete. Tenere presente che è necessario assicurarsi che nessuno di intervalli di rete virtuale o intervalli di rete locale si sovrappongano in alcun modo. In questi esempi non viene incluso un server DNS. Per usare la risoluzione dei nomi per le reti virtuali, vedere [Risoluzione dei nomi](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).
+In hello alla procedura seguente, vengono create due reti virtuali insieme le subnet gateway rispettivi e configurazioni. È quindi creare una connessione VPN tra hello due reti virtuali. È importante tooplan hello indirizzi IP per la configurazione di rete. Tenere presente che è necessario assicurarsi che nessuno di intervalli di rete virtuale o intervalli di rete locale si sovrappongano in alcun modo. In questi esempi non viene incluso un server DNS. Per usare la risoluzione dei nomi per le reti virtuali, vedere [Risoluzione dei nomi](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).
 
-Negli esempi vengono usati i valori seguenti:
+Utilizziamo hello seguente i valori negli esempi di hello:
 
 **Valori per TestVNet1:**
 
@@ -107,7 +107,7 @@ Negli esempi vengono usati i valori seguenti:
 * ConnectionType: VNet2VNet
 
 
-### <a name="Connect"></a>Passaggio 1: Connettersi alla sottoscrizione
+### <a name="Connect"></a>Passaggio 1: connettere tooyour sottoscrizione
 
 [!INCLUDE [CLI login](../../includes/vpn-gateway-cli-login-numbers-include.md)]
 
@@ -118,32 +118,32 @@ Negli esempi vengono usati i valori seguenti:
   ```azurecli
   az group create -n TestRG1  -l eastus
   ```
-2. Creare TestVNet1 e le subnet per TestVNet1. Questo esempio crea una rete virtuale denominata TestVNet1 e una subnet denominata FrontEnd.
+2. Creare subnet TestVNet1 e hello per TestVNet1. Questo esempio crea una rete virtuale denominata TestVNet1 e una subnet denominata FrontEnd.
 
   ```azurecli
   az network vnet create -n TestVNet1 -g TestRG1 --address-prefix 10.11.0.0/16 -l eastus --subnet-name FrontEnd --subnet-prefix 10.11.0.0/24
   ```
-3. Creare uno spazio indirizzi aggiuntivo per la subnet back-end. Si noti che in questo passaggio vengono specificati sia lo spazio indirizzi creato prima che lo spazio indirizzi aggiuntivo che si vuole aggiungere. Infatti il comando [az network vnet update](https://docs.microsoft.com/cli/azure/network/vnet#update) sovrascrive le impostazioni precedenti. Quando si usa questo comando, assicurarsi di specificare tutti i prefissi degli indirizzi.
+3. Creare uno spazio di indirizzi aggiuntivi per la subnet di back-end hello. Si noti che in questo passaggio è specificare sia lo spazio degli indirizzi di hello creato in precedenza e hello ulteriore spazio degli indirizzi che si desidera tooadd. Infatti, hello [aggiornamento rete virtuale di rete az](https://docs.microsoft.com/cli/azure/network/vnet#update) comando sovrascrive le impostazioni precedenti hello. Verificare che toospecify tutti i prefissi di indirizzo hello quando si utilizza questo comando.
 
   ```azurecli
   az network vnet update -n TestVNet1 --address-prefixes 10.11.0.0/16 10.12.0.0/16 -g TestRG1
   ```
-4. Creare la subnet back-end.
+4. Creare subnet back-end hello.
   
   ```azurecli
   az network vnet subnet create --vnet-name TestVNet1 -n BackEnd -g TestRG1 --address-prefix 10.12.0.0/24 
   ```
-5. Creare la subnet del gateway. Si noti che la subnet del gateway viene denominata "GatewaySubnet". Questo nome è obbligatorio. In questo esempio, la subnet del gateway usa /27. Nonostante sia possibile creare una subnet del gateway con dimensioni di /29 soltanto, è consigliabile crearne una più grande che includa più indirizzi selezionando almeno /28 o /27. In questo modo saranno disponibili indirizzi sufficienti per supportare in futuro le possibili configurazioni aggiuntive desiderate.
+5. Creare subnet del gateway hello. Si noti che la subnet gateway hello è denominata 'GatewaySubnet'. Questo nome è obbligatorio. In questo esempio subnet del gateway hello utilizza un /27. Sebbene sia possibile toocreate assuma /29 una subnet del gateway, è consigliabile creare una subnet più grande che include più indirizzi selezionando almeno /28 o /27. In questo modo per sufficiente indirizzi tooaccommodate possibili configurazioni aggiuntive che è possibile in hello future.
 
   ```azurecli 
   az network vnet subnet create --vnet-name TestVNet1 -n GatewaySubnet -g TestRG1 --address-prefix 10.12.255.0/27
   ```
-6. Richiedere un indirizzo IP pubblico da allocare per il gateway che verrà creato per la rete virtuale. Si noti che AllocationMethod è dinamico. Non è possibile specificare l'indirizzo IP che si desidera usare. Viene allocato in modo dinamico per il gateway.
+6. Pubblica IP indirizzo toobe toohello allocato gateway che si creerà per la rete virtuale della richiesta. Si noti che hello AllocationMethod è dinamico. È possibile specificare l'indirizzo IP hello che si desidera toouse. È il gateway tooyour allocata in modo dinamico.
 
   ```azurecli
   az network public-ip create -n VNet1GWIP -g TestRG1 --allocation-method Dynamic
   ```
-7. Creare il gateway di rete virtuale per TestVNet1. Le configurazioni da rete virtuale a rete virtuale richiedono un tipo di VpnType RouteBased. Se si esegue questo comando usando il parametro '--no-wait', non viene visualizzato alcun output o commento. Il parametro "--no-wait" consente la creazione in background del gateway. Questo non significa che la creazione del gateway VPN termina immediatamente. La creazione di un gateway spesso richiede anche più di 45 minuti di tempo a seconda dell'SKU gateway usato.
+7. Creare il gateway di rete virtuale hello per TestVNet1. Le configurazioni da rete virtuale a rete virtuale richiedono un tipo di VpnType RouteBased. Se si esegue questo comando hello utilizzando il parametro '-- Nessun - wait', non sono visibili eventuali commenti e suggerimenti o output. Hello '-- Nessun - wait' parametro consente toocreate gateway hello in background hello. Questo significa che tale gateway VPN hello termine della creazione immediatamente. Creazione di un gateway può richiedere spesso 45 minuti o più, a seconda di gateway hello SKU in uso.
 
   ```azurecli
   az network vnet-gateway create -n VNet1GW -l eastus --public-ip-address VNet1GWIP -g TestRG1 --vnet TestVNet1 --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait
@@ -168,7 +168,7 @@ Negli esempi vengono usati i valori seguenti:
   az network vnet update -n TestVNet4 --address-prefixes 10.41.0.0/16 10.42.0.0/16 -g TestRG4 
   az network vnet subnet create --vnet-name TestVNet4 -n BackEnd -g TestRG4 --address-prefix 10.42.0.0/24 
   ```
-4. Creare la subnet del gateway.
+4. Creare subnet del gateway hello.
 
   ```azurecli
    az network vnet subnet create --vnet-name TestVNet4 -n GatewaySubnet -g TestRG4 --address-prefix 10.42.255.0/27
@@ -178,25 +178,25 @@ Negli esempi vengono usati i valori seguenti:
   ```azurecli
   az network public-ip create -n VNet4GWIP -g TestRG4 --allocation-method Dynamic
   ```
-6. Creare il gateway di rete virtuale TestVNet4.
+6. Creare il gateway di rete virtuale TestVNet4 hello.
 
   ```azurecli
   az network vnet-gateway create -n VNet4GW -l westus --public-ip-address VNet4GWIP -g TestRG4 --vnet TestVNet4 --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait
   ```
 
-### <a name="createconnect"></a>Passaggio 4: Creare le connessioni
+### <a name="createconnect"></a>Passaggio 4: creare connessioni hello
 
-Ora sono disponibili due reti virtuali con i gateway VPN. Il passaggio successivo prevede la creazione di connessioni gateway VPN tra i gateway di rete virtuale. Se sono stati usati gli esempi precedenti, i gateway di rete virtuale sono in gruppi di risorse diversi. Quando i gateway sono in gruppi di risorse diversi, è necessario identificare e specificare gli ID risorsa per ogni gateway quando si stabilisce una connessione. Se le reti virtuali sono nello stesso gruppo di risorse, è possibile usare il [secondo set di istruzioni](#samerg) perché non è necessario specificare gli ID risorsa.
+Ora sono disponibili due reti virtuali con i gateway VPN. passaggio successivo Hello è connessioni gateway VPN di toocreate tra il gateway di rete virtuale hello. Se è stata utilizzata negli esempi di hello sopra riportati, i gateway si trovano in gruppi di risorse diverso. Quando il gateway si trovano in gruppi di risorse diversi, è necessario tooidentify e specificare l'ID di risorsa hello per ogni gateway per stabilire una connessione. Se le reti virtuali si trovano in hello stesso gruppo di risorse, è possibile utilizzare hello [secondo set di istruzioni](#samerg) perché non è necessario l'ID di risorsa toospecify hello.
 
-### <a name="diffrg"></a>Per connettere reti virtuali che si trovano in gruppi di risorse diversi
+### <a name="diffrg"></a>tooconnect reti virtuali che si trovano in diversi gruppi di risorse
 
-1. Ottenere l'ID di risorsa di VNet1GW dall'output del comando seguente:
+1. Ottenere ID risorsa di VNet1GW hello dall'output di hello di hello comando seguente:
 
   ```azurecli
   az network vnet-gateway show -n VNet1GW -g TestRG1
   ```
 
-  Nell'output trovare la riga "id:". I valori tra virgolette sono necessari per creare la connessione nella sezione successiva. Copiare questi valori in un editor di testo, ad esempio il Blocco note, per poterli incollare facilmente quando si crea la connessione.
+  Nell'output di hello, trovare hello "id:" riga. i valori di Hello virgolette hello sono necessari toocreate hello connessione nella sezione successiva hello. Copiare questi editor di testo tooa valori, ad esempio Blocco note, in modo che sia possibile incollarli facilmente quando si crea la connessione.
 
   Output di esempio:
 
@@ -215,38 +215,38 @@ Ora sono disponibili due reti virtuali con i gateway VPN. Il passaggio successiv
   "ipConfigurations":
   ```
 
-  Copiare i valori dopo **"id":** tra virgolette.
+  Copiare i valori hello dopo **"id":** virgolette hello.
 
   ```
   "id": "/subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW"
  ```
 
-2. Ottenere l'ID risorsa di VNet4GW e copiare i valori in un editor di testo.
+2. Ottenere hello ID risorsa di VNet4GW e copia hello valori tooa editor di testo.
 
   ```azurecli
   az network vnet-gateway show -n VNet4GW -g TestRG4
   ```
 
-3. Creare la connessione da TestVNet1 a TestVNet4. In questo passaggio viene creata la connessione da TestVNet1 a TestVNet4. È presente una chiave condivisa a cui si fa riferimento negli esempi. È possibile utilizzare i propri valori specifici per la chiave condivisa. L'importante è che la chiave condivisa corrisponda per entrambe le configurazioni. Il completamento della creazione di una connessione richiede un po' di tempo.
+3. Creare hello TestVNet1 tooTestVNet4 connessione. In questo passaggio si crea connessione di hello da TestVNet1 tooTestVNet4. È una chiave condivisa a cui fa riferimento negli esempi di hello. È possibile utilizzare i valori per la chiave condivisa hello. cosa è la chiave condivisa hello importante Hello deve corrispondere per entrambe le connessioni. Creazione di una connessione richiede poco toocomplete.
 
   ```azurecli
   az network vpn-connection create -n VNet1ToVNet4 -g TestRG1 --vnet-gateway1 /subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW -l eastus --shared-key "aabbcc" --vnet-gateway2 /subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG4/providers/Microsoft.Network/virtualNetworkGateways/VNet4GW 
   ```
-4. Creare la connessione da TestVNet4 a TestVNet1. Questo passaggio è simile a quello precedente, ma riguarda la creazione della connessione da TestVNet4 a TestVNet1. Assicurarsi che le chiavi condivise corrispondano. Per stabilire la connessione, sono necessari alcuni minuti.
+4. Creare hello TestVNet4 tooTestVNet1 connessione. Questo passaggio è simile toohello uno precedente, ma si sta creando la connessione hello da TestVNet4 tooTestVNet1. Assicurarsi che le chiavi condivise hello corrispondano. Richiede pochi minuti connessione hello tooestablish.
 
   ```azurecli
   az network vpn-connection create -n VNet4ToVNet1 -g TestRG4 --vnet-gateway1 /subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG4/providers/Microsoft.Network/virtualNetworkGateways/VNet4GW -l westus --shared-key "aabbcc" --vnet-gateway2 /subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1G
   ```
 5. Verificare le connessioni. Vedere [Verificare la connessione](#verify).
 
-### <a name="samerg"></a>Per connettere reti virtuali che si trovano nello stesso gruppo di risorse
+### <a name="samerg"></a>tooconnect reti virtuali che risiedono in hello stesso gruppo di risorse
 
-1. Creare la connessione da TestVNet1 a TestVNet4. In questo passaggio viene creata la connessione da TestVNet1 a TestVNet4. Si noti che i gruppi di risorse sono uguali negli esempi. Viene anche visualizzata una chiave condivisa a cui si fa riferimento negli esempi. È possibile usare i propri valori per la chiave condivisa che però deve essere la stessa per entrambe le connessioni. Il completamento della creazione di una connessione richiede un po' di tempo.
+1. Creare hello TestVNet1 tooTestVNet4 connessione. In questo passaggio si crea connessione di hello da TestVNet1 tooTestVNet4. Gruppi di risorse di notifica hello sono hello stesso negli esempi di hello. È inoltre possibile visualizzare una chiave condivisa a cui fa riferimento negli esempi di hello. È possibile utilizzare i valori per la chiave condivisa hello, tuttavia, la chiave condivisa hello deve corrispondere per entrambe le connessioni. Creazione di una connessione richiede poco toocomplete.
 
   ```azurecli
   az network vpn-connection create -n VNet1ToVNet4 -g TestRG1 --vnet-gateway1 VNet1GW -l eastus --shared-key "eeffgg" --vnet-gateway2 VNet4GW
   ```
-2. Creare la connessione da TestVNet4 a TestVNet1. Questo passaggio è simile a quello precedente, ma riguarda la creazione della connessione da TestVNet4 a TestVNet1. Assicurarsi che le chiavi condivise corrispondano. Per stabilire la connessione, sono necessari alcuni minuti.
+2. Creare hello TestVNet4 tooTestVNet1 connessione. Questo passaggio è simile toohello uno precedente, ma si sta creando la connessione hello da TestVNet4 tooTestVNet1. Assicurarsi che le chiavi condivise hello corrispondano. Richiede pochi minuti connessione hello tooestablish.
 
   ```azurecli
   az network vpn-connection create -n VNet4ToVNet1 -g TestRG1 --vnet-gateway1 VNet4GW -l eastus --shared-key "eeffgg" --vnet-gateway2 VNet1GW
@@ -257,15 +257,15 @@ Ora sono disponibili due reti virtuali con i gateway VPN. Il passaggio successiv
 
 ![Diagramma V2V](./media/vpn-gateway-howto-vnet-vnet-cli/v2vdiffsub.png)
 
-In questo scenario vengono connesse le reti virtuali TestVNet1 e TestVNet5, Le reti virtuali si trovano in sottoscrizioni diverse. Non è necessario che le sottoscrizioni siano associate allo stesso tenant di Active Directory. I passaggi di questa configurazione permettono di aggiungere un'altra connessione tra reti virtuali per connettere TestVNet1 e TestVNet5.
+In questo scenario vengono connesse le reti virtuali TestVNet1 e TestVNet5, Hello reti virtuali si trovano diverse sottoscrizioni. le sottoscrizioni di Hello non è necessario toobe associato hello stesso tenant di Active Directory. nei passaggi Hello per questa configurazione aggiunge una connessione di rete virtuale a aggiuntiva in ordine tooconnect TestVNet1 tooTestVNet5.
 
 ### <a name="TestVNet1diff"></a>Passaggio 5: Creare e configurare TestVNet1
 
-Queste istruzioni sono il proseguimento dei passaggi delle sezioni precedenti. È necessario completare il [passaggio 1](#Connect) e il [passaggio 2](#TestVNet1) per creare e configurare TestVNet1 e il gateway VPN per TestVNet1. Per questo configurazione, non è necessario creare TestVNet4 dalla sezione precedente, ma, se è già stata creata, non si verificheranno conflitti con questi passaggi. Al termine, continuare con il passaggio 6 (sotto).
+Queste istruzioni continuano da passi hello in hello sezioni precedenti. È necessario completare [passaggio 1](#Connect) e [passaggio 2](#TestVNet1) toocreate e configurare TestVNet1 e hello Gateway VPN per TestVNet1. Per questa configurazione, non è necessario toocreate TestVNet4 dalla sezione precedente hello, sebbene se viene creato, non creerà conflitti con questa procedura. Al termine, continuare con il passaggio 6 (sotto).
 
-### <a name="verifyranges"></a>Passaggio 6: Verificare gli intervalli di indirizzi IP
+### <a name="verifyranges"></a>Passaggio 6: verificare gli intervalli di indirizzi IP hello
 
-Quando si creano connessioni aggiuntive, è importante verificare che lo spazio di indirizzi IP della nuova rete virtuale non si sovrapponga a nessuno degli altri intervalli di rete virtuale o intervalli di gateway di rete locale. Per questo esercizio è possibile usare i valori seguenti per TestVNet5:
+Quando si creano connessioni aggiuntive, è importante tooverify che non si sovrapponga a spazio di indirizzi IP hello della nuova rete virtuale hello con uno qualsiasi di altri intervalli di rete virtuale o intervalli di gateway di rete locale. Per questo esercizio, è possibile utilizzare i seguenti valori per hello TestVNet5 hello:
 
 **Valori per TestVNet5:**
 
@@ -284,9 +284,9 @@ Quando si creano connessioni aggiuntive, è importante verificare che lo spazio 
 
 ### <a name="TestVNet5"></a>Passaggio 7: Creare e configurare TestVNet5
 
-Questo passaggio deve essere eseguito nel contesto della nuova sottoscrizione, la sottoscrizione 5. Questa parte può essere eseguita dall'amministratore in un'altra organizzazione che possiede la sottoscrizione. Per passare da una sottoscrizione all'altra, usare "az account list --all" per elencare le sottoscrizioni disponibili per l'account, quindi usare "az account set --subscription <subscriptionID>" per passare alla sottoscrizione che si vuole usare.
+Questo passaggio deve essere eseguito nel contesto di hello di hello nuova sottoscrizione 5 di sottoscrizione. Questa parte può essere eseguita dall'amministratore di hello in un'altra organizzazione che possiede la sottoscrizione hello. tooswitch tra l'utilizzo di sottoscrizioni ' elenco di account az - tutti ' toolist hello account tooyour disponibili sottoscrizioni, quindi utilizzare ' set di account az - sottoscrizione <subscriptionID>' tooswitch toohello sottoscrizione che si desidera toouse.
 
-1. Verificare di essere connessi alla sottoscrizione 5, quindi creare un gruppo di risorse.
+1. Verificare che si sono connessi tooSubscription 5, quindi crea un gruppo di risorse.
 
   ```azurecli
   az group create -n TestRG5  -l japaneast
@@ -304,7 +304,7 @@ Questo passaggio deve essere eseguito nel contesto della nuova sottoscrizione, l
   az network vnet subnet create --vnet-name TestVNet5 -n BackEnd -g TestRG5 --address-prefix 10.52.0.0/24
   ```
 
-4. Aggiungere la subnet del gateway.
+4. Aggiungi subnet gateway hello.
 
   ```azurecli
   az network vnet subnet create --vnet-name TestVNet5 -n GatewaySubnet -g TestRG5 --address-prefix 10.52.255.0/27
@@ -315,23 +315,23 @@ Questo passaggio deve essere eseguito nel contesto della nuova sottoscrizione, l
   ```azurecli
   az network public-ip create -n VNet5GWIP -g TestRG5 --allocation-method Dynamic
   ```
-6. Creare il gateway di TestVNet5
+6. Creare il gateway TestVNet5 hello
 
   ```azurecli
   az network vnet-gateway create -n VNet5GW -l japaneast --public-ip-address VNet5GWIP -g TestRG5 --vnet TestVNet5 --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait
   ```
 
-### <a name="connections5"></a>Passaggio 8: Creare le connessioni
+### <a name="connections5"></a>Passaggio 8: creare connessioni hello
 
-Il passaggio è stato suddiviso in due sessioni dell'interfaccia della riga di comando contrassegnate come **[Sottoscrizione 1]** e **[Sottoscrizione 5]** perché i gateway si trovano in sottoscrizioni diverse. Per passare da una sottoscrizione all'altra, usare "az account list --all" per elencare le sottoscrizioni disponibili per l'account, quindi usare "az account set --subscription <subscriptionID>" per passare alla sottoscrizione che si vuole usare.
+Verranno suddivise in questo passaggio in due sessioni CLI contrassegnato come **[sottoscrizione 1]**, e **[sottoscrizione 5]** perché sono gateway hello in diverse sottoscrizioni hello. tooswitch tra l'utilizzo di sottoscrizioni ' elenco di account az - tutti ' toolist hello account tooyour disponibili sottoscrizioni, quindi utilizzare ' set di account az - sottoscrizione <subscriptionID>' tooswitch toohello sottoscrizione che si desidera toouse.
 
-1. **[Sottoscrizione 1]** Eseguire l'accesso e connettersi alla sottoscrizione 1. Usare il comando seguente per ottenere il nome e l'ID del gateway dall'output:
+1. **[Sottoscrizione 1]**  Accedi e connettersi tooSubscription 1. Comando che segue hello esecuzione tooget hello nome e l'ID di hello Gateway dall'output di hello:
 
   ```azurecli
   az network vnet-gateway show -n VNet1GW -g TestRG1
   ```
 
-  Copiare l'output per "id:". Inviare l'ID e il nome del gateway della rete virtuale (VNet1GW) all'amministratore della sottoscrizione 5 tramite posta elettronica o un altro metodo.
+  Copia output di hello per "id:". Inviare hello ID e nome hello di hello rete virtuale (VNet1GW) toohello amministratore del gateway di 5 sottoscrizione tramite posta elettronica o un altro metodo.
 
   Output di esempio:
 
@@ -339,27 +339,27 @@ Il passaggio è stato suddiviso in due sessioni dell'interfaccia della riga di c
   "id": "/subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW"
   ```
 
-2. **[Sottoscrizione 5]** Eseguire l'accesso e connettersi alla sottoscrizione 5. Usare il comando seguente per ottenere il nome e l'ID del gateway dall'output:
+2. **[Sottoscrizione 5]**  Accedi e connettersi tooSubscription 5. Comando che segue hello esecuzione tooget hello nome e l'ID di hello Gateway dall'output di hello:
 
   ```azurecli
   az network vnet-gateway show -n VNet5GW -g TestRG5
   ```
 
-  Copiare l'output per "id:". Inviare l'ID e il nome del gateway della rete virtuale (VNet5GW) all'amministratore della sottoscrizione 1 tramite posta elettronica o un altro metodo.
+  Copia output di hello per "id:". Inviare hello ID e nome hello di hello rete virtuale (VNet5GW) toohello amministratore del gateway 1 sottoscrizione tramite posta elettronica o un altro metodo.
 
-3. **[Sottoscrizione 1]** In questo passaggio viene creata la connessione da TestVNet1 a TestVNet5. È possibile usare i propri valori per la chiave condivisa che però deve essere la stessa per entrambe le connessioni. Il completamento della creazione di una connessione può richiedere un po' di tempo. Connettersi alla Sottoscrizione 1.
+3. **[Sottoscrizione 1]**  In questo passaggio si crea connessione di hello da TestVNet1 tooTestVNet5. È possibile utilizzare i valori per la chiave condivisa hello, tuttavia, la chiave condivisa hello deve corrispondere per entrambe le connessioni. Creazione di una connessione può richiedere poco toocomplete. Assicurarsi che ci si connette tooSubscription 1.
 
   ```azurecli
   az network vpn-connection create -n VNet1ToVNet5 -g TestRG1 --vnet-gateway1 /subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW -l eastus --shared-key "eeffgg" --vnet-gateway2 /subscriptions/e7e33b39-fe28-4822-b65c-a4db8bbff7cb/resourceGroups/TestRG5/providers/Microsoft.Network/virtualNetworkGateways/VNet5GW
   ```
 
-4. **[Sottoscrizione 5]** Questo passaggio è simile a quello precedente, ma riguarda la creazione della connessione da TestVNet5 a TestVNet1. Verificare che le chiavi condivise corrispondano e di essere connessi alla sottoscrizione 5.
+4. **[Sottoscrizione 5]**  Questo passaggio è simile toohello uno precedente, ma si sta creando la connessione hello da TestVNet5 tooTestVNet1. Verificare che tale hello condiviso in corrispondenza delle chiavi e che ci si connette tooSubscription 5.
 
   ```azurecli
   az network vpn-connection create -n VNet5ToVNet1 -g TestRG5 --vnet-gateway1 /subscriptions/e7e33b39-fe28-4822-b65c-a4db8bbff7cb/resourceGroups/TestRG5/providers/Microsoft.Network/virtualNetworkGateways/VNet5GW -l japaneast --shared-key "eeffgg" --vnet-gateway2 /subscriptions/d6ff83d6-713d-41f6-a025-5eb76334fda9/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW
   ```
 
-## <a name="verify"></a>Verificare le connessioni
+## <a name="verify"></a>Verificare le connessioni hello
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
 [!INCLUDE [verify connections v2v cli](../../includes/vpn-gateway-verify-connection-cli-rm-include.md)]
@@ -369,5 +369,5 @@ Il passaggio è stato suddiviso in due sessioni dell'interfaccia della riga di c
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Dopo aver completato la connessione, è possibile aggiungere macchine virtuali alle reti virtuali. Per altre informazioni, vedere la [documentazione sulle macchine virtuali](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
-* Per informazioni su BGP, vedere [Panoramica di BGP](vpn-gateway-bgp-overview.md) e [Come configurare BGP](vpn-gateway-bgp-resource-manager-ps.md).
+* Una volta completata la connessione, è possibile aggiungere macchine virtuali tooyour le reti virtuali. Per ulteriori informazioni, vedere hello [macchine virtuali-documentazione](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
+* Per informazioni su BGP, vedere hello [BGP Panoramica](vpn-gateway-bgp-overview.md) e [come tooconfigure BGP](vpn-gateway-bgp-resource-manager-ps.md).

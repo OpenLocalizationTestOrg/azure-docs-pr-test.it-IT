@@ -4,21 +4,21 @@
 ## [Domande frequenti](../sql/virtual-machines-windows-sql-server-iaas-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # Attività iniziali
-## [Effettuare il provisioning di una macchina virtuale nel portale di Azure](../sql/virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
+## [Eseguire il provisioning di una macchina virtuale in hello portale di Azure](../sql/virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 ## [Effettuare il provisioning di una macchina virtuale con Azure PowerShell](virtual-machines-windows-classic-ps-sql-create.md)
-## [Connettersi a una macchina virtuale](virtual-machines-windows-classic-sql-connect.md)
+## [Connettersi tooa VM](virtual-machines-windows-classic-sql-connect.md)
 ## [Eseguire la migrazione di un database SQL Server](../sql/virtual-machines-windows-migrate-sql.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # Procedure
 ## Configurare la disponibilità elevata
 ### [Opzioni di disponibilità elevata](../sql/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json) 
-### [Configurare gruppi di disponibilità AlwaysOn nel portale classico](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+### [Configura gruppo di disponibilità Always On nel portale classico hello](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 ### [Configurare gruppi di disponibilità AlwaysOn con PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 ### [Configurare un listener interno per un gruppo di disponibilità](virtual-machines-windows-classic-ps-sql-int-listener.md)
 ### [Configurare un listener esterno per un gruppo di disponibilità](virtual-machines-windows-classic-ps-sql-ext-listener.md)
-### [Estendere un gruppo di disponibilità locale ad Azure](virtual-machines-windows-classic-sql-onprem-availability.md)
-## Manage
-### [Usare l'estensione Agente IaaS di SQL Server](virtual-machines-windows-classic-sql-server-agent-extension.md)
+### [Estendere tooAzure gruppo di disponibilità locale](virtual-machines-windows-classic-sql-onprem-availability.md)
+## Gestisci
+### [Utilizzare l'estensione di SQL Server IaaS Agent hello](virtual-machines-windows-classic-sql-server-agent-extension.md)
 ### [Applicazione automatica delle patch](virtual-machines-windows-classic-sql-automated-patching.md)
 ### [Configurare l'integrazione dell'insieme di credenziali delle chiavi di Azure](virtual-machines-windows-classic-ps-sql-keyvault.md)
 ### [Usare Archiviazione Premium](virtual-machines-windows-classic-sql-server-premium-storage.md)
@@ -30,7 +30,7 @@
 ## Business Intelligence
 ### [SQL Server Business Intelligence in VM di Azure](virtual-machines-windows-classic-ps-sql-bi.md)
 ### [Usare ReportViewer in un sito Web ospitato in Azure](virtual-machines-windows-classic-sql-server-reportviewer.md)
-### [Usare PowerShell per creare una macchina virtuale di Azure con un server di report](virtual-machines-windows-classic-ps-sql-report.md)
+### [Utilizzare PowerShell toocreate una macchina virtuale di Azure con un Server di Report](virtual-machines-windows-classic-ps-sql-report.md)
 ## [Procedure consigliate per le prestazioni](../sql/virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 ## [Modelli di applicazione](../sql/virtual-machines-windows-sql-server-app-patterns-dev-strategies.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 

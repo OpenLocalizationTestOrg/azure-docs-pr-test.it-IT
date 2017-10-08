@@ -1,6 +1,6 @@
 ---
 title: 'Generare ed esportare certificati autofirmati per connessioni da punto a sito: PowerShell: Azure | Microsoft Docs'
-description: Questo articolo contiene i passaggi per creare un certificato radice autofirmato, esportare la chiave pubblica e generare certificati client con PowerShell in Windows 10.
+description: In questo articolo contiene passaggi toocreate un certificato radice autofirmato, esportare la chiave pubblica hello e generare i certificati client tramite PowerShell in Windows 10.
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/09/2017
 ms.author: cherylmc
-ms.openlocfilehash: f96b9b212b9322d0677e49ff95184d0feccca2df
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11dda015368cda5ce9799fcc4f01d7c542b84fe8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="generate-and-export-certificates-for-point-to-site-connections-using-powershell-on-windows-10"></a>Generare ed esportare i certificati per le connessioni da punto a sito usando PowerShell su Windows 10
 
-Le connessioni da punto a sito usano certificati per l'autenticazione. Questo articolo illustra come creare un certificato radice autofirmato e generare i certificati client usando PowerShell su Windows 10. Per le procedure di configurazione da punto a sito, ad esempio come caricare i certificati radice, selezionare uno degli articoli "Configurare da punto a sito" dell'elenco seguente:
+Le connessioni Point-to-Site, utilizzano tooauthenticate certificati. In questo articolo viene illustrato come certificato radice toocreate a autofirmato e generare i certificati client tramite PowerShell in Windows 10. Se si sta cercando i passaggi di configurazione da punto a sito, ad esempio come elenco di certificati radice tooupload, selezionare uno degli articoli hello ' Configure Point-to-Site' di hello seguenti:
 
 > [!div class="op_single_selector"]
 > * [Create self-signed certificates - PowerShell](vpn-gateway-certificates-point-to-site.md) (Creare certificati autofirmati - PowerShell)
@@ -35,16 +35,16 @@ Le connessioni da punto a sito usano certificati per l'autenticazione. Questo ar
 > 
 
 
-È necessario eseguire i passaggi descritti in questo articolo in un computer che esegue Windows 10. I cmdlet di PowerShell usati per generare i certificati fanno parte del sistema operativo Windows 10 e non funzionano in altre versioni di Windows. Il computer Windows 10 deve solo generare i certificati. Dopo aver generato i certificati, è possibile caricarli o installarli in qualsiasi sistema operativo client supportato. 
+In questo articolo in un computer che eseguono Windows 10, è necessario eseguire passaggi di hello. i cmdlet di PowerShell Hello utilizzare certificati toogenerate fanno parte del sistema operativo Windows 10 hello e non funzionano nelle altre versioni di Windows. computer Windows 10 Hello è solo necessario toogenerate hello certificati. Una volta generati certificati hello, è possibile caricarli o installarli in qualsiasi sistema operativo client supportato. 
 
-Se non si ha accesso a un computer con Windows 10, è possibile usare [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) per generare i certificati. I certificati generati con uno dei due metodi possono essere installati in qualsiasi sistema operativo client [supportato](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq).
+Se non si dispone di computer Windows 10 tooa di accesso, è possibile utilizzare [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) toogenerate certificati. Hello certificati generati usando dei metodi possono essere installati su qualsiasi [supportati](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq) sistema operativo client.
 
 ## <a name="rootcert"></a>Creare un certificato radice autofirmato
 
-Usare il cmdlet New-SelfSignedCertificate per creare un certificato radice autofirmato. Per altre informazioni sui parametri, vedere [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
+Utilizzare toocreate di cmdlet New-SelfSignedCertificate hello un certificato radice autofirmato. Per altre informazioni sui parametri, vedere [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
 
 1. Da un computer che esegue Windows 10 aprire una console di Windows PowerShell con privilegi elevati.
-2. Usare l'esempio seguente per creare il certificato radice autofirmato. L'esempio seguente crea un certificato radice autofirmato denominato "P2SRootCert" che viene installato automaticamente in "Certificati-Utente corrente\Personale\Certificati". È possibile visualizzare il certificato aprendo *certmgr.msc* o *Gestire i certificati utente*.
+2. Utilizzare hello certificato radice autofirmato hello toocreate di esempio seguente. Hello seguente viene creato un certificato radice autofirmato denominato 'P2SRootCert' che viene installato automaticamente in 'Corrente\Personale\Certificati certificati'. È possibile visualizzare il certificato di hello aprendo *certmgr.msc*, o *gestire i certificati utente*.
 
   ```powershell
   $cert = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -53,29 +53,29 @@ Usare il cmdlet New-SelfSignedCertificate per creare un certificato radice autof
   -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign
   ```
 
-### <a name="cer"></a>Esportare la chiave pubblica (.cer)
+### <a name="cer"></a>Esportare la chiave pubblica hello (con estensione cer)
 
 [!INCLUDE [Export public key](../../includes/vpn-gateway-certificates-export-public-key-include.md)]
 
-Il file exported.cer deve essere caricato in Azure. Per istruzioni, vedere [Configurare una connessione da punto a sito](vpn-gateway-howto-point-to-site-rm-ps.md#upload). Per aggiungere un certificato radice attendibile aggiuntivo, vedere [questa sezione](vpn-gateway-howto-point-to-site-rm-ps.md#addremovecert) dell'articolo.
+file exported.cer Hello deve essere caricato tooAzure. Per istruzioni, vedere [Configurare una connessione da punto a sito](vpn-gateway-howto-point-to-site-rm-ps.md#upload). un certificato radice attendibile, tooadd [in questa sezione](vpn-gateway-howto-point-to-site-rm-ps.md#addremovecert) dell'articolo hello.
 
-### <a name="export-the-self-signed-root-certificate-and-public-key-to-store-it-optional"></a>Esportare il certificato radice autofirmato e la chiave pubblica per archiviarli (facoltativo)
+### <a name="export-hello-self-signed-root-certificate-and-public-key-toostore-it-optional"></a>Esporta certificato radice autofirmato hello e toostore chiave pubblica è (facoltativo)
 
-Si consiglia di esportare il certificato radice autofirmato e archiviarlo in un percorso sicuro. Se necessario, in seguito è possibile installarlo su un altro computer e generare altri certificati client oppure esportare un altro file.cer. Per esportare il certificato radice autofirmato come file .pfx, selezionare il certificato radice ed eseguire la stessa procedura descritta in [Esportazione di un certificato client](#clientexport).
+È opportuno tooexport hello certificato radice autofirmato e archiviarlo in modo sicuro. Se necessario, in seguito è possibile installarlo su un altro computer e generare altri certificati client oppure esportare un altro file.cer. hello tooexport autofirmato certificato radice come una con estensione pfx, un certificato radice hello selezionare e usare hello stessi passaggi, come descritto in [esportare un certificato client](#clientexport).
 
 ## <a name="clientcert"></a>Generazione di un certificato client
 
-Ogni computer client che si connette a una rete virtuale usando la soluzione Da punto a sito deve avere un certificato client installato. È possibile generare un certificato client da un certificato radice autofirmato, quindi esportare e installare il certificato client. Se il certificato client non è installato, l'autenticazione ha esito negativo. 
+Ogni computer client che si connette tooa virtuale usando Point-to-Site deve avere installato un certificato client. Genera un certificato client dal certificato radice autofirmato hello e quindi esportare e installare il certificato client hello. Se non è stato installato il certificato client hello, l'autenticazione ha esito negativo. 
 
-I passaggi seguenti illustrano come generare un certificato client da un certificato radice autofirmato. È possibile generare più certificati client dallo stesso certificato radice. Quando si generano certificati client con la procedura seguente, il certificato client viene installato automaticamente nel computer che è stato usato per generare il certificato. Se si vuole installare un certificato client in un altro computer client, è possibile esportare il certificato.
+Hello passaggi seguenti consentono di eseguire la generazione di un certificato client da un certificato radice autofirmato. È possibile generare più certificati client da hello stesso certificato radice. Quando si generano i certificati client con passaggi hello riportati di seguito, certificato hello del client viene installato automaticamente nel computer di hello utilizzato certificato hello toogenerate. Se si desidera tooinstall un certificato client in un altro computer client, è possibile esportare il certificato di hello.
 
-Gli esempi usano il cmdlet New-SelfSignedCertificate per generare un certificato client con scadenza in un anno. Per informazioni aggiuntive sui parametri, ad esempio l'impostazione di un valore di scadenza diverso per i certificati client, vedere [New SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
+esempi di Hello utilizzano toogenerate di cmdlet New-SelfSignedCertificate hello un certificato client che scade dopo un anno. Per informazioni aggiuntive sui parametri, ad esempio l'impostazione di un valore di scadenza diversa per il certificato client hello, vedere [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
 
 ### <a name="example-1"></a>Esempio 1
 
-Questo esempio usa la variabile dichiarata "$cert" della sezione precedente. Se è stata chiusa la console di PowerShell dopo aver creato il certificato radice autofirmato o si stanno creando i certificati client aggiuntivi in una nuova sessione della console di PowerShell, attenersi alla procedura nell'[esempio 2](#ex2).
+Questo esempio Usa hello dichiarata la variabile '$cert' dalla sezione precedente hello. Se si chiude la console di PowerShell hello dopo la creazione di hello certificato radice autofirmato o sta creando i certificati client aggiuntive in una nuova sessione di console di PowerShell, utilizzare i passaggi di hello in [esempio 2](#ex2).
 
-Modificare ed eseguire l'esempio per generare un certificato client. Se si esegue l'esempio seguente senza modificarlo, il risultato è un certificato client denominato "P2SChildCert".  Se si desidera assegnare un nome diverso al certificato figlio, modificare il valore CN. Non modificare il TextExtension quando si esegue questo esempio. Il certificato client generato viene installato automaticamente in "Certificati-Utente corrente\Personale\Certificati" nel computer in uso.
+Modificare ed eseguire toogenerate esempio hello un certificato client. Se si esegue l'esempio seguente senza modificarla hello, il risultato di hello è un certificato client denominato 'P2SChildCert'.  Se si desidera certificato figlio hello tooname con un altro, modificare il valore CN hello. Non modificare hello TextExtension quando si esegue questo esempio. certificato client Hello generato viene installato automaticamente in 'Certificati - corrente\Personale\Certificati' nel computer in uso.
 
 ```powershell
 New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -87,14 +87,14 @@ New-SelfSignedCertificate -Type Custom -KeySpec Signature `
 
 ### <a name="ex2"></a>Esempio 2
 
-Se si creano certificati client aggiuntivi o non si usa la stessa sessione di PowerShell utilizzata per creare il certificato radice autofirmato, usare la procedura seguente:
+Se si sta creando i certificati client aggiuntive o sono non utilizza hello stessa sessione di PowerShell utilizzato toocreate il certificato radice autofirmato, utilizzare hello alla procedura seguente:
 
-1. Identificare il certificato radice autofirmato che viene installato nel computer. Questo cmdlet restituisce un elenco dei certificati installati nel computer in uso.
+1. Identificare certificato radice autofirmato hello installata nel computer di hello. Questo cmdlet restituisce un elenco dei certificati installati nel computer in uso.
 
   ```powershell
   Get-ChildItem -Path “Cert:\CurrentUser\My”
   ```
-2. Individuare il nome dell'oggetto nell'elenco restituito e quindi copiare in un file di testo l'identificazione personale che si trova accanto a esso. Nell'esempio seguente ci sono due certificati. Il nome CN è il nome del certificato radice autofirmato da cui si desidera generare un certificato figlio. In questo caso "P2SRootCert".
+2. Individuare il nome soggetto hello da hello restituito l'elenco, quindi l'identificazione personale hello copia che si trova il testo successivo tooa tooit file. Nell'esempio seguente di hello, esistono due certificati. nome CN Hello è hello del certificato radice autofirmato hello da cui si desidera toogenerate un certificato figlio. In questo caso "P2SRootCert".
 
   ```
   Thumbprint                                Subject
@@ -102,18 +102,18 @@ Se si creano certificati client aggiuntivi o non si usa la stessa sessione di Po
   AED812AD883826FF76B4D1D5A77B3C08EFA79F3F  CN=P2SChildCert4
   7181AA8C1B4D34EEDB2F3D3BEC5839F3FE52D655  CN=P2SRootCert
   ```
-3. Dichiarare una variabile per il certificato radice usando l'identificazione personale del passaggio precedente. Sostituire THUMBPRINT con l'identificazione personale del certificato radice autofirmato da cui si desidera generare un certificato figlio.
+3. Dichiarare una variabile per il certificato radice hello con identificazione personale hello dal passaggio precedente hello. Sostituire l'identificazione personale con identificazione personale hello del certificato radice hello da cui si desidera toogenerate un certificato figlio.
 
   ```powershell
   $cert = Get-ChildItem -Path "Cert:\CurrentUser\My\THUMBPRINT"
   ```
 
-  Ad esempio, usando l'identificazione personale per P2SRootCert nel passaggio precedente, la variabile è simile alla seguente:
+  Ad esempio, con identificazione personale hello per P2SRootCert nel passaggio precedente hello, variabile hello simile al seguente:
 
   ```powershell
   $cert = Get-ChildItem -Path "Cert:\CurrentUser\My\7181AA8C1B4D34EEDB2F3D3BEC5839F3FE52D655"
   ```
-4.  Modificare ed eseguire l'esempio per generare un certificato client. Se si esegue l'esempio seguente senza modificarlo, il risultato è un certificato client denominato "P2SChildCert". Se si desidera assegnare un nome diverso al certificato figlio, modificare il valore CN. Non modificare il TextExtension quando si esegue questo esempio. Il certificato client generato viene installato automaticamente in "Certificati-Utente corrente\Personale\Certificati" nel computer in uso.
+4.  Modificare ed eseguire toogenerate esempio hello un certificato client. Se si esegue l'esempio seguente senza modificarla hello, il risultato di hello è un certificato client denominato 'P2SChildCert'. Se si desidera certificato figlio hello tooname con un altro, modificare il valore CN hello. Non modificare hello TextExtension quando si esegue questo esempio. certificato client Hello generato viene installato automaticamente in 'Certificati - corrente\Personale\Certificati' nel computer in uso.
 
   ```powershell
   New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -135,5 +135,5 @@ Se si creano certificati client aggiuntivi o non si usa la stessa sessione di Po
 
 Continuare con la configurazione da punto a sito. 
 
-* Per i passaggi del modello di distribuzione di **Resource Manager**, vedere l'articolo relativo a come [configurare una connessione da punto a sito a una rete VNet](vpn-gateway-howto-point-to-site-resource-manager-portal.md). 
-* Per i passaggi del modello di distribuzione **classico**, vedere [Configurare una connessione VPN da punto a sito a una rete virtuale (classico)](vpn-gateway-howto-point-to-site-classic-azure-portal.md).
+* Per **Gestione risorse** passaggi di distribuzione del modello, vedere [configurare un tooa connessione Point-to-Site rete virtuale](vpn-gateway-howto-point-to-site-resource-manager-portal.md). 
+* Per **classico** passaggi di distribuzione del modello, vedere [configurare tooa di connessione tra reti virtuali (classico) un VPN Point-to-Site](vpn-gateway-howto-point-to-site-classic-azure-portal.md).

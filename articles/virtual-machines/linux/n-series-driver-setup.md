@@ -1,6 +1,6 @@
 ---
-title: Installazione di driver per serie N di Azure per Linux | Microsoft Docs
-description: Informazioni su come installare driver GPU NVIDIA per macchine virtuali serie N che eseguono Linux in Azure
+title: aaaAzure N serie di installazione del driver per Linux | Documenti Microsoft
+description: Come tooset i driver GPU NVIDIA per le macchine virtuali serie N che eseguono Linux in Azure
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -16,15 +16,15 @@ ms.workload: infrastructure-services
 ms.date: 07/25/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bdeb4d5ca1d9ff4d7dfd0961690412dd7530572a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7db1b3859f9075c6d9f0319f39418946ea08743f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-nvidia-gpu-drivers-on-n-series-vms-running-linux"></a>Installare i driver GPU NVIDIA in VM serie N che eseguono Linux
 
-Per usufruire delle funzionalità GPU delle VM serie N di Azure che eseguono Linux, installare i driver della scheda grafica NVIDIA supportati. Questo articolo descrive la procedura di installazione dei driver dopo la distribuzione di una macchina virtuale serie N. Le informazioni di configurazione dei driver sono disponibili anche per le [VM Windows](../windows/n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+tootake le funzionalità GPU hello di N-serie Azure le macchine virtuali che eseguono Linux, installare i driver grafici NVIDIA è supportato. Questo articolo descrive la procedura di installazione dei driver dopo la distribuzione di una macchina virtuale serie N. Le informazioni di configurazione dei driver sono disponibili anche per le [VM Windows](../windows/n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 
 Per conoscere le specifiche, le capacità di archiviazione e i dettagli dei dischi delle macchine virtuali serie N, vedere [Dimensioni delle macchine virtuali Linux GPU](sizes-gpu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
@@ -35,11 +35,11 @@ Per conoscere le specifiche, le capacità di archiviazione e i dettagli dei disc
 
 ## <a name="install-grid-drivers-for-nv-vms"></a>Installare i driver GRID per VM NV
 
-Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una connessione SSH a ogni macchina virtuale e seguire la procedura per la distribuzione di Linux. 
+i driver di griglia NVIDIA tooinstall nelle macchine virtuali NV, rendere un tooeach connessione SSH VM e seguire i passaggi di hello per le distribuzioni di Linux. 
 
 ### <a name="ubuntu-1604-lts"></a>Ubuntu 16.04 LTS
 
-1. Eseguire il comando `lspci`. Verificare che la scheda o le schede NVIDIA M60 siano visualizzate come dispositivi PCI.
+1. Eseguire hello `lspci` comando. Verificare che siano visibili come dispositivi PCI card hello M60 NVIDIA o schede.
 
 2. Installare gli aggiornamenti.
 
@@ -52,7 +52,7 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
 
   sudo apt-get install build-essential ubuntu-desktop -y
   ```
-3. Disabilitare il driver del kernel Nouveau, che è incompatibile con il driver NVIDIA. Nelle macchine virtuali NV usare solo il driver NVIDIA. A tale scopo, creare un file in `/etc/modprobe.d ` denominato `nouveau.conf` con il contenuto seguente:
+3. Disabilitare i driver del kernel Nouveau hello, che è incompatibili con il driver NVIDIA hello. (Solo utilizzare driver NVIDIA hello in macchine virtuali non Volatile). toodo, creare un file in `/etc/modprobe.d `denominato `nouveau.conf` con hello seguente contenuto:
 
   ```
   blacklist nouveau
@@ -61,13 +61,13 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
   ```
 
 
-4. Riavviare la macchina virtuale ed eseguire nuovamente la connessione. Uscire dal server X:
+4. Riavvio hello macchina virtuale e la riconnessione. Uscire dal server X:
 
   ```bash
   sudo systemctl stop lightdm.service
   ```
 
-5. Scaricare e installare il driver GRID:
+5. Scaricare e installare i driver di griglia hello:
 
   ```bash
   wget -O NVIDIA-Linux-x86_64-367.106-grid.run https://go.microsoft.com/fwlink/?linkid=849941  
@@ -77,26 +77,26 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
   sudo ./NVIDIA-Linux-x86_64-367.106-grid.run
   ``` 
 
-6. Quando viene chiesto se si vuole eseguire l'utilità nvidia-xconfig per aggiornare il file di configurazione di X, selezionare **Yes** (Sì).
+6. Quando viene chiesto se si desidera toorun hello nvidia xconfig utilità tooupdate il file di configurazione di X, selezionare **Sì**.
 
-7. Al termine dell'installazione, copiare /etc/nvidia/gridd.conf.template in un nuovo file gridd.conf nel percorso /etc/nvidia/
+7. Al termine dell'installazione, copiare /etc/nvidia/gridd.conf.template tooa nuova gridd.conf file nel percorso /etc/hosts nvidia /
 
   ```bash
   sudo cp /etc/nvidia/gridd.conf.template /etc/nvidia/gridd.conf
   ```
 
-8. Aggiungere quanto segue a `/etc/nvidia/gridd.conf`:
+8. Aggiungere il seguente di hello troppo`/etc/nvidia/gridd.conf`:
  
   ```
   IgnoreSP=TRUE
   ```
-9. Riavviare la VM e procedere a verificare l'installazione.
+9. Riavviare hello macchina virtuale e continuare l'installazione di hello tooverify.
 
 
 ### <a name="centos-based-73-or-red-hat-enterprise-linux-73"></a>Sistema operativo Linux basato su CentOS 7.3 o Red Hat Enterprise 7.3
 
 
-1. Aggiornare il kernel e DKMS.
+1. Aggiornare il kernel hello e DKMS.
  
   ```bash  
   sudo yum update
@@ -108,7 +108,7 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
   sudo yum install dkms
   ```
 
-2. Disabilitare il driver del kernel Nouveau, che è incompatibile con il driver NVIDIA. Nelle macchine virtuali NV usare solo il driver NVIDIA. A tale scopo, creare un file in `/etc/modprobe.d ` denominato `nouveau.conf` con il contenuto seguente:
+2. Disabilitare i driver del kernel Nouveau hello, che è incompatibili con il driver NVIDIA hello. (Solo utilizzare driver NVIDIA hello in macchine virtuali non Volatile). toodo, creare un file in `/etc/modprobe.d `denominato `nouveau.conf` con hello seguente contenuto:
 
   ```
   blacklist nouveau
@@ -116,7 +116,7 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
   blacklist lbm-nouveau
   ```
  
-3. Riavviare la macchina virtuale e installare i servizi di integrazione di Linux più recenti per Hyper-V:
+3. Riavviare il computer hello macchina virtuale, riconnettersi e installare servizi di integrazione più recenti Linux per Hyper-v: hello
  
   ```bash
   wget http://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.2-2.tar.gz
@@ -130,9 +130,9 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
   sudo reboot
   ```
  
-4. Ristabilire la connessione alla macchina virtuale ed eseguire il comando `lspci`. Verificare che la scheda o le schede NVIDIA M60 siano visualizzate come dispositivi PCI.
+4. Riconnettersi toohello macchina virtuale ed eseguire hello `lspci` comando. Verificare che siano visibili come dispositivi PCI card hello M60 NVIDIA o schede.
  
-5. Scaricare e installare il driver GRID:
+5. Scaricare e installare i driver di griglia hello:
 
   ```bash
   wget -O NVIDIA-Linux-x86_64-367.106-grid.run https://go.microsoft.com/fwlink/?linkid=849941  
@@ -141,33 +141,33 @@ Per installare i driver NVIDIA GRID nelle macchine virtuali NV, stabilire una co
 
   sudo ./NVIDIA-Linux-x86_64-367.106-grid.run
   ``` 
-6. Quando viene chiesto se si vuole eseguire l'utilità nvidia-xconfig per aggiornare il file di configurazione di X, selezionare **Yes** (Sì).
+6. Quando viene chiesto se si desidera toorun hello nvidia xconfig utilità tooupdate il file di configurazione di X, selezionare **Sì**.
 
-7. Al termine dell'installazione, copiare /etc/nvidia/gridd.conf.template in un nuovo file gridd.conf nel percorso /etc/nvidia/
+7. Al termine dell'installazione, copiare /etc/nvidia/gridd.conf.template tooa nuova gridd.conf file nel percorso /etc/hosts nvidia /
   
   ```bash
   sudo cp /etc/nvidia/gridd.conf.template /etc/nvidia/gridd.conf
   ```
   
-8. Aggiungere quanto segue a `/etc/nvidia/gridd.conf`:
+8. Aggiungere il seguente di hello troppo`/etc/nvidia/gridd.conf`:
  
   ```
   IgnoreSP=TRUE
   ```
-9. Riavviare la VM e procedere a verificare l'installazione.
+9. Riavviare hello macchina virtuale e continuare l'installazione di hello tooverify.
 
 ### <a name="verify-driver-installation"></a>Verificare l'installazione del driver
 
 
-Per controllare lo stato del dispositivo GPU, eseguire una connessione SSH alla VM ed eseguire l'utilità della riga di comando [nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface) installata con il driver. 
+tooquery hello dello stato del dispositivo GPU, SSH toohello VM e hello esecuzione [nvidia smi](https://developer.nvidia.com/nvidia-system-management-interface) utilità della riga di comando installato con il driver hello. 
 
-Verrà visualizzato un output simile al seguente:
+Viene visualizzato il seguente toohello simile di output:
 
 ![Stato del dispositivo NVIDIA](./media/n-series-driver-setup/smi-nv.png)
  
 
 ### <a name="x11-server"></a>Server X11
-Se è necessario un server X11 per le connessioni remote a una macchina virtuale NV, è consigliabile usare [x11vnc](http://www.karlrunge.com/x11vnc/) perché consente l'accelerazione hardware della grafica. Il BusID del dispositivo M60 deve essere aggiunto manualmente al file xconfig (`etc/X11/xorg.conf` in Ubuntu 16.04 LTS, `/etc/X11/XF86config` in CentOS 7.3 o Red Hat Enterprise Server 7.3). Aggiungere una sezione `"Device"` simile alla seguente:
+Se è necessario un X11 server per le connessioni remote tooan NV VM, [x11vnc](http://www.karlrunge.com/x11vnc/) è consigliata perché consente l'accelerazione grafica hardware. Hello BusID del dispositivo hello M60 deve essere aggiunta manualmente file xconfig toohello (`etc/X11/xorg.conf` in Ubuntu 16.04 LTS, `/etc/X11/XF86config` CentOS 7.3 o Red Hat Enterprise Server 7.3). Aggiungere un `"Device"` sezione simile toohello seguenti:
  
 ```
 Section "Device"
@@ -179,21 +179,21 @@ Section "Device"
 EndSection
 ```
  
-Aggiornare anche la sezione `"Screen"` per l'uso del dispositivo.
+Inoltre, per aggiornare il `"Screen"` sezione toouse questo dispositivo.
  
-Per individuare il BusID, eseguire
+Hello BusID è reperibile eseguendo
 
 ```bash
 /usr/bin/nvidia-smi --query-gpu=pci.bus_id --format=csv | tail -1 | cut -d ':' -f 1
 ```
  
-Il BusID può cambiare quando una macchina virtuale viene riallocata o riavviata. Pertanto, è consigliabile usare uno script per aggiornare il BusID nella configurazione di X11 quando una macchina virtuale viene riavviata. ad esempio:
+Hello BusID può cambiare quando una macchina virtuale Ottiene riallocare o riavviata. Pertanto, è opportuno toouse un hello tooupdate script BusID nella configurazione hello X11 quando una macchina virtuale è stata riavviata. ad esempio:
 
 ```bash 
 #!/bin/bash
 BUSID=$((16#`/usr/bin/nvidia-smi --query-gpu=pci.bus_id --format=csv | tail -1 | cut -d ':' -f 1`))
 
-if grep -Fxq "${BUSID}" /etc/X11/XF86Config; then     echo "BUSID is matching"; else   echo "BUSID changed to ${BUSID}" && sed -i '/BusID/c\    BusID          \"PCI:0@'${BUSID}':0:0:0\"' /etc/X11/XF86Config; fi
+if grep -Fxq "${BUSID}" /etc/X11/XF86Config; then     echo "BUSID is matching"; else   echo "BUSID changed too${BUSID}" && sed -i '/BusID/c\    BusID          \"PCI:0@'${BUSID}':0:0:0\"' /etc/X11/XF86Config; fi
 ```
 
 Questo file può essere richiamato come radice all'avvio mediante la creazione di una voce in `/etc/rc.d/rc3.d`.
@@ -201,21 +201,21 @@ Questo file può essere richiamato come radice all'avvio mediante la creazione d
 
 ## <a name="install-cuda-drivers-for-nc-vms"></a>Installare i driver CUDA per macchine virtuali NC
 
-Ecco i passaggi per installare i driver NVIDIA nelle VM NC Linux dal Toolkit 8.0 di NVIDIA CUDA. 
+Di seguito sono i driver NVIDIA tooinstall passaggi nelle macchine virtuali NC Linux da hello NVIDIA CUDA Toolkit 8.0. 
 
-Gli sviluppatori C++ e C possono facoltativamente installare il toolkit completo per creare applicazioni con accelerazione GPU. Per altre informazioni, vedere la [guida di installazione di CUDA](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html).
+Gli sviluppatori di C e C++ è possono installare facoltativamente hello Toolkit toobuild accelerazione GPU applicazioni complete. Per ulteriori informazioni, vedere hello [Guida all'installazione CUDA](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html).
 
 
 > [!NOTE]
-> I collegamenti ai download dei driver CUDA forniti qui sono quelli attivi al momento della pubblicazione. Per i driver CUDA più aggiornati, visitare il sito Web [NVIDIA](http://www.nvidia.com/).
+> I collegamenti ai download dei driver CUDA forniti qui sono quelli attivi al momento della pubblicazione. Per hello CUDA driver, visitare hello [NVIDIA](http://www.nvidia.com/) sito Web.
 >
 
-Per installare il toolkit di CUDA, eseguire una connessione SSH a ciascuna VM. Per verificare che nel sistema sia presente una GPU con supporto per core CUDA, eseguire il comando seguente:
+tooinstall CUDA Toolkit, rendere un tooeach connessione SSH macchina virtuale. tooverify che hello sistema disponga di una GPU che supporta CUDA, eseguire hello comando seguente:
 
 ```bash
 lspci | grep -i NVIDIA
 ```
-Verrà visualizzato un output simile all'esempio seguente (che rappresenta una scheda NVIDIA Tesla K80):
+Si noterà toohello simili di output (rappresentato da una scheda NVIDIA Tesla R80) di esempio seguente:
 
 ![Output del comando Ispci](./media/n-series-driver-setup/lspci.png)
 
@@ -223,7 +223,7 @@ Quindi eseguire i comandi di installazione specifici per la distribuzione.
 
 ### <a name="ubuntu-1604-lts"></a>Ubuntu 16.04 LTS
 
-1. Scaricare e installare i driver CUDA.
+1. Scaricare e installare i driver CUDA hello.
   ```bash
   CUDA_REPO_PKG=cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
 
@@ -239,15 +239,15 @@ Quindi eseguire i comandi di installazione specifici per la distribuzione.
 
   ```
 
-  L'installazione può richiedere alcuni minuti.
+  installazione di Hello può richiedere alcuni minuti.
 
-2. Per installare facoltativamente il toolkit di CUDA completo, digitare:
+2. toooptionally installazione hello CUDA toolkit completo, tipo:
 
   ```bash
   sudo apt-get install cuda
   ```
 
-3. Riavviare la VM e procedere a verificare l'installazione.
+3. Riavviare hello macchina virtuale e continuare l'installazione di hello tooverify.
 
 ### <a name="centos-based-73-or-red-hat-enterprise-linux-73"></a>Sistema operativo Linux basato su CentOS 7.3 o Red Hat Enterprise 7.3
 
@@ -258,10 +258,10 @@ Quindi eseguire i comandi di installazione specifici per la distribuzione.
 
   sudo reboot
   ```
-2. Ristabilire la connessione alla macchina virtuale e installare i Linux Integration Services più recenti per Hyper-V.
+2. Riconnettersi toohello macchina virtuale e installare hello più recente di servizi di integrazione Linux per Hyper-V.
 
   > [!IMPORTANT]
-  > Se è installata un'immagine HPC basata su CentOS in una macchina virtuale NC24r, andare al passaggio 3. Poiché i driver RDMA di Azure e Linux Integration Services sono pre-installati nell'immagine, non è necessario aggiornare i servizi LIS e gli aggiornamenti del kernel sono disabilitati per impostazione predefinita.
+  > Se è installata un'immagine basata su CentOS HPC in una macchina virtuale NC24r, ignorare tooStep 3. Poiché i driver RDMA di Azure e servizi di integrazione Linux sono pre-installati nell'immagine di hello, LIS non deve essere aggiornato e gli aggiornamenti di kernel sono disabilitati per impostazione predefinita.
   >
 
   ```bash
@@ -276,7 +276,7 @@ Quindi eseguire i comandi di installazione specifici per la distribuzione.
   sudo reboot
   ```
  
-3. Riconnettersi alla macchina virtuale e continuare l'installazione con i comandi seguenti:
+3. Riconnettersi toohello macchina virtuale e continuare l'installazione con hello seguenti comandi:
 
   ```bash
   sudo yum install kernel-devel
@@ -296,23 +296,23 @@ Quindi eseguire i comandi di installazione specifici per la distribuzione.
   sudo yum install cuda-drivers
   ```
 
-  L'installazione può richiedere alcuni minuti. 
+  installazione di Hello può richiedere alcuni minuti. 
 
-4. Per installare facoltativamente il toolkit di CUDA completo, digitare:
+4. toooptionally installazione hello CUDA toolkit completo, tipo:
 
   ```bash
   sudo yum install cuda
   ```
 
-5. Riavviare la VM e procedere a verificare l'installazione.
+5. Riavviare hello macchina virtuale e continuare l'installazione di hello tooverify.
 
 
 ### <a name="verify-driver-installation"></a>Verificare l'installazione del driver
 
 
-Per controllare lo stato del dispositivo GPU, eseguire una connessione SSH alla VM ed eseguire l'utilità della riga di comando [nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface) installata con il driver. 
+tooquery hello dello stato del dispositivo GPU, SSH toohello VM e hello esecuzione [nvidia smi](https://developer.nvidia.com/nvidia-system-management-interface) utilità della riga di comando installato con il driver hello. 
 
-Verrà visualizzato un output simile al seguente:
+Viene visualizzato il seguente toohello simile di output:
 
 ![Stato del dispositivo NVIDIA](./media/n-series-driver-setup/smi.png)
 
@@ -348,14 +348,14 @@ sudo reboot
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-* Esiste un problema noto con i driver CUDA sulle macchine virtuali serie N di Azure che eseguono il kernel Linux 4.4.0-75 su Ubuntu 16.04 LTS. Se si usa una versione precedente del kernel, eseguire l'aggiornamento almeno alla versione 4.4.0-77. 
+* Si verifica un problema noto con driver CUDA sulle macchine virtuali di Azure serie N eseguono kernel Linux di hello 4.4.0-75 Ubuntu 16.04 LTS. Se esegue l'aggiornamento da una versione precedente di kernel, eseguire l'aggiornamento tooat 4.4.0-77 di versione minima del kernel. 
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per altre informazioni sulle GPU NVIDIA nelle macchine virtuali serie N, vedere:
+* Per informazioni sulle GPU NVIDIA hello per le macchine virtuali serie N hello, vedere:
     * [NVIDIA Tesla K80](http://www.nvidia.com/object/tesla-k80.html) (per VM NC Azure)
-    * [NVIDIA Tesla M60](http://www.nvidia.com/object/tesla-m60.html) (per macchine virtuali NC di Azure)
+    * [NVIDIA Tesla M60](http://www.nvidia.com/object/tesla-m60.html) (per VM NV Azure)
 
-* Se si intende acquisire un'immagine di una VM Linux in cui sono installati driver NVIDIA, vedere [Come generalizzare e acquisire una macchina virtuale Linux](capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* toocapture un'immagine VM Linux con il driver NVIDIA installati, vedere [come toogeneralize e acquisire una macchina virtuale Linux](capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

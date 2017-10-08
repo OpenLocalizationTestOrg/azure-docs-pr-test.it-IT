@@ -1,5 +1,5 @@
 ---
-title: Tipi di indirizzo IP in Azure | Documentazione Microsoft
+title: tipi di indirizzi aaaIP in Azure | Documenti Microsoft
 description: Informazioni sugli indirizzi IP pubblici e privati in Azure.
 services: virtual-network
 documentationcenter: na
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/27/2016
 ms.author: jdial
-ms.openlocfilehash: 144f4ea213b8ed0a3530495e185f489155c474c9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 402d3707c00f0b3bf3ef1febd5ade66223da74bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ip-address-types-and-allocation-methods-in-azure"></a>Tipi di indirizzi IP e metodi di allocazione in Azure
-È possibile assegnare gli indirizzi IP alle risorse di Azure per comunicare con altre risorse di Azure, con la rete locale e con Internet. In Azure è possibile usare due tipi di indirizzi IP:
+È possibile assegnare gli indirizzi IP di tooAzure il toocommunicate risorse con altre risorse di Azure, la rete locale e hello Internet. In Azure è possibile usare due tipi di indirizzi IP:
 
-* **Indirizzi IP pubblici**: usati per la comunicazione con Internet, compresi i servizi pubblici di Azure.
-* **Indirizzi IP privati**: usati per la comunicazione all'interno di una rete virtuale Azure e della rete locale quando si usa un gateway VPN o un circuito ExpressRoute per estendere la rete ad Azure.
+* **Gli indirizzi IP pubblici**: utilizzato per la comunicazione con Internet, inclusi i servizi di Azure pubblico hello
+* **Gli indirizzi IP privati**: utilizzato per la comunicazione all'interno di una rete virtuale di Azure (VNet) e di rete locale quando si utilizza un gateway VPN o tooextend circuito ExpressRoute tooAzure la rete.
 
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md).  Questo articolo illustra l'uso del modello di distribuzione Resource Manager che Microsoft consiglia di usare invece del [modello di distribuzione classica](virtual-network-ip-addresses-overview-classic.md) per le distribuzioni più recenti.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo modello di distribuzione di gestione delle risorse hello, si consiglia di per la maggior parte delle nuove distribuzioni anziché hello [modello di distribuzione classica](virtual-network-ip-addresses-overview-classic.md).
 > 
 
-Se si ha familiarità con il modello di distribuzione classica, verificare le [differenze tra gli indirizzi IP nella versione classica e in Resource Manager](virtual-network-ip-addresses-overview-classic.md#differences-between-resource-manager-and-classic-deployments).
+Se si ha familiarità con il modello di distribuzione classica hello, controllare hello [differenze IP addressing tra classico e Gestione risorse](virtual-network-ip-addresses-overview-classic.md#differences-between-resource-manager-and-classic-deployments).
 
 ## <a name="public-ip-addresses"></a>Indirizzi IP pubblici
-Gli indirizzi IP pubblici consentono alle risorse di Azure di comunicare con Internet e i servizi pubblici di Azure, ad esempio [Cache Redis di Azure](https://azure.microsoft.com/services/cache/), [Hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/), i [database SQL](../sql-database/sql-database-technical-overview.md) e [Archiviazione di Azure](../storage/common/storage-introduction.md).
+Gli indirizzi IP pubblici consentono toocommunicate risorse di Azure con Internet e Azure servizi pubblici, ad esempio [Cache Redis di Azure](https://azure.microsoft.com/services/cache/), [hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/), [database SQL](../sql-database/sql-database-technical-overview.md), e [archiviazione di Azure](../storage/common/storage-introduction.md).
 
-In Gestione risorse di Azure un [indirizzo IP pubblico](resource-groups-networking.md#public-ip-address) è una risorsa che ha proprietà specifiche. È possibile associare una risorsa indirizzo IP pubblico con una qualsiasi delle risorse seguenti:
+In Gestione risorse di Azure un [indirizzo IP pubblico](resource-groups-networking.md#public-ip-address) è una risorsa che ha proprietà specifiche. È possibile associare una risorsa di indirizzo IP pubblica a una delle seguenti risorse hello:
 
 * Macchine virtuali (VM)
 * Servizi di bilanciamento del carico con connessione Internet
@@ -44,46 +44,46 @@ In Gestione risorse di Azure un [indirizzo IP pubblico](resource-groups-networki
 * Gateway di applicazione
 
 ### <a name="allocation-method"></a>Metodo di allocazione
-Gli indirizzi IP vengono allocati a una risorsa IP *pubblico* con due metodi: *dinamico* o *statico*. Il metodo di allocazione predefinito è *dinamico*, dove un indirizzo IP **non** viene allocato al momento della creazione. Al contrario, l'indirizzo IP pubblico viene allocato quando si avvia, o si crea, la risorsa associata, ad esempio il servizio di bilanciamento del carico o una VM. L'indirizzo IP viene rilasciato quando si arresta o si elimina la risorsa. Di conseguenza, l'indirizzo IP viene modificato quando si arresta e si avvia una risorsa.
+Esistono due metodi in cui un indirizzo IP viene allocato tooa *pubblica* risorsa IP - *dinamica* o *statico*. metodo di allocazione predefinito Hello è *dinamica*, dove un indirizzo IP è **non** allocato in fase di hello della creazione. Indirizzo IP pubblico hello, invece, viene allocato quando si avvia (o creare) risorse hello associato (ad esempio, un bilanciamento del carico o di macchina virtuale). indirizzo IP Hello viene rilasciata quando si arresta (o eliminare) la risorsa hello. In questo modo toochange indirizzo IP di hello quando si arresta e avvia una risorsa.
 
-Per assicurare che l'indirizzo IP per la risorsa associata rimanga invariato, è possibile impostare in modo esplicito il metodo di allocazione su *statico*. In questo caso un indirizzo IP viene assegnato immediatamente. Viene rilasciato solo quando si elimina la risorsa o modifica il relativo metodo di allocazione in *dinamico*.
+indirizzo IP di hello tooensure hello stesso per rimangono hello risorse associate, è possibile impostare il metodo di allocazione hello in modo esplicito troppo*statico*. In questo caso un indirizzo IP viene assegnato immediatamente. Viene rilasciata solo quando si elimina la risorsa hello o si modifica il relativo metodo di allocazione troppo*dinamica*.
 
 > [!NOTE]
-> Anche quando si imposta il metodo di allocazione su *statico*, non è possibile specificare l'indirizzo IP effettivo assegnato alla *risorsa IP pubblica*. Viene invece allocato da un pool di indirizzi IP disponibili nel percorso di Azure in cui viene creata la risorsa.
+> Anche quando si imposta il metodo di allocazione hello troppo*statico*, non è possibile specificare hello effettivo IP indirizzo assegnato toohello *risorsa IP pubblica*. Al contrario, si ottiene allocato da un pool di indirizzi IP disponibili nella località di Azure hello risorse hello viene creata.
 >
 
-Gli indirizzi IP pubblici statici sono comunemente usati negli scenari seguenti:
+Indirizzi IP pubblici statici utilizzati frequentemente hello seguenti scenari:
 
-* Gli utenti finali hanno l'esigenza di aggiornare le regole del firewall per comunicare con le risorse di Azure.
+* Gli utenti finali devono toocommunicate di regole firewall tooupdate con le risorse di Azure.
 * La risoluzione del nome DNS, in cui una modifica dell'indirizzo IP richiederebbe l'aggiornamento dei record A.
 * Le risorse di Azure comunicano con altri servizi o altre app che usano il modello di sicurezza basato su indirizzi IP.
-* Si usano certificati SSL collegati a un indirizzo IP.
+* Utilizzare l'indirizzo IP tooan collegato i certificati SSL.
 
 > [!NOTE]
-> L'elenco degli intervalli IP da cui gli indirizzi IP pubblici, statici o dinamici, vengono allocati alle risorse di Azure è pubblicato nell'articolo relativo agli [intervalli di indirizzi IP dei data center di Azure](https://www.microsoft.com/download/details.aspx?id=41653).
+> elenco Hello intervalli IP da cui gli indirizzi IP pubblici (dinamico o statico) tooAzure le risorse vengono allocati sia pubblicata nel [intervalli IP dei Data Center Azure](https://www.microsoft.com/download/details.aspx?id=41653).
 >
 
 ### <a name="dns-hostname-resolution"></a>Risoluzione del nome host DNS
-È possibile specificare un'etichetta del nome di dominio DNS per una risorsa IP pubblica, che crea un mapping per *etichettanomedominio*.*località*.cloudapp.azure.com per l'indirizzo IP pubblico nei server DNS gestiti di Azure. Ad esempio, se si crea una risorsa IP pubblica con **contoso** come *etichettanomedominio* nella *località* di Azure **Stati Uniti occidentali**, il nome di dominio completo (FQDN) **contoso.westus.cloudapp.azure.com** restituirà l'indirizzo IP pubblico della risorsa. È possibile usare questo nome di dominio completo per creare un record CNAME di dominio personalizzato che punta all'indirizzo IP pubblico in Azure.
+È possibile specificare un'etichetta di nome di dominio DNS per una risorsa IP pubblica, che consente di creare un mapping per *domainnamelabel*. *percorso*. cloudapp.azure.com toohello indirizzo IP pubblico nel server DNS gestito di Azure hello. Ad esempio, se si crea una risorsa IP pubblica con **contoso** come un *domainnamelabel* in hello **Stati Uniti occidentali** Azure *percorso*, hello il nome di dominio completo (FQDN) **contoso.westus.cloudapp.azure.com** risolverà l'indirizzo IP pubblico toohello della risorsa hello. È possibile utilizzare questo toocreate FQDN di un record CNAME di dominio personalizzato che punta a indirizzo IP pubblico toohello in Azure.
 
 > [!IMPORTANT]
 > Ogni etichetta di nome di dominio creata deve essere univoca nella relativa posizione di Azure.  
 >
 
 ### <a name="virtual-machines"></a>Macchine virtuali
-È possibile associare un indirizzo IP pubblico a una VM [Windows](../virtual-machines/windows/overview.md) o [Linux](../virtual-machines/virtual-machines-linux-about.md) assegnandola alla relativa **interfaccia di rete**. Nel caso di una VM con più interfacce di rete, è possibile assegnare la VM solo all'interfaccia di rete *primaria*. A una macchina virtuale è possibile assegnare un indirizzo IP pubblico statico o dinamico.
+È possibile associare un indirizzo IP pubblico con un [Windows](../virtual-machines/windows/overview.md) o [Linux](../virtual-machines/virtual-machines-linux-about.md) VM tramite l'assegnazione tooits **interfaccia di rete**. Nel caso di hello di una macchina virtuale con più interfacce di rete, è possibile assegnarlo toohello *primario* solo l'interfaccia di rete. È possibile assegnare un statico pubblico IP indirizzo tooa VM o dinamico.
 
 ### <a name="internet-facing-load-balancers"></a>Servizi di bilanciamento del carico con connessione Internet
-È possibile associare un indirizzo IP pubblico a un [Azure Load Balancer](../load-balancer/load-balancer-overview.md)assegnandolo alla configurazione **front-end** del servizio di bilanciamento del carico. Questo indirizzo IP pubblico viene usato come indirizzo IP virtuale (VIP) di bilanciamento del carico. A un servizio di bilanciamento del carico front-end è possibile assegnare un indirizzo IP pubblico statico o dinamico. È anche possibile assegnare più indirizzi IP pubblici a un front-end del servizio di bilanciamento del carico, consentendo così scenari con [più indirizzi VIP](../load-balancer/load-balancer-multivip.md) , ad esempio un ambiente multi-tenant con siti Web basati su SSL.
+È possibile associare un indirizzo IP pubblico con un [bilanciamento del carico di Azure](../load-balancer/load-balancer-overview.md), assegnandole toohello bilanciamento del carico **front-end** configurazione. Questo indirizzo IP pubblico viene usato come indirizzo IP virtuale (VIP) di bilanciamento del carico. È possibile assegnare un dinamico o statico pubblico IP indirizzo tooa bilanciamento del carico front-end. È inoltre possibile assegnare più pubblica IP indirizzi tooa bilanciamento del carico front-end, che consente di [multi-VIP](../load-balancer/load-balancer-multivip.md) scenari come un ambiente multi-tenant con siti Web basati su SSL.
 
 ### <a name="vpn-gateways"></a>Gateway VPN
-[gateway VPN di Azure](../vpn-gateway/vpn-gateway-about-vpngateways.md) può essere usato per connettere una rete virtuale di Azure ad altre reti virtuali o locali di Azure. È necessario assegnare un indirizzo IP pubblico alla relativa **configurazione IP** per abilitarne la comunicazione con la rete remota. Attualmente a un gateway VPN è possibile assegnare solo un indirizzo IP pubblico *dinamico* .
+[Gateway VPN di Azure](../vpn-gateway/vpn-gateway-about-vpngateways.md) è tooconnect utilizzata una rete locale reti virtuali di Azure o tooan del tooother di rete virtuale di Azure (VNet). È necessario un tooits di indirizzo IP pubblico tooassign **configurazione IP** tooenable è toocommunicate con rete remota hello. Attualmente, è possibile assegnare solo un *dinamica* gateway VPN tooa con indirizzo IP pubblico.
 
 ### <a name="application-gateways"></a>Gateway di applicazione
-È possibile associare un indirizzo IP pubblico a un [gateway applicazione](../application-gateway/application-gateway-introduction.md)di Azure, assegnandolo alla configurazione **front-end** del gateway. Questo indirizzo IP pubblico viene usato come indirizzo VIP con carico bilanciato. Attualmente alla configurazione front-end di un gateway applicazione è possibile assegnare solo un indirizzo IP pubblico *dinamico* .
+È possibile associare un indirizzo IP pubblico di Azure [Gateway applicazione](../application-gateway/application-gateway-introduction.md), tramite l'assegnazione del gateway toohello **front-end** configurazione. Questo indirizzo IP pubblico viene usato come indirizzo VIP con carico bilanciato. Attualmente, è possibile assegnare solo un *dinamica* pubblica tooan applicazione gateway front-end configurazione degli indirizzi IP.
 
 ### <a name="at-a-glance"></a>Riepilogo
-La tabella seguente illustra la proprietà specifica tramite la quale un indirizzo IP pubblico può essere associato a una risorsa di livello superiore e i metodi di allocazione possibili (dinamici o statici) utilizzabili.
+tabella Hello riportata di seguito mostra proprietà specifiche di hello attraverso il quale può essere un indirizzo IP pubblico associato tooa risorsa di primo livello e i metodi di allocazione possibili hello (statici o dinamici) che possono essere utilizzati.
 
 | Risorse di livello superiore | Associazione di indirizzi IP | dinamico | statico |
 | --- | --- | --- | --- |
@@ -93,20 +93,20 @@ La tabella seguente illustra la proprietà specifica tramite la quale un indiriz
 | gateway applicazione |Configurazione front-end |Sì |No |
 
 ## <a name="private-ip-addresses"></a>Indirizzi IP privati
-Gli indirizzi IP privati consentono alle risorse di Azure di comunicare con altre risorse in una [rete virtuale](virtual-networks-overview.md) o in una rete locale tramite un gateway VPN o un circuito ExpressRoute, senza usare un indirizzo IP raggiungibile tramite Internet.
+Gli indirizzi IP privati consentono toocommunicate risorse di Azure con le altre risorse in un [rete virtuale](virtual-networks-overview.md) o a una rete locale tramite un gateway VPN o un circuito ExpressRoute, senza utilizzare un indirizzo IP raggiungibile con Internet.
 
-Nel modello di distribuzione Azure Resource Manager un indirizzo IP privato è associato ai tipi di risorse di Azure seguenti:
+Nel modello di distribuzione Azure Resource Manager hello, un indirizzo IP privato è associato toohello seguenti tipi di risorse di Azure:
 
 * VM
 * Servizi di bilanciamento del carico interno
 * Gateway di applicazione
 
 ### <a name="allocation-method"></a>Metodo di allocazione
-Un indirizzo IP privato viene allocato dall'intervallo di indirizzi della subnet a cui è collegata la risorsa. L'intervallo di indirizzi della subnet stessa fa parte dell'intervallo di indirizzi della rete virtuale.
+Un indirizzo IP privato viene allocato dall'indirizzo hello è collegato l'intervallo di hello subnet toowhich hello risorsa. intervallo di indirizzi Hello della subnet hello stesso è una parte dell'intervallo di indirizzi della rete virtuale di hello.
 
-Un indirizzo IP privato viene allocato con due metodi: *dinamico* o *statico*. Il metodo di allocazione predefinito è quello *dinamico*, in base al quale l'indirizzo IP viene allocato automaticamente dalla subnet della risorsa usando DHCP. Questo indirizzo IP può cambiare quando si arresta e avvia la risorsa.
+Un indirizzo IP privato viene allocato con due metodi: *dinamico* o *statico*. metodo di allocazione predefinito Hello è *dinamica*, in cui l'indirizzo IP hello viene allocato automaticamente dalla subnet hello risorsa (tramite DHCP). Questo indirizzo IP può cambiare quando si arresta e avvia una risorsa hello.
 
-È possibile impostare il metodo di allocazione su *statico* per garantire che l'indirizzo IP rimanga invariato. In questo caso, è necessario fornire anche un indirizzo IP valido che faccia parte della subnet della risorsa.
+È possibile impostare il metodo di allocazione hello troppo*statico* tooensure hello IP indirizzo rimane hello stesso. In questo caso, è necessario anche un indirizzo IP valido che fa parte della subnet della risorsa hello tooprovide.
 
 Gli indirizzi IP privati statici vengono comunemente usati per:
 
@@ -115,20 +115,20 @@ Gli indirizzi IP privati statici vengono comunemente usati per:
 * Risorse accessibili da altre app o risorse tramite un indirizzo IP.
 
 ### <a name="virtual-machines"></a>Macchine virtuali
-Un indirizzo IP privato viene assegnato all'**interfaccia di rete** di una VM [Windows](../virtual-machines/windows/overview.md) o [Linux](../virtual-machines/virtual-machines-linux-about.md). Nel caso di una macchina virtuale con più interfacce di rete, a ogni interfaccia viene assegnato un indirizzo IP privato. Per un'interfaccia di rete è possibile specificare un metodo di allocazione statico o dinamico.
+Un indirizzo IP privato è assegnato toohello **interfaccia di rete** di un [Windows](../virtual-machines/windows/overview.md) o [Linux](../virtual-machines/virtual-machines-linux-about.md) macchina virtuale. Nel caso di una macchina virtuale con più interfacce di rete, a ogni interfaccia viene assegnato un indirizzo IP privato. È possibile specificare il metodo di allocazione hello come dinamico o statico per un'interfaccia di rete.
 
 #### <a name="internal-dns-hostname-resolution-for-vms"></a>Risoluzione del nome host DNS interno per le macchine virtuali
-Tutte le macchine virtuali di Azure sono configurate con [server DNS gestiti da Azure](virtual-networks-name-resolution-for-vms-and-role-instances.md#azure-provided-name-resolution) per impostazione predefinita, a meno che non si configurino in modo esplicito server DNS personalizzati. Questi server DNS forniscono la risoluzione dei nomi interna per le macchine virtuali che risiedono nella stessa rete virtuale.
+Tutte le macchine virtuali di Azure sono configurate con [server DNS gestiti da Azure](virtual-networks-name-resolution-for-vms-and-role-instances.md#azure-provided-name-resolution) per impostazione predefinita, a meno che non si configurino in modo esplicito server DNS personalizzati. Questi server DNS forniscono la risoluzione dei nomi interna per le macchine virtuali che risiedono all'interno di hello stessa rete virtuale.
 
-Quando si crea una macchina virtuale, ai server DNS gestiti da Azure viene aggiunto un mapping del nome host al relativo indirizzo IP privato. Se si usa una VM con più interfacce di rete, viene eseguito il mapping del nome host all'indirizzo IP privato dell'interfaccia di rete primaria.
+Quando si crea una macchina virtuale, un mapping per l'indirizzo IP privato di hello hostname tooits viene aggiunto toohello i server DNS gestito di Azure. In caso di un'interfaccia di multi-rete VM, viene eseguito il mapping di hello hostname indirizzo IP privato toohello hello principale dell'interfaccia di rete.
 
-Le macchine virtuali configurate con server DNS gestiti di Azure potranno risolvere i nomi host di tutte le VM all'interno la rete virtuale nei relativi indirizzi IP privati.
+Macchine virtuali configurate con i server DNS gestito di Azure sarà in grado di tooresolve hello hostnames di tutte le macchine virtuali all'interno gli indirizzi IP privati tootheir di rete virtuale.
 
 ### <a name="internal-load-balancers-ilb--application-gateways"></a>Servizi di bilanciamento del carico interno e gateway applicazione
-È possibile assegnare un indirizzo IP privato alla configurazione **front-end** di un [servizio di bilanciamento del carico interno di Azure](../load-balancer/load-balancer-internal-overview.md) o di un [gateway applicazione di Azure](../application-gateway/application-gateway-introduction.md). Questo indirizzo IP privato funge da endpoint interno, accessibile solo alle risorse all'interno della rete virtuale e alle reti remote connesse alla rete virtuale. È possibile assegnare un indirizzo IP privato dinamico o statico alla configurazione front-end.
+È possibile assegnare un toohello di indirizzo IP privato **front-end** configurazione di un [bilanciamento del carico interno Azure](../load-balancer/load-balancer-internal-overview.md) (ILB) o un [Gateway applicazione Azure](../application-gateway/application-gateway-introduction.md). Questo indirizzo IP privato funge da un endpoint interno, accessibile solo toohello risorse di rete virtuale (VNet) e reti remote hello connessi toohello rete virtuale. È possibile assegnare sia una dinamica o statica privato toohello front-end configurazione degli indirizzi IP.
 
 ### <a name="at-a-glance"></a>Riepilogo
-La tabella seguente illustra la proprietà specifica tramite la quale un indirizzo IP privato può essere associato a una risorsa di livello superiore e i metodi di allocazione possibili (dinamici o statici) utilizzabili.
+tabella Hello riportata di seguito mostra proprietà specifiche di hello attraverso il quale può essere un indirizzo IP privato tooa associato risorsa di primo livello e i metodi di allocazione possibili hello (statici o dinamici) che possono essere utilizzati.
 
 | Risorse di livello superiore | Associazione di indirizzi IP | dinamico | statico |
 | --- | --- | --- | --- |
@@ -137,12 +137,12 @@ La tabella seguente illustra la proprietà specifica tramite la quale un indiriz
 | gateway applicazione |Configurazione front-end |Sì |Sì |
 
 ## <a name="limits"></a>Limiti
-I limiti imposti agli indirizzi IP sono indicati nel set completo di [limiti della rete](../azure-subscription-service-limits.md#networking-limits) in Azure. Questi limiti sono classificati per area e per sottoscrizione. È possibile [contattare il supporto tecnico](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per aumentare i limiti predefiniti fino ai massimi consentiti in base alle esigenze aziendali.
+Hello limiti imposti su indirizzi IP sono indicati in set completo di hello di [limiti per la rete](../azure-subscription-service-limits.md#networking-limits) in Azure. Questi limiti sono classificati per area e per sottoscrizione. È possibile [contattare il supporto tecnico](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) limiti predefiniti di hello tooincrease dei limiti massimi di toohello in base alle esigenze aziendali.
 
 ## <a name="pricing"></a>Prezzi
-Per gli indirizzi IP pubblici può essere previsto un addebito nominale. Per altre informazioni sui prezzi degli indirizzi IP in Azure, vedere la pagina [Prezzi per gli indirizzi IP](https://azure.microsoft.com/pricing/details/ip-addresses).
+Per gli indirizzi IP pubblici può essere previsto un addebito nominale. toolearn più sull'indirizzo IP indirizzo prezzi di Azure, revisione hello [dei prezzi di indirizzo IP](https://azure.microsoft.com/pricing/details/ip-addresses) pagina.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Distribuire una VM con un IP pubblico statico tramite il portale di Azure](virtual-network-deploy-static-pip-arm-portal.md)
+* [Distribuire una macchina virtuale con un indirizzo IP pubblico statico utilizzando hello portale di Azure](virtual-network-deploy-static-pip-arm-portal.md)
 * [Distribuire una VM con un IP pubblico statico tramite un modello](virtual-network-deploy-static-pip-arm-template.md)
-* [Come impostare un indirizzo IP statico privato nel portale di Azure](virtual-networks-static-private-ip-arm-pportal.md)
+* [Distribuire una macchina virtuale con un indirizzo IP privato statico utilizzando hello portale di Azure](virtual-networks-static-private-ip-arm-pportal.md)

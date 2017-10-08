@@ -1,6 +1,6 @@
 ---
-title: Crittografare dischi in una macchina virtuale Linux con l'interfaccia della riga di comando di Azure 1.0 | Documentazione Microsoft
-description: Come crittografare i dischi di una macchina virtuale Linux tramite l'interfaccia della riga di comando di Azure 1.0 e il modello di distribuzione di Resource Manager
+title: aaaEncrypt dischi in una VM Linux con hello Azure CLI 1.0 | Documenti Microsoft
+description: Come tooencrypt dischi in una VM Linux utilizzando hello Azure CLI 1.0 e modello di distribuzione di gestione risorse di hello
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,47 +15,47 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 03/06/2017
 ms.author: iainfou
-ms.openlocfilehash: b436f2d43c41000f4385889edb3fa3983d4a8c66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68a0394d366c3c6941e2c6db0d4263123f951946
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="encrypt-disks-on-a-linux-vm-using-the-azure-cli-10"></a>Crittografare i dischi di una VM Linux usando l'interfaccia della riga di comando di Azure 1.0
-Per migliorare gli aspetti di sicurezza e conformità delle macchine virtuali (VM), i dischi virtuali in Azure possono essere crittografati a riposo. I dischi vengono crittografati usando chiavi di crittografia protette in un insieme di credenziali delle chiavi di Azure. È possibile controllare queste chiavi di crittografia e il loro uso. In questo articolo viene spiegato come crittografare i dischi virtuali di una VM Linux tramite l'interfaccia della riga di comando di Azure 1.0 e il modello di distribuzione di Resource Manager.
+# <a name="encrypt-disks-on-a-linux-vm-using-hello-azure-cli-10"></a>Crittografare i dischi in una VM Linux utilizzando hello Azure CLI 1.0
+Per migliorare gli aspetti di sicurezza e conformità delle macchine virtuali (VM), i dischi virtuali in Azure possono essere crittografati a riposo. I dischi vengono crittografati usando chiavi di crittografia protette in un insieme di credenziali delle chiavi di Azure. È possibile controllare queste chiavi di crittografia e il loro uso. In questo articolo illustra in dettaglio come tooencrypt dischi virtuali in una VM Linux utilizzando hello Azure CLI 1.0 e modello di distribuzione di gestione risorse di hello.
 
-## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando:
+## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI
+È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello:
 
-- [Interfaccia della riga di comando di Azure 1.0](#quick-commands): l'interfaccia della riga di comando per i modelli di distribuzione classica e di gestione delle risorse (questo articolo)
-- [Interfaccia della riga di comando di Azure 2.0](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): interfaccia della riga di comando di prossima generazione per il modello di distribuzione di Gestione risorsa
+- [Azure CLI 1.0](#quick-commands) : l'interfaccia CLI per hello classic risorse Gestione modelli di distribuzione e (in questo articolo)
+- [Azure CLI 2.0](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -la prossima generazione CLI per modello di distribuzione di gestione risorse hello
 
 ## <a name="quick-commands"></a>Comandi rapidi
-Se si necessita di eseguire rapidamente l'attività, nella sezione seguente sono illustrati i comandi di base per crittografare i dischi rigidi della VM. Altre informazioni dettagliate e il contesto per ogni passaggio sono disponibili nelle sezioni successive del documento, [a partire da qui](#overview-of-disk-encryption).
+Se è necessario tooquickly attività hello, hello seguente hello dettagli sezione base comandi tooencrypt dischi virtuali nella macchina virtuale. Ulteriori informazioni e il contesto per ogni passaggio è reperibile rest hello del documento hello, [avvio qui](#overview-of-disk-encryption).
 
-È necessario installare e registrare l'[interfaccia della riga di comando Azure 1.0 più recente](../../xplat-cli-install.md) usando la modalità di Resource Manager nel modo seguente:
+È necessario hello [più recente di Azure CLI 1.0](../../xplat-cli-install.md) installato e registrato con modalità di gestione risorse di hello come indicato di seguito:
 
 ```azurecli
 azure config mode arm
 ```
 
-Nell'esempio seguente sostituire i nomi dei parametri di esempio con i valori desiderati. Alcuni esempi di nomi dei parametri sono `myResourceGroup`, `myKeyVault` e `myVM`.
+In hello negli esempi seguenti, sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono `myResourceGroup`, `myKeyVault` e `myVM`.
 
-Per prima cosa, abilitare il provider dell'insieme di credenziali delle chiavi di Azure nella sottoscrizione di Azure e creare un gruppo di risorse. Nell'esempio seguente viene creato un gruppo di risorse denominato `myResourceGroup` nella posizione `WestUS`:
+Innanzitutto, abilitare il provider di credenziali chiave hello nella sottoscrizione di Azure e creare un gruppo di risorse. esempio Hello crea il nome di un gruppo di risorse `myResourceGroup` in hello `WestUS` percorso:
 
 ```azurecli
 azure provider register Microsoft.KeyVault
 azure group create myResourceGroup --location WestUS
 ```
 
-Creare un insieme di credenziali delle chiavi di Azure. Nell'esempio seguente viene creato un insieme di credenziali delle chiavi denominato `myKeyVault`:
+Creare un insieme di credenziali delle chiavi di Azure. esempio Hello crea un insieme di credenziali di chiave denominato `myKeyVault`:
 
 ```azurecli
 azure keyvault create --vault-name myKeyVault --resource-group myResourceGroup \
   --location WestUS
 ```
 
-Creare una chiave di crittografia nell'insieme di credenziali delle chiavi e abilitarlo per la crittografia del disco. Nell'esempio seguente viene creata una chiave denominata `myKey`:
+Creare una chiave di crittografia nell'insieme di credenziali delle chiavi e abilitarlo per la crittografia del disco. esempio Hello crea una chiave denominata `myKey`:
 
 ```azurecli
 azure keyvault key create --vault-name myKeyVault --key-name myKey \
@@ -64,7 +64,7 @@ azure keyvault set-policy --vault-name myKeyVault --resource-group myResourceGro
   --enabled-for-disk-encryption true
 ```
 
-Creare un endpoint tramite Azure Active Directory per gestire l'autenticazione e lo scambio di chiavi di crittografia dall'insieme di credenziali delle chiavi. `--home-page` e `--identifier-uris` non devono necessariamente essere indirizzi instradabili effettivi. Per la massima sicurezza, è preferibile usare i segreti client, anziché le password. Tuttavia, al momento i segreti client non possono essere generati tramite l'interfaccia della riga di comando di Azure, ma solo nel portale di Azure. Nell'esempio seguente viene creato un endpoint di Azure Active Directory denominato `myAADApp` con la password `myPassword`. Specificare una password personalizzata come di seguito:
+Creare un endpoint tramite Azure Active Directory per la gestione dell'autenticazione hello e lo scambio delle chiavi di crittografia dall'insieme di credenziali chiave. Hello `--home-page` e `--identifier-uris` non è necessario l'indirizzo instradabile effettivo toobe. Per hello massimo livello di sicurezza, i segreti del client devono essere utilizzati anziché le password. Hello CLI di Azure attualmente non è possibile generare i segreti dei client. I segreti dei client possono essere generati solo nel portale di Azure hello. esempio Hello crea un endpoint di Azure Active Directory denominato `myAADApp` e viene utilizzata una password di `myPassword`. Specificare una password personalizzata come di seguito:
 
 ```azurecli
 azure ad app create --name myAADApp \
@@ -73,7 +73,7 @@ azure ad app create --name myAADApp \
   --password myPassword
 ```
 
-Si noti il valore `applicationId` indicato nell'output dal comando precedente. Questo ID applicazione è usato nei passaggi seguenti:
+Hello nota `applicationId` illustrato nell'output di hello da hello precedente comando. Questo ID applicazione viene utilizzato in hello alla procedura seguente:
 
 ```azurecli
 azure ad sp create --applicationId myApplicationID
@@ -81,14 +81,14 @@ azure keyvault set-policy --vault-name myKeyVault --spn myApplicationID \
   --perms-to-keys [\"all\"] --perms-to-secrets [\"all\"]
 ```
 
-Aggiungere un disco dati a una VM esistente. Nell'esempio seguente viene aggiunto un disco dati a una VM denominata `myVM`:
+Aggiungere un tooan disco dati macchina virtuale esistente. esempio Hello aggiunge un tooa disco dati macchina virtuale denominata `myVM`:
 
 ```azurecli
 azure vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
   --size-in-gb 5
 ```
 
-Esaminare i dettagli dell'insieme di credenziali delle chiavi e della chiave creata. Nel passaggio finale sono necessari l'ID dell'insieme di credenziali delle chiavi, l'URI e l'URL chiave. Nell'esempio seguente vengono esaminati i dettagli di un insieme di credenziali delle chiavi denominato `myKeyVault` e della chiave denominata `myKey`:
+Esaminare i dettagli di hello per la chiave di insieme di credenziali chiave e hello che è stato creato. È necessario hello ID insieme di credenziali chiave, URI e chiave URL nel passaggio finale hello. Hello esempio esamina i dettagli di hello per un insieme di credenziali di chiave denominato `myKeyVault` e una chiave denominata `myKey`:
 
 ```azurecli
 azure keyvault show myKeyVault
@@ -107,7 +107,7 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
   --volume-type Data
 ```
 
-L'interfaccia della riga di comando di Azure non fornisce gli errori dettagliati durante il processo di crittografia. Per ulteriori informazioni sulla risoluzione dei problemi, vedere `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log`. Dal momento che il comando precedente dispone di molte variabili e potrebbero non essere fornite molte indicazioni sul perché il processo non riesce, un esempio di comando completo potrebbe essere il seguente:
+Hello CLI di Azure non fornisce gli errori dettagliati durante il processo di crittografia hello. Per ulteriori informazioni sulla risoluzione dei problemi, vedere `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log`. Come hello precedente comando dispone di molte variabili e potrebbero non essere molto indicazione as avrà esito negativo processo di hello toowhy, un esempio di comandi completo potrebbe essere come segue:
 
 ```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
@@ -120,76 +120,76 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
   --volume-type Data
 ```
 
-Riesaminare infine lo stato della crittografia per controllare che ora i dischi virtuali siano crittografati. Nell'esempio seguente viene controllato lo stato di una VM denominata `myVM` nel gruppo di risorse `myResourceGroup`:
+Infine, esaminare lo stato di crittografia hello nuovamente tooconfirm che i dischi virtuali sono ora stati crittografati. esempio Hello Controlla stato hello di una macchina virtuale denominata `myVM` in hello `myResourceGroup` gruppo di risorse:
 
 ```azurecli
 azure vm show-disk-encryption-status --resource-group myResourceGroup --name myVM
 ```
 
 ## <a name="overview-of-disk-encryption"></a>Panoramica della crittografia dei dischi
-I dischi virtuali delle VM Linux vengono crittografati a riposo mediante [dm-crypt](https://wikipedia.org/wiki/Dm-crypt). Non è previsto alcun addebito per la crittografia dei dischi virtuali in Azure. Le chiavi di crittografia vengono archiviate nell'insieme di credenziali delle chiavi di Azure che usano la protezione del software oppure è possibile importare o generare le chiavi in moduli di protezione hardware certificati per gli standard FIPS 140-2 di livello 2. È possibile esercitare il controllo su queste chiavi di crittografia e sul loro uso. Queste chiavi di crittografia vengono usate per crittografare e decrittografare i dischi virtuali collegati alla VM. Un endpoint di Azure Active Directory fornisce un meccanismo protetto per il rilascio di queste chiavi di crittografia all'accensione e allo spegnimento delle VM.
+I dischi virtuali delle VM Linux vengono crittografati a riposo mediante [dm-crypt](https://wikipedia.org/wiki/Dm-crypt). Non è previsto alcun addebito per la crittografia dei dischi virtuali in Azure. Chiavi di crittografia vengono archiviate nell'insieme di credenziali di Azure chiave tramite software di protezione oppure è possibile importare o generare le chiavi in moduli di protezione Hardware (HSM) Certificate tooFIPS standard di livello 2 di 140-2. È possibile esercitare il controllo su queste chiavi di crittografia e sul loro uso. Queste chiavi di crittografia sono utilizzati tooencrypt e decrittografare i dischi virtuali collegati tooyour macchina virtuale. Un endpoint di Azure Active Directory fornisce un meccanismo protetto per il rilascio di queste chiavi di crittografia all'accensione e allo spegnimento delle VM.
 
-Il processo per la crittografia di una VM si articola nel modo seguente:
+il processo di Hello per la crittografia di una macchina virtuale è il seguente:
 
 1. Creare una chiave di crittografia in un insieme di credenziali delle chiavi di Azure.
-2. Configurare la chiave di crittografia in modo da renderla utilizzabile per la crittografia dei dischi.
-3. Per leggere la chiave di crittografia dall'insieme di credenziali delle chiavi di Azure, creare un endpoint che usa Azure Active Directory con le autorizzazioni appropriate.
-4. Eseguire il comando per crittografare i dischi virtuali, specificando l'endpoint di Azure Active Directory e la chiave di crittografia appropriata da usare.
-5. L'endpoint di Azure Active Directory richiede la chiave di crittografia necessaria dall'insieme di credenziali delle chiavi di Azure.
-6. I dischi virtuali vengono crittografati tramite la chiave di crittografia fornita.
+2. Configurare hello crittografia chiave toobe utilizzabile per la crittografia dei dischi.
+3. chiave di crittografia hello tooread dall'hello insieme di credenziali chiave di Azure, creare un endpoint tramite Azure Active Directory con le autorizzazioni appropriate di hello.
+4. Eseguire hello comando tooencrypt i dischi virtuali, specificando l'endpoint di Azure Active Directory hello e appropriato toobe chiave crittografica utilizzata.
+5. endpoint di Azure Active Directory Hello richiede la chiave di crittografia richiesto di hello insieme credenziali chiavi Azure.
+6. i dischi virtuali Hello vengono crittografati tramite la chiave crittografica hello fornito.
 
 ## <a name="supporting-services-and-encryption-process"></a>Servizi di supporto e processo di crittografia
-La crittografia del disco si basa sui componenti aggiuntivi seguenti:
+Crittografia del disco si basa su hello i componenti aggiuntivi seguenti:
 
-* **Insieme di credenziali delle chiavi di Azure**, che consente di proteggere le chiavi crittografiche e private usate per il processo di crittografia/decrittografia dei dischi.
-  * Se disponibile, è possibile usare un insieme di credenziali delle chiavi di Azure esistente. Non è necessario dedicare un insieme di credenziali delle chiavi alla crittografia dei dischi.
-  * Per separare i limiti amministrativi e la visibilità delle chiavi, è possibile creare un insieme di credenziali delle chiavi dedicato.
-* **Azure Active Directory** gestisce lo scambio protetto delle chiavi di crittografia necessarie e dell'autenticazione per le azioni richieste.
+* **Insieme di credenziali chiave di Azure** -utilizzate le chiavi di crittografia toosafeguard e segreti utilizzati per il processo di crittografia/decrittografia hello disco.
+  * Se disponibile, è possibile usare un insieme di credenziali delle chiavi di Azure esistente. Non si dispone toodedicate i dischi tooencrypting un insieme di credenziali chiave.
+  * limiti amministrativi tooseparate e visibilità chiave, è possibile creare un insieme di credenziali chiave dedicato.
+* **Azure Active Directory** : handle hello lo scambio sicuro di chiavi di crittografia necessarie e richiesta l'autenticazione per le azioni.
   * In genere, è possibile inserire l'applicazione in un'istanza esistente di Azure Active Directory.
-  * L'applicazione è sostanzialmente un endpoint tramite cui i servizi delle macchine virtuali e dell'insieme di credenziali delle chiavi possono richiedere e far emettere le chiavi di crittografia appropriate. Non si sta procedendo a sviluppare un'applicazione reale integrata con Azure Active Directory.
+  * un'applicazione Hello è più un endpoint per l'insieme di credenziali chiave hello e toorequest servizi macchina virtuale e ottenere generato le chiavi di crittografia appropriato hello. Non si sta procedendo a sviluppare un'applicazione reale integrata con Azure Active Directory.
 
 ## <a name="requirements-and-limitations"></a>Requisiti e limitazioni
 Requisiti relativi alla crittografia dei dischi e scenari supportati:
 
-* I seguenti SKU dei server Linux: Ubuntu, CentOS, SUSE e SUSE Linux Enterprise Server (SLES) e Red Hat Enterprise Linux.
-* Tutte le risorse, come l'insieme di credenziali delle chiavi, l'account di archiviazione e la VM, devono risiedere nella stessa area e nella stessa sottoscrizione di Azure.
+* Hello seguente server Linux SKU - Ubuntu, CentOS, SUSE e SUSE Linux Enterprise Server (SLES) e Red Hat Enterprise Linux.
+* Tutte le risorse (ad esempio l'insieme di credenziali chiave, l'account di archiviazione e macchina virtuale) devono essere in hello stessa regione di Azure e sottoscrizione.
 * VM standard delle serie A, D, DS, G e GS.
 
-La crittografia del disco non è attualmente supportata negli scenari seguenti:
+Crittografia del disco non è attualmente supportata nei seguenti scenari hello:
 
 * VM di base.
-* VM create con il modello di distribuzione classica.
+* Macchine virtuali create con modello di distribuzione classica hello.
 * Disabilitare la crittografia del disco del sistema operativo nelle VM Linux.
-* Aggiornare le chiavi di crittografia in una VM Linux già crittografata.
+* Aggiornamento delle chiavi di crittografia in una VM Linux già crittografato hello.
 
-## <a name="create-the-azure-key-vault-and-keys"></a>Creare le chiavi e l'insieme di credenziali delle chiavi di Azure
-Per completare il resto della presente guida, è necessario installare e registrare l'[ultima versione dell'interfaccia della riga di comando di Azure 1.0](../../xplat-cli-install.md) usando la modalità di Resource Manager nel modo seguente:
+## <a name="create-hello-azure-key-vault-and-keys"></a>Creare hello insieme credenziali chiavi Azure e le chiavi
+toocomplete hello restanti in questa Guida, è necessario hello [più recente di Azure CLI 1.0](../../xplat-cli-install.md) installato e registrato con modalità di gestione risorse di hello come indicato di seguito:
 
 ```azurecli
 azure config mode arm
 ```
 
-Negli esempi di comandi sostituire tutti i parametri di esempio con i propri valori di nome, percorso e chiave. Negli esempi viene usata una convenzione di `myResourceGroup`, `myKeyVault`, `myAADApp` e così via.
+Nel corso di esempi di comandi hello, sostituire tutti i parametri di esempio con i nomi, percorso e i valori di chiave. Negli esempi seguenti Hello utilizzano una convenzione di `myResourceGroup`, `myKeyVault`, `myAADApp`e così via.
 
-Il primo passaggio consiste nel creare un insieme di credenziali delle chiavi di Azure in cui archiviare le chiavi di crittografia. L'insieme di credenziali delle chiavi di Azure consente di archiviare chiavi, chiavi private o password da implementare in tutta sicurezza in applicazioni e servizi. Per la crittografia del disco virtuale, usare l'insieme di credenziali delle chiavi per archiviare una chiave di crittografia usata per crittografare o decrittografare i dischi virtuali.
+primo passaggio Hello è toocreate toostore un insieme di credenziali chiave Azure le chiavi di crittografia. Insieme di credenziali chiave di Azure è possibile archiviare le chiavi, i segreti, o le password che consentono di toosecurely implementano nelle applicazioni e servizi. Per la crittografia del disco virtuale, si usa l'insieme di credenziali chiave toostore una chiave di crittografia che viene utilizzato tooencrypt o decrittografare i dischi virtuali.
 
-Abilitare il provider dell'insieme di credenziali delle chiavi di Azure nella sottoscrizione di Azure, quindi creare un gruppo di risorse. Nell'esempio seguente viene creato un gruppo di risorse denominato `myResourceGroup` nella località `WestUS`:
+Abilitare il provider di credenziali chiave hello nella sottoscrizione di Azure, quindi creare un gruppo di risorse. esempio Hello crea un gruppo di risorse denominato `myResourceGroup` in hello `WestUS` percorso:
 
 ```azurecli
 azure provider register Microsoft.KeyVault
 azure group create myResourceGroup --location WestUS
 ```
 
-L'insieme di credenziali delle chiavi di Azure contenente le chiavi di crittografia e le risorse di calcolo associate, come l'archiviazione e la VM stessa, devono risiedere nella stessa area. Nell'esempio seguente viene creato un insieme di credenziali delle chiavi di Azure denominato `myKeyVault`:
+Hello insieme credenziali chiavi Azure contenente hello le chiavi di crittografia e calcolo associato risorse, ad esempio hello macchina virtuale stessa e di archiviazione devono trovarsi nella hello stessa area. esempio Hello crea un insieme di credenziali chiave di Azure denominato `myKeyVault`:
 
 ```azurecli
 azure keyvault create --vault-name myKeyVault --resource-group myResourceGroup \
   --location WestUS
 ```
 
-È possibile archiviare le chiavi di crittografia usando il software o il modulo di protezione hardware. L'uso di un modulo di protezione hardware richiede un insieme di credenziali delle chiavi premium. Esiste un costo aggiuntivo per creare un insieme di credenziali delle chiavi premium, anziché standard, in cui archiviare le chiavi protette tramite software. Per creare un insieme di credenziali delle chiavi premium, aggiungere `--sku Premium` al comando del passaggio precedente. L'esempio seguente usa chiavi protette tramite software, poiché viene creato un insieme di credenziali delle chiavi standard.
+È possibile archiviare le chiavi di crittografia usando il software o il modulo di protezione hardware. L'uso di un modulo di protezione hardware richiede un insieme di credenziali delle chiavi premium. È un toocreating costi aggiuntivi premium insieme di credenziali chiave anziché standard insieme di credenziali chiave che archivia le chiavi protette tramite software. aggiungere un insieme di credenziali chiave premium nel precedente passaggio hello toocreate `--sku Premium` toohello comando. Hello esempio seguente usa le chiavi protette tramite software poiché è stato creato un insieme di credenziali chiave standard.
 
-Per entrambi i modelli di protezione, è necessario consentire alla piattaforma Azure di accedere all'avvio della VM per richiedere le chiavi di crittografia con cui decrittografare i dischi virtuali. Creare una chiave di crittografia all'interno dell'insieme di credenziali delle chiavi, quindi abilitarne l'uso con la crittografia del disco virtuale. Nell'esempio seguente viene creata una chiave denominata `myKey`, successivamente abilitata per la crittografia del disco:
+Per entrambi i modelli di protezione, hello piattaforma Azure deve toobe concesso accesso toorequest hello chiavi di crittografia quando si avvia i dischi virtuali hello toodecrypt hello macchina virtuale. Creare una chiave di crittografia all'interno dell'insieme di credenziali delle chiavi, quindi abilitarne l'uso con la crittografia del disco virtuale. esempio Hello crea una chiave denominata `myKey` e quindi lo abilita per la crittografia del disco:
 
 ```azurecli
 azure keyvault key create --vault-name myKeyVault --key-name myKey \
@@ -199,12 +199,12 @@ azure keyvault set-policy --vault-name myKeyVault --resource-group myResourceGro
 ```
 
 
-## <a name="create-the-azure-active-directory-application"></a>Creare l'applicazione di Azure Active Directory
-Al momento di crittografare o decrittografare i dischi virtuali, un endpoint gestisce l'autenticazione e lo scambio delle chiavi di crittografia dall'insieme di credenziali delle chiavi. Questo endpoint, un'applicazione di Azure Active Directory, consente alla piattaforma Azure di richiedere le chiavi di crittografia appropriate per conto della VM. Un'istanza di Azure Active Directory predefinita è già disponibile nella sottoscrizione, anche se molte organizzazioni hanno directory di Azure Active Directory dedicate.
+## <a name="create-hello-azure-active-directory-application"></a>Creare un'applicazione hello Azure Active Directory
+Quando i dischi virtuali vengono crittografati o decrittografati, si utilizza un'autenticazione hello toohandle di endpoint e lo scambio delle chiavi di crittografia dall'insieme di credenziali chiave. Questo endpoint, un'applicazione Azure Active Directory, consente di hello piattaforma Azure toorequest hello appropriato le chiavi di crittografia per conto di hello macchina virtuale. Un'istanza di Azure Active Directory predefinita è già disponibile nella sottoscrizione, anche se molte organizzazioni hanno directory di Azure Active Directory dedicate.
 
-Poiché non si intende creare un'applicazione di Azure Active Directory completa, nell'esempio seguente i parametri `--home-page` e `--identifier-uris` non devono necessariamente essere indirizzi instradabili effettivi. Nell'esempio seguente viene inoltre specificata una chiave privata basata su password, anziché generare chiavi dal portale di Azure. Attualmente non è possibile generare chiavi dall'interfaccia della riga di comando di Azure.
+Come si sta creando un'applicazione Azure Active Directory completa, hello `--home-page` e `--identifier-uris` parametri nel seguente esempio hello non richiedono l'indirizzo instradabile effettivo toobe. Hello esempio specifica inoltre un segreto basato su password, anziché la generazione di chiavi all'interno di hello portale di Azure. In questo momento, è Impossibile eseguire la generazione di chiavi da hello CLI di Azure.
 
-Creare l'applicazione di Azure Active Directory. Nell'esempio seguente viene creata un'applicazione denominata `myAADApp` che usa la password `myPassword`. Specificare una password personalizzata come di seguito:
+Creare l'applicazione di Azure Active Directory. esempio Hello crea un'applicazione denominata `myAADApp` e viene utilizzata una password di `myPassword`. Specificare una password personalizzata come di seguito:
 
 ```azurecli
 azure ad app create --name myAADApp \
@@ -213,9 +213,9 @@ azure ad app create --name myAADApp \
   --password myPassword
 ```
 
-Prendere nota del valore `applicationId` restituito nell'output del comando precedente. L'ID applicazione verrà usato in alcuni dei passaggi rimanenti. Creare quindi un nome dell'entità servizio per rendere accessibile l'applicazione all'interno dell'ambiente. Per crittografare o decrittografare correttamente i dischi virtuali, le autorizzazioni per la chiave di crittografia archiviata nell'insieme di credenziali delle chiavi devono essere impostate in modo tale da consentire all'applicazione di Azure Active Directory di leggere le chiavi.
+Prendere nota di hello `applicationId` restituito nell'output di hello da hello precedente comando. Questo ID applicazione viene utilizzato in alcune hello rimanenti passaggi. Creare quindi un nome dell'entità servizio (SPN) in modo che un'applicazione hello è accessibile all'interno dell'ambiente. toosuccessfully crittografare o decrittografare i dischi virtuali, le autorizzazioni sulla chiave di crittografia hello archiviati nell'insieme di credenziali chiave devono essere tooread hello chiavi del set toopermit hello Azure Active Directory dell'applicazione.
 
-Creare il nome dell'entità servizio e impostare le autorizzazioni appropriate, come di seguito:
+Creare hello SPN e impostare le autorizzazioni appropriate di hello come segue:
 
 ```azurecli
 azure ad sp create --applicationId myApplicationID
@@ -225,14 +225,14 @@ azure keyvault set-policy --vault-name myKeyVault --spn myApplicationID \
 
 
 ## <a name="add-a-virtual-disk-and-review-encryption-status"></a>Aggiungere un disco virtuale ed esaminare lo stato di crittografia
-Per crittografare alcuni dischi virtuali, è possibile aggiungere un disco a una VM esistente. Aggiungere un disco dati da 5 GB a una VM esistente come di seguito:
+tooactually crittografare alcuni dischi virtuali, consente di aggiungere un disco tooan macchina virtuale esistente. Aggiungere un tooan disco dati di 5Gb esistente VM come indicato di seguito:
 
 ```azurecli
 azure vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
   --size-in-gb 5
 ```
 
-I dischi virtuali non sono attualmente crittografati. Controllare l'attuale stato di crittografia della VM come di seguito:
+i dischi virtuali Hello attualmente non sono crittografati. Controllare hello stato corrente di crittografia di una macchina virtuale come segue:
 
 ```azurecli
 azure vm show-disk-encryption-status --resource-group myResourceGroup --name myVM
@@ -240,21 +240,21 @@ azure vm show-disk-encryption-status --resource-group myResourceGroup --name myV
 
 
 ## <a name="encrypt-virtual-disks"></a>Crittografare i dischi virtuali
-A questo punto, per crittografare i dischi virtuali, vengono riuniti tutti i componenti precedenti:
+toonow crittografare i dischi virtuali hello, riunire tutti i componenti precedenti hello:
 
-1. Specificare l'applicazione di Azure Active Directory e la relativa password.
-2. Specificare l'insieme di credenziali delle chiavi in cui memorizzare i metadati dei dischi crittografati.
-3. Specificare le chiavi di crittografia da usare per la crittografia e la decrittografia effettive.
-4. Specificare se si desidera crittografare il disco del sistema operativo, i dischi dati o tutti i dischi.
+1. Specificare un'applicazione hello Azure Active Directory e la password.
+2. Specificare hello insieme di credenziali chiave toostore hello metadati per i dischi crittografati.
+3. Specificare hello toouse di chiavi di crittografia per hello effettivo crittografia e decrittografia.
+4. Specificare se si desidera tooencrypt hello del sistema operativo disco, i dischi dati hello o tutti.
 
-Controllare i dettagli dell'insieme di credenziali delle chiavi di Azure e la chiave creata, in quanto nel passaggio finale sono necessari l'ID dell'insieme di credenziali delle chiavi, l'URI e l'URL della chiave:
+Consente di esaminare i dettagli di hello per la chiave di insieme di credenziali chiave di Azure e hello che è stato creato, come necessario hello ID insieme di credenziali chiave, URI e quindi digitare un URL passaggio finale hello:
 
 ```azurecli
 azure keyvault show myKeyVault
 azure keyvault key show myKeyVault myKey
 ```
 
-Crittografare il disco virtuale usando l'output dei comandi `azure keyvault show` e `azure keyvault key show` nel modo seguente:
+Crittografare i dischi virtuali tramite output di hello dalla hello `azure keyvault show` e `azure keyvault key show` comandi nel modo seguente:
 
 ```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
@@ -266,7 +266,7 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
   --volume-type Data
 ```
 
-Poiché il comando precedente ha molte variabili, l'esempio seguente contiene il comando completo come riferimento:
+Come hello precedente comando dispone di numerose variabili, hello esempio seguente è di comandi completo per il riferimento hello:
 
 ```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
@@ -279,9 +279,9 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
   --volume-type Data
 ```
 
-L'interfaccia della riga di comando di Azure non fornisce gli errori dettagliati durante il processo di crittografia. Per ulteriori informazioni sulla risoluzione dei problemi, vedere `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log` sulla VM da crittografare.
+Hello CLI di Azure non fornisce gli errori dettagliati durante il processo di crittografia hello. Per ulteriori informazioni sulla risoluzione dei problemi, esaminare `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log` su hello VM si esegue la crittografia.
 
-Riesaminare infine lo stato della crittografia per controllare che ora i dischi virtuali siano crittografati:
+Infine, consente di esaminare lo stato di crittografia hello nuovamente tooconfirm che i dischi virtuali ora sono stati crittografati:
 
 ```azurecli
 azure vm show-disk-encryption-status --resource-group myResourceGroup --name myVM
@@ -289,16 +289,16 @@ azure vm show-disk-encryption-status --resource-group myResourceGroup --name myV
 
 
 ## <a name="add-additional-data-disks"></a>Aggiungere ulteriori dischi dati
-Una volta crittografati i dischi dati, in un secondo momento è possibile aggiungere alla VM ulteriori dischi virtuali e anche crittografarli. Quando si esegue il comando `azure vm enable-disk-encryption`, incrementare la versione di sequenza usando il parametro `--sequence-version`. Questo parametro della versione di sequenza consente di eseguire ripetutamente operazioni sulla stessa VM.
+Dopo che sono stati crittografati i dischi dati, è possibile in seguito si aggiungono altri dischi virtuali tooyour VM e anche crittografarle. Quando si esegue hello `azure vm enable-disk-encryption` comando, incremento hello sequenza versione che utilizza hello `--sequence-version` parametro. Questo parametro di versione sequenza consente tooperform ripetute operazioni con hello stessa macchina virtuale.
 
-Ad esempio, consente di aggiungere alla VM un secondo disco virtuale, come di seguito:
+Ad esempio, consente di aggiungere un secondo tooyour disco virtuale VM come segue:
 
 ```azurecli
 azure vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
   --size-in-gb 5
 ```
 
-Eseguire nuovamente il comando per crittografare i dischi virtuali, questa volta aggiungendo il parametro `--sequence-version` e incrementando il valore della prima esecuzione, come di seguito:
+Eseguire di nuovo hello comando tooencrypt hello dischi virtuali, questa volta aggiungendo hello `--sequence-version` parametro e incremento hello compreso il primo eseguire come segue:
 
 ```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
@@ -314,4 +314,4 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per altre informazioni sulla gestione dell'insieme di credenziali delle chiavi di Azure, tra cui come eliminare chiavi crittografiche e insiemi di credenziali, vedere [Gestire l'insieme di credenziali delle chiavi tramite l'interfaccia della riga di comando](../../key-vault/key-vault-manage-with-cli2.md).
-* Per altre informazioni sulla crittografia del disco, tra cui come preparare una VM personalizzata con crittografia da caricare in Azure, vedere [Crittografia dischi di Azure](../../security/azure-security-disk-encryption.md).
+* Per ulteriori informazioni sulla crittografia del disco, ad esempio la preparazione di un tooAzure di tooupload macchina virtuale personalizzata crittografato, vedere [crittografia del disco Azure](../../security/azure-security-disk-encryption.md).

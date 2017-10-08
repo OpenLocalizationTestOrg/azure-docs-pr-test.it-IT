@@ -1,5 +1,5 @@
 ---
-title: Distribuzione di risorse di calcolo Linux con modelli di Azure Resource Manager | Documentazione Microsoft
+title: aaaDeploying risorse di calcolo di Linux con modelli di gestione risorse di Azure | Documenti Microsoft
 description: Macchine virtuali di Azure - Esercitazione DotNet Core
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,24 +16,24 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c3f9f98079e0c89d1231f9c3e62e82c33ad18236
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bc26805860fed47923d46fc84f357060f68a951
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-architecture-with-azure-resource-manager-templates-for-linux-vms"></a>Architettura delle applicazioni con i modelli di Azure Resource Manager per macchine virtuali Linux
 
-Quando si sviluppa una distribuzione di Azure Resource Manager, i requisiti di calcolo devono essere mappati ai servizi e alle risorse di Azure. Se un'applicazione è costituita da diversi endpoint HTTP, da un database e da un servizio di caching dei dati, le risorse di Azure che ospitano ognuno di questi componenti devono essere razionalizzate. Nel caso specifico, l'applicazione Music Store di esempio include un'applicazione Web, ospitata in una macchina virtuale, e un database SQL, ospitato in un database SQL di Azure. 
+Quando si sviluppa una distribuzione di gestione risorse di Azure, i requisiti di calcolo necessario toobe mappato tooAzure risorse e servizi. Se un'applicazione è costituita da diversi endpoint http, un database e un servizio di memorizzazione di dati, hello risorse di Azure che ospitano ognuno di questi componenti deve toobe ragionato. Ad esempio, un'applicazione hello esempio negozio include un'applicazione web ospitata in una macchina virtuale e un database SQL, che è ospitato in database SQL di Azure. 
 
-Questo documento descrive in che modo sono configurate le risorse di calcolo dell'applicazione Music Store nel modello di esempio di Azure Resource Manager. Tutte le dipendenze e le configurazioni univoche sono evidenziate. Per ottenere risultati ottimali, pre-distribuire un'istanza della soluzione alla propria sottoscrizione di Azure ed esercitarsi con il modello di Azure Resource Manager. Il modello completo è disponibile in [Music Store Deployment on Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)(Distribuzione di Music Store in Ubuntu). 
+Questo documento vengono indicati come risorse di calcolo negozio hello configurate nel modello di gestione risorse di Azure di esempio hello. Tutte le dipendenze e le configurazioni univoche sono evidenziate. Per un'esperienza ottimale hello, pre-distribuire un'istanza di hello soluzione tooyour sottoscrizione di Azure e di lavoro nel modello di gestione risorse di Azure hello. è disponibili qui: modello completa Hello [distribuzione archivio musica in Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux). 
 
 ## <a name="virtual-machine"></a>Macchina virtuale
-L'applicazione Music Store include un'applicazione Web in cui i clienti possono cercare e acquistare musica. Esistono vari servizi di Azure che possono ospitare applicazioni Web. In questo esempio viene usata una macchina virtuale. Con il modello Music Store di esempio, viene distribuita una macchina virtuale, viene installato un server Web e viene installato e configurato il sito Web di Music Store. Ai fini di questo articolo, viene illustrata solo la distribuzione della macchina virtuale. La configurazione del server Web e dell'applicazione è descritta in un articolo successivo.
+applicazione di archiviazione di file musicali Hello include un'applicazione web in cui i clienti possono esplorare e acquistare musica. Esistono vari servizi di Azure che possono ospitare applicazioni Web. In questo esempio viene usata una macchina virtuale. Utilizza modello negozio di esempio hello, viene distribuita una macchina virtuale, installare un server web e sito Web di archivio musica hello installato e configurato. Per i migliori risultati hello di questo articolo, distribuzione della macchina virtuale solo hello è descritta in dettaglio. configurazione di Hello del server web hello e dell'applicazione hello è descritta in dettaglio in un articolo più avanti.
 
-È possibile aggiungere una macchina virtuale a un modello usando la procedura guidata Aggiungi nuova risorsa di Visual Studio o inserendo una risorsa JSON valida nel modello di distribuzione. Quando si distribuisce una macchina virtuale, sono necessarie anche alcune risorse correlate. Se per creare il modello si usa Visual Studio, queste risorse vengono create automaticamente. Se invece si crea il modello manualmente, queste risorse devono essere inserite e configurate.
+Una macchina virtuale può essere aggiunti tooa modello utilizzando Visual Studio Aggiungi nuova risorsa o procedura guidata, inserendo JSON valido nel modello di distribuzione hello hello. Quando si distribuisce una macchina virtuale, sono necessarie anche alcune risorse correlate. Se usi Visual Studio toocreate hello modello, queste risorse vengono create automaticamente. Se si crea manualmente il modello di hello, queste risorse devono toobe inserito e configurato.
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Esempio JSON di macchina virtuale](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L295).
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [JSON di macchina virtuale](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L295).
 
 ```json
 {
@@ -61,14 +61,14 @@ Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello d
     }
 ```
 
-Dopo la distribuzione, le proprietà della macchina virtuale possono essere visualizzate nel portale di Azure.
+Una volta distribuito, le proprietà della macchina virtuale hello possono essere visualizzate nel portale di Azure hello.
 
 ![Macchina virtuale](./media/dotnet-core-2-architecture/vm.png)
 
 ## <a name="storage-account"></a>Account di archiviazione
-Gli account di archiviazione presentano molte funzionalità e opzioni di archiviazione. Per il contesto delle macchine virtuali di Azure, un account di archiviazione contiene le unità disco rigido virtuali della macchina virtuale e altri dischi dati. L'esempio Music Store include un solo account di archiviazione per contenere l'unità disco rigido virtuale di ogni macchina virtuale nella distribuzione. 
+Gli account di archiviazione presentano molte funzionalità e opzioni di archiviazione. Per il contesto di hello delle macchine virtuali di Azure, un account di archiviazione contiene hello dischi rigidi virtuali della macchina virtuale hello e per eventuali dischi dati aggiuntivi. esempio di negozio Hello include uno storage account toohold hello unità disco rigido virtuale di ogni macchina virtuale nella distribuzione hello. 
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Account di archiviazione](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L109).
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [Account di archiviazione](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L109).
 
 ```json
 {
@@ -85,9 +85,9 @@ Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello d
 }
 ```
 
-Un account di archiviazione è associato a una macchina virtuale all'interno della dichiarazione del modello di Resource Manager per la macchina virtuale. 
+Un account di archiviazione è associato a una macchina virtuale all'interno della dichiarazione di modello di gestione risorse di hello della macchina virtuale hello. 
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Associazione della macchina virtuale con l'account di archiviazione](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L341).
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [macchina virtuale e Account di archiviazione associazione](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L341).
 
 ```json
 "osDisk": {
@@ -100,20 +100,20 @@ Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello d
 }
 ```
 
-Dopo la distribuzione, l'account di archiviazione può essere visualizzato nel portale di Azure.
+Dopo la distribuzione, l'account di archiviazione hello possono essere visualizzati nel portale di Azure hello.
 
 ![Account di archiviazione](./media/dotnet-core-2-architecture/storacct.png)
 
-Facendo clic sul contenitore BLOB dell'account di archiviazione, è possibile visualizzare il file dell'unità disco rigido virtuale per ogni macchina virtuale distribuita con il modello.
+Facendo clic in un contenitore blob account di archiviazione hello, possono essere visualizzati i file di disco rigido virtuale hello per ogni macchina virtuale distribuita con il modello di hello.
 
 ![Unità disco rigido virtuali](./media/dotnet-core-2-architecture/vhd.png)
 
 Per altre informazioni su Archiviazione di Azure, vedere [Documentazione su Archiviazione](https://azure.microsoft.com/documentation/services/storage/).
 
 ## <a name="virtual-network"></a>Rete virtuale
-Se una macchina virtuale richiede una connessione di rete interna, ad esempio per avere la possibilità di comunicare con altre macchine virtuali e risorse di Azure, è necessario configurare una rete virtuale di Azure.  Una rete virtuale non rende accessibile la macchina virtuale attraverso Internet. La connettività pubblica richiede un indirizzo IP pubblico, come descritto più avanti in questa serie.
+Se una macchina virtuale richiede una rete interna, ad esempio hello possibilità toocommunicate con altre macchine virtuali e le risorse di Azure, è necessario una rete virtuale di Azure.  Una rete virtuale non rendere hello macchina virtuale accessibili tramite internet hello. La connettività pubblica richiede un indirizzo IP pubblico, come descritto più avanti in questa serie.
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Rete virtuale e subnet](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L136).
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [rete virtuale e le subnet](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L136).
 
 ```json
 {
@@ -148,14 +148,14 @@ Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello d
 }
 ```
 
-Nel portale di Azure la rete virtuale ha un aspetto simile all'immagine seguente. Si noti che tutte le macchine virtuali distribuite con il modello sono collegate alla rete virtuale.
+Dal portale di Azure hello, rete virtuale hello è simile a hello seguente immagine. Si noti che tutte le macchine virtuali distribuite con il modello di hello toohello collegati di rete virtuale.
 
 ![Rete virtuale](./media/dotnet-core-2-architecture/vnet.png)
 
 ## <a name="network-interface"></a>Interfaccia di rete
- Un'interfaccia di rete connette una macchina virtuale a una rete virtuale, in particolare a una subnet definita nella rete virtuale. 
+ Un'interfaccia di rete si connette a una rete virtuale della macchina virtuale tooa, in particolare subnet tooa che è stata definita nella rete virtuale hello. 
 
- Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Interfaccia di rete](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L166).
+ Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [interfaccia di rete](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L166).
 
 ```json
 {
@@ -202,9 +202,9 @@ Nel portale di Azure la rete virtuale ha un aspetto simile all'immagine seguente
 }
 ```
 
-Ogni risorsa di macchina virtuale include un profilo di rete, in cui l'interfaccia di rete è associata alla macchina virtuale.  
+Ogni risorsa di macchina virtuale include un profilo di rete, interfaccia di rete Hello è associata a una macchina virtuale hello in questo profilo.  
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Profilo di rete della macchina virtuale](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L350).
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [il profilo di rete di macchina virtuale](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L350).
 
 ```json
 "networkProfile": {
@@ -216,18 +216,18 @@ Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello d
 }
 ```
 
-Nel portale di Azure l'interfaccia di rete ha un aspetto simile all'immagine seguente. L'associazione dell'indirizzo IP interno con la macchina virtuale è visibile nella risorsa dell'interfaccia di rete.
+Dal portale di Azure hello, l'interfaccia di rete hello è simile a hello seguente immagine. indirizzo IP interno Hello e associazione di hello macchina virtuale possono essere visualizzati sulla risorsa di interfaccia di rete hello.
 
 ![Interfaccia di rete](./media/dotnet-core-2-architecture/nic.png)
 
 Per altre informazioni sulle reti virtuali di Azure, vedere [Documentazione su Rete virtuale](https://azure.microsoft.com/documentation/services/virtual-network/).
 
 ## <a name="azure-sql-database"></a>Database SQL di Azure
-Oltre a una macchina virtuale che ospita il sito Web di Music Store, viene distribuito un database SQL di Azure per ospitare il database di Music Store. L'uso di un database SQL di Azure è vantaggioso perché consente di evitare di usare un secondo set di macchine virtuali, integrando scalabilità e disponibilità nel servizio.
+Macchina virtuale tooa hosting del sito Web di hello Negozio, un Database di SQL Azure è inoltre database dell'archivio di musica hello toohost distribuito. Hello vantaggio offerto dall'utilizzo del Database SQL di Azure qui è un secondo set di macchine virtuali che non sia obbligatorio, scalabilità e disponibilità è incorporata nel servizio di hello.
 
-È possibile aggiungere un database SQL di Azure a un modello usando la procedura guidata Aggiungi nuova risorsa di Visual Studio o inserendo una risorsa JSON valida nel modello. La risorsa di SQL Server include un nome utente e una password a cui sono concessi diritti amministrativi sull'istanza di SQL. Viene inoltre aggiunta una risorsa di firewall SQL. Per impostazione predefinita, le applicazioni ospitate in Azure sono in grado di connettersi all'istanza di SQL. Per consentire a un'applicazione esterna come SQL Server Management Studio di connettersi all'istanza di SQL, il firewall deve essere configurato. Ai fini della demo di Music Store, è sufficiente accettare la configurazione predefinita. 
+È possibile aggiungere un database SQL di Azure utilizzando Visual Studio Aggiungi nuova risorsa o procedura guidata, inserendo un JSON valido in un modello di hello. Hello risorsa di SQL Server include un nome utente e una password che vengono concessi i diritti amministrativi sull'istanza di SQL Server hello. Viene inoltre aggiunta una risorsa di firewall SQL. Per impostazione predefinita, le applicazioni ospitate in Azure sono in grado di tooconnect con l'istanza SQL hello. applicazione esterna tooallow tali una SQL Server Management studio tooconnect toohello istanza SQL, firewall hello deve toobe configurato. Per i migliori risultati hello della demo negozio hello, la configurazione predefinita di hello è corretta. 
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Database SQL di Azure](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L401).
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [database SQL di Azure](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L401).
 
 ```json
 {
@@ -262,7 +262,7 @@ Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello d
 }
 ```
 
-Di seguito è illustrato il database MusicStore di SQL Server come visualizzato nel portale di Azure.
+Visualizzazione di hello SQL server e database MusicStore come illustrato nel portale di Azure hello.
 
 ![SQL Server](./media/dotnet-core-2-architecture/sql.png)
 

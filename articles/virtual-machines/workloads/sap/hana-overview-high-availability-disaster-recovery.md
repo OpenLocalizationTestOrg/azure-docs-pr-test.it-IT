@@ -1,5 +1,5 @@
 ---
-title: "Disponibilità elevata e ripristino di emergenza di SAP HANA in Azure (istanze di grandi dimensioni) | Documentazione Microsoft"
+title: "ripristino di emergenza e disponibilità aaaHigh di SAP HANA in Azure (istanze di grandi dimensioni) | Documenti Microsoft"
 description: "Implementare la disponibilità elevata e pianificare il ripristino di emergenza di SAP HANA in Azure (istanze di grandi dimensioni)."
 services: virtual-machines-linux
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f95e944fc3ec3a831d97386443eb644420ae54dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0c0967f54cf29bbb275eb7cda9d36608488add9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sap-hana-large-instances-high-availability-and-disaster-recovery-on-azure"></a>Disponibilità elevata e ripristino di emergenza di SAP HANA (istanze di grandi dimensioni) in Azure 
 
-La disponibilità elevata e il ripristino di emergenza sono aspetti importanti per l'esecuzione di uno o più server SAP HANA di importanza critica in Azure (istanze di grandi dimensioni). Per progettare e implementare la corretta strategia di disponibilità elevata e ripristino di emergenza è fondamentale la collaborazione con SAP, l'integratore di sistemi o Microsoft. È importante anche prendere in considerazione l'obiettivo punto di ripristino e l'obiettivo tempo di ripristino, che sono specifici dell'ambiente.
+La disponibilità elevata e il ripristino di emergenza sono aspetti importanti per l'esecuzione di uno o più server SAP HANA di importanza critica in Azure (istanze di grandi dimensioni). È importante toowork con SAP, l'integratore di sistema, o Microsoft tooproperly architect e implementare hello strategia destra elevata-disponibilità/ripristino di emergenza. È inoltre importante tooconsider obiettivo del punto di ripristino hello e obiettivo tempo di ripristino, che sono tooyour specifico ambiente.
 
 ## <a name="high-availability"></a>Disponibilità elevata
 
-Microsoft supporta i metodi di disponibilità elevata "predefiniti" di SAP HANA, che comprendono:
+Microsoft supporta metodi di disponibilità elevata di SAP HANA "out della casella hello," che includono:
 
-- **Replica di archiviazione:** la capacità del sistema di archiviazione di replicare tutti i dati in un'altra posizione (all'interno dello stesso data center o separatamente). SAP HANA funziona in modo indipendente da questo metodo.
-- **Replica di sistema HANA:** la replica di tutti i dati di SAP HANA in un sistema SAP HANA separato. L'obiettivo tempo di ripristino è ridotto al minimo tramite la replica dei dati a intervalli regolari. SAP HANA supporta le modalità asincrona, sincrona in memoria e sincrona (consigliata solo per i sistemi SAP HANA all'interno della stesso data center o distanti meno di 100 km). Nell'attuale progettazione dei timestamp HANA delle istanze di grandi dimensioni, la replica di sistema HANA è utilizzabile solo per la disponibilità elevata.
-- **Failover automatico dell'host:** una soluzione locale di ripristino dagli errore da usare come alternativa alla replica di sistema. Quando il nodo master diventa non disponibile, uno o più nodi SAP HANA in standby sono configurati in modalità di scalabilità orizzontale e SAP HANA esegue automaticamente il failover in un altro nodo.
+- **Replica di archiviazione:** hello tooreplicate possibilità di sistema di archiviazione percorso di tutti i dati tooanother (all'interno, o separatamente, hello stesso Data Center). SAP HANA funziona in modo indipendente da questo metodo.
+- **Replica DFS HANA:** hello replica di tutti i dati nel sistema SAP HANA di SAP HANA tooa distinto. obiettivo tempo di ripristino Hello è ridotta a icona tramite la replica dei dati a intervalli regolari. SAP HANA supporta le modalità in memoria e sincrone sincrone, asincrone (consigliata solo per SAP HANA tutti i sistemi all'interno di hello stesso Data Center o meno di 100 KM distanza). Nella struttura corrente di hello di indicatori di grandi dimensioni istanza HANA, replica DFS HANA è utilizzabile per la disponibilità elevata.
+- **Host con failover automatico:** un toouse soluzione-recupero da errori locali come una replica toosystem alternativo. Quando il nodo principale hello diventa non disponibile, uno o più nodi di SAP HANA standby sono configurati in modalità di scalabilità orizzontale e SAP HANA automaticamente eseguito il failover tooanother nodo.
 
-Per altre informazioni sulla disponibilità elevata di SAP HANA, vedere le risorse SAP seguenti:
+Per ulteriori informazioni sulla disponibilità elevata di SAP HANA, vedere le seguenti informazioni SAP hello:
 
 - [SAP HANA High-Availability Whitepaper](http://go.sap.com/documents/2016/05/f8e5eeba-737c-0010-82c7-eda71af511fa.html) (White paper sulla disponibilità elevata di SAP HANA)
 - [SAP HANA Administration Guide](http://help.sap.com/hana/SAP_HANA_Administration_Guide_en.pdf) (Guida all'amministrazione di SAP HANA)
@@ -43,77 +43,77 @@ Per altre informazioni sulla disponibilità elevata di SAP HANA, vedere le risor
 
 ## <a name="disaster-recovery"></a>Ripristino di emergenza
 
-SAP HANA in Azure (istanze di grandi dimensioni) è disponibile in due aree di Azure all'interno di un'area geopolitica. Tra i due moduli per istanze di grandi dimensioni delle due diverse aree è presente una connettività di rete diretta per la replica dei dati durante il ripristino di emergenza. La replica dei dati è basata sull'infrastruttura di archiviazione. La replica non viene eseguita per impostazione predefinita. Viene eseguita per le configurazioni dei clienti che hanno ordinato il ripristino di emergenza. Nell'attuale progettazione la replica di sistema HANA non può essere usata per il ripristino di emergenza.
+SAP HANA in Azure (istanze di grandi dimensioni) è disponibile in due aree di Azure all'interno di un'area geopolitica. Tra indicatori di grandi dimensioni istanza due di hello di due aree diverse è una connettività di rete diretto per la replica dei dati durante il ripristino di emergenza. replica Hello dei dati di hello è basato l'infrastruttura di archiviazione. la replica di Hello non viene eseguita per impostazione predefinita. Viene eseguito per le configurazioni del cliente hello ordinati il ripristino di emergenza hello. Nella finestra di progettazione corrente hello, replica DFS HANA non utilizzabile per il ripristino di emergenza.
 
-Tuttavia, per sfruttare i vantaggi del ripristino di emergenza, è necessario iniziare a progettare la connettività di rete alle due diverse aree di Azure in base a questo requisito. Per farlo, occorre implementare un circuito ExpressRoute di Azure per la connessione dall'infrastruttura locale all'area principale di Azure e un altro circuito per la connessione dall'infrastruttura locale all'area di ripristino di emergenza. Questa misura consente di gestire le situazioni in cui si verifica un problema all'interno di un'intera area di Azure, inclusa la posizione di un router MSEE (Microsoft Enterprise Edge).
+Tuttavia, il vantaggio di tootake hello ripristino di emergenza, è necessario toostart toodesign hello rete connettività toohello due diverse aree di Azure. toodo in tal caso, non è presente una connessione del circuito ExpressRoute di Azure locale l'area principale di Azure e un'altra connessione circuito dall'area di ripristino di emergenza tooyour locale. Questa misura consente di gestire le situazioni in cui si verifica un problema all'interno di un'intera area di Azure, inclusa la posizione di un router MSEE (Microsoft Enterprise Edge).
 
-Come seconda misura, è possibile connettere tutte le reti virtuali di Azure collegate a SAP HANA in Azure (istanze di grandi dimensioni) in una delle aree a entrambi i circuiti ExpressRoute. In questo modo è possibile gestire il caso in cui una sola delle posizioni MSEE che connette l'infrastruttura locale ad Azure risulti fuori servizio.
+Come seconda misura, è possibile connettere tutte le reti virtuali di Azure che si connettono tooSAP HANA in Azure (istanze di grandi dimensioni) in uno dei hello aree tooboth di tali circuiti ExpressRoute. Questa misura consente di risolvere un caso in cui solo una delle posizioni MSEE hello che si connette il percorso locale con Azure va fuori servizio.
 
-La figura seguente mostra la configurazione ottimale per il ripristino di emergenza:
+Hello figura seguente viene illustrata la configurazione ottimale di hello per il ripristino di emergenza:
 
 ![Configurazione ottimale per il ripristino di emergenza](./media/hana-overview-high-availability-disaster-recovery/image1-optimal-configuration.png)
 
-La configurazione ottimale per il ripristino di emergenza della rete è costituita da due circuiti ExpressRoute che connettono l'infrastruttura locale alle due diverse aree di Azure. Un circuito va verso l'area 1, in cui viene eseguita un'istanza di produzione. Il secondo circuito ExpressRoute passa all'area numero 2, eseguendo alcune istanze HANA non di produzione. Questo è importante se un'intera area di Azure, incluso il timestamp di MSEE e dell'istanza di grandi dimensioni, esce dalla griglia.
+Hello caso ottimale per una configurazione di ripristino di emergenza di rete hello è toohave due circuiti ExpressRoute da on-premise toohello due diverse aree di Azure. Un circuito passa tooregion #1 in esecuzione un'istanza di produzione. circuito ExpressRoute secondo Hello passa tooregion #2, alcune istanze HANA non di produzione in esecuzione. (Questo è importante se un'intera regione di Azure, tra cui hello MSEE e indicatore di grandi dimensioni-istanza, viene disattivato griglia hello).
 
-Come seconda misura, le diverse reti virtuali sono connesse ai vari circuiti ExpressRoute collegati a SAP HANA in Azure (istanze di grandi dimensioni). È possibile ignorare la posizione in cui un router MSEE smette di funzionare oppure ridurre l'obiettivo punto di ripristino per il ripristino di emergenza, come illustrato più avanti.
+Come seconda misura, hello diverse reti virtuali è connessa toohello circuiti ExpressRoute diversi che sono connessi tooSAP HANA in Azure (istanze di grandi dimensioni). È possibile ignorare percorso hello in cui un MSEE ha esito negativo oppure è possibile ridurre l'obiettivo del punto di ripristino hello per il ripristino di emergenza, come illustrato più avanti.
 
-Per la configurazione del ripristino di emergenza sono previsti anche i requisiti seguenti:
+Hello requisiti successivi per l'installazione di ripristino di emergenza sono:
 
-- È necessario ordinare SKU di SAP HANA in Azure (istanze di grandi dimensioni) della stessa dimensione degli SKU di produzione e distribuirli nell'area di ripristino di emergenza. Queste istanze possono essere usate per eseguire istanze di QA HANA, test o sandbox.
-- È necessario ordinare un profilo di ripristino di emergenza per ogni SKU di SAP HANA in Azure (istanze di grandi dimensioni) che si vuole ripristinare nel sito di ripristino di emergenza, se necessario. In questo modo vengono allocati volumi di archiviazione, che vengono usati come destinazione della replica di archiviazione dall'area di produzione all'area di ripristino di emergenza.
+- È necessario ordinare SAP HANA per gli SKU di Azure (istanze di grandi dimensioni) di hello stesso dimensioni di SKU di produzione e di distribuirli nell'area di ripristino di emergenza hello. Queste istanze possono essere utilizzati toorun test, sandbox o QA HANA istanze.
+- È necessario ordinare un profilo di ripristino di emergenza per ciascuna del SAP HANA per gli SKU di Azure (istanze di grandi dimensioni) che si desidera toorecover nel sito di ripristino di emergenza hello, se necessario. Questa azione comporta l'allocazione toohello di volumi di archiviazione, che sono di replica di archiviazione hello dalla propria area di produzione nell'area di ripristino di emergenza hello hello.
 
-Una volta soddisfatti i requisiti precedenti, è responsabilità dell'utente avviare la replica di archiviazione. Nell'infrastruttura di archiviazione usata per SAP HANA in Azure (istanze di grandi dimensioni), la replica di archiviazione è basata sugli snapshot di archiviazione. Per avviare la replica di ripristino di emergenza, è necessario eseguire questi snapshot:
+Una volta soddisfatti hello precedenti requisiti, è la replica di archiviazione di responsabilità toostart hello. In un'infrastruttura di archiviazione hello utilizzata per SAP HANA in Azure (istanze di grandi dimensioni), base hello della replica di archiviazione è snapshot di archiviazione. replica di ripristino di emergenza hello toostart, è necessario tooperform:
 
 - Uno snapshot del LUN di avvio, come descritto in precedenza.
 - Uno snapshot dei volumi correlati a HANA, come descritto in precedenza.
 
-Dopo l'esecuzione di questi snapshot, viene effettuato il seeding di una replica iniziale dei volumi nei volumi associati al profilo di ripristino di emergenza nell'area di ripristino di emergenza.
+Dopo aver eseguito questi snapshot, una replica iniziale dei volumi hello viene effettuato il seeding hello in volumi in cui sono associati al profilo di ripristino di emergenza nell'area di ripristino di emergenza hello.
 
-Successivamente, il più recente snapshot di archiviazione viene utilizzato ogni ora per replicare i dati differenziali presenti nei volumi di archiviazione.
+Successivamente, in cui ogni ora viene utilizzato con snapshot di archiviazione più recente di hello delta hello tooreplicate che sviluppano su volumi di archiviazione hello.
 
-L'obiettivo punto di ripristino che è possibile ottenere con questa configurazione va da 60 a 90 minuti. Per ottenere un migliore obiettivo punto di ripristino in caso di ripristino di emergenza, è necessario copiare i backup del log delle transazioni da SAP HANA in Azure (istanze di grandi dimensioni) all'altra area di Azure. Per raggiungere questo obiettivo punto di ripristino, eseguire le operazioni seguenti:
+obiettivo del punto di ripristino Hello che è possibile ottenere con questa configurazione è di 60 minuti too90. un ripristino migliore tooachieve obiettivo del punto in caso di ripristino di emergenza hello, copia hello HANA backup log delle transazioni da SAP HANA in Azure (istanze di grandi dimensioni) toohello altre aree di Azure. tooachieve questo obiettivo del punto di ripristino, hello seguenti:
 
-1. Eseguire il backup del log delle transazioni di HANA il più frequentemente possibile in /hana/log/backup.
-2. Copiare i backup del log delle transazioni completati in una macchina virtuale (VM) di Azure, che si trova in una rete virtuale connessa al server di SAP HANA in Azure (istanze di grandi dimensioni).
-3. Da tale VM copiare il backup in una VM di una rete virtuale nell'area di ripristino di emergenza.
-4. Mantenere i backup del log delle transazioni in tale area nella VM.
+1. Eseguire il backup delle transazioni HANA hello accedere come spesso possibile troppo/hana / / backup del log.
+2. Copiare i backup del log delle transazioni hello quando sono finiti tooan macchina virtuale di Azure (VM), ovvero in una rete virtuale connessa toohello SAP HANA nel server di Azure (istanze di grandi dimensioni).
+3. Dalla macchina virtuale, copiare hello backup tooa macchina virtuale che risiede in una rete virtuale nell'area di ripristino di emergenza hello.
+4. Mantenere i backup del log di transazione hello in tale area nel hello VM.
 
-In caso di emergenza, dopo avere distribuito il profilo di ripristino di emergenza su un server effettivo, copiare i backup del log delle transazioni dalla VM al server di SAP HANA in Azure (istanze di grandi dimensioni), che è ora il server primario nell'area di ripristino di emergenza, e ripristinare tali backup. Questo ripristino è possibile perché lo stato di HANA nei dischi di ripristino di emergenza corrisponde a uno snapshot HANA. Questo è il punto di offset per altre operazioni di ripristino dei backup del log delle transazioni.
+In caso di emergenza, dopo aver distribuito il profilo di ripristino di emergenza hello in un server effettivo, copiare i backup del log delle transazioni hello hello VM toohello SAP HANA in Azure (istanze di grandi dimensioni) è ora server primario di hello nell'area di ripristino di emergenza hello, e ripristinare tali backup. Il ripristino è possibile perché lo stato di hello di HANA su dischi di ripristino di emergenza hello è quello di uno snapshot HANA. Si tratta di punto di offset hello per ulteriori operazioni di ripristino di backup del log delle transazioni.
 
 ## <a name="backup-and-restore"></a>Backup e ripristino
 
-Uno degli aspetti più importanti per i database operativi è quello di assicurarsi che i database possano essere protetti da diversi eventi catastrofici. Questi eventi possono avere diverse cause, da disastri naturali a semplici errori umani.
+Uno dei database toooperating aspetti più importanti di hello consiste nel garantire database hello può essere protetti da vari eventi irreversibili. Questi eventi possono essere causati da niente da errori dell'utente toosimple calamità naturali.
 
-Il backup di un database con possibilità di ripristino a una temporizzazione qualsiasi, ad esempio prima dell'eliminazione di dati critici, consente di ripristinare il database a uno stato che sia il più vicino possibile a quello precedente l'interruzione.
+Backup di database, con toorestore possibilità hello è tooany punto nel tempo (ad esempio prima che un utente eliminato i dati critici), consente il ripristino stato di tooa più vicino possibile toohello presentava prima che si è verificato interruzioni hello.
 
 Per ottenere risultati ottimali, è necessario eseguire due tipi di backup:
 
 - Backup del database
 - Backup dei log delle transazioni
 
-Oltre a creare backup di database completi al livello applicazione, è possibile raggiungere risultati ancora migliori eseguendo i backup con gli snapshot di archiviazione. Anche i backup dei log sono importanti per ripristinare il database, oltre che per svuotare i log dalle transazioni di cui è già stato eseguito il commit.
+Inoltre toofull il backup del database eseguito a livello di applicazione, è possibile anche più accurato eseguendo il backup con snapshot di archiviazione. Esecuzione di backup del log è anche importante per il ripristino di database hello (tooempty hello log delle transazioni già eseguito il commit e).
 
 SAP HANA in Azure (istanze di grandi dimensioni) offre due opzioni di backup e ripristino:
 
-- Eseguire il backup e il ripristino manualmente. Dopo avere eseguito gli opportuni calcoli per assicurarsi che sia disponibile spazio sufficiente sui dischi, eseguire backup completi di database e log usando specifici metodi di backup (su tali dischi). Nel corso del tempo, i backup vengono copiati in Archiviazione di Azure, dopo la configurazione di un file server basato su Azure con archiviazione Standard virtualmente illimitata. In alternativa, è possibile usare l'insieme di credenziali di Backup di Azure o l'archiviazione di Azure ad accesso sporadico. Un'altra soluzione è usare uno strumento di protezione dei dati di terze parti, ad esempio Commvault, per archiviare i backup dopo averli copiati in un account di archiviazione. L'opzione di backup manuale può essere necessaria anche per i dati che devono essere archiviati più a lungo a scopo di controllo e conformità.
-- Usare la funzionalità per il backup e il ripristino offerta dall'infrastruttura sottostante di SAP HANA in Azure (istanze di grandi dimensioni). Questa opzione soddisfa le esigenze di backup e rende quasi obsoleti i backup manuali, tranne quando i backup dei dati sono necessari per motivi di conformità. La parte restante di questa sezione illustra le funzionalità di backup e ripristino offerte con le istanze di grandi dimensioni HANA.
+- Eseguire il backup e il ripristino manualmente. Dopo avere calcolato tooensure spazio su disco sufficiente, eseguire backup completi di database e del log tramite i metodi di backup su disco (toothose dischi). Nel corso del tempo, hello backup vengono copiati tooan account di archiviazione di Azure (dopo aver configurato un server di file basati su Azure con archiviazione virtualmente illimitata) o usare un insieme di credenziali di Azure Backup o archiviazione di Azure ignoto. Un'altra opzione è toouse uno strumento di protezione dati di terze parti, ad esempio Commvault, i backup di hello toostore dopo che sono copiati tooa account di archiviazione. Hello DIY opzione di backup può essere necessario per i dati che devono essere archiviati per periodi più lunghi per scopi di controllo di conformità e toobe.
+- Utilizzare hello di backup e ripristino delle funzionalità che hello infrastruttura sottostante di SAP HANA in Azure (istanze di grandi dimensioni) fornisce. Questa opzione soddisfa hello necessario per i backup e rende backup manuali quasi obsoleta (eccetto in cui sono necessari per motivi di conformità i backup di dati). rest Hello di indirizzi di questa sezione hello backup e ripristino delle funzionalità offerte con HANA (istanze di grandi dimensioni).
 
 > [!NOTE]
-> La tecnologia di snapshot che viene utilizzata dall'infrastruttura sottostante di HANA (istanze di grandi dimensioni) presenta una dipendenza da snapshot di SAP HANA. Gli snapshot di SAP HANA non funzionano in combinazione con i contenitori di database multi-tenant SAP HANA. Di conseguenza questo metodo di backup non può essere usato per distribuire contenitori di database multi-tenant SAP HANA.
+> tecnologia di snapshot Hello utilizzata dall'infrastruttura sottostante di hello di HANA (istanze di grandi dimensioni) presenta una dipendenza per gli snapshot di SAP HANA. Gli snapshot di SAP HANA non funzionano in combinazione con i contenitori di database multi-tenant SAP HANA. Di conseguenza, questo metodo di backup non può essere utilizzato toodeploy SAP HANA Multitenant Database contenitori.
 
 ### <a name="using-storage-snapshots-of-sap-hana-on-azure-large-instances"></a>Uso degli snapshot di archiviazione di SAP HANA in Azure (istanze di grandi dimensioni)
 
-L'infrastruttura di archiviazione sottostante di SAP HANA in Azure (istanze di grandi dimensioni) supporta il concetto di snapshot di archiviazione dei volumi. Il backup e il ripristino di un determinato volume sono supportati con le considerazioni seguenti:
+infrastruttura di archiviazione Hello sottostante SAP HANA in Azure (istanze di grandi dimensioni) supporta la nozione di hello di uno snapshot di archiviazione dei volumi. Backup e ripristino di un determinato volume sono supportate con hello seguenti considerazioni:
 
 - In alternativa ai backup del database, vengono creati regolarmente snapshot di archiviazione dei volumi.
-- Prima dell'esecuzione, lo snapshot di archiviazione avvia uno snapshot di SAP HANA. Questo snapshot di SAP HANA è il punto di installazione per i ripristini dei log finali dopo il ripristino dello snapshot di archiviazione.
-- Al momento dell'esecuzione dello snapshot di archiviazione, lo snapshot di SAP HANA verrà eliminato.
-- I backup dei log vengono creati di frequente e archiviati nel volume per il backup dei log o in Azure.
-- Se è necessario ripristinare il database a una determinata temporizzazione, viene inviata una richiesta al supporto tecnico di Microsoft Azure (interruzione di produzione) o al team di gestione dei servizi SAP HANA in Azure per il ripristino in base a uno specifico snapshot di archiviazione, ad esempio un ripristino pianificato di un sistema sandbox allo stato originale.
-- Lo snapshot di SAP HANA incluso nello snapshot di archiviazione è un punto di offset per l'applicazione dei backup di log che sono stati creati e archiviati dopo l'esecuzione dello snapshot di archiviazione.
-- Questi backup dei log vengono creati per ripristinare il database a una determinata temporizzazione.
+- snapshot di archiviazione Hello avvia uno snapshot di SAP HANA prima dell'esecuzione di snapshot di archiviazione hello. Lo snapshot di SAP HANA è il punto di installazione hello per ripristini di log finale dopo il ripristino dello snapshot di archiviazione hello.
+- A un punto in cui viene eseguito correttamente snapshot archiviazione hello hello snapshot di SAP HANA hello viene eliminato.
+- Backup del log vengono creati di frequente e archiviati nel volume di backup di log hello o in Azure.
+- Se è necessario ripristinare il database di hello tooa determinato punto nel tempo, viene effettuata una richiesta tooMicrosoft supporto tecnico di Azure (interruzione produzione) o SAP HANA in Gestione servizi di Azure toorestore tooa alcuni snapshot di archiviazione (ad esempio, un pianificato ripristino di un sistema sandbox tooits lo stato originale).
+- snapshot di SAP HANA Hello che è incluso nello snapshot di archiviazione hello è un punto di offset per l'applicazione di backup del log che sono state eseguite e archiviato dopo hello archiviazione dello snapshot.
+- Questi backup del log toorestore hello database back-tooa determinato punto nel tempo.
 
-Quando si specifica il valore di backup\_name, viene creato uno snapshot dei volumi seguenti:
+Backup hello specificando\_nome crea uno snapshot di hello seguenti volumi:
 
 - hana/data
 - hana/log
@@ -125,38 +125,38 @@ Quando si specifica il valore di backup\_name, viene creato uno snapshot dei vol
 >[!NOTE]
 >Gli snapshot di archiviazione _non_ vengono forniti gratuitamente perché richiedono l'allocazione di spazio di archiviazione aggiuntivo.
 
-I meccanismi specifici degli snapshot di archiviazione per SAP HANA in Azure (istanze di grandi dimensioni) comprendono:
+meccanismo specifico di Hello di snapshot di archiviazione per SAP HANA in Azure (istanze di grandi dimensioni) include:
 
-- Nel momento in cui viene creato, uno specifico snapshot di archiviazione usa una quantità di spazio molto limitata.
-- A mano a mano che il contenuto dei dati cambia e il contenuto dei file di dati di SAP HANA viene modificato nel volume di archiviazione, lo snapshot deve archiviare il contenuto dei blocchi originali.
-- Le dimensioni dello snapshot di archiviazione aumentano progressivamente in proporzione alla durata.
-- Quante più modifiche vengono apportate al volume del database SAP HANA per tutta la durata di uno snapshot di archiviazione, tanto più grande diventa lo spazio utilizzato da tale snapshot.
+- Uno snapshot di archiviazione specifico (in hello momento quando questa viene eliminata) utilizza molto spazio di archiviazione.
+- Modifiche del contenuto dei dati e il contenuto di hello nei dati di SAP HANA cambiano i file nel volume di archiviazione hello, snapshot hello deve toostore hello originale bloccare i contenuti.
+- snapshot di archiviazione Hello aumenta le dimensioni. snapshot hello più Hello esiste, hello maggiore hello archiviazione snapshot diventa.
+- Hello altre modifiche apportate toohello volume del database SAP HANA nel corso della durata hello di uno snapshot di archiviazione, diventa hello maggiore hello sull'utilizzo di spazio di snapshot di archiviazione hello.
 
-SAP HANA in Azure (istanze di grandi dimensioni) viene fornito con volumi di dimensioni fisse per l'archiviazione di dati e log. Con l'esecuzione di snapshot si utilizza spazio sui volumi ed è quindi responsabilità del cliente pianificare gli snapshot di archiviazione, nell'ambito del processo di SAP HANA in Azure (istanze di grandi dimensioni).
+SAP HANA in Azure (istanze di grandi dimensioni) viene fornito con le dimensioni di un volume fisso per il volume di dati e di log di SAP HANA hello. Esecuzione di snapshot dei volumi mostro nello spazio nel volume, pertanto gli snapshot di archiviazione responsabilità tooschedule (all'interno di hello SAP HANA sul processo di Azure [istanze di grandi dimensioni]).
 
-Le sezioni seguenti includono informazioni per l'esecuzione di questi snapshot oltre a consigli di carattere generale:
+Hello nelle sezioni seguenti vengono forniscono informazioni per l'esecuzione di questi snapshot, inclusi i consigli generali:
 
-- Anche se l'hardware può supportare 255 snapshot per volume, è consigliabile rimanere ben al di sotto di questa cifra.
+- Se l'hardware hello in grado di sostenere 255 snapshot per ogni volume, si consiglia di restare ben di sotto di questo numero.
 - Prima di eseguire snapshot di archiviazione, monitorare e tenere traccia dello spazio libero.
-- Limitare il numero di snapshot di archiviazione in base allo spazio disponibile. Potrebbe essere necessario ridurre il numero di snapshot conservati o potrebbe essere necessario estendere i volumi. È possibile ordinare ulteriore spazio di archiviazione in unità di 1 TB.
-- Durante determinate attività, come lo spostamento di dati in SAP HANA con strumenti di migrazione del sistema (R3load o la funzionalità per il ripristino di backup di database SAP HANA), è consigliabile non creare snapshot di archiviazione. Se viene eseguita una migrazione di sistema in un nuovo sistema SAP HANA, non è necessario creare snapshot di archiviazione.
+- Numero inferiore di hello di snapshot di archiviazione in base allo spazio libero. Potrebbe essere necessario numero hello toolower di snapshot da mantenere oppure potrebbe essere necessario volumi hello tooextend. È possibile ordinare ulteriore spazio di archiviazione in unità di 1 TB.
+- Durante determinate attività, come lo spostamento di dati in SAP HANA con strumenti di migrazione del sistema (R3load o la funzionalità per il ripristino di backup di database SAP HANA), è consigliabile non creare snapshot di archiviazione. (Se viene eseguita la migrazione di un sistema in un nuovo sistema SAP HANA, gli snapshot di archiviazione non è necessario eseguire toobe.)
 - Durante una riorganizzazione più estesa delle tabelle di SAP HANA, evitare di creare snapshot di archiviazione, se possibile.
-- Gli snapshot di archiviazione sono inoltre un prerequisito per attivare le funzionalità di ripristino di emergenza di SAP HANA in Azure (istanze di grandi dimensioni).
+- Gli snapshot di archiviazione sono una funzionalità di ripristino di emergenza hello tooengaging dei prerequisiti di SAP HANA in Azure (istanze di grandi dimensioni).
 
 ### <a name="setting-up-storage-snapshots"></a>Configurazione degli snapshot di archiviazione
 
-1. Assicurarsi che Perl sia installato nel sistema operativo Linux sul server HANA (istanze di grandi dimensioni).
-2. Modificare /etc/ssh/ssh\_config in modo da aggiungere la riga _MACs hmac-sha1_.
-3. Creare un account utente di backup di SAP HANA sul nodo master per ogni istanza SAP HANA in esecuzione (se applicabile).
-4. Il client HDB di SAP HANA deve essere installato in tutti i server SAP HANA (istanze di grandi dimensioni).
-5. Nel primo server SAP HANA (istanze di grandi dimensioni) di ogni area è necessario creare una chiave pubblica per accedere all'infrastruttura di archiviazione sottostante che controlla la creazione di snapshot.
-6. Copiare lo script azure\_hana\_backup.pl da /scripts nel percorso di **hdbsql** nell'installazione di SAP HANA.
-7. Copiare il file HANABackupDetails.txt dalla cartella /scripts nello stesso percorso dello script Perl.
-8. Modificare il file HANABackupDetails.txt come necessario, in base alle specifiche del cliente.
+1. Assicurarsi che Perl sia installato nel sistema operativo Linux di hello server hello HANA (istanze di grandi dimensioni).
+2. Modificare/e così via ssh/ssh\_riga hello di configurazione tooadd _Mac hmac-sha1_.
+3. Creare un account utente per il backup di SAP HANA sul nodo principale di hello per ogni istanza di SAP HANA che eseguono (se applicabile).
+4. il client di SAP HANA HDB Hello deve essere installato in tutti i server (istanze di grandi dimensioni) di SAP HANA.
+5. Server hello prima SAP HANA (istanze di grandi dimensioni) di ogni area, una chiave pubblica è necessario creare hello tooaccess sottostante l'infrastruttura di archiviazione che controlla la creazione di snapshot.
+6. Copiare script hello azure\_hana\_backup.pl dal percorso toohello /script di **hdbsql** di installazione di SAP HANA hello.
+7. Hello copia HANABackupDetails.txt file toohello /script stesso percorso come hello script Perl.
+8. Modificare il file HANABackupDetails.txt hello necessarie per le specifiche del cliente appropriato hello.
 
 ### <a name="step-1-install-sap-hana-hdbclient"></a>Passaggio 1: Installare il client HBD di SAP HANA
 
-La distribuzione di Linux installata in SAP HANA in Azure (istanze di grandi dimensioni) include le cartelle e gli script necessari per eseguire snapshot di archiviazione di SAP HANA a scopo di backup e ripristino di emergenza. È tuttavia responsabilità del cliente installare il client HBD durante l'installazione di SAP HANA. Il client HDB e SAP HANA non vengono installati da Microsoft.
+Hello Linux installato in SAP HANA in Azure (istanze di grandi dimensioni) include cartelle hello e script di snapshot di archiviazione di SAP HANA tooexecute necessario per scopi di backup e ripristino di emergenza. Tuttavia, è il tooinstall responsabilità SAP HANA HDBclient durante l'installazione di SAP HANA. (Microsoft installa hello HDBclient né SAP HANA).
 
 ### <a name="step-2-change-etcsshsshconfig"></a>Passaggio 2: Modificare /etc/ssh/ssh\_config
 
@@ -194,49 +194,49 @@ MACs hmac-sha1
 
 ### <a name="step-3-create-a-public-key"></a>Passaggio 3: Creare una chiave pubblica
 
-Nel primo server SAP HANA in Azure (istanze di grandi dimensioni) in ogni area di Azure creare una chiave pubblica da usare per accedere all'infrastruttura di archiviazione in modo da poter creare gli snapshot. La chiave pubblica evita di dover usare una password per accedere alla risorsa di archiviazione e dover gestire le credenziali di accesso. In Linux, nel server SAP HANA (istanze di grandi dimensioni), eseguire il comando seguente per generare la chiave pubblica:
+In hello prima SAP HANA nel server di Azure (istanze di grandi dimensioni) in ogni area di Azure, creare un'infrastruttura di archiviazione hello tooaccess toobe di chiave pubblica utilizzata in modo che è possibile creare snapshot. la chiave pubblica di Hello garantisce che una password non è necessario toosign nel servizio di archiviazione toohello e che le credenziali di password non vengono mantenute. In Linux nel server di hello SAP HANA (istanze di grandi dimensioni), eseguire hello chiave pubblica hello toogenerate di comando seguente:
 ```
   ssh-keygen –t dsa –b 1024
 ```
-Il nuovo percorso è _/root/.ssh/id\_dsa.pub. Non immettere una passphrase effettiva, altrimenti sarà necessario immetterla a ogni accesso. In alternativa, premere due volte **INVIO** per evitare che venga richiesta una passphrase in fase di accesso.
+nuova posizione Hello è _/root/.ssh/id\_dsa.pub. Non immettere una passphrase effettiva, altrimenti sarà necessario tooenter hello passphrase ogni volta che accedi. In alternativa, premere **invio** due volte tooremove hello immettere passphrase requisito per l'accesso.
 
-Verificare che la chiave pubblica sia corretta cambiando le cartelle in /root/.ssh/ e poi eseguendo il comando **ls**. Se la chiave è presente, è possibile copiarla eseguendo il comando seguente:
+Verificare che la chiave pubblica hello è stato corretto come previsto modificando too/root/.ssh/ cartelle e quindi eseguendo hello toomake **ls** comando. Se hello chiave è presente, è possibile copiarlo eseguendo hello comando seguente:
 
 ![La chiave pubblica viene copiata eseguendo questo comando](./media/hana-overview-high-availability-disaster-recovery/image2-public-key.png)
 
-A questo punto, contattare il team di gestione dei servizi SAP HANA in Azure e specificare la chiave, che verrà usata dal rappresentante del servizio per la registrazione nell'infrastruttura di archiviazione sottostante.
+A questo punto, contattare SAP HANA sulla gestione dei servizi di Azure e fornire hello chiave. addetto al servizio Hello utilizza hello tooregister di chiave pubblica in hello sottostante l'infrastruttura di archiviazione.
 
 ### <a name="step-4-create-an-sap-hana-user-account"></a>Passaggio 4: Creare un account utente SAP HANA
 
-In SAP HANA Studio creare un account utente SAP HANA a scopo di backup. L'account deve disporre dei privilegi _Backup Admin_ e _Catalog Read_. In questo esempio viene creato il nome utente SCADMIN.
+In SAP HANA Studio creare un account utente SAP HANA a scopo di backup. Questo account deve disporre di hello seguenti privilegi: _Backup Admin_ e _lettura catalogo_. In questo esempio, il nome utente hello SCADMIN viene creato.
 
 ![Creazione di un utente in HANA Studio](./media/hana-overview-high-availability-disaster-recovery/image3-creating-user.png)
 
-### <a name="step-5-authorize-the-sap-hana-user-account"></a>Passaggio 5: Autorizzare l'account utente SAP HANA
+### <a name="step-5-authorize-hello-sap-hana-user-account"></a>Passaggio 5: Autorizzare l'account utente di SAP HANA hello
 
-Autorizzare l'account utente SAP HANA in modo che possa essere usato senza richiesta di autorizzazione ogni volta che viene eseguito lo script. Il comando `hdbuserstore` di SAP HANA consente la creazione di una chiave utente SAP HANA, che viene archiviata in uno o più nodi di SAP HANA. La chiave utente consente anche di accedere a SAP HANA senza dover gestire le password dall'interno del processo di scripting che verrà discusso più avanti.
+Autorizzare l'account utente di SAP HANA hello (toobe usati da script hello senza richiedere l'autorizzazione ogni volta che viene eseguito uno script hello). comando SAP HANA Hello `hdbuserstore` consente di creare una chiave utente SAP HANA, che viene archiviata in uno o più nodi di SAP HANA hello. chiave utente Hello consente inoltre di hello utente tooaccess SAP HANA senza password toomanage da all'interno di hello scripting processo che si parlerà più avanti.
 
 >[!IMPORTANT]
->Eseguire il comando indicato di seguito come `_root_`. Altrimenti lo script non funzionerà correttamente.
+>Esecuzione hello il seguente comando come `_root_`. In caso contrario, script hello non può funzionare correttamente.
 
-Immettere il comando `hdbuserstore` come segue:
+Immettere hello `hdbuserstore` comando come segue:
 
-![Immettere il comando hdbuserstore](./media/hana-overview-high-availability-disaster-recovery/image4-hdbuserstore-command.png)
+![Immettere il comando di hdbuserstore hello](./media/hana-overview-high-availability-disaster-recovery/image4-hdbuserstore-command.png)
 
-Nell'esempio seguente, in cui l'utente è SCADMIN01 e il nome host è lhanad01, il comando è:
+Nel seguente esempio, in cui utente hello è SCADMIN01 e il nome host hello è lhanad01, hello hello è:
 ```
 hdbuserstore set SCADMIN01 lhanad01:30115 <backup username> <password>
 ```
-Gestire tutti gli script da un singolo server per le istanze HANA con scalabilità orizzontale. In questo esempio la chiave di SAP HANA SCADMIN01 deve essere modificata per ogni host in modo che rifletta l'host correlato alla chiave. In altre parole, l'account di backup SAP HANA viene modificato con il numero di istanza di HANA DB, **lhanad**. La chiave deve avere privilegi amministrativi sull'host a cui è assegnata e l'utente di backup per la scalabilità orizzontale deve disporre dei diritti di accesso a tutte le istanze SAP HANA.
+Gestire tutti gli script da un singolo server per le istanze HANA con scalabilità orizzontale. In questo esempio hello chiave SAP HANA che scadmin01 deve essere modificata per ogni host in modo che rifletta l'host di hello chiave toohello correlati. Vale a dire, account di SAP HANA backup hello è modificato con numero di istanza hello di hello HANA DB, **lhanad**. chiave Hello deve avere privilegi amministrativi nell'host di hello a che viene assegnato, e utente di backup di hello per scalabilità orizzontale deve disporre di istanze SAP HANA tooall diritti di accesso.
 ```
 hdbuserstore set SCADMIN01 lhanad:30015 SCADMIN <password>
 hdbuserstore set SCADMIN02 lhanad:30115 SCADMIN <password>
 hdbuserstore set SCADMIN03 lhanad:30215 SCADMIN <password>
 ```
 
-### <a name="step-6-copy-items-from-the-scripts-folder"></a>Passaggio 6: Copiare elementi dalla cartella /scripts
+### <a name="step-6-copy-items-from-hello-scripts-folder"></a>Passaggio 6: Copiare gli elementi dalla cartella /script hello
 
-Copiare gli elementi seguenti dalla cartella /scripts, inclusa nell'immagine gold dell'installazione, alla directory di lavoro per **hdbsql**. Per le installazioni correnti di HANA, la directory è /hana/shared/D01/exe/linuxx86\_64/hdb.
+Esempio hello copia gli elementi da hello/script directory di lavoro toohello cartella (incluso nell'immagine gold hello dell'installazione di hello) per **hdbsql**. Per le installazioni correnti di HANA, la directory è /hana/shared/D01/exe/linuxx86\_64/hdb.
 ```
 azure\_hana\_backup.pl
 testHANAConnection.pl
@@ -244,7 +244,7 @@ testStorageSnapshotConnection.pl
 removeTestStorageSnapshot.pl
 HANABackupCustomerDetails.txt
 ```
-Nel caso di una configurazione con scalabilità orizzontale o OLAP, copiare gli elementi seguenti:
+Copiare i seguenti elementi se sono in esecuzione di scalabilità orizzontale hello o OLAP:
 ```
 azure\_hana\_backup\_bw.pl
 testHANAConnectionBW.pl
@@ -252,9 +252,9 @@ testStorageSnapshotConnectionBW.pl
 removeTestStorageSnapshotBW.pl
 HANABackupCustomerDetailsBW.txt
 ```
-Il file HANABackupCustomerDetails.txt può essere modificato come indicato di seguito per una distribuzione con scalabilità verticale. Si tratta del file di configurazione e controllo per lo script che eseguirà gli snapshot di archiviazione. Quando le istanze sono state distribuite, il team di gestione dei servizi di SAP HANA in Azure dovrebbe avere inviato i valori di _Storage Backup Name_ e _Storage IP Address_. Non è possibile modificare la sequenza, l'ordinamento o la spaziatura per nessuna delle variabili, altrimenti lo script non funzionerà correttamente.
+file HANABackupCustomerDetails.txt Hello è modificabile come indicato di seguito per una distribuzione con scalabilità verticale. Si tratta di file di configurazione e controllo hello per hello dello script eseguito snapshot di archiviazione hello. Si dovrebbe avere ricevuto hello _nome del Backup di archiviazione_ e _l'indirizzo IP di archiviazione_ da SAP HANA sulla gestione dei servizi di Azure quando le istanze sono state distribuite. Non è possibile modificare la sequenza di hello, ordinamento o la spaziatura delle variabili di hello o hello script non viene eseguita correttamente.
 
-Per una distribuzione con scalabilità verticale, il file di configurazione ha un aspetto simile al seguente:
+Per una distribuzione con scalabilità verticale, i file di configurazione hello deve essere simile:
 ```
 #Provided by Microsoft Service Management
 Storage Backup Name: lhanad01backup
@@ -262,7 +262,7 @@ Storage IP Address: 10.250.20.21
 #Created by customer using hdbuserstore
 HANA Backup Name: SCADMIND01
 ```
-Per una configurazione con scalabilità orizzontale, il file HANABackupCustomerDetailsBW.txt ha un aspetto simile al seguente:
+Per una configurazione con scalabilità orizzontale, file di HANABackupCustomerDetailsBW.txt hello deve essere simile:
 ```
 #Provided by Microsoft Service Management
 Storage Backup Name: lhanad01backup
@@ -296,9 +296,9 @@ Node 8 HANA instance number: 08
 Node 8 HANA Backup Name: SCADMIN08
 ```
 >[!NOTE]
->Attualmente solo i dettagli del nodo 1 vengono usati nell'effettivo script per lo snapshot di archiviazione HANA. Si consiglia di testare l'accesso da e verso tutti i nodi HANA in modo che, se il nodo di backup master dovesse cambiare, è già stato verificato che un altro nodo può prendere il suo posto modificando i dettagli nel nodo 1.
+>Attualmente, solo il nodo 1 dettagli vengono utilizzati in script hello effettivo HANA archiviazione dello snapshot. È consigliabile testare tooor di accesso da tutti i nodi HANA in modo che, se il nodo di backup master di hello dovesse cambia, aver già verificato che un altro nodo può richiedere al suo posto modificando i dettagli di hello nel nodo 1.
 
-Per verificare le configurazioni corrette nel file di configurazione o il funzionamento della connessione alle istanze HANA, eseguire uno dei seguenti script:
+toocheck per le configurazioni di hello corretto nel file di configurazione hello o istanze HANA toohello connettività appropriato, eseguire uno dei seguenti script hello:
 - Per una configurazione con scalabilità verticale (indipendente dal carico di lavoro SAP):
 
  ```
@@ -310,22 +310,22 @@ testHANAConnection.pl
 testHANAConnectionBW.pl
 ```
 
-Verificare che l'istanza HANA master abbia accesso a tutti i server HANA necessari. Lo script non richiede parametri. Tuttavia, per la corretta esecuzione dello script, è necessario completare il file HANABackupCustomerDetails/ HANABackupCustomerDetailsBW appropriato. Poiché vengono restituiti solo i codici di errore dei comandi della shell, lo script non può eseguire il controllo degli errori di ogni istanza. Anche in questo caso lo script fornisce alcuni commenti che è utile controllare.
+Assicurarsi di che quell'istanza HANA master hello dispone di server di accesso richiesto tooall HANA. Sono disponibili non sono presenti script toohello parametri, ma è necessario completare hello appropriato HANABackupCustomerDetails HANABackupCustomerDetailsBW file per hello script toorun correttamente. Poiché vengono restituiti codici di errore solo hello shell comandi, non è possibile per hello script tooerror controllare ogni istanza. Anche in questo caso, script hello fornire alcuni commenti utili per si toodouble un controllo.
 
-Per eseguire lo script:
+script di hello toorun:
 ```
  ./testHANAConnection.pl
 ```
- Se lo script riesce a ottenere lo stato dell'istanza HANA, mostra un messaggio che conferma la riuscita della connessione HANA.
+ Se lo script hello Ottiene correttamente la stato hello dell'istanza HANA hello, viene visualizzato un messaggio che connessione HANA hello ha avuto esito positivo.
 
-Esiste anche un secondo tipo di script che consente di controllare se il server dell'istanza HANA master può accedere alla risorsa di archiviazione. Prima di eseguire lo script azure\_hana\_backup(\_bw).pl è necessario eseguire lo script seguente. Se un volume non contiene snapshot, non è possibile determinare se il volume è semplicemente vuoto o si è verificato un errore ssh che non consente di ottenere i dettagli dello snapshot. Per questo motivo lo script esegue due passaggi:
+È disponibile anche un secondo tipo di script è possibile utilizzare toosign possibilità toocheck hello HANA istanza del server master in archiviazione toohello. Prima di eseguire azure hello\_hana\_backup (\_bw) PL script, è necessario eseguire script successivo hello. Se un volume contiene Nessuno snapshot, è Impossibile toodetermine volume hello è semplicemente vuoto o non esiste un ssh hello tooobtain errore dettagli dello snapshot. Per questo motivo, script hello esegue due passaggi:
 
-- Verifica che la console di archiviazione sia accessibile.
+- Verifica che tale console archiviazione hello è accessibile.
 - Crea uno snapshot di test, o fittizio, per ogni volume di ogni istanza HANA.
 
-Per questo motivo, l'istanza HANA è inclusa come argomento. Anche in questo caso non è possibile prevedere il controllo degli errori per la connessione di archiviazione, ma lo script fornisce suggerimenti utili se l'esecuzione ha esito negativo.
+Per questo motivo, l'istanza HANA hello è incluso come argomento. Nuovamente, non è possibile tooprovide errori per la connessione di archiviazione hello, ma vengono forniti alcuni script hello suggerimenti se hello esecuzione ha esito negativo.
 
-Lo script viene eseguito nel modo seguente:
+Hello script viene eseguito come:
 ```
  ./testStorageSnapshotConnection.pl <hana instance>
 ```
@@ -333,15 +333,15 @@ Oppure viene eseguito nel modo seguente:
 ```
 ./testStorageSnapshotConnectionBW.pl <hana instance>
 ```
-Lo script mostra anche un messaggio per segnalare che è possibile accedere in modo appropriato al tenant di archiviazione distribuita organizzato attorno ai numeri di unità logica (LUN) usati dalle istanze di server di cui si è proprietari.
+script di Hello Visualizza anche un messaggio che si è in grado di toosign in modo appropriato tenant archiviazione tooyour distribuito, è organizzato in base a numeri di hello unità logica (LUN) che vengono utilizzati dalle istanze del server hello che si è proprietari.
 
-Prima di eseguire i primi backup basati sugli snapshot di archiviazione, eseguire gli script seguenti per assicurarsi che la configurazione sia corretta.
+Prima di eseguire hello prima archiviazione basata su snapshot backup, eseguire hello Avanti script toomake tale configurazione hello sia corretto.
 
-Dopo l'esecuzione di questi script, è possibile eliminare gli snapshot con lo script seguente:
+Dopo aver eseguito questi script, è possibile eliminare gli snapshot hello eseguendo:
 ```
 ./removeTestStorageSnapshot.pl <hana instance>
 ```
-Oppure
+Or
 ```
 ./removeTestStorageSnapshot.pl <hana instance>
 ```
@@ -350,233 +350,233 @@ Oppure
 
 Eseguire snapshot su richiesta (e pianificare snapshot regolari utilizzando cron) come descritto di seguito.
 
-Per le configurazioni con scalabilità verticale, eseguire lo script seguente:
+Per le configurazioni con scalabilità verticale, eseguire lo script seguente hello:
 ```
 ./azure_hana_backup.pl lhanad01 customer 20
 ```
-Per le configurazioni con scalabilità orizzontale, eseguire lo script seguente:
+Per le configurazioni di scalabilità orizzontale, eseguire lo script seguente hello:
 ```
 ./azure_hana_backup_bw.pl lhanad01 customer 20
 ```
-Lo script per la scalabilità orizzontale esegue alcuni controlli aggiuntivi per verificare che tutti i server HANA siano accessibili e che tutte le istanze HANA restituiscano lo stato appropriato prima di procedere con la creazione di snapshot di archiviazione o SAP HANA.
+script di scalabilità orizzontale Hello esegue alcune ulteriori toomake verifica che tutti i server HANA accessibili e tutte le istanze HANA appropriato lo stato restituiscono dell'istanza di hello prima di procedere con la creazione di snapshot di SAP HANA o archiviazione.
 
-Gli argomenti seguenti sono obbligatori:
+Hello gli argomenti seguenti è necessario:
 
-- L'istanza HANA da sottoporre a backup.
-- Il prefisso dello snapshot di archiviazione.
-- Il numero di snapshot da mantenere per il prefisso specifico.
+- backup che richiedono istanza HANA Hello.
+- prefisso di snapshot Hello per snapshot di archiviazione hello.
+- numero di Hello di snapshot toobe conservati per prefisso specifico hello.
 
 ```
 ./azure_hana_backup.pl lhanad01 customer 20
 ```
 
-Il processo di creazione dello snapshot di archiviazione è costituito da queste tre fasi distinte:
+l'esecuzione di Hello dello script hello Crea snapshot di archiviazione hello in questi tre fasi distinte:
 
 - Eseguire uno snapshot HANA.
 - Eseguire uno snapshot di archiviazione.
-- Rimuovere lo snapshot HANA.
+- Rimuovere snapshot HANA hello.
 
-Per eseguire lo script, chiamarlo dalla cartella dell'eseguibile HDB in cui è stato copiato. Lo script esegue sicuramente il backup dei volumi seguenti, ma anche di qualsiasi volume che include nel suo nome il nome di istanza SAP HANA esplicito.
+Eseguire script hello effettuando una chiamata da hello HDB cartella eseguibile che è stato copiato. Si esegue il backup almeno hello in seguito volumi, ma anche esegue il backup di qualsiasi volume con nome di istanza SAP HANA esplicito hello nel nome del volume hello.
 ```
 hana_data_<hana instance>_prod_t020_vol
 hana_log_<hana instance>_prod_t020_vol
 hana_log_backup_<hana instance>_prod_t020_vol
 hana_shared_<hana instance>_prod_t020_vol
 ```
-Il periodo di mantenimento viene gestito rigorosamente in base al numero di snapshot specificato come parametro durante l'esecuzione dello script. Ad esempio 20, come indicato sopra. Pertanto, la quantità di tempo è calcolata in funzione del periodo di esecuzione e del numero di snapshot nella chiamata dello script. Se il numero di snapshot mantenuti supera il numero indicato come parametro nella chiamata dello script, lo snapshot di archiviazione meno recente di questa etichetta (_customer_ nel caso precedente) verrà eliminato prima dell'esecuzione di un nuovo snapshot. Ciò significa che il numero specificato come ultimo parametro della chiamata è il numero che è possibile usare per controllare il numero di snapshot.
+periodo di memorizzazione Hello rigorosamente viene amministrato, con il numero di hello di snapshot inviato come parametro quando si esegue uno script di hello (ad esempio, 20, illustrato in precedenza). Pertanto, hello tempo è una funzione del periodo di hello hello e esecuzione il numero di snapshot nella chiamata di hello dello script hello. Se hello numero di snapshot vengono conservati hello di supera vengono denominate come un parametro nella chiamata di hello dello script hello, hello lo snapshot meno recente di archiviazione di questa etichetta (in questo caso precedente, _personalizzato_) viene eliminato prima che sia un nuovo snapshot eseguito. Ciò significa che il numero di hello che è possibile assegnare come ultimo parametro della chiamata di hello hello è il numero di hello è possibile utilizzare toocontrol hello numero di snapshot.
 
 >[!NOTE]
->Non appena si modifica l'etichetta, il conteggio viene riavviato.
+>Non appena si modifica l'etichetta di hello, hello inizia il conteggio nuovamente.
 
-È necessario includere come argomento il nome dell'istanza HANA fornito dal team di gestione dei servizi SAP HANA in Azure se si creano snapshot di ambienti multinodo. Negli ambienti a nodo singolo è sufficiente il nome nell'unità SAP HANA in Azure (istanza di grandi dimensioni), ma è comunque consigliabile specificare anche il nome dell'istanza HANA.
+È necessario tooinclude hello HANA nome dell'istanza che viene fornita da SAP HANA sulla gestione dei servizi di Azure come argomento, se creano snapshot in ambienti a più nodi. In ambienti a nodo singolo, è sufficiente nome hello di hello SAP HANA nell'unità di Azure (istanze di grandi dimensioni), ma è comunque consigliabile nome dell'istanza HANA hello.
 
-Inoltre è possibile eseguire il backup di volumi di avvio\LUN usando lo stesso script. È necessario eseguire il backup del volume di avvio almeno una volta quando si esegue HANA per la prima volta, anche se è consigliabile pianificare backup settimanali o nelle ore notturne per tale volume tramite cron. Anziché aggiungere il nome di un'istanza SAP HANA, inserire _boot_ come argomento dello script come indicato di seguito:
+Inoltre, è possibile eseguire il backup volumes\LUNs avvio utilizzando hello stesso script. È necessario eseguire il backup del volume di avvio almeno una volta quando si esegue HANA per la prima volta, anche se è consigliabile pianificare backup settimanali o nelle ore notturne per tale volume tramite cron. Invece di aggiungere il nome di un'istanza di SAP HANA, inserire _avvio_ come hello argomento nello script hello come indicato di seguito:
 ```
 ./azure_hana_backup boot customer 20
 ```
-Gli stessi criteri di mantenimento si applicano anche al volume di avvio. Usare gli snapshot su richiesta, come descritto sopra, solo per casi speciali, ad esempio durante un aggiornamento di SAP Enhancement Package (EHP) o quando è necessario creare uno snapshot di archiviazione distinto.
+Hello stesso criterio di conservazione è offerta toohello anche il volume di avvio. Utilizzare snapshot su richiesta, come descritto in precedenza, per casi speciali, ad esempio durante un aggiornamento di pacchetto (EHP) SAP funzionalità avanzata, o quando è necessario toocreate uno snapshot di archiviazione distinti.
 
-Si consiglia di eseguire snapshot di archiviazione pianificati tramite cron, nonché di usare lo stesso script per tutti i backup e le esigenze di ripristino di emergenza, modificando l'input dello script in base ai diversi orari di backup richiesti. Gli snapshot sono tutti pianificati in modo diverso in cron, in base alla frequenza di esecuzione: oraria, ogni 12 ore, giornaliera o settimanale. La pianificazione di cron è progettata in modo da creare snapshot di archiviazione che corrispondano alle etichette di mantenimento descritte in precedenza per il backup fuori sede a lungo termine. Lo script include comandi per eseguire il backup di tutti i volumi di produzione in base alla frequenza richiesta. Il backup dei file di dati e log viene eseguito ogni ora, mentre quello del volume di avvio viene eseguito ogni giorno.
+Si consiglia di snapshot di archiviazione tooperform pianificata utilizzando cron e si consiglia di utilizzare hello stesso script per tutti i backup e alle esigenze di ripristino di emergenza (modifica hello script input toomatch hello vari ha richiesto tempi di backup). Gli snapshot sono tutti pianificati in modo diverso in cron, in base alla frequenza di esecuzione: oraria, ogni 12 ore, giornaliera o settimanale. pianificazione cron Hello è progettato toocreate snapshot di archiviazione che corrispondono a hello illustrata in precedenza memorizzazione l'assegnazione di etichette per il backup fuori sede a lungo termine. script di Hello include comandi tooback includere tutti i volumi di produzione, a seconda della relativa frequenza di richiesta (file di dati e di log vengono eseguito il backup ogni ora, mentre il volume di avvio hello viene eseguito il backup giornaliero).
 
-Le voci nello script di cron seguente vengono eseguite ogni ora, ogni 12 ore e ogni giorno, sempre al decimo minuto. I processi di cron vengono creati in modo da eseguire un solo snapshot di archiviazione di SAP HANA a una determinata ora, evitando così di eseguire contemporaneamente il backup orario e quello giornaliero (alle ore 12.10). Per ottimizzare la creazione e la replica di snapshot, il team di gestione dei servizi SAP HANA in Azure fornirà suggerimenti riguardo ai tempi di esecuzione dei backup.
+le voci di Hello in hello cron script seguente eseguito ogni ora hello decimo minuto, ogni 12 ore hello decimo minuto e ogni giorno hello decimo minuto. cron Hello i processi vengono creati in modo che un solo snapshot di archiviazione di SAP HANA ha luogo durante qualsiasi ora specifica, in modo che hello orari e giornalieri i backup non vengono eseguiti in hello che la stessa ora (12:10 AM). toohelp ottimizzare la creazione dello snapshot e la replica, SAP HANA sulla gestione dei servizi di Azure fornisce hello i backup di tempo per toorun è consigliato.
 
-Di seguito è indicata la pianificazione predefinita di cron in /etc/crontab:
+Hello predefinito cron /etc/crontab di pianificazione è il seguente:
 ```
 10 1-11,13-23 * * * ./azure_hana_backup.pl lhanad01 hourly 66
 10 12 * * *  ./azure_hana_backup.pl lhanad01 12hour 14
 ```
-Nelle istruzioni di cron sopra indicate lo snapshot dei volumi HANA (escluso il volume di avvio) viene creato ogni ora. Di questi snapshot, ne vengono mantenuti 66. Inoltre, vengono conservati 14 snapshot con l'etichetta di 12 ore. Si possono avere snapshot orari per tre giorni, oltre a snapshot ogni 12 ore per altri quattro giorni, ovvero un'intera settimana di snapshot.
+Nelle istruzioni di cron precedente hello, volumi HANA hello (senza il volume di avvio) ottenere snapshot con etichetta hello ogni ora. Di questi snapshot, ne vengono mantenuti 66. Inoltre, vengono mantenuti 14 snapshot con etichetta di hello 12 ore. Si possono avere snapshot orari per tre giorni, oltre a snapshot ogni 12 ore per altri quattro giorni, ovvero un'intera settimana di snapshot.
 
-La pianificazione in cron può risultare complessa poiché in un momento specifico è consentita l'esecuzione di un solo script, a meno che questo non sia sfalsato di alcuni minuti. Se si preferiscono i backup giornalieri per l'archiviazione a lungo termine, viene eseguito uno snapshot giornaliero insieme a uno snapshot ogni 12 ore, mantenendo sette backup per ciascun tipo. In alternativa, lo snapshot con frequenza oraria viene posticipato di 10 minuti. Un solo snapshot viene mantenuto nel volume di produzione.
+Pianificazione all'interno di cron può risultare difficile, perché solo uno script deve essere eseguito in qualsiasi momento specifico, a meno che non vengono scaglionati in script hello da alcuni minuti. Se si desidera i backup giornalieri per la conservazione a lungo termine, un snapshot viene mantenuto insieme a uno snapshot di 12 ore (con un conteggio di conservazione di ogni sette) o snapshot oraria hello è tootake sfalsate 10 minuti in un secondo momento. Un solo snapshot viene mantenuto nel volume di produzione hello.
 ```
 10 1-11,13-23 * * * ./azure_hana_backup.pl lhanad01 hourly 66
 10 12 * * *  ./azure_hana_backup.pl lhanad01 12hour 7
 10 0 * * * ./azure_hana_backup.pl lhanad01 daily 7
 ```
-Le frequenze elencate di seguito sono solo esempi. Per ricavare il numero ottimale di snapshot, usare i criteri seguenti:
+le frequenze di Hello elencate di seguito sono riportati esempi di solo. tooderive il numero ottimale di snapshot, utilizzare hello seguenti criteri:
 
 - Requisiti dell'obiettivo tempo di ripristino per il ripristino temporizzato.
 - Utilizzo dello spazio.
 - Requisiti dell'obiettivo punto di ripristino e dell'obiettivo tempo di ripristino per un ripristino di emergenza potenziale.
-- Eventuale esecuzione di backup completi del database HANA sui dischi. Ogni volta che viene creato un backup completo del database sui dischi o che viene eseguita l'interfaccia _backint_, l'esecuzione di snapshot di archiviazione ha esito negativo. Se si pianifica l'esecuzione di backup completi del database oltre agli snapshot di archiviazione, assicurarsi che durante questo periodo l'esecuzione degli snapshot di archiviazione sia disabilitata.
+- Eventuale esecuzione di backup completi del database HANA sui dischi. Ogni volta che un backup completo del database su dischi, o _backint_ l'interfaccia, viene eseguita, hello l'esecuzione di snapshot di archiviazione non riesce. Se si prevede di backup completi del database tooexecute nella parte superiore di snapshot di archiviazione, assicurarsi che l'esecuzione di hello di snapshot di archiviazione è disabilitato durante l'operazione.
 
 >[!IMPORTANT]
-> L'uso di snapshot di archiviazione per i backup di SAP HANA è valido solo se gli snapshot vengono creati insieme ai backup dei log di SAP HANA. Questi backup devono essere in grado di coprire i periodi di tempo che intercorrono tra gli snapshot di archiviazione. Se agli utenti si è garantito un ripristino temporizzato di 30 giorni, è necessario che siano soddisfatti i requisiti seguenti:
+> utilizzo di Hello di snapshot di archiviazione per i backup di SAP HANA è valido solo quando vengono eseguiti gli snapshot hello in combinazione con i backup del log SAP HANA. Questi log backup necessario toobe toocover in grado di hello periodi di tempo tra gli snapshot di archiviazione hello. Se è stato impostato un toousers impegno di un punto nel tempo di ripristino di 30 giorni, è necessario hello segue:
 
-- Possibilità di accedere a uno snapshot di archiviazione di 30 giorni.
-- Backup di log contigui nell'arco degli ultimi 30 giorni.
+- Possibilità tooaccess uno snapshot di archiviazione di 30 giorni precedenti.
+- Backup di log contigui su hello ultimi 30 giorni.
 
-Nell'intervallo dei backup di log creare anche uno snapshot del volume dei log di backup. Assicurarsi tuttavia di eseguire backup regolari dei log in modo da poter:
+Intervallo di hello di backup del log, creare uno snapshot del volume di backup del log hello anche. Tuttavia, essere tooperform che backup regolari dei log in modo che sia possibile:
 
-- Disporre dei backup di log contigui necessari per eseguire ripristini temporizzati.
-- Evitare che il volume dei log di SAP HANA esaurisca lo spazio.
+- Sono dei backup del log contigui hello necessari i ripristini temporizzati in tooperform.
+- Impedire l'esaurimento dello spazio volume di log di SAP HANA hello.
 
-Uno degli ultimi passaggi consiste nel pianificare i log di backup di SAP HANA in SAP HANA Studio. La destinazione dei log di backup di SAP HANA è il volume hana/log\_backups appositamente creato con il punto di montaggio /hana/log/backups.
+Uno degli ultimi passaggi hello è tooschedule registri di backup SAP HANA in SAP HANA Studio. destinazione backup del log di SAP HANA di Hello è hana hello appositamente creato o di log\_volume di backup con il punto di montaggio hello del /hana/log/backups.
 
 ![Pianificare i log di backup di SAP HANA in SAP HANA Studio](./media/hana-overview-high-availability-disaster-recovery/image5-schedule-backup.png)
 
 È possibile scegliere backup con una frequenza maggiore di ogni 15 minuti. Alcuni utenti eseguono il backup dei log ogni minuto, ma è sconsigliato impostare una frequenza _superiore_ a 15 minuti.
 
-L'ultimo passaggio consiste nell'eseguire un backup basato su file (dopo l'installazione iniziale di SAP HANA) per creare una singola voce di backup che deve essere presente nel catalogo di backup. In caso contrario SAP HANA non può avviare i backup del log specificato.
+passaggio finale Hello è tooperform basato su file di backup (dopo l'installazione iniziale di hello di SAP HANA) toocreate una singola voce di backup che deve essere presente nel catalogo di backup hello. In caso contrario SAP HANA non può avviare i backup del log specificato.
 
-![Eseguire un backup basato su file per creare una singola voce di backup](./media/hana-overview-high-availability-disaster-recovery/image6-make-backup.png)
+![Immettere un toocreate backup basati su file un singolo backup](./media/hana-overview-high-availability-disaster-recovery/image6-make-backup.png)
 
-### <a name="monitoring-the-number-and-size-of-snapshots-on-the-disk-volume"></a>Monitoraggio del numero e della dimensione degli snapshot sul volume di archiviazione
+### <a name="monitoring-hello-number-and-size-of-snapshots-on-hello-disk-volume"></a>Monitoraggio numero hello e le dimensioni degli snapshot sul volume disco hello
 
-Su un particolare volume di archiviazione è possibile monitorare il numero di snapshot e l'utilizzo dello spazio di archiviazione degli snapshot. Il comando `ls` non mostra i file e la directory degli snapshot, diversamente dal comando `du` di Linux, che può essere eseguito con i parametri seguenti:
+In un volume di archiviazione specifico, è possibile monitorare il numero di hello di snapshot e l'utilizzo dell'archiviazione hello di snapshot. Hello `ls` non mostra il comando file o directory snapshot hello. Tuttavia, hello comando del sistema operativo Linux `du` avviene, hello seguenti comandi:
 
-- `du –sh .snapshot` fornisce il totale di tutti gli snapshot all'interno della directory degli snapshot.
-- `du –sh --max-depth=1` elenca tutti gli snapshot che vengono salvati nella cartella .snapshot e la dimensione di ciascuno.
-- `du –hc` fornisce la dimensione totale utilizzata da tutti gli snapshot.
+- `du –sh .snapshot`fornisce un totale di tutti gli snapshot all'interno di directory snapshot hello.
+- `du –sh --max-depth=1`Elenca tutti gli snapshot vengono salvati nella cartella .snapshot hello e le dimensioni di hello di ogni snapshot.
+- `du –hc`fornisce dimensioni totali di hello utilizzata da tutti gli snapshot.
 
-Usare questi comandi per assicurarsi che gli snapshot creati e archiviati non usino tutto lo spazio di archiviazione sui volumi.
+Utilizzare questi comandi toomake assicurarsi che gli snapshot hello vengono eseguiti e archiviati non utilizzano tutti gli archivi di hello nei volumi di hello.
 
-### <a name="reducing-the-number-of-snapshots-on-a-server"></a>Riduzione del numero di snapshot in un server
+### <a name="reducing-hello-number-of-snapshots-on-a-server"></a>Riducendo il numero di hello di snapshot in un server
 
-Come illustrato in precedenza, è possibile ridurre il numero di snapshot archiviati con una determinata etichetta. Gli ultimi due parametri del comando per avviare uno snapshot sono un'etichetta e il numero di snapshot da mantenere.
+Come spiegato in precedenza, è possibile ridurre il numero di hello di alcune etichette di snapshot archiviati. Hello ultimi due parametri di hello comando tooinitiate uno snapshot sono un numero di etichetta e hello di snapshot di cui si desidera tooretain.
 ```
 ./azure_hana_backup.pl lhanad01 customer 20
 ```
-Nell'esempio precedente l'etichetta dello snapshot è _customer_ e il numero di snapshot con questa etichetta da mantenere è _20_. Dovendo limitare l'uso dello spazio su disco, può essere opportuno ridurre il numero di snapshot archiviati. Il modo più semplice per ridurre il numero di snapshot consiste nell'eseguire lo script con l'ultimo parametro impostato su 5:
+Nell'esempio precedente hello etichetta snapshot hello è _cliente_ e hello numero di snapshot con toobe questa etichetta mantenuti è _20_. Quando si risponde toodisk sull'utilizzo di spazio, è possibile che si desideri numero hello tooreduce di snapshot archiviato. Consente di Hello numero hello tooreduce di snapshot è script hello toorun con hello ultimo parametro set too5:
 ```
 ./azure_hana_backup.pl lhanad01 customer 5
 ```
-Se si esegue lo script con questa impostazione, il numero di snapshot viene ridotto e pertanto il totale degli snapshot mantenuti, compreso quello nuovo, è _5_.
+Come risultato di esecuzione dello script hello con questa impostazione, il numero di hello di snapshot, tra cui hello nuova risorsa di archiviazione dello snapshot, è _5_.
 
  >[!NOTE]
- > Questo script consente di ridurre il numero di snapshot solo se lo snapshot precedente più recente è stato eseguito più di un'ora prima. Lo script non elimina gli snapshot che hanno meno di un'ora.
+ > Questo script consente di ridurre il numero di hello di snapshot solo se allo snapshot precedente più recente di hello è più di un'ora precedente. script Hello non elimina gli snapshot sono meno di un'ora fa.
 
-Queste restrizioni sono correlate alla funzionalità di ripristino di emergenza facoltativa offerta.
+Queste restrizioni sono una funzionalità opzionale di ripristino di emergenza correlate toohello offerte.
 
-Se non si desidera più mantenere un set di snapshot con tale prefisso, è possibile eseguire lo script con _0_ come numero di snapshot da mantenere per rimuovere tutti gli snapshot corrispondenti al prefisso. La rimozione di tutti gli snapshot può tuttavia influire sulle funzionalità di ripristino di emergenza.
+Se non si desidera più toomaintain un set di snapshot con tale prefisso, è possibile eseguire lo script hello con _0_ come hello memorizzazione numero tooremove tutti gli snapshot corrispondente tale prefisso. La rimozione di tutti gli snapshot possono tuttavia influire sulla funzionalità hello del ripristino di emergenza.
 
-### <a name="recovering-to-the-most-recent-hana-snapshot"></a>Ripristino in base allo snapshot HANA più recente
+### <a name="recovering-toohello-most-recent-hana-snapshot"></a>Ripristino di snapshot HANA più recente toohello
 
-Se si riscontra un problema di inattività in fase di produzione, il processo di ripristino da uno snapshot di archiviazione può essere avviato come evento imprevisto del cliente con il team di gestione dei servizi SAP HANA in Azure. Un caso imprevisto di questo tipo potrebbe richiedere estrema urgenza se i dati sono stati eliminati in un sistema di produzione e l'unico modo per recuperare i dati è quello di ripristinare il database di produzione.
+In caso di hello che si verifichi un scenario di produzione verso il basso, il processo di hello di ripristino da uno snapshot di archiviazione può essere avviato come un evento imprevisto di clienti con SAP HANA sulla gestione dei servizi di Azure. Un scenario di questo tipo imprevisto potrebbe essere una questione di urgenza elevati se i dati sono stati eliminati in produzione hello e sistema solo modo dati hello tooretrieve database di produzione toorestore hello.
 
-Al contrario, un ripristino temporizzato può essere gestito come caso a bassa priorità e pianificato con diversi giorni di anticipo. È possibile pianificare questo ripristino con il team di gestione dei servizi SAP HANA in Azure anziché segnalare un problema ad alta priorità. Ad esempio si potrebbe pianificare un aggiornamento del software SAP con un nuovo Enhancement Package e successivamente dover eseguire il ripristino in base a uno snapshot che rappresenta lo stato precedente l'aggiornamento EHP.
+In hello invece un punto nel tempo di ripristino potrebbe essere bassa urgenza e pianificato per i giorni in anticipo. È possibile pianificare questo ripristino con il team di gestione dei servizi SAP HANA in Azure anziché segnalare un problema ad alta priorità. Ad esempio, potrebbe essere pianificazione tootry un aggiornamento del software SAP hello applicando un nuovo pacchetto di funzionalità avanzata ed è quindi necessario eseguire il toorevert tooa snapshot che rappresenta lo stato di hello prima dell'aggiornamento hello EHP.
 
-Prima di eseguire la richiesta è necessario completare alcune operazioni di preparazione. In questo modo il team di gestione dei servizi SAP HANA in Azure potrà gestire la richiesta e fornire i volumi ripristinati. Sarà quindi responsabilità del cliente ripristinare il database HANA in base agli snapshot. Ecco come preparare la richiesta:
+Prima di eseguire la richiesta di hello, è necessario toodo alcune attività di preparazione. SAP HANA team di gestione del servizio Azure può gestire la richiesta di hello e fornire volumi hello ripristinato. In seguito, è tooyou toorestore hello HANA database basato su snapshot hello. Ecco come tooprepare per hello richiesta:
 
 >[!NOTE]
->L'interfaccia utente potrebbe essere diversa rispetto alle seguenti schermate, a seconda della versione di SAP HANA in uso.
+>L'interfaccia utente potrebbe variare da hello seguente schermate, a seconda di hello versione SAP HANA in uso.
 
-1. Scegliere lo snapshot da ripristinare. Viene ripristinato solo il volume hana/data, se non è diversamente specificato.
+1. Decidere quali toorestore snapshot. A meno che non viene richiesto, in caso contrario, verrebbe ripristinato solo il volume di dati/hana hello.
 
-2. Arrestare l'istanza HANA.
+2. Arrestare l'istanza HANA hello.
 
- ![Arrestare l'istanza HANA](./media/hana-overview-high-availability-disaster-recovery/image7-shutdown-hana.png)
+ ![Arrestare l'istanza di hello HANA](./media/hana-overview-high-availability-disaster-recovery/image7-shutdown-hana.png)
 
-3. Smontare i volumi di dati in ogni nodo del database HANA. Se i volumi di dati non sono smontati, il ripristino dello snapshot avrà esito negativo.
+3. Smontare i volumi di dati hello in ogni nodo del database HANA. ripristino di Hello dello snapshot hello ha esito negativo se i volumi di dati hello non vengono smontati.
 
- ![Smontare i volumi di dati in ogni nodo del database HANA](./media/hana-overview-high-availability-disaster-recovery/image8-unmount-data-volumes.png)
+ ![Smontare i volumi di dati hello in ogni nodo del database HANA](./media/hana-overview-high-availability-disaster-recovery/image8-unmount-data-volumes.png)
 
-4. Inviare una richiesta al supporto tecnico di Azure per il ripristino di uno snapshot specifico.
+4. Aprire un ripristino di supporto tecnico di Azure richiesta tooinstruct hello di uno snapshot specifico.
 
- - Durante il ripristino: SAP HANA in Gestione servizi di Azure potrebbe chiedere di partecipare a una conferenza telefonica per evitare perdite di dati.
+ - Durante il ripristino di hello: SAP HANA sulla gestione dei servizi di Azure potrebbe richiedere di tooattend tooensure una conferenza telefonica che nessun dato è sentirsi persi.
 
- - Dopo il ripristino: il team di gestione dei servizi SAP HANA in Azure invia una notifica per indicare quando è stato ripristinato lo snapshot di archiviazione.
+ - Dopo il ripristino di hello: SAP HANA sulla gestione dei servizi Azure informa l'utente quando il ripristino di snapshot di archiviazione hello.
 
-5. Al termine del processo di ripristino montare nuovamente tutti i volumi di dati.
+5. Una volta completato il processo di ripristino hello, reinstallare tutti i volumi di dati.
 
  ![Montare nuovamente tutti i volumi di dati](./media/hana-overview-high-availability-disaster-recovery/image9-remount-data-volumes.png)
 
-6. Selezionare le opzioni di ripristino in SAP HANA Studio, se non vengono automaticamente visualizzate al momento della riconnessione al database HANA tramite SAP HANA Studio. L'esempio seguente illustra un ripristino in base all'ultimo snapshot HANA. Uno snapshot di archiviazione incorpora un singolo snapshot HANA. Pertanto, se si esegue il ripristino in base all'ultimo snapshot di archiviazione, lo snapshot HANA ripristinato è quello più recente. Se invece si esegue il ripristino in base a snapshot di archiviazione precedenti, è necessario individuare lo snapshot HANA basandosi sull'ora di creazione dello snapshot di archiviazione.
+6. Selezionare le opzioni di ripristino in SAP HANA Studio, se vengono automaticamente viene visualizzata quando si riconnette tooHANA database tramite SAP HANA Studio. Hello esempio seguente viene illustrato un ripristino toohello ultimo HANA snapshot. Uno snapshot di archiviazione incorpora uno snapshot HANA e se si desidera ripristinare toohello snapshot di archiviazione più recente, dovrebbe essere snapshot HANA più recente di hello. (Se si desidera ripristinare gli snapshot di archiviazione tooolder, è necessario toolocate hello HANA basato su hello ora hello archiviazione snapshot dello snapshot.)
 
  ![Selezionare le opzioni di ripristino in SAP HANA Studio](./media/hana-overview-high-availability-disaster-recovery/image10-recover-options-a.png)
 
-7. Selezionare **Recover the database to a specific data backup or storage snapshot** (Ripristina il database in base a un backup di dati o a uno snapshot di archiviazione specifico).
+7. Selezionare **Ripristina hello tooa dati specifici backup o archiviazione di snapshot del database**.
 
- ![La finestra "Specify Recovery Type" (Specifica tipo di ripristino)](./media/hana-overview-high-availability-disaster-recovery/image11-recover-options-b.png)
+ ![finestra "Specifica del tipo di ripristino" Hello](./media/hana-overview-high-availability-disaster-recovery/image11-recover-options-b.png)
 
 8. Scegliere **Specify backup without catalog** (Specifica il backup senza catalogo).
 
- ![La finestra "Specify Backup Location" (Specifica percorso backup)](./media/hana-overview-high-availability-disaster-recovery/image12-recover-options-c.png)
+ ![finestra "Specifica del percorso di Backup" Hello](./media/hana-overview-high-availability-disaster-recovery/image12-recover-options-c.png)
 
-9. Nell'elenco **Destination Type** (Tipo di destinazione) selezionare **Snapshot**.
+9. In hello **tipo destinazione** elenco, selezionare **Snapshot**.
 
- ![La finestra "Specify the Backup to Recover" (Specifica il backup da ripristinare)](./media/hana-overview-high-availability-disaster-recovery/image13-recover-options-d.png)
+ ![finestra "Specificare hello Backup tooRecover" Hello](./media/hana-overview-high-availability-disaster-recovery/image13-recover-options-d.png)
 
-10. Fare clic su **Finish** (Fine) per avviare il processo di ripristino.
+10. Fare clic su **fine** toostart il processo di ripristino hello.
 
- ![Fare clic su "Finish" (Fine) per avviare il processo di ripristino](./media/hana-overview-high-availability-disaster-recovery/image14-recover-options-e.png)
+ ![Fare clic su "Fine" processo di ripristino hello toostart](./media/hana-overview-high-availability-disaster-recovery/image14-recover-options-e.png)
 
-11. Il database HANA viene ripristinato in base allo snapshot HANA incluso nello snapshot di archiviazione.
+11. database HANA Hello viene ripristinato e recuperato snapshot HANA toohello che è incluso nello snapshot di archiviazione hello.
 
- ![Il database HANA viene ripristinato in base allo snapshot HANA](./media/hana-overview-high-availability-disaster-recovery/image15-recover-options-f.png)
+ ![Database HANA è snapshot HANA toohello ripristinato e recuperato](./media/hana-overview-high-availability-disaster-recovery/image15-recover-options-f.png)
 
-### <a name="recovering-to-the-most-recent-state"></a>Ripristino allo stato più recente
+### <a name="recovering-toohello-most-recent-state"></a>Ripristino dello stato più recente di toohello
 
-La procedura seguente ripristina lo snapshot HANA incluso nello snapshot di archiviazione. Quindi ripristina il backup del log delle transazioni allo stato più recente del database prima di ripristinare lo snapshot di archiviazione.
+Hello seguente processo Ripristina snapshot HANA hello è incluso nello snapshot di archiviazione hello. Quindi, viene ripristinato hello transaction log backup toohello stato più recente del database hello prima del ripristino di snapshot di archiviazione hello.
 
 >[!IMPORTANT]
->Prima di procedere assicurarsi di avere una catena contigua e completa di backup dei log delle transazioni. Senza questi backup non è possibile ripristinare lo stato corrente del database.
+>Prima di procedere assicurarsi di avere una catena contigua e completa di backup dei log delle transazioni. Senza questi backup, è possibile ripristinare lo stato corrente di hello del database hello.
 
-1. Completare i passaggi da 1 a 6 della procedura precedente in "Ripristino in base allo snapshot HANA più recente".
+1. Completare i passaggi 1-6 di hello precedenti procedura in "Recovering toohello snapshot più recente HANA."
 
-2. Selezionare **Recover the database to its most recent state** (Ripristina il database allo stato più recente).
+2. Selezionare **ripristinare lo stato più recente di hello database tooits**.
 
- ![Selezionare "Recover the database to its most recent state" (Ripristina il database allo stato più recente)](./media/hana-overview-high-availability-disaster-recovery/image16-recover-database-a.png)
+ ![Selezionare "Ripristina allo stato più recente di hello database tooits"](./media/hana-overview-high-availability-disaster-recovery/image16-recover-database-a.png)
 
-3. Specificare il percorso dei backup dei log di HANA più recenti. Il percorso deve contenere tutti i backup dei log delle transazioni di HANA dallo snapshot HANA allo stato più recente.
+3. Specificare il percorso di hello hello più recente HANA di backup del log. percorso Hello deve toocontain tutti i backup di log delle transazioni HANA dallo stato più recente toohello hello HANA snapshot.
 
- ![Specificare il percorso dei backup dei log di HANA più recenti](./media/hana-overview-high-availability-disaster-recovery/image17-recover-database-b.png)
+ ![Specificare il percorso di hello hello più recente HANA di backup del log](./media/hana-overview-high-availability-disaster-recovery/image17-recover-database-b.png)
 
-4. Selezionare un backup come base da cui ripristinare il database. Nell'esempio specifico si tratta dello snapshot HANA incluso nello snapshot di archiviazione. Nella schermata seguente è indicato un solo snapshot.
+4. Selezionare un backup come base dalla quale database hello toorecover. In questo esempio, si tratta di snapshot HANA hello incluse nello snapshot di archiviazione hello. (Un solo snapshot è elencato nella seguente schermata hello.)
 
- ![Selezionare un backup come base da cui ripristinare il database](./media/hana-overview-high-availability-disaster-recovery/image18-recover-database-c.png)
+ ![Selezionare un backup come base dalla quale database hello toorecover](./media/hana-overview-high-availability-disaster-recovery/image18-recover-database-c.png)
 
-5. Deselezionare la casella di controllo **Use Delta Backups** (Usa backup differenziali) se non sono stati creati backup differenziali tra l'ora di creazione dello snapshot HANA e lo stato più recente.
+5. Crittografato hello **i backup differenziali di utilizzare** casella di controllo se non esistono delta tra hello snapshot HANA hello e allo stato più recente di hello.
 
- ![Deselezionare la casella di controllo "Use Delta Backups" (Usa backup differenziali) se non esistono backup differenziali](./media/hana-overview-high-availability-disaster-recovery/image19-recover-database-d.png)
+ ![Casella di controllo "Utilizzare i backup differenziali" crittografato hello se è presente alcun delta](./media/hana-overview-high-availability-disaster-recovery/image19-recover-database-d.png)
 
-6. Nella schermata di riepilogo fare clic su **Finish** (Fine) per avviare la procedura di ripristino.
+6. Nella schermata di riepilogo hello, fare clic su **fine** toostart procedura di ripristino hello.
 
- ![Nella schermata di riepilogo fare clic su "Finish" (Fine)](./media/hana-overview-high-availability-disaster-recovery/image20-recover-database-e.png)
+ ![Fare clic su "Fine" nella schermata di riepilogo hello](./media/hana-overview-high-availability-disaster-recovery/image20-recover-database-e.png)
 
-### <a name="recovering-to-another-point-in-time"></a>Ripristino a un'altra temporizzazione
-Per eseguire il ripristino a una temporizzazione compresa tra il momento di creazione dello snapshot HANA (incluso nello snapshot di archiviazione) e un momento successivo al ripristino temporizzato dello snapshot HANA, procedere come segue:
+### <a name="recovering-tooanother-point-in-time"></a>Recupero tooanother punto nel tempo
+toorecover tooa punto nel tempo che intercorre tra snapshot HANA hello (incluso nello snapshot di archiviazione hello) e quella successiva alla hello HANA snapshot in fase di punto di ripristino, hello seguenti:
 
-1. Assicurarsi di avere tutti i backup dei log delle transazioni dal momento di creazione dello snapshot HANA al momento che si vuole ripristinare.
-2. Iniziare la procedura riportata in "Ripristino allo stato più recente".
-3. Al passaggio 2 della procedura, nella finestra **Specify Recovery Type** (Specifica tipo di ripristino), selezionare **Recover the database to the following point in time** (Ripristina il database alla temporizzazione seguente), specificare la temporizzazione e quindi completare i passaggi da 3 a 6.
+1. Assicurarsi di disporre di tutti i backup del log delle transazioni da hello HANA snapshot toohello ora in cui che si desidera toorecover.
+2. Iniziare la procedura hello in "Recovering toohello allo stato più recente."
+3. Nel passaggio 2 della procedura hello hello **Selezione tipo di ripristino** selezionare **seguente toohello database hello di ripristino temporizzato**, specificare hello punto nel tempo e quindi completare i passaggi 3-6.
 
-## <a name="monitoring-the-execution-of-snapshots"></a>Monitorare l'esecuzione degli snapshot
+## <a name="monitoring-hello-execution-of-snapshots"></a>Monitoraggio esecuzione hello di snapshot
 
-È necessario monitorare l'esecuzione degli snapshot di archiviazione. Lo script che esegue uno snapshot di archiviazione scrive l'output in un file e lo salva nello stesso percorso degli script Perl. Viene creato un file separato per ogni snapshot. L'output di ogni file mostra chiaramente le diverse fasi che lo script degli snapshot esegue:
+È necessario l'esecuzione di hello toomonitor di snapshot di archiviazione. script di Hello che viene eseguito uno snapshot di archiviazione scrive file di output tooa e infine la salva toohello stesso percorso script Perl hello. Viene creato un file separato per ogni snapshot. output di Hello di ogni file mostra chiaramente hello diverse fasi che esegue script snapshot hello:
 
-- Ricerca dei volumi per i quali è necessario creare uno snapshot
-- Ricerca degli snapshot creati da tali volumi
-- Eliminazione di eventuali snapshot esistenti in modo da riflettere il numero di snapshot specificato
+- Ricerca di volumi hello necessarie toocreate uno snapshot
+- Ricerca di snapshot hello creati da questi volumi
+- L'eliminazione di eventuale esistente snapshot toomatch hello numero di snapshot specificato
 - Creazione di uno snapshot HANA
-- Creazione dello snapshot di archiviazione sui volumi
-- Eliminazione dello snapshot HANA
-- Rinomina dello snapshot più recente come **.0**
+- Creazione di snapshot di archiviazione hello rispetto ai volumi hello
+- L'eliminazione di snapshot HANA hello
+- La ridenominazione più recente di hello snapshot troppo**,0**
 
-La parte più importante dello script è la seguente:
+parte più importante di Hello dello script hello è la seguente:
 ```
 **********************Creating HANA snapshot**********************
-Creating the HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data create snapshot"" ...
+Creating hello HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data create snapshot"" ...
 HANA snapshot created successfully.
 **********************Creating Storage snapshot**********************
 Taking snapshot hourly.recent for hana_data_lhanad01_t020_vol ...
@@ -590,7 +590,7 @@ Snapshot created successfully.
 Taking snapshot hourly.recent for sapmnt_lhanad01_t020_vol ...
 Snapshot created successfully.
 **********************Deleting HANA snapshot**********************
-Deleting the HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data drop snapshot"" ...
+Deleting hello HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data drop snapshot"" ...
 HANA snapshot deletion successfully.
 ```
-In questo esempio è possibile notare come lo script registra la creazione dello snapshot HANA. Nel caso di una configurazione con scalabilità orizzontale questa procedura viene avviata sul nodo master. Il nodo master avvia la creazione sincrona degli snapshot su ciascuno dei nodi di lavoro, quindi viene creato lo snapshot di archiviazione. Dopo l'esecuzione degli snapshot di archiviazione, lo snapshot HANA viene eliminato.
+Da questo esempio è possibile vedere come i record di script hello hello creazione dello snapshot HANA hello. In caso di scalabilità orizzontale hello, questo processo viene avviato sul nodo principale hello. nodo principale Hello Avvia Creazione sincrona di hello di snapshot hello in ognuno dei nodi di lavoro hello. Quindi hello archiviazione dello snapshot. Dopo l'esecuzione corretta di hello di snapshot di archiviazione hello, snapshot HANA hello viene eliminato.

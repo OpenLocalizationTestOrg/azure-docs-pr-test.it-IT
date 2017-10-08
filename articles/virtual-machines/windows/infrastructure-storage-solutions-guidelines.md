@@ -1,6 +1,6 @@
 ---
-title: Soluzioni di archiviazione per macchine virtuali Windows in Azure | Microsoft Docs
-description: Informazioni sulle principali linee guida di progettazione e implementazione per la distribuzione di soluzioni di archiviazione nei servizi di infrastruttura di Azure.
+title: soluzioni aaaStorage per le macchine virtuali Windows in Azure | Documenti Microsoft
+description: Informazioni su hello progettazione e implementazione di linee guida fondamentali per la distribuzione di soluzioni di archiviazione in servizi di infrastruttura di Azure.
 documentationcenter: 
 services: virtual-machines-windows
 author: iainfoulds
@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ba0d66c5af771ebcb3ca8e6742e15a5506d8fd61
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 57c27a7305964a56e6b2d1e73dee8e7da19fa8f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-infrastructure-guidelines-for-windows-vms"></a>Linee guida per l'infrastruttura di archiviazione di Azure per macchine virtuali Windows
 
@@ -31,62 +31,62 @@ Questo articolo è incentrato sulla comprensione delle esigenze di archiviazione
 ## <a name="implementation-guidelines-for-storage"></a>Linee guida di implementazione per l'archiviazione
 Decisioni:
 
-* Si intende usare Managed Disks di Azure o i dischi non gestiti?
-* È necessario usare l'archiviazione standard o Premium per il carico di lavoro?
-* È necessario lo striping del disco per creare dischi più grandi di 4TB?
-* È necessario lo striping del disco per ottenere prestazioni di I/O ottimali per il carico di lavoro?
-* Quali sono i set di account di archiviazione necessari per l’hosting dell’infrastruttura o del carico di lavoro IT?
+* Verranno toouse dischi gestiti di Azure o i dischi non gestiti?
+* È necessario spazio di archiviazione toouse Standard o Premium per il carico di lavoro?
+* È necessario dischi toocreate lo striping di disco più di 4TB?
+* È necessario lo striping tooachieve ottimale i/o del disco per il carico di lavoro?
+* Il set di account di archiviazione è necessario toohost l'infrastruttura o il carico di lavoro IT?
 
 Attività:
 
-* Esaminare le richieste di I/O delle applicazioni da distribuire e pianificare il numero appropriato e il tipo di account di archiviazione.
-* Creare il set di account di archiviazione usando la convenzione di denominazione scelta. È possibile usare Azure PowerShell o il portale.
+* Rivedere le richieste dei / o delle applicazioni di hello si distribuiscono e si prevede di tipo di account di archiviazione e il numero appropriato di hello.
+* Creare set di hello di account di archiviazione usando la convenzione di denominazione. È possibile utilizzare Azure PowerShell o il portale di hello.
 
 ## <a name="storage"></a>Archiviazione
-Archiviazione di Azure è una parte fondamentale della distribuzione e della gestione di applicazioni e macchine virtuali. Archiviazione di Azure fornisce servizi per l'archiviazione di dati dei file, dati non strutturati e messaggi ed è anche parte dell'infrastruttura di supporto delle macchine virtuali.
+Archiviazione di Azure è una parte fondamentale della distribuzione e della gestione di applicazioni e macchine virtuali. Archiviazione di Azure fornisce servizi per l'archiviazione dei dati dei file, dati non strutturati e i messaggi e fa anche parte dell'infrastruttura di hello che supporta le macchine virtuali.
 
-[Managed Disks di Azure](../../storage/storage-managed-disks-overview.md) gestisce automaticamente le risorse di archiviazione. Con i dischi non gestiti è necessario creare account di archiviazione per contenere i dischi (file VHD) delle macchine virtuali di Azure. Per aumentare le prestazioni è necessario creare account di archiviazione aggiuntivi per non superare il limite di IOPS per l'archiviazione con uno dei dischi. Affidando a Managed Disks la gestione delle risorse di archiviazione, non è più necessario preoccuparsi dei limiti degli account di archiviazione, ad esempio di 20.000 IOPS per account. E non è più necessario copiare le immagini personalizzate, ovvero i file VHD, in più account di archiviazione. È possibile gestire tali immagini in una posizione centralizzata, un unico account di archiviazione per ogni area di Azure, e usarle per creare centinaia di macchine virtuali in una sottoscrizione. È consigliabile usare Managed Disks per le nuove distribuzioni.
+[I dischi di Azure gestiti](../../storage/storage-managed-disks-overview.md) gestisce l'archiviazione dei background hello. Con i dischi non gestiti, per creare gli account di archiviazione dischi hello toohold (file VHD) per le macchine virtuali di Azure. La scalabilità, è necessario assicurarsi creato gli account di archiviazione aggiuntivo in modo da non superare il limite di IOPS hello per l'archiviazione con uno qualsiasi dei dischi. Con dischi gestiti gestione archiviazione, non è limitato da hello limiti dell'account di archiviazione (ad esempio 20.000 IOPS / account). Inoltre non è più necessario toocopy gli account di archiviazione toomultiple immagini personalizzate (file VHD). È possibile gestirli in una posizione centrale: un account di archiviazione per ogni area di Azure e usarli toocreate centinaia di macchine virtuali in una sottoscrizione. È consigliabile usare Managed Disks per le nuove distribuzioni.
 
 Per il supporto delle macchine virtuali sono disponibili due tipi di archiviazione:
 
-* Un account di archiviazione standard consente di accedere all'archivio BLOB (usato per archiviare i dischi delle macchine virtuali di Azure), all'archivio tabelle, all'archivio code e all'archivio file.
+* Consentono di account di archiviazione standard accedere archiviazione tooblob (utilizzato per l'archiviazione dei dischi di macchina virtuale di Azure), archiviazione, l'archiviazione delle code, tabelle e file di archiviazione.
 * [archiviazione Premium](../../storage/storage-premium-storage.md) offrono prestazioni elevate e supporto per dischi a bassa latenza per carichi di lavoro con uso intensivo di I/O, ad esempio istanze di SQL Server in un cluster AlwaysOn. Attualmente l'archiviazione Premium di Azure supporta solo i dischi di VM di Azure.
 
-Azure consente di creare macchine virtuali con un disco del sistema operativo, un disco temporaneo e nessuno o più dischi dati facoltativi. Il disco del sistema operativo e i dischi dati sono BLOB di Azure, mentre il disco temporaneo è archiviato localmente sul nodo in cui si trova il computer. Prestare attenzione quando si progettano applicazioni in modo da usare solo questo disco temporaneo per i dati non persistenti, in quanto la macchina virtuale può eseguire la migrazione tra host durante un evento di manutenzione. Tutti i dati archiviati sul disco temporaneo andranno persi.
+Azure consente di creare macchine virtuali con un disco del sistema operativo, un disco temporaneo e nessuno o più dischi dati facoltativi. disco del sistema operativo Hello e i dischi dati sono BLOB di pagine di Azure, mentre il disco temporaneo hello archiviato localmente nel nodo hello in cui risiede la macchina hello. Prestare attenzione quando si progettano applicazioni tooonly utilizzano il disco temporaneo per i dati non persistenti come hello VM può eseguire la migrazione tra host durante un evento di manutenzione. Tutti i dati archiviati su disco temporaneo hello potrebbero essere persi.
 
-Per garantire che i dati rimangano protetti da eventi di manutenzione non pianificata o errori hardware, l'ambiente di Archiviazione di Azure sottostante offre durabilità ed elevata disponibilità. Quando si progetta l'ambiente di Archiviazione di Azure, è possibile scegliere di replicare l'archiviazione VM:
+Durabilità e disponibilità elevata viene fornito da hello sottostante tooensure ambiente di archiviazione di Azure che i dati rimangono protetti in caso di errori hardware o di manutenzione non pianificata. Quando si progetta l'ambiente di archiviazione di Azure, è possibile scegliere l'archiviazione macchina virtuale tooreplicate:
 
 * in locale all'interno di un data center di Azure
 * tra data center di Azure all'interno di una determinata area
 * tra data center di Azure all'interno di aree diverse
 
-Sono disponibili altre informazioni sulle [opzioni di replica per la disponibilità elevata](../../storage/storage-introduction.md#replication-for-durability-and-high-availability).
+È possibile leggere [ulteriori informazioni sulle opzioni di replica hello per la disponibilità elevata](../../storage/storage-introduction.md#replication-for-durability-and-high-availability).
 
-I dischi dati e del sistema operativo hanno una dimensione massima di 4TB. È possibile usare gli spazi di archiviazione in Windows Server 2012 o versione successiva per superare questo limite tramite il pooling dei dischi dati per la presentazione di volumi logici superiori a 4TB per la VM.
+I dischi dati e del sistema operativo hanno una dimensione massima di 4TB. È possibile utilizzare questo limite di spazi di archiviazione in Windows Server 2012 o versioni successive toosurpass dal pool di dischi toopresent logico volumi di dati maggiori di 4TB tooyour VM insieme.
 
 Quando si progettano le distribuzioni di Archiviazione di Azure, esistono alcuni limiti di scalabilità. Per altre informazioni, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../../azure-subscription-service-limits.md#storage-limits). Vedere anche [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](../../storage/storage-scalability-targets.md).
 
-Quanto all'archiviazione delle applicazioni, è possibile archiviare dati oggetto non strutturati, ad esempio documenti, immagini, backup, dati di configurazione, log e così via usando l'archiviazione BLOB. Anziché la scrittura in un disco virtuale collegato alla macchina virtuale, l'applicazione può scrivere direttamente nell'archiviazione BLOB di Azure. L'archiviazione BLOB offre anche la possibilità di [livelli di archiviazione per accesso frequente e accesso sporadico](../../storage/storage-blob-storage-tiers.md) in base alle esigenze di disponibilità e ai vincoli di costo.
+Quanto all'archiviazione delle applicazioni, è possibile archiviare dati oggetto non strutturati, ad esempio documenti, immagini, backup, dati di configurazione, log e così via usando l'archiviazione BLOB. Anziché l'applicazione scrittura tooa disco virtuale collegato toohello VM, un'applicazione hello possibile scrivere direttamente nell'archiviazione blob tooAzure. Archiviazione BLOB offre inoltre l'opzione di hello di [a caldo e interessanti livelli di archiviazione](../../storage/storage-blob-storage-tiers.md) in base alle esigenze di disponibilità e i vincoli di costo.
 
 ## <a name="striped-disks"></a>Dischi con striping
-Oltre a consentire di creare dischi di dimensioni superiori a 4TB, in molti casi l'uso dello striping per i dischi dati contribuisce a migliorare le prestazioni, consentendo a più BLOB di supportare l'archiviazione per un singolo volume. Con lo striping, le operazioni I/O necessarie per scrivere e leggere dati da un singolo disco logico procedono in parallelo.
+Oltre a consentire toocreate dischi più di 4TB, in molti casi, utilizzare lo striping dei dischi dati migliora le prestazioni, consentendo più BLOB di archiviazione hello tooback per un singolo volume. Con lo striping hello i/o necessari toowrite e lettura dei dati da un singolo disco logico consente di passare in parallelo.
 
-Azure impone limiti riguardo al numero di dischi dati e alla quantità della larghezza di banda disponibile a seconda delle dimensioni della macchina virtuale. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](sizes.md).
+Azure impone limiti sul numero hello di dischi dati e la quantità di larghezza di banda disponibile, a seconda delle dimensioni della macchina virtuale hello. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](sizes.md).
 
-Se si usa lo striping del disco per i dischi dati di Azure, considerare le linee guida seguenti:
+Se si utilizza lo striping del disco per i dischi di dati di Azure, è consigliabile hello alle linee guida:
 
-* Collegare i dischi dati delle dimensioni massime consentite per le dimensioni della macchina virtuale.
+* Collegare i dischi di dati massimo hello consentiti per hello dimensioni della macchina virtuale.
 * Usare gli spazi di archiviazione.
 * Evitare di usare le opzioni di caching del disco di dati di Azure (criterio di caching = Nessuno).
 
 Per altre informazioni, vedere l’articolo sugli [spazi di archiviazione - progettazione della prestazione](http://social.technet.microsoft.com/wiki/contents/articles/15200.storage-spaces-designing-for-performance.aspx).
 
 ## <a name="multiple-storage-accounts"></a>Account di archiviazione multipli
-Questa sezione non si applica a [Managed Disks di Azure](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), in quanto non si creano account di archiviazione separati. 
+In questa sezione non si applica troppo[dischi gestiti di Azure](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), come non creare gli account di archiviazione separata. 
 
-Quando si progetta l'ambiente di Archiviazione di Azure per i dischi non gestiti, è possibile usare più account di archiviazione in base al maggior numero di macchine virtuali distribuite. Questo approccio consente di distribuire i carichi di lavoro I/O attraverso l'infrastruttura di Archiviazione di Azure sottostante al fine di garantire un livello di prestazioni ottimale per le macchine virtuali e le applicazioni. Durante la progettazione delle applicazioni da distribuire, considerare i requisiti di I/O di ogni VM e bilanciare queste ultime fra gli account di Archiviazione di Azure. Cercare di evitare di raggruppare tutte le VM con valori di I/O elevati in uno o due account di archiviazione soltanto.
+Quando si progetta l'ambiente di archiviazione di Azure per i dischi non gestiti, è possibile utilizzare più account di archiviazione come il numero di hello di macchine virtuali distribuiti aumenta. Questo approccio consente di distribuire out hello i/o tra hello sottostante servizio di archiviazione Azure infrastruttura toomaintain prestazioni ottimali per le macchine virtuali e applicazioni. Durante la Progettazione applicazioni hello che si desidera distribuire, considerare i requisiti dei / o hello che ogni macchina virtuale dispone e saldo out tali macchine virtuali tra account di archiviazione di Azure. Provare a tooavoid raggruppamento tutti hello i/o richiedono le macchine virtuali negli account di archiviazione toojust uno o due.
 
-Per altre informazioni sulle funzionalità di I/O delle diverse opzioni di Archiviazione di Azure e sui valori massimi consigliati, vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](../../storage/storage-scalability-targets.md).
+Per ulteriori informazioni sulle funzionalità dei / o hello le diverse opzioni di archiviazione di Azure hello e per consigliare valori massimi, vedere [obiettivi di scalabilità e prestazioni di archiviazione di Azure](../../storage/storage-scalability-targets.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]

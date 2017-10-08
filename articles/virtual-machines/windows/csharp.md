@@ -1,6 +1,6 @@
 ---
-title: Creare e gestire una macchina virtuale di Azure tramite C# | Microsoft Docs
-description: Usare C# e Azure Resource Manager per distribuire una macchina virtuale e tutte le relative risorse di supporto.
+title: aaaCreate e gestire un Azure macchina virtuale utilizzando c# | Documenti Microsoft
+description: Utilizzare toodeploy c# e Azure Resource Manager una macchina virtuale e tutte le risorse di supporto.
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: davidmu
-ms.openlocfilehash: 5d9021c2f65b70e36d5ea82992c9fb9d2d6d394a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8beeabde731bbaa25e68d2b9c5abbf71acbe377f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-c"></a>Creare e gestire macchine virtuali Windows in Azure tramite C# #
 
@@ -27,27 +27,27 @@ Una [macchina virtuale di Azure](overview.md?toc=%2fazure%2fvirtual-machines%2fw
 
 > [!div class="checklist"]
 > * Creare un progetto di Visual Studio
-> * Installare il pacchetto
+> * Installare il pacchetto di hello
 > * Creare le credenziali
 > * Creare le risorse
 > * Eseguire le attività di gestione
 > * Eliminare le risorse
-> * Eseguire l'applicazione
+> * Eseguire un'applicazione hello
 
-L'esecuzione di questi passaggi richiede circa 20 minuti.
+Sono necessari circa 20 minuti toodo questi passaggi.
 
 ## <a name="create-a-visual-studio-project"></a>Creare un progetto di Visual Studio
 
-1. Se non è già installato, installare [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Selezionare **Sviluppo per desktop .NET** nella pagina Carichi di lavoro e quindi fare clic su **Installa**. Nel riepilogo si noti che **Strumenti di sviluppo per .NET Framework 4-4.6** viene selezionato automaticamente. Se Visual Studio è già stato installato, è possibile aggiungere il carico di lavoro .NET usando l'utilità di avvio di Visual Studio.
+1. Se non è già installato, installare [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Selezionare **lo sviluppo desktop .NET** hello pagina carichi di lavoro e quindi fare clic su **installare**. In hello riepilogo, è possibile vedere che **gli strumenti di sviluppo di .NET Framework 4 a 4.6** viene selezionato automaticamente. Se già stato installato Visual Studio, è possibile aggiungere hello .NET il carico di lavoro hello utilità di avvio di Visual Studio.
 2. In Visual Studio fare clic su **File** > **Nuovo** > **Progetto**.
-3. In **Modelli** > **Visual C#** selezionare **App console (.NET Framework)**, immettere *myDotnetProject* come nome del progetto, selezionare il percorso del progetto e quindi fare clic su **OK**.
+3. In **modelli** > **Visual c#**selezionare **applicazione Console (.NET Framework)**, immettere *myDotnetProject* per nome hello del progetto, il percorso di selezione hello del progetto di hello, Hello e quindi fare clic su **OK**.
 
-## <a name="install-the-package"></a>Installare il pacchetto
+## <a name="install-hello-package"></a>Installare il pacchetto di hello
 
-I pacchetti NuGet sono il modo più semplice per installare le librerie necessarie per completare questi passaggi. Per ottenere le librerie necessarie in Visual Studio, eseguire questa procedura:
+Pacchetti NuGet sono hello più semplice modo tooinstall hello librerie necessario toofinish questi passaggi. librerie di hello tooget che è necessario in Visual Studio, eseguire questi passaggi:
 
 1. Fare clic su **Strumenti** > **Gestione pacchetti NuGet** e quindi su **Console di Gestione pacchetti**.
-2. Nella console digitare il comando seguente:
+2. Nella console di hello, digitare il comando seguente:
 
     ```
     Install-Package Microsoft.Azure.Management.Fluent
@@ -55,11 +55,11 @@ I pacchetti NuGet sono il modo più semplice per installare le librerie necessar
 
 ## <a name="create-credentials"></a>Creare le credenziali
 
-Prima di iniziare questo passaggio, assicurarsi di avere accesso a un'[entità servizio Active Directory](../../azure-resource-manager/resource-group-create-service-principal-portal.md). È inoltre necessario registrare l'ID dell'applicazione, la chiave di autenticazione e l'ID del tenant che saranno necessari in un passaggio successivo.
+Prima di iniziare questo passaggio, assicurarsi di disporre di accesso tooan [entità servizio Active Directory](../../azure-resource-manager/resource-group-create-service-principal-portal.md). È inoltre necessario registrare l'ID applicazione hello, chiave di autenticazione hello e ID tenant hello che è necessario in un passaggio successivo.
 
-### <a name="create-the-authorization-file"></a>Creare il file di autorizzazione
+### <a name="create-hello-authorization-file"></a>Creare il file di autorizzazione hello
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse su *myDotnetProject* > **Aggiungi** > **Nuovo elemento** e quindi selezionare **File di testo** in *Elementi di Visual C#*. Assegnare al file il nome *azureauth.properties* e quindi fare clic su **Aggiungi**.
+1. In Esplora soluzioni fare clic con il pulsante destro del mouse su *myDotnetProject* > **Aggiungi** > **Nuovo elemento** e quindi selezionare **File di testo** in *Elementi di Visual C#*. File con nome hello *azureauth.properties*, quindi fare clic su **Aggiungi**.
 2. Aggiungere le proprietà di autorizzazione seguenti:
 
     ```
@@ -73,18 +73,18 @@ Prima di iniziare questo passaggio, assicurarsi di avere accesso a un'[entità s
     graphURL=https://graph.windows.net/
     ```
 
-    Sostituire **&lt;subscription-id&gt;** con l'identificatore della sottoscrizione, **&lt;application-id&gt;** con l'identificatore dell'applicazione Active Directory, **&lt;authentication-key&gt;** con la chiave dell'applicazione e **&lt;tenant-id&gt;** con l'identificatore del tenant.
+    Sostituire  **&lt;id sottoscrizione&gt;**  con l'identificatore della sottoscrizione,  **&lt;id applicazione&gt;**  con hello applicazione Active Directory identificatore,  **&lt;chiave di autenticazione&gt;**  con chiave applicazione hello e  **&lt;id tenant&gt;**  con tenant hello identificatore.
 
-3. Salvare il file azureauth.properties. 
-4. Impostare una variabile di ambiente Windows denominata AZURE_AUTH_LOCATION con il percorso completo verso il file di autorizzazione creato. Ad esempio, è possibile usare il comando PowerShell seguente:
+3. Salvare il file di azureauth.properties hello. 
+4. Impostare una variabile di ambiente Windows denominata AZURE_AUTH_LOCATION con file di tooauthorization hello percorso completo che è stato creato. Ad esempio, consente hello comando PowerShell seguente:
 
     ```
     [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\Visual Studio 2017\Projects\myDotnetProject\myDotnetProject\azureauth.properties", "User")
     ```
 
-### <a name="create-the-management-client"></a>Creare il client di gestione
+### <a name="create-hello-management-client"></a>Creare il client di gestione hello
 
-1. Aprire il file Program.cs per il progetto creato e quindi aggiungere le istruzioni using seguenti alle istruzioni esistenti all'inizio del file:
+1. Aprire il file Program.cs hello per progetto hello creato e quindi aggiungerle utilizzando istruzioni esistente toohello all'inizio del file hello:
 
     ```
     using Microsoft.Azure.Management.Compute.Fluent;
@@ -94,7 +94,7 @@ Prima di iniziare questo passaggio, assicurarsi di avere accesso a un'[entità s
     using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
     ```
 
-2. Per creare i client di gestione, aggiungere questo codice al metodo Main:
+2. client di gestione di hello toocreate, aggiungere questo toohello codice metodo Main:
 
     ```
     var credentials = SdkContext.AzureCredentialsFactory
@@ -109,11 +109,11 @@ Prima di iniziare questo passaggio, assicurarsi di avere accesso a un'[entità s
 
 ## <a name="create-resources"></a>Creare le risorse
 
-### <a name="create-the-resource-group"></a>Creare il gruppo di risorse.
+### <a name="create-hello-resource-group"></a>Creare il gruppo di risorse hello
 
 Tutte le risorse devono essere contenute in un [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md).
 
-Per specificare i valori per l'applicazione e creare il gruppo di risorse, aggiungere questo codice al metodo Main:
+i valori per toospecify hello applicazione e creare il gruppo di risorse hello, aggiungere questo toohello codice metodo Main:
 
 ```
 var groupName = "myResourceGroup";
@@ -126,11 +126,11 @@ var resourceGroup = azure.ResourceGroups.Define(groupName)
     .Create();
 ```
 
-### <a name="create-the-availability-set"></a>Creare il set di disponibilità
+### <a name="create-hello-availability-set"></a>Creare set di disponibilità hello
 
-I [set di disponibilità](tutorial-availability-sets.md) semplificano la manutenzione delle macchine virtuali usate dall'applicazione.
+[Set di disponibilità](tutorial-availability-sets.md) rendono più semplice per l'utente nelle macchine virtuali di hello toomaintain utilizzate dall'applicazione.
 
-Per creare il set di disponibilità, aggiungere questo codice al metodo Main:
+set di disponibilità hello toocreate, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Creating availability set...");
@@ -141,11 +141,11 @@ var availabilitySet = azure.AvailabilitySets.Define("myAVSet")
     .Create();
 ```
 
-### <a name="create-the-public-ip-address"></a>Creare l'indirizzo IP pubblico
+### <a name="create-hello-public-ip-address"></a>Creare l'indirizzo IP pubblico hello
 
-Un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) è necessario per comunicare con la macchina virtuale.
+Oggetto [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) è necessario toocommunicate con la macchina virtuale hello.
 
-Per creare l'indirizzo IP pubblico della macchina virtuale, aggiungere questo codice al metodo Main:
+toocreate hello indirizzo IP pubblico per la macchina virtuale hello, aggiungere questo toohello codice metodo Main:
    
 ```
 Console.WriteLine("Creating public IP address...");
@@ -156,11 +156,11 @@ var publicIPAddress = azure.PublicIPAddresses.Define("myPublicIP")
     .Create();
 ```
 
-### <a name="create-the-virtual-network"></a>Creare la rete virtuale
+### <a name="create-hello-virtual-network"></a>Creare una rete virtuale hello
 
 Una macchina virtuale deve essere inclusa in una subnet di una [rete virtuale](../../virtual-network/virtual-networks-overview.md).
 
-Per creare una subnet e una rete virtuale, aggiungere questo codice al metodo Main:
+toocreate una subnet e una rete virtuale, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Creating virtual network...");
@@ -172,11 +172,11 @@ var network = azure.Networks.Define("myVNet")
     .Create();
 ```
 
-### <a name="create-the-network-interface"></a>Creare l'interfaccia di rete
+### <a name="create-hello-network-interface"></a>Creare l'interfaccia di rete hello
 
-Una macchina virtuale richiede un'interfaccia di rete per comunicare nella rete virtuale.
+Una macchina virtuale richiede un toocommunicate di interfaccia di rete nella rete virtuale hello.
 
-Per creare un'interfaccia di rete, aggiungere questo codice al metodo Main:
+toocreate un'interfaccia di rete, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Creating network interface...");
@@ -190,11 +190,11 @@ var networkInterface = azure.NetworkInterfaces.Define("myNIC")
     .Create();
  ```
 
-### <a name="create-the-virtual-machine"></a>Creare la macchina virtuale
+### <a name="create-hello-virtual-machine"></a>Creare una macchina virtuale hello
 
-Dopo avere creato tutte le risorse di supporto, è possibile creare una macchina virtuale.
+Dopo aver creato hello tutte le risorse di supporto, è possibile creare una macchina virtuale.
 
-Per creare la macchina virtuale, aggiungere questo codice al metodo Main:
+toocreate hello macchina virtuale, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Creating virtual machine...");
@@ -212,11 +212,11 @@ azure.VirtualMachines.Define(vmName)
 ```
 
 > [!NOTE]
-> Questa esercitazione illustra come creare una macchina virtuale in cui è in esecuzione una versione del sistema operativo Windows Server. Per altre informazioni sulla selezione di altre immagini, vedere [Esplorare e selezionare immagini delle macchine virtuali di Azure con Windows PowerShell e l'interfaccia della riga di comando di Azure](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Questa esercitazione consente di creare una macchina virtuale in esecuzione una versione del sistema operativo di Windows Server hello. toolearn più sulla selezione di altre immagini, vedere [Naviga e selezionare le immagini di macchina virtuale di Azure con Windows PowerShell e hello Azure CLI](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 > 
 >
 
-Se si desidera usare un disco esistente invece di un'immagine del marketplace, usare questo codice:
+Se si desidera toouse un disco esistente anziché un'immagine del marketplace, è possibile utilizzare questo codice:
 
 ```
 var managedDisk = azure.Disks.Define("myosdisk")
@@ -239,20 +239,20 @@ azure.VirtualMachines.Define("myVM")
 
 ## <a name="perform-management-tasks"></a>Eseguire le attività di gestione
 
-Durante il ciclo di vita di una macchina virtuale si eseguono attività di gestione come l'avvio, l'arresto o l'eliminazione della macchina virtuale. È inoltre possibile creare codice per automatizzare le attività ripetitive o complesse.
+Durante il ciclo di vita hello di una macchina virtuale, è opportuno toorun attività di gestione, ad esempio avvio, arresto o l'eliminazione di una macchina virtuale. Inoltre, è consigliabile toocreate codice tooautomate attività ripetitive o complesse.
 
-Quando si deve eseguire un'operazione con la macchina virtuale, è necessario ottenere un'istanza della stessa:
+Quando è necessario toodo con hello VM, è necessario tooget un'istanza:
 
 ```
 var vm = azure.VirtualMachines.GetByResourceGroup(groupName, vmName);
 ```
 
-### <a name="get-information-about-the-vm"></a>Ottenere informazioni sulla VM
+### <a name="get-information-about-hello-vm"></a>Ottenere informazioni su hello VM
 
-Per ottenere informazioni sulla macchina virtuale, aggiungere questo codice al metodo Main:
+tooget informazioni hello macchina virtuale, aggiungere questo toohello codice metodo Main:
 
 ```
-Console.WriteLine("Getting information about the virtual machine...");
+Console.WriteLine("Getting information about hello virtual machine...");
 Console.WriteLine("hardwareProfile");
 Console.WriteLine("   vmSize: " + vm.Size);
 Console.WriteLine("storageProfile");
@@ -313,87 +313,87 @@ foreach (InstanceViewStatus stat in vm.InstanceView.Statuses)
     Console.WriteLine("  level: " + stat.Level);
     Console.WriteLine("  displayStatus: " + stat.DisplayStatus);
 }
-Console.WriteLine("Press enter to continue...");
+Console.WriteLine("Press enter toocontinue...");
 Console.ReadLine();
 ```
 
-### <a name="stop-the-vm"></a>Arrestare la VM
+### <a name="stop-hello-vm"></a>Arrestare VM hello
 
-È possibile arrestare una macchina virtuale e mantenere tutte le sue impostazioni, pur continuando a vedersela addebitata oppure è possibile arrestare una macchina virtuale e deallocarla. Quando una macchina virtuale viene deallocata, lo stesso viene fatto per tutte le risorse associate e la fatturazione termina.
+È possibile arrestare una macchina virtuale e mantenere tutte le relative impostazioni, ma continuare toobe addebitato oppure è possibile arrestare una macchina virtuale e deallocarlo. Quando una macchina virtuale viene deallocata, lo stesso viene fatto per tutte le risorse associate e la fatturazione termina.
 
-Per arrestare la macchina virtuale senza deallocarla, aggiungere questo codice al metodo Main:
+macchina virtuale di hello toostop senza deallocarlo, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Stopping vm...");
 vm.PowerOff();
-Console.WriteLine("Press enter to continue...");
+Console.WriteLine("Press enter toocontinue...");
 Console.ReadLine();
 ```
 
-Per deallocare la macchina virtuale, sostituire la chiamata PowerOff con il codice seguente:
+Se si desidera una macchina virtuale di hello toodeallocate, modificare il codice di toothis hello spento chiamata:
 
 ```
 vm.Deallocate();
 ```
 
-### <a name="start-the-vm"></a>Avviare la VM
+### <a name="start-hello-vm"></a>Avviare hello VM
 
-Per avviare la macchina virtuale, aggiungere questo codice al metodo Main:
+toostart hello macchina virtuale, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Starting vm...");
 vm.Start();
-Console.WriteLine("Press enter to continue...");
+Console.WriteLine("Press enter toocontinue...");
 Console.ReadLine();
 ```
 
-### <a name="resize-the-vm"></a>Ridimensionare la VM
+### <a name="resize-hello-vm"></a>Ridimensionare hello VM
 
 Al momento di decidere le dimensioni della macchina virtuale, è necessario considerare molti aspetti della distribuzione. Per altre informazioni, vedere [Dimensioni delle macchine virtuali](sizes.md).  
 
-Per modificare le dimensioni della macchina virtuale, aggiungere questo codice al metodo Main:
+toochange dimensioni della macchina virtuale hello, aggiungere questo toohello codice metodo Main:
 
 ```
 Console.WriteLine("Resizing vm...");
 vm.Update()
     .WithSize(VirtualMachineSizeTypes.StandardDS2) 
     .Apply();
-Console.WriteLine("Press enter to continue...");
+Console.WriteLine("Press enter toocontinue...");
 Console.ReadLine();
 ```
 
-### <a name="add-a-data-disk-to-the-vm"></a>Aggiungere un disco dati alla VM
+### <a name="add-a-data-disk-toohello-vm"></a>Aggiungere un toohello disco dati VM
 
-Per aggiungere un disco dati alla macchina virtuale, aggiungere questo codice al metodo Main per aggiungere un disco dati di 2 GB, un LUN pari a 0 e un tipo di caching di ReadWrite:
+tooadd una macchina virtuale toohello disco dati, aggiungere questo tooadd di metodo Main toohello codice un disco dati è di 2 GB di dimensioni, han un LUN pari a 0 e un tipo di memorizzazione nella cache di lettura/scrittura:
 
 ```
-Console.WriteLine("Adding data disk to vm...");
+Console.WriteLine("Adding data disk toovm...");
 vm.Update()
     .WithNewDataDisk(2, 0, CachingTypes.ReadWrite) 
     .Apply();
-Console.WriteLine("Press enter to delete resources...");
+Console.WriteLine("Press enter toodelete resources...");
 Console.ReadLine();
 ```
 
 ## <a name="delete-resources"></a>Eliminare le risorse
 
-Poiché vengono applicati addebiti per le risorse usate in Azure, è sempre consigliabile eliminare le risorse che non sono più necessarie. Per eliminare le macchine virtuali e tutte le risorse di supporto, è sufficiente eliminare il gruppo di risorse.
+Poiché vengono addebitate per le risorse utilizzate in Azure, è sempre risorse toodelete buona norma che non sono più necessari. Se si desidera toodelete hello le macchine virtuali e hello tutte le risorse di supporto, si dispone di toodo è gruppo di risorse hello di eliminazione.
 
-Per eliminare il gruppo di risorse, aggiungere questo codice al metodo Main:
+risorsa hello toodelete gruppo, aggiungere questo toohello codice metodo Main:
 
 ```
 azure.ResourceGroups.DeleteByName(groupName);
 ```
 
-## <a name="run-the-application"></a>Eseguire l'applicazione
+## <a name="run-hello-application"></a>Eseguire un'applicazione hello
 
-L'esecuzione completa dell'applicazione console dall'inizio alla fine richiederà circa cinque minuti. 
+Richiede circa cinque minuti per questo toorun di applicazione console completamente dall'inizio toofinish. 
 
-1. Per eseguire l'applicazione console, fare clic su **Avvia**.
+1. un'applicazione console hello toorun, fare clic su **avviare**.
 
-2. Prima di premere **INVIO** per avviare l'eliminazione delle risorse, è consigliabile dedicare alcuni minuti alla verifica della creazione delle risorse nel Portale di Azure. Fare clic sullo stato della distribuzione per visualizzare le informazioni corrispondenti.
+2. Prima di premere **invio** toostart eliminato le risorse, si potrebbe richiedere alcuni minuti Creazione hello tooverify delle risorse hello in hello portale di Azure. Fare clic su hello distribuzione informazioni sullo stato toosee distribuzione hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per usare un modello per creare una macchina virtuale, vedere le informazioni contenute in [Distribuire una macchina virtuale di Azure con C# e un modello di Resource Manager](csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-* Altre informazioni sull'uso delle [librerie di Azure per .NET](https://docs.microsoft.com/dotnet/azure/?view=azure-dotnet).
+* Sfruttare utilizzando un toocreate modello una macchina virtuale utilizzando informazioni hello [distribuire una macchina virtuale di Azure con c# e un modello di gestione risorse](csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Ulteriori informazioni sull'utilizzo di hello [Azure libraries per .NET](https://docs.microsoft.com/dotnet/azure/?view=azure-dotnet).
 

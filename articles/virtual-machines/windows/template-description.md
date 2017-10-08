@@ -1,6 +1,6 @@
 ---
-title: Macchine virtuali in un modello di Azure Resource Manager | Microsoft Azure
-description: Altre informazioni su come definire la risorsa della macchina virtuale in un modello di Azure Resource Manager.
+title: aaaVirtual macchine in un modello di gestione risorse di Azure | Microsoft Azure
+description: "Altre informazioni su come risorsa di macchina virtuale hello è definito in un modello di gestione risorse di Azure."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: davidmu
-ms.openlocfilehash: d9b9121bc5e38396ba4def6c17f9b373c2b48056
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 94adcbe5bf44be72ffc1b920461aed15c4fc025f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="virtual-machines-in-an-azure-resource-manager-template"></a>Macchine virtuali in un modello di Azure Resource Manager
 
-Questo articolo descrive gli aspetti di un modello di Azure Resource Manager che si applicano alle macchine virtuali. L'articolo descrive un modello completo per la creazione di una macchina virtuale; a tale scopo sono necessarie definizioni di risorse per gli account di archiviazione, le interfacce di rete, gli indirizzi IP pubblici e le reti virtuali. Per altre informazioni su come queste risorse possono essere definite insieme, vedere [Procedura dettagliata per un modello di Resource Manager](../../azure-resource-manager/resource-manager-template-walkthrough.md).
+In questo articolo descrive alcuni aspetti di un modello di gestione risorse di Azure che si applicano toovirtual macchine. L'articolo descrive un modello completo per la creazione di una macchina virtuale; a tale scopo sono necessarie definizioni di risorse per gli account di archiviazione, le interfacce di rete, gli indirizzi IP pubblici e le reti virtuali. Per ulteriori informazioni su come queste risorse possono essere definite insieme, vedere hello [procedura dettagliata di modello di gestione risorse](../../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-Sono disponibili numerosi [modelli nella raccolta](https://azure.microsoft.com/documentation/templates/?term=VM) che includono la risorsa di VM. Di seguito sono descritti solo alcuni elementi che possono essere inclusi in un modello.
+Esistono molti [modelli raccolta hello](https://azure.microsoft.com/documentation/templates/?term=VM) che includono una risorsa di macchina virtuale hello. Di seguito sono descritti solo alcuni elementi che possono essere inclusi in un modello.
 
 Questo esempio mostra una sezione di risorse tipica di un modello per la creazione di un numero specificato di VM:
 
@@ -145,21 +145,21 @@ Questo esempio mostra una sezione di risorse tipica di un modello per la creazio
 ``` 
 
 > [!NOTE] 
->Questo esempio si basa su un account di archiviazione creato in precedenza. È possibile creare l'account di archiviazione mediante la distribuzione dal modello. L'esempio si basa anche su un'interfaccia di rete e le risorse dipendenti definite nel modello. Queste risorse non vengono visualizzate nell'esempio.
+>Questo esempio si basa su un account di archiviazione creato in precedenza. È possibile creare account di archiviazione hello mediante la distribuzione da modello hello. esempio Hello si basa inoltre su un'interfaccia di rete e le risorse dipendenti che deve essere definite nel modello di hello. Queste risorse non vengono visualizzate nell'esempio hello.
 >
 >
 
 ## <a name="api-version"></a>Versione dell'API
 
-Quando si distribuiscono risorse usando un modello, è necessario specificare una versione dell'API da usare. L'esempio illustra l'uso di questa risorsa di macchina virtuale usando l'elemento apiVersion:
+Quando si distribuiscono un modello di risorse, è possibile toospecify una versione di hello API toouse. esempio Hello Mostra una risorsa di macchina virtuale hello tramite questo elemento apiVersion:
 
 ```
 "apiVersion": "2016-04-30-preview",
 ```
 
-La versione dell'API specificata nel modello influisce sulle proprietà che è possibile definire nel modello. In generale, è opportuno selezionare la versione più recente dell'API durante la creazione di modelli. Per i modelli esistenti, è possibile decidere se si desidera continuare a usare una versione precedente dell'API o aggiornare il modello alla versione più recente per sfruttare i vantaggi delle nuove funzionalità.
+versione di Hello di API specificate nel modello di hello interessa le proprietà che è possibile definire nel modello di hello. In generale, selezionare versione API più recente di hello durante la creazione di modelli. Per i modelli esistenti, è possibile decidere se si desidera toocontinue utilizzando una versione precedente di API o aggiornare il modello per hello più recente versione tootake le nuove funzionalità.
 
-Per ottenere le versioni dell'API più aggiornate:
+Utilizzare queste opportunità per ottenere le versioni dell'API più recente hello:
 
 - API REST: [Elencare tutti i provider di risorse](https://docs.microsoft.com/rest/api/resources/providers#Providers_List)
 - PowerShell: [Get-AzureRmResourceProvider](/powershell/module/azurerm.resources/get-azurermresourceprovider)
@@ -167,7 +167,7 @@ Per ottenere le versioni dell'API più aggiornate:
 
 ## <a name="parameters-and-variables"></a>Parametri e variabili
 
-I [parametri](../../resource-group-authoring-templates.md) semplificano la specifica di valori per il modello quando viene eseguito. Nell'esempio viene usata questa sezione dei parametri:
+[I parametri](../../resource-group-authoring-templates.md) semplificano automaticamente toospecify valori per il modello di hello al momento dell'esecuzione. In questa sezione parametri viene utilizzata nell'esempio hello:
 
 ```        
 "parameters": {
@@ -177,9 +177,9 @@ I [parametri](../../resource-group-authoring-templates.md) semplificano la speci
 },
 ```
 
-Quando si distribuisce il modello di esempio, si immettono valori per il nome e la password dell'account amministratore in ogni VM e il numero di VM da creare. È possibile scegliere di specificare i valori di parametri in un file separato gestito con il modello o fornire i valori quando viene richiesto.
+Quando si distribuisce il modello di esempio hello, immettere valori per nome hello e la password dell'account amministratore hello in ogni macchina virtuale e hello il numero di macchine virtuali toocreate. È possibile hello specificando i valori dei parametri in un file distinto che viene gestito con il modello di hello o fornire valori quando richiesto.
 
-Le [variabili](../../resource-group-authoring-templates.md) semplificano la configurazione di valori nel modello usati ripetutamente o che possono cambiare nel tempo. L'esempio usa questa sezione delle variabili:
+[Le variabili](../../resource-group-authoring-templates.md) semplificano automaticamente tooset i valori nel modello di hello utilizzate ripetutamente in corso o che possono cambiare nel tempo. In questa sezione variabili viene utilizzata nell'esempio hello:
 
 ```
 "variables": { 
@@ -212,11 +212,11 @@ Le [variabili](../../resource-group-authoring-templates.md) semplificano la conf
 }, 
 ```
 
-Quando si distribuisce il modello di esempio, vengono usati valori di variabili per il nome e l'identificatore dell'account di archiviazione creato in precedenza. Le variabili consentono anche di fornire le impostazioni per l'estensione di diagnostica. Usare le [procedure consigliate per la creazione di Azure Resource Manager](../../resource-manager-template-best-practices.md) per decidere come si vuole organizzare i parametri e le variabili del modello.
+Quando si distribuisce il modello di esempio hello, vengono utilizzati i valori delle variabili per nome hello e l'identificatore dell'account di archiviazione hello creato in precedenza. Le variabili sono anche le impostazioni di hello tooprovide utilizzato per l'estensione di diagnostica hello. Hello utilizzare [procedure consigliate per la creazione di modelli di Azure Resource Manager](../../resource-manager-template-best-practices.md) toohelp si decide come toostructure hello parametri e variabili del modello.
 
 ## <a name="resource-loops"></a>cicli di risorse
 
-Quando sono necessarie più macchine virtuali per l'applicazione, è possibile usare un elemento di copia in un modello. Questo elemento facoltativo esegue il ciclo di creazione del numero di VM specificato come parametro:
+Quando sono necessarie più macchine virtuali per l'applicazione, è possibile usare un elemento di copia in un modello. Questo elemento facoltativo consente di scorrere la creazione di hello numero di macchine virtuali che è specificato come parametro:
 
 ```
 "copy": {
@@ -225,7 +225,7 @@ Quando sono necessarie più macchine virtuali per l'applicazione, è possibile u
 },
 ```
 
-Si noti anche nell'esempio che l'indice di ciclo viene usato quando si specificano alcuni valori per la risorsa. Ad esempio, se è stato immesso un numero di istanze pari a tre, i nomi dei dischi del sistema operativo sono myOSDisk1, myOSDisk2 e myOSDisk3:
+Inoltre, si noti nell'esempio hello che hello indice ciclo viene utilizzato quando alcuni hello specificando i valori per la risorsa hello. Ad esempio, se è stato immesso un numero di istanze di tre, i nomi di hello dei dischi del sistema operativo hello sono myOSDisk1 myOSDisk2 e myOSDisk3:
 
 ```
 "osDisk": { 
@@ -236,11 +236,11 @@ Si noti anche nell'esempio che l'indice di ciclo viene usato quando si specifica
 ```
 
 > [!NOTE] 
->Questo esempio usa dischi gestiti per le macchine virtuali.
+>In questo esempio utilizza dischi gestiti per le macchine virtuali hello.
 >
 >
 
-Tenere presente che la creazione di un ciclo per una risorsa nel modello potrebbe richiedere di usare il ciclo quando si crea o si accede ad altre risorse. Ad esempio, più VM non possono usare la stessa interfaccia di rete; pertanto se esegue il ciclo di creazione di tre VM, il modello deve anche eseguire il ciclo di creazione di tre interfacce di rete. Quando si assegna un'interfaccia di rete a una VM, l'indice di ciclo viene usato per la relativa identificazione:
+Tenere presente che la creazione di un ciclo per una risorsa modello di hello potrebbe richiedere si toouse hello ciclo durante la creazione o l'accesso alle altre risorse. Ad esempio, più macchine virtuali non è possibile utilizzare hello stessa interfaccia di rete in modo se il modello esegue un ciclo tramite la creazione di tre macchine virtuali anche necessario scorrere la creazione di tre interfacce di rete. Quando si assegna un tooa di interfaccia di rete VM, indice ciclo hello è tooidentify utilizzato è:
 
 ```
 "networkInterfaces": [ { 
@@ -251,7 +251,7 @@ Tenere presente che la creazione di un ciclo per una risorsa nel modello potrebb
 
 ## <a name="dependencies"></a>Dipendenze
 
-Il corretto funzionamento della maggior parte delle risorse dipende dalle altre risorse. Le macchine virtuali deve essere associate a una rete virtuale e a tale scopo è necessaria un'interfaccia di rete. L'elemento [dependsOn](../../resource-group-define-dependencies.md) viene usato per verificare che l'interfaccia di rete sia pronta per essere usata prima che vengano create le VM:
+La maggior parte delle risorse dipendono altri toowork risorse correttamente. Macchine virtuali deve essere associate a una rete virtuale e toodo richiede che un'interfaccia di rete. Hello [dependsOn](../../resource-group-define-dependencies.md) elemento è utilizzato toomake interfaccia di rete hello sia pronto toobe utilizzato prima della creazione di macchine virtuali hello:
 
 ```
 "dependsOn": [
@@ -259,9 +259,9 @@ Il corretto funzionamento della maggior parte delle risorse dipende dalle altre 
 ],
 ```
 
-Resource Manager consente di distribuire in parallelo le risorse la cui distribuzione non dipende da un'altra risorsa. Prestare attenzione quando si impostano le dipendenze in quanto si può rallentare inavvertitamente la distribuzione, specificando dipendenze non necessarie. Le dipendenze possono concatenare più risorse. Ad esempio, l'interfaccia di rete dipende dall'indirizzo IP pubblico e dalle risorse della rete virtuale.
+Resource Manager consente di distribuire in parallelo le risorse la cui distribuzione non dipende da un'altra risorsa. Prestare attenzione quando si impostano le dipendenze in quanto si può rallentare inavvertitamente la distribuzione, specificando dipendenze non necessarie. Le dipendenze possono concatenare più risorse. Ad esempio, l'interfaccia di rete hello dipende indirizzo IP pubblico hello e risorse di rete virtuale.
 
-Come è possibile stabilire se è necessaria una dipendenza? Esaminare i valori impostati nel modello. Una dipendenza è necessaria se un elemento nella definizione di risorsa della macchina virtuale punta a un'altra risorsa distribuita nello stesso modello. Ad esempio, la macchina virtuale di esempio definisce un profilo di rete:
+Come è possibile stabilire se è necessaria una dipendenza? Esaminare i valori hello che è impostato nel modello di hello. Se un elemento nella definizione di risorsa di macchina virtuale hello punta tooanother risorsa che viene distribuito in hello stesso modello, è necessario una dipendenza. Ad esempio, la macchina virtuale di esempio definisce un profilo di rete:
 
 ```
 "networkProfile": { 
@@ -272,11 +272,11 @@ Come è possibile stabilire se è necessaria una dipendenza? Esaminare i valori 
 },
 ```
 
-Per impostare questa proprietà, è necessario che esista l'interfaccia di rete. Pertanto, è necessaria una dipendenza. È inoltre necessario impostare una dipendenza quando viene definita una risorsa (figlio) all'interno di un'altra risorsa (padre). Ad esempio, le estensioni dello script personalizzate e le impostazioni di diagnostica vengono entrambe definite come risorse figlio della macchina virtuale. Non possono essere create fino a quando non esiste la macchina virtuale. Pertanto, entrambe le risorse sono contrassegnate come dipendenti nella macchina virtuale.
+tooset questa proprietà, l'interfaccia di rete hello deve esistere. Pertanto, è necessaria una dipendenza. È necessario anche tooset una dipendenza quando è definita una risorsa (figlio) all'interno di un'altra risorsa (un elemento padre). Ad esempio, le impostazioni di diagnostica hello e le estensioni degli script personalizzati sono entrambi definiti come risorse figlio di una macchina virtuale hello. Non è possibile creare fino a quando non esistono macchine virtuali hello. Di conseguenza, entrambe le risorse sono contrassegnate come dipendenti nella macchina virtuale hello.
 
 ## <a name="profiles"></a>Profili
 
-Quando si definisce una risorsa di macchina virtuale, vengono usati diversi elementi di profilo. Alcuni sono necessari e alcuni sono facoltativi. Ad esempio, sono necessari gli elementi hardwareProfile, osProfile, storageProfile e networkProfile, ma diagnosticsProfile è facoltativo. Questi profili definiscono impostazioni, ad esempio:
+Quando si definisce una risorsa di macchina virtuale, vengono usati diversi elementi di profilo. Alcuni sono necessari e alcuni sono facoltativi. Ad esempio, gli elementi hardwareProfile, osProfile, storageProfile e profilo di hello sono obbligatori, ma diagnosticsProfile hello è facoltativo. Questi profili definiscono impostazioni, ad esempio:
    
 - [dimensione](sizes.md)
 - [nome](/architecture/best-practices/naming-conventions) e credenziali
@@ -286,11 +286,11 @@ Quando si definisce una risorsa di macchina virtuale, vengono usati diversi elem
 
 ## <a name="disks-and-images"></a>Dischi e immagini
    
-In Azure i file del disco rigido virtuale possono rappresentare [dischi o immagini](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Quando il sistema operativo in un file di disco rigido virtuale è specializzato per essere una VM specifica, vi viene fatto riferimento come disco. Quando il sistema operativo in un file di disco rigido virtuale è generalizzato per essere usato per creare più VM, viene considerato un'immagine.   
+In Azure i file del disco rigido virtuale possono rappresentare [dischi o immagini](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Quando il sistema operativo hello in un file vhd è specializzato toobe una macchina virtuale specifica, è tooas di cui si fa riferimento un disco. Il sistema operativo hello in un file di disco rigido virtuale generalizzato toobe usato toocreate più macchine virtuali, è un'immagine di tooas cui viene fatto riferimento.   
     
 ### <a name="create-new-virtual-machines-and-new-disks-from-a-platform-image"></a>Creare nuove macchine virtuali e nuovi dischi da un'immagine della piattaforma
 
-Quando si crea una VM, è necessario decidere quale sistema operativo usare. L'elemento imageReference viene usato per definire il sistema operativo di una nuova VM. L'esempio illustra una definizione per un sistema operativo Windows Server:
+Quando si crea una macchina virtuale, è necessario decidere quali toouse del sistema operativo. elemento imageReference Hello è usato toodefine hello operativo di una nuova macchina virtuale. esempio Hello viene illustrata una definizione per un sistema operativo Windows Server:
 
 ```
 "imageReference": { 
@@ -301,7 +301,7 @@ Quando si crea una VM, è necessario decidere quale sistema operativo usare. L'e
 },
 ```
 
-Se si vuole creare un sistema operativo Linux, è possibile usare questa definizione:
+Se si desidera toocreate un sistema operativo Linux, è possibile utilizzare questa definizione:
 
 ```
 "imageReference": {
@@ -312,7 +312,7 @@ Se si vuole creare un sistema operativo Linux, è possibile usare questa definiz
 },
 ```
 
-Le impostazioni di configurazione per il disco del sistema operativo vengono assegnate con l'elemento osDisk. L'esempio definisce un nuovo disco gestito con la modalità di memorizzazione nella cache impostata su **ReadWrite** e con il disco creato da un'[immagine della piattaforma](cli-ps-findimage.md):
+Impostazioni di configurazione per disco del sistema operativo hello assegnate con elemento osDisk hello. Hello esempio definisce un nuovo disco gestito con la memorizzazione nella cache in modalità set troppo hello**ReadWrite** e tale disco hello viene creato da un [immagine della piattaforma](cli-ps-findimage.md):
 
 ```
 "osDisk": { 
@@ -324,7 +324,7 @@ Le impostazioni di configurazione per il disco del sistema operativo vengono ass
 
 ### <a name="create-new-virtual-machines-from-existing-managed-disks"></a>Creare nuove macchine virtuali da dischi gestiti esistenti
 
-Se si vuole creare macchine virtuali da dischi esistenti, rimuovere gli elementi imageReference e osProfile e definire le impostazioni del disco:
+Se si desidera toocreate le macchine virtuali dai dischi esistenti, rimuovere imageReference hello e gli elementi di osProfile hello e definire queste impostazioni del disco:
 
 ```
 "osDisk": { 
@@ -339,7 +339,7 @@ Se si vuole creare macchine virtuali da dischi esistenti, rimuovere gli elementi
 
 ### <a name="create-new-virtual-machines-from-a-managed-image"></a>Creare nuove macchine virtuali da un'immagine gestita
 
-Se si vuole creare una macchina virtuale da un'immagine gestita, cambiare l'elemento imageReference e definire queste impostazioni del disco:
+Se si desidera toocreate una macchina virtuale da un'immagine gestita, modificare l'elemento imageReference hello e definire queste impostazioni del disco:
 
 ```
 "storageProfile": { 
@@ -357,7 +357,7 @@ Se si vuole creare una macchina virtuale da un'immagine gestita, cambiare l'elem
 
 ### <a name="attach-data-disks"></a>Collegare i dischi dei dati
 
-È facoltativamente possibile aggiungere dischi di dati alle VM. Il [numero di dischi](sizes.md) dipende dalle dimensioni del disco del sistema operativo in uso. Con le dimensioni delle VM impostate su Standard_DS1_v2, il numero massimo di dischi dati che possono essere aggiunti è due. Nell'esempio viene aggiunto un disco dati gestito a ogni VM:
+È possibile aggiungere facoltativamente toohello dischi dati le macchine virtuali. Hello [numero di dischi](sizes.md) dipende dalle dimensioni hello del disco del sistema operativo in uso. Dimensioni delle macchine virtuali hello hello impostare tooStandard_DS1_v2, numero massimo di hello di dischi dati che è stato possibile aggiungere toohello li è due. Nell'esempio hello, un disco dati gestiti viene aggiunto tooeach VM:
 
 ```
 "dataDisks": [
@@ -373,7 +373,7 @@ Se si vuole creare una macchina virtuale da un'immagine gestita, cambiare l'elem
 
 ## <a name="extensions"></a>Estensioni
 
-Sebbene siano una risorsa separata, le [estensioni](extensions-features.md) sono strettamente legate alle VM. Le estensioni possono essere aggiunte come risorsa figlio della VM o come risorsa separata. L'esempio illustra l'aggiunta dell'[estensione Diagnostica](extensions-diagnostics-template.md) alle VM:
+Sebbene [estensioni](extensions-features.md) sono una risorsa distinta, tooVMs strettamente collegati. Le estensioni possono essere aggiunte come risorsa figlio di hello macchina virtuale o come una risorsa distinta. esempio Hello Mostra hello [estensione diagnostica](extensions-diagnostics-template.md) da aggiungere le macchine virtuali toohello:
 
 ```
 { 
@@ -406,9 +406,9 @@ Sebbene siano una risorsa separata, le [estensioni](extensions-features.md) sono
 },
 ```
 
-Questa risorsa di estensione usa la variabile storageName e le variabili di diagnostica per fornire i valori. Se si vuole modificare i dati raccolti da questa estensione, è possibile aggiungere altri contatori delle prestazioni alla variabile wadperfcounters. È possibile anche scegliere di inserire i dati di diagnostica in un account di archiviazione diverso rispetto a quello in cui sono archiviati i dischi della VM.
+Questa risorsa di estensione Usa variabile storageName hello e i valori di tooprovide di hello delle variabili di diagnostica. Se si desiderano toochange hello i dati raccolti da questa estensione, è possibile aggiungere più variabile di wadperfcounters toohello di contatori delle prestazioni. È anche possibile scegliere i dati di diagnostica hello tooput in un account di spazio di archiviazione diverso da quello in cui sono archiviati i dischi di macchina virtuale hello.
 
-Sono disponibili numerose estensioni che è possibile installare in una VM, ma la più utile è probabilmente l'[estensione dello script personalizzata](extensions-customscript.md). Nell'esempio, al primo avvio in ogni VM viene eseguito uno script PowerShell denominato start.ps1:
+Sono disponibili numerose estensioni che è possibile installare in una macchina virtuale, ma hello più utile è probabilmente hello [estensione Script personalizzata](extensions-customscript.md). Nell'esempio hello in ogni macchina virtuale all'avvio viene eseguito uno script di PowerShell denominato start.ps1:
 
 ```
 {
@@ -435,26 +435,26 @@ Sono disponibili numerose estensioni che è possibile installare in una VM, ma l
 }
 ```
 
-Lo script start.ps1 può eseguire molte attività di configurazione. Ad esempio, i dischi di dati aggiunti alle VM nell'esempio non vengono inizializzati; è possibile usare uno script personalizzato per inizializzarli. Se si devono eseguire più attività di avvio, è possibile usare il file start.ps1 per chiamare altri script PowerShell in Archiviazione di Azure. L'esempio usa PowerShell, ma è possibile usare qualsiasi metodo di scripting disponibile nel sistema operativo in uso.
+script start.ps1 Hello può eseguire molte attività di configurazione. Ad esempio, non vengono inizializzati i dischi dati hello toohello macchine virtuali aggiunte nell'esempio hello; è possibile utilizzare un tooinitialize script personalizzato li. Se si dispone di più toodo di attività di avvio, è possibile utilizzare hello start.ps1 file toocall altri script di PowerShell nell'archiviazione di Azure. esempio Hello Usa PowerShell, ma è possibile utilizzare qualsiasi metodo di scripting che sono disponibile nel sistema operativo hello che si sta utilizzando.
 
-È possibile visualizzare lo stato delle estensioni installate dalle impostazioni Estensioni nel portale:
+È possibile visualizzare lo stato di hello delle estensioni di hello installato dalle impostazioni di estensioni hello nel portale di hello:
 
 ![Recuperare lo stato dell'estensione](./media/template-description/virtual-machines-show-extensions.png)
 
-È possibile anche ottenere informazioni sull'estensione tramite il comando **Get-AzureRmVMExtension** di PowerShell, il comando **vm extension get** dell'interfaccia della riga di comando di Azure 2.0 oppure l'API REST **Get extension information**.
+È anche possibile ottenere informazioni sull'estensione utilizzando hello **Get AzureRmVMExtension** PowerShell comando hello **get estensione vm** comando CLI di Azure 2.0 o hello **ottenere informazioni sull'estensione**  API REST.
 
-## <a name="deployments"></a>Distribuzioni
+## <a name="deployments"></a>Deployments
 
-Quando si distribuisce un modello, Azure tiene traccia delle risorse distribuite come gruppo e assegna automaticamente un nome a questo gruppo distribuito. Il nome della distribuzione corrisponde a quello del modello.
+Quando si distribuisce un modello di risorse hello Azure rileva che è stato distribuito come un gruppo e automaticamente assegna un nome di gruppo toothis distribuito. nome Hello della distribuzione di hello è hello corrisponde al nome hello del modello di hello.
 
-Per conoscere lo stato delle risorse nella distribuzione, è possibile usare il pannello Gruppo di risorse nel portale di Azure:
+Se si desidera conoscere lo stato di hello delle risorse nella distribuzione di hello, è possibile utilizzare il pannello di gruppo di risorse hello in hello portale di Azure:
 
 ![Ottenere informazioni sulla distribuzione](./media/template-description/virtual-machines-deployment-info.png)
     
-Non è un problema usare lo stesso modello per creare risorse o per aggiornare le risorse esistenti. Quando si usano comandi per distribuire i modelli, si ha la possibilità di indicare la [modalità](../../resource-group-template-deploy.md) da usare. La modalità può essere impostata su **Completa** o **Incrementale**. Gli aggiornamenti incrementali sono il valore predefinito. Prestare attenzione quando si usa la modalità **Completa** perché è possibile eliminare accidentalmente le risorse. Quando si imposta la modalità su **Completa**, Resource Manager elimina tutte le risorse nel gruppo di risorse che non sono presenti nel modello.
+Non è un problema toouse hello stesso modello toocreate le risorse o le risorse esistenti tooupdate. Quando si utilizzano comandi toodeploy modelli, è necessario hello opportunità toosay che [modalità](../../resource-group-template-deploy.md) desiderato toouse. è possibile impostare modalità Hello tooeither **completa** o **incrementale**. valore predefinito di Hello è aggiornamenti incrementali toodo. Prestare attenzione nell'utilizzo hello **completa** modalità perché accidentalmente eliminate le risorse. Quando si imposta la modalità hello troppo**completa**, Gestione risorse consente di eliminare tutte le risorse nel gruppo di risorse hello che non sono presenti nel modello di hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - È possibile creare un modello personalizzato usando le informazioni presenti in [Creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md).
-- Distribuire il modello creato usando [Creare una macchina virtuale Windows con un modello di Resource Manager](ps-template.md).
-- Per informazioni su come gestire le macchine virtuali create, vedere [Creare e gestire macchine virtuali di Windows con il modulo Azure PowerShell](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+- Distribuire il modello di hello creati usando [creare una macchina virtuale Windows con un modello di gestione risorse](ps-template.md).
+- Informazioni su come toomanage hello macchine virtuali creato esaminando [creare e gestire macchine virtuali di Windows con il modulo di Azure PowerShell hello](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

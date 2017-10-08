@@ -1,6 +1,6 @@
 ---
-title: Come reimpostare l'interfaccia di rete per la VM Windows Azure | Microsoft Docs
-description: Illustra come reimpostare l'interfaccia di rete per la VM Windows Azure
+title: aaaHow tooreset di interfaccia di rete per la macchina virtuale Windows Azure | Documenti Microsoft
+description: Viene illustrato come tooreset interfaccia di rete per la macchina virtuale Windows Azure
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: 
 author: genlin
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: genli
-ms.openlocfilehash: 220e426be20086841854d89831f6c9d67529867f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b653820927ef4c3bb8f384a7e752846a8be3da9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-network-interface-for-azure-windows-vm"></a>Come reimpostare l'interfaccia di rete per la VM Windows di Azure 
+# <a name="how-tooreset-network-interface-for-azure-windows-vm"></a>Come tooreset interfaccia di rete per la macchina virtuale Windows Azure 
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Non è possibile connettersi alla macchina virtuale (VM) Windows di Microsoft Azure dopo avere disattivato l'interfaccia di rete (NIC) predefinita o si imposta manualmente un indirizzo IP statico per la scheda NIC. Questo articolo illustra come reimpostare l'interfaccia di rete per la macchina virtuale Windows di Azure che risolverà il problema della connessione remota.
+È Impossibile connettersi tooMicrosoft macchina virtuale Windows Azure (VM) dopo aver disabilitato predefinito hello interfaccia di rete (NIC) o si imposta manualmente un indirizzo IP statico per una scheda di rete hello. Questo articolo illustra come tooreset hello interfaccia di rete per la macchina virtuale Windows Azure, che consentirà di risolvere il problema di connessione remota hello.
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
 ## <a name="reset-network-interface"></a>Reimpostare l'interfaccia di rete
 
 ### <a name="for-classic-vms"></a>Per VM classiche
 
-Per reimpostare l'interfaccia di rete, seguire questi passaggi:
+rete tooreset interfaccia, seguire questi passaggi:
 
-1.  Accedere al [portale di Azure]( https://ms.portal.azure.com).
+1.  Passare toohello [portale di Azure]( https://ms.portal.azure.com).
 2.  Selezionare **Macchine virtuali (classiche)**.
-3.  Selezionare la macchina virtuale.
+3.  Seleziona hello interessate macchina virtuale.
 4.  Selezionare **Indirizzi IP**.
-5.  Se l'impostazione **Assegnazione IP privato** non è **Statica**, cambiarla in **Statica**.
-6.  Cambiare l'**Indirizzo IP** in un altro indirizzo IP disponibile nella subnet.
+5.  Se hello **assegnazione IP privato** non **statico**, modificarlo troppo**statico**.
+6.  Hello modifica **indirizzo IP** indirizzo IP tooanother disponibile in hello Subnet.
 7.  Selezionare Salva.
-8.  La macchina virtuale verrà riavviata per inizializzare la nuova scheda NIC al sistema.
-9.  Provare a eseguire RDP al computer in uso. Se ha esito positivo, è possibile modificare l'indirizzo IP privato originale se si vuole. In caso contrario è possibile mantenerlo. 
+8.  macchina virtuale Hello riavvierà tooinitialize hello nuovo NIC toohello sistema.
+9.  Provare a tooRDP tooyour macchina. Se ha esito positivo, è possibile modificare hello IP privato indirizzo back toohello originale se si desidera. In caso contrario è possibile mantenerlo. 
 
 ### <a name="for-vms-deployed-in-resource-group-model"></a>Per le VM distribuite nel modello di gruppo di risorse
 
-1.  Accedere al [portale di Azure]( https://ms.portal.azure.com).
-2.  Selezionare la macchina virtuale.
+1.  Passare toohello [portale di Azure]( https://ms.portal.azure.com).
+2.  Seleziona hello interessate macchina virtuale.
 3.  Selezionare **Interfacce di rete**.
-4.  Selezionare l'interfaccia di rete associata al computer
+4.  Selezionare hello che associato all'interfaccia di rete con il computer
 5.  Selezionare **Configurazioni IP**.
-6.  Selezionare l'indirizzo IP. 
-7.  Se l'impostazione **Assegnazione IP privato** non è **Statica**, cambiarla in **Statica**.
-8.  Cambiare l'**Indirizzo IP** in un altro indirizzo IP disponibile nella subnet.
-9. La macchina virtuale verrà riavviata per inizializzare la nuova scheda NIC al sistema.
-10. Provare a eseguire RDP al computer in uso. Se ha esito positivo, è possibile modificare l'indirizzo IP privato originale se si vuole. In caso contrario è possibile mantenerlo. 
+6.  Selezionare IP hello. 
+7.  Se hello **assegnazione IP privato** non **statico**, modificarlo troppo**statico**.
+8.  Hello modifica **indirizzo IP** indirizzo IP tooanother disponibile in hello Subnet.
+9. macchina virtuale Hello riavvierà tooinitialize hello nuovo NIC toohello sistema.
+10. Provare a tooRDP tooyour macchina. Se ha esito positivo, è possibile modificare hello IP privato indirizzo back toohello originale se si desidera. In caso contrario è possibile mantenerlo. 
 
-## <a name="delete-the-unavailable-nics"></a>Eliminare le schede di interfaccia non disponibili
-Dopo essere riusciti a eseguire una connessione desktop remoto al computer, è necessario eliminare le schede NIC precedenti per evitare il problema potenziale:
+## <a name="delete-hello-unavailable-nics"></a>Eliminare hello schede di rete non disponibile
+Dopo che è possibile macchina toohello desktop remoto, è necessario eliminare hello precedente NIC tooavoid hello potenziale problema:
 
 1.  Aprire Gestione dispositivi.
 2.  Selezionare **Vista** > **Mostra dispositivi nascosti**.
 3.  Selezionare **Schede di rete**. 
-4.  Controllare le schede di rete con un nome simile a "Scheda di rete Microsoft Hyper-V".
-5.  Si potrebbe vedere una scheda non disponibile che appare in grigio. Fare clic con pulsante destro del mouse sulla scheda e selezionare Disinstalla.
+4.  Controllo per le schede di hello denominata come "Scheda di rete Microsoft Hyper-V".
+5.  Si potrebbe vedere una scheda non disponibile che appare in grigio. Il pulsante destro adapter hello e quindi scegliere Disinstalla.
 
-    ![immagine della scheda NIC](media/reset-network-interface/nicpage.png)
+    ![immagine di Hello di hello NIC](media/reset-network-interface/nicpage.png)
 
     > [!NOTE]
-    > Disinstallare solo le schede non disponibili con il nome "Scheda di rete Microsoft Hyper-V". Se si disinstalla una delle altre schede nascoste, ciò potrebbe provocare altri problemi.
+    > Disinstallare solo le schede disponibili hello con nome hello "Scheda di rete Microsoft Hyper-V". Se si disinstalla uno qualsiasi dei hello altre schede nascoste, potrebbe provocare altri problemi.
     >
     >
 

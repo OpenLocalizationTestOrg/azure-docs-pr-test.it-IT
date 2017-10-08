@@ -1,6 +1,6 @@
 ---
-title: Creare e gestire VM Linux con l'interfaccia della riga di comando di Azure | Microsoft Docs
-description: 'Esercitazione: creare e gestire VM Linux con l''interfaccia della riga di comando di Azure'
+title: aaaCreate e gestire le macchine virtuali Linux con hello CLI di Azure | Documenti Microsoft
+description: 'Esercitazione: creare e gestire le macchine virtuali Linux con hello CLI di Azure'
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,18 +16,18 @@ ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: c163c715eb1438a0d6b0ab53cbb43816ca8dbbb4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 05f7c1cf860f809bc13f110778d3bddd619ac6f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-linux-vms-with-the-azure-cli"></a>Creare e gestire VM Linux con l'interfaccia della riga di comando di Azure
+# <a name="create-and-manage-linux-vms-with-hello-azure-cli"></a>Creare e gestire le macchine virtuali Linux con hello CLI di Azure
 
 Le macchine virtuali di Azure offrono un ambiente di elaborazione completamente configurabile e flessibile. Questa esercitazione illustra gli elementi di base della distribuzione di una macchina virtuale di Azure, ad esempio la selezione delle dimensioni di una VM, la selezione dell'immagine di una VM e la distribuzione di una VM. Si apprenderà come:
 
 > [!div class="checklist"]
-> * Creare e connettersi a una macchina virtuale
+> * Creare e connettersi tooa VM
 > * Selezionare e usare le immagini di una macchina virtuale
 > * Visualizzare e usare macchine virtuali di dimensioni specifiche
 > * Ridimensionare una VM
@@ -36,23 +36,23 @@ Le macchine virtuali di Azure offrono un ambiente di elaborazione completamente 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-resource-group"></a>Creare un gruppo di risorse
 
-Creare un gruppo di risorse con il comando [az group create](https://docs.microsoft.com/cli/azure/group#create). 
+Creare un gruppo di risorse con hello [gruppo az creare](https://docs.microsoft.com/cli/azure/group#create) comando. 
 
-Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. Il gruppo di risorse deve essere creato prima della macchina virtuale. In questo esempio viene creato un gruppo di risorse denominato *myResourceGroupVM* nell'area *eastus*. 
+Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. Il gruppo di risorse deve essere creato prima della macchina virtuale. In questo esempio, un gruppo di risorse denominato *myResourceGroupVM* viene creato in hello *eastus* area. 
 
 ```azurecli-interactive 
 az group create --name myResourceGroupVM --location eastus
 ```
 
-Il gruppo di risorse viene specificato quando si crea o si modifica una VM, come viene illustrato in questa esercitazione.
+gruppo di risorse Hello viene specificato durante la creazione o modifica di una macchina virtuale, che può essere visualizzata in questa esercitazione.
 
 ## <a name="create-virtual-machine"></a>Crea macchina virtuale
 
-Crea una macchina virtuale usando il comando [az vm create](https://docs.microsoft.com/cli/azure/vm#create). 
+Creare una macchina virtuale con hello [creare vm az](https://docs.microsoft.com/cli/azure/vm#create) comando. 
 
 Per la creazione di una macchina virtuale sono disponibili diverse opzioni, ad esempio l'immagine del sistema operativo, il ridimensionamento del disco e le credenziali amministrative. In questo esempio viene creata una macchina virtuale denominata *myVM* che esegue Ubuntu Server. 
 
@@ -60,7 +60,7 @@ Per la creazione di una macchina virtuale sono disponibili diverse opzioni, ad e
 az vm create --resource-group myResourceGroupVM --name myVM --image UbuntuLTS --generate-ssh-keys
 ```
 
-Dopo la creazione della macchina virtuale, l'interfaccia della riga di comando di Azure restituisce informazioni sulla VM. Prendere nota dell'indirizzo `publicIpAddress`, che può essere usato per accedere alla macchina virtuale. 
+Una volta hello che macchina virtuale è stata creata, hello CLI di Azure genera informazioni hello macchina virtuale. Prendere nota di hello `publicIpAddress`, questo indirizzo può essere una macchina virtuale di tooaccess utilizzati hello... 
 
 ```azurecli-interactive 
 {
@@ -75,15 +75,15 @@ Dopo la creazione della macchina virtuale, l'interfaccia della riga di comando d
 }
 ```
 
-## <a name="connect-to-vm"></a>Connettersi alla macchina virtuale
+## <a name="connect-toovm"></a>Connettersi tooVM
 
-È ora possibile connettersi alla VM usando SSH. Sostituire l'indirizzo IP di esempio con l'indirizzo `publicIpAddress` annotato nel passaggio precedente.
+È ora possibile connettersi toohello VM tramite SSH. Sostituire l'indirizzo IP di esempio hello con hello `publicIpAddress` annotate nel passaggio precedente hello.
 
 ```bash
 ssh 52.174.34.95
 ```
 
-Al termine, chiudere la sessione SSH. 
+Una volta terminato con hello VM, chiudere una sessione SSH hello. 
 
 ```bash
 exit
@@ -91,15 +91,15 @@ exit
 
 ## <a name="understand-vm-images"></a>Informazioni sulle immagini delle VM
 
-Azure Marketplace include diverse immagini che possono essere usate per creare VM. Nei passaggi precedenti è stata creata una macchina virtuale usando un'immagine Ubuntu. In questo passaggio l'interfaccia della riga di comando di Azure viene usata per cercare nel marketplace un'immagine CentOS, che viene quindi usata per distribuire una seconda macchina virtuale.  
+Hello Azure marketplace include molte immagini che possono essere macchine virtuali toocreate utilizzato. Nei passaggi precedenti hello, una macchina virtuale è stata creata usando un'immagine Ubuntu. In questo passaggio, hello che CLI di Azure è marketplace hello toosearch utilizzato per un'immagine CentOS, che viene quindi utilizzato toodeploy una seconda macchina virtuale.  
 
-Per visualizzare un elenco delle immagini più usate, eseguire il comando [az vm image list](/cli/azure/vm/image#list).
+un elenco di hello toosee utilizzato più di frequente immagini, utilizzare hello [elenco di immagini di macchina virtuale az](/cli/azure/vm/image#list) comando.
 
 ```azurecli-interactive 
 az vm image list --output table
 ```
 
-L'output del comando restituisce le immagini di macchina virtuale più popolari in Azure.
+output del comando Hello restituisce le immagini di macchina virtuale più diffusi hello in Azure.
 
 ```bash
 Offer          Publisher               Sku                 Urn                                                             UrnAlias             Version
@@ -117,7 +117,7 @@ Debian         credativ                8                   credativ:Debian:8:lat
 CoreOS         CoreOS                  Stable              CoreOS:CoreOS:Stable:latest                                     CoreOS               latest
 ```
 
-Per visualizzare l'elenco completo, aggiungere l'argomento `--all`. L'elenco di immagini può anche essere filtrato per `--publisher` o `–-offer`. In questo esempio l'elenco viene filtrato per cercare tutte le immagini con un'offerta corrispondente a *CentOS*. 
+Un elenco completo può essere visualizzato mediante l'aggiunta di hello `--all` argomento. è inoltre possibile filtrare l'elenco di immagini Hello da `--publisher` o `–-offer`. In questo esempio hello viene filtrato per tutte le immagini con un'offerta corrispondente *CentOS*. 
 
 ```azurecli-interactive 
 az vm image list --offer CentOS --all --output table
@@ -136,7 +136,7 @@ CentOS            OpenLogic         6.5   OpenLogic:CentOS:6.5:6.5.20160309     
 CentOS            OpenLogic         6.5   OpenLogic:CentOS:6.5:6.5.20170207       6.5.20170207
 ```
 
-Per distribuire una VM usando un'immagine specifica, prendere nota del valore nella colonna *Urn*. Quando si specifica l'immagine, il numero di versione dell'immagine può essere sostituito con "latest", che seleziona la versione più recente della distribuzione. In questo esempio viene usato l'argomento `--image` per specificare la versione più recente di un'immagine CentOS 6.5.  
+toodeploy una macchina virtuale usando un'immagine specifica, prendere nota del valore di hello in hello *Urn* colonna. Quando si specifica l'immagine di hello, numero di versione di hello immagine può essere sostituito con "più recente", che consente di selezionare più recente della distribuzione hello hello. In questo esempio hello `--image` argomento è una versione più recente di hello toospecify utilizzati di un'immagine CentOS 6.5.  
 
 ```azurecli-interactive 
 az vm create --resource-group myResourceGroupVM --name myVM2 --image OpenLogic:CentOS:6.5:latest --generate-ssh-keys
@@ -144,17 +144,17 @@ az vm create --resource-group myResourceGroupVM --name myVM2 --image OpenLogic:C
 
 ## <a name="understand-vm-sizes"></a>Informazioni sulle dimensioni delle VM
 
-La dimensioni di una macchina virtuale determinano la quantità di risorse di calcolo, ad esempio CPU, GPU e memoria, disponibili per la macchina virtuale. È necessario ridimensionare le macchine virtuali in modo appropriato per il carico di lavoro previsto. Se aumenta il carico di lavoro, è possibile ridimensionare una macchina virtuale esistente.
+Una dimensione di macchina virtuale determina la quantità hello delle risorse di calcolo, ad esempio memoria, CPU e GPU che vengono apportate una macchina virtuale disponibile toohello. Macchine virtuali devono toobe una dimensione appropriata per il carico di lavoro hello previsto. Se aumenta il carico di lavoro, è possibile ridimensionare una macchina virtuale esistente.
 
 ### <a name="vm-sizes"></a>Dimensioni delle VM
 
-La tabella seguente classifica le dimensioni a seconda dei casi d'uso.  
+Hello nella tabella seguente classifica le dimensioni in casi di utilizzo.  
 
 | Tipo                     | Dimensioni           |    Descrizione       |
 |--------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| [Utilizzo generico](sizes-general.md)         |Dsv3, Dv3, DSv2, Dv2, DS, D, Av2, A0-7| Rapporto equilibrato tra CPU e memoria. Soluzione ideale per sviluppo/test e soluzioni di dati e applicazioni medio-piccole.  |
+| [Utilizzo generico](sizes-general.md)         |Dsv3, Dv3, DSv2, Dv2, DS, D, Av2, A0-7| Rapporto equilibrato tra CPU e memoria. La soluzione ideale per sviluppo / test e le soluzioni di applicazioni e dati toomedium di piccole dimensioni.  |
 | [Ottimizzate per il calcolo](sizes-compute.md)   | Fs, F             | Rapporto elevato tra CPU e memoria. Soluzione idonea per applicazioni con livelli medi di traffico, dispositivi di rete e processi batch.        |
-| [Ottimizzate per la memoria](../virtual-machines-windows-sizes-memory.md)    | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D   | Rapporto elevato tra memoria e core. Soluzione ideale per database relazionali, cache medio-grandi e analisi in memoria.                 |
+| [Ottimizzate per la memoria](../virtual-machines-windows-sizes-memory.md)    | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D   | Rapporto elevato tra memoria e core. Ideale per i database relazionali, cache toolarge medium e analitica in memoria.                 |
 | [Ottimizzate per l'archiviazione](../virtual-machines-windows-sizes-storage.md)      | Ls                | I/O e velocità effettiva del disco elevati. Ideale per Big Data, database SQL e NoSQL.                                                         |
 | [GPU](sizes-gpu.md)          | NV, NC            | VM specializzate ottimizzate per livelli intensivi di rendering della grafica e modifica di video.       |
 | [Prestazioni elevate](sizes-hpc.md) | H, A8-11          | Le VM con CPU più potenti, con interfacce di rete ad alta velocità effettiva opzionali (RDMA). 
@@ -162,7 +162,7 @@ La tabella seguente classifica le dimensioni a seconda dei casi d'uso.
 
 ### <a name="find-available-vm-sizes"></a>Trovare le dimensioni delle macchine virtuali disponibili
 
-Per visualizzare un elenco delle dimensioni delle VM disponibili in una determinata area, usare il comando [az vm list-sizes](/cli/azure/vm#list-sizes). 
+toosee un elenco di macchine Virtuali di dimensioni disponibili in una determinata area, usare hello [elenco-dimensioni delle macchine virtuali az](/cli/azure/vm#list-sizes) comando. 
 
 ```azurecli-interactive 
 az vm list-sizes --location eastus --output table
@@ -193,7 +193,7 @@ Output parziale:
 
 ### <a name="create-vm-with-specific-size"></a>Creare una macchina virtuale con dimensioni specifiche
 
-Nell'esempio precedente di creazione di una VM, non essendo state specificate le dimensioni, sono state usate le dimensioni predefinite. Le dimensioni di una VM possono essere selezionate in fase di creazione usando [az vm create](/cli/azure/vm#create) e l'argomento `--size`. 
+Nell'esempio di creazione macchina virtuale precedente hello, una dimensione non è stato specificato, in base alla quale le dimensioni predefinite. È possibile selezionare una dimensione di macchina virtuale al momento della creazione utilizzando [creare vm az](/cli/azure/vm#create) e hello `--size` argomento. 
 
 ```azurecli-interactive 
 az vm create \
@@ -206,32 +206,32 @@ az vm create \
 
 ### <a name="resize-a-vm"></a>Ridimensionare una VM
 
-Dopo la distribuzione di una VM, è possibile ridimensionarla per aumentare o ridurre l'allocazione delle risorse.
+Dopo la distribuzione di una macchina virtuale, può essere ridimensionato tooincrease o ridurre l'allocazione delle risorse.
 
-Prima di ridimensionare una macchina virtuale, verificare se le dimensioni desiderate sono disponibili nel cluster di Azure corrente. Il comando [az vm list-vm-resize-options](/cli/azure/vm#list-vm-resize-options) restituisce l'elenco di dimensioni. 
+Prima di ridimensionamento di una macchina virtuale, controllare se hello dimensione desiderata è disponibile nel cluster di Azure corrente hello. Hello [az vm elenco-vm--opzioni di ridimensionamento](/cli/azure/vm#list-vm-resize-options) restituisce hello elenco delle dimensioni di comando. 
 
 ```azurecli-interactive 
 az vm list-vm-resize-options --resource-group myResourceGroupVM --name myVM --query [].name
 ```
-Se le dimensioni desiderate sono disponibili, la VM può essere ridimensionata mentre è accesa, ma durante l'operazione viene riavviata. Usare il comando [az vm resize]( /cli/azure/vm#resize) per eseguire il ridimensionamento.
+Se lo si desidera hello dimensione è disponibile, hello VM può essere ridimensionata da uno stato acceso, ma che è stato riavviato durante l'operazione di hello. Hello utilizzare [az vm ridimensionare]( /cli/azure/vm#resize) comando tooperform hello ridimensionamento.
 
 ```azurecli-interactive 
 az vm resize --resource-group myResourceGroupVM --name myVM --size Standard_DS4_v2
 ```
 
-Se nel cluster corrente non sono disponibili le dimensioni desiderate, è necessario deallocare la VM prima di poter eseguire l'operazione di ridimensionamento. Usare il comando [az vm deallocate]( /cli/azure/vm#deallocate) per arrestare e deallocare la VM. Tenere presente che, quando la VM viene riaccesa, i dati sul disco temporaneo potrebbero essere rimossi. Anche l'indirizzo IP pubblico viene modificato a meno che non venga usato un indirizzo IP statico. 
+Se hello dimensioni desiderate non è in cluster corrente hello, hello VM esigenze toobe deallocato prima operazione di ridimensionamento hello può verificarsi. Hello utilizzare [az vm deallocare]( /cli/azure/vm#deallocate) comando toostop e deallocare hello macchina virtuale. Si noti che quando hello VM viene acceso nuovamente, potrebbero venire rimosso tutti i dati su disco temporaneo hello. indirizzo IP pubblico Hello viene modificato anche se non viene utilizzato un indirizzo IP statico. 
 
 ```azurecli-interactive 
 az vm deallocate --resource-group myResourceGroupVM --name myVM
 ```
 
-Dopo la deallocazione, è possibile eseguire il ridimensionamento. 
+Una volta deallocato, può verificarsi hello ridimensionamento. 
 
 ```azurecli-interactive 
 az vm resize --resource-group myResourceGroupVM --name myVM --size Standard_GS1
 ```
 
-Dopo il ridimensionamento, la VM può essere avviata.
+Dopo hello ridimensionare, hello VM può essere avviata.
 
 ```azurecli-interactive 
 az vm start --resource-group myResourceGroupVM --name myVM
@@ -239,23 +239,23 @@ az vm start --resource-group myResourceGroupVM --name myVM
 
 ## <a name="vm-power-states"></a>Stati di alimentazione di una macchina virtuale
 
-Una macchina virtuale di Azure può avere uno dei diversi stati di alimentazione. Questo stato rappresenta lo stato corrente della VM dal punto di vista dell'hypervisor. 
+Una macchina virtuale di Azure può avere uno dei diversi stati di alimentazione. Questo stato rappresenta lo stato corrente di hello di hello VM dal punto di vista hello di hello hypervisor. 
 
 ### <a name="power-states"></a>Stati di alimentazione
 
 | Stato di alimentazione | Descrizione
 |----|----|
-| Avvio in corso | Indica che è in corso l'avvio della macchina virtuale. |
-| In esecuzione | Indica che la macchina virtuale è in esecuzione. |
-| Arresto in corso | Indica che è in corso l'arresto della macchina virtuale. | 
-| Arrestato | Indica che la macchina virtuale è stata arrestata. Alle macchine virtuali con stato arrestato continuano a essere addebitati i costi di calcolo.  |
-| Deallocazione | Indica che è in corso la deallocazione della macchina virtuale. |
-| Deallocato | Indica che la macchina virtuale è stata rimossa dall'hypervisor, ma è ancora disponibile nel piano di controllo. Alle macchine virtuali con stato deallocato non vengono addebitati i costi di calcolo. |
-| - | Indica che lo stato di alimentazione della macchina virtuale è sconosciuto. |
+| Avvio in corso | Indica la macchina virtuale hello viene avviata. |
+| In esecuzione | Indica che la macchina virtuale hello è in esecuzione. |
+| Arresto in corso | Indica che la macchina virtuale hello è stata arrestata. | 
+| Arrestato | Indica che la macchina virtuale hello è stata arrestata. Macchine virtuali in stato arrestato hello continuerà a essere addebitati.  |
+| Deallocazione | Indica che la macchina virtuale hello è in corso deallocazione. |
+| Deallocato | Indica che la macchina virtuale hello è rimosso dall'hypervisor hello ma ancora disponibili nel piano di controllo hello. Macchine virtuali in stato deallocato hello non essere addebitati. |
+| - | Indica che lo stato di alimentazione hello della macchina virtuale hello è sconosciuto. |
 
 ### <a name="find-power-state"></a>Trovare lo stato di alimentazione
 
-Per recuperare lo stato di una determinata VM, usare il comando [az vm get instance-view](/cli/azure/vm#get-instance-view). Assicurarsi di specificare un nome valido per una macchina virtuale e un gruppo di risorse. 
+stato di hello tooretrieve di una determinata macchina virtuale, utilizzare hello [az vm ottenere Vista istanza](/cli/azure/vm#get-instance-view) comando. Essere toospecify che un nome valido per una macchina virtuale e un gruppo di risorse. 
 
 ```azurecli-interactive 
 az vm get-instance-view \
@@ -274,11 +274,11 @@ PowerState/running  VM running       Info
 
 ## <a name="management-tasks"></a>Attività di gestione
 
-Durante il ciclo di vita di una macchina virtuale si eseguono attività di gestione come l'avvio, l'arresto o l'eliminazione della macchina virtuale. È consigliabile creare script per automatizzare le attività ripetitive o complesse. Usando l'interfaccia della riga di comando di Azure è possibile eseguire molte attività di gestione comuni dalla riga di comando o tramite script. 
+Durante il ciclo di vita hello di una macchina virtuale, è opportuno toorun attività di gestione, ad esempio avvio, arresto o l'eliminazione di una macchina virtuale. Inoltre, è consigliabile toocreate script tooautomate attività ripetitive o complesse. Utilizza hello CLI di Azure, molte attività comuni di gestione può essere eseguita dalla riga di comando hello o negli script. 
 
 ### <a name="get-ip-address"></a>Ottenere l'indirizzo IP
 
-Questo comando restituisce gli indirizzi IP pubblici e privati di una macchina virtuale.  
+Questo comando restituisce gli indirizzi IP pubblici e privati di hello di una macchina virtuale.  
 
 ```azurecli-interactive 
 az vm list-ip-addresses --resource-group myResourceGroupVM --name myVM --output table
@@ -309,13 +309,13 @@ az group delete --name myResourceGroupVM --no-wait --yes
 In questa esercitazione sono illustrate la creazione e la gestione di VM di base, ad esempio:
 
 > [!div class="checklist"]
-> * Creare e connettersi a una macchina virtuale
+> * Creare e connettersi tooa VM
 > * Selezionare e usare le immagini di una macchina virtuale
 > * Visualizzare e usare macchine virtuali di dimensioni specifiche
 > * Ridimensionare una VM
 > * Visualizzare e comprendere lo stato di una macchina virtuale
 
-Passare all'esercitazione successiva per informazioni sui dischi di macchine virtuali.  
+Spostare toohello toolearn esercitazione successiva su dischi di macchina virtuale.  
 
 > [!div class="nextstepaction"]
 > [Creare e gestire dischi di macchine virtuali](./tutorial-manage-disks.md)

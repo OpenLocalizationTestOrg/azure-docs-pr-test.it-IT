@@ -1,7 +1,7 @@
 ---
 layout: LandingPage
-description: Informazioni su come creare macchine virtuali Windows usando la distribuzione classica.
-title: Documentazione di Macchine virtuali di Azure per Windows | Documentazione Microsoft
+description: Informazioni su come macchine virtuali di Windows toocreate tramite hello distribuzione classica.
+title: Documentazione per le macchine virtuali di Windows aaaAzure | Documenti Microsoft
 services: virtual-machines
 author: carolz
 manager: carolz
@@ -12,9 +12,9 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bb4088e42fcd577ef1c7af0f5a631cf4ec4b0c70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 416bc70d583a70a75a674a041e36f1da94bd04dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---

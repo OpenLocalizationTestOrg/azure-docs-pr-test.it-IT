@@ -1,6 +1,6 @@
 ---
-title: Come bilanciare il carico delle macchine virtuali di Linux in Azure | Microsoft Docs
-description: "Informazioni su come usare Azure Load Balancer per creare un'applicazione sicura e a disponibilità elevata in tre macchine virtuali di Linux"
+title: aaaHow tooload bilanciare macchine virtuali Linux in Azure | Documenti Microsoft
+description: "Informazioni su come il carico bilanciamento toocreate un'applicazione a elevata disponibilità e sicura tra tre macchine virtuali Linux toouse hello Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 7b3a089d2f6386afcc46cbc4377594be0d758fc6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f01752c3caec3489ee13e63000775769f3236e11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-load-balance-linux-virtual-machines-in-azure-to-create-a-highly-available-application"></a>Come bilanciare il carico per le macchine virtuali di Linux in Azure per creare un'applicazione a disponibilità elevata
-Il bilanciamento del carico offre un livello più elevato di disponibilità distribuendo le richieste in ingresso tra più macchine virtuali. In questa esercitazione vengono illustrati i diversi componenti di Azure Load Balancer che distribuiscono il traffico e garantiscono una disponibilità elevata. Si apprenderà come:
+# <a name="how-tooload-balance-linux-virtual-machines-in-azure-toocreate-a-highly-available-application"></a>Come tooload bilanciare macchine virtuali Linux in Azure toocreate applicazioni a disponibilità elevata
+Il bilanciamento del carico offre un livello più elevato di disponibilità distribuendo le richieste in ingresso tra più macchine virtuali. In questa esercitazione apprendere hello diversi componenti del servizio di bilanciamento del carico di Azure hello che distribuisce il traffico e garantire disponibilità elevata. Si apprenderà come:
 
 > [!div class="checklist"]
 > * Creare un servizio di bilanciamento del carico di Azure
 > * Creare un probe di integrità per il servizio di bilanciamento del carico
 > * Creare regole del traffico di bilanciamento del carico
-> * Usare cloud-init per creare un'applicazione di base Node.js
-> * Creare macchine virtuali e collegarsi a un bilanciamento del carico
+> * Utilizzare cloud init toocreate un'app Node.js di base
+> * Creare macchine virtuali e collegare bilanciamento del carico tooa
 > * Visualizzare un bilanciamento del carico in azione
 > * Aggiungere e rimuovere macchine virtuali da un bilanciamento del carico
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="azure-load-balancer-overview"></a>Panoramica di Azure Load Balancer
-Azure Load Balancer è un bilanciamento del carico di livello 4 (TCP, UDP) che offre disponibilità elevata mediante la distribuzione del traffico in ingresso nelle macchine virtuali integre. Un probe di integrità del bilanciamento del carico monitora una determinata porta in ogni VM e distribuisce il traffico solo a una VM operativa.
+Azure Load Balancer è un bilanciamento del carico di livello 4 (TCP, UDP) che offre disponibilità elevata mediante la distribuzione del traffico in ingresso nelle macchine virtuali integre. Un probe di integrità di bilanciamento del carico consente di monitorare una determinata porta in ogni macchina virtuale e vengono distribuiti solo il traffico tooan operativo VM.
 
-Definire una configurazione IP front-end che contenga uno o più indirizzi IP pubblici. Questa configurazione IP front-end garantisce l'accessibilità al bilanciamento del carico e alle applicazioni tramite Internet. 
+Definire una configurazione IP front-end che contenga uno o più indirizzi IP pubblici. Questa configurazione IP front-end consente il toobe di applicazioni e del servizio di bilanciamento del carico accessibile tramite Internet hello. 
 
-Le macchine virtuali si connettono a un bilanciamento del carico tramite la scheda di interfaccia di rete virtuale (NIC). Per distribuire il traffico alle macchine virtuali, è necessario che un pool di indirizzi back-end contenga gli indirizzi IP delle schede di interfaccia di rete virtuale connesse al bilanciamento del carico.
+Le macchine virtuali connesse tooa bilanciamento del carico utilizzando la scheda di interfaccia di rete virtuale (NIC). toodistribute traffico toohello macchine virtuali, un pool di indirizzi back-end contiene indirizzi IP hello di hello virtuale (NIC) connesse toohello bilanciamento del carico.
 
-Per controllare il flusso del traffico, è necessario definire le regole di bilanciamento del carico per porte e protocolli specifici che eseguono il mapping delle macchine virtuali.
+flusso di hello toocontrol del traffico, definire regole di bilanciamento del carico per porte specifiche e protocolli che eseguono il mapping delle macchine virtuali tooyour.
 
-Se è stata eseguita l'esercitazione precedente per [creare un set di scalabilità della macchina virtuale](tutorial-create-vmss.md), è stato creato un servizio di bilanciamento del carico. Tutti questi componenti sono stati configurati come parte del set di scalabilità.
+Se è stato eseguito troppo esercitazione precedente hello[creare un set di scalabilità della macchina virtuale](tutorial-create-vmss.md), è stato creato un servizio di bilanciamento del carico. Tutti questi componenti sono stati configurati per l'utente come parte del set di scalabilità hello.
 
 
 ## <a name="create-azure-load-balancer"></a>Creare un Azure Load Balancer
-Questa sezione descrive dettagliatamente come creare e configurare ogni componente del bilanciamento del carico. Per poter creare un servizio di bilanciamento del carico, è prima necessario creare un gruppo di risorse con [az group create](/cli/azure/group#create). Nell'esempio seguente viene creato un gruppo di risorse denominato *myResourceGroupLoadBalancer* nella posizione *eastus*:
+Questa sezione descrive come è possibile creare e configurare ciascun componente del servizio di bilanciamento del carico hello. Per poter creare un servizio di bilanciamento del carico, è prima necessario creare un gruppo di risorse con [az group create](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroupLoadBalancer* in hello *eastus* percorso:
 
 ```azurecli-interactive 
 az group create --name myResourceGroupLoadBalancer --location eastus
 ```
 
 ### <a name="create-a-public-ip-address"></a>Creare un indirizzo IP pubblico
-Per accedere all'app in Internet, assegnare un indirizzo IP pubblico al servizio di bilanciamento del carico. Creare un indirizzo IP pubblico con [az network public-ip create](/cli/azure/network/public-ip#create). Nell'esempio seguente viene creato un indirizzo IP pubblico denominato *myPublicIP* nel gruppo di risorse *myResourceGroupLoadBalancer*:
+tooaccess l'app in hello Internet, è necessario un indirizzo IP pubblico di bilanciamento del carico hello. Creare un indirizzo IP pubblico con [az network public-ip create](/cli/azure/network/public-ip#create). esempio Hello crea un indirizzo IP pubblico denominato *myPublicIP* in hello *myResourceGroupLoadBalancer* gruppo di risorse:
 
 ```azurecli-interactive 
 az network public-ip create \
@@ -68,7 +68,7 @@ az network public-ip create \
 ```
 
 ### <a name="create-a-load-balancer"></a>Creare un servizio di bilanciamento del carico
-Creare un servizio di bilanciamento del carico con [az network lb create](/cli/azure/network/lb#create). L'esempio seguente crea un servizio di bilanciamento del carico denominato *myLoadBalancer* e assegna l'indirizzo *myPublicIP* alla configurazione IP front-end:
+Creare un servizio di bilanciamento del carico con [az network lb create](/cli/azure/network/lb#create). esempio Hello crea un bilanciamento del carico denominato *myLoadBalancer* e assegna hello *myPublicIP* configurazione IP front-end dell'indirizzo toohello:
 
 ```azurecli-interactive 
 az network lb create \
@@ -80,11 +80,11 @@ az network lb create \
 ```
 
 ### <a name="create-a-health-probe"></a>Creare un probe di integrità
-Per consentire al servizio di bilanciamento del carico di monitorare lo stato dell'app, si usa un probe di integrità. Il probe di integrità aggiunge o rimuove in modo dinamico le VM nella rotazione del servizio di bilanciamento del carico in base alla rispettiva risposta ai controlli di integrità. Per impostazione predefinita, una VM viene rimossa dalla distribuzione del servizio di bilanciamento del carico dopo due errori consecutivi a intervalli di 15 secondi. Un probe di integrità viene creato in base a un protocollo o una specifica pagina di controllo integrità per l'app. 
+tooallow hello bilanciamento toomonitor hello stato di caricamento dell'app, utilizzare un probe di integrità. probe di integrità Hello dinamicamente aggiunge o rimuove le macchine virtuali dalla rotazione di bilanciamento del carico hello in base alle loro controlli toohealth di risposta. Per impostazione predefinita, una macchina virtuale viene rimosso dalla distribuzione del servizio di bilanciamento del carico hello dopo due tentativi consecutivi non riusciti a intervalli di 15 secondi. Un probe di integrità viene creato in base a un protocollo o una specifica pagina di controllo integrità per l'app. 
 
-Nell'esempio seguente viene creato un probe TCP. È anche possibile creare probe HTTP personalizzati per i controlli di integrità con granularità fine. Quando si usa un probe HTTP personalizzato, è necessario creare la pagina di controllo integrità, ad esempio *healthcheck.js*. Il probe deve restituire la risposta **HTTP 200 OK** affinché il servizio di bilanciamento del carico mantenga l'host nella rotazione.
+Hello di esempio seguente crea un probe TCP. È anche possibile creare probe HTTP personalizzati per i controlli di integrità con granularità fine. Quando si utilizza un probe HTTP personalizzato, è necessario creare pagina di controllo di integrità hello, ad esempio *healthcheck.js*. probe Hello deve restituire un **HTTP 200 OK** risposta per l'host hello carico bilanciamento tookeep hello nella rotazione.
 
-Per creare un probe di integrità TCP, usare con [az network lb probe create](/cli/azure/network/lb/probe#create). L'esempio seguente crea un probe di integrità denominato *myHealthProbe*:
+toocreate un probe di integrità TCP, utilizzare [az di rete lb probe creare](/cli/azure/network/lb/probe#create). esempio Hello crea un probe di integrità denominato *myHealthProbe*:
 
 ```azurecli-interactive 
 az network lb probe create \
@@ -96,9 +96,9 @@ az network lb probe create \
 ```
 
 ### <a name="create-a-load-balancer-rule"></a>Creare una regola di bilanciamento del carico
-Una regola di bilanciamento del carico consente di definire come il traffico verrà distribuito alle VM. Definire la configurazione IP front-end per il traffico in ingresso e il pool IP di back-end affinché riceva il traffico, insieme alla porta di origine e di destinazione necessaria. Per assicurarsi che solo le macchine virtuali integre ricevano il traffico, è necessario anche definire il probe di integrità da usare.
+Una regola di bilanciamento del carico è toodefine utilizzato come il traffico è toohello distribuita le macchine virtuali. Definire una configurazione IP front-end di hello per il traffico in ingresso hello e hello back-end pool tooreceive hello traffico IP, con origine necessari hello e porta di destinazione. toomake che solo le macchine virtuali integro ricevano il traffico, è inoltre definire toouse probe di integrità hello.
 
-Creare una regola di bilanciamento del carico con [az network lb rule create](/cli/azure/network/lb/rule#create). L'esempio seguente crea una regola denominata *myLoadBalancerRule*, usa il probe di integrità *myHealthProbe* e bilancia il traffico sulla porta *80*:
+Creare una regola di bilanciamento del carico con [az network lb rule create](/cli/azure/network/lb/rule#create). esempio Hello crea una regola denominata *myLoadBalancerRule*, hello utilizza *myHealthProbe* probe di integrità e bilancia il traffico sulla porta *80*:
 
 ```azurecli-interactive 
 az network lb rule create \
@@ -115,10 +115,10 @@ az network lb rule create \
 
 
 ## <a name="configure-virtual-network"></a>Configurare la rete virtuale
-Prima di distribuire alcune macchine virtuali e testare il servizio di bilanciamento, creare le risorse di rete virtuale di supporto. Per altre informazioni sulle reti virtuali, vedere l'esercitazione [Gestire le reti virtuali di Azure](tutorial-virtual-network.md).
+Prima di distribuire alcune macchine virtuali e possibile eseguire il servizio di bilanciamento del test, creare hello che supporta le risorse di rete virtuale. Per ulteriori informazioni sulle reti virtuali, vedere hello [gestire reti virtuali di Azure](tutorial-virtual-network.md) esercitazione.
 
 ### <a name="create-network-resources"></a>Creare risorse di rete
-Creare una rete virtuale con [az network vnet create](/cli/azure/network/vnet#create). L'esempio seguente crea una rete virtuale denominata *myVnet* con una subnet denominata *mySubnet*:
+Creare una rete virtuale con [az network vnet create](/cli/azure/network/vnet#create). esempio Hello crea una rete virtuale denominata *myVnet* con una subnet denominata *mySubnet*:
 
 ```azurecli-interactive 
 az network vnet create \
@@ -127,7 +127,7 @@ az network vnet create \
     --subnet-name mySubnet
 ```
 
-Per aggiungere un gruppo di sicurezza di rete usare [az network nsg create](/cli/azure/network/nsg#create). L'esempio seguente crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
+tooadd un gruppo di sicurezza di rete, utilizzare [rete az creare](/cli/azure/network/nsg#create). esempio Hello crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
 
 ```azurecli-interactive 
 az network nsg create \
@@ -135,7 +135,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-Creare una regola del gruppo di sicurezza di rete con [az network nsg rule create](/cli/azure/network/nsg/rule#create). L'esempio seguente crea una regola del gruppo di sicurezza di rete denominata *myNetworkSecurityGroupRule*:
+Creare una regola del gruppo di sicurezza di rete con [az network nsg rule create](/cli/azure/network/nsg/rule#create). esempio Hello crea una regola di gruppo di sicurezza di rete denominata *myNetworkSecurityGroupRule*:
 
 ```azurecli-interactive 
 az network nsg rule create \
@@ -147,7 +147,7 @@ az network nsg rule create \
     --destination-port-range 80
 ```
 
-Le schede di interfaccia di rete virtuale vengono create con [az network nic create](/cli/azure/network/nic#create). L'esempio seguente crea tre schede di interfaccia di rete virtuali, Una scheda di interfaccia di rete virtuale per ogni VM creata per l'app nei passaggi successivi. È possibile creare altre schede di interfaccia di rete virtuale e macchine virtuali in qualsiasi momento e aggiungerle al bilanciamento del carico:
+Le schede di interfaccia di rete virtuale vengono create con [az network nic create](/cli/azure/network/nic#create). Hello esempio crea tre schede di rete virtuale. (Una scheda di rete virtuale per ogni macchina virtuale viene creato per l'app in hello seguendo i passaggi). È possibile creare macchine virtuali e schede di rete virtuali aggiuntive in qualsiasi momento e aggiungerli toohello servizio di bilanciamento del carico:
 
 ```bash
 for i in `seq 1 3`; do
@@ -165,9 +165,9 @@ done
 ## <a name="create-virtual-machines"></a>Creare macchine virtuali
 
 ### <a name="create-cloud-init-config"></a>Creare una configurazione cloud-init
-In un'esercitazione precedente, [How to customize a Linux virtual machine on first boot](tutorial-automate-vm-deployment.md) (Come personalizzare una macchina virtuale Linux al primo avvio), è stato descritto come personalizzare una macchina virtuale al primo avvio con cloud-init. È possibile usare lo stesso file di configurazione cloud-init per installare NGINX ed eseguire una semplice app Node.js "Hello World".
+Nell'esercitazione precedente su [come toocustomize una macchina virtuale Linux al primo avvio](tutorial-automate-vm-deployment.md), si è appreso tooautomate personalizzazione con cloud init. È possibile utilizzare hello stesso tooinstall file di configurazione cloud init NGINX ed eseguire una semplice app Node.js 'Hello World'.
 
-Nella shell corrente creare un file denominato *cloud-init.txt* e incollare la configurazione seguente. Ad esempio, creare il file in Cloud Shell anziché nel computer locale. Immettere `sensible-editor cloud-init.txt` per creare il file e visualizzare un elenco degli editor disponibili. Assicurarsi che l'intero file cloud-init venga copiato correttamente, in particolare la prima riga:
+Nella shell corrente, creare un file denominato *cloud init.txt* e Incolla hello seguente configurazione. Ad esempio, creare file hello in hello Shell Cloud non presenti nel computer locale. Immettere `sensible-editor cloud-init.txt` toocreate hello file e visualizzare un elenco degli editor disponibili. Assicurarsi che tale file intero cloud-init hello viene copiato correttamente, soprattutto hello prima riga:
 
 ```yaml
 #cloud-config
@@ -212,9 +212,9 @@ runcmd:
 ```
 
 ### <a name="create-virtual-machines"></a>Creare macchine virtuali
-Per aumentare la disponibilità elevata dell'app, posizionare le macchine virtuali in un set di disponibilità. Per altre informazioni sui set di disponibilità, vedere l'esercitazione precedente [Come creare macchine virtuali a disponibilità elevata](tutorial-availability-sets.md).
+disponibilità elevata di hello tooimprove dell'app, posizionare le macchine virtuali in un set di disponibilità. Per ulteriori informazioni sui set di disponibilità, vedere hello precedente [come macchine virtuali a disponibilità elevata toocreate](tutorial-availability-sets.md) esercitazione.
 
-Creare un set di disponibilità con [az vm availability-set create](/cli/azure/vm/availability-set#create). L'esempio seguente crea un set di disponibilità denominato *myAvailabilitySet*:
+Creare un set di disponibilità con [az vm availability-set create](/cli/azure/vm/availability-set#create). esempio Hello crea un set denominato di disponibilità *myAvailabilitySet*:
 
 ```azurecli-interactive 
 az vm availability-set create \
@@ -222,7 +222,7 @@ az vm availability-set create \
     --name myAvailabilitySet
 ```
 
-Ora è possibile creare le VM con [az vm create](/cli/azure/vm#create). L'esempio seguente crea tre VM e genera le chiavi SSH, se non sono già presenti:
+Ora è possibile creare le macchine virtuali hello con [creare vm az](/cli/azure/vm#create). Hello esempio crea tre macchine virtuali e genera le chiavi SSH se non esiste già:
 
 ```bash
 for i in `seq 1 3`; do
@@ -239,11 +239,11 @@ for i in `seq 1 3`; do
 done
 ```
 
-Sono presenti attività in background la cui esecuzione continua dopo che l'interfaccia della riga di comando di Azure è tornata al prompt. Il parametro `--no-wait` non attende il completamento di tutte le attività. Potrebbe trascorrere ancora qualche minuto prima che sia possibile accedere all'app. Il probe di integrità del servizio di bilanciamento del carico rileva quando l'app è in esecuzione in ogni VM. Quando l'app è in esecuzione, la regola di bilanciamento del carico inizia a distribuire il traffico.
+Sono presenti attività in background che continuare toorun dopo hello CLI di Azure restituisce toohello prompt. Hello `--no-wait` parametro non attendere tutti hello toocomplete di attività. Potrebbe essere un altro paio di minuti prima di poter accedere app hello. Hello probe di integrità di bilanciamento del carico rileva automaticamente quando l'applicazione hello è in esecuzione in ogni macchina virtuale. Dopo l'applicazione hello è in esecuzione, regola di bilanciamento del carico hello avvia toodistribute traffico.
 
 
 ## <a name="test-load-balancer"></a>Testare il bilanciamento del carico
-Ottenere l'indirizzo IP pubblico del servizio di bilanciamento del carico con [az network public-ip show](/cli/azure/network/public-ip#show). L'esempio seguente ottiene l'indirizzo IP per *myPublicIP* creato in precedenza:
+Ottenere l'indirizzo IP pubblico di hello del servizio di bilanciamento del carico con [Mostra public-ip di rete az](/cli/azure/network/public-ip#show). esempio Hello Ottiene hello di indirizzo IP per *myPublicIP* creato in precedenza:
 
 ```azurecli-interactive 
 az network public-ip show \
@@ -253,18 +253,18 @@ az network public-ip show \
     --output tsv
 ```
 
-Sarà quindi possibile immettere l'indirizzo IP pubblico in un Web browser. Si ricordi che sono necessari alcuni minuti perché le macchine virtuali siano pronte e che il bilanciamento del carico inizi a distribuire traffico a queste. Verrà visualizzata l'app, con il nome host della macchina virtuale a cui il servizio di bilanciamento del carico ha distribuito il traffico, come nell'esempio seguente:
+È quindi possibile immettere l'indirizzo IP pubblico hello nel browser web tooa. Nota: impiegato pochi minuti hello hello macchine virtuali toobe pronto prima dell'avvio di servizio di bilanciamento del carico hello toodistribute traffico toothem. Hello app viene visualizzata, inclusi hello nome host della macchina virtuale hello tale bilanciamento del carico hello distribuite tooas traffico nel seguente esempio hello:
 
 ![Esecuzione dell'app Node.js](./media/tutorial-load-balancer/running-nodejs-app.png)
 
-Per verificare la distribuzione del traffico tra tutte e tre le VM che eseguono l'app da parte del servizio di bilanciamento del carico, forzare l'aggiornamento del Web browser.
+servizio di bilanciamento del carico hello toosee distribuire il traffico tra tutte le tre macchine virtuali in esecuzione l'app, è possibile forza aggiornamento web browser.
 
 
 ## <a name="add-and-remove-vms"></a>aggiunta e rimozione di VM
-Potrebbe essere necessario eseguire attività di manutenzione sulle VM che eseguono l'app, ad esempio per installare aggiornamenti del sistema operativo, oppure aggiungere altre VM per gestire un aumento del traffico verso l'app. Questa sezione illustra come rimuovere o aggiungere una VM nel servizio di bilanciamento del carico.
+È possibile la manutenzione tooperform hello macchine virtuali in esecuzione l'app, ad esempio l'installazione di aggiornamenti del sistema operativo. toodeal con un aumento del traffico tooyour app, potrebbe essere necessario tooadd altre macchine virtuali. In questa sezione illustra come tooremove o aggiungere una macchina virtuale dal servizio di bilanciamento del carico hello.
 
-### <a name="remove-a-vm-from-the-load-balancer"></a>Rimuovere una VM dal servizio di bilanciamento del carico
-È possibile rimuovere una VM dal pool di indirizzi back-end con [az network nic ip-config address-pool remove](/cli/azure/network/nic/ip-config/address-pool#remove). L'esempio seguente rimuove la scheda di interfaccia di rete virtuale per **myVM2** da *myLoadBalancer*:
+### <a name="remove-a-vm-from-hello-load-balancer"></a>Rimuovere una macchina virtuale dal servizio di bilanciamento del carico hello
+È possibile rimuovere una macchina virtuale dal pool di indirizzi back-end hello con [az nic ip-config-pool di indirizzi rete rimuovere](/cli/azure/network/nic/ip-config/address-pool#remove). Hello seguente rimuove esempio hello schede di rete virtuale per **myVM2** da *myLoadBalancer*:
 
 ```azurecli-interactive 
 az network nic ip-config address-pool remove \
@@ -275,10 +275,10 @@ az network nic ip-config address-pool remove \
     --address-pool myBackEndPool 
 ```
 
-Per verificare la distribuzione del traffico nelle due VM restanti che eseguono l'app da parte del servizio di bilanciamento del carico, forzare l'aggiornamento del Web browser. È ora possibile eseguire attività di manutenzione sulla VM, ad esempio installare aggiornamenti del sistema operativo o eseguire un riavvio della VM.
+servizio di bilanciamento del carico hello toosee distribuire il traffico tra hello altre due macchine virtuali in esecuzione l'app è possibile forza aggiornamento web browser. È ora possibile eseguire la manutenzione in hello macchina virtuale, ad esempio l'installazione degli aggiornamenti del sistema operativo o l'esecuzione di un riavvio della VM.
 
-### <a name="add-a-vm-to-the-load-balancer"></a>Aggiungere una VM al servizio di bilanciamento del carico
-Al termine della manutenzione di una VM o se è necessario espandere la capacità, è possibile aggiungere una VM al pool di indirizzi back-end con [az network nic ip-config address-pool add](/cli/azure/network/nic/ip-config/address-pool#add). L'esempio seguente aggiunge la scheda di interfaccia di rete virtuale per **myVM2** a *myLoadBalancer*:
+### <a name="add-a-vm-toohello-load-balancer"></a>Aggiungere un bilanciamento del carico VM toohello
+Dopo l'esecuzione della manutenzione di macchina virtuale, o se è necessario tooexpand capacità, è possibile aggiungere un pool di indirizzi back-end VM toohello con [az rete nic ip-config-pool di indirizzi di Aggiungi](/cli/azure/network/nic/ip-config/address-pool#add). esempio Hello aggiunge hello schede di rete virtuale per **myVM2** troppo*myLoadBalancer*:
 
 ```azurecli-interactive 
 az network nic ip-config address-pool add \
@@ -291,18 +291,18 @@ az network nic ip-config address-pool add \
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione viene creato un bilanciamento del carico e vengono collegate le macchine virtuali. Si è appreso come:
+In questa esercitazione è creato un servizio di bilanciamento del carico e collegato tooit macchine virtuali. Si è appreso come:
 
 > [!div class="checklist"]
 > * Creare un servizio di bilanciamento del carico di Azure
 > * Creare un probe di integrità per il servizio di bilanciamento del carico
 > * Creare regole del traffico di bilanciamento del carico
-> * Usare cloud-init per creare un'applicazione di base Node.js
-> * Creare macchine virtuali e collegarsi a un bilanciamento del carico
+> * Utilizzare cloud init toocreate un'app Node.js di base
+> * Creare macchine virtuali e collegare bilanciamento del carico tooa
 > * Visualizzare un bilanciamento del carico in azione
 > * Aggiungere e rimuovere macchine virtuali da un bilanciamento del carico
 
-Passare all'esercitazione successiva per altre informazioni sui componenti della rete virtuale di Azure.
+Spostare toolearn esercitazione successiva toohello ulteriori dettagli sui componenti di rete virtuale di Azure.
 
 > [!div class="nextstepaction"]
 > [Gestire le VM e le reti virtuali](tutorial-virtual-network.md)

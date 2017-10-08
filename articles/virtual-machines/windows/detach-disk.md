@@ -1,6 +1,6 @@
 ---
-title: Scollegare un disco dati da una VM Windows - Azure | Microsoft Docs
-description: Informazioni su come scollegare un disco dati da una macchina virtuale in Azure usando il modello di distribuzione Resource Manager.
+title: un disco dati da una macchina virtuale di Windows - Azure aaaDetach | Documenti Microsoft
+description: Informazioni su un disco dati da una macchina virtuale in Azure tramite il modello di distribuzione di gestione risorse di hello toodetach.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,41 +15,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
-ms.openlocfilehash: 97aa69745d200ee76f9f859eb3a8b0ad2f202bad
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f3f581d3f33329db2ecb7d25a68bc59af7361aad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-detach-a-data-disk-from-a-windows-virtual-machine"></a>Come scollegare un disco dati da una macchina virtuale di Windows
-Quando un disco dati collegato a una macchina virtuale non è più necessario, è possibile scollegarlo con facilità. Il disco verrà rimosso dalla macchina virtuale, ma non dall'archivio.
+# <a name="how-toodetach-a-data-disk-from-a-windows-virtual-machine"></a>Funzionamento dei dischi toodetach un tipo di dati da una macchina virtuale di Windows
+Quando non è più necessario un disco dati è una macchina virtuale tooa collegato, è possibile scollegarlo facilmente. Rimuove il disco hello dalla macchina virtuale hello, ma non rimuove dall'archivio.
 
 > [!WARNING]
-> Se si scollega un disco, questo non viene automaticamente eliminato. Se è stata eseguita la sottoscrizione all'archiviazione Premium, si continueranno a sostenere costi di archiviazione per il disco. Per altre informazioni fare riferimento a [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../../storage/common/storage-premium-storage.md#pricing-and-billing).
+> Se si scollega un disco, questo non viene automaticamente eliminato. Se è stato richiesto tooPremium archiviazione, si continuerà tooincur i costi di archiviazione per il disco di hello. Per ulteriori informazioni, vedere troppo[prezzi e fatturazione quando si utilizza l'archiviazione Premium](../../storage/common/storage-premium-storage.md#pricing-and-billing).
 >
 >
 
-Se si vogliono riusare i dati presenti nel disco, è possibile ricollegarlo alla stessa macchina virtuale o collegarlo a una nuova.
+Se si desiderano nuovamente toouse hello esistente dati hello disco, è possibile ricollegarlo toohello stessa macchina virtuale o un altro.
 
-## <a name="detach-a-data-disk-using-the-portal"></a>Scollegare un disco dati tramite il portale
-1. Nell'hub del portale selezionare **Macchine virtuali**.
-2. Selezionare la macchina virtuale con il disco dati che si vuole scollegare e fare clic su **Arresta** per deallocare la macchina virtuale.
-3. Nel pannello delle macchine virtuali selezionare **Dischi**.
-4. Nella parte superiore del pannello **Dischi** selezionare **Modifica**.
-5. Nel pannello **Dischi**, fare clic sul pulsante per scollegare il disco ![Immagine del pulsante per scollegare il disco](./media/detach-disk/detach.png) nella parte più a destra del disc dati.
-5. Dopo aver rimosso il disco, fare clic su Salva nella parte superiore del pannello.
-6. Nel pannello delle macchine virtuali fare clic su **Panoramica** e quindi fare clic su **Avvia** nella parte superiore del pannello per riavviare la macchina virtuale.
+## <a name="detach-a-data-disk-using-hello-portal"></a>Scollegare un disco dati tramite il portale di hello
+1. Nell'hub portale hello, selezionare **macchine virtuali**.
+2. Selezionare macchina virtuale hello che ha il disco dati hello toodetach desiderato e fare clic su **arrestare** toodeallocate hello macchina virtuale.
+3. Nel pannello macchine virtuali di hello, selezionare **dischi**.
+4. Nella parte superiore di hello di hello **dischi** pannello seleziona **modifica**.
+5. In hello **dischi** pannello toohello a destra del disco dati hello che si desidera toodetach, fare clic su hello ![immagine del pulsante scollegamento](./media/detach-disk/detach.png) pulsante Disconnetti.
+5. Una volta rimosso il disco di hello, fare clic su Salva nella parte superiore di hello del pannello hello.
+6. Nel Pannello di hello macchina virtuale, fare clic su **Panoramica** e quindi fare clic su hello **avviare** pulsante nella parte superiore di hello di hello toorestart di hello pannello VM.
 
 
 
-Il disco rimane nello spazio di archiviazione ma non è più collegato a una macchina virtuale.
+Hello disco rimane nel servizio di archiviazione, ma non è più macchine virtuali tooa associata.
 
 ## <a name="detach-a-data-disk-using-powershell"></a>Scollegare un disco dati tramite PowerShell
-In questo esempio, il primo comando consente di denominare la macchina virtuale **MyVM07** nel gruppo di risorse **RG11** usando il cmdlet Get-AzureRmVM. Il comando archivia la macchina virtuale nella variabile **$VirtualMachine** .
+In questo esempio hello primo comando Ottiene hello macchina virtuale denominata **MyVM07** in hello **RG11** gruppo di risorse utilizzando il cmdlet Get-AzureRmVM hello. comando archivi hello macchina virtuale in hello Hello **$VirtualMachine** variabile.
 
-Il secondo comando rimuove il disco dati denominato DataDisk3 dalla macchina virtuale.
+Hello secondo comando rimuove il disco di dati hello denominato DataDisk3 dalla macchina virtuale hello.
 
-L'ultimo comando aggiorna lo stato della macchina virtuale per completare il processo di rimozione del disco dati.
+comando finale Hello Aggiorna stato hello del processo di hello macchina virtuale toocomplete hello della rimozione di dischi dati hello.
 
 ```powershell
 $VirtualMachine = Get-AzureRmVM -ResourceGroupName "RG11" -Name "MyVM07"
@@ -60,5 +60,5 @@ Update-AzureRmVM -ResourceGroupName "RG11" -Name "MyVM07" -VM $VirtualMachine
 Per altre informazioni, vedere [Remove-AzureRmVMDataDisk](/powershell/module/azurerm.compute/remove-azurermvmdatadisk).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si desidera riutilizzare il disco dati, è sufficiente [collegarlo a un'altra VM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+Se si desidera disco dati di hello tooreuse, è sufficiente [collegarlo tooanother VM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

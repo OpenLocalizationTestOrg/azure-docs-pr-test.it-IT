@@ -1,6 +1,6 @@
 ---
-title: Convertire una macchina virtuale Windows da dischi non gestiti a dischi gestiti - Azure Managed Disks | Microsoft Docs
-description: Come convertire i dischi non gestiti di una VM Windows in dischi gestiti usando PowerShell nel modello di distribuzione Resource Manager
+title: una macchina virtuale Windows da non aaaConvert dischi toomanaged dischi - Azure gestito | Documenti Microsoft
+description: Come una macchina virtuale Windows da non gestito dischi toomanaged tooconvert dischi tramite PowerShell nel modello di distribuzione di gestione risorse di hello
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: cynthn
-ms.openlocfilehash: 54afcf1e37f696979bfe270a473c72aedf20dc43
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e8ed8694b0e776d22df26261e2fc8340bfe5cafa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-a-windows-virtual-machine-from-unmanaged-disks-to-managed-disks"></a>Convertire i dischi non gestiti di una VM Windows in dischi gestiti
+# <a name="convert-a-windows-virtual-machine-from-unmanaged-disks-toomanaged-disks"></a>Convertire una macchina virtuale Windows da dischi toomanaged dischi non gestito
 
-Se si hanno macchine virtuali (VM) Windows che usano dischi non gestiti, è possibile convertire le VM all'uso di dischi gestiti mediante il servizio [Azure Managed Disks](managed-disks-overview.md). Questo processo consente di convertire sia il disco del sistema operativo che eventuali dischi dati collegati.
+Se si dispone di Windows macchine virtuali (VM) che usano dischi non gestiti, è possibile convertire hello macchine virtuali gestite toouse dischi tramite hello [dischi gestiti di Azure](managed-disks-overview.md) servizio. Questo processo converte disco hello del sistema operativo sia eventuali dischi dati collegati.
 
-Questo articolo illustra come convertire le VM con Azure PowerShell. Se è necessario eseguirne l'installazione o l'aggiornamento, vedere [Installare e configurare Azure PowerShell](/powershell/azure/install-azurerm-ps.md).
+In questo articolo illustra come tooconvert macchine virtuali tramite Azure PowerShell. Se è necessario tooinstall o eseguirne l'aggiornamento, vedere [installare e configurare Azure PowerShell](/powershell/azure/install-azurerm-ps.md).
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
 
-* Vedere [Pianificare la migrazione a Managed Disks](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks).
+* Revisione [pianificare la migrazione di hello di dischi tooManaged](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks).
 
 [!INCLUDE [virtual-machines-common-convert-disks-considerations](../../../includes/virtual-machines-common-convert-disks-considerations.md)]
 
@@ -38,9 +38,9 @@ Questo articolo illustra come convertire le VM con Azure PowerShell. Se è neces
 
 
 ## <a name="convert-single-instance-vms"></a>Convertire VM a istanza singola
-Questa sezione descrive come convertire i dischi delle macchine virtuali di Azure a istanza singola da non gestiti a gestiti. Se le VM sono in un set di disponibilità, vedere la sezione successiva. 
+Questa sezione vengono trattati come tooconvert a istanza singola macchine virtuali di Azure da codice non dischi toomanaged dischi. (Se le macchine virtuali si trovano in un set di disponibilità, vedere la sezione successiva di hello). 
 
-1. Deallocare la VM mediante il cmdlet [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm). L'esempio seguente dealloca la macchina virtuale denominata `myVM` nel gruppo di risorse `myResourceGroup`: 
+1. Deallocare hello VM utilizzando hello [Stop AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) cmdlet. esempio Hello dealloca hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup`: 
 
   ```powershell
   $rgName = "myResourceGroup"
@@ -48,13 +48,13 @@ Questa sezione descrive come convertire i dischi delle macchine virtuali di Azur
   Stop-AzureRmVM -ResourceGroupName $rgName -Name $vmName -Force
   ```
 
-2. Convertire i dischi della VM in dischi gestiti mediante il cmdlet [ConvertTo-AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk). Il processo seguente converte la macchina virtuale precedente, incluso il disco del sistema operativo ed eventuali dischi dati:
+2. Convertire i dischi di hello VM toomanaged con hello [ConvertTo-AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk) cmdlet. Hello seguente converte processo hello precedente macchina virtuale, compresi disco hello del sistema operativo e qualsiasi disco dati:
 
   ```powershell
   ConvertTo-AzureRmVMManagedDisk -ResourceGroupName $rgName -VMName $vmName
   ```
 
-3. Avviare la VM dopo la conversione ai dischi gestiti mediante [Start-AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm). L'esempio seguente riavvia la VM precedente:
+3. Avviare hello VM dopo i dischi di hello conversione toomanaged utilizzando [inizio AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm). Dopo il riavvio di esempio Hello hello VM precedente:
 
   ```powershell
   Start-AzureRmVM -ResourceGroupName $rgName -Name $vmName
@@ -63,9 +63,9 @@ Questa sezione descrive come convertire i dischi delle macchine virtuali di Azur
 
 ## <a name="convert-vms-in-an-availability-set"></a>Convertire VM in un set di disponibilità
 
-Se le macchine virtuali che si desidera convertire in dischi gestiti si trovano in un set di disponibilità, è innanzitutto necessario convertire il set di disponibilità in un set di disponibilità gestito.
+Se le macchine virtuali hello che si desidera tooconvert toomanaged dischi sono in un set di disponibilità, è necessario innanzitutto tooconvert hello disponibilità set tooa gestito set di disponibilità.
 
-1. Convertire il set di disponibilità mediante il cmdlet [Update-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/update-azurermavailabilityset). L'esempio seguente aggiorna il set di disponibilità denominato `myAvailabilitySet` nel gruppo di risorse `myResourceGroup`:
+1. Convertire la disponibilità di hello imposta utilizzando hello [aggiornamento AzureRmAvailabilitySet](/powershell/module/azurerm.compute/update-azurermavailabilityset) cmdlet. Hello aggiornamenti hello set denominata di disponibilità di esempio seguente `myAvailabilitySet` nel gruppo di risorse hello denominato `myResourceGroup`:
 
   ```powershell
   $rgName = 'myResourceGroup'
@@ -75,14 +75,14 @@ Se le macchine virtuali che si desidera convertire in dischi gestiti si trovano 
   Update-AzureRmAvailabilitySet -AvailabilitySet $avSet -Sku Aligned 
   ```
 
-  Se l'area in cui si trova il set di disponibilità ha solo 2 domini di errore gestiti, ma il numero di domini di errore non gestiti è 3, questo comando visualizza un errore di questo tipo: "Il conteggio del dominio di errore specificato 3 deve essere compreso nell'intervallo 1-2". Per correggere l'errore, impostare il dominio di errore su 2 e impostare `Sku` su `Aligned` come segue:
+  Se area hello in cui si trova il set di disponibilità ha solo 2 domini di errore gestito ma il numero di hello di domini di errore non gestito è 3, questo comando viene visualizzato un errore simile troppo "hello è specificato il numero di domini di errore 3 deve essere compreso nel too2 compreso tra 1 hello." tooresolve hello errore, l'aggiornamento hello errore dominio too2 e update `Sku` troppo`Aligned` come indicato di seguito:
 
   ```powershell
   $avSet.PlatformFaultDomainCount = 2
   Update-AzureRmAvailabilitySet -AvailabilitySet $avSet -Sku Aligned
   ```
 
-2. Deallocare e convertire le VM nel set di disponibilità. Lo script seguente dealloca ogni VM mediante il cmdlet [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm), la converte mediante [ConvertTo-AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk) e la riavvia mediante [Start-AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm):
+2. Rilasciare e convertire le macchine virtuali hello in set di disponibilità hello. Hello lo script seguente esegue la deallocazione ogni macchina virtuale utilizzando hello [Stop AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) cmdlet converta utilizzando [ConvertTo-AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk)e lo riavvia utilizzando [inizio AzureRmVM ](/powershell/module/azurerm.compute/start-azurermvm):
 
   ```powershell
   $avSet = Get-AzureRmAvailabilitySet -ResourceGroupName $rgName -Name $avSetName
@@ -99,12 +99,12 @@ Se le macchine virtuali che si desidera convertire in dischi gestiti si trovano 
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-Se si verifica un errore durante la conversione o se una VM si trova in uno stato di errore a causa di problemi in una conversione precedente, eseguire di nuovo il cmdlet `ConvertTo-AzureRmVMManagedDisk`. In genere è sufficiente riprovare per sbloccare la situazione.
+Se si verifica un errore durante la conversione, o se una macchina virtuale è in uno stato di errore a causa di problemi di conversione precedente, eseguire hello `ConvertTo-AzureRmVMManagedDisk` cmdlet nuovamente. In genere, un nuovo tentativo di semplice Sblocca situazione hello.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-[Convertire i dischi gestiti da Standard a Premium](convert-disk-storage.md)
+[Conversione di dischi gestiti standard toopremium](convert-disk-storage.md)
 
 Eseguire una copia di sola lettura di una VM usando [snapshot](snapshot-copy-managed-disk.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Bilanciamento del carico per i servizi di infrastruttura | Microsoft Docs
-description: 'Descrive i due tipi diversi di bilanciamento del carico supportati da Azure: Bilanciamento del carico per servizi cloud e Gestione traffico di Azure per il traffico client.'
+title: bilanciamento del carico per servizi di infrastruttura aaaLoad | Documenti Microsoft
+description: 'Vengono descritti due tipi di hello del bilanciamento del carico supportato da Azure: bilanciamento del carico per i servizi cloud e gestione traffico di Azure per il traffico dei client.'
 services: load-balancer
 documentationcenter: 
 author: kumudd
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2016
 ms.author: kumud
-ms.openlocfilehash: c8c75185a4b905ef839ccbd39b6f9e6d6dfb2496
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cff81948e36c34b4faf561daff1f48bf721c57c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-balancing-for-azure-infrastructure-services"></a>Bilanciamento del carico per i servizi di infrastruttura di Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]

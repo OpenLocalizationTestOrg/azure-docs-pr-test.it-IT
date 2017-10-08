@@ -1,6 +1,6 @@
 ---
-title: Avvio rapido in Azure - Creare l'interfaccia della riga di comando della VM Windows | Microsoft Docs
-description: Informazioni veloci su come creare una macchina virtuale Windows con l'interfaccia della riga di comando di Azure.
+title: Avvio rapido - aaaAzure creare CLI VM di Windows | Documenti Microsoft
+description: Informazioni toocreate rapidamente una macchina virtuale di Windows con hello CLI di Azure.
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,29 +16,29 @@ ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: fcb2f1389b3434d0d2e3145217e54ceb2326b969
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 029bdecec219b12b80b958ceeedda214f1b13149
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-windows-virtual-machine-with-the-azure-cli"></a>Creare una macchina virtuale Windows con l'interfaccia della riga di comando di Azure
+# <a name="create-a-windows-virtual-machine-with-hello-azure-cli"></a>Creare una macchina virtuale Windows con hello CLI di Azure
 
-L'interfaccia della riga di comando di Azure viene usata per creare e gestire le risorse di Azure dalla riga di comando o negli script. Questa guida descrive dettagliatamente come usare l'interfaccia della riga di comando di Azure per distribuire una macchina virtuale che esegue Windows Server 2016. Al termine della distribuzione, viene eseguita la connessione al server e viene installato IIS.
+Hello CLI di Azure viene utilizzato toocreate e gestire le risorse di Azure dalla riga di comando hello o negli script. Questa guida descrive l'utilizzo di una macchina virtuale in esecuzione Windows Server 2016 hello Azure CLI toodeploy. Una volta completata la distribuzione, è connettersi toohello server e installare IIS.
 
 Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) prima di iniziare.
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa guida introduttiva è necessario eseguire la versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa Guida rapida richiede che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
 Come prima cosa creare un gruppo di risorse con [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
 
-L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *stati uniti orientali*.
+esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
@@ -46,15 +46,15 @@ az group create --name myResourceGroup --location eastus
 
 ## <a name="create-virtual-machine"></a>Crea macchina virtuale
 
-Creare una macchina virtuale con il comando [az vm create](/cli/azure/vm#create). 
+Creare una VM con il comando [az vm create](/cli/azure/vm#create). 
 
-L'esempio seguente crea una macchina virtuale denominata *myVM*. Questo esempio usa *azureuser* come nome utente amministrativo e *myPassword12* come password. Aggiornare i valori in modo che siano appropriati all'ambiente. Questi valori sono necessari quando si crea una connessione con la macchina virtuale.
+esempio Hello crea una macchina virtuale denominata *myVM*. Questo esempio viene utilizzato *azureuser* per un nome utente amministrativo e *myPassword12* come password hello. Aggiornare questi ambiente appropriato tooyour toosomething di valori. Questi valori sono necessari quando si crea una connessione con la macchina virtuale hello.
 
 ```azurecli-interactive 
 az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter --admin-username azureuser --admin-password myPassword12
 ```
 
-Dopo che la VM è stata creata, l'interfaccia della riga di comando di Azure mostra informazioni simili all'esempio seguente. Prendere nota di `publicIpAaddress`. Questo indirizzo viene usato per accedere alla VM.
+Quando è stato creato hello VM, hello CLI di Azure Mostra toohello di informazioni simili esempio seguente. Prendere nota di hello `publicIpAaddress`. Questo indirizzo è utilizzato tooaccess hello macchina virtuale.
 
 ```azurecli-interactive 
 {
@@ -71,16 +71,16 @@ Dopo che la VM è stata creata, l'interfaccia della riga di comando di Azure mos
 
 ## <a name="open-port-80-for-web-traffic"></a>Aprire la porta 80 per il traffico Web 
 
-Per impostazione predefinita nelle macchine virtuali Windows distribuite in Azure sono consentite solo le connessioni RDP. Se si intende usare questa macchina virtuale come un server Web, è necessario aprire la porta 80 da Internet. Usare il comando [az vm open-port](/cli/azure/vm#open-port) per aprire la porta.  
+Per impostazione predefinita sono consentite solo le connessioni RDP in tooWindows le macchine virtuali distribuite in Azure. Se questa macchina virtuale verrà toobe un server Web, è necessario tooopen la porta 80 da hello Internet. Hello utilizzare [az vm aprire porte](/cli/azure/vm#open-port) comando tooopen hello desiderato porta.  
  
  ```azurecli-interactive  
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
 ```
 
 
-## <a name="connect-to-virtual-machine"></a>Connettersi alla macchina virtuale
+## <a name="connect-toovirtual-machine"></a>Connettere la macchina toovirtual
 
-Usare il comando seguente per creare una sessione desktop remoto con la macchina virtuale. Sostituire l'indirizzo IP con l'indirizzo IP pubblico della macchina virtuale. Quando richiesto, immettere le credenziali utilizzate durante la creazione della macchina virtuale.
+Comando che segue di hello utilizzare toocreate una sessione desktop remota con la macchina virtuale hello. Sostituire l'indirizzo IP hello con indirizzo IP pubblico hello della macchina virtuale. Quando richiesto, immettere le credenziali di hello utilizzate durante la creazione di macchine virtuali hello.
 
 ```bash 
 mstsc /v:<Public IP Address>
@@ -88,21 +88,21 @@ mstsc /v:<Public IP Address>
 
 ## <a name="install-iis-using-powershell"></a>Installare IIS tramite PowerShell
 
-Dopo avere eseguito l'accesso alla macchina virtuale di Azure, è possibile usare una singola riga di codice di PowerShell per installare IIS e abilitare la regola del firewall locale per consentire il traffico Web. Aprire un prompt di PowerShell ed eseguire questo comando:
+Ora che è stato effettuato in toohello macchina virtuale di Azure, è possibile utilizzare una singola riga di PowerShell tooinstall IIS e abilitare il traffico web tooallow di hello firewall locale regola. Aprire un prompt dei comandi di PowerShell ed eseguire hello comando seguente:
 
 ```powershell
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 ```
 
-## <a name="view-the-iis-welcome-page"></a>Visualizzare la pagina iniziale di IIS
+## <a name="view-hello-iis-welcome-page"></a>Hello Visualizza la pagina iniziale di IIS
 
-Dopo l'installazione di IIS e l'apertura della porta 80 nella macchina virtuale da Internet, è possibile usare il Web browser preferito per visualizzare la pagina iniziale predefinita di IIS. Assicurarsi di usare l'indirizzo IP pubblico descritto in precedenza per passare alla pagina predefinita. 
+Con IIS installato e la porta 80 è aperta nella VM da hello Internet, è possibile utilizzare un browser web la pagina iniziale tooview scelte hello predefinita IIS. Impossibile verificare toouse hello indirizzo IP pubblico che descritto in precedenza pagina predefinita di toovisit hello. 
 
 ![Sito IIS predefinito](./media/quick-create-powershell/default-iis-website.png) 
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Quando non servono più, è possibile usare il comando [az group delete](/cli/azure/group#delete) per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate.
+Quando non è più necessario, è possibile utilizzare hello [eliminazione gruppo az](/cli/azure/group#delete) comando gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
@@ -110,7 +110,7 @@ az group delete --name myResourceGroup
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa guida introduttiva è stata distribuita una macchina virtuale semplice, è stata creata una regola del gruppo di sicurezza di rete ed è stato installato un server Web. Per altre informazioni sulle macchine virtuali di Azure, passare all'esercitazione per le VM di Windows.
+In questa guida introduttiva è stata distribuita una macchina virtuale semplice, è stata creata una regola del gruppo di sicurezza di rete ed è stato installato un server Web. toolearn informazioni sulle macchine virtuali di Azure, continuare l'esercitazione toohello per le macchine virtuali di Windows.
 
 > [!div class="nextstepaction"]
 > [Esercitazioni per le macchine virtuali di Windows in Azure](./tutorial-manage-vm.md)

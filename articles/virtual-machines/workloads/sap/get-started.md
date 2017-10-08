@@ -1,5 +1,5 @@
 ---
-title: Introduzione alle soluzioni SAP in macchine virtuali di Azure | Microsoft Docs
+title: aaaGetting avviato con SAP in macchine virtuali di Azure | Documenti Microsoft
 description: Informazioni sulle soluzioni SAP in esecuzione sulle macchine virtuali (VM) in Microsoft Azure
 services: virtual-machines-linux
 documentationcenter: 
@@ -17,11 +17,11 @@ ms.workload: infrastructure-services
 ms.date: 03/29/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b7a7768862defb4ab3dec65dfad3eacb985940af
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0ac390f8e1c802505b8f9304a12868364fa60f80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-for-hosting-and-running-sap-workload-scenarios"></a>Utilizzo di Azure per l'hosting e l'esecuzione di scenari con carichi di lavoro SAP
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -293,57 +293,57 @@ ms.lasthandoff: 08/29/2017
 [xplat-cli]:../../../cli-install-nodejs.md
 [xplat-cli-azure-resource-manager]:../../../xplat-cli-azure-resource-manager.md
 
-Scegliendo Microsoft Azure come partner cloud per SAP, sarà possibile eseguire in modo affidabile gli scenari e i carichi di lavoro SAP mission critical in una piattaforma scalabile, conforme e comprovata per le aziende,  nonché ottenere la scalabilità, la flessibilità e la convenienza di Azure. Grazie alla partnership estesa tra Microsoft e SAP, è possibile eseguire applicazioni SAP in scenari di sviluppo/test e di produzione in Azure con il supporto completo. Da SAP NetWeaver a SAP S4/HANA, SAP BI, da Linux a Windows, da SAP HANA a SQL, viene offerto supporto per tutte le soluzioni. 
+Se si sceglie Microsoft Azure come partner di cloud pronto SAP, sono tooreliably in grado di eseguire i carichi di lavoro di importanza critiche SAP e scenari su una piattaforma scalabile, conformo e rivelati enterprise.  Ottenere la scalabilità hello, flessibilità e risparmi di Azure. Con hello espanso collaborazione tra Microsoft e SAP, è possibile eseguire applicazioni SAP in scenari di sviluppo e test e di produzione in Azure - e sia completamente supportato. Da SAP NetWeaver tooSAP S4/HANA, SAP BI, tooWindows Linux, tooSQL SAP HANA, sono disponibili per te. 
 
-Oltre all'hosting di scenari SAP NetWeaver con diversi DBMS in Azure, è possibile eseguire l'hosting di diversi altri scenari di carico di lavoro SAP, come SAP BI in Azure. La documentazione relativa alle distribuzioni di SAP NetWeaver nelle macchine virtuali di Azure native è disponibile nella sezione "SAP NetWeaver in Macchine virtuali di Azure". 
+Oltre a scenari SAP NetWeaver con host hello diversi DBMS in Azure, è possibile ospitare diversi altri scenari di carico di lavoro SAP, come SAP BI in Azure. La documentazione relativa a distribuzioni di SAP NetWeaver in macchine virtuali di Azure nativo è reperibile nella sezione hello "SAP NetWeaver in macchine virtuali di Azure". 
 
-Le offerte di macchine virtuali di Azure native prevedono dimensioni crescenti a livello di risorse di CPU e memoria per soddisfare il carico di lavoro SAP basato su SAP HANA. Per altre informazioni su questo argomento, vedere i documenti nella sezione SAP HANA sulle macchine virtuali di Azure.
+Azure offre native offerte di macchina virtuale di Azure che sono in continua crescita dimensioni di CPU e memoria risorse toocover SAP carico di lavoro che si avvale di SAP HANA. Per ulteriori informazioni su questo argomento, cercare documenti hello nella sezione hello SAP HANA in macchine virtuali di Azure."
 
-L'univocità di Azure per SAP HANA è rappresentata da un'offerta esclusiva che differenzia Azure dalla concorrenza. Per abilitare l'hosting di scenari SAP complessi con SAP HANA che richiedono più risorse della CPU e della memoria, Azure offre l'utilizzo di hardware bare metal dedicato al cliente per eseguire distribuzioni SAP HANA che richiedono fino a 20 TB (scalabilità orizzontale di 60 TB) di memoria per S/4HANA o un altro carico di lavoro SAP HANA. Questa esclusiva soluzione Azure di SAP HANA in Azure (istanze di grandi dimensioni) consente di eseguire SAP HANA su hardware bare metal dedicato con il livello dell'applicazione SAP o il livello del middleware dei carichi di lavoro ospitato nelle macchine virtuali di Azure native. Questa soluzione è descritta in diversi documenti nella sezione "SAP HANA in Azure (istanze di grandi dimensioni)".   
+l'univocità Hello di Azure per SAP HANA è un'offerta univoca che differenzia la concorrenza di Azure. In ordine tooenable hosting di più memoria e risorse della CPU SAP complesse scenari che implicano SAP HANA, Azure offre utilizzo hello del cliente dedicato hardware bare metal scopo hello di distribuzioni di SAP HANA che richiedono backup too20 TB (scalabilità 60 TB) di in esecuzione memoria per S/4HANA o altro carico di lavoro di SAP HANA. Questa soluzione Azure di SAP HANA in Azure (istanze di grandi dimensioni) consente toorun SAP HANA hardware bare metal hello dedicato con livello di applicazione SAP hello o un livello di middleware del carico di lavoro ospitato in macchine virtuali di Azure di tipo nativo. Questa soluzione è documentata in diversi documenti nella sezione hello "SAP HANA in Azure (istanze di grandi dimensioni)".   
 
-L'hosting di scenari di carichi di lavoro SAP in Azure consente anche di creare i requisiti di integrazione della soluzione di gestione delle identità e Single Sign-On usando Azure Active Directory in vari componenti SAP e offerte SAP di tipo SaaS o PaaS. La sezione sull'integrazione della soluzione di gestione delle identità e Single Sign-On SAP AAD descrive e illustra un elenco di questi scenari di integrazione e Single Sign-On con Azure Active Directory (AAD) ed entità SAP.
+Scenari di carico di lavoro SAP in Azure di hosting anche creare i requisiti di integrazione delle identità e Single Sign-On utilizzando componenti di Azure Directory attività toodifferent SAP e SAP SaaS offre PaaS. Un elenco di tale integrazione e scenari di Single Sign-On con Azure Active Directory (AAD) e SAP entità è descritti e illustrato nella sezione hello "SAP AAD dell'integrazione delle identità e Single Sign-On."
 
 
 ## <a name="sap-hana-on-sap-hana-on-azure-large-instances"></a>SAP HANA in SAP HANA in Azure (istanze di grandi dimensioni)
 
 ### <a name="overview-and-architecture-of-sap-hana-on-azure-large-instances"></a>Panoramica e architettura di SAP HANA in Azure (istanze di grandi dimensioni)
-Titolo: Panoramica e architettura di SAP HANA in Azure (istanze di grandi dimensioni)
+titolo: aaaOverview e architettura di SAP HANA in Azure (istanze di grandi dimensioni)
 
-Riepilogo: Questa guida sull'architettura e la distribuzione tecnica di SAP offre informazioni sulle modalità di distribuzione di SAP nella nuova piattaforma SAP HANA in Azure (istanze di grandi dimensioni). Non è stata concepita per essere una guida completa sull'installazione specifica di soluzioni SAP, ma per offrire utili informazioni sulla distribuzione iniziale e le operazioni successive. Non deve essere usata in sostituzione della documentazione di SAP correlata all'installazione di SAP HANA o delle varie note di supporto SAP che riguardano l'argomento. Offre semplicemente una panoramica e informazioni specifiche sull'installazione di SAP HANA in Azure (istanze di grandi dimensioni).
+Riepilogo: Questa architettura tecnica Guida alla distribuzione e fornisce informazioni toohelp la distribuzione di SAP in hello nuovo SAP HANA in Azure (istanze di grandi dimensioni) in Azure. Non è una guida completa copertura specifico il programma di installazione di soluzioni SAP, ma piuttosto utile informazioni in corso operazioni di distribuzione iniziale e di toobe desiderato. Non è necessario sostituire la documentazione SAP correlati toohello installazione di SAP HANA (o hello molti note sul supporto di SAP che coprono argomento hello). Viene fornita una panoramica e vengono forniti dettagli aggiuntivi di hello dell'installazione di SAP HANA in Azure (istanze di grandi dimensioni).
 
 Ultimo aggiornamento: luglio 2017
 
 [Questa guida è disponibile qui](hana-overview-architecture.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-### <a name="infrastructure-and-connectivity-to-sap-hana-on-azure-large-instances"></a>Infrastruttura e connettività a SAP HANA in Azure (istanze di grandi dimensioni)
-Titolo: Infrastruttura e connettività a SAP HANA in Azure (istanze di grandi dimensioni)
+### <a name="infrastructure-and-connectivity-toosap-hana-on-azure-large-instances"></a>Infrastruttura e la connettività tooSAP HANA in Azure (istanze di grandi dimensioni)
+titolo: aaaInfrastructure e connettività tooSAP HANA in Azure (istanze di grandi dimensioni)
 
-Riepilogo: Dopo aver finalizzato l'acquisto di SAP HANA in Azure (istanze di grandi dimensioni) con il team Microsoft dedicato agli account aziendali, per garantire una connettività appropriata è necessario eseguire alcune configurazioni di rete.  Questo documento descrive le informazioni che devono essere condivise e le informazioni necessarie. In particolare, descrive quali informazioni devono essere raccolte e quali script di configurazione devono essere eseguiti. 
+Riepilogo: Dopo l'acquisto di hello di SAP HANA in Azure (istanze di grandi dimensioni) è stato finalizzato tra i team dell'account aziendale Microsoft hello, sono necessarie diverse configurazioni di rete nella connettività corretta tooensure di ordine.  Questo documento vengono illustrati hello informazioni toobe condivisa con le seguenti informazioni hello sono obbligatorie. Questo documento descrive quali informazioni sono toobe raccolti in modo che gli script di configurazione toobe eseguire. 
 
 Ultimo aggiornamento: luglio 2017
 
 [Questa guida è disponibile qui](hana-overview-infrastructure-connectivity.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="install-sap-hana-in-sap-hana-on-azure-large-instances"></a>Installare SAP HANA in SAP HANA in Azure (istanze di grandi dimensioni)
-Titolo: Installare SAP HANA in SAP HANA in Azure (istanze di grandi dimensioni)
+titolo: aaaInstall SAP HANA in SAP HANA in Azure (istanze di grandi dimensioni)
 
-Riepilogo: Questo documento descrive le procedure necessarie per l'installazione di SAP HANA nell'istanza di grandi dimensioni di Azure. 
+Riepilogo: Questo documento sono descritte le procedure di installazione di hello per l'installazione di SAP HANA nell'istanza di grandi dimensioni di Azure. 
 
 Ultimo aggiornamento: luglio 2017
 
 [Questa guida è disponibile qui](hana-installation.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="high-availability-and-disaster-recovery-of-sap-hana-on-azure-large-instances"></a>Disponibilità elevata e ripristino di emergenza di SAP HANA in Azure (istanze di grandi dimensioni)
-Titolo: Disponibilità elevata e ripristino di emergenza di SAP HANA in Azure (istanze di grandi dimensioni)
+titolo: aaaHigh disponibilità e ripristino di emergenza di SAP HANA in Azure (istanze di grandi dimensioni)
 
-Riepilogo: La disponibilità elevata e il ripristino di emergenza sono aspetti importanti dell'esecuzione di sistemi SAP HANA cruciali nei server di Azure (istanze di grandi dimensioni). La collaborazione con SAP, l'integratore di sistemi e/o Microsoft è fondamentale per progettare e implementare correttamente la strategia di disponibilità elevata e ripristino di emergenza adatta alle proprie esigenze. È inoltre necessario prendere in considerazione alcuni fattori significativi, come l'RPO (Recovery Point Objective, obiettivo del punto di ripristino) e l'RTO (Recovery Time Objective, obiettivo del tempo di ripristino), specifici del proprio ambiente.  Questo documento illustra le opzioni disponibili per abilitare i livelli desiderati di disponibilità elevata e ripristino di emergenza.
+Riepilogo: La disponibilità elevata e il ripristino di emergenza sono aspetti importanti dell'esecuzione di sistemi SAP HANA cruciali nei server di Azure (istanze di grandi dimensioni). Di importazione toowork con SAP, l'integratore e/o tooproperly Microsoft progettare e implementare destra hello HA/DR strategia per l'utente. Considerazioni importanti come obiettivo del punto di ripristino (RPO) e l'obiettivo del tempo ripristino (RTO), tooyour specifico ambiente, è necessario considerare.  Questo documento illustra le opzioni disponibili per abilitare i livelli desiderati di disponibilità elevata e ripristino di emergenza.
 
 Ultimo aggiornamento: dicembre 2016
 
 [Questo documento è disponibile qui](hana-overview-high-availability-disaster-recovery.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="troubleshooting-and-monitoring-of-sap-hana-on-azure-large-instances"></a>Risoluzione dei problemi e monitoraggio di SAP HANA in Azure (istanze di grandi dimensioni)
-Titolo: Risoluzione dei problemi e monitoraggio di SAP HANA in Azure (istanze di grandi dimensioni)
+titolo: aaaTroubleshooting e monitoraggio di SAP HANA in Azure (istanze di grandi dimensioni)
 
 Riepilogo: Questa guida offre informazioni utili per definire il monitoraggio di SAP HANA in ambiente Azure e informazioni aggiuntive sulla risoluzione dei problemi. 
 
@@ -354,34 +354,34 @@ Ultimo aggiornamento: dicembre 2016
 ## <a name="sap-hana-on-azure-virtual-machines"></a>SAP HANA nelle macchine virtuali di Azure
 
 ### <a name="getting-started-with-sap-hana-on-azure"></a>Introduzione a SAP HANA in Azure
-Titolo: Guida introduttiva per l'installazione manuale di SAP HANA nelle VM di Azure
+titolo: aaaQuickstart Guida all'installazione manuale di SAP HANA in macchine virtuali di Azure
 
-Riepilogo: Questa guida introduttiva consente di configurare un sistema SAP HANA a istanza singola nelle VM di Azure mediante un'installazione manuale di SAP NetWeaver 7.5 e SAP HANA SP12. La guida presuppone che il lettore abbia familiarità con nozioni fondamentali di IaaS di Azure come la distribuzione di macchine virtuali o di reti virtuali tramite il portale di Azure o PowerShell/interfaccia della riga di comando, inclusa la possibilità di usare modelli JSON. Si presuppone anche che il lettore abbia familiarità con SAP HANA, SAP NetWeaver e la relativa installazione locale.
+Riepilogo: Consente di questa Guida rapida tooset sistema in un singola istanza SAP HANA in macchine virtuali di Azure da un'installazione manuale di 7.5 di SAP NetWeaver e SAP HANA SP12. Guida di Hello presuppone che il lettore hello sia familiarità con Azure IaaS nozioni di base come come toodeploy le macchine virtuali o reti virtuali tramite hello portale di Azure o Powershell/CLI inclusi hello modelli json toouse delle opzioni. Inoltre è previsto che il lettore hello è familiarità con SAP HANA, SAP NetWeaver e come tooinstall locale.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui](hana-get-started.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="s4hana-sap-cal-deployment-on-azure"></a>Distribuzione di S/4HANA SAP CAL in Azure
-Titolo: Distribuire SAP S/4HANA o BW/4HANA in Azure
+titolo: aaaDeploy SAP S/4HANA o BW/4HANA in Azure
 
-Riepilogo: Questa Guida consente di dimostrare la distribuzione di SAP S/4HANA in Azure mediante SAP Cloud Appliance Library. SAP Cloud Appliance Library è un servizio di SAP che consente di distribuire applicazioni SAP in Azure. La guida descrive dettagliatamente la distribuzione.
+Riepilogo: In questa guida semplifica la distribuzione di hello toodemonstrate di S/4HANA SAP in Azure con SAP Cloud accessorio libreria. Libreria di Appliance di SAP Cloud è un servizio da SAP che consente alle applicazioni di SAP toodeploy in Azure. Guida di Hello descrive hello dettagliate di distribuzione.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui](cal-s4h.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="high-availability-of-sap-hana-in-azure-virtual-machines"></a>Disponibilità elevata di SAP HANA in Macchine virtuali di Azure
-Titolo: Disponibilità elevata di SAP HANA in Macchine virtuali di Azure
+titolo: aaaHigh disponibilità di SAP HANA in macchine virtuali di Azure
 
-Riepilogo: Questa guida presenta la procedura passo per passo per la configurazione della disponibilità elevata del sistema operativo SUSE 12 e di SAP HANA per il supporto della replica del sistema HANA con failover automatico. La guida è specifica per SUSE e Macchine virtuali di Azure. La guida non si applica tuttavia a Red Hat, bare metal, cloud privato o altre distribuzioni di cloud pubblici non Azure.
+Riepilogo: La presente guida descrive tramite configurazione a disponibilità elevata di hello del sistema operativo 12 SUSE hello e SAP HANA tooaccommodate HANA replica con failover automatico. Guida di Hello è specifico per SUSE e macchine virtuali di Azure. Guida di Hello non si applica ancora per Red Hat o bare metal o private cloud o altre distribuzioni di cloud pubblici non Azure.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui](sap-hana-high-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="sap-hana-backup-overview-on-azure-vms"></a>Panoramica del backup di SAP HANA nelle VM di Azure
-Titolo: Guida del backup di SAP HANA in Macchine virtuali di Azure
+titolo: Guida aaaBackup per SAP HANA in macchine virtuali di Azure
 
 Riepilogo: Questa guida fornisce informazioni di base sulle possibilità di backup quando si esegue SAP HANA in Macchine virtuali di Azure.
 
@@ -390,7 +390,7 @@ Ultimo aggiornamento: marzo 2017
 [Questa guida è disponibile qui](sap-hana-backup-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="sap-hana-file-level-backup-on-azure-vms"></a>Backup di SAP HANA a livello di file in VM di Azure
-Titolo: Backup di SAP HANA basato su snapshot di archiviazione
+titolo: backup HANA aaaSAP basato su snapshot di archiviazione
 
 Riepilogo: Questa guida fornisce informazioni sull'uso di backup basati su snapshot in VM di Azure durante l'esecuzione di SAP HANA su Macchine virtuali di Azure.
 
@@ -400,7 +400,7 @@ Ultimo aggiornamento: marzo 2017
 
 
 ### <a name="sap-hana-snapshot-based-backups-on-azure-vms"></a>Backup di SAP HANA basati su snapshot in VM di Azure
-Titolo: Backup di SAP HANA di Azure a livello di file
+titolo: aaaSAP HANA Azure Backup a livello di file
 
 Riepilogo: Questa guida fornisce informazioni sull'uso di backup di SAP HANA a livello di file durante l'esecuzione di SAP HANA su macchine virtuali di Azure
 
@@ -412,9 +412,9 @@ Ultimo aggiornamento: marzo 2017
 ## <a name="sap-netweaver-deployed-on-azure-virtual-machines"></a>SAP NetWeaver distribuito in macchine virtuali di Azure
 
 ### <a name="deploy-sap-ides-system-on-windows-and-sql-server-through-sap-cal-on-azure"></a>Distribuire il sistema SAP IDES in Windows e SQL Server mediante SAP CAL in Azure
-Titolo: Test di SAP NetWeaver nelle macchine virtuali SUSE Linux di Microsoft Azure 
+titolo: aaaTesting SAP NetWeaver in macchine virtuali di Microsoft Azure SUSE Linux 
 
-Riepilogo: Questo documento descrive la distribuzione di un sistema SAP IDES basato su Windows e SQL Server in Azure mediante SAP Cloud Appliance Library. SAP Cloud appliance Library è un servizio SAP che consente la distribuzione di prodotti SAP in Azure. Questo documento descrive passo per passo la distribuzione di un sistema SAP IDES. Il sistema IDES è solo un esempio di molte altre decine di applicazioni che possono essere distribuite attraverso appliance cloud SAP in Microsoft Azure.
+Riepilogo: Questo documento descrive hello di distribuzione di un sistema SAP IDE basato su Windows e SQL Server in Azure con SAP Cloud accessorio libreria. Dispositivo Cloud SAP libreria è un servizio SAP che consente la distribuzione di hello dei prodotti SAP in Azure. Questo documento dettagliate attraversa distribuzione hello di un sistema SAP IDE. Hello sistema IDE è solo un esempio per diverse decine applicazioni che possono essere distribuiti attraverso appliance di Cloud di SAP in Microsoft Azure.
 
 Ultimo aggiornamento: giugno 2017
 
@@ -422,63 +422,63 @@ Ultimo aggiornamento: giugno 2017
 
 
 ### <a name="quickstart-guide-for-netweaver-on-suse-linux-on-azure"></a>Guida rapida per NetWeaver su SUSE Linux in Azure
-Titolo: Test di SAP NetWeaver nelle macchine virtuali SUSE Linux di Microsoft Azure 
+titolo: aaaTesting SAP NetWeaver in macchine virtuali di Microsoft Azure SUSE Linux 
 
-Riepilogo: Questo articolo descrive vari aspetti da considerare quando si esegue SAP NetWeaver in macchine virtuali (VM) SUSE Linux di Microsoft Azure. SAP NetWeaver è ufficialmente supportato nelle macchine virtuali SUSE Linux in Azure. Tutti i dettagli riguardanti le versioni di Linux, le versioni del kernel SAP e altre informazioni sono reperibili nella nota 1928533 di SAP "SAP Applications on Azure: Supported Products and Azure VM types" (Applicazioni SAP in Azure: prodotti supportati e i tipi di VM di Azure).
+Riepilogo: Questo articolo descrive i vari aspetti tooconsider quando si esegue SAP NetWeaver in macchine virtuali di Microsoft Azure SUSE Linux (VM). SAP NetWeaver è ufficialmente supportato nelle macchine virtuali SUSE Linux in Azure. Tutti i dettagli riguardanti le versioni di Linux, le versioni del kernel SAP e altre informazioni sono reperibili nella nota 1928533 di SAP "SAP Applications on Azure: Supported Products and Azure VM types" (Applicazioni SAP in Azure: prodotti supportati e i tipi di VM di Azure).
 
 Ultimo aggiornamento: settembre 2016
 
 [Questa guida è disponibile qui](suse-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="3da0389e-708b-4e82-b2a2-e92f132df89c"></a>Pianificazione e implementazione
-Titolo: Guida alla pianificazione e all'implementazione di Macchine virtuali di Azure per SAP NetWeaver
+titolo: aaaAzure macchine virtuali di pianificazione e implementazione di SAP NetWeaver
 
-Riepilogo: Questo documento è una guida introduttiva utile se si sta valutando la possibilità di eseguire SAP NetWeaver in Macchine virtuali di Azure. Questa Guida alla pianificazione e implementazione permette di valutare se è possibile distribuire un sistema basato su SAP NetWeaver esistente o pianificato in un ambiente di Macchine virtuali di Azure. Illustra vari scenari di distribuzione di SAP NetWeaver e include configurazioni SAP specifiche per Azure. Il documento elenca e descrive tutte le informazioni di configurazione necessarie relative a SAP/Azure per eseguire un landscape SAP ibrido. Vengono anche descritte le misure che è possibile adottare per garantire la disponibilità elevata dei sistemi basati su SAP NetWeaver nella soluzione IaaS.
+Riepilogo: Questo documento è hello Guida toostart con se si sta pensando di eseguire SAP NetWeaver in macchine virtuali di Azure. Questa Guida alla pianificazione e implementazione permette di valutare se un sistema esistente o pianificato basato su SAP NetWeaver può essere distribuito tooan ambiente di macchine virtuali di Azure. Illustra più scenari di distribuzione di SAP NetWeaver e include configurazioni SAP tooAzure specifico. carta Hello Elenca e descrive tutti hello informazioni di configurazione necessarie, occorre su hello toorun lato SAP/Azure un panorama SAP ibrido. Sono incluse anche procedure che possono essere eseguite tooensure un'elevata disponibilità dei sistemi basati su SAP NetWeaver in IaaS.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui][planning-guide]
 
 ### <a name="high-availability-configurations-of-sap-netweaver-in-azure-vms"></a>Configurazioni a disponibilità elevata di SAP NetWeaver in VM di Azure
-Titolo: Disponibilità elevata in Macchine virtuali di Azure per SAP NetWeaver
+titolo: aaaAzure disponibilità elevata di macchine virtuali per SAP NetWeaver
 
-Riepilogo: Questo documento illustra la procedura che è possibile eseguire per distribuire sistemi SAP a disponibilità elevata in Azure, usando il modello di distribuzione Azure Resource Manager. Le attività principali che verranno illustrate sono le seguenti. Il documento descrive come proteggere i componenti con un singolo punto di guasto in Azure, ad esempio Advanced Business Application Programming (ABAP) SAP Central Services (ASCS)/SAP Central Services (SCS) e i sistemi di gestione di database (DBMS), oltre ai componenti ridondanti, ad esempio i server applicazioni SAP, eseguiti nelle VM di Azure. Questo documento riporta la dimostrazione passo per passo di un esempio di installazione e configurazione di un sistema SAP a disponibilità elevata in un cluster Windows Server Failover Clustering in Azure.
+Riepilogo: In questo documento, si illustrano i passaggi di hello che è possibile trarre toodeploy sistemi SAP a disponibilità elevata in Azure con modello di distribuzione Azure Resource Manager hello. Le attività principali che verranno illustrate sono le seguenti. Nel documento hello, viene descritto come singolo-punto-di-errore componenti, ad esempio Advanced Business dell'applicazione di programmazione (ABAP) SAP Central Services (ASCS) / SAP Central Services (SCS) e sistemi di gestione di database (DBMS) e i componenti ridondanti quali SAP Server applicazioni sta toobe protetto durante l'esecuzione in macchine virtuali di Azure. Questo documento riporta la dimostrazione passo per passo di un esempio di installazione e configurazione di un sistema SAP a disponibilità elevata in un cluster Windows Server Failover Clustering in Azure.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui](high-availability-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="realizing-multi-sid-deployments-of-sap-netweaver-in-azure-vms"></a>Realizzazione di distribuzioni a più SID di SAP NetWeaver in VM di Azure
-Titolo: Creare una configurazione di SAP NetWeaver a più SID 
+titolo: aaaCreate una configurazione di multi-SID di SAP NetWeaver 
 
-Riepilogo: Questo documento costituisce un'aggiunta al documento sulla disponibilità elevata per SAP NetWeaver in VM di Azure. A causa di nuove funzionalità di Azure introdotte nel settembre 2016, è possibile distribuire più istanze di SAP NetWeaver ASCS/SCS in una coppia di VM di Azure. Con questa configurazione è possibile ridurre il numero di VM distribuite per realizzare configurazioni a disponibilità elevata di SAP NetWeaver. La guida descrive l'impostazione di tali configurazioni a più SID.
+Riepilogo: Questo documento è un documento di inoltre toohello la disponibilità elevata per SAP NetWeaver in macchine virtuali di Azure. A causa di funzionalità toonew in Azure che è stata introdotta in settembre 2016, è possibile toodeploy più SAP NetWeaver ASCS/SCS istanze in una coppia di macchine virtuali di Azure. Con questa configurazione, è possibile ridurre il numero di hello delle configurazioni SAP NetWeaver a disponibilità elevata di macchine virtuali necessarie toodeploy toorealize. Guida di Hello descrive l'installazione di hello di tali configurazioni multi-SID.
 
 Ultimo aggiornamento: dicembre 2016
 
 [Questa guida è disponibile qui](high-availability-multi-sid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="6aadadd2-76b5-46d8-8713-e8d63630e955"></a>Distribuzione di SAP NetWeaver in VM di Azure
-Titolo: Distribuzione di Macchine virtuali di Azure per SAP NetWeaver
+titolo: distribuzione di macchine virtuali per SAP NetWeaver aaaAzure
 
-Riepilogo: In questo documento vengono fornite indicazioni generali sulle procedure per la distribuzione del software SAP NetWeaver nelle macchine virtuali in Azure. Questo documento descrive tre scenari di distribuzione specifici, con particolare attenzione all'abilitazione delle estensioni di monitoraggio di Azure per SAP, inclusi alcuni suggerimenti per la risoluzione dei problemi delle estensioni di monitoraggio di Azure per SAP. Prima di passare a questo documento, è necessario aver letto la Guida alla pianificazione e all'implementazione.
+Riepilogo: Questo documento include indicazioni dettagliate sulle procedure per la distribuzione di macchine di toovirtual software SAP NetWeaver in Azure. Questo documento è incentrato sui tre scenari di distribuzione specifico, con particolare attenzione sull'abilitazione delle estensioni hello di Azure Monitoring per SAP, incluse indicazioni per le estensioni di monitoraggio di Azure per SAP hello la risoluzione. Questo documento si presuppone che sia stata letta hello pianificazione e implementazione della Guida.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui][deployment-guide]
 
 ### <a name="1343ffe1-8021-4ce6-a08d-3a1553a4db82"></a>Guida alla distribuzione DBMS
-Titolo: Distribuzione DBMS di Macchine virtuali di Azure per SAP NetWeaver
+titolo: distribuzione di macchine virtuali DBMS per SAP NetWeaver aaaAzure
 
-Riepilogo: Questo documento presenta le considerazioni sulla pianificazione e l'implementazione per i sistemi DBMS che dovranno essere eseguiti con SAP. Nella prima parte vengono elencate e presentate alcune considerazioni di carattere generale. Le parti successive descrivono invece le distribuzioni supportate da SAP di diversi sistemi DBMS in Azure. I sistemi DBMS presentati sono SQL Server, SAP ASE e Oracle. In queste sezioni più specifiche vengono illustrate le considerazioni di cui è necessario tenere conto quando si eseguono sistemi SAP con tali sistemi DBMS in Azure. Vengono presentati argomenti quali i metodi di backup e disponibilità elevata supportati dai diversi sistemi DBMS in Azure per l'utilizzo con applicazioni SAP.
+Riepilogo: Questo documento include considerazioni sulla pianificazione e implementazione per sistemi DBMS hello che deve essere eseguito insieme a SAP. Nella prima parte hello, considerazioni generali sono elencate e presentate. Hello parti seguenti di carta hello correlare toodeployments di vari DBMS in Azure supportati da SAP. I sistemi DBMS presentati sono SQL Server, SAP ASE e Oracle. In tali parti specifiche, vengono illustrate considerazioni è tooaccount per quando si eseguono i sistemi SAP in Azure in combinazione con tali DBMS. Gli argomenti come metodi di backup e disponibilità elevata supportate da hello che diversi DBMS in Azure sono disponibili per l'utilizzo di hello con le applicazioni SAP.
 
 Ultimo aggiornamento: giugno 2017
 
 [Questa guida è disponibile qui][dbms-guide]
 
 ### <a name="using-azure-site-recovery-for-sap-workload"></a>Utilizzo di Azure Site Recovery per un carico di lavoro SAP
-Titolo: SAP NetWeaver - Creazione di una soluzione di ripristino di emergenza con Azure Site Recovery 
+titolo: aaaSAP NetWeaver: creazione di una soluzione di ripristino di emergenza con Azure Site Recovery 
 
-Riepilogo: Questo documento descrive come è possibile usare i servizi Azure Site Recovery per gestire scenari di ripristino di emergenza. Casi in cui è possibile usare Azure come posizione di ripristino di emergenza per un landscape SAP locale mediante i servizi Azure Site Recovery. In questo documento è descritta anche la procedura per gestire un caso di ripristino di emergenza A2A (da Azure ad Azure) con Azure Site Recovery.  
+Riepilogo: Questo documento descrive il modo di hello come servizi di Azure Site Recovery possono essere usati a scopo di hello di gestione degli scenari di ripristino di emergenza. Casi in cui è possibile usare Azure come posizione di ripristino di emergenza per un landscape SAP locale mediante i servizi Azure Site Recovery. Un altro scenario descritto nel documento hello è case di ripristino di emergenza di hello Azure in Azure (A2A) e come viene gestito con Azure Site Recovery.  
 
 Ultimo aggiornamento: agosto 2017
 

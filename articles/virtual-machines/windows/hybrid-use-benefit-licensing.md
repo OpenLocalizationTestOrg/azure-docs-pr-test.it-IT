@@ -1,6 +1,6 @@
 ---
-title: Azure Hybrid Use Benefit per Windows Server e Client Windows| Microsoft Docs
-description: Informazioni su come ottimizzare i vantaggi di Software Assurance per Windows per trasferire le licenze locali in Azure
+title: aaaAzure vantaggio di utilizzare ibrida per Windows Server e Client Windows | Documenti Microsoft
+description: Informazioni su come toomaximize il toobring vantaggi Windows Software Assurance locale tooAzure le licenze
 services: virtual-machines-windows
 documentationcenter: 
 author: kmouss
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 5/26/2017
 ms.author: xujing
-ms.openlocfilehash: 210635624946ddb293427167e9d476c377bcc9b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f24487320a60132aaf766a31f3e6f3726d4a3bd1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-hybrid-use-benefit-for-windows-server-and-windows-client"></a>Azure Hybrid Use Benefit per Windows Server e Client Windows
-Per i clienti con Software Assurance, Azure Hybrid Use Benefit consente di usare le licenze di Windows Server e Client di Windows locali e di eseguire le macchine virtuali di Windows in Azure a costi ridotti. Azure Hybrid Use Benefit per Windows Server include Windows Server 2008R2, Windows Server 2012, Windows Server 2012R2 e Windows Server 2016. Azure Hybrid Use Benefit per Client Windows include Windows 10. Per altre informazioni, vedere la [pagina del vantaggio Azure Hybrid Use per la licenza](https://azure.microsoft.com/pricing/hybrid-use-benefit/).
+Per i clienti con Software Assurance, vantaggio di utilizzare ibrida di Azure consente toouse le licenze di Windows Server e Client di Windows locale e l'esecuzione macchine virtuali di Windows in Azure a un costo ridotto. Azure Hybrid Use Benefit per Windows Server include Windows Server 2008R2, Windows Server 2012, Windows Server 2012R2 e Windows Server 2016. Azure Hybrid Use Benefit per Client Windows include Windows 10. Per ulteriori informazioni, vedere hello [pagina di gestione delle licenze vantaggio di utilizzare Azure ibrida](https://azure.microsoft.com/pricing/hybrid-use-benefit/).
 
 >[!IMPORTANT]
->Azure Hybrid Use Benefits per Client Windows è attualmente in anteprima con l'immagine di Windows 10 in Azure Marketplace. Solo i clienti Enterprise con Windows 10 Enterprise E3/E5 per utente o Windows VDA per utente (licenze di sottoscrizione utente o le licenze di sottoscrizione utente per i componenti aggiuntivi) idonei ("Licenze di qualificazione") sono idonei.
+>Azure ibrida utilizzare vantaggi per Client Windows è attualmente in anteprima utilizzando l'immagine di Windows 10 hello in hello Azure Marketplace. Solo i clienti Enterprise con Windows 10 Enterprise E3/E5 per utente o Windows VDA per utente (licenze di sottoscrizione utente o le licenze di sottoscrizione utente per i componenti aggiuntivi) idonei ("Licenze di qualificazione") sono idonei.
 >
 >
 
-## <a name="ways-to-use-azure-hybrid-use-benefit"></a>Modalità di utilizzo del vantaggio Azure Hybrid Use
-Esistono due modi per distribuire le macchine virtuali Windows con il vantaggio Azure Hybrid Use:
+## <a name="ways-toouse-azure-hybrid-use-benefit"></a>Modi toouse vantaggio di utilizzare ibrida di Azure
+Esistono un paio di modi toodeploy macchine virtuali di Windows con hello vantaggio di utilizzare ibrida di Azure:
 
 1. È possibile distribuire le macchine virtuali da [immagini specifiche del Marketplace](#deploy-a-vm-using-the-azure-marketplace) preconfigurate con Azure Hybrid Use Benefit: Windows Server 2016, Windows Server 2012 R2, Windows Server 2012 e Windows Server 2008SP1.
 2. È possibile [caricare una macchina virtuale personalizzata](#upload-a-windows-vhd) e [distribuirla usando un modello di Resource Manager](#deploy-a-vm-via-resource-manager) o [Azure PowerShell](#detailed-powershell-deployment-walkthrough).
 
-## <a name="deploy-a-vm-using-the-azure-marketplace"></a>Distribuire una VM usando Azure Marketplace
-Le immagini seguenti sono disponibili nel Marketplace preconfigurate con Azure Hybrid Use Benefit: Windows Server 2016, Windows Server 2012 R2, Windows Server 2012 e Windows Server 2008SP1. Queste immagini possono essere distribuite direttamente dal portale di Azure, da modelli di Resource Manager o da Azure PowerShell.
+## <a name="deploy-a-vm-using-hello-azure-marketplace"></a>Distribuire una macchina virtuale utilizzando hello Azure Marketplace
+Le immagini seguenti sono disponibili in hello preconfigurata con vantaggio di utilizzare ibrida di Azure Marketplace: Windows Server 2016, Windows Server 2012 R2, Windows Server 2012 e Windows Server 2008SP1. Queste immagini possono essere distribuite direttamente dal portale di Azure hello, modelli di gestione risorse o Azure PowerShell.
 
-È possibile distribuire queste immagini direttamente dal portale di Azure. Per l'utilizzo in modelli di Resource Manager e con Azure PowerShell, visualizzare l'elenco delle immagini come segue:
+È possibile distribuire queste immagini direttamente dal portale di Azure hello. Per l'utilizzo in modelli di gestione risorse e con Azure PowerShell, visualizzare elenco hello delle immagini come segue:
 
 Per Windows Server:
 ```powershell
@@ -58,9 +58,9 @@ Get-AzureRMVMImageSku -Location "West US" -Publisher "MicrosoftWindowsServer" `
 ```
 
 ## <a name="upload-a-windows-server-vhd"></a>Caricare un disco rigido virtuale di Windows Server
-Per distribuire una macchina virtuale di Windows Server in Azure è prima necessario creare un disco rigido virtuale contenente la build di base di Windows. Questo disco rigido virtuale deve essere correttamente preparato con Sysprep prima di caricarlo in Azure. Sono disponibili [altre informazioni sui requisiti dei dischi rigidi virtuali e sul processo Sysprep](upload-generalized-managed.md) e [Supporto Sysprep per i ruoli server](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles). Eseguire il backup della VM prima di eseguire Sysprep. 
+toodeploy una VM di Windows Server in Azure, è innanzitutto necessario toocreate un disco rigido virtuale che contiene la build di Windows di base. Questo disco rigido virtuale è necessario preparare adeguatamente tramite Sysprep prima di caricarla tooAzure. È possibile [altre informazioni sui requisiti di disco rigido virtuale hello e processo Sysprep](upload-generalized-managed.md) e [supporto Sysprep per i ruoli Server](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles). Eseguire il backup hello VM prima di eseguire Sysprep. 
 
-Verificare di aver prima [installato e configurato l'ultima versione di Azure PowerShell](/powershell/azure/overview). Dopo aver preparato il disco rigido virtuale, caricarlo nell'account di archiviazione di Azure usando il cmdlet `Add-AzureRmVhd` come segue:
+Assicurarsi di avere [installato e configurato in hello più recente di Azure PowerShell](/powershell/azure/overview). Dopo aver preparato il disco rigido virtuale, caricare hello VHD tooyour account di archiviazione Azure tramite hello `Add-AzureRmVhd` cmdlet come segue:
 
 ```powershell
 Add-AzureRmVhd -ResourceGroupName "myResourceGroup" -LocalFilePath "C:\Path\To\myvhd.vhd" `
@@ -68,15 +68,15 @@ Add-AzureRmVhd -ResourceGroupName "myResourceGroup" -LocalFilePath "C:\Path\To\m
 ```
 
 > [!NOTE]
-> Microsoft SQL Server, SharePoint Server e Dynamics possono usare anche le licenza di Software Assurance. È comunque necessario preparare l'immagine di Windows Server installando i componenti dell'applicazione e specificando i codici di licenza corrispondenti, quindi caricando l'immagine del disco in Azure. Esaminare la documentazione appropriata per l'esecuzione di SysPrep con l'applicazione, ad esempio [Considerazioni sull'installazione di SQL Server tramite SysPrep](https://msdn.microsoft.com/library/ee210754.aspx) o [Creare un'immagine di riferimento di SharePoint Server 2016 con Sysprep](http://social.technet.microsoft.com/wiki/contents/articles/33789.build-a-sharepoint-server-2016-reference-image-sysprep.aspx).
+> Microsoft SQL Server, SharePoint Server e Dynamics possono usare anche le licenza di Software Assurance. Immagine di Windows Server tooprepare hello è comunque necessario installare i componenti dell'applicazione e fornendo di conseguenza le chiavi di licenza, quindi caricare tooAzure di immagine disco hello. Esaminare hello documentazione appropriata per l'esecuzione di Sysprep con l'applicazione, ad esempio [considerazioni per l'installazione di SQL Server tramite Sysprep](https://msdn.microsoft.com/library/ee210754.aspx) o [compilare un'immagine di riferimento di SharePoint Server 2016 (Sysprep)](http://social.technet.microsoft.com/wiki/contents/articles/33789.build-a-sharepoint-server-2016-reference-image-sysprep.aspx).
 >
 >
 
-Altre informazioni sul [caricamento del disco rigido virtuale in Azure](upload-generalized-managed.md#upload-the-vhd-to-your-storage-account)
+È inoltre possibile leggere informazioni sui [hello VHD tooAzure processo di caricamento](upload-generalized-managed.md#upload-the-vhd-to-your-storage-account)
 
 
 ## <a name="deploy-a-vm-via-resource-manager-template"></a>Distribuire una macchina virtuale con il modello di Resource Manager
-Nei modelli di Resource Manager è possibile specificare un parametro aggiuntivo per `licenseType`. Altre informazioni sulla [creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md). Dopo aver caricato il disco rigido virtuale in Azure, modificare il modello di Resource Manager per includere il tipo di licenza come parte del provider di calcolo e distribuire il modello come di consueto:
+Nei modelli di Resource Manager è possibile specificare un parametro aggiuntivo per `licenseType`. Altre informazioni sulla [creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md). Dopo aver creato il disco rigido virtuale caricato di tooAzure, modificare è tipo di licenza di gestione risorse modello tooinclude hello come parte di hello provider di calcolo e distribuire il modello come di consueto:
 
 Per Windows Server:
 ```json
@@ -87,7 +87,7 @@ Per Windows Server:
    }
 ```
 
-Per Client Windows da usare solo con l'immagine di Azure Marketplace:
+Per solo toouse di Client Windows con un'immagine del Marketplace Azure:
 ```json
 "properties": {  
    "licenseType": "Windows_Client",
@@ -97,29 +97,29 @@ Per Client Windows da usare solo con l'immagine di Azure Marketplace:
 ```
 
 ## <a name="deploy-a-vm-via-powershell-quickstart"></a>Distribuire una macchina virtuale con l'avvio rapido di PowerShell
-Quando si distribuisce la macchina virtuale Windows Server con PowerShell è presente un parametro aggiuntivo per `-LicenseType`. Dopo aver caricato il disco rigido virtuale in Azure, creare una nuova VM usando `New-AzureRmVM` e specificare il tipo di licenza come segue:
+Quando si distribuisce la macchina virtuale Windows Server con PowerShell è presente un parametro aggiuntivo per `-LicenseType`. Dopo aver creato il disco rigido virtuale caricato di tooAzure, creare una macchina virtuale utilizzando `New-AzureRmVM` e specificare tipo di licenza hello come segue:
 
 Per Windows Server:
 ```powershell
 New-AzureRmVM -ResourceGroupName "myResourceGroup" -Location "West US" -VM $vm -LicenseType "Windows_Server"
 ```
 
-Per Client Windows da usare solo con l'immagine di Azure Marketplace:
+Per solo toouse di Client Windows con un'immagine del Marketplace Azure:
 ```powershell
 New-AzureRmVM -ResourceGroupName "myResourceGroup" -Location "West US" -VM $vm -LicenseType "Windows_Client"
 ```
 
-È possibile [leggere una procedura più dettagliata sulla distribuzione di una VM in Azure con PowerShell](hybrid-use-benefit-licensing.md#detailed-powershell-deployment-walkthrough) più avanti nel documento oppure vedere una guida più descrittiva con i diversi passaggi per [creare una VM Windows usando Resource Manager e PowerShell](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+È possibile [leggere una descrizione più dettagliata sulla distribuzione di una macchina virtuale in Azure tramite PowerShell](hybrid-use-benefit-licensing.md#detailed-powershell-deployment-walkthrough) seguente o lettura una Guida più descrittiva in hello diversi passaggi troppo[creare una macchina virtuale Windows usando Gestione risorse e PowerShell](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 
-## <a name="verify-your-vm-is-utilizing-the-licensing-benefit"></a>Verificare che la macchina virtuale usi il vantaggio della licenza
-Dopo avere distribuito la VM con il metodo di distribuzione tramite PowerShell o Resource Manager, verificare il tipo di licenza con `Get-AzureRmVM` come indicato di seguito:
+## <a name="verify-your-vm-is-utilizing-hello-licensing-benefit"></a>Verificare che la macchina virtuale utilizza vantaggio licenze hello
+Dopo avere distribuito la macchina virtuale mediante PowerShell hello o il metodo di distribuzione di gestione delle risorse, verificare il tipo di licenza hello con `Get-AzureRmVM` come indicato di seguito:
 
 ```powershell
 Get-AzureRmVM -ResourceGroup "myResourceGroup" -Name "myVM"
 ```
 
-L'output è simile all'esempio seguente per Windows Server:
+Hello l'output è simile toohello seguente esempio per Windows Server:
 
 ```powershell
 Type                     : Microsoft.Compute/virtualMachines
@@ -127,7 +127,7 @@ Location                 : westus
 LicenseType              : Windows_Server
 ```
 
-L'output differisce da quello della seguente VM distribuita senza vantaggio Azure Hybrid Use, quale ad esempio una VM distribuita direttamente dalla raccolta di Azure:
+Questo output è in contrasto con hello che seguente macchina virtuale distribuita senza licenze vantaggio di utilizzare ibrida di Azure, ad esempio una macchina virtuale distribuita direttamente dalla raccolta di Azure hello:
 
 ```powershell
 Type                     : Microsoft.Compute/virtualMachines
@@ -136,7 +136,7 @@ LicenseType              :
 ```
 
 ## <a name="detailed-powershell-deployment-walkthrough"></a>Procedura dettagliata per la distribuzione con PowerShell
-La procedura dettagliata per PowerShell seguente illustra la distribuzione completa di una VM. Altre informazioni sui cmdlet effettivi e sui diversi componenti creati sono disponibili in [Creare una VM Windows con Resource Manager e PowerShell](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Verranno creati il gruppo di risorse, l'account di archiviazione e la rete virtuale, quindi verrà definita e creata la VM.
+esempio Hello dettagliate Mostra i passaggi di PowerShell di una distribuzione completa di una macchina virtuale. È possibile leggere ulteriori informazioni di contesto come toohello effettivo cmdlet e i diversi componenti viene creati [creare una macchina virtuale Windows usando Gestione risorse e PowerShell](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Verranno creati il gruppo di risorse, l'account di archiviazione e la rete virtuale, quindi verrà definita e creata la VM.
 
 Ottenere prima le credenziali in modo sicuro, specificare una località e definire un nome per il gruppo di risorse:
 
@@ -182,19 +182,19 @@ $vm = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $compute
     -ProvisionVMAgent -EnableAutoUpdate
 ```
 
-Aggiungere la scheda di interfaccia di rete alla macchina virtuale:
+Aggiungere il toohello NIC VM:
 
 ```powershell
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-Definire l'account di archiviazione da usare:
+Definire toouse account di archiviazione hello:
 
 ```powershell
 $storageAcc = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName mystorageaccount
 ```
 
-Caricare il disco rigido virtuale adeguatamente preparato e collegarlo alla macchina virtuale:
+Caricare il disco rigido virtuale, adeguatamente preparato e collegare tooyour macchina virtuale per l'utilizzo:
 
 ```powershell
 $osDiskName = "licensing.vhd"
@@ -204,7 +204,7 @@ $vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOp
     -SourceImageUri $urlOfUploadedImageVhd -Windows
 ```
 
-Creare infine la macchina virtuale e definire il tipo di licenza per l'uso del vantaggio Azure Hybrid Use:
+Infine, creare la macchina virtuale e definire hello licenze tipo tooutilize vantaggio di utilizzare ibrida di Azure:
 
 Per Windows Server:
 ```powershell
@@ -212,7 +212,7 @@ New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm 
 ```
 
 ## <a name="deploy-a-virtual-machine-scale-set-via-resource-manager-template"></a>Distribuire un set di scalabilità di macchine virtuali tramite un modello di Resource Manager
-Nei modelli di Resource Manager del set di scalabilità di macchine virtuali è necessario specificare un parametro aggiuntivo per `licenseType`. Altre informazioni sulla [creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md). Modificare il modello di Resource Manager per includere la proprietà licenseType come parte dell'elemento virtualMachineProfile del set di scalabilità e distribuire il modello come di consueto. Vedere l'esempio seguente che usa l'immagine di Windows Server 2016:
+Nei modelli di Resource Manager del set di scalabilità di macchine virtuali è necessario specificare un parametro aggiuntivo per `licenseType`. Altre informazioni sulla [creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md). Modificare la proprietà di gestione risorse modello tooinclude hello licenseType come parte di virtualMachineProfile del set di scalabilità di hello e distribuire il modello come di consueto: vedere l'esempio seguente utilizzando l'immagine di Windows Server 2016:
 
 
 ```json
@@ -245,4 +245,4 @@ Altre informazioni sul [Vantaggio Microsoft Azure Hybrid Use](https://azure.micr
 
 Altre informazioni sull' [uso dei modelli di Resource Manager](../../azure-resource-manager/resource-group-overview.md).
 
-Altre informazioni su [Azure Hybrid Use Benefit and Azure Site Recovery make migrating applications to Azure even more cost-effective](https://azure.microsoft.com/blog/hybrid-use-benefit-migration-with-asr/) (Azure Hybrid Use Benefit e Azure Site Recovery rendono le applicazioni che eseguono la migrazione in Azure ancora più convenienti).
+Altre informazioni, vedere [vantaggio di utilizzare ibrida di Azure e Azure Site Recovery rendere ancora più economica tooAzure la migrazione di applicazioni](https://azure.microsoft.com/blog/hybrid-use-benefit-migration-with-asr/).

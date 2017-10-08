@@ -1,6 +1,6 @@
 ---
-title: Gestire i gruppi di sicurezza di rete - interfaccia della riga di comando di Azure 2.0 | Documentazione Microsoft
-description: Informazioni su come gestire i gruppi di sicurezza di rete usando l'interfaccia della riga di comando di Azure 2.0.
+title: -i gruppi di sicurezza di rete aaaManage 2.0 CLI di Azure | Documenti Microsoft
+description: Informazioni su come gruppi di sicurezza di rete toomanage utilizzando hello Azure interfaccia della riga di comando (CLI) 2.0.
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,38 +16,38 @@ ms.workload: infrastructure-services
 ms.date: 02/21/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 11ec0d3d9e33c06d4c0a164f7fba5dd5cca73872
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3036b465e1e4049cba00e5e13ce1b479a2301d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-network-security-groups-using-the-azure-cli-20"></a>Gestire i gruppi di sicurezza di rete usando l'interfaccia della riga di comando di Azure 2.0
+# <a name="manage-network-security-groups-using-hello-azure-cli-20"></a>Gestire gruppi di sicurezza di rete utilizzando hello Azure CLI 2.0
 
 [!INCLUDE [virtual-network-manage-arm-selectors-include.md](../../includes/virtual-network-manage-nsg-arm-selectors-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività 
+## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI 
 
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando: 
+È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello: 
 
-- [Interfaccia della riga di comando di Azure 1.0](virtual-network-manage-nsg-cli-nodejs.md): l'interfaccia della riga di comando per i modelli di distribuzione classici e di gestione delle risorse 
-- [Interfaccia della riga di comando di Azure 2.0](#View-existing-NSGs): interfaccia avanzata per il modello di distribuzione di gestione delle risorse (questo articolo)
+- [Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) – la CLI per hello classic e risorse Gestione modelli di distribuzione 
+- [Azure CLI 2.0](#View-existing-NSGs) -la prossima generazione CLI per modello di distribuzione Gestione risorse hello (in questo articolo)
 
 
 [!INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione Resource Manager che Microsoft consiglia di usare invece del modello di distribuzione classica per le distribuzioni più recenti.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo di modello di distribuzione di gestione delle risorse hello, si consiglia di per la maggior parte delle nuove distribuzioni anziché il modello di distribuzione classica hello.
 > 
 
 [!INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
 ## <a name="prerequisite"></a>Prerequisito
-Se questa operazione non è stata ancora eseguita, installare e configurare l'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e accedere a un account Azure usando il comando [az login](/cli/azure/#login). 
+Se non hai ancora, installare e configurare più recente hello [CLI di Azure 2.0](/cli/azure/install-az-cli2) e accedere con un account Azure tooan [accesso az](/cli/azure/#login). 
 
 
 ## <a name="view-existing-nsgs"></a>Visualizzare NSG esistenti
-Per visualizzare l'elenco di gruppi di sicurezza di rete in un gruppo di risorse specifico, eseguire il comando [az network nsg list](/cli/azure/network/nsg#list) con un formato di output `-o table`:
+elenco di hello tooview di NSGs in un gruppo di risorse specifico, eseguire hello [elenco gruppo di rete az](/cli/azure/network/nsg#list) comando con un `-o table` formato di output:
 
 ```azurecli
 az network nsg list -g RG-NSG -o table
@@ -61,7 +61,7 @@ Output previsto:
     centralus   NSG-FrontEnd  Succeeded            RG-NSG           <guid>
 
 ## <a name="list-all-rules-for-an-nsg"></a>Elencare tutte le regole per un NSG
-Per visualizzare le regole di un gruppo di sicurezza di rete denominato **NSG-FrontEnd**, eseguire il comando [az network nsg show](/cli/azure/network/nsg#show) usando il [filtro di query JMESPATH](/cli/azure/query-az-cli2) e il formato di output `-o table`:
+le regole di hello tooview di un gruppo denominato **front-end di NSG**hello eseguire [Mostra nsg di rete az](/cli/azure/network/nsg#show) comando mediante un [filtro query JMESPATH](/cli/azure/query-az-cli2) hello e `-o table` formato di output:
 
 ```azurecli
     az network nsg show \
@@ -78,24 +78,24 @@ Output previsto:
     AllowVnetInBound               Allow inbound traffic from all VMs in VNET              Allow     Inbound      *                VirtualNetwork    *               VirtualNetwork
     AllowAzureLoadBalancerInBound  Allow inbound traffic from azure load balancer          Allow     Inbound      *                *                 *               AzureLoadBalancer
     DenyAllInBound                 Deny all inbound traffic                                Deny      Inbound      *                *                 *               *
-    AllowVnetOutBound              Allow outbound traffic from all VMs to all VMs in VNET  Allow     Outbound     *                VirtualNetwork    *               VirtualNetwork
-    AllowInternetOutBound          Allow outbound traffic from all VMs to Internet         Allow     Outbound     *                Internet          *               *
+    AllowVnetOutBound              Allow outbound traffic from all VMs tooall VMs in VNET  Allow     Outbound     *                VirtualNetwork    *               VirtualNetwork
+    AllowInternetOutBound          Allow outbound traffic from all VMs tooInternet         Allow     Outbound     *                Internet          *               *
     DenyAllOutBound                Deny all outbound traffic                               Deny      Outbound     *                *                 *               *
     rdp-rule                                                                               Allow     Inbound      3389             *                 *               Internet
     web-rule                                                                               Allow     Inbound      80               *                 *               Internet
 > [!NOTE]
-> È possibile anche usare [az network nsg rule list](/cli/azure/network/nsg/rule#list) per elencare solo le regole personalizzate da un gruppo di sicurezza di rete.
+> È inoltre possibile utilizzare [elenco delle regole az rete nsg](/cli/azure/network/nsg/rule#list) toolist solo hello regole personalizzate di un gruppo.
 >
 
 ## <a name="view-nsg-associations"></a>Visualizzare le associazioni di NSG
 
-Per visualizzare le risorse a cui l'NSG **NSG-FrontEnd** è associato, eseguire il comando `az network nsg show` come mostrato di seguito. 
+tooview hello quali risorse **front-end di NSG** NSG è associato alla, eseguire hello `az network nsg show` comando come illustrato di seguito. 
 
 ```azurecli
 az network nsg show -g RG-NSG -n nsg-frontend --query '[subnets,networkInterfaces]'
 ```
 
-Cercare le proprietà **networkInterfaces** e **subnets** come illustrato di seguito:
+Cercare hello **networkInterfaces** e **subnet** proprietà come illustrato di seguito:
 
 ```json
 [
@@ -117,17 +117,17 @@ Cercare le proprietà **networkInterfaces** e **subnets** come illustrato di seg
 ]
 ```
 
-Nell'esempio precedente, l'NSG non è associato ad alcuna interfaccia di rete (NIC) ed è associato a una subnet denominata **FrontEnd**.
+Nell'esempio hello sopra, hello gruppo non è associata tooany interfacce di rete (NIC) ed è associato tooa subnet denominata **front-end**.
 
 ## <a name="add-a-rule"></a>Aggiungere una regola
-Per aggiungere una regola che consenta il traffico **in ingresso** alla porta **443** da qualsiasi computer all'NSG **NSG-FrontEnd**, immettere il comando seguente:
+tooadd una regola che concede **in ingresso** traffico tooport **443** da qualsiasi toohello macchina **front-end di NSG** NSG, immettere hello comando seguente:
 
 ```azurecli
 az network nsg rule create  \
 --resource-group RG-NSG \
 --nsg-name NSG-FrontEnd  \
 --name allow-https \
---description "Allow access to port 443 for HTTPS" \
+--description "Allow access tooport 443 for HTTPS" \
 --access Allow \
 --protocol Tcp  \
 --direction Inbound \
@@ -143,7 +143,7 @@ Output previsto:
 ```json
 {
   "access": "Allow",
-  "description": "Allow access to port 443 for HTTPS",
+  "description": "Allow access tooport 443 for HTTPS",
   "destinationAddressPrefix": "*",
   "destinationPortRange": "443",
   "direction": "Inbound",
@@ -160,7 +160,7 @@ Output previsto:
 ```
 
 ## <a name="change-a-rule"></a>Modificare una regola
-Per modificare la regola creata in precedenza per consentire solo il traffico in ingresso da **Internet**, eseguire il comando [az network nsg rule update](/cli/azure/network/nsg/rule#update) come illustrato di seguito.
+regola di hello toochange creato in precedenza tooallow il traffico da hello in ingresso **Internet** solo eseguire hello [aggiornamento regola gruppo di rete az](/cli/azure/network/nsg/rule#update) comando:
 
 ```azurecli
 az network nsg rule update \
@@ -175,7 +175,7 @@ Output previsto:
 ```json
 {
 "access": "Allow",
-"description": "Allow access to port 443 for HTTPS",
+"description": "Allow access tooport 443 for HTTPS",
 "destinationAddressPrefix": "*",
 "destinationPortRange": "443",
 "direction": "Inbound",
@@ -192,7 +192,7 @@ Output previsto:
 ```
 
 ## <a name="delete-a-rule"></a>Eliminare una regola
-Per eliminare la regola creata in precedenza, eseguire il comando seguente:
+regola di hello toodelete creato in precedenza, eseguire hello comando seguente:
 
 ```azurecli
 az network nsg rule delete \
@@ -202,8 +202,8 @@ az network nsg rule delete \
 ```
 
 
-## <a name="associate-an-nsg-to-a-nic"></a>Associare un NSG a una NIC
-Per associare il gruppo di sicurezza di rete **NSG-FrontEnd** alla scheda di interfaccia di rete **TestNICWeb1**, eseguire il comando [az network nic update](/cli/azure/network/nic#update):
+## <a name="associate-an-nsg-tooa-nic"></a>Associare un tooa gruppo NIC
+hello tooassociate **front-end di NSG** NSG toohello **TestNICWeb1** NIC, utilizzare hello [aggiornamento nic di rete az](/cli/azure/network/nic#update) comando:
 
 ```azurecli
 az network nic update \
@@ -286,16 +286,16 @@ Output previsto:
 
 ## <a name="dissociate-an-nsg-from-a-nic"></a>Annullare l'associazione tra un NSG e una NIC
 
-Per annullare l'associazione del gruppo di sicurezza di rete **NSG-FrontEnd** dalla scheda di interfaccia di rete **TestNICWeb1** eseguire di nuovo il comando [az network nsg rule update](/cli/azure/network/nsg/rule#update) ma sostituire l'argomento `--network-security-group` con una stringa vuota (`""`).
+hello toodissociate **front-end di NSG** NSG da hello **TestNICWeb1** NIC, eseguire hello [aggiornamento regola gruppo di rete az](/cli/azure/network/nsg/rule#update) comando nuovamente ma sostituire hello `--network-security-group` argomento con una stringa vuota (`""`).
 
 ```azurecli
 az network nic update --resource-group RG-NSG --name TestNICWeb3 --network-security-group ""
 ```
 
-Nell'output la chiave `networkSecurityGroup` è impostata su null.
+Nell'output di hello hello `networkSecurityGroup` chiave toonull è impostata.
 
 ## <a name="dissociate-an-nsg-from-a-subnet"></a>Annullare l'associazione tra un NSG e una subnet
-Per annullare l'associazione del gruppo di sicurezza di rete **NSG-FrontEnd** dalla subnet **FrontEnd** eseguire il comando [az network nsg rule update](/cli/azure/network/nsg/rule#update), ma sostituire l'argomento `--network-security-group` con una stringa vuota (`""`).
+hello toodissociate **front-end di NSG** NSG da hello **front-end** subnet, eseguire di nuovo hello [aggiornamento regola gruppo di rete az](/cli/azure/network/nsg/rule#update) comando nuovamente ma sostituire hello `--network-security-group` argomento con una stringa vuota (`""`).
 
 ```azurecli
 az network vnet subnet update \
@@ -305,10 +305,10 @@ az network vnet subnet update \
 --network-security-group ""
 ```
 
-Nell'output la chiave `networkSecurityGroup` è impostata su null.
+Nell'output di hello hello `networkSecurityGroup` chiave toonull è impostata.
 
-## <a name="associate-an-nsg-to-a-subnet"></a>Associare un gruppo di sicurezza di rete a una subnet
-Per associare di nuovo il gruppo di sicurezza di rete **NSG-FrontEnd** alla subnet **FrontEnd**, eseguire il comando seguente:
+## <a name="associate-an-nsg-tooa-subnet"></a>Associare una subnet tooa NSG
+hello tooassociate **front-end di NSG** NSG toohello **front-end** subnet eseguito nuovamente, hello comando seguente:
 
 ```azurecli
 az network vnet subnet update \
@@ -318,7 +318,7 @@ az network vnet subnet update \
 --network-security-group NSG-FrontEnd
 ```
 
-Nell'output il valore della chiave `networkSecurityGroup` è simile al seguente:
+Nell'output di hello hello `networkSecurityGroup` chiave ha un comportamento simile per valore hello:
 
 ```json
 "networkSecurityGroup": {
@@ -339,12 +339,12 @@ Nell'output il valore della chiave `networkSecurityGroup` è simile al seguente:
   ```
 
 ## <a name="delete-an-nsg"></a>Eliminare un gruppo di sicurezza di rete
-È possibile eliminare un NSG solo se non è associato ad alcuna risorsa. Per eliminare un NSG, seguire questa procedura.
+È possibile eliminare un gruppo solo se non è associata la risorsa tooany. un gruppo, toodelete procedura hello riportata di seguito.
 
-1. Per controllare le risorse associate a un NSG, eseguire `azure network nsg show` come illustrato in [Visualizzare le associazioni di NSG](#View-NSGs-associations).
-2. Se l'NSG è associato a una o più NIC, eseguire `azure network nic set` come illustrato in [Annullare l'associazione tra un NSG e una NIC](#Dissociate-an-NSG-from-a-NIC) per ognuna delle NIC. 
-3. Se l'NSG è associato a una o più subnet, eseguire `azure network vnet subnet set` come illustrato in [Annullare l'associazione tra un NSG e una subnet](#Dissociate-an-NSG-from-a-subnet) per ognuna delle subnet.
-4. Per eliminare l'NSG, eseguire il comando seguente:
+1. risorse di hello toocheck associati tooan NSG, eseguire hello `azure network nsg show` come illustrato nella [NSGs visualizzazione associazioni](#View-NSGs-associations).
+2. Se hello NSG è associato tooany schede di rete, eseguire hello `azure network nic set` come illustrato nella [annullare l'associazione di un gruppo da una scheda di rete](#Dissociate-an-NSG-from-a-NIC) per ogni scheda di rete. 
+3. Se hello gruppo subnet tooany associate, eseguire hello `azure network vnet subnet set` come illustrato nella [annullare l'associazione di un gruppo da una subnet](#Dissociate-an-NSG-from-a-subnet) per ogni subnet.
+4. hello toodelete NSG, eseguire hello comando seguente:
 
     ```azurecli
     az network nsg delete --resource-group RG-NSG --name NSG-FrontEnd

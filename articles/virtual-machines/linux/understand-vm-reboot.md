@@ -1,6 +1,6 @@
 ---
-title: Informazioni sul riavvio del sistema della macchina virtuale Linux di Azure | Microsoft Docs
-description: Elenca le azioni e gli eventi che possono generare il riavvio della macchina virtuale Linux
+title: aaaUnderstand un riavvio del sistema per la macchina virtuale Linux di Azure | Documenti Microsoft
+description: Elenca gli eventi di hello che possono causare hello tooreboot VM Linux
 services: virtual-machines-linux
 documentationcenter: 
 author: genlin
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: genli
-ms.openlocfilehash: 002968895d2ed2c6c3ed6dee052b0fdfcdf42d80
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 63cb2661e12d07c4418e48a5186abed18e853ecf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-a-system-reboot-for-azure-vm"></a>Informazioni sul riavvio del sistema della macchina virtuale di Azure
 

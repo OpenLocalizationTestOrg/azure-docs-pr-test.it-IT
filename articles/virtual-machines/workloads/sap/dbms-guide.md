@@ -1,5 +1,5 @@
 ---
-title: Distribuzione di DBMS in macchine virtuali di Azure per SAP NetWeaver | Microsoft Docs
+title: distribuzione di macchine virtuali DBMS per SAP NetWeaver aaaAzure | Documenti Microsoft
 description: Distribuzione di DBMS in macchine virtuali di Azure per SAP NetWeaver
 services: virtual-machines-linux,virtual-machines-windows
 documentationcenter: 
@@ -17,14 +17,14 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1046d32a0b4b6ede027ef1931314a188c64c94bb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 501f6fbc2baa379b706e95d2bfba377ac129b382
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-virtual-machines-dbms-deployment-for-sap-netweaver"></a>Distribuzione di DBMS in macchine virtuali di Azure per SAP NetWeaver
-[767598]:https://launchpad.support.sap.com/#/notes/767598
+[767598 ]:https://launchpad.support.sap.com/#/notes/767598
 [773830]:https://launchpad.support.sap.com/#/notes/773830
 [826037]:https://launchpad.support.sap.com/#/notes/826037
 [965908]:https://launchpad.support.sap.com/#/notes/965908
@@ -309,41 +309,41 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-Questa guida fa parte della documentazione relativa all'implementazione e alla distribuzione del software SAP in Microsoft Azure. Prima di leggere questa guida, vedere la [guida alla pianificazione e all'implementazione][planning-guide]. Questo documento illustra la distribuzione di vari sistemi di gestione di database relazionali (RDBMS) e dei prodotti correlati in combinazione con SAP in macchine virtuali di Microsoft Azure tramite le funzionalità di infrastruttura distribuita come servizio (IaaS) di Azure.
+Questa guida fa parte della documentazione di hello all'implementazione e distribuzione del software SAP hello in Microsoft Azure. Prima di leggere questa Guida, leggere hello [Guida alla pianificazione e implementazione][planning-guide]. Questo documento descrive la distribuzione di hello di diversi sistemi di gestione dei Database relazionali (RDBMS) e i prodotti correlati in combinazione con SAP in Microsoft macchine virtuali di Azure (VM) utilizzando hello infrastruttura di Azure come una funzionalità del servizio (IaaS).
 
-Questo documento è complementare alla documentazione relativa all'installazione di SAP e alle note SAP, che rappresentano le risorse principali per le installazioni e le distribuzioni del software SAP su piattaforme specifiche.
+Hello carta integra hello documentazione di installazione di SAP e note su SAP, che rappresentano le risorse primarie hello per le distribuzioni del software SAP e le installazioni dato piattaforme.
 
 ## <a name="general-considerations"></a>Considerazioni generali
-Questo capitolo introduce alcune considerazioni relative all'esecuzione di sistemi DBMS correlati a SAP in VM di Azure. Nel capitolo sono presenti pochi riferimenti a sistemi DBMS specifici. I sistemi DBMS specifici vengono trattati nei capitoli successivi di questo documento.
+Questo capitolo introduce alcune considerazioni relative all'esecuzione di sistemi DBMS correlati a SAP in VM di Azure. Sono presenti alcuni riferimenti sistemi DBMS toospecific in questo capitolo. Sistemi DBMS specifici hello vengono invece gestiti all'interno di questo documento, dopo questo capitolo.
 
 ### <a name="definitions-upfront"></a>Definizioni
-Nel documento vengono usati i termini seguenti.
+In tutto il documento di hello, utilizziamo hello seguenti termini:
 
 * IaaS (Infrastructure as a Service): infrastruttura distribuita come servizio.
 * PaaS (Platform as a Service): piattaforma distribuita come servizio.
 * SaaS (Software as a Service): software come un servizio.
 * Componente SAP: singola applicazione SAP, ad esempio ECC, BW, Solution Manager o EP.  I componenti SAP possono essere basati su tecnologie ABAP o Java tradizionali o su un'applicazione non basata su NetWeaver, ad esempio Business Objects.
-* Ambiente SAP: raggruppamento logico di uno o più componenti SAP per una funzione aziendale, ad esempio sviluppo, servizio di controllo della qualità, formazione, ripristino di emergenza o produzione.
-* Panorama applicativo SAP: fa riferimento a tutte le risorse SAP in un panorama applicativo IT del cliente. Il panorama applicativo SAP include tutti gli ambienti di produzione e non produzione.
-* Sistema SAP: combinazione del livello DBMS e del livello applicazione, ad esempio di un sistema di sviluppo SAP ERP, un sistema di test SAP BW, un sistema di produzione SAP CRM e così via. Nelle distribuzioni di Azure non è supportata la divisione di questi due livelli tra ambiente locale e Azure. Un sistema SAP deve quindi essere distribuito o in locale o in Azure. È tuttavia possibile distribuire i diversi sistemi di un panorama applicativo SAP in Azure o in locale. È ad esempio possibile distribuire i sistemi di sviluppo e test SAP CRM in Azure e il sistema di produzione SAP CRM in locale.
-* Distribuzione solo cloud: una distribuzione in cui la sottoscrizione di Azure non è connessa tramite una connessione da sito a sito o ExpressRoute all'infrastruttura di rete locale. Nella documentazione comune su Azure questi tipi di distribuzioni vengono definiti anche distribuzioni "solo cloud". L'accesso alle macchine virtuali distribuite con questo metodo viene effettuato tramite Internet ed endpoint Internet pubblici assegnati alle VM in Azure. L'istanza locale di Active Directory (AD) e il DNS non vengono estesi ad Azure in questi tipi di distribuzioni. Le macchine virtuali non sono quindi parte dell'istanza locale di Active Directory. Nota: le distribuzioni solo cloud in questo documento vengono definite come panorami applicativi SAP completi, eseguiti esclusivamente in Azure senza estensione di Active Directory o risoluzione dei nomi da locale al cloud pubblico. Le configurazioni solo cloud non sono supportate per sistemi SAP di produzione o per configurazioni in cui è necessario usare SAP STMS o altre risorse locali tra i sistemi SAP ospitati in Azure e le risorse che risiedono in locale.
-* Cross-premise: indica uno scenario in cui le VM sono distribuite in una sottoscrizione di Azure con connettività da sito a sito, multisito o ExpressRoute tra i data center locali e Azure. Nella documentazione comune su Azure questi tipi di distribuzioni vengono definiti anche scenari cross-premise. La connessione consente di estendere i domini locali, l'istanza locale di Active Directory e il DNS locale in Azure. Il panorama applicativo locale viene esteso alle risorse di Azure della sottoscrizione. Questa estensione consente alle macchine virtuali di fare parte del dominio locale. Gli utenti di dominio del dominio locale possono accedere ai server e possono eseguire servizi in queste VM, ad esempio i servizi DBMS. La comunicazione e la risoluzione dei nomi tra VM distribuite in locale e VM distribuite in Azure sono consentite. Questo è probabilmente lo scenario più comune per la distribuzione di risorse SAP in Azure. Per altre informazioni, vedere [questo articolo][vpn-gateway-cross-premises-options] e [questo][vpn-gateway-site-to-site-create].
+* Ambiente SAP: uno o più componenti SAP raggruppati logicamente tooperform una funzione di business, ad esempio Development, QAS, Training, ripristino di emergenza o di produzione.
+* Landscape SAP: Si riferisce toohello intera asset SAP in un cliente landscape IT. Hello landscape SAP include tutti di produzione e ambienti non di produzione.
+* Sistema SAP: combinazione hello del livello DBMS e applicazione di, ad esempio, un sistema di sviluppo ERP SAP, sistema di test BW SAP, sistema di produzione CRM SAP e così via. In distribuzioni di Azure, non è supportato toodivide questi due livelli tra sedi locali e Azure. Un sistema SAP deve quindi essere distribuito o in locale o in Azure. Tuttavia, è possibile distribuire i sistemi diversi di hello di un landscape SAP in Azure o in locale. Ad esempio, è possibile distribuire i sistemi hello CRM SAP sviluppo e test in Azure ma hello CRM SAP produzione sistema locale.
+* Distribuzione solo cloud: una distribuzione in cui hello sottoscrizione di Azure non è connesso tramite un sito a sito o ExpressRoute connessione toohello on-premise infrastruttura di rete. Nella documentazione comune su Azure questi tipi di distribuzioni vengono definiti anche distribuzioni "solo cloud". Macchine virtuali distribuite con questo metodo si accede tramite Internet hello e gli endpoint Internet pubblici assegnati toohello macchine virtuali in Azure. Hello locale Active Directory (AD) e DNS non viene esteso tooAzure in questi tipi di distribuzione. Pertanto le macchine virtuali hello non fanno parte di hello Active Directory locale. Nota: le distribuzioni solo cloud in questo documento vengono definite come panorami applicativi SAP completi, eseguiti esclusivamente in Azure senza estensione di Active Directory o risoluzione dei nomi da locale al cloud pubblico. Le configurazioni solo cloud non sono supportate per i sistemi SAP di produzione o configurazioni in cui STMS SAP o altre risorse locali devono toobe utilizzato tra i sistemi SAP ospitati in Azure e risorse che risiedono in locale.
+* Cross-premise: Viene descritto uno scenario in cui le macchine virtuali sono distribuite tooan sottoscrizione di Azure con site-to-site, multi-sito o ExpressRoute connettività tra Data Center locale hello e Azure. Nella documentazione comune su Azure questi tipi di distribuzioni vengono definiti anche scenari cross-premise. motivo Hello connessione hello è tooextend domini locali, in locale di Active Directory e DNS locale in Azure. Hello locale orizzontale è estesa toohello asset Azure della sottoscrizione hello. Grazie a questa estensione, hello macchine virtuali può far parte del dominio locale hello. Gli utenti di dominio del dominio locale hello possono accedere ai server hello ed eseguire servizi su tali macchine virtuali (ad esempio servizi DBMS). La comunicazione e la risoluzione dei nomi tra VM distribuite in locale e VM distribuite in Azure sono consentite. È probabile che questo scenario più comune di hello toobe per la distribuzione di risorse SAP in Azure. Per altre informazioni, vedere [questo articolo][vpn-gateway-cross-premises-options] e [questo][vpn-gateway-site-to-site-create].
 
 > [!NOTE]
-> Le distribuzioni cross-premise di sistemi SAP in cui le macchine virtuali di Azure che eseguono sistemi SAP sono membri di un dominio locale sono supportate per i sistemi SAP di produzione. Le configurazioni cross-premise sono supportate per la distribuzione parziale o completa di panorami applicativi SAP in Azure. Anche l'esecuzione del panorama applicativo SAP completo in Azure richiede che queste VM siano parte di un dominio locale e di ADS. In versioni precedenti della documentazione sono stati illustrati scenari IT ibridi, in cui il termine "ibrido" indica la presenza di una connettività cross-premise tra l'ambiente locale e Azure. In questo caso "ibrido" indica anche che le macchine virtuali in Azure fanno parte dell'istanza locale di Active Directory.
+> Le distribuzioni cross-premise di sistemi SAP in cui le macchine virtuali di Azure che eseguono sistemi SAP sono membri di un dominio locale sono supportate per i sistemi SAP di produzione. Le configurazioni cross-premise sono supportate per la distribuzione parziale o completa di panorami applicativi SAP in Azure. Anche landscape SAP completo hello in esecuzione in Azure, è necessario che tali macchine virtuali da parte del dominio locale e annunci. Nelle versioni precedenti della documentazione di hello, abbiamo parlato scenari IT ibridi, in cui il termine hello "Ibrido" nella radice di fatto hello che vi sia una connettività cross-premise tra sedi locali e Azure. In questo caso "Ibrido" inoltre significa che le macchine virtuali hello in Azure fanno parte di hello in Active Directory locale.
 > 
 > 
 
-Alcuni documenti Microsoft descrivono scenari cross-premise in modo leggermente diverso, in particolare per configurazioni DBMS a disponibilità elevata. Nel caso dei documenti relativi a SAP, lo scenario cross-premise è essenzialmente basato sulla presenza di connettività da sito a sito o privata (ExpressRoute) e sulla distribuzione del panorama applicativo SAP tra l'ambiente locale e Azure.
+Alcuni documenti Microsoft descrivono scenari cross-premise in modo leggermente diverso, in particolare per configurazioni DBMS a disponibilità elevata. Nel caso di hello di documenti correlati a SAP hello, scenario hello Cross-premise solo riduce toohaving site-to-site o privato (ExpressRoute) per la connettività e toohello fact che landscape SAP hello viene distribuito tra sedi locali e Azure.
 
 ### <a name="resources"></a>Risorse
-Per informazioni sull'argomento relativo alle distribuzioni SAP in Azure sono disponibili le seguenti guide:
+Hello guide seguenti sono disponibili per l'argomento hello distribuzioni SAP in Azure:
 
 * [Guida alla pianificazione e all'implementazione di Macchine virtuali di Azure per SAP NetWeaver][planning-guide]
 * [Distribuzione di Macchine virtuali di Azure per SAP NetWeaver][deployment-guide]
 * [Distribuzione di DBMS in macchine virtuali di Azure per SAP NetWeaver (questo documento)][dbms-guide]
 
-Le note seguenti su SAP sono correlate all'argomento relativo a SAP in Azure:
+Hello note su SAP seguenti è correlati toohello argomento SAP in Azure:
 
 | Numero della nota | Titolo |
 | --- | --- |
@@ -353,7 +353,7 @@ Le note seguenti su SAP sono correlate all'argomento relativo a SAP in Azure:
 | [2178632] |Metriche chiave del monitoraggio per SAP in Microsoft Azure |
 | [1409604] |Virtualizzazione in Windows: monitoraggio avanzato |
 | [2191498] |SAP in Linux con Azure: monitoraggio avanzato |
-| [2039619] |Applicazioni SAP in Microsoft Azure che usano il database Oracle: prodotti supportati e relative versioni |
+| [2039619] |Applicazioni SAP in Microsoft Azure mediante hello Database Oracle: prodotti supportati e delle versioni |
 | [2233094] |DB6: Informazioni aggiuntive sulle applicazioni SAP in Azure che usano IBM DB2 per Linux, UNIX e Windows |
 | [2243692] |Linux in una macchina virtuale di Microsoft Azure (IaaS): problemi delle licenze SAP |
 | [1984787] |SUSE LINUX Enterprise Server 12: note di installazione |
@@ -364,59 +364,59 @@ Le note seguenti su SAP sono correlate all'argomento relativo a SAP in Azure:
 | [1114181] |Oracle Database 11g: supporto per file system in Linux |
 
 
-Vedere anche il [wiki in SCN](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) contenente tutte le note SAP per Linux.
+Leggere inoltre hello [SCN Wiki](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) che contiene tutte le note SAP per Linux.
 
-È necessario conoscere l'architettura Microsoft Azure e il funzionamento delle macchine virtuali di Microsoft Azure e sapere come queste vengono distribuite. Altre informazioni sono disponibili all'indirizzo <https://azure.microsoft.com/documentation/>
+È necessario una conoscenza approfondita sull'architettura di Microsoft Azure hello e come macchine virtuali di Microsoft Azure vengono distribuiti e gestiti. Altre informazioni sono disponibili all'indirizzo <https://azure.microsoft.com/documentation/>
 
 > [!NOTE]
-> Questo documento **non** illustra le offerte relative alla piattaforma Microsoft Azure come piattaforma distribuita come servizio (PaaS). Questo documento descrive l'esecuzione di un sistema di gestione di database (DBMS) in macchine virtuali di Microsoft Azure (IaaS) come se il sistema DBMS fosse eseguito nell'ambiente locale. Le funzionalità di database di queste due offerte sono molto diverse e non devono essere confuse tra loro. Vedere anche: <https://azure.microsoft.com/services/sql-database/>
+> Siamo **non** discussione relativa piattaforma Microsoft Azure come un offerte di servizio (PaaS) di hello piattaforma Microsoft Azure. In questo documento riguarda in esecuzione un sistema di gestione di database (DBMS) in Microsoft macchine virtuali di Azure (IaaS), come eseguire hello DBMS nell'ambiente locale. Le funzionalità di database di queste due offerte sono molto diverse e non devono essere confuse tra loro. Vedere anche: <https://azure.microsoft.com/services/sql-database/>
 > 
 > 
 
-Per quanto riguarda la tecnologia IaaS, in generale l'installazione e la configurazione in Windows, Linux e DBMS sono sostanzialmente uguali a quanto avviene in qualsiasi macchina virtuale o computer bare metal installato in locale. Alcune decisioni relative all'architettura e all'implementazione della gestione del sistema, tuttavia, presentano differenze in caso di tecnologia IaaS. Lo scopo di questo documento è spiegare le differenze specifiche relative all'architettura e alla gestione del sistema che è necessario conoscere quando si usa la tecnologia IaaS.
+Poiché si stanno esaminando IaaS, in genere configurazione e installazione di Windows, Linux e DBMS hello sono essenzialmente hello uguale a qualsiasi macchina virtuale o un computer bare metal sarà necessario installare on-premise. Alcune decisioni relative all'architettura e all'implementazione della gestione del sistema, tuttavia, presentano differenze in caso di tecnologia IaaS. scopo di Hello di questo documento è tooexplain hello dell'architettura e sistema di gestione le differenze specifiche che è necessario essere pronti per quando si utilizza IaaS.
 
-Il documento prende in esame le differenze generali nelle aree seguenti:
+In generale, hello complessive aree di differenza che in questo documento vengono illustrati sono:
 
-* Pianificazione del layout di VM/dischi appropriato dei sistemi SAP per garantire il layout dei file di dati corretto e la possibilità di raggiungere un numero di operazioni di I/O al secondo sufficiente per il carico di lavoro.
+* Pianificazione hello disco della macchina virtuale o un layout appropriato di tooensure sistemi SAP si dispone di layout dei file di dati corretto hello e può ottenere sufficiente di IOPS per il carico di lavoro.
 * Considerazioni sulla rete per l'uso della tecnologia IaaS.
-* Uso di funzionalità di database specifiche per ottimizzare il layout dei database.
+* Toouse funzionalità di database specifico in layout database hello toooptimize dell'ordine.
 * Considerazioni sul backup e il ripristino nella tecnologia IaaS.
 * Utilizzo di diversi tipi di immagini per la distribuzione.
 * Disponibilità elevata nella tecnologia IaaS di Azure.
 
 ## <a name="65fa79d6-a85f-47ee-890b-22e794f51a64"></a>Struttura di una distribuzione RDBMS
-Per seguire questo capitolo, è necessario conoscere il contenuto di [questo][deployment-guide-3] capitolo della [guida alla distribuzione][deployment-guide]. Prima di leggere questo capitolo è necessario conoscere le diverse serie di macchine virtuali e le relative differenze, nonché le differenze tra Archiviazione Premium e Standard di Azure.
+Ordinare toofollow questo capitolo, è necessario toounderstand cosa presentata [questo] [ deployment-guide-3] capitolo di hello [Guida alla distribuzione] [ deployment-guide]. Conoscenza hello diverso di serie di macchine Virtuali e le differenze e le differenze di Azure Standard e Premium archiviazione devono essere comprese e note prima di leggere questo capitolo.
 
-Fino a marzo 2015, le dimensioni dei dischi contenenti un sistema operativo erano limitate a 127 GB. Questa limitazione è stata rimossa a marzo 2015. Per altre informazioni, vedere <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/>. A partire da tale data, i dischi contenenti il sistema operativo possono avere le stesse dimensioni di qualsiasi altro disco. È tuttavia preferibile una struttura di distribuzione in cui il sistema operativo, il sistema DBMS ed eventuali file binari SAP siano separati dai file di database. Nei sistemi SAP in esecuzione in macchine virtuali di Azure, è previsto che la VM o il disco di base sia installato con il sistema operativo, i file eseguibili del sistema di gestione di database e i file eseguibili SAP. I file di dati e di log di DBMS vengono archiviati in Archiviazione di Azure (Standard o Premium) in dischi separati e collegati come dischi logici alla VM di Azure dell'immagine del sistema operativo originale. 
+Fino a marzo 2015, dischi, che contengono un sistema operativo sono dimensioni limitate too127 GB. Questa limitazione è stata rimossa a marzo 2015. Per altre informazioni, vedere <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/>. Da qui nei dischi del sistema operativo contenitore hello può avere hello stesse dimensioni come qualsiasi altro disco. Tuttavia, si preferisce comunque una struttura di distribuzione in cui sono separati dai file di database hello hello del sistema operativo, DBMS e file binari SAP finali. Pertanto, è probabile che i sistemi SAP in esecuzione in macchine virtuali Azure sono hello base VM (o disco) installata con hello del sistema operativo, database management system eseguibili e gli eseguibili SAP. Hello dati DBMS e file di log vengono archiviati in archiviazione di Azure (Standard o Premium archiviazione) in dischi separati e collegati come dischi logici toohello originale Azure immagine del sistema operativo VM. 
 
-A seconda che si usi Archiviazione Standard o Premium di Azure, ad esempio con VM serie GS o serie DS, in Azure sono previste altre quote, illustrate [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows]. Nella pianificazione del layout dei dischi è necessario trovare l'equilibrio ottimale tra le quote per gli elementi seguenti:
+Sfruttando Azure Standard o Premium archiviazione (ad esempio usando hello serie DS o GS-series VM) sono dipendenti dai sono altre quote di Azure, che sono documentati [qui (Linux)] [ virtual-machines-sizes-linux] e [qui (Windows)][virtual-machines-sizes-windows]. Quando si pianifica il layout dei dischi, è necessario migliore bilanciamento hello toofind di quote hello per hello seguenti elementi:
 
-* Numero di file di dati.
-* Numero di dischi contenenti i file.
-* Quote di operazioni di I/O al secondo di un singolo disco.
-* Velocità effettiva dei dati per disco.
-* Numero di dischi dati aggiuntivi possibili per dimensioni di VM.
-* La velocità effettiva di archiviazione complessiva che una macchina virtuale può offrire.
+* numero di Hello dei file di dati.
+* numero di Hello di dischi che contengono file hello.
+* quote di Hello IOPS di un singolo disco.
+* Hello velocità di trasmissione dati per ogni disco.
+* numero di Hello di dischi dati aggiuntivi possibili per ogni dimensione di macchina virtuale.
+* Hello complessivo della velocità effettiva di archiviazione una macchina virtuale può fornire.
 
-Azure applica una quota di operazioni di I/O al secondo per disco dati. I dischi ospitati in Archiviazione Standard di Azure e quelli ospitati in Archiviazione Premium hanno quote diverse. Anche la latenza di I/O è molto diversa tra i due tipi di archiviazione e Archiviazione Premium offre latenze di I/O nettamente migliori. A ognuno dei diversi tipi di VM è possibile collegare un numero limitato di dischi dati. Un'altra restrizione è data dal fatto che solo determinati tipi di macchine virtuali possono usare Archiviazione Premium di Azure. Di conseguenza, la scelta di un determinato tipo di VM potrebbe non basarsi soltanto sui requisiti di CPU e memoria, ma anche sui requisiti in termini di operazioni di I/O al secondo, latenza e velocità effettiva dei dischi che vengono in genere ridimensionati con il numero dei dischi o il tipo di dischi di Archiviazione Premium. In particolare con Archiviazione Premium, le dimensioni di un disco possono essere determinate anche dal numero di operazioni di I/O al secondo e dalla velocità effettiva che deve essere raggiunta da ogni disco.
+Azure applica una quota di operazioni di I/O al secondo per disco dati. I dischi ospitati in Archiviazione Standard di Azure e quelli ospitati in Archiviazione Premium hanno quote diverse. Le latenze dei / o sono inoltre molto diverse tra due tipi archiviazione hello con archiviazione Premium recapito fattori latenze dei / o migliori. Ognuno dei diversi tipi di macchine Virtuali hello ha un numero limitato di dischi dati che si è in grado di tooattach. Un'altra restrizione è data dal fatto che solo determinati tipi di macchine virtuali possono usare Archiviazione Premium di Azure. Ciò significa che la decisione di hello per un determinato tipo di macchina virtuale potrebbe non solo dipendere dalla hello CPU e i requisiti di memoria, ma anche da hello IOPS, requisiti di velocità effettiva di latenza e il disco che in genere vengono ridimensionati con il numero di hello di dischi o hello tipo dei dischi di archiviazione Premium. In particolare con archiviazione Premium dimensione hello di un disco anche potrebbe dipende dalla numero hello di IOPS e la velocità effettiva che deve toobe ottenuta da ogni disco.
 
-Il fatto che la frequenza complessiva di operazioni di I/O al secondo, il numero di dischi montati e le dimensioni della VM siano collegati può causare differenze tra la configurazione in Azure di un sistema SAP e la relativa distribuzione locale. I limiti di IOPS per numero di unità logica (LUN) sono in genere configurabili nelle distribuzioni locali. In Archiviazione di Azure, invece, tali limiti sono fissi oppure dipendono dal tipo di disco, come in Archiviazione Premium. Nelle distribuzioni locali si possono trovare configurazioni dei clienti con server di database che usano molti volumi diversi per file eseguibili speciali come SAP e DBMS o volumi speciali per spazi di tabelle o database temporanei. Lo spostamento di un sistema locale di questo tipo in Azure può determinare uno spreco della potenziale larghezza di banda per le operazioni di I/O al secondo a causa dello spreco di un disco per file eseguibili o database che eseguono un numero molto basso o nullo di operazioni di I/O al secondo. Nelle macchine virtuali di Azure è quindi consigliabile che i file eseguibili SAP e DBMS siano installati nel disco del sistema operativo, se possibile.
+fatto Hello che IOPS velocità, il numero di hello di dischi montati, hello e dimensioni di macchina virtuale siano collegati, hello hello potrebbe causare una configurazione di un sistema SAP per toobe diverso da quello della distribuzione locale di Azure. limiti di Hello IOPS per LUN sono in genere configurabili nelle distribuzioni locali. Mentre con archiviazione di Azure tali limiti sono fisse o come archiviazione Premium che dipendono dal tipo di disco hello. È pertanto vedere configurazioni del cliente di server di database che usano molti volumi diversi per eseguibili speciali come SAP e hello DBMS o volumi speciali per i database temporanei o spazi di tabella con distribuzioni locali. Quando un sistema locale è spostato tooAzure, potrebbe provocare tooa spreco della larghezza di banda IOPS potenziale un inutile consumo di un disco per i file eseguibili o database, che non eseguono uno o molti non di IOPS. Pertanto, in macchine virtuali di Azure è consigliabile che hello DBMS e gli eseguibili SAP installata nel disco del sistema operativo hello se possibile.
 
-La posizione dei file di database e dei file di log e il tipo di Archiviazione di Azure usato devono essere definiti in base ai requisiti di operazioni di I/O al secondo, latenza e velocità effettiva. Per avere un numero di operazioni di I/O al secondo sufficiente per il log delle transazioni, potrebbe essere necessario sfruttare più dischi per il file di log delle transazioni oppure usare un disco di Archiviazione Premium di dimensioni maggiori. In tal caso si creerà un RAID software, ad esempio con un pool di archiviazione Windows per Windows o MDADM e LVM (Logical Volume Manager) per Linux, con i dischi che contengono il log delle transazioni.
+Hello posizionamento dei file di database hello e file di log e tipo hello di archiviazione di Azure usata, deve essere definito da requisiti di velocità effettiva, latenza e IOPS. In ordine toohave sufficiente di IOPS per i log delle transazioni hello, potrebbe essere forzato tooleverage più dischi per il log delle transazioni hello file oppure usare un disco di archiviazione Premium più grande. In questo caso uno analogo alla compilazione di un software RAID (ad esempio Windows Pool di archiviazione per Windows o MDADM e LVM (gestione Volume logico) per Linux) con i dischi di hello, che contengono i log delle transazioni hello.
 
 - - -
 > ![Windows][Logo_Windows] Windows
 > 
-> In una VM di Azure, D:\ è un'unità non persistente supportata da alcuni dischi locali nel nodo di calcolo di Azure. Il fatto che sia non persistente implica che tutte le modifiche apportate al contenuto dell'unità D:\ vengono perse al riavvio della macchina virtuale. Per "tutte le modifiche" si intende il salvataggio di file, la creazione di directory, l'installazione di applicazioni e così via.
+> Unità D:\ in una macchina virtuale di Azure è un'unità non persistente, è supportata da alcuni dischi locali nel nodo di calcolo di Azure hello. Poiché non persistenti, ciò significa che qualsiasi contenuto toohello le modifiche apportate in hello unità D:\ venga persa quando hello VM è stato riavviato. Per "tutte le modifiche" si intende il salvataggio di file, la creazione di directory, l'installazione di applicazioni e così via.
 > 
 > ![Linux][Logo_Linux] Linux
 > 
-> Nelle VM Linux di Azure viene montata automaticamente in /mnt/resource un'unità non persistente supportata da dischi locali nel nodo di calcolo di Azure. Il fatto che sia non persistente implica che tutte le modifiche apportate al contenuto in /mnt/resource vengono perse al riavvio della VM. Per "tutte le modifiche" si intende il salvataggio di file, la creazione di directory, l'installazione di applicazioni e così via.
+> Macchine virtuali di Azure Linux montare automaticamente un'unità in /mnt/resource che è un'unità non persistente supportata da dischi locali nel nodo di calcolo di Azure hello. Perché è non persistenti, ciò significa che qualsiasi toocontent le modifiche apportate in /mnt/resource vengono persi quando viene riavviato hello VM. Per "tutte le modifiche" si intende il salvataggio di file, la creazione di directory, l'installazione di applicazioni e così via.
 > 
 > 
 
 - - -
-A seconda della serie della VM di Azure, i dischi locali nel nodo di calcolo presentano prestazioni diverse, che possono essere classificate come segue.
+Dipende hello Azure della serie di macchine Virtuali, dischi locali hello hello calcolano Mostra diverse le prestazioni del nodo, che possono essere suddivisi in categorie come:
 
 * A0-A7: prestazioni molto limitate. L'unico uso possibile è il file di paging di Windows.
 * A8-A11: caratteristiche di prestazioni molto valide con circa diecimila IOPS e velocità effettiva > 1 GB/sec.
@@ -425,45 +425,45 @@ A seconda della serie della VM di Azure, i dischi locali nel nodo di calcolo pre
 * Serie G: caratteristiche di prestazioni molto valide con circa diecimila IOPS e velocità effettiva > 1 GB/sec.
 * Serie GS: caratteristiche di prestazioni molto valide con circa diecimila IOPS e velocità effettiva > 1 GB/sec.
 
-Le indicazioni precedenti sono applicabili ai tipi di macchine virtuali certificati per SAP. Le serie di VM con valori di IOPS e velocità effettiva eccellenti sono adatte all'uso da parte di alcune funzionalità DBMS, come tempdb o lo spazio di tabella temporanea.
+Istruzioni precedenti si applicano toohello i tipi di macchine Virtuali che sono certificati con SAP. Hello serie di macchine Virtuali con eccellente IOPS e la velocità effettiva idonei per l'utilizzo da alcune funzionalità DBMS, ad esempio tempdb o uno spazio di tabella temporanea.
 
 ### <a name="c7abf1f0-c927-4a7c-9c1d-c7b5b3b7212f"></a>Caching per VM e dischi dati
-Quando si creano dischi dati tramite il portale o si montano i dischi caricati nelle VM, è possibile scegliere se memorizzare nella cache il traffico di I/O tra la VM e i dischi in Archiviazione di Azure. Archiviazione Premium e Archiviazione Standard di Azure usano due tecnologie diverse per questo tipo di cache. In entrambi i casi, il backup della cache stessa viene eseguito nelle stesse unità usate dal disco temporaneo della VM, ossia D:\ in Windows o /mnt/resource in Linux.
+Quando si crea dischi di dati tramite il portale di hello o quando si monta tooVMs dischi caricato, è possibile scegliere se il traffico dei / o hello tra hello VM e i dischi che si trova nell'archiviazione di Azure vengono memorizzati nella cache. Archiviazione Premium e Archiviazione Standard di Azure usano due tecnologie diverse per questo tipo di cache. In entrambi i casi, della cache di hello stessa sarebbe disco eseguito hello stessa unità usata da hello disco temporaneo (D:\ in Windows) o /mnt/resource su Linux di hello macchina virtuale.
 
-Per Archiviazione Standard di Azure le opzioni di memorizzazione nella cache sono:
+Archiviazione di Azure Standard hello cache possibili sono:
 
 * Nessuna memorizzazione nella cache
 * Memorizzazione nella cache di lettura
 * Memorizzazione nella cache di lettura e scrittura
 
-Per ottenere prestazioni coerenti e deterministiche, è consigliabile impostare il caching in Archiviazione Standard di Azure per tutti i dischi contenenti **spazio di tabella, file di log e file di dati correlati a DBMS su "NONE"**. Per la memorizzazione nella cache della macchina virtuale è possibile lasciare il valore predefinito.
+Ordine tooget coerenti e deterministiche delle prestazioni, è necessario impostare hello la memorizzazione nella cache nell'archiviazione di Azure Standard per tutti i dischi contenente **i file di dati relativi a DBMS, file di log e tabella spazio too'NONE'**. la memorizzazione nella cache di Hello di hello VM possono rimanere predefinito hello.
 
-Per Archiviazione Premium di Azure le opzioni di memorizzazione nella cache sono:
+Archiviazione Premium di Azure esiste hello memorizzazione nella cache le opzioni seguenti:
 
 * Nessuna memorizzazione nella cache
 * Memorizzazione nella cache di lettura
 
-Per Archiviazione Premium di Azure è consigliabile scegliere il **caching di lettura per i file di dati** del database SAP e **nessun caching per i dischi dei file di log**.
+Archiviazione Premium di Azure, si consiglia tooleverage **leggere la memorizzazione nella cache per file di dati** del database SAP hello e scelto **nessuna memorizzazione nella cache per i dischi di hello dei file di log**.
 
 ### <a name="c8e566f9-21b7-4457-9f7f-126036971a91"></a>RAID software
-Come già indicato sopra, è necessario bilanciare il numero di operazioni di I/O al secondo necessario per i file di database nel numero di dischi che è possibile configurare e il numero massimo di operazioni di I/O al secondo offerto da una VM di Azure per disco o tipo di disco di Archiviazione Premium. Il modo più semplice per gestire il carico delle operazioni di I/O al secondo nei dischi è creare un RAID software nei diversi dischi. Quindi posizionare alcuni file di dati del DBMS SAP nei LUN ricavati dal RAID software. A seconda dei requisiti, si può prendere in considerazione anche l'utilizzo di Archiviazione Premium, dato che due dei tre diversi dischi di Archiviazione Premium garantiscono una quota di operazioni di I/O al secondo superiore rispetto ai dischi basati su Archiviazione Standard. Archiviazione Premium di Azure offre anche una latenza di I/O notevolmente migliore. 
+Come già indicato in precedenza, è necessario numero hello toobalance di IOPS necessarie per i file di database hello in numero hello dei dischi è possibile configurare e hello numero massimo di IOPS fornisce una macchina virtuale di Azure per ogni disco o il tipo di disco di archiviazione Premium. Toodeal modo più semplice con hello che IOPS caricare su dischi è toobuild RAID software su dischi diversi hello. Quindi, inserire un numero di file di dati di hello DBMS SAP su hello che LUN separate dalla RAID software hello. Dipende da requisiti hello che è tooconsider hello sull'utilizzo di archiviazione Premium anche poiché due dei hello tre diversi dischi di archiviazione Premium forniscono quota di IOPS maggiore rispetto ai dischi di base nell'archivio Standard. Oltre a hello significativo meglio la latenza dei / o fornite da archiviazione Premium di Azure. 
 
-Questo vale anche per il log delle transazioni dei vari sistemi DBMS. Se sono presenti numerosi sistemi DBMS, la semplice aggiunta di altri file di log delle transazioni non risulta efficace, perché i sistemi DBMS scrivono soltanto in un file alla volta. Se sono necessarie frequenze di operazioni di I/O al secondo superiori rispetto a quella offerta da un singolo disco basato su Archiviazione Standard, è possibile eseguire lo striping tra più dischi di Archiviazione Standard oppure usare un tipo di disco di Archiviazione Premium di dimensioni maggiori che, oltre a frequenze di operazioni di I/O al secondo superiori, offra una latenza notevolmente più bassa per le operazioni di I/O di scrittura nel log delle transazioni.
+Ciò vale anche il log delle transazioni toohello dei sistemi DBMS diversi hello. Con molti di essi appena aggiunta di più file del log delle transazioni non è utile poiché sistemi DBMS hello scrivere in uno dei file hello in una sola volta. Se è necessarie la velocità di IOPS di un unico Standard di archiviazione basato su disco è in grado di offrire, è possibile eseguire lo striping su più dischi di archiviazione Standard o è possibile utilizzare un tipo di disco più grande di archiviazione Premium che oltre la velocità di IOPS offre una latenza più bassa fattori per la scrittura di hello / O nel log delle transazioni hello.
 
 Ecco alcuni esempi di situazioni riscontrate nelle distribuzioni di Azure per le quali sarebbe preferibile usare un RAID software:
 
 * Log delle transazioni o di rollforward che richiedono un numero di operazioni di I/O al secondo superiore rispetto a quello offerto da Azure per un singolo disco. Come indicato sopra, questo problema può essere risolto creando un LUN in più dischi con un RAID software.
-* Distribuzione non uniforme del carico di lavoro di I/O nei vari file di dati del database SAP. In questi casi uno dei file di dati potrebbe raggiunge la quota piuttosto spesso, mentre gli altri non si avvicinano affatto alla quota di operazioni di I/O al secondo di un singolo disco. In questi casi, la soluzione più semplice consiste nel creare un LUN in più dischi con un RAID software. 
-* Non si conosce l'esatto carico di lavoro di I/O per ogni file di dati e si conosce solo approssimativamente il carico di lavoro di IOPS complessivo nel sistema DBMS. La soluzione più semplice consiste nel compilare un unico LUN usando un RAID software. La somma delle quote di più dischi dietro il LUN dovrebbe quindi fornire la frequenza di operazioni di I/O al secondo nota.
+* Distribuzione non uniforme i/o del carico di lavoro su hello vari file di dati del database SAP hello. In questi casi uno può subire un file di dati raggiunge la quota hello piuttosto spesso. Mentre altri file di dati non ricevono anche quota di IOPS toohello chiusura di un singolo disco. In tali hello casi soluzione più semplice è toobuild uno LUN su più dischi con RAID software. 
+* Non si conosce quali hello esatto i/o il carico di lavoro per ogni file di dati e solo approssimativamente conosce quali hello complessiva carico di lavoro IOPS hello DBMS è. Toodo più semplice è toobuild un unico LUN con hello Guida in linea di un software RAID. somma Hello delle quote di più dischi dietro il LUN debba quindi soddisfare hello noto IOPS frequenza.
 
 - - -
 > ![Windows][Logo_Windows] Windows
 > 
-> Se si esegue Windows Server 2012 o versioni successive, è consigliabile usare Spazi di archiviazione Windows. È più efficiente rispetto alla funzionalità di striping di Windows delle versioni precedenti di Windows. Quando si usa Windows Server 2012 come sistema operativo, potrebbe essere necessario creare gli spazi di archiviazione e i pool di archiviazione Windows con comandi di PowerShell. I comandi di PowerShell sono disponibili qui <https://technet.microsoft.com/library/jj851254.aspx>
+> Se si esegue Windows Server 2012 o versioni successive, è consigliabile usare Spazi di archiviazione Windows. È più efficiente rispetto alla funzionalità di striping di Windows delle versioni precedenti di Windows. Quando si utilizza Windows Server 2012 come sistema operativo, potrebbe essere necessario toocreate hello pool di archiviazione di Windows e spazi di archiviazione per i comandi di PowerShell. i comandi di PowerShell Hello è reperibile qui <https://technet.microsoft.com/library/jj851254.aspx>
 > 
 > ![Linux][Logo_Linux] Linux
 > 
-> Per compilare un RAID software in Linux sono supportati solo MDADM e LVM (Logical Volume Manager). Per altre informazioni, leggere gli articoli seguenti:
+> Solo MDADM e LVM (gestione dei volumi logici) sono supportati toobuild un software RAID su Linux. Per ulteriori informazioni, leggere hello seguenti articoli:
 > 
 > * [Configurare RAID software su Linux][virtual-machines-linux-configure-raid] (per MDADM)
 > * [Configurare LVM in una macchina virtuale Linux in Azure][virtual-machines-linux-configure-lvm]
@@ -471,368 +471,368 @@ Ecco alcuni esempi di situazioni riscontrate nelle distribuzioni di Azure per le
 > 
 
 - - -
-Considerazioni tipiche relative all'uso di serie di VM compatibili con Archiviazione Premium di Azure:
+Considerazioni per l'uso di VM-series, che in genere sono in grado di toowork con archiviazione Premium di Azure sono:
 
-* Richieste di latenza di I/O che si avvicinano alle possibilità di dispositivi SAN o NAS.
+* Le richieste di latenze dei / o chiudere toowhat SAN/NAS dispositivi recapito.
 * Richiesta di una latenza di I/O molto superiore alle possibilità di Archiviazione Standard di Azure.
 * Operazioni di I/O al secondo per VM superiori al numero raggiungibile con più dischi di Archiviazione Standard per un determinato tipo di VM.
 
-Dato che il servizio di archiviazione di Azure sottostante replica ogni disco in almeno tre nodi di archiviazione, è possibile usare un semplice striping RAID 0. Non è necessario implementare RAID 5 o RAID 1.
+Poiché hello archiviazione di Azure sottostante replica ogni nodi di archiviazione tooat almeno tre dischi, RAID 0 può essere utilizzato lo striping semplice. Non vi è alcuna necessità tooimplement RAID5 o RAID1.
 
 ### <a name="10b041ef-c177-498a-93ed-44b3441ab152"></a>Archiviazione di Microsoft Azure
-Archiviazione di Microsoft Azure archivia la VM di base, con il sistema operativo, e i dischi o i BLOB in almeno tre nodi di archiviazione separati. Quando si crea un account di archiviazione o un disco gestito, è possibile scegliere il livello di protezione come illustrato di seguito:
+Archiviazione di Microsoft Azure archivi hello base VM (con sistema operativo) e i dischi o nodi di archiviazione distinti tooat almeno tre BLOB. Quando si crea un account di archiviazione o un disco gestito, è possibile scegliere il livello di protezione come illustrato di seguito:
 
 ![Replica geografica abilitata per l'account di archiviazione di Azure][dbms-guide-figure-100]
 
-La replica locale di Archiviazione di Azure, con ridondanza locale, offre livelli di protezione contro la perdita di dati a causa di errori dell'infrastruttura che pochi clienti potrebbero permettersi di distribuire. Come illustrato sopra, sono disponibili quattro opzioni diverse più una quinta che rappresenta una variante di una delle prime tre. Esaminando tali opzioni più da vicino è possibile distinguere:
+Replica archiviazione di Azure locale (ridondanza locale) fornisce i livelli di protezione contro la perdita di dati a causa di un errore tooinfrastructure che alcuni clienti potrebbero permettersi toodeploy. Come illustrato in precedenza sono disponibili quattro opzioni diverse con un quinto una variante di uno di hello innanzitutto tre. Esaminando tali opzioni più da vicino è possibile distinguere:
 
-* **Archiviazione con ridondanza locale Premium**: l'archiviazione Premium di Azure offre prestazioni elevate e supporto di dischi a bassa latenza per le macchine virtuali che eseguono carichi di lavoro con I/O intensivo. Sono disponibili tre repliche dei dati nello stesso data center di Azure di un'area di Azure. Le copie si trovano in domini di aggiornamento e di errore diversi. Per informazioni su questi concetti, vedere [questo][planning-guide-3.2] capitolo della [guida alla pianificazione][planning-guide]. In caso di una replica dei dati fuori servizio a causa di un errore del nodo archiviazione o di un errore del disco, viene generata automaticamente una nuova replica.
-* **Archiviazione con ridondanza locale**: in questo caso sono disponibili tre repliche dei dati nello stesso data center di Azure di un'area di Azure. Le copie si trovano in domini di aggiornamento e di errore diversi. Per informazioni su questi concetti, vedere [questo][planning-guide-3.2] capitolo della [guida alla pianificazione][planning-guide]. In caso di una replica dei dati fuori servizio a causa di un errore del nodo archiviazione o di un errore del disco, viene generata automaticamente una nuova replica. 
-* **Archiviazione con ridondanza geografica**: in questo caso, una replica asincrona genera tre repliche dei dati aggiuntive in un'altra area di Azure, nella maggior parte dei casi nella stessa area geografica (ad esempio, Europa settentrionale ed Europa occidentale). Si ottengono così tre repliche aggiuntive, per un totale di sei repliche. Una variante di questa opzione prevede un'aggiunta in cui i dati nell'area di Azure con replica geografica possono essere usati per la lettura. In tal caso si parla di archiviazione con ridondanza geografica e accesso in lettura.
-* **Archiviazione con ridondanza della zona**: in questo caso, le tre repliche dei dati vengono mantenute nella stessa area di Azure. Come spiegato in [questo][planning-guide-3.1] capitolo della [Planning Guide][planning-guide] (Guida alla pianificazione), un'area di Azure può essere costituita da un numero di data center in stretta vicinanza. Nel caso dell'archiviazione con ridondanza locale le repliche vengono distribuite nei vari data center che costituiscono un'area di Azure.
+* **Archiviazione con ridondanza locale Premium**: l'archiviazione Premium di Azure offre prestazioni elevate e supporto di dischi a bassa latenza per le macchine virtuali che eseguono carichi di lavoro con I/O intensivo. Esistono tre repliche dei dati di hello in hello stesso Data Center di Azure di un'area di Azure. Hello copie sono in diversi domini di errore e l'aggiornamento (per i concetti, vedere [questo] [ planning-guide-3.2] capitolo hello [Guida alla pianificazione][planning-guide]). In caso di una replica dei dati di hello uscita da servizio a causa di errore del nodo archiviazione tooa o errore del disco, viene generata automaticamente una nuova replica.
+* **Archiviazione con ridondanza locale (LRS)**: In questo caso, sono disponibili tre repliche dei dati di hello in hello stesso Data Center di Azure di un'area di Azure. Hello copie sono in diversi domini di errore e l'aggiornamento (per i concetti, vedere [questo] [ planning-guide-3.2] capitolo hello [Guida alla pianificazione][planning-guide]). In caso di una replica dei dati di hello uscita da servizio a causa di errore del nodo archiviazione tooa o errore del disco, viene generata automaticamente una nuova replica. 
+* **Archiviazione con ridondanza geografica (GRS)**: In questo caso, è presente una replica asincrona che consente di inserire altri tre repliche dei dati di hello in un'altra area di Azure, ovvero nella maggior parte dei casi hello in hello stessa area geografica (ad esempio, Europa settentrionale e occidentale Europa). Si ottengono così tre repliche aggiuntive, per un totale di sei repliche. Una variante di questo è un componente aggiuntivo in cui i dati di hello nell'area di Azure replicati geografica hello possono essere utilizzati per la lettura (accesso in lettura con ridondanza geografica).
+* **Zona di archiviazione ridondanti (ZRS)**: In questo caso, le repliche di hello tre di hello dati rimangono in hello stessa regione di Azure. Come spiegato in [questo] [ planning-guide-3.1] capitolo di hello [Guida alla pianificazione] [ planning-guide] un'area di Azure può essere un numero di Data Center in stretta vicinanza. Nel caso di hello di archiviazione con ridondanza locale repliche hello vengono distribuite nel Data Center diversi hello che costituiscono un'area di Azure.
 
 Ulteriori informazioni sono disponibili [qui][storage-redundancy].
 
 > [!NOTE]
-> Per le distribuzioni DBMS, non è consigliabile usare l'archiviazione con ridondanza geografica.
+> Per le distribuzioni DBMS, utilizzo di hello di archiviazione con ridondanza geografica non è consigliato
 > 
-> La replica geografica di Archiviazione di Azure è asincrona. La replica dei singoli dischi montati in una singola VM non è sincronizzata nel passaggio di blocco. Non è quindi appropriata per la replica di file DBMS distribuiti in diversi dischi o in un RAID software basato su più dischi. Il software DBMS richiede che l'archiviazione su disco persistente sia sincronizzata con precisione nei vari LUN e dischi/spindle sottostanti. Il software DBMS usa vari meccanismi per ordinare in sequenza le attività di scrittura di I/O. In caso di variazioni anche di pochi millisecondi, un sistema DBMS segnala che l'archivio su disco di destinazione della replica è danneggiato. Di conseguenza, se è assolutamente necessario implementare una configurazione database con un database esteso su più dischi con replica geografica, tale replica deve essere eseguita con strumenti e funzionalità di database. Per eseguire questo processo non è possibile fare affidamento sulla replica geografica di Archiviazione di Azure. 
+> La replica geografica di Archiviazione di Azure è asincrona. Replica di singole dischi montati tooa singola macchina virtuale non sono sincronizzate nel passaggio di blocco. Pertanto, non è adatto tooreplicate i file DBMS che vengono distribuiti su dischi diversi o distribuiti da un software RAID basato su più dischi. Il software DBMS richiede che archiviazione hello dei dischi persistente sia sincronizzata con precisione in LUN diversi e sottostante/assi dei dischi. Il software DBMS Usa vari meccanismi toosequence, i/o scrivere attività e un DBMS segnala che l'archiviazione su disco hello destinata di replica hello è danneggiato se queste si scostano anche pochi millisecondi. Pertanto se assolutamente necessario implementare una configurazione del database con un database esteso su più dischi di replica geografica, è necessario toobe eseguita con strumenti di database e funzionalità di tale replica. Non è sufficiente in Azure replica geografica dell'archiviazione tooperform questo processo. 
 > 
-> Il problema risulta più semplice da spiegare con un sistema di esempio. Si supponga di avere un sistema SAP caricato in Azure con otto dischi contenenti file di dati del sistema DBMS e un disco contenente il file di log delle transazioni. In ognuno di questi nove dischi, i dati vengono scritti con un metodo coerente in base al sistema DBMS, sia che vengano scritti nei file di dati o nel file di log delle transazioni.
+> problema di Hello è più semplice tooexplain con un sistema di esempio. Si supponga che si dispone di un sistema SAP caricato in Azure, che presenta otto i dischi che contengono i file di dati di hello DBMS oltre a un disco contenente file di log delle transazioni hello. Ognuno di questi nove dischi contengono dati scritti toothem in un metodo coerente in base toohello DBMS se hello i dati vengono scritti i file di log delle transazioni o di dati toohello.
 > 
-> Per eseguire correttamente la replica geografica dei dati e mantenere un'immagine coerente del database, la replica geografica del contenuto di tutti i nove dischi dovrà essere eseguita nell'ordine esatto in cui sono state eseguite le operazioni di I/O nei nove diversi dischi. La replica geografica di Archiviazione di Azure, tuttavia, non consente di dichiarare dipendenze tra i dischi. Di conseguenza, la replica geografica di Archiviazione di Microsoft Azure ignora la correlazione tra i contenuti dei nove diversi dischi e il fatto che le modifiche ai dati sono coerenti solo quando la replica viene eseguita nell'ordine in cui sono state eseguite le operazioni di I/O in tutti i nove dischi.
+> In ordine tooproperly abilitare la replica geografica hello dati e mantenere un'immagine del database coerente, contenuto hello di tutti i nove dischi sarebbe hanno toobe replicato geograficamente nelle operazioni dei / o hello ordine esatto hello sono state eseguite nei dischi diversi hello nove. Replica geografica dell'archiviazione di Azure non consente tuttavia toodeclare dipendenze tra i dischi. Ciò significa che l'archiviazione di Microsoft Azure-replica geografica non è conoscenza dei fatti hello che contenuto hello in questi nove dischi diversi sia correlati tooeach altri e che le modifiche ai dati hello coerente solo quando la replica in operazioni dei / o di hello ordine hello si è verificato in tutti i dischi di nove hello.
 > 
-> Oltre alla possibilità concreta che le immagini con replica geografica nello scenario non forniscano un'immagine coerente del database, l'archiviazione con ridondanza geografica comporta anche una riduzione delle prestazioni che può influire notevolmente sulle prestazioni generali. In sintesi, non usare questo tipo di ridondanza di archiviazione per carichi di lavoro di tipo DBMS.
+> Oltre alla possibilità di essere elevato che le immagini di replica geografica di hello in uno scenario di hello non forniscono un'immagine di database coerente, è anche una riduzione delle prestazioni che viene visualizzato con l'archiviazione con ridondanza geografica che può essere gravemente sulle prestazioni. In sintesi, non usare questo tipo di ridondanza di archiviazione per carichi di lavoro di tipo DBMS.
 > 
 > 
 
 #### <a name="mapping-vhds-into-azure-virtual-machine-service-storage-accounts"></a>Mapping di dischi rigidi virtuali in account di archiviazione del servizio Macchina virtuale di Azure
-Questo capitolo si applica solo agli account di archiviazione di Azure. Se si intende usare Managed Disks, le limitazioni indicate in questo capitolo non si applicano. Per altre informazioni su Managed Disks, vedere il capitolo [Managed Disks][dbms-guide-managed-disks] di questa guida.
+In questo capitolo viene applicata solo gli account di archiviazione tooAzure. Se si prevede di dischi gestiti toouse, non si applicano limitazioni hello indicate in questo capitolo. Per altre informazioni su Managed Disks, vedere il capitolo [Managed Disks][dbms-guide-managed-disks] di questa guida.
 
-Un account di archiviazione di Azure non è soltanto un costrutto amministrativo, ma è anche soggetto a limitazioni. Le limitazioni variano a seconda che si parli di account di archiviazione Standard o Premium di Azure. Le funzionalità e le limitazioni sono elencate nel dettaglio [qui][storage-scalability-targets]
+Un account di archiviazione di Azure non è soltanto un costrutto amministrativo, ma è anche soggetto a limitazioni. Mentre le limitazioni di hello variano se si parla di un Account di archiviazione di Azure Standard o un Account di archiviazione Premium di Azure. sono elencate Hello esatta funzionalità e limitazioni [qui][storage-scalability-targets]
 
-Per l'archiviazione Standard di Azure è quindi importante tenere presente che è previsto un limite di IOPS per account di archiviazione. Vedere in proposito la riga contenente la frequenza di richiesta totale in [questo articolo][storage-scalability-targets]. Esiste poi un limite iniziale di 100 account di archiviazione per ogni sottoscrizione di Azure (a partire da luglio 2015). È quindi consigliabile bilanciare il numero di IOPS delle macchine virtuali tra più account di archiviazione quando si usa Archiviazione Standard di Azure. Teoricamente, una singola macchina virtuale dovrebbe usare un solo account di archiviazione, se possibile. Se si parla quindi di distribuzioni DBMS in cui ogni disco rigido virtuale ospitato in Archiviazione Standard di Azure potrebbe raggiungere il relativo limite di quota, è necessario distribuire solo 30-40 dischi rigidi virtuali per ogni account di archiviazione di Azure che usa Archiviazione Standard di Azure. D'altra parte, usare Archiviazione Premium di Azure per archiviare volumi di database di grandi dimensioni potrebbe essere possibile in termini di IOPS. Un account di archiviazione Premium di Azure, però, è molto più restrittivo in termini di volume di dati rispetto a un account di archiviazione Standard di Azure. Di conseguenza, è possibile distribuire solo un numero limitato di dischi rigidi virtuali all'interno di un account di archiviazione Premium di Azure prima di raggiungere il limite di volume di dati. Un account di archiviazione di Azure può essere paragonato a una "SAN virtuale" con funzionalità limitate in termini di operazioni di I/O al secondo e/o di capacità. In quest'ottica, come nelle distribuzioni locali, occorre poi definire il layout dei dischi rigidi virtuali dei diversi sistemi SAP nei vari "dispositivi SAN immaginari" o account di archiviazione di Azure.
+Pertanto è importante toonote Standard di archiviazione di Azure è previsto un limite in hello IOPS per ogni account di archiviazione (riga che contiene 'Frequenza di richiesta totale' [articolo hello][storage-scalability-targets]). Esiste poi un limite iniziale di 100 account di archiviazione per ogni sottoscrizione di Azure (a partire da luglio 2015). Pertanto, è consigliabile toobalance IOPS di macchine virtuali tra più account di archiviazione quando si utilizza l'archiviazione di Azure Standard. Teoricamente, una singola macchina virtuale dovrebbe usare un solo account di archiviazione, se possibile. Se si parla quindi di distribuzioni DBMS in cui ogni disco rigido virtuale ospitato in Archiviazione Standard di Azure potrebbe raggiungere il relativo limite di quota, è necessario distribuire solo 30-40 dischi rigidi virtuali per ogni account di archiviazione di Azure che usa Archiviazione Standard di Azure. In hello altra parte, se si utilizzano l'archiviazione Premium di Azure e si desidera toostore volumi di database di grandi dimensioni, potrebbe essere appropriato in termini di IOPS. Un account di archiviazione Premium di Azure, però, è molto più restrittivo in termini di volume di dati rispetto a un account di archiviazione Standard di Azure. Di conseguenza, è possibile distribuire solo un numero limitato di dischi rigidi virtuali all'interno di un Account di archiviazione Premium di Azure prima di premere hello limite volume dei dati. Alla fine di hello, considerare un Account di archiviazione di Azure come una "SAN virtuale" che dispone di funzionalità in IOPS e/o capacità limitate. Di conseguenza, hello attività rimane nelle distribuzioni locali, layout di hello toodefine di hello dischi rigidi virtuali di sistemi SAP diversi hello su hello diverso 'dispositivi SAN immaginari' o gli account di archiviazione di Azure.
 
-Per Archiviazione Standard di Azure, non è consigliabile presentare a una singola VM risorse di archiviazione di diversi account di archiviazione, se possibile.
+Archiviazione di Azure Standard, è consigliabile non archiviazione toopresent da tooa gli account di archiviazione diversi singola macchina virtuale, se possibile.
 
-Quando si usano VM di Azure serie DS o GS, è possibile montare dischi rigidi virtuali da account di archiviazione Standard e Premium di Azure. Risorse di archiviazione così eterogenee possono essere usate, ad esempio, per la scrittura di backup in dischi rigidi virtuali supportati da Archiviazione Standard e l'inserimento di file di log e di dati DBMS in Archiviazione Premium. 
+Quando si utilizza hello DS o GS-series di macchine virtuali di Azure, è possibile toomount i dischi rigidi virtuali da account di archiviazione di Azure Standard e account di archiviazione Premium. Casi d'uso, ad esempio la scrittura dei backup nell'account di archiviazione Standard sottoposti a dischi rigidi virtuali e i dati di DBMS e file di log in archiviazione Premium sono toomind in cui è stato sfruttato tale archiviazione eterogenee. 
 
-In base ai test e alle distribuzioni del cliente, è possibile effettuare il provisioning di circa 30-40 dischi rigidi virtuali contenenti file di dati di database e file di log in un singolo account di archiviazione Standard di Azure e ottenere prestazioni accettabili. Come accennato in precedenza, è più probabile che l'account di archiviazione Premium di Azure presenti limitazioni in termini di capacità anziché di IOPS.
+Basata su distribuzioni dei clienti e too40 circa 30 test possono eseguire il provisioning di dischi rigidi virtuali contenenti file di dati di database e i file di log in un Account di archiviazione Standard Azure singolo con prestazioni accettabili. Come accennato in precedenza, limitazione di hello di un Account di archiviazione Premium di Azure è probabilmente toobe hello dati capacità che può contenere e non gli IOPS.
 
-Come per i dispositivi SAN locali, la condivisione deve essere monitorata allo scopo di rilevare i colli di bottiglia in un account di archiviazione di Azure. L'estensione di monitoraggio di Azure per SAP e il portale di Azure sono strumenti che consentono di rilevare account di archiviazione di Azure occupati che potrebbero fornire prestazioni di I/O non ottimali.  Se viene rilevata questa situazione, è consigliabile spostare le VM occupate in un altro account di archiviazione di Azure. Per informazioni dettagliate su come attivare le funzionalità di monitoraggio dell'host SAP, vedere la [guida alla distribuzione][deployment-guide].
+Come con SAN dispositivi in locale, condivisione richiede alcune attività di monitoraggio in ordine tooeventually rilevare i colli di bottiglia in un Account di archiviazione di Azure. Hello Azure Monitoring Extension per SAP e hello portale di Azure sono disponibili strumenti che possono essere utilizzati toodetect occupato gli account di archiviazione di Azure che possono fornire prestazioni dei / o non ottimali.  Se viene rilevata questa situazione, è consigliabile toomove tooanother di macchine virtuali occupato Account di archiviazione Azure. Fare riferimento toohello [Guida alla distribuzione] [ deployment-guide] per informazioni dettagliate su come tooactivate hello SAP ospitare le funzionalità di monitoraggio.
 
 Un altro articolo che riepiloga le procedure consigliate per Archiviazione Standard di Azure e gli account di Archiviazione Standard di Azure è disponibile qui <https://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx>
 
 #### <a name="f42c6cb5-d563-484d-9667-b07ae51bce29"></a>Managed Disks
-I Managed Disks sono un nuovo tipo di risorsa in Azure Resource Manager, utilizzabile al posto dei dischi rigidi virtuali archiviati negli account di archiviazione di Azure. I dischi di Managed Disks si allineano automaticamente al set di disponibilità della macchina virtuale a cui sono collegati, aumentando così la disponibilità della macchina virtuale e dei servizi in esecuzione su di essa. Per altre informazioni, vedere l'[articolo di panoramica](https://docs.microsoft.com/azure/storage/storage-managed-disks-overview).
+I Managed Disks sono un nuovo tipo di risorsa in Azure Resource Manager, utilizzabile al posto dei dischi rigidi virtuali archiviati negli account di archiviazione di Azure. Dischi gestiti allineano automaticamente con il Set di disponibilità della macchina virtuale hello che sono collegati tooand pertanto aumento hello disponibilità delle macchine virtuali e dei servizi di hello che sono in esecuzione nella macchina virtuale hello hello. toolearn leggere più, hello [articolo introduttivo](https://docs.microsoft.com/azure/storage/storage-managed-disks-overview).
 
 SAP attualmente supporta solo Managed Disks Premium. Per altri dettagli, vedere la nota SAP [1928533].
 
-#### <a name="moving-deployed-dbms-vms-from-azure-standard-storage-to-azure-premium-storage"></a>Spostamento di macchine virtuali DBMS distribuite da Archiviazione Standard in Archiviazione Premium di Azure
-Quando un cliente vuole spostare una macchina virtuale distribuita da Archiviazione Standard in Archiviazione Premium di Azure, gli scenari si fanno interessanti. Se i dischi sono archiviati negli account di archiviazione di Azure, non è possibile eseguire questa operazione senza spostare fisicamente i dati. A tale scopo, è possibile procedere in diversi modi:
+#### <a name="moving-deployed-dbms-vms-from-azure-standard-storage-tooazure-premium-storage"></a>Lo spostamento distribuito le macchine virtuali DBMS da archiviazione di Azure Standard tooAzure archiviazione Premium
+Si verificano molto scenari in cui è cliente toomove una macchina virtuale distribuita da archiviazione Standard di Azure in archiviazione Premium di Azure. Se i dischi vengono archiviati in account di archiviazione di Azure, questo non è possibile senza spostare fisicamente i dati di hello. Vi sono l'obiettivo di hello tooachieve modi diversi:
 
-* È possibile copiare semplicemente tutti i dischi rigidi virtuali, il VHD di base, nonché i VHD di dati in un nuovo account di archiviazione Premium di Azure. Spesso la scelta del numero di dischi rigidi virtuali in Archiviazione Standard di Azure non è basata sulla necessità effettiva del volume dati, ma piuttosto sulle esigenze in termini di IOPS. Passando ad Archiviazione Premium di Azure, è possibile usare un numero molto inferiore di dischi rigidi virtuali per ottenere la stessa velocità effettiva delle operazioni di I/O al secondo. Dato che in Archiviazione di Azure Standard si paga la quantità di dati usati e non le dimensioni del disco nominale, il numero di dischi rigidi virtuali non è determinante in termini di costi. In Archiviazione Premium di Azure, invece, si pagano le dimensioni del disco nominale. Per questo motivo, la maggior parte dei clienti prova a limitare il numero di dischi rigidi virtuali di Azure in Archiviazione Premium al numero necessario per raggiungere la velocità effettiva delle operazioni di I/O al secondo richiesta. La maggior parte dei clienti sceglie quindi una semplice copia 1:1.
-* Se non è già stato fatto, è possibile montare un singolo disco rigido virtuale che può contenere un backup del database SAP. Dopo il backup, smontare tutti i dischi rigidi virtuali incluso quello contenente il backup e copiare quest'ultimo, insieme al VHD di base, in un account di archiviazione Premium di Azure. È quindi necessario distribuire la macchina virtuale basata sul VHD di base e montare il disco rigido virtuale con il backup. A questo punto è possibile creare dischi di Archiviazione Premium vuoti aggiuntivi per la macchina virtuale, che vengono usati per il ripristino del database. Questo presuppone che il sistema DBMS consenta di modificare i percorsi dei file di dati e di log come parte del processo di ripristino.
-* Un'altra possibilità è una variante del processo precedente. È sufficiente copiare il disco rigido virtuale di backup in Archiviazione Premium di Azure e collegarlo a una macchina virtuale appena distribuita e installata.
-* La quarta possibilità si applica al caso in cui è necessario modificare il numero di file di dati del database. In tal caso si esegue una copia di sistema omogeneo SAP usando operazioni di importazione ed esportazione. Inserire i file di esportazione in un disco rigido virtuale copiato in un account di archiviazione Premium di Azure e collegare il VHD a una macchina virtuale che consente di eseguire i processi di importazione. Questa possibilità viene usata dai clienti principalmente per ridurre il numero di file di dati.
+* È possibile copiare semplicemente tutti i dischi rigidi virtuali, il VHD di base, nonché i VHD di dati in un nuovo account di archiviazione Premium di Azure. Spesso si è scelto il numero di hello di dischi rigidi virtuali in archiviazione di Azure Standard non a causa delle tabelle dei fatti hello che è necessario che il volume di dati di hello. Ma è necessario un numero così elevato di dischi rigidi virtuali a causa di hello IOPS. Ora che si sposta tooAzure archiviazione Premium è possibile andare modo tooachieve un minor numero di dischi rigidi virtuali hello stessa velocità effettiva IOPS. Dato delle tabelle dei fatti hello in archiviazione di Azure Standard si paga per hello utilizzato dati e non hello nominale disco, il numero di hello di dischi rigidi virtuali non davvero importanti in termini di costi. Con l'archiviazione Premium di Azure, tuttavia, si paga la dimensione del disco nominale hello. Pertanto, la maggior parte dei clienti hello prova con numero di hello tookeep di dischi rigidi virtuali di Azure in archiviazione Premium a hello numero tooachieve necessari hello IOPS una velocità effettiva necessaria. In tal caso, la maggior parte dei clienti decidono modo hello 1:1 una semplice copia.
+* Se non è già stato fatto, è possibile montare un singolo disco rigido virtuale che può contenere un backup del database SAP. Dopo il backup di hello, disinstallare tutti i dischi rigidi virtuali incluso hello disco rigido virtuale contenente hello backup e hello copia VHD di base e hello VHD con backup hello in un account di archiviazione Premium di Azure. È quindi sarebbe distribuire macchine Virtuali in base a hello base VHD e montaggio hello VHD con backup hello hello. Ora è creare ulteriori vuoto dischi di archiviazione Premium per VM hello sono database hello toorestore utilizzati in. Si presuppone che tale hello DBMS consente toochange percorsi toohello log file di dati e come parte del processo di ripristino hello.
+* Un'altra possibilità è una variante del processo precedente hello, in cui appena copiare il backup di hello VHD nell'archiviazione Premium di Azure e collegarlo da una macchina virtuale che è appena distribuito e installato.
+* possibilità di quarto Hello scegliere quando si è in hanno l'esigenza di numero hello toochange dei file di dati del database. In tal caso si esegue una copia di sistema omogeneo SAP usando operazioni di importazione ed esportazione. PUT quelli esportare i file in un disco rigido virtuale che viene copiato in un Account di archiviazione Premium di Azure e collegarlo tooa VM utilizzare processi di importazione toorun hello. I clienti utilizzare questa possibilità principalmente quando si desidera che il numero di hello toodecrease dei file di dati.
 
-Se si usa Managed Disks, è possibile eseguire la migrazione ad Archiviazione Premium come segue:
+Se si utilizzano dischi gestiti, è possibile eseguire la migrazione archiviazione tooPremium da:
 
-1. Deallocare la macchina virtuale
-2. Se necessario, aggiornare la macchina virtuale a dimensioni che supportino Archiviazione Premium (ad esempio, DS o GS)
-3. Modificare il tipo di account Managed Disks in Premium (SSD)
+1. Deallocare una macchina virtuale hello
+2. Se necessario, ridimensionare dimensioni tooa della macchina virtuale hello che supporta l'archiviazione Premium (ad esempio DS o GS)
+3. Modificare tooPremium tipo di account gestiti disco hello (unità SSD)
 4. Avviare la macchina virtuale
 
 ### <a name="deployment-of-vms-for-sap-in-azure"></a>Distribuzione di macchine virtuali per SAP in Azure
-Microsoft Azure offre diversi modi per distribuire le VM e i dischi associati. È quindi importante comprendere le differenze, perché le operazioni di preparazione delle VM possono variare in base al metodo di distribuzione. In generale vengono esaminati gli scenari descritti nei capitoli seguenti.
+Microsoft Azure offre diversi modi di macchine virtuali toodeploy e associati i dischi. In tal modo è differenze hello toounderstand importante in quanto preparazioni delle macchine virtuali di hello potrebbero variare a seconda modalità hello di distribuzione. In generale, vengono esaminati gli scenari di hello descritti nella seguente capitoli hello.
 
-#### <a name="deploying-a-vm-from-the-azure-marketplace"></a>Distribuzione di una macchina virtuale da Azure Marketplace
-Per distribuire la VM si sceglie di usare un'immagine disponibile in Azure Marketplace, fornita da Microsoft o da terze parti. Dopo aver distribuito la VM in Azure, si installa il software SAP all'interno della VM con le stesse linee guida e gli stessi strumenti usati in un ambiente locale. Per l'installazione del software SAP all'interno della VM di Azure, SAP e Microsoft consigliano di caricare e archiviare il supporto di installazione SAP in dischi o di creare una VM di Azure che funga da "file server" contenente tutti i supporti di installazione SAP necessari.
+#### <a name="deploying-a-vm-from-hello-azure-marketplace"></a>Distribuzione di una macchina virtuale da hello Azure Marketplace
+È ad esempio tootake Microsoft o terze parti di una macchina virtuale di immagine da hello Azure Marketplace toodeploy fornita. Dopo aver distribuito la macchina virtuale in Azure, seguire hello stesse linee guida e gli strumenti tooinstall hello software SAP nella macchina virtuale come si farebbe in un ambiente locale. Per l'installazione di software SAP hello hello macchina virtuale di Azure, SAP e Microsoft consiglia di caricare e archiviare supporti di installazione di SAP hello in dischi o toocreate una macchina virtuale di Azure funziona come un "File server', che contiene tutti hello necessarie SAP supporti di installazione.
 
 #### <a name="deploying-a-vm-with-a-customer-specific-generalized-image"></a>Distribuzione di una VM con un'immagine generalizzata specifica del cliente
-Le immagini disponibili in Azure Marketplace potrebbero non soddisfare le esigenze a causa di specifici requisiti di patch riguardanti la versione del sistema operativo o DBMS in uso. Per questo motivo, potrebbe essere necessario creare una VM usando una propria immagine "privata" di VM del sistema operativo o DBMS che in seguito potrà essere distribuita diverse volte. Per preparare tale immagine "privata" per la duplicazione, è necessario generalizzare il sistema operativo nella VM locale. Per informazioni dettagliate su come generalizzare una VM, vedere la [guida alla distribuzione][deployment-guide].
+A causa di requisiti di patch toospecific sulla versione del sistema operativo o DBMS, le immagini fornita hello in hello Azure Marketplace potrebbero non soddisfare le proprie esigenze. Di conseguenza, potrebbe essere necessario toocreate una macchina virtuale tramite la propria immagine di macchina virtuale del sistema operativo/DBMS 'private', che può essere distribuito più volte in un secondo momento. tooprepare questa immagine 'privata' per la duplicazione, sistema operativo deve essere generalizzato su hello hello locale macchina virtuale. Fare riferimento toohello [Guida alla distribuzione] [ deployment-guide] per informazioni dettagliate su come toogeneralize una macchina virtuale.
 
-Se sono già stati installati contenuti SAP nella VM locale, in particolare per sistemi a 2 livelli, è possibile adattare le impostazioni di sistema SAP dopo la distribuzione della VM di Azure con la procedura di ridenominazione dell'istanza supportata da SAP Software Provisioning Manager (nota SAP [1619720]). In caso contrario, è possibile installare il software SAP in un secondo momento dopo la distribuzione della macchina virtuale di Azure.
+Se è già stato installato contenuto SAP nella macchina virtuale locale (in particolare per i sistemi di livello 2), è possibile adattare le impostazioni di sistema SAP hello dopo la distribuzione di hello di hello macchina virtuale di Azure tramite istanza hello rinominare procedure supportate da SAP Software Provisioning hello Manager (nota SAP [1619720]). In caso contrario è possibile installare il software SAP hello in un secondo momento dopo la distribuzione di hello di hello macchina virtuale di Azure.
 
-Per quanto riguarda il contenuto di database usato dall'applicazione SAP, è possibile generare nuovo contenuto tramite un'installazione SAP oppure importarlo in Azure usando un disco rigido virtuale con un backup del database DBMS o sfruttando le funzionalità del sistema DBMS per eseguire il backup direttamente in Archiviazione di Microsoft Azure. In tal caso, è anche possibile preparare i dischi rigidi virtuali con i file di log e i dati DBMS in locale e quindi importarli come dischi in Azure. Il trasferimento di dati DBMS caricati da locale ad Azure, tuttavia, funzionerà solo su dischi rigidi virtuali preparati in locale.
+A partire da hello del contenuto del database utilizzato da hello applicazione SAP, è possibile generare hello contenuto da zero tramite un'installazione SAP o è possibile importare il contenuto in Azure utilizzando un disco rigido virtuale con un backup del database DBMS o tramite le funzionalità di hello DBMS toodirectly backup in archiviazione di Microsoft Azure. In questo caso, si potrebbe inoltre di preparare i dischi rigidi virtuali con i dati DBMS hello log file locale e quindi importarli come dischi in Azure. Ma trasferimento hello dei dati DBMS, che vengono caricati da on-premise tooAzure funziona solo su dischi VHD che devono toobe preparati in locale.
 
-#### <a name="moving-a-vm-from-on-premises-to-azure-with-a-non-generalized-disk"></a>Spostamento di una macchina virtuale da locale in Azure con un disco non generalizzato
-Per spostare un sistema SAP specifico da locale in Azure, è possibile caricare in Azure il disco contenente il sistema operativo, i file binari SAP e gli eventuali file binari DBMS, nonché i dischi con i file di dati e di log del sistema DBMS. A differenza dello scenario 2 illustrato sopra, il nome host, il SID SAP e gli account utente SAP vengono mantenuti nella VM di Azure così come sono stati configurati nell'ambiente locale. Di conseguenza, non è necessario generalizzare l'immagine. Questo caso si applica prevalentemente a scenari cross-premise in cui il panorama applicativo SAP viene eseguito in parte in locale e in parte in Azure.
+#### <a name="moving-a-vm-from-on-premises-tooazure-with-a-non-generalized-disk"></a>Lo spostamento di una macchina virtuale da tooAzure locale con un disco non generalizzato
+Si prevede di toomove un sistema SAP specifico da on-premise tooAzure (accuratezza e MAIUSC). Questa operazione può essere eseguita caricando disco hello, che contiene hello del sistema operativo, i file binari SAP hello e di eventuali binari DBMS più dischi hello con dati hello file di log e di hello DBMS tooAzure. In tooscenario opposto #2 precedente, mantenere hello hostname, SID di SAP e account utente SAP nella macchina virtuale di Azure hello come sono stati configurati nell'ambiente locale hello. Pertanto, generalizzare l'immagine di hello non è necessario. In questo caso si applica soprattutto per gli scenari di più sedi locali in cui una parte di hello landscape SAP viene eseguita in locale e le parti in Azure.
 
 ## <a name="871dfc27-e509-4222-9370-ab1de77021c3"></a>Disponibilità elevata e ripristino di emergenza con VM di Azure
-Di seguito sono illustrate le funzionalità di disponibilità elevata e ripristino di emergenza offerte da Azure, valide per diversi componenti usati per le distribuzioni SAP e DBMS.
+Azure offre hello seguendo le funzionalità di disponibilità elevata e ripristino di emergenza, che si applicano toodifferent componenti usati per le distribuzioni SAP e DBMS
 
 ### <a name="vms-deployed-on-azure-nodes"></a>Macchine virtuali distribuite in nodi di Azure
-La piattaforma Azure non offre funzionalità quali Live Migration per le macchine virtuali distribuite. Ciò significa che se sono necessari interventi di manutenzione in un cluster di server in cui è distribuita una macchina virtuale, questa deve essere arrestata e riavviata. In Azure la manutenzione viene eseguita usando i domini di aggiornamento all'interno dei cluster di server. È possibile eseguire la manutenzione di un solo dominio di aggiornamento alla volta. Durante tale intervento, mentre la VM viene arrestata, sottoposta a manutenzione e riavviata si verifica un'interruzione del servizio. La maggior parte dei fornitori di sistemi DBMS, tuttavia, offre funzionalità di disponibilità elevata e ripristino di emergenza che consentono di riavviare rapidamente i servizi DBMS in un altro nodo, se il nodo primario non è disponibile. La piattaforma Azure offre funzionalità per la distribuzione di VM, Archiviazione e altri servizi di Azure nei domini di aggiornamento per limitare l'impatto degli errori di infrastruttura o della manutenzione pianificata a un sottoinsieme ridotto di VM o servizi.  Con un'attenta pianificazione, è possibile ottenere livelli di disponibilità simili alle infrastrutture locali.
+Hello piattaforma Azure offre funzionalità quali la migrazione in tempo reale per le macchine virtuali distribuite. Pertanto, se in un cluster di server in cui è distribuita una macchina virtuale è necessaria la manutenzione, hello VM tooget arrestato e riavviato. In Azure la manutenzione viene eseguita usando i domini di aggiornamento all'interno dei cluster di server. È possibile eseguire la manutenzione di un solo dominio di aggiornamento alla volta. Durante un riavvio, si verifica un'interruzione del servizio mentre hello che arresto della macchina virtuale, viene eseguita la manutenzione e riavviato macchina virtuale. Tuttavia, la maggior parte dei fornitori di sistemi DBMS forniscono funzionalità di disponibilità elevata e ripristino di emergenza che riavvia rapidamente servizi DBMS hello in un altro nodo, se non è disponibile nel nodo primario hello. Hello piattaforma Azure offre funzionalità toodistribute macchine virtuali, archiviazione e altri servizi di Azure tra domini di aggiornamento tooensure che gli errori di infrastruttura o di manutenzione pianificato influirebbe solo un piccolo subset delle macchine virtuali o servizi.  Con un'attenta pianificazione, è infrastrutture confrontabili tooon locale livelli di disponibilità tooachieve possibili.
 
-I set di disponibilità di Microsoft Azure sono un raggruppamento logico di VM o servizi che garantisce che le VM e gli altri servizi vengano distribuiti in diversi domini di aggiornamento e di errore all'interno di un cluster in modo che in un determinato momento si verifichi l'arresto di un solo nodo. Per altri dettagli, vedere [questo articolo (per Linux)][virtual-machines-manage-availability-linux] o [questo (per Windows)][virtual-machines-manage-availability-windows].
+Set di disponibilità di Microsoft Azure sono un raggruppamento logico di macchine virtuali o servizi che garantisce le macchine virtuali e altri servizi sono distribuiti toodifferent errore e domini di aggiornamento all'interno di un cluster in modo che potrebbe essere presente solo l'arresto di un nodo da un punto nel tempo (lettura [(Linux)] [ virtual-machines-manage-availability-linux] o [(Windows)] [ virtual-machines-manage-availability-windows] per ulteriori dettagli).
 
-Questa funzione deve essere configurata appositamente durante il rollout delle macchine virtuali, come illustrato di seguito:
+È necessario toobe configurati appositamente durante il rollout delle macchine virtuali, come illustrato di seguito:
 
 ![Definizione di un set di disponibilità per le configurazioni a disponibilità DBMS][dbms-guide-figure-200]
 
-Allo scopo di creare configurazioni a disponibilità elevata di distribuzioni DBMS, indipendentemente dalla singola funzionalità DBMS con disponibilità elevata usata, per le macchine virtuali DBMS è necessario quanto segue:
+Se si desidera che le configurazioni a disponibilità elevata toocreate di distribuzioni DBMS (indipendente di hello singoli DBMS con disponibilità elevata funzionalità utilizzata), le macchine virtuali DBMS hello necessario:
 
-* Aggiungere le VM alla stessa rete virtuale di Azure (<https://azure.microsoft.com/documentation/services/virtual-network/>)
-* Le macchine virtuali della configurazione a disponibilità elevata devono trovarsi anch'esse nella stessa subnet. La risoluzione dei nomi tra le diverse subnet non è possibile nelle distribuzioni solo cloud. Funziona solo la risoluzione IP. Se si usa la connettività da sito a sito o ExpressRoute per le distribuzioni cross-premise, è già presente una rete con almeno una subnet. La risoluzione dei nomi viene eseguita in base all'infrastruttura di rete e ai criteri di Active Directory locali. 
+* Aggiungere hello macchine virtuali toohello stessa rete virtuale di Azure (<https://azure.microsoft.com/documentation/services/virtual-network/>)
+* le macchine virtuali di configurazione a disponibilità elevata hello Hello deve inoltre essere in hello stessa subnet. Risoluzione dei nomi tra subnet diverse hello non è possibile nelle distribuzioni solo Cloud, solo il funzionamento di risoluzione IP. Se si usa la connettività da sito a sito o ExpressRoute per le distribuzioni cross-premise, è già presente una rete con almeno una subnet. Risoluzione dei nomi viene effettuata in base toohello locale criteri di Active Directory e infrastruttura di rete. 
 
 [comment]: <> (MSSedusch TODO Test if still true in ARM)
 
 #### <a name="ip-addresses"></a>Indirizzi IP
-È consigliabile impostare le macchine virtuali per le configurazioni a disponibilità elevata in modo resiliente. In Azure non è possibile fare affidamento sugli indirizzi IP per indirizzare i partner a disponibilità elevata all'interno della configurazione a disponibilità elevata, a meno che non vengano usati indirizzi IP statici. Azure prevede due tipi di "arresto".
+È consigliabile toosetup hello macchine virtuali per le configurazioni a disponibilità elevata in modo resiliente. Basarsi su IP indirizzi tooaddress hello partner di disponibilità elevata all'interno di configurazione a disponibilità elevata hello non è affidabile in Azure a meno che non vengono utilizzati indirizzi IP statici. Azure prevede due tipi di "arresto".
 
-* Arresto tramite il portale di Azure o il cmdlet Stop-AzureRmVM di Azure PowerShell: la macchina virtuale viene arrestata e deallocata. La VM non viene più addebitata all'account Azure e gli unici costi sostenuti sono quelli relativi alle risorse di archiviazione usate. Tuttavia, se l'indirizzo IP privato dell'interfaccia di rete non è statico viene rilasciato e non è detto che, dopo il riavvio della macchina virtuale, all'interfaccia di rete venga assegnato nuovamente l'indirizzo IP precedente. L'arresto tramite il portale di Azure o la chiamata a Stop-AzureRmVM determina automaticamente la deallocazione. Per evitare la deallocazione della macchina virtuale, usare Stop-AzureRmVM -StayProvisioned. 
-* Arresto a livello di sistema operativo: la macchina virtuale viene arrestata ma NON viene deallocata. In tal caso, la VM viene comunque addebitata all'account Azure anche se è stata arrestata. L'assegnazione dell'indirizzo IP a una VM arrestata in questo caso rimane invariata. L'arresto della VM dall'interno non forza automaticamente la deallocazione.
+* Arresto tramite il portale di Azure o i cmdlet di Azure PowerShell Stop-AzureRmVM: In questo caso, hello macchina virtuale viene arrestata e deallocata. L'account di Azure viene addebitato non per questa macchina virtuale in modo hello unici costi sostenuto sono per l'archiviazione di hello utilizzato. Tuttavia, se l'indirizzo IP privato hello hello dell'interfaccia di rete non è statico, indirizzo IP hello viene rilasciato e non è garantito il che interfaccia di rete hello Ottiene hello vecchio indirizzo IP assegnato dopo il riavvio di hello macchina virtuale. Esecuzione di hello arresto hello tramite il portale di Azure o per la chiamata a Stop-AzureRmVM automaticamente a causa di deallocazione. Se non si desidera macchina hello toodeallocate utilizzare Stop-AzureRmVM - StayProvisioned 
+* Se si arresta hello macchina virtuale da un livello del sistema operativo, hello VM Ottiene chiuso e non viene deallocata. Tuttavia, in questo caso, l'account di Azure viene comunque addebitato per hello VM, nonostante hello se è arrestata. In tal caso, l'assegnazione di hello IP indirizzo tooa hello arrestato VM rimane intatto. Arresto hello macchina non forza automaticamente la deallocazione.
 
-Anche per gli scenari cross-premise, per impostazione predefinita l'arresto e la deallocazione annullano l'assegnazione degli indirizzi IP alla VM, anche se i criteri locali nelle impostazioni DHCP non lo prevedono. 
+Anche per scenari con più sedi locali, per impostazione predefinita un arresto e la deallocazione significa annullamento dell'assegnazione degli indirizzi IP hello hello macchina virtuale, anche se i criteri locali nelle impostazioni DHCP sono diversi. 
 
-* Fa eccezione l'assegnazione di un indirizzo IP statico a un'interfaccia di rete, descritta [qui][virtual-networks-reserved-private-ip].
-* In questo caso l'indirizzo IP rimane fisso, purché l'interfaccia di rete non venga eliminata.
+* Hello eccezione se uno assegna un' statico IP indirizzo tooa interfaccia di rete come descritto [qui][virtual-networks-reserved-private-ip].
+* In questo caso l'indirizzo IP hello rimane fisso come interfaccia di rete hello non viene eliminato.
 
 > [!IMPORTANT]
-> Per garantire la semplicità e la gestibilità dell'intera distribuzione, è consigliabile configurare in Azure le macchine virtuali che partecipano a una configurazione DBMS a disponibilità elevata o di ripristino di emergenza, facendo in modo che la risoluzione dei nomi tra le diverse macchine virtuali coinvolte funzioni.
+> In ordine tookeep hello intera distribuzione semplice e gestibile, hello chiaro raccomandazione è toosetup hello macchine virtuali associate in una configurazione DBMS con disponibilità elevata o ripristino di emergenza in Azure in modo che vi sia una risoluzione dei nomi funzionante tra hello diverse macchine virtuali coinvolte.
 > 
 > 
 
 ## <a name="deployment-of-host-monitoring"></a>Distribuzione del monitoraggio host
-Per un uso produttivo delle applicazioni SAP in macchine virtuali di Azure, SAP deve poter recuperare i dati relativi al monitoraggio host dagli host fisici che eseguono le macchine virtuali di Azure. È necessario un livello di patch dell'agente host SAP specifico che abilita questa funzionalità in SAPOSCOL e nell'agente host SAP. L'esatto livello di patch è documentato nella nota SAP [1409604].
+Per l'utilizzo produttivo di applicazioni SAP in macchine virtuali di Azure, SAP richiede hello possibilità dell'host tooget dati di monitoraggio dall'host fisico di hello in esecuzione hello macchine virtuali di Azure. È necessario un livello di patch dell'agente host SAP specifico che abilita questa funzionalità in SAPOSCOL e nell'agente host SAP. livello di patch esatto Hello è documentato nella nota SAP [1409604].
 
-Per informazioni dettagliate sulla distribuzione di componenti che forniscono dati host a SAPOSCOL e all'agente host SAP e sulla gestione del ciclo di vita di tali componenti, vedere la [guida alla distribuzione][deployment-guide].
+Per informazioni dettagliate hello sulla distribuzione di componenti che forniscono tooSAPOSCOL dati host e dell'agente Host SAP e la gestione del ciclo di vita hello tali componenti, fare riferimento toohello [Guida alla distribuzione][deployment-guide]
 
-## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>Specifiche di Microsoft SQL Server
+## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>Le specifiche tooMicrosoft SQL Server
 ### <a name="sql-server-iaas"></a>SQL Server in IaaS
-A partire da Microsoft Azure, è possibile eseguire facilmente la migrazione in macchine virtuali di Azure delle applicazioni SQL Server esistenti basate sulla piattaforma Windows Server. SQL Server in una macchina virtuale consente di ridurre il costo totale di proprietà associato a distribuzione, gestione e manutenzione delle applicazioni aziendali eseguendo facilmente la migrazione di queste applicazioni a Microsoft Azure. Con SQL Server in una macchina virtuale di Azure, gli amministratori e gli sviluppatori possono continuare a usare gli stessi strumenti di sviluppo e amministrazione disponibili in locale. 
+A partire da Microsoft Azure, è possibile eseguire facilmente la migrazione delle applicazioni di SQL Server esistenti compilate nella piattaforma di Windows Server tooAzure macchine virtuali. SQL Server in una macchina virtuale consente di tooreduce hello costo totale di proprietà di distribuzione, gestione e manutenzione di applicazioni breadth aziendali eseguendo facilmente la migrazione di questi tooMicrosoft applicazioni Azure. Con SQL Server in una macchina virtuale di Azure, gli amministratori e sviluppatori possono ancora usare hello stessi strumenti di sviluppo e amministrazione disponibili in locale. 
 
 > [!IMPORTANT]
-> Questo documento non illustra il database SQL di Microsoft Azure, una piattaforma distribuita come servizio offerta nell'ambito della piattaforma Microsoft Azure. Il documento illustra l'esecuzione del prodotto SQL Server, noto per le distribuzioni locali in macchine virtuali di Azure, tramite la funzionalità di infrastruttura distribuita come servizio di Azure. Le funzionalità di database di queste due offerte sono diverse e non devono essere confuse tra loro. Vedere anche: <https://azure.microsoft.com/services/sql-database/>
+> Si sta esaminando non Database SQL di Microsoft Azure, che è una piattaforma come un'offerta di servizio di hello piattaforma Microsoft Azure. discussione Hello in questo documento viene descritta l'esecuzione del prodotto SQL Server hello quanto è noto per le distribuzioni locali in macchine virtuali di Azure, sfruttando hello infrastruttura come funzionalità del servizio di Azure. Le funzionalità di database di queste due offerte sono diverse e non devono essere confuse tra loro. Vedere anche: <https://azure.microsoft.com/services/sql-database/>
 > 
 > 
 
-È consigliabile esaminare [questa][virtual-machines-sql-server-infrastructure-services] documentazione prima di proseguire.
+È consigliabile tooreview [questo] [ virtual-machines-sql-server-infrastructure-services] documentazione prima di continuare.
 
-Nelle sezioni seguenti vengono aggregate e citate parti della documentazione disponibile visitando il collegamento indicato. Vengono anche riportate le specifiche relative a SAP e alcuni concetti vengono descritti in modo più dettagliato. Tuttavia, è consigliabile esaminare la documentazione indicata prima di leggere la documentazione specifica di SQL Server.
+In hello parti nelle sezioni seguenti di parti della documentazione di hello in collegamento hello precedente vengono aggregati e indicati. Vengono anche riportate le specifiche relative a SAP e alcuni concetti vengono descritti in modo più dettagliato. Tuttavia, è consigliabile toowork tramite documentazione hello indicata sopra prima prima di leggere la documentazione specifica di SQL Server hello.
 
 Di seguito sono indicate alcune informazioni specifiche su SQL Server in IaaS che è necessario conoscere per poter continuare:
 
 * **Contratto di servizio per Macchine virtuali**: il contratto di servizio per le macchine virtuali in esecuzione in Azure è disponibile all'indirizzo <https://azure.microsoft.com/support/legal/sla/>  
-* **Supporto della versione SQL**: per i clienti SAP, le macchine virtuali di Microsoft Azure supportano SQL Server 2008 R2 e versioni successive. Le versioni precedenti non sono supportate. Per altre informazioni, vedere questa [informativa sul supporto](https://support.microsoft.com/kb/956893) di carattere generale. Si noti che in genere SQL Server 2008 è supportato anche da Microsoft. A causa delle importanti funzionalità per SAP introdotte con SQL Server 2008 R2, tuttavia, quest'ultima è la versione minima per SAP. Tenere presente che SQL Server 2012 e SQL Server 2014 sono stati estesi con una maggiore integrazione nello scenario IaaS, ad esempio con il backup diretto in Archiviazione di Azure. Di conseguenza, questo documento è limitato a SQL Server 2012 e SQL Server 2014 con il relativo livello di patch più recente per Azure.
-* **Supporto di funzionalità SQL**: le macchine virtuali di Microsoft Azure supportano la maggior parte delle funzionalità di SQL Server, con alcune eccezioni. **Il clustering di failover di SQL Server tramite dischi condivisi non è supportato**.  Le tecnologie distribuite quali il mirroring del database, i gruppi di disponibilità AlwaysOn, la replica, il log shipping e Service Broker sono supportate in un'unica area di Azure. SQL Server AlwaysOn inoltre è supportato tra diverse aree di Azure come indicato qui:  <https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>.  Per altre informazioni, vedere l' [informativa sul supporto](https://support.microsoft.com/kb/956893) . Per un esempio relativo alla distribuzione di una configurazione AlwaysOn, vedere [questo][virtual-machines-workload-template-sql-alwayson] articolo. Vedere anche le procedure consigliate illustrate [qui][virtual-machines-sql-server-infrastructure-services] 
-* **Prestazioni di SQL**: anche se le prestazioni delle macchine virtuali ospitate in Microsoft Azure saranno sicuramente molto elevate rispetto ad altre offerte per la virtualizzazione del cloud pubblico, i risultati ottenuti possono variare. Per informazioni, consultare [questo articolo][virtual-machines-sql-server-performance-best-practices].
-* **Uso di immagini disponibili in Azure Marketplace**: il modo più rapido per distribuire una nuova VM di Microsoft Azure consiste nell'usare un'immagine disponibile in Azure Marketplace. In Azure Marketplace sono presenti immagini contenenti SQL Server. Non è però possibile usare subito per le applicazioni SAP NetWeaver le immagini in cui SQL Server è già installato. In tali immagini sono infatti installate le regole di confronto predefinite di SQL Server e non quelle richieste dai sistemi SAP NetWeaver. Per usare queste immagini, vedere la procedura documentata nel capitolo [Uso di un'immagine di SQL Server da Microsoft Azure Marketplace][dbms-guide-5.6]. 
-* Per altre informazioni, consultare i [dettagli sui prezzi](https://azure.microsoft.com/pricing/) . Un'altra risorsa importante è rappresentata dai documenti [Guida alle licenze di SQL Server 2012](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf) e [Guida alle licenze di SQL Server 2014](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf).
+* **Supporto della versione SQL**: per i clienti SAP, le macchine virtuali di Microsoft Azure supportano SQL Server 2008 R2 e versioni successive. Le versioni precedenti non sono supportate. Per altre informazioni, vedere questa [informativa sul supporto](https://support.microsoft.com/kb/956893) di carattere generale. Si noti che in genere SQL Server 2008 è supportato anche da Microsoft. Tuttavia, a causa di funzionalità toosignificant per SAP, che è stata introdotta con SQL Server 2008 R2, SQL Server 2008 R2 è una versione minima di hello per SAP. Tenere presente che SQL Server 2012 e 2014 è stato ulteriormente esteso con un'integrazione più approfondita in uno scenario IaaS hello (ad esempio, il backup direttamente nel servizio di archiviazione Azure). Pertanto, è limitare questa tooSQL carta Server 2012 e 2014 con il livello di patch più recente per Azure.
+* **Supporto di funzionalità SQL**: le macchine virtuali di Microsoft Azure supportano la maggior parte delle funzionalità di SQL Server, con alcune eccezioni. **Il clustering di failover di SQL Server tramite dischi condivisi non è supportato**.  Le tecnologie distribuite quali il mirroring del database, i gruppi di disponibilità AlwaysOn, la replica, il log shipping e Service Broker sono supportate in un'unica area di Azure. SQL Server AlwaysOn inoltre è supportato tra diverse aree di Azure come indicato qui:  <https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>.  Hello revisione [istruzione di supporto](https://support.microsoft.com/kb/956893) per altri dettagli. Un esempio di come toodeploy una configurazione di AlwaysOn verrà visualizzata nei [questo] [ virtual-machines-workload-template-sql-alwayson] articolo. Inoltre, estrarre hello consigliate documentate [qui][virtual-machines-sql-server-infrastructure-services] 
+* **Prestazioni SQL**: si è certi di Microsoft Azure prestazioni molto elevate di macchine virtuali ospitate nelle offerte di virtualizzazione di confronto tooother cloud pubblico, ma i singoli risultati possono variare. Per informazioni, consultare [questo articolo][virtual-machines-sql-server-performance-best-practices].
+* **Utilizzo di immagini da Azure Marketplace**: hello più veloce modo toodeploy una nuova macchina virtuale di Microsoft Azure è toouse un'immagine da hello Azure Marketplace. Vi sono immagini in hello Azure Marketplace, che contengono SQL Server. le immagini di Hello in SQL Server è già installato non possono essere utilizzati immediatamente per le applicazioni SAP NetWeaver. Hello, infatti, regole di confronto SQL Server predefinite hello viene installata all'interno di tali immagini e non hello regole di confronto richieste dai sistemi SAP NetWeaver. In ordine toouse tali immagini, controllare i passaggi di hello descritti nei capitoli [mediante un'immagine di SQL Server da Microsoft Azure Marketplace hello][dbms-guide-5.6]. 
+* Per altre informazioni, consultare i [dettagli sui prezzi](https://azure.microsoft.com/pricing/) . Hello [Guida alla gestione delle licenze di SQL Server 2012](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf) e [Guida di gestione delle licenze di SQL Server 2014](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf) sono anche una risorsa importante.
 
 ### <a name="sql-server-configuration-guidelines-for-sap-related-sql-server-installations-in-azure-vms"></a>Linee guida per la configurazione di SQL Server per le installazioni di SQL Server correlate a SAP nelle VM di Azure
 #### <a name="recommendations-on-vmvhd-structure-for-sap-related-sql-server-deployments"></a>Raccomandazioni sulla struttura di VM/dischi rigidi virtuali per distribuzioni di SQL Server correlate a SAP
-In base alla descrizione generale, gli eseguibili di SQL Server devono essere salvati o installati nell'unità di sistema del disco del sistema operativo della VM (unità C:\).  In genere, la maggior parte dei database di sistema di SQL Server non viene pienamente sfruttata dal carico di lavoro di SAP NetWeaver. Di conseguenza è possibile lasciare sull'unità C:\ anche i database di sistema di SQL Server (master, msdb e model). Può fare eccezione il database tempdb, che nel caso di alcuni carichi di lavoro SAP ERP e di tutti i carichi di lavoro BW può richiedere un volume dati o un volume di operazioni di I/O superiore, perché di dimensioni troppo grandi per la VM originale. Per tali sistemi, è consigliabile eseguire la procedura seguente:
+In conformità con descrizione generale di hello, file eseguibili di SQL Server devono essere disponibile oppure installati nell'unità di sistema hello del disco del sistema operativo della macchina virtuale di hello (l'unità c:\).  In genere, la maggior parte dei database di sistema di SQL Server hello non vengono utilizzata un livello elevato dal carico di lavoro di SAP NetWeaver. Di conseguenza il database di sistema hello di SQL Server (master, msdb e modello) possono rimanere su hello anche l'unità C:\. Un'eccezione può essere tempdb, che nel caso di hello di alcuni ERP SAP e tutti i carichi di lavoro BW, potrebbe richiedere il volume di dati maggiore o volume di operazioni dei / o, che non si adattata hello macchina virtuale originale. Per questi sistemi, è opportuno eseguire hello alla procedura seguente:
 
-* Spostare i file di dati primari di tempdb nella stessa unità logica dei file di dati primari del database SAP.
-* Aggiungere eventuali altri file di dati di tempdb a una delle altre unità logiche contenenti un file di dati del database utente SAP.
-* Aggiungere il file di log di tempdb all'unità logica che contiene il file di log del database utente.
-* **Esclusivamente per i tipi di VM che usano unità SSD locali** nel nodo di calcolo, i file di log e di dati di tempdb potrebbero essere disponibili nell'unità D:\. Può tuttavia essere consigliabile usare più file di dati di tempdb. Tenere presente che i volumi delle unità D:\ sono diversi in base al tipo di VM.
+* Spostare hello tempdb primari dati file toohello stessa unità logica come file di dati primari hello del database SAP hello.
+* Aggiungere qualsiasi tooeach i file di dati tempdb aggiuntivi di hello altre unità logiche contenenti un file di dati di database utente SAP di hello.
+* Aggiungere hello tempdb logfile toohello unità logica, che contiene i file di log del database utente hello.
+* **Esclusivamente per i tipi di macchine Virtuali che utilizzano unità SSD locale** dati tempdb del nodo di calcolo hello e di log file potrebbero essere posizionati in unità D:\ hello. Tuttavia, potrebbe essere consigliabile toouse più file di dati di tempdb. Tenere presente i volumi di unità D:\ sono diversi in base a hello tipo di macchina virtuale.
 
-Con queste configurazioni il database tempdb può consumare più spazio di quello che l'unità di sistema è in grado di offrire. Per determinare le dimensioni corrette del database tempdb, è possibile controllare le dimensioni di tempdb in sistemi esistenti eseguiti in locale. Con una tale configurazione, inoltre, sarà possibile eseguire su tempdb un numero di operazioni di I/O al secondo che l'unità di sistema non può garantire. I sistemi in esecuzione in locale possono essere usati anche per il monitoraggio del carico di lavoro di I/O su tempdb, in modo da derivare il numero di operazioni di I/O al secondo previsto per il database tempdb.
+Queste configurazioni abilitano tempdb tooconsume più spazio rispetto a unità di sistema di hello è in grado di tooprovide. In dimensioni di tempdb appropriate hello toodetermine ordine, è possibile verificare le dimensioni di tempdb hello nei sistemi esistenti, in cui vengono eseguiti in locale. Inoltre, tale configurazione consentirebbe di operazioni IOPS eseguite in tempdb, che è possibile eseguire con unità di sistema hello. Nuovamente, i sistemi che eseguono in locale possono essere utilizzato toomonitor i/o il carico di lavoro nel database tempdb in modo che sia possibile trarre hello IOPS previste toosee tempdb.
 
-Una configurazione di VM che esegue SQL Server con un database SAP e in cui i dati e il file di log di tempdb si trovano nell'unità D:\ è simile a quella illustrata nella figura seguente:
+Una configurazione della macchina virtuale, che esegue SQL Server con un database SAP e in cui vengono memorizzati i dati di tempdb e file di log tempdb nell'unità D:\ hello sarebbe simile:
 
 ![Configurazione di riferimento di una VM IaaS di Azure per SAP][dbms-guide-figure-300]
 
-Tenere presente che le dimensioni dell'unità D:\ variano in base al tipo di VM. A seconda del requisito previsto per le dimensioni del database tempdb, potrebbe essere necessario associare i file di log e di dati di tempdb con i file di log e di dati del database SAP nei casi in cui le dimensioni dell'unità D:\ non siano sufficienti.
+Tenere presente che hello unità D:\ è dipende dal tipo di macchina virtuale hello di dimensioni diverse. Dipende dal requisito di hello dimensioni di tempdb potrebbe essere forzato toopair di dati tempdb e i file di log con hello SAP dati del database e i file di log nei casi in cui l'unità D:\ è troppo piccolo.
 
-#### <a name="formatting-the-disks"></a>Formattazione dei dischi
-Per i dischi contenenti i file di dati e di log di SQL Server è necessario un blocco NTFS di dimensioni pari a 64 KB. Non è necessario formattare l'unità D:\ perché viene fornita preformattata.
+#### <a name="formatting-hello-disks"></a>Formattazione di dischi hello
+Per messaggi hello del Server SQL dimensione del blocco NTFS per i dischi che contengono dati di SQL Server e di log file devono essere di 64 KB. Non è hello di tooformat unità D:\ non necessario. perché viene fornita preformattata.
 
-Per evitare che in seguito al ripristino o la creazione di database i file di dati non vengano inizializzati e il loro contenuto venga azzerato, è necessario assicurarsi che per il contesto utente in cui viene eseguito il servizio SQL Server siano disponibili determinate autorizzazioni. Queste autorizzazioni sono in genere disponibili per gli utenti del gruppo Administrators di Windows. Se il servizio SQL Server viene eseguito nel contesto utente di un utente non appartenente al gruppo Administrators di Windows, è necessario assegnare a tale utente il diritto 'Esecuzione attività di manutenzione volume'.  Per informazioni dettagliate, vedere l'articolo <https://support.microsoft.com/kb/2574695> di Microsoft Knowledge Base
+In ordine toomake certi che hello ripristino o la creazione di database non inizializzazione dei file di dati hello azzerando il contenuto di hello del file hello, è opportuno accertarsi che il servizio SQL Server hello di hello utente contesto è in esecuzione in disponga di determinate autorizzazioni. In genere gli utenti al gruppo degli amministratori di Windows hello dispongono di tali autorizzazioni. Se hello servizio SQL Server viene eseguito nel contesto utente hello dell'utente Administrator non Windows, è necessario tooassign tale hello utente il diritto utente 'Eseguire le operazioni di manutenzione volume'.  Visualizzare i dettagli di hello in questo articolo della Microsoft Knowledge Base: <https://support.microsoft.com/kb/2574695>
 
 #### <a name="impact-of-database-compression"></a>Impatto della compressione del database
-Nelle configurazioni in cui la larghezza di banda di I/O può diventare un fattore limitante, ogni misura che riduce le operazioni di I/O al secondo consente di estendere il carico di lavoro eseguibile in uno scenario IaaS come Azure. Se quindi non è stato ancora fatto, sia SAP che Microsoft consigliano di applicare la compressione di pagina di SQL Server prima di caricare un database SAP esistente in Azure.
+Nelle configurazioni in cui la larghezza di banda dei / o può diventare un fattore limitante, ogni misura, riducendo il numero di IOPS può contribuire a carico di lavoro di hello toostretch può eseguire in uno scenario IaaS come Azure. Pertanto, se non è ancora fatto, applicare la compressione di pagina di SQL Server è consigliabile da SAP e Microsoft prima di caricare un tooAzure di database SAP esistente.
 
-Sono tre i motivi per cui è consigliabile eseguire la compressione del database prima del caricamento in Azure:
+Hello raccomandazione tooperform la compressione del Database prima di caricare tooAzure ha due motivi:
 
-* La quantità di dati da caricare è minore.
-* La durata dell'esecuzione della compressione è inferiore, presupponendo che si possa usare hardware più avanzato con più CPU o una maggiore larghezza di banda di I/O oppure meno latenza di I/O in locale.
-* L'uso di database di dimensioni inferiori può contribuire a ridurre i costi per l'allocazione dei dischi
+* quantità di Hello di dati toobe caricate è inferiore.
+* durata Hello dell'esecuzione di compressione di hello è più breve, supponendo che sia possibile usare hardware più potente con più CPU o della larghezza di banda dei / o maggiore o minore latenza i/o in locale.
+* Database di dimensioni più piccolo potrebbe causare costi tooless per l'allocazione dei dischi
 
-Il funzionamento della compressione del database nelle macchine virtuali di Azure è analogo a quello in locale. Per altri dettagli su come comprimere un database SQL Server per SAP esistente, vedere <https://blogs.msdn.com/b/saponsqlserver/archive/2010/10/08/compressing-an-sap-database-using-report-msscompress.aspx>
+Il funzionamento della compressione del database nelle macchine virtuali di Azure è analogo a quello in locale. Per ulteriori informazioni su come toocompress un database di SQL Server SAP esistente, fare clic qui: <https://blogs.msdn.com/b/saponsqlserver/archive/2010/10/08/compressing-an-sap-database-using-report-msscompress.aspx>
 
 ### <a name="sql-server-2014--storing-database-files-directly-on-azure-blob-storage"></a>SQL Server 2014: archiviazione dei file di database direttamente nell'archivio BLOB di Azure
-A partire da SQL Server 2014 è possibile archiviare file di database direttamente nell'archivio BLOB di Azure senza salvarli in un disco rigido virtuale. Soprattutto quando si usa Archiviazione Standard di Azure o tipi di VM di dimensioni ridotte, questa funzionalità può essere applicata in determinati scenari per ovviare ai limiti per le operazioni di I/O al secondo imposti dal numero limitato di dischi che è possibile montare in alcuni tipi di VM di dimensioni ridotte. Si tratta però di una funzionalità valida per i database utente e non per i database di sistema di SQL Server, che funziona anche per i file di log e di dati di SQL Server. Se si preferisce distribuire un database di SQL Server per SAP in questo modo invece di salvarlo in dischi rigidi virtuali, tenere presente quanto segue:
+SQL Server 2014 consente di aprire file di database toostore possibilità hello direttamente sull'archivio Blob di Azure senza hello 'wrapper' di un disco rigido virtuale attorno a esse. In particolare all'utilizzo di archiviazione di Azure Standard o tipi di macchine Virtuali più piccoli in questo modo gli scenari in cui è possibile ovviare a limiti di hello di IOPS che verrà applicata a un numero limitato di dischi che possono essere tipi di macchine Virtuali montati toosome più piccoli. Si tratta però di una funzionalità valida per i database utente e non per i database di sistema di SQL Server, che funziona anche per i file di log e di dati di SQL Server. Se si desidera toodeploy un' SAP SQL Server di database in questo modo, invece di 'wrapping' in dischi rigidi virtuali, tenere presenti hello seguenti:
 
-* L'account di archiviazione usato deve trovarsi nella stessa area di Azure di quello usato per distribuire la VM in cui è in esecuzione SQL Server.
-* Le considerazioni elencate in precedenza in merito alla distribuzione di dischi rigidi virtuali in diversi account di archiviazione di Azure sono valide anche per questo metodo di distribuzione. Questo significa che il numero di operazioni di I/O viene tenuto in considerazione ai fini dei limiti dell'account di archiviazione di Azure.
+* toobe esigenze di Account di archiviazione usato Hello in hello stessa regione di Azure come hello ovvero hello toodeploy utilizzati VM SQL Server è in esecuzione in una.
+* Considerazioni elencate in precedenza relative hello distribuzione di dischi rigidi virtuali su diversi account di archiviazione di Azure sono applicabili per questo metodo anche le distribuzioni di. Mezzo hello numero di operazioni dei / o rispetto ai limiti di hello di hello Account di archiviazione Azure.
 
 [comment]: <> (MSSedusch TODO But this will use network bandwidth and not storage bandwidth, doesn't it?)
 
 Per informazioni dettagliate su questo tipo di distribuzione, vedere <https://docs.microsoft.com/sql/relational-databases/databases/sql-server-data-files-in-microsoft-azure>
 
-Per archiviare i file di dati di SQL Server direttamente in Archiviazione Premium di Azure, è necessario aver installato una versione di patch minima di SQL Server 2014, come documentato all'indirizzo <https://support.microsoft.com/kb/3063054>. Non è invece possibile archiviare file di dati di SQL Server nell'archiviazione Standard di Azure con la versione rilasciata di SQL Server 2014. Le stesse patch contengono tuttavia un'altra serie di correzioni per garantire una maggiore affidabilità quando si usa direttamente l'archivio BLOB di Azure per file di dati e backup di SQL Server. È quindi consigliabile usare queste patch in qualsiasi caso.
+In ordine toostore dati file di SQL Server direttamente in archiviazione Premium di Azure, è necessario versione di patch toohave un minimo di SQL Server 2014, che è documentato qui: <https://support.microsoft.com/kb/3063054>. L'archiviazione dei file di dati SQL Server nell'archivio Standard di Azure funziona con la versione rilasciata di hello di SQL Server 2014. Tuttavia, hello molto stesse patch contenere un'altra serie di correzioni, rendere più affidabile l'utilizzo diretto hello dell'archiviazione Blob di Azure per i backup e il file di dati di SQL Server. È quindi consigliabile usare queste patch in qualsiasi caso.
 
 ### <a name="sql-server-2014-buffer-pool-extension"></a>Estensione del pool di buffer di SQL Server 2014
-In SQL Server 2014 è stata introdotta una nuova funzionalità denominata estensione del pool di buffer. Questa funzionalità consente di estendere il pool di buffer di SQL Server mantenuto in memoria con una cache di secondo livello supportata da unità SSD di un server o una VM, permettendo in tal modo di mantenere in memoria un working set di dati di dimensioni maggiori. Rispetto all'accesso ad Archiviazione Standard di Azure, l'accesso nell'estensione del pool di buffer archiviato nelle unità SSD locali di una VM di Azure è notevolmente più veloce.  Se quindi si usa l'unità D:\ locale dei tipi di VM che supportano un numero elevato di operazioni di I/O al secondo e una velocità effettiva elevata, è possibile implementare una soluzione molto conveniente per ridurre il carico delle operazioni di I/O al secondo in Archiviazione di Azure e migliorare notevolmente i tempi di risposta delle query. Questo vale soprattutto quando non si usa Archiviazione Premium. Se invece si usa Archiviazione Premium e la cache di lettura di Archiviazione Premium nel nodo di calcolo, come consigliato per i file di dati, non sono previste differenze significative. Il motivo è che entrambe le cache (estensione del pool di buffer di SQL Server e la cache di lettura di Archiviazione Premium) usano i dischi locali dei nodi di calcolo.
+In SQL Server 2014 è stata introdotta una nuova funzionalità denominata estensione del pool di buffer. Questa funzionalità estende il pool di buffer hello di SQL Server, che viene mantenuto in memoria con una cache di livello secondo supportata da unità SSD locale di un server o macchina virtuale. In questo modo tookeep un working set superiore di dati 'in memoria'. Tooaccessing confrontati accesso hello di archiviazione di Azure Standard nell'estensione hello del pool di buffer hello, che viene archiviato su unità SSD locale di una macchina virtuale di Azure è più veloce molti fattori.  Pertanto, sfruttando unità D:\ locale hello di tipi VM hello che hanno eccellente IOPS e la velocità effettiva potrebbe essere un hello tooreduce soluzione ragionevole molto IOPS caricare nel servizio di archiviazione Azure e di migliorare notevolmente i tempi di risposta delle query. Questo vale soprattutto quando non si usa Archiviazione Premium. In caso di archiviazione Premium e l'utilizzo di hello di hello Cache di lettura di Azure Premium sul nodo di calcolo hello, come consigliato per i file di dati, non sono previste differenze significative. Motivo è che entrambi cache (estensione Pool di Buffer di SQL Server e Cache di lettura di archiviazione Premium) con i dischi locali hello hello di nodi di calcolo.
 Per altri dettagli su questa funzionalità, vedere la documentazione all'indirizzo<https://docs.microsoft.com/sql/database-engine/configure-windows/buffer-pool-extension> 
 
 ### <a name="backuprecovery-considerations-for-sql-server"></a>Considerazioni sul backup/ripristino per SQL Server
-Quando si distribuisce SQL Server in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema non è usato in produzione, è necessario eseguire periodicamente il backup del database SAP ospitato da SQL Server. Dal momento che in Archiviazione di Azure vengono mantenute tre immagini, ora un backup è meno importante rispetto alla compensazione di un arresto anomalo della risorsa di archiviazione. È opportuno predisporre un piano di backup e ripristino appropriato principalmente perché consente di risolvere gli errori logici/manuali fornendo funzionalità di ripristino temporizzato. L'obiettivo è quindi quello di usare i backup per ripristinare un determinato stato precedente del database o di usare i backup in Azure per effettuare il seeding di un altro sistema copiando il database esistente. È possibile, ad esempio, passare da una configurazione SAP di livello 2 a una configurazione di sistema di livello 3 dello stesso sistema ripristinando un backup.
+Quando si distribuisce SQL Server in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema di hello non è un sistema di produzione, hello SAP ospitato da SQL Server deve essere eseguito il backup database periodicamente. Poiché l'archiviazione di Azure vengono conservate tre immagini, una copia di backup è meno importante riguardo toocompensating un arresto anomalo del sistema di archiviazione. Hello priorità per la gestione di un piano di backup e ripristino corretta, infatti, più che è possibile compensare errori logici o manuali grazie alle funzionalità di ripristino ora. Obiettivo di hello è tooeither utilizzare backup toorestore hello database back-tooa determinato punto nel tempo o toouse backup hello in Azure tooseed un altro sistema mediante la copia di database esistente di hello. Ad esempio, è possibile eseguire il trasferimento da un'installazione di sistema a 3 livelli a 2 livelli SAP configurazione tooa di hello stesso sistema ripristinando un backup.
 
-È possibile eseguire il backup di SQL Server in Archiviazione di Azure in tre modi diversi:
+Esistono tre modi diversi toobackup SQL Server tooAzure archiviazione:
 
-1. SQL Server 2012 CU4 e versioni successive supportano il backup in modalità nativa di database a un URL, come spiegato in dettaglio nel post di blog [Nuova funzionalità di SQL Server 2014 - Parte 5 - Miglioramenti apportati a backup/ripristino](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx). Vedere il capitolo [SQL Server 2012 SP1 CU4 and later][dbms-guide-5.5.1] (SQL Server 2012 SP1 CU4 e versioni successive).
-2. Nelle versioni di SQL Server precedenti a SQL 2012 CU4 è possibile usare una funzionalità di reindirizzamento per eseguire il backup in un disco rigido virtuale e di fatto spostare il flusso di scrittura verso una posizione di archiviazione di Azure configurata. Vedere il capitolo [SQL Server 2012 SP1 CU3 and earlier releases][dbms-guide-5.5.2] (SQL Server 2012 SP1 CU3 e versioni precedenti).
-3. L'ultimo metodo prevede l'esecuzione di un comando convenzionale di backup su disco di SQL Server in un dispositivo disco. Si tratta di una procedura identica al modello di distribuzione locale che non viene illustrata in dettaglio in questo documento.
+1. SQL Server 2012 CU4 e l'URL di tooa in modo nativo i backup di database può essere superiore. Questo è descritta in dettaglio nel blog di hello [nuove funzionalità di miglioramenti di Backup e ripristino di SQL Server 2014 – parte 5 –](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx). Vedere il capitolo [SQL Server 2012 SP1 CU4 and later][dbms-guide-5.5.1] (SQL Server 2012 SP1 CU4 e versioni successive).
+2. TooSQL precedenti versioni di SQL Server 2012 CU4 possono usare un tooa toobackup funzionalità di reindirizzamento disco rigido virtuale e spostare il flusso di scrittura hello verso un percorso di archiviazione di Azure che è stato configurato. Vedere il capitolo [SQL Server 2012 SP1 CU3 and earlier releases][dbms-guide-5.5.2] (SQL Server 2012 SP1 CU3 e versioni precedenti).
+3. metodo finale Hello è tooperform un comando di toodisk backup convenzionale di SQL Server in un dispositivo disco. Questo è identica toohello modello di distribuzione locale e non viene illustrato in dettaglio in questo documento.
 
 #### <a name="0fef0e79-d3fe-4ae2-85af-73666a6f7268"></a>SQL Server 2012 SP1 CU4 e versioni successive
-Questa funzionalità consente di eseguire il backup direttamente nell'archivio BLOB di Azure. Senza questo metodo, è necessario eseguire il backup in altri dischi utilizzando così la capacità disponibile in termini di dischi e operazioni di I/O al secondo. Il principio è illustrato nella figura seguente:
+Questa funzionalità consente toodirectly tooAzure backup nell'archiviazione BLOB. Senza questo metodo, è necessario eseguire il backup tooother dischi, che comporta l'utilizzo del disco e capacità IOPS. Hello idea è sostanzialmente questa:
 
- ![Uso del backup di SQL Server 2012 nel BLOB di archiviazione di Microsoft Azure][dbms-guide-figure-400]
+ ![Utilizzo di Backup di SQL Server 2012 tooMicrosoft BLOB di archiviazione di Azure][dbms-guide-figure-400]
 
-Il vantaggio in questo caso è che non è necessario usare dischi per archiviarvi i backup di SQL Server. Il numero di dischi allocati è quindi inferiore ed è possibile usare l'intera larghezza di banda delle operazioni di I/O al secondo dei dischi per i file di dati e di log. Si noti che le dimensioni massime di un backup è limitata a 1 TB, come documentato nella sezione "Limitazioni" dell'articolo disponibile all'indirizzo <https://docs.microsoft.com/sql/relational-databases/backup-restore/sql-server-backup-to-url#limitations>. Se, nonostante l'uso della compressione del backup di SQL Server, la dimensione del backup supera 1 TB, è necessario usare la funzionalità descritta nel capitolo [SQL Server 2012 SP1 CU3 and earlier releases][dbms-guide-5.5.2] (SQL Server 2012 SP1 CU3 e versioni precedenti) di questo documento.
+in questo caso, il vantaggio di Hello è che non è necessario backup di SQL Server toostore toospend dischi in. Pertanto, sono disponibili meno dischi allocati e hello larghezza di banda del disco che IOPS può essere utilizzati per i file di dati e di log. Si noti che dimensioni massime di hello di un backup sono limitato tooa massimo di 1 TB, come descritto nella sezione hello 'Limitazioni' in questo articolo: <https://docs.microsoft.com/sql/relational-databases/backup-restore/sql-server-backup-to-url#limitations>. Se le dimensioni, dimensioni del backup hello, nonostante l'utilizzo di SQL Server Backup compression dovesse superare 1 TB, hello funzionalità descritta nel capitolo [SQL Server 2012 SP1 CU3 e versioni precedenti] [ dbms-guide-5.5.2] di questo documento toobe utilizzato.
 
-Nella [documentazione correlata](https://docs.microsoft.com/sql/relational-databases/backup-restore/restoring-from-backups-stored-in-microsoft-azure) che descrive il ripristino di database da backup nell'archivio BLOB di Azure si consiglia di non eseguire il ripristino direttamente dall'archivio se le dimensioni del backup superano 25 GB. L'indicazione riportata in questo articolo si basa semplicemente su considerazioni relative alle prestazioni e non su limitazioni funzionali. Le condizioni applicabili possono quindi variare caso per caso.
+[La documentazione pertinente](https://docs.microsoft.com/sql/relational-databases/backup-restore/restoring-from-backups-stored-in-microsoft-azure) che descrive il ripristino di hello del database dal backup su archivio Blob di Azure è consigliabile non toorestore direttamente dall'archivio BLOB di Azure se hello backup > 25 GB. indicazione Hello in questo articolo è semplicemente basata su considerazioni sulle prestazioni e non a causa di restrizioni toofunctional. Le condizioni applicabili possono quindi variare caso per caso.
 
 La documentazione relativa alla configurazione e all'uso di questo tipo di backup è disponibile in [questa](https://docs.microsoft.com/sql/relational-databases/tutorial-use-azure-blob-storage-service-with-sql-server-2016) esercitazione
 
-Per un esempio della sequenza di passaggi, vedere [qui](https://docs.microsoft.com/sql/relational-databases/backup-restore/sql-server-backup-to-url).
+Un esempio di hello sequenza di passaggi può essere letti [qui](https://docs.microsoft.com/sql/relational-databases/backup-restore/sql-server-backup-to-url).
 
-Quando si automatizzano i backup, è di fondamentale importanza garantire che ai BLOB di ogni backup venga assegnato un nome diverso. In caso contrario, verranno sovrascritti interrompendo la catena di ripristino.
+L'automatizzazione di backup, è della massima importanza toomake, assicurarsi che i BLOB hello per ogni backup sono denominati in modo diverso. In caso contrario verranno sovrascritti e hello ripristino catena è stata interrotta.
 
-Per evitare confusione tra i tre diversi tipi di backup, è consigliabile creare contenitori diversi nell'account di archiviazione usato per i backup. I contenitori possono essere organizzati solo in base alla VM oppure alla VM e al tipo di backup. Lo schema è simile al seguente:
+In ordine non toomix tra hello tre diversi tipi di backup, è consigliabile toocreate contenitori diversi sotto l'account di archiviazione hello usato per i backup. contenitori di Hello potrebbe essere solo dalla macchina virtuale o al tipo di macchina virtuale e di Backup. come potrebbe apparire schema Hello:
 
- ![Uso del backup di SQL Server 2012 nel BLOB di archiviazione di Microsoft Azure: contenitori diversi in un account di archiviazione separato][dbms-guide-figure-500]
+ ![Con Backup di SQL Server 2012 tooMicrosoft BLOB di archiviazione di Azure-contenitori diversi account di archiviazione separato][dbms-guide-figure-500]
 
-Nell'esempio precedente i backup non vengono eseguiti nello stesso account di archiviazione in cui sono distribuite le VM, ma in un nuovo account di archiviazione specifico per i backup. Negli account di archiviazione sono presenti contenitori diversi creati con una matrice del tipo di backup e del nome della VM. Tale segmentazione facilita l'amministrazione dei backup delle diverse VM.
+Nell'esempio hello in precedenza, hello i backup non verrà eseguiti nella stessa risorsa di archiviazione di account in cui hello hello vengono distribuite le macchine virtuali. Non vi sarà un nuovo account di archiviazione in modo specifico per i backup hello. All'interno gli account di archiviazione hello, non vi sarà diversi contenitori creati con una matrice di tipo hello di backup e hello nome della macchina virtuale. Questa segmentazione rende più semplice tooadministrate hello i backup di hello diverse macchine virtuali.
 
-I BLOB in cui vengono scritti direttamente i backup non vengono aggiunti al conteggio dei dischi dati di una VM. In questo modo è possibile sfruttare il numero massimo di dischi montati dello SKU di VM specifico per i dati e il file di log delle transazioni ed eseguire comunque il backup in un contenitore di archiviazione. 
+BLOB Hello direttamente scritti i backup di hello, non viene aggiunto il conteggio toohello hello di dischi di dati di una macchina virtuale. Pertanto possibile aumentare al massimo hello dischi dati montati di hello specifico VM SKU per i dati di hello e file di log di transazione ed eseguire comunque un backup in un contenitore di archiviazione. 
 
 #### <a name="f9071eff-9d72-4f47-9da4-1852d782087b"></a>SQL Server 2012 SP1 CU3 e versioni precedenti
-Per eseguire un backup direttamente in Archiviazione di Azure, è prima di tutto necessario scaricare il file MSI collegato a [questo](https://www.microsoft.com/download/details.aspx?id=40740) articolo della Knowledge Base.
+Hello primo passaggio è necessario eseguire in ordine tooachieve backup direttamente nel servizio di archiviazione Azure sarebbe toodownload hello file msi, collegato troppo[questo](https://www.microsoft.com/download/details.aspx?id=40740) articolo della Knowledge Base.
 
-Scaricare il file di installazione per x64 e la documentazione. Il file installa un programma denominato "Strumento di backup di Microsoft SQL Server in Microsoft Azure". Leggere attentamente la documentazione del prodotto.  Lo strumento funziona nel modo seguente:
+Scaricare il file di installazione x64 hello e la documentazione di hello. file Hello viene installato un programma denominato: 'TooMicrosoft di Backup di Microsoft SQL Server dello strumento di Azure'. Leggere attentamente la documentazione di hello del prodotto hello.  strumento di Hello funziona nel seguente modo hello:
 
-* Sul lato SQL Server viene definito un percorso sul disco per il backup di SQL Server (in questo caso non usare l'unità D:\).
-* Lo strumento consente di definire le regole utilizzabili per indirizzare i diversi tipi di backup a contenitori di archiviazione di Azure diversi.
-* Dopo aver definito le regole, lo strumento reindirizza il flusso di scrittura del backup destinato a uno dei dischi/dischi rigidi virtuali alla posizione di archiviazione di Azure definita in precedenza.
-* Lo strumento lascia quindi un piccolo file stub di pochi KB sul disco rigido virtuale/disco definito per il backup di SQL Server. **Tale file deve essere lasciato nella posizione di archiviazione perché è necessario per eseguire il ripristino da Archiviazione di Azure.**
-  * Se il file stub è andato perso, ad esempio perché si è smarrito il supporto di archiviazione in cui era contenuto, e si è scelto di eseguire il backup in un account di archiviazione di Microsoft Azure, è possibile ripristinare il file stub tramite Archiviazione di Microsoft Azure scaricandolo dal contenitore di archiviazione in cui è stato inserito. È quindi necessario inserire il file stub in una cartella del computer locale in cui è configurato lo strumento per rilevare e caricare nello stesso contenitore con la stessa password di crittografia se con la regola originale è stata usata la crittografia. 
+* Dal lato Server SQL hello, viene definito un percorso su disco per il backup di SQL Server hello (non utilizzare unità D:\ hello per questo).
+* strumento Hello consente regole toodefine, che possono essere utilizzato toodirect diversi tipi di contenitori di archiviazione di Azure toodifferent di backup.
+* Una volta regole hello, strumento hello reindirizza il flusso di scrittura hello di hello tooone backup di dischi rigidi virtuali e dischi di hello toohello percorso di archiviazione di Azure, definito in precedenza.
+* strumento Hello lascia un file di piccole dimensioni stub delle dimensioni di pochi KB nel disco rigido virtuale o disco, che è stato definito per SQL Server hello hello backup. **Questo file deve essere lasciato nel percorso di archiviazione hello perché è necessario toorestore nuovamente da archiviazione di Azure.**
+  * Se si hanno più file stub hello (ad esempio in seguito alla perdita hello dei supporti di archiviazione contenente file stub hello) e si è scelto l'opzione hello di backup tooa account di archiviazione di Microsoft Azure, è possibile recuperare il file stub hello tramite l'archiviazione di Microsoft Azure da scaricarlo dal contenitore di archiviazione hello in cui è stato inserito. È quindi consigliabile inserire il file di stub hello in una cartella nel computer locale hello in hello strumento configurato toohello toodetect e il caricamento dello stesso contenitore con hello stessa password di crittografia, se è stata utilizzata la crittografia con la regola originale hello. 
 
-Questo significa che lo schema descritto in precedenza per le versioni più recenti di SQL Server può essere applicato anche a versioni di SQL Server che non consentono l'indirizzamento diretto a una posizione di archiviazione di Azure.
+Ciò significa schema hello come descritto in precedenza per le versioni più recenti di SQL Server può essere inserito in anche per le versioni di SQL Server, che non consentono l'indirizzamento diretto un percorso di archiviazione di Azure.
 
-È consigliabile non usare questo metodo con versioni più recenti di SQL Server che supportano il backup in modalità nativa in Archiviazione di Azure. Fanno eccezione i casi in cui le limitazioni del backup nativo in Azure bloccano l'esecuzione di tale tipo di backup.
+È consigliabile non usare questo metodo con versioni più recenti di SQL Server che supportano il backup in modalità nativa in Archiviazione di Azure. Le eccezioni sono limitazioni del backup nativo di hello in Azure bloccano in esecuzione del backup nativo in Azure.
 
-#### <a name="other-possibilities-to-backup-sql-server-databases"></a>Altri modi per eseguire il backup di database di SQL Server
-Per eseguire il backup di database è anche possibile collegare dischi dati aggiuntivi a una VM usata per l'archiviazione dei backup. In tal caso è necessario verificare che i dischi non risultino pieni. In caso contrario, sarà necessario smontare il disco e "archiviarlo" sostituendolo con uno nuovo vuoto. Se si sceglie questo metodo, è opportuno mantenere questi dischi rigidi virtuali in account di archiviazione di Azure distinti rispetto a quelli che contengono i file di database.
+#### <a name="other-possibilities-toobackup-sql-server-databases"></a>Altri database di SQL Server toobackup possibilità
+Altri database toobackup possibilità è tooa di dischi dati aggiuntivi tooattach macchina virtuale che si utilizzano backup toostore in. In tal caso, è necessario assicurarsi che i dischi di hello non sono in esecuzione completi toomake. Se è questo caso di hello, sarà necessario dischi hello toounmount e pertanto toospeak "archiviarlo" e sostituirlo con un nuovo disco vuoto. Se si passa il percorso verso il basso, si desidera tookeep questi dischi rigidi virtuali negli account di archiviazione di Azure separate da quelle che hello dischi rigidi virtuali con file di database hello hello.
 
-È anche possibile usare una VM di grandi dimensioni con più dischi collegati, ad esempio una VM D14 con 32 dischi rigidi virtuali. Usare Spazi di archiviazione per creare un ambiente flessibile in cui creare condivisioni utilizzabili come destinazioni di backup per i diversi server DBMS.
+Una seconda possibilità è toouse una macchina virtuale di grandi dimensioni che può avere molti dischi collegati, ad esempio un D14 con 32VHDs. Utilizzare un ambiente flessibile in cui è possibile creare condivisioni utilizzate quindi come destinazioni di backup per server DBMS diversi hello toobuild di spazi di archiviazione.
 
 Per la documentazione su alcune procedure consigliate, vedere anche [qui](https://blogs.msdn.com/b/sqlcat/archive/2015/02/26/large-sql-server-database-backup-on-an-azure-vm-and-archiving.aspx) . 
 
 #### <a name="performance-considerations-for-backupsrestores"></a>Considerazioni sulle prestazioni per backup/ripristini
-Come nelle distribuzioni bare metal, le prestazioni dei backup/ripristini dipendono dalla quantità di volumi leggibili in parallelo e dalla velocità effettiva di tali volumi. Inoltre, l'utilizzo di CPU associato alla compressione del backup può avere un ruolo significativo per VM con un massimo di soli otto thread CPU. Si può quindi presumere quanto segue:
+Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino dipende del numero di volumi può essere letti in parallelo e velocità effettiva quali hello di tali volumi potrebbe essere. Inoltre, hello CPU usata dalla compressione dei backup potrebbe svolgono un ruolo significativo in macchine virtuali con solo i thread di CPU tooeight. Si può quindi presumere quanto segue:
 
-* Minore è il numero dei dischi usati per archiviare i file di dati, più bassa è la velocità effettiva generale nella lettura.
-* Minore è il numero di thread CPU nella VM, più forte è l'impatto della compressione del backup.
-* Minore è il numero di destinazioni (BLOB, dischi rigidi virtuali o dischi) in cui scrivere il backup, più bassa è la velocità effettiva.
-* Minori sono le dimensioni della VM, minore è la quota di velocità effettiva di archiviazione in lettura e scrittura da Archiviazione di Azure Storage. Questo avviene indipendentemente dal fatto che i backup vengano archiviati direttamente in BLOB di Azure o vengano archiviati in dischi rigidi virtuali a loro volta archiviati in BLOB di Azure.
+* Hello meno hello numero di dischi utilizzato i file di dati toostore hello, hello hello minore velocità effettiva complessiva in lettura.
+* numero inferiore di hello di thread CPU nella macchina virtuale hello Hello, hello più grave impatto hello della compressione di backup.
+* Hello un minor numero di destinazioni (BLOB, i dischi rigidi virtuali o i dischi) toowrite hello backup di, minore velocità effettiva di hello hello.
+* prova prova più piccola dimensioni delle macchine Virtuali, hello più piccoli hello velocità effettiva quota di archiviazione scrittura e lettura da archiviazione di Azure. Indipendentemente dal fatto che se i backup hello sono archiviati direttamente nel Blob di Azure o se vengono archiviati nei dischi rigidi virtuali nuovamente archiviati nel BLOB di Azure.
 
-Quando si usa un BLOB di archiviazione di Microsoft Azure come destinazione di backup nelle versioni più recenti, è consentito designare una sola destinazione di tipo URL per ogni backup specifico.
+Quando si utilizza un BLOB di archiviazione di Microsoft Azure come destinazione di backup hello nelle versioni più recenti, si è limitati toodesignating solo uno di URL di destinazione per ogni backup specifico.
 
-Quando invece si usa 'Strumento di backup di Microsoft SQL Server in Microsoft Azure' in versioni precedenti, è possibile definire più di una destinazione di tipo file. Con più di una destinazione è possibile ridimensionare il backup e aumentarne la velocità effettiva. In questo modo vengono anche creati più file nell'account di archiviazione di Azure. Nel corso dei test, usando più destinazioni di tipo file è possibile raggiungere la velocità effettiva ottenibile con le estensioni di backup implementate a partire da SQL Server 2012 SP1 CU4. È anche possibile ovviare al limite di 1 TB previsto dal backup nativo in Azure.
+Ma quando si utilizza hello "Backup di Microsoft SQL Server tooMicrosoft strumento di Azure' nelle versioni precedenti, è possibile definire più di una destinazione file. Con più destinazioni, possono essere ridimensionati backup hello e hello velocità effettiva del backup hello è superiore. Questo porterebbe quindi in più file nonché hello account di archiviazione di Azure. Durante il test utilizzando più destinazioni file è possibile ottenere una velocità effettiva hello, quello che si otterrebbe con estensioni backup hello implementate a partire da SQL Server 2012 SP1 CU4 in. Inoltre non vengono bloccate dal limite di 1TB hello come backup nativo di hello in Azure.
 
-Tenere comunque presente che la velocità effettiva dipende anche dalla località dell'account di archiviazione di Azure usato per il backup. Un'idea potrebbe essere quella di impostare per l'account di archiviazione una regione diversa da quella in cui vengono eseguite le VM, ad esempio eseguire la configurazione delle VM in Europa occidentale ma impostare l'account di archiviazione usato per il backup in Europa settentrionale. Tale impostazione influisce certamente sulla velocità effettiva del backup, che potrebbe non raggiungere i 150 MB/sec raggiungibili invece nei casi in cui l'archivio di destinazione e le VM vengono eseguiti in un data center nella stessa area.
+Tuttavia, tenere presente, la velocità effettiva hello anche dipendente nel percorso di hello dell'Account di archiviazione di Azure utilizzare per il backup di hello hello. Un'idea potrebbe essere l'account di archiviazione toolocate hello in macchine virtuali in esecuzione in un'area diversa di hello. Ad esempio l'esecuzione di configurazione della macchina virtuale hello in Europa, ma si deve inserire hello Account di archiviazione utilizzare tooback fronteggiare in Europa settentrionale. Che certamente ha un impatto sulla velocità effettiva di backup di hello ed è probabilmente non toogenerate una velocità effettiva di 150MB/sec come sembra toobe nei casi in cui vengono eseguite macchine virtuali di hello e archiviazione di destinazione hello in hello stesso Data Center regionale.
 
 #### <a name="managing-backup-blobs"></a>Gestione dei BLOB di backup
-I backup devono essere gestiti direttamente dall'utente. Dato che è prevista la creazione di numerosi BLOB in seguito all'esecuzione di frequenti backup dei log delle transazioni, l'amministrazione di tali BLOB può facilmente sovraccaricare il portale di Azure. È quindi consigliabile sfruttare Azure Storage Explorer. Sono disponibili diversi ottimi strumenti per facilitare la gestione di un account di archiviazione di Azure:
+È un backup di hello toomanage requisito per conto proprio. Poiché si prevede di hello che molti BLOB vengono creati tramite l'esecuzione di backup del log delle transazioni frequenti, amministrazione di questi BLOB può facilmente sovraccaricare hello portale di Azure. È pertanto consigliabile tooleverage uno strumento di esplorazione di archiviazione di Azure. Sono disponibili alcuni ottimi strumenti disponibili, che possono consentire toomanage un account di archiviazione di Azure
 
 * Microsoft Visual Studio con Azure SDK installato (<https://azure.microsoft.com/downloads/>)
 * Esplora archivi di Microsoft Azure (<https://azure.microsoft.com/downloads/>)
 * Strumenti di terze parti
 
-Per una descrizione più completa del backup e di SAP in Azure, vedere la [guida al backup di SAP](sap-hana-backup-guide.md) per altre informazioni.
+Per una descrizione più completa di Backup e SAP in Azure, vedere troppo[hello SAP Backup Guida](sap-hana-backup-guide.md) per ulteriori informazioni.
 
-### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>Uso di un'immagine di SQL Server da Microsoft Azure Marketplace
-In Microsoft Azure Marketplace sono disponibili VM che contengono già versioni di SQL Server. I clienti SAP che necessitano delle licenze per SQL Server e Windows possono approfittare di questa opportunità per ottenere le licenze necessarie scegliendo le VM con SQL Server già installato. Per usare tali immagini per SAP, è necessario considerare quanto segue:
+### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>Uso di un'immagine di SQL Server insufficiente hello Microsoft Azure Marketplace
+Microsoft offre le macchine virtuali in hello Azure Marketplace, che contiene già le versioni di SQL Server. Per i clienti SAP che necessitano di licenze per SQL Server e Windows, potrebbe trattarsi di una necessità di opportunità toobasically copertura hello per le licenze adottando macchine virtuali con SQL Server già installato. Ordine toouse tali immagini per SAP, hello considerazioni seguenti devono essere apportate toobe:
 
-* I costi delle versioni di SQL Server non di valutazione sono decisamente più elevati rispetto a una semplice VM solo Windows distribuita da Azure Marketplace. Per confrontare i prezzi, vedere gli articoli seguenti: <https://azure.microsoft.com/pricing/details/virtual-machines/windows/> e <https://azure.microsoft.com/pricing/details/virtual-machines/sql-server-enterprise/>. 
+* le versioni non di valutazione di SQL Server Hello presentano costi più elevati rispetto a solo un 'Solo Windows' macchina virtuale distribuita da Azure Marketplace. Vedere i prezzi toocompare questi articoli: <https://azure.microsoft.com/pricing/details/virtual-machines/windows/> e <https://azure.microsoft.com/pricing/details/virtual-machines/sql-server-enterprise/>. 
 * È possibile usare solo versioni di SQL Server supportate da SAP, come SQL Server 2012.
-* Le regole di confronto dell'istanza di SQL Server installata nelle VM offerte in Azure Marketplace non sono quelle che devono essere eseguite nell'istanza di SQL Server per SAP NetWeaver. È comunque possibile modificare le regole di confronto attenendosi alle istruzioni della sezione seguente.
+* regole di confronto di Hello dell'istanza di SQL Server hello, che viene installato nelle macchine virtuali hello presenti hello Azure Marketplace non è toorun istanza di SQL Server hello richiede che le regole di confronto hello SAP NetWeaver. È possibile modificare le regole di confronto di hello nonostante con istruzioni hello nella seguente sezione hello.
 
-#### <a name="changing-the-sql-server-collation-of-a-microsoft-windowssql-server-vm"></a>Modifica delle regole di confronto SQL Server di una VM Microsoft Windows/SQL Server
-Dato che le immagini di SQL Server in Azure Marketplace non sono configurate per l'uso delle regole di confronto richieste dalle applicazioni SAP NetWeaver, è necessario modificarle subito dopo la distribuzione. In SQL Server 2012 è possibile eseguire la procedura seguente non appena la VM è stata distribuita e un amministratore è in grado di accedervi:
+#### <a name="changing-hello-sql-server-collation-of-a-microsoft-windowssql-server-vm"></a>Hello la modifica delle regole di confronto di SQL Server di una macchina virtuale di Microsoft Windows/SQL Server
+Poiché le immagini di SQL Server hello in hello Azure Marketplace non sono impostate toouse hello regole di confronto, richiesto dalle applicazioni SAP NetWeaver, deve toobe modificato immediatamente dopo la distribuzione di hello. Per SQL Server 2012, questa operazione può essere eseguita con hello i passaggi seguenti appena hello macchina virtuale è stata distribuita e un amministratore è in grado di toolog in hello distribuito macchina virtuale:
 
 * Aprire una finestra di comando di Windows come amministratore.
-* Passare alla directory C:\Programmi\SQL Server\110\Setup Bootstrap\SQLServer2012.
-* Eseguire il comando: Setup.exe /QUIET /ACTION=REBUILDDATABASE /INSTANCENAME=MSSQLSERVER /SQLSYSADMINACCOUNTS=`<local_admin_account_name`> /SQLCOLLATION=SQL_Latin1_General_Cp850_BIN2   
-  * `<local_admin_account_name`> è l'account definito come account amministratore quando si distribuisce la VM per la prima volta tramite la raccolta.
+* Modificare hello directory tooC:\Program Files\Microsoft SQL Server\110\Setup Bootstrap\SQLServer2012.
+* Eseguire il comando hello: Setup.exe /QUIET /ACTION = REBUILDDATABASE /INSTANCENAME = MSSQLSERVER /SQLSYSADMINACCOUNTS =`<local_admin_account_name`> /SQLCOLLATION = SQL_Latin1_General_Cp850_BIN2   
+  * `<local_admin_account_name`> è l'account hello, che è stato definito come account di amministratore di hello quando si distribuisce hello VM per hello prima volta attraverso il gallery hello.
 
-Il processo dovrebbe richiedere solo alcuni minuti. Per verificare la correttezza del risultato finale del passaggio, seguire questa procedura:
+processo Hello operazione può richiedere alcuni minuti. In ordine toomake verificare se il passaggio di hello finisce con risultato corretto hello, eseguire hello alla procedura seguente:
 
 * Aprire SQL Server Management Studio.
 * Aprire una finestra di query.
-* Eseguire il comando sp_helpsort nel database master di SQL Server.
+* Eseguire hello comando sp_helpsort nel database master di SQL Server hello.
 
-Il risultato dovrebbe essere simile a quello della figura seguente:
+il risultato desiderato Hello dovrebbe essere simile:
 
     Latin1-General, binary code point comparison sort for Unicode Data, SQL Server Sort Order 40 on Code Page 850 for non-Unicode Data
 
-Se il risultato non corrisponde a quello nella figura, ARRESTARE la distribuzione di SAP e scoprire perché il comando di configurazione non ha funzionato nel modo previsto. La distribuzione di applicazioni SAP NetWeaver in un'istanza di SQL Server con tabelle codici di SQL Server diverse da quella indicata in precedenza **NON** è supportata.
+Se questo non è risultato hello, interrompere la distribuzione di SAP e analizzare i motivi per cui il comando di installazione di hello non ha funzionato come previsto. Distribuzione di applicazioni SAP NetWeaver in istanza di SQL Server con tabelle codici diverse di SQL Server rispetto a quello indicato in precedenza hello è **non** supportato.
 
 ### <a name="sql-server-high-availability-for-sap-in-azure"></a>Disponibilità elevata di SQL Server per SAP in Azure
-Come accennato in precedenza in questo documento, non è possibile creare l'archivio condiviso necessario per l'utilizzo della funzionalità di disponibilità elevata offerta nelle versioni meno recenti di SQL Server. Questa funzionalità prevede l'installazione di due o più istanze di SQL Server in un cluster di failover di Windows Server (WSFC) usando un disco condiviso per i database utente e alla fine tempdb. Questo è il metodo di disponibilità elevata standard usato da più tempo, nonché supportato da SAP. Azure però non supporta l'archiviazione condivisa, di conseguenza non è possibile realizzare configurazioni a disponibilità elevata di SQL Server con cluster di tipo disco condiviso. Esistono tuttavia molti altri metodi di disponibilità elevata, descritti nelle sezioni seguenti.
+Come accennato in precedenza in questo documento, non possibilità toocreate condivise di archiviazione è, che è necessaria per l'utilizzo di hello di funzionalità a disponibilità elevata SQL Server meno recente hello. Questa funzionalità potrebbe installare due o più istanze di SQL Server in un Server Failover Cluster WSFC (Windows) con un disco condiviso per i database utente hello (e tempdb). Si tratta di metodo di elevata disponibilità standard di hello molto tempo, è anche supportato da SAP. Azure però non supporta l'archiviazione condivisa, di conseguenza non è possibile realizzare configurazioni a disponibilità elevata di SQL Server con cluster di tipo disco condiviso. Tuttavia, molti altri metodi di disponibilità elevata sono comunque possibili e vengono descritti in hello le sezioni seguenti.
 
 #### <a name="sql-server-log-shipping"></a>Log shipping SQL Server
-Uno dei metodi di disponibilità elevata utilizzabili è il log shipping SQL Server. Se le VM incluse nella configurazione a disponibilità elevata hanno una risoluzione dei nomi funzionante, non sussistono problemi e la configurazione in Azure non sarà diversa da quelle eseguite in locale. Non è consigliabile affidarsi solo alla risoluzione IP. Per informazioni sulla configurazione del log shipping e sui principi su cui si basa, vedere la documentazione seguente:
+Uno dei metodi di hello della disponibilità elevata (HA) è la distribuzione dei Log di SQL Server. Se le macchine virtuali hello partecipa alla configurazione a disponibilità elevata hello utilizza la risoluzione dei nomi, non si è verificato alcun problema e l'installazione di hello in Azure non è diversa da qualsiasi programma di installazione viene eseguita in locale. Non è consigliabile toorely solo alla risoluzione IP. Con toosetting per quanto riguarda i principi di hello intorno a Log Shipping e di Log Shipping, vedere la documentazione:
 
 <https://docs.microsoft.com/sql/database-engine/log-shipping/about-log-shipping-sql-server>
 
-Per ottenere effettivamente una disponibilità elevata, è necessario distribuire le VM incluse in una configurazione di log shipping in modo che appartengano allo stesso set di disponibilità di Azure.
+In ordine tooreally ottenere una disponibilità elevata, è necessario che uno toodeploy hello macchine virtuali, che sono all'interno di tali toobe di una configurazione Log Shipping all'interno di hello stesso Set di disponibilità.
 
 #### <a name="database-mirroring"></a>Mirroring del database
-Il mirroring del database supportato da SAP (vedere la nota SAP [965908]) si basa sulla definizione di un partner di failover nella stringa di connessione SAP. In caso di cross-premise, si presuppone che le due VM appartengano allo stesso dominio e che il contesto utente in cui vengono eseguite le due istanze di SQL Server sia un utente di dominio e abbia privilegi sufficienti nelle due istanze di SQL Server interessate. La configurazione del mirroring del database in Azure non è quindi diversa da una configurazione tipica locale.
+Mirroring del database come supportato da SAP (vedere la nota SAP [965908]) si basa sulla definizione di un partner di failover nella stringa di connessione SAP hello. Per i casi di hello Cross-premise, si presuppone che hello due macchine virtuali sono in hello nello stesso dominio e che il contesto utente hello hello istanze sono in esecuzione con un utente di dominio nonché di due SQL Server e disporre di privilegi sufficienti in istanze di SQL Server hello due coinvolte. Pertanto, il programma di installazione di hello del mirroring del Database in Azure non differiscono tra una configurazione tipica locale.
 
-A partire dalle distribuzioni solo cloud, il metodo più semplice prevede la configurazione di un altro dominio in Azure allo scopo di avere in un unico dominio le VM DBMS e idealmente le VM SAP dedicate.
+Come le distribuzioni solo Cloud, di metodo più semplice di hello è toohave un altro dominio del programma di installazione in Azure toohave tali macchine virtuali DBMS (e macchine virtuali SAP dedicate) all'interno di un dominio.
 
-Se non è possibile predisporre un unico dominio, è anche possibile usare certificati per gli endpoint di mirroring del database, come descritto in questo articolo: <https://docs.microsoft.com/sql/database-engine/database-mirroring/use-certificates-for-a-database-mirroring-endpoint-transact-sql>
+Se un dominio non è possibile, anche possibile usare i certificati per il database di hello gli endpoint del mirroring, come descritto qui: <https://docs.microsoft.com/sql/database-engine/database-mirroring/use-certificates-for-a-database-mirroring-endpoint-transact-sql>
 
-Per un'esercitazione relativa alla configurazione del mirroring del database in Azure, vedere <https://docs.microsoft.com/sql/database-engine/database-mirroring/database-mirroring-sql-server> 
+Un tooset esercitazione il mirroring del Database in Azure sono disponibili qui: <https://docs.microsoft.com/sql/database-engine/database-mirroring/database-mirroring-sql-server> 
 
 #### <a name="sql-server-always-on"></a>SQL Server AlwaysOn
-Dato che è supportato per SAP in locale (vedere la nota SAP [1772688]), AlwaysOn può essere usato anche in combinazione con SAP in Azure. Il fatto che non sia possibile creare dischi condivisi in Azure non implica che non sia possibile creare una configurazione WSFC (Windows Server Failover Cluster) AlwaysOn tra VM diverse. In realtà indica che non è possibile usare un disco condiviso come quorum nella configurazione cluster. Di conseguenza, è possibile creare una configurazione WSFC AlwaysOn in Azure evitando semplicemente di selezionare il tipo di quorum che utilizza il disco condiviso. L'ambiente Azure in cui vengono distribuite le VM deve risolvere queste ultime in base al nome e le VM devono appartenere allo stesso dominio. Queste indicazioni sono valide solo per distribuzioni solo Azure e cross-premise. La distribuzione del listener del gruppo di disponibilità di SQL Server, da non confondere con il set di disponibilità di Azure presenta alcune particolarità da considerare, dal momento che al momento Azure non consente di creare semplicemente un oggetto AD/DNS, mentre questa operazione è consentita in locale. È quindi necessario eseguire alcuni passaggi di installazione diversi per ovviare al comportamento specifico di Azure.
+Always On è supportato per SAP in locale (vedere la nota SAP [1772688]), è supportato toobe utilizzato in combinazione con SAP in Azure. fatti Hello che non si è in grado di toocreate condiviso dischi in Azure non significa che uno non è possibile creare una configurazione sempre in Windows Server Failover Cluster (WSFC) tra diverse macchine virtuali. Significa solo che non si dispone hello possibilità toouse un disco condiviso come quorum nella configurazione del cluster hello. Di conseguenza è possibile compilare una configurazione di AlwaysOn in WSFC in Azure e non semplicemente la Seleziona tipo di quorum hello che usa il disco condiviso. Hello ambiente Azure tali macchine virtuali distribuite in viene risolto hello macchine virtuali in base al nome e deve essere hello hello macchine virtuali nello stesso dominio. Queste indicazioni sono valide solo per distribuzioni solo Azure e cross-premise. Esistono alcune considerazioni sulla distribuzione hello listener del gruppo di disponibilità di SQL Server (non toobe confusa con il Set di disponibilità di Azure hello) poiché in questo momento Azure non consente toosimply creare un oggetto AD/DNS come è possibile on-premise. Di conseguenza, alcuni passaggi di installazione diversa sono necessarie tooovercome comportamento specifico di hello di Azure.
 
 Di seguito sono elencate alcune considerazioni relative all'uso di un listener del gruppo di disponibilità.
 
-* L'uso di un listener del gruppo di disponibilità è possibile solo se il sistema operativo guest della VM è Windows Server 2012 o versioni successive. Per Windows Server 2012 è necessario assicurarsi che sia applicata la patch seguente: <https://support.microsoft.com/kb/2854082> 
-* Per Windows Server 2008 R2, questa patch non esiste ed è necessario usare AlwaysOn così come il mirroring del database, specificando un partner di failover nella stringa di connessione tramite il parametro dbs/mss/server del file SAP default.pfl. Vedere la nota SAP [965908].
-* Quando si usa un listener del gruppo di disponibilità, le VM di database devono essere connesse a un Load Balancer dedicato. Per la risoluzione dei nomi nelle distribuzioni solo cloud è necessario che tutte le VM di un sistema SAP (server applicazioni, server DBMS e server (A)SCS) si trovino nella stessa rete virtuale oppure che la manutenzione del file etc\host venga effettuata da un livello applicazione SAP per ottenere i nomi risolti delle VM di SQL Server. Per evitare che Azure assegni nuovi indirizzi IP nei casi in cui entrambe le VM vengono arrestate incidentalmente, è consigliabile assegnare indirizzi IP statici alle interfacce di rete di tali VM nella configurazione AlwaysOn. Per informazioni sulla definizione di un indirizzo IP statico, vedere [questo][virtual-networks-reserved-private-ip] articolo.
+* L'utilizzo di un listener del gruppo di disponibilità è possibile solo con Windows Server 2012 o versione successiva come sistema operativo guest della macchina virtuale hello. Per Windows Server 2012 è necessario assicurarsi che si applica la patch toomake: <https://support.microsoft.com/kb/2854082> 
+* Per Windows Server 2008 R2 questa patch non esiste e Always On sarà necessario toobe utilizzato in hello stesso modo del Mirroring del Database specificando un partner di failover nella stringa di connessione hello (tramite hello SAP default.pfl dbs parametro/mss/server – vedere la nota SAP [965908]).
+* Quando tramite un listener del gruppo di disponibilità, le macchine virtuali Database hello necessario toobe connesso tooa dedicato bilanciamento del carico. La risoluzione dei nomi nelle distribuzioni solo Cloud richiederebbe una tutte le macchine virtuali di un SAP sistema (server applicazioni, server DBMS e server (A) SCS) siano in hello stessa rete virtuale o richiederebbe da una manutenzione di hello livello applicazione SAP del file etc hello in ordine tooget hello nomi di macchina virtuale di hello risolto macchine virtuali SQL Server. In ordine tooavoid che Azure assegni nuovi indirizzi IP nei casi in cui entrambe le macchine virtuali tra l'altro arresto, è necessario assegnare indirizzi IP statici toohello interfacce di rete di tali macchine virtuali in hello configurazione AlwaysOn (la definizione di un indirizzo IP statico è descritto nell'argomento [questo] [ virtual-networks-reserved-private-ip] articolo)
 
 [comment]: <> (Blog precedente)
 [comment]: <> (<https://blogs.msdn.com/b/alwaysonpro/archive/2014/08/29/recommendations-and-best-practices-when-deploying-sql-server-alwayson-availability-groups-in-windows-azure-iaas.aspx>, <https://blogs.technet.com/b/rmilne/archive/2015/07/27/how-to-set-static-ip-on-azure-vm.aspx>) 
-* La procedura di creazione della configurazione cluster WSFC prevede speciali passaggi quando è necessario assegnare al cluster un indirizzo IP particolare, dal momento che Azure con la funzionalità corrente assegna al nome del cluster lo stesso indirizzo IP del nodo in cui viene creato il cluster. È quindi necessario eseguire un passaggio manuale per assegnare al cluster un indirizzo IP diverso.
-* Il listener del gruppo di disponibilità verrà creato in Azure con gli endpoint TCP/IP assegnati alle VM che eseguono le repliche primaria e secondaria del gruppo di disponibilità.
-* Potrebbe essere necessario proteggere questi endpoint con ACL.
+* Esistono passaggi speciali necessari per la compilazione di configurazione del cluster WSFC hello in cui è necessario un indirizzo IP specifico cluster hello assegnato, poiché Azure con le funzionalità correnti è necessario assegnare il nome del cluster hello hello nello stesso indirizzo IP del cluster di hello nodo hello viene creato. Ciò significa che un passaggio manuale deve essere eseguita tooassign un cluster di toohello di indirizzo IP diverso.
+* Hello listener del gruppo di disponibilità è in corso toobe creato in Azure con gli endpoint TCP/IP, che vengono assegnati le macchine virtuali toohello in esecuzione le repliche primarie e secondarie hello hello del gruppo di disponibilità.
+* Potrebbe esserci un toosecure necessità questi endpoint con gli ACL.
 
 [comment]: <> (TODO old blog)
-[comment]: <> (The detailed steps and necessities of installing an AlwaysOn configuration on Azure are best experienced when walking through the tutorial available [here][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups])
-[comment]: <> (Preconfigured AlwaysOn setup via the Azure gallery <https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>)
+[comment]: <> (i passaggi dettagliati Hello e qualsiasi cosa per il dell'installazione di una configurazione di AlwaysOn in Azure, è consigliabile fare riferimento hello esercitazione disponibile [here][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups])
+[comment]: <> (Configurazione AlwaysOn tramite hello Azure raccolta preconfigurato < https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>)
 [comment]: <> (Creating an Availability Group Listener is best described in [this][virtual-machines-windows-classic-ps-sql-int-listener] tutorial)
 [comment]: <> (Securing network endpoints with ACLs are explained best here:)
 [comment]: <> (*    <https://michaelwasham.com/windows-azure-powershell-reference-guide/network-access-control-list-capability-in-windows-azure-powershell/>)
-[comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/08/31/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-1-of-2.aspx> )
+[comment]: <> (*    &lt;https://blogs.technet.com/b/heyscriptingguy/archive/2013/08/31/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-1-of-2.aspx&gt; )
 [comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/01/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-2-of-2.aspx>)  
-[comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/18/creating-acls-for-windows-azure-endpoints.aspx>) 
+[comment]: <> (*    &lt;https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/18/creating-acls-for-windows-azure-endpoints.aspx&gt;) 
 
-È possibile distribuire un gruppo di disponibilità AlwaysOn di SQL Server anche in diverse aree di Azure. Questa funzionalità sfrutta la connettività da rete virtuale a rete virtuale di Azure ([altri dettagli][virtual-networks-configure-vnet-to-vnet-connection]).
+È possibile toodeploy un SQL Server gruppo di disponibilità AlwaysOn su diverse aree di Azure anche. Questa funzionalità sfrutta la connettività hello Azure a rete virtuale a ([ulteriori dettagli][virtual-networks-configure-vnet-to-vnet-connection]).
 
 [comment]: <> (TODO old blog)
-[comment]: <> (The setup of SQL Server AlwaysOn Availability Groups in such a scenario is described here: <https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>.) 
+[comment]: <> (l'installazione di Hello di gruppi di disponibilità AlwaysOn di SQL Server in tale scenario è descritto di seguito: < https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>.) 
 
 #### <a name="summary-on-sql-server-high-availability-in-azure"></a>Riepilogo sulla disponibilità elevata di SQL Server in Azure
-In considerazione del fatto che Archiviazione di Azure garantisce la protezione del contenuto, diventa meno importante creare un'immagine hot standby. Lo scenario di disponibilità elevata deve quindi prevede la protezione nei casi seguenti:
+Dato delle tabelle dei fatti hello che di archiviazione di Azure protegge il contenuto di hello, sussiste una minore tooinsist motivo su un'immagine hot standby. Questo significa che lo scenario di disponibilità elevata deve tooonly proteggersi da hello seguenti casi:
 
-* Indisponibilità completa della VM per interventi di manutenzione sul cluster di server in Azure o per altri motivi
-* Problemi software nell'istanza di SQL Server
+* Indisponibilità di hello VM nel suo complesso a causa di toomaintenance nel cluster di server hello in Azure o per altri motivi
+* Problemi software nell'istanza di SQL Server hello
 * Protezione da errori manuali nel caso in cui i dati vengono eliminati ed è necessario il ripristino temporizzato
 
-Se si esaminano le tecnologie corrispondenti, si può affermare che i primi due casi possono essere coperti dal mirroring del database o da AlwaysOn, mentre il terzo solo dal log shipping.
+Osservando le tecnologie corrispondenti una possibile sostengono che i primi due casi hello possono essere gestiti mediante il mirroring del Database o Always On, mentre il terzo caso hello solo possibile coperto dal Log Shipping.
 
-È necessario bilanciare i vantaggi di AlwaysOn con la procedura di configurazione di questa tecnologia, che risulta più complessa se confrontata con quella del mirroring del database. I vantaggi includono:
+È necessario toobalance hello installazione più complessa di Always On tooDatabase confrontati Mirroring, i vantaggi di hello di Always On. I vantaggi includono:
 
 * Repliche secondarie leggibili.
 * Backup da repliche secondarie.
@@ -840,80 +840,80 @@ Se si esaminano le tecnologie corrispondenti, si può affermare che i primi due 
 * Possibilità di creare più repliche secondarie.
 
 ### <a name="9053f720-6f3b-4483-904d-15dc54141e30"></a>Riepilogo generale su SQL Server per SAP in Azure
-Questa guida contiene numerosi consigli che è preferibile leggere più volte prima di pianificare la distribuzione di Azure. In linea generale, assicurarsi di seguire i dieci consigli generali specifici per la distribuzione di DBMS in Azure:
+Questa guida contiene numerosi consigli che è preferibile leggere più volte prima di pianificare la distribuzione di Azure. In generale, tuttavia, essere certi toofollow hello primi dieci sistemi DBMS in punti specifici di Azure:
 
 [comment]: <> (2.3 higher throughput than what? Than one VHD?)
-1. Usare la versione più recente di DBMS, come SQL Server 2014, che offre maggiori vantaggi in Azure. Per SQL Server, si tratta di SQL Server 2012 SP1 CU4, che include la funzionalità di backup in Archiviazione di Azure. Con SAP, tuttavia, è consigliabile almeno SQL Server 2014 SP1 CU1 o SQL Server 2012 SP2 con l'aggiornamento cumulativo più recente.
-2. Pianificare attentamente l'infrastruttura di sistema SAP in Azure per bilanciare il layout dei file di dati e le restrizioni di Azure:
-   * Non usare troppi dischi, ma un numero sufficiente a garantire il numero necessario di operazioni di I/O al secondo.
+1. Utilizzare hello ultima versione del sistema DBMS, ad esempio SQL Server 2014, con la maggior parte dei vantaggi di hello in Azure. Per SQL Server, si tratta di SQL Server 2012 SP1 CU4 che include funzionalità di hello di backup diretto di archiviazione di Azure. Tuttavia, in combinazione con SAP, la raccomandazione almeno aggiornamento Cumulativo più recente di SQL Server 2014 SP1 CU1 o SQL Server 2012 SP2 e hello.
+2. Pianificare attentamente il landscape del sistema SAP in Azure toobalance layout dei file di dati hello e le limitazioni di Azure:
+   * Non dispone di un numero eccessivo di dischi, ma dispone di sufficiente tooensure può raggiungere le operazioni di IOPS necessarie.
    * Se non si usa Managed Disks, tenere presente che il numero di operazioni di I/O al secondo consentito varia a seconda dell'account di archiviazione di Azure e che gli account di archiviazione sono limitati nelle singole sottoscrizioni di Azure ([altri dettagli][azure-subscription-service-limits]). 
-   * Se è necessaria una velocità effettiva maggiore, eseguire lo striping solo tra dischi.
-3. Non installare mai software né inserire file che richiedono la persistenza nell'unità D:\ perché non è permanente e qualsiasi elemento in tale unità andrà perso al riavvio di Windows.
+   * Solo striping nei dischi se è necessario tooachieve una velocità effettiva superiore.
+3. Non installare software o inserire i file che richiedono la persistenza in hello unità D:\ quelle non permanente e qualsiasi elemento in questa unità viene perso al riavvio di Windows.
 4. Non usare il caching dei dischi per Archiviazione Standard di Azure.
 5. Non usare account di archiviazione con replica geografica di Azure.  Usare l'opzione Con ridondanza locale per i carichi di lavoro DBMS.
-6. Usare la soluzione di disponibilità elevata/ripristino di emergenza del fornitore del sistema DBMS per replicare i dati del database.
+6. Utilizzare i dati del fornitore del sistema DBMS HA/DR soluzione tooreplicate database.
 7. Usare sempre la risoluzione dei nomi e non fare affidamento sugli indirizzi IP.
-8. Usare la massima compressione possibile del database. Per SQL Server si tratta della compressione di pagina.
-9. Prestare attenzione quando si usano immagini di SQL da Azure Marketplace. Se si usa quella di SQL Server, è necessario modificare le regole di confronto dell'istanza prima di installarvi un qualsiasi sistema SAP NetWeaver.
-10. Installare e configurare la funzionalità di monitoraggio dell'host SAP per Azure come illustrato nella [Deployment Guide][deployment-guide] (Guida alla distribuzione).
+8. Utilizzare hello compressione di database massima possibile. Per SQL Server si tratta della compressione di pagina.
+9. Assicurarsi che l'utilizzo di immagini di SQL Server da hello Azure Marketplace. Se si utilizza hello di SQL Server, è necessario modificare le regole di confronto di hello istanza prima di installare qualsiasi sistema SAP NetWeaver su di esso.
+10. Installare e configurare SAP Host Monitoring per Azure hello, come descritto in [Guida alla distribuzione][deployment-guide].
 
-## <a name="specifics-to-sap-ase-on-windows"></a>Specifiche per SAP ASE in Windows
-A partire da Microsoft Azure, è possibile eseguire facilmente la migrazione delle applicazioni SAP ASE in macchine virtuali di Azure. SAP ASE in una macchina virtuale consente di ridurre il costo totale di proprietà associato a distribuzione, gestione e manutenzione delle applicazioni aziendali eseguendo facilmente la migrazione di queste applicazioni a Microsoft Azure. Con SAP ASE in una macchina virtuale di Azure, gli amministratori e gli sviluppatori possono continuare a usare gli stessi strumenti di sviluppo e amministrazione disponibili in locale.
+## <a name="specifics-toosap-ase-on-windows"></a>Le specifiche tooSAP ASE in Windows
+A partire da Microsoft Azure, è possibile migrare i tooAzure di applicazioni SAP ASE macchine virtuali esistenti. SAP ASE in una macchina virtuale consente di tooreduce hello costo totale di proprietà di distribuzione, gestione e manutenzione di applicazioni breadth aziendali eseguendo facilmente la migrazione di questi tooMicrosoft applicazioni Azure. Con SAP ASE in una macchina virtuale di Azure, gli amministratori e sviluppatori possono ancora usare hello stessi strumenti di sviluppo e amministrazione disponibili in locale.
 
-Il contratto di servizio per le macchine virtuali di Azure è disponibile all'indirizzo <https://azure.microsoft.com/support/legal/sla/virtual-machines>
+È un contratto di servizio per hello macchine virtuali di Azure sono disponibili qui: <https://azure.microsoft.com/support/legal/sla/virtual-machines>
 
-Anche se le prestazioni delle macchine virtuali ospitate in Microsoft Azure saranno sicuramente molto elevate rispetto ad altre offerte per la virtualizzazione del cloud pubblico, i risultati ottenuti possono variare. I numeri SAPS relativi al ridimensionamento di SAP per i diversi SKU di VM con certificazione SAP sono riportati nella nota SAP [1928533].
+Si è certi di Microsoft Azure macchine virtuali ospitate esegue molto bene in offerte di virtualizzazione di confronto tooother cloud pubblico, ma i singoli risultati possono variare. SAP ridimensionamento numeri SAP di hello SAP diversi certificati SKU di macchina virtuale viene fornito nella nota SAP separata [1928533].
 
-Le istruzioni e i suggerimenti relativi all'utilizzo di Archiviazione di Azure, alla distribuzione di VM SAP o al monitoraggio di SAP si applicano alle distribuzioni di SAP ASE insieme alle applicazioni SAP, come indicato nei primi quattro capitoli di questo documento.
+Istruzioni e indicazioni nell'utilizzo toohello considerare di archiviazione di Azure, la distribuzione di macchine virtuali SAP o SAP Monitoring si applicano toodeployments di SAP ASE in combinazione con le applicazioni SAP, come indicato in tutto hello primi quattro capitoli di questo documento.
 
 ### <a name="sap-ase-version-support"></a>Supporto della versione di SAP ASE
-SAP supporta attualmente SAP ASE versione 16.0 per l'uso con i prodotti SAP Business Suite. Tutti gli aggiornamenti per il server SAP ASE o per i driver ODBC e JDBC da usare con i prodotti SAP Business Suite vengono forniti esclusivamente in SAP Service Marketplace su: <https://support.sap.com/swdc>.
+SAP supporta attualmente SAP ASE versione 16.0 per l'uso con i prodotti SAP Business Suite. Tutti gli aggiornamenti per il server SAP ASE o toobe di driver ODBC e JDBC utilizzato con i prodotti vengono forniti esclusivamente tramite SAP Business Suite hello SAP Service Marketplace in: <https://support.sap.com/swdc>.
 
-Come per le installazioni locali, non scaricare gli aggiornamenti per il server SAP ASE o per i driver ODBC e JDBC direttamente dai siti Web Sybase. Per informazioni dettagliate sulle patch supportate per l'uso con i prodotti SAP Business Suite in locale e nelle macchine virtuali di Azure, vedere le note SAP seguenti:
+Come per le installazioni locali, non scaricare gli aggiornamenti per il server SAP ASE hello o per hello JDBC e i driver ODBC direttamente da siti Web di Sybase. Per informazioni dettagliate sulle patch, che sono supportate per l'utilizzo con i prodotti SAP Business Suite in locale e nelle macchine virtuali di Azure vedere hello note su SAP seguenti:
 
 * [1590719]
 * [1973241]
 
-Le informazioni generali sull'esecuzione di SAP Business Suite in SAP ASE sono disponibili in [SCN](https://www.sap.com/community/topic/ase.html)
+Informazioni generali sull'esecuzione di SAP Business Suite in SAP ASE sono reperibile in hello [SCN](https://www.sap.com/community/topic/ase.html)
 
 ### <a name="sap-ase-configuration-guidelines-for-sap-related-sap-ase-installations-in-azure-vms"></a>Linee guida per la configurazione di SAP ASE per le installazioni di SAP ASE correlate a SAP nelle VM di Azure
-#### <a name="structure-of-the-sap-ase-deployment"></a>Struttura della distribuzione SAP ASE
-In base alla descrizione generale, gli eseguibili di SAP ASE devono essere salvati o installati nell'unità di sistema del disco del sistema operativo della VM (unità c:\). In genere, la maggior parte dei database di sistema e di strumenti di SAP ASE non viene pienamente sfruttata dal carico di lavoro di SAP NetWeaver. Di conseguenza è possibile lasciare nell'unità C:\ anche i database di sistema e di strumenti (master, model, saptools, sybmgmtdb, sybsystemdb). 
+#### <a name="structure-of-hello-sap-ase-deployment"></a>Struttura di distribuzione di SAP ASE hello
+In conformità con descrizione generale di hello, gli eseguibili SAP ASE devono essere disponibile oppure installati nell'unità di sistema hello del disco del sistema operativo della macchina virtuale di hello (l'unità c:\). In genere, la maggior parte dei database di sistema e gli strumenti di SAP ASE hello non sono realmente utilizzata rigido dal carico di lavoro di SAP NetWeaver. Pertanto hello sistema e i database di strumenti (master, model, saptools, sybmgmtdb, sybsystemdb) possono rimanere nell'unità C:\ di hello anche. 
 
-Può fare eccezione il database temporaneo contenente tutte le tabelle di lavoro e le tabelle temporanee create da SAP ASE, che nel caso di alcuni carichi di lavoro SAP ERP e di tutti i carichi di lavoro BW può richiedere un volume dati o un volume di operazioni di I/O superiore, perché di dimensioni troppo grandi per il disco del sistema operativo della VM originale (unità c:\).
+Un'eccezione può essere il database temporaneo di hello che contiene tutte le tabelle di lavoro e le tabelle temporanee create da SAP ASE, che in caso di alcune ERP SAP e tutti i carichi di lavoro BW potrebbe richiedere il volume di dati maggiore o volume di operazioni dei / o, che non si adattata hello originale Disco del sistema operativo della macchina virtuale (l'unità c:\).
 
-A seconda della versione di SAPInst/SWPM usata per installare il sistema, il database può contenere:
+A seconda di hello versione SAPInst/SWPM utilizzato system hello tooinstall, hello database potrebbe contenere:
 
 * Un solo tempdb SAP ASE creato durante l'installazione di SAP ASE
-* Un tempdb SAP ASE creato in seguito all'installazione di SAP ASE e un saptempdb aggiuntivo creato dalla routine di installazione SAP
-* Un tempdb SAP ASE creato con l'installazione di SAP ASE e un tempdb aggiuntivo creato manualmente (ad esempio, seguendo la nota SAP [1752266]) per soddisfare i requisiti specifici di ERP/BW per tempdb
+* Un tempdb SAP ASE creato mediante l'installazione di SAP ASE e un saptempdb aggiuntivi creati da hello routine di installazione di SAP
+* Un tempdb SAP ASE creato mediante l'installazione di SAP ASE e un tempdb aggiuntivi che è stato creato manualmente (ad esempio seguendo la nota SAP [1752266]) ai requisiti di tempdb specifico di toomeet ERP/BW
 
-Nel caso di carichi di lavoro ERP specifici o di tutti i carichi di lavoro BW è consigliabile, dal punto di vista delle prestazioni, mantenere i dispositivi tempdb del tempdb aggiuntivo creato (con SWPM o manualmente) in un'unità diversa da C:\. Se non esistono tempdb aggiuntivi, è consigliabile crearne uno (nota SAP [1752266]).
+In caso di ERP specifico o tutti i carichi di lavoro BW, l'aderenza, tooperformance conto, i dispositivi di tempdb hello tookeep di hello inoltre creare tempdb (tramite SWPM o manualmente) in un'unità diversa da C:\. Se non esiste alcun tempdb aggiuntivi, è consigliabile toocreate uno (nota SAP [1752266]).
 
-Per tali sistemi, eseguire questa procedura per il tempdb aggiuntivo creato:
+Per hello tali sistemi è necessario eseguire i passaggi seguenti per hello inoltre creata tempdb:
 
-* Spostare il primo dispositivo tempdb nel primo dispositivo del database SAP
-* Aggiungere dispositivi tempdb a ogni disco rigido virtuale contenente un dispositivo del database SAP
+* Spostare hello prima tempdb dispositivo toohello primo dispositivo del database SAP hello
+* Aggiungere tooeach dispositivi tempdb di dischi rigidi virtuali contenenti un dispositivo del database SAP hello hello
 
-Questa configurazione consente a tempdb di utilizzare più spazio di quello fornito dall'unità di sistema. Come riferimento è possibile controllare le dimensioni del dispositivo tempdb nei sistemi esistenti eseguiti in locale. In alternativa, con una tale configurazione potrà essere eseguito su tempdb un numero di operazioni di I/O al secondo che l'unità di sistema non può garantire. I sistemi in esecuzione in locale possono anche essere usati per monitorare il carico di lavoro di I/O in tempdb.
+Questo tooeither tempdb di configurazione consente di utilizzare più spazio rispetto a unità di sistema di hello è in grado di tooprovide. Come riferimento una possibile controllare le dimensioni di dispositivo tempdb hello nei sistemi esistenti, in cui vengono eseguiti in locale. O una configurazione di questo tipo verrebbe IOPS eseguite tempdb, che non può essere fornito con unità di sistema hello. Nuovamente sistemi che eseguono in locale possono essere utilizzati toomonitor i/o il carico di lavoro nel database tempdb.
 
-Non spostare mai dispositivi SAP ASE nell'unità D:\ della VM. Questo vale anche per il tempdb, anche se gli oggetti in esso presenti sono solo temporanei.
+Non inserire tutti i dispositivi SAP ASE in hello unità D:\ della macchina virtuale hello. Questo vale anche toohello tempdb, anche se gli oggetti di hello mantenuti in tempdb hello sono solo temporanei.
 
 #### <a name="impact-of-database-compression"></a>Impatto della compressione del database
-Nelle configurazioni in cui la larghezza di banda di I/O può diventare un fattore limitante, ogni misura che riduce le operazioni di I/O al secondo consente di estendere il carico di lavoro eseguibile in uno scenario IaaS come Azure. È quindi consigliabile verificare che venga usata la compressione SAP ASE prima di caricare un database SAP esistente in Azure.
+Nelle configurazioni in cui la larghezza di banda dei / o può diventare un fattore limitante, ogni misura, riducendo il numero di IOPS può contribuire a carico di lavoro di hello toostretch può eseguire in uno scenario IaaS come Azure. Pertanto, è consigliabile assicurarsi che la compressione di SAP ASE viene utilizzata prima di caricare un tooAzure di database SAP esistente toomake.
 
-Sono diversi i motivi per cui è consigliabile eseguire la compressione del database prima del caricamento in Azure se non è già stata implementata:
+la compressione di Hello raccomandazione tooperform prima del caricamento tooAzure se non è già stato implementato è dato da diversi motivi:
 
-* La quantità di dati da caricare in Azure è minore
-* La durata dell'esecuzione della compressione è inferiore, presupponendo che si possa usare hardware più avanzato con più CPU o una maggiore larghezza di banda di I/O oppure meno latenza di I/O in locale
-* L'uso di database di dimensioni inferiori può contribuire a ridurre i costi per l'allocazione dei dischi
+* quantità di Hello di dati caricato toobe tooAzure è inferiore
+* durata Hello dell'esecuzione di compressione di hello è più breve, supponendo che sia possibile usare hardware più potente con più CPU o della larghezza di banda dei / o maggiore o minore latenza i/o in locale
+* Database di dimensioni più piccolo potrebbe causare costi tooless per l'allocazione dei dischi
 
-Il funzionamento della compressione dati e LOB in una VM ospitata in macchine virtuali di Azure è uguale a quello in locale. Per altri dettagli su come controllare se la compressione è già in uso in un database SAP ASE esistente, vedere la nota SAP [1750510].
+Il funzionamento della compressione dati e LOB in una VM ospitata in macchine virtuali di Azure è uguale a quello in locale. Per ulteriori informazioni su come toocheck se la compressione è già in uso in un database SAP ASE esistente, verificare la nota SAP [1750510].
 
-#### <a name="using-dbacockpit-to-monitor-database-instances"></a>Uso di DBACockpit per monitorare le istanze di database
-Per i sistemi SAP che usano SAP ASE come piattaforma di database, DBACockpit è accessibile come finestra del browser incorporata nella transazione DBACockpit o come Webdynpro. La funzionalità completa per monitorare e gestire il database è tuttavia disponibile solo nell'implementazione Webdynpro di DBACockpit.
+#### <a name="using-dbacockpit-toomonitor-database-instances"></a>Utilizzo di istanze di Database toomonitor DBACockpit
+Per i sistemi SAP, che utilizzano SAP ASE come piattaforma di database, è accessibile come le finestre del browser incorporato nella transazione DBACockpit o Webdynpro hello DBACockpit. Tuttavia hello funzionalità complete per il monitoraggio e amministrazione database hello è disponibile nell'implementazione di Webdynpro hello di hello DBACockpit.
 
-Come per i sistemi locali, sono necessari diversi passaggi per abilitare tutte le funzionalità di SAP NetWeaver usate dall'implementazione Webdynpro di DBACockpit. Per abilitare l'utilizzo di Webdynpro e generare le istanze necessarie, vedere la nota SAP [1245200]. Quando si seguono le istruzioni delle note precedenti, si configura anche Internet Communication Manager (ICM) insieme alle porte da usare per le connessioni HTTP e HTTPS. L'impostazione predefinita per HTTP è simile alla seguente:
+Come con locale sistemi che diversi passaggi sono necessari tooenable utilizzata dall'implementazione di Webdynpro hello di hello DBACockpit tutte le funzionalità di SAP NetWeaver. Seguire la nota SAP [1245200] tooenable hello sull'utilizzo di webdynpros e generare hello necessari quelle. Quando attenendosi alle istruzioni hello in hello sopra note, è inoltre configurare hello Gestione comunicazioni Internet (icm) insieme a hello porte toobe utilizzato per le connessioni http e https. impostazione predefinita Hello per http è simile al seguente:
 
 > icm/server_port_0 = PROT=HTTP,PORT=8000,PROCTIMEOUT=600,TIMEOUT=600
 > 
@@ -921,7 +921,7 @@ Come per i sistemi locali, sono necessari diversi passaggi per abilitare tutte l
 > 
 > 
 
-I collegamenti generati nella transazione DBACockpit saranno simili ai seguenti:
+e collegamenti hello generati in transazione DBACockpit avrà un aspetto simile toothis:
 
 > https://`<fullyqualifiedhostname`>:44300/sap/bc/webdynpro/sap/dba_cockpit
 > 
@@ -929,17 +929,17 @@ I collegamenti generati nella transazione DBACockpit saranno simili ai seguenti:
 > 
 > 
 
-A seconda del fatto che la macchina virtuale di Azure che ospita il sistema SAP sia connessa o meno tramite una connessione da sito a sito, multisito o ExpressRoute (distribuzione cross-premise), è necessario verificare che ICM usi un nome host completo che può essere risolto nel computer da cui si sta cercando di aprire DBACockpit. Per informazioni su come ICM determina il nome host completo in base ai parametri del profilo e su come impostare il parametro icm/host_name_full in modo esplicito, se necessario, vedere la nota SAP [773830].
+A seconda se e come hello host macchina virtuale di Azure di hello sistema SAP è connesso tramite site-to-site, multi-site o ExpressRoute (distribuzione Cross-premise) toomake è necessario che tale ICM utilizza un nome host completo che può essere risolto in hello computer in cui si sta provando tooopen hello DBACockpit da. Vedere la nota SAP [773830] toounderstand come ICM determina hello in modo esplicito il nome host completo in base a parametri del profilo e set parametro icm/host_name_full se necessario.
 
-Se la VM è stata distribuita in uno scenario solo cloud senza connettività cross-premise tra l'ambiente locale e Azure, è necessario definire un indirizzo IP pubblico e un'etichetta di dominio. Il formato del nome DNS pubblico della VM si presenta come segue:
+Se è stato distribuito hello macchina virtuale in uno scenario solo Cloud senza connettività tra più sedi locali e Azure, è necessario toodefine un indirizzo IP pubblico e un domainlabel. formato di Hello del nome DNS pubblico hello di hello macchina virtuale ha un aspetto simile al seguente:
 
-> `<custom domainlabel`>.`<azure region`>.cloudapp.azure.com
+> `<custom domainlabel`&gt;.`<azure region`&gt;.cloudapp.azure.com
 > 
 > 
 
-Altri dettagli relativi al nome DNS sono disponibili [qui][virtual-machines-azurerm-versus-azuresm].
+Ulteriori dettagli correlato è disponibile il nome DNS toohello [qui][virtual-machines-azurerm-versus-azuresm].
 
-Impostando il parametro del profilo SAP icm/host_name_full sul nome DNS della VM di Azure, il collegamento sarà simile a:
+Impostazione hello SAP profilo parametro icm/host_name_full toohello nome DNS del collegamento di hello hello Azure VM potrebbe essere simile a:
 
 > https://mydomainlabel.westeurope.cloudapp.net:44300/sap/bc/webdynpro/sap/dba_cockpit
 > 
@@ -947,18 +947,18 @@ Impostando il parametro del profilo SAP icm/host_name_full sul nome DNS della VM
 > 
 > 
 
-In questo caso è necessario assicurarsi di:
+In questo caso è necessario toomake assicurarsi di:
 
-* Aggiungere regole in ingresso al gruppo di sicurezza di rete nel portale di Azure per le porte TCP/IP usate per comunicare con ICM
-* Aggiungere regole in ingresso alla configurazione di Windows Firewall per le porte TCP/IP usate per comunicare con ICM
+* Aggiungere le regole in entrata toohello il gruppo di sicurezza di rete nel portale di Azure per toocommunicate porte usate hello TCP/IP con ICM hello
+* Aggiungere una configurazione di Windows Firewall toohello le regole in entrata per hello TCP/IP porte usate toocommunicate con hello ICM
 
-Per importare automaticamente tutte le correzioni disponibili, è consigliabile applicare periodicamente la nota SAP della raccolta di correzioni applicabile alla propria versione di SAP:
+Per importata un processo automatico di tutte le correzioni disponibili, è consigliabile tooperiodically applicare hello correzione raccolta SAP nota tooyour applicabile SAP versione:
 
 * [1558958]
 * [1619967]
 * [1882376]
 
-Per altre informazioni su DBA Cockpit per SAP ASE, vedere le note SAP seguenti:
+Ulteriori informazioni sul pannello di controllo amministratore di database per SAP ASE sono reperibile in hello note su SAP seguenti:
 
 * [1605680]
 * [1757924]
@@ -970,103 +970,103 @@ Per altre informazioni su DBA Cockpit per SAP ASE, vedere le note SAP seguenti:
 * [1956005]
 
 #### <a name="backuprecovery-considerations-for-sap-ase"></a>Considerazioni sul backup/ripristino per SAP ASE
-Quando si distribuisce SAP ASE in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema non è usato in produzione, è necessario eseguire periodicamente il backup del database SAP ospitato da SAP ASE. Dal momento che in Archiviazione di Azure vengono mantenute tre immagini, ora un backup è meno importante rispetto alla compensazione di un arresto anomalo della risorsa di archiviazione. È opportuno predisporre un piano di backup e ripristino appropriato principalmente perché consente di risolvere gli errori logici/manuali fornendo funzionalità di ripristino temporizzato. L'obiettivo è quindi quello di usare i backup per ripristinare un determinato stato precedente del database o di usare i backup in Azure per effettuare il seeding di un altro sistema copiando il database esistente. È possibile, ad esempio, passare da una configurazione SAP di livello 2 a una configurazione di sistema di livello 3 dello stesso sistema ripristinando un backup.
+Quando si distribuisce SAP ASE in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema di hello non è un sistema di produzione, il database SAP hello ospitato da SAP ASE deve essere periodicamente il backup. Poiché l'archiviazione di Azure vengono conservate tre immagini, una copia di backup è meno importante riguardo toocompensating un arresto anomalo del sistema di archiviazione. Hello motivo principale per la gestione di un piano di backup e ripristino corretto è più che è possibile compensare errori logici o manuali grazie alle funzionalità di ripristino ora. Obiettivo di hello è tooeither utilizzare backup toorestore hello database back-tooa determinato punto nel tempo o toouse backup hello in Azure tooseed un altro sistema mediante la copia di database esistente di hello. Ad esempio, è possibile eseguire il trasferimento da un'installazione di sistema a 3 livelli a 2 livelli SAP configurazione tooa di hello stesso sistema ripristinando un backup.
 
-Il backup e il ripristino di un database in Azure funzionano esattamente come in locale. Vedere le note SAP seguenti:
+Backup e ripristino di un database in Azure funziona hello stesso Analogamente a quanto accade in locale. Vedere le note SAP seguenti:
 
 * [1588316]
 * [1585981]
 
-per i dettagli sulla creazione di configurazioni di dump e sulla pianificazione dei backup. A seconda della strategia e delle esigenze, è possibile configurare i dump di database e di log su disco in uno dei dischi esistenti oppure aggiungere un altro disco per il backup. Per limitare il rischio di perdita dei dati in caso di errore, è consigliabile usare un disco in cui non sono presenti dispositivi del database.
+per i dettagli sulla creazione di configurazioni di dump e sulla pianificazione dei backup. A seconda dei strategia ed esigenze è possibile configurare database e log dump toodisk su uno dei dischi esistenti hello o aggiungere un ulteriore disco per il backup di hello. rischio di hello tooreduce perdita di dati in caso di errore, è consigliabile toouse un disco in cui si trova alcuna periferica di database.
 
-Oltre alla compressione dati e LOB, SAP ASE offre anche la compressione del backup. Per occupare meno spazio con i dump di database e di log, è consigliabile usare la compressione del backup. Per altre informazioni, vedere la nota SAP [1588316]. La compressione del backup è fondamentale anche per ridurre la quantità di dati da trasferire se si prevede di scaricare backup o dischi rigidi virtuali contenenti dump di backup dalla macchina virtuale di Azure in locale.
+Oltre alla compressione dati e LOB, SAP ASE offre anche la compressione del backup. esegue il dump toooccupy meno spazio con database hello e di log, è consigliabile la compressione dei backup toouse. Per altre informazioni, vedere la nota SAP [1588316]. La compressione dei backup hello è anche fondamentale tooreduce hello toobe dati trasferiti se si intende backup toodownload o dischi rigidi virtuali contenenti i dump di backup da hello locale tooon macchina virtuale di Azure.
 
 Non usare l'unità D:\ come destinazione dei dump di database o di log.
 
 #### <a name="performance-considerations-for-backupsrestores"></a>Considerazioni sulle prestazioni per backup/ripristini
-Come nelle distribuzioni bare metal, le prestazioni dei backup/ripristini dipendono dalla quantità di volumi leggibili in parallelo e dalla velocità effettiva di tali volumi. Inoltre, l'utilizzo di CPU associato alla compressione del backup può avere un ruolo significativo per VM con un massimo di soli otto thread CPU. Si può quindi presumere quanto segue:
+Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino dipende del numero di volumi può essere letti in parallelo e velocità effettiva quali hello di tali volumi potrebbe essere. Inoltre, hello CPU usata dalla compressione dei backup potrebbe svolgono un ruolo significativo in macchine virtuali con solo i thread di CPU tooeight. Si può quindi presumere quanto segue:
 
-* Minore è il numero dei dischi usati per l'archiviazione dei dispositivi del database, più bassa è la velocità effettiva generale nella lettura
-* Minore è il numero di thread CPU nella VM, più forte è l'impatto della compressione del backup
-* Minore è il numero di destinazioni (directory di striping o dischi) in cui scrivere il backup, più bassa è la velocità effettiva
+* Hello meno hello il numero di dischi utilizzati toostore hello dispositivi di database, hello complessivo inferiore hello velocità effettiva in lettura
+* numero inferiore di hello di thread CPU nella macchina virtuale hello Hello, hello più grave impatto hello di compressione dei backup
+* salve meno destinazioni (directory di striping, i dischi) toowrite hello backup, hello minore velocità effettiva di hello
 
-Per aumentare il numero di destinazioni in cui scrivere, sono disponibili due opzioni che possono essere usate/combinate a seconda delle proprie esigenze:
+numero di hello tooincrease di destinazioni toowrite toothere sono disponibili due opzioni, che possono essere utilizzato/combinati in base alle esigenze:
 
-* Striping del volume di destinazione di backup su più dischi montati per migliorare la velocità effettiva delle operazioni di I/O al secondo in tale volume con striping
-* Creazione di una configurazione dump a livello di SAP ASE che usa più directory di destinazione per la scrittura del dump
+* Lo striping del volume di destinazione di backup hello su più dischi montati della velocità effettiva di IOPS hello tooimprove ordine sul volume con striping
+* Creazione di una configurazione di dump livello SAP ASE, che utilizza più di una destinazione directory toowrite hello dump per
 
-Lo striping di un volume su più dischi montati è stato illustrato prima in questa guida. Per altre informazioni sull'uso di più directory nella configurazione dump SAP ASE, vedere la documentazione sulla stored procedure sp_config_dump che viene usata per creare la configurazione dump in [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp).
+Lo striping di un volume su più dischi montati è stato illustrato prima in questa guida. Per ulteriori informazioni sull'utilizzo di più directory nella configurazione di dump SAP ASE hello, consultare la documentazione di toohello su sp_config_dump Stored Procedure, che è la configurazione dei dump hello toocreate utilizzati in hello [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp).
 
 ### <a name="disaster-recovery-with-azure-vms"></a>Ripristino di emergenza con VM di Azure
 #### <a name="data-replication-with-sap-sybase-replication-server"></a>Replica dei dati con SAP Sybase Replication Server
-Con SAP Sybase Replication Server (SRS), SAP ASE offre una nuova soluzione di standby per trasferire in modo asincrono le transazioni di database in una posizione distante. 
+Con hello SAP Sybase Server di replica SAP ASE fornisce un soluzione di riserva warm tootransfer transazioni tooa distante percorso del database in modo asincrono. 
 
-L'installazione e il funzionamento di SRS sono altrettanto efficaci sia in una VM ospitata nei servizi Macchine virtuali di Azure che in locale.
+installazione di Hello e il funzionamento di SRS funziona anche livello funzionale in una macchina virtuale ospitata in servizi macchine virtuali di Azure a quanto accade in locale.
 
 ASE HADR tramite SAP Replication Server è previsto per una versione futura. Verrà testato e rilasciato per le piattaforme Microsoft Azure non appena sarà disponibile.
 
-## <a name="specifics-to-sap-ase-on-linux"></a>Specifiche per SAP ASE in Linux
-A partire da Microsoft Azure, è possibile eseguire facilmente la migrazione delle applicazioni SAP ASE in macchine virtuali di Azure. SAP ASE in una macchina virtuale consente di ridurre il costo totale di proprietà associato a distribuzione, gestione e manutenzione delle applicazioni aziendali eseguendo facilmente la migrazione di queste applicazioni a Microsoft Azure. Con SAP ASE in una macchina virtuale di Azure, gli amministratori e gli sviluppatori possono continuare a usare gli stessi strumenti di sviluppo e amministrazione disponibili in locale.
+## <a name="specifics-toosap-ase-on-linux"></a>Le specifiche tooSAP ASE su Linux
+A partire da Microsoft Azure, è possibile migrare i tooAzure di applicazioni SAP ASE macchine virtuali esistenti. SAP ASE in una macchina virtuale consente di tooreduce hello costo totale di proprietà di distribuzione, gestione e manutenzione di applicazioni breadth aziendali eseguendo facilmente la migrazione di questi tooMicrosoft applicazioni Azure. Con SAP ASE in una macchina virtuale di Azure, gli amministratori e sviluppatori possono ancora usare hello stessi strumenti di sviluppo e amministrazione disponibili in locale.
 
-Per distribuire le VM di Azure, è importante conoscere i contratti di servizio ufficiali disponibili all'indirizzo <https://azure.microsoft.com/support/legal/sla>
+Per la distribuzione di macchine virtuali di Azure, è importante tooknow hello ufficiale contratti di servizio, sono disponibili qui: <https://azure.microsoft.com/support/legal/sla>
 
 Le informazioni sul ridimensionamento di SAP e un elenco degli SKU di VM con certificazione SAP sono disponibili nella nota SAP [1928533]. Altri documenti di ridimensionamento SAP per le macchine virtuali di Azure sono disponibili qui <http://blogs.msdn.com/b/saponsqlserver/archive/2015/06/19/how-to-size-sap-systems-running-on-azure-vms.aspx> e qui <http://blogs.msdn.com/b/saponsqlserver/archive/2015/12/01/new-white-paper-on-sizing-sap-solutions-on-azure-public-cloud.aspx>
 
-Le istruzioni e i suggerimenti relativi all'utilizzo di Archiviazione di Azure, alla distribuzione di VM SAP o al monitoraggio di SAP si applicano alle distribuzioni di SAP ASE insieme alle applicazioni SAP, come indicato nei primi quattro capitoli di questo documento.
+Istruzioni e indicazioni nell'utilizzo toohello considerare di archiviazione di Azure, la distribuzione di macchine virtuali SAP o SAP Monitoring si applicano toodeployments di SAP ASE in combinazione con le applicazioni SAP, come indicato in tutto hello primi quattro capitoli di questo documento.
 
-Le due note SAP seguenti includono informazioni generali su ASE in Linux e su ASE nel cloud:
+Hello due note su SAP seguenti includono informazioni generali su ASE su Linux e ASE in hello Cloud:
 
 * [2134316]
 * [1941500]
 
 ### <a name="sap-ase-version-support"></a>Supporto della versione di SAP ASE
-SAP supporta attualmente SAP ASE versione 16.0 per l'uso con i prodotti SAP Business Suite. Tutti gli aggiornamenti per il server SAP ASE o per i driver ODBC e JDBC da usare con i prodotti SAP Business Suite vengono forniti esclusivamente in SAP Service Marketplace su: <https://support.sap.com/swdc>.
+SAP supporta attualmente SAP ASE versione 16.0 per l'uso con i prodotti SAP Business Suite. Tutti gli aggiornamenti per il server SAP ASE o toobe di driver ODBC e JDBC utilizzato con i prodotti vengono forniti esclusivamente tramite SAP Business Suite hello SAP Service Marketplace in: <https://support.sap.com/swdc>.
 
-Come per le installazioni locali, non scaricare gli aggiornamenti per il server SAP ASE o per i driver ODBC e JDBC direttamente dai siti Web Sybase. Per informazioni dettagliate sulle patch supportate per l'uso con i prodotti SAP Business Suite in locale e nelle macchine virtuali di Azure, vedere le note SAP seguenti:
+Come per le installazioni locali, non scaricare gli aggiornamenti per il server SAP ASE hello o per hello JDBC e i driver ODBC direttamente da siti Web di Sybase. Per informazioni dettagliate sulle patch, che sono supportate per l'utilizzo con i prodotti SAP Business Suite in locale e nelle macchine virtuali di Azure vedere hello note su SAP seguenti:
 
 * [1590719]
 * [1973241]
 
-Le informazioni generali sull'esecuzione di SAP Business Suite in SAP ASE sono disponibili in [SCN](https://www.sap.com/community/topic/ase.html)
+Informazioni generali sull'esecuzione di SAP Business Suite in SAP ASE sono reperibile in hello [SCN](https://www.sap.com/community/topic/ase.html)
 
 ### <a name="sap-ase-configuration-guidelines-for-sap-related-sap-ase-installations-in-azure-vms"></a>Linee guida per la configurazione di SAP ASE per le installazioni di SAP ASE correlate a SAP nelle VM di Azure
-#### <a name="structure-of-the-sap-ase-deployment"></a>Struttura della distribuzione SAP ASE
-In base alla descrizione generale, gli eseguibili di SAP ASE devono essere salvati o installati nel file system radice della VM (/sybase ). In genere, la maggior parte dei database di sistema e di strumenti di SAP ASE non viene pienamente sfruttata dal carico di lavoro di SAP NetWeaver. I database di sistema e di strumenti (master, modello, saptools, sybmgmtdb, sybsystemdb) possono quindi rimanere anche nel file system radice. 
+#### <a name="structure-of-hello-sap-ase-deployment"></a>Struttura di distribuzione di SAP ASE hello
+In conformità con descrizione generale di hello, gli eseguibili SAP ASE devono essere disponibile oppure installati nel sistema di file radice hello di hello VM (/sybase). In genere, la maggior parte dei database di sistema e gli strumenti di SAP ASE hello non sono realmente utilizzata rigido dal carico di lavoro di SAP NetWeaver. Pertanto hello sistema e i database di strumenti (master, model, saptools, sybmgmtdb, sybsystemdb) possono rimanere su hello radice file system nonché. 
 
-Può fare eccezione il database temporaneo contenente tutte le tabelle di lavoro e le tabelle temporanee create da SAP ASE, che nel caso di alcuni carichi di lavoro SAP ERP e di tutti i carichi di lavoro BW può richiedere un volume dati o un volume di operazioni di I/O superiore, perché di dimensioni troppo grandi per il disco del sistema operativo della VM originale.
+Un'eccezione può essere il database temporaneo di hello che contiene tutte le tabelle di lavoro e le tabelle temporanee create da SAP ASE, che in caso di alcune ERP SAP e tutti i carichi di lavoro BW potrebbe richiedere più elevato dei dati o operazioni dei / o, volume che non si adattata hello originale Disco del sistema operativo della macchina virtuale.
 
-A seconda della versione di SAPInst/SWPM usata per installare il sistema, il database può contenere:
+A seconda di hello versione SAPInst/SWPM utilizzato system hello tooinstall, hello database potrebbe contenere:
 
 * Un solo tempdb SAP ASE creato durante l'installazione di SAP ASE
-* Un tempdb SAP ASE creato in seguito all'installazione di SAP ASE e un saptempdb aggiuntivo creato dalla routine di installazione SAP
-* Un tempdb SAP ASE creato con l'installazione di SAP ASE e un tempdb aggiuntivo creato manualmente (ad esempio, seguendo la nota SAP [1752266]) per soddisfare i requisiti specifici di ERP/BW per tempdb
+* Un tempdb SAP ASE creato mediante l'installazione di SAP ASE e un saptempdb aggiuntivi creati da hello routine di installazione di SAP
+* Un tempdb SAP ASE creato mediante l'installazione di SAP ASE e un tempdb aggiuntivi che è stato creato manualmente (ad esempio seguendo la nota SAP [1752266]) ai requisiti di tempdb specifico di toomeet ERP/BW
 
-Nel caso di carichi di lavoro ERP specifici o di tutti i carichi di lavoro BW è consigliabile, dal punto di vista delle prestazioni, mantenere i dispositivi tempdb del tempdb aggiuntivo creato (con SWPM o manualmente) in un file system separato, che può essere rappresentato da un unico disco dati di Azure o da un RAID Linux che si estende su più dischi dati di Azure. Se non esistono tempdb aggiuntivi, è consigliabile crearne uno (nota SAP [1752266]).
+In caso di ERP specifico o tutti i carichi di lavoro BW, l'aderenza, considerare tooperformance, i dispositivi di tempdb hello tookeep di hello inoltre creata tempdb (tramite SWPM o manualmente) in un sistema file separato, che può essere rappresentato da un disco dati di Azure singolo o un sistema RAID Linux che si estende su più dischi dati di Azure. Se non esiste alcun tempdb aggiuntivi, è consigliabile toocreate uno (nota SAP [1752266]).
 
-Per tali sistemi, eseguire questa procedura per il tempdb aggiuntivo creato:
+Per hello tali sistemi è necessario eseguire i passaggi seguenti per hello inoltre creata tempdb:
 
-* Spostare la prima directory tempdb nel primo file system del database SAP
-* Aggiungere le directory tempdb a ogni disco contenente un file system del database SAP
+* Spostare hello prima tempdb directory toohello primo file system del database SAP hello
+* Aggiungere tooeach directory tempdb di dischi hello contenente un file System del database SAP hello
 
-Questa configurazione consente a tempdb di utilizzare più spazio di quello fornito dall'unità di sistema. Come riferimento è possibile controllare le dimensioni della directory tempdb nei sistemi esistenti eseguiti in locale. In alternativa, con una tale configurazione potrà essere eseguito su tempdb un numero di operazioni di I/O al secondo che l'unità di sistema non può garantire. I sistemi in esecuzione in locale possono anche essere usati per monitorare il carico di lavoro di I/O in tempdb.
+Questo tooeither tempdb di configurazione consente di utilizzare più spazio rispetto a unità di sistema di hello è in grado di tooprovide. Come riferimento una possibile controllare le dimensioni di directory tempdb hello nei sistemi esistenti, in cui vengono eseguiti in locale. O una configurazione di questo tipo verrebbe IOPS eseguite tempdb, che non può essere fornito con unità di sistema hello. Nuovamente sistemi che eseguono in locale possono essere utilizzati toomonitor i/o il carico di lavoro nel database tempdb.
 
-Non inserire mai le directory SAP ASE in /mnt o /mnt/resource nella VM. Questo si applica anche a tempdb, anche se gli oggetti conservati in tempdb sono solo temporanei perché /mnt o /mnt/resource è uno spazio temporaneo predefinito della VM di Azure non persistente. Per altri dettagli sullo spazio temporaneo della macchina virtuale di Azure, vedere [questo articolo][virtual-machines-linux-how-to-attach-disk]
+Non inserire mai le directory SAP ASE in /mnt o /mnt/resource di hello macchina virtuale. Questo vale anche toohello tempdb, anche se gli oggetti hello mantenuti in tempdb hello sono temporanei solo perché /mnt o /mnt/resource è uno spazio temporaneo di macchina virtuale di Azure predefinito, che non è persistente. Ulteriori dettagli su hello spazio temporaneo di macchina virtuale di Azure sono reperibile [in questo articolo][virtual-machines-linux-how-to-attach-disk]
 
 #### <a name="impact-of-database-compression"></a>Impatto della compressione del database
-Nelle configurazioni in cui la larghezza di banda di I/O può diventare un fattore limitante, ogni misura che riduce le operazioni di I/O al secondo consente di estendere il carico di lavoro eseguibile in uno scenario IaaS come Azure. È quindi consigliabile verificare che venga usata la compressione SAP ASE prima di caricare un database SAP esistente in Azure.
+Nelle configurazioni in cui la larghezza di banda dei / o può diventare un fattore limitante, ogni misura, riducendo il numero di IOPS può contribuire a carico di lavoro di hello toostretch può eseguire in uno scenario IaaS come Azure. Pertanto, è consigliabile assicurarsi che la compressione di SAP ASE viene utilizzata prima di caricare un tooAzure di database SAP esistente toomake.
 
-Sono diversi i motivi per cui è consigliabile eseguire la compressione del database prima del caricamento in Azure se non è già stata implementata:
+la compressione di Hello raccomandazione tooperform prima del caricamento tooAzure se non è già stato implementato è dato da diversi motivi:
 
-* La quantità di dati da caricare in Azure è minore
-* La durata dell'esecuzione della compressione è inferiore, presupponendo che si possa usare hardware più avanzato con più CPU o una maggiore larghezza di banda di I/O oppure meno latenza di I/O in locale
-* L'uso di database di dimensioni inferiori può contribuire a ridurre i costi per l'allocazione dei dischi
+* quantità di Hello di dati caricato toobe tooAzure è inferiore
+* durata Hello dell'esecuzione di compressione di hello è più breve, supponendo che sia possibile usare hardware più potente con più CPU o della larghezza di banda dei / o maggiore o minore latenza i/o in locale
+* Database di dimensioni più piccolo potrebbe causare costi tooless per l'allocazione dei dischi
 
-Il funzionamento della compressione dati e LOB in una VM ospitata in macchine virtuali di Azure è uguale a quello in locale. Per altri dettagli su come controllare se la compressione è già in uso in un database SAP ASE esistente, vedere la nota SAP [1750510]. Per altre informazioni sulla compressione del database, vedere la nota SAP [2121797].
+Il funzionamento della compressione dati e LOB in una VM ospitata in macchine virtuali di Azure è uguale a quello in locale. Per ulteriori informazioni su come toocheck se la compressione è già in uso in un database SAP ASE esistente, verificare la nota SAP [1750510]. Per altre informazioni sulla compressione del database, vedere la nota SAP [2121797].
 
-#### <a name="using-dbacockpit-to-monitor-database-instances"></a>Uso di DBACockpit per monitorare le istanze di database
-Per i sistemi SAP che usano SAP ASE come piattaforma di database, DBACockpit è accessibile come finestra del browser incorporata nella transazione DBACockpit o come Webdynpro. La funzionalità completa per monitorare e gestire il database è tuttavia disponibile solo nell'implementazione Webdynpro di DBACockpit.
+#### <a name="using-dbacockpit-toomonitor-database-instances"></a>Utilizzo di istanze di Database toomonitor DBACockpit
+Per i sistemi SAP, che utilizzano SAP ASE come piattaforma di database, è accessibile come le finestre del browser incorporato nella transazione DBACockpit o Webdynpro hello DBACockpit. Tuttavia hello funzionalità complete per il monitoraggio e amministrazione database hello è disponibile nell'implementazione di Webdynpro hello di hello DBACockpit.
 
-Come per i sistemi locali, sono necessari diversi passaggi per abilitare tutte le funzionalità di SAP NetWeaver usate dall'implementazione Webdynpro di DBACockpit. Per abilitare l'utilizzo di Webdynpro e generare le istanze necessarie, vedere la nota SAP [1245200]. Quando si seguono le istruzioni delle note precedenti, si configura anche Internet Communication Manager (ICM) insieme alle porte da usare per le connessioni HTTP e HTTPS. L'impostazione predefinita per HTTP è simile alla seguente:
+Come con locale sistemi che diversi passaggi sono necessari tooenable utilizzata dall'implementazione di Webdynpro hello di hello DBACockpit tutte le funzionalità di SAP NetWeaver. Seguire la nota SAP [1245200] tooenable hello sull'utilizzo di webdynpros e generare hello necessari quelle. Quando attenendosi alle istruzioni hello in hello sopra note, è inoltre configurare hello Gestione comunicazioni Internet (icm) insieme a hello porte toobe utilizzato per le connessioni http e https. impostazione predefinita Hello per http è simile al seguente:
 
 > icm/server_port_0 = PROT=HTTP,PORT=8000,PROCTIMEOUT=600,TIMEOUT=600
 > 
@@ -1074,7 +1074,7 @@ Come per i sistemi locali, sono necessari diversi passaggi per abilitare tutte l
 > 
 > 
 
-I collegamenti generati nella transazione DBACockpit saranno simili ai seguenti:
+e collegamenti hello generati in transazione DBACockpit avrà un aspetto simile toothis:
 
 > https://`<fullyqualifiedhostname`>:44300/sap/bc/webdynpro/sap/dba_cockpit
 > 
@@ -1082,17 +1082,17 @@ I collegamenti generati nella transazione DBACockpit saranno simili ai seguenti:
 > 
 > 
 
-A seconda del fatto che la macchina virtuale di Azure che ospita il sistema SAP sia connessa o meno tramite una connessione da sito a sito, multisito o ExpressRoute (distribuzione cross-premise), è necessario verificare che ICM usi un nome host completo che può essere risolto nel computer da cui si sta cercando di aprire DBACockpit. Per informazioni su come ICM determina il nome host completo in base ai parametri del profilo e su come impostare il parametro icm/host_name_full in modo esplicito, se necessario, vedere la nota SAP [773830].
+A seconda se e come hello host macchina virtuale di Azure di hello sistema SAP è connesso tramite site-to-site, multi-site o ExpressRoute (distribuzione Cross-premise) toomake è necessario che tale ICM utilizza un nome host completo che può essere risolto in hello computer in cui si sta provando tooopen hello DBACockpit da. Vedere la nota SAP [773830] toounderstand come ICM determina hello in modo esplicito il nome host completo in base a parametri del profilo e set parametro icm/host_name_full se necessario.
 
-Se la VM è stata distribuita in uno scenario solo cloud senza connettività cross-premise tra l'ambiente locale e Azure, è necessario definire un indirizzo IP pubblico e un'etichetta di dominio. Il formato del nome DNS pubblico della VM si presenta come segue:
+Se è stato distribuito hello macchina virtuale in uno scenario solo Cloud senza connettività tra più sedi locali e Azure, è necessario toodefine un indirizzo IP pubblico e un domainlabel. formato di Hello del nome DNS pubblico hello di hello macchina virtuale ha un aspetto simile al seguente:
 
-> `<custom domainlabel`>.`<azure region`>.cloudapp.azure.com
+> `<custom domainlabel`&gt;.`<azure region`&gt;.cloudapp.azure.com
 > 
 > 
 
-Altri dettagli relativi al nome DNS sono disponibili [qui][virtual-machines-azurerm-versus-azuresm].
+Ulteriori dettagli correlato è disponibile il nome DNS toohello [qui][virtual-machines-azurerm-versus-azuresm].
 
-Impostando il parametro del profilo SAP icm/host_name_full sul nome DNS della VM di Azure, il collegamento sarà simile a:
+Impostazione hello SAP profilo parametro icm/host_name_full toohello nome DNS del collegamento di hello hello Azure VM potrebbe essere simile a:
 
 > https://mydomainlabel.westeurope.cloudapp.net:44300/sap/bc/webdynpro/sap/dba_cockpit
 > 
@@ -1100,18 +1100,18 @@ Impostando il parametro del profilo SAP icm/host_name_full sul nome DNS della VM
 > 
 > 
 
-In questo caso è necessario assicurarsi di:
+In questo caso è necessario toomake assicurarsi di:
 
-* Aggiungere regole in ingresso al gruppo di sicurezza di rete nel portale di Azure per le porte TCP/IP usate per comunicare con ICM
-* Aggiungere regole in ingresso alla configurazione di Windows Firewall per le porte TCP/IP usate per comunicare con ICM
+* Aggiungere le regole in entrata toohello il gruppo di sicurezza di rete nel portale di Azure per toocommunicate porte usate hello TCP/IP con ICM hello
+* Aggiungere una configurazione di Windows Firewall toohello le regole in entrata per hello TCP/IP porte usate toocommunicate con hello ICM
 
-Per importare automaticamente tutte le correzioni disponibili, è consigliabile applicare periodicamente la nota SAP della raccolta di correzioni applicabile alla propria versione di SAP:
+Per importata un processo automatico di tutte le correzioni disponibili, è consigliabile tooperiodically applicare hello correzione raccolta SAP nota tooyour applicabile SAP versione:
 
 * [1558958]
 * [1619967]
 * [1882376]
 
-Per altre informazioni su DBA Cockpit per SAP ASE, vedere le note SAP seguenti:
+Ulteriori informazioni sul pannello di controllo amministratore di database per SAP ASE sono reperibile in hello note su SAP seguenti:
 
 * [1605680]
 * [1757924]
@@ -1123,83 +1123,45 @@ Per altre informazioni su DBA Cockpit per SAP ASE, vedere le note SAP seguenti:
 * [1956005]
 
 #### <a name="backuprecovery-considerations-for-sap-ase"></a>Considerazioni sul backup/ripristino per SAP ASE
-Quando si distribuisce SAP ASE in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema non è usato in produzione, è necessario eseguire periodicamente il backup del database SAP ospitato da SAP ASE. Dal momento che in Archiviazione di Azure vengono mantenute tre immagini, ora un backup è meno importante rispetto alla compensazione di un arresto anomalo della risorsa di archiviazione. È opportuno predisporre un piano di backup e ripristino appropriato principalmente perché consente di risolvere gli errori logici/manuali fornendo funzionalità di ripristino temporizzato. L'obiettivo è quindi quello di usare i backup per ripristinare un determinato stato precedente del database o di usare i backup in Azure per effettuare il seeding di un altro sistema copiando il database esistente. È possibile, ad esempio, passare da una configurazione SAP di livello 2 a una configurazione di sistema di livello 3 dello stesso sistema ripristinando un backup.
+Quando si distribuisce SAP ASE in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema di hello non è un sistema di produzione, il database SAP hello ospitato da SAP ASE deve essere periodicamente il backup. Poiché l'archiviazione di Azure vengono conservate tre immagini, una copia di backup è meno importante riguardo toocompensating un arresto anomalo del sistema di archiviazione. Hello motivo principale per la gestione di un piano di backup e ripristino corretto è più che è possibile compensare errori logici o manuali grazie alle funzionalità di ripristino ora. Obiettivo di hello è tooeither utilizzare backup toorestore hello database back-tooa determinato punto nel tempo o toouse backup hello in Azure tooseed un altro sistema mediante la copia di database esistente di hello. Ad esempio, è possibile eseguire il trasferimento da un'installazione di sistema a 3 livelli a 2 livelli SAP configurazione tooa di hello stesso sistema ripristinando un backup.
 
-Il backup e il ripristino di un database in Azure funzionano esattamente come in locale. Vedere le note SAP seguenti:
+Backup e ripristino di un database in Azure funziona hello stesso Analogamente a quanto accade in locale. Vedere le note SAP seguenti:
 
 * [1588316]
 * [1585981]
 
-per i dettagli sulla creazione di configurazioni di dump e sulla pianificazione dei backup. A seconda della strategia e delle esigenze, è possibile configurare i dump di database e di log su disco in uno dei dischi esistenti oppure aggiungere un altro disco per il backup. Per limitare il rischio di perdita dei dati in caso di errore, è consigliabile usare un disco senza directory/file per il database.
+per i dettagli sulla creazione di configurazioni di dump e sulla pianificazione dei backup. A seconda dei strategia ed esigenze è possibile configurare database e log dump toodisk su uno dei dischi esistenti hello o aggiungere un ulteriore disco per il backup di hello. rischio hello tooreduce perdita di dati in caso di errore è consigliabile toouse un disco in cui si trova alcuna directory o file di database.
 
-Oltre alla compressione dati e LOB, SAP ASE offre anche la compressione del backup. Per occupare meno spazio con i dump di database e di log, è consigliabile usare la compressione del backup. Per altre informazioni, vedere la nota SAP [1588316]. La compressione del backup è fondamentale anche per ridurre la quantità di dati da trasferire se si prevede di scaricare backup o dischi rigidi virtuali contenenti dump di backup dalla macchina virtuale di Azure in locale.
+Oltre alla compressione dati e LOB, SAP ASE offre anche la compressione del backup. esegue il dump toooccupy meno spazio con database hello e di log, è consigliabile la compressione dei backup toouse. Per altre informazioni, vedere la nota SAP [1588316]. La compressione dei backup hello è anche fondamentale tooreduce hello toobe dati trasferiti se si intende backup toodownload o dischi rigidi virtuali contenenti i dump di backup da hello locale tooon macchina virtuale di Azure.
 
-Non usare lo spazio temporaneo della VM di Azure /mnt o /mnt/resource come destinazione dei dump di database o di log.
+Non utilizzare hello Azure VM spazio temporaneo /mnt o /mnt/resource come destinazione di dump di database o log.
 
 #### <a name="performance-considerations-for-backupsrestores"></a>Considerazioni sulle prestazioni per backup/ripristini
-Come nelle distribuzioni bare metal, le prestazioni dei backup/ripristini dipendono dalla quantità di volumi leggibili in parallelo e dalla velocità effettiva di tali volumi. Inoltre, l'utilizzo di CPU associato alla compressione del backup può avere un ruolo significativo per VM con un massimo di soli otto thread CPU. Si può quindi presumere quanto segue:
+Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino dipende del numero di volumi può essere letti in parallelo e velocità effettiva quali hello di tali volumi potrebbe essere. Inoltre, hello CPU usata dalla compressione dei backup potrebbe svolgono un ruolo significativo in macchine virtuali con solo i thread di CPU tooeight. Si può quindi presumere quanto segue:
 
-* Minore è il numero dei dischi usati per l'archiviazione dei dispositivi del database, più bassa è la velocità effettiva generale nella lettura
-* Minore è il numero di thread CPU nella VM, più forte è l'impatto della compressione del backup
-* Minore è il numero di destinazioni (RAID software Linux o dischi) in cui scrivere il backup, più bassa è la velocità effettiva
+* Hello meno hello il numero di dischi utilizzati toostore hello dispositivi di database, hello complessivo inferiore hello velocità effettiva in lettura
+* numero inferiore di hello di thread CPU nella macchina virtuale hello Hello, hello più grave impatto hello di compressione dei backup
+* salve backup per Hello meno toowrite destinazioni (Linux RAID software, i dischi), hello minore velocità effettiva di hello
 
-Per aumentare il numero di destinazioni in cui scrivere, sono disponibili due opzioni che possono essere usate/combinate a seconda delle proprie esigenze:
+numero di hello tooincrease di destinazioni toowrite toothere sono disponibili due opzioni, che possono essere utilizzato/combinati in base alle esigenze:
 
-* Striping del volume di destinazione di backup su più dischi montati per migliorare la velocità effettiva delle operazioni di I/O al secondo in tale volume con striping
-* Creazione di una configurazione dump a livello di SAP ASE che usa più directory di destinazione per la scrittura del dump
+* Lo striping del volume di destinazione di backup hello su più dischi montati della velocità effettiva di IOPS hello tooimprove ordine sul volume con striping
+* Creazione di una configurazione di dump livello SAP ASE, che utilizza più di una destinazione directory toowrite hello dump per
 
-Lo striping di un volume su più dischi montati è stato illustrato prima in questa guida. Per altre informazioni sull'uso di più directory nella configurazione dump SAP ASE, vedere la documentazione sulla stored procedure sp_config_dump che viene usata per creare la configurazione dump in [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp).
+Lo striping di un volume su più dischi montati è stato illustrato prima in questa guida. Per ulteriori informazioni sull'utilizzo di più directory nella configurazione di dump SAP ASE hello, consultare la documentazione di toohello su sp_config_dump Stored Procedure, che è la configurazione dei dump hello toocreate utilizzati in hello [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp).
 
 ### <a name="disaster-recovery-with-azure-vms"></a>Ripristino di emergenza con VM di Azure
 #### <a name="data-replication-with-sap-sybase-replication-server"></a>Replica dei dati con SAP Sybase Replication Server
-Con SAP Sybase Replication Server (SRS), SAP ASE offre una nuova soluzione di standby per trasferire in modo asincrono le transazioni di database in una posizione distante. 
+Con hello SAP Sybase Server di replica SAP ASE fornisce un soluzione di riserva warm tootransfer transazioni tooa distante percorso del database in modo asincrono. 
 
-L'installazione e il funzionamento di SRS sono altrettanto efficaci sia in una VM ospitata nei servizi Macchine virtuali di Azure che in locale.
+installazione di Hello e il funzionamento di SRS funziona anche livello funzionale in una macchina virtuale ospitata in servizi macchine virtuali di Azure a quanto accade in locale.
 
-ASE HADR tramite SAP Replication Server NON è attualmente supportato. È possibile che venga testato e rilasciato per le piattaforme Microsoft Azure in futuro.
+ASE HADR tramite SAP Replication Server NON è attualmente supportato. Potrebbe essere testato con e rilasciato per le piattaforme Microsoft Azure hello future.
 
-## <a name="specifics-to-oracle-database-on-windows"></a>Specifiche per Oracle Database in Windows
-Oracle supporta l'esecuzione di software Oracle in Microsoft Windows Hyper-V e Azure. Per informazioni dettagliate sul supporto generale di Windows Hyper-V e Azure, vedere <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces> 
+## <a name="specifics-toooracle-database-on-windows"></a>Le specifiche tooOracle Database in Windows
+Il software Oracle è supportato da Oracle toorun in Microsoft Windows Hyper-V e Azure. Per informazioni dettagliate sul supporto generale di hello di Windows Hyper-V e Azure, vedere: <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces> 
 
-In base al supporto generale, è supportato anche lo scenario specifico delle applicazioni SAP che sfruttano i database Oracle. I dettagli sono disponibili in questa parte del documento.
-
-### <a name="oracle-version-support"></a>Supporto della versione di Oracle
-Le versioni di Oracle e le corrispondenti versioni del sistema operativo supportate per l'esecuzione di SAP in Oracle nelle macchine virtuali di Azure sono riportate nella nota SAP [2039619].
-
-Informazioni generali sull'esecuzione di SAP Business Suite in Oracle sono disponibili in 1DX: <https://www.sap.com/community/topic/oracle.html>
-
-### <a name="oracle-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di Oracle per le installazioni di SAP nelle VM di Azure
-#### <a name="storage-configuration"></a>Configurazione dell'archiviazione
-È supportata una sola istanza di Oracle che usa dischi formattati NTFS. Tutti i file di database devono essere archiviati nel file system NTFS basato su dischi rigidi virtuali o Managed Disks. I dischi vengono montati nella VM di Azure e sono basati sull'archivio BLOB di pagine di Azure (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o su Managed Disks (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Le unità di rete o le condivisioni remote, ad esempio i servizi file di Azure:
-
-* <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx> 
-* <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
-
-**NON** sono supportate per i file di database Oracle.
-
-Se vengono usati dischi basati sull'archivio BLOB di pagine di Azure o su Managed Disks, le istruzioni riportate nei capitoli [Caching per VM e dischi dati][dbms-guide-2.1] e [Archiviazione di Microsoft Azure][dbms-guide-2.3] di questo documento si applicano anche alle distribuzioni con Oracle Database.
-
-Come spiegato in precedenza nella parte generale del documento, esistono quote relative alla velocità effettiva delle operazioni di I/O al secondo per i dischi di Azure. Le quote esatte dipendono dal tipo di VM usato. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
-
-Per identificare i tipi di VM di Azure supportati, vedere la nota SAP [1928533].
-
-Se la quota corrente di operazioni di I/O al secondo per ogni disco soddisfa i requisiti, è possibile archiviare tutti i file di DB in un singolo disco montato. 
-
-Se sono necessarie più operazioni di I/O al secondo, è consigliabile usare i pool di archiviazione Windows (disponibili solo in Windows Server 2012 e versioni successive) o la funzionalità di striping di Windows per Windows 2008 R2 per creare un solo dispositivo logico di grandi dimensioni su più dischi montati (vedere anche il capitolo [RAID software][dbms-guide-2.2] di questo documento). Questo approccio riduce il sovraccarico di amministrazione per la gestione dello spazio su disco ed evita la fatica di distribuire manualmente i file in più dischi montati.
-
-#### <a name="backup--restore"></a>Backup/Ripristino
-Per la funzionalità di backup/ripristino, SAP BR*Tools per Oracle è supportato esattamente come nei sistemi operativi Windows Server standard e in Hyper-V. Per i backup su disco e per il ripristino da disco, è supportato anche Oracle Recovery Manager (RMAN).
-
-#### <a name="high-availability"></a>Disponibilità elevata
-Oracle Data Guard è supportato per motivi di disponibilità elevata e ripristino di emergenza. I dettagli sono disponibili in [questa][virtual-machines-windows-classic-configure-oracle-data-guard] documentazione.
-
-#### <a name="other"></a>Altri
-Tutti gli altri argomenti generali, ad esempio i set di disponibilità di Azure o il monitoraggio SAP, si applicano come descritto nei primi tre capitoli di questo documento anche per le distribuzioni di VM con Oracle Database.
-
-## <a name="specifics-to-oracle-database-on-oracle-linux"></a>Specifiche per Oracle Database in Oracle Linux
-Oracle supporta l'esecuzione di software Oracle in Microsoft Windows Hyper-V e Azure. Per informazioni dettagliate sul supporto generale di Windows Hyper-V e Azure, vedere <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces> 
-
-In base al supporto generale, è supportato anche lo scenario specifico delle applicazioni SAP che sfruttano i database Oracle. I dettagli sono disponibili in questa parte del documento.
+Seguenti supporto generale hello, è supportato anche uno specifico scenario hello di applicazioni SAP sfruttando il database Oracle. I dettagli sono denominati in questa parte del documento hello.
 
 ### <a name="oracle-version-support"></a>Supporto della versione di Oracle
 Le versioni di Oracle e le corrispondenti versioni del sistema operativo supportate per l'esecuzione di SAP in Oracle nelle macchine virtuali di Azure sono riportate nella nota SAP [2039619].
@@ -1208,84 +1170,122 @@ Informazioni generali sull'esecuzione di SAP Business Suite in Oracle sono dispo
 
 ### <a name="oracle-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di Oracle per le installazioni di SAP nelle VM di Azure
 #### <a name="storage-configuration"></a>Configurazione dell'archiviazione
-È supportata una sola istanza di Oracle che usa dischi con formattazione ext3, ext4 e xfs. Tutti i file di database devono essere archiviati in questi file system basati su dischi rigidi virtuali o Managed Disks. I dischi vengono montati nella VM di Azure e sono basati sull'archivio BLOB di pagine di Azure (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o su Managed Disks (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Le unità di rete o le condivisioni remote, ad esempio i servizi file di Azure:
+È supportata una sola istanza di Oracle che usa dischi formattati NTFS. Tutti i file di database devono essere archiviati in hello basato su dischi rigidi virtuali o dischi gestiti di file system NTFS. I dischi vengono montato toohello macchina virtuale di Azure e si basano sull'archiviazione BLOB di Azure pagina (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o dischi gestiti (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Le unità di rete o le condivisioni remote, ad esempio i servizi file di Azure:
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx> 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
 
 **NON** sono supportate per i file di database Oracle.
 
-Se vengono usati dischi basati sull'archivio BLOB di pagine di Azure o su Managed Disks, le istruzioni riportate nei capitoli [Caching per VM e dischi dati][dbms-guide-2.1] e [Archiviazione di Microsoft Azure][dbms-guide-2.3] di questo documento si applicano anche alle distribuzioni con Oracle Database.
+Utilizzo di dischi basati su archiviazione BLOB di Azure pagina o dischi gestiti, hello istruzioni eseguite in questo documento nel capitolo [la memorizzazione nella cache per le macchine virtuali e i dischi dati] [ dbms-guide-2.1] e [archiviazione di Microsoft Azure] [ dbms-guide-2.3] applicare toodeployments con hello Database Oracle.
 
-Come spiegato in precedenza nella parte generale del documento, esistono quote relative alla velocità effettiva delle operazioni di I/O al secondo per i dischi di Azure. Le quote esatte dipendono dal tipo di VM usato. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
+Come illustrato in precedenza in hello generale parte hello documento, esistono quote sulla velocità effettiva IOPS per i dischi Azure. Hello esatta le quote in base al tipo di macchina virtuale hello servono. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
 
-Per identificare i tipi di VM di Azure supportati, vedere la nota SAP [1928533].
+hello tooidentify supportati tipi di macchine Virtuali di Azure, fare riferimento alla nota tooSAP [1928533].
 
-Se la quota corrente di operazioni di I/O al secondo per ogni disco soddisfa i requisiti, è possibile archiviare tutti i file di DB in un singolo disco montato. 
+È possibile toostore come quota di IOPS per ogni disco corrente hello soddisfa i requisiti di hello, tutti i file di database su un singolo disco montato di hello. 
 
-Se sono necessarie più operazioni di I/O al secondo, è consigliabile usare LVM (Logical Volume Manager) o MDADM per creare un solo volume logico di grandi dimensioni su più dischi montati. Vedere anche il capitolo [Software RAID][dbms-guide-2.2] di questo documento. Questo approccio riduce il sovraccarico di amministrazione per la gestione dello spazio su disco ed evita la fatica di distribuire manualmente i file in più dischi montati.
+Se più IOPS sono necessari, è consigliabile pool di archiviazione finestra toouse (solo disponibili in Windows Server 2012 e versioni successive) o Windows con striping per Windows 2008 R2 toocreate un dispositivo logico elevato su più dischi montati (vedere anche capitolo [RAID software] [ dbms-guide-2.2] di questo documento). Questo approccio semplifica lo spazio su disco hello hello amministrazione toomanage overhead ed evita sforzo hello toomanually distribuire file tra più dischi montati.
 
 #### <a name="backup--restore"></a>Backup/Ripristino
-Per la funzionalità di backup/ripristino, SAP BR*Tools per Oracle è supportato esattamente come in bare metal e Hyper-V. Per i backup su disco e per il ripristino da disco, è supportato anche Oracle Recovery Manager (RMAN).
+Per il backup / ripristino delle funzionalità, hello BR SAP * strumenti per Oracle sono supportati in hello stesso modo come in standard i sistemi operativi Windows Server e Hyper-V. Gestione del ripristino (RMAN) di Oracle è supportata anche per toodisk di backup e il ripristino dal disco.
 
 #### <a name="high-availability"></a>Disponibilità elevata
 Oracle Data Guard è supportato per motivi di disponibilità elevata e ripristino di emergenza. I dettagli sono disponibili in [questa][virtual-machines-windows-classic-configure-oracle-data-guard] documentazione.
 
-#### <a name="other"></a>Altri
-Tutti gli altri argomenti generali, ad esempio i set di disponibilità di Azure o il monitoraggio SAP, si applicano come descritto nei primi tre capitoli di questo documento anche per le distribuzioni di VM con Oracle Database.
+#### <a name="other"></a>Altre
+Tutti gli altri argomenti generali come set di disponibilità di Azure o SAP monitoring si applicano come descritto in hello primi tre capitoli di questo documento per le distribuzioni di macchine virtuali con hello Database Oracle.
 
-## <a name="specifics-for-the-sap-maxdb-database-on-windows"></a>Specifiche per il database SAP MaxDB in Windows
+## <a name="specifics-toooracle-database-on-oracle-linux"></a>Le specifiche tooOracle Database Oracle Linux
+Il software Oracle è supportato da Oracle toorun in Microsoft Windows Hyper-V e Azure. Per informazioni dettagliate sul supporto generale di hello di Windows Hyper-V e Azure, vedere: <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces> 
+
+Seguenti supporto generale hello, è supportato anche uno specifico scenario hello di applicazioni SAP sfruttando il database Oracle. I dettagli sono denominati in questa parte del documento hello.
+
+### <a name="oracle-version-support"></a>Supporto della versione di Oracle
+Le versioni di Oracle e le corrispondenti versioni del sistema operativo supportate per l'esecuzione di SAP in Oracle nelle macchine virtuali di Azure sono riportate nella nota SAP [2039619].
+
+Informazioni generali sull'esecuzione di SAP Business Suite in Oracle sono disponibili in 1DX: <https://www.sap.com/community/topic/oracle.html>
+
+### <a name="oracle-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di Oracle per le installazioni di SAP nelle VM di Azure
+#### <a name="storage-configuration"></a>Configurazione dell'archiviazione
+È supportata una sola istanza di Oracle che usa dischi con formattazione ext3, ext4 e xfs. Tutti i file di database devono essere archiviati in questi file system basati su dischi rigidi virtuali o Managed Disks. I dischi vengono montato toohello macchina virtuale di Azure e si basano sull'archiviazione BLOB di Azure pagina (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o dischi gestiti (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Le unità di rete o le condivisioni remote, ad esempio i servizi file di Azure:
+
+* <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx> 
+* <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
+
+**NON** sono supportate per i file di database Oracle.
+
+Utilizzo di dischi basati su archiviazione BLOB di Azure pagina o dischi gestiti, hello istruzioni eseguite in questo documento nel capitolo [la memorizzazione nella cache per le macchine virtuali e i dischi dati] [ dbms-guide-2.1] e [archiviazione di Microsoft Azure] [ dbms-guide-2.3] applicare toodeployments con hello Database Oracle.
+
+Come illustrato in precedenza in hello generale parte hello documento, esistono quote sulla velocità effettiva IOPS per i dischi Azure. Hello esatta le quote in base al tipo di macchina virtuale hello servono. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
+
+hello tooidentify supportati tipi di macchine Virtuali di Azure, fare riferimento alla nota tooSAP [1928533]
+
+È possibile toostore come quota di IOPS per ogni disco corrente hello soddisfa i requisiti di hello, tutti i file di database su un singolo disco montato di hello. 
+
+Se più IOPS sono necessari, è consigliabile toouse LVM (gestione dei volumi logici) o MDADM toocreate un elevato volume logico su più dischi montati. Vedere anche il capitolo [Software RAID][dbms-guide-2.2] di questo documento. Questo approccio semplifica lo spazio su disco hello hello amministrazione toomanage overhead ed evita sforzo hello toomanually distribuire file tra più dischi montati.
+
+#### <a name="backup--restore"></a>Backup/Ripristino
+Per il backup / ripristino delle funzionalità, hello BR SAP * strumenti per Oracle sono supportati in hello stesso modo come su bare metal e Hyper-V. Gestione del ripristino (RMAN) di Oracle è supportata anche per toodisk di backup e il ripristino dal disco.
+
+#### <a name="high-availability"></a>Disponibilità elevata
+Oracle Data Guard è supportato per motivi di disponibilità elevata e ripristino di emergenza. I dettagli sono disponibili in [questa][virtual-machines-windows-classic-configure-oracle-data-guard] documentazione.
+
+#### <a name="other"></a>Altre
+Tutti gli altri argomenti generali come set di disponibilità di Azure o SAP monitoring si applicano come descritto in hello primi tre capitoli di questo documento per le distribuzioni di macchine virtuali con hello Database Oracle.
+
+## <a name="specifics-for-hello-sap-maxdb-database-on-windows"></a>Specifiche per hello MaxDB Database SAP in Windows
 ### <a name="sap-maxdb-version-support"></a>Supporto della versione di SAP MaxDB
-SAP supporta attualmente SAP MaxDB versione 7.9 per l'uso con prodotti basati su SAP NetWeaver in Azure. Tutti gli aggiornamenti per il server SAP MaxDB o per i driver ODBC e JDBC da usare con i prodotti basati su SAP NetWeaver vengono forniti esclusivamente in SAP Service Marketplace su <https://support.sap.com/swdc>.
+SAP supporta attualmente SAP MaxDB versione 7.9 per l'uso con prodotti basati su SAP NetWeaver in Azure. Tutti gli aggiornamenti per il server SAP MaxDB o toobe di driver ODBC e JDBC utilizzata con prodotti basate su SAP NetWeaver vengono forniti esclusivamente tramite hello SAP Service Marketplace in <https://support.sap.com/swdc>.
 Per informazioni generali sull'esecuzione di SAP NetWeaver in SAP MaxDB, vedere <https://www.sap.com/community/topic/maxdb.html>.
 
 ### <a name="supported-microsoft-windows-versions-and-azure-vm-types-for-sap-maxdb-dbms"></a>Versioni di Microsoft Windows e tipi di VM di Azure supportati per SAP MaxDB DBMS
-Per trovare la versione supportata di Microsoft Windows per SAP MaxDB DBMS in Azure, vedere:
+versione di Microsoft Windows toofind hello è supportato per SAP MaxDB DBMS in Azure, vedere:
 
 * [Product Availability Matrix (PAM) SAP][sap-pam]
 * Nota SAP [1928533]
 
-È consigliabile usare le versione più recente del sistema operativo Microsoft Windows, ovvero Microsoft Windows 2012 R2.
+Versione più recente di hello toouse di hello del sistema operativo Microsoft Windows, ovvero Microsoft Windows 2012 R2, è consigliabile.
 
 ### <a name="available-sap-maxdb-documentation"></a>Documentazione disponibile su SAP MaxDB
-È possibile trovare l'elenco aggiornato della documentazione su SAP MaxDB nella nota SAP [767598]
+È possibile trovare l'elenco di hello aggiornata della documentazione di SAP MaxDB nella nota SAP seguente hello [767598 ]
 
 ### <a name="sap-maxdb-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di SAP MaxDB per le installazioni di SAP nelle VM di Azure
 #### <a name="b48cfe3b-48e9-4f5b-a783-1d29155bd573"></a>Configurazione dell'archiviazione
-Le procedure consigliate di Archiviazione di Azure per SAP MaxDB seguono le raccomandazioni generali riportate nel capitolo [Struttura di una distribuzione RDBMS][dbms-guide-2].
+Procedure consigliate di archiviazione di Azure per SAP MaxDB seguono le raccomandazioni generali hello indicate nel capitolo [struttura di una distribuzione RDBMS][dbms-guide-2].
 
 > [!IMPORTANT]
-> Come altri database, anche SAP MaxDB include file di dati e di log. Nella terminologia di SAP MaxDB, tuttavia, il termine corretto è "volume" (non "file"). Esistono, ad esempio, volumi di dati e volumi di log di SAP MaxDB. Non confonderli con i volumi dei dischi del sistema operativo. 
+> Come altri database, anche SAP MaxDB include file di dati e di log. Tuttavia, la terminologia di SAP MaxDB termine corretto hello è "volume" (non "file"). Esistono, ad esempio, volumi di dati e volumi di log di SAP MaxDB. Non confonderli con i volumi dei dischi del sistema operativo. 
 > 
 > 
 
 In breve, è necessario:
 
-* Se si usano account di archiviazione di Azure, impostare l'account contenente i volumi (ovvero i file) di dati e di log di SAP MaxDB su **Archiviazione con ridondanza locale**, come specificato nel capitolo [Archiviazione di Microsoft Azure][dbms-guide-2.3].
-* Separare il percorso di I/O per i volumi (ovvero i file) di dati di SAP MaxDB dal percorso di I/O per i volumi (ovvero i file) di log. I volumi (ovvero i file) di dati di SAP MaxDB dovranno quindi essere installati in un'unità logica e i volumi (ovvero i file) di log di SAP MaxDB dovranno essere installati in un'altra unità logica.
-* Impostare il tipo di caching appropriato per ogni disco, a seconda che venga usato per volumi (ovvero file) di dati o di log di SAP MaxDB e che si usi Archiviazione Standard di Azure o Archiviazione Premium di Azure, come descritto nel capitolo [Caching per VM e dischi dati][dbms-guide-2.1].
-* Se la quota corrente di operazioni di I/O al secondo per ogni disco soddisfa i requisiti, è possibile archiviare tutti i volumi di dati in un singolo disco montato, nonché archiviare tutti i volumi di log di database in un altro singolo disco montato.
-* Se sono necessari un maggior numero di operazioni di I/O al secondo e/o più spazio, è consigliabile usare i pool di archiviazione Microsoft Windows (disponibili solo in Microsoft Windows Server 2012 e versioni successive) o la funzionalità di striping di Microsoft Windows per Microsoft Windows 2008 R2 per creare un solo dispositivo logico di grandi dimensioni su più dischi montati. Vedere anche il capitolo [Software RAID][dbms-guide-2.2] di questo documento. Questo approccio riduce il sovraccarico di amministrazione per la gestione dello spazio su disco ed evita la fatica di distribuire manualmente i file in più dischi montati.
-* Per requisiti di operazioni di I/O al secondo più elevati, è possibile usare l'Archiviazione Premium di Azure, disponibile nelle VM serie DS e serie GS.
+* Se si utilizza l'account di archiviazione di Azure, impostare l'account di archiviazione di Azure hello contenente hello SAP MaxDB dati e log volumi (ad esempio file) troppo**archiviazione con ridondanza locale (LRS)** come specificato nel capitolo [diarchiviazionediMicrosoftAzure] [dbms-guide-2.3].
+* Percorso dei / o hello separati per i volumi di dati SAP MaxDB (ad esempio file) dal percorso dei / o hello per volumi di log (ad esempio file). Ciò significa che i volumi di dati (ad esempio file) SAP MaxDB toobe installato in un'unità logica e log MaxDB SAP nei volumi (ad esempio file) è toobe installato in un'altra unità logica.
+* Set hello memorizzazione nella cache tipo appropriato per ogni disco, a seconda se si usano per SAP MaxDB volumi di dati o di log (ad esempio file) e che si utilizzi Standard di Azure o di archiviazione Premium di Azure, come descritto nel capitolo [la memorizzazione nella cache per le macchine virtuali e i dischi dati][dbms-guide-2.1].
+* Purché quota di IOPS per ogni disco corrente hello soddisfa i requisiti di hello, è possibile toostore tutti i volumi di dati di hello su un singolo disco montato e anche archiviare tutti i volumi di log del database in un altro disco montato singolo.
+* Se sono necessarie altre operazioni IOPS e/o spazi, è consigliabile toouse Microsoft finestra pool di archiviazione (solo disponibili in Microsoft Windows Server 2012 e versioni successive) o Microsoft Windows per Microsoft Windows 2008 R2 toocreate con striping un dispositivo logico elevato su più dischi montati. Vedere anche il capitolo [Software RAID][dbms-guide-2.2] di questo documento. Questo approccio semplifica lo spazio su disco hello hello amministrazione toomanage overhead e si evita di dover distribuire manualmente i file tra più dischi montati hello.
+* Per i requisiti di IOPS massimi hello, è possibile utilizzare l'archiviazione Premium di Azure, che è disponibile in serie DS e GS-series VM.
 
 ![Configurazione di riferimento di una VM IaaS di Azure per SAP MaxDB DBMS][dbms-guide-figure-600]
 
 #### <a name="23c78d3b-ca5a-4e72-8a24-645d141a3f5d"></a>Backup e ripristino
-Quando si distribuisce SAP MaxDB in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema non è produttivo, è necessario eseguire periodicamente il backup del database SAP ospitato da SAP MaxDB. Poiché Archiviazione di Azure conserva tre immagini, il backup è ora meno importante dal punto di vista della protezione del sistema da errori di archiviazione e da errori operativi o amministrativi più gravi. Il motivo principale per avere un piano di backup e ripristino appropriato è quindi la possibilità di risolvere gli errori logici o manuali fornendo funzionalità di ripristino temporizzato. L'obiettivo è quindi quello di usare i backup per ripristinare un determinato stato precedente del database o di usare i backup in Azure per effettuare il seeding di un altro sistema copiando il database esistente. È possibile, ad esempio, passare da una configurazione SAP di livello 2 a una configurazione di sistema di livello 3 dello stesso sistema ripristinando un backup.
+Quando si distribuisce SAP MaxDB in Azure, è necessario rivedere la metodologia di backup. Anche se il sistema di hello non è un sistema di produzione, hello SAP ospitato da SAP MaxDB deve essere eseguito il backup database periodicamente. Poiché Archiviazione di Azure conserva tre immagini, il backup è ora meno importante dal punto di vista della protezione del sistema da errori di archiviazione e da errori operativi o amministrativi più gravi. Hello motivo principale per la gestione di un backup corretto e un piano di ripristino è in modo che è possibile compensare errori logici o manuali fornendo funzionalità di ripristino in un momento. Hello obiettivo è tooeither utilizzare backup toorestore hello database tooa determinati punto nel tempo o toouse backup hello in Azure tooseed un altro sistema mediante la copia di database esistente di hello. Ad esempio, è possibile eseguire il trasferimento da un'installazione di sistema a 3 livelli a 2 livelli SAP configurazione tooa di hello stesso sistema ripristinando un backup.
 
-Il backup e il ripristino di un database in Azure funzionano esattamente come nei sistemi locali, quindi è possibile usare gli strumenti di backup/ripristino di SAP MaxDB standard, descritti in uno dei documenti su SAP MaxDB elencati nella nota SAP [767598]. 
+Backup e ripristino di un database in Azure funziona hello come avviene per i sistemi locali, è possibile utilizzare MaxDB SAP standard strumenti, che sono descritte in uno dei documenti di documentazione di SAP MaxDB hello backup/ripristino riportato nella nota SAP [767598 ]. 
 
 #### <a name="77cd2fbb-307e-4cbf-a65f-745553f72d2c"></a>Considerazioni sulle prestazioni per il backup e il ripristino
-Come nelle distribuzioni bare metal, le prestazioni di backup e ripristino dipendono dalla quantità di volumi leggibili in parallelo e dalla velocità effettiva di tali volumi. Inoltre, l'utilizzo di CPU associato alla compressione del backup può avere un ruolo significativo per VM con un massimo di otto thread CPU. Si può quindi presumere quanto segue:
+Come nelle distribuzioni bare metal, le prestazioni di backup e ripristino dipende del numero di volumi può essere letti in parallelo e hello velocità effettiva di tali volumi. Inoltre, hello CPU usata dalla compressione dei backup può riprodurre un ruolo significativo in macchine virtuali con i thread CPU tooeight. Si può quindi presumere quanto segue:
 
-* Minore è il numero dei dischi usati per l'archiviazione dei dispositivi del database, più bassa è la velocità effettiva di lettura generale
-* Minore è il numero di thread CPU nella VM, più forte è l'impatto della compressione del backup
-* Minore è il numero di destinazioni (directory di striping o dischi) in cui scrivere il backup, più bassa è la velocità effettiva
+* numero di hello un minor numero di dispositivi di database di dischi utilizzati toostore hello Hello, hello inferiore hello complessivo della velocità effettiva di lettura
+* numero inferiore di hello di thread CPU nella macchina virtuale hello Hello, hello più grave impatto hello di compressione dei backup
+* Hello meno destinazioni (directory di striping, i dischi) toowrite hello backup, alta hello hello
 
-Per aumentare il numero di destinazioni in cui scrivere, sono disponibili due opzioni che è possibile usare, anche in combinazione, a seconda delle proprie esigenze:
+numero hello tooincrease di destinata toowrite per, sono disponibili due opzioni che è possibile utilizzare, eventualmente in combinazione, in base alle esigenze:
 
 * Volumi separati dedicati al backup
-* Striping del volume di destinazione di backup su più dischi montati per migliorare la velocità effettiva delle operazioni di I/O al secondo in tale volume disco con striping
+* Lo striping del volume di destinazione di backup hello su più dischi montati ordine tooimprove hello IOPS della velocità di esecuzione in tale volume con striping del disco
 * Dispositivi dischi logici separati dedicati per:
   * Volumi (ovvero file) di backup di SAP MaxDB
   * Volumi (ovvero file) di dati di SAP MaxDB
@@ -1294,8 +1294,8 @@ Per aumentare il numero di destinazioni in cui scrivere, sono disponibili due op
 Lo striping di un volume su più dischi montati è stato illustrato prima nel capitolo [RAID software][dbms-guide-2.2] di questo documento. 
 
 #### <a name="f77c1436-9ad8-44fb-a331-8671342de818"></a>Altro
-Tutti gli altri argomenti generali, ad esempio i set di disponibilità di Azure o il monitoraggio SAP, si applicano come descritto nei primi tre capitoli di questo documento anche per le distribuzioni di VM con il database SAP MaxDB.
-Altre impostazioni specifiche di SAP MaxDB sono trasparenti per le VM di Azure e vengono descritte in documenti diversi elencati nella nota SAP [767598] e in queste note SAP:
+Tutte le altri argomenti generali, ad esempio il set di disponibilità di Azure o SAP monitoring si applicano anche come descritto in hello primi tre capitoli di questo documento per le distribuzioni di macchine virtuali con database SAP MaxDB hello.
+Altre impostazioni specifiche SAP MaxDB sono macchine virtuali tooAzure trasparente e sono descritte in diversi documenti riportati nella nota SAP [767598 ] e nelle note SAP:
 
 * [826037] 
 * [1139904]
@@ -1306,39 +1306,39 @@ Altre impostazioni specifiche di SAP MaxDB sono trasparenti per le VM di Azure e
 La versione minima di SAP liveCache supportata nelle macchine virtuali di Azure è **SAP LC/LCAPPS 10.0 SP 25**, incluse **liveCache 7.9.08.31** e **LCA-Build 25**, rilasciate per **EhP 2 for SAP SCM 7.0** e versioni successive.
 
 ### <a name="supported-microsoft-windows-versions-and-azure-vm-types-for-sap-livecache-dbms"></a>Versioni di Microsoft Windows e tipi di VM di Azure supportati per SAP liveCache DBMS
-Per trovare la versione supportata di Microsoft Windows per SAP liveCache in Azure, vedere:
+versione di Microsoft Windows toofind hello è supportato per liveCache SAP in Azure, vedere:
 
 * [Product Availability Matrix (PAM) SAP][sap-pam]
 * Nota SAP [1928533]
 
-È consigliabile usare le versione più recente del sistema operativo Microsoft Windows Server. 
+Versione più recente di hello toouse del sistema operativo hello Microsoft Windows Server, è consigliabile. 
 
 ### <a name="sap-livecache-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di SAP liveCache per le installazioni di SAP nelle VM di Azure
 #### <a name="recommended-azure-vm-types"></a>Tipi di VM di Azure consigliati
-Poiché SAP liveCache è un'applicazione che esegue calcoli molto complessi, la quantità e la velocità di RAM e CPU influiscono considerevolmente sulle prestazioni di SAP liveCache. 
+SAP liveCache è un'applicazione che esegue i calcoli di grandi dimensioni, hello quantità e la velocità di RAM e CPU ha un forte impatto sulle prestazioni liveCache SAP. 
 
-Per i tipi di VM di Azure supportati da SAP (nota SAP [1928533]), tutte le risorse della CPU virtuale allocate alla VM sono supportate da risorse della CPU fisica dedicate dell'hypervisor. Non si verifica nessun provisioning eccessivo (e quindi nessuna competizione per le risorse della CPU).
+Per i tipi di macchina virtuale di Azure hello supportati da SAP (nota SAP [1928533]), tutte le risorse di CPU virtuali allocate toohello dedicato alle risorse della CPU fisica dell'hypervisor hello vengono sottoposti a macchina virtuale. Non si verifica nessun provisioning eccessivo (e quindi nessuna competizione per le risorse della CPU).
 
-Analogamente, per tutti i tipi di istanza di VM di Azure supportati da SAP, la memoria della VM viene interamente mappata alla memoria fisica. Non viene usato, ad esempio, l'overprovisioning (overcommit).
+Analogamente, per tutti i tipi di istanza VM di Azure supportati da SAP, memoria della macchina virtuale hello è stato eseguito il mapping di 100% memoria fisica di toohello – overprovisioning (overcommit), ad esempio, non viene utilizzata.
 
-Da questo punto di vista, è consigliabile usare il nuovo tipo di VM serie D o serie DS (in combinazione con Archiviazione Premium di Azure), perché i processori sono del 60% più veloci rispetto a quelli della serie A. Per carichi di RAM e CPU più elevati, è possibile usare VM serie G e serie GS (in combinazione con l'Archiviazione Premium di Azure) con la famiglia di processori E5 v3 di Intel® Xeon® più recente, con il doppio della memoria e archiviazione con unità SSD quattro volte superiore rispetto alla serie D/DS.
+Da questa prospettiva, è consigliabile toouse hello nuova serie D o macchina virtuale di Azure della serie DS (in combinazione con l'archiviazione di Azure Premium) tipo, in cui il 60% processori più veloci rispetto a hello serie. Per hello RAM e CPU carico massimo, è possibile utilizzare G-series e GS-series (in combinazione con l'archiviazione di Azure Premium) di macchine virtuali con processore Intel® Xeon® più recente di hello E5 v3 famiglia, che contengono due volte la memoria hello e quattro volte hello a tinta unita archiviazione dello stato unità (SSD Solid) di hello D / Serie DS.
 
 #### <a name="storage-configuration"></a>Configurazione dell'archiviazione
-Poiché SAP liveCache si basa sulla tecnologia SAP MaxDB, tutte le procedure consigliate per Archiviazione di Azure indicati per SAP MaxDB nel capitolo [Storage configuration][dbms-guide-8.4.1] (Configurazione di archiviazione) sono valide anche per SAP liveCache. 
+Come liveCache SAP è basato sulla tecnologia MaxDB SAP, tutti hello di archiviazione di Azure le procedure consigliate indicate per SAP MaxDB nel capitolo [configurazione dell'archiviazione] [ dbms-guide-8.4.1] sono validi anche per liveCache SAP. 
 
 #### <a name="dedicated-azure-vm-for-livecache"></a>VM di Azure dedicata per liveCache
-Poiché SAP liveCache usa in modo intensivo la potenza di elaborazione, per l'utilizzo produttivo è consigliabile la distribuzione in una macchina virtuale di Azure dedicata. 
+Come SAP liveCache usa intensamente la potenza di calcolo, per l'utilizzo produttivo è consigliabile toodeploy in una macchina virtuale dedicato Azure. 
 
 ![VM di Azure dedicata per liveCache per un caso d'uso produttivo][dbms-guide-figure-700]
 
 #### <a name="backup-and-restore"></a>Backup e ripristino
-Il backup e il ripristino, incluse le considerazioni sulle prestazioni, sono già stati illustrati nei capitoli pertinenti a SAP MaxDB, [Backup and Restore][dbms-guide-8.4.2] (Backup e ripristino) e [Performance Considerations for Backup and Restore][dbms-guide-8.4.3] (Considerazioni sulle prestazioni per backup e ripristino). 
+Backup e ripristino, incluse le considerazioni sulle prestazioni, sono già stati descritti nei capitoli SAP MaxDB rilevanti hello [di Backup e ripristino] [ dbms-guide-8.4.2] e [considerazioni sulle prestazioni per il Backup e il ripristino][dbms-guide-8.4.3]. 
 
-#### <a name="other"></a>Altri
-Tutti gli altri argomenti generali sono già illustrati in [questo][dbms-guide-8.4.4] capitolo su SAP MaxDB. 
+#### <a name="other"></a>Altre
+Tutti gli altri argomenti generali sono già stati descritti in hello rilevanti SAP MaxDB [questo] [ dbms-guide-8.4.4] capitolo. 
 
-## <a name="specifics-for-the-sap-content-server-on-windows"></a>Specifiche per SAP Content Server in Windows
-SAP Content Server è un componente separato basato su server per archiviare contenuto, ad esempio documenti elettronici in formati diversi. SAP Content Server è supportato dallo sviluppo della tecnologia e deve essere usato tra applicazioni per qualsiasi applicazione SAP. Viene installato in un sistema distinto. Il contenuto in genere è costituito da documentazione e materiale di formazione di Knowledge Warehouse o da disegni tecnici provenienti da mySAP PLM Document Management System. 
+## <a name="specifics-for-hello-sap-content-server-on-windows"></a>Specifiche per i Server di contenuti di SAP in Windows hello
+Hello Server contenuto SAP è un contenuto toostore componente separato, basato su server, ad esempio documenti elettronici in formati diversi. Hello Server contenuto SAP è fornito dall'ambiente di sviluppo della tecnologia ed è toobe utilizzato tra le applicazioni per tutte le applicazioni SAP. Viene installato in un sistema distinto. Il contenuto tipico è training materiale e la documentazione di Warehouse Knowledge o disegni tecnici provenienti da mySAP hello del ciclo di sistema di gestione di documenti. 
 
 ### <a name="sap-content-server-version-support"></a>Supporto della versione di SAP Content Server
 SAP attualmente supporta:
@@ -1347,161 +1347,161 @@ SAP attualmente supporta:
 * **SAP MaxDB versione 7.9**
 * **Microsoft IIS (Internet Information Server) versione 8.0 (e successive)**
 
-È consigliabile usare la versione più recente di SAP Content Server, che al momento della stesura di questo documento è la **6.50 SP4**, e la versione più recente di **Microsoft IIS 8.5**. 
+Si consiglia di versione più recente di toouse hello del Server contenuti SAP, che in fase di hello di scrittura di questo documento è **6.50 SP4**e la versione più recente di hello del **Microsoft IIS 8.5**. 
 
-Controllare le versioni supportate più recenti di SAP Content Server e Microsoft IIS in [Product Availability Matrix (PAM) SAP][sap-pam].
+Controllo delle versioni di hello supportata più recente del Server di contenuti di SAP e Microsoft IIS in hello [SAP prodotto disponibilità matrice (PAM)][sap-pam].
 
 ### <a name="supported-microsoft-windows-and-azure-vm-types-for-sap-content-server"></a>Tipi di VM di Azure e di Microsoft Windows supportati per SAP Content Server
-Per trovare le versioni di Windows supportate per SAP Content Server in Azure, vedere:
+toofind versione supportata di Windows per Server di contenuti di SAP in Azure, vedere:
 
 * [Product Availability Matrix (PAM) SAP][sap-pam]
 * Nota SAP [1928533]
 
-È consigliabile usare le versione più recente di Microsoft Windows Server.
+Versione più recente di hello toouse di Microsoft Windows Server, è consigliabile.
 
 ### <a name="sap-content-server-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di SAP Content Server per le installazioni di SAP nelle VM di Azure
 #### <a name="storage-configuration"></a>Configurazione dell'archiviazione
-Se si configura SAP Content Server per archiviare i file nel database SAP MaxDB, tutte le procedure consigliate per Archiviazione di Azure indicati per SAP MaxDB nel capitolo [Storage Configuration][dbms-guide-8.4.1] (Configurazione dell'archiviazione) sono validi anche per lo scenario di SAP Content Server. 
+Se si configurano i file Server di contenuti di SAP toostore nel database SAP MaxDB hello, archiviazione di Azure tutte le procedura consigliate raccomandazione indicato per SAP MaxDB nel capitolo [configurazione dell'archiviazione] [ dbms-guide-8.4.1] sono anche valido per uno scenario Server di contenuti di SAP hello. 
 
-Se si configura SAP Content Server per archiviare i file nel file system, è consigliabile usare un'unità logica dedicata. L'uso di Spazi di archiviazione Windows consente anche di aumentare le dimensioni del disco logico e la velocità effettiva delle operazioni di I/O al secondo, come descritto nel capitolo [RAID software][dbms-guide-2.2]. 
+Se si configurano i file Server di contenuti di SAP toostore nel file system di hello, è consigliabile toouse un'unità logica dedicata. Con gli spazi di archiviazione di Windows consente di dimensioni del disco logico tooalso aumento e la velocità effettiva IOPS, come descritto nel capitolo [RAID Software][dbms-guide-2.2]. 
 
 #### <a name="sap-content-server-location"></a>Posizione di SAP Content Server
-SAP Content Server deve essere distribuito nella stessa area di Azure e nella stessa rete virtuale di Azure in cui è stato distribuito il sistema SAP. È possibile scegliere se distribuire i componenti di SAP Content Server in una VM di Azure dedicata o nella stessa VM in cui è in esecuzione il sistema SAP. 
+Server contenuto SAP è distribuito in hello toobe stessa regione di Azure e rete virtuale di Azure in cui è distribuito hello sistema SAP. Si è toodecide disponibile se si desidera che i componenti Server di contenuti di SAP toodeploy in una macchina virtuale di Azure dedicata o nel database hello stessa macchina virtuale in cui è in esecuzione hello sistema SAP. 
 
 ![VM di Azure dedicata per SAP Content Server][dbms-guide-figure-800]
 
 #### <a name="sap-cache-server-location"></a>Posizione di SAP Cache Server
-SAP Cache Server è un componente aggiuntivo basato su server che fornisce accesso in locale ai documenti (memorizzati nella cache). SAP Cache Server memorizza nella cache i documenti di un'istanza di SAP Content Server per poter ottimizzare il traffico di rete se i documenti devono essere recuperati più di una volta da posizioni diverse. La regola generale prevede che SAP Cache Server deve essere fisicamente vicino al client che accede a SAP Cache Server. 
+Hello SAP Cache Server è un componente aggiuntivo basato su server tooprovide accesso too(cached) documenti in locale. Hello SAP Cache Server memorizza nella cache di documenti hello di un Server di contenuti di SAP. Si tratta di toooptimize il traffico di rete se i documenti hanno toobe più di una volta recuperato da diverse posizioni. In generale Hello è che il Server di Cache SAP hello ha toobe toohello fisicamente Chiudi client che accede ai Server di Cache SAP hello. 
 
 Sono disponibili due opzioni:
 
-1. **Il client è un sistema SAP back-end** Se un sistema SAP back-end viene configurato per accedere a SAP Content Server, tale sistema SAP è un client. Poiché sia il sistema SAP che SAP Content Server vengono distribuiti nella stessa area di Azure, ovvero nello stesso data center di Azure, sono fisicamente vicini. Non è quindi necessaria un'istanza di SAP Cache Server dedicata. I client dell'interfaccia utente SAP (GUI SAP o Web browser) accedono direttamente al sistema SAP e il sistema SAP recupera i documenti da SAP Content Server.
-2. **Il client è un Web browser locale** SAP Content Server può essere configurato per essere accessibile direttamente dal Web browser. In questo caso, un Web browser in esecuzione in locale è un client di SAP Content Server. Il data center locale e il data center di Azure vengono posti in posizioni fisiche diverse, idealmente vicini l'uno all'altro. Il data center locale viene connesso ad Azure con una VPN da sito a sito di Azure o con ExpressRoute. Anche se entrambe le opzioni offrono una connessione di rete VPN sicura, la connessione di rete da sito a sito non offre un contratto di servizio per la latenza e la larghezza di banda di rete tra il data center locale e il data center di Azure. Per velocizzare l'accesso ai documenti, è possibile eseguire una di queste operazioni:
-   1. Installare SAP Cache Server localmente, vicino al Web browser locale, come illustrato in [questa][dbms-guide-900-sap-cache-server-on-premises] figura
+1. **Il client è un sistema SAP back-end** se un sistema SAP back-end è configurato tooaccess Server contenuto SAP, tale sistema SAP è un client. Come sistema SAP sia Server di contenuti di SAP vengono distribuiti in hello stessa regione di Azure – in hello stesso Data Center di Azure – sono fisicamente Chiudi tooeach altri. Pertanto, non è toohave necessario un Server di Cache dedicato di SAP. Interfaccia utente di SAP (SAP GUI o un browser web) client accesso hello sistema SAP direttamente e hello SAP sistema recupera documenti da hello Content Server SAP.
+2. **Il client è un browser web locale** hello Server contenuto SAP può essere configurato toobe accedere direttamente dal browser web hello. In questo caso, un web browser in esecuzione in locale è un client di hello Content Server SAP. Data Center locale e Data Center di Azure vengono inseriti in diverse ubicazioni fisiche (idealmente Chiudi tooeach altri). Il data center locale è connesso tooAzure tramite Azure VPN Site-to-Site o ExpressRoute. Anche se entrambe le opzioni offrono protezione tooAzure di connessione di rete VPN, connessione di rete da sito a sito non offre un contratto di servizio rete larghezza di banda e latenza tra Data Center locale hello e hello Data Center di Azure. toospeed backup toodocuments di accesso, è possibile eseguire una delle seguenti hello:
+   1. Installare il Server di Cache SAP in locale, chiudere toohello on premise web browser (opzione [questo] [ dbms-guide-900-sap-cache-server-on-premises] figura)
    2. Configurare Azure ExpressRoute, che offre una connessione di rete dedicata a velocità elevata e a bassa latenza tra il data center locale e il data center di Azure.
 
-![Possibilità di installare SAP Cache Server in locale][dbms-guide-figure-900]
+![Opzione tooinstall SAP Cache Server locale][dbms-guide-figure-900]
 <a name="642f746c-e4d4-489d-bf63-73e80177a0a8"></a>
 
 #### <a name="backup--restore"></a>Backup/Ripristino
-Se si configura SAP Content Server per archiviare i file nel database SAP MaxDB, la procedura di backup/ripristino e le considerazioni sulle prestazioni sono già state illustrate nei capitoli [Backup and Restore][dbms-guide-8.4.2] (Backpup e ripristino) e nel capitolo [Performance Considerations for Backup and Restore][dbms-guide-8.4.3] (Considerazioni sulle prestazioni per backup e ripristino) di SAP MaxDB. 
+Se si configurano toostore i file Server di contenuti di SAP di hello nel database SAP MaxDB hello, hello backup/ripristino procedure e considerazioni sulle prestazioni sono già stati descritti nei capitoli da SAP MaxDB [di Backup e ripristino] [ dbms-guide-8.4.2] e capitolo [considerazioni sulle prestazioni per il Backup e ripristino][dbms-guide-8.4.3]. 
 
-Se si configura SAP Content Server per archiviare i file nel file system, una possibilità consiste nell'eseguire il backup/ripristino manuale dell'intera struttura di file in cui si trovano i documenti. Come per il backup/ripristino di SAP MaxDB, è consigliabile avere un volume del disco dedicato per il backup. 
+Se si configurano toostore i file Server di contenuti di SAP di hello nel file system di hello, un'opzione è tooexecute backup/ripristino manuale della struttura di hello intero file in cui si trovano i documenti hello. TooSAP simile MaxDB backup/ripristino, è consigliabile toohave un volume dedicato a scopo di backup. 
 
-#### <a name="other"></a>Altri
-Le altre impostazioni specifiche di SAP Content Server sono trasparenti per le VM di Azure e sono descritte in diversi documenti e note SAP:
+#### <a name="other"></a>Altre
+Altre impostazioni specifiche del Server di contenuti di SAP sono macchine virtuali tooAzure trasparente e sono descritte in diversi documenti e note su SAP:
 
 * <https://service.sap.com/contentserver> 
 * Nota SAP [1619726]  
 
-## <a name="specifics-to-ibm-db2-for-luw-on-windows"></a>Specifiche per IBM DB2 per LUW in Windows
-Con Microsoft Azure, è possibile eseguire facilmente la migrazione dell'applicazione SAP esistente in esecuzione in IBM DB2 per Linux, UNIX e Windows (LUW) alle macchine virtuali di Azure. Con SAP in IBM DB2 per LUW, gli amministratori e gli sviluppatori possono continuare a usare gli stessi strumenti di sviluppo e amministrazione disponibili in locale.
-Informazioni generali sull'esecuzione di SAP Business Suite in IBM DB2 per LUW sono disponibili in SAP Community Network (SCN) all'indirizzo <https://www.sap.com/community/topic/db2-for-linux-unix-and-windows.html>.
+## <a name="specifics-tooibm-db2-for-luw-on-windows"></a>Le specifiche tooIBM DB2 per LUW in Windows
+Con Microsoft Azure, è possibile eseguire facilmente la migrazione dell'applicazione SAP esistente in esecuzione in IBM DB2 per Linux, UNIX e Windows (LUW) le macchine virtuali tooAzure. Con SAP in IBM DB2 per LUW, amministratori e sviluppatori possono ancora usare hello stessi strumenti di sviluppo e amministrazione disponibili in locale.
+Informazioni generali sull'esecuzione di SAP Business Suite in IBM DB2 per LUW è reperibile hello SAP Community rete (SCN) in <https://www.sap.com/community/topic/db2-for-linux-unix-and-windows.html>.
 
 Per altre informazioni e aggiornamenti su SAP in DB2 per LUW in Azure, vedere la nota SAP [2233094]. 
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-version-support"></a>Supporto della versione di IBM DB2 per Linux, UNIX e Windows
 SAP in IBM DB2 per LUW nei servizi Macchine virtuali di Microsoft Azure è supportato a partire da DB2 versione 10.5.
 
-Per informazioni sui prodotti SAP e sui tipi di VM di Azure supportati, vedere la nota SAP [1928533].
+Per informazioni su prodotti SAP supportati e i tipi di macchine Virtuali di Azure, vedere tooSAP nota [1928533].
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di IBM DB2 per Linux, UNIX e Windows per le installazioni di SAP nelle VM di Azure
 #### <a name="storage-configuration"></a>Configurazione dell'archiviazione
-Tutti i file di database devono essere archiviati nel file system NTFS basato su dischi collegati direttamente. I dischi vengono montati nella VM di Azure e sono basati sull'archivio BLOB di pagine di Azure (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o su Managed Disks (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Le unità di rete o le condivisioni remote di qualsiasi tipologia, ad esempio i servizi file di Azure seguenti, **NON** sono supportati per i file di database: 
+Tutti i file di database devono essere archiviati in file system di hello NTFS in base a dischi collegati direttamente. Questi dischi sono montato toohello macchina virtuale di Azure e si basano nell'archiviazione BLOB di Azure pagina (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o dischi gestiti (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Qualsiasi tipo di unità di rete o condivisioni remote come hello seguenti servizi di file di Azure è **non** supportato per i file di database: 
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
 
-Se si usano dischi rigidi basati sull'archivio BLOB di pagine di Azure o su Managed Disks, le istruzioni riportate nel capitolo [Struttura di una distribuzione RDBMS][dbms-guide-2] di questo documento si applicano anche alle distribuzioni con il database IBM DB2 per LUW. 
+Se si utilizza dischi basati su archiviazione BLOB di Azure pagina o dischi gestiti, hello istruzioni eseguite in questo documento nel capitolo [struttura di una distribuzione RDBMS] [ dbms-guide-2] si applicano anche toodeployments con hello IBM DB2 per LUW Database. 
 
-Come spiegato in precedenza nella parte generale del documento, esistono quote relative alla velocità effettiva delle operazioni di I/O al secondo per i dischi. Le quote esatte dipendono dal tipo di VM usato. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
+Come illustrato in precedenza in hello generale parte hello documento, esistono quote sulla velocità effettiva IOPS per i dischi. le quote esatta Hello dipendono dal tipo di macchina virtuale hello utilizzato. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
 
-Se la quota corrente di operazioni di I/O al secondo per ogni disco è sufficiente, è possibile archiviare tutti i file di database in un singolo disco montato. 
+Purché hello corrente quota IOPS per ogni disco è sufficiente, che è possibile toostore tutti hello file di database in un singolo disco montato. 
 
-Per le considerazioni sulle prestazioni, vedere anche il capitolo relativo alle considerazioni sulle prestazioni e la sicurezza dei dati per le directory di database nelle guide di installazione di SAP.
+Per ottenere prestazioni considerazioni anche fare riferimento toochapter "sicurezza e prestazioni considerazioni per Database"directory dati nelle guide di installazione di SAP.
 
-In alternativa, è possibile usare i pool di archiviazione Windows (disponibili solo in Windows Server 2012 e versioni successive) o la funzionalità di striping Windows per Windows 2008 R2, come descritto nel capitolo [RAID software][dbms-guide-2.2] di questo documento, per creare un solo dispositivo logico di grandi dimensioni su più dischi.
-Per i dischi contenenti i percorsi di archiviazione DB2 per le directory sapdata e saptmp, è necessario specificare una dimensione del settore del disco pari a 512 KB. Quando si usano i pool di archiviazione di Windows, è necessario creare manualmente i pool di archiviazione con l'interfaccia della riga di comando usando il parametro "-LogicalSectorSizeDefault". Per altre informazioni, vedere <https://technet.microsoft.com/itpro/powershell/windows/storage/new-storagepool>.
+In alternativa, è possibile utilizzare pool di archiviazione di Windows (solo disponibili in Windows Server 2012 e versioni successive) o lo striping di Windows per Windows 2008 R2, come descritto nel capitolo [RAID Software] [ dbms-guide-2.2] di questo documento toocreate una grande dispositivo logico su più dischi.
+Per i dischi hello contenente i percorsi di archiviazione DB2 hello per le directory sapdata e saptmp, è necessario specificare una dimensione di settore del disco fisico di 512 KB. Quando si utilizza il pool di archiviazione di Windows, è necessario creare hello pool di archiviazione manualmente tramite l'interfaccia della riga di comando utilizzando il parametro hello "-LogicalSectorSizeDefault". Per altre informazioni, vedere <https://technet.microsoft.com/itpro/powershell/windows/storage/new-storagepool>.
 
 #### <a name="backuprestore"></a>Backup/Ripristino
-La funzionalità di backup/ripristino per IBM DB2 per LUW è supportata esattamente come nei sistemi operativi Windows Server standard e in Hyper-V.
+funzionalità di backup/ripristino Hello per IBM DB2 per LUW è supportato in hello stesso modo come in standard i sistemi operativi Windows Server e Hyper-V.
 
 È necessario verificare di avere adottato una valida strategia di backup di database. 
 
-Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino dipendono dalla quantità di volumi leggibili in parallelo e dalla velocità effettiva di tali volumi. Inoltre, l'utilizzo di CPU associato alla compressione del backup può avere un ruolo significativo per VM con un massimo di soli otto thread CPU. Si può quindi presumere quanto segue:
+Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino varia a seconda del numero di volumi può essere letti in parallelo e velocità effettiva quali hello di tali volumi potrebbe essere. Inoltre, hello CPU usata dalla compressione dei backup potrebbe svolgono un ruolo significativo in macchine virtuali con solo i thread di CPU tooeight. Si può quindi presumere quanto segue:
 
-* Minore è il numero dei dischi usati per l'archiviazione dei dispositivi del database, più bassa è la velocità effettiva generale nella lettura
-* Minore è il numero di thread CPU nella VM, più forte è l'impatto della compressione del backup
-* Minore è il numero di destinazioni (directory di striping o dischi) in cui scrivere il backup, più bassa è la velocità effettiva
+* Hello meno hello il numero di dischi utilizzati toostore hello dispositivi di database, hello complessivo inferiore hello velocità effettiva in lettura
+* numero inferiore di hello di thread CPU nella macchina virtuale hello Hello, hello più grave impatto hello di compressione dei backup
+* Hello meno destinazioni (directory di striping, i dischi) toowrite hello backup, alta hello hello
 
-Per aumentare il numero di destinazioni in cui scrivere, è possibile usare/combinare due opzioni a seconda delle proprie esigenze:
+numero di hello tooincrease di destinazioni toowrite a, due opzioni possono essere utilizzato/combinati in base alle esigenze:
 
-* Striping del volume di destinazione di backup su più dischi per migliorare la velocità effettiva delle operazioni di I/O al secondo in tale volume con striping
-* Uso di più di una directory di destinazione in cui scrivere il backup
+* Lo striping del volume di destinazione di backup hello su più dischi della velocità effettiva di IOPS hello tooimprove ordine sul volume con striping
+* Utilizzo di più di una destinazione directory toowrite hello backup per
 
 #### <a name="high-availability-and-disaster-recovery"></a>Disponibilità elevata e ripristino di emergenza
 Il server di cluster Microsoft non è supportato.
 
-Il ripristino di emergenza a disponibilità DB2 è supportato. Se le macchine virtuali della configurazione a disponibilità elevata hanno una risoluzione dei nomi funzionante, la configurazione in Azure non sarà diversa da quelle eseguite in locale. Non è consigliabile affidarsi solo alla risoluzione IP.
+Il ripristino di emergenza a disponibilità DB2 è supportato. Se dispone di macchine virtuali hello di configurazione a disponibilità elevata hello utilizza la risoluzione dei nomi, il programma di installazione di hello in Azure non è diversa da qualsiasi programma di installazione viene eseguita in locale. Non è consigliabile toorely solo alla risoluzione IP.
 
-Non usare la replica geografica per gli account di archiviazione in cui vengono archiviati i dischi di database. Per altre informazioni, vedere i capitoli [Archiviazione di Microsoft Azure][dbms-guide-2.3] e [Disponibilità elevata e ripristino di emergenza con VM di Azure][dbms-guide-3].
+Non usare la replica geografica per gli account di archiviazione hello archiviano hello database dischi. Per ulteriori informazioni, vedere toochapter [archiviazione di Microsoft Azure] [ dbms-guide-2.3] e capitolo [disponibilità elevata e ripristino di emergenza con macchine virtuali di Azure] [ dbms-guide-3].
 
-#### <a name="other"></a>Altri
-Tutti gli altri argomenti generali, ad esempio i set di disponibilità di Azure o il monitoraggio SAP, si applicano come descritto nei primi tre capitoli di questo documento anche per le distribuzioni di VM con IBM DB2 per LUW. 
+#### <a name="other"></a>Altre
+Tutti gli altri argomenti generali come set di disponibilità di Azure o SAP monitoring si applicano come descritto in hello primi tre capitoli di questo documento per le distribuzioni di macchine virtuali con IBM DB2 per LUW anche. 
 
-Vedere anche [Riepilogo generale su SQL Server per SAP in Azure][dbms-guide-5.8].
+Fare riferimento anche toochapter [generali di SQL Server per SAP in Azure riepilogo][dbms-guide-5.8].
 
-## <a name="specifics-to-ibm-db2-for-luw-on-linux"></a>Specifiche per IBM DB2 per LUW in Linux
-Con Microsoft Azure, è possibile eseguire facilmente la migrazione dell'applicazione SAP esistente in esecuzione in IBM DB2 per Linux, UNIX e Windows (LUW) alle macchine virtuali di Azure. Con SAP in IBM DB2 per LUW, gli amministratori e gli sviluppatori possono continuare a usare gli stessi strumenti di sviluppo e amministrazione disponibili in locale. Informazioni generali sull'esecuzione di SAP Business Suite in IBM DB2 per LUW sono disponibili in SAP Community Network (SCN) all'indirizzo <https://www.sap.com/community/topic/db2-for-linux-unix-and-windows.html>.
+## <a name="specifics-tooibm-db2-for-luw-on-linux"></a>Le specifiche tooIBM DB2 per LUW su Linux
+Con Microsoft Azure, è possibile eseguire facilmente la migrazione dell'applicazione SAP esistente in esecuzione in IBM DB2 per Linux, UNIX e Windows (LUW) le macchine virtuali tooAzure. Con SAP in IBM DB2 per LUW, amministratori e sviluppatori possono ancora usare hello stessi strumenti di sviluppo e amministrazione disponibili in locale. Informazioni generali sull'esecuzione di SAP Business Suite in IBM DB2 per LUW è reperibile hello SAP Community rete (SCN) in <https://www.sap.com/community/topic/db2-for-linux-unix-and-windows.html>.
 
 Per altre informazioni e aggiornamenti su SAP in DB2 per LUW in Azure, vedere la nota SAP [2233094].
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-version-support"></a>Supporto della versione di IBM DB2 per Linux, UNIX e Windows
 SAP in IBM DB2 per LUW nei servizi Macchine virtuali di Microsoft Azure è supportato a partire da DB2 versione 10.5.
 
-Per informazioni sui prodotti SAP e sui tipi di VM di Azure supportati, vedere la nota SAP [1928533].
+Per informazioni su prodotti SAP supportati e i tipi di macchine Virtuali di Azure, vedere tooSAP nota [1928533].
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Linee guida per la configurazione di IBM DB2 per Linux, UNIX e Windows per le installazioni di SAP nelle VM di Azure
 #### <a name="storage-configuration"></a>Configurazione dell'archiviazione
-Tutti i file di database devono essere archiviati in un file system basato su dischi collegati direttamente. I dischi vengono montati nella VM di Azure e sono basati sull'archivio BLOB di pagine di Azure (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o su Managed Disks (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Le unità di rete o le condivisioni remote di qualsiasi tipologia, ad esempio i servizi file di Azure seguenti, **NON** sono supportati per i file di database:
+Tutti i file di database devono essere archiviati in un file system basato su dischi collegati direttamente. Questi dischi sono montato toohello macchina virtuale di Azure e si basano nell'archiviazione BLOB di Azure pagina (<https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>) o dischi gestiti (<https://docs.microsoft.com/azure/storage/storage-managed-disks-overview>). Qualsiasi tipo di unità di rete o condivisioni remote come hello seguenti servizi di file di Azure è **non** supportato per i file di database:
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
 
-Se si usano dischi rigidi basati sull'archivio BLOB di pagine di Azure, le istruzioni riportate nel capitolo [Struttura di una distribuzione RDBMS][dbms-guide-2] di questo documento si applicano anche alle distribuzioni con il database IBM DB2 per LUW.
+Se si utilizza dischi basati su archiviazione BLOB di Azure pagina, hello istruzioni eseguite in questo documento nel capitolo [struttura di una distribuzione RDBMS] [ dbms-guide-2] si applicano anche toodeployments con hello IBM DB2 per LUW Database.
 
-Come spiegato in precedenza nella parte generale del documento, esistono quote relative alla velocità effettiva delle operazioni di I/O al secondo per i dischi. Le quote esatte dipendono dal tipo di VM usato. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
+Come illustrato in precedenza in hello generale parte hello documento, esistono quote sulla velocità effettiva IOPS per i dischi. le quote esatta Hello dipendono dal tipo di macchina virtuale hello utilizzato. Un elenco dei tipi di VM con le rispettive quote è disponibile [qui (per Linux)][virtual-machines-sizes-linux] e [qui (per Windows)][virtual-machines-sizes-windows].
 
-Se la quota corrente di operazioni di I/O al secondo per ogni disco è sufficiente, è possibile archiviare tutti i file di database in un singolo disco.
+Purché hello corrente quota IOPS per ogni disco è sufficiente, che è possibile toostore tutti hello file di database in un singolo disco.
 
-Per le considerazioni sulle prestazioni, vedere anche il capitolo relativo alle considerazioni sulle prestazioni e la sicurezza dei dati per le directory di database nelle guide di installazione di SAP.
+Per ottenere prestazioni considerazioni anche fare riferimento toochapter "sicurezza e prestazioni considerazioni per Database"directory dati nelle guide di installazione di SAP.
 
-In alternativa, è possibile usare LVM (Logical Volume Manager) o MDADM come descritto nel capitolo [RAID software][dbms-guide-2.2] di questo documento per creare un solo dispositivo logico di grandi dimensioni su più dischi.
-Per i dischi contenenti i percorsi di archiviazione DB2 per le directory sapdata e saptmp, è necessario specificare una dimensione del settore del disco pari a 512 KB.
+In alternativa, è possibile utilizzare LVM (gestione dei volumi logici) o MDADM descritta nel capitolo [RAID Software] [ dbms-guide-2.2] di questo documento toocreate una grande dispositivo logico su più dischi.
+Per i dischi hello contenente i percorsi di archiviazione DB2 hello per le directory sapdata e saptmp, è necessario specificare una dimensione di settore del disco fisico di 512 KB.
 
 #### <a name="backuprestore"></a>Backup/Ripristino
-La funzionalità di backup/ripristino per IBM DB2 per LUW è supportata esattamente come nell'installazione Linux locale standard.
+funzionalità di backup/ripristino Hello per IBM DB2 per LUW è supportato in hello stesso modo in standard Linux installazione locale.
 
 È necessario verificare di avere adottato una valida strategia di backup di database.
 
-Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino dipendono dalla quantità di volumi leggibili in parallelo e dalla velocità effettiva di tali volumi. Inoltre, l'utilizzo di CPU associato alla compressione del backup può avere un ruolo significativo per VM con un massimo di soli otto thread CPU. Si può quindi presumere quanto segue:
+Come nelle distribuzioni bare metal, le prestazioni di backup/ripristino varia a seconda del numero di volumi può essere letti in parallelo e velocità effettiva quali hello di tali volumi potrebbe essere. Inoltre, hello CPU usata dalla compressione dei backup potrebbe svolgono un ruolo significativo in macchine virtuali con solo i thread di CPU tooeight. Si può quindi presumere quanto segue:
 
-* Minore è il numero dei dischi usati per l'archiviazione dei dispositivi del database, più bassa è la velocità effettiva generale nella lettura
-* Minore è il numero di thread CPU nella VM, più forte è l'impatto della compressione del backup
-* Minore è il numero di destinazioni (directory di striping o dischi) in cui scrivere il backup, più bassa è la velocità effettiva
+* Hello meno hello il numero di dischi utilizzati toostore hello dispositivi di database, hello complessivo inferiore hello velocità effettiva in lettura
+* numero inferiore di hello di thread CPU nella macchina virtuale hello Hello, hello più grave impatto hello di compressione dei backup
+* Hello meno destinazioni (directory di striping, i dischi) toowrite hello backup, alta hello hello
 
-Per aumentare il numero di destinazioni in cui scrivere, è possibile usare/combinare due opzioni a seconda delle proprie esigenze:
+numero di hello tooincrease di destinazioni toowrite a, due opzioni possono essere utilizzato/combinati in base alle esigenze:
 
-* Striping del volume di destinazione di backup su più dischi per migliorare la velocità effettiva delle operazioni di I/O al secondo in tale volume con striping
-* Uso di più di una directory di destinazione in cui scrivere il backup
+* Lo striping del volume di destinazione di backup hello su più dischi della velocità effettiva di IOPS hello tooimprove ordine sul volume con striping
+* Utilizzo di più di una destinazione directory toowrite hello backup per
 
 #### <a name="high-availability-and-disaster-recovery"></a>Disponibilità elevata e ripristino di emergenza
-Il ripristino di emergenza a disponibilità DB2 è supportato. Se le macchine virtuali della configurazione a disponibilità elevata hanno una risoluzione dei nomi funzionante, la configurazione in Azure non sarà diversa da quelle eseguite in locale. Non è consigliabile affidarsi solo alla risoluzione IP.
+Il ripristino di emergenza a disponibilità DB2 è supportato. Se dispone di macchine virtuali hello di configurazione a disponibilità elevata hello utilizza la risoluzione dei nomi, il programma di installazione di hello in Azure non è diversa da qualsiasi programma di installazione viene eseguita in locale. Non è consigliabile toorely solo alla risoluzione IP.
 
-Non usare la replica geografica per gli account di archiviazione in cui vengono archiviati i dischi di database. Per altre informazioni, vedere i capitoli [Archiviazione di Microsoft Azure][dbms-guide-2.3] e [Disponibilità elevata e ripristino di emergenza con VM di Azure][dbms-guide-3].
+Non usare la replica geografica per gli account di archiviazione hello archiviano hello database dischi. Per ulteriori informazioni, vedere toochapter [archiviazione di Microsoft Azure] [ dbms-guide-2.3] e capitolo [disponibilità elevata e ripristino di emergenza con macchine virtuali di Azure] [ dbms-guide-3].
 
-#### <a name="other"></a>Altri
-Tutti gli altri argomenti generali, ad esempio i set di disponibilità di Azure o il monitoraggio SAP, si applicano come descritto nei primi tre capitoli di questo documento anche per le distribuzioni di VM con IBM DB2 per LUW.
+#### <a name="other"></a>Altre
+Tutti gli altri argomenti generali come set di disponibilità di Azure o SAP monitoring si applicano come descritto in hello primi tre capitoli di questo documento per le distribuzioni di macchine virtuali con IBM DB2 per LUW anche.
 
-Vedere anche [Riepilogo generale su SQL Server per SAP in Azure][dbms-guide-5.8].
+Fare riferimento anche toochapter [generali di SQL Server per SAP in Azure riepilogo][dbms-guide-5.8].
 

@@ -1,6 +1,6 @@
 ---
-title: Ridistribuire macchine virtuali Windows in Azure | Documentazione Microsoft
-description: Come ridistribuire macchine virtuali Windows in Azure per ridurre i problemi di connessione RDP.
+title: macchine virtuali di Windows aaaRedeploy in Azure | Documenti Microsoft
+description: Come macchine virtuali di Windows tooredeploy nella connessione RDP toomitigate Azure problemi.
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: genlin
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 05/26/2017
 ms.author: genli
-ms.openlocfilehash: a607d0747f64ee6b224d300113905f54e003aef0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 903d9d5bf241075931ee4b746690c553d808a58f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="redeploy-windows-virtual-machine-to-new-azure-node"></a>Ridistribuire una macchina virtuale Windows in un nuovo nodo di Azure
-Se si stanno riscontrando difficoltà nella risoluzione dei problemi relativi a connessione di desktop remoto (RDP) o accesso delle applicazioni a una macchina virtuale (VM) di Azure basata su Windows, potrebbe essere utile la ridistribuzione. Quando si ridistribuisce una VM, quest'ultima viene spostata su un nuovo nodo dell'infrastruttura di Azure, quindi viene riattivata conservando tutte le opzioni di configurazione e le risorse associate. In questo articolo viene illustrato come ridistribuire una VM con Azure PowerShell o il portale di Azure.
+# <a name="redeploy-windows-virtual-machine-toonew-azure-node"></a>Ridistribuire la macchina virtuale di Windows toonew nodo di Azure
+Se si hanno stato con difficoltà risoluzione dei problemi di Desktop remoto (RDP) connessione o un'applicazione accedere tooWindows basato su macchina virtuale di Azure (VM), ridistribuire hello VM può essere utile. Quando si ridistribuisce una macchina virtuale, sposta hello VM tooa nuovo nodo all'interno dell'infrastruttura di Azure hello e quindi viene acceso, nuovo, mantenendo tutte le opzioni di configurazione e le risorse associate. In questo articolo illustra come tooredeploy una macchina virtuale utilizzando Azure PowerShell o hello portale di Azure.
 
 > [!NOTE]
-> Dopo la ridistribuzione di una VM, il disco temporaneo viene perso e gli indirizzi IP dinamici associati all'interfaccia di rete virtuale vengono aggiornati. 
+> Dopo la ridistribuzione di una macchina virtuale, disco temporaneo hello andrà persa e vengono aggiornati gli indirizzi IP dinamici associati con l'interfaccia di rete virtuale. 
 
 
 ## <a name="using-azure-powershell"></a>Uso di Azure PowerShell
-Assicurarsi che sia installata la versione più recente di Azure PowerShell 1.x. Per altre informazioni, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+Assicurarsi che si hanno hello versione più recente di PowerShell Azure 1. x installati nel computer. Per ulteriori informazioni, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
-L'esempio seguente distribuisce la VM denominata `myVM` nel gruppo di risorse `myResourceGroup`:
+esempio Hello distribuisce hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup`:
 
 ```powershell
 Set-AzureRmVM -Redeploy -ResourceGroupName "myResourceGroup" -Name "myVM"
@@ -40,5 +40,5 @@ Set-AzureRmVM -Redeploy -ResourceGroupName "myResourceGroup" -Name "myVM"
 [!INCLUDE [virtual-machines-common-redeploy-to-new-node](../../../includes/virtual-machines-common-redeploy-to-new-node.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In caso di difficoltà di connessione alla VM, è possibile trovare assistenza specifica sulla [risoluzione dei problemi delle connessioni RDP](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) o [passaggi dettagliati sulla risoluzione dei problemi RDP](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Se non si riesce ad accedere a un'applicazione in esecuzione sulla VM, è possibile leggere l'articolo sulle [difficoltà nella risoluzione dei problemi relativi alle applicazioni](troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Se si sono verificati problemi di connessione tooyour VM, è possibile trovare informazioni specifiche su [risoluzione dei problemi delle connessioni RDP](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) o [dettagliate RDP risoluzione](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Se non si riesce ad accedere a un'applicazione in esecuzione sulla VM, è possibile leggere l'articolo sulle [difficoltà nella risoluzione dei problemi relativi alle applicazioni](troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

@@ -1,5 +1,5 @@
 ---
-title: "Creare un set di scalabilità di macchine virtuali Linux in Azure | Microsoft Docs"
+title: "un set di scalabilità di macchine virtuali Linux in Azure aaaCreate | Documenti Microsoft"
 description: "Creare e distribuire un'applicazione a disponibilità elevata in macchine virtuali Linux usando un set di scalabilità di macchine virtuali"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,41 +15,41 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 2b8d519e11f70eda164bd8f6e131a3989f242ab0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 00dd81043f9be46ef2dc6dfe97eefdb20944ee13
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-machine-scale-set-and-deploy-a-highly-available-app-on-linux"></a>Creare un set di scalabilità di macchine virtuali e distribuire un'app a disponibilità elevata in Linux
-Un set di scalabilità di macchine virtuali consente di distribuire e gestire un set di macchine virtuali identiche con scalabilità automatica. È possibile adattare manualmente il numero di VM nel set di scalabilità o definire regole di scalabilità automatica in base all'utilizzo della CPU, alla richiesta di memoria o al traffico di rete. In questa esercitazione viene distribuito un set di scalabilità di macchine virtuali in Azure. Si apprenderà come:
+Un set di scalabilità della macchina virtuale consente toodeploy e gestire un set di macchine virtuali identiche e la scalabilità automatica. È possibile ridimensionare manualmente numero hello di macchine virtuali nel set di scalabilità hello o definire tooautoscale regole in base all'utilizzo della CPU, la richiesta di memoria o il traffico di rete. In questa esercitazione viene distribuito un set di scalabilità di macchine virtuali in Azure. Si apprenderà come:
 
 > [!div class="checklist"]
-> * Usare cloud-init per creare un'app per la scalabilità
+> * Utilizzare cloud init toocreate tooscale un'app
 > * Creare un set di scalabilità di macchine virtuali
-> * Aumentare o diminuire il numero di istanze in un set di scalabilità
+> * Aumentare o diminuire il numero di hello di istanze in un set di scalabilità
 > * Visualizzare le informazioni di connessione per le istanze del set di scalabilità
 > * Usare dischi di dati in un set di scalabilità
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="scale-set-overview"></a>Informazioni generali sui set di scalabilità
-Un set di scalabilità di macchine virtuali consente di distribuire e gestire un set di macchine virtuali identiche con scalabilità automatica. I set di scalabilità usano gli stessi componenti descritti nell'esercitazione precedente [Creare macchine virtuali a disponibilità elevata](tutorial-availability-sets.md). Le macchine virtuali di un set di scalabilità vengono create in un set di disponibilità e distribuite in domini logici di errore e di aggiornamento.
+Un set di scalabilità della macchina virtuale consente toodeploy e gestire un set di macchine virtuali identiche e la scalabilità automatica. Scala imposta utilizzare hello stessi componenti come sono state descritte nell'esercitazione precedente hello troppo[creare macchine virtuali a disponibilità elevata](tutorial-availability-sets.md). Le macchine virtuali di un set di scalabilità vengono create in un set di disponibilità e distribuite in domini logici di errore e di aggiornamento.
 
-Le macchine virtuali vengono create in base alle esigenze in un set di scalabilità. È possibile definire regole di scalabilità automatica per controllare le modalità e i tempi di aggiunta e rimozione delle VM dal set di scalabilità. Queste regole possono essere attivate in base a determinate metriche, ad esempio il carico della CPU, l'utilizzo della memoria o il traffico di rete.
+Le macchine virtuali vengono create in base alle esigenze in un set di scalabilità. Definire toocontrol le regole di scalabilità automatica come e quando le macchine virtuali vengono aggiunti o rimossi dal set di scalabilità hello. Queste regole possono essere attivate in base a determinate metriche, ad esempio il carico della CPU, l'utilizzo della memoria o il traffico di rete.
 
-I set di scalabilità supportano fino a 1000 macchine virtuali quando si usa un'immagine della piattaforma Azure. Per i carichi di lavoro di produzione, è opportuno [creare un'immagine di macchina virtuale personalizzata](tutorial-custom-images.md). È possibile creare fino a 100 macchine virtuali in un set di scalabilità quando si usa un'immagine personalizzata.
+Scala imposta supporto backup too1, 000 macchine virtuali quando si utilizza un'immagine della piattaforma Azure. Per i carichi di lavoro, è preferibile troppo[creare un'immagine di macchina virtuale personalizzata](tutorial-custom-images.md). È possibile creare le macchine virtuali too100 in una scala impostata quando si utilizza un'immagine personalizzata.
 
 
-## <a name="create-an-app-to-scale"></a>Creare un'app per la scalabilità
-Per l'uso in ambiente di produzione, è opportuno [creare un'immagine di macchina virtuale personalizzata](tutorial-custom-images.md) che includa l'applicazione installata e configurata. Per questa esercitazione si esegue la personalizzazione delle macchine virtuali al primo avvio per verificare rapidamente il funzionamento di un set di scalabilità.
+## <a name="create-an-app-tooscale"></a>Creare un'app tooscale
+Per la produzione, è preferibile troppo[creare un'immagine di macchina virtuale personalizzata](tutorial-custom-images.md) che include l'applicazione installata e configurata. Per questa esercitazione consente di personalizzare le macchine virtuali di primo avvio tooquickly vedere una scala in azione hello.
 
-In un'esercitazione precedente, [How to customize a Linux virtual machine on first boot](tutorial-automate-vm-deployment.md), è stato descritto come personalizzare una macchina virtuale al primo avvio con cloud-init. È possibile usare lo stesso file di configurazione cloud-init per installare NGINX ed eseguire una semplice app Node.js "Hello World". 
+In un'esercitazione precedente, si è appreso [come una macchina virtuale Linux al primo avvio toocustomize](tutorial-automate-vm-deployment.md) con cloud init. È possibile utilizzare hello stesso tooinstall file di configurazione cloud init NGINX ed eseguire una semplice app Node.js 'Hello World'. 
 
-Nella shell corrente creare un file denominato *cloud-init.txt* e incollare la configurazione seguente. Ad esempio, creare il file in Cloud Shell anziché nel computer locale. Immettere `sensible-editor cloud-init.txt` per creare il file e visualizzare un elenco degli editor disponibili. Assicurarsi che l'intero file cloud-init venga copiato correttamente, in particolare la prima riga:
+Nella shell corrente, creare un file denominato *cloud init.txt* e Incolla hello seguente configurazione. Ad esempio, creare file hello in hello Shell Cloud non presenti nel computer locale. Immettere `sensible-editor cloud-init.txt` toocreate hello file e visualizzare un elenco degli editor disponibili. Assicurarsi che tale file intero cloud-init hello viene copiato correttamente, soprattutto hello prima riga:
 
 ```yaml
 #cloud-config
@@ -95,13 +95,13 @@ runcmd:
 
 
 ## <a name="create-a-scale-set"></a>Creare un set di scalabilità
-Per poter creare un set di scalabilità, è prima necessario creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). Nell'esempio seguente viene creato un gruppo di risorse denominato *myResourceGroupScaleSet* nella posizione *eastus*:
+Per poter creare un set di scalabilità, è prima necessario creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroupScaleSet* in hello *eastus* percorso:
 
 ```azurecli-interactive 
 az group create --name myResourceGroupScaleSet --location eastus
 ```
 
-Si può ora creare un set di scalabilità di macchine virtuali con il comando [az vmss create](/cli/azure/vmss#create). Nell'esempio seguente viene creato un set di scalabilità denominato *myScaleSet*, viene usato il file cloud-int per personalizzare la VM e vengono generate le chiavi SSH, se non sono presenti:
+Si può ora creare un set di scalabilità di macchine virtuali con il comando [az vmss create](/cli/azure/vmss#create). esempio Hello crea un set denominato di scalabilità *myScaleSet*, utilizza hello toocustomize di file cloud init hello VM e genera le chiavi SSH se non sono presenti:
 
 ```azurecli-interactive 
 az vmss create \
@@ -114,13 +114,13 @@ az vmss create \
   --generate-ssh-keys      
 ```
 
-La creazione e la configurazione di tutte le macchine virtuali e risorse del set di scalabilità richiedono alcuni minuti. Sono presenti attività in background la cui esecuzione continua dopo che l'interfaccia della riga di comando di Azure è tornata al prompt. Potrebbe trascorrere ancora qualche minuto prima che sia possibile accedere all'app.
+Accetta toocreate di pochi minuti e configurare tutti i set di hello scalabilità delle risorse e le macchine virtuali. Sono presenti attività in background che continuare toorun dopo hello CLI di Azure restituisce toohello prompt. Potrebbe essere un altro paio di minuti prima di poter accedere app hello.
 
 
 ## <a name="allow-web-traffic"></a>Consentire il traffico Web
-Un bilanciamento del carico è stato creato automaticamente come parte del set di scalabilità di macchine virtuali. Il bilanciamento del carico distribuisce il traffico ad un set di macchine virtuali definite usando le proprie regole. Altre informazioni sui concetti di bilanciamento del carico e sulla configurazione saranno illustrate nella prossima esercitazione, [Come bilanciare il carico di macchine virtuali in Azure](tutorial-load-balancer.md).
+Un servizio di bilanciamento del carico è stato creato automaticamente come parte del set di scalabilità della macchina virtuale hello. servizio di bilanciamento del carico Hello distribuisce il traffico tra un set di macchine virtuali definite utilizzando regole di bilanciamento del carico. Maggiori informazioni su concetti del servizio di bilanciamento carico e la configurazione nella prossima esercitazione hello, [come tooload bilanciare le macchine virtuali in Azure](tutorial-load-balancer.md).
 
-Per consentire al traffico di raggiungere l'app Web, creare una regola con il comando [az network lb rule create](/cli/azure/network/lb/rule#create). Nell'esempio seguente viene creata una regola denominata *myLoadBalancerRuleWeb*:
+tooallow traffico tooreach hello web app, creare una regola con [creare una regola lb rete az](/cli/azure/network/lb/rule#create). esempio Hello crea una regola denominata *myLoadBalancerRuleWeb*:
 
 ```azurecli-interactive 
 az network lb rule create \
@@ -135,7 +135,7 @@ az network lb rule create \
 ```
 
 ## <a name="test-your-app"></a>Test dell'app
-Per visualizzare l'app Node.js sul Web, ottenere l'indirizzo IP pubblico del bilanciamento del carico con il comando [az network public-ip show](/cli/azure/network/public-ip#show). Nell'esempio seguente si ottiene l'indirizzo IP per *myScaleSetLBPublicIP* creato come parte del set di scalabilità:
+toosee l'app di Node.js nel web hello, ottenere l'indirizzo IP pubblico di hello del servizio di bilanciamento del carico con [Mostra public-ip di rete az](/cli/azure/network/public-ip#show). esempio Hello Ottiene hello di indirizzo IP per *myScaleSetLBPublicIP* creati come parte del set di scalabilità hello:
 
 ```azurecli-interactive 
 az network public-ip show \
@@ -145,18 +145,18 @@ az network public-ip show \
     --output tsv
 ```
 
-Immettere l'indirizzo IP pubblico in un Web browser. Verrà visualizzata l'app, con il nome host della VM a cui il servizio di bilanciamento del carico ha distribuito il traffico:
+Immettere l'indirizzo IP pubblico hello nel browser web tooa. viene visualizzata, Hello app, inclusi hostname hello di hello VM che hello il carico del traffico di bilanciamento del carico distribuito per:
 
 ![Esecuzione dell'app Node.js](./media/tutorial-create-vmss/running-nodejs-app.png)
 
-Per verificare il funzionamento del set di scalabilità, è possibile imporre l'aggiornamento del Web browser per visualizzare la distribuzione del traffico da parte del bilanciamento del carico tra tutte le macchine virtuali che eseguono l'app.
+toosee set nell'azione di scalabilità hello, è possibile forza l'aggiornamento del carico di web browser toosee hello distribuire il servizio di bilanciamento del traffico tra tutte le macchine virtuali hello esegue l'app.
 
 
 ## <a name="management-tasks"></a>Attività di gestione
-Nel ciclo di vita del set di scalabilità, potrebbe essere necessario eseguire una o più attività di gestione. Si potrebbe anche voler creare script per automatizzare le attività di ciclo di vita. L'interfaccia della riga di comando di Azure 2.0 offre un modo rapido per eseguire tali operazioni. Di seguito vengono illustrate alcune attività comuni.
+Nel ciclo di vita hello del set di scalabilità di hello, potrebbe essere necessario toorun uno o più attività di gestione. Inoltre, è consigliabile toocreate script che automatizzano le varie attività di ciclo di vita. Hello Azure CLI 2.0 fornisce toodo un modo rapido alle attività. Di seguito vengono illustrate alcune attività comuni.
 
 ### <a name="view-vms-in-a-scale-set"></a>Visualizzare le macchine virtuali in un set di scalabilità
-Per visualizzare un elenco di macchine virtuali in esecuzione nel set di scalabilità, usare il comando [az vmss list-instances](/cli/azure/vmss#list-instances) come indicato di seguito:
+imposta un elenco di macchine virtuali in esecuzione nella scala tooview, utilizzare [istanze di elenco di az vmss](/cli/azure/vmss#list-instances) come indicato di seguito:
 
 ```azurecli-interactive 
 az vmss list-instances \
@@ -165,7 +165,7 @@ az vmss list-instances \
   --output table
 ```
 
-L'output è simile all'esempio seguente:
+Hello l'output è simile toohello seguente esempio:
 
 ```azurecli-interactive 
   InstanceId  LatestModelApplied    Location    Name          ProvisioningState    ResourceGroup            VmId
@@ -176,7 +176,7 @@ L'output è simile all'esempio seguente:
 
 
 ### <a name="increase-or-decrease-vm-instances"></a>Aumentare o diminuire le istanze delle macchine virtuali
-Per visualizzare il numero di istanze attualmente presenti in un set di scalabilità, usare il comando [az vmss show](/cli/azure/vmss#show) ed eseguire una query su *sku.capacity*:
+numero di hello toosee di istanze attualmente in una scala impostate, utilizzare [Mostra vmss az](/cli/azure/vmss#show) ed eseguire query su *sku.capacity*:
 
 ```azurecli-interactive 
 az vmss show \
@@ -186,7 +186,7 @@ az vmss show \
     --output table
 ```
 
-È possibile aumentare o ridurre manualmente il numero di macchine virtuali nel set di scalabilità con il comando [az vmss scale](/cli/azure/vmss#scale). L'esempio seguente imposta il numero di VM del set di scalabilità su *5*:
+È possibile quindi manualmente aumentare o diminuire il numero di hello di macchine virtuali in hello set di scalabilità con [scala vmss az](/cli/azure/vmss#scale). Hello che segue viene impostato il numero di hello di macchine virtuali la scala impostata troppo*5*:
 
 ```azurecli-interactive 
 az vmss scale \
@@ -195,10 +195,10 @@ az vmss scale \
     --new-capacity 5
 ```
 
-Le regole di scalabilità automatica consentono di definire come aumentare o ridurre il numero di macchine virtuali del set di scalabilità in base alla domanda, ad esempio il traffico di rete o l'utilizzo della CPU. Non è attualmente possibile impostare queste regole nell'interfaccia della riga di comando di Azure 2.0. Usare il [Portale di Azure](https://portal.azure.com) per configurare la scalabilità automatica.
+Le regole di scalabilità automatica consentono di definire come tooscale verso l'alto o verso il basso numero hello di macchine virtuali nella scala è impostata nella risposta toodemand, ad esempio il traffico di rete o l'utilizzo della CPU. Non è attualmente possibile impostare queste regole nell'interfaccia della riga di comando di Azure 2.0. Hello utilizzare [portale di Azure](https://portal.azure.com) scalabilità automatica tooconfigure.
 
 ### <a name="get-connection-info"></a>Ottenere informazioni sulla connessione
-Per ottenere informazioni sulla connessione delle macchine virtuali nel set di scalabilità, usare [az vmss list-instance-connection-info](/cli/azure/vmss#list-instance-connection-info). Questo comando restituisce l'indirizzo IP pubblico e la porta per ogni macchina virtuale che consente la connessione con SSH:
+informazioni di connessione tooobtain circa hello macchine virtuali nel set di scalabilità, utilizzare [az vmss elenco--connessione-informazioni sull'istanza](/cli/azure/vmss#list-instance-connection-info). Questo comando restituisce l'indirizzo IP pubblico hello e la porta per ogni macchina virtuale che consente di tooconnect con SSH:
 
 ```azurecli-interactive 
 az vmss list-instance-connection-info \
@@ -208,10 +208,10 @@ az vmss list-instance-connection-info \
 
 
 ## <a name="use-data-disks-with-scale-sets"></a>Usare dischi di dati con set di scalabilità
-È possibile creare e usare dischi di dati con set di scalabilità. Nell'esercitazione precedente si è appreso come [gestire i dischi di Azure](tutorial-manage-disks.md), con le procedure consigliate e i miglioramenti delle prestazioni per la creazione di applicazioni su dischi di dati piuttosto che sul disco del sistema operativo.
+È possibile creare e usare dischi di dati con set di scalabilità. In un'esercitazione precedente, si è appreso come troppo[dischi gestire Azure](tutorial-manage-disks.md) che strutture hello procedure consigliate e i miglioramenti delle prestazioni per la compilazione di applicazioni nei dischi dati, anziché disco hello del sistema operativo.
 
 ### <a name="create-scale-set-with-data-disks"></a>Creare un set di scalabilità con dischi di dati
-Per creare un set di scalabilità e collegare dischi di dati, aggiungere il parametro `--data-disk-sizes-gb` al comando [az vmss create](/cli/azure/vmss#create). Nell'esempio seguente viene creato un set di scalabilità con dischi di dati da *50* Gb collegati a ogni istanza:
+toocreate scala impostata e collegare dischi dati, aggiungere hello `--data-disk-sizes-gb` parametro toohello [vmss az creare](/cli/azure/vmss#create) comando. esempio Hello crea un set di scalabilità con *50*Gb i dischi dati collegati tooeach istanza:
 
 ```azurecli-interactive 
 az vmss create \
@@ -228,7 +228,7 @@ az vmss create \
 Quando le istanze vengono rimosse da un set di scalabilità, vengono rimossi anche tutti i dischi di dati collegati.
 
 ### <a name="add-data-disks"></a>Aggiungere dischi di dati
-Per aggiungere un disco di dati per le istanze nel set di scalabilità, usare [az vmss disk attach](/cli/azure/vmss/disk#attach). Nell'esempio seguente viene aggiunto un disco di dati da *50* Gb a ogni istanza:
+impostare un tooinstances disco dati la scala tooadd, utilizzare [collega disco vmss az](/cli/azure/vmss/disk#attach). Hello seguente viene aggiunto un *50*istanza tooeach del disco Gb:
 
 ```azurecli-interactive 
 az vmss disk attach \
@@ -239,7 +239,7 @@ az vmss disk attach \
 ```
 
 ### <a name="detach-data-disks"></a>Scollegare dischi di dati
-Per rimuovere un disco di dati per le istanze nel set di scalabilità, usare [az vmss disk detach](/cli/azure/vmss/disk#detach). Nell'esempio seguente viene rimosso il disco di dati del LUN *2* da ogni istanza:
+impostare un tooinstances disco dati la scala tooremove, utilizzare [Scollega disco vmss az](/cli/azure/vmss/disk#detach). esempio Hello rimuove il disco dati hello nel LUN *2* da ogni istanza di:
 
 ```azurecli-interactive 
 az vmss disk detach \
@@ -253,13 +253,13 @@ az vmss disk detach \
 In questa esercitazione è stato creato un set di scalabilità di macchine virtuali. Si è appreso come:
 
 > [!div class="checklist"]
-> * Usare cloud-init per creare un'app per la scalabilità
+> * Utilizzare cloud init toocreate tooscale un'app
 > * Creare un set di scalabilità di macchine virtuali
-> * Aumentare o diminuire il numero di istanze in un set di scalabilità
+> * Aumentare o diminuire il numero di hello di istanze in un set di scalabilità
 > * Visualizzare le informazioni di connessione per le istanze del set di scalabilità
 > * Usare dischi di dati in un set di scalabilità
 
-Passare all'esercitazione successiva per maggiori informazioni sui concetti di bilanciamento del carico per le macchine virtuali.
+Spostare toolearn esercitazione successiva toohello ulteriori informazioni su concetti per le macchine virtuali di bilanciamento del carico.
 
 > [!div class="nextstepaction"]
-> [Bilanciare il carico delle macchine virtuali](tutorial-load-balancer.md)
+> [Bilanciare il carico di macchine virtuali](tutorial-load-balancer.md)

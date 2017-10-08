@@ -1,6 +1,6 @@
 ---
-title: Usare le chiavi SSH con Windows per le VM Linux | Microsoft Docs
-description: Informazioni su come generare e usare chiavi SSH in un computer Windows per connettersi a una macchina virtuale Linux in Azure.
+title: le chiavi SSH aaaUse con Windows per le macchine virtuali Linux | Documenti Microsoft
+description: Informazioni su come toogenerate e usare SSH chiavi in una macchina virtuale Linux di Windows computer tooconnect tooa in Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: danlep
-ms.openlocfilehash: 66837a3a153cda041f5351c52c8ccb1f8ccfea50
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6c44217332538857cc2ca2e85de4b476aa71251c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-ssh-keys-with-windows-on-azure"></a>Come usare le chiavi SSH con Windows in Azure
+# <a name="how-toouse-ssh-keys-with-windows-on-azure"></a>Come chiavi, tooUse SSH tramite Windows in Azure
 > [!div class="op_single_selector"]
 > * [Windows](ssh-from-windows.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 > * [Linux/Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 >
 >
 
-Quando ci si connette a macchine virtuali (VM) Linux in Azure, è necessario usare la [crittografia a chiave pubblica](https://wikipedia.org/wiki/Public-key_cryptography) per fornire un modo più sicuro per accedere alla VM Linux. Questo processo comporta uno scambio di chiavi pubbliche e private mediante il comando Sicure Shell (SSH) per l'autenticazione, anziché nome utente e password. Le password sono vulnerabili agli attacchi di forza bruta, soprattutto nelle VM con connessione Internet, ad esempio i server Web. Questo articolo fornisce una panoramica delle chiavi SSH e di come generare le chiavi appropriate in un computer Windows.
+Quando ci si connettono tooLinux le macchine virtuali (VM) in Azure, è consigliabile utilizzare [crittografia a chiave pubblica](https://wikipedia.org/wiki/Public-key_cryptography) tooprovide un toolog modo più sicuro in tooyour VM Linux. Questo processo prevede uno scambio di chiavi pubblico e privato utilizzando hello sicura shell (SSH) comando tooauthenticate anziché un nome utente e password. Le password sono gli attacchi di forza toobrute vulnerabile, specialmente per le macchine virtuali con connessione Internet, ad esempio server web. Questo articolo fornisce una panoramica delle chiavi SSH come toogenerate hello chiavi appropriate in un computer Windows.
 
 ## <a name="overview-of-ssh-and-keys"></a>Panoramica di SSH e delle chiavi
-È possibile accedere in modo sicuro alla VM Linux mediante una chiave pubblica e una chiave privata:
+È possibile registrare in modo sicuro in tooyour VM Linux con chiavi pubbliche e private:
 
-* La **chiave pubblica** si trova nella VM Linux o in qualsiasi altro servizio che si desidera usare con la crittografia a chiave pubblica.
-* La **chiave privata** è quella che si presenta alla VM Linux quando si effettua l'accesso, per verificare la propria identità. Sulla chiave privata è necessario mantenere la massima riservatezza, evitando di condividerla.
+* Hello **chiave pubblica** si trova in una VM Linux, o qualsiasi altro servizio che si desidera toouse con crittografia a chiave pubblica.
+* Hello **chiave privata** è ciò che si presenti tooyour Linux VM quando si accede, tooverify la tua identità. Sulla chiave privata è necessario mantenere la massima riservatezza, evitando di condividerla.
 
-La chiave pubblica e la chiave privata sono utilizzabili in più VM e servizi. Non è necessaria una coppia di chiavi per ogni VM o servizio a cui si desidera accedere. Per una panoramica più dettagliata, vedere [crittografia a chiave pubblica](https://wikipedia.org/wiki/Public-key_cryptography).
+La chiave pubblica e la chiave privata sono utilizzabili in più VM e servizi. Non è necessaria una coppia di chiavi per ogni macchina virtuale o un servizio che si desidera tooaccess. Per una panoramica più dettagliata, vedere [crittografia a chiave pubblica](https://wikipedia.org/wiki/Public-key_cryptography).
 
-SSH è un protocollo per connessioni crittografate che consente accessi protetti su connessioni non sicure. È il protocollo di connessione predefinito per le VM Linux ospitate in Azure. Sebbene SSH stessa fornisca una connessione crittografata, se si usano password con le connessioni SSH la VM rimane vulnerabile agli attacchi di forza bruta o di individuazione password. Un metodo più sicuro e preferito per la connessione a una VM mediante SSH è tramite chiave pubblica e privata, anche dette chiavi SSH.
+SSH è un protocollo per connessioni crittografate che consente accessi protetti su connessioni non sicure. È un protocollo di connessione predefinito hello per le macchine virtuali Linux ospitate in Azure. Sebbene SSH stesso fornisca una connessione crittografata, l'utilizzo di password con le connessioni SSH lascia attacchi di forza toobrute vulnerabile VM hello o l'individuazione delle password. Un metodo più sicuro e preferito tooa connessione macchina virtuale tramite SSH è tramite le chiavi pubbliche e private, noto anche come chiavi SSH.
 
-Se non si desidera usare chiavi SSH, è possibile comunque accedere alle VM Linux mediante una password. Se la VM non è connessa a Internet, l'utilizzo di password può essere sufficiente. Tuttavia è comunque necessario gestire le password per ogni VM Linux e mantenere criteri e procedure relative alle password integre, quali una lunghezza minima delle password e aggiornamenti regolari. L'utilizzo delle chiavi SSH riduce la complessità di gestione delle credenziali individuali tra più VM.
+Se non si desidera che le chiavi SSH toouse, è possibile comunque accedere tooyour le macchine virtuali Linux con una password. Se la macchina virtuale non è esposto toohello Internet, l'utilizzo di password potrebbe essere sufficiente. Tuttavia, comunque necessario toomanage le password per ogni VM Linux e gestire i criteri password integro e procedure consigliate, ad esempio lunghezza minima della password e aggiornarli regolarmente. utilizzo di Hello di chiavi SSH riduce la complessità di hello della gestione delle credenziali individuali tra più macchine virtuali.
 
 ## <a name="windows-packages-and-ssh-clients"></a>Pacchetti Windows e client SSH
-Per la connessione a VM Linux e la loro gestione in Azure si usa un client **SSH**. I computer Windows tipicamente non hanno un client SSH installato. Nell'Aggiornamento dell'anniversario di Windows 10 è stato aggiunto Bash per Windows e l'aggiornamento Windows 10 Creators Update più recente offre aggiornamenti aggiuntivi. Questo sottosistema di Windows per Linux consente di eseguire e di accedere a utilità come un client SSH in modo nativo dall'interno della shell di Bash. È quindi possibile seguire uno dei documenti Linux, ad esempio [How to generate SSH key pairs for Linux](mac-create-ssh-keys.md) (Come generare coppie di chiavi SSH per Linux). Bash per Windows è ancora in fase di sviluppo e viene considerato una versione beta. Per altre informazioni su Bash per Windows, vedere [Bash in Ubuntu in Windows](https://msdn.microsoft.com/commandline/wsl/about).
+Ci si connette tooand gestire macchine virtuali Linux in Azure tramite un **client SSH**. I computer Windows tipicamente non hanno un client SSH installato. Hello aggiornamento Aniversary di Windows 10 aggiunti Bash per Windows e Windows 10 creatori di aggiornamento più recente hello fornisce ulteriori aggiornamenti. Questo sottosistema Windows per Linux consente utilità toorun e l'accesso, ad esempio un client SSH in modo nativo all'interno di una shell Bash. È quindi possibile seguire uno dei documenti di Linux hello, ad esempio [come le coppie di chiavi SSH toogenerate per Linux](mac-create-ssh-keys.md). Bash per Windows è ancora in fase di sviluppo e viene considerato una versione beta. Per altre informazioni su Bash per Windows, vedere [Bash in Ubuntu in Windows](https://msdn.microsoft.com/commandline/wsl/about).
 
-Se si intende usare una soluzione diversa da Bash per Windows, sono disponibili client SSH Windows comuni nei pacchetti seguenti:
+Se si desidera toouse qualcosa diverso da Bash per Windows, comuni SSH Windows client che è possibile installare rientrano nei seguenti pacchetti hello:
 
 * [Git per Windows](https://git-for-windows.github.io/)
 * [puTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/)
@@ -53,133 +53,133 @@ Se si intende usare una soluzione diversa da Bash per Windows, sono disponibili 
 * [Cygwin](https://cygwin.com/)
 
 
-## <a name="which-key-files-do-you-need-to-create"></a>Quali file di chiavi è necessario creare?
-Azure richiede chiavi pubbliche e private nel formato **ssh-rsa** almeno a 2048 bit. Se si gestiscono risorse di Azure usando il modello di distribuzione classico, è necessario anche generare un PEM (file `.pem`).
+## <a name="which-key-files-do-you-need-toocreate"></a>File di chiave che è necessario toocreate?
+Azure richiede chiavi pubbliche e private nel formato **ssh-rsa** almeno a 2048 bit. Se si siano gestendo risorse di Azure con modello di distribuzione classica hello, è necessario anche un PEM toogenerate (`.pem` file).
 
-Di seguito sono descritti gli scenari di distribuzione e i tipi di file da usare per ognuno:
+Ecco gli scenari di distribuzione hello e hello tipi di file da utilizzare in ogni:
 
-1. Le chiavi **ssh-rsa** sono necessarie per qualsiasi distribuzione che usa il [portale di Azure](https://portal.azure.com) e le distribuzioni di Resource Manager che usano l'[interfaccia della riga di comando di Azure](../../cli-install-nodejs.md).
+1. **SSH-rsa** chiavi sono necessari per la distribuzione utilizzando hello [portale di Azure](https://portal.azure.com)e le distribuzioni di gestione risorse usando hello [CLI di Azure](../../cli-install-nodejs.md).
    * Queste chiavi sono in genere tutto ciò che serve alla maggior parte degli utenti.
-2. Il file `.pem` è necessario per creare VM mediante la distribuzione classica. Queste chiavi sono supportate nelle distribuzioni classiche quando si usa il [portale di Azure](https://portal.azure.com) o l'[interfaccia della riga di comando di Azure](../../cli-install-nodejs.md).
-   * È necessario creare questi certificati e chiavi aggiuntive solo se si gestiscono risorse create usando il modello di distribuzione classica.
+2. Oggetto `.pem` file sia le macchine virtuali necessarie toocreate mediante la distribuzione classica hello. Queste chiavi sono supportate nelle distribuzioni classica quando si utilizza hello [portale di Azure](https://portal.azure.com) o [CLI di Azure](../../cli-install-nodejs.md).
+   * È necessario solo toocreate queste altre chiavi e dei certificati se si gestiscono le risorse create tramite hello modello di distribuzione classica.
 
 ## <a name="install-git-for-windows"></a>Installare Git per Windows
-Nella sezione precedente sono elencati diversi pacchetti che includono lo strumento `openssl` per Windows. Questo strumento è necessario per creare chiavi pubbliche e private. L'esempio seguente illustra come installare e usare **Git per Windows**, ma è possibile scegliere qualsiasi pacchetto desiderato. **GIT per Windows** consente di accedere ad alcuni strumenti software open-source ([OSS](https://en.wikipedia.org/wiki/Open-source_software)) e utilità aggiuntive che possono essere utili quando si lavora con le VM Linux.
+sezione precedente Hello elencati diversi pacchetti che includono hello `openssl` strumento per Windows. Questo strumento è chiavi pubbliche e private toocreate necessari. Hello seguente come dettaglio di esempi tooinstall e utilizzare **Git per Windows**, anche se è possibile scegliere qualsiasi pacchetto desiderato. **GIT per Windows** consente di accedere software open source aggiuntivo toosome ([OSS](https://en.wikipedia.org/wiki/Open-source_software)) strumenti e utilità che possono essere utili quando si lavora con le macchine virtuali Linux.
 
-1. Scaricare e installare **Git per Windows** dal percorso seguente: [https://git-for-windows.github.io/](https://git-for-windows.github.io/).
-2. Accettare le opzioni predefinite durante il processo di installazione, a meno che sia necessario modificarle.
-3. Eseguire **Git Bash** dal **Menu Start** > **Git** > **Git Bash**. La console è simile all'esempio seguente:
+1. Scaricare e installare **Git per Windows** da hello seguente posizione: [https://git-for-windows.github.io/](https://git-for-windows.github.io/).
+2. Accettare le opzioni predefinite hello hello durante il processo di installazione solo se è necessario toochange li.
+3. Eseguire **Git Bash** da hello **Menu Start** > **Git** > **Git Bash**. console Hello è simile toohello esempio seguente:
 
     ![Shell Bash di GIT per Windows](./media/ssh-from-windows/git-bash-window.png)
 
 ## <a name="create-a-private-key"></a>Creare una chiave privata
-1. Nella finestra **Git Bash** usare `openssl.exe` per creare una chiave privata. Nell'esempio seguente vengono creati una chiave denominata `myPrivateKey` e un certificato denominato `myCert.pem`:
+1. Nel **Git Bash** finestra, utilizzare `openssl.exe` toocreate una chiave privata. esempio Hello crea una chiave denominata `myPrivateKey` e certificato denominato `myCert.pem`:
 
     ```bash
     openssl.exe req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout myPrivateKey.key -out myCert.pem
     ```
 
-    L'output è simile al seguente esempio:
+    output di Hello è simile toohello esempio seguente:
 
     ```bash
     Generating a 2048 bit RSA private key
     .......................................+++
     .......................+++
-    writing new private key to 'myPrivateKey.key'
+    writing new private key too'myPrivateKey.key'
     -----
-    You are about to be asked to enter information that will be incorporated
+    You are about toobe asked tooenter information that will be incorporated
     into your certificate request.
-    What you are about to enter is what is called a Distinguished Name or a DN.
+    What you are about tooenter is what is called a Distinguished Name or a DN.
     There are quite a few fields but you can leave some blank
     For some fields there will be a default value,
-    If you enter '.', the field will be left blank.
+    If you enter '.', hello field will be left blank.
     -----
     Country Name (2 letter code) [AU]:
     ```
 
-   Se bash segnala un errore, provare ad aprire una nuova finestra **Git Bash** con privilegi elevati. Quindi eseguire di nuovo il comando `openssl`.
+   Se bash segnala un errore, provare ad aprire una nuova finestra **Git Bash** con privilegi elevati. Eseguire quindi nuovamente hello `openssl` comando.
 
-2. Rispondere ai prompt per il nome del paese, la località, il nome dell'organizzazione e così via.
-3. La nuova chiave privata e certificato vengono creati nella directory di lavoro corrente. Come misura di sicurezza, è necessario impostare le autorizzazioni per la chiave privata in modo da essere l'unica persona a potervi accedere:
+2. Hello risposta richiesto per il nome di paese, percorso, nome dell'organizzazione, e così via.
+3. La nuova chiave privata e certificato vengono creati nella directory di lavoro corrente. Come misura di sicurezza, è necessario impostare le autorizzazioni di hello sulla chiave privata in modo che solo tu abbia accesso:
 
     ```bash
     chmod 0600 myPrivateKey.key
     ```
 
-4. La [sezione successiva](#create-a-private-key-for-putty) descrive nei dettagli l'uso di PuTTYgen sia per visualizzare che per utilizzare la chiave pubblica nonché per creare una chiave privata specifica per l'impiego di PuTTY con SSH in VM Linux. Il comando seguente genera un file di chiave pubblica denominato `myPublicKey.key` che è possibile usare subito:
+4. Hello [nella sezione successiva](#create-a-private-key-for-putty) dettagli utilizzando PuTTYgen tooboth visualizzare e usare la chiave pubblica di hello e creare una chiave privata specifici per l'utilizzo di PuTTY tooSSH tooLinux macchine virtuali. comando che segue Hello genera un file di chiave pubblica denominato `myPublicKey.key` che è possibile utilizzare immediatamente:
 
     ```bash
     openssl.exe rsa -pubout -in myPrivateKey.key -out myPublicKey.key
     ```
 
-5. Se è necessario anche gestire le risorse classiche, convertire `myCert.pem` in `myCert.cer` (certificato X509 con codifica DER). Eseguire questo passaggio facoltativo solo se è necessario gestire in modo specifico risorse classiche precedenti.
+5. Se è necessario anche risorse classica toomanage, convertire hello `myCert.pem` troppo`myCert.cer` (X509 con codifica DER certificato). Eseguire questo passaggio facoltativo solo se è necessario toospecifically gestire risorse classica precedente.
 
-    Convertire il certificato mediante il comando seguente:
+    Convertire il certificato di hello utilizzando hello comando seguente:
 
     ```bash
     openssl.exe  x509 -outform der -in myCert.pem -out myCert.cer
     ```
 
 ## <a name="create-a-private-key-for-putty"></a>Creare una chiave privata per PuTTY
-PuTTY è un comune client SSH per Windows. È possibile usare qualsiasi client SSH desiderato. Per usare PuTTY è necessario creare un tipo di chiave aggiuntivo, una chiave privata PuTTY (PPK). Se non si desidera usare PuTTY, ignorare questa sezione.
+PuTTY è un comune client SSH per Windows. Si è toouse disponibile un client SSH che si desidera. toouse PuTTY, è necessario un ulteriore tipo di chiave di una chiave privata PuTTY (PPK) - toocreate. Se non si desidera toouse PuTTY, ignorare questa sezione.
 
-L'esempio seguente crea questa chiave privata aggiuntiva appositamente per l'uso da parte di PuTTY:
+Hello esempio seguente viene creata la chiave privata aggiuntiva in modo specifico per toouse PuTTY:
 
-1. Usare **Git Bash** per convertire la propria chiave privata in una chiave privata RSA che PuTTYgen possa comprendere. Nell'esempio seguente viene creata una chiave denominata `myPrivateKey_rsa` dalla chiave esistente denominata `myPrivateKey`:
+1. Utilizzare **Git Bash** tooconvert il privata della chiave in una chiave privata RSA che è possibile comprendere PuTTYgen. esempio Hello crea una chiave denominata `myPrivateKey_rsa` dalla chiave di hello esistente denominato `myPrivateKey`:
 
     ```bash
     openssl rsa -in ./myPrivateKey.key -out myPrivateKey_rsa
     ```
 
-    Come misura di sicurezza, è necessario impostare le autorizzazioni per la chiave privata in modo da essere l'unica persona a potervi accedere:
+    Come misura di sicurezza, è necessario impostare le autorizzazioni di hello sulla chiave privata in modo che solo tu abbia accesso:
 
     ```bash
     chmod 0600 myPrivateKey_rsa
     ```
-2. Scaricare ed eseguire PuTTYgen dal percorso seguente: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-3. Fare clic sul menu: **File** > **Load Private Key**
-4. Individuare la chiave privata (`myPrivateKey_rsa` nell'esempio precedente). La directory predefinita quando si avvia **Git Bash** è `C:\Users\%username%`. Modificare il filtro dei file in modo da visualizzare **Tutti i file (\*.\*)**:
+2. Scaricare ed eseguire PuTTYgen dalla seguente posizione hello: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+3. Fare clic sul menu hello: **File** > **chiave privata di carico**
+4. Individuare la chiave privata (`myPrivateKey_rsa` nell'esempio precedente hello). directory predefinita di Hello quando si avvia **Git Bash** è `C:\Users\%username%`. Modificare hello file filtro tooshow **tutti i file (\*.\*)** :
 
-    ![Caricare la chiave privata esistente in PuTTYgen](./media/ssh-from-windows/load-private-key.png)
-5. Fare clic su **Apri**. Un messaggio indica che la chiave è stata importata correttamente:
+    ![Caricare la chiave privata esistente di hello in PuTTYgen](./media/ssh-from-windows/load-private-key.png)
+5. Fare clic su **Apri**. Un messaggio indica che tale chiave hello è stato importato correttamente:
 
-    ![Chiave importata correttamente in PuTTYgen](./media/ssh-from-windows/successfully-imported-key.png)
-6. Fare clic su **OK** per chiudere la finestra del messaggio.
-7. La chiave pubblica viene visualizzata nella parte superiore della finestra di **PuTTYgen**. Questa chiave pubblica potrà essere copiata e incollata nel portale di Azure o in un modello di Azure Resource Manager quando si crea una VM Linux. È inoltre possibile fare clic su **Salva chiave pubblica** per salvare una copia nel computer:
+    ![Completare l'importazione della chiave tooPuTTYgen](./media/ssh-from-windows/successfully-imported-key.png)
+6. Fare clic su **OK** prompt hello tooclose.
+7. la chiave pubblica di Hello viene visualizzata nella parte superiore di hello di hello **PuTTYgen** finestra. Copiare e incollare la chiave pubblica hello portale di Azure o il modello di gestione risorse di Azure quando si crea una VM Linux. È anche possibile fare clic su **Salva la chiave pubblica** toosave un computer tooyour copia:
 
     ![Salvare un file di chiave pubblica PuTTY](./media/ssh-from-windows/save-public-key.png)
 
-    L'esempio seguente illustra come copiare e incollare questa chiave pubblica nel portale di Azure quando si crea una VM Linux. Quindi la chiave pubblica viene generalmente archiviata in `~/.ssh/authorized_keys` nella nuova VM.
+    Hello esempio seguente viene illustrato come è necessario copiare e incollare la chiave pubblica hello portale di Azure quando si crea una VM Linux. la chiave pubblica di Hello in genere verrà quindi archiviata `~/.ssh/authorized_keys` nella nuova VM.
 
-    ![Usare la chiave pubblica quando si crea una VM nel portale di Azure](./media/ssh-from-windows/use-public-key-azure-portal.png)
+    ![Utilizzare la chiave pubblica quando si crea una macchina virtuale nel portale di Azure hello](./media/ssh-from-windows/use-public-key-azure-portal.png)
 8. Quando si torna in **PuTTYgen**, fare clic su **Save private Key**:
 
     ![Salvare il file di chiave privata PuTTY](./media/ssh-from-windows/save-ppk-file.png)
 
    > [!WARNING]
-   > Un messaggio chiede se si desidera continuare senza immettere una passphrase per la chiave. Una passphrase è come una password associata alla chiave privata. Anche se qualcuno riuscisse a ottenere la chiave privata, la sola chiave non gli consentirebbe comunque di autenticarsi. Per farlo avrebbe bisogno anche della passphrase. Quando non si imposta una passphrase, se un utente ottiene la chiave privata potrà accedere a qualsiasi VM o servizio che usa tale chiave. Creare una passphrase è altamente consigliato. Tuttavia, se si dimentica la passphrase, non è possibile recuperarla.
+   > Un viene richiesto se si desidera toocontinue senza immettere una passphrase per la chiave. Una passphrase è ad esempio una chiave privata associata tooyour di password. Anche se un utente non tooobtain la chiave privata, ancora non sarebbero in grado di tooauthenticate chiave appena hello. È inoltre necessario hello passphrase. Senza una passphrase, se un utente ottiene la chiave privata, possono accedere tooany macchina virtuale o del servizio che utilizza chiave. Creare una passphrase è altamente consigliato. Tuttavia, se si dimentica di hello passphrase, non è toorecover alcun modo il.
    >
    >
 
-    Se si desidera immettere una passphrase, fare clic su **No**, immettere una passphrase nella finestra principale di PuTTYgen e quindi fare clic di nuovo su **Save private key**. In caso contrario, fare clic su **Sì** per continuare senza fornire la passphrase facoltativa.
-9. Immettere un nome e un percorso in cui salvare il file PPK.
+    Se si desidera tooenter una passphrase, fare clic su **n**, immettere una passphrase nella finestra principale di PuTTYgen hello e quindi fare clic su **Salva la chiave privata** nuovamente. In caso contrario, fare clic su **Sì** toocontinue senza fornire una passphrase facoltativa hello.
+9. Immettere un nome e il percorso di toosave file PPK.
 
-## <a name="use-putty-to-ssh-to-a-linux-machine"></a>Usare Putty per connettere SSH a un computer Linux
-PuTTY, come indicato in precedenza, è un comune client SSH per Windows. È possibile usare qualsiasi client SSH desiderato. La procedura seguente illustra come usare la chiave privata per autenticarsi con la VM Azure tramite SSH. I passaggi sono simili in altri client con chiave SSH per quanto riguarda la necessità di caricare la chiave privata per autenticare la connessione SSH.
+## <a name="use-putty-toossh-tooa-linux-machine"></a>Usare Putty tooSSH tooa computer Linux
+PuTTY, come indicato in precedenza, è un comune client SSH per Windows. Si è toouse disponibile un client SSH che si desidera. Hello seguente come dettaglio di passaggi toouse il tooauthenticate chiave privata con la macchina virtuale di Azure tramite SSH. Hello passaggi sono simili in altri client della chiave SSH in termini che necessitano di tooload la connessione SSH di hello tooauthenticate chiave privata.
 
-1. Scaricare ed eseguire putty dal percorso seguente: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-2. Specificare il nome host o l'indirizzo IP della VM dal portale di Azure:
+1. Download e l'esecuzione di putty da hello seguente percorso: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+2. Immettere nome host hello o un indirizzo IP della macchina virtuale dal portale di Azure hello:
 
     ![Aprire una nuova connessione PuTTY](./media/ssh-from-windows/putty-new-connection.png)
-3. Prima di selezionare **Apri**, fare clic sulla scheda **Connessione** > **SSH** > **Aut**. Individuare e selezionare la chiave privata:
+3. Prima di selezionare **Apri**, fare clic sulla scheda **Connessione** > **SSH** > **Aut**. Sfoglia tooand selezionare la chiave privata:
 
     ![Selezionare la chiave privata PuTTY per l'autenticazione](./media/ssh-from-windows/putty-auth-dialog.png)
-4. Fare clic su **Open** per connettersi alla macchina virtuale.
+4. Fare clic su **aprire** macchina virtuale di tooconnect tooyour
 
 ## <a name="next-steps"></a>Passaggi successivi
-È possibile generare chiavi pubbliche e private anche [con OS X e Linux](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+È anche possibile generare le chiavi pubbliche e private hello [con OS X e Linux](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Per altre informazioni su Bash per Windows e sui vantaggi di avere strumenti OSS disponibili nel computer Windows, vedere [Bash in Ubuntu in Windows](https://msdn.microsoft.com/commandline/wsl/about).
+Per ulteriori informazioni sulla barra rovesciata per Windows e i vantaggi di hello di disporre di strumenti di sistemi operativi disponibili nel computer Windows, vedere [Bash in Ubuntu in Windows](https://msdn.microsoft.com/commandline/wsl/about).
 
-Se si verificano problemi nell'uso di SSH per connettersi alle VM Linux, vedere [Risoluzione dei problemi di connessione SSH a una VM Linux di Azure](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Nel caso di problemi nell'utilizzo di SSH tooconnect tooyour le macchine virtuali Linux, vedere [tooan connessioni risolvere SSH VM Linux di Azure](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

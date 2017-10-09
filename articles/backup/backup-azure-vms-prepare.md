@@ -1,5 +1,5 @@
 ---
-title: Preparazione dell'ambiente per il backup di macchine virtuali di Azure | Microsoft Docs
+title: aaaPreparing tooback l'ambiente di macchine virtuali di Azure | Documenti Microsoft
 description: Assicurarsi che l'ambiente sia pronto per il backup di macchine virtuali in Azure
 services: backup
 documentationcenter: 
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 4/25/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: 072efdccaa8df5d430314d753a437b524986b53c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b914c507dd6ad703ea799115ae84ac229e27787
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="prepare-your-environment-to-back-up-azure-virtual-machines"></a>Preparare l'ambiente per il backup di macchine virtuali di Azure
+# <a name="prepare-your-environment-tooback-up-azure-virtual-machines"></a>Preparare l'ambiente tooback le macchine virtuali di Azure
 > [!div class="op_single_selector"]
 > * [Modello di Resource Manager](backup-azure-arm-vms-prepare.md)
 > * [Modello classico](backup-azure-vms-prepare.md)
@@ -30,80 +30,80 @@ ms.lasthandoff: 07/11/2017
 
 Prima di eseguire il backup di una macchina virtuale (VM) di Azure, devono verificarsi tre condizioni.
 
-* È necessario creare un insieme di credenziali di backup o identificare un insieme di credenziali di backup esistente *nella stessa area della VM*.
-* Stabilire la connettività di rete tra gli indirizzi Internet pubblici di Azure e gli endpoint di archiviazione di Azure.
-* Installare l'agente di VM sulla VM.
+* È necessario un insieme di credenziali backup toocreate o identificare un insieme di credenziali di backup esistente *in hello stessa regione della macchina virtuale*.
+* Stabilire la connettività di rete tra hello Azure rete Internet pubblica gli indirizzi e hello gli endpoint di archiviazione di Azure.
+* Installare l'agente VM hello in hello macchina virtuale.
 
-Se nell'ambiente esistono già queste condizioni, passare all'articolo [Eseguire il backup di macchine virtuali di Azure](backup-azure-vms.md). In caso contrario, continuare a leggere. Questo articolo illustra i passaggi per preparare l'ambiente per eseguire il backup di una VM di Azure.
+Se si è certi di queste condizioni già esistono nell'ambiente in uso e quindi toohello [eseguire il backup di un articolo di macchine virtuali](backup-azure-vms.md). In caso contrario, continuare a leggere, questo articolo consentirà attraverso hello passaggi tooprepare tooback l'ambiente di una macchina virtuale di Azure.
 
 ##<a name="supported-operating-system-for-backup"></a>Sistema operativo supportato per il backup
- * **Linux**: Backup di Azure supporta [un elenco di distribuzioni approvate da Azure](../virtual-machines/linux/endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) , ad eccezione di CoreOS Linux. _È possibile usare altre distribuzioni Bring Your Own Linux, a condizione che l'agente di macchine virtuali sia disponibile nella macchina virtuale e sia configurato il supporto per Python. Microsoft tuttavia non consiglia queste distribuzioni per il backup._
+ * **Linux**: Backup di Azure supporta [un elenco di distribuzioni approvate da Azure](../virtual-machines/linux/endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) , ad eccezione di CoreOS Linux. _Altri Bring-Your-proprietari-distribuzioni di Linux potrebbe essere inoltre funzionare, purché sia disponibile nella macchina virtuale hello agente VM hello e il supporto per Python esiste. Microsoft tuttavia non consiglia queste distribuzioni per il backup._
  * **Windows Server**: le versioni precedenti a Windows Server 2008 R2 non sono supportate.
 
 
 ## <a name="limitations-when-backing-up-and-restoring-a-vm"></a>Limitazioni durante il backup e il ripristino di una VM
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). L'elenco seguente indica le limitazioni quando si distribuisce usando il modello classico.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Hello seguente elenco include le limitazioni di hello durante la distribuzione nel modello classico hello.
 >
 >
 
 * Il backup di macchine virtuali con più di 16 dischi dati non è supportato.
 * Il backup di macchine virtuali con un indirizzo IP riservato e nessun endpoint definito non è supportato.
-* I dati di backup non includono le unità di rete montate collegate alla macchina virtuale.
-* La sostituzione di una macchina virtuale esistente durante il ripristino non è supportata. È necessario eliminare prima la macchina virtuale esistente e gli eventuali dischi associati e quindi ripristinare i dati dal backup.
+* Dati di backup non includono tooVM unità collegate rete montato.
+* La sostituzione di una macchina virtuale esistente durante il ripristino non è supportata. Eliminare tutti i dischi associati e macchina virtuale esistente hello e quindi ripristinare i dati di hello dal backup.
 * L'operazione di backup e ripristino tra aree geografiche diverse non è supportata.
-* Il backup di macchine virtuali tramite il servizio Backup di Azure è supportato in tutte le aree pubbliche di Azure (vedere l' [elenco di controllo](https://azure.microsoft.com/regions/#services) delle aree supportate). Se l'area che si sta cercando non è attualmente supportata, tale area non verrà visualizzata nell'elenco a discesa durante la creazione dell'insieme di credenziali.
-* Il backup di macchine virtuali con il servizio Backup di Azure è supportato soltanto per versioni specifiche dei sistemi operativi:
+* Backup di macchine virtuali tramite il servizio di Azure Backup hello è supportato in tutte le aree pubbliche di Azure (vedere hello [checklist](https://azure.microsoft.com/regions/#services) delle aree geografiche supportate). Se l'area hello che si sta cercando è attualmente supportata, non verrà visualizzato nell'elenco a discesa hello durante la creazione dell'insieme di credenziali.
+* Backup di macchine virtuali tramite il servizio di Azure Backup hello è supportato solo per le versioni del sistema operativo selezionare:
 * Il ripristino di un controller di dominio di VM che fa parte di una configurazione con controller di dominio è supportato solo tramite PowerShell. Altre informazioni sul [ripristino di un controller di dominio con più controller di dominio](backup-azure-restore-vms.md#restoring-domain-controller-vms).
-* Il ripristino delle macchine virtuali che presentano le seguenti configurazioni di rete speciali è supportato solo tramite PowerShell. Le macchine virtuali create usando il flusso di lavoro di ripristino nell'interfaccia utente non potranno avere queste configurazioni di rete al termine dell'operazione di ripristino. Per altre informazioni, vedere [Ripristino delle macchine virtuali con configurazioni di rete speciali](backup-azure-restore-vms.md#restoring-vms-with-special-network-configurations).
+* Ripristino delle macchine virtuali che dispongono delle seguenti configurazioni di rete speciali hello è supportato solo tramite PowerShell. Macchine virtuali create tramite flusso di lavoro ripristino hello in hello dell'interfaccia utente non avrà queste configurazioni di rete al termine dell'operazione di ripristino hello. vedere, più toolearn [il ripristino di macchine virtuali con configurazioni di rete speciali](backup-azure-restore-vms.md#restoring-vms-with-special-network-configurations).
   * Macchine virtuali con configurazione del servizio di bilanciamento del carico (interno ed esterno)
   * Macchine virtuali con più indirizzi IP riservati
   * Macchine virtuali con più schede di rete
 
 ## <a name="create-a-backup-vault-for-a-vm"></a>Creare un insieme di credenziali di backup per una VM
-Un insieme di credenziali di backup è un'entità che archivia tutti i backup e i punti di ripristino che sono stati creati nel corso del tempo. L'insieme di credenziali di backup contiene anche i criteri di backup che verranno applicati alle macchine virtuali di cui viene eseguito il backup.
+Un insieme di credenziali di backup è un'entità contenente tutti i backup di hello e i punti di ripristino che sono stati creati nel corso del tempo. insieme di credenziali backup Hello contiene anche i criteri di backup hello che verrà applicato toohello le macchine virtuali viene eseguito il backup.
 
 > [!IMPORTANT]
-> A partire da marzo 2017, non è più possibile usare il portale classico per creare insiemi di credenziali di backup. Gli insiemi di credenziali di backup esistenti sono ancora supportati ed è possibile [usare Azure PowerShell per creare insiemi di credenziali di backup](./backup-client-automation-classic.md#create-a-backup-vault). È tuttavia consigliabile creare insiemi di credenziali dei servizi di ripristino per tutte le distribuzioni, perché i miglioramenti futuri si applicheranno solo a tali insiemi di credenziali.
+> A partire da marzo 2017, è possibile utilizzare non è più insiemi di credenziali Backup hello toocreate portale classico. Insiemi di credenziali di Backup esistenti siano ancora supportati ed è possibile troppo[utilizzare gli insiemi di credenziali di Azure PowerShell toocreate Backup](./backup-client-automation-classic.md#create-a-backup-vault). Tuttavia, Microsoft consiglia che creare insiemi di credenziali di servizi di ripristino per tutte le distribuzioni perché miglioramenti futuri applicano tooRecovery servizi insiemi di credenziali, solo.
 
 
-Questa figura mostra le relazioni tra le diverse entità di Backup di Azure: ![Entità e relazioni di Backup di Azure](./media/backup-azure-vms-prepare/vault-policy-vm.png)
+La seguente immagine illustra le relazioni di hello tra hello varie entità di Backup di Azure: ![relazioni ed entità di Backup di Azure](./media/backup-azure-vms-prepare/vault-policy-vm.png)
 
 
 
 ## <a name="network-connectivity"></a>Connettività di rete
-Per gestire gli snapshot di una macchina virtuale, l'estensione di backup richiede la connettività agli indirizzi IP pubblici di Azure. Senza la connettività Internet appropriata, si verificherà il timeout delle richieste HTTP della macchina virtuale e l'operazione di backup non verrà eseguita. Se la distribuzione ha restrizioni di accesso, ad esempio, un gruppo di sicurezza di rete (NSG), scegliere una delle opzioni seguenti per specificare un percorso chiaro per il traffico di backup:
+In snapshot VM hello toomanage ordine, estensione backup hello deve toohello connettività Azure gli indirizzi IP pubblici. Senza hello destra la connettività Internet, HTTP richieste hello e timeout operazione di backup della macchina virtuale hello non riesce. Se la distribuzione ha restrizioni di accesso, ad esempio, un gruppo di sicurezza di rete (NSG), scegliere una delle opzioni seguenti per specificare un percorso chiaro per il traffico di backup:
 
-* [Microsoft Azure Datacenter IP Ranges](http://www.microsoft.com/en-us/download/details.aspx?id=41653) (Intervalli di indirizzi IP dei data center di Azure): leggere l'articolo per istruzioni su come includere gli indirizzi IP nell'elenco degli elementi consentiti.
+* [Gli intervalli di IP whitelist hello Data Center di Azure](http://www.microsoft.com/en-us/download/details.aspx?id=41653) -vedere hello per le istruzioni su come toowhitelist hello gli indirizzi IP.
 * Distribuire un server proxy HTTP per eseguire il routing del traffico
 
-Quando si decide quale opzione usare, i compromessi sono compresi tra facilità di gestione, controllo granulare e costo.
+Quando si decide quale toouse opzione, hello compromessi sono compresi tra gestibilità, un controllo granulare e costi.
 
 | Opzione | Vantaggi | Svantaggi: |
 | --- | --- | --- |
-| Aggiungere gli intervalli IP all'elenco elementi consentiti  |Senza costi aggiuntivi.<br><br>Per aprire l'accesso in un gruppo di sicurezza di rete, usare il cmdlet <i>Set-AzureNetworkSecurityRule</i>. |Complessità di gestione perché gli intervalli IP interessati variano nel tempo.<br><br>Offre l'accesso a tutto l'ambiente di Azure, non solo al servizio di Archiviazione. |
-| Proxy HTTP |È consentito il controllo granulare nel proxy sugli URL di archiviazione. Per impostare il controllo granulare nel proxy, vedere il sito Web all'indirizzo https://\*.blob.core.windows.net/\* I modelli di URL devono essere aggiunti all'elenco elementi consentiti. Per aggiungere all'elenco elementi consentiti solo l'account di archiviazione usato dalla macchina virtuale, vedere il sito Web all'indirizzo https://\<storageAccount\>.blob.core.windows.net/\* I modelli di URL devono essere aggiunti all'elenco elementi consentiti. <br>Singolo punto di accesso Internet alle macchine virtuali.<br>Non è soggetto alle modifiche degli indirizzi IP di Azure. |Costi aggiuntivi per l'esecuzione di una VM con il software proxy. |
+| Aggiungere gli intervalli IP all'elenco elementi consentiti  |Senza costi aggiuntivi.<br><br>Per l'apertura in un gruppo di accesso, utilizzare hello <i>Set AzureNetworkSecurityRule</i> cmdlet. |Toomanage complesse come cambiano di intervalli IP hello interessato nel tempo.<br><br>Fornisce l'intero toohello di accesso di Azure e non solo l'archiviazione. |
+| Proxy HTTP |Un controllo granulare proxy hello archiviazione hello URL consentiti. un controllo granulare toosetup proxy hello, https://\*.blob.core.windows.net/\* modello di URL deve toobe consentito. toowhitelist hello solo account di archiviazione utilizzato dalla macchina virtuale, hello https://\<storageAccount\>.blob.core.windows.net/\* modello di URL deve toobe consentito. <br>TooVMs accesso singolo punto di Internet.<br>Non soggetto tooAzure modifiche all'indirizzo IP. |Costi aggiuntivi per l'esecuzione di una macchina virtuale con il software proxy hello. |
 
-### <a name="whitelist-the-azure-datacenter-ip-ranges"></a>Microsoft Azure Datacenter IP Ranges 
-Per aggiungere gli intervalli IP dei data center di Azure all'elenco degli elementi consentiti, vedere il [sito Web di Azure](http://www.microsoft.com/en-us/download/details.aspx?id=41653) per informazioni dettagliate sugli intervalli IP e per istruzioni.
+### <a name="whitelist-hello-azure-datacenter-ip-ranges"></a>Intervalli di IP whitelist hello Data Center di Azure
+intervalli IP toowhitelist hello Data Center di Azure, vedere hello [sito Web di Azure](http://www.microsoft.com/en-us/download/details.aspx?id=41653) per informazioni dettagliate su intervalli IP hello e le istruzioni.
 
 ### <a name="using-an-http-proxy-for-vm-backups"></a>Uso di un proxy HTTP per i backup delle VM
-Quando si esegue il backup di una macchina virtuale, l'estensione di backup nella VM invia i comandi di gestione degli snapshot ad Archiviazione di Azure usando un'API HTTPS. Eseguire il routing del traffico di estensione del backup tramite il proxy HTTP perché è l'unico componente configurato per l'accesso a Internet pubblico.
+Per eseguire il backup di una macchina virtuale, estensione di backup hello in hello VM invia tooAzure i comandi di gestione snapshot hello archiviazione mediante un'API di HTTPS. Instradare il traffico di estensione del backup hello mediante il proxy HTTP hello poiché è l'unico componente hello configurato per l'accesso toohello rete Internet pubblica.
 
 > [!NOTE]
-> Non esiste alcuna raccomandazione per il proxy da usare. Assicurarsi di scegliere un proxy con persistenza in uscita e compatibile con la procedura di configurazione descritta di seguito. Assicurarsi che i prodotti software di terze parti non modifichino le impostazioni del proxy
+> Non è consigliato per il software proxy hello che deve essere utilizzato. Assicurarsi di selezionare un proxy dotato aderenza in uscita e che è compatibile con i passaggi di configurazione hello riportato di seguito. Assicurarsi che i prodotti software di terze parti non modificano le impostazioni del proxy hello
 >
 >
 
-L'immagine dell'esempio seguente visualizza i tre passaggi necessari per usare un proxy HTTP:
+immagine di esempio Hello riportata di seguito viene illustrato come passaggi di configurazione tre hello necessarie toouse HTTP proxy:
 
-* La VM dell'app esegue il routing del traffico HTTP diretto alla rete Internet pubblica attraverso la VM del proxy.
-* La VM del Proxy consente il traffico in entrata da macchine virtuali nella rete virtuale.
-* Il gruppo di sicurezza di rete (NSG) denominato blocco NSF ha bisogno di una regola di sicurezza che consenta il traffico Internet in uscita dalla VM Proxy.
+* Tutto il traffico HTTP associato per le route di VM App hello pubblica Internet tramite Proxy VM.
+* Proxy VM consente il traffico in ingresso da macchine virtuali nella rete virtuale hello.
+* Sicurezza gruppo (rete) denominato Scoperto lockdown Hello deve un sicurezza regola consentire Internet il traffico in uscita dalla macchina virtuale di Proxy.
 
 ![Diagramma della distribuzione gruppo di sicurezza di rete con proxy HTTP](./media/backup-azure-vms-prepare/nsg-with-http-proxy.png)
 
-Per usare un proxy HTTP per la comunicazione con la rete Internet pubblica, attenersi alla procedura seguente:
+toouse HTTP proxy toocommunicating toohello rete Internet pubblica, seguire questi passaggi:
 
 #### <a name="step-1-configure-outgoing-network-connections"></a>Passaggio 1. Configurare le connessioni di rete in uscita
 ###### <a name="for-windows-machines"></a>Per macchine Windows
@@ -116,13 +116,13 @@ Questa procedura consente di impostare la configurazione del server proxy per l'
      psexec -i -s "c:\Program Files\Internet Explorer\iexplore.exe"
      ```
      Si apre la finestra di Explorer.
-3. Scegliere Strumenti -> Opzioni Internet -> Connessioni -> Impostazioni LAN.
+3. Passare tooTools -> Opzioni Internet -> connessioni -> Impostazioni LAN.
 4. Verificare le impostazioni del proxy per l'account di sistema. Impostare l'IP del Proxy e la porta.
 5. Chiudere Internet Explorer.
 
 Questo comando esegue una configurazione proxy a livello di computer e verrà usato per tutto il traffico HTTP/HTTPS in uscita.
 
-Se è stato installato un server proxy in un account utente corrente (non in un account di sistema locale), usare lo script seguente per applicare le impostazioni a SYSTEMACCOUNT:
+Se è stato impostato un server proxy in un account utente corrente (non un Account di sistema locale), utilizzare hello seguenti script tooapply li tooSYSTEMACCOUNT:
 
 ```
    $obj = Get-ItemProperty -Path Registry::”HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections"
@@ -139,74 +139,74 @@ Se è stato installato un server proxy in un account utente corrente (non in un 
 >
 
 ###### <a name="for-linux-machines"></a>Per macchine Linux
-Aggiungere la riga seguente al file ```/etc/environment``` :
+Aggiungere hello seguente riga toohello ```/etc/environment``` file:
 
 ```
 http_proxy=http://<proxy IP>:<proxy port>
 ```
 
-Aggiungere le righe seguenti al file ```/etc/waagent.conf``` :
+Aggiungere hello seguenti righe toohello ```/etc/waagent.conf``` file:
 
 ```
 HttpProxy.Host=<proxy IP>
 HttpProxy.Port=<proxy port>
 ```
 
-#### <a name="step-2-allow-incoming-connections-on-the-proxy-server"></a>Passaggio 2. Consentire le connessioni in entrata nel server proxy:
-1. Aprire Windows Firewall nel server proxy. Il modo più semplice per accedere al firewall consiste nel cercare Windows Firewall con Sicurezza avanzata.
+#### <a name="step-2-allow-incoming-connections-on-hello-proxy-server"></a>Passaggio 2. Consenti connessioni in ingresso nel server proxy hello:
+1. Nel server proxy hello, aprire Windows Firewall. firewall Hello più semplice modo tooaccess hello è toosearch per Windows Firewall con sicurezza avanzata.
 
-    ![Aprire il firewall](./media/backup-azure-vms-prepare/firewall-01.png)
-2. Nella finestra di dialogo Windows Firewall fare clic con il pulsante destro del mouse su **Regole in ingresso** e scegliere **Nuova regola**.
+    ![Aprire hello Firewall](./media/backup-azure-vms-prepare/firewall-01.png)
+2. Nella finestra di dialogo Windows Firewall hello destro **regole connessioni in entrata** e fare clic su **nuova regola...** .
 
     ![Creare una nuova regola](./media/backup-azure-vms-prepare/firewall-02.png)
-3. In **Creazione guidata nuova regola connessioni in entrata** scegliere l'opzione **Personalizzata** per **Tipo di regola** e fare clic su **Avanti**.
-4. Nella schermata di selezione del **Programma** scegliere **Tutti i programmi** e fare clic su **Avanti**.
-5. Nella pagina **Protocollo e porte** specificare le informazioni seguenti e fare clic su **Avanti**:
+3. In hello **in ingresso Creazione guidata nuova regola**, scegliere hello **personalizzato** opzione per hello **tipo di regola** e fare clic su **Avanti**.
+4. In hello di hello pagina tooselect **programma**, scegliere **tutti i programmi** e fare clic su **Avanti**.
+5. In hello **protocollo e porte** immettere hello le seguenti informazioni e fare clic su **Avanti**:
 
     ![Creare una nuova regola](./media/backup-azure-vms-prepare/firewall-03.png)
 
    * Nel campo *Tipo di protocollo* scegliere *TCP*.
-   * Nel campo *Porta locale* scegliere *Porte specifiche* e nel campo sottostante specificare la ```<Proxy Port>``` configurata.
+   * per *porta locale* scegliere *porte specifiche*, nel campo hello specificare hello ```<Proxy Port>``` che è stato configurato.
    * Nel campo *Porta remota* selezionare *Tutte le porte*.
 
-     Completare la procedura guidata facendo clic su Avanti fino al termine e assegnare un nome a questa regola.
+     Per rest hello della procedura guidata hello, fare clic su fine di toohello modo hello tutti e assegnare un nome di questa regola.
 
-#### <a name="step-3-add-an-exception-rule-to-the-nsg"></a>Passaggio 3. Aggiungere una regola di eccezione al gruppo di sicurezza di rete (NSG):
-In un prompt dei comandi di Azure PowerShell digitare il comando seguente:
+#### <a name="step-3-add-an-exception-rule-toohello-nsg"></a>Passaggio 3. Aggiungere un toohello regola eccezione gruppo:
+In un prompt dei comandi di Azure PowerShell, immettere hello comando seguente:
 
-Il comando aggiunge un'eccezione per il gruppo di sicurezza di rete (NSG). Questa eccezione consente il traffico TCP da qualsiasi porta da 10.0.0.5 a qualsiasi indirizzo Internet sulla porta 80 (HTTP) o 443 (HTTPS). Se è necessario usare una porta specifica nell'area Internet pubblica, assicurarsi di aggiungerla anche a ```-DestinationPortRange``` .
+Hello comando seguente consente di aggiungere un gruppo di toohello di eccezione. Questa eccezione consente il traffico TCP da qualsiasi porta 10.0.0.5 tooany indirizzo Internet sulla porta 80 (HTTP) o 443 (HTTPS). Se è necessaria una porta specifica in hello rete Internet pubblica, essere tooadd assicurarsi che la porta toohello ```-DestinationPortRange``` anche.
 
 ```
 Get-AzureNetworkSecurityGroup -Name "NSG-lockdown" |
 Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -Type Outbound -Priority 200 -SourceAddressPrefix "10.0.0.5/32" -SourcePortRange "*" -DestinationAddressPrefix Internet -DestinationPortRange "80-443"
 ```
 
-*Assicurarsi di sostituire i nomi nell'esempio con quelli appropriati alla distribuzione in uso.*
+*Assicurarsi di sostituire i nomi di hello nell'esempio hello con la distribuzione di hello dettagli tooyour appropriato.*
 
 ## <a name="vm-agent"></a>Agente di macchine virtuali
-Prima di eseguire il backup della macchina virtuale di Azure, è consigliabile assicurarsi che l'agente di macchine virtuali di Azure (agente VM) sia installato correttamente nella macchina virtuale. Poiché al momento della creazione della macchina virtuale l'agente VM è un componente opzionale, assicurarsi che la relativa casella di controllo sia selezionata prima di eseguire il provisioning della macchina virtuale.
+Prima di eseguire il backup hello macchina virtuale di Azure, è necessario assicurarsi che l'agente VM di Azure hello è correttamente installato nella macchina virtuale hello. Poiché l'agente VM hello viene creato un componente facoltativo in fase di hello hello macchina virtuale, verificare la casella di controllo hello per agente VM hello è selezionato prima di provisioning della macchina virtuale hello.
 
 ### <a name="manual-installation-and-update"></a>Installazione e aggiornamento manuali
-L'agente VM è già presente nelle VM create dalla raccolta di Azure. Nelle macchine virtuali di cui viene eseguita la migrazione da data center locali non è installato l'agente VM. Per queste VM è necessario installare esplicitamente l'agente VM. Altre informazioni sull' [installazione dell'agente di VM in una VM esistente](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx).
+agente VM Hello è già presente nelle macchine virtuali create da hello raccolta di Azure. Tuttavia, le macchine virtuali vengono migrate da Data Center locale non avrebbero agente VM hello installato. Per tali macchine virtuali, l'agente VM hello deve toobe installato in modo esplicito. Altre informazioni sui [l'installazione dell'agente VM hello in una macchina virtuale esistente](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx).
 
 | **Operazione** | **Windows** | **Linux** |
 | --- | --- | --- |
-| Installazione dell'agente di VM |<li>Scaricare e installare il file [MSI per l'agente](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). Per completare l'installazione sono necessari privilegi di amministratore. <li>[Aggiornare le proprietà della VM](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx) per indicare che l'agente è stato installato. |<li> Installare l' [agente Linux](https://github.com/Azure/WALinuxAgent) più recente da GitHub. Per completare l'installazione sono necessari privilegi di amministratore. <li> [Aggiornare le proprietà della VM](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx) per indicare che l'agente è stato installato. |
-| Aggiornamento dell'agente di VM |L'aggiornamento dell'agente VM è semplice quanto la reinstallazione dei [file binari dell'agente VM](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). <br><br>Assicurarsi che non siano in esecuzione operazioni di backup durante l'aggiornamento dell'agente VM. |Seguire le istruzioni sull'[aggiornamento dell'agente di VM Linux ](../virtual-machines/linux/update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). <br><br>Assicurarsi che non siano in esecuzione operazioni di backup durante l'aggiornamento dell'agente VM. |
-| Convalida dell'installazione dell'agente di VM |<li>Passare alla cartella *C:\WindowsAzure\Packages* nella VM di Azure, <li>che dovrebbe includere il file WaAppAgent.exe.<li> Fare clic con il pulsante destro del mouse sul file, scegliere **Proprietà** e quindi selezionare la scheda **Dettagli**. Il campo Versione prodotto deve essere 2.6.1198.718 o superiore. |N/D |
+| L'installazione dell'agente VM hello |<li>Scaricare e installare hello [agente MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). Sarà necessario installazione hello toocomplete privilegi di amministratore. <li>[Aggiorna proprietà macchina virtuale hello](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx) tooindicate che hello agente è installato. |<li> Installare più recente hello [agente Linux](https://github.com/Azure/WALinuxAgent) da GitHub. Sarà necessario installazione hello toocomplete privilegi di amministratore. <li> [Aggiorna proprietà macchina virtuale hello](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx) tooindicate che hello agente è installato. |
+| Aggiornamento agente VM hello |Aggiornamento agente VM di hello è semplice come reinstallare hello [binari agente VM](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). <br><br>Verificare che non venga eseguita alcuna operazione di backup durante l'aggiornamento dell'agente VM hello. |Seguire le istruzioni di hello [aggiornamento hello agente VM Linux ](../virtual-machines/linux/update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). <br><br>Verificare che non venga eseguita alcuna operazione di backup durante l'aggiornamento dell'agente VM hello. |
+| Convalida di installazione dell'agente VM hello |<li>Passare toohello *C:\WindowsAzure\Packages* cartella hello macchina virtuale di Azure. <li>È necessario trovare un file WaAppAgent.exe hello presentano.<li> Fare clic sul file hello, andare troppo**proprietà**, quindi selezionare hello **dettagli** campo versione prodotto di hello scheda deve essere 2.6.1198.718 o versione successiva. |N/D |
 
-Per altre informazioni, vedere gli articoli sull'[agente di macchine virtuale](https://go.microsoft.com/fwLink/?LinkID=390493&clcid=0x409) e sulla relativa [installazione](https://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/).
+Informazioni su hello [agente VM](https://go.microsoft.com/fwLink/?LinkID=390493&clcid=0x409) e [come tooinstall è](https://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/).
 
 ### <a name="backup-extension"></a>Estensione di backup
-Per eseguire il backup della macchina virtuale, il servizio Backup di Azure installa un'estensione nell'agente di macchine virtuali. Il servizio Backup di Azure applica aggiornamenti e patch all'estensione di backup senza ulteriore intervento dell'utente.
+tooback la macchina virtuale hello, hello servizio Azure Backup installa un agente di macchine Virtuali toohello estensione. Hello servizio Azure Backup facilmente vengono aggiornati e le patch di estensione del backup hello senza l'intervento dell'utente.
 
-L'estensione per il backup viene installata se la macchina virtuale è in esecuzione. Una macchina virtuale in esecuzione consente anche di ottenere un punto di ripristino coerente con l'applicazione. Il servizio Backup di Azure continuerà tuttavia a eseguire il backup della macchina virtuale, anche se questa è spenta e non è stato possibile installare l'estensione (macchina virtuale offline). In questo caso, il punto di ripristino sarà *coerente con l'arresto anomalo* , come indicato in precedenza.
+estensione del backup Hello viene installato se hello macchina virtuale è in esecuzione. Una macchina virtuale in esecuzione nonché hello maggiore probabilità di riuscire a ottenere un punto di ripristino coerenti con l'applicazione. Tuttavia, hello Azure Backup servizio continuerà tooback backup hello VM, anche se è stato disattivato e non è stato possibile estensione hello installato (noto anche come Offline VM). In questo caso, si sarà il punto di ripristino hello *anomalo* come illustrato in precedenza.
 
 ## <a name="questions"></a>Domande?
-In caso di domande o se si vuole che venga inclusa una funzionalità, è possibile [inviare commenti e suggerimenti](http://aka.ms/azurebackup_feedback).
+Se si hanno domande o se è presente una funzionalità che si desidera toosee incluso, [inviare commenti e suggerimenti](http://aka.ms/azurebackup_feedback).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che è stato preparato l'ambiente per il backup della VM, il passaggio logico successivo consiste nel creare un backup. L'articolo sulla pianificazione offre informazioni più dettagliate sul backup delle VM.
+Ora che è stato preparato l'ambiente per il backup di una macchina virtuale, il passaggio successivo logico è toocreate una copia di backup. Hello pianificazione articolo fornisce informazioni più dettagliate sul backup di macchine virtuali.
 
 * [Eseguire il backup di macchine virtuali](backup-azure-vms.md)
 * [Pianificare l'infrastruttura di backup delle VM](backup-azure-vms-introduction.md)

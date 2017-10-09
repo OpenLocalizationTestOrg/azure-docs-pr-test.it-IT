@@ -1,6 +1,6 @@
 ---
-title: Guida introduttiva per il Centro sicurezza di Azure | Documentazione Microsoft
-description: Questo documento consente di iniziare a usare rapidamente il Centro sicurezza di Azure illustrando i componenti di monitoraggio della sicurezza e gestione dei criteri e fornendo un collegamento ai passaggi successivi.
+title: Guida introduttiva rapida Centro sicurezza PC aaaAzure | Documenti Microsoft
+description: "In questo articolo consente di iniziare rapidamente con Centro sicurezza di Azure mediante portata hello monitoraggio e criteri di Gestione componenti di protezione e il collegamento è toonext passaggi."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,109 +14,109 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: 392c814b7d3ff6b4f0f7850a51960576775e0307
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 23b2444ba1ba30d0a1bd1a1afbc4fd0abfd0827c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-center-quick-start-guide"></a>Guida introduttiva per il Centro sicurezza di Azure
-Questo documento consente di iniziare a usare rapidamente il Centro sicurezza di Azure illustrando i componenti di monitoraggio della sicurezza e gestione dei criteri del Centro sicurezza.
+In questo articolo consente di iniziare rapidamente con Centro sicurezza di Azure mostrando hello sicurezza monitoraggio e criteri di Gestione componenti del Centro sicurezza PC.
 
 > [!NOTE]
-> A partire dall'inizio di giugno 2017, il Centro sicurezza usa Microsoft Monitoring Agent per raccogliere e archiviare i dati. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). Le informazioni contenute in questo articolo si riferiscono alle funzionalità del Centro sicurezza dopo la transizione a Microsoft Monitoring Agent.
+> A partire da anticipata giugno 2017, centro di sicurezza verrà utilizzata toocollect Microsoft Monitoring Agent hello e archiviare i dati. Vedere [migrazione della piattaforma Azure sicurezza Center](security-center-platform-migration.md) toolearn altre. informazioni di Hello in questo articolo rappresentano funzionalità Centro sicurezza dopo la transizione toohello Microsoft Monitoring Agent.
 >
 >
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per iniziare a usare Centro sicurezza, è necessario avere una sottoscrizione di Microsoft Azure. Se non si ha una sottoscrizione, è possibile ottenere un [account gratuito](https://azure.microsoft.com/pricing/free-trial/).
+tooget avviato con il Centro sicurezza PC, è necessario disporre di un tooMicrosoft sottoscrizione Azure. Se non si ha una sottoscrizione, è possibile ottenere un [account gratuito](https://azure.microsoft.com/pricing/free-trial/).
 
-Il livello gratuito del Centro sicurezza viene abilitato automaticamente con la sottoscrizione e consente di esaminare lo stato di sicurezza delle risorse di Azure. Offre la gestione di criteri di sicurezza di base, raccomandazioni sulla sicurezza e l'integrazione con prodotti e servizi dei partner di Azure.
+livello gratuito di Hello del Centro sicurezza PC viene abilitata automaticamente con la sottoscrizione e offre una visibilità in stato di sicurezza hello delle risorse di Azure. Offre la gestione di criteri di sicurezza di base, raccomandazioni sulla sicurezza e l'integrazione con prodotti e servizi dei partner di Azure.
 
-È possibile accedere al Centro sicurezza tramite il [portale di Azure](https://azure.microsoft.com/features/azure-portal/). Per altre informazioni sul portale di Azure, vedere la [documentazione sul portale](https://azure.microsoft.com/documentation/services/azure-portal/).
+Tramite il Centro sicurezza PC hello [portale di Azure](https://azure.microsoft.com/features/azure-portal/). toolearn ulteriori informazioni su hello portale di Azure, vedere hello [documentazione portale](https://azure.microsoft.com/documentation/services/azure-portal/).
 
-## <a name="permissions"></a>autorizzazioni
-In Centro sicurezza gli utenti visualizzeranno solo informazioni relative alle risorse di Azure quando sono assegnati al ruolo di proprietario, collaboratore o lettore per la sottoscrizione o il gruppo di risorse a cui tali risorse appartengono. Per altre informazioni sui ruoli e sulle azioni consentite in Centro sicurezza, vedere [Permissions in Azure Security Center](security-center-permissions.md) (Autorizzazioni in Centro sicurezza di Azure).
+## <a name="permissions"></a>Autorizzazioni
+Centro sicurezza PC, visualizzare solo informazioni correlate tooan risorse di Azure quando si sono ruolo hello del proprietario, collaboratore o lettore per il gruppo hello sottoscrizione o la risorsa a cui appartiene una risorsa. Vedere [autorizzazioni nel Centro protezione Azure](security-center-permissions.md) toolearn informazioni sui ruoli e le operazioni consentite in Centro sicurezza PC.
 
 ## <a name="data-collection"></a>Raccolta dei dati
-Il Centro sicurezza raccoglie i dati dalle macchine virtuali per valutarne lo stato della sicurezza, indicare raccomandazioni sulla sicurezza e segnalare le minacce. La prima volta che si accede al Centro sicurezza, la raccolta dati viene abilitata in tutte le macchine virtuali della sottoscrizione. Il Centro sicurezza effettua il provisioning di Microsoft Monitoring Agent in tutte le macchine virtuali di Azure supportate esistenti e in quelle nuove che vengono create. Vedere [Abilitare la raccolta dati](security-center-enable-data-collection.md) per altre informazioni sul funzionamento della raccolta dati.
+Centro sicurezza PC raccoglie i dati da tooassess le macchine virtuali (VM) lo stato di protezione, fornire consigli sulla sicurezza e ricevere un avviso toothreats. La prima volta che si accede al Centro sicurezza, la raccolta dati viene abilitata in tutte le macchine virtuali della sottoscrizione. Centro sicurezza PC disposizioni hello Microsoft Monitoring Agent esistente tutte supportate macchine virtuali di Azure e quelli nuovi creati. Vedere [Abilita raccolta dati](security-center-enable-data-collection.md) toolearn più sul funzionamento di raccolta dati.
 
-È consigliabile eseguire la raccolta dei dati. Se si usa la versione gratuita del Centro sicurezza, è anche possibile disabilitare la raccolta dati dalle macchine virtuali disabilitando la raccolta dati nei criteri di sicurezza. La raccolta dati è richiesta per le sottoscrizioni a livello Standard del Centro sicurezza. Per altre informazioni sui piani tariffari gratuito e standard vedere [Prezzi del Centro sicurezza](security-center-pricing.md).
+È consigliabile eseguire la raccolta dei dati. Se si utilizza livello gratuito di hello del Centro sicurezza PC, è possibile disabilitare la raccolta dei dati da macchine virtuali disattivando la raccolta dei dati nei criteri di sicurezza hello. Raccolta dati è obbligatorio per le sottoscrizioni nel livello Standard di hello del Centro sicurezza PC. Vedere [Centro sicurezza PC prezzi](security-center-pricing.md) toolearn ulteriori informazioni sugli hello gratuita e livelli di prezzo Standard.
 
-I passaggi seguenti descrivono come accedere al Centro sicurezza e usarne i componenti. Questi passaggi illustrano come disattivare la raccolta dei dati se si sceglie di rifiutare esplicitamente questa opzione.
+Hello alla procedura seguente viene descritto come tooaccess e utilizzare hello componenti del Centro sicurezza PC. Nei passaggi seguenti verrà illustrato come tooturn la raccolta di dati se si sceglie tooopt out.
 
 > [!NOTE]
-> Questo articolo introduce il servizio usando una distribuzione di esempio. Non si tratta di una guida dettagliata.
+> Questo articolo descrive il servizio hello utilizzando un esempio di distribuzione. Non si tratta di una guida dettagliata.
 >
 >
 
 ## <a name="access-security-center"></a>Accedere al Centro sicurezza
-Nel portale seguire questa procedura per accedere al Centro sicurezza:
+Nel portale di hello, seguire questi tooaccess passaggi Centro sicurezza:
 
-1. Scegliere **Centro sicurezza** dal menu **Microsoft Azure**.
+1. In hello **Microsoft Azure** dal menu **Centro sicurezza PC**.
 
    ![Menu di Azure][1]
-2. Se si accede al Centro sicurezza per la prima volta, verrà visualizzato il pannello **iniziale**. Selezionare **Launch Security Center** (Avvia Centro sicurezza) per aprire il pannello **Centro sicurezza** e abilitare la raccolta dati.
+2. Se si accede a Centro sicurezza PC per hello prima volta, hello **iniziale** apre blade. Selezionare **avvia il Centro sicurezza PC** tooopen hello **Centro sicurezza PC** blade e tooenable la raccolta dei dati.
    ![Schermata iniziale][10]
-3. Dopo aver avviato il Centro sicurezza dal pannello iniziale o aver selezionato Centro sicurezza dal menu Microsoft Azure, si aprirà il pannello **Centro sicurezza**. Per semplificare l'accesso al pannello **Centro sicurezza** in futuro, selezionare l'opzione **Aggiungi pannello al dashboard** (in alto a destra).
-   ![Opzione Aggiungi pannello al dashboard][2]
+3. Dopo aver avviare centro di sicurezza dal Pannello di benvenuto hello o selezionare il Centro sicurezza PC dal menu di Microsoft Azure hello, hello **Centro sicurezza PC** apre blade. Per un facile accesso toohello **Centro sicurezza PC** pannello in prova futuri, selezionare prova **Pin pannello toodashboard** opzione (alto a destra).
+   ![Opzione di toodashboard pannello pin][2]
 
 ## <a name="use-security-center"></a>Usare il Centro sicurezza
 È possibile configurare criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure. Configurare i criteri di sicurezza per la sottoscrizione:
 
-1. Selezionare il riquadro **Criteri** nel pannello **Centro sicurezza**.
-2. Selezionare una sottoscrizione nel pannello **Security policy - Define policy per subscription** (Criteri di sicurezza - Definire il criterio per ogni sottoscrizione).
-3. Nel pannello **Criteri di sicurezza** **Raccolta dati** è abilitato per raccogliere automaticamente i log. Il provisioning dell'estensione di monitoraggio viene effettuato in tutte le VM correnti e nuove nella sottoscrizione. Nel livello gratuito del Centro sicurezza, è possibile rifiutare esplicitamente la raccolta dei dati impostando **Raccolta dati** su **Non attivo**, **in questo modo** il Centro sicurezza **non** potrà inviare avvisi e raccomandazioni sulla sicurezza.
-4. Selezionare **Criteri di prevenzione** nel pannello **Criteri di sicurezza**. Verrà visualizzato il pannello **Criteri di prevenzione**.
-5. Nel pannello **Criteri di prevenzione** attivare le raccomandazioni da visualizzare nell'ambito dei criteri di sicurezza. Esempi:
+1. In hello **Centro sicurezza PC** blade, seleziona hello **criteri** riquadro.
+2. In hello **criteri di sicurezza - definire criteri per ogni sottoscrizione** pannello, selezionare una sottoscrizione.
+3. In hello **criteri di sicurezza** pannello **la raccolta dei dati** tooautomatically abilitato raccolta registri. monitoraggio estensione Hello è disponibile in tutte le macchine virtuali correnti e nuove nella sottoscrizione hello. (Nel livello gratuito di hello del Centro sicurezza PC, è possibile rifiutare esplicitamente la raccolta dei dati impostando **la raccolta dei dati** troppo**Off**. Impostazione **la raccolta dei dati** troppo**Off** impedisce che il Centro sicurezza PC fornendo gli avvisi di sicurezza e suggerimenti.)
+4. In hello **criteri di sicurezza** pannello seleziona **criteri di prevenzione**. Verrà visualizzata hello **criteri di prevenzione** blade.
+5. In hello **criteri di prevenzione** pannello accendere indicazioni hello che si vuole toosee come parte dei criteri di sicurezza. Esempi:
 
-   * Impostando **Aggiornamenti del sistema** su **On** (Attivo), tutte le macchine virtuali supportate verranno analizzate per rilevare gli aggiornamenti del sistema operativo mancanti.
-   * Impostando **Vulnerabilità del sistema operativo** su **On** (Attivo), tutte le macchine virtuali supportate verranno analizzate per identificare le configurazioni del sistema operativo che possono esporre la macchina virtuale ad attacchi.
+   * Impostazione **gli aggiornamenti del sistema** troppo**su** analisi tutte le macchine virtuali è supportata per privi di aggiornamenti del sistema operativo.
+   * Impostazione **vulnerabilità del sistema operativo** troppo**su** analisi tutte supportate macchine virtuali tooidentify tutte le configurazioni del sistema operativo che potrebbero risultare hello VM tooattack più vulnerabile.
 
 ### <a name="view-recommendations"></a>Visualizzare raccomandazioni
-1. Tornare al pannello **Centro sicurezza** e selezionare il riquadro **Raccomandazioni**. Il Centro sicurezza analizza periodicamente lo stato di sicurezza delle risorse di Azure. Quando identifica potenziali vulnerabilità della sicurezza, il Centro sicurezza indica raccomandazioni nel pannello **Raccomandazioni**.
+1. Restituire toohello **Centro sicurezza PC** pannello e seleziona hello **indicazioni** riquadro. Centro sicurezza PC analizza periodicamente lo stato di sicurezza hello delle risorse di Azure. Quando il Centro sicurezza PC identifica potenziali vulnerabilità di sicurezza, viene visualizzato indicazioni su hello **indicazioni** blade.
    ![Raccomandazioni nel Centro sicurezza di Azure][5]
-2. Selezionare una raccomandazione nel pannello **Raccomandazioni** per visualizzare altre informazioni e/o intervenire per risolvere il problema.
+2. Selezionare una raccomandazione hello **indicazioni** rilasciare più i hello azione tooresolve informazioni e/o tootake tooview blade.
 
-### <a name="view-the-security-state-of-your-resources"></a>Visualizzare lo stato di sicurezza delle risorse
-1. Tornare al pannello **Centro sicurezza PC** . La sezione **Prevenzione** del dashboard contiene indicatori dello stato di sicurezza per macchine virtuali, rete, dati e applicazioni.
-2. Selezionare **Calcolo** per visualizzare altre informazioni. Viene visualizzato il pannello **Calcolo** con tre schede:
+### <a name="view-hello-security-state-of-your-resources"></a>Visualizzare lo stato di sicurezza hello delle risorse
+1. Restituire toohello **Centro sicurezza PC** blade. Hello **prevenzione** sezione dashboard hello contiene gli indicatori di stato di sicurezza hello per le macchine virtuali, rete, dati e alle applicazioni.
+2. Selezionare **calcolo** tooview ulteriori informazioni. Hello **calcolo** pannello apre con tre schede:
 
   - **Panoramica**: contiene consigli sul monitoraggio e sulle macchine virtuali.
   - **Macchine virtuali**: elenca tutte le macchine virtuali e il rispettivo stato di sicurezza corrente.
   - **Servizi cloud**: elenca di tutti i ruoli Web e di lavoro monitorati dal Centro sicurezza.
 
-    ![Riquadro Integrità delle risorse nel Centro sicurezza di Azure][6]
+    ![riquadro di stato risorse Hello in Centro sicurezza di Azure][6]
 
-3. Nella scheda **Panoraimca** selezionare una raccomandazione in **RACCOMANDAZIONI SULLE MACCHINE VIRTUALI** per visualizzare altre informazioni e/o intervenire per configurare i controlli necessari.
-4. Selezionare una macchina virtuale nella scheda **Macchine virtuali** per visualizzare altri dettagli.
+3. In hello **Panoramica** , selezionare un'indicazione in **indicazioni di macchine VIRTUALI** tooview ulteriori informazioni e/o eseguire azioni tooconfigure controlli necessari.
+4. In hello **macchine virtuali** , selezionare una VM tooview i dettagli aggiuntivi.
 
 ### <a name="view-security-alerts"></a>Visualizzare avvisi di sicurezza
-1. Tornare al pannello **Centro sicurezza** e selezionare il riquadro **Avvisi di sicurezza**. Nel pannello **Avvisi di sicurezza** verrà visualizzato un elenco di avvisi. Gli avvisi vengono generati dall'analisi dei log di sicurezza e dell'attività di rete effettuata dal Centro sicurezza. Sono inclusi gli avvisi generati da soluzioni partner integrate.
+1. Restituire toohello **Centro sicurezza PC** pannello e seleziona hello **degli avvisi di sicurezza** riquadro. Hello **degli avvisi di sicurezza** pannello apre e visualizza un elenco di avvisi. Hello analysis Centro sicurezza di attività di rete e i registri di protezione delle genera gli avvisi. Sono inclusi gli avvisi generati da soluzioni partner integrate.
    ![Avvisi di sicurezza nel Centro sicurezza di Azure][7]
 
    > [!NOTE]
-   > Gli avvisi di sicurezza sono disponibili solo se è abilitato il livello Standard del Centro sicurezza. Per il livello Standard è disponibile una versione di valutazione gratuita di 60 giorni. Vedere [Passaggi successivi](#next-steps) per informazioni su come ottenere il livello Standard.
+   > Avvisi di sicurezza sono disponibili solo se è abilitato il livello Standard di hello del Centro sicurezza PC. Una versione di valutazione gratuita di 60 giorni del livello Standard hello è disponibile. Vedere [passaggi successivi](#next-steps) per informazioni su come tooget hello Standard del livello.
    >
    >
-2. Selezionare un avviso per visualizzare informazioni aggiuntive. In questo esempio verrà selezionato **Modified system binary discovered** (Individuato file binario di sistema modificato). Si apriranno pannelli con altri dettagli dell'avviso.
+2. Selezionare un avviso tooview ulteriori informazioni. In questo esempio verrà selezionato **Modified system binary discovered** (Individuato file binario di sistema modificato). Si aprirà pannelli che forniscono ulteriori dettagli sull'avviso hello.
    ![Dettagli degli avvisi di sicurezza nel Centro sicurezza di Azure][8]
 
-### <a name="view-the-health-of-your-partner-solutions"></a>Visualizzare l'integrità delle soluzioni partner
-1. Tornare al pannello **Centro sicurezza PC** . Il riquadro **Soluzioni partner** consente di monitorare a colpo d'occhio lo stato di integrità delle soluzioni dei partner integrate nella sottoscrizione di Azure.
-2. Selezionare il riquadro **Soluzioni partner** . Verrà visualizzato un pannello con un elenco di soluzioni dei partner connesse al Centro sicurezza.
+### <a name="view-hello-health-of-your-partner-solutions"></a>Visualizza stato hello partner delle soluzioni dell'utente
+1. Restituire toohello **Centro sicurezza PC** blade. Hello **soluzioni Partner** riquadro consente di monitorare, a colpo d'occhio, hello lo stato di integrità delle soluzioni di partner integrato con la sottoscrizione di Azure.
+2. Seleziona hello **soluzioni Partner** riquadro. Apre un pannello e visualizza un elenco di partner delle soluzioni dell'utente connesso tooSecurity Center.
    ![soluzioni partner][9]
-3. Selezionare una soluzione dei partner. In questo esempio verrà selezionata la soluzione **QualysVa1**.  Verrà visualizzato un pannello con lo stato della soluzione partner e le risorse associate alla soluzione. Selezionare **Console della soluzione** per aprire l'esperienza di gestione dei partner per questa soluzione.
+3. Selezionare una soluzione dei partner. In questo esempio, è possibile selezionare hello **QualysVa1** soluzione.  Un pannello apre e Mostra lo stato di hello della soluzione di partner hello e della soluzione hello le risorse associate. Selezionare **console soluzione** esperienza di gestione dei partner hello tooopen per questa soluzione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo sono stati presentati i componenti di monitoraggio della sicurezza e di gestione dei criteri del Centro sicurezza. Dopo aver acquisito familiarità con il Centro sicurezza, provare a eseguire questi passaggi:
+In questo articolo ha introdotto toohello sicurezza monitoraggio e criteri di Gestione componenti del Centro sicurezza PC. Ora che si ha familiarità con il Centro sicurezza PC, provare a hello alla procedura seguente:
 
-* Configurare i criteri di sicurezza per la sottoscrizione di Azure. Per altre informazioni, vedere [Impostare i criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md).
-* Usare le raccomandazioni presenti nel Centro sicurezza per la protezione delle risorse di Azure. Per altre informazioni, vedere [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md).
-* Esaminare e gestire gli avvisi di sicurezza correnti. Per altre informazioni, vedere [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md).
+* Configurare i criteri di sicurezza per la sottoscrizione di Azure. vedere, più toolearn [l'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md).
+* Usare le raccomandazioni relative hello in toohelp Centro sicurezza PC proteggere le risorse di Azure. vedere, più toolearn [gestione consigli relativi alla sicurezza nel Centro protezione Azure](security-center-recommendations.md).
+* Esaminare e gestire gli avvisi di sicurezza correnti. vedere, più toolearn [toosecurity risponda e gestire gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md).
 - [Sicurezza dei dati nel Centro sicurezza di Azure](security-center-data-security.md): informazioni sulla gestione e la protezione dei dati nel Centro sicurezza.
-* Altre informazioni sulle [funzionalità avanzate di rilevamento delle minacce](security-center-detection-capabilities.md) incluse con il [livello Standard](security-center-pricing.md) del Centro sicurezza. Il livello Standard è gratuito per i primi 60 giorni.
-* In caso di domande sull'uso del Centro sicurezza, vedere [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md).
+* Altre informazioni su hello [advanced threat le funzionalità di rilevazione](security-center-detection-capabilities.md) disponibili hello [livello Standard](security-center-pricing.md) del Centro sicurezza PC. livello Standard Hello viene offerto gratuitamente per hello 60 giorni prima.
+* Nel caso di domande sull'utilizzo di centro di sicurezza, vedere hello [domande frequenti su Centro protezione di Azure](security-center-faq.md).
 
 <!--Image references-->
 [1]: ./media/security-center-get-started/azure-menu.png

@@ -1,10 +1,10 @@
-A questo punto si crea una campagna di notifica push semplice che invia una notifica push all'app.
+Verrà ora creata una campagna di notifica push semplice che invia un'app tooour di notifica push.
 
-1. Passare alla scheda **REACH** nel portale di Mobile Engagement.
-2. Fare clic su **Nuovo annuncio** per creare una campagna di notifica push.
+1. Passare toohello **raggiungere** scheda nel portale Mobile Engagement.
+2. Fare clic su **nuovo annuncio** toocreate la campagna di notifica push.
    
     ![](./media/mobile-engagement-windows-push-campaign/new-announcement.png)
-3. Impostare il primo campo della campagna seguendo questa procedura:
+3. Impostare i campi prima di hello della campagna tramite hello alla procedura seguente:
    
     ![](./media/mobile-engagement-windows-push-campaign/campaign-first-params.png)
    
@@ -12,14 +12,14 @@ A questo punto si crea una campagna di notifica push semplice che invia una noti
    
     b. Selezionare l' **Ora di recapito** su *Qualsiasi ora*
    
-    d. Nel testo della notifica digitare il **titolo** che apparirà in grassetto nel push.
+    d. Nel testo della notifica hello - digitare hello **titolo** che sarà grassetto in push hello.
    
     e. Digitare quindi il **messaggio**
-4. Scorrere verso il basso e nella sezione **Contenuto** selezionare **Notification only** (Solo notifica).
+4. Scorrere verso il basso e in hello **contenuto** selezionare **sola notifica**.
    
     ![](./media/mobile-engagement-windows-push-campaign/campaign-content.png)
-5. L'impostazione della campagna più semplice possibile è stata completata. Ora scorrere nuovamente verso il basso e fare clic sul pulsante **Crea** per salvare la campagna.
-6. Come ultimo passaggio, fare clic su **Attiva** per attivare la campagna e inviare le notifiche push.
+5. Possibili campagna più elementare di impostazione hello completato. Ora nuovamente a scorrere verso il basso e fare clic su hello **crea** pulsante toosave la campagna.
+6. Ultimo passaggio: scegliere **attiva** tooactivate la campagna e toosend notifiche push.
    
     ![](./media/mobile-engagement-windows-push-campaign/campaign-activate.png)
 

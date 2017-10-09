@@ -1,4 +1,4 @@
-I problemi principali seguenti possono contribuire a risolvere il problema riscontrato. Per avviare la risoluzione dei problemi, esaminare questi passaggi:
+Hello principali problemi seguenti per risolvere il problema. risoluzione dei problemi, toostart rivedere questi passaggi:
 
-- [Il cluster non supporta le dimensioni della VM richieste](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
-- [Il cluster non ha risorse disponibili](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)
+- [non supporta cluster Hello hello richiesto dimensioni delle macchine Virtuali](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
+- [cluster Hello privo di liberare le risorse](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)

@@ -1,6 +1,6 @@
 ---
-title: 'Servizio di sincronizzazione Azure AD Connect: modifica della configurazione predefinita | Documentazione Microsoft'
-description: Fornisce le procedure consigliate per modificare la configurazione predefinita del servizio di sincronizzazione Azure AD Connect.
+title: 'Sincronizzazione di Azure AD Connect: modifica della configurazione predefinita di hello | Documenti Microsoft'
+description: Fornisce le procedure consigliate per la modifica di configurazione predefinita di hello di sincronizzazione di Azure AD Connect.
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: b723ad800ccc0f3040eb480bb72960943b1fdb16
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: aa05e935edd02c49c3c3fdc198b854f50327847c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-connect-sync-best-practices-for-changing-the-default-configuration"></a>Servizio di sincronizzazione Azure AD Connect: procedure consigliate per modificare la configurazione predefinita
-Questo argomento descrive le modifiche supportate e non supportate del servizio di sincronizzazione Azure AD Connect.
+# <a name="azure-ad-connect-sync-best-practices-for-changing-hello-default-configuration"></a>Sincronizzazione di Azure AD Connect: procedure consigliate per la modifica della configurazione predefinita di hello
+scopo di Hello di questo argomento è toodescribe supportati e non supportati di sincronizzazione di modifiche tooAzure AD Connect.
 
-La configurazione creata da Azure AD Connect funziona "così com'è" per la maggior parte degli ambienti che sincronizzano l'istanza di Active Directory locale con Azure AD. In alcuni casi, tuttavia, è necessario applicare alcune modifiche a una configurazione per soddisfare un'esigenza o un requisito specifico.
+configurazione di Hello creata da Azure AD Connect funziona "così com'è" per la maggior parte degli ambienti che la sincronizzazione di Active Directory locale con Azure AD. Tuttavia, in alcuni casi, è necessario tooapply alcuni toosatisfy di configurazione tooa modifiche un particolare necessario o requisito.
 
-## <a name="changes-to-the-service-account"></a>Modifiche apportate all'account del servizio
-Il servizio di sincronizzazione Azure AD Connect viene eseguito tramite un account del servizio creato dall'installazione guidata. L'account del servizio contiene le chiavi di crittografia per il database usato dal servizio di sincronizzazione. Viene creato con una password con una lunghezza di 127 caratteri e la password è impostata per non scadere mai.
+## <a name="changes-toohello-service-account"></a>Account del servizio toohello modifiche
+Sincronizzazione di Azure AD Connect è in esecuzione con un account di servizio creato dalla procedura guidata di installazione di hello. Questo account del servizio contiene database di hello crittografia chiavi toohello utilizzato dalla sincronizzazione. Viene creato con una password lunga di 127 caratteri e la password di hello è impostata toonot scadenza.
 
-* La modifica o la reimpostazione della password dell'account del servizio **non è supportata** . Questa operazione comporta l'eliminazione delle chiavi di crittografia impedendo così l'avvio del servizio e il relativo accesso al database.
+* È **non supportato** toochange o la reimpostazione della password di hello hello dell'account di servizio. Questa operazione comporta l'eliminazione di chiavi di crittografia hello e hello servizio non è in grado di tooaccess hello database e non è in grado di toostart.
 
-## <a name="changes-to-the-scheduler"></a>Modifiche apportate all'utilità di pianificazione
-A partire dalle versioni rilasciate con la build 1.1 (febbraio 2016), è possibile configurare l' [utilità di pianificazione](active-directory-aadconnectsync-feature-scheduler.md) per ottenere un ciclo di sincronizzazione diverso dai 30 minuti predefiniti.
+## <a name="changes-toohello-scheduler"></a>Utilità di pianificazione toohello modifiche
+A partire da versioni di hello dalla compilazione 1.1 (febbraio 2016) è possibile configurare hello [dell'utilità di pianificazione](active-directory-aadconnectsync-feature-scheduler.md) toohave ciclo di sincronizzazione diversa rispetto al valore predefinito di hello 30 minuti.
 
-## <a name="changes-to-synchronization-rules"></a>Modifiche apportate alle regole di sincronizzazione
-L'installazione guidata fornisce una configurazione valida per gli scenari più comuni. Nel caso in cui sia necessario apportare modifiche alla configurazione, seguire queste regole per disporre ancora di una configurazione supportata.
+## <a name="changes-toosynchronization-rules"></a>Le modifiche tooSynchronization regole
+installazione guidata di Hello fornisce una configurazione che si suppone toowork per scenari più comuni di hello. Nel caso in cui necessaria la configurazione di toohello toomake le modifiche, è necessario seguire queste regole toostill configurazione è supportata.
 
-* È possibile [modificare i flussi degli attributi](active-directory-aadconnectsync-change-the-configuration.md#other-common-attribute-flow-changes) se quelli diretti e predefiniti non sono adatti alla propria organizzazione.
-* Per [non trasmettere un attributo](active-directory-aadconnectsync-change-the-configuration.md#do-not-flow-an-attribute) e rimuovere i valori degli attributi esistenti in Azure AD, è necessario creare una regola per questo scenario.
+* È possibile [modificare i flussi di attributi](active-directory-aadconnectsync-change-the-configuration.md#other-common-attribute-flow-changes) se i flussi di attributi diretto di hello predefinito non sono adatti per l'organizzazione.
+* Se si desidera troppo[flusso non di un attributo](active-directory-aadconnectsync-change-the-configuration.md#do-not-flow-an-attribute) e rimuovere i valori di qualsiasi attributo esistente in Azure AD, è necessario toocreate una regola per questo scenario.
 * [Disabilitare una regola di sincronizzazione indesiderata](#disable-an-unwanted-sync-rule) invece di eliminarla. Una regola eliminata viene ricreata durante un aggiornamento.
-* Per [modificare una regola predefinita](#change-an-out-of-box-rule), creare una copia della regola originale e disabilitare quella predefinita. L'editor delle regole di sincronizzazione visualizza istruzioni e fornisce informazioni.
-* Esportare le regole di sincronizzazione personalizzate usando l'Editor regole di sincronizzazione. L'editor fornisce uno script di PowerShell che è possibile usare per ricrearle facilmente in uno scenario di ripristino di emergenza.
+* troppo[modificare una regola di out-of-box](#change-an-out-of-box-rule), è necessario effettuare una copia di hello originale delle regole e disabilitare la regola di hello out-of-box. Editor regole di sincronizzazione Hello richiesto e consente di.
+* Esportare le regole di sincronizzazione utilizzando hello Editor regole di sincronizzazione. editor Hello fornisce con uno script di PowerShell, è possibile utilizzare tooeasily ricrearli in uno scenario di ripristino di emergenza.
 
 > [!WARNING]
-> Le regole di sincronizzazione predefinite hanno un'identificazione personale associata. Se si apporta una modifica a queste regole, l'identificazione personale non sarà più corrispondente. È possibile che si verifichino problemi quando in futuro si proverà ad applicare una nuova versione di Azure AD Connect. Apportare modifiche solo nel modo descritto in questo articolo.
+> le regole di sincronizzazione out-of-box Hello hanno un'identificazione personale. Se si apportano una modifica di regole toothese, identificazione personale hello non corrispondenti. Potrebbero essersi verificati problemi in futuro hello quando si tenta di tooapply una nuova versione di Azure AD Connect. Solo lasciare modifiche hello che è descritto in questo articolo.
 
 ### <a name="disable-an-unwanted-sync-rule"></a>Disabilitare una regola di sincronizzazione indesiderata
 Non eliminare una regola di sincronizzazione predefinita. Verrà ricreata durante l'aggiornamento successivo.
 
-In alcuni casi l'installazione guidata ha generato una configurazione che non funziona per la topologia dell'utente. Ad esempio, se è disponibile una topologia di foresta di account o di risorse, ma lo schema nella foresta di account è stato esteso con lo schema di Exchange, per le foresta di account e per quella di risorse vengono quindi create regole per Exchange. In questo caso è necessario disabilitare la regola di sincronizzazione per Exchange.
+In alcuni casi, installazione guidata di hello ha generato una configurazione che non funziona per la topologia. Ad esempio, se si dispone di una topologia di foresta account-risorse ma si dispone di schema esteso hello nella foresta di account hello con uno schema di Exchange hello, le regole per Exchange vengono create per la foresta di account hello e foresta di risorse hello. In questo caso, è necessario toodisable hello regola di sincronizzazione per Exchange.
 
 ![Regola di sincronizzazione disabilitata](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/exchangedisabledrule.png)
 
-Nella figura precedente l'installazione guidata ha rilevato un vecchio schema di Exchange 2003 nella foresta di account. Questa estensione dello schema è stata aggiunta prima dell'introduzione della foresta di risorse nell'ambiente di Fabrikam. Per assicurarsi che non vengano sincronizzati gli attributi dall'implementazione di Exchange precedente, la regola di sincronizzazione deve essere disabilitata come illustrato.
+Nella figura hello precedente, hello è stato rilevato uno schema di Exchange 2003 precedente nella foresta di account hello. Questa estensione dello schema è stato aggiunto prima di foresta delle risorse hello è stato introdotto nell'ambiente di Fabrikam. tooensure attributi dall'implementazione di Exchange precedente hello non sono sincronizzati, la regola di sincronizzazione hello deve essere disabilitata, come illustrato.
 
 ### <a name="change-an-out-of-box-rule"></a>modificare una regola predefinita
-È necessario modificare una regola predefinita solo se è necessario modificare la regola join. Se si vuole modificare un flusso di attributi, creare una regola di sincronizzazione con una precedenza superiore rispetto alle regole predefinite. L'unica regola che è in pratica necessario clonare è la regola **In from AD – User Join**. È possibile eseguire l'override di tutte le altre regole con una regola di precedenza superiore.
+unica volta Hello che è necessario modificare una regola di out-of-box è quando è necessaria una regola di join toochange hello. Se è necessario toochange un flusso dell'attributo, è necessario creare una regola di sincronizzazione con precedenza maggiore rispetto alle regole di hello out-of-box. Hello solo regola desiderate praticamente tooclone è hello **In ingresso da AD – User Join**. È possibile eseguire l'override di tutte le altre regole con una regola di precedenza superiore.
 
-Se è necessario apportare modifiche a una regola predefinita, effettuarne una copia e disabilitare la regola originale. Quindi apportare le modifiche alla regola clonata. L'editor delle regole di sincronizzazione facilita l'esecuzione di questa procedura. Quando si apre una regola predefinita, viene visualizzata questa finestra di dialogo:   
+Se occorre una regola di toomake modifiche tooan out-of-box, è necessario effettuare una copia della regola out-of-box hello e disabilitare la regola originale hello. Verificare quindi regola clonato toohello modifiche di hello. Hello Editor regole di sincronizzazione si protegge con questi passaggi. Quando si apre una regola predefinita, viene visualizzata questa finestra di dialogo:   
 ![Avviso regola predefinita](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/warningoutofboxrule.png)
 
-Selezionare **Sì** per creare una copia della regola. Viene quindi aperta la regola clonata.  
+Selezionare **Sì** toocreate una copia della regola hello. regola di Hello duplicato viene quindi aperto.  
 ![Regola clonata](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/clonedrule.png)
 
-In questa regola clonata, apportare le modifiche necessarie all'ambito, al join e alle trasformazioni.
+Questa regola clonato, apportare eventuali modifiche necessarie tooscope, join e trasformazioni.
 
 ## <a name="next-steps"></a>Passaggi successivi
 **Argomenti generali**

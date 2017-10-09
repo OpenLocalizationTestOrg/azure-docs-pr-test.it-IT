@@ -1,6 +1,6 @@
 ---
-title: "Usare attività personalizzate in una pipeline di Azure Data Factory"
-description: "Informazioni su come creare attività personalizzate e usarle in una pipeline di Azure Data Factory."
+title: "aaaUse attività personalizzate in una pipeline di Data Factory di Azure"
+description: "Informazioni su come le attività personalizzate toocreate e utilizzarli in una pipeline di Data Factory di Azure."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: f3d265f31cb653d32076747e586383d67bbccc41
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 23e33727b2160541ab40938ffd911fdd484b3daa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-custom-activities-in-an-azure-data-factory-pipeline"></a>Usare attività personalizzate in una pipeline di Azure Data Factory
 
@@ -36,18 +36,18 @@ ms.lasthandoff: 08/29/2017
 
 In una pipeline di Azure Data Factory è possibile usare due tipi di attività.
 
-- [Attività di spostamento dei dati](data-factory-data-movement-activities.md) per spostare i dati fra [archivi dati supportati di origine e sink](data-factory-data-movement-activities.md#supported-data-stores-and-formats).
-- [Attività di trasformazione dei dati](data-factory-data-transformation-activities.md) per trasformare i dati usando servizi di calcolo come Azure HDInsight, Azure Batch e Azure Machine Learning. 
+- [Le attività di spostamento dati](data-factory-data-movement-activities.md) dati toomove tra [archivi di dati di origine e sink supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats).
+- [Attività di trasformazione dei dati](data-factory-data-transformation-activities.md) tootransform dati utilizzando i servizi, ad esempio HDInsight di Azure, il Batch di Azure e Azure Machine Learning di calcolo. 
 
-Per spostare dati da e verso un archivio dati non supportato da Azure Data Factory, creare un'**attività personalizzata** contenente la logica di spostamento dei dati richiesta e usarla in una pipeline. Analogamente, per trasformare o elaborare dati in un modo non supportato dalla Data Factory, creare un'attività personalizzata contenente la logica di trasformazione dei dati richiesta e usarla in una pipeline. 
+i dati toomove in o da un archivio dati che non supporta la Data Factory, creare un **attività personalizzata** con la propria spostamento logica e utilizzare hello attività di dati in una pipeline. Analogamente, tootransform/elaborare i dati in modo che non è supportato da Data Factory, creare un'attività personalizzata con la logica di trasformazione di dati e utilizzare attività hello in una pipeline. 
 
-È possibile configurare un'attività personalizzata per l'esecuzione in un pool di macchine virtuali di **Azure Batch** o in un cluster di **Azure HDInsight** basato su Windows. Quando si usa Azure Batch, è possibile usare solo un pool esistente di Azure Batch. Quando invece si usa HDInsight, è possibile usare un cluster HDInsight esistente o un cluster creato automaticamente su richiesta in fase di esecuzione.  
+È possibile configurare un toorun di attività personalizzata in un **Azure Batch** pool di macchine virtuali o basato su Windows **Azure HDInsight** cluster. Quando si usa Azure Batch, è possibile usare solo un pool esistente di Azure Batch. Quando invece si usa HDInsight, è possibile usare un cluster HDInsight esistente o un cluster creato automaticamente su richiesta in fase di esecuzione.  
 
-La procedura dettagliata seguente riporta le istruzioni complete per creare un'attività .NET personalizzata e usarla in una pipeline. La procedura dettagliata usa il servizio collegato **Azure Batch**. Per usare invece un servizio collegato Azure HDInsight, si crea un servizio collegato di tipo **HDInsight** (il proprio cluster HDInsight) o **HDInsightOnDemand** (Data Factory crea un cluster di HDInsight su richiesta). Configurare quindi l'attività personalizzata per usare il servizio collegato HDInsight. Per i dettagli sull’uso di Azure HDInsight per eseguire l’attività personalizzata vedere [Usare i servizi collegati Azure HDInsight](#use-hdinsight-compute-service) .
+Hello procedura riportata di seguito vengono fornite istruzioni dettagliate per la creazione di un'attività personalizzata di .NET e l'utilizzo di attività personalizzata hello in una pipeline. procedura dettagliata Hello viene utilizzato un **Azure Batch** servizio collegato. toouse HDInsight di Azure un servizio collegato, invece, si crea un servizio collegato di tipo **HDInsight** (il propria cluster HDInsight) o **HDInsightOnDemand** (Data Factory crea un cluster HDInsight su richiesta). Configurare quindi hello toouse attività personalizzata del servizio collegato di HDInsight. Vedere [servizi collegati HDInsight di Azure usare](#use-hdinsight-compute-service) per ulteriori informazioni sull'utilizzo di attività personalizzata hello toorun di Azure HDInsight.
 
 > [!IMPORTANT]
-> - Le attività .NET personalizzate sono eseguite solo su cluster HDInsight basati su Windows. Una soluzione alternativa a questa limitazione consiste nell'utilizzare l'attività MapReduce per eseguire codice Java personalizzato su un cluster HDInsight basato su Linux. Un'altra opzione è utilizzare un pool di macchine virtuali di Azure Batch per eseguire attività personalizzate anziché utilizzare il cluster HDInsight.
-> - Non è possibile usare il gateway di gestione dati da un'attività personalizzata per accedere alle origini dati locali. Attualmente il [Gateway di gestione dati](data-factory-data-management-gateway.md) supporta solo le attività di copia e di stored procedure in Data Factory.   
+> - attività .NET personalizzata Hello eseguito solo in cluster HDInsight basati su Windows. Una soluzione alternativa per questa limitazione è hello toouse codice personalizzato Java mappa ridurre attività toorun in un cluster HDInsight basati su Linux. Un'altra opzione è toouse un pool di Azure Batch di attività personalizzate di macchine virtuali toorun invece di usare un cluster HDInsight.
+> - Non è possibile toouse un Gateway di gestione di dati da origini dati locali tooaccess attività personalizzata. Attualmente, [Gateway di gestione dati](data-factory-data-management-gateway.md) supporta solo attività di copia hello e attività di stored procedure nella Data Factory.   
 
 ## <a name="walkthrough-create-a-custom-activity"></a>Procedura dettagliata: creare un'attività personalizzata
 ### <a name="prerequisites"></a>Prerequisiti
@@ -55,39 +55,39 @@ La procedura dettagliata seguente riporta le istruzioni complete per creare un'a
 * Scaricare e installare [.NET SDK di Azure](https://azure.microsoft.com/downloads/)
 
 ### <a name="azure-batch-prerequisites"></a>Prerequisiti di Azure Batch
-In questa procedura dettagliata vengono eseguite attività .NET personalizzate usando Azure Batch come risorsa di calcolo. **Azure Batch** è un servizio di piattaforma per eseguire in modo efficiente applicazioni parallele e HPC (High Performance Computing) su larga scala nel cloud. Azure Batch pianifica l'esecuzione del lavoro a elevato utilizzo di calcolo su una **raccolta di macchine virtuali** gestita e può ridimensionare automaticamente le risorse di calcolo in base alle esigenze dei processi. Vedere l'articolo [Nozioni di base di Azure Batch][batch-technical-overview] per una panoramica dettagliata del servizio Azure Batch.
+In questa procedura dettagliata hello, vengono eseguite attività .NET personalizzate usando Azure Batch come una risorsa di calcolo. **Azure Batch** è una piattaforma di servizio per l'esecuzione parallela su larga scala e ad alte prestazioni (HPC) applicazioni in modo efficiente nel cloud di hello di elaborazione. Azure Batch pianifica toorun di lavoro a utilizzo intensivo di calcolo in un oggetto gestito **raccolta di macchine virtuali**, e possa automaticamente la scala di calcolo esigenze hello toomeet di risorse dei processi. Vedere [nozioni di base di Azure Batch] [ batch-technical-overview] articolo per una panoramica dettagliata di hello servizio Azure Batch.
 
-Per l'esercitazione creare un account Batch di Azure con un pool di VM. Di seguito sono riportati i passaggi necessari:
+Per l'esercitazione hello, creare un account Azure Batch con un pool di macchine virtuali. Ecco i passaggi di hello:
 
-1. Creare un **account di Azure Batch** tramite il [portale di Azure](http://portal.azure.com). Per istruzioni, vedere l'articolo su come [creare e gestire un account Azure Batch][batch-create-account].
-2. Annotare il nome dell'account Azure Batch, la chiave account, l'URI e il nome del pool. È necessario creare un servizio collegato Azure Batch.
-    1. Nella home page per l'account Azure Batch, l'**URL** avrà il formato seguente: `https://myaccount.westus.batch.azure.com`. In questo esempio, **myaccount** è il nome dell'account Azure Batch. L'URI usato nella definizione del servizio collegato è l'URL senza il nome dell'account. Ad esempio: `https://<region>.batch.azure.com`.
-    2. Fare clic su **Chiavi** nel menu a sinistra e copiare la **CHIAVE DI ACCESSO PRIMARIA**.
-    3. Per usare un pool esistente, fare clic su **Pool** nel menu e annotare l'**ID** del pool. Se non è disponibile un pool esistente, andare al passaggio successivo.     
+1. Creare un **account Azure Batch** utilizzando hello [portale di Azure](http://portal.azure.com). Per istruzioni, vedere l'articolo su come [creare e gestire un account Azure Batch][batch-create-account].
+2. Annotando il nome dell'account Azure Batch hello, chiave dell'account, URI e nome del pool. È necessario toocreate un servizio collegato Azure Batch.
+    1. Nella home page a hello per account Azure Batch, viene visualizzato un **URL** in hello seguente formato: `https://myaccount.westus.batch.azure.com`. In questo esempio, **myaccount** nome hello di hello account Azure Batch. URI è utilizzato nella definizione di servizio collegato hello è hello URL senza nome hello dell'account di hello. Ad esempio: `https://<region>.batch.azure.com`.
+    2. Fare clic su **chiavi** nel menu a sinistra di hello e hello copia **chiave di accesso primaria**.
+    3. toouse un pool esistente, fare clic su **pool** menu hello e annotare hello **ID** del pool di hello. Se non si dispone di un pool esistente, è possibile spostare toohello successivo.     
 2. Creare un **pool di Azure Batch**.
 
-   1. Nel menu a sinistra del [portale di Azure](https://portal.azure.com) fare clic su **Esplora** e quindi su **Account Batch**.
-   2. Selezionare il proprio account Azure Batch per aprire il pannello **Account Batch** .
+   1. In hello [portale di Azure](https://portal.azure.com), fare clic su **Sfoglia** in hello menu a sinistra, quindi fare clic su **account Batch**.
+   2. Selezionare il hello tooopen di account Azure Batch **Account Batch** blade.
    3. Fare clic sul riquadro **Pool** .
-   4. Nel riquadro **pool** fare clic sul pulsante Aggiungi nella barra degli strumenti per aggiungere un pool.
-      1. Immettere un ID per il pool (ID pool). Prendere nota dell' **ID del pool**perché sarà necessario durante la creazione della soluzione Data Factory.
-      2. Specificare **Windows Server 2012 R2** per l'impostazione Famiglia di sistemi operativi.
+   4. In hello **pool** pannello, fare clic su Aggiungi pulsante nella barra degli strumenti di hello tooadd un pool.
+      1. Immettere un ID per il pool di hello (ID pool di applicazioni). Hello nota **ID del pool di hello**; è necessario durante la creazione di soluzioni di Data Factory hello.
+      2. Specificare **Windows Server 2012 R2** per l'impostazione di hello famiglia di sistemi operativi.
       3. Selezionare un **piano tariffario per il nodo**.
-      4. Immettere **2** come valore per l'impostazione **Pool dedicati di destinazione**.
-      5. Immettere **2** come valore per l'impostazione **Numero massimo attività per nodo**.
-   5. Fare clic su **OK** per creare il pool.
-   6. Annotare l'**ID** del pool. 
+      4. Immettere **2** come valore per hello **destinazione dedicato** impostazione.
+      5. Immettere **2** come valore per hello **Max attività per ogni nodo** impostazione.
+   5. Fare clic su **OK** pool hello toocreate.
+   6. Annotare hello **ID** del pool di hello. 
 
 
 
 ### <a name="high-level-steps"></a>Procedure generali
-Eseguire i seguenti due passaggi di alto livello come parte di questa procedura dettagliata: 
+Di seguito sono hello due operazioni eseguite come parte di questa procedura dettagliata: 
 
 1. Creare un'attività personalizzata contenente una semplice logica di trasformazione/elaborazione dei dati.
-2. Creare una data factory di Azure con una pipeline che usa l'attività personalizzata.
+2. Creare una data factory di Azure con una pipeline che utilizza l'attività personalizzata hello.
 
 ### <a name="create-a-custom-activity"></a>Creare un'attività personalizzata
-Per creare un'attività personalizzata .NET, è necessario creare un progetto **Libreria di classi .NET** con una classe che implementa l'**interfaccia IDotNetActivity**. Questa interfaccia ha un solo metodo, [Execute](https://msdn.microsoft.com/library/azure/mt603945.aspx) , e la relativa firma è:
+creare un'attività personalizzata di .NET, toocreate un **libreria di classi .NET** progetto con una classe che implementa che **IDotNetActivity** interfaccia. Questa interfaccia ha un solo metodo, [Execute](https://msdn.microsoft.com/library/azure/mt603945.aspx) , e la relativa firma è:
 
 ```csharp
 public IDictionary<string, string> Execute(
@@ -98,41 +98,41 @@ public IDictionary<string, string> Execute(
 ```
 
 
-Il metodo accetta quattro parametri:
+metodo Hello accetta quattro parametri:
 
-- **linkedServices**. Questa proprietà è un elenco enumerabile di servizi collegati di archiviazione dati a cui fanno riferimento i set di dati di input/output per l'attività.   
-- **datasets**. Questa proprietà è un elenco enumerabile di set di dati di input/output per l'attività. È possibile usare questo parametro per ottenere le posizioni e gli schemi definiti da set di dati di input e di output.
-- **activity**. Questa proprietà rappresenta l'attività corrente. Può essere usata per accedere alle proprietà estese associate all'attività personalizzata. Per i dettagli, vedere [Accedere a tutte le proprietà estese](#access-extended-properties).
-- **logger**. Questo oggetto consente di scrivere commenti di debug che verranno visualizzati nel log dell'utente per la pipeline.
+- **linkedServices**. Questa proprietà è un elenco enumerabile di servizi di archiviazione di dati collegato a cui fa riferimento dal set di dati di input/output per l'attività hello.   
+- **datasets**. Questa proprietà è un elenco di set di dati di input/output per l'attività hello enumerabile. È possibile utilizzare questo percorsi hello tooget di parametro e gli schemi definiti dal set di dati di input e output.
+- **activity**. Questa proprietà rappresenta l'attività corrente hello. Può essere utilizzato tooaccess le proprietà estese associate attività personalizzata hello. Per i dettagli, vedere [Accedere a tutte le proprietà estese](#access-extended-properties).
+- **logger**. Questo oggetto consente di scrivere commenti di debug di tale area nel Registro di hello utente per la pipeline di hello.
 
-Il metodo restituisce un dizionario che può essere usato per concatenare le attività personalizzate in un secondo momento. Questa funzionalità non è ancora implementata, quindi il metodo restituisce un dizionario vuoto.  
+metodo Hello restituisce un dizionario che può essere attività personalizzate toochain utilizzati insieme in futuro hello. Questa funzionalità non ancora implementata, pertanto restituire un dizionario vuoto da metodo hello.  
 
 ### <a name="procedure"></a>Procedura
 1. Creare un progetto **Libreria di classi .NET** .
    <ol type="a">
      <li>Avviare <b>Visual Studio 2017</b>, <b>Visual Studio 2015</b>, <b>Visual Studio 2013</b> oppure <b>Visual Studio 2012</b>.</li>
-     <li>Fare clic su <b>File</b>, scegliere <b>Nuovo</b> e quindi fare clic su <b>Progetto</b>.</li>
-     <li>Espandere <b>Modelli</b> e quindi selezionare <b>Visual C#</b>. In questa procedura dettagliata viene usato C#, ma è possibile usare qualsiasi linguaggio .NET per sviluppare l'attività personalizzata.</li>
-     <li>Selezionare la <b>libreria di classi</b> dall'elenco relativo ai tipi di progetto visualizzato a destra. In Visual Studio 2017, scegliere <b>Libreria di classi (.NET Framework)</b> </li>
-     <li>Immettere <b>MyDotNetActivity</b> per <b>Nome</b>.</li>
-     <li>Selezionare <b>C:\ADFGetStarted</b> per <b>Percorso</b>.</li>
-     <li>Fare clic su <b>OK</b> per creare il progetto.</li>
+     <li>Fare clic su <b>File</b>, punto troppo<b>New</b>, fare clic su <b>progetto</b>.</li>
+     <li>Espandere <b>Modelli</b> e quindi selezionare <b>Visual C#</b>. In questa procedura dettagliata, si utilizza c#, ma è possibile utilizzare qualsiasi attività personalizzate .NET language toodevelop hello.</li>
+     <li>Selezionare <b>libreria di classi</b> dall'elenco di hello dei tipi di progetto su hello destra. In Visual Studio 2017, scegliere <b>Libreria di classi (.NET Framework)</b> </li>
+     <li>Immettere <b>MyDotNetActivity</b> per hello <b>nome</b>.</li>
+     <li>Selezionare <b>C:\ADFGetStarted</b> per hello <b>percorso</b>.</li>
+     <li>Fare clic su <b>OK</b> progetto hello toocreate.</li>
    </ol>
-2. Fare clic su **Strumenti**, scegliere **Gestione pacchetti NuGet** e quindi fare clic su **Console di Gestione pacchetti**.
-3. In Console di Gestione pacchetti eseguire il comando seguente per importare **Microsoft.Azure.Management.DataFactories**.
+2.Fare clic su **strumenti**, punto troppo**Gestione pacchetti NuGet**, fare clic su **Package Manager Console**.
+3. Nella Console di gestione pacchetti hello, eseguire hello successivo comando tooimport **Microsoft.Azure.Management.DataFactories**.
 
     ```PowerShell
     Install-Package Microsoft.Azure.Management.DataFactories
     ```
-4. Importare nel progetto il pacchetto NuGet **Azure Storage** .
+4. Hello importazione **di archiviazione di Azure** pacchetto NuGet nel progetto toohello.
 
     ```PowerShell
     Install-Package WindowsAzure.Storage -Version 4.3.0
     ```
 
     > [!IMPORTANT]
-    > L'utilità di avvio del servizio Data Factory richiede la versione 4.3 di WindowsAzure.Storage. Se si aggiunge un riferimento a una versione successiva dell'assembly di Archiviazione di Azure nel progetto di attività personalizzato, viene visualizzato un errore durante l'esecuzione dell'attività. Per risolvere l'errore, vedere la sezione [Isolamento di AppDomain](#appdomain-isolation). 
-5. Aggiungere le seguenti istruzioni **using** al file di origine nel progetto.
+    > Utilità di avvio del servizio Data Factory richiede la versione di hello 4.3 di Windowsazure. Se si aggiunge un riferimento tooa ultima versione di assembly di archiviazione di Azure nel progetto di attività personalizzata, viene visualizzato un errore durante l'esecuzione di attività hello. Errore di hello tooresolve, vedere [isolamento](#appdomain-isolation) sezione. 
+5. Aggiungere il seguente hello **utilizzando** istruzioni toohello file sorgente hello progetto.
 
     ```csharp
 
@@ -157,24 +157,24 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
     ```
-6. Modificare il nome dello **spazio dei nomi** in **MyDotNetActivityNS**.
+6. Modifica nome hello di hello **dello spazio dei nomi** troppo**MyDotNetActivityNS**.
 
     ```csharp
     namespace MyDotNetActivityNS
     ```
-7. Modificare il nome della classe in **MyDotNetActivity** e derivarlo dall'interfaccia **IDotNetActivity** come illustrato nel frammento di codice seguente:
+7. Modificare il nome di hello della classe hello troppo**MyDotNetActivity** ed eseguirne la derivazione da hello **IDotNetActivity** interfaccia come illustrato nel seguente frammento di codice hello:
 
     ```csharp
     public class MyDotNetActivity : IDotNetActivity
     ```
-8. Implementare (aggiungere) il metodo **Execute** dell'interfaccia **IDotNetActivity** nella classe **MyDotNetActivity** e copiare il seguente codice di esempio nel metodo.
+8. Hello implementare (Aggiungi) **Execute** metodo hello **IDotNetActivity** interfaccia toohello **MyDotNetActivity** classe e copia hello metodo toohello codice di esempio seguente.
 
-    Nell’esempio seguente si conta il numero di occorrenze del termine di ricerca (“Microsoft”) in ogni BLOB associato con una sezione dei dati.
+    Hello seguente conta hello numero di occorrenze del termine di ricerca hello ("Microsoft") in ogni blob associato a una sezione di dati.
 
     ```csharp
     /// <summary>
-    /// Execute method is the only method of IDotNetActivity interface you must implement.
-    /// In this sample, the method invokes the Calculate method to perform the core logic.  
+    /// Execute method is hello only method of IDotNetActivity interface you must implement.
+    /// In this sample, hello method invokes hello Calculate method tooperform hello core logic.  
     /// </summary>
     
     public IDictionary<string, string> Execute(
@@ -188,7 +188,7 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
         DotNetActivity dotNetActivity = (DotNetActivity)activity.TypeProperties;
         string sliceStartString = dotNetActivity.ExtendedProperties["SliceStart"];
     
-        // to log information, use the logger object
+        // toolog information, use hello logger object
         // log all extended properties            
         IDictionary<string, string> extendedProperties = dotNetActivity.ExtendedProperties;
         logger.Write("Logging extended properties if any...");
@@ -201,23 +201,23 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
         // in this example, same storage is used for both input/output
         AzureStorageLinkedService inputLinkedService;
 
-        // get the input dataset
+        // get hello input dataset
         Dataset inputDataset = datasets.Single(dataset => dataset.Name == activity.Inputs.Single().Name);
     
-        // declare variables to hold type properties of input/output datasets
+        // declare variables toohold type properties of input/output datasets
         AzureBlobDataset inputTypeProperties, outputTypeProperties;
         
-        // get type properties from the dataset object
+        // get type properties from hello dataset object
         inputTypeProperties = inputDataset.Properties.TypeProperties as AzureBlobDataset;
     
         // log linked services passed in linkedServices parameter
         // you will see two linked services of type: AzureStorage
-        // one for input dataset and the other for output dataset 
+        // one for input dataset and hello other for output dataset 
         foreach (LinkedService ls in linkedServices)
             logger.Write("linkedService.Name {0}", ls.Name);
     
-        // get the first Azure Storate linked service from linkedServices object
-        // using First method instead of Single since we are using the same
+        // get hello first Azure Storate linked service from linkedServices object
+        // using First method instead of Single since we are using hello same
         // Azure Storage linked service for input and output.
         inputLinkedService = linkedServices.First(
             linkedService =>
@@ -225,21 +225,21 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
             inputDataset.Properties.LinkedServiceName).Properties.TypeProperties
             as AzureStorageLinkedService;
     
-        // get the connection string in the linked service
+        // get hello connection string in hello linked service
         string connectionString = inputLinkedService.ConnectionString;
     
-        // get the folder path from the input dataset definition
+        // get hello folder path from hello input dataset definition
         string folderPath = GetFolderPath(inputDataset);
         string output = string.Empty; // for use later.
     
-        // create storage client for input. Pass the connection string.
+        // create storage client for input. Pass hello connection string.
         CloudStorageAccount inputStorageAccount = CloudStorageAccount.Parse(connectionString);
         CloudBlobClient inputClient = inputStorageAccount.CreateCloudBlobClient();
     
-        // initialize the continuation token before using it in the do-while loop.
+        // initialize hello continuation token before using it in hello do-while loop.
         BlobContinuationToken continuationToken = null;
         do
-        {   // get the list of input blobs from the input storage client object.
+        {   // get hello list of input blobs from hello input storage client object.
             BlobResultSegment blobList = inputClient.ListBlobsSegmented(folderPath,
                                      true,
                                      BlobListingDetails.Metadata,
@@ -248,50 +248,50 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
                                      null,
                                      null);
     
-            // Calculate method returns the number of occurrences of
-            // the search term (“Microsoft”) in each blob associated
-               // with the data slice. definition of the method is shown in the next step.
+            // Calculate method returns hello number of occurrences of
+            // hello search term (“Microsoft”) in each blob associated
+               // with hello data slice. definition of hello method is shown in hello next step.
     
             output = Calculate(blobList, logger, folderPath, ref continuationToken, "Microsoft");
     
         } while (continuationToken != null);
     
-        // get the output dataset using the name of the dataset matched to a name in the Activity output collection.
+        // get hello output dataset using hello name of hello dataset matched tooa name in hello Activity output collection.
         Dataset outputDataset = datasets.Single(dataset => dataset.Name == activity.Outputs.Single().Name);
 
-        // get type properties for the output dataset
+        // get type properties for hello output dataset
         outputTypeProperties = outputDataset.Properties.TypeProperties as AzureBlobDataset;
     
-        // get the folder path from the output dataset definition
+        // get hello folder path from hello output dataset definition
         folderPath = GetFolderPath(outputDataset);
 
-        // log the output folder path   
-        logger.Write("Writing blob to the folder: {0}", folderPath);
+        // log hello output folder path 
+        logger.Write("Writing blob toohello folder: {0}", folderPath);
     
-        // create a storage object for the output blob.
+        // create a storage object for hello output blob.
         CloudStorageAccount outputStorageAccount = CloudStorageAccount.Parse(connectionString);
-        // write the name of the file.
+        // write hello name of hello file.
         Uri outputBlobUri = new Uri(outputStorageAccount.BlobEndpoint, folderPath + "/" + GetFileName(outputDataset));
     
-        // log the output file name
+        // log hello output file name
         logger.Write("output blob URI: {0}", outputBlobUri.ToString());
 
-        // create a blob and upload the output text.
+        // create a blob and upload hello output text.
         CloudBlockBlob outputBlob = new CloudBlockBlob(outputBlobUri, outputStorageAccount.Credentials);
-        logger.Write("Writing {0} to the output blob", output);
+        logger.Write("Writing {0} toohello output blob", output);
         outputBlob.UploadText(output);
     
-        // The dictionary can be used to chain custom activities together in the future.
+        // hello dictionary can be used toochain custom activities together in hello future.
         // This feature is not implemented yet, so just return an empty dictionary.  
     
         return new Dictionary<string, string>();
     }
     ```
-9. Aggiungere i seguenti metodi helper: 
+9. Aggiungere hello dei seguenti metodi di supporto: 
 
     ```csharp
     /// <summary>
-    /// Gets the folderPath value from the input/output dataset.
+    /// Gets hello folderPath value from hello input/output dataset.
     /// </summary>
     
     private static string GetFolderPath(Dataset dataArtifact)
@@ -301,19 +301,19 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
             return null;
         }
 
-        // get type properties of the dataset   
+        // get type properties of hello dataset 
         AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
         if (blobDataset == null)
         {
             return null;
         }
     
-        // return the folder path found in the type properties
+        // return hello folder path found in hello type properties
         return blobDataset.FolderPath;
     }
     
     /// <summary>
-    /// Gets the fileName value from the input/output dataset.   
+    /// Gets hello fileName value from hello input/output dataset.   
     /// </summary>
     
     private static string GetFileName(Dataset dataArtifact)
@@ -323,20 +323,20 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
             return null;
         }
     
-        // get type properties of the dataset
+        // get type properties of hello dataset
         AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
         if (blobDataset == null)
         {
             return null;
         }
     
-        // return the blob/file name in the type properties
+        // return hello blob/file name in hello type properties
         return blobDataset.FileName;
     }
     
     /// <summary>
-    /// Iterates through each blob (file) in the folder, counts the number of instances of search term in the file,
-    /// and prepares the output text that is written to the output blob.
+    /// Iterates through each blob (file) in hello folder, counts hello number of instances of search term in hello file,
+    /// and prepares hello output text that is written toohello output blob.
     /// </summary>
     
     public static string Calculate(BlobResultSegment Bresult, IActivityLogger logger, string folderPath, ref BlobContinuationToken token, string searchTerm)
@@ -355,14 +355,14 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
                                  where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()
                                  select word;
                 int wordCount = matchQuery.Count();
-                output += string.Format("{0} occurrences(s) of the search term \"{1}\" were found in the file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
+                output += string.Format("{0} occurrences(s) of hello search term \"{1}\" were found in hello file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
             }
         }
         return output;
     }
     ```
 
-    Il metodo GetFolderPath restituisce il percorso della cartella a cui punta il set di dati e il metodo GetFileName restituisce il nome del BLOB o del file a cui punta il set di dati. Se sono presenti definizioni folderPath che usano variabili come {Year}, {Month}, {Day} e così via, il metodo restituisce la stringa così com’è, senza sostituirla con i valori di runtime. Per i dettagli sull'accesso a SliceStart, SliceEnd e così via, vedere [Accedere a tutte le proprietà estese](#access-extended-properties) .    
+    Hello GetFolderPath metodo restituisce hello percorso toohello cartella hello set di dati punta tooand hello GetFileName restituisce hello nome del metodo hello/file blob hello per i punti di set di dati. Se si havefolderPath definisce l'utilizzo di variabili, ad esempio {Year}, {Month,} restituisce {Day} e così via, il metodo hello hello stringa perché è senza sostituirli con i valori di runtime. Per i dettagli sull'accesso a SliceStart, SliceEnd e così via, vedere [Accedere a tutte le proprietà estese](#access-extended-properties) .    
 
     ```JSON
     "name": "InputDataset",
@@ -374,97 +374,97 @@ Il metodo restituisce un dizionario che può essere usato per concatenare le att
             "folderPath": "adftutorial/inputfolder/",
     ```
 
-    Il metodo Calculate calcola il numero di istanze della parola chiave "Microsoft" nei file di input (BLOB nella cartella). Il termine di ricerca ("Microsoft") è hardcoded nel codice.
-10. Compilare il progetto. Fare clic su **Compila** dal menu e scegliere **Compila soluzione**.
+    metodo Calculate Hello calcola il numero di hello di istanze della parola chiave Microsoft nei file di input hello (BLOB nella cartella hello). il termine di ricerca Hello ("Microsoft") è hardcoded nel codice hello.
+10. Compilare il progetto hello. Fare clic su **compilare** menu hello e fare clic su **Compila soluzione**.
 
     > [!IMPORTANT]
-    > Impostare la versione 4.5.2 di .NET Framework come framework di destinazione per il progetto: fare clic con il pulsante destre sul progetto e quindi su **Proprietà** per impostare il framework di destinazione. Data factory non supporta le attività personalizzate compilate in versioni di .NET Framework successive alla 4.5.2.
+    > Versione set 4.5.2 di .NET Framework come framework di destinazione hello per il progetto: progetto hello di mouse e scegliere **proprietà** framework di destinazione tooset hello. Data factory non supporta le attività personalizzate compilate in versioni di .NET Framework successive alla 4.5.2.
 
-11. Avviare **Esplora risorse** e passare alla cartella **bin\debug** o **bin\release**, a seconda del tipo di compilazione.
-12. Creare un file ZIP **MyDotNetActivity.zip** che contiene tutti i file binari disponibili nella cartella <project folder>\bin\Debug. Includere il file **MyDotNetActivity.pdb** per ottenere altri dettagli, ad esempio il numero della riga nel codice sorgente che ha causato il problema in caso di errore. 
+11. Avviare **Esplora**e passare troppo**bin\debug** o **bin\release** cartella in base al tipo di hello di compilazione.
+12. Creare un file zip **MyDotNetActivity.zip** che contiene tutti i file binari hello in hello <project folder>nella cartella \bin\Debug. Includere hello **MyDotNetActivity.pdb** file in modo che sia possibile ottenere ulteriori dettagli, ad esempio il numero di riga nel codice sorgente hello che ha causato il problema di hello se si è verificato un errore. 
 
     > [!IMPORTANT]
-    > Tutti i file contenuti nel file con estensione zip dell'attività personalizzata devono trovarsi nel **livello principale** senza sottocartelle.
+    > Tutti hello file nel file zip hello per attività personalizzata hello deve essere in hello **livello principale** con nessun le sottocartelle.
 
     ![File di output binari](./media/data-factory-use-custom-activities/Binaries.png)
 14. Se non è già presente, creare un contenitore BLOB denominato **customactivitycontainer**. 
-15. Caricare MyDotNetActivity.zip come BLOB in customactivitycontainer in un'Archiviazione BLOB di Azure **di uso generico**, non ad accesso frequente/sporadico, a cui si fa riferimento da AzureStorageLinkedService.  
+15. Caricare MyDotNetActivity.zip come un customactivitycontainer toohello blob in un **generica** archiviazione blob di Azure (archiviazione Blob non hot/cool) che fa riferimento AzureStorageLinkedService.  
 
 > [!IMPORTANT]
-> Se si aggiunge questo progetto di attività .NET a una soluzione in Visual Studio che contiene un progetto Data Factory e si aggiunge un riferimento al progetto dell'attività .NET dal progetto dell'applicazione Data Factory, non è necessario eseguire gli ultimi due passaggi, ovvero creare manualmente il file ZIP e caricarlo nell'Archiviazione BLOB di Azure di uso generico. Quando si pubblicano entità Data Factory utilizzando Visual Studio, questi passaggi vengono eseguiti automaticamente dal processo di pubblicazione. Per altre informazioni, vedere la sezione [Data Factory project in Visual Studio](#data-factory-project-in-visual-studio) (Progetto Data Factory in Visual Studio).
+> Se si aggiunge questa soluzione di tooa progetto attività .NET in Visual Studio contenente un progetto di Data Factory e aggiunta un progetto di attività too.NET riferimento dal progetto di applicazione hello Data Factory, non è necessario tooperform hello ultimi due passaggi per la creazione manuale file zip Hello e caricarlo nell'archiviazione blob di Azure generico toohello. Quando si pubblicano le entità di Data Factory utilizzando Visual Studio, questi passaggi vengono eseguiti automaticamente dal processo di pubblicazione hello. Per altre informazioni, vedere la sezione [Data Factory project in Visual Studio](#data-factory-project-in-visual-studio) (Progetto Data Factory in Visual Studio).
 
 ## <a name="create-a-pipeline-with-custom-activity"></a>Creare una pipeline con attività personalizzate
-È stata creata un'attività personalizzata ed è stato caricato il file zip con file binari in un contenitore BLOB in un account di Archiviazione di Azure **di uso generico**. Questa sezione illustra come creare una data factory di Azure con una pipeline che usa l'attività personalizzata.
+Aver creato un'attività personalizzata e caricato il file zip hello con il contenitore di blob tooa i file binari in un **generica** Account di archiviazione Azure. In questa sezione creare una data factory di Azure con una pipeline che utilizza l'attività personalizzata hello.
 
-Il set di dati di input per l'attività personalizzata rappresenta i BLOB (file) nella cartella customactivityinput del contenitore adftutorial nell'archiviazione BLOB. Il set di dati di output per l'attività rappresenta i BLOB di output nella cartella customactivityoutput del contenitore adftutorial nell'archiviazione BLOB.
+set di dati input Hello per attività personalizzata hello rappresenta BLOB (file) nella cartella customactivityinput hello del contenitore adftutorial nell'archiviazione blob hello. set di dati per l'attività hello output di Hello rappresenta il BLOB di output nella cartella customactivityoutput hello del contenitore adftutorial nell'archiviazione blob hello.
 
-Creare il file **file.txt** con il contenuto seguente e caricarlo nella cartella **customactivityinput** del contenitore **adftutorial**. Se non esiste ancora, creare il contenitore adftutorial. 
+Creare **file.txt** file con hello seguente il contenuto e caricarla troppo**customactivityinput** cartella di hello **adftutorial** contenitore. Creare il contenitore di adftutorial hello se non esiste già. 
 
 ```
 test custom activity Microsoft test custom activity Microsoft
 ```
 
-La cartella di input corrisponde a una sezione in Azure Data Factory, anche se la cartella contiene due o più file. Quando ogni sezione viene elaborata dalla pipeline, l'attività personalizzata esegue l'iterazione di tutti i BLOB nella cartella di input per tale sezione.
+cartella input Hello corrisponde sezione tooa nella Data Factory di Azure, anche se la cartella hello dispone di due o più file. Quando ogni sezione venga elaborato dalla pipeline di hello, attività personalizzata hello scorre tutti i BLOB hello nella cartella di input hello per tale sezione.
 
-Verrà visualizzato un file di output nella cartella adftutorial\customactivityoutput con una o più righe, pari al numero di BLOB nella cartella di input:
+Viene visualizzato un file con nella cartella adftutorial\customactivityoutput hello di output con una o più righe (uguale al numero di BLOB nella cartella input hello):
 
 ```
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2016-11-16-00/file.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2016-11-16-00/file.txt.
 ```
 
 
-Di seguito sono elencati i passaggi da eseguire in questa sezione:
+Di seguito sono descritte hello che operazioni in questa sezione:
 
 1. Creare una **data factory**.
-2. Creare **servizi collegati** per il pool di VM di Azure Batch in cui viene eseguita l'attività personalizzata e l'Archiviazione di Azure che contiene i BLOB di input e di output.
-3. Creare i **set di dati** di input e di output che rappresentano l'input e l'output dell'attività personalizzata.
-4. Creare una **pipeline** che usa l'attività personalizzata.
+2. Creare **servizi collegati** per pool di applicazioni Azure Batch hello di macchine virtuali in cui hello attività personalizzata viene eseguita e hello archiviazione di Azure che contiene il BLOB di input/output di hello.
+3. Creazione di input e output **set di dati** che rappresentano l'input e output di attività personalizzata hello.
+4. Creare un **pipeline** che usa l'attività personalizzata hello.
 
 > [!NOTE]
-> Creare il file **file.txt** e caricarlo in un contenitore BLOB, se l'operazione non è ancora stata eseguita. Vedere le istruzioni nella sezione precedente.   
+> Creare hello **file.txt** e caricare il contenitore di blob tooa se non è già fatto. Vedere le istruzioni nella precedente sezione hello.   
 
-### <a name="step-1-create-the-data-factory"></a>Passaggio 1: Creare la data factory
-1. Dopo l'accesso al portale di Azure, seguire questa procedura:
-   1. Fare clic su **Nuovo** nel menu a sinistra.
-   2. Fare clic su **Dati e analisi** nel pannello **Nuovo**.
-   3. Fare clic su **Data factory** nel pannello **Analisi dei dati**.
+### <a name="step-1-create-hello-data-factory"></a>Passaggio 1: Creare hello data factory
+1. Dopo l'accesso toohello portale di Azure, hello alla procedura seguente:
+   1. Fare clic su **NEW** nel menu di sinistra hello.
+   2. Fare clic su **dati + Analitica** in hello **New** blade.
+   3. Fare clic su **Data Factory** su hello **analitica dati** blade.
    
     ![Menu Nuova Azure Data Factory](media/data-factory-use-custom-activities/new-azure-data-factory-menu.png)
-2. Nel pannello **Nuova data factory** immettere **CustomActivityFactory** come Nome. È necessario specificare un nome univoco globale per l'istanza di Azure Data Factory. Se viene visualizzato l'errore **Il nome "CustomActivityFactory" per la data factory non è disponibile**, cambiare il nome della data factory, ad esempio, **nomeutenteCustomActivityFactory**, e provare di nuovo a crearla.
+2. In hello **nuova data factory** pannello immettere **CustomActivityFactory** per hello Name. nome Hello di hello Azure data factory deve essere globalmente univoco. Se viene visualizzato l'errore hello: **"CustomActivityFactory" nome della Data factory non è disponibile**, modificare il nome di hello della data factory di hello (ad esempio, **yournameCustomActivityFactory**) e provare a creare nuovo.
 
     ![Pannello Nuova Azure Data Factory](media/data-factory-use-custom-activities/new-azure-data-factory-blade.png)
 3. Fare clic su **NOME DEL GRUPPO DI RISORSE**e selezionare un gruppo di risorse esistente o crearne uno.
-4. Verificare se la **sottoscrizione** e l'**area** in cui si vuole creare la data factory sono quelle corrette.
-5. Fare clic su **Crea** nel pannello **Nuova data factory**.
-6. Nel **Dashboard** del portale di Azure verrà visualizzata la data factory in fase di creazione.
-7. Dopo aver creato la data factory, verrà visualizzato il pannello corrispondente con elencato il contenuto della data factory.
+4. Verificare che si sta utilizzando hello corretto **sottoscrizione** e **area** in cui si desidera hello data factory toobe creato.
+5. Fare clic su **crea** su hello **nuova data factory** blade.
+6. Vedrai data factory di hello viene creato nel hello **Dashboard** di hello portale di Azure.
+7. Dopo l'hello data factory è stata creata correttamente, vengono visualizzati pannello Data Factory di hello, che mostra contenuto della data factory di hello hello.
     
     ![Pannello Data factory](media/data-factory-use-custom-activities/data-factory-blade.png)
 
 ### <a name="step-2-create-linked-services"></a>Passaggio 2: Creare servizi collegati
-I servizi collegati collegano archivi dati o servizi di calcolo a una data factory di Azure. In questo passaggio si collegheranno l'account di archiviazione di Azure e l'account Azure Batch alla data factory.
+Servizi collegati collegano archivi dati o servizi tooan data factory di Azure di calcolo. In questo passaggio è collegare l'account di archiviazione di Azure e la data factory di Azure Batch account tooyour.
 
 #### <a name="create-azure-storage-linked-service"></a>Creare il servizio collegato Archiviazione di Azure
-1. Fare clic sul riquadro **Creare e distribuire** nel pannello **DATA FACTORY** per **CustomActivityFactory**. Viene visualizzato l'editor di Data Factory.
-2. Fare clic su **Nuovo archivio dati** sulla barra dei comandi e scegliere **Archiviazione di Azure**. Nell'editor verrà visualizzato lo script JSON per la creazione di un servizio collegato Archiviazione di Azure.
+1. Fare clic su hello **autore e distribuire** riquadro hello **DATA FACTORY** pannello **CustomActivityFactory**. Vedrai hello Editor delle Data Factory.
+2. Fare clic su **nuovo archivio dati** hello barra dei comandi e scegliere **archiviazione di Azure**. Dovrebbe essere hello script JSON per la creazione di una risorsa di archiviazione di Azure il servizio nell'editor di hello collegato.
     
     ![Nuovo archivio dati - Archiviazione di Azure](media/data-factory-use-custom-activities/new-data-store-menu.png)
-3. Sostituire `<accountname>` con il nome dell'account di archiviazione di Azure e `<accountkey>` con la chiave di accesso dell'account di archiviazione di Azure. Per informazioni su come ottenere la chiave di accesso alle risorse di archiviazione, vedere la sezione [Visualizzare, copiare e rigenerare le chiavi di accesso nelle risorse di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
+3. Sostituire `<accountname>` con il nome dell'account di archiviazione di Azure e `<accountkey>` con la chiave di accesso di hello account di archiviazione di Azure. toolearn modalità di accesso di archiviazione di tooget chiave, vedere [visualizzazione, copia e l'archiviazione di rigenerare le chiavi di accesso](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
 
     ![Servizio collegato Archiviazione di Azure](media/data-factory-use-custom-activities/azure-storage-linked-service.png)
-4. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il servizio collegato.
+4. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello collegato servizio.
 
 #### <a name="create-azure-batch-linked-service"></a>Creare il servizio collegato Azure Batch
-1. Nell'editor di Data Factory fare clic su **... Altro** sulla barra dei comandi, fare clic su **Nuovo calcolo** e quindi selezionare **Azure Batch** dal menu.
+1. Nell'Editor delle Data Factory hello, fare clic su **... Ulteriori** nella barra dei comandi di hello, fare clic su **nuovo calcolo**, quindi selezionare **Azure Batch** dal menu di hello.
 
     ![Nuovo calcolo - Azure Batch](media/data-factory-use-custom-activities/new-azure-compute-batch.png)
-2. Apportare le modifiche seguenti allo script JSON:
+2. Apportare hello modifiche toohello JSON script seguente:
 
-   1. Specificare il nome dell'account Azure Batch per la proprietà **accountName** . L'**URL** nel **pannello dell'account Azure Batch** è nel formato seguente: `http://accountname.region.batch.azure.com`. Per la proprietà **batchUri** nel JSON è necessario rimuovere `accountname.` dall'URL e usare il `accountname` per la `accountName` proprietà JSON.
-   2. Specificare la chiave dell'account Azure Batch per la proprietà **accessKey** .
-   3. Specificare il nome del pool che è stato creato come parte dei prerequisiti per la proprietà **poolName** . È anche possibile specificare l'ID del pool anziché il nome del pool.
-   4. Specificare l'URI di Azure Batch per la proprietà **batchUri** . Esempio: `https://westus.batch.azure.com`.  
-   5. Per la proprietà **AzureStorageLinkedService** for the **linkedServiceName** .
+   1. Specificare il nome di account Azure Batch per hello **accountName** proprietà. Hello **URL** da hello **pannello account Azure Batch** in hello seguente formato: `http://accountname.region.batch.azure.com`. Per hello **batchUri** proprietà hello JSON, è necessario tooremove `accountname.` da hello URL e l'utilizzo di hello `accountname` per hello `accountName` proprietà JSON.
+   2. Specificare una chiave dell'account Azure Batch hello per hello **accessKey** proprietà.
+   3. Specificare il nome di hello del pool di hello creato come parte dei prerequisiti per hello **poolName** proprietà. È anche possibile specificare ID hello del pool di hello anziché il nome di hello del pool di hello.
+   4. Specificare l'URI del Batch di Azure per hello **batchUri** proprietà. Esempio: `https://westus.batch.azure.com`.  
+   5. Specificare hello **AzureStorageLinkedService** per hello **linkedServiceName** proprietà.
 
         ```json
         {
@@ -482,18 +482,18 @@ I servizi collegati collegano archivi dati o servizi di calcolo a una data facto
         }
         ```
 
-       Per la proprietà **poolName** è anche possibile specificare l'ID del pool anziché il nome del pool.
+       Per hello **poolName** proprietà, è inoltre possibile specificare l'ID di hello del pool di hello anziché il nome di hello del pool di hello.
 
       > [!IMPORTANT]
-      > Il servizio Data Factory non supporta un'opzione su richiesta per il Batch di Azure come accade per HDInsight. È possibile usare solo il proprio pool di Batch di Azure in una data factory di Azure.   
+      > Hello servizio Data Factory non supporta un'opzione su richiesta per il Batch di Azure a quanto accade per HDInsight. È possibile usare solo il proprio pool di Batch di Azure in una data factory di Azure.   
     
 
 ### <a name="step-3-create-datasets"></a>Passaggio 3: Creare set di dati
-In questo passaggio vengono creati set di dati per rappresentare i dati di input e di output.
+In questo passaggio, creare set di dati toorepresent input e i dati di output.
 
 #### <a name="create-input-dataset"></a>Creare set di dati di input
-1. Nell'**editor** della data factory fare clic su **... Altro** sulla barra dei comandi, fare clic su **Nuovo set di dati** e quindi selezionare **Archivio BLOB di Azure**.
-2. Sostituire il codice JSON nel riquadro a destra con il frammento JSON seguente.
+1. In hello **Editor** per hello Data Factory, fare clic su **... Ulteriori** nella barra dei comandi di hello, fare clic su **nuovo set di dati**, quindi selezionare **archiviazione Blob di Azure** dal menu a discesa hello.
+2. Sostituire hello JSON nel riquadro di destra hello con hello frammento di codice JSON seguente:
 
     ```json
     {
@@ -517,16 +517,16 @@ In questo passaggio vengono creati set di dati per rappresentare i dati di input
     }
     ```
 
-   Più avanti in questa procedura dettagliata viene creata una pipeline con ora di inizio: 2016-11-16T00:00:00Z e ora di fine: 2016-11-16T05:00:00Z. Viene pianificata per produrre dati ogni ora, in modo da ottenere cinque sezioni di input/output tra **00**:00:00 -> **05**:00:00.
+   Più avanti in questa procedura dettagliata viene creata una pipeline con ora di inizio: 2016-11-16T00:00:00Z e ora di fine: 2016-11-16T05:00:00Z. È pianificato tooproduce dati ogni ora, pertanto vi sono cinque intervalli di input/output (tra **00**: 00:00 -> **05**: 00:00).
 
-   La **frequenza** e l'**intervallo** per il set di dati di input sono impostati su **Ora** e **1**. Ciò significa che la sezione di input è disponibile ogni ora. In questo esempio si tratta dello stesso file (file.txt) che si trova nella cartella di input.
+   Hello **frequenza** e **intervallo** per hello di un set di dati dell'input è troppo**ora** e **1**, il che significa che hello input sezione è disponibile ogni ora. In questo esempio, è hello stesso file (file. txt) in intputfolder hello.
 
-   Sono indicate le ore di inizio per ogni sezione, rappresentate dalla variabile di sistema SliceStart nel precedente frammento JSON.
-3. Fare clic su **Distribuisci** sulla barra degli strumenti per creare e distribuire **InputDataset**. Controllare che sulla barra del titolo dell'editor sia visualizzato un messaggio simile a **LA CREAZIONE DELLA TABELLA È STATA COMPLETATA** .
+   Di seguito sono ora di inizio hello per ogni sezione, rappresentata dalla variabile di sistema SliceStart in hello sopra il frammento JSON.
+3. Fare clic su **Distribuisci** hello toocreate barra degli strumenti e distribuire hello **InputDataset**. Assicurarsi di visualizzare hello **tabella CREATA correttamente** messaggio sulla barra del titolo hello di hello Editor.
 
 #### <a name="create-an-output-dataset"></a>Creare un set di dati di output
-1. Nell'**editor di Data Factory** fare clic su **... Altro** sulla barra dei comandi, fare clic su **Nuovo set di dati** e quindi selezionare **Archivio BLOB di Azure**.
-2. Sostituire lo script JSON nel riquadro a destra con il seguente script JSON:
+1. In hello **editor Data Factory**, fare clic su **... Ulteriori** nella barra dei comandi di hello, fare clic su **nuovo set di dati**, quindi selezionare **archiviazione Blob di Azure**.
+2. Sostituire script JSON hello nel riquadro di destra hello con hello lo script JSON seguente:
 
     ```JSON
     {
@@ -556,9 +556,9 @@ In questo passaggio vengono creati set di dati per rappresentare i dati di input
     }
     ```
 
-     Il percorso di output è **adftutorial/customactivityoutput/** e il nome del file di output è yyyy-MM-dd-HH.txt, dove yyyy-MM-dd-HH indica anno, mese, giorno e ora della sezione che viene generata. Per informazioni dettagliate, vedere la [guida di riferimento per gli sviluppatori][adf-developer-reference].
+     Percorso di output è **adftutorial/customactivityoutput/** e nome file di output è aaaa-MM-GG-HH.txt, dove AAAA-MM-GG-HH è hello anno, mese, data e ora della sezione hello in fase di produzione. Per informazioni dettagliate, vedere la [guida di riferimento per gli sviluppatori][adf-developer-reference].
 
-    Un BLOB o file di output viene generato per ogni sezione di input. Ecco come viene denominato il file di output per ogni sezione. Tutti i file di output vengono generati in una cartella di output: **adftutorial\customactivityoutput**.
+    Un BLOB o file di output viene generato per ogni sezione di input. Ecco come viene denominato il file di output per ogni sezione. Tutti i file di output di hello vengono generati in una cartella di output: **adftutorial\customactivityoutput**.
 
    | Sezione | Ora di inizio | File di output |
    |:--- |:--- |:--- |
@@ -568,12 +568,12 @@ In questo passaggio vengono creati set di dati per rappresentare i dati di input
    | 4 |2016-11-16T03:00:00 |2016-11-16-03.txt |
    | 5 |2016-11-16T04:00:00 |2016-11-16-04.txt |
 
-    Tenere presente che tutti i file in una cartella di input fanno parte di una sezione con le ore di inizio indicate in precedenza. Quando la sezione viene elaborata, l'attività personalizzata esamina ogni file e produce una riga nel file di output con il numero di occorrenze del termine di ricerca ("Microsoft"). Se sono presenti tre file nella cartella di input, ci saranno tre righe nel file di output per ogni sezione oraria: 2016-11-16-00.txt, 2016-11-16:01:00:00.txt e così via.
-3. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire **OutputDataset**.
+    Tenere presente che tutti i file hello in una cartella di input sono parte di una sezione con ora di inizio hello indicato in precedenza. Durante l'elaborazione di questa sezione, attività personalizzata hello esamina ogni file e produce una riga nel file di output di hello con numero di hello di occorrenze del termine di ricerca ("Microsoft"). Se sono presenti tre file in CartellaInput hello, sono presenti tre righe nel file di output di hello per ogni sezione oraria: 2016-11-16-00.txt 2016-11-16:01:00:00.txt, e così via.
+3. hello toodeploy **OutputDataset**, fare clic su **Distribuisci** hello barra dei comandi.
 
-### <a name="create-and-run-a-pipeline-that-uses-the-custom-activity"></a>Creare ed eseguire una pipeline che usi l'attività personalizzata
-1. Nell'editor di Data Factory fare clic su **... Altro** e quindi selezionare **Nuova pipeline** sulla barra dei comandi. 
-2. Sostituire lo script JSON nel riquadro a destra con lo script JSON seguente:
+### <a name="create-and-run-a-pipeline-that-uses-hello-custom-activity"></a>Creare ed eseguire una pipeline che utilizza l'attività personalizzata hello
+1. Nell'Editor delle Data Factory hello, fare clic su **... Ulteriori**, quindi selezionare **nuova pipeline** hello barra dei comandi. 
+2. Sostituire hello JSON nel riquadro di destra hello con hello lo script JSON seguente:
 
     ```JSON
     {
@@ -620,125 +620,125 @@ In questo passaggio vengono creati set di dati per rappresentare i dati di input
     }
     ```
 
-    Tenere presente quanto segue:
+    Si noti hello seguenti punti:
 
-   * **Concorrenza** è impostata su **2** in modo che due sezioni siano elaborate in parallelo da 2 VM nel pool di Azure Batch.
-   * Nella sezione delle attività esiste una sola attività, di tipo **DotNetActivity**.
-   * **AssemblyName** è impostato sul nome della DLL **MyDotNetActivity.dll**.
-   * **EntryPoint** è impostato su **MyDotNetActivityNS.MyDotNetActivity**.
-   * **PackageLinkedService** è impostato su **AzureStorageLinkedService** che punta all'archiviazione BLOB contenente il file ZIP dell'attività personalizzata. Se vengono usati account di archiviazione di Azure diversi per i file di input/output e per il file ZIP dell'attività personalizzata, è necessario creare un altro servizio collegato Archiviazione di Azure. Questo articolo presuppone che venga usato lo stesso account di archiviazione di Azure.
-   * **PackageFile** è impostato su **customactivitycontainer/MyDotNetActivity.zip**. Ha il formato: contenitoreperlozip/nomedellozip.zip.
-   * L'attività personalizzata accetta **InputDataset** come input e **OutputDataset** come output.
-   * La proprietà linkedServiceName dell'attività personalizzata punta ad **AzureBatchLinkedService**per indicare ad Azure Data Factory che l'attività personalizzata deve essere eseguita nelle VM di Azure Batch.
-   * La proprietà **isPaused** è impostata su **false** per impostazione predefinita. In questo esempio la pipeline viene eseguita immediatamente perché le sezioni hanno inizio nel passato. È possibile impostare questa proprietà su true per sospendere la pipeline e reimpostarla su false per riavviare la pipeline.
-   * L'ora di **inizio** e l'ora di **fine** hanno **cinque** ore di differenza e le sezioni vengono prodotte ogni ora, quindi la pipeline genera cinque sezioni.
-3. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire la pipeline.
+   * **Concorrenza** è troppo**2** in modo che le due sezioni vengono elaborate in parallelo da 2 macchine virtuali nel pool di hello Azure Batch.
+   * È un'attività nella sezione attività hello ed è di tipo: **DotNetActivity**.
+   * **AssemblyName** è impostato il nome toohello di hello DLL: **MyDotnetActivity.dll**.
+   * **Punto di ingresso** è troppo**MyDotNetActivityNS.MyDotNetActivity**.
+   * **PackageLinkedService** è troppo**AzureStorageLinkedService** che punta toohello archiviazione di blob che contiene i file zip di attività personalizzata hello. Se si utilizza input/output di diversi account di archiviazione di Azure per file e hello file zip di attività personalizzata, si crea un altro servizio collegato di archiviazione di Azure. Questo articolo si presuppone che si sta utilizzando hello stesso account di archiviazione di Azure.
+   * **PackageFile** è troppo**customactivitycontainer/MyDotNetActivity.zip**. È in formato hello: containerforthezip/nameofthezip.zip.
+   * attività personalizzata Hello accetta **InputDataset** come input e **OutputDataset** come output.
+   * la proprietà linkedServiceName Hello di attività personalizzata hello punta toohello **AzureBatchLinkedService**, che indica Data Factory di Azure, tale attività personalizzata hello deve toorun nelle macchine virtuali di Azure Batch.
+   * **isPaused** impostata troppo**false** per impostazione predefinita. pipeline Hello verrà eseguito immediatamente in questo esempio perché l'inizio delle sezioni hello in hello precedente. È possibile impostare la pipeline di hello toopause tootrue proprietà e impostarla toorestart toofalse indietro.
+   * Hello **avviare** tempo e **fine** i tempi sono **cinque** ore separate e le sezioni vengono generate ogni ora, in modo da cinque sezioni vengono generate dalla pipeline hello.
+3. pipeline di hello toodeploy, fare clic su **Distribuisci** hello barra dei comandi.
 
-### <a name="monitor-the-pipeline"></a>Monitorare la pipeline
-1. Nel pannello Data factory del portale di Azure fare clic su **Diagramma**.
+### <a name="monitor-hello-pipeline"></a>Pipeline hello monitoraggio
+1. Nel Pannello di Data Factory hello in hello portale di Azure, fare clic su **diagramma**.
 
     ![Riquadro Diagramma](./media/data-factory-use-custom-activities/DataFactoryBlade.png)
-2. Nella vista Diagramma fare clic su OutputDataset.
+2. Hello vista diagramma, fare clic su hello OutputDataset.
 
     ![Vista diagramma](./media/data-factory-use-custom-activities/diagram.png)
-3. Le cinque sezioni di output si trovano nello stato Ready. Se non sono nello stato Ready, non sono state ancora generate. 
+3. Dovrebbe essere che le sezioni di output cinque hello sono nello stato Ready hello. Se non sono in stato pronto hello, non sono state prodotte ancora. 
 
    ![Sezioni di output](./media/data-factory-use-custom-activities/OutputSlices.png)
-4. Verificare che i file di output vengano generati nell'archiviazione BLOB nel contenitore **adftutorial** .
+4. Verificare che il file di output di hello vengono generato nell'archiviazione blob hello in hello **adftutorial** contenitore.
 
    ![output dell'attività personalizzata][image-data-factory-ouput-from-custom-activity]
-5. Se si apre il file di output, l'output visualizzato dovrebbe essere simile al seguente:
+5. Se si apre il file di output di hello, dovrebbe essere hello output toohello simile seguente output:
 
     ```
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2016-11-16-00/file.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2016-11-16-00/file.txt.
     ```
-6. Usare il [portale di Azure][azure-preview-portal] o i cmdlet di Azure PowerShell per monitorare l'istanza di Data Factory, le pipeline e i set di dati. I messaggi possono essere visualizzati da **ActivityLogger** nel codice per l'attività personalizzata nei log (specifically user-0.log) scaricabili dal portale o con i cmdlet.
+6. Hello utilizzare [portale di Azure] [ azure-preview-portal] toomonitor i cmdlet di Azure PowerShell o la data factory di pipeline e set di dati. È possibile visualizzare i messaggi da hello **ActivityLogger** nel codice hello di attività personalizzata hello nei registri di hello (in particolare 0.log utente) che è possibile scaricare dal portale di hello o utilizzo dei cmdlet.
 
    ![scaricare i log dall'attività personalizzata][image-data-factory-download-logs-from-custom-activity]
 
 Vedere [Monitorare e gestire le pipeline](data-factory-monitor-manage-pipelines.md) per i passaggi dettagliati per il monitoraggio di set di dati e pipeline.      
 
 ## <a name="data-factory-project-in-visual-studio"></a>Progetto Data Factory in Visual Studio  
-È possibile creare e pubblicare le entità di Data Factory usando Visual Studio anziché il portale di Azure. Vedere gli articoli [Creare la prima pipeline con Visual Studio](data-factory-build-your-first-pipeline-using-vs.md) e [Copiare dati da BLOB di Azure a SQL Azure](data-factory-copy-activity-tutorial-using-visual-studio.md) per altre informazioni sulla creazione e pubblicazione di entità di Data factory con Visual Studio.
+È possibile creare e pubblicare le entità di Data Factory usando Visual Studio anziché il portale di Azure. Per ulteriori informazioni sulla creazione e pubblicazione entità Data Factory con Visual Studio, vedere [compilare le pipeline prima con Visual Studio](data-factory-build-your-first-pipeline-using-vs.md) e [copiare i dati da Blob di Azure tooAzure SQL](data-factory-copy-activity-tutorial-using-visual-studio.md) articoli.
 
-Se si sta creando il progetto Data Factory in Visual Studio, eseguire i passaggi aggiuntivi seguenti:
+Hello seguendo i passaggi aggiuntivi se si sta creando il progetto di Data Factory in Visual Studio:
  
-1. Aggiungere il progetto Data Factory alla soluzione di Visual Studio che contiene il progetto dell'attività personalizzata. 
-2. Aggiungere un riferimento al progetto di attività .NET dal progetto Data Factory. Fare clic con il pulsante destro del mouse sul progetto Data Factory, scegliere **Aggiungi**, quindi fare clic su **Riferimento**. 
-3. Nella finestra di dialogo **Aggiungi riferimento** selezionare il progetto **MyDotNetActivity** e fare clic su **OK**.
-4. Creare e pubblicare la soluzione.
+1. Aggiungere hello Data Factory progetto toohello soluzione di Visual Studio contenente il progetto di attività personalizzata hello. 
+2. Aggiungere un progetto di attività .NET toohello riferimento dal progetto di Data Factory hello. Fare clic sul progetto Data Factory, scegliere troppo**Aggiungi**, quindi fare clic su **riferimento**. 
+3. In hello **Aggiungi riferimento** la finestra di dialogo, seleziona hello **MyDotNetActivity** del progetto e fare clic su **OK**.
+4. Compilare e pubblicare la soluzione hello.
 
     > [!IMPORTANT]
-    > Quando si pubblica l'entità Data Factory, viene creato automaticamente un file zip e caricato nel contenitore BLOB: customactivitycontainer. Se il contenitore BLOB non esiste, anche questo viene automaticamente creato.  
+    > Quando si pubblicano le entità di Data Factory, un file zip viene creato automaticamente ed è il contenitore di blob caricato toohello: customactivitycontainer. Se il contenitore di blob hello non esiste, viene automaticamente creato troppo.  
 
 
 ## <a name="data-factory-and-batch-integration"></a>Integrazione di Data Factory e Batch
-Il servizio Data Factory crea un processo in Azure Batch denominato **adf-poolname: job-xxx**. Fare clic su **Processi** nel menu di sinistra. 
+Hello servizio Data Factory crea un processo in Batch di Azure con nome hello: **adf poolname: processo-xxx**. Fare clic su **processi** dal menu a sinistra di hello. 
 
 ![Azure Data Factory: processi di Batch](media/data-factory-use-custom-activities/data-factory-batch-jobs.png)
 
-Per ogni esecuzione attività di una sezione viene creata un'attività. Se cinque sezioni sono pronte per l'elaborazione, in questo processo vengono create cinque attività. Se sono presenti più nodi di calcolo nel pool di batch, è possibile eseguire due o più sezioni in parallelo. È anche possibile eseguire più sezioni nello stesso nodo di calcolo se l'impostazione per il numero massimo di attività per nodo di calcolo è > 1.
+Per ogni esecuzione attività di una sezione viene creata un'attività. Se sono presenti toobe pronto cinque sezioni elaborate, cinque attività vengono create in questo processo. Se sono presenti più nodi di calcolo in hello pool Batch, è possono eseguire due o più sezioni in parallelo. Se il numero massimo di attività hello per ogni set di nodi di calcolo troppo > 1, è inoltre possibile avere più di una sezione in esecuzione su hello calcolo stesso.
 
 ![Azure Data Factory: attività processi di Batch](media/data-factory-use-custom-activities/data-factory-batch-job-tasks.png)
 
-Il diagramma seguente illustra il rapporto tra attività di Azure Data Factory e Batch.
+Hello seguente diagramma illustra la relazione hello tra le attività di Azure Data Factory e Batch.
 
 ![Data Factory e Batch](./media/data-factory-use-custom-activities/DataFactoryAndBatch.png)
 
 ## <a name="troubleshoot-failures"></a>Errori in fase di risoluzione dei problemi
 La risoluzione dei problemi implica alcune tecniche di base:
 
-1. Se viene visualizzato l'errore seguente, è possibile che si stia usando un'archiviazione BLOB ad accesso frequente/sporadico anziché usare un'Archiviazione BLOB di Azure di uso generico. Caricare il file zip in un **account di archiviazione di Azure di uso generico**. 
+1. Se viene visualizzato il seguente errore hello, si potrebbe utilizzando un'archiviazione blob Hot/Cool anziché un'archiviazione blob di Azure utilizzo generale. Caricare hello zip file tooa **generico Account di archiviazione di Azure**. 
  
     ```
-    Error in Activity: Job encountered scheduling error. Code: BlobDownloadMiscError Category: ServerError Message: Miscellaneous error encountered while downloading one of the specified Azure Blob(s).
+    Error in Activity: Job encountered scheduling error. Code: BlobDownloadMiscError Category: ServerError Message: Miscellaneous error encountered while downloading one of hello specified Azure Blob(s).
     ``` 
-2. Se viene visualizzato l'errore seguente, verificare che il nome della classe nel file CS corrisponda al nome specificato per la proprietà **EntryPoint** nella pipeline JSON. Nella procedura dettagliata il nome della classe è MyDotNetActivity e la proprietà EntryPoint nella pipeline JSON è MyDotNetActivityNS.**MyDotNetActivity**.
+2. Se viene visualizzato il seguente errore hello, confermare che il nome di hello del classe hello in hello CS corrispondenze hello nome di file specificato per hello **EntryPoint** proprietà in formato JSON della pipeline hello. In questa procedura dettagliata hello, nome della classe hello è: MyDotNetActivity e Ciao EntryPoint hello JSON è: MyDotNetActivityNS. **MyDotNetActivity**.
 
     ```
-    MyDotNetActivity assembly does not exist or doesn't implement the type Microsoft.DataFactories.Runtime.IDotNetActivity properly
+    MyDotNetActivity assembly does not exist or doesn't implement hello type Microsoft.DataFactories.Runtime.IDotNetActivity properly
     ```
 
-   Se i nomi corrispondono, verificare che tutti i file binari si trovino nella **cartella radice** del file ZIP. Quando si apre il file ZIP, in altre parole, tutti i file devono trovarsi nella cartella radice, non nelle sottocartelle.   
-3. Se la sezione di input non è impostata su **Ready**, verificare che la struttura di cartelle di input sia corretta e che **file.txt** sia presente nelle cartelle di input.
-3. Nel metodo **Execute** dell'attività personalizzata usare l'oggetto **IActivityLogger** per registrare informazioni utili per la risoluzione dei problemi. I messaggi registrati vengono visualizzati nei file di log dell'utente, ovvero uno o più file denominati user-0.log, user-1.log, user-2.log e così via.
+   Se i nomi dei hello corrispondono, verificare che tutti i file binari hello attiva hello **cartella radice** del file zip hello. Ovvero, quando si apre file zip hello, si dovrebbe essere tutti i file hello nella cartella radice hello, non in tutte le relative sottocartelle.   
+3. Se sezione input hello non è stato impostato troppo**pronto**, verificare che sia corretta struttura di cartelle di input di hello e **file.txt** presente nelle cartelle di input hello.
+3. In hello **Execute** metodo dell'attività personalizzata, utilizzare hello **IActivityLogger** informazioni toolog oggetto che consente di risolvere i problemi. scaricare i messaggi Hello registrata nei file di log utente hello (uno o più file denominati: utente 0.log 1.log di utente, utente 2.log, ecc.).
 
-   Nel pannello **OutputDataset** fare clic sulla sezione per visualizzare il relativo pannello **SEZIONE DATI**. Verranno visualizzate le **esecuzioni di attività** per quella sezione. Dovrebbe essere visualizzata una esecuzione attività per questa sezione. Facendo clic su Esegui sulla barra dei comandi è possibile avviare un'altra esecuzione attività per la stessa sezione.
+   In hello **OutputDataset** pannello, fare clic su hello toosee di sezione hello **sezione dati** pannello per tale sezione. Verranno visualizzate le **esecuzioni di attività** per quella sezione. Verrà visualizzata un'attività eseguire per sezione hello. Se si fa clic su Esegui nella barra dei comandi di hello, è possibile avviare un'altra attività eseguita per hello stessa sezione.
 
-   Quando si fa clic sull'esecuzione attività viene visualizzato il pannello **DETTAGLI ESECUZIONE ATTIVITÀ** con un elenco di file di log. I messaggi registrati verranno visualizzati nel file user_0.log. Quando si verifica un errore vengono visualizzate tre esecuzioni attività perché il numero di tentativi è impostato su 3 nel codice JSON della pipeline/attività. Quando si fa clic sull'esecuzione attività vengono visualizzati i file di log che è possibile esaminare per risolvere l'errore.
+   Quando si sceglie di eseguire attività di hello, vedrai hello **Dettagli esecuzione attività** pannello con un elenco di file di log. Vedere i messaggi registrati nel file user_0.log hello. Quando si verifica un errore, vengono visualizzati tre esecuzioni di attività perché il numero di tentativi di hello è too3 nella pipeline/attività hello JSON. Quando si sceglie di eseguire attività di hello, vedrai che è possibile esaminare l'errore hello tootroubleshoot i file di log hello.
 
-   Nell'elenco dei file di log fare clic su **user-0.log**. Nel riquadro destro sono riportati i risultati dell'uso del metodo **IActivityLogger.Write** . Se non si vedono tutti i messaggi, controllare se ci sono altri file di log denominati: user_1.log, user_2.log e così via. Altrimenti il codice potrebbe essersi bloccato dopo l’ultimo messaggio registrato.
+   Nell'elenco di hello dei file di log, fare clic su hello **utente 0.log**. Nel riquadro di destra hello sono risultati hello dell'utilizzo di hello **IActivityLogger.Write** metodo. Se non si vedono tutti i messaggi, controllare se ci sono altri file di log denominati: user_1.log, user_2.log e così via. In caso contrario, il codice hello potrebbe non essere riuscita dopo l'ultimo messaggio registrato hello.
 
    Cercare anche eventuali messaggi di errore di sistema ed eccezioni nel file **system-0.log**.
-4. Includere il file **PDB** nel file ZIP in modo che i dettagli dell'errore contengano informazioni come lo **stack di chiamate** quando si verifica un errore.
-5. Tutti i file contenuti nel file con estensione zip dell'attività personalizzata devono trovarsi nel **livello principale** senza sottocartelle.
-6. Assicurarsi che **assemblyName** (MyDotNetActivity.dll), **entryPoint**(MyDotNetActivityNS.MyDotNetActivity), **packageFile** (customactivitycontainer/MyDotNetActivity.zip) e **packageLinkedService** (deve fare riferimento all'Archiviazione BLOB di Azure **di uso generico** che contiene il file ZIP) siano impostati su valori corretti.
-7. Se è stato risolto un errore e si vuole rielaborare la sezione, fare clic con il pulsante destro del mouse sulla sezione nel pannello **OutputDataset**, quindi scegliere **Esegui**.
-8. Se viene visualizzato l'errore seguente, si usa il pacchetto di Archiviazione di Azure con una versione > 4.3.0. L'utilità di avvio del servizio Data Factory richiede la versione 4.3 di WindowsAzure.Storage. Per informazioni su una soluzione alternativa nel caso in cui sia necessario usare una versione più recente dell'assembly di Archiviazione di Azure, vedere la sezione [Isolamento di AppDomain](#appdomain-isolation). 
+4. Includere hello **PDB** file nel file zip hello in modo che i dettagli dell'errore hello presentano informazioni ad esempio **stack di chiamate** quando si verifica un errore.
+5. Tutti hello file nel file zip hello per attività personalizzata hello deve essere in hello **livello principale** con nessun le sottocartelle.
+6. Verificare che hello **assemblyName** (MyDotNetActivity.dll), **entryPoint**(MyDotNetActivityNS.MyDotNetActivity), **packageFile** (customactivitycontainer / MyDotNetActivity.zip) e **packageLinkedService** (deve puntare toohello **generica**archiviazione blob di Azure che contiene i file zip hello) sono impostate toocorrect valori.
+7. Se è stata corretta una sezione di hello tooreprocess errore e si desidera, fare doppio clic su sezione hello hello **OutputDataset** pannello e fare clic su **eseguire**.
+8. Se viene visualizzato il seguente errore hello, si utilizza il pacchetto di archiviazione di Azure hello di versione > 4.3.0. Utilità di avvio del servizio Data Factory richiede la versione di hello 4.3 di Windowsazure. Vedere [isolamento](#appdomain-isolation) sezione per risolvere se è necessario utilizzare hello versione più recente dell'assembly di archiviazione di Azure. 
 
     ```
-    Error in Activity: Unknown error in module: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeLoadException: Could not load type 'Microsoft.WindowsAzure.Storage.Blob.CloudBlob' from assembly 'Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, 
+    Error in Activity: Unknown error in module: System.Reflection.TargetInvocationException: Exception has been thrown by hello target of an invocation. ---> System.TypeLoadException: Could not load type 'Microsoft.WindowsAzure.Storage.Blob.CloudBlob' from assembly 'Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, 
     ```
 
-    Se è possibile usare la versione 4.3.0 del pacchetto di Archiviazione di Azure, rimuovere il riferimento esistente al pacchetto di Archiviazione di Azure con versione > 4.3.0 ed eseguire il comando seguente dalla console di Gestione pacchetti NuGet. 
+    Se è possibile utilizzare la versione 4.3.0 hello del pacchetto di archiviazione di Azure, è possibile rimuovere hello riferimento tooAzure archiviazione pacchetto esistente di versione > 4.3.0. Eseguire quindi il comando seguente dalla Console di gestione pacchetti NuGet hello. 
 
     ```PowerShell
     Install-Package WindowsAzure.Storage -Version 4.3.0
     ```
 
-    Compilare il progetto. Eliminare l'assembly Azure.Storage con versione > 4.3.0 dalla cartella bin\Debug. Creare un file ZIP con i file binari e il file PDB. Sostituire il file ZIP precedente con questo nel contenitore BLOB (customactivitycontainer). Eseguire di nuovo le sezioni non riuscite, facendo clic sul pulsante destro del mouse sulla sezione e scegliendo Esegui.   
-8. L'attività personalizzata non usa il file **app** dal pacchetto. Pertanto, se il codice legge tutte le stringhe di connessione dal file di configurazione, l'attività non funzionerà in fase di esecuzione. La procedura consigliata quando si usa Azure Batch consiste nell'inserire tutti i segreti in un **insieme di credenziali delle chiavi di Azure**, usare un'entità servizio basata su certificato per proteggere l'**insieme di credenziali** e distribuire il certificato nel pool di Azure Batch. L'attività personalizzata .NET può quindi accedere ai segreti dall'insieme di credenziali delle chiavi in fase di esecuzione. Questa è una soluzione generica e può essere ridimensionata per qualsiasi tipo di segreto, non solo per una stringa di connessione.
+    Compilare il progetto hello. Eliminare assembly Azure.Storage di versione > 4.3.0 dalla cartella bin\Debug hello. Creare un file zip con i file binari e il file PDB hello. Sostituire il vecchio file zip di hello con nel contenitore blob hello (customactivitycontainer). Hello Riesegui sezioni che non è riuscita (fare clic sulla sezione e fare clic su Esegui).   
+8. attività personalizzata Hello non utilizza hello **app** file dal pacchetto. Pertanto, se il codice legge tutte le stringhe di connessione dal file di configurazione di hello, non funziona in fase di esecuzione. Hello consigliata quando si utilizza Azure Batch è toohold tutti i segreti in un **KeyVault Azure**, utilizzare un hello tooprotect principale di servizio basata su certificati **keyvault**e distribuire il certificato di hello tooAzure pool Batch. attività personalizzate .NET Hello quindi possono accedere i segreti in hello KeyVault in fase di esecuzione. Questa soluzione è una soluzione generica e può essere ridimensionato tooany tipo di chiave privata, non solo stringa di connessione.
 
-   Esiste una soluzione più semplice, ma non consigliata: è possibile creare un **servizio collegato di Azure SQL** con le impostazioni della stringa di connessione, creare un set di dati che usa il servizio collegato e concatenare tale set di dati come set di dati di input fittizio all'attività .NET personalizzata. È quindi possibile accedere alla stringa di connessione del servizio collegato nel codice dell'attività personalizzata.  
+   È una soluzione più semplice (ma non consigliata): è possibile creare un **servizio collegato SQL Azure** con le impostazioni della stringa di connessione, creare un set di dati che utilizza hello servizio collegato e catena hello dataset come un set di dati di input fittizio attività di .NET toohello personalizzata. È possibile quindi hello accesso collegato stringa di connessione del servizio nel codice di attività personalizzata hello.  
 
 ## <a name="update-custom-activity"></a>Aggiornare l'attività personalizzata
-Per aggiornare il codice dell'attività personalizzata, compilarlo e caricare il file ZIP contenente i nuovi file binari nell'archiviazione BLOB.
+Se si aggiorna il codice hello per attività personalizzata hello, compilarlo e caricare il file zip hello che contiene l'archiviazione blob di nuovo i file binari toohello.
 
 ## <a name="appdomain-isolation"></a>Isolamento di AppDomain
-Vedere l' [esempio sul passaggio fra AppDomain](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) che illustra come creare un'attività personalizzata che non sia vincolata alle versioni assembly usate dal servizio di avvio di Azure Data Factory, ad esempio WindowsAzure.Storage v4.3.0, Newtonsoft.Json v6.0.x e così via.
+Vedere [Cross AppDomain esempio](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) che illustra come toocreate un'attività personalizzata che non è vincolato versioni tooassembly usate dal pulsante di visualizzazione della Data Factory hello (esempio: versione 4.3.0 Windowsazure v6.0.x newtonsoft. JSON, ecc.).
 
 ## <a name="access-extended-properties"></a>Accedere a tutte le proprietà estese
-È possibile dichiarare estese le proprietà presenti nel codice JSON dell'attività come nell'esempio seguente:
+È possibile dichiarare le proprietà estese in formato JSON dell'attività hello, come illustrato nel seguente esempio hello:
 
 ```JSON
 "typeProperties": {
@@ -754,16 +754,16 @@ Vedere l' [esempio sul passaggio fra AppDomain](https://github.com/Azure/Azure-D
 ```
 
 
-Nell'esempio sono presenti due proprietà estese: **SliceStart** e **DataFactoryName**. Il valore di SliceStart si basa sulla variabile di sistema SliceStart. Per un elenco delle variabili di sistema supportate, vedere [Pianificazione ed esecuzione con Data Factory](data-factory-functions-variables.md) . Il valore di DataFactoryName è hardcoded su CustomActivityFactory.
+Nell'esempio hello, sono disponibili due proprietà estese: **SliceStart** e **DataFactoryName**. il valore di Hello per SliceStart si basa su una variabile di sistema SliceStart hello. Per un elenco delle variabili di sistema supportate, vedere [Pianificazione ed esecuzione con Data Factory](data-factory-functions-variables.md) . valore Hello DataFactoryName è tooCustomActivityFactory hardcoded.
 
-Per accedere alle proprietà estese nel metodo **Execute**, usare codice simile al seguente:
+tooaccess queste proprietà in hello estese **Execute** metodo, utilizzare codice simile toohello seguente codice:
 
 ```csharp
-// to get extended properties (for example: SliceStart)
+// tooget extended properties (for example: SliceStart)
 DotNetActivity dotNetActivity = (DotNetActivity)activity.TypeProperties;
 string sliceStartString = dotNetActivity.ExtendedProperties["SliceStart"];
 
-// to log all extended properties                               
+// toolog all extended properties                               
 IDictionary<string, string> extendedProperties = dotNetActivity.ExtendedProperties;
 logger.Write("Logging extended properties if any...");
 foreach (KeyValuePair<string, string> entry in extendedProperties)
@@ -773,9 +773,9 @@ foreach (KeyValuePair<string, string> entry in extendedProperties)
 ```
 
 ## <a name="auto-scaling-of-azure-batch"></a>Scalabilità automatica di Azure Batch
-È anche possibile creare un pool di Azure Batch con la funzionalità **Scalabilità automatica** . Ad esempio, è possibile creare un pool di Azure Batch con 0 VM dedicate e una formula di scalabilità basata sul numero di attività in sospeso. 
+È anche possibile creare un pool di Azure Batch con la funzionalità **Scalabilità automatica** . Ad esempio, è possibile creare un pool di batch di azure con macchine virtuali dedicate 0 e una formula di scalabilità automatica in base al numero di hello di attività in sospeso. 
 
-La formula di esempio seguente consente di ottenere il comportamento seguente: quando il pool viene creato inizialmente, inizia con 1 macchina virtuale. La metrica $PendingTasks definisce il numero di attività in esecuzione e quelle in coda.  La formula trova il numero medio di attività in sospeso negli ultimi 180 secondi e imposta TargetDedicated di conseguenza. Assicura che TargetDedicated non vada mai oltre 25 macchine virtuali. Pertanto, quando vengono inviate nuove attività, il pool si espande automaticamente e al completamento delle attività le macchine virtuali diventano disponibili una alla volta e la scalabilità automatica le riduce. È possibile regolare startingNumberOfVMs e maxNumberofVMs in base alle esigenze.
+formula di esempio Hello qui si ottiene hello seguente comportamento: quando viene creato inizialmente pool hello, inizia con 1 macchina virtuale. Metrica $PendingTasks definisce il numero di hello di attività in esecuzione + attivo (in coda) dello stato.  formula Hello trova numero medio di hello attività in sospeso in hello ultimi 180 secondi e imposta TargetDedicated di conseguenza. Assicura che TargetDedicated non vada mai oltre 25 macchine virtuali. In tal caso, come vengono inviate nuove attività, pool aumentano automaticamente e come attività di completamento, le macchine virtuali diventano disponibile uno alla volta e la scalabilità automatica hello compatta tali macchine virtuali. startingNumberOfVMs e maxNumberofVMs può essere adattato tooyour esigenze.
 
 Formula di scalabilità automatica:
 
@@ -789,37 +789,37 @@ $TargetDedicated=min(maxNumberofVMs,pendingTaskSamples);
 
 Per i dettagli, vedere [Ridimensionare automaticamente i nodi di calcolo in un pool di Azure Batch](../batch/batch-automatic-scaling.md) .
 
-Se il pool usa il valore predefinito [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx), possono essere necessari 15-30 minuti perché il servizio Batch prepari la VM prima di eseguire l'attività personalizzata.  Se il pool usa un valore autoScaleEvaluationInterval diverso, il servizio Batch può richiedere un valore autoScaleEvaluationInterval + 10 minuti.
+Se il pool di hello utilizza predefinito hello [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx), hello servizio Batch può richiedere 15-30 minuti tooprepare hello VM prima di eseguire l'attività personalizzata hello.  Se il pool di hello sta utilizzando un diverso autoScaleEvaluationInterval, hello servizio Batch può assumere autoScaleEvaluationInterval + 10 minuti.
 
 ## <a name="use-hdinsight-compute-service"></a>Usare il servizio di calcolo di HDInsight
-Nella procedura dettagliata è stato usato il calcolo Azure Batch per eseguire l'attività personalizzata. È anche possibile usare il proprio cluster HDInsight basato su Windows o fare in modo che Data Factory crei un cluster HDInsight basato su Windows su richiesta ed esegua l'attività personalizzata sul cluster HDInsight. Di seguito sono riportati i passaggi generali per usare un cluster HDInsight.
+In questa procedura dettagliata hello, è stato utilizzato attività personalizzata hello toorun calcolo di Azure Batch. È possibile anche utilizzare un cluster HDInsight basati su Windows o Data Factory di creare cluster HDInsight basati su Windows su richiesta e dispone di attività personalizzata hello in esecuzione nel cluster HDInsight hello. Ecco i passaggi di alto livello hello per l'utilizzo di un cluster HDInsight.
 
 > [!IMPORTANT]
-> Le attività .NET personalizzate sono eseguite solo su cluster HDInsight basati su Windows. Una soluzione alternativa a questa limitazione consiste nell'utilizzare l'attività MapReduce per eseguire codice Java personalizzato su un cluster HDInsight basato su Linux. Un'altra opzione è utilizzare un pool di macchine virtuali di Azure Batch per eseguire attività personalizzate anziché utilizzare il cluster HDInsight.
+> attività .NET personalizzata Hello eseguito solo in cluster HDInsight basati su Windows. Una soluzione alternativa per questa limitazione è hello toouse codice personalizzato Java mappa ridurre attività toorun in un cluster HDInsight basati su Linux. Un'altra opzione è toouse un pool di Azure Batch di attività personalizzate di macchine virtuali toorun invece di usare un cluster HDInsight.
  
 
 1. Creare un servizio collegato Azure HDInsight.   
-2. Usare il servizio collegato HDInsight al posto di **AzureBatchLinkedService** nella pipeline JSON.
+2. Servizio al posto di collegato di HDInsight utilizzare **AzureBatchLinkedService** in hello JSON di pipeline.
 
-Se si vuole eseguire il test con la procedura dettagliata, modificare l'ora di **inizio** e **fine** per la pipeline per poter testare lo scenario con il servizio Azure HDInsight.
+Se si desidera tootest con questa procedura dettagliata hello, modifica **avviare** e **fine** ore per la pipeline di hello in modo che è possibile testare uno scenario di hello con hello servizio Azure HDInsight.
 
 #### <a name="create-azure-hdinsight-linked-service"></a>Creare un servizio collegato Azure HDInsight
-Il servizio Azure Data Factory supporta la creazione di un cluster su richiesta e lo usa per elaborare l'input per generare i dati di output. È anche possibile usare il proprio cluster per eseguire la stessa operazione. Quando si usa il cluster HDInsight su richiesta, viene creato un cluster per ogni sezione. Invece, se si usa il proprio cluster HDInsight, il cluster è pronto per elaborare immediatamente la sezione. Quindi, quando si usa un cluster su richiesta, i dati di output potrebbero non essere visualizzati tanto rapidamente quanto i dati nel proprio cluster.
+Hello servizio Data Factory di Azure supporta la creazione di un cluster su richiesta e usarlo come dati di output tooprocess tooproduce input. È inoltre possibile utilizzare un cluster personale tooperform hello stesso. Quando si usa il cluster HDInsight su richiesta, viene creato un cluster per ogni sezione. Considerando che, se si utilizza un cluster HDInsight, cluster hello è pronto tooprocess hello sezione immediatamente. Pertanto, quando si utilizza cluster su richiesta, si potrebbero non visualizzare dati di output di hello più rapidamente quando si utilizza un cluster personale.
 
 > [!NOTE]
-> Al runtime, un'istanza di un'attività .NET viene eseguita solo in un nodo di lavoro nel cluster HDInsight, ma non può essere scalata al fine di essere eseguita in più nodi. È possibile eseguire più istanze di attività .NET contemporaneamente su diversi nodi del cluster HDInsight.
+> In fase di esecuzione, un'istanza di un'attività .NET viene eseguita solo su un nodo di lavoro nel cluster HDInsight hello. non può essere scalato toorun su più nodi. Più istanze di attività .NET è possono eseguire in parallelo in nodi diversi del cluster HDInsight hello.
 >
 >
 
-##### <a name="to-use-an-on-demand-hdinsight-cluster"></a>Per usare un cluster HDInsight su richiesta
-1. Nel menu a sinistra del **portale di Azure**fare clic su **Creare e distribuire** nella home page di Data factory.
-2. Nell'editor di Data Factory fare clic su **Nuovo calcolo** sulla barra dei comandi, quindi scegliere **Cluster HDInsight su richiesta** dal menu.
-3. Apportare le modifiche seguenti allo script JSON:
+##### <a name="toouse-an-on-demand-hdinsight-cluster"></a>toouse un cluster di HDInsight su richiesta
+1. In hello **portale di Azure**, fare clic su **autore e distribuire** nella home page di hello Data Factory.
+2. Nell'Editor delle Data Factory hello, fare clic su **nuovo calcolo** dal comando hello barra e selezionare **cluster HDInsight su richiesta** dal menu di hello.
+3. Apportare hello modifiche toohello JSON script seguente:
 
-   1. Per la proprietà **clusterSize** , specificare le dimensioni del cluster HDInsight.
-   2. Per la proprietà **timeToLive** specificare il tempo di inattività consentito per il cliente prima dell'eliminazione.
-   3. Per la proprietà **version** , specificare la versione di HDInsight da utilizzare. Se si esclude questa proprietà, verrà usata la versione più recente.  
-   4. Per **linkedServiceName** specificare **AzureStorageLinkedService**.
+   1. Per hello **clusterSize** proprietà, specificare le dimensioni di hello del cluster HDInsight hello.
+   2. Per hello **timeToLive** proprietà, specificare quanto tempo cliente hello può essere inattivo prima che venga eliminato.
+   3. Per hello **versione** proprietà, specificare la versione di HDInsight hello desiderato toouse. Se si esclude questa proprietà, viene utilizzata la versione più recente di hello.  
+   4. Per hello **linkedServiceName**, specificare **AzureStorageLinkedService**.
 
         ```JSON
         {
@@ -837,24 +837,24 @@ Il servizio Azure Data Factory supporta la creazione di un cluster su richiesta 
         ```
 
     > [!IMPORTANT]
-    > Le attività .NET personalizzate sono eseguite solo su cluster HDInsight basati su Windows. Una soluzione alternativa a questa limitazione consiste nell'utilizzare l'attività MapReduce per eseguire codice Java personalizzato su un cluster HDInsight basato su Linux. Un'altra opzione è utilizzare un pool di macchine virtuali di Azure Batch per eseguire attività personalizzate anziché utilizzare il cluster HDInsight.
+    > attività .NET personalizzata Hello eseguito solo in cluster HDInsight basati su Windows. Una soluzione alternativa per questa limitazione è hello toouse codice personalizzato Java mappa ridurre attività toorun in un cluster HDInsight basati su Linux. Un'altra opzione è toouse un pool di Azure Batch di attività personalizzate di macchine virtuali toorun invece di usare un cluster HDInsight.
 
-4. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il servizio collegato.
+4. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello collegato servizio.
 
-##### <a name="to-use-your-own-hdinsight-cluster"></a>Per usare il proprio cluster HDInsight:
-1. Nel menu a sinistra del **portale di Azure**fare clic su **Creare e distribuire** nella home page di Data factory.
-2. Nell**editor di Data Factory** fare clic su **Nuovo calcolo** sulla barra dei comandi, quindi scegliere **Cluster HDInsight** dal menu.
-3. Apportare le modifiche seguenti allo script JSON:
+##### <a name="toouse-your-own-hdinsight-cluster"></a>toouse cluster HDInsight:
+1. In hello **portale di Azure**, fare clic su **autore e distribuire** nella home page di hello Data Factory.
+2. In hello **Editor delle Data Factory**, fare clic su **nuovo calcolo** dal comando hello barra e selezionare **cluster HDInsight** dal menu di hello.
+3. Apportare hello modifiche toohello JSON script seguente:
 
-   1. Per la proprietà **clusterUri** , immettere l'URL di HDInsight. Ad esempio: https://<clustername>.azurehdinsight.net/     
-   2. Per la proprietà **UserName** , immettere il nome dell'utente che ha accesso al cluster HDInsight.
-   3. Per la proprietà **Password** , immettere la password dell'utente.
-   4. Per la proprietà **LinkedServiceName**, immettere **AzureStorageLinkedService**,
-4. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il servizio collegato.
+   1. Per hello **clusterUri** proprietà, immettere l'URL di hello per HDInsight. Ad esempio: https://<clustername>.azurehdinsight.net/     
+   2. Per hello **UserName** proprietà, immettere nome utente hello che dispone di cluster di HDInsight toohello di accesso.
+   3. Per hello **Password** proprietà, immettere la password di hello hello utente.
+   4. Per hello **LinkedServiceName** proprietà, immettere **AzureStorageLinkedService**.
+4. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello collegato servizio.
 
 Per informazioni dettagliate, vedere [Servizi collegati di calcolo](data-factory-compute-linked-services.md) .
 
-Nella **pipeline JSON**usare il servizio collegato HDInsight, proprio o su richiesta:
+In hello **JSON di pipeline**, utilizzare HDInsight (su richiesta o la propria) il servizio collegato:
 
 ```JSON
 {
@@ -902,7 +902,7 @@ Nella **pipeline JSON**usare il servizio collegato HDInsight, proprio o su richi
 ```
 
 ## <a name="create-a-custom-activity-by-using-net-sdk"></a>Creazione di un’attività personalizzata tramite .NET SDK
-Nella procedura dettagliata di questo articolo, si crea una data factory con una pipeline che usa l'attività personalizzata tramite il portale di Azure. Il codice seguente illustra invece come creare la data factory con .NET SDK. È possibile trovare altre informazioni sull'uso di SDK per creare pipeline a livello di codice nell'articolo sulla [creazione di una pipeline con attività di copia tramite API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md). 
+In questa procedura dettagliata hello in questo articolo, creerai una data factory con una pipeline che utilizza l'attività personalizzata hello utilizzando hello portale di Azure. Hello di codice seguente viene illustrato come toocreate hello data factory di utilizzando invece .NET SDK. È possibile trovare ulteriori informazioni sull'utilizzo di SDK tooprogrammatically creare pipeline in hello [creare una pipeline con attività di copia utilizzando l'API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md) articolo. 
 
 ```csharp
 using System;
@@ -927,7 +927,7 @@ namespace DataFactoryAPITestApp
         {
             // create data factory management client
 
-            // TODO: replace ADFTutorialResourceGroup with the name of your resource group.
+            // TODO: replace ADFTutorialResourceGroup with hello name of your resource group.
             string resourceGroupName = "ADFTutorialResourceGroup";
 
             // TODO: replace APITutorialFactory with a name that is globally unique. For example: APITutorialFactory04212017
@@ -1072,7 +1072,7 @@ namespace DataFactoryAPITestApp
                         {
                             Description = "Use custom activity",
 
-                            // Initial value for pipeline's active period. With this, you won't need to set slice status
+                            // Initial value for pipeline's active period. With this, you won't need tooset slice status
                             Start = PipelineActivePeriodStartTime,
                             End = PipelineActivePeriodEndTime,
                             IsPaused = false,
@@ -1135,23 +1135,23 @@ namespace DataFactoryAPITestApp
             if (result != null)
                 return result.AccessToken;
 
-            throw new InvalidOperationException("Failed to acquire token");
+            throw new InvalidOperationException("Failed tooacquire token");
         }
     }
 }
 ```
 
 ## <a name="debug-custom-activity-in-visual-studio"></a>Eseguire il debug di attività personalizzate in Visual Studio
-L'esempio relativo all'[ambiente locale di Azure Data Factory](https://github.com/gbrueckl/Azure.DataFactory.LocalEnvironment) su GitHub include uno strumento che consente di eseguire il debug di attività .NET personalizzate all'interno di Visual Studio.  
+Hello [Azure Data Factory - ambiente locale](https://github.com/gbrueckl/Azure.DataFactory.LocalEnvironment) esempio in GitHub include uno strumento che consente attività .NET personalizzate toodebug all'interno di Visual Studio.  
 
 
 ## <a name="sample-custom-activities-on-github"></a>Attività personalizzata di esempio su GitHub
 | Esempio | Funzioni delle attività personalizzate |
 | --- | --- |
-| [HttpDataDownloaderSample](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample)(Esempio relativo al downloader dati HTTP). |Scarica i dati da un endpoint HTTP per l'archivio BLOB di Azure usando l'attività personalizzata C# in Data Factory. |
+| [HttpDataDownloaderSample](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample)(Esempio relativo al downloader dati HTTP). |Scarica i dati da un archivio Blob utilizzando l'attività personalizzata in c# in Data Factory di tooAzure HTTP Endpoint. |
 | [Esempio di analisi del sentimento su Twitter](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/TwitterAnalysisSample-CustomC%23Activity) |Chiama un modello ML di Azure ed esegue l'analisi del sentimento, l'assegnazione dei punteggi, la stima e così via. |
 | [RunRScriptUsingADFSample](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)(Esempio relativo all'esecuzione di script R con ADF). |Chiama lo script R eseguendo RScript.exe sul cluster HDInsight in cui è già installato R. |
-| [Attività .NET per dominio app](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) |Usa versioni di assembly diverse da quelle usate dal servizio di avvio di Data Factory |
+| [Attività .NET per dominio app](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) |Utilizza le versioni di assembly diverso da quelli utilizzati dalla visualizzazione della Data Factory di hello |
 | [Rielaborare un modello in Azure Analysis Services](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/AzureAnalysisServicesProcessSample) |  Rielabora un modello in Azure Analysis Services. |
 
 [batch-net-library]: ../batch/batch-dotnet-get-started.md

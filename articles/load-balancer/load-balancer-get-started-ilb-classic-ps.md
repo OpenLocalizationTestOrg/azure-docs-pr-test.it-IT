@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico interno di Azure - Distribuzione classica con PowerShell | Documentazione Microsoft
-description: Informazioni su come creare un servizio di bilanciamento del carico interno usando PowerShell nel modello di distribuzione classica
+title: Azure interna aaaCreate bilanciamento del carico - PowerShell classico | Documenti Microsoft
+description: Informazioni su come toocreate un interno bilanciamento del carico con PowerShell nel modello di distribuzione classica hello
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: f701fb3564c62cf8088cc4362a10c5e2c2301ae6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 382db80c42ffab09905513019b72e85a4f9dfeff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-using-powershell"></a>Introduzione alla creazione di un servizio di bilanciamento del carico interno (classico) tramite PowerShell
 
@@ -31,7 +31,7 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).  Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Informazioni su come [eseguire questa procedura con il modello di Resource Manager](load-balancer-get-started-ilb-arm-ps.md).
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Informazioni su come troppo[eseguire questi passaggi tramite il modello di gestione risorse di hello](load-balancer-get-started-ilb-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -39,28 +39,28 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-an-internal-load-balancer-set-for-virtual-machines"></a>Creare un set con servizio di bilanciamento del carico interno per le macchine virtuali
 
-Per creare un set con servizio di bilanciamento del carico e i server che invieranno il traffico a esso, è necessario eseguire le operazioni seguenti:
+toocreate un bilanciamento del carico interno impostato e hello server che invierà i tooit di traffico, è necessario seguente hello toodo:
 
-1. Creare un'istanza della funzionalità di bilanciamento del carico interno che sarà l'endpoint del traffico in ingresso da configurare con carico bilanciato tra i server di un set con carico bilanciato.
-2. Aggiungere gli endpoint corrispondenti alle macchine virtuali che riceveranno il traffico in ingresso.
-3. Configurare i server che invieranno il traffico con carico bilanciato all'indirizzo IP virtuale (indirizzo VIP) dell'istanza del bilanciamento del carico interno.
+1. Creare un'istanza interna il bilanciamento del carico che fungerà da endpoint hello in arrivo traffico toobe con bilanciato del carico tra i server hello di un set con carico bilanciato.
+2. Aggiungere gli endpoint corrispondenti toohello le macchine virtuali che riceveranno il traffico in ingresso hello.
+3. Configurare i server hello che invieranno hello traffico toobe con bilanciamento del carico toosend loro traffico toohello indirizzo IP virtuale (VIP) dell'istanza di hello interno il bilanciamento del carico.
 
 ### <a name="step-1-create-an-internal-load-balancing-instance"></a>Passaggio 1: Creare un'istanza del bilanciamento del carico interno
 
-Per un servizio cloud esistente o un servizio cloud distribuito in una rete virtuale dell'area, è possibile creare un'istanza del bilanciamento del carico interno con i comandi di Windows PowerShell seguenti:
+Per un servizio cloud esistente o un servizio cloud distribuito in una rete virtuale regionale, è possibile creare un'istanza di bilanciamento del carico interno con hello seguenti comandi di Windows PowerShell:
 
 ```powershell
 $svc="<Cloud Service Name>"
 $ilb="<Name of your ILB instance>"
-$subnet="<Name of the subnet within your virtual network>"
-$IP="<The IPv4 address to use on the subnet-optional>"
+$subnet="<Name of hello subnet within your virtual network>"
+$IP="<hello IPv4 address toouse on hello subnet-optional>"
 
 Add-AzureInternalLoadBalancer -ServiceName $svc -InternalLoadBalancerName $ilb –SubnetName $subnet –StaticVNetIPAddress $IP
 ```
 
-Si noti che questo uso del cmdlet di Windows PowerShell [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) richiede il set di parametri DefaultProbe. Per altre informazioni sui set di parametri aggiuntivi, vedere [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx).
+Si noti che questo utilizzo di hello [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) cmdlet di Windows PowerShell Usa hello di parametri defaultprobe. Per altre informazioni sui set di parametri aggiuntivi, vedere [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx).
 
-### <a name="step-2-add-endpoints-to-the-internal-load-balancing-instance"></a>Passaggio 2: Aggiungere endpoint all'istanza del bilanciamento del carico interno
+### <a name="step-2-add-endpoints-toohello-internal-load-balancing-instance"></a>Passaggio 2: Aggiungere l'istanza di bilanciamento del carico interno toohello endpoint
 
 Di seguito è fornito un esempio:
 
@@ -76,47 +76,47 @@ $ilb="ilbset"
 Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epname -Lbset $lbsetname -Protocol $prot -LocalPort $locport -PublicPort $pubport –DefaultProbe -InternalLoadBalancerName $ilb | Update-AzureVM
 ```
 
-### <a name="step-3-configure-your-servers-to-send-their-traffic-to-the-new-internal-load-balancing-endpoint"></a>Passaggio 3: Configurare i server per l'invio del traffico al nuovo endpoint del bilanciamento del carico interno
+### <a name="step-3-configure-your-servers-toosend-their-traffic-toohello-new-internal-load-balancing-endpoint"></a>Passaggio 3: Configurare il server toosend i relativi endpoint di bilanciamento del carico interno nuovo traffico toohello
 
-Per poter usare il nuovo indirizzo IP (indirizzo VIP) dell'istanza del bilanciamento del carico interno, è necessario configurare i server il cui traffico verrà configurato con carico bilanciato. Si tratta dell'indirizzo su cui è in ascolto l'istanza del bilanciamento del carico interno. Nella maggior parte dei casi, è sufficiente aggiungere o modificare un record DNS per l'indirizzo VIP dell'istanza del bilanciamento del carico interno.
+Configurare hello server il cui traffico corso toobe con carico bilanciato toouse hello nuovo indirizzo IP (Buongiorno VIP) del hello istanza interno il bilanciamento del carico eccessivo. Questo è hello indirizzo sul quale hello bilanciamento del carico interno è in ascolto l'istanza. Nella maggior parte dei casi, è necessario toojust aggiungere o modificare un record DNS per hello VIP dell'istanza di bilanciamento del carico interno hello.
 
-Se l'indirizzo IP è stato specificato durante la creazione dell'istanza del bilanciamento del carico interno, si ha già l'indirizzo VIP. In caso contrario, è possibile visualizzare l'indirizzo VIP eseguendo i comandi seguenti:
+Se si specifica l'indirizzo IP hello durante la creazione dell'istanza di bilanciamento del carico interno hello hello, si dispone già di hello VIP. In caso contrario, è possibile visualizzare il VIP hello da hello seguenti comandi:
 
 ```powershell
 $svc="<Cloud Service Name>"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-Per usare questi comandi, inserire i valori e rimuovere < and >. Di seguito è fornito un esempio:
+toouse questi comandi, immettere i valori hello e Rimuovi hello < e >. Di seguito è fornito un esempio:
 
 ```powershell
 $svc="mytestcloud"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-Dalla visualizzazione del comando Get-AzureInternalLoadBalancer prendere nota dell'indirizzo IP e apportare le modifiche necessarie ai server o ai record DNS per assicurarsi che il traffico venga inviato all'indirizzo VIP.
+Dalla visualizzazione hello di hello comando Get-AzureInternalLoadBalancer, prendere nota indirizzo IP hello e rendere server tooyour di hello le modifiche necessarie o tooensure i record DNS che il traffico venga inviato toohello VIP.
 
 > [!NOTE]
-> La piattaforma Microsoft Azure usa un indirizzo IPv4 statico e instradabile pubblicamente per un'ampia gamma di scenari di amministrazione. L'indirizzo IP è 168.63.129.16. Questo indirizzo IP non deve essere bloccato da alcun firewall, perché potrebbe causare un comportamento imprevisto.
-> Per quanto riguarda il bilanciamento del carico interno di Azure, questo indirizzo IP viene usato da probe di monitoraggio del servizio di bilanciamento del carico per determinare lo stato di integrità delle macchine virtuali in un set con carico bilanciato. Se si usa un gruppo di sicurezza di rete per limitare il traffico alle macchine virtuali di Azure in un set con carico bilanciato internamente o lo si applica a una subnet di rete virtuale, assicurarsi di aggiungere una regola di sicurezza di rete per consentire il traffico dall'indirizzo 168.63.129.16.
+> piattaforma Microsoft Azure Hello utilizza un indirizzo IPv4 statico, instradabile pubblicamente per un'ampia gamma di scenari di amministrazione. indirizzo IP Hello è 168.63.129.16. Questo indirizzo IP non deve essere bloccato da alcun firewall, perché potrebbe causare un comportamento imprevisto.
+> Con tooAzure riguardo interno il bilanciamento del carico, viene utilizzato questo indirizzo IP dal monitoraggio probe di stato di integrità hello toodetermine bilanciamento del carico hello per le macchine virtuali in un set con carico bilanciato. Se un gruppo di sicurezza di rete è utilizzata toorestrict traffico tooAzure le macchine virtuali in un set di internamente con bilanciamento del carico o applicato tooa Subnet rete virtuale, assicurarsi che una regola di sicurezza di rete viene aggiunto il traffico tooallow 168.63.129.16.
 
 ## <a name="example-of-internal-load-balancing"></a>Esempio di bilanciamento del carico interno
 
-Per una descrizione del processo end-to-end di creazione di un set con carico bilanciato per due configurazioni di esempio, vedere le sezioni seguenti.
+toostep illustra il processo di fine tooend hello di creazione di un set con carico bilanciato per due configurazioni di esempio, vedere hello seguenti sezioni.
 
 ### <a name="an-internet-facing-multi-tier-application"></a>Applicazione multilivello con connessione Internet
 
-Si vuole offrire un servizio di database con carico bilanciato per un gruppo di server Web con connessione Internet. Entrambi i set di server sono ospitati in un unico servizio cloud di Azure. Il traffico dei server Web verso la porta TCP 1433 deve essere distribuito tra due macchine virtuali nel livello database. La figura 1 illustra la configurazione.
+Si desidera tooprovide un servizio di database con carico bilanciato per un set di server web con connessione Internet. Entrambi i set di server sono ospitati in un unico servizio cloud di Azure. La porta Web server traffico tooTCP 1433 deve essere distribuita tra due macchine virtuali nel livello di database hello. Figura 1 mostra la configurazione hello.
 
-![Set con carico bilanciato interno per il livello database](./media/load-balancer-internal-getstarted/IC736321.png)
+![Set con carico bilanciato interno per il livello di database hello](./media/load-balancer-internal-getstarted/IC736321.png)
 
-La configurazione è costituita dai seguenti elementi:
+configurazione di Hello è costituita dai seguenti hello:
 
-* Il servizio cloud esistente che ospita le macchine virtuali è denominato mytestcloud.
-* I due server di database esistenti sono denominati DB1, DB2.
-* I server Web nel livello Web si connettono ai server di database nel livello database usando l’indirizzo IP privato. Un'altra opzione consiste nell'utilizzare il proprio DNS per la rete virtuale e registrare manualmente un record A per il set di bilanciamento del carico interno.
+* Hello servizio cloud che ospita macchine virtuali hello è denominato mytestcloud.
+* il server di database di Hello due esistenti sono denominati DB1, DB2.
+* I server Web nel livello web hello connettono i server di database toohello nel livello di database hello utilizzando l'indirizzo IP privato hello. Un'altra opzione è toouse DNS per la rete virtuale hello e registrare manualmente un record A per il set di bilanciamento del carico interno con carico hello.
 
-I comandi seguenti configurano una nuova istanza del bilanciamento del carico interno denominata **ILBset** e aggiungono endpoint alle macchine virtuali corrispondenti ai due server di database:
+i comandi seguenti Hello configurano una nuova istanza di bilanciamento del carico interno denominata **ILBset** e aggiungere le macchine virtuali endpoint toohello corrispondente toohello due server di database:
 
 ```powershell
 $svc="mytestcloud"
@@ -137,16 +137,16 @@ Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epnam
 
 ## <a name="remove-an-internal-load-balancing-configuration"></a>Rimuovere una configurazione del bilanciamento del carico interno
 
-Per rimuovere una macchina virtuale come endpoint da un'istanza del servizio di bilanciamento del carico interno, usare i comandi seguenti:
+tooremove una macchina virtuale come un endpoint da un'istanza di servizio di bilanciamento del carico interno, hello di utilizzare i comandi seguenti:
 
 ```powershell
 $svc="<Cloud service name>"
-$vmname="<Name of the VM>"
-$epname="<Name of the endpoint>"
+$vmname="<Name of hello VM>"
+$epname="<Name of hello endpoint>"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-Per usare questi comandi, inserire i valori rimuovendo < and >.
+toouse questi comandi, inserire i valori hello, rimozione hello < e >.
 
 Di seguito è fornito un esempio:
 
@@ -157,14 +157,14 @@ $epname="TCP-1433-1433"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-Per rimuovere un'istanza del servizio di bilanciamento del carico interno da un servizio cloud, usare i comandi seguenti:
+tooremove un'istanza di servizio di bilanciamento del carico interno da un servizio cloud, hello di utilizzare i comandi seguenti:
 
 ```powershell
 $svc="<Cloud service name>"
 Remove-AzureInternalLoadBalancer -ServiceName $svc
 ```
 
-Per usare questi comandi, inserire il valore e rimuovere < and >.
+toouse questi comandi, inserire il valore di hello e rimuovere hello < e >.
 
 Di seguito è fornito un esempio:
 
@@ -175,7 +175,7 @@ Remove-AzureInternalLoadBalancer -ServiceName $svc
 
 ## <a name="additional-information-about-internal-load-balancer-cmdlets"></a>Altre informazioni sui cmdlet per servizio di bilanciamento del carico interno
 
-Per ottenere altre informazioni sui cmdlet per il bilanciamento del carico interno, eseguire i comandi seguenti da un prompt di Windows PowerShell:
+tooobtain ulteriori informazioni sui cmdlet di bilanciamento del carico interno, eseguire hello comandi al prompt di Windows PowerShell seguente:
 
 ```powershell
 Get-Help New-AzureInternalLoadBalancerConfig -full

@@ -12,7 +12,7 @@
 | [Gruppi di affinità](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md) per sottoscrizione |256 |256 |
 | Regole di avviso per ogni sottoscrizione |250 |250 |
 
-<sup>1</sup>Le istanze di dimensioni estremamente ridotte vengono conteggiate come un core ai fini del limite dei core anche se viene usato un core parziale.
+<sup>1</sup>molto piccolo numero di istanze come uno dei core per limite di core hello nonostante l'uso di un core parziale.
 
-<sup>2</sup>Sono inclusi gli account di archiviazione Standard e Premium. Se sono necessari più di 200 account di archiviazione, inviare una richiesta tramite il [supporto tecnico di Azure](https://azure.microsoft.com/support/faq/). Il team di Archiviazione di Azure esaminerà il caso aziendale e potrà approvare fino a un massimo di 250 account di archiviazione. 
+<sup>2</sup>Sono inclusi gli account di archiviazione Standard e Premium. Se sono necessari più di 200 account di archiviazione, inviare una richiesta tramite il [supporto tecnico di Azure](https://azure.microsoft.com/support/faq/). il team di archiviazione di Azure Hello esamina il caso aziendale e può approvare too250 gli account di archiviazione. 
 

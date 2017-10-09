@@ -1,6 +1,6 @@
 ---
-title: Effettuare il provisioning di microservizi e distribuirli in modo prevedibile in Azure
-description: "Informazioni su come effettuare il provisioning di un'applicazione costituita da microservizi e come distribuirla nel servizio app di Azure come un'unità singola e in modo prevedibile usando modelli di gruppo di risorse JSON e script di PowerShell."
+title: aaaProvision e distribuire microservizi in modo prevedibile in Azure
+description: "Informazioni su come toodeploy un'applicazione è costituito da microservizi nel servizio App di Azure come unità singola e prevedibile utilizzando modelli di gruppo di risorse JSON e script di PowerShell."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 844f42e61ba443a4b74a52f622113e87a7781913
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d32c2fc82a8b09e89224ec437e5819b65b2e9e78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-and-deploy-microservices-predictably-in-azure"></a>Effettuare il provisioning di microservizi e distribuirli in modo prevedibile in Azure
-Questa esercitazione illustra come effettuare il provisioning di un'applicazione costituita da [microservizi](https://en.wikipedia.org/wiki/Microservices) e come distribuirla nel [servizio app di Azure](/services/app-service/) come un'unità singola e in modo prevedibile usando modelli di gruppo di risorse JSON e script di PowerShell. 
+Questa esercitazione viene illustrato come tooprovision e distribuire un'applicazione composta da [microservizi](https://en.wikipedia.org/wiki/Microservices) in [Azure App Service](/services/app-service/) come unità singola e prevedibile utilizzando modelli di gruppo di risorse JSON e Creazione di script di PowerShell. 
 
-Quando si effettua il provisioning e si distribuiscono applicazioni su vasta scala costituite la microservizi altamente disaccoppiati, ripetibilità e prevedibilità sono fondamentali. [servizio app di Azure](/services/app-service/) è possibile creare microservizi che includono app Web, per dispositivi mobili, per le API e per la logica. [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) consente di gestire tutti i microservizi come unità, insieme alle dipendenze delle risorse, ad esempio le impostazioni di controllo del codice sorgente e del database. A questo punto è possibile distribuire l'applicazione usando modelli JSON e semplici script di PowerShell. 
+Quando il provisioning e la distribuzione di applicazioni a scalabilità elevata che sono composti di microservizi estremamente separata, ripetibilità e la prevedibilità sono toosuccess fondamentale. [Servizio App di Azure](/services/app-service/) consente microservizi toocreate che includono le app web, App mobile, App per le API e App per la logica. [Gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md) consente si toomanage microservizi hello tutti come un'unità, insieme alle dipendenze delle risorse, ad esempio impostazioni di controllo di origine e del database. A questo punto è possibile distribuire l'applicazione usando modelli JSON e semplici script di PowerShell. 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
-In questa esercitazione si distribuirà un'applicazione che include:
+Nell'esercitazione di hello, distribuire un'applicazione che comprende:
 
 * Due app Web (ovvero due microservizi)
 * Un database SQL di back-end
@@ -36,192 +36,192 @@ In questa esercitazione si distribuirà un'applicazione che include:
 * Application Insights, avvisi, impostazioni di scalabilità automatica
 
 ## <a name="tools-you-will-use"></a>Strumenti da usare
-In questa esercitazione si useranno gli strumenti seguenti. Non essendo una discussione completa sugli strumenti, verrà considerato solo lo scenario end-to-end, fornendo una breve introduzione per ogni strumento e dove è possibile trovare altre informazioni specifiche. 
+In questa esercitazione si utilizzerà hello gli strumenti seguenti. Poiché non si tratta di informazioni complete sugli strumenti, si verrà scenario end-to-end di toostick toohello e fornirle tooeach una breve introduzione, e in cui è possibile trovare ulteriori informazioni su di esso. 
 
 ### <a name="azure-resource-manager-templates-json"></a>Modelli di Gestione risorse di Azure (JSON)
-Ogni volta che si crea, ad esempio, un'app Web nel servizio app di Azure, Gestione risorse di Azure usa un modello JSON per creare l'intero gruppo di risorse con le risorse del componente. Un modello complesso disponibile in [Azure Marketplace](/marketplace), come l'app [WordPress scalabile](/marketplace/partners/wordpress/scalablewordpress/), può includere il database MySQL, account di archiviazione, il piano di servizio app, la stessa app Web, regole di avviso, impostazioni dell'app, impostazioni di scalabilità automatica e altro. Tutti questi modelli sono disponibili tramite PowerShell. Per informazioni su come scaricare e usare questi modelli, vedere [Uso di Azure PowerShell con Azure Resource Manager](../powershell-azure-resource-manager.md).
+Ogni volta che si crea un'app web in Azure App Service, ad esempio, Gestione risorse di Azure Usa un gruppo JSON modello toocreate hello intera risorsa con le risorse del componente hello. Un modello complesso da hello [Azure Marketplace](/marketplace) come hello [WordPress scalabile](/marketplace/partners/wordpress/scalablewordpress/) app può includere database MySQL hello, gli account di archiviazione, hello piano di servizio App, hello web app stessa, le regole di avviso, app impostazioni, le impostazioni di scalabilità automatica e altre e tutti questi modelli sono disponibili tooyou tramite PowerShell. Per informazioni su come toodownload e utilizzare tali modelli, vedere [tramite Azure PowerShell con Azure Resource Manager](../powershell-azure-resource-manager.md).
 
-Per altre informazioni sui modelli di Gestione risorse di Azure, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md)
+Per ulteriori informazioni sui modelli di hello Azure Resource Manager, vedere [la creazione di modelli di gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md)
 
 ### <a name="azure-sdk-26-for-visual-studio"></a>Azure SDK 2.6 per Visual Studio
-L'SDK più recente include miglioramenti a livello di supporto per i modelli di Gestione risorse di Azure nell'editor JSON. È possibile usarlo per creare rapidamente da zero un modello di gruppo di risorse o aprire un modello JSON esistente (ad esempio, un modello della raccolta scaricato) per modificarlo, popolare il file di parametri e distribuire il gruppo di risorse direttamente da una soluzione del gruppo di risorse di Azure.
+Hello SDK più recenti contiene miglioramenti toohello il supporto del modello di gestione delle risorse nell'editor di JSON hello. È possibile utilizzare questo tooquickly creare un modello di gruppo di risorse da zero o aprire un modello JSON esistente (ad esempio, un modello di raccolta scaricato) per la modifica, compilare i file dei parametri hello e distribuire anche il gruppo di risorse hello direttamente da di Azure Soluzione di gruppo di risorse.
 
 Per altre informazioni, vedere [Azure SDK 2.6 per Visual Studio](https://azure.microsoft.com/blog/2015/04/29/announcing-the-azure-sdk-2-6-for-net/).
 
 ### <a name="azure-powershell-080-or-later"></a>Azure PowerShell 0.8.0 o versione successiva
-A partire dalla versione 0.8.0, l'installazione di Azure PowerShell include il modulo Gestione risorse di Azure, oltre al modulo Azure. Il nuovo modulo permette di creare script per la distribuzione di gruppi di risorse.
+A partire dalla versione 0.8.0, hello Azure PowerShell installazione include il modulo di gestione risorse di Azure hello in aggiunta toohello modulo di Azure. Questo nuovo modulo consente la distribuzione di hello tooscript di gruppi di risorse.
 
 Per altre informazioni, vedere [Uso di Azure PowerShell con Gestione risorse di Azure](../powershell-azure-resource-manager.md)
 
 ### <a name="azure-resource-explorer"></a>Esplora risorse di Azure
-Questo [strumento in anteprima](https://resources.azure.com) consente di esplorare le definizioni JSON di tutti i gruppi di risorse nella sottoscrizione e delle singole risorse. Con lo strumento è possibile modificare le definizioni JSON di una risorsa, eliminare l'intera gerarchia di risorse e crearne di nuove.  Le informazioni immediatamente disponibili nello strumento sono molto utili per la modifica del modello, perché mostrano quali proprietà è necessario impostare per un tipo di risorsa particolare, i valori corretti e così via. È anche possibile creare un gruppo di risorse personalizzato nel [Portale di Azure](https://portal.azure.com/) e ispezionarne quindi le definizioni JSON nello strumento di esplorazione per creare un modello del gruppo di risorse.
+Questo [strumento anteprima](https://resources.azure.com) consente le definizioni di tooexplore hello JSON di tutti i gruppi di risorse hello le singole risorse hello e di sottoscrizione. Nello strumento di hello, è possibile modificare le definizioni di hello JSON di una risorsa, eliminare un'intera gerarchia di risorse e creare nuove risorse.  informazioni di Hello immediatamente disponibili in questo strumento sono molto utile per la creazione di un modello quanto mostra ciò che occorre tooset per un particolare tipo di risorsa, hello proprietà correggere i valori e così via. È anche possibile creare il gruppo di risorse in hello [portale Azure](https://portal.azure.com/), quindi controllare le relative definizioni JSON in hello Esplora strumento toohelp creare un template da gruppo di risorse hello.
 
-### <a name="deploy-to-azure-button"></a>Pulsante Deploy to Azure per la distribuzione in Azure
-Se si usa GitHub per il controllo del codice sorgente, è possibile inserire nel file README.MD un [pulsante Deploy to Azure](https://azure.microsoft.com/blog/2014/11/13/deploy-to-azure-button-for-azure-websites-2/) , che abilita un'interfaccia utente di distribuzione in Azure pronta all'uso. Mentre si può procedere in questo modo per qualsiasi app Web semplice, è possibile estendere questa opzione per abilitare la distribuzione di un intero gruppo di risorse inserendo un file azuredeploy.json nella radice del repository. Questo file JSON, che contiene il modello di gruppo di risorse, verrà usato dal pulsante Deploy to Azure per creare il gruppo di risorse. Per un esempio vedere [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) , l'app di esempio che verrà usata in questa esercitazione.
+### <a name="deploy-tooazure-button"></a>Pulsante tooAzure di distribuzione
+Se si utilizzano GitHub per controllo del codice sorgente, è possibile inserire un [pulsante tooAzure Distribuisci](https://azure.microsoft.com/blog/2014/11/13/deploy-to-azure-button-for-azure-websites-2/) nel file Leggimi. MD, che consente un tooAzure dell'interfaccia utente di distribuzione di chiavi in mano. Mentre è possibile farlo per qualsiasi applicazione web semplice, è possibile estendere questo tooenable la distribuzione di un intero gruppo di risorse mediante l'inserimento di un file azuredeploy.json nella radice del repository hello. Questo file JSON, che contiene il modello di gruppo di hello risorse, verrà utilizzato dal gruppo di risorse di hello Distribuisci tooAzure pulsante toocreate hello. Per un esempio, vedere hello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) esempio, che verrà utilizzato in questa esercitazione.
 
-## <a name="get-the-sample-resource-group-template"></a>Ottenere il modello del gruppo di risorse di esempio
-Ecco come scaricarlo.
+## <a name="get-hello-sample-resource-group-template"></a>Modello di gruppo di risorse di esempio hello ottenere
+Ora entriamo tooit destra.
 
-1. Passare all'esempio di servizio app [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) .
-2. Nel file readme.md fare clic su **Deploy to Azure**.
-3. Verrà aperto il sito [deploy-to-azure](https://deploy.azure.com) e verrà chiesto di immettere i parametri di distribuzione. Come si noterà, la maggior parte dei campi è già popolata con il nome del repository e alcune stringhe casuali. È possibile modificare tutti i campi, se lo si desidera, ma le uniche informazioni che è necessario immettere sono l'accesso amministrativo e la password di SQL Server, quindi fare clic su **Next**.
+1. Passare toohello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) esempio di servizio App.
+2. Nel file readme.md, fare clic su **distribuire tooAzure**.
+3. Si è eseguito toohello [distribuire in azure](https://deploy.azure.com) del sito e i parametri della distribuzione tooinput frequenti. Si noti che la maggior parte dei campi hello sono popolata con il nome di repository hello e alcune stringhe casuali. Se si desidera, ma ciò hello è tooenter accesso amministrativo di SQL Server hello e una password di hello, quindi fare clic su, è possibile modificare tutti i campi di hello **Avanti**.
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-1-deploybuttonui.png)
-4. Fare quindi clic su **Deploy** per avviare il processo di distribuzione. Dopo il completamento del processo, fare clic sul collegamento http://todoapp*XXXX*.azurewebsites.net per accedere all'applicazione distribuita. 
+4. Successivamente, fare clic su **Distribuisci** toostart processo di distribuzione hello. Dopo l'esecuzione del processo di hello toocompletion, fare clic su hello http://todoapp*XXXX*. hello toobrowse di collegamento azurewebsites.net applicazione distribuita. 
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-2-deployprogress.png)
    
-   La visualizzazione dell'interfaccia utente sarà un po' lenta alla prima esplorazione, perché le app sono in fase di avvio, ma l'applicazione è di sicuro completamente funzionante.
-5. Tornando alla pagina di distribuzione, fare clic sul collegamento **Gestisci** per visualizzare la nuova applicazione nel portale di Azure.
-6. Nell'elenco a discesa **Informazioni di base** fare clic sul collegamento del gruppo di risorse. Notare anche che l'app Web è già connessa al repository GitHub in **Progetto esterno**. 
+   Hello dell'interfaccia utente potrebbe essere leggermente più lenta quando si Sfoglia innanzitutto tooit hello App appena avvio, poiché convincere manualmente che si tratta di un'applicazione completamente funzionale.
+5. Nella pagina distribuzione hello, fare clic su hello **Gestisci** collegare la nuova applicazione hello toosee nel portale di Azure hello.
+6. In hello **Essentials** elenco a discesa, fare clic sul collegamento di gruppo di risorse hello. Si noti inoltre che app web hello è già connesso repository GitHub toohello in **progetto esterno**. 
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-3-portalresourcegroup.png)
-7. Nel pannello del gruppo di risorse si noterà che il gruppo include già due app Web e un database SQL.
+7. Nel Pannello di gruppo di risorse hello, si noti che esistono già due App web e un Database SQL nel gruppo di risorse hello.
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-4-portalresourcegroupclicked.png)
 
-Tutto ciò che si è appena visto in pochi minuti è un'applicazione di microservizi completamente distribuita, con tutti i componenti, le dipendenze, le impostazioni, il database e la pubblicazione continua configurati da un'orchestrazione automatizzata in Gestione risorse di Azure. Tutte le operazioni sono state eseguite da due elementi:
+Tutto ciò che si è visto solo in pochi minuti breve è un'applicazione di due-microservizio completamente distribuito, con tutti i componenti di hello, dipendenze, le impostazioni, database e la pubblicazione continua, impostare da un'orchestrazione automatizzata in Gestione risorse di Azure. Tutte le operazioni sono state eseguite da due elementi:
 
-* Il pulsante Deploy to Azure
-* Il file azuredeploy.json nella radice del repository
+* pulsante di Hello Distribuisci tooAzure
+* azuredeploy.JSON nella radice del repository hello
 
-È possibile distribuire la stessa applicazione decine, centinaia o migliaia di volte e avere ogni volta esattamente la stessa configurazione. La ripetibilità e la prevedibilità di questo approccio consentono di distribuire applicazioni su vasta scala in modo semplice e affidabile.
+È possibile distribuire l'applicazione stessa decine, centinaia o migliaia di volte e hello utilizzare la stessa configurazione ogni volta. la prevedibilità ripetibilità e hello Hello di questo approccio consente applicazioni a scalabilità elevata toodeploy con maggiore facilità e affidabilità.
 
 ## <a name="examine-or-edit-azuredeployjson"></a>Esaminare (o modificare) AZUREDEPLOY.JSON
-A questo punto si esaminerà come è stato configurato il repository GitHub. Si userà l'editor JSON incluso in Azure .NET SDK, quindi se [Azure .NET SDK 2.6](/downloads/)non è già installato, installarlo ora.
+Ora esaminiamo come repository di GitHub hello è stato impostato. Si utilizzerà editor JSON hello in hello Azure .NET SDK, pertanto se è stato ancora installato [Azure .NET SDK 2.6](/downloads/), farlo ora.
 
-1. Clonare il repository [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) con lo strumento git preferito. Nella schermata seguente questa operazione viene eseguita con Team Explorer in Visual Studio 2013.
+1. Hello clone [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) repository utilizzando lo strumento preferito git. Nella schermata di hello riportata di seguito, questa scelta in Team Explorer in Visual Studio 2013 hello.
    
    ![](./media/app-service-deploy-complex-application-predictably/examinejson-1-vsclone.png)
-2. Dalla radice del repository aprire azuredeploy.json in Visual Studio. Se il riquadro Struttura JSON non è visibile, è necessario installare Azure .NET SDK.
+2. Dalla radice del repository hello, aprire azuredeploy.json in Visual Studio. Se non viene visualizzato il riquadro di struttura JSON hello, è necessario tooinstall Azure .NET SDK.
    
    ![](./media/app-service-deploy-complex-application-predictably/examinejson-2-vsjsoneditor.png)
 
-Non verranno descritti tutti i dettagli del formato JSON, ma nella sezione [Altre risorse](#resources) sono disponibili collegamenti per l'apprendimento del linguaggio del modello di gruppo di risorse. In questa esercitazione verranno illustrate solo le interessanti funzionalità che possono semplificare le attività iniziali per creare un modello personalizzato per la distribuzione di app.
+È consapevole di non passare toodescribe ogni dettaglio del formato JSON hello ma hello [più risorse](#resources) sezione vengono forniti i collegamenti per l'apprendimento di linguaggio del modello gruppo di risorse hello. In questo caso, faccio clic tooshow hello interessanti funzionalità che consentono di iniziare a rendere il proprio modello personalizzato per la distribuzione di app.
 
-### <a name="parameters"></a>Parametri
-Nella sezione dei parametri è possibile osservare che la maggior parte di essi corrisponde all'input richiesto tramite il pulsante **Deploy to Azure** . Il sito aperto tramite il pulsante **Deploy to Azure** popola l'interfaccia utente di input usando i parametri definiti nel file azuredeploy.json. Questi parametri sono usati in tutte le definizioni di risorse, ad esempio nomi delle risorse, valori delle proprietà e così via.
+### <a name="parameters"></a>parameters
+Esaminiamo hello parametri sezione toosee che molti di questi parametri sono quali hello **distribuire tooAzure** pulsante richiede tooinput. sito Hello dietro hello **distribuire tooAzure** pulsante Popola hello input dell'interfaccia utente utilizzando i parametri di hello definiti nel azuredeploy.json. Questi parametri sono utilizzati in definizioni di risorse hello, ad esempio i nomi delle risorse, i valori delle proprietà e così via.
 
 ### <a name="resources"></a>Risorse
-Come si può vedere, nel nodo delle risorse sono definite 4 risorse di primo livello, quali un'istanza di SQL Server, un piano di servizio app e due app Web. 
+Nel nodo risorse hello, si noterà che le risorse di primo livello 4 vengono definite, tra cui un'istanza di SQL Server, un piano di servizio App e due le app web. 
 
 #### <a name="app-service-plan"></a>Piano di servizio app
-Si inizierà con una semplice risorsa a livello di radice in JSON. In Struttura JSON fare clic sul piano di servizio app denominato **[hostingPlanName]** per evidenziare il codice JSON corrispondente. 
+Iniziamo con una risorsa a livello di radice semplice in hello JSON. Selezionare il piano di servizio App hello denominato hello struttura JSON, **[hostingPlanName]** toohighlight hello codice JSON corrispondente. 
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-3-appserviceplan.png)
 
-Si noti che l'elemento `type` specifica la stringa per un piano di servizio app (che molto tempo fa era definito server farm), altri elementi e proprietà sono compilati con i parametri definiti nel file JSON e questa risorsa non include risorse annidate.
+Si noti che hello `type` elemento specifica la stringa hello per un piano di servizio App (è stata chiamata una server farm fa volta long, long) e altri elementi e le proprietà vengono compilate utilizzando parametri hello definiti nel file JSON hello e non dispone di questa risorsa le risorse annidate.
 
 > [!NOTE]
-> Notare anche che il valore `apiVersion` indica ad Azure quale versione dell'API REST usare con la definizione delle risorse JSON e può influire sulla formattazione della risorsa all'interno di `{}`. 
+> Si noti inoltre il valore di hello di `apiVersion` indica quale versione di definizione di risorsa JSON per la hello toouse hello API REST con e può influire sulle modalità di formattazione all'interno di hello risorse hello Azure `{}`. 
 > 
 > 
 
 #### <a name="sql-server"></a>SQL Server
-Fare quindi clic sulla risorsa di SQL Server denominata **SQLServer** in Struttura JSON.
+Successivamente, fare clic sulla risorsa di SQL Server hello denominata **SQLServer** in hello struttura JSON.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-4-sqlserver.png)
 
-Nel codice JSON evidenziato notare quando indicato di seguito:
+Hello nota seguente su hello evidenziato codice JSON:
 
-* Per usare i parametri, assicurarsi che le risorse create siano denominate e configurate in modo coerente tra di esse.
-* La risorsa SQLServer ha due risorse annidate, ognuna con un valore diverso per `type`.
-* Le risorse annidate in `“resources”: […]`, dove sono definite le regole di database e del firewall, includono un elemento `dependsOn` che specifica l'ID risorsa della risorsa SQLServer a livello di radice. Questo elemento indica a Gestione risorse di Azure che "prima di creare questa risorsa, deve esistere già l'altra risorsa e se l'altra risorsa è definita nel modello, dev'essere creata prima quella".
+* utilizzo di Hello dei parametri assicura che siano denominate risorse hello creato e configurate in modo che li rende più coerenti tra loro.
+* Hello risorse di SQL Server ha due risorse annidate, ognuno ha un valore diverso per `type`.
+* Hello annidati risorse all'interno di `“resources”: […]`, in cui sono definite database hello e regole del firewall hello, hanno un `dependsOn` elemento che specifica l'ID della risorsa di SQL Server a livello di radice di hello risorsa hello. In questo modo Azure Resource Manager, "prima di creare la risorsa, che deve essere già presente un'altra risorsa; e, se tale altra risorsa è definita nel modello di hello, quindi creare che uno prima di tutto".
   
   > [!NOTE]
-  > Per altre informazioni sull'uso della funzione `resourceId()`, vedere [Funzioni del modello di Azure Resource Manager](../azure-resource-manager/resource-group-template-functions-resource.md#resourceid).
+  > Per informazioni dettagliate su come hello toouse `resourceId()` funzione, vedere [funzioni di modello di gestione risorse di Azure](../azure-resource-manager/resource-group-template-functions-resource.md#resourceid).
   > 
   > 
-* L'elemento `dependsOn` indica a Gestione risorse di Azure quali risorse possono essere create in parallelo e quali devono essere create in sequenza. 
+* effetto di hello Hello `dependsOn` elemento è di che Gestione risorse di Azure può sapere quali risorse possono essere create in parallelo e quali risorse devono essere create in sequenza. 
 
 #### <a name="web-app"></a>App Web
-Si passerà ora alle app Web effettive, che sono più complesse. Fare clic sull'app Web [variables('apiSiteName')] in Struttura JSON per evidenziare il relativo codice JSON. Come si noterà, diventa tutto molto più interessante. A questo scopo, le funzionalità verranno descritte una per una:
+A questo punto, passiamo toohello effettivo App web, che sono più complesse. Fare clic su app web hello [variables('apiSiteName')] in hello struttura JSON toohighlight il codice JSON. Come si noterà, diventa tutto molto più interessante. A tale scopo, parlerò funzionalità hello uno alla volta:
 
 ##### <a name="root-resource"></a>Risorsa radice
-L'app Web dipende da due diverse risorse. Ciò significa che Gestione risorse di Azure creerà l'app Web solo dopo la creazione del piano di servizio app e dell'istanza di SQL Server.
+app web Hello dipende da due diverse risorse. Ciò significa che Gestione risorse di Azure consente di creare app web hello solo dopo che entrambi hello piano di servizio App e hello istanza di SQL Server vengono creati.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-5-webapproot.png)
 
 ##### <a name="app-settings"></a>Impostazioni app
-Le impostazioni dell'app vengono definite anche come risorsa annidata.
+le impostazioni dell'app Hello sono anche definite come una risorsa annidata.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-6-webappsettings.png)
 
-Nell'elemento `properties` per `config/appsettings` sono disponibili due impostazioni app nel formato `“<name>” : “<value>”`.
+In hello `properties` elemento per `config/appsettings`, si dispone di due impostazioni di app in formato hello `“<name>” : “<value>”`.
 
-* `PROJECT` è un' [impostazione KUDU](https://github.com/projectkudu/kudu/wiki/Customizing-deployments) che indica alla distribuzione di Azure quale progetto usare in una soluzione di Visual Studio con più progetti. Più avanti verrà illustrato come configurare il controllo del codice sorgente, ma poiché il codice di ToDoApp è una soluzione di Visual Studio con più progetti, questa impostazione è necessaria.
-* `clientUrl` è semplicemente un'impostazione app usata dal codice dell'applicazione.
+* `PROJECT`è un [impostazione KUDU](https://github.com/projectkudu/kudu/wiki/Customizing-deployments) distribuzione di Azure che indica quale toouse progetto in una soluzione di Visual Studio multiprogetto. Visualizzerà in un secondo momento come controllo del codice sorgente è configurato, ma poiché hello ToDoApp codice si trova in una soluzione di Visual Studio più progetti, è necessario che questa impostazione.
+* `clientUrl`è semplicemente un'app di cui l'impostazione di tale codice dell'applicazione hello Usa.
 
 ##### <a name="connection-strings"></a>Stringhe di connessione
-Le stringhe di connessione vengono definite anche come risorsa annidata.
+le stringhe di connessione Hello sono anche definite come una risorsa annidata.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-7-webappconnstr.png)
 
-Nell'elemento `properties` per `config/connectionstrings` ogni stringa di connessione è definita anche come coppia nome/valore con il formato specifico `“<name>” : {“value”: “…”, “type”: “…”}`. Per l'elemento `type` i valori possibili sono `MySql`, `SQLServer`, `SQLAzure` e `Custom`.
+In hello `properties` elemento per `config/connectionstrings`, ogni stringa di connessione è definita come una coppia nome-valore, con formato specifico di hello di `“<name>” : {“value”: “…”, “type”: “…”}`. Per hello `type` elemento, i valori possibili sono `MySql`, `SQLServer`, `SQLAzure`, e `Custom`.
 
 > [!TIP]
-> Per un elenco definitivo di tipi di stringhe di connessione, eseguire il comando seguente in Azure PowerShell: \[Enum]::GetNames("Microsoft.WindowsAzure.Commands.Utilities.Websites.Services.WebEntities.DatabaseType")
+> Per un elenco dei tipi di stringa di connessione hello definitivo, eseguire hello comando in Azure PowerShell seguente: \[Enum]::GetNames("Microsoft.WindowsAzure.Commands.Utilities.Websites.Services.WebEntities.DatabaseType")
 > 
 > 
 
 ##### <a name="source-control"></a>Controllo del codice sorgente
-Le impostazioni di controllo del codice sorgente vengono definite anche come risorsa annidata. Gestione risorse di Azure usa questa risorsa per configurare la pubblicazione continua (vedere più avanti l'avvertenza per `IsManualIntegration` ) e anche per l'avvio automatico della distribuzione del codice applicazione durante l'elaborazione del file JSON.
+le impostazioni di codice sorgente Hello sono anche definite come una risorsa annidata. Gestione risorse di Azure Usa questa risorsa tooconfigure continua la pubblicazione (vedere però `IsManualIntegration` in un secondo momento) e anche tookick la distribuzione di hello del codice dell'applicazione automaticamente durante l'elaborazione di hello del file JSON hello.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-8-webappsourcecontrol.png)
 
-`RepoUrl` e `branch` devono essere abbastanza intuitive e puntare al repository Git e al nome del ramo dal quale viene eseguita la pubblicazione. Anche in questo caso, sono definite dai parametri di input. 
+`RepoUrl`e `branch` deve essere molto intuitivo e deve puntare toohello Git repository e hello il nome di hello ramo toopublish da. Anche in questo caso, sono definite dai parametri di input. 
 
-Si noti che nell'elemento `dependsOn`, oltre alla risorsa app Web stessa, `sourcecontrols/web` dipende anche da `config/appsettings` e `config/connectionstrings`. Il motivo è che dopo la configurazione di `sourcecontrols/web` , il processo di distribuzione di Azure tenta automaticamente di distribuire, compilare e avviare il codice dell'applicazione. L'inserimento di questa dipendenza consente di assicurare l'accesso dell'applicazione alle impostazioni delle app e alle impostazioni di connessione necessarie prima di eseguire il codice dell'applicazione. 
+Nota in hello `dependsOn` elemento che, in aggiunta toohello web risorsa app stessa, `sourcecontrols/web` dipende anche dalla `config/appsettings` e `config/connectionstrings`. Infatti, una volta `sourcecontrols/web` è configurato, il processo di distribuzione di Azure hello tenterà automaticamente toodeploy, compilare e avviare il codice dell'applicazione hello. Pertanto, inserimento consente questa dipendenza è assicurarsi che tale applicazione hello con accesso toohello necessarie app impostazioni e le stringhe di connessione prima di eseguita il codice dell'applicazione hello. 
 
 > [!NOTE]
-> Notare anche che `IsManualIntegration` è impostata su `true`. Questa proprietà è necessaria nell'esercitazione, perché non si è effettivamente il proprietario del repository GitHub e quindi non è possibile concedere ad Azure l'autorizzazione per configurare la pubblicazione continua da [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp), ovvero eseguire il push degli aggiornamenti automatici del repository ad Azure. È possibile usare il valore predefinito `false` per il repository specificato solo se le credenziali GitHub del proprietario sono già state configurate nel [portale di Azure](https://portal.azure.com/) . In altre parole, se in precedenza è stato impostato il controllo del codice sorgente in GitHub o BitBucket per qualsiasi app nel [Portale di Azure](https://portal.azure.com/) usando le proprie credenziali utente, Azure memorizzerà le credenziali e le userà ogni volta che in seguito si distribuirà un'app da GitHub o BitBucket. Tuttavia, se questa operazione non è ancora stata eseguita, la distribuzione del modello JSON non riuscirà quando Gestione risorse di Azure tenta di configurare le impostazioni di controllo del codice sorgente dell'app Web, perché non può connettersi a GitHub o BitBucket con le credenziali del proprietario del repository.
+> Si noti inoltre che `IsManualIntegration` è troppo`true`. Questa proprietà è necessaria in questa esercitazione perché non sono effettivamente proprietari repository GitHub hello e pertanto non è effettivamente concedere autorizzazioni tooAzure tooconfigure la pubblicazione continua da [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) (ad esempio push automatico repository aggiornato tooAzure). È possibile utilizzare il valore di predefinito hello `false` per il repository specificato di hello solo se è stato configurato credenziali per GitHub del proprietario hello hello [portale di Azure](https://portal.azure.com/) prima. In altre parole, se è stata impostata una origine controllo tooGitHub o BitBucket per qualsiasi app in hello [portale Azure](https://portal.azure.com/) in precedenza, l'utente con credenziali, Azure verrà Memorizza credenziali hello e usarli ogni volta che si distribuisce un'app dello GitHub o BitBucket in hello future. Tuttavia, se questo non già, la distribuzione del modello JSON hello avrà esito negativo quando Gestione risorse di Azure tenta le impostazioni di codice sorgente dell'app di tooconfigure hello web perché Impossibile accedere a GitHub o BitBucket con credenziali del proprietario del repository hello.
 > 
 > 
 
-## <a name="compare-the-json-template-with-deployed-resource-group"></a>Confrontare il modello JSON con il gruppo di risorse distribuite
-Qui è possibile scorrere tutti i pannelli dell'app Web nel [portale di Azure](https://portal.azure.com/), ma esiste un altro strumento altrettanto, se non più, utile. Passare allo strumento di anteprima di [Esplora risorse di Azure](https://resources.azure.com) che fornisce una rappresentazione JSON di tutti i gruppi di risorse nelle proprie sottoscrizioni, così come esistono effettivamente nel back-end di Azure. È anche possibile vedere in che modo la gerarchia JSON del gruppo di risorse in Azure corrisponde alla gerarchia nel file modello usato per crearla.
+## <a name="compare-hello-json-template-with-deployed-resource-group"></a>Confrontare il modello JSON hello con gruppo di risorse distribuite
+In questo caso, è possibile passare attraverso pannelli tutti hello dell'app web in hello [portale Azure](https://portal.azure.com/), ma non esiste un altro strumento che come utile, se non è più. Passare toohello [Esplora inventario risorse di Azure](https://resources.azure.com) strumento di anteprima, che offre una rappresentazione JSON di tutti i gruppi di risorse hello le sottoscrizioni, in cui si trovano in realtà in hello Azure back-end. È possibile anche informazioni sulla gerarchia JSON del gruppo di risorse hello in Azure con gerarchia hello nel file di modello hello utilizzati toocreate.
 
-Ad esempio, se si passa allo strumento [Esplora risorse di Azure](https://resources.azure.com) e si espandono i nodi nello strumento, si vedranno il gruppo di risorse e le risorse a livello di radice raccolte nei rispettivi tipi di risorse.
+Ad esempio, quando passa toohello [Esplora inventario risorse di Azure](https://resources.azure.com) strumento ed espandere i nodi di hello in Esplora hello, è possibile visualizzare il gruppo di risorse di hello e le risorse a livello di radice hello che vengono raccolti con i relativi tipi di risorse corrispondente.
 
 ![](./media/app-service-deploy-complex-application-predictably/ARM-1-treeview.png)
 
-Se si esegue il drill-down fino a un'app Web, dovrebbero essere visibili i dettagli di configurazione dell'app Web analoghi alla schermata seguente:
+Se il drill-down tooa web app, dovrebbe essere in grado di toosee web app configurazione dettagli simili toohello seguente schermata:
 
 ![](./media/app-service-deploy-complex-application-predictably/ARM-2-jsonview.png)
 
-Anche in questo caso, le risorse annidate avranno una gerarchia molto simile a quelle nel file modello JSON e saranno visualizzate impostazioni app, stringhe di connessione e così via, adeguatamente riflesse nel riquadro JSON. L'assenza di impostazioni a questo punto può indicare un problema con il file JSON e può contribuire a risolvere i problemi del file modello JSON.
+Nuovamente, hello risorse annidate devono avere un toothose molto simili gerarchia nel file di modello JSON e dovrebbe essere impostazioni app hello, le stringhe di connessione e così via, adeguatamente riflesso nel riquadro di hello JSON. Hello l'assenza di impostazioni può indicare un problema con il file JSON e può consentire di risolvere il file di modello JSON.
 
-## <a name="deploy-the-resource-group-template-yourself"></a>Distribuire manualmente il modello di gruppo di risorse
-Il pulsante **Deploy to Azure** è molto utile, ma consente di distribuire il modello di gruppo di risorse in azuredeploy.json solo se è già stato effettuato il push di azuredeploy.json a GitHub. Azure .NET SDK fornisce anche gli strumenti per la distribuzione di qualsiasi file modello JSON direttamente dal computer locale. A questo scopo, eseguire la procedura seguente.
+## <a name="deploy-hello-resource-group-template-yourself"></a>Distribuire modello gruppo di risorse hello manualmente
+Hello **distribuire tooAzure** pulsante è molto utile, ma consente modello gruppo di risorse hello toodeploy in azuredeploy.json solo se si dispone già inserito azuredeploy.json tooGitHub. Hello Azure .NET SDK fornisce inoltre strumenti hello per si toodeploy qualsiasi file di modello JSON direttamente dal computer locale. toodo, questa procedura hello seguire seguente:
 
 1. In Visual Studio fare clic su **File** > **Nuovo** > **Progetto**.
 2. Fare clic su **Visual C#** > **Cloud** > **Gruppo di risorse di Azure**, quindi su **OK**.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-1-vsproject.png)
 3. In **Seleziona modello di Azure** selezionare **Modello vuoto** e fare clic su **OK**.
-4. Trascinare azuredeploy.json nella cartella **Modello** del nuovo progetto.
+4. Trascinare azuredeploy.json in hello **modello** cartella del nuovo progetto.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-2-copyjson.png)
-5. Da Esplora soluzioni aprire il file azuredeploy.json copiato.
-6. Ai fini di questa dimostrazione, si aggiungeranno al file JSON alcune risorse standard di Application Insights, facendo clic su **Aggiungi risorsa**. Se si è interessati solo alla distribuzione del file JSON, ignorare i passaggi relativi alla distribuzione.
+5. In Esplora soluzioni, aprire azuredeploy.json hello copiato.
+6. Solo per i migliori risultati hello di dimostrazione hello, aggiungere alcuni standard Application Insights tooour JSON file di risorse, fare clic su **Aggiungi risorsa**. Se si è interessati solo nella distribuzione di file JSON hello, ignorare i passaggi di distribuzione toohello.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-3-newresource.png)
 7. Selezionare **Application Insights per app Web**, assicurarsi che siano selezionati un piano di servizio app esistente e un'app Web e quindi fare clic su **Aggiungi**.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-4-newappinsight.png)
    
-   A questo punto saranno visualizzate diverse nuove risorse che, a seconda della risorsa e delle operazioni che esegue, presentano dipendenze dal piano di servizio app o dall'app Web. Queste risorse non sono abilitate dalla relativa definizione esistente, perciò si procederà alla modifica.
+   Sarà ora essere in grado di toosee diverse nuove risorse che, a seconda della risorsa hello e funzionalità, presentano dipendenze entrambi hello app web del piano o hello servizio App. Queste risorse non sono abilitate per la definizione esistente e sarà toochange che.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-5-appinsightresources.png)
-8. In Struttura JSON fare clic su **appInsights AutoScale** per evidenziare il relativo codice JSON. Questa è l'impostazione della scalabilità per il piano di servizio app.
-9. Nel codice JSON evidenziato individuare le proprietà `location` e `enabled` e impostarle come illustrato di seguito.
+8. Nella struttura JSON hello, fare clic su **appInsights scalabilità automatica** toohighlight il codice JSON. Si tratta di hello scalabilità impostazione per il piano di servizio App.
+9. Nel codice evidenziato di JSON hello, individuare hello `location` e `enabled` proprietà e impostarli come illustrato di seguito.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-6-autoscalesettings.png)
-10. In Struttura JSON fare clic su **CPUHigh appInsights** per evidenziare il relativo codice JSON. Si tratta di un avviso.
-11. Individuare le proprietà `location` e `isEnabled` e impostarle come illustrato di seguito. Eseguire la stessa operazione per gli altri tre avvisi (lampadine viola).
+10. Nella struttura JSON hello, fare clic su **CPUHigh appInsights** toohighlight il codice JSON. Si tratta di un avviso.
+11. Individuare hello `location` e `isEnabled` proprietà e impostarli come illustrato di seguito. Hello stesso per hello altri tre avvisi (lampadine viola).
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-7-alerts.png)
-12. A questo punto si è pronti per la distribuzione. Fare quindi clic con il pulsante destro del mouse sul progetto e scegliere **Deploy** > **Nuova distribuzione**.
+12. A questo punto si toodeploy pronto. Fare clic sul progetto hello e selezionare **Distribuisci** > **nuova distribuzione**.
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-8-newdeployment.png)
 13. Accedere al proprio account Azure, se non si è già connessi.
@@ -229,38 +229,38 @@ Il pulsante **Deploy to Azure** è molto utile, ma consente di distribuire il mo
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-9-deployconfig.png)
     
-    A questo punto si sarà in grado di modificare tutti i parametri definiti nel file modello in una tabella. I parametri che definiscono i valori predefiniti avranno già i relativi valori predefiniti e i parametri che definiscono un elenco di valori consentiti saranno visualizzati come elenchi a discesa.
+    Sarà ora in grado di tooedit tutti i parametri di hello è definiti nel file di modello hello in una tabella nice. I parametri che definiscono i valori predefiniti avranno già i relativi valori predefiniti e i parametri che definiscono un elenco di valori consentiti saranno visualizzati come elenchi a discesa.
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-10-parametereditor.png)
-15. Compilare tutti i parametri vuoti e usare l' [indirizzo del repository GitHub per ToDoApp](https://github.com/azure-appservice-samples/ToDoApp.git) in **repoUrl**. Fare quindi clic su **Salva**.
+15. Compilare tutti i parametri vuoto hello e utilizzare hello [indirizzo repository GitHub per ToDoApp](https://github.com/azure-appservice-samples/ToDoApp.git) in **URL repository**. Fare quindi clic su **Salva**.
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-11-parametereditorfilled.png)
     
     > [!NOTE]
-    > La scalabilità automatica è una funzionalità offerta nel livello **Standard** o superiore e gli avvisi a livello di piano sono funzionalità offerte nel livello **Basic** o superiore. Sarà necessario impostare il parametro **sku** su **Standard** o **Premium** per visualizzare tutte le nuove risorse di Application Insights evidenziate.
+    > La scalabilità automatica è una funzionalità disponibile in **Standard** livello o superiore, a livello di piano e gli avvisi sono funzionalità offerte da **base** livello o superiore, è necessario hello tooset **sku** parametro troppo**Standard** o **Premium** in ordine toosee tutte le nuove App Insights risorse chiara backup.
     > 
     > 
-16. Fare clic su **Distribuisci**. Se è stata selezionata l'opzione **Salva password**, la password verrà salvata nel file di parametri **come testo normale**. In caso contrario, verrà richiesto di immettere la password del database durante il processo di distribuzione.
+16. Fare clic su **Distribuisci**. Se si seleziona **salvare le password**, hello password verrà salvata nel file di parametro hello **in testo normale**. In caso contrario, verrà chiesto password del database hello tooinput durante il processo di distribuzione hello.
 
-La procedura è terminata. A questo punto basta passare al [portale di Azure](https://portal.azure.com/) e allo strumento [Esplora risorse di Azure](https://resources.azure.com) per visualizzare i nuovi avvisi e le impostazioni di scalabilità automatica aggiunte all'applicazione JSON distribuita.
+La procedura è terminata. Ora è sufficiente toogo toohello [portale Azure](https://portal.azure.com/) hello e [Esplora inventario risorse di Azure](https://resources.azure.com) toosee strumento hello nuovi avvisi e impostazioni di scalabilità automatica aggiunto tooyour JSON applicazione distribuita.
 
-I passaggi in questa sezione hanno eseguito principalmente le operazioni seguenti:
+I passaggi in questa sezione viene eseguita principalmente seguente hello:
 
-1. Preparazione del file modello
-2. Creazione di un file di parametri da usare con il file modello
-3. Distribuzione del file modello con il file di parametri
+1. File di modello hello preparata
+2. Creare un toogo di file di parametro con file di modello hello
+3. File di modello hello distribuito con il file di parametro hello
 
-L'ultimo passaggio viene eseguito facilmente da un cmdlet di PowerShell. Per vedere le operazioni eseguite da Visual Studio durante la distribuzione dell'applicazione, aprire Scripts\Deploy-AzureResourceGroup.ps1. In questo file è presente una quantità elevata di codice, ma verrà evidenziato solo tutto il codice pertinente e necessario per la distribuzione del file modello con il file di parametri.
+ultimo passaggio Hello avviene facilmente da un cmdlet di PowerShell. toosee cosa ha Visual Studio quando distribuito il AzureResourceGroup.ps1 dell'applicazione, aprire Scripts\Deploy. È una grande quantità di codice non esiste, ma aggiungo toohighlight tutto il codice pertinente hello toodeploy hello modello file con file di parametro hello è necessario.
 
 ![](./media/app-service-deploy-complex-application-predictably/deploy-12-powershellsnippet.png)
 
-L'ultimo cmdlet, `New-AzureResourceGroup`, è quello che esegue effettivamente l'azione. Tutto questo serve a dimostrare che con strumenti appropriati, distribuire l'applicazione cloud in modo prevedibile è relativamente semplice. Ogni volta che si esegue il cmdlet sullo stesso modello con lo stesso file di parametri si otterrà lo stesso risultato.
+Hello ultimo cmdlet, `New-AzureResourceGroup`, è hello che effettivamente esegue hello azione. Tutte queste deve dimostrare che, con l'aiuto di hello di strumenti, è relativamente semplice toodeploy tooyou l'applicazione del cloud in modo prevedibile. Ogni volta che si esegue il cmdlet di hello in hello stesso modello con hello stesso file di parametro, si userà tooget hello stesso risultato.
 
 ## <a name="summary"></a>Riepilogo
-In DevOps la ripetibilità e la prevedibilità sono fondamentali per la riuscita della distribuzione di un'applicazione su vasta scala costituita da microservizi. In questa esercitazione è stata distribuita in Azure un'applicazione con due microservizi come singolo gruppo di risorse usando il modello di Gestione risorse di Azure. È auspicabile che si siano acquisite le conoscenze necessarie per iniziare a convertire l'applicazione in Azure in un modello, in modo da poterne effettuare il provisioning e distribuirla in modo prevedibile. 
+DevOps, ripetibilità e la prevedibilità di distribuzione tooany le chiavi di un'applicazione a scalabilità elevata composta da microservizi. In questa esercitazione è stato distribuito un tooAzure applicazione due microservizio come un singolo gruppo di risorse utilizzando il modello di gestione risorse di Azure hello. Probabilmente, riceve hello Knowledge Base, è necessario in ordine toostart conversione dell'applicazione in Azure in un modello e può eseguire il provisioning e distribuirlo in modo prevedibile. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Scoprire come [applicare facilmente le metodologie Agile e la pubblicazione continua dell'applicazione di microservizi](app-service-agile-software-development.md) e le tecniche di distribuzione avanzata come [distribuzione di versioni di anteprima](app-service-web-test-in-production-controlled-test-flight.md).
+Scoprire come troppo[si applicano le metodologie agile e pubblicare l'applicazione di microservizi con facilità](app-service-agile-software-development.md) e tecniche di distribuzione come avanzate [anteprima distribuzione](app-service-web-test-in-production-controlled-test-flight.md) facilmente.
 
 <a name="resources"></a>
 

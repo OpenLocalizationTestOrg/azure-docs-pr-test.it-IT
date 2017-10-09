@@ -1,6 +1,6 @@
 ---
-title: Aggiungere notifiche push all'app Xamarin.Forms | Microsoft Docs
-description: Informazioni su come usare i servizi di Azure per inviare notifiche push multipiattaforma alle app Xamarin.Forms.
+title: app xamarin. Forms di aaaAdd push notifiche tooyour | Documenti Microsoft
+description: Informazioni su come toouse Azure servizi toosend multipiattaforma push notifiche tooyour xamarin. Forms app.
 services: app-service\mobile
 documentationcenter: xamarin
 author: ysxu
@@ -14,50 +14,50 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: yuaxu
-ms.openlocfilehash: 912367636f1b26b3b07fbd5fe3fe8ed053218fd5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9133a0b6dd99c01def525607c20ce5a9c19b9502
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-push-notifications-to-your-xamarinforms-app"></a>Aggiungere notifiche push all'app Xamarin.Forms
+# <a name="add-push-notifications-tooyour-xamarinforms-app"></a>Aggiungere app xamarin. Forms tooyour di notifiche push
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>Panoramica
-In questa esercitazione vengono aggiunte notifiche push a tutti i progetti creati nella [guida introduttiva per Xamarin.Forms](app-service-mobile-xamarin-forms-get-started.md), in modo che a ogni inserimento di record venga inviata una notifica push a tutti i client multipiattaforma.
+In questa esercitazione, aggiungere i progetti push notifiche tooall hello derivante da hello [avvio rapido di xamarin. Forms](app-service-mobile-xamarin-forms-get-started.md). Ciò significa che push viene inviata una notifica client multipiattaforma tooall ogni volta che viene inserito un record.
 
-Se non si usa il progetto server di avvio rapido scaricato, sarà necessario aggiungere il pacchetto di estensione di notifica push. Per altre informazioni, vedere [Usare l'SDK del server back-end .NET per App per dispositivi mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Se non si utilizza hello scaricato il progetto server di avvio rapido, si sarà necessario hello pacchetto estensione di notifica push. Per ulteriori informazioni, vedere [funziona con server di back-end .NET hello SDK per App mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per iOS sono necessari un dispositivo iOS fisico e un'[appartenenza all'Apple Developer Program](https://developer.apple.com/programs/ios/). [Il simulatore iOS non supporta le notifiche push](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html).
+Per iOS sono necessari un dispositivo iOS fisico e un'[appartenenza all'Apple Developer Program](https://developer.apple.com/programs/ios/). Hello [simulatore iOS non supporta le notifiche push](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html).
 
 ## <a name="configure-hub"></a>Configurare un hub di notifica
 [!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
 
-## <a name="update-the-server-project-to-send-push-notifications"></a>Aggiornare il progetto server per l'invio di notifiche push
+## <a name="update-hello-server-project-toosend-push-notifications"></a>Aggiornare le notifiche push di hello server progetto toosend
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## <a name="configure-and-run-the-android-project-optional"></a>Configurare ed eseguire il progetto Android (facoltativo)
-Completare questa sezione per abilitare le notifiche push per il progetto Xamarin.Forms Droid per Android.
+## <a name="configure-and-run-hello-android-project-optional"></a>Configurare ed eseguire progetto Android hello (facoltativo)
+Completare questa sezione tooenable le notifiche push per hello progetto Droid xamarin. Forms per Android.
 
 ### <a name="enable-firebase-cloud-messaging-fcm"></a>Abilitare Firebase Cloud Messaging (FCM)
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-### <a name="configure-the-mobile-apps-back-end-to-send-push-requests-by-using-fcm"></a>Configurare il back-end dell'app per dispositivi mobili per inviare richieste push usando FCM
+### <a name="configure-hello-mobile-apps-back-end-toosend-push-requests-by-using-fcm"></a>Configurare hello App per dispositivi mobili back-end toosend push richieste tramite FCM
 [!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
 
-### <a name="add-push-notifications-to-the-android-project"></a>Aggiungere notifiche push al progetto Android
-Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e codici al client per la registrazione in FCM, iscriversi alle notifiche push con l'Hub di notifica di Azure tramite il back-end dell'app per dispositivi mobili e ricevere notifiche.
+### <a name="add-push-notifications-toohello-android-project"></a>Aggiungi progetto Android toohello di notifiche push
+Con hello back-end configurato con FCM, è possibile aggiungere componenti e i codici tooregister client toohello con FCM. È anche possibile registrare le notifiche di push con hub di notifica di Azure tramite hello fine, indietro App per dispositivi mobili e ricevere le notifiche.
 
-1. Nel progetto **Droid** fare doppio clic sulla cartella **Components** (Componenti) e scegliere **Get More Components...** (Recupera altri componenti...). Cercare quindi il componente **Google Cloud Messaging Client** (Client Google Cloud Messaging) e aggiungerlo al progetto. Questo componente supporta le notifiche push per un progetto Xamarin Android.
-2. Aprire il file di progetto MainActivity.cs e aggiungere l'istruzione seguente all'inizio del file:
+1. In hello **Droid** del progetto, fare doppio clic su hello **componenti** cartella e fare clic su **ottenere più componenti...** . Cercare quindi hello **Google Cloud Messaging Client** componente e aggiungerlo toohello progetto. Questo componente supporta le notifiche push per un progetto Xamarin Android.
+2. Aprire il file di progetto Mainactivity hello e aggiungere hello seguente istruzione all'inizio di hello del file hello:
 
         using Gcm.Client;
-3. Aggiungere il codice seguente al metodo **OnCreate** dopo la chiamata a **LoadApplication**:
+3. Aggiungere i seguenti toohello codice hello **OnCreate** chiamata del metodo dopo hello troppo**LoadApplication**:
 
         try
         {
-            // Check to ensure everything's set up right
+            // Check tooensure everything's set up right
             GcmClient.CheckDevice(this);
             GcmClient.CheckManifest(this);
 
@@ -67,7 +67,7 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
         }
         catch (Java.Net.MalformedURLException)
         {
-            CreateAndShowDialog("There was an error creating the client. Verify the URL.", "Error");
+            CreateAndShowDialog("There was an error creating hello client. Verify hello URL.", "Error");
         }
         catch (Exception e)
         {
@@ -83,12 +83,12 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
             builder.SetTitle (title);
             builder.Create().Show ();
         }
-5. Aggiungere il codice seguente alla classe **MainActivity** :
+5. Aggiungere i seguenti toohello codice hello **MainActivity** classe:
 
         // Create a new instance field for this activity.
         static MainActivity instance = null;
 
-        // Return the current activity instance.
+        // Return hello current activity instance.
         public static MainActivity CurrentActivity
         {
             get
@@ -97,12 +97,12 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
             }
         }
 
-    Verrà esposta l'istanza corrente di **MainActivity**, in modo che sia possibile l'esecuzione nel thread principale dell'interfaccia utente.
-6. Inizializzare la variabile `instance` all'inizio del metodo **OnCreate**, come indicato di seguito.
+    Espone hello corrente **MainActivity** istanza, pertanto è possibile eseguire sul thread dell'interfaccia utente principale di hello.
+6. Inizializzare hello `instance` variabile all'inizio di hello di hello **OnCreate** (metodo), come indicato di seguito.
 
-        // Set the current instance of MainActivity.
+        // Set hello current instance of MainActivity.
         instance = this;
-7. Aggiungere un nuovo file di classe al progetto **Droid** denominato `GcmService.cs`, quindi assicurarsi che le istruzioni **using** seguenti siano presenti nella parte iniziale del file:
+7. Aggiungere un nuovo toohello di file di classe **Droid** progetto denominato `GcmService.cs`e che hello seguenti **utilizzando** istruzioni presenti nella parte superiore di hello del file hello:
 
         using Android.App;
         using Android.Content;
@@ -116,7 +116,7 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
         using System.Collections.Generic;
         using System.Diagnostics;
         using System.Text;
-8. Aggiungere le richieste di autorizzazione seguenti alla parte iniziale del file, dopo le istruzioni **using** e prima della dichiarazione **namespace**.
+8. Aggiungere hello seguente all'inizio di hello del file hello, le richieste di autorizzazione dopo hello **utilizzando** istruzioni e prima di hello **dello spazio dei nomi** dichiarazione.
 
         [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
         [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
@@ -125,7 +125,7 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
         [assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
         //GET_ACCOUNTS is only needed for android versions 4.0.3 and below
         [assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
-9. Aggiungere la definizione di classe seguente allo spazio dei nomi.
+9. Aggiungere hello seguente spazio dei nomi toohello definizione di classe.
 
        [BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
        [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE }, Categories = new string[] { "@PACKAGE_NAME@" })]
@@ -140,7 +140,7 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
    > Sostituire **<PROJECT_NUMBER>** con il numero di progetto annotato in precedenza.    
    >
    >
-10. Sostituire la classe **GcmService** vuota con il codice seguente, che usa il nuovo ricevitore di trasmissione:
+10. Sostituire hello vuoto **GcmService** classe con hello seguente di codice che utilizza ricevitore broadcast nuovo hello:
 
          [Service]
          public class GcmService : GcmServiceBase
@@ -150,7 +150,7 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
              public GcmService()
                  : base(PushHandlerBroadcastReceiver.SENDER_IDS){}
          }
-11. Aggiungere il codice seguente alla classe **GcmService** in modo da sostituire il gestore eventi **OnRegistered** e implementare un metodo **Register**.
+11. Aggiungere i seguenti toohello codice hello **GcmService** classe. Esegue l'override hello **OnRegistered** gestore eventi e implementa un **registrare** metodo.
 
         protected override void OnRegistered(Context context, string registrationId)
         {
@@ -184,8 +184,8 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
             }
         }
 
-    Si noti che questo codice usa il parametro `messageParam` nella registrazione del modello.
-12. Aggiungere il codice seguente che implementa **OnMessage**:
+    Si noti che questo codice Usa hello `messageParam` parametro nella registrazione del modello hello.
+12. Aggiungere hello seguente di codice che implementa **OnMessage**:
 
         protected override void OnMessage(Context context, Intent intent)
         {
@@ -199,7 +199,7 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
                     msg.AppendLine(key + "=" + intent.Extras.Get(key).ToString());
             }
 
-            //Store the message
+            //Store hello message
             var prefs = GetSharedPreferences(context.PackageName, FileCreationMode.Private);
             var edit = prefs.Edit();
             edit.PutString("last_msg", msg.ToString());
@@ -227,33 +227,33 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
             //Create notification
             var notificationManager = GetSystemService(Context.NotificationService) as NotificationManager;
 
-            //Create an intent to show ui
+            //Create an intent tooshow ui
             var uiIntent = new Intent(this, typeof(MainActivity));
 
             //Use Notification Builder
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-            //Create the notification
-            //we use the pending intent, passing our ui intent over which will get called
-            //when the notification is tapped.
+            //Create hello notification
+            //we use hello pending intent, passing our ui intent over which will get called
+            //when hello notification is tapped.
             var notification = builder.SetContentIntent(PendingIntent.GetActivity(this, 0, uiIntent, 0))
                     .SetSmallIcon(Android.Resource.Drawable.SymActionEmail)
                     .SetTicker(title)
                     .SetContentTitle(title)
                     .SetContentText(desc)
 
-                    //Set the notification sound
+                    //Set hello notification sound
                     .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
 
-                    //Auto cancel will remove the notification once the user touches it
+                    //Auto cancel will remove hello notification once hello user touches it
                     .SetAutoCancel(true).Build();
 
-            //Show the notification
+            //Show hello notification
             notificationManager.Notify(1, notification);
         }
 
-    Questa operazione consente di gestire le notifiche in ingresso e di inviarle alla gestione notifiche per la visualizzazione.
-13. **GcmServiceBase** richiede anche l'implementazione dei metodi gestore **OnUnRegistered** e **OnError**, come illustrato di seguito:
+    Questo gestisce le notifiche in arrivo e li invia toohello notification manager toobe visualizzato.
+13. **GcmServiceBase** richiede anche hello tooimplement **OnUnRegistered** e **OnError** metodi del gestore, che è possibile procedere come segue:
 
         protected override void OnUnRegistered(Context context, string registrationId)
         {
@@ -265,35 +265,35 @@ Dopo aver configurato il back-end con FCM, è possibile aggiungere componenti e 
             Log.Error("PushHandlerBroadcastReceiver", "GCM Error: " + errorId);
         }
 
-È ora possibile testare le notifiche push nell'app in esecuzione su un dispositivo Android o nell'emulatore.
+A questo punto, si test pronto le notifiche push hello app in esecuzione in un dispositivo Android o hello emulatore.
 
 ### <a name="test-push-notifications-in-your-android-app"></a>Testare le notifiche push nell'app Android
-I primi due passaggi sono necessari solo per i test eseguiti in un emulatore.
+Hello primi due passaggi sono necessari solo quando si verifica in un emulatore.
 
-1. Assicurarsi di distribuire o eseguire il debug su un dispositivo virtuale che ha le API Google impostate come destinazione, come illustrato di seguito nel gestore del dispositivo virtuale Android.
-2. Aggiungere un account Google al dispositivo Android facendo clic su **App** > **Impostazioni** > **Aggiunti account**. Seguire quindi le istruzioni per aggiungere un account Google esistente al dispositivo o per crearne uno nuovo.
-3. In Visual Studio o Xamarin Studio fare clic con il pulsante destro del mouse sul progetto **Droid** e scegliere **Imposta come progetto di avvio**.
-4. Fare clic su **Esegui** per creare il progetto e avviare l'app sul dispositivo Android o sull'emulatore.
-5. Nell'app digitare un'attività e fare clic sull'icona con il segno più (**+**).
+1. Assicurarsi che si sta distribuendo tooor debug in un dispositivo virtuale con Google APIs impostato come destinazione di hello, come illustrato di seguito nella console di gestione dispositivo virtuale Android hello.
+2. Aggiungere un dispositivo Android di Google account toohello facendo **app** > **impostazioni** > **aggiungere account**. Seguire quindi hello richieste tooadd un dispositivo di toohello account Google esistente o toocreate uno nuovo.
+3. In Visual Studio o Xamarin Studio, fare doppio clic su hello **Droid** sul progetto e scegliere **imposta come progetto di avvio**.
+4. Fare clic su **eseguire** toobuild hello progetto e avviare l'applicazione hello in un emulatore o il dispositivo Android.
+5. Nell'app hello, digitare un'attività e quindi fare clic su hello segno più (**+**) icona.
 6. Assicurarsi di ricevere una notifica quando viene aggiunto un elemento.
 
-## <a name="configure-and-run-the-ios-project-optional"></a>Configurare ed eseguire il progetto iOS (facoltativo)
-Questa sezione illustra l'esecuzione del progetto Xamarin iOS per dispositivi iOS. Se non si usano dispositivi iOS, è possibile ignorare questa sezione.
+## <a name="configure-and-run-hello-ios-project-optional"></a>Configurare ed eseguire un progetto iOS hello (facoltativo)
+In questa sezione è per l'esecuzione di progetto di hello Xamarin iOS per i dispositivi iOS. Se non si usano dispositivi iOS, è possibile ignorare questa sezione.
 
 [!INCLUDE [Enable Apple Push Notifications](../../includes/enable-apple-push-notifications.md)]
 
-#### <a name="configure-the-notification-hub-for-apns"></a>Configurare l'hub di notifica per APNS
+#### <a name="configure-hello-notification-hub-for-apns"></a>Configurazione dell'hub di notifica hello per servizio APN
 [!INCLUDE [app-service-mobile-apns-configure-push](../../includes/app-service-mobile-apns-configure-push.md)]
 
-In seguito verrà configurata l'impostazione di progetto iOS in Xamarin Studio o Visual Studio.
+Successivamente, configurare l'impostazione di progetto iOS hello in Xamarin Studio o Visual Studio.
 
 [!INCLUDE [app-service-mobile-xamarin-ios-configure-project](../../includes/app-service-mobile-xamarin-ios-configure-project.md)]
 
-#### <a name="add-push-notifications-to-your-ios-app"></a>Aggiungere notifiche push all'app iOS
-1. Nel progetto **iOS** aprire il file AppDelegate.cs e aggiungere l'istruzione seguente all'inizio del file di codice.
+#### <a name="add-push-notifications-tooyour-ios-app"></a>Aggiungere app per iOS tooyour le notifiche push
+1. In hello **iOS** del progetto, aprire appdelegate. cs e aggiungere hello top toohello istruzione hello del file di codice seguente.
 
         using Newtonsoft.Json.Linq;
-2. Nella classe **AppDelegate** aggiungere un override per l'evento **RegisteredForRemoteNotifications** per eseguire la registrazione per le notifiche:
+2. In hello **AppDelegate** classe, aggiungere una sostituzione per hello **RegisteredForRemoteNotifications** tooregister eventi per le notifiche:
 
         public override void RegisteredForRemoteNotifications(UIApplication application,
             NSData deviceToken)
@@ -310,7 +310,7 @@ In seguito verrà configurata l'impostazione di progetto iOS in Xamarin Studio o
             Push push = TodoItemManager.DefaultManager.CurrentClient.GetPush();
             push.RegisterAsync(deviceToken, templates);
         }
-3. In **AppDelegate** aggiungere anche l'override seguente per il gestore eventi **DidReceiveRemoteNotification**:
+3. In **AppDelegate**, aggiungere anche hello seguente override per hello **DidReceiveRemoteNotification** gestore eventi:
 
         public override void DidReceiveRemoteNotification(UIApplication application,
             NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
@@ -329,8 +329,8 @@ In seguito verrà configurata l'impostazione di progetto iOS in Xamarin Studio o
             }
         }
 
-    Questo metodo gestisce le notifiche in ingresso mentre l'applicazione è in esecuzione.
-4. Nella classe **AppDelegate** aggiungere il codice seguente al metodo **FinishedLaunching**:
+    Questo metodo gestisce le notifiche in ingresso durante l'esecuzione di app hello.
+4. In hello **AppDelegate** classe, aggiungere hello seguente codice toohello **FinishedLaunching** metodo:
 
         // Register for push notifications.
         var settings = UIUserNotificationSettings.GetSettingsForTypes(
@@ -344,30 +344,30 @@ In seguito verrà configurata l'impostazione di progetto iOS in Xamarin Studio o
 
     L'aggiunta di questo codice consente il supporto per le notifiche remote e richiede la registrazione push.
 
-L'app è ora aggiornata per il supporto delle notifiche push.
+L'app è notifiche push toosupport aggiornato.
 
 #### <a name="test-push-notifications-in-your-ios-app"></a>Testare le notifiche push nell'app iOS
-1. Fare clic con il pulsante destro del mouse sul progetto iOS e quindi scegliere **Imposta come progetto di avvio**.
-2. Scegliere **Esegui** o premere **F5** per compilare il progetto e avviare l'app in un dispositivo iOS e quindi fare clic su **OK** per accettare le notifiche push.
+1. Fare clic sul progetto iOS hello e fare clic su **imposta come progetto di avvio**.
+2. Hello premere **eseguire** pulsante o **F5** in Visual Studio toobuild hello progetto e avviare l'applicazione hello in un dispositivo iOS. Quindi fare clic su **OK** tooaccept le notifiche push.
 
    > [!NOTE]
-   > È necessario accettare le notifiche push in modo esplicito dall'app. Questa richiesta viene visualizzata solo la prima volta che si esegue l'app.
+   > È necessario accettare le notifiche push in modo esplicito dall'app. Questa richiesta si verifica solo hello prima volta che l'esecuzione applicazione hello.
    >
    >
-3. Nell'app digitare un'attività e fare clic sull'icona con il segno più (**+**).
-4. Verificare che venga ricevuta una notifica e quindi fare clic su **OK** per ignorarla.
+3. Nell'app hello, digitare un'attività e quindi fare clic su hello segno più (**+**) icona.
+4. Verificare che viene ricevuta una notifica e quindi fare clic su **OK** toodismiss hello notifica.
 
 ## <a name="configure-and-run-windows-projects-optional"></a>Configurare ed eseguire progetti Windows (facoltativo)
-Questa sezione illustra l'esecuzione dei progetti Xamarin.Forms WinApp e WinPhone81 per dispositivi Windows. Questa procedura supporta anche progetti per la piattaforma UWP (Universal Windows Platform). Se non si usano dispositivi Windows, è possibile ignorare questa sezione.
+In questa sezione è per l'esecuzione di xamarin. Forms WinApp e WinPhone81 progetti per dispositivi Windows hello. Questa procedura supporta anche progetti per la piattaforma UWP (Universal Windows Platform). Se non si usano dispositivi Windows, è possibile ignorare questa sezione.
 
 #### <a name="register-your-windows-app-for-push-notifications-with-windows-notification-service-wns"></a>Registrare l'app Windows per le notifiche push con il servizio di notifica Windows (WNS)
 [!INCLUDE [app-service-mobile-register-wns](../../includes/app-service-mobile-register-wns.md)]
 
-#### <a name="configure-the-notification-hub-for-wns"></a>Configurare l'hub di notifica per WNS
+#### <a name="configure-hello-notification-hub-for-wns"></a>Configurazione dell'hub di notifica hello per WNS
 [!INCLUDE [app-service-mobile-configure-wns](../../includes/app-service-mobile-configure-wns.md)]
 
-#### <a name="add-push-notifications-to-your-windows-app"></a>Aggiungere notifiche push all'app di Windows
-1. In Visual Studio aprire il file **App.xaml.cs** in un progetto Windows e aggiungere le istruzioni seguenti.
+#### <a name="add-push-notifications-tooyour-windows-app"></a>Aggiungere app di Windows tooyour le notifiche push
+1. In Visual Studio, aprire **App.xaml.cs** in un progetto e aggiungere hello seguendo le istruzioni.
 
         using Newtonsoft.Json.Linq;
         using Microsoft.WindowsAzure.MobileServices;
@@ -375,8 +375,8 @@ Questa sezione illustra l'esecuzione dei progetti Xamarin.Forms WinApp e WinPhon
         using Windows.Networking.PushNotifications;
         using <your_TodoItemManager_portable_class_namespace>;
 
-    Sostituire `<your_TodoItemManager_portable_class_namespace>` con lo spazio dei nomi del progetto portabile che contiene la classe `TodoItemManager`.
-2. Nel file App.xaml.cs aggiungere il metodo **InitNotificationsAsync** seguente:
+    Sostituire `<your_TodoItemManager_portable_class_namespace>` con spazio dei nomi hello del progetto portabile contenente hello `TodoItemManager` classe.
+2. In App.xaml.cs, aggiungere hello seguente **InitNotificationsAsync** metodo:
 
         private async Task InitNotificationsAsync()
         {
@@ -400,33 +400,33 @@ Questa sezione illustra l'esecuzione dei progetti Xamarin.Forms WinApp e WinPhon
                 .RegisterAsync(channel.Uri, templates);
         }
 
-    Questo metodo ottiene il canale per la notifica push e registra un modello per la ricezione di notifiche di modello dall'hub di notifica. A questo client verrà recapitata una notifica di modello che supporta *messageParam* .
-3. Nel file App.xaml.cs aggiornare la definizione del metodo **OnLaunched** del gestore eventi aggiungendo il modificatore `async` e quindi aggiungere la riga di codice seguente alla fine del metodo:
+    Questo metodo ottiene canale di notifica push di hello e registra le notifiche di modello tooreceive un modello da hub di notifica. Una notifica di modello che supporta *messageParam* verrà recapitato toothis client.
+3. In App.xaml.cs, aggiornare hello **OnLaunched** definizione di metodo di gestore eventi aggiungendo hello `async` modificatore. Aggiungere quindi hello successiva riga di codice alla fine di hello del metodo hello:
 
         await InitNotificationsAsync();
 
-    In questo modo è possibile garantire che la registrazione della notifica push venga creata o aggiornata a ogni avvio dell'app. È importante eseguire questa operazione per assicurare che il canale di notifica push WNS sia sempre attivo.  
-4. In Esplora soluzioni di Visual Studio aprire il file **Package.appxmanifest** e in **Notifiche** impostare **Avvisi popup supportati** su **Sì**.
-5. Compilare l'app e verificare che non siano presenti errori. A questo punto l'app client dovrebbe eseguire la registrazione per le notifiche di modello dal back-end dell'app per dispositivi mobili. Ripetere questa sezione per ogni progetto Windows nella soluzione.
+    Ciò garantisce che registrazione della notifica push hello viene creata o aggiornata ogni volta che viene avviata l'applicazione hello. È importante toodo questo tooguarantee che hello WNS push channel è sempre attivo.  
+4. In Esplora soluzioni per Visual Studio, aprire hello **package. appxmanifest** file e impostare **in grado di tipo avviso popup** troppo**Sì** in **notifiche**.
+5. Compilare l'applicazione hello e verificare che non siano presenti errori. L'applicazione client deve ora registrarsi per hello modello notifiche inviate dal hello che terminare nuovamente App per dispositivi mobili. Ripetere questa sezione per ogni progetto Windows nella soluzione.
 
 #### <a name="test-push-notifications-in-your-windows-app"></a>Testare le notifiche push nell'app di Windows
 1. In Visual Studio fare clic con il pulsante destro del mouse su un progetto Windows e quindi scegliere **Imposta come progetto di avvio**.
-2. Premere il pulsante **Esegui** per compilare il progetto e avviare l'app.
-3. Nell'app digitare un nome per un nuovo elemento todoitem, quindi fare clic sull'icona del segno più (**+**) per aggiungerlo.
-4. Assicurarsi di ricevere una notifica quando viene aggiunto l'elemento.
+2. Hello premere **eseguire** pulsante progetto hello toobuild e avviare l'applicazione hello.
+3. Nell'app hello, digitare un nome per un oggetto todoitem nuovo e quindi fare clic su hello segno più (**+**) tooadd icona è.
+4. Verificare che viene ricevuta una notifica quando viene aggiunto l'elemento hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Altre informazioni sulle notifiche push:
 
 * [Diagnose push notification issues](../notification-hubs/notification-hubs-push-notification-fixer.md)  
-  (Diagnosticare i problemi relativi alle notifiche push) Esistono varie ragioni per cui le notifiche possono essere eliminate o non giungere ai dispositivi. Questo argomento illustra come analizzare e capire la causa radice degli errori relativi alle notifiche push.
+  (Diagnosticare i problemi relativi alle notifiche push) Esistono varie ragioni per cui le notifiche possono essere eliminate o non giungere ai dispositivi. Questo argomento viene illustrato come tooanalyze e individuare la radice hello causa dell'assenza di errori di notifica push.
 
-È possibile anche proseguire con una delle esercitazioni seguenti:
+È anche possibile continuare su tooone di hello seguenti esercitazioni:
 
-* [Add authentication to your app ](app-service-mobile-xamarin-forms-get-started-users.md)  
-  (Aggiungere l'autenticazione all'app) Informazioni sull'autenticazione degli utenti dell'app con un provider di identità.
-* [Abilitare la sincronizzazione offline per l'app per dispositivi mobili Xamarin.Forms](app-service-mobile-xamarin-forms-get-started-offline-data.md)  
-  Informazioni su come aggiungere il supporto offline all'app usando il back-end di un'app per dispositivi mobili. Con la sincronizzazione offline è possibile interagire con un'app per dispositivi mobili &mdash;visualizzando, aggiungendo e modificando i dati&mdash; anche se non è disponibile una connessione di rete.
+* [Aggiungere app tooyour authentication](app-service-mobile-xamarin-forms-get-started-users.md)  
+  Informazioni su come gli utenti tooauthenticate dell'app con un provider di identità.
+* [Abilitare la sincronizzazione offline per l'app](app-service-mobile-xamarin-forms-get-started-offline-data.md)  
+  Informazioni su come tooadd supporto offline per l'app usando un App per dispositivi mobili back-end. Con la sincronizzazione offline è possibile interagire con un'app per dispositivi mobili &mdash;visualizzando, aggiungendo e modificando i dati&mdash; anche quando non è disponibile una connessione di rete.
 
 <!-- Images. -->
 

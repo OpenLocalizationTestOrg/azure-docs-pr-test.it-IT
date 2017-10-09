@@ -1,9 +1,9 @@
 
-1. Visitare il [portale di Azure]. Fare clic su **Esplora tutto** > **App per dispositivi mobili** > back-end appena creato. Nelle impostazioni dell'app per dispositivi mobili fare clic su **Avvio rapido** > **Android**. In **Configure your client application** (Configurare l'applicazione client) fare clic su **Scarica**. In questo modo, viene scaricato il progetto Android per un'app preconfigurata da connettere al back-end. 
-2. Aprire il progetto usando **Android Studio**, con **Import project (Eclipse ADT, Gradle, etc.)** (Importa progetto - Eclipse ADT, Gradle e così via). Assicurarsi di selezionare questa importazione per evitare eventuali errori JDK.
-3. Fare clic sul pulsante **Esegui ‘app’** per creare il progetto e avviare l'app nel simulatore Android.
-4. Nell'app digitare un testo significativo, ad esempio *Complete the tutorial* quindi fare clic sul pulsante ’Add’. Verrà inviata una richiesta POST al back-end di Azure distribuito in precedenza. Il back-end inserisce i dati della richiesta nella tabella SQL TodoItem e restituisce le informazioni sugli elementi appena archiviati all'app per dispositivi mobili. L'app per dispositivi mobili consente di visualizzare questi dati nell'elenco. 
+1. Visitare hello [portale Azure]. Fare clic su **Esplora tutto** > **App per dispositivi mobili** > hello back-end appena creato. Nelle impostazioni dell'app mobile hello, fare clic su **delle Guide rapide** > **Android)**. In **Configure your client application** (Configurare l'applicazione client) fare clic su **Scarica**. Consente di scaricare il progetto per un back-end tooyour tooconnect preconfigurata di app Android. 
+2. Hello aprirlo progetto utilizzando **Android Studio**tramite **Import project (Eclipse ADT, Gradle e così via)** . Assicurarsi di trovare questo tooavoid selezione importazione eventuali errori JDK.
+3. Hello premere **eseguire 'app'** pulsante progetto hello toobuild e avviare hello app nel simulatore Android hello.
+4. Nell'app hello, digitare un testo significativo, ad esempio *esercitazione hello completo* e quindi fare clic su pulsante 'Aggiungi' hello. Consente di inviare un toohello richiesta POST Azure back-end è distribuito in precedenza. gli inserimenti di back-end Hello dati richiesta hello in hello tabella TodoItem SQL e restituisce informazioni su hello appena archiviati gli elementi di eseguire il backup toohello app per dispositivi mobili. app per dispositivi mobili Hello consente di visualizzare questi dati nell'elenco di hello. 
    
     ![](./media/app-service-mobile-android-quickstart/mobile-quickstart-startup-android.png)
 
-[portale di Azure]: https://portal.azure.com/
+[portale Azure]: https://portal.azure.com/

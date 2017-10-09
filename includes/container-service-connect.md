@@ -1,25 +1,25 @@
-# <a name="make-a-remote-connection-to-a-kubernetes-dcos-or-docker-swarm-cluster"></a>Stabilire una connessione remota a un cluster Kubernetes, DC/OS o Docker Swarm
-Dopo aver creato un cluster del servizio contenitore di Azure è necessario connettersi al cluster per distribuire e gestire i carichi di lavoro. Questo articolo descrive come connettersi alla VM master del cluster da un computer remoto. 
+# <a name="make-a-remote-connection-tooa-kubernetes-dcos-or-docker-swarm-cluster"></a>Creare un cluster, Kubernetes, controller di dominio o del sistema operativo o Docker Swarm tooa connessione remota
+Dopo aver creato un cluster il servizio contenitore di Azure, è necessario tooconnect toohello cluster toodeploy e gestire i carichi di lavoro. In questo articolo viene descritto come tooconnect toohello master VM di hello cluster da un computer remoto. 
 
-I cluster Kubernetes, DC/OS e Docker Swarm forniscono localmente endpoint HTTP. Per Kubernetes, questo endpoint viene esposto in modo sicuro in Internet ed è possibile accedervi eseguendo lo strumento da riga di comando `kubectl` da qualsiasi computer connesso a Internet. 
+i cluster di Kubernetes, controller di dominio/OS e Docker Swarm Hello includono localmente gli endpoint HTTP. Per Kubernetes, questo endpoint viene esposto in modo sicuro su internet hello ed è possibile accedervi tramite l'esecuzione di hello `kubectl` strumento da riga di comando da qualsiasi computer connesso a internet. 
 
-Per DC/OS e Docker Swarm, è consigliabile creare un tunnel Secure Shell (SSH) dal computer locale al sistema di gestione cluster. Dopo la creazione del tunnel, è possibile eseguire comandi che usano gli endpoint HTTP e visualizzare l'interfaccia Web dell'agente di orchestrazione (se disponibile) dal sistema locale. 
+Per i controller di dominio/OS e Docker Swarm, è consigliabile creare un tunnel sicuro shell (SSH) dal sistema di Gestione cluster toohello computer locale. Dopo aver stabilito il tunnel hello, è possibile eseguire comandi che utilizzano gli endpoint HTTP hello e web dell'interfaccia di orchestrator hello visualizzazione (se disponibile) dal sistema locale. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 * Un cluster Kubernetes, DC/OS o Docker Swarm [distribuito nel servizio contenitore di Azure](../articles/container-service/dcos-swarm/container-service-deployment.md).
-* File di chiave privata SSH RSA, corrispondente alla chiave pubblica aggiunta al cluster durante la distribuzione. Questi comandi presuppongono che la chiave privata SSH si trovi in `$HOME/.ssh/id_rsa` nel computer. Per altre informazioni, vedere le istruzioni per [macOS e Linux](../articles/virtual-machines/linux/mac-create-ssh-keys.md) o per [Windows](../articles/virtual-machines/linux/ssh-from-windows.md). Se la connessione SSH non funziona, potrebbe essere necessario [reimpostare le chiavi SSH](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md).
+* SSH RSA file di chiave privata, corrispondente toohello pubblica toohello aggiunto chiave cluster durante la distribuzione. Questi comandi presuppongono la chiave SSH privata hello in `$HOME/.ssh/id_rsa` nel computer in uso. Per altre informazioni, vedere le istruzioni per [macOS e Linux](../articles/virtual-machines/linux/mac-create-ssh-keys.md) o per [Windows](../articles/virtual-machines/linux/ssh-from-windows.md). Se la connessione SSH hello non funziona, potrebbe essere troppo [reimpostare le chiavi SSH](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md).
 
-## <a name="connect-to-a-kubernetes-cluster"></a>Connettersi a un cluster Kubernetes
+## <a name="connect-tooa-kubernetes-cluster"></a>Connettere il cluster di Kubernetes tooa
 
-Seguire questi passaggi per installare e configurare `kubectl` nel computer.
+Seguire questi passaggi tooinstall e configurare `kubectl` nel computer in uso.
 
 > [!NOTE] 
-> In Linux o macOS potrebbe essere necessario eseguire i comandi in questa sezione usando `sudo`.
+> In Linux o Mac OS, potrebbe essere necessario comandi hello toorun in questa sezione utilizzando `sudo`.
 > 
 
 ### <a name="install-kubectl"></a>Installare kubectl
-Un modo per installare questo strumento è usare il comando `az acs kubernetes install-cli` dell'interfaccia della riga di comando di Azure 2.0. Per eseguire questo comando, assicurarsi di avere [installato](/cli/azure/install-az-cli2) la versione più recente dell'interfaccia della riga di comando di Azure 2.0 e di avere effettuato l'accesso a un account Azure (`az login`).
+Un modo tooinstall questo strumento è hello toouse `az acs kubernetes install-cli` comando CLI di Azure 2.0. toorun questo comando, assicurarsi che si [installato](/cli/azure/install-az-cli2) hello 2.0 CLI di Azure più recenti e registrato nell'account Azure tooan (`az login`).
 
 ```azurecli
 # Linux or macOS
@@ -29,87 +29,87 @@ az acs kubernetes install-cli [--install-location=/some/directory/kubectl]
 az acs kubernetes install-cli [--install-location=C:\some\directory\kubectl.exe]
 ```
 
-In alternativa, è possibile scaricare il client `kubectl` più recente direttamente dalla [pagina delle versioni di Kubernetes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md). Per altre informazioni, vedere [Installing and Setting up kubectl](https://kubernetes.io/docs/tasks/kubectl/install/) (Installazione e configurazione di kubectl).
+In alternativa, è possibile scaricare hello più recente `kubectl` client direttamente dal hello [Kubernetes rilascia pagina](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md). Per altre informazioni, vedere [Installing and Setting up kubectl](https://kubernetes.io/docs/tasks/kubectl/install/) (Installazione e configurazione di kubectl).
 
 ### <a name="download-cluster-credentials"></a>Scaricare le credenziali del cluster
-Dopo aver installato `kubectl`, è necessario copiare le credenziali del cluster nel computer. Un modo per ottenere le credenziali è con il comando `az acs kubernetes get-credentials`. Passare il nome del gruppo di risorse e il nome della risorsa del servizio contenitore:
+Dopo aver `kubectl` installato, è necessario il computer tooyour le credenziali di toocopy hello del cluster. Le credenziali di un modo toodo get hello è con hello `az acs kubernetes get-credentials` comando. Passare il nome di hello hello del gruppo di risorse e il nome di hello della risorsa del servizio contenitore hello:
 
 ```azurecli
 az acs kubernetes get-credentials --resource-group=<cluster-resource-group> --name=<cluster-name>
 ```
 
-Questo comando scarica le credenziali del cluster in `$HOME/.kube/config` dove si prevede che sia disponibile `kubectl`.
+Questo comando Scarica le credenziali del cluster hello troppo`$HOME/.kube/config`, dove `kubectl` si aspetta che lo trova toobe.
 
-In alternativa è possibile usare `scp` per copiare in modo sicuro i file da `$HOME/.kube/config` nella VM master al computer locale. Ad esempio:
+In alternativa, è possibile utilizzare `scp` toosecurely copia del file hello da `$HOME/.kube/config` computer hello master VM tooyour locale. ad esempio:
 
 ```bash
 mkdir $HOME/.kube
 scp azureuser@<master-dns-name>:.kube/config $HOME/.kube/config
 ```
 
-Se si esegue questa operazione in Windows, è possibile usare Bash su Ubuntu in Windows, il client di copia file sicura PuTTY o uno strumento simile.
+Se si utilizza Windows, è possibile utilizzare Bash in Ubuntu in Windows, i client per copie di file sicuri PuTTy hello o uno strumento simile.
 
 ### <a name="use-kubectl"></a>Usare kubectl
 
-Dopo aver configurato `kubectl`, testare la connessione elencando i nodi nel cluster:
+Dopo aver `kubectl` configurato, testare la connessione hello elencare hello i nodi del cluster:
 
 ```bash
 kubectl get nodes
 ```
 
-È possibile provare altri comandi `kubectl`. È ad esempio possibile visualizzare il dashboard Kubernetes. Eseguire prima un proxy per il server API Kubernetes:
+È possibile provare altri comandi `kubectl`. Ad esempio, è possibile visualizzare Kubernetes Dashboard hello. Eseguire prima di tutto un proxy server dell'API Kubernetes toohello:
 
 ```bash
 kubectl proxy
 ```
 
-L'interfaccia utente di Kubernetes è ora disponibile all'indirizzo: `http://localhost:8001/ui`.
+Hello UI Kubernetes è ora disponibile all'indirizzo: `http://localhost:8001/ui`.
 
-Per altre informazioni, vedere la [Guida rapida di Kubernetes](http://kubernetes.io/docs/user-guide/quick-start/).
+Per ulteriori informazioni, vedere hello [Kubernetes introduttiva](http://kubernetes.io/docs/user-guide/quick-start/).
 
-## <a name="connect-to-a-dcos-or-swarm-cluster"></a>Connettersi a un cluster DC/OS o Swarm
+## <a name="connect-tooa-dcos-or-swarm-cluster"></a>Connettere il cluster di controller di dominio o del sistema operativo o sciame tooa
 
-Per usare i cluster DC/OS e Docker Swarm distribuiti dal servizio contenitore di Azure, seguire queste istruzioni per creare un tunnel SSH dal sistema Linux, macOS o Windows locale. 
+hello toouse DC/OS e cluster Docker Swarm distribuiti dal servizio di contenitore di Azure, seguire questi toocreate istruzioni un tunnel SSH dal sistema di Windows, Linux o macOS locale. 
 
 > [!NOTE]
-> Queste istruzioni sono incentrate sul tunneling del traffico TCP su SSH. È anche possibile avviare una sessione SSH interattiva con uno dei sistemi interni di gestione dei cluster, ma questa opzione non è consigliabile. L'intervento diretto su un sistema interno comporta il rischio di modifiche accidentali alla configurazione.  
+> Queste istruzioni sono incentrate sul tunneling del traffico TCP su SSH. È anche possibile avviare una sessione interattiva di SSH con uno dei sistemi di gestione di hello interne al cluster, ma non ti consigliamo di questa. L'intervento diretto su un sistema interno comporta il rischio di modifiche accidentali alla configurazione.  
 > 
 
 ### <a name="create-an-ssh-tunnel-on-linux-or-macos"></a>Creare un tunnel SSH in Linux o macOS
-Quando si crea un tunnel SSH in Linux o macOS, prima di tutto è necessario individuare il nome DNS pubblico dei master con carico bilanciato. A tale scopo, seguire questa procedura:
+Hello prima cosa è quando si crea un tunnel SSH in Linux o macOS è toolocate hello nome DNS pubblico di schemi con bilanciamento del carico hello. A tale scopo, seguire questa procedura:
 
 
-1. Nel [portale di Azure](https://portal.azure.com) passare al gruppo di risorse che contiene il cluster del servizio contenitore. Espandere il gruppo di risorse in modo che vengano visualizzate tutte le risorse. 
+1. In hello [portale di Azure](https://portal.azure.com), selezionare il gruppo di risorse toohello che contiene il cluster del servizio contenitore. Espandere il gruppo di risorse hello in modo che ogni risorsa è visualizzata. 
 
-2. Fare clic sulla risorsa del **servizio contenitore** e quindi su **Panoramica**. Viene visualizzato il **Nome di dominio completo master** del cluster in **Informazioni di base**. Salvare questo nome per usarlo in seguito. 
+2. Fare clic su hello **servizio contenitore** risorse e fare clic su **Panoramica**. Hello **FQDN Master** di hello cluster viene visualizzato sotto **Essentials**. Salvare questo nome per usarlo in seguito. 
 
     ![Nome DNS pubblico](./media/container-service-connect/pubdns.png)
 
-    In alternativa, eseguire il comando `az acs show` nel servizio contenitore. Cercare la proprietà **Master Profile:fqdn** nell'output del comando.
+    In alternativa, eseguire hello `az acs show` comando sul servizio contenitore. Cercare hello **profilo Master: fqdn** proprietà nell'output del comando hello.
 
-3. Aprire ora una shell ed eseguire il comando `ssh` specificando i valori seguenti: 
+3. Aprire una shell ed eseguire hello `ssh` comando specificando hello seguenti valori: 
 
-    **LOCAL_PORT** è la porta TCP sul lato server del tunnel a cui connettersi. Per Swarm, impostare questo valore su 2375. Per DC/OS, impostare questo valore su 80. 
-    **REMOTE_PORT** è la porta dell'endpoint da esporre. Per Swarm, usare la porta 2375. Per DC/OS usare la porta 80.  
-    **USERNAME** è il nome utente specificato al momento della distribuzione del cluster.  
-    **DNSPREFIX** è il prefisso DNS specificato al momento della distribuzione del cluster.  
-    **REGION** è l'area in cui si trova il gruppo di risorse.  
-    **PATH_TO_PRIVATE_KEY** [FACOLTATIVO] è il percorso della chiave privata che corrisponde alla chiave pubblica specificata durante la creazione del cluster. Usare questa opzione con il flag `-i`.
+    **LOCAL_PORT** è sul lato servizio hello di hello tunnel tooconnect per la porta TCP hello. Per sciame, impostare questo too2375. Per i controller di dominio o del sistema operativo, impostare questo too80. 
+    **REMOTE_PORT** hello porta dell'endpoint hello che si desidera tooexpose. Per Swarm, usare la porta 2375. Per DC/OS usare la porta 80.  
+    **Nome utente** hello utente nome fornito al momento della distribuzione cluster hello.  
+    **DNSPREFIX** è un prefisso DNS hello fornito al momento della distribuzione cluster hello.  
+    **AREA** hello area in cui si trova il gruppo di risorse.  
+    **PATH_TO_PRIVATE_KEY** [facoltativo] è hello percorso toohello chiave privata corrispondente toohello chiave pubblica fornita al momento della creazione del cluster di hello. Utilizzare questa opzione con hello `-i` flag.
 
     ```bash
     ssh -fNL LOCAL_PORT:localhost:REMOTE_PORT -p 2200 [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com
     ```
   
   > [!NOTE]
-  > La porta di connessione SSH è la 2200, non la porta 22 standard. In un cluster con più di una VM master, si tratta della porta di connessione per la prima VM master.
+  > la porta di connessione SSH Hello è 2200 e non hello porta standard 22. In un cluster con più di una macchina virtuale master, si tratta di hello connessione porta toohello prima master macchina virtuale.
   > 
 
-  Il comando viene completato senza output.
+  comando Hello restituisce senza output.
 
-Vedere gli esempi per DC/OS e Swarm nelle sezioni seguenti.    
+Vedere esempi hello per controller di dominio/OS e sciame in hello le sezioni seguenti.    
 
 ### <a name="dcos-tunnel"></a>Tunnel DC/OS
-Per aprire un tunnel per endpoint DC/OS, eseguire un comando simile al seguente:
+tooopen un tunnel per gli endpoint di controller di dominio o del sistema operativo, eseguire un comando simile hello seguente:
 
 ```bash
 sudo ssh -fNL 80:localhost:80 -p 2200 azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com 
@@ -119,59 +119,59 @@ sudo ssh -fNL 80:localhost:80 -p 2200 azureuser@acsexamplemgmt.japaneast.cloudap
 > Verificare che non sia presente un altro processo locale che associa la porta 80. Se necessario, è possibile specificare una porta locale diversa dalla porta 80, ad esempio la porta 8080. È tuttavia possibile che alcuni collegamenti dell'interfaccia utente Web non funzionino quando si usa questa porta.
 >
 
-È ora possibile accedere agli endpoint DC/OS dal sistema locale tramite gli URL (presupponendo che la porta locale sia 80):
+È ora possibile accedere a endpoint di controller di dominio/OS hello dal sistema locale tramite hello URL (presupponendo che la porta locale 80) seguenti:
 
 * Controller di dominio/sistema operativo: `http://localhost:80/`
 * Marathon: `http://localhost:80/marathon`
 * Mesos: `http://localhost:80/mesos`
 
-In modo analogo, è possibile raggiungere le API REST per ogni applicazione attraverso questo tunnel.
+Analogamente, è possibile raggiungere le API rest hello per ogni applicazione attraverso questo tunnel.
 
 ### <a name="swarm-tunnel"></a>Tunnel Swarm
-Per aprire un tunnel per gli endpoint Swarm, eseguire un comando simile al seguente:
+tooopen un endpoint sciame toohello tunnel, eseguire un comando simile hello seguente:
 
 ```bash
 ssh -fNL 2375:localhost:2375 -p 2200 azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com
 ```
 > [!NOTE]
-> Verificare che non sia presente un altro processo locale che associa la porta 2375. Se il daemon Docker viene eseguito in locale, ad esempio, per impostazione predefinita usa la porta 2375. Se necessario, è possibile specificare una porta locale diversa dalla porta 2375.
+> Verificare che non sia presente un altro processo locale che associa la porta 2375. Ad esempio, se si esegue il daemon di Docker hello in locale, viene impostato dalla porta toouse predefinito 2375. Se necessario, è possibile specificare una porta locale diversa dalla porta 2375.
 >
 
-È ora possibile accedere al cluster Docker Swarm usando l'interfaccia della riga di comando di Docker nel sistema locale. Per istruzioni sull'installazione, vedere [Install Docker](https://docs.docker.com/engine/installation/) (Installare Docker).
+Ora è possibile accedere tramite l'interfaccia della riga di comando di Docker hello (Docker CLI) nel sistema locale cluster Docker Swarm hello. Per istruzioni sull'installazione, vedere [Install Docker](https://docs.docker.com/engine/installation/) (Installare Docker).
 
-Impostare la variabile di ambiente DOCKER_HOST sulla porta locale configurata per il tunnel. 
+Impostare il toohello variabile di ambiente DOCKER_HOST porta locale che è configurato per il tunnel hello. 
 
 ```bash
 export DOCKER_HOST=:2375
 ```
 
-Eseguire i comandi di Docker che effettuano il tunneling al cluster Docker Swarm, ad esempio:
+Eseguire i comandi di Docker cluster Docker Swarm toohello tunnel. ad esempio:
 
 ```bash
 docker info
 ```
 
 ### <a name="create-an-ssh-tunnel-on-windows"></a>Creare un tunnel SSH in Windows
-Esistono più opzioni per creare i tunnel SSH in Windows. Se si esegue Bash su Ubuntu in Windows o uno strumento simile, è possibile seguire le istruzioni relative al tunneling SSH riportate più indietro in questo articolo per macOS e Linux. Come alternativa in Windows, questa sezione descrive come usare PuTTY per creare il tunnel.
+Esistono più opzioni per creare i tunnel SSH in Windows. Se si eseguono Bash Ubuntu in Windows o uno strumento simile, è possibile seguire istruzioni tunneling SSH hello illustrate in precedenza in questo articolo per macOS e Linux. In alternativa, in Windows, questa sezione viene descritto come tunnel di hello toouse toocreate PuTTY.
 
-1. [Scaricare PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) nel sistema Windows.
+1. [Scaricare PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) tooyour sistema Windows.
 
-2. Eseguire l'applicazione.
+2. Eseguire un'applicazione hello.
 
-3. Immettere un nome host che include il nome utente dell'amministratore cluster e il nome DNS pubblico del primo master nel cluster. Il **nome host** è simile a `azureuser@PublicDNSName`. Immettere 2200 nel campo **Port**.
+3. Immettere un nome host è costituito da nome utente amministratore di cluster hello e nome DNS pubblico hello del database master prima di hello cluster hello. Hello **nome Host** simile troppo`azureuser@PublicDNSName`. Immettere 2200 per hello **porta**.
 
     ![Configurazione PuTTY 1](./media/container-service-connect/putty1.png)
 
-4. Selezionare **SSH > Auth**. Aggiungere un percorso al file di chiave privata (formato ppk) per l'autenticazione. È possibile usare uno strumento come [PuTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) per generare questo file dalla chiave SSH usata per creare il cluster.
+4. Selezionare **SSH > Auth**. Aggiungere un percorso tooyour file di chiave privata (formato *.ppk) per l'autenticazione. È possibile utilizzare uno strumento come [PuTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) toogenerate questo file hello del cluster di hello toocreate utilizzati chiave SSH.
 
     ![Configurazione PuTTY 2](./media/container-service-connect/putty2.png)
 
-5. Selezionare **SSH > Tunnels** (Tunnel) e configurare le porte inoltrate seguenti:
+5. Selezionare **SSH > tunnel** e configurare segue hello inoltrati porte:
 
     * **Source Port** (Porta di origine): usare 80 per DC/OS o 2375 per Swarm.
     * **Destination:** usare localhost:80 per il controller di dominio/sistema operativo o localhost:2375 per Swarm.
 
-    L'esempio seguente è configurato per DC/OS, ma avrà un aspetto simile anche per Docker Swarm.
+    Hello di esempio seguente è configurato per il controller di dominio o sistema operativo, ma sarà simile per Docker Swarm.
 
     > [!NOTE]
     > La porta 80 non deve essere usata quando si crea il tunnel.
@@ -179,24 +179,24 @@ Esistono più opzioni per creare i tunnel SSH in Windows. Se si esegue Bash su U
 
     ![Configurazione PuTTY 3](./media/container-service-connect/putty3.png)
 
-6. Al termine, fare clic su **Session > Save** (Sessione > Salva) per salvare la configurazione di connessione.
+6. Al termine, fare clic su **sessione > salvare** configurazione della connessione toosave hello.
 
-7. Fare clic su **Open** (Apri) per connettersi alla sessione PuTTY. Dopo la connessione, è possibile visualizzare la configurazione della porta nel registro eventi di PuTTY.
+7. tooconnect toohello PuTTY sessione, fare clic su **aprire**. Quando ci si connette, è possibile visualizzare la configurazione della porta hello nel registro eventi PuTTY hello.
 
     ![Log eventi di PuTTY](./media/container-service-connect/putty4.png)
 
-Dopo aver configurato il tunnel per DC/OS, è possibile accedere agli endpoint correlati all'indirizzo:
+Dopo aver configurato i tunnel hello per controller di dominio o del sistema operativo, è possibile accedere hello relativi endpoint:
 
 * Controller di dominio/sistema operativo: `http://localhost/`
 * Marathon: `http://localhost/marathon`
 * Mesos: `http://localhost/mesos`
 
-Dopo aver configurato il tunnel per Docker Swarm, aprire le impostazioni di Windows per configurare una variabile di ambiente di sistema denominata `DOCKER_HOST` con un valore di `:2375`. Sarà quindi possibile accedere al cluster Swarm dall'interfaccia della riga di comando di Docker.
+Dopo aver configurato i tunnel hello per Docker Swarm, aprire il tooconfigure le impostazioni di Windows una variabile di ambiente system denominata `DOCKER_HOST` con un valore di `:2375`. Quindi, è possibile accedere cluster sciame hello tramite hello CLI di Docker.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Distribuire e gestire contenitori nel cluster:
 
 * [Uso del servizio contenitore di Azure e Kubernetes](../articles/container-service/kubernetes/container-service-kubernetes-ui.md)
 * [Gestione di contenitori tramite l'API REST](../articles/container-service//dcos-swarm/container-service-mesos-marathon-rest.md)
-* [Gestione dei contenitori con Docker Swarm](../articles//container-service/dcos-swarm/container-service-docker-swarm.md)
+* [Utilizzo di hello Azure il servizio di contenitore e Docker Swarm](../articles//container-service/dcos-swarm/container-service-docker-swarm.md)
 

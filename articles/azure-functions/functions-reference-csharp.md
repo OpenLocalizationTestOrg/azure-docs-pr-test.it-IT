@@ -1,6 +1,6 @@
 ---
-title: Guida di riferimento a Funzioni di Azure per sviluppatori di script C# | Microsoft Docs
-description: Informazioni su come sviluppare Funzioni di Azure in C#.
+title: riferimenti per sviluppatori di funzioni di Script c# aaaAzure | Documenti Microsoft
+description: Comprendere come toodevelop le funzioni di Azure tramite c#.
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/07/2017
 ms.author: donnam
-ms.openlocfilehash: 83a351ce0279ada8ce7fe0513497349471334a86
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 27a8f4eb77497a373ff4031539e2e930585e48e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-c-script-developer-reference"></a>Guida di riferimento a Funzioni di Azure per sviluppatori di script C#
 > [!div class="op_single_selector"]
 > * [Script C#](functions-reference-csharp.md)
 > * [Script F#](functions-reference-fsharp.md)
-> * [Node.JS](functions-reference-node.md)
+> * [Node.js](functions-reference-node.md)
 >
 >
 
-L'esperienza con gli script C# per Funzioni di Azure si basa su Azure WebJobs SDK. I dati vengono trasmessi alla funzione C# tramite argomenti del metodo. I nomi di argomento sono specificati in `function.json`e sono disponibili nomi predefiniti per l'accesso a elementi quali il logger delle funzioni e i token di annullamento.
+Hello esperienza di script c# per le funzioni di Azure si basa su hello Azure WebJobs SDK. I dati vengono trasmessi alla funzione C# tramite argomenti del metodo. I nomi di argomento specificati `function.json`, e non vi sono nomi predefiniti per l'accesso alle operazioni quali hello funzione logger e token di annullamento.
 
-Questo articolo presuppone che l'utente abbia già letto [Guida di riferimento per gli sviluppatori di Funzioni di Azure](functions-reference.md).
+Questo articolo si presuppone che sia già stata letta hello [di riferimento per sviluppatori Azure funzioni](functions-reference.md).
 
 Per informazioni sull'uso delle librerie di classi di C#, vedere [Using .NET class libraries with Azure Functions](functions-dotnet-class-library.md) (Usare le librerie di classi di .NET con Funzioni di Azure).
 
 ## <a name="how-csx-works"></a>Funzionamento di CSX
-Il formato `.csx` consente di scrivere meno "boilerplate" e di concentrarsi solo sulla scrittura di una funzione C#. Includere tutti i riferimenti ad assembly e gli spazi dei nomi all'inizio del file come di consueto. Anziché eseguire il wrapping di tutti gli elementi in un spazio dei nomi e classe, definire semplicemente un metodo `Run`. Se è necessario includere classi, ad esempio per definire oggetti POCO (Plain Old CLR Object), si può includere una classe nello stesso file.   
+Hello `.csx` formato consente toowrite meno "standard" e lo stato attivo sulla scrittura solo una funzione c#. Includere tutti i riferimenti agli assembly e spazi dei nomi all'inizio di hello del file hello come di consueto. Anziché eseguire il wrapping di tutti gli elementi in un spazio dei nomi e classe, definire semplicemente un metodo `Run`. Se è necessario tooinclude tutte le classi, per gli oggetti vecchio oggetto CLR Object (POCO), è possibile includere una classe all'interno di istanza toodefine normale hello stesso file.   
 
-## <a name="binding-to-arguments"></a>Associazione agli argomenti
-I vari binding sono associati a una funzione C# tramite la proprietà `name` nella configurazione di *function.json*. Ogni associazione ha i propri tipi supportati; ad esempio un trigger di BLOB può supportare una stringa, un POCO o un CloudBlockBlob. I tipi supportati sono documentati negli argomenti di riferimento per ogni associazione. In un oggetto POCO devono essere definiti un metodo Get e un metodo Set per ogni proprietà.
+## <a name="binding-tooarguments"></a>Associazione tooarguments
+diverse associazioni Hello sono funzione associata tooa c# tramite hello `name` proprietà hello *function.json* configurazione. Ogni associazione ha i propri tipi supportati; ad esempio un trigger di BLOB può supportare una stringa, un POCO o un CloudBlockBlob. tipi supportato Hello sono documentati nella Guida di riferimento per ogni associazione hello. In un oggetto POCO devono essere definiti un metodo Get e un metodo Set per ogni proprietà.
 
 ```csharp
 public static void Run(string myBlob, out MyClass myQueueItem)
@@ -59,7 +59,7 @@ public class MyClass
 
 ## <a name="using-method-return-value-for-output-binding"></a>Uso del valore restituito del metodo per l'associazione di output
 
-È possibile usare un valore restituito del metodo per un'associazione di output, usando il nome `$return` in *function.json*:
+È possibile utilizzare un valore restituito del metodo per un'associazione di output, utilizzando nome hello `$return` in *function.json*:
 
 ```json
 {
@@ -80,7 +80,7 @@ public static string Run(string input, TraceWriter log)
 
 ## <a name="writing-multiple-output-values"></a>Scrittura di più valori di output
 
-Per scrivere più valori in un'associazione di output, usare i tipi [ `ICollector` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) o [ `IAsyncCollector` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs). Questi tipi sono raccolte di sola scrittura che vengono scritte nell'associazione di output durante il completamento del metodo.
+toowrite tooan di più valori di output di associazione, utilizzare hello [ `ICollector` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) o [ `IAsyncCollector` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) tipi. Questi tipi sono raccolte di sola scrittura vengono scritta toohello associazione di output quando hello metodo viene completato.
 
 Questo esempio scrive più messaggi in coda usando `ICollector`:
 
@@ -93,9 +93,9 @@ public static void Run(ICollector<string> myQueueItem, TraceWriter log)
 ```
 
 ## <a name="logging"></a>Registrazione
-Per registrare l'output nei log in streaming in C#, includere un argomento di tipo `TraceWriter`. È consigliabile denominarlo `log`. Evitare di usare `Console.Write` in Funzioni di Azure. 
+toolog output dei log in streaming tooyour in c#, includere un argomento di tipo `TraceWriter`. È consigliabile denominarlo `log`. Evitare di usare `Console.Write` in Funzioni di Azure. 
 
-`TraceWriter` è definito in [Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/TraceWriter.cs). Il livello di registrazione per `TraceWriter` può essere configurato in [host\.json].
+`TraceWriter`è definito in hello [Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/TraceWriter.cs). livello di log di Hello `TraceWriter` possono essere configurate in [host\.json].
 
 ```csharp
 public static void Run(string myBlob, TraceWriter log)
@@ -105,7 +105,7 @@ public static void Run(string myBlob, TraceWriter log)
 ```
 
 ## <a name="async"></a>Async
-Per rendere una funzione asincrona, usare la parola chiave `async` e restituire un oggetto `Task`.
+toomake una funzione asincrona, utilizzare hello `async` (parola chiave) e restituire un `Task` oggetto.
 
 ```csharp
 public async static Task ProcessQueueMessageAsync(
@@ -118,7 +118,7 @@ public async static Task ProcessQueueMessageAsync(
 ```
 
 ## <a name="cancellation-token"></a>Token di annullamento
-Alcune operazioni richiedono l'arresto normale. Mentre è sempre preferibile scrivere il codice per la gestione degli arresti anomali, per gestire le richieste di arresto normale si definisce un argomento tipizzato [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx).  È fornito un `CancellationToken` per segnalare che viene avviato un arresto dell'host.
+Alcune operazioni richiedono l'arresto normale. Mentre è sempre codice toowrite più in grado di gestire un arresto anomalo, nei casi in cui si desidera che le richieste di arresto normale toohandle, definire un [ `CancellationToken` ](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) digitato l'argomento.  Oggetto `CancellationToken` viene fornito toosignal che viene attivato un arresto dell'host.
 
 ```csharp
 public async static Task ProcessQueueMessageAsyncCancellationToken(
@@ -132,7 +132,7 @@ public async static Task ProcessQueueMessageAsyncCancellationToken(
 ```
 
 ## <a name="importing-namespaces"></a>Importazione di spazi dei nomi
-Se è necessario importare spazi dei nomi, è possibile farlo come al solito con la clausola `using` .
+Se è necessario tooimport gli spazi dei nomi, è possibile utilizzare come di consueto, hello `using` clausola.
 
 ```csharp
 using System.Net;
@@ -141,7 +141,7 @@ using System.Threading.Tasks;
 public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
-Gli spazi dei nomi seguenti vengono importati automaticamente e sono quindi facoltativi:
+Hello seguenti spazi dei nomi vengono importati automaticamente e sono pertanto facoltativi:
 
 * `System`
 * `System.Collections.Generic`
@@ -153,7 +153,7 @@ Gli spazi dei nomi seguenti vengono importati automaticamente e sono quindi faco
 * `Microsoft.Azure.WebJobs.Host`
 
 ## <a name="referencing-external-assemblies"></a>Riferimento ad assembly esterni
-Per gli assembly di framework aggiungere riferimenti usando la direttiva `#r "AssemblyName"` .
+Per gli assembly di framework, aggiungere i riferimenti utilizzando hello `#r "AssemblyName"` direttiva.
 
 ```csharp
 #r "System.Web.Http"
@@ -165,7 +165,7 @@ using System.Threading.Tasks;
 public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
-Gli assembly seguenti vengono aggiunti automaticamente dall'ambiente di hosting di Funzioni di Azure:
+Hello agli assembly seguenti vengono aggiunti automaticamente dalle funzioni di Azure hello ambiente di hosting:
 
 * `mscorlib`
 * `System`
@@ -178,7 +178,7 @@ Gli assembly seguenti vengono aggiunti automaticamente dall'ambiente di hosting 
 * `System.Web.Http`
 * `System.Net.Http.Formatting`
 
-È possibile fare riferimento agli assembly seguenti con il nome semplice (ad esempio, `#r "AssemblyName"`):
+Hello agli assembly seguenti possono fare riferimento nome semplice (ad esempio, `#r "AssemblyName"`):
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
@@ -189,18 +189,18 @@ Gli assembly seguenti vengono aggiunti automaticamente dall'ambiente di hosting 
 
 ## <a name="referencing-custom-assemblies"></a>Fare riferimento ad assembly personalizzati
 
-Per fare riferimento a un assembly personalizzato, è possibile usare un assembly *condiviso* o un assembly *privato*:
-- Gli assembly condivisi sono condivisi da tutte le funzioni all'interno di un'app di funzione. Per fare riferimento a un assembly personalizzato, caricare l'assembly nell'app di funzione, ad esempio una cartella `bin` nella radice dell'app per le funzioni. 
-- Gli assembly privati fanno parte del contesto di una funzione specificata e supportano il caricamento laterale di versioni diverse. Gli assembly privati devono essere caricati in una cartella `bin` nella directory di funzione. Fare riferimento mediante il nome del file, ad esempio `#r "MyAssembly.dll"`. 
+tooreference un assembly personalizzato, è possibile utilizzare un *condivisa* assembly o un *privata* assembly:
+- Gli assembly condivisi sono condivisi da tutte le funzioni all'interno di un'app di funzione. tooreference un assembly personalizzato, caricare hello assembly tooyour funzione app, ad esempio un `bin` cartella nella radice di app di funzione hello. 
+- Gli assembly privati fanno parte del contesto di una funzione specificata e supportano il caricamento laterale di versioni diverse. Assembly privati devono essere caricati un `bin` cartella nella directory di funzione hello. Riferimento utilizzando come nome del file hello `#r "MyAssembly.dll"`. 
 
-Per informazioni su come caricare i file nella cartella della funzione vedere la sezione seguente sulla gestione dei pacchetti.
+Per informazioni sul funzionamento dei file di cartella funzione tooyour tooupload, vedere hello seguente sezione gestione dei pacchetti.
 
 ### <a name="watched-directories"></a>Directory controllate
 
-La directory che contiene il file di script della funzione viene controllata automaticamente per le modifiche agli assembly. Per controllare le modifiche agli assembly in altre directory, aggiungerle all'elenco `watchDirectories` in [host\.json].
+directory di Hello che contiene i file di script di funzione hello viene controllata automaticamente tooassemblies le modifiche. toowatch per la modifica di assembly in altre directory, aggiungere toohello `watchDirectories` nell'elenco [host\.json].
 
 ## <a name="using-nuget-packages"></a>Uso dei pacchetti NuGet
-Per usare i pacchetti NuGet in una funzione C#, caricare un file *project.json* nella cartella della funzione nel file system dell'app per le funzioni. Di seguito è riportato un esempio di file *project.json* che aggiunge un riferimento a Microsoft.ProjectOxford.Face versione 1.1.0:
+pacchetti di NuGet toouse in una funzione c#, caricare un *Project* cartella toohello della funzione di file nel sistema di file dell'app di funzione hello. Di seguito è riportato un esempio *Project* file che si aggiunge una riferimento tooMicrosoft.ProjectOxford.Face versione 1.1.0:
 
 ```json
 {
@@ -214,18 +214,18 @@ Per usare i pacchetti NuGet in una funzione C#, caricare un file *project.json* 
 }
 ```
 
-Poiché è supportato solo .NET Framework 4.6, verificare che nel file *project.json* sia specificato `net46` come illustrato qui.
+Solo hello .NET Framework 4.6 è supportato, quindi assicurarsi che il *Project* file specifica `net46` come illustrato di seguito.
 
-Quando si carica un file *project.json* , il runtime ottiene i pacchetti e aggiunge automaticamente riferimenti agli assembly dei pacchetti. Non è necessario aggiungere direttive `#r "AssemblyName"` . Per usare i tipi definiti nei pacchetti NuGet è sufficiente aggiungere le istruzioni `using` necessarie al file *run.csx* 
+Quando si carica un *Project* file, recupera i pacchetti hello hello runtime e aggiunge automaticamente gli assembly di riferimenti toohello pacchetto. Non è necessario tooadd `#r "AssemblyName"` direttive. tipi di hello toouse definiti in pacchetti NuGet hello, aggiungere hello necessario `using` istruzioni tooyour *run.csx* file 
 
-Nel runtime di Funzioni NuGet ripristina le operazioni confrontando `project.json` e `project.lock.json`. Se gli indicatori di data e ora dei file **non** corrispondono, NuGet esegue un ripristino e aggiorna i pacchetti. In caso contrario, NuGet **non** esegue alcun ripristino. Pertanto, `project.lock.json` non deve essere distribuito, in quanto induce NuGet a saltare il ripristino del pacchetto. Per evitare la distribuzione del file di blocco, aggiungere `project.lock.json` al `.gitignore` file.
+In fase di esecuzione funzioni hello ripristino NuGet funziona confrontando `project.json` e `project.lock.json`. Se gli indicatori di data e ora del file hello hello **non** viene eseguito un ripristino NuGet di corrispondenza, e download NuGet pacchetti di aggiornamento. Tuttavia, se hello timbri data e ora del file hello **si** corrispondenza, NuGet non esegue un ripristino. Pertanto, `project.lock.json` non devono essere distribuiti come fa ripristino del pacchetto NuGet tooskip. distribuzione di blocco hello tooavoid file, aggiungere hello `project.lock.json` toohello `.gitignore` file.
 
-Per usare un feed NuGet personalizzato, specificare il feed in un *Nuget.Config* nella radice dell'app per le funzioni. Per altre informazioni, vedere [Configuring NuGet behavior](/nuget/consume-packages/configuring-nuget-behavior) (Configurazione del comportamento di NuGet).
+toouse un feed NuGet personalizzato, specificare hello feed in un *NuGet* file nella directory principale dell'App di funzione hello. Per altre informazioni, vedere [Configuring NuGet behavior](/nuget/consume-packages/configuring-nuget-behavior) (Configurazione del comportamento di NuGet).
 
 ### <a name="using-a-projectjson-file"></a>Uso di un file project.json
-1. Aprire la funzione nel portale di Azure. La scheda dei log mostra l'output di installazione del pacchetto.
-2. Per caricare un file project.json, usare uno dei metodi descritti nella sezione [Come aggiornare i file delle app per le funzioni](functions-reference.md#fileupdate) dell'argomento Guida di riferimento per gli sviluppatori di Funzioni di Azure.
-3. Dopo il caricamento del file *project.json* , l'output visualizzato nel log in streaming della funzione è simile all'esempio seguente:
+1. Aprire la funzione hello in hello portale di Azure. Hello registra scheda Visualizza hello pacchetto installazione l'output.
+2. tooupload un file Project JSON, utilizzare uno dei metodi hello descritti in hello [funzionamento di file dell'app tooupdate](functions-reference.md#fileupdate) nell'argomento di riferimento per sviluppatori di Azure funzioni hello.
+3. Dopo aver hello *Project* file viene caricato, viene visualizzato l'output come hello nella funzione di esempio seguente del flusso di log:
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -245,7 +245,7 @@ Per usare un feed NuGet personalizzato, specificare il feed in un *Nuget.Config*
 ```
 
 ## <a name="environment-variables"></a>Variabili di ambiente
-Per ottenere una variabile di ambiente o un valore di impostazione dell'app, usare `System.Environment.GetEnvironmentVariable`come illustrato nell'esempio di codice seguente:
+tooget una variabile di ambiente o un valore di impostazione di app, utilizzare `System.Environment.GetEnvironmentVariable`, come illustrato nell'esempio di codice seguente hello:
 
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log)
@@ -263,7 +263,7 @@ public static string GetEnvironmentVariable(string name)
 ```
 
 ## <a name="reusing-csx-code"></a>Riutilizzo del codice CSX
-È possibile usare classi e metodi definiti in altri file con estensione *.csx* nel file *run.csx*. A questo scopo, usare direttive `#load` nel file *run.csx*. Nell'esempio seguente, una routine di registrazione denominata `MyLogger` viene condivisa in *myLogger.csx* e caricata in *run.csx* usando la direttiva `#load`:
+È possibile usare classi e metodi definiti in altri file con estensione *.csx* nel file *run.csx*. toodo utilizzati, `#load` direttive il *run.csx* file. Nell'esempio seguente di hello, una routine di registrazione è denominato `MyLogger` è condiviso in *myLogger.csx* e caricati in *run.csx* utilizzando hello `#load` direttiva:
 
 Esempio di *run.csx*:
 
@@ -286,7 +286,7 @@ public static void MyLogger(TraceWriter log, string logtext)
 }
 ```
 
-L'uso di un file *csx* condiviso è una prassi comune quando si vuole tipizzare fortemente gli argomenti tra le funzioni usando un oggetto POCO. Nell'esempio semplificato seguente, un trigger HTTP e un trigger della coda condividono un oggetto POCO denominato `Order` per tipizzare fortemente i dati dell'ordine:
+Utilizzando un oggetto condiviso *csx* è un modello comune quando si desidera toostrongly digitare gli argomenti tra le funzioni di utilizzo di un oggetto POCO. In hello semplificata di esempio seguente, un trigger HTTP e i trigger di coda condividono un oggetto POCO denominato `Order` dati degli ordini toostrongly tipo hello:
 
 File *run.csx* di esempio per il trigger HTTP:
 
@@ -299,7 +299,7 @@ public static async Task<HttpResponseMessage> Run(Order req, IAsyncCollector<Ord
 {
     log.Info("C# HTTP trigger function received an order.");
     log.Info(req.ToString());
-    log.Info("Submitting to processing queue.");
+    log.Info("Submitting tooprocessing queue.");
 
     if (req.orderId == null)
     {
@@ -351,25 +351,25 @@ public class Order
 }
 ```
 
-È possibile usare un percorso relativo con la direttiva `#load` :
+È possibile utilizzare un percorso relativo con hello `#load` direttiva:
 
-* `#load "mylogger.csx"` carica un file che si trova nella cartella della funzione.
-* `#load "loadedfiles\mylogger.csx"` carica un file che si trova in una sottocartella della cartella della funzione.
-* `#load "..\shared\mylogger.csx"` carica un file che si trova in una cartella allo stesso livello della cartella della funzione, ovvero direttamente in *wwwroot*.
+* `#load "mylogger.csx"`Carica un file nella cartella funzione hello.
+* `#load "loadedfiles\mylogger.csx"`Carica un file che si trova in una cartella nella cartella funzione hello.
+* `#load "..\shared\mylogger.csx"`Carica un file si trova in una cartella hello stesso livello, ovvero come cartella funzione hello, direttamente sotto *wwwroot*.
 
-La direttiva `#load` è compatibile solo con i file con estensione *.csx* (script C# ), non con i file con estensione *.cs*.
+Hello `#load` direttiva funziona solo con *csx* file (c# script), non con *cs* file.
 
 <a name="imperative-bindings"></a> 
 
 ## <a name="binding-at-runtime-via-imperative-bindings"></a>Associazione al runtime mediante associazione imperativa
 
-In C# e altri linguaggi .NET, è possibile usare un metodo di associazione [imperativa](https://en.wikipedia.org/wiki/Imperative_programming) anziché [ *dichiarativa* ](https://en.wikipedia.org/wiki/Declarative_programming) in *function.json*. L'associazione imperativa è utile quando i parametri di associazione devono essere calcolati in fase di runtime invece che in fase di progettazione. Con questo modello è possibile associare rapidamente i dati ad associazioni di input e output supportate nel codice della funzione.
+In c# e altri linguaggi .NET, è possibile utilizzare un [imperativo](https://en.wikipedia.org/wiki/Imperative_programming) modello di associazione, come toohello anziché [ *dichiarativa* ](https://en.wikipedia.org/wiki/Declarative_programming) associazioni in *function.json*. Associazione imperativo è utile quando i parametri di associazione necessario toobe calcolato in fase di runtime anziché di progettazione. Con questo modello, è possibile associare toosupported input e output associazione il volo nel codice di funzione.
 
 Definire un'associazione imperativa, come segue:
 
 - **Non** includere una voce in *function.json* per le associazioni imperative da eseguire.
 - Passare un parametro di input [`Binder binder`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/Bindings/Runtime/Binder.cs) o [`IBinder binder`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IBinder.cs).
-- Usare il seguente modello C# per eseguire l'associazione dati.
+- Utilizzare hello seguente c# modello tooperform hello associazione dati.
 
 ```cs
 using (var output = await binder.BindAsync<T>(new BindingTypeAttribute(...)))
@@ -378,9 +378,9 @@ using (var output = await binder.BindAsync<T>(new BindingTypeAttribute(...)))
 }
 ```
 
-dove `BindingTypeAttribute` è l'attributo .NET che definisce l'associazione e `T` è il tipo di input o output supportato da quel tipo di associazione. `T` non può essere un tipo di parametro `out`, ad esempio `out JObject`. L'associazione di output della tabella App per dispositivi mobili, ad esempio, supporta[ sei tipi di output](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.MobileApps/MobileTableAttribute.cs#L17-L22), ma è possibile usare solo [ICollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) o [IAsyncCollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) per `T`.
+dove `BindingTypeAttribute` hello .NET attributo che definisce l'associazione e `T` è hello input o output di tipo supportato dal tipo di associazione. `T` non può essere un tipo di parametro `out`, ad esempio `out JObject`. L'associazione di output della tabella App per dispositivi mobili, ad esempio, supporta[ sei tipi di output](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.MobileApps/MobileTableAttribute.cs#L17-L22), ma è possibile usare solo [ICollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) o [IAsyncCollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) per `T`.
 
-L'esempio di codice seguente crea un [associazione di output del BLOB di archiviazione](functions-bindings-storage-blob.md#using-a-blob-output-binding) con percorso del BLOB definito in fase di esecuzione, quindi scrive una stringa per il BLOB.
+Hello esempio di codice seguente crea un [associazione di output blob di archiviazione](functions-bindings-storage-blob.md#using-a-blob-output-binding) con blob percorso definito in fase di esecuzione, quindi scrive un blob toohello stringa.
 
 ```cs
 using Microsoft.Azure.WebJobs;
@@ -395,8 +395,8 @@ public static async Task Run(string input, Binder binder)
 }
 ```
 
-[BlobAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/BlobAttribute.cs) definisce l'associazione di input o output del [BLOB di archiviazione](functions-bindings-storage-blob.md) e [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx) è un tipo di associazione di output supportato.
-Ovvero, il codice ottiene l'impostazione app predefinita per la stringa di connessione dell'account di archiviazione (`AzureWebJobsStorage`). È possibile specificare un'impostazione app personalizzata da usare aggiungendo [StorageAccountAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) e passando la matrice di attributi in `BindAsync<T>()`. Ad esempio,
+[BlobAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/BlobAttribute.cs) definisce hello [blob di archiviazione](functions-bindings-storage-blob.md) input o output, associazione e [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx) è un tipo di associazione di output supportati.
+Così com'è, il codice hello Ottiene hello app impostazione predefinita per hello stringa di connessione di account di archiviazione (ovvero `AzureWebJobsStorage`). È possibile specificare un toouse impostazione app personalizzata aggiungendo il [StorageAccountAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) e passando una matrice di attributi hello in `BindAsync<T>()`. Ad esempio,
 
 ```cs
 using Microsoft.Azure.WebJobs;
@@ -417,7 +417,7 @@ public static async Task Run(string input, Binder binder)
 }
 ```
 
-Nella tabella seguente vengono elencati gli attributi .NET per ogni tipo di associazione e i pacchetti in cui sono definiti.
+Hello nella tabella seguente elenca gli attributi di hello .NET per i pacchetti di tipo e hello ogni associazione in cui sono definiti.
 
 > [!div class="mx-codeBreakAll"]
 | Associazione | Attributo | Aggiungi riferimento |
@@ -435,7 +435,7 @@ Nella tabella seguente vengono elencati gli attributi .NET per ogni tipo di asso
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni, vedere le seguenti risorse:
+Per ulteriori informazioni, vedere hello seguenti risorse:
 
 * [Best Practices for Azure Functions](functions-best-practices.md) (Procedure consigliate per Funzioni di Azure)
 * [Guida di riferimento per gli sviluppatori di Funzioni di Azure](functions-reference.md)

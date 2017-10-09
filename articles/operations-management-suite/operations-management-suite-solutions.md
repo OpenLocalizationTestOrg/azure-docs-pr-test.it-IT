@@ -1,6 +1,6 @@
 ---
-title: Soluzioni in Operations Management Suite (OMS) | Microsoft Docs
-description: "Le soluzioni consentono di estendere la funzionalità di Operations Management Suite (OMS) offrendo scenari di gestione in pacchetto che i clienti possono aggiungere all'area di lavoro OMS.  Questo articolo fornisce informazioni dettagliate sulle soluzioni personalizzate create dai clienti e dai partner."
+title: aaaSolutions Operations Management Suite (OMS) | Documenti Microsoft
+description: "Soluzioni di estendono le funzionalità di hello di Operations Management Suite (OMS), fornendo gli scenari di gestione di pacchetti che è possibile aggiungere l'area di lavoro OMS tootheir.  Questo articolo fornisce informazioni dettagliate sulle soluzioni personalizzate create dai clienti e dai partner."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -15,11 +15,11 @@ ms.workload: infrastructure-services
 ms.date: 03/01/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2443dd73fdf441721bd6f6f340da515d9f5a22a2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b5a538f1bc4b5577bec94db08bd43668bc6584a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-management-solutions-in-operations-management-suite-oms-preview"></a>Utilizzo di soluzioni di gestione in Operations Management Suite (OMS) (anteprima)
 > [!NOTE]
@@ -27,85 +27,85 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Le soluzioni di gestione estendono la funzionalità di Operations Management Suite (OMS) offrendo scenari di gestione in pacchetto che i clienti possono aggiungere al proprio ambiente.  Oltre alle [soluzioni fornite da Microsoft](../log-analytics/log-analytics-add-solutions.md), i partner e i clienti possono creare soluzioni di gestione da usare nel proprio ambiente o da rendere disponibili per i propri clienti attraverso la community.
+Soluzioni di gestione estendono le funzionalità di hello di Operations Management Suite (OMS), fornendo gli scenari di gestione di pacchetti che è possibile aggiungere tootheir ambiente.  Inoltre troppo[soluzioni fornite da Microsoft](../log-analytics/log-analytics-add-solutions.md), partner e i clienti possono creare toobe soluzioni di gestione utilizzato nel proprio ambiente o resi disponibili toocustomers tramite community hello.
 
 ## <a name="finding-and-installing-management-solutions"></a>Ricerca e installazione di soluzioni di gestione
-Ci sono diversi metodi per trovare e installare soluzioni di gestione, come descritto nelle sezioni seguenti.
+Sono disponibili più metodi per l'individuazione e l'installazione di soluzioni di gestione, come descritto in hello le sezioni seguenti.
 
 ### <a name="azure-marketplace"></a>Azure Marketplace
-Le soluzioni di gestione fornite da Microsoft e dai partner qualificati possono essere installate da Azure Marketplace nel portale di Azure.
+Soluzioni di gestione fornito da Microsoft e partner attendibili possono essere installati da hello Azure Marketplace in hello portale di Azure.
 
-1. Accedere al portale di Azure.
-2. Nel riquadro sinistro selezionare **Altri servizi**.
-3. Scorrere verso il basso fino a **Soluzioni** oppure digitare *soluzioni* nella finestra di dialogo **Filtra**.
-4. Fare clic sul pulsante **+ Aggiungi**.
-5. Cercare le soluzioni di interesse esaminando le soluzioni disponibili, facendo clic sul pulsante **Filtra** oppure digitando nella casella **Cerca tutti gli elementi**.
-6. Fare clic su un elemento del Marketplace per visualizzare le informazioni dettagliate.
-7. Fare clic su **Crea** per aprire il riquadro **Aggiungi soluzione**.
-8. Verrà chiesto di immettere le informazioni necessarie, ad esempio l'[area di lavoro OMS e l'account di Automazione](#oms-workspace-and-automation-account), oltre ai valori per i parametri nella soluzione.
-9. Fare clic su **Crea** per installare la soluzione.
+1. Accedi toohello portale di Azure.
+2. Nel riquadro sinistro hello selezionare **più servizi**.
+3. Uno scorrere verso il basso troppo**soluzioni** o tipo *soluzioni* in hello **filtro** finestra di dialogo.
+4. Fare clic su hello **+ Aggiungi** pulsante.
+5. Cercare le soluzioni che si sono interessati tramite esplorazione, fare clic su hello **filtro** pulsante o la digitazione hello **ricerca tutto** casella.
+6. Fare clic su un tooview elemento marketplace, le informazioni dettagliate.
+7. Fare clic su **crea** tooopen hello **Aggiungi soluzione** riquadro.
+8. Sarà toorequired richiesta informazioni, ad esempio hello [OMS dell'area di lavoro e account di automazione](#oms-workspace-and-automation-account) inoltre toovalues per i parametri in hello soluzione.
+9. Fare clic su **crea** soluzione hello tooinstall.
 
 ### <a name="oms-portal"></a>Portale di OMS
-Le soluzioni di gestione fornite da Microsoft possono essere installate dalla Raccolta soluzioni nel portale di OMS.
+Soluzioni di gestione fornite da Microsoft possono essere installate da hello Solutions Gallery nel portale OMS hello.
 
-1. Accedere al portale di OMS.
-2. Fare clic su sul riquadro **Raccolta soluzioni**.
-3. Nella pagina Raccolta soluzioni di OMS, è possibile ottenere informazioni su ogni soluzione disponibile. Fare clic sul nome della soluzione che si desidera aggiungere a OMS.
-4. Nella pagina relativa alla soluzione scelta vengono visualizzate informazioni dettagliate sulla soluzione visualizzata. Fare clic su **Aggiungi**.
-5. Nella pagina di panoramica di OMS viene visualizzato un nuovo riquadro per la soluzione aggiunta, che è possibile iniziare a usare dopo che il servizio OMS ha elaborato i dati.
+1. Accedi toohello portale di OMS.
+2. Fare clic su hello **Solutions Gallery** riquadro.
+3. Nella pagina Solutions Gallery di OMS hello ottenere informazioni su ogni soluzione disponibile. Fare clic su nome hello della soluzione di hello che si desidera tooadd tooOMS.
+4. Nella pagina hello soluzione hello scelto, verranno visualizzate informazioni dettagliate sulla soluzione hello. Fare clic su **Aggiungi**.
+5. Un nuovo riquadro per la soluzione hello aggiunto viene visualizzato nella pagina Overview di OMS hello e iniziare a usarla dopo che il servizio OMS hello elabora i dati.
 
 ### <a name="azure-quickstart-templates"></a>Modelli di Guida introduttiva di Azure
-I membri della community possono inviare le soluzioni di gestione come modelli di avvio rapido di Azure.  È possibile scaricare questi modelli per installarli in un secondo momento oppure esaminarli per capire come [creare soluzioni personalizzate](#creating-a-solution).
+I membri della community di hello possono inviare tooAzure soluzioni di gestione modelli di avvio rapido.  È possibile scaricare questi modelli per l'installazione di versioni successive o verificarli toolearn come troppo[creare soluzioni personalizzate](#creating-a-solution).
 
-1. Seguire la procedura descritta in [Area di lavoro OMS e account di Automazione](#oms-workspace-and-automation-account) per collegare un'area di lavoro e un account.
-2. Passare a [Modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/).  
+1. Seguire il processo di hello descritto in [OMS dell'area di lavoro e account di automazione](#oms-workspace-and-automation-account) toolink un'area di lavoro e account.
+2. Andare troppo[modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/).  
 3. Cercare una soluzione adatta alle proprie esigenze.
-4. Selezionare la soluzione nei risultati per visualizzarne i dettagli.
-5. Fare clic sul pulsante **Distribuisci in Azure**.
-6. Verrà chiesto di fornire informazioni come il gruppo di risorse e la posizione, oltre ai valori per i parametri nella soluzione.
-7. Fare clic su **Acquista** per installare la soluzione.
+4. Selezionare soluzione hello hello risultati tooview i dettagli.
+5. Fare clic su hello **distribuire tooAzure** pulsante.
+6. Sarà tooprovide richiesta informazioni, ad esempio il gruppo di risorse hello e il percorso nella toovalues aggiunta per i parametri nella soluzione hello.
+7. Fare clic su **acquisto** soluzione hello tooinstall.
 
 ### <a name="deploy-azure-resource-manager-template"></a>Distribuire un modello di Azure Resource Manager
-Le soluzioni ottenute dalla community o [create personalmente](#creating-a-solution) vengono implementate come modello di Resource Manager ed è possibile usare uno dei metodi standard per la [distribuzione di un modello](../azure-resource-manager/resource-group-template-deploy-portal.md).  Si noti che prima di installare la soluzione è necessario creare e collegare l'[area di lavoro OMS e l'account di Automazione](#oms-workspace-and-automation-account).
+Soluzioni che si ottiene dalla community di hello o che sono stati [creare autonomamente](#creating-a-solution) vengono implementati come un modello di gestione risorse ed è possibile utilizzare uno dei metodi standard di hello per [distribuzione di un modello](../azure-resource-manager/resource-group-template-deploy-portal.md).  Si noti che prima di installare la soluzione hello, è necessario creare e collegare hello [OMS dell'area di lavoro e account di automazione](#oms-workspace-and-automation-account).
 
 ## <a name="oms-workspace-and-automation-account"></a>Area di lavoro OMS e account di Automazione
-La maggior parte delle soluzioni di gestione richiede un'[area di lavoro OMS](../log-analytics/log-analytics-manage-access.md) per contenere le viste e un [account di Automazione](../automation/automation-security-overview.md#automation-account-overview) per contenere i runbook e le risorse correlate. L'area di lavoro e l'account devono soddisfare i requisiti indicati di seguito.
+La maggior parte delle soluzioni di gestione richiedono un [area di lavoro OMS](../log-analytics/log-analytics-manage-access.md) toocontain viste e un [account di automazione](../automation/automation-security-overview.md#automation-account-overview) toocontain runbook e le relative risorse. Hello dell'area di lavoro e l'account deve soddisfare i seguenti requisiti hello.
 
 * Una soluzione può usare solo un'area di lavoro OMS e un account di Automazione.  
-* L'area di lavoro OMS e l'account di Automazione usati da una soluzione devono essere collegati tra loro. Un'area di lavoro OMS può essere collegata a un solo account di Automazione e un account di Automazione può essere collegato a una sola area di lavoro OMS.
-* Per essere collegati, l'area di lavoro OMS e l'account di Automazione devono trovarsi nello stesso gruppo di risorse e nella stessa area.  L'eccezione è rappresentata da un'area di lavoro OMS nell'area Stati Uniti orientali e un account di Automazione nell'area Stati Uniti orientali 2.
+* Hello area di lavoro OMS e account di automazione utilizzato da una soluzione devono essere tooone collegato un altro. Un'area di lavoro OMS può essere solo account di automazione di tooone collegato e un account di automazione può essere solo l'area di lavoro OMS tooone collegato.
+* toobe collegato, hello area di lavoro OMS e account deve trovarsi in automazione hello allo stesso gruppo di risorse e area.  eccezione di Hello è un'area di lavoro OMS nell'area Stati Uniti orientali ed e l'account di automazione in Stati Uniti orientali 2.
 
 ### <a name="creating-a-link-between-an-oms-workspace-and-automation-account"></a>Creazione di un collegamento tra un'area di lavoro OMS e un account di Automazione
-La modalità con cui si specificano l'area di lavoro OMS e l'account di Automazione dipende dal metodo di installazione per la soluzione.
+Come specificare l'area di lavoro OMS hello e account di automazione dipende dal metodo di installazione di hello per la soluzione.
 
-* Quando si installa una soluzione Microsoft tramite il portale di OMS, questa viene installata nell'area di lavoro OMS corrente e non è necessario un account di Automazione.
-* Quando si installa una soluzione tramite Azure Marketplace, vengono chiesti un'area di lavoro OMS e un account di Automazione e viene creato automaticamente il collegamento tra essi.  
-* Per le soluzioni esterne ad Azure Marketplace, è necessario collegare l'area di lavoro OMS e l'account di Automazione prima di installare la soluzione.  A tale scopo, è possibile selezionare qualsiasi soluzione in Azure Marketplace e quindi selezionare l'area di lavoro OMS e l'account di Automazione.  Non è necessario installare effettivamente la soluzione, perché il collegamento verrà creato non appena si selezionano l'area di lavoro OMS e l'account di Automazione.  Una volta creato il collegamento, è possibile usare l'area di lavoro OMS e l'account di Automazione per qualsiasi soluzione. 
+* Quando si installa una soluzione Microsoft tramite il portale di OMS hello, viene installato nell'area di lavoro OMS corrente hello e nessun account di automazione è obbligatorio.
+* Quando si installa una soluzione attraverso hello Azure Marketplace, richiesto per un'area di lavoro OMS e account di automazione e viene creato il collegamento hello tra di essi.  
+* Per le soluzioni di fuori di hello Azure Marketplace, è necessario collegare l'area di lavoro OMS hello e account di automazione prima di installare la soluzione hello.  Tale scopo, è possibile selezionare qualsiasi soluzione in hello Azure Marketplace e area di lavoro OMS hello e account di automazione.  Non è necessario tooactually installare soluzione hello in quanto verrà creato il collegamento hello come area di lavoro OMS hello e account di automazione sono selezionati.  Una volta creato il collegamento hello, è possibile utilizzare tale area di lavoro OMS e account di automazione per una soluzione. 
 
-### <a name="verifying-the-link-between-an-oms-workspace-and-automation-account"></a>Verifica del collegamento tra un'area di lavoro OMS e un account di Automazione
-È possibile verificare il collegamento tra un'area di lavoro OMS e un account Automazione mediante la procedura seguente.
+### <a name="verifying-hello-link-between-an-oms-workspace-and-automation-account"></a>Verifica collegamento hello tra un'area di lavoro OMS e account di automazione
+È possibile verificare hello collegamento tra un'area di lavoro OMS e un account di automazione mediante hello seguente procedura.
 
-1. Selezionare l'account di Automazione nel portale di Azure.
-2. Scorrere verso la parte inferiore del riquadro **Impostazioni**.
-3. Se nel riquadro **Impostazioni** c'è una sezione denominata **Risorse di OMS**, significa che l'account è collegato a un'area di lavoro OMS.
-4. Selezionare **Area di lavoro** per visualizzare i dettagli dell'area di lavoro OMS collegata a questo account di Automazione.
+1. Selezionare l'account di automazione hello in hello portale di Azure.
+2. Scorri toohello alla fine di hello **impostazioni** riquadro.
+3. Se è presente una sezione denominata **le risorse di OMS** in hello **impostazioni** riquadro, questo account è l'area di lavoro OMS tooan associata.
+4. Selezionare **dell'area di lavoro** dettagli hello tooview dell'area di lavoro OMS hello collegato toothis account di automazione.
 
 ## <a name="listing-management-solutions"></a>Creazione di un elenco delle soluzioni di gestione
-Usare la procedura seguente per visualizzare le soluzioni di gestione nelle aree di lavoro collegate alla sottoscrizione di Azure.
+Utilizzare hello seguenti soluzioni di gestione di procedure tootooview hello in hello aree di lavoro collegato tooyour sottoscrizione di Azure.
 
-1. Accedere al portale di Azure.
-2. Nel riquadro sinistro selezionare **Altri servizi**.
-3. Scorrere verso il basso fino a **Soluzioni** oppure digitare *soluzioni* nella finestra di dialogo **Filtra**.
+1. Accedi toohello portale di Azure.
+2. Nel riquadro sinistro hello selezionare **più servizi**.
+3. Uno scorrere verso il basso troppo**soluzioni** o tipo *soluzioni* in hello **filtro** finestra di dialogo.
 4. Verranno elencate le soluzioni installate in tutte le aree di lavoro.
 
-Si noti che è possibile visualizzare solo le soluzioni Microsoft installate nell'area di lavoro corrente usando il portale di OMS.
+Si noti che è possibile visualizzare solo le soluzioni Microsoft hello installate hello nell'area di lavoro tramite il portale di OMS hello.
 
 ## <a name="removing-a-management-solution"></a>Rimozione di una soluzione di gestione
-Quando una soluzione di gestione viene rimossa, vengono rimosse anche tutte le risorse incluse nella soluzione.  
+Quando una soluzione di gestione viene rimosso, vengono rimosse anche tutte le risorse nella soluzione hello.  
 
-1. Individuare la soluzione nel portale di Azure usando la procedura descritta in [Creazione di un elenco delle soluzioni di gestione](#listing-solutions).
-2. Selezionare la soluzione da rimuovere.
-3. Fare clic sul pulsante **Elimina**.
+1. Individuare la soluzione hello in hello Azure portale utilizzando la procedura hello in [elenco soluzioni](#listing-solutions).
+2. Selezionare soluzione hello da tooremove.
+3. Fare clic su hello **eliminare** pulsante.
 
 ## <a name="creating-a-management-solution"></a>Creazione di una soluzione di gestione
 Istruzioni complete sulla creazione di soluzioni di gestione sono disponibili nell'articolo [Creazione di soluzioni in Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md). 

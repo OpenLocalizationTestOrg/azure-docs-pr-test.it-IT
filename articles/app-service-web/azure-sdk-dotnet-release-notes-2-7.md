@@ -1,5 +1,5 @@
 ---
-title: Note sulla versione di Azure SDK per .NET 2.7 e .NET 2.7.1
+title: note sulla versione di SDK per .NET 2.7 e .NET 2.7.1 aaaAzure
 description: Note sulla versione di Azure SDK per .NET 2.7 e .NET 2.7.1
 services: app-service\web
 documentationcenter: .net
@@ -13,36 +13,36 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 02/24/2017
 ms.author: juliako
-ms.openlocfilehash: 9a69253129cdedc4f5d7e736d5bd8d6a68f95a1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8ec72b0f18702e6d811f0cbe4790685be7881d96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sdk-for-net-27-and-net-271-release-notes"></a>Note sulla versione di Azure SDK per .NET 2.7 e .NET 2.7.1
 ## <a name="overview"></a>Panoramica
-Questo documento contiene le note sulla versione per Azure SDK per .NET 2.7. 
+Questo documento contiene le note sulla versione di hello per hello Azure SDK versione 2.7 .NET. 
 
-Questo documento contiene anche le note sulla versione per Azure SDK per .NET 2.7.1.
+documento Hello contiene anche le note sulla versione di hello per hello Azure SDK per .NET 2.7.1 rilasciare.
 
-Azure SDK 2.7 è supportato solo in Visual Studio 2015 e Visual Studio 2013. [Azure SDK 2.6](https://azure.microsoft.com/downloads/) è l'ultimo SDK supportato per Visual Studio 2012.
+Azure SDK 2.7 è supportato solo in Visual Studio 2015 e Visual Studio 2013. [Azure SDK 2.6](https://azure.microsoft.com/downloads/) hello ultima supportata SDK per Visual Studio 2012.
 
 Per informazioni dettagliate su questa versione, vedere il [post di annuncio di Azure SDK 2.7](https://azure.microsoft.com/blog/2015/07/20/announcing-the-azure-sdk-2-7-for-net/) e il [post di annuncio di Azure SDK 2.7.1](http://go.microsoft.com/fwlink/?LinkId=623850).
 
 ## <a name="azure-sdk-for-net-27"></a>Azure SDK per .NET 2.7
 ### <a name="sign-in-improvements-for-visual-studio-2015"></a>Miglioramenti relativi all'accesso per Visual Studio 2015
-Azure 2.7 SDK per Visual Studio 2015 supporta le nuove funzionalità di gestione di identità in Visual Studio 2015.  Ciò include il supporto per gli account che accedono ad Azure tramite il controllo degli accessi in base al ruolo, Cloud Solution Provider, DreamSpark e altri tipi di account e sottoscrizioni.
+Azure 2.7 SDK per Visual Studio 2015 supporta nuove funzionalità di gestione identità hello in Visual Studio 2015.  Ciò include il supporto per gli account che accedono ad Azure tramite il controllo degli accessi in base al ruolo, Cloud Solution Provider, DreamSpark e altri tipi di account e sottoscrizioni.
 
-I miglioramenti per l'accesso inclusi in Azure SDK 2.7 sono disponibili solo in Visual Studio 2015. Il supporto per Visual Studio 2013 è incluso in Azure SDK 2.7.1.
+Hello Accedi miglioramenti inclusi in Azure SDK 2.7 sono disponibili solo in Visual Studio 2015. Il supporto per Visual Studio 2013 è incluso in Azure SDK 2.7.1.
 
 ### <a name="mobile-sdk"></a>Mobile SDK
-Aggiornamento dei modelli di **app per dispositivi mobili** in linea con la versione più recente del [pacchetto NuGet](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) e del processo di installazione.
+Aggiornato **App per dispositivi mobili** tooreflect modelli più recenti [pacchetto NuGet](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) e processo di installazione.
 
 ### <a name="service-bus"></a>Bus di servizio
-Correzioni di bug e miglioramenti generali. Per altri dettagli sugli aggiornamenti e le funzionalità, vedere le note sulla versione della versione più recente del pacchetto [NuGet del bus di servizio](http://www.nuget.org/packages/WindowsAzure.ServiceBus/).
+Correzioni di bug e miglioramenti generali. Per informazioni su aggiornamenti e funzionalità, consultare le note sulla versione toohello di hello più recente [NuGet di Service Bus](http://www.nuget.org/packages/WindowsAzure.ServiceBus/).
 
 ### <a name="hdinsight-tools"></a>Strumenti HDInsight
-In questa versione sono stati introdotti i seguenti aggiornamenti. Questi aggiornamenti sono in anteprima. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=619108).
+In questa versione hello aggiornamenti seguenti sono stati apportati. Questi aggiornamenti sono in anteprima. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=619108).
 
 * Grafici di hive per processi Hive su Tez
 * Supporto completo di IntelliSense per DML Hive
@@ -50,90 +50,90 @@ In questa versione sono stati introdotti i seguenti aggiornamenti. Questi aggior
 * Modelli Storm per servizi di Azure
 
 #### <a name="breaking-changes"></a>Modifiche di rilievo
-* Il vecchio progetto **Storm** deve essere aggiornato quando si usa questa versione degli strumenti. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=619108).
+* Vecchio **Storm** progetto deve essere aggiornato quando si utilizza questa versione di hello tools. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=619108).
 * Visual Studio Web Express non è più supportato. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=619108).
 
 ### <a name="azure-app-service-tools"></a>Strumenti di Azure App Service
-In questa versione sono stati introdotti gli aggiornamenti seguenti per le estensioni degli strumenti Web. Per altre informazioni, vedere [questo](https://azure.microsoft.com/blog/2015/07/20/announcing-the-azure-sdk-2-7-for-net/) blog. 
+In questa versione hello aggiornamenti seguenti sono stati apportati tooWeb le estensioni degli strumenti. Per altre informazioni, vedere [questo](https://azure.microsoft.com/blog/2015/07/20/announcing-the-azure-sdk-2-7-for-net/) blog. 
 
 * Aggiunta del supporto per gli account DreamSpark
-* Modifica completa degli strumenti di Azure per supportare le nuove API di gestione delle risorse di Azure
-* Aggiunta del supporto per Servizio app di Azure in [Cloud Explorer](#cloud_explorer)
+* Modificare completo tooAzure strumenti apportati toosupport hello nuove API di gestione risorse di Azure
+* Aggiunto il supporto per Azure App Service troppo[Cloud Explorer](#cloud_explorer)
 
 #### <a name="known-issues"></a>Problemi noti
-I nodi dello slot di distribuzione di app Web non vengono visualizzati nel nodo Slot in Esplora server e i nodi figlio dello slot di distribuzione di app Web non vengono caricati in Cloud Explorer. Questo problema è stato risolto e preparato per la prossima versione dell'SDK. 
+I nodi dello slot di distribuzione App Web non vengono visualizzati nel nodo slot hello in Esplora Server e i nodi figlio nello slot di distribuzione Web App non vengono caricati in Cloud Explorer. Questo problema è stato risolto e preparato per la prossima versione SDK hello. 
 
 ### <a name="cloud_explorer"></a>Cloud Explorer per Visual Studio 2015
-Azure SDK 2.7 include Cloud Explorer per Visual Studio 2015 che consente di visualizzare le risorse di Azure, controllare le relative proprietà ed eseguire azioni fondamentali per gli sviluppatori dall'interno di Visual Studio. 
+Azure SDK 2.7 include Cloud Explorer per Visual Studio 2015 che consente di tooview le risorse di Azure, controllare le relative proprietà ed eseguire azioni chiave sviluppatore da Visual Studio. 
 
-Cloud Explorer supporta quanto segue:
+Cloud explorer supporta la seguente hello:
 
 * Visualizzazioni Gruppo di risorse e Tipo di risorsa delle risorse di Azure 
 * Ricerca delle risorse in base al nome (disponibile nella visualizzazione Tipo di risorsa)
 * Supporto per le sottoscrizioni e le risorse con Controllo degli accessi in base al ruolo applicato 
-* Pannello delle azioni integrato che mostra le azioni destinate agli sviluppatori specifiche per le risorse selezionate. Ad esempio: collegare il debugger remoto per le macchine virtuali create utilizzando lo Stack di gestione delle risorse, visualizzare i dati di diagnostica per le macchine virtuali e così via.
+* Pannello azione integrato che consente di visualizzare risorse tooselected specifico di azioni per gli sviluppatori. Ad esempio: collegare il debugger remoto per macchine virtuali create utilizzando hello Stack di Resource Manager, visualizzare i dati di diagnostica per via di macchine virtuali.
 * Pannello delle proprietà integrato che mostra le proprietà destinate agli sviluppatori comunemente necessarie durante sviluppo e test 
-* Cambio rapido dell'account da usare durante l'enumerazione delle risorse (usare il comando Impostazioni sulla barra degli strumenti) 
-* Filtro delle sottoscrizioni da usare durante l'enumerazione delle risorse (usare il comando Impostazioni sulla barra degli strumenti) 
-* Collegamenti diretti al Portale di Azure per la gestione delle risorse e dei gruppi di risorse 
+* Cambio rapido di hello account toouse durante l'enumerazione di risorse (usare il comando impostazioni sulla barra degli strumenti) 
+* Filtraggio di sottoscrizioni toouse durante l'enumerazione di risorse (usare il comando impostazioni sulla barra degli strumenti) 
+* Collegamenti diretti toohello portale di Azure per la gestione delle risorse e gruppi di risorse 
 
 ### <a name="azure-resource-manager-tools"></a>Strumenti di Gestione risorse di Azure
-Gli strumenti di gestione risorse di Azure sono stati aggiornati per funzionare con Controllo degli accessi in base al ruolo e i nuovi tipi di sottoscrizione.  Queste modifiche includono la possibilità di usare i nuovi account di archiviazione, oltre all'archiviazione classica, per archiviare gli elementi durante la distribuzione.  
+Strumenti di gestione risorse di Azure Hello state toowork aggiornato con nuovi tipi di sottoscrizione e basato sui ruoli accesso controllo (RBAC).  Con queste modifiche sono inoltre incluse hello possibilità toouse nuovo account di archiviazione, inoltre archiviazione tooclassic, toostore elementi durante la distribuzione.  
 
-Se si usa un progetto Gruppo di risorse di Azure da una versione precedente dell'SDK con SDK 2.7, è necessario un nuovo script per eseguire la distribuzione con un nuovo account di archiviazione al posto dell'archiviazione classica.  Verrà richiesta conferma prima di apportare modifiche al progetto per aggiungere il nuovo script.  Lo script precedente verrà rinominato e sarà necessario apportare manualmente eventuali modifiche al nuovo script.
+Se si utilizza un progetto di gruppo di risorse di Azure da una versione precedente di hello SDK con hello 2.7 SDK, un nuovo script di distribuzione è necessario toodeploy utilizzando un nuovo account di archiviazione anziché archiviazione classico.  Verrà richiesto prima di apportare modifiche tooyour progetto tooadd hello nuovo script.  script di Hello precedente verrà rinominato e sarà necessario toomanually apportare alcuna modifica toohello nuovo script.
 
 ### <a name="storage-explorer-tools"></a>Strumenti di Esplora archivi
 * Supporto per la visualizzazione di BLOB di accodamento. Altre informazioni sono disponibili in [questo post di blog](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/04/13/introducing-azure-storage-append-blob.aspx). 
-* Supporto per la visualizzazione degli account di archiviazione Premium tramite Esplora server. Esplora server visualizzerà solo i BLOB di pagine per gli account di archiviazione Premium, perché sono l'unico tipo supportato per gli account di archiviazione Premium.
+* Supporto per la visualizzazione degli account di archiviazione Premium tramite Esplora server. Esplora server verrà visualizzati solo i BLOB di pagine per gli account di archiviazione premium come se fossero di tipo hello è supportato solo per gli account di archiviazione premium.
 
 ### <a name="azure-data-factory-tools-for-visual-studio"></a>Strumenti di Data factory di Azure per Visual Studio
-Introduzione agli **strumenti di Data factory di Azure** per Visual Studio. L'elenco seguente include le funzionalità abilitate. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=617530) .
+Introduzione agli **strumenti di Data factory di Azure** per Visual Studio. Di seguito sono funzionalità hello abilitato. Per altre informazioni, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=617530) .
 
-* **Creazione basata su modelli**: selezionare i modelli basati su casi d'uso, i modelli di spostamento dei dati o i modelli di elaborazione dei dati per distribuire una soluzione di integrazione dei dati end-to-end e iniziare velocemente a lavorare con Data factory. 
+* **Modello basato su authoring**: selezionare utilizzare le maiuscole/minuscole basato su modelli, i modelli di spostamento dei dati o l'elaborazione dati modelli toodeploy una soluzione di integrazione di dati end-to-end e iniziare pratica rapidamente con Data Factory. 
 * **Integrazione con Esplora soluzioni per la creazione e distribuzione di entità Data factory**: creare e distribuire pipeline ed entità correlate come progetti di Visual Studio. 
-* **Integrazione con la vista Diagramma per l'interazione visiva durante la creazione**: creare visivamente pipeline e set di dati con l'aiuto della vista Diagramma. 
-* **Integrazione con Esplora server per l'esplorazione e l'interazione con le entità già distribuite**: usare Esplora server per individuare le data factory già distribuite e le entità corrispondenti. Importare una data factory distribuita o qualsiasi entità (pipeline, servizio collegato, set di dati) nel progetto. 
+* **Integrazione con la vista diagramma per l'interazione visual durante la creazione**: creare visivamente le pipeline e set di dati con l'aiuto di hello vista diagramma. 
+* **Integrazione con Esplora Server per l'esplorazione e interazione con le entità già distribuite**: sfruttare hello Esplora Server toobrowse già distribuito data factory e le entità corrispondenti. Importare una data factory distribuita o qualsiasi entità (pipeline, servizio collegato, set di dati) nel progetto. 
 * **Modifica di JSON con convalida dello schema e IntelliSense avanzato**: configurare e modificare con efficienza documenti JSON delle entità di Data factory con funzionalità IntelliSense avanzate e convalida dello schema 
-* **Pubblicazione in più ambienti**: pubblicare le pipeline create negli ambienti di sviluppo, test o produzione mediante la creazione di file di configurazione separati per ogni ambiente.
+* **Pubblicazione di un multi-ambiente**: pubblicare toodev pipeline creati, test o l'ambiente di produzione mediante la creazione di file di configurazione separato per ogni ambiente.
 * **Supporto dell'elaborazione dei dati basata su Pig, Hive e .NET**: supporto per script Pig e Hive nel progetto di Data factory. Supporto dei riferimenti al progetto C# per la gestione dell'attività .NET.
 
 ## <a name="azure-sdk-for-net-271"></a>Azure SDK per .NET 2.7.1
-La sezione riportata di seguito contiene aggiornamenti introdotti con la versione di Azure SDK per .NET 2.7.1.
+Hello seguente sezione contiene gli aggiornamenti che sono stati introdotti con hello Azure SDK per .NET 2.7.1 rilasciare.
 
 ### <a name="hdinsight-tools"></a>Strumenti HDInsight
 Per informazioni più dettagliate sugli aggiornamenti degli strumenti di HDInsight, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=623831).
 
 * Visualizzazione operatore processo Hive (nuova funzionalità)
   
-    Per comprendere meglio la query Hive, è stata aggiunta la funzionalità Visualizzazione operatore Hive. Per visualizzare tutti gli operatori all'interno di un vertice, fare doppio clic sui vertici del grafico del processo. Per visualizzare altri dettagli di un operatore specifico, passare il puntatore sull'operatore.
+    comprendere le query Hive migliore, funzionalità Hive Visualizza operatore hello toohelp è stato aggiunto. toosee tutti gli operatori di hello all'interno di un vertice, fare doppio clic sui vertici hello del grafico processi hello. tooview ulteriori dettagli di un operatore specifico, passare il mouse su tale operatore.
 * Marcatore errori Hive (nuova funzionalità)
   
-    Per consentire la visualizzazione immediata degli errori grammaticali, è stata aggiunta la funzionalità Marcatore errori Hive. Sono stati inoltre migliorati i messaggi di errore ed è ora possibile visualizzare immediatamente informazioni dettagliate sugli errori grammaticali (fino a questa versione, era necessario inviare uno script Hive al cluster e attendere alcuni istanti prima di ottenere i dettagli del messaggio di errore).  
+    tooenable che tooview hello gli errori grammaticali immediatamente, hello funzionalità Hive indicatore di errore è stato aggiunto. Inoltre, i messaggi di errore sono stati migliorati ed è ora possibile visualizzare gli errori grammaticali dettagliate immediatamente (fino a questa versione, era toosubmit un cluster di toohello script Hive e attendere per qualche tempo prima di ottenere i dettagli del messaggio di errore).  
 * Grafico di topologia Storm (nuova funzionalità)
   
-    La visualizzazione è molto importante quando si desidera verificare se la topologia funziona come previsto. In questa versione è stata aggiunta la visualizzazione per i grafici Storm. È possibile visualizzare le metriche importanti per la topologia (ad esempio, un colore indica se un determinato Bolt è "occupato" o meno). Per visualizzare altri dettagli, è possibile anche fare doppio clic sul Bolt/Spout .
-* Supporto per i cluster HDInsight creati nel portale di Azure (correzione di bug)
+    La visualizzazione è molto importante quando si desidera toosee se la topologia di funzioni come previsto. In questa versione è stata aggiunta la visualizzazione per i grafici Storm. È possibile visualizzare metriche importanti hello per la topologia (ad esempio, un colore indica weather un determinato fulmine è "occupato" o meno). È possibile anche fare doppio clic hello fulmine/beccuccio tooview ulteriori dettagli.
+* Supporto per i cluster HDInsight che sono stati creati nel portale di Azure (una correzione di bug) hello
   
-    È ora possibile usare Visual Studio per visualizzare e inviare processi a tutti i cluster HDInsight indipendentemente dalla posizione di creazione del cluster.
+    È possibile utilizzare Visual Studio tooview e inviare i processi tooall indipendentemente da dove sono stati creati i cluster hello ai cluster HDInsight.
 * Supporto avanzato IntelliSense e caricamento più veloce dei metadati Hive (miglioramento)
   
-    IntelliSense è stato migliorato tramite l'aggiunta di altri semplici suggerimenti. Ad esempio, gli alias di tabella ora possono essere suggeriti anche in IntelliSense in modo da facilitare la scrittura della query. È stato anche migliorato il caricamento dei metadati Hive, pertanto la visualizzazione dell'elenco di tutti i database, delle tabelle e delle colonne del metastore Hive richiederà solo alcuni secondi.
+    Sono stati migliorati hello IntelliSense aggiungendo ulteriori suggerimenti descrittivo. Ad esempio, gli alias di tabella ora possono essere suggeriti anche in IntelliSense in modo da facilitare la scrittura della query. Inoltre, sono stati migliorati i metadati Hive hello carica in modo sufficiente richiederà alcuni secondi toolist tutti i database di hello, tabelle e colonne del metastore Hive.
 
 Per informazioni più dettagliate sugli aggiornamenti degli strumenti di HDInsight, vedere [questo blog](http://go.microsoft.com/fwlink/?LinkId=623831).
 
 ### <a name="improvements-in-visual-studio-2013"></a>Miglioramenti in Visual Studio 2013
-* Azure SDK 2.7.1 consente a Visual Studio 2013 di accedere agli account e alle sottoscrizioni di Azure tramite il controllo degli accessi in base al ruolo, i provider di soluzioni cloud e Dreamspark.
-* Con Azure SDK 2.7.1 la finestra del nuovo strumento Cloud Explorer è ora disponibile anche in Visual Studio 2013.
+* Azure SDK 2.7.1 consente tooaccess di Visual Studio 2013 gli account di Azure e le sottoscrizioni tramite Dreamspark Role Based Access Control e Cloud Solution Provider.
+* Con Azure SDK 2.7.1, hello Cloud Explorer finestra è ora disponibile anche in Visual Studio 2013.
 
 ### <a name="known-issues"></a>Problemi noti
-Se si installa Azure SDK 2.6 o 2.7.1 per Visual Studio Community 2013 in un sistema operativo con lingua diversa dall'inglese, verrà visualizzato un avviso che indica un rischio di mancata corrispondenza tra le risorse di Visual Studio in inglese e in lingue diverse dall'inglese. L'avviso può essere tranquillamente ignorato. Tale condizione si verifica solo se il computer non contiene un'installazione precedente di Visual Studio Community 2013 e si installa l'SDK in un sistema operativo con lingua diversa dall'inglese. L'avviso viene visualizzato dopo l'applicazione delle risorse RTM in Visual Studio tramite il Language Pack, ma prima dell'applicazione di Update 4. Se si ignora l'avviso, il Language Pack potrà completare l'applicazione della versione Update 4 del contenuto del Language Pack.
+L'installazione di hello Azure SDK 2.6 o 2.7.1 per Visual Studio Community 2013 in un non - inglese del sistema operativo verrà visualizzato un avviso che hello inglese e potrebbero non corrispondere le risorse non in lingua inglese di Visual Studio. L'avviso può essere tranquillamente ignorato. Verificherà solo se macchina hello non contiene un'installazione precedente di Visual Studio Community 2013 e si sta installando hello SDK in un non - inglese del sistema operativo. avviso di Hello viene visualizzato dopo l'applicazione di language pack in hello hello RTM risorse tooVisual Studio, ma prima di applicare l'aggiornamento 4. Ignorando l'avviso hello consentirà hello language pack toocontinue e completa l'applicazione hello aggiornamento 4 la versione del language pack in hello contenuto.
 
-I Progetti LightSwitch non sono compatibili con questa versione. Questo problema verrà risolto con la prossima versione SDK.
+I Progetti LightSwitch non sono compatibili con questa versione. Questo problema verrà risolto con hello versione SDK successivo.
 
 ## <a name="also-see"></a>Vedere anche
 [Post di annuncio di Azure SDK 2.7.1](http://go.microsoft.com/fwlink/?LinkId=623850)
 
 [Post di annuncio di Azure SDK 2.7](https://azure.microsoft.com/blog/2015/07/20/announcing-the-azure-sdk-2-7-for-net/)
 
-[Informazioni sul Supporto e il Ritiro di Azure SDK per .NET e API](https://msdn.microsoft.com/library/azure/dn479282.aspx/)
+[Supporto e informazioni sul ritiro per hello Azure SDK per .NET e API](https://msdn.microsoft.com/library/azure/dn479282.aspx/)
 

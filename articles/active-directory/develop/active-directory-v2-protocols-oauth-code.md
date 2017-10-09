@@ -1,6 +1,6 @@
 ---
-title: Flusso del codice di autorizzazione OAuth 2.0 di Azure AD | Documentazione Microsoft
-description: Creazione di applicazioni Web usando l'implementazione del protocollo di autenticazione OAuth 2.0 definita in Azure AD.
+title: Flusso di codice di autorizzazione OAuth 2.0 di aaaAzure AD | Documenti Microsoft
+description: Creazione di applicazioni web tramite l'implementazione di Azure AD hello OAuth 2.0 del protocollo di autenticazione.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,29 +15,29 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: b64413e9cc916837dc779b92117f90293c4f1d87
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dee58f2f5c627fef35cae279349728c3c7bf9421
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Protocolli della versione 2.0: flusso del codice di autorizzazione di OAuth 2.0
-La concessione del codice di autorizzazione OAuth 2.0 può essere utilizzata nelle app che vengono installate su un dispositivo per ottenere l'accesso alle risorse protette, come l'API web.  Usando l'implementazione di OAuth 2.0 definita in Modello app 2.0, è possibile aggiungere i criteri e l'API di accesso alle applicazioni desktop e mobili.  Questa guida è indipendente dal linguaggio, e descrive come inviare e ricevere messaggi HTTP senza utilizzare une delle nostre librerie open source.
+concessione del codice di autorizzazione OAuth 2.0 Hello è utilizzabile nelle App che vengono installate in un dispositivo toogain accedere tooprotected alle risorse, ad esempio API web.  Tramite l'implementazione della versione 2.0 di hello app modello OAuth 2.0, è possibile aggiungere l'API di accesso e le App per dispositivi mobili e desktop tooyour.  Questa guida è indipendente dal linguaggio e viene descritto come toosend e ricevere messaggi HTTP senza utilizzare uno dei nostri librerie open source.
 
 > [!NOTE]
-> Non tutti gli scenari e le funzionalità di Azure Active Directory sono supportati dall'endpoint 2.0.  Per determinare se è necessario usare l'endpoint v2.0, leggere le informazioni sulle [limitazioni v2.0](active-directory-v2-limitations.md).
+> Non tutte le caratteristiche e gli scenari di Azure Active Directory sono supportati dall'endpoint di hello v 2.0.  toodetermine se è necessario utilizzare endpoint v 2.0 hello, conoscenza [limitazioni v 2.0](active-directory-v2-limitations.md).
 > 
 > 
 
-Il flusso del codice di autorizzazione di OAuth 2.0 è descritto nella [sezione 4.1 della specifica di OAuth 2.0](http://tools.ietf.org/html/rfc6749).  Viene usato per eseguire l'autenticazione e l'autorizzazione nella maggior parte dei tipi di app, tra cui [app Web](active-directory-v2-flows.md#web-apps) e [app native](active-directory-v2-flows.md#mobile-and-native-apps).  Tale flusso consente alle app di acquisire in modo sicuro i token di accesso che possono essere usati per accedere alle risorse protette tramite endpoint v2.0.  
+flusso di codice di autorizzazione OAuth 2.0 Hello è descritta nel [sezione 4.1 della specifica OAuth 2.0 hello](http://tools.ietf.org/html/rfc6749).  È utilizzato tooperform autenticazione e autorizzazione nella maggior parte di hello di tipi di app, inclusi [le app web](active-directory-v2-flows.md#web-apps) e [App installate in modo nativo](active-directory-v2-flows.md#mobile-and-native-apps).  In questo modo le app toosecurely acquisire access_tokens che possono essere utilizzati tooaccess risorse protette utilizzando hello v 2.0 endpoint.  
 
 ## Diagramma di protocollo
-In generale, l'intero flusso di autenticazione per un'applicazione nativa/mobile ha un aspetto analogo al seguente:
+In generale, flusso di autenticazione intera hello per un'applicazione nativa/mobile un bit è simile al seguente:
 
 ![Flusso del codice di autenticazione di OAuth](../../media/active-directory-v2-flows/convergence_scenarios_native.png)
 
 ## Richiedere un codice di autorizzazione
-Il flusso del codice di autorizzazione ha inizio con il client che indirizza l'utente all'endpoint `/authorize` .  In questa richiesta, il client indica le autorizzazioni che deve acquisire dall'utente:
+flusso di codice di autorizzazione Hello inizia con il client di hello indirizzamento hello utente toohello `/authorize` endpoint.  In questa richiesta, il client di hello indica hello autorizzazioni tooacquire utente hello:
 
 ```
 // Line breaks for legibility only
@@ -52,27 +52,27 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> Fare clic sul collegamento seguente per eseguire questa richiesta. Dopo l'accesso, il browser deve essere reindirizzato a `https://localhost/myapp/` con un `code` nella barra degli indirizzi.
+> Fare clic sul collegamento di hello sotto tooexecute questa richiesta. Dopo aver effettuato l'accesso, il browser dovrebbe essere reindirizzato troppo`https://localhost/myapp/` con un `code` nella barra degli indirizzi hello.
 > <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
 > 
 > 
 
 | Parametro |  | Descrizione |
 | --- | --- | --- |
-| tenant |Obbligatoria |Il valore `{tenant}` del percorso della richiesta può essere usato per controllare chi può accedere all'applicazione.  I valori consentiti sono `common`, `organizations`, `consumers` e gli identificatori del tenant.  Per altre informazioni, vedere le [nozioni di base sul protocollo](active-directory-v2-protocols.md#endpoints). |
-| client_id |Obbligatoria |ID applicazione che il portale di registrazione ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) ha assegnato all'app. |
-| response_type |Obbligatoria |Deve includere `code` per il flusso del codice di autorizzazione. |
-| redirect_uri |consigliato |URI di reindirizzamento dell'app dove le risposte di autenticazione possono essere inviate e ricevute dall'app.  Deve corrispondere esattamente a uno degli URI di reindirizzamento registrati nel portale, ad eccezione del fatto che deve essere codificato come URL.  Per le app native e le app per dispositivi mobili è necessario usare il valore predefinito `https://login.microsoftonline.com/common/oauth2/nativeclient`. |
-| scope |Obbligatoria |Elenco separato da spazi di [ambiti](active-directory-v2-scopes.md) a cui si vuole che l'utente dia il consenso. |
-| response_mode |Consigliato |Specifica il metodo da usare per restituire il token risultante all'app.  Può essere `query` o `form_post`. |
-| state |Consigliato |Valore incluso nella richiesta che verrà restituito anche nella risposta del token.  Può trattarsi di una stringa di qualsiasi contenuto.  Per [evitare gli attacchi di richiesta intersito falsa](http://tools.ietf.org/html/rfc6749#section-10.12), viene in genere usato un valore univoco generato casualmente.  Lo stato viene inoltre usato per codificare le informazioni sullo stato dell'utente nell'app prima dell'esecuzione della richiesta di autenticazione, ad esempio la pagina o la vista in cui si trovava. |
-| prompt |Facoltativa |Indica il tipo di interazione obbligatoria dell'utente.  Gli unici valori validi al momento sono "login", "none" e "consent".  `prompt=login` forza l'utente a immettere le sue credenziali alla richiesta, negando l'accesso Single Sign-On.  `prompt=none` è l'opposto: garantisce che all'utente non venga presentata alcuna richiesta interattiva.  Se la richiesta non può essere completata automaticamente tramite Single-Sign-On, l'endpoint 2.0 restituirà un errore.  `prompt=consent` attiverà la finestra di dialogo di consenso di OAuth dopo l'accesso dell'utente, che chiede all'utente di concedere le autorizzazioni all'app. |
-| login_hint |Facoltativo |Consente di pre-compilare il campo nome utente/indirizzo di posta elettronica dell'utente nella pagina di accesso, se già si conosce il nome utente.  Le app usano spesso questo parametro durante la riautenticazione, dopo aver estratto il nome utente da un accesso precedente tramite l'attestazione `preferred_username`. |
-| domain_hint |Facoltativa |Può essere uno di `consumers` o `organizations`.  Se incluso, non verrà eseguito il processo di individuazione basata sulla posta elettronica a cui viene sottoposto l'utente nella pagina di accesso della versione 2.0. Questo comporta un'esperienza utente leggermente semplificata.  Le app usano spesso questo parametro durante la riautenticazione, estraendo `tid` da un accesso precedente.  Se il valore dell'attestazione `tid` è `9188040d-6c67-4c5b-b112-36a304b66dad`, usare `domain_hint=consumers`.  In caso contrario, usare `domain_hint=organizations`. |
+| tenant |Obbligatoria |Hello `{tenant}` valore nel percorso di hello della richiesta di hello può essere utilizzato toocontrol che possono accedere a un'applicazione hello.  Hello i valori consentiti sono `common`, `organizations`, `consumers`e gli identificatori del tenant.  Per altre informazioni, vedere le [nozioni di base sul protocollo](active-directory-v2-protocols.md#endpoints). |
+| client_id |Obbligatoria |Id dell'applicazione il portale di registrazione hello Hello ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) assegnato l'app. |
+| response_type |Obbligatoria |Deve includere `code` per flusso di codice di autorizzazione hello. |
+| redirect_uri |consigliato |redirect_uri Hello dell'app, in cui le risposte di autenticazione possono essere inviate e ricevute dall'app.  Deve corrispondere esattamente uno dei redirect_uris hello che è stato registrato nel portale di hello, ad eccezione del fatto che deve essere codificato in url.  Per le app native e mobili, è necessario utilizzare il valore predefinito hello di `https://login.microsoftonline.com/common/oauth2/nativeclient`. |
+| scope |Obbligatoria |Un elenco separato da spazi di [ambiti](active-directory-v2-scopes.md) che si desidera hello utente tooconsent per. |
+| response_mode |consigliato |Specifica il metodo hello che deve essere utilizzati toosend hello risultante token tooyour indietro app.  Può essere `query` o `form_post`. |
+| state |consigliato |Un valore incluso nella richiesta di hello che verrà anche restituito nella risposta token hello.  Può trattarsi di una stringa di qualsiasi contenuto.  Per [evitare gli attacchi di richiesta intersito falsa](http://tools.ietf.org/html/rfc6749#section-10.12), viene in genere usato un valore univoco generato casualmente.  stato Hello è anche tooencode utilizzati informazioni sullo stato dell'utente hello in app hello prima dell'esecuzione della richiesta di autenticazione hello, ad esempio pagina hello o fossero nella vista. |
+| prompt |Facoltativa |Indica il tipo di hello di interazione utente richiesta.  Hello solo i valori validi in questo momento sono 'account di accesso, 'none', 'di consenso e di.  `prompt=login`sarà il force hello tooenter utente le credenziali per tale richiesta, la negazione di single sign-in.  `prompt=none`è hello opposto: garantisce che l'utente hello non è presentato con qualsiasi tipo di prompt interattivo.  Se la richiesta hello può essere completata automaticamente tramite single-sign-on, l'endpoint v 2.0 hello restituirà un errore.  `prompt=consent`finestra di dialogo dopo il segno di utente hello, che richiede autorizzazioni toohello app di hello utente toogrant il consenso verrà hello trigger OAuth. |
+| login_hint |Facoltativa |Può essere utilizzato toopre riempimento hello nome utente/posta elettronica campo indirizzo hello pagina di accesso per utente hello, se si conosce il nome utente anticipatamente.  Spesso le applicazioni utilizzano il parametro durante la riesecuzione dell'autenticazione, che già estratto hello username da una precedente Accedi utilizzando hello `preferred_username` attestazione. |
+| domain_hint |Facoltativa |Può essere uno di `consumers` o `organizations`.  Se incluso, non verrà eseguita il processo di individuazione basata su posta elettronica hello che l'utente passa attraverso nella pagina, hello v 2.0 accesso iniziali tooa leggermente più semplice l'esperienza utente.  Spesso le applicazioni utilizzano il parametro durante la riautenticazione, estraendo hello `tid` da una precedente Accedi.  Se hello `tid` attestazione valore `9188040d-6c67-4c5b-b112-36a304b66dad`, si consiglia di utilizzare `domain_hint=consumers`.  In caso contrario, usare `domain_hint=organizations`. |
 
-A questo punto, all'utente viene chiesto di immettere le credenziali e completare l'autenticazione.  L'endpoint 2.0 assicura anche che l'utente abbia fornito il consenso per le autorizzazioni indicate nel parametro di query `scope` .  Se l'utente non ha acconsentito a nessuna di queste autorizzazioni, l'endpoint chiederà all'utente di fornire il consenso per le autorizzazioni obbligatorie.  Questo articolo contiene informazioni dettagliate su [autorizzazioni, consenso e app multi-tenant](active-directory-v2-scopes.md).
+A questo punto, si sarà utente hello frequenti tooenter le credenziali e autenticazione hello completo.  Hello v 2.0 endpoint assicura anche che l'utente hello ha acconsentito autorizzazioni toohello indicate nella hello `scope` parametro di query.  Se l'utente hello non ha accettato le condizioni tooany di tali autorizzazioni, viene chiesto hello utente tooconsent toohello necessarie autorizzazioni.  Questo articolo contiene informazioni dettagliate su [autorizzazioni, consenso e app multi-tenant](active-directory-v2-scopes.md).
 
-Dopo che l'utente viene autenticato e fornisce il consenso, l'endpoint 2.0 restituisce una risposta all'app nell'URI `redirect_uri`, usando il metodo specificato nel parametro `response_mode`.
+Una volta utente hello autentica e concede il consenso, endpoint v 2.0 hello restituirà un'app tooyour risposta in hello indicato `redirect_uri`, utilizzando il metodo di hello specificato nel hello `response_mode` parametro.
 
 #### Risposta con esito positivo
 Una risposta con esito positivo che usa `response_mode=query` ha un aspetto simile al seguente:
@@ -85,11 +85,11 @@ code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...
 
 | Parametro | Descrizione |
 | --- | --- |
-| code |Codice di autorizzazione richiesto dall'app. L'app può usare il codice di autorizzazione per richiedere un token di accesso per la risorsa di destinazione.  I codici di autorizzazione hanno una durata molto breve, in genere scadono dopo circa 10 minuti. |
-| state |Se un parametro di stato è incluso nella richiesta, lo stesso valore viene visualizzato nella risposta. L'app deve verificare che i valori dello stato nella richiesta e nella risposta siano identici. |
+| code |authorization_code Hello che hello app richiesto. app Hello è possibile utilizzare toorequest codice di autorizzazione hello un token di accesso per la risorsa di destinazione hello.  I codici di autorizzazione hanno una durata molto breve, in genere scadono dopo circa 10 minuti. |
+| state |Se un parametro di stato è incluso nella richiesta di hello, hello stesso valore verrà visualizzato nella risposta hello. Hello app deve verificare che i valori dello stato hello hello richiesta e risposta sono identici. |
 
 #### Risposta di errore
-Le risposte di errore possono essere inviate anche a `redirect_uri` , in modo che l'app possa gestirle adeguatamente:
+Le risposte di errore è inoltre possibile inviare toohello `redirect_uri` in modo da gestire in modo appropriato le app hello:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/nativeclient?
@@ -97,26 +97,26 @@ error=access_denied
 &error_description=the+user+canceled+the+authentication
 ```
 
-| Parametro | Descrizione |
+| . | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che può essere usata per classificare i tipi di errori che si verificano e correggerli. |
-| error_description |Messaggio di errore specifico che consente a uno sviluppatore di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che può essere utilizzati tooclassify tipi di errori che si verificano e può essere utilizzati tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che consente a uno sviluppatore di identificare causa radice di hello di un errore di autenticazione. |
 
 #### Codici per gli errori dell'endpoint di autorizzazione
-La tabella seguente descrive i diversi codici errore che possono essere restituiti nel parametro `error` della risposta di errore.
+Hello nella tabella seguente vengono descritti hello vari codici di errore che possono essere restituiti in hello `error` parametro di risposta di errore hello.
 
 | Codice di errore | Descrizione | Azione client |
 | --- | --- | --- |
-| invalid_request |Errore del protocollo, ad esempio un parametro obbligatorio mancante. |Correggere e inviare di nuovo la richiesta. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
-| unauthorized_client |All'applicazione client non è consentito richiedere un codice di autorizzazione. |Si verifica in genere quando l'applicazione client non è registrata in Azure AD o non è stata aggiunta al tenant di Azure AD dell'utente. L'applicazione può chiedere all'utente di installare l'applicazione e di aggiungerla ad Azure AD. |
-| access_denied |Consenso negato dal proprietario della risorsa |L'applicazione client può notificare all'utente che non può proseguire a meno che l'utente non acconsenta. |
-| unsupported_response_type |Il server di autorizzazione non supporta il tipo di risposta nella richiesta. |Correggere e inviare di nuovo la richiesta. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
-| server_error |Errore imprevisto rilevato dal server. |ripetere la richiesta. Questi errori possono dipendere da condizioni temporanee. L'applicazione client sta comunicando all'utente che la risposta è stata ritardata a causa di un errore temporaneo. |
-| temporarily_unavailable |Il server è temporaneamente troppo occupato per gestire la richiesta. |ripetere la richiesta. L'applicazione client sta comunicando all'utente che la risposta è stata ritardata a causa di una condizione temporanea. |
-| invalid_resource |La risorsa di destinazione non è valida perché non esiste, Azure AD non riesce a trovarla o non è attualmente configurata. |Indica che la risorsa, se presente, non è stata configurata nel tenant. L'applicazione può chiedere all'utente di installare l'applicazione e di aggiungerla ad Azure AD. |
+| invalid_request |Errore del protocollo, ad esempio un parametro obbligatorio mancante. |Correggere e inviare di nuovo la richiesta hello. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
+| unauthorized_client |Hello applicazione client non è consentito toorequest un codice di autorizzazione. |Ciò si verifica quando un'applicazione hello client non è registrata in Azure AD o non è stato aggiunto il tenant di Azure AD dell'utente toohello. un'applicazione Hello può richiedere utente hello istruzioni per l'installazione di un'applicazione hello e aggiungerlo tooAzure Active Directory. |
+| access_denied |Consenso negato dal proprietario della risorsa |un'applicazione Hello client può inviare una notifica utente hello che è possibile continuare a meno che non hello utente autorizza l'accesso. |
+| unsupported_response_type |server di autorizzazione Hello non supporta il tipo di risposta hello nella richiesta di hello. |Correggere e inviare di nuovo la richiesta hello. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
+| server_error |Hello rilevato un errore imprevisto. |Ripetere la richiesta hello. Questi errori possono dipendere da condizioni temporanee. un'applicazione Hello client potrebbe spiegare toohello utente che la risposta è in ritardo a causa di un errore temporaneo. |
+| temporarily_unavailable |server Hello è temporaneamente richiesta hello toohandle troppo occupato. |Ripetere la richiesta hello. un'applicazione Hello client potrebbe spiegare toohello utente che la risposta è in ritardo a causa di una condizione temporanea. |
+| invalid_resource |risorsa di destinazione Hello è valido perché non esiste, Azure AD non riesce a trovarla o non sia configurato correttamente. |Indica la risorsa hello, se presente, non è stata configurata nel tenant di hello. un'applicazione Hello può richiedere utente hello istruzioni per l'installazione di un'applicazione hello e aggiungerlo tooAzure Active Directory. |
 
 ## Richiedere un token di accesso
-Dopo aver ottenuto un codice di autorizzazione e l'autorizzazione dell'utente, è possibile riscattare il valore `code` per un `access_token`alla risorsa desiderata, inviando una richiesta `POST` all'endpoint `/token`:
+Ora che è stato acquisito un authorization_code e dispongono dell'autorizzazione utente hello, è possibile riscattare hello `code` per un `access_token` toohello desiderato di risorsa, inviando un `POST` richiesta toohello `/token` endpoint:
 
 ```
 // Line breaks for legibility only
@@ -134,19 +134,19 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> Provare a eseguire la richiesta in Postman. Non dimenticare di sostituire `code`. [![Eseguire in Postman](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
+> Provare a eseguire la richiesta in Postman. (Non dimenticare hello tooreplace `code`) [ ![eseguiti in Postman](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
 > 
 > 
 
-| Parametro |  | Descrizione |
+| . |  | Descrizione |
 | --- | --- | --- |
-| tenant |Obbligatoria |Il valore `{tenant}` del percorso della richiesta può essere usato per controllare chi può accedere all'applicazione.  I valori consentiti sono `common`, `organizations`, `consumers` e gli identificatori del tenant.  Per altre informazioni, vedere le [nozioni di base sul protocollo](active-directory-v2-protocols.md#endpoints). |
-| client_id |Obbligatoria |ID applicazione che il portale di registrazione ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) ha assegnato all'app. |
-| grant_type |Obbligatoria |Deve essere `authorization_code` per il flusso del codice di autorizzazione. |
-| scope |Obbligatoria |Elenco di ambiti separati da spazi.  Gli ambiti richiesti in questa sezione devono essere equivalenti agli ambiti richiesti nella prima sezione o un sottoinsieme di questi ultimi.  Se gli ambiti specificati in questa richiesta si estendono su più server di risorse, l'endpoint 2.0 restituirà un token per la risorsa specificata nel primo ambito.  Per una spiegazione più dettagliata degli ambiti, fare riferimento all'argomento relativo ad [autorizzazioni, consenso e ambiti](active-directory-v2-scopes.md). |
-| code |Obbligatoria |Codice di autorizzazione acquisito durante la prima sezione del flusso. |
-| redirect_uri |Obbligatoria |Stesso valore redirect_uri usato per acquisire il codice di autorizzazione. |
-| client_secret |Obbligatorio per app Web |Segreto dell'applicazione creato per l'app nel portale di registrazione delle app.  È consigliabile non usarlo in un'app nativa, perché i segreti client non possono essere archiviati in modo affidabile nei dispositivi.  Il segreto è obbligatorio per le app Web e le API Web che possono archiviare in modo sicuro il segreto client sul lato server. |
+| tenant |Obbligatoria |Hello `{tenant}` valore nel percorso di hello della richiesta di hello può essere utilizzato toocontrol che possono accedere a un'applicazione hello.  Hello i valori consentiti sono `common`, `organizations`, `consumers`e gli identificatori del tenant.  Per altre informazioni, vedere le [nozioni di base sul protocollo](active-directory-v2-protocols.md#endpoints). |
+| client_id |Obbligatoria |Id dell'applicazione il portale di registrazione hello Hello ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) assegnato l'app. |
+| grant_type |Obbligatoria |Deve essere `authorization_code` per flusso di codice di autorizzazione hello. |
+| scope |Obbligatoria |Elenco di ambiti separati da spazi.  gli ambiti di Hello richiesti in questa parte deve essere equivalente tooor un subset degli ambiti hello richiesto nel primo segmento di hello.  Se gli ambiti di hello specificati nella richiesta sono estese a più server di risorse, endpoint v 2.0 hello restituirà un token per la risorsa hello specificata nell'ambito del primo hello.  Per una spiegazione più dettagliata di ambiti, vedere troppo[ambiti, autorizzazione e autorizzazioni](active-directory-v2-scopes.md). |
+| code |Obbligatoria |Hello authorization_code acquisito nel segmento prima di hello del flusso di hello. |
+| redirect_uri |Obbligatoria |Hello stesso valore di redirect_uri che è stato utilizzato tooacquire hello authorization_code. |
+| client_secret |Obbligatorio per app Web |segreto dell'applicazione Hello creato nel portale di registrazione hello app per l'app.  È consigliabile non usarlo in un'app nativa, perché i segreti client non possono essere archiviati in modo affidabile nei dispositivi.  È necessario per le applicazioni web e web API, che sono in modo sicuro hello possibilità toostore hello client_secret sul lato server hello. |
 
 #### Risposta con esito positivo
 Una risposta token con esito positivo ha un aspetto simile al seguente:
@@ -163,12 +163,12 @@ Una risposta token con esito positivo ha un aspetto simile al seguente:
 ```
 | Parametro | Descrizione |
 | --- | --- |
-| access_token |Token di accesso richiesto. L'app può usare questo token per l'autenticazione alla risorsa protetta, ad esempio un'API Web. |
-| token_type |Indica il valore del tipo di token. L'unico tipo supportato da Azure AD è 'Bearer'. |
-| expires_in |Validità del token di accesso (espressa in secondi). |
-| scope |Ambiti per i quali il token di accesso è valido. |
-| refresh_token |Token di aggiornamento di OAuth 2.0. L'app può usare questo token per acquisire token di accesso aggiuntivi dopo la scadenza del token di accesso corrente.  I token di aggiornamento hanno una durata elevata e possono essere usati per mantenere l'accesso alle risorse per lunghi periodi di tempo.  Per informazioni dettagliate, consultare l'argomento [Anteprima Azure AD B2C: Riferimento al Token](active-directory-v2-tokens.md). |
-| id_token |Token JWT (Token Web JSON) non firmato. L'app può eseguire la decodifica base64Url dei segmenti di questo token per richiedere informazioni sull'utente che ha eseguito l'accesso. L'app può memorizzare nella cache i valori e visualizzarli, ma non deve basarsi su di essi per eventuali autorizzazioni o limiti di sicurezza.  Per altre informazioni sui token ID, vedere le [informazioni di riferimento sui token dell'endpoint 2.0](active-directory-v2-tokens.md). |
+| access_token |token di accesso richiesto Hello. app Hello è possibile utilizzare questo toohello tooauthenticate token risorsa, ad esempio un'API web protetta. |
+| token_type |Indica il valore di tipo di token hello. solo il tipo che supporta Azure AD Hello è connessione |
+| expires_in |Quanto tempo il token di accesso di hello è valido (in secondi). |
+| scope |gli ambiti di Hello hello access_token è valido per. |
+| refresh_token |Token di aggiornamento di OAuth 2.0. Hello app può usare questo token acquisire token di accesso aggiuntivi dopo la scadenza del token di accesso corrente hello.  Refresh_tokens sono di lunga durata e possono essere utilizzati tooretain accesso tooresources per lunghi periodi di tempo.  Per ulteriori dettagli, consultare toohello [riferimento token v 2.0](active-directory-v2-tokens.md). |
+| id_token |Token JWT (Token Web JSON) non firmato. Hello app può base64Url decodificare segmenti hello di questo token toorequest informazioni utente hello che ha effettuato l'accesso. app Hello può memorizzare nella cache i valori hello e visualizzarli, ma deve fare affidamento su di essi per qualsiasi autorizzazione o i limiti di sicurezza.  Per ulteriori informazioni su id_tokens vedere hello [riferimento dell'endpoint token v 2.0](active-directory-v2-tokens.md). |
 
 #### Risposta di errore
 Le risposte di errore hanno un aspetto simile al seguente:
@@ -176,7 +176,7 @@ Le risposte di errore hanno un aspetto simile al seguente:
 ```
 {
   "error": "invalid_scope",
-  "error_description": "AADSTS70011: The provided value for the input parameter 'scope' is not valid. The scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
+  "error_description": "AADSTS70011: hello provided value for hello input parameter 'scope' is not valid. hello scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
   "error_codes": [
     70011
   ],
@@ -188,30 +188,30 @@ Le risposte di errore hanno un aspetto simile al seguente:
 
 | Parametro | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che può essere usata per classificare i tipi di errori che si verificano e correggerli. |
-| error_description |Messaggio di errore specifico che consente a uno sviluppatore di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che può essere utilizzati tooclassify tipi di errori che si verificano e può essere utilizzati tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che consente a uno sviluppatore di identificare causa radice di hello di un errore di autenticazione. |
 | error_codes |Elenco dei codici di errore specifici del servizio token di sicurezza utile per la diagnostica. |
-| timestamp |Ora in cui si è verificato l'errore. |
-| trace_id |Identificatore univoco per la richiesta utile per la diagnostica. |
-| correlation_id |Identificatore univoco per la richiesta utile per la diagnostica tra i componenti. |
+| timestamp |ora di Hello in corrispondenza del quale si è verificato l'errore hello. |
+| trace_id |Identificatore univoco per la richiesta di hello che consentono di diagnostica. |
+| correlation_id |Identificatore univoco per la richiesta di hello che consentono di diagnostica tra componenti. |
 
 #### Codici per gli errori degli endpoint di token
 | Codice di errore | Descrizione | Azione client |
 | --- | --- | --- |
-| invalid_request |Errore del protocollo, ad esempio un parametro obbligatorio mancante. |Correggere e inviare di nuovo la richiesta. |
-| invalid_grant |Il codice di autorizzazione non è valido o è scaduto. |Provare una nuova richiesta all'endpoint `/authorize` |
-| unauthorized_client |Il client autenticato non è autorizzato a usare questo tipo di concessione dell'autorizzazione. |Si verifica in genere quando l'applicazione client non è registrata in Azure AD o non è stata aggiunta al tenant di Azure AD dell'utente. L'applicazione può chiedere all'utente di installare l'applicazione e di aggiungerla ad Azure AD. |
-| invalid_client |Autenticazione client non riuscita. |Credenziali del client non valide. Per risolvere il problema, l'amministratore applicazione aggiorna le credenziali. |
-| unsupported_grant_type |Il server di autorizzazione non supporta il tipo di concessione dell'autorizzazione. |Modificare il tipo di concessione nella richiesta. Questo tipo di errore dovrebbe verificarsi solo durante lo sviluppo ed essere rilevato durante il test iniziale. |
-| invalid_resource |La risorsa di destinazione non è valida perché non esiste, Azure AD non riesce a trovarla o non è attualmente configurata. |Indica che la risorsa, se presente, non è stata configurata nel tenant. L'applicazione può chiedere all'utente di installare l'applicazione e di aggiungerla ad Azure AD. |
-| interaction_required |La richiesta richiede l'interazione dell'utente. Ad esempio, è necessario un passaggio di autenticazione aggiuntivo. |Ripetere la richiesta con la stessa risorsa. |
-| temporarily_unavailable |Il server è temporaneamente troppo occupato per gestire la richiesta. |ripetere la richiesta. L'applicazione client sta comunicando all'utente che la risposta è stata ritardata a causa di una condizione temporanea. |
+| invalid_request |Errore del protocollo, ad esempio un parametro obbligatorio mancante. |Correggere e inviare di nuovo la richiesta hello |
+| invalid_grant |codice di autorizzazione Hello scaduto o non è valido. |Provare un nuovo toohello richiesta `/authorize` endpoint |
+| unauthorized_client |Hello client autenticato non è autorizzato toouse tipo di concedere tale autorizzazione. |Ciò si verifica quando un'applicazione hello client non è registrata in Azure AD o non è stato aggiunto il tenant di Azure AD dell'utente toohello. un'applicazione Hello può richiedere utente hello istruzioni per l'installazione di un'applicazione hello e aggiungerlo tooAzure Active Directory. |
+| invalid_client |Autenticazione client non riuscita. |le credenziali di Hello del client non sono valide. toofix, l'amministratore dell'applicazione hello Aggiorna credenziali hello. |
+| unsupported_grant_type |Hello autorizzazione server non supporta il tipo di hello autorizzazione grant. |Hello modifica concedere tipo nella richiesta di hello. Questo tipo di errore dovrebbe verificarsi solo durante lo sviluppo ed essere rilevato durante il test iniziale. |
+| invalid_resource |risorsa di destinazione Hello è valido perché non esiste, Azure AD non riesce a trovarla o non sia configurato correttamente. |Indica la risorsa hello, se presente, non è stata configurata nel tenant di hello. un'applicazione Hello può richiedere utente hello istruzioni per l'installazione di un'applicazione hello e aggiungerlo tooAzure Active Directory. |
+| interaction_required |richiesta di Hello richiede l'intervento dell'utente. Ad esempio, è necessario un passaggio di autenticazione aggiuntivo. |Ripetere la richiesta hello con hello stessa risorsa. |
+| temporarily_unavailable |server Hello è temporaneamente richiesta hello toohandle troppo occupato. |Ripetere la richiesta hello. un'applicazione Hello client potrebbe spiegare toohello utente che la risposta è in ritardo a causa di una condizione temporanea. |
 
-## Usare il token di accesso
-Dopo aver ottenuto un `access_token` è possibile usarlo in richieste alle API Web includendolo nell'intestazione `Authorization`:
+## Usare il token di accesso hello
+Ora che è stato acquistato un `access_token`, è possibile utilizzare token hello in tooWeb richieste API includendola in hello `Authorization` intestazione:
 
 > [!TIP]
-> Eseguire la richiesta in Postman. Sostituire prima l'intestazione `Authorization`. [![Eseguire in Postman](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
+> Eseguire la richiesta in Postman. (Sostituire hello `Authorization` intestazione prima) [ ![eseguiti in Postman](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
 > 
 > 
 
@@ -221,8 +221,8 @@ Host: https://graph.microsoft.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 ```
 
-## Aggiornare il token di accesso
-I token di accesso hanno breve durata ed è quindi necessario aggiornarli dopo la scadenza per continuare ad accedere alle risorse.  A tale scopo, inviare un'altra richiesta `POST` all'endpoint `/token`, specificando il `refresh_token` anziché il valore `code`:
+## Aggiornare il token di accesso di hello
+Access_tokens hanno una durata breve e, è necessario aggiornarli dopo la scadenza toocontinue l'accesso alle risorse.  È possibile farlo tramite l'invio di un altro `POST` richiesta toohello `/token` endpoint, fornendo hello questa volta `refresh_token` anziché hello `code`:
 
 ```
 // Line breaks for legibility only
@@ -240,19 +240,19 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> Provare a eseguire la richiesta in Postman. Non dimenticare di sostituire `refresh_token`. [![Eseguire in Postman](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
+> Provare a eseguire la richiesta in Postman. (Non dimenticare hello tooreplace `refresh_token`) [ ![eseguiti in Postman](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
 > 
 > 
 
-| Parametro |  | Descrizione |
+| . |  | Descrizione |
 | --- | --- | --- |
-| tenant |Obbligatoria |Il valore `{tenant}` del percorso della richiesta può essere usato per controllare chi può accedere all'applicazione.  I valori consentiti sono `common`, `organizations`, `consumers` e gli identificatori del tenant.  Per altre informazioni, vedere le [nozioni di base sul protocollo](active-directory-v2-protocols.md#endpoints). |
-| client_id |Obbligatoria |ID applicazione che il portale di registrazione ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) ha assegnato all'app. |
-| grant_type |Obbligatorio |Deve essere `refresh_token` per questa sezione del flusso del codice di autorizzazione. |
-| scope |Obbligatoria |Elenco di ambiti separati da spazi.  Gli ambiti richiesti in questa sezione devono essere equivalenti agli ambiti richiesti nella sezione di richiesta del codice di autorizzazione originale o un sottoinsieme di questi ultimi.  Se gli ambiti specificati in questa richiesta si estendono su più server di risorse, l'endpoint 2.0 restituirà un token per la risorsa specificata nel primo ambito.  Per una spiegazione più dettagliata degli ambiti, fare riferimento all'argomento relativo ad [autorizzazioni, consenso e ambiti](active-directory-v2-scopes.md). |
-| refresh_token |Obbligatoria |Token di aggiornamento acquisito durante la seconda sezione del flusso. |
-| redirect_uri |Obbligatoria |Stesso valore redirect_uri usato per acquisire il codice di autorizzazione. |
-| client_secret |Obbligatorio per app Web |Segreto dell'applicazione creato per l'app nel portale di registrazione delle app.  È consigliabile non usarlo in un'app nativa, perché i segreti client non possono essere archiviati in modo affidabile nei dispositivi.  Il segreto è obbligatorio per le app Web e le API Web che possono archiviare in modo sicuro il segreto client sul lato server. |
+| tenant |Obbligatoria |Hello `{tenant}` valore nel percorso di hello della richiesta di hello può essere utilizzato toocontrol che possono accedere a un'applicazione hello.  Hello i valori consentiti sono `common`, `organizations`, `consumers`e gli identificatori del tenant.  Per altre informazioni, vedere le [nozioni di base sul protocollo](active-directory-v2-protocols.md#endpoints). |
+| client_id |Obbligatoria |Id dell'applicazione il portale di registrazione hello Hello ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) assegnato l'app. |
+| grant_type |Obbligatoria |Deve essere `refresh_token` per questo segmento del flusso di codice di autorizzazione hello. |
+| scope |Obbligatoria |Elenco di ambiti separati da spazi.  gli ambiti di Hello richiesti in questa parte deve essere equivalente tooor un subset degli ambiti hello richiesto nella parte di hello originale authorization_code richiesta.  Se gli ambiti di hello specificati nella richiesta sono estese a più server di risorse, endpoint v 2.0 hello restituirà un token per la risorsa hello specificata nell'ambito del primo hello.  Per una spiegazione più dettagliata di ambiti, vedere troppo[ambiti, autorizzazione e autorizzazioni](active-directory-v2-scopes.md). |
+| refresh_token |Obbligatoria |Hello refresh_token acquisito nel segmento di secondo hello del flusso di hello. |
+| redirect_uri |Obbligatoria |Hello stesso valore di redirect_uri che è stato utilizzato tooacquire hello authorization_code. |
+| client_secret |Obbligatorio per app Web |segreto dell'applicazione Hello creato nel portale di registrazione hello app per l'app.  È consigliabile non usarlo in un'app nativa, perché i segreti client non possono essere archiviati in modo affidabile nei dispositivi.  È necessario per le applicazioni web e web API, che sono in modo sicuro hello possibilità toostore hello client_secret sul lato server hello. |
 
 #### Risposta con esito positivo
 Una risposta token con esito positivo ha un aspetto simile al seguente:
@@ -269,18 +269,18 @@ Una risposta token con esito positivo ha un aspetto simile al seguente:
 ```
 | Parametro | Descrizione |
 | --- | --- |
-| access_token |Token di accesso richiesto. L'app può usare questo token per l'autenticazione alla risorsa protetta, ad esempio un'API Web. |
-| token_type |Indica il valore del tipo di token. L'unico tipo supportato da Azure AD è 'Bearer'. |
-| expires_in |Validità del token di accesso (espressa in secondi). |
-| scope |Ambiti per i quali il token di accesso è valido. |
-| refresh_token |Nuovo token di aggiornamento di OAuth 2.0. È necessario sostituire il token di aggiornamento precedente con quello appena acquisito, per garantire che i token di aggiornamento rimangano validi il più a lungo possibile. |
-| id_token |Token JWT (Token Web JSON) non firmato. L'app può eseguire la decodifica base64Url dei segmenti di questo token per richiedere informazioni sull'utente che ha eseguito l'accesso. L'app può memorizzare nella cache i valori e visualizzarli, ma non deve basarsi su di essi per eventuali autorizzazioni o limiti di sicurezza.  Per altre informazioni sui token ID, vedere le [informazioni di riferimento sui token dell'endpoint 2.0](active-directory-v2-tokens.md). |
+| access_token |token di accesso richiesto Hello. app Hello è possibile utilizzare questo toohello tooauthenticate token risorsa, ad esempio un'API web protetta. |
+| token_type |Indica il valore di tipo di token hello. solo il tipo che supporta Azure AD Hello è connessione |
+| expires_in |Quanto tempo il token di accesso di hello è valido (in secondi). |
+| scope |gli ambiti di Hello hello access_token è valido per. |
+| refresh_token |Nuovo token di aggiornamento di OAuth 2.0. È necessario sostituire l'aggiornamento precedente hello token con questa tooensure token di aggiornamento appena acquisiti i token di aggiornamento rimangono validi per più a lungo possibile. |
+| id_token |Token JWT (Token Web JSON) non firmato. Hello app può base64Url decodificare segmenti hello di questo token toorequest informazioni utente hello che ha effettuato l'accesso. app Hello può memorizzare nella cache i valori hello e visualizzarli, ma deve fare affidamento su di essi per qualsiasi autorizzazione o i limiti di sicurezza.  Per ulteriori informazioni su id_tokens vedere hello [riferimento dell'endpoint token v 2.0](active-directory-v2-tokens.md). |
 
 #### Risposta di errore
 ```
 {
   "error": "invalid_scope",
-  "error_description": "AADSTS70011: The provided value for the input parameter 'scope' is not valid. The scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
+  "error_description": "AADSTS70011: hello provided value for hello input parameter 'scope' is not valid. hello scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
   "error_codes": [
     70011
   ],
@@ -292,12 +292,12 @@ Una risposta token con esito positivo ha un aspetto simile al seguente:
 
 | Parametro | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che può essere usata per classificare i tipi di errori che si verificano e correggerli. |
-| error_description |Messaggio di errore specifico che consente a uno sviluppatore di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che può essere utilizzati tooclassify tipi di errori che si verificano e può essere utilizzati tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che consente a uno sviluppatore di identificare causa radice di hello di un errore di autenticazione. |
 | error_codes |Elenco dei codici di errore specifici del servizio token di sicurezza utile per la diagnostica. |
-| timestamp |Ora in cui si è verificato l'errore. |
-| trace_id |Identificatore univoco per la richiesta utile per la diagnostica. |
-| correlation_id |Identificatore univoco per la richiesta utile per la diagnostica tra i componenti. |
+| timestamp |ora di Hello in corrispondenza del quale si è verificato l'errore hello. |
+| trace_id |Identificatore univoco per la richiesta di hello che consentono di diagnostica. |
+| correlation_id |Identificatore univoco per la richiesta di hello che consentono di diagnostica tra componenti. |
 
-Per una descrizione dei codici di errore e l'azione consigliata per il client, vedere [Codici per gli errori degli endpoint di token](#error-codes-for-token-endpoint-errors).
+Per una descrizione dei codici di errore hello e hello client azioni consigliate, vedere [codici di errore per gli errori di endpoint token](#error-codes-for-token-endpoint-errors).
 

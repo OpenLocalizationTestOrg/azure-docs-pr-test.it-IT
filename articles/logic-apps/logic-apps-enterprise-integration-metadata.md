@@ -1,5 +1,5 @@
 ---
-title: Gestire i metadati degli elementi degli account di integrazione - App per la logica di Azure | Microsoft Docs
+title: integrazione aaaManage account metadati artefatto - App Azure per la logica | Documenti Microsoft
 description: Aggiungere o recuperare i metadati degli elementi dagli account di integrazione per le app per la logica di Azure
 author: padmavc
 manager: anneta
@@ -15,23 +15,23 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 11/21/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 28bb8296ddd820ec5aa9793dc0928b4b1e67bf6f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8de71bffa9f9975d5409716b2208fa6c3a9545d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-artifact-metadata-in-integration-accounts-for-logic-apps"></a>Gestire i metadati degli elementi dagli account di integrazione per le app per la logica
 
-È possibile definire i metadati personalizzati per gli elementi negli account di integrazione e recuperarli durante il runtime per l'app per la logica. Ad esempio, è possibile specificare i metadati per elementi quali partner, contratti, schemi e mappe; in tutti i casi i metadati vengono archiviati con coppie chiave-valore. Attualmente, gli elementi non possono creare metadati tramite interfaccia utente, ma è possibile usare le API REST per creare i metadati. Per aggiungere metadati quando si crea o si seleziona un partner, un contratto o uno schema nel Portale di Azure, scegliere **Modifica come JSON**. Per recuperare i metadati degli elementi nelle app per la logica, è possibile usare la funzionalità di ricerca elemento dell'account di integrazione.
+È possibile definire i metadati personalizzati per gli elementi negli account di integrazione e recuperarli durante il runtime per l'app per la logica. Ad esempio, è possibile specificare i metadati per elementi quali partner, contratti, schemi e mappe; in tutti i casi i metadati vengono archiviati con coppie chiave-valore. Attualmente, gli elementi non è possibile creare i metadati tramite interfaccia utente, ma è possibile usare le API REST toocreate metadati. Scegliere tooadd metadati quando si crea o si seleziona un partner, contratti o dello schema nel portale di Azure hello **modifica come JSON**. metadati di elemento tooretrieve nelle app di logica, è possibile utilizzare funzionalità di integrazione ricerca dell'elemento Account hello.
 
-## <a name="add-metadata-to-artifacts-in-integration-accounts"></a>Aggiungere metadati a elementi negli account di integrazione
+## <a name="add-metadata-tooartifacts-in-integration-accounts"></a>Aggiungere metadati tooartifacts negli account di integrazione
 
 1. Creare un [account di integrazione](logic-apps-enterprise-integration-create-integration-account.md).
 
-2. Aggiungere un elemento all'account di integrazione, ad esempio, un [partner](logic-apps-enterprise-integration-partners.md#how-to-create-a-partner), un [contratto](logic-apps-enterprise-integration-agreements.md#how-to-create-agreements) o uno [schema](logic-apps-enterprise-integration-schemas.md).
+2. Aggiungere un account di integrazione tooyour artefatto, ad esempio, un [partner](logic-apps-enterprise-integration-partners.md#how-to-create-a-partner), [contratto](logic-apps-enterprise-integration-agreements.md#how-to-create-agreements), o [schema](logic-apps-enterprise-integration-schemas.md).
 
-3.  Selezionare l'elemento, scegliere **Modifica come JSON** e immettere i dettagli dei metadati.
+3.  Selezionare l'elemento hello, scegliere **modifica come JSON**, quindi immettere i dettagli dei metadati.
 
     ![Immettere i metadati](media/logic-apps-enterprise-integration-metadata/image1.png)
 
@@ -39,15 +39,15 @@ ms.lasthandoff: 07/11/2017
 
 1. Creare un'[app per la logica](logic-apps-create-a-logic-app.md).
 
-2. Creare un [collegamento dall'app per la logica all'account di integrazione](logic-apps-enterprise-integration-create-integration-account.md#link-an-integration-account-to-a-logic-app). 
+2. Creare un [collegamento dall'account di integrazione di logica app tooyour](logic-apps-enterprise-integration-create-integration-account.md#link-an-integration-account-to-a-logic-app). 
 
-3. Nella finestra di progettazione di app per la logica aggiungere un trigger come *richiesta* o *HTTP* all'app per la logica.
+3. Nella finestra di progettazione di logica di applicazione, aggiungere un trigger come *richiesta* o *HTTP* tooyour logica app.
 
 4.  Scegliere **Passaggio successivo** > **Aggiungi un'azione**. Cercare *integrazione* in modo da trovare e quindi selezionare **Account di integrazione - Ricerca elemento dell'account di integrazione**.
 
     ![Selezionare Ricerca elemento dell'account di integrazione](media/logic-apps-enterprise-integration-metadata/image2.png)
 
-5. Selezionare il **tipo di elemento** e specificare un **nome elemento**
+5. Seleziona hello **tipo di elemento**e fornire hello **nome elemento**.
 
     ![Selezionare il tipo di elemento e specificare un nome elemento](media/logic-apps-enterprise-integration-metadata/image3.png)
 
@@ -59,9 +59,9 @@ I metadati del partner sono caratterizzati dai seguenti dettagli `routingUrl`:
 
 1. Nell'app per la logica aggiungere, il trigger, un'azione **Account di integrazione - Ricerca elemento dell'account di integrazione** per il partner e un **HTTP**.
 
-    ![Aggiungere trigger, ricerca di elementi e "HTTP" all'app per la logica](media/logic-apps-enterprise-integration-metadata/image4.png)
+    ![Aggiungere trigger e ricerca elemento "HTTP" tooyour logica app](media/logic-apps-enterprise-integration-metadata/image4.png)
 
-2. Per recuperare l'URI, passare alla visualizzazione Codice per app per la logica. La definizione dell'app per la logica dovrebbe essere simile alla seguente:
+2. hello tooretrieve URI, andare tooCode visualizzazione per l'app logica. La definizione dell'app per la logica dovrebbe essere simile alla seguente:
 
     ![Ricerca](media/logic-apps-enterprise-integration-metadata/image5.png)
 

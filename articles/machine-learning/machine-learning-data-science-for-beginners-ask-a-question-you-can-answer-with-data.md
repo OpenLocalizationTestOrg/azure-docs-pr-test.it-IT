@@ -1,6 +1,6 @@
 ---
-title: Formulare una domanda a cui i dati possono rispondere - Problemi di data science - Azure Machine Learning | Microsoft Docs
-description: Informazioni su come formulare una domanda mirata sull'analisi scientifica dei dati in Analisi scientifica dei dati per principianti, video 3. Include un confronto delle domande di classificazione e regressione.
+title: "aaaAsk può rispondere a una data di domanda - problemi di analisi scientifica dei dati - Azure Machine Learning | Documenti Microsoft"
+description: Informazioni su come un'analisi scientifica dei dati acuto tooformulate domanda scienza dei dati per i principianti 3 video. Include un confronto delle domande di classificazione e regressione.
 keywords: problemi di analisi scientifica dei dati, domande di analisi scientifica dei dati, formulare domande, domande di regressione, domande di classificazione, domanda ben strutturata
 services: machine-learning
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: cgronlun
-ms.openlocfilehash: 0495dbab72024e504ae33d35f16a212a2084bc10
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 00c328f51e6d9ff6654b5966eb97d6762582f7e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ask-a-question-you-can-answer-with-data"></a>Porre una domanda a cui è possibile rispondere con i dati
 ## <a name="video-3-data-science-for-beginners-series"></a>Video 3: Analisi scientifica dei dati per principianti
-Informazioni su come formulare un problema come domanda sull'analisi scientifica dei dati in Analisi scientifica dei dati per principianti, video 3. Questo video include un confronto di domande per gli algoritmi di classificazione e regressione.
+Informazioni su come tooformulate un problema di analisi scientifica dei dati in una domanda scienza dei dati per i principianti video 3. Questo video include un confronto di domande per gli algoritmi di classificazione e regressione.
 
-Per trarre il meglio dalla serie è consigliabile guardare tutti i video. [L'elenco dei video è disponibile qui](#other-videos-in-this-series)
+hello tooget meglio serie hello, guardare tutti. [Passare l'elenco toohello di video](#other-videos-in-this-series)
 <br>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Data-science-for-beginners-Ask-a-question-you-can-answer-with-data/player]
@@ -33,68 +33,68 @@ Per trarre il meglio dalla serie è consigliabile guardare tutti i video. [L'ele
 >
 
 ## <a name="other-videos-in-this-series"></a>Altri video della serie
-*Analisi scientifica dei dati per principianti* è una rapida introduzione all'analisi scientifica dei dati in cinque brevi video.
+*Analisi scientifica dei dati per i principianti* scienza di toodata una rapida introduzione in cinque brevi video.
 
-* Video 1: [5 domande a cui può rispondere l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 min e 14 sec)*
+* Video 1: [hello 5 domande risposte di analisi scientifica dei dati](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 min 14 sec)*
 * Video 2: [Verifica della preparazione dei dati per l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 min e 56 sec)*
 * Video 3: Porre una domanda a cui è possibile rispondere con i dati
 * Video 4: [Prevedere una risposta con un modello semplice](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7 min e 42 sec)*
-* Video 5: [Copiare il lavoro di altre persone per l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 min e 18 sec)*
+* Video 5: [copiare analisi scientifica dei dati di altre persone lavoro toodo](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 min 18 sec)*
 
 ## <a name="transcript-ask-a-question-you-can-answer-with-data"></a>Trascrizione: Porre una domanda a cui è possibile rispondere con i dati
-Questo è il terzo video della serie "Analisi scientifica dei dati per principianti".  
+Benvenuti toohello video terza serie hello "Analisi scientifica dei dati per utenti meno esperti."  
 
 In questo video vengono forniti suggerimenti per formulare una domanda a cui è possibile rispondere con i dati.
 
-È possibile sfruttare al meglio questo video guardando prima i due video precedenti di questa serie: "Le 5 domande a cui l'analisi scientifica dei dati può rispondere" e "Sono pronti i dati per l'analisi scientifica?"
+È possibile ottenere informazioni da questo video, se si innanzitutto video hello due versioni precedenti di questa serie: "analisi scientifica dei dati di hello 5 domande possono rispondere" e "Is i dati sono pronti per l'analisi scientifica dei dati?"
 
 ## <a name="ask-a-sharp-question"></a>Porre una domanda ben strutturata
-È stato spiegato come l'analisi scientifica dei dati sia il processo d'uso di nomi, detti anche categorie o etichette, e di numeri per prevedere una risposta a una domanda. Non può però essere una domanda qualsiasi, deve essere una *domanda ben strutturata*
+Abbiamo parlato sull'analisi scientifica dei dati è il processo di hello di utilizzo dei nomi (detti anche etichette o categorie) e numeri toopredict una domanda tooa di risposta. Ma non può essere qualsiasi domanda; ha toobe un *acuto domanda.*
 
-A una domanda vaga non è necessario rispondere con un nome o un numero, mentre lo è per una domanda ben strutturata.
+Non dispone di una domanda vagamente toobe ha risposto con un nome o un numero. mentre lo è per una domanda ben strutturata.
 
-Si immagini di trovare una lampada magica con un genio che risponde puntualmente a qualsiasi domanda. Ma è un genio dispettoso, che tenta di rendere la risposta quanto più vaga e confusa possibile. Si vuole costringerlo con una domanda così precisa a cui non potrà fare a meno di dare la risposta che si vuole ottenere.
+Si immagini di trovare una lampada magica con un genio che risponde puntualmente a qualsiasi domanda. Ma è un qualunque informazione operazioni dannose, e si proverà a eseguire toomake la risposta come vagamente e confusi come è possibile farne. Si desidera toopin quest'ultimo verso il basso una domanda così solida che ha non è possibile contribuire ma indicano quali operazioni si desidera tooknow.
 
-Se si pone una domanda vaga, come "Cosa accadrà al mio titolo azionario?", il genio potrebbe rispondere "Cambierà il prezzo". È una risposta vera, ma non è molto utile.
+Se si tooask vagamente domande, ad esempio "Cosa accade toohappen con un titolo azionario?", può rispondere a qualunque informazione hello, "cambierà prezzo hello". È una risposta vera, ma non è molto utile.
 
-Se però si pone una domanda ben strutturata, ad esempio "Quale sarà il prezzo di vendita del mio titolo la prossima settimana?", il genio non potrà fare a meno di fornire una risposta specifica e prevedere un prezzo di vendita.
+Se tuttavia fosse tooask acuta domande come "Cosa my vendita prezzo azionario sarà settimana successiva?", hello qualunque informazione non è possibile aiutare ma consentono di uno specifico, rispondere e stimare un prezzo di vendita.
 
 ## <a name="examples-of-your-answer-target-data"></a>Esempi di risposta: dati di destinazione
-Una volta formulata la domanda, verificare se sono disponibili esempi di risposta nei dati.
+Quando si formula una domanda, controllare toosee se sono presenti esempi di risposte hello nei dati.
 
-Se la domanda è "Quale sarà il prezzo di vendita del mio titolo la prossima settimana?", è necessario assicurarsi che i dati includano la cronologia dei prezzi dei titoli azionari.
+Se la domanda è "Quale sarà il prezzo di vendita del mio titolo la prossima settimana?", è quindi presente che i dati includono la cronologia dei prezzi azionari hello toomake.
 
-Se la domanda è "Quale auto del mio parco macchine avrà per prima un guasto?", sarà necessario assicurarsi che i dati includano informazioni sui guasti precedenti.
+Se la domanda è "quali auto in my fleet toofail corso innanzitutto?" quindi abbiamo toomake che i dati sono incluse informazioni sugli errori precedenti.
 
 ![Dati di destinazione: esempi di risposta. Formulare una domanda di analisi scientifica dei dati.](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/target-data.png)
 
-Questi esempi di risposte sono detti destinazione. Una destinazione è ciò che si sta tentando di stimare in relazione ai punti dati futuri, se si tratta di una categoria o di un numero.
+Questi esempi di risposte sono detti destinazione. Una destinazione è ciò che stiamo tentando toopredict sui punti dati futuri, se si tratta di una categoria o un numero.
 
-Se non sono disponibili dati di destinazione, è necessario ottenerne alcuni. Non sarà possibile rispondere alla domanda senza questi dati.
+Se non si dispone di dati di destinazione, è necessario alcune tooget. Si sarà in grado di tooanswer la domanda senza di esso.
 
 ## <a name="reformulate-your-question"></a>Riformulare la domanda
-In alcuni casi è possibile riformulare la domanda per ottenere una risposta più utile.
+In alcuni casi è possibile riformulare la tooget domanda una risposta più utile.
 
-La domanda "Il punto dati è A o B?" stima la categoria (o nome o etichetta) di un elemento. Per rispondere si userà un *algoritmo di classificazione*.
+domanda Hello "è il punto dati A o B?" Consente di stimare categoria hello (o nome o l'etichetta) di un elemento. tooanswer, utilizzare un *algoritmo di classificazione*.
 
-La domanda "Quanto?" o "Quanti?" prevede una quantità. Per rispondere si userà un *algoritmo di regressione*.
+Hello domanda "Quanti?" o "Quanti?" prevede una quantità. tooanswer si utilizzi un *algoritmo di regressione*.
 
-Per vedere come è possibile trasformare questi dati, si osserverà la domanda "Quale notizia è più interessante per questo lettore?" Richiede una stima di una singola opzione tra molte possibilità, in altre parole "È A o B o C o D?" e si userà un algoritmo di classificazione.
+toosee come è possibile trasformare questi, diamo un'occhiata domanda hello, "quali notizia è lettore toothis più interessanti hello?" Richiede una stima di una singola opzione tra molte possibilità, in altre parole "È A o B o C o D?" e si userà un algoritmo di classificazione.
 
-La risposta a questa domanda può tuttavia essere semplice se la si riformula in "Quanto è interessante ogni notizia in questo elenco per il lettore?" A questo punto è possibile assegnare a ogni articolo un punteggio numerico e quindi è facile identificare quello con il punteggio più elevato. Si tratta di una riformulazione della domanda di classificazione in una domanda di regressione o di quantità.
+Ma, a questa domanda può essere tooanswer più semplice se si modifica la classe come "il livello di interesse è ogni storia in questo visualizzatore toothis elenco?" Ora è possibile assegnare a ogni articolo un punteggio numerico ed è articolo punteggi più alti di facile tooidentify hello. Si tratta di un riformulare della domanda di classificazione hello in una domanda di regressione o quanto?
 
 ![Riformulare la domanda. Domanda di classificazione e domanda di regressione.](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/classification-question-vs-regression-question.png)
 
-Come si pone una domanda è un'indicazione per individuare l'algoritmo che può fornire una risposta.
+Come si porre che una domanda è un algoritmo di toowhich indicazione consente di ottenere una risposta.
 
-Si noterà che alcune famiglie di algoritmi, come quelli nell'esempio relativo alle notizie, sono strettamente correlate. È possibile riformulare la domanda per usare l'algoritmo che fornisce la risposta più utile.
+Sono disponibili alcune famiglie di algoritmi: ad esempio hello quelli nel nostro esempio storia notizie - strettamente correlate. È possibile riformulare l'algoritmo di hello toouse domanda che fornisce risposte più utili di hello.
 
-La cosa più importante, tuttavia, è porre una domanda ben strutturata, quella a cui è possibile fornire una risposta con i dati. Occorre anche assicurarsi di avere i dati corretti per rispondere.
+Ma più importanti, porre la domanda acuto - domanda hello che è possibile rispondere con i dati. E assicurarsi di avere tooanswer dati destra hello è.
 
 Sono stati trattati alcuni principi di base per porre una domanda a cui è possibile rispondere con i dati.
 
-Anche gli altri video della serie "Analisi scientifica dei dati per principianti" di Microsoft Azure Machine Learning meritano di essere visti.
+Impossibile verificare toocheck out hello altri video in "Data Science per principianti" da Microsoft Azure Machine Learning.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Effettuare il primo esperimento di analisi scientifica dei dati con Machine Learning Studio](machine-learning-create-experiment.md)
-* [Leggere l'Introduzione all'apprendimento automatico in Microsoft Azure](machine-learning-what-is-machine-learning.md)
+* [Ottenere un tooMachine introduzione di apprendimento in Microsoft Azure](machine-learning-what-is-machine-learning.md)

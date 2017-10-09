@@ -1,6 +1,6 @@
 ---
-title: "Novità di Azure Data Catalog | Microsoft Docs"
-description: "Questo articolo fornisce una panoramica delle nuove funzionalità aggiunte ad Azure Data Catalog."
+title: aaaWhat di nuovo in Azure Data Catalog | Documenti Microsoft
+description: "Questo articolo fornisce che una panoramica delle nuove funzionalità aggiunte tooAzure catalogo dati."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,140 +15,140 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/22/2017
 ms.author: maroche
-ms.openlocfilehash: 7ee836b4c0c87fc7d271f59dcb16f3293e68dc9a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f60130487ece39e110446b68544945089d2ab37e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="whats-new-in-azure-data-catalog"></a>Novità di Azure Data Catalog
-Gli aggiornamenti ad **Azure Data Catalog** vengono rilasciati a intervalli regolari. Non tutte le nuove versioni includono tuttavia nuove funzionalità destinate all'utente, in quanto alcune sono incentrate sulle funzionalità del servizio back-end. Questa pagina illustra le nuove funzionalità destinate all'utente aggiunte al servizio Azure Data Catalog.
+Aggiorna troppo**Azure Data Catalog** periodicamente vengono rilasciate. Non tutte le nuove versioni includono tuttavia nuove funzionalità destinate all'utente, in quanto alcune sono incentrate sulle funzionalità del servizio back-end. Questa pagina sono evidenziate nuovo servizio Azure Data Catalog toohello aggiunta di funzionalità rivolta all'utente.
 
 ## <a name="whats-new-for-august-2017"></a>Novità di agosto 2017 
-A partire da agosto 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da agosto 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-*   Nuovo esempio per sviluppatori disponibile per la creazione e la gestione dei metadati di relazione con l'API REST di Data Catalog. L'esempio *Import relationship information into Data Catalog* (Importare informazioni sulle relazioni in Data Catalog) è disponibile nella [pagina degli esempi di codice di Data Catalog](https://azure.microsoft.com/resources/samples/?service=data-catalog&sort=0). 
-* Supporto per l'estrazione di metadati di relazione join da origini dati Teradata durante la registrazione di tabelle correlate con lo strumento di registrazione dell'origine dati.
-* Supporto per gli oggetti funzione con valori di tabella di SQL Server durante la registrazione delle origini dati SQL Server con lo strumento di registrazione dell'origine dati.
-* Vari aggiornamenti e miglioramenti per aumentare le prestazioni e l'usabilità del portale di Data Catalog.
+*   Un nuovo campione developer è disponibile per la creazione e gestione dei metadati di relazione con hello API REST di catalogo dati. Hello *importare le informazioni sulle relazioni nel catalogo dati* esempio è disponibile in hello [pagina degli esempi di codice catalogo dati](https://azure.microsoft.com/resources/samples/?service=data-catalog&sort=0). 
+* Supporto per l'estrazione di aggiungere i metadati di relazione da origini dati Teradata durante la registrazione di tabelle correlate utilizzando strumento di registrazione di origine dati hello.
+* Supporto per la funzione con valori di tabella di SQL Server oggetti (TVF) durante la registrazione delle origini dati di SQL Server utilizzando lo strumento di registrazione hello dati origine.
+* Più aggiornamenti e miglioramenti delle prestazioni di hello tooincrease e facilità di utilizzo del portale di hello catalogo dati.
 
 ## <a name="whats-new-for-july-2017"></a>Novità di luglio 2017 
-A partire da luglio 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da luglio 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 *   Supporto per un controllo più granulare sulle operazioni consentite sui metadati, tra cui:
-    - Gli amministratori del catalogo possono limitare la capacità degli utenti di aggiungere tag e i metadati correlati al catalogo, abilitando l'accesso in sola lettura al catalogo.
-    - Gli amministratori del catalogo possono limitare la capacità degli utenti di registrare nuove origini dati nel catalogo.
-    - Gli amministratori del catalogo possono limitare la capacità degli utenti di diventare proprietari di metadati dell'asset di dati nel catalogo.
-    - È possibile concedere autorizzazioni a utenti e gruppi di sicurezza di Azure Active Directory per facilitare la gestione delle autorizzazioni.
-* Supporto per le relazioni tra gli asset di dati registrati e rilevamento di asset di dati correlati nel portale di Data Catalog, tra cui:
-    - Estrazione dei metadati di relazione da origini dati SQL Server (incluso il database SQL di Azure), Oracle e MySQL durante l'uso dello strumento di registrazione dell'origine dati di Data Catalog.
-    - Rilevamento di asset di dati correlati durante la visualizzazione dei metadati degli asset nel portale di Data Catalog.
-    - Operazioni per definire, rilevare e gestire le relazioni tra gli asset di dati con l'API REST di Data Catalog.
+    - Gli amministratori del catalogo possono limitare i tag toocontribute possibilità degli utenti e i metadati correlati toohello catalogo, l'abilitazione di catalogo toohello accesso in sola lettura.
+    - Gli amministratori del catalogo è possono limitare possibilità tooregister nuove origini dati degli utenti nel catalogo di hello.
+    - Gli amministratori del catalogo è possono limitare la proprietà di tootake possibilità degli utenti dei metadati di asset di dati nel catalogo di hello.
+    - È possibile concedere autorizzazioni tooAzure gruppi di sicurezza di Active Directory e gli utenti per facilitare la gestione delle autorizzazioni.
+* Supporto per le relazioni tra gli asset di dati registrati e individuazione asset di dati correlati nel portale di catalogo dati hello, tra cui:
+    - Estrazione dei metadati di relazione di MySQL, Oracle e SQL Server (inclusi i Database SQL di Azure), origini dati quando si utilizza hello strumento per la registrazione di origine dati del catalogo dati.
+    - Individuazione di asset di dati correlati quando si visualizzano i metadati degli asset nel portale di hello catalogo dati.
+    - Operazioni toodefine, individuare e gestire le relazioni tra gli asset di dati tramite l'API REST di catalogo dati hello.
 
-Per altre informazioni sulla gestione delle autorizzazioni in Data Catalog, vedere [Come proteggere l'accesso al catalogo dati e agli asset di dati](data-catalog-how-to-secure-catalog.md).
-Per altre informazioni sulle relazioni in Data Catalog, vedere [Come visualizzare gli asset di dati correlati in Azure Data Catalog](data-catalog-how-to-view-related-data-assets.md).
+Per ulteriori informazioni sulla gestione delle autorizzazioni nel catalogo dati, vedere [modalità di accesso di asset di dati e di catalogo toodata toosecure](data-catalog-how-to-secure-catalog.md).
+Per ulteriori informazioni sulle relazioni nel catalogo dati, vedere [asset di dati in Azure Data Catalog di correlazione tooview](data-catalog-how-to-view-related-data-assets.md).
 
 ## <a name="whats-new-for-june-2017"></a>Novità di giugno 2017 
-A partire da giugno 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da giugno 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 *   Supporto per le origini dati Sybase, Apache Cassandra e MongoDB. Gli utenti ora possono registrare e trovare i database e le tabelle di Cassandra e MongoDB e i database, le tabelle e le visualizzazioni di Sybase.
 
 > [!NOTE]
-> Quando si registrano tabelle di MongoDB e Cassandra che includono colonne con tipi di dati complessi, ad esempio record e matrici, queste colonne non verranno incluse nei metadati aggiunti a Data Catalog.
+> Quando la registrazione di MongoDB e Cassandra tabelle che includono colonne con tipi di dati complessi, ad esempio i record e matrici, queste non verranno inclusi nei metadati hello aggiunto tooData catalogo.
 
 ## <a name="whats-new-for-may-2017"></a>Novità di maggio 2017 
-A partire da maggio 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
-*   È disponibile un nuovo esempio per gli sviluppatori per l'importazione in blocco dei termini del glossario aziendale. L'esempio di importazione in massa del glossario è disponibile nella [pagina Esempi per sviluppatori di Data Catalog](https://docs.microsoft.com/azure/data-catalog/data-catalog-samples). 
-*   Supporto per la modifica delle informazioni di connessione ODBC nel portale di Azure Data Catalog. I proprietari degli asset di dati e gli amministratori di Data Catalog ora possono modificare le informazioni di connessione per le origini dati ODBC registrate senza dover registrare nuovamente le origini dati.
-*   Supporto per gli URL selezionabili nelle definizioni e nelle descrizioni del glossario aziendale. Quando vengono inclusi URL nelle proprietà di descrizione e definizione per i termini del glossario aziendale, gli URL verranno visualizzati come collegamenti ipertestuali nel portale di Data Catalog.
-*   Supporto per la visualizzazione dei nomi degli esperti oltre che degli indirizzi di posta elettronica. Quando si visualizzano gli esperti nelle proprietà di un asset di dati nel portale di Data Catalog, nella descrizione comando verranno visualizzati nome e cognome dell'esperto da Azure Active Directory.
+A partire da maggio 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
+*   Un nuovo campione developer è disponibile per l'importazione bulk hello di termini del glossario aziendale. esempio di importazione Bulk glossario Hello è disponibile in hello [pagina degli esempi per sviluppatori di catalogo dati](https://docs.microsoft.com/azure/data-catalog/data-catalog-samples). 
+*   Supporto per la modifica delle informazioni di connessione ODBC nel portale di Azure Data Catalog hello. I proprietari di asset di dati e gli amministratori del catalogo dati ora possono modificare le informazioni di connessione hello per le origini dati ODBC registrate senza la necessità di origini dati di registrazione toore hello.
+*   Supporto per gli URL selezionabili nelle definizioni e nelle descrizioni del glossario aziendale. Quando gli URL sono incluse nelle proprietà di descrizione e la definizione di hello per i termini del glossario aziendale, hello URL verrà visualizzato come collegamenti ipertestuali nel portale di hello catalogo dati.
+*   Inoltre il supporto per la visualizzazione esperto nomi tooexpert indirizzi di posta elettronica. Quando si visualizzano gli esperti nelle proprietà hello per un asset di dati nel portale di catalogo dati hello, nome completo dell'esperto hello da Azure Active Directory verrà visualizzato nella descrizione comando hello.
 
 ## <a name="whats-new-for-april-2017"></a>Novità di aprile 2017 
-A partire da aprile 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
-*   Supporto per origini dati ODBC. Gli utenti ora possono registrare e trovare i database, le tabelle e le visualizzazioni ODBC usando lo strumento di registrazione dell'origine dati di Data Catalog.
+A partire da aprile 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
+*   Supporto per origini dati ODBC. Gli utenti possono ora registrare e individuare i database, tabelle e viste mediante strumento per la registrazione di origine dati di hello catalogo dati ODBC.
 
 ## <a name="whats-new-for-march-2017"></a>Novità di marzo 2017 
-A partire da marzo 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da marzo 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 *   Supporto per l'uso dei gruppi di sicurezza AAD per gli amministratori di Data Catalog.
-*   Azure Data Catalog è ora disponibile in una nuova area di Azure. I clienti possono effettuare il provisioning di Azure Data Catalog nell'area Stati Uniti centro-occidentali, oltre a Stati Uniti orientali, Stati Uniti occidentali, Europa occidentale, Australia orientale, Europa settentrionale e Asia sud-orientale. Per altre informazioni, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
+*   Azure Data Catalog è ora disponibile in una nuova area di Azure. I clienti possono eseguire il provisioning di hello Azure Data Catalog in hello occidentale Stati Uniti centro area, in aggiunta tooEast, Stati Uniti, Stati Uniti occidentali, Europa occidentale e Australia orientale, Europa settentrionale e Asia sudorientale. Per altre informazioni, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
 
 ## <a name="whats-new-for-february-2017"></a>Novità di febbraio 2017 
-A partire da febbraio 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
-*   Supporto per impostazioni avanzate nello strumento di registrazione dell'origine dati di Data Catalog. Gli utenti possono specificare i valori di timeout comando quando registrano origini dati di grandi dimensioni.
+A partire da febbraio 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
+*   Supporto per le impostazioni avanzate di strumento per la registrazione di origine dati di hello catalogo dati. Gli utenti possono specificare i valori di timeout comando quando registrano origini dati di grandi dimensioni.
 *   Supporto per le origini dati FTP e PostgreSQL. Gli utenti ora possono registrare e trovare i file e le directory FTP e i database, le tabelle e le visualizzazioni di PostgreSQL.
 
 ## <a name="whats-new-for-january-2017"></a>Novità di gennaio 2017 
-A partire da gennaio 2017 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da gennaio January 2017, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 *   Azure Data Catalog ora è conforme a [CSA STAR](https://www.microsoft.com/trustcenter/compliance/csa-star-certification).
-*   Integrazione con [Introduzione a Microsoft Power Query per Excel](https://support.office.com/article/Introduction-to-Microsoft-Power-Query-for-Excel-6E92E2F4-2079-4E1F-BAD5-89F6269CD605). Gli utenti di Excel possono condividere e trovare le query usando Azure Data Catalog da Excel. Questa funzionalità è disponibile per gli utenti con licenze Power BI Pro.
+*   Integrazione con [Introduzione a Microsoft Power Query per Excel](https://support.office.com/article/Introduction-to-Microsoft-Power-Query-for-Excel-6E92E2F4-2079-4E1F-BAD5-89F6269CD605). Gli utenti di Excel possono condividere e trovare le query usando Azure Data Catalog da Excel. Questa funzionalità è disponibile toousers con licenze di Power BI Pro.
 
 ## <a name="whats-new-for-december-2016"></a>Novità di dicembre 2016
-A partire da dicembre 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire dal 2016 dicembre, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 *   Azure Data Catalog ora è conforme a [HIPAA](https://www.microsoft.com/trustcenter/Compliance/HIPAA) e alle [clausole del modello UE](https://www.microsoft.com/TrustCenter/Compliance/EU-Model-Clauses).
-*   Supporto per la modifica delle informazioni di connessione dell'origine dati. I proprietari degli asset di dati e gli amministratori di Data Catalog ora possono modificare le informazioni di connessione per le origini dati registrate senza dover registrare nuovamente le origini dati.
+*   Supporto per la modifica delle informazioni di connessione dell'origine dati. I proprietari di asset di dati e gli amministratori del catalogo dati ora possono modificare le informazioni di connessione hello per le origini dati registrati senza la necessità di origini dati di registrazione toore hello.
 *   Supporto per le origini dati Salesforce.com. Gli utenti ora possono registrare e trovare gli oggetti Salesforce.
 
 
 ## <a name="whats-new-for-november-2016"></a>Novità di novembre 2016
-A partire da novembre 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da novembre 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 *   Azure Data Catalog ora è conforme a [ISO/IEC 27001](https://www.microsoft.com/trustcenter/compliance/iso-iec-27001) e [ISO/IEC 27018](https://www.microsoft.com/TrustCenter/Compliance/iso-iec-27018).
-*   Supporto per la registrazione manuale delle origini dati ODBC usano il portale di Data Catalog e l'API REST.
+*   Supporto per la registrazione manuale hello di origini dati ODBC tramite il portale di catalogo dati hello e API REST.
 
 ## <a name="whats-new-for-september-2016"></a>Novità di settembre 2016
-A partire da settembre 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da settembre 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
 * Supporto per origini dati IBM DB2. Gli utenti possono ora registrare e individuare database, tabelle e viste DB2.
 * Supporto per le origini dati Azure Cosmos DB. Gli utenti ora possono registrare e trovare i database e le raccolte di Cosmos DB.
-* Supporto per la personalizzazione del nome del catalogo nel portale di Data Catalog. Gli amministratori del catalogo possono ora specificare il testo che verrà visualizzato nel titolo del portale, ad esempio il nome dell'organizzazione.
+* Supporto per la personalizzazione di nome di catalogo hello nel portale di hello catalogo dati. Gli amministratori del catalogo ora possono fornire il testo visualizzato nel titolo del portale hello, ad esempio il nome di organizzazione hello.
 
 ## <a name="whats-new-for-august-2016"></a>Novità di agosto 2016
-A partire da agosto 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da agosto 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Miglioramenti nella registrazione di origini dati SQL Server Master Data Services (MDS). Gli utenti possono ora includere anteprime e profili dati durante la registrazione di entità MDS con il tool di registrazione delle origini dati di Data Catalog.
-* Supporto di ricerche salvate aziendali definite dall'amministratore. Al momento del salvataggio di una ricerca nel portale di Data Catalog, gli amministratori del catalogo dati possono ora scegliere di salvare le ricerche per uso personale o per tutti gli utenti del catalogo. Le ricerche salvate aziendali vengono condivise con tutti gli utenti del catalogo e possono offrire punti di partenza standardizzati per l'individuazione delle origini dati.
-* Aggiornamenti alla visualizzazione delle proprietà nel portale di Data Catalog. Tutte le proprietà degli asset di dati vengono ora visualizzate e gestite in un singolo riquadro ridimensionabile, in modo da garantire maggiore coerenza e individuabilità.
+* Miglioramenti nella registrazione di origini dati SQL Server Master Data Services (MDS). Gli utenti possono ora includere profili anteprime e i dati durante la registrazione di entità MDS utilizzando strumento per la registrazione di origine dati di hello catalogo dati.
+* Supporto di ricerche salvate aziendali definite dall'amministratore. Quando si salva una ricerca nel portale di catalogo dati hello, gli amministratori del catalogo dati possono ora scegliere toosave ricerche per uso personale o per tutti gli utenti del catalogo. Le ricerche salvate aziendali vengono condivise con tutti gli utenti del catalogo e possono offrire punti di partenza standardizzati per l'individuazione delle origini dati.
+* Aggiorna visualizzazione delle proprietà toohello nel portale di hello catalogo dati. Tutte le proprietà di asset di dati vengono ora visualizzate e gestiti in un tooprovide riquadro ridimensionabili, solo un'esperienza più uniforme e individuabile.
 
 ## <a name="whats-new-for-july-2016"></a>Novità di luglio 2016
-A partire da luglio 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da luglio 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
 * Supporto per origini dati SQL Server Master Data Services (MDS). Gli utenti possono ora registrare e individuare modelli ed entità MDS.
 * Supporto per le stored procedure di SQL Server. Gli utenti possono ora registrare e individuare oggetti stored procedure in origini dati SQL Server.
-* Supporto di lingue aggiuntive nel portale e nel tool di registrazione delle origini dati di Azure Data Catalog, per un totale di 18 lingue supportate. L'esperienza utente di Azure Data Catalog è localizzata in base alle preferenze della lingua configurate in Windows o nel Web browser.
-* Aggiornamenti e perfezionamento della home page del portale di Data Catalog, che includono miglioramenti delle prestazioni e un'esperienza utente semplificata.
+* Supporto per lingue aggiuntive nel portale di Azure Data Catalog hello e hello dati origine strumento di registrazione per un totale di 18 lingue supportate. Hello esperienza utente di Azure Data Catalog è localizzata in base alle preferenze di lingua hello impostata nella finestra di Windows o nel browser web hello.
+* Gli aggiornamenti e ottimizzazione per hello catalogo dati home page del portale, inclusi i miglioramenti delle prestazioni e un'esperienza utente ottimizzata.
 
 ## <a name="whats-new-for-june-2016"></a>Novità di giugno 2016
-A partire da giugno 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da giugno 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Supporto del ridimensionamento delle colonne nella visualizzazione elenco quando si individuano asset di dati nel portale di Data Catalog. Gli utenti possono ora ridimensionare singole colonne per leggere più facilmente i metadati più estesi degli asset, come tag e descrizioni.
-* Aggiunta di Power Query per Excel al menu "Apri in" nel portale di Data Catalog. Gli utenti possono ora aprire le origini dati supportate in Excel 2016, Excel 2010 ed Excel 2013 con il componente aggiuntivo [Power Query per Excel](https://support.office.com/article/Introduction-to-Microsoft-Power-Query-for-Excel-6E92E2F4-2079-4E1F-BAD5-89F6269CD605) installato.
+* Supporto per il ridimensionamento di colonne nella visualizzazione elenco hello durante l'individuazione di asset di dati nel portale di hello catalogo dati. Gli utenti possono ora ridimensionare le singole colonne toomore agevole lettura dei metadati dell'asset di lunga durata, ad esempio tag e le descrizioni.
+* Power Query per Excel è stata aggiunta dal menu "Apri in" toohello nel portale di hello catalogo dati. Gli utenti possono ora aprire origini dati supportate in Excel 2016 o in Excel 2010 ed Excel 2013 con hello [Power Query per Excel](https://support.office.com/article/Introduction-to-Microsoft-Power-Query-for-Excel-6E92E2F4-2079-4E1F-BAD5-89F6269CD605) aggiuntivo installato.
 * Supporto per origini dati Archiviazione tabelle di Azure. Gli utenti possono ora registrare e individuare oggetti tabella in origini dati Archiviazione tabelle di Azure.
 
 ## <a name="whats-new-for-may-2016"></a>Novità di maggio 2016
-A partire da maggio 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da maggio 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Un glossario aziendale che consente agli amministratori di catalogo di definire termini aziendali e gerarchie per creare un vocabolario aziendale comune. Gli utenti possono assegnare tag ad asset di dati registrati usando termini di glossario, individuando e comprendendo così, in modo più semplice, il contenuto del catalogo. Per altre informazioni, vedere [Come configurare il glossario aziendale per l'assegnazione di tag regolamentata](data-catalog-how-to-business-glossary.md)  
-* Miglioramenti del glossario aziendale di Data Catalog, per consentire agli utenti di aggiornare più termini del glossario con una singola operazione. Gli utenti possono selezionare più termini per modificare i campi seguenti:
-  * Termine padre: l'utente può selezionare un nuovo termine padre e tutti i termini selezionati vengono aggiornati diventando figli del termine padre scelto. Se i termini selezionati hanno lo stesso padre, tale padre viene visualizzato nella casella di testo. In caso contrario, il campo Termine padre è vuoto.   
-  * Tag e stakeholder: gli utenti possono aggiungere e rimuovere tag e stakeholder per più termini del glossario nello stesso modo in cui si assegnano tag a più asset di dati.
+* Un glossario aziendale che consente agli amministratori di catalogo toodefine business termini e le gerarchie toocreate un vocabolario aziendale comune. Gli utenti possono tag asset di dati registrati con toomake termini di glossario è più facile toodiscover e comprendere il contenuto di hello del catalogo di hello. Per ulteriori informazioni, vedere [come tooset backup hello glossario aziendale per contrassegnare i governato](data-catalog-how-to-business-glossary.md)  
+* Miglioramenti toohello glossario aziendale di catalogo dati che consente agli utenti tooupdate più termini di glossario in un'unica operazione. Gli utenti possono selezionare più hello tooedit di termini seguenti campi:
+  * Termine padre: hello selezionabili dall'utente un nuovo termine padre e tutti i termini selezionati sono figli toobe aggiornato del termine padre hello selezionato. Se hello selezionata termini che hanno hello stesso elemento padre, quindi tale padre viene visualizzato nella casella di testo hello, in caso contrario campo termine padre di hello è tooblank set.   
+  * Tag e le parti interessate: gli utenti possono aggiungere e rimuovere i tag e le parti interessate per più termini di glossario utilizzando hello stesse funzioni come tag più asset di dati.
 
 > [!NOTE]
-> Il glossario aziendale è disponibile nell'edizione Standard di Azure Data Catalog. L'edizione gratuita non prevede l'assegnazione di tag regolamentata né un glossario aziendale tra le funzionalità.
+> Glossario aziendale Hello è disponibile solo nell'edizione Standard di Azure Data Catalog hello. Hello edizione gratuita non fornisce funzionalità per la codifica gestita o un glossario aziendale.
 
 ## <a name="whats-new-for-march-2016"></a>Novità di marzo 2016
-A partire da marzo 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire dal 2016 marzo, hello seguenti funzionalità è state aggiunte tooAzure dati del catalogo: g:
 
-* Un endpoint API REST consolidato per l'accesso a livello di programmazione alle funzionalità di ricerca e alle funzionalità di gestione degli asset del servizio Azure Data Catalog. L'endpoint API di ricerca e l'endpoint API di catalogo sono stati dichiarati obsoleti e interrotti il 21 marzo 2016. Non sono state apportate modifiche alla semantica dell'API. È stato modificato solo l'endpoint dell'URI. Per altre informazioni, vedere le [informazioni di riferimento sull'API REST di Azure Data Catalog](https://msdn.microsoft.com/library/azure/mt267595.aspx). Per esempi di API, vedere gli [esempi per sviluppatori di Azure Data Catalog](data-catalog-samples.md).
+* Un endpoint API REST consolidato per l'accesso a livello di programmazione di funzionalità di ricerca hello e funzionalità di gestione asset di catalogo di hello servizio Azure Data Catalog. L'endpoint API di ricerca e l'endpoint API di catalogo sono stati dichiarati obsoleti e interrotti il 21 marzo 2016. Non sono presenti modifiche toohello semantica di hello API. Solo endpoint di hello URI modificato. Per ulteriori informazioni, vedere hello [riferimento all'API REST di Azure Data Catalog](https://msdn.microsoft.com/library/azure/mt267595.aspx). Per esempi di API, vedere gli [esempi per sviluppatori di Azure Data Catalog](data-catalog-samples.md).
 
 ## <a name="whats-new-for-february-2016"></a>Novità di febbraio 2016
-A partire da febbraio 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da febbraio 2016, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Una nuova esperienza di selezione dell'origine dati riprogettata nel tool di registrazione delle origini dati di Azure Data Catalog. Lo strumento di registrazione delle origini dati è stato aggiornato in modo da poter essere trovato e selezionato più facilmente dalle origini dati supportate da Azure Data Catalog.
-* Il portale e lo strumento di registrazione delle origini dati di Azure Data Catalog supportano ora altre 10 lingue. Oltre all'inglese, l'esperienza di Azure Data Catalog è ora disponibile in tedesco, spagnolo, francese, italiano, giapponese, coreano, portoghese brasiliano, russo, cinese semplificato e cinese tradizionale. L'esperienza utente di Azure Data Catalog è localizzata in base alle preferenze della lingua configurate in Windows o nel Web browser dell'utente.
-* Supporto della replica geografica dei dati di Azure Data Catalog per la continuità aziendale e il ripristino di emergenza. Tutto il contenuto di Azure Data Catalog, compresi i metadati delle origini dati e le annotazioni di crowdsourcing, vengono ora replicati tra due aree di Azure senza costi aggiuntivi per i clienti. Le aree di Azure sono pre-abbinate, ad almeno 500 miglia di distanza, e seguono il mapping come descritto in [Continuità aziendale e ripristino di emergenza nelle aree geografiche abbinate di Azure](../best-practices-availability-paired-regions.md).
-* Supporto della modifica della sottoscrizione di Azure usata da Azure Data Catalog. Gli amministratori di Azure Data Catalog possono usare la pagina Impostazioni del portale di Azure Data Catalog per selezionare un'altra sottoscrizione di Azure ai fini della fatturazione.
+* Selezione di un'origine dati appena riprogettato un'esperienza nello strumento per la registrazione di origine dati di hello Azure Data Catalog. Hello strumento per la registrazione di origine dati è stata aggiornata toomake it più semplice è toolocate e selezionare origini dati hello è supportato da Azure Data Catalog.
+* Supporto per 10 lingue aggiuntive nel portale di Azure Data Catalog hello e strumento di registrazione di origine dati hello. Inoltre, tooEnglish hello esperienza di Azure Data Catalog è ora disponibile in tedesco, spagnolo, francese, italiano, giapponese, coreano, portoghese brasiliano, russo, cinese semplificato e cinese tradizionale. Hello Azure Data Catalog è localizzata esperienza utente in base alle preferenze di lingua hello impostata nella finestra di Windows o nel web browser dell'utente hello.
+* Supporto della replica geografica dei dati di Azure Data Catalog per la continuità aziendale e il ripristino di emergenza. Tutto il contenuto di Azure Data Catalog, inclusi l'origine dei metadati e crowdsourced le annotazioni dei dati, ora viene replicato tra due aree di Azure in toocustomers alcun costo aggiuntivo. pre-vengono abbinate almeno 500 miglia di distanza, Hello aree di Azure e seguire il mapping di hello, come descritto in [Business continuità e ripristino di emergenza (BCDR): aree abbinate Azure](../best-practices-availability-paired-regions.md).
+* Supporto per la modifica hello sottoscrizione di Azure usata da Azure Data Catalog. Azure Data Catalog consente agli amministratori pagina Impostazioni hello in hello tooselect portale di Azure Data Catalog un'altra sottoscrizione di Azure per la fatturazione.
 
 ## <a name="whats-new-for-january-2016"></a>Novità di gennaio 2016
-A partire da gennaio 2016 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da gennaio 2016 hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Supporto per la registrazione manuale di tipi di origini dati aggiuntive. Ora è possibile usare "Crea voce manuale" nel portale di Azure Data Catalog oppure usare l'API REST di Azure Data Catalog per registrare le origini dati seguenti:
+* Supporto per la registrazione manuale di tipi di origini dati aggiuntive. È ora possibile utilizzare "Crea voce manuale" nel portale di Azure Data Catalog hello o utilizzare hello tooregister di API REST di Azure Data Catalog hello seguenti origini dati:
   * OData: funzione, set di entità e contenitore di entità
   * HTTP: file, endpoint, report e sito
   * File system: file
@@ -158,38 +158,38 @@ A partire da gennaio 2016 sono state aggiunte ad Azure Data Catalog le funzional
   * DB2: tabella, vista e database
   * PostgreSQL: tabella, vista e database
 * Supporto per "Apri in SQL Server Data Tools" per le origini dati SQL Server, inclusi il database SQL di Azure e Azure SQL Data Warehouse.  
-* Supporto per la registrazione e l'individuazione di viste e pacchetti SAP HANA. Ora è possibile registrare le origini dati SAP HANA usando lo strumento di registrazione delle origini dati di Azure Data Catalog, oltre ad annotare e individuare le origini dati SAP HANA registrate tramite il portale di Azure Data Catalog.
-* Possibilità di aggiungere e rimuovere asset di dati nel portale di Azure Data Catalog. È possibile scegliere di bloccare gli asset di dati per semplificarne la riscoperta e il riuso.
-* Nuova home page riprogettata nel portale di Azure Data Catalog. La nuova home page include approfondimenti sulle attuali attività degli utenti, tra cui gli asset pubblicati di recente, gli asset bloccati e le ricerche salvate, oltre ad approfondimenti sulle attività nel catalogo in generale.
-* Supporto per impostazioni utente persistenti nel portale di Azure Data Catalog. Le impostazioni di esperienza utente, tra cui la visualizzazione griglia o riquadro, il numero di risultati per pagina, l'attivazione o la disattivazione di evidenziazione dei risultati, sono persistenti tra le sessioni utente.
-* Azure Data Catalog è ora disponibile in due nuove aree di Azure. I clienti possono eseguire il provisioning di Azure Data Catalog in Europa settentrionale e Asia sud-orientale, oltre a Stati Uniti orientali, Stati Uniti occidentali, Europa occidentale e Australia orientale. Per altre informazioni, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
+* Supporto per la registrazione e l'individuazione di viste e pacchetti SAP HANA. È possibile registrare SAP HANA origini dati utilizzando i dati di Azure Data Catalog hello strumento di registrazione di origine e possono aggiungere annotazioni e individuare origini di dati SAP HANA registrate tramite il portale di Azure Data Catalog hello.
+* Hello toopin possibilità e rimozione di un asset di dati nel portale di Azure Data Catalog hello. È possibile scegliere toopin dati asset toomake li toorediscover e riutilizzo.
+* Pagina iniziale riprogettata nel portale di Azure Data Catalog hello. Hello nuova home page include approfondite corrente utenti attività hello - inclusi recente pubblicato asset, aggiunto asset e ricerche salvate - e approfondite attività hello in hello catalogo nel suo complesso.
+* Supporto per le impostazioni utente persistente nel portale di Azure Data Catalog hello. Le impostazioni esperienza utente - visualizzazione griglia o riquadro inclusi hello numero di risultati per pagina e raggiunge o disabilita evidenziazione - sono persistenti tra le sessioni utente.
+* Azure Data Catalog è ora disponibile in due nuove aree di Azure. I clienti possono eseguire il provisioning di hello Azure Data Catalog in hello Nord Europa e Asia sudorientale aree, in aggiunta tooEast, Stati Uniti, Australia orientale, Europa occidentale e Stati Uniti occidentali. Per altre informazioni, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
 
 > [!NOTE]
-> "Apri in SQL Server Data Tools" richiede l'installazione di Visual Studio 2013 con Update 4 e degli strumenti di SQL Server. Per installare la versione più recente di SQL Server Data Tools, vedere [Scaricare SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx).
+> "Apri in SQL Server Data Tools" richiede Visual Studio 2013 con Update 4 e gli strumenti di SQL Server toobe installato. tooinstall hello più recente di SQL Server Data Tools, visitare [SQL Download di Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx).
 
 
 ## <a name="whats-new-for-december-2015"></a>Novità di dicembre 2015
-A partire da dicembre 2015 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da dicembre 2015, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Supporto per profili dati per le origini dati di SQL Data Warehouse di Azure. Durante la registrazione di tabelle e viste di SQL Data Warehouse di Azure, gli utenti possono scegliere di includere metriche dei profili dati con i metadati estratti dall'origine dati.
-* Supporto per la registrazione e l'individuazione degli oggetti e dei database MySQL. Gli utenti possono registrare le origini dati MySQL tramite il tool di registrazione delle origini dati di Azure Data Catalog e possono annotare e individuare le origini dati MySQL registrate usando il portale di Azure Data Catalog.
-* Supporto per l'autenticazione SPNEGO e Windows per le origini dati di Teradata. Durante la registrazione di tabelle e viste Teradata, gli utenti possono scegliere di connettersi a Teradata mediante autenticazione SPNEGO e Windows, nonché LDAP e TD2.
+* Supporto per profili dati per le origini dati di SQL Data Warehouse di Azure. Durante la registrazione di viste e tabelle di Azure SQL Data Warehouse, è possibile scegliere le metriche di profilo dati tooinclude con metadati hello estratti dall'origine dati hello.
+* Supporto per la registrazione e l'individuazione degli oggetti e dei database MySQL. Gli utenti possono registrare MySQL origini dati utilizzando i dati di Azure Data Catalog hello strumento di registrazione di origine e possono aggiungere annotazioni e individuare origini di dati MySQL registrate tramite il portale di Azure Data Catalog hello.
+* Supporto per l'autenticazione SPNEGO e Windows per le origini dati di Teradata. Quando si registra Teradata tabelle e viste, gli utenti possono scegliere tooTeradata tooconnect utilizzando l'autenticazione SPNEGO e Windows, LDAP e TD2.
 * Supporto per le origini dati di Archivio Azure Data Lake. Gli utenti possono ora registrarsi e individuare le origini dati di Archivio Azure Data Lake tramite Azure Data Catalog.
-* Supporto per specificare manualmente le impostazioni di proxy di rete nello strumento di registrazione delle origini dati di Azure Data Catalog. Gli utenti possono selezionare "Modificare le impostazioni di proxy" nella pagina di benvenuto dello strumento e possono specificare l'indirizzo proxy e la porta che verranno usati dallo strumento.
+* Supporto per specificare manualmente le impostazioni proxy di rete nello strumento di registrazione origine di dati di hello Azure Data Catalog. Gli utenti possono selezionare "Modificare le impostazioni di proxy" dalla pagina di benvenuto hello dello strumento e possono specificare hello proxy indirizzo e porta toobe utilizzato dallo strumento hello.
 
 ## <a name="whats-new-for-november-2015"></a>Novità di novembre 2015
-A partire da novembre 2015 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da novembre 2015, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Possibilità di visualizzare e copiare le stringhe di connessione dall'interno del portale di Azure Data Catalog per origini dati SQL Server, incluso database SQL di Azure, e origini dati Oracle. Gli utenti possono fare clic sul collegamento "Visualizza stringhe di connessione" nelle informazioni di connessione per una tabella di SQL Server o Oracle, vista o database, per visualizzare le stringhe di connessione usate per la connessione all'origine dati. Le stringhe di connessione ADO.NET, ODBC, OLEDB e JDBC sono disponibili per le origini dati di SQL Server. Le stringhe di connessione ODBC e OLEDB vengono fornite per le origini dati di Oracle.
+* Hello tooview possibilità e copiare le stringhe di connessione dal portale di Azure Data Catalog hello per SQL Server (inclusi i Database SQL di Azure) e origini dati Oracle. Gli utenti possono selezionare il collegamento "Visualizza le stringhe di connessione" nelle informazioni di connessione hello per un Server SQL o tabella, vista o un database, toosee hello stringhe di connessione Oracle utilizzato tooconnect toohello origine dei dati. Le stringhe di connessione ADO.NET, ODBC, OLEDB e JDBC sono disponibili per le origini dati di SQL Server. Le stringhe di connessione ODBC e OLEDB vengono fornite per le origini dati di Oracle.
 * Supporto per includere i profili dati durante la registrazione delle tabelle Teradata e visualizzazioni.
 * Supporto per "Apri in Power BI Desktop" per le origini di SQL Server (inclusi i database SQL di Azure e SQL Data Warehouse di Azure), SQL Server Analysis Services. Archiviazione di Azure e HDFS.  
-* Supporto per l'autenticazione LDAP per le origini dati di Teradata. Durante la registrazione di tabelle e viste Teradata, gli utenti possono scegliere di connettersi a Teradata mediante autenticazione LDAP e TD2.
+* Supporto per l'autenticazione LDAP per le origini dati di Teradata. Quando si registra Teradata tabelle e viste, gli utenti possono scegliere tooTeradata tooconnect tramite LDAP e l'autenticazione TD2.
 * Supporto per "Apri in Excel" per le origini dati di Teradata.
-* Supporto per termini di ricerca recenti nel portale di Azure Data Catalog. Durante la ricerca nel portale, gli utenti possono selezionare termini di ricerca usati di recente per accelerare l'esperienza di individuazione.
-* Supporto per l’anteprima per le origini dati Teradata. Durante la registrazione delle tabelle e viste Teradata, gli utenti possono scegliere di includere record snapshot con i metadati estratti dall'origine dati.
+* Supporto per i termini di ricerca recenti nel portale di Azure Data Catalog hello. Quando una ricerca nel portale di hello, gli utenti possono selezionare esperienza di ricerca usati di recente termini tooaccelerate hello di individuazione.
+* Supporto per l’anteprima per le origini dati Teradata. Durante la registrazione Teradata tabelle e viste, gli utenti possono scegliere record snapshot tooinclude con metadati hello estratti dall'origine dati hello.
 * Supporto per "Apri in Excel" per le origini dati di SQL Data Warehouse di Azure.
-* Supporto per la definizione e la modifica di schemi a livello di colonna per gli asset di dati registrati manualmente. Dopo aver creato manualmente un asset di dati tramite il portale di Azure Data Catalog, gli utenti possono aggiungere definizioni di colonna nelle proprietà dell'asset di dati.
-* Supporto per query di possesso durante la ricerca in Azure Data Catalog, per abilitare l'individuazione di asset di dati registrati che possiedono metadati specifici. La sintassi di query di Azure Data Catalog ora include:
+* Supporto per la definizione e la modifica di schemi a livello di colonna per gli asset di dati registrati manualmente. Dopo aver creato manualmente un asset di dati tramite il portale di Azure Data Catalog hello, gli utenti possono aggiungere definizioni di colonna nelle proprietà di asset di dati hello.
+* Supporto per le query "ha" durante la ricerca di Azure Data Catalog, individuazione di hello tooenable degli asset di dati registrati che dispone dei metadati specifici. La sintassi di query di Azure Data Catalog ora include:
 
 | Sintassi delle query | Scopo |
 | --- | --- |
@@ -200,58 +200,58 @@ A partire da novembre 2015 sono state aggiunte ad Azure Data Catalog le funziona
 
 
 > [!NOTE]
-> "Apri in Power BI Desktop" richiede che sia installata una versione corrente dell'applicazione Desktop di Power BI. Se si verificano problemi o errori durante l'uso di questa funzionalità, assicurarsi di aver scaricato la versione più recente di Power BI Desktop da [PowerBI.com](https://powerbi.com).
+> "Apri in Power BI Desktop" richiede una versione corrente di hello toobe di applicazione di Power BI Desktop installata. Se si verificano problemi o errori durante l'utilizzo di questa funzionalità, assicurarsi di aver hello la versione più recente di Power BI Desktop da [PowerBI.com](https://powerbi.com).
 
 
 ## <a name="whats-new-for-october-2015"></a>Novità di ottobre 2015
-A partire da ottobre 2015 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da ottobre 2015, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Supporto per la crittografia locale delle anteprime e dei profili dati per le origini dati registrate. Azure Data Catalog crittografa in modo trasparente i record di anteprima e le origini dei profili dati registrati con il servizio, senza che gli amministratori del catalogo debbano eseguire alcuna operazione di gestione.
+* Supporto per la crittografia locale delle anteprime e dei profili dati per le origini dati registrate. Azure Data Catalog crittografa in modo trasparente i record di anteprima e dati dei profili di origini dati registrate con il servizio di hello, senza necessità di gestione delle chiavi per gli amministratori del catalogo.
 * Supporto per origini dati Teradata. Gli utenti possono ora registrarsi e individuare tabelle e viste Teradata.
 * Supporto per le origini dati Hive locali. Gli utenti possono ora registrarsi e individuare tabelle Hive per Apache Hive di Hadoop in origini dati locali.
-* Supporto per ricerche salvate nel portale di Azure Data Catalog. Gli utenti possono salvare termini di ricerca e selezioni di filtri per ripetere facilmente ricerche precedenti e definire viste di contenuti del catalogo particolarmente utili. Possono anche contrassegnare una ricerca salvata come ricerca predefinita. Quando un utente fa clic sull'icona di ricerca a forma di lente di ingrandimento nella home page del portale di Azure Data Catalog o nella pagina introduttiva, viene visualizzata direttamente la ricerca salvata contrassegnata come predefinita.
-* Supporto per la documentazione in formato RTF per asset e contenitori di dati registrati nel portale di Azure Data Catalog. Gli utenti ora possono fornire la documentazione per asset di dati, ad esempio tabelle, viste e report, e per i contenitori, ad esempio database e modelli, per gli scenari in cui tag e descrizioni non sono sufficienti.
-* Supporto per la registrazione manuale di tipi di origini dati conosciuti. Gli utenti possono immettere manualmente informazioni sulle origini dati tramite il portale di Azure Data Catalog per tutti i tipi di origini dati supportati da Azure Data Catalog.
-* Supporto per l'autorizzazione di gruppi di sicurezza di Azure Active Directory. Gli amministratori di Data Catalog possono concedere l'accesso al catalogo a gruppi di sicurezza e account utente, rendendo più semplice la gestione dell'accesso ad Azure Data Catalog.
-* Supporto per l'apertura di origini dati Hive in Excel dal portale di Azure Data Catalog.
+* Supporto per le ricerche salvate nel portale di Azure Data Catalog hello. Gli utenti possono salvare i termini di ricerca e filtro selezioni tooeasily ripetere ricerche precedenti e definire viste utile del contenuto del catalogo hello. Possono anche contrassegnare una ricerca salvata come ricerca predefinita. Quando un utente fa clic sull'icona di ricerca hello "lente di ingrandimento" hello Azure Data Catalog home page portale o dalla pagina "getting started" hello, utente hello viene eseguita direttamente toohello contrassegnata come predefinite ricerca salvata.
+* Supporto per la documentazione di testo RTF per asset di dati registrati e i contenitori nel portale di Azure Data Catalog hello. Gli utenti ora possono fornire la documentazione per asset di dati, ad esempio tabelle, viste e report, e per i contenitori, ad esempio database e modelli, per gli scenari in cui tag e descrizioni non sono sufficienti.
+* Supporto per la registrazione manuale di tipi di origini dati conosciuti. Gli utenti possono immettere manualmente le informazioni sull'origine dati utilizzando il portale di Azure Data Catalog hello per tutti i tipi di origini dati supportati da Azure Data Catalog.
+* Supporto per l'autorizzazione di gruppi di sicurezza di Azure Active Directory. Gli amministratori del catalogo è possono abilitare catalogo toosecurity gruppi di accesso, account utente, rendendo più semplice toomanage accesso tooAzure catalogo dati.
+* Supporto per l'apertura di origini dati di Hive dal portale di Azure Data Catalog hello in Excel.
 
 > [!NOTE]
-> Per la versione corrente è supportata solo l'autenticazione Teradata TD2. Nelle versioni future saranno supportati meccanismi di autenticazione aggiuntivi.
+> Per la versione corrente di hello, è supportata solo l'autenticazione Teradata TD2. Nelle versioni future saranno supportati meccanismi di autenticazione aggiuntivi.
 
 > [!NOTE]
-> Per usare la funzionalità "Apri in Excel" per le origini dati Hive, è necessario installare il driver ODBC per Hive.
+> funzionalità di "Apri in Excel" toouse hello per le origini dati Hive, gli utenti sia installato il driver ODBC di hello per l'Hive.
 
 ## <a name="whats-new-for-september-2015"></a>Novità di settembre 2015
-A partire da settembre 2015 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da settembre 2015, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
 * Supporto per includere i profili dati durante la registrazione delle origini dati Hive.
-* Supporto per l'individuazione a livello di programmazione dell'API di Azure Data Catalog, per rendere più semplice l'integrazione delle applicazioni con Azure Data Catalog.
-* Una nuova esperienza introduttiva per l'individuazione di origini dati nel portale di Azure Data Catalog. Quando gli utenti accedono alla pagina di individuazione del portale di Azure Data Catalog senza immettere un termine di ricerca, viene visualizzata una panoramica dei contenuti del catalogo, inclusi i tag usati più di frequente, gli esperti, i tipi di origini dati e i tipi di oggetti.
+* Supporto per l'individuazione a livello di codice hello API di catalogo, rendendo più semplice per toointegrate di applicazioni con Azure Data Catalog.
+* Un nuova "getting started" origine dati individuazione esperienza nel portale di Azure Data Catalog hello. Quando gli utenti immettono pagina "individua" hello del portale di Azure Data Catalog hello senza immettere un termine di ricerca, viene visualizzata un'anteprima del contenuto di catalogo hello inclusi tag hello utilizzato più di frequente, gli esperti, tipi di origini dati e tipi di oggetto.
 * Supporto per la registrazione e l'individuazione degli oggetti e dei database di Azure SQL Data Warehouse. Per altre informazioni su Azure SQL Data Warehouse, vedere [SQL Data Warehouse](https://azure.microsoft.com/services/sql-data-warehouse/).
-* Supporto per la registrazione e l'individuazione di modelli di SQL Server Analysis Services e di server SQL Server Reporting Services come contenitori. Quando si registrano oggetti SSAS e SSRS, Azure Data Catalog crea una voce per il modello SSAS e il server SSRS, nonché per i report e altri oggetti. I contenitori possono essere individuati e annotati mediante il portale di Azure Data Catalog. Gli utenti possono inoltre eseguire ricerche e applicare filtri nel contenuto di un modello o di un server oltre a eseguire ricerche e applicare filtri nel contenuto del catalogo.
-* Supporto per la registrazione e l'individuazione degli oggetti di SQL Server Analysis Services tramite HTTP/HTTPS. Gli utenti possono ora connettersi ai server SSAS usando un URL (ad esempio https://servername/olap/msmdpump.dll) anziché un nome di server e possono usare l'autenticazione di base e le connessioni anonime oltre all'autenticazione di Windows. Per altre informazioni sulle connessioni HTTP/HTTPS a SSAS, vedere [Configurare l'accesso HTTP ad Analysis Services](https://msdn.microsoft.com/library/gg492140.aspx).
-* Supporto per le origini dati Hive in HDInsight. Gli utenti possono ora registrarsi e individuare le tabelle Hive per Apache Hive di Hadoop sulle origini dati HDInsight. Per altre informazioni su Hive in HDInsight, vedere il [centro di documentazione HDInsight](../hdinsight/hdinsight-use-hive.md).
-* Supporto per la registrazione e l'individuazione dei database Oracle e dei cluster HDFS come contenitori. Quando si registrano tabelle e viste Oracle o HDFS, Azure Data Catalog crea una voce per il database, le tabelle e le viste. Il database può essere individuato e annotato mediante il portale di Azure Data Catalog. Gli utenti possono inoltre cercare e filtrare il contenuto di un database o cluster, oltre a cercare e filtrare il contenuto del catalogo.
-* Supporto per la registrazione manuale di tipi di origini dati sconosciute. Gli utenti possono immettere manualmente informazioni sull'origine dati tramite il portale di Azure Data Catalog in modo che sia possibile annotare e individuare le origini dati non esplicitamente supportate dal tool di registrazione delle origini dati.
-* Supporto per la registrazione e l'individuazione dei database di SQL Server come contenitori. Quando si registrano tabelle e viste SQL Server, Azure Data Catalog crea una voce per il database, le tabelle e le viste. Il database può essere individuato e annotato mediante il portale di Azure Data Catalog. Gli utenti possono inoltre cercare e filtrare il contenuto di un database oltre a cercare e filtrare il contenuto del catalogo.
+* Supporto per la registrazione e l'individuazione di modelli di SQL Server Analysis Services e di server SQL Server Reporting Services come contenitori. Quando si registra gli oggetti SSRS e SSAS, Azure Data Catalog crea una voce per il modello SSAS hello e server SSRS e per i report di hello e altri oggetti. i contenitori di Hello possono essere individuati e annotate tramite il portale di Azure Data Catalog hello. Gli utenti possono inoltre cercare e filtrare contenuto hello di un modello o un server toosearching aggiunta e il filtro contenuto hello del catalogo di hello.
+* Supporto per la registrazione e l'individuazione degli oggetti di SQL Server Analysis Services tramite HTTP/HTTPS. Gli utenti possono ora connettersi tooSSAS server tramite un URL (ad esempio https://servername/olap/msmdpump.dll) anziché un nome di server e possono utilizzare l'autenticazione di base e le connessioni anonime nell'autenticazione tooWindows aggiunta. Per ulteriori informazioni su tooSSAS connessioni HTTP/HTTPS, vedere [configurare l'accesso HTTP tooAnalysis servizi](https://msdn.microsoft.com/library/gg492140.aspx).
+* Supporto per le origini dati Hive in HDInsight. Gli utenti possono ora registrarsi e individuare le tabelle Hive per Apache Hive di Hadoop sulle origini dati HDInsight. Per ulteriori informazioni su Hive in HDInsight, vedere hello [Centro documentazione di HDInsight](../hdinsight/hdinsight-use-hive.md).
+* Supporto per la registrazione e l'individuazione dei database Oracle e dei cluster HDFS come contenitori. Quando si registra tabelle Oracle e visualizzazioni o HDFS, Azure Data Catalog crea una voce per il database di hello, tabelle e viste. database Hello è possibile individuare e annotata con il portale di Azure Data Catalog hello. Gli utenti possono inoltre cercare e filtrare hello contenuto di un database o del cluster inoltre toosearching e filtrare il contenuto di hello del catalogo hello.
+* Supporto per la registrazione manuale di tipi di origini dati sconosciute. Gli utenti possono immettere manualmente le informazioni sull'origine dati usando il portale di Azure Data Catalog hello, in modo che le origini dati supportate in modo non esplicito dall'hello strumento per la registrazione di origine dati può essere annotato ed individuato.
+* Supporto per la registrazione e l'individuazione dei database di SQL Server come contenitori. Durante la registrazione di viste e tabelle di SQL Server, Azure Data Catalog crea una voce per il database di hello, tabelle e viste. database Hello è possibile individuare e annotata con il portale di Azure Data Catalog hello. Inoltre, gli utenti possono cercare e filtrare contenuto hello di un database toosearching aggiunta e il filtro contenuto hello del catalogo di hello.
 
 > [!NOTE]
-> Gli oggetti SSAS e SSRS che sono stati registrati prima della versione del 18 settembre devono essere registrati di nuovo usando lo strumento di registrazione dell'origine dati prima di aggiungere la voce del modello o del server nel catalogo. La nuova registrazione di un'origine dati non influisce sulle annotazioni aggiunte dagli utenti nel portale di Azure Data Catalog.
+> SSRS e SSAS oggetti che sono stato registrato toohello precedente versione di settembre 18 devono essere nuovamente registrati con strumento di registrazione di origine dati hello prima hello del server o del modello viene aggiunta voce toohello catalogo. Nuova registrazione di un'origine dati non influenza le annotazioni che sono stati aggiunti dagli utenti nel portale di Azure Data Catalog hello.
 
 > [!NOTE]
-> Le tabelle, le viste e i file HDFS di Oracle che sono stati registrati prima della versione dell'11 settembre devono essere registrati di nuovo usando lo strumento di registrazione dell'origine dati prima di aggiungere la voce del database o cluster nel catalogo. La nuova registrazione di un'origine dati non influisce sulle annotazioni aggiunte dagli utenti nel portale di Azure Data Catalog.
+> Le tabelle Oracle, viste e i file HDFS e le directory che sono stato registrato toohello precedente versione 11 settembre devono essere registrate nuovamente mediante strumento di registrazione di origine dati hello prima hello database o del cluster viene aggiunta voce toohello catalogo. Nuova registrazione di un'origine dati non influenza le annotazioni che sono stati aggiunti dagli utenti nel portale di Azure Data Catalog hello.
 
 > [!NOTE]
-> Le tabelle e le viste di SQL Server che sono state registrate prima della versione del 4 settembre devono essere registrate di nuovo usando lo strumento di registrazione dell'origine dati prima di aggiungere la voce del database nel catalogo. La nuova registrazione di un'origine dati non influisce sulle annotazioni aggiunte dagli utenti nel portale di Azure Data Catalog.
+> Tabelle di SQL Server e le viste che sono stato registrato toohello precedente versione di settembre 4 devono essere registrate nuovamente mediante strumento di registrazione di origine dati hello prima dell'aggiunta di voce del database hello toohello catalogo. Nuova registrazione di un'origine dati non influenza le annotazioni che sono stati aggiunti dagli utenti nel portale di Azure Data Catalog hello.
 
 ## <a name="whats-new-for-august-2015"></a>Novità di agosto 2015
-A partire da agosto 2015 sono state aggiunte ad Azure Data Catalog le funzionalità seguenti:
+A partire da agosto 2015, hello seguenti funzionalità è state aggiunte tooAzure catalogo dati:
 
-* Supporto per l'analisi dei dati di origini dati di SQL Server e Oracle. Quando si registrano le viste e le tabelle di SQL Server e Oracle, gli utenti possono scegliere di includere informazioni sul profilo dati per gli oggetti da registrare. Il profilo dati include le statistiche a livello di oggetto e di colonna.
+* Supporto per l'analisi dei dati di origini dati di SQL Server e Oracle. Durante la registrazione di viste e tabelle di SQL Server e Oracle, gli utenti possono scegliere tooinclude dati le informazioni per gli oggetti hello in corso la registrazione. profilo dati Hello include le statistiche a livello di oggetto e a livello di colonna.
 * Supporto per le origini dati HDFS Hadoop. Gli utenti possono ora registrarsi e individuare directory e file HDFS.
-* Supporto per fornire informazioni sulla richiesta di accesso per le origini dati registrate. Per qualsiasi asset di dati registrato, gli utenti possono ora fornire istruzioni per richiedere l'accesso, inclusi URL o collegamenti di posta elettronica, per una facile integrazione con i processi e gli strumenti esistenti.
-* Descrizioni comandi per i tag e gli esperti, per semplificare l'individuazione dei metadati forniti dagli utenti per gli asset di dati registrati.
-* Nuovo menu e pulsante "User" nella barra di spostamento superiore. Questo menu consente di vedere l'account usato per accedere ad Azure Data Catalog ed eventualmente disconnettersi. Questo menu visualizza anche il nome del catalogo, utile per gli sviluppatori che usano l'API REST di Azure Data Catalog.
-* Solo edizione Standard: nell'aggiunta di proprietari ad asset di dati, Azure Data Catalog ora supporta sia gli account utente che i gruppi di sicurezza come proprietari. Per aggiungere un gruppo di sicurezza come proprietario di asset di dati selezionati, è possibile immettere il nome visualizzato o l'indirizzo di posta elettronica UPN del gruppo, se presente.
+* Supporto per fornire informazioni sulla richiesta di accesso per le origini dati registrate. Per un asset di dati registrati, gli utenti ora possono fornire istruzioni per richiedere l'accesso, inclusi i collegamenti di posta elettronica o URL, tooeasily l'integrazione con i processi e gli strumenti esistenti.
+* Descrizioni comandi per i tag e gli esperti, toomake è più facile toodiscover quali utenti hanno fornito i metadati per asset di dati registrati.
+* È stato aggiunto un nuovo "User" pulsante e menu tooour barra di spostamento superiore. Questo menu consente utente hello vedere hello toolog di account utilizzato nel catalogo dati tooAzure e toosign out se lo si desidera. Questo menu Visualizza anche il nome del catalogo hello, che è utile toodevelopers utilizzando hello API REST di Azure Data Catalog.
+* Solo per Standard Edition: Durante l'aggiunta di risorse toodata proprietari, Azure Data Catalog supporta ora sia gli account utente e gruppi di sicurezza come proprietari. tooadd un gruppo di sicurezza come proprietario per gli asset di dati selezionato, è possibile immettere nome visualizzato del gruppo di hello o indirizzo di posta elettronica del gruppo di hello UPN, se presente.
 * Supporto per le origini dati dell'archivio BLOB di Azure. Gli utenti possono ora registrarsi e individuare i BLOB e le directory di archiviazione di Azure.
 

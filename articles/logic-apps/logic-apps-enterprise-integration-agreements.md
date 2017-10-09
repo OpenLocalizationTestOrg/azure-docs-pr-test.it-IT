@@ -1,6 +1,6 @@
 ---
-title: Contratti per la comunicazione B2B - App per la logica di Azure | Microsoft Docs
-description: Creare accordi per consentire ai partner di comunicare in scenari B2B per App per la logica di Azure ed Enterprise Integration Pack
+title: aaaAgreements per la comunicazione B2B - App Azure per la logica | Documenti Microsoft
+description: Creare contratti per i partner possono comunicare in scenari B2B per App di logica di Azure e hello Enterprise Integration Pack
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: LADocs
-ms.openlocfilehash: 7ce0860272901f3b4e4cf3d63f7361d539f64741
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 499edcbab1cd67fbc169e393c3cad7b81658a250
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="partner-agreements-for-b2b-communication-with-azure-logic-apps-and-enterprise-integration-pack"></a>Accordi tra partner per la comunicazione B2B con App per la logica di Azure ed Enterprise Integration Pack
 
-Gli accordi consentono alle entità business di comunicare in modo ottimale mediante i protocolli standard di settore e sono il fulcro delle comunicazioni Business to Business (B2B). Quando si abilitano scenari B2B per app per la logica con Enterprise Integration Pack, un accordo è un contratto di comunicazione fra partner commerciali B2B. Questo accordo si basa sulle comunicazioni che i partner vogliono stabilire ed è specifico del protocollo o del trasporto.
+Contratti consentono a entità aziendali di comunicare senza problemi utilizzando protocolli standard del settore e rappresentano il fondamento hello per le comunicazioni business to business (B2B). Quando si abilita scenari B2B per App per la logica con hello Enterprise Integration Pack, un contratto è una disposizione di comunicazioni tra partner commerciali B2B. Il presente contratto si basa su hello comunicazioni che si desidera che i partner hello troppo stabiliscano e un protocollo o specifico del trasporto.
 
 Enterprise Integration supporta questi standard di protocollo o di trasporto:
 
@@ -34,45 +34,45 @@ Enterprise Integration supporta questi standard di protocollo o di trasporto:
 
 Di seguito sono riportati alcuni dei vantaggi più comuni legati all'uso degli accordi:
 
-* Consentono alle aziende di scambiare informazioni in un formato noto.
+* Consente di diverse organizzazioni e le aziende tooexchange le informazioni in un formato noto.
 * Migliorano l'efficienza delle transazioni B2B
-* È facile crearli, gestirli e usarli quando si creano app di integrazione aziendali
+* Toocreate semplice, gestire e utilizzare durante la creazione di applicazioni di integrazione enterprise
 
-## <a name="how-to-create-agreements"></a>Come creare contratti
+## <a name="how-toocreate-agreements"></a>Come toocreate contratti
 
 * [Creare un contratto AS2](logic-apps-enterprise-integration-as2.md)
 * [Creare un contratto X12](logic-apps-enterprise-integration-x12.md)
 * [Creare un contratto EDIFACT](logic-apps-enterprise-integration-edifact.md)
 
-## <a name="how-to-use-an-agreement"></a>Come usare un contratto
+## <a name="how-toouse-an-agreement"></a>Come toouse un contratto
 
 È possibile creare [app per la logica](logic-apps-what-are-logic-apps.md "Informazioni sulle app per la logica") con funzionalità B2B tramite un accordo che è stato creato.
 
-## <a name="how-to-edit-an-agreement"></a>Come modificare un contratto
+## <a name="how-tooedit-an-agreement"></a>Come tooedit un contratto
 
 È possibile modificare qualsiasi contratto seguendo questa procedura:
 
-1. Selezionare l'account di integrazione con l'accordo da aggiornare.
+1. Selezionare hello integrazione account che dispone di hello contratto desiderato tooupdate.
 
-2. Selezionare il riquadro **Accordi**.
+2. Scegliere hello **contratti** riquadro.
 
-3. Nel pannello **Accordi** selezionare l'accordo.
+3. In hello **contratti** blade, contratto hello selezionare.
 
 4. Scegliere **Modifica**. Apportare le modifiche.
 
-5. Per salvare le modifiche, scegliere **OK**.
+5. Scegliere le modifiche, toosave **OK**.
 
-## <a name="how-to-delete-an-agreement"></a>Come eliminare un contratto
+## <a name="how-toodelete-an-agreement"></a>Come toodelete un contratto
 
 È possibile eliminare qualsiasi accordo seguendo questa procedura:
 
-1. Selezionare l'account di integrazione con l'accordo da eliminare.
-2. Selezionare il riquadro **Accordi**.
-3. Nel pannello **Accordi** selezionare l'accordo.
+1. Selezionare hello integrazione account che dispone di hello contratto desiderato toodelete.
+2. Scegliere hello **contratti** riquadro.
+3. In hello **contratti** blade, contratto hello selezionare.
 4. Scegliere **Elimina**.
-5. Confermare che si desidera eliminare l'accordo selezionato.
+5. Confermare l'accordo di toodelete hello selezionato.
 
-    Nel pannello Accordi non viene più visualizzato l'accordo eliminato.
+    Pannello contratti Hello non viene più visualizzato contratto hello eliminato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Creare un contratto AS2](logic-apps-enterprise-integration-as2.md)

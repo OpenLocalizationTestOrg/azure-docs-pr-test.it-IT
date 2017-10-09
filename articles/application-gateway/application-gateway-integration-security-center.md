@@ -1,5 +1,5 @@
 ---
-title: Integrazione del gateway applicazione con il Centro sicurezza di Azure | Microsoft Docs
+title: integrazione di Gateway con Centro sicurezza di Azure aaaApplication | Documenti Microsoft
 description: Questa pagina include informazioni sull'integrazione del gateway applicazione nel Centro sicurezza di Azure.
 documentationcenter: na
 services: application-gateway
@@ -15,73 +15,73 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 06/07/2017
 ms.author: gwallace
-ms.openlocfilehash: 737cdff3140be68cf9d6d396b470dd09c65c52f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f6ace105e84c01f525ab02938e81ce040c5c9d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-integration-between-application-gateway-and-azure-security-center"></a>Panoramica dell'integrazione tra il gateway applicazione e il Centro sicurezza di Azure
 
-Informazioni sulla protezione delle risorse dell'applicazione Web tramite il gateway applicazione e il Centro sicurezza di Azure. Il web application firewall (WAF) del gateway applicazione è integrato nel [Centro sicurezza](../security-center/security-center-intro.md) per offrire alle applicazioni Web non protette dell'ambiente una visualizzazione semplice per prevenire, rilevare e rispondere alle minacce.
+Informazioni sulla protezione delle risorse dell'applicazione Web tramite il gateway applicazione e il Centro sicurezza di Azure. Firewall applicazione web di Application gateway (WAF) si integra con [Centro sicurezza PC](../security-center/security-center-intro.md) tooprovide tooprevent una semplice visualizzazione, rilevare e rispondere toothreats toounprotected applicazioni nell'ambiente in uso.
 
 ## <a name="overview"></a>Panoramica
 
-Il WAF del gateway applicazione è una raccomandazione del Centro sicurezza per la protezione delle applicazioni Web da attacchi e vulnerabilità. Le risorse abilitate per il Web non protette da WAF sono visualizzate nel Centro sicurezza come raccomandazioni con gravità elevata. Le raccomandazioni per i web application firewall sono visualizzate nella pagina **Panoramica** in **Applicazioni**.
+Il WAF del gateway applicazione è una raccomandazione del Centro sicurezza per la protezione delle applicazioni Web da attacchi e vulnerabilità. Risorse Web abilitato che non sono protetti da WAF mostrano nel Centro protezione hello come indicazioni di alto livello di gravità. Consigli per i firewall applicazione web vengono visualizzati nella hello **Panoramica** pagina **applicazioni**.
 
 ![integrazione con il Centro sicurezza][1]
 
-Se si fa clic su una raccomandazione relativa a web application firewall, viene aperto un nuovo pannello che visualizza i dettagli della raccomandazione.
+Fare clic su qualsiasi indicazioni relative al firewall applicazione web consente di aprire un nuovo pannello con dettagli hello della raccomandazione hello.
 
-## <a name="add-a-web-application-firewall-to-an-existing-resource"></a>Aggiungere un web application firewall a una risorsa esistente
+## <a name="add-a-web-application-firewall-tooan-existing-resource"></a>Aggiungere una risorsa esistente web application firewall tooan
 
-Passare ad **Altri servizi** > **Sicurezza e identità** > **Centro sicurezza PC** e nel pannello **Centro sicurezza PC - Panoramica** fare clic su **Applicazioni**. La tabella nel pannello **Centro sicurezza PC - Applicazioni** contiene un elenco delle applicazioni rilevate dal Centro sicurezza nella sottoscrizione.
+Passare troppo**più servizi** > **sicurezza + identità** > **Centro sicurezza PC** e hello **Centro sicurezza PC - Panoramica**  pannello, fare clic su **applicazioni**. In hello **Centro sicurezza PC - applicazioni** pannello tabella hello contiene un elenco di applicazioni che Centro sicurezza rilevato nella sottoscrizione.
 
 ![applicazioni Web][3]
 
-Se si fa clic su un'applicazione Web con un problema critico, viene visualizzato il pannello **Integrità della sicurezza dell'applicazione**. Nell'immagine seguente è illustrata l'applicazione Web che non è protetta da un web application firewall. 
+Facendo clic su un'applicazione web con un problema grave, viene visualizzato hello **l'integrità della protezione applicazione** blade. Nella seguente figura hello hello applicazione web che non è protetto da un firewall applicazione web. 
 
 ![risorse Web non protette][2]
 
-Fare clic su **Aggiungi un web application firewall** in **Raccomandazioni** per aprire il pannello **Aggiungi un web application firewall**.
+Fare clic su **aggiunge un firewall applicazione web** in **indicazioni** tooopen hello **aggiungere una Web Application Firewall** blade.
 
-Se non è presente un gateway applicazione o si vuole crearne uno nuovo, fare clic su **Crea nuovo** e nel pannello **Nuovo web application firewall** fare clic su **Microsoft - Gateway applicazione**. Vengono descritti i passaggi per la creazione di un gateway applicazione. A questo punto, l'applicazione Web viene aggiunta come risorsa protetta e il Centro sicurezza rileva che la risorsa è protetta da un web application firewall. La risorsa non viene aggiunta come membro del pool back-end.
+Se non si dispone di un Gateway applicazione esistente o desidera toocreate uno nuovo, fare clic su **Crea nuovo** e hello **creare un nuovo Web Application Firewall** pannello e fare clic su **Microsoft - Gateway applicazione**. Verrà visualizzata tramite hello passaggi toocreate un gateway applicazione. A questo punto, l'applicazione Web viene aggiunta come risorsa protetta e il Centro sicurezza rileva che la risorsa è protetta da un web application firewall. La risorsa non viene aggiunta come membro del pool back-end.
 
 Se è presente un gateway applicazione, è possibile selezionarlo in **Usa la soluzione esistente**
 
 ![pannello di aggiunta di web application firewall][4]
 
-Poiché l'aggiunta di un'applicazione Web a un gateway applicazione tramite il Centro sicurezza non aggiunge la risorsa come membro del pool back-end, questa operazione deve essere eseguita direttamente nella risorsa del gateway applicazione.
+Aggiunta di un gateway di applicazione tooan applicazione web tramite il Centro sicurezza PC non risorse hello come un membro del pool back-end, questa operazione deve essere eseguita sulla risorsa di gateway applicazione hello direttamente.
 
-## <a name="add-a-resource-to-an-existing-web-application-firewall"></a>Aggiungere una risorsa a un web application firewall esistente
+## <a name="add-a-resource-tooan-existing-web-application-firewall"></a>Aggiungere un risorsa tooan web dell'applicazione del firewall esistente
 
-Passare ad **Altri servizi** > **Sicurezza e identità** > **Centro sicurezza PC** e nel pannello **Centro sicurezza PC - Panoramica** fare clic su **Soluzioni partner**. I gateway applicazione compatibili con il Centro sicurezza esistenti sono visualizzati nel pannello **Soluzioni partner**.
+Passare troppo**più servizi** > **sicurezza + identità** > **Centro sicurezza PC** e hello **Centro sicurezza PC - Panoramica**  pannello, fare clic su **soluzioni Partner**. Mostrano i gateway di applicazione compatibile con il Centro sicurezza PC esistenti in hello **soluzioni dei Partner** blade.
 
 ![soluzioni partner][7]
 
-Fare clic su **Collega app** per aprire il pannello **Collega applicazioni** nel quale sarà possibile selezionare le applicazioni esistenti. Scegliere le applicazioni da proteggere e fare clic su **OK**. Questa operazione non aggiunge l'applicazione Web al pool back-end del gateway applicazione. ma imposta la risorsa come risorsa protetta in modo che il Centro sicurezza possa rilevarla. Per aggiungere la risorsa come membro del pool back-end è necessario eseguire questa operazione nel gateway applicazione: dal pannello corrente fare clic su **Console della soluzione** per passare alla risorsa del gateway applicazione nella quale è possibile aggiungere l'applicazione Web al pool back-end.
+Fare clic su **collegamento app** tooopen hello **collegamento applicazioni** pannello qui vengono fornite applicazioni di hello opzioni tooselect esistenti. Scegliere tooprotect applicazioni hello e fare clic su **OK**. Non aggiunge hello toohello back-end pool di applicazioni web del gateway applicazione hello. Consente di impostare le risorse di hello come una risorsa protetta in modo da Centro sicurezza PC sia possibile tenere traccia. risorsa di hello tooadd come un membro del pool back-end, questa operazione deve essere eseguita nel gateway applicazione hello, dal pannello corrente hello è possibile fare clic su **console soluzione** toobe eseguite resource di gateway applicazione toohello in cui è possibile aggiungere web hello pool di applicazioni toohello back-end.
 
 ![applicazioni di soluzioni partner][6]
 
 ## <a name="finalize-configuration"></a>Completare la configurazione
 
-Il Centro sicurezza rileva le applicazioni aggiunte a un gateway applicazione come risorse protette.  Il Centro sicurezza monitora l'integrità della risorsa e verifica che sia protetta da un gateway applicazione. Il passaggio successivo consiste nell'aggiungere l'IP privato, l'IP pubblico o la scheda di interfaccia di rete della macchina virtuale al pool back-end del gateway applicazione. Prima del completamento del passaggio, viene visualizzata la raccomandazione aggiuntiva **Finalizza la protezione dell'applicazione** fino a quando la risorsa non viene aggiunta.
+Centro sicurezza PC tiene traccia delle applicazioni aggiunto gateway applicazione tooan come una risorsa protetta.  Monitorato lo stato di hello della risorsa e si assicura che è protetta da un gateway applicazione. passaggio successivo Hello è tooadd hello private IP, indirizzo IP pubblico o scheda NIC del pool back-end di toohello di macchina virtuale di gateway applicazione hello. Fino a quando questa operazione viene eseguita un'indicazione aggiuntiva di **Finalizza la protezione di applicazione** viene visualizzato solo dopo l'aggiunta di risorse hello.
 
 ![pannello di aggiunta di web application firewall][5]
 
 ## <a name="security-alerts"></a>Avvisi di sicurezza
 
-In Centro sicurezza passare a **RILEVAMENTO** > **Avvisi di sicurezza**.  Vengono visualizzati gli avvisi WAF per i gateway applicazione. Gli avvisi sono suddivisi per regola WAF.
+All'interno di Centro sicurezza PC passare troppo**rilevamento** > **degli avvisi di sicurezza**.  Vengono visualizzati gli avvisi WAF per i gateway applicazione. Gli avvisi sono suddivisi per regola WAF.
 
 ![avvisi di sicurezza][8]
 
-Fare clic su una regola per visualizzare un elenco degli avvisi per la regola WAF specifica. Ogni avviso visualizza dettagli aggiuntivi sull'elemento individuato. I dettagli includono un collegamento al gateway applicazione.
+Fare clic su una regola per visualizzare un elenco degli avvisi per la regola WAF specifica. Ogni avviso Mostra ulteriori informazioni su come trovare hello. Dettagli Hello forniscono un gateway applicazione toohello di collegamento.
  
 ![dettagli dell'avviso][9]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come abilitare il web application firewall in un gateway applicazione esistente, vedere [Creare o aggiornare un gateway applicazione di Azure con web application firewall](application-gateway-web-application-firewall-portal.md#add-web-application-firewall-to-an-existing-application-gateway)
+toolearn come tooenable firewall di applicazione web su un gateway applicazione esistente, visitare [crea o aggiorna un Gateway applicazione Azure con firewall applicazione web](application-gateway-web-application-firewall-portal.md#add-web-application-firewall-to-an-existing-application-gateway)
 
 [1]: ./media/application-gateway-integration-security-center/figure1.png
 [2]: ./media/application-gateway-integration-security-center/figure2.png

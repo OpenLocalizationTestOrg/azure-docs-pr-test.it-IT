@@ -1,6 +1,6 @@
 ---
-title: Gestire l'accesso Single Sign-On per il proxy di applicazione di Azure AD | Microsoft Docs
-description: Informazioni di base sull'accesso Single Sign-On con il proxy di applicazione
+title: aaaManage SSO per il Proxy di applicazione Azure AD | Documenti Microsoft
+description: Informazioni sui concetti di base di hello di single sign-on con Proxy dell'applicazione
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,28 +15,28 @@ ms.date: 08/23/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 1deb3d91049d45fe26791783e13bd23e0a7d9f95
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a278751a5cb1bf98c970a4e5d2eb3edc3b784096
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-does-azure-ad-application-proxy-provide-single-sign-on"></a>Come viene offerto l'accesso Single Sign-On dal proxy di applicazione di Azure AD?
 
-Single Sign-On è un elemento chiave del proxy di applicazione di Azure AD.  Offre un'esperienza d'uso ottimale, poiché gli utenti devono solo eseguire l'accesso ad Azure Active Directory nel cloud. Dopo che un utente ha eseguito l'autenticazione ad Azure Active Directory, il connettore del proxy di applicazione gestisce l'autenticazione all'applicazione locale. L'applicazione di back-end non è in grado di rilevare la differenza tra un utente remoto che accede tramite il proxy di applicazione e un utilizzo standard basato su un dispositivo aggiunto al dominio. 
+Single Sign-On è un elemento chiave del proxy di applicazione di Azure AD.  Fornisce un'esperienza utente ottimale hello perché gli utenti dispongono solo di toosign in Active Directory nel cloud hello tooAzure. Dopo l'autenticazione tooAzure Active Directory, connettore Proxy dell'applicazione hello gestisce un'applicazione hello autenticazione toohello locale. un'applicazione Hello back-end non è possibile distinguere hello da un utente remoto di accedere tramite il Proxy di applicazione e un utilizzo normale in un dispositivo aggiunto al dominio. 
 
-Per usare Azure Active Directory per l'accesso Single Sign-On alle applicazioni, è necessario selezionare **Azure Active Directory** come metodo di pre-autenticazione. Se si seleziona **PassThrough**, gli utenti non eseguono l'autenticazione ad Azure Active Directory ma vengono indirizzati direttamente all'applicazione. È possibile configurare questa impostazione quando si pubblica per la prima volta un'applicazione. In alternativa, è possibile accedere all'applicazione nel portale di Azure e modificare le impostazioni del proxy di applicazione. 
+toouse Azure Active Directory per applicazioni single sign-on tooyour, è necessario tooselect **Azure Active Directory** come metodo di preautenticazione hello. Se si seleziona **pass-through** quindi gli utenti non eseguono l'autenticazione Active Directory tooAzure affatto, ma sono diretti toohello retta applicazione. È possibile configurare questa impostazione quando si pubblica un'applicazione, o passa tooyour applicazione nel portale di Azure hello e modificare le impostazioni del Proxy di applicazione hello. 
 
-Per visualizzare le opzioni relative all'accesso Single Sign-On, seguire questa procedura:
+toosee il single sign-on le opzioni, seguire questi passaggi:
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Selezionare **Azure Active Directory** > **Applicazioni aziendali** > **Tutte le applicazioni**.
-3. Selezionare l'app di cui si vuole gestire le opzioni di accesso Single Sign-On.
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. Passare troppo**Azure Active Directory** > **applicazioni aziendali** > **tutte le applicazioni**.
+3. Selezionare hello app il cui accesso single sign-on opzioni desidera toomanage.
 4. Selezionare **Single Sign-On**.
 
    ![Menu a discesa Single Sign-On](./media/application-proxy-sso-overview/single-sign-on-mode.png)
 
-Nel menu a discesa sono disponibili cinque opzioni per l'accesso Single Sign-On all'applicazione:
+menu a discesa Hello Mostra cinque opzioni per l'applicazione di single sign-on tooyour:
 
 * Single Sign-On di Azure AD disabilitato
 * Accesso basato su password
@@ -46,31 +46,31 @@ Nel menu a discesa sono disponibili cinque opzioni per l'accesso Single Sign-On 
 
 ## <a name="azure-ad-single-sign-on-disabled"></a>Single Sign-On di Azure AD disabilitato
 
-Se non si vuole usare l'integrazione di Azure Active Directory per l'accesso Single Sign-On all'applicazione, scegliere **Single Sign-On di Azure AD disabilitato**. Con questa opzione selezionata, gli utenti possono eseguire l'autenticazione due volte. Eseguire prima l'autenticazione ad Azure Active Directory e quindi accedere all'applicazione. 
+Se non si desidera l'integrazione di Azure Active Directory toouse per single sign-on tooyour applicazione, scegliere **Azure single sign-on AD disabilitato**. Con questa opzione selezionata, gli utenti possono eseguire l'autenticazione due volte. In primo luogo, essi autenticare tooAzure Active Directory e quindi accedere toohello applicazione stessa. 
 
-Questa opzione è la scelta migliore se l'applicazione locale non prevede l'autenticazione ma si vuole aggiungere Azure Active Directory come un livello di sicurezza per l'accesso remoto. 
+Questa opzione è una scelta ottimale se l'applicazione locale non richiede tooauthenticate gli utenti, ma si desidera tooadd Azure Active Directory come un livello di sicurezza per l'accesso remoto. 
 
 ## <a name="password-based-sign-on"></a>Accesso basato su password
 
-Se si vuole usare Azure Active Directory come un insieme di credenziali delle password per le applicazioni locali, scegliere **Accesso basato su password**. Questa opzione è la scelta migliore se l'autenticazione all'applicazione è bastata su nome utente e password e non su intestazioni o token di accesso. Con l'accesso basato su password, gli utenti devono eseguire la procedura di accesso all'applicazione solo al primo accesso. Successivamente, sarà Azure Active Directory a fornire il nome utente e la password per conto dell'utente. 
+Se si desidera toouse Azure Active Directory come un insieme di credenziali di password per le applicazioni locali, scegliere **Password-sign-on basato su**. Questa opzione è la scelta migliore se l'autenticazione all'applicazione è bastata su nome utente e password e non su intestazioni o token di accesso. Con basato su password sign-on, gli utenti devono toosign in hello applicazione toohello prima volta che accedono ad esso. Successivamente, Azure Active Directory fornisce hello username e password per conto di utente hello. 
 
 Per informazioni sulla configurazione dell'accesso basato su password, vedere [Insieme di credenziali delle password per l'accesso Single Sign-On con il proxy di applicazione](application-proxy-sso-azure-portal.md).
 
 ## <a name="linked-sign-on"></a>Linked sign-on (Accesso collegato)
 
-Se è già stata configurata una soluzione di accesso Single Sign-On per le identità locali, scegliere **Accesso collegato**. Questa opzione consente ad Azure Active Directory di sfruttare le soluzioni Single Sign-On esistenti, ma continua a offrire agli utenti l'accesso remoto all'applicazione. 
+Se è già stata configurata una soluzione di accesso Single Sign-On per le identità locali, scegliere **Accesso collegato**. Questa opzione consente alle soluzioni SSO esistenti di Azure Active Directory tooleverage, ma ancora consente agli utenti di applicazione toohello di accesso remoto. 
 
 Per altre informazioni sul linked sign-on (accesso collegato), noto formalmente come Single Sign-On esistente, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ## <a name="integrated-windows-authentication"></a>Autenticazione integrata di Windows
 
-Se le applicazioni locali usano l'autenticazione di Windows integrata o se si preferisce usare la delega vincolata Kerberos per l'accesso Single Sign-On, scegliere **Autenticazione di Windows integrata**. Con questa opzione, l'utente deve solo eseguire l'autenticazione ad Azure Active Directory e il connettore del proxy di applicazione acquisirà un token Kerberos e accederà all'applicazione per conto dell'utente. 
+Se le applicazioni locali utilizzano Authentication(IWA) integrata di Windows o se si desidera toouse delega vincolata Kerberos (KCD) per single sign-on, scegliere **autenticazione integrata di Windows**. Con questa opzione, gli utenti devono solo tooauthenticate tooAzure Active Directory e quindi connettore Proxy dell'applicazione hello rappresenta hello utente tooget un token Kerberos e Accedi toohello applicazione. 
 
 Per informazioni sulla configurazione dell'autenticazione di Windows integrata, vedere [Delega vincolata Kerberos per l'accesso Single Sign-On con il proxy di applicazione](active-directory-application-proxy-sso-using-kcd.md).
 
 ## <a name="header-based-sign-on"></a>Accesso basato su intestazione 
 
-Se le applicazioni usano le intestazioni per l'autenticazione, scegliere **Accesso basato su intestazione**. Con questa opzione, gli utenti devono solo eseguire l'autenticazione ad Azure Active Directory. Microsoft si avvale di un servizio di autenticazione di terze parti chiamato PingAccess, che converte il token di accesso ad Azure Active Directory in un formato di intestazione per l'applicazione. 
+Se le applicazioni usano le intestazioni per l'autenticazione, scegliere **Accesso basato su intestazione**. Con questa opzione, gli utenti devono solo tooauthentication hello Azure Active Directory. I partner Microsoft con un servizio di autenticazione di terze parti chiamato PingAccess, in cui convertire i token di accesso di Azure Active Directory hello in un formato di intestazione per un'applicazione hello. 
 
 Per informazioni sulla configurazione dell'autenticazione basata su intestazione, vedere [Autenticazione basata su intestazione per l'accesso Single Sign-On con il proxy di applicazione](application-proxy-ping-access.md).
 

@@ -1,6 +1,6 @@
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-Per rimanere sempre aggiornati sulle novità del prodotto, leggere il [blog] o seguire la community su [Twitter] </br>
+Scegliere se toostay backup toodate con informazioni sui prodotti. leggere il [blog] o seguire la community su [Twitter] </br>
 Per richieste di funzionalità per SQL Data Warehouse, pubblicare la richiesta in [UserVoice] </br>
 Per domande sul prodotto, prendere in considerazione [MSDN] </br>
 Per domande tecniche, porre la domanda in [StackOverflow]</br>

@@ -1,0 +1,2 @@
+> [!NOTE]
+> gateway VPN nuovo Hello SKU (VpnGw1 VpnGw2 e VpnGw3) sono supportati per solo modello di distribuzione di gestione delle risorse hello. Le reti virtuali classiche devono continuare toouse hello SKU precedente. Per ulteriori informazioni sul gateway precedente hello SKU, vedere [funziona con il gateway di rete virtuale SKU (precedente)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).

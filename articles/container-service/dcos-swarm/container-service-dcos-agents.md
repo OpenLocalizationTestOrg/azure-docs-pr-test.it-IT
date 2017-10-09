@@ -1,6 +1,6 @@
 ---
-title: Pool di agenti DC/OS per il servizio contenitore di Azure | Documentazione Microsoft
-description: Informazioni sul funzionamento dei pool di agenti pubblici e privati con un cluster DC/OS del servizio contenitore di Azure
+title: pool di agenti aaaDC/del sistema operativo per il servizio contenitore di Azure | Documenti Microsoft
+description: Funzionamento dei pool di agenti pubbliche e private di hello con un cluster di Azure contenitore del servizio controller di dominio o del sistema operativo
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -16,37 +16,37 @@ ms.workload: na
 ms.date: 01/04/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: da4a196b1a73c78dfff7d8310edcc349b8d10665
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c7d3889db07cb9908e8b68b668bd8a14ef3c2552
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dcos-agent-pools-for-azure-container-service"></a>Pool di agenti DC/OS per il servizio contenitore di Azure
-I cluster DC/OS nel servizio contenitore di Azure contengono nodi di agenti in due pool, uno pubblico e uno privato. Un'applicazione può essere distribuita indifferentemente in uno dei due pool, ma ciò influisce sull'accessibilità tra i computer nel servizio contenitore. I computer possono essere esposti a Internet (pubblico) o rimanere interni (privato). Questo articolo descrive brevemente il motivo per cui esistono i pool pubblici e i pool privati.
+I cluster DC/OS nel servizio contenitore di Azure contengono nodi di agenti in due pool, uno pubblico e uno privato. Un'applicazione può essere distribuita tooeither pool, avere effetto sull'accessibilità tra i computer nel servizio contenitore. Hello macchine possono essere esposto toohello internet (pubblica) o interno (privato). Questo articolo descrive brevemente il motivo per cui esistono i pool pubblici e i pool privati.
 
 
-* **Agenti privati**: i nodi di agenti privati vengono eseguiti tramite una rete non instradabile, accessibile unicamente dalla zona di amministrazione o attraverso il router perimetrale della zona pubblica. Per impostazione predefinita, il DC/OS avvia le applicazioni in nodi di agenti privati. 
+* **Agenti privati**: i nodi di agenti privati vengono eseguiti tramite una rete non instradabile, Questa rete è accessibile solo dall'area di amministrazione di hello o tramite router perimetrale di hello zona pubblico. Per impostazione predefinita, il DC/OS avvia le applicazioni in nodi di agenti privati. 
 
 * **Agenti pubblici**: i nodi di agenti pubblici eseguono app e servizi DC/OS attraverso una rete accessibile pubblicamente. 
 
-Per altre informazioni sulla sicurezza della rete DC/OS, vedere la [documentazione di DC/OS](https://dcos.io/docs/1.7/administration/securing-your-cluster/).
+Per ulteriori informazioni sulla sicurezza di rete di controller di dominio o del sistema operativo, vedere hello [documentazione DC/OS](https://dcos.io/docs/1.7/administration/securing-your-cluster/).
 
 ## <a name="deploy-agent-pools"></a>Distribuire pool di agenti
 
-I pool di agenti DC/OS del servizio contenitore di Azure vengono creati come segue:
+pool di agenti Hello controller di dominio o del sistema operativo del servizio di contenitore di Azure vengono creati come indicato di seguito:
 
-* Il **pool privato** contiene il numero di nodi di agenti che si specifica quando si [distribuisce il cluster DC/OS](container-service-deployment.md). 
+* Hello **pool privata** contiene il numero di hello di nodi di agente che si specifica quando si [distribuire cluster di controller di dominio/OS hello](container-service-deployment.md). 
 
-* Il **pool pubblico** contiene inizialmente un numero predeterminato di nodi di agenti. Questo pool viene aggiunto automaticamente quando viene eseguito il provisioning del cluster DC/OS.
+* Hello **pool pubblica** inizialmente contiene un numero predeterminato di nodi dell'agente. Il pool viene aggiunto automaticamente quando viene eseguito il provisioning di cluster di controller di dominio/OS hello.
 
-I pool pubblico e privato sono set di scalabilità di macchine virtuali di Azure. È possibile ridimensionare questi pool dopo la distribuzione.
+pool privata Hello e pool pubblica hello sono set di scalabilità di macchine virtuali di Azure. È possibile ridimensionare questi pool dopo la distribuzione.
 
 ## <a name="use-agent-pools"></a>Uso dei pool di agenti
-Per impostazione predefinita, **Marathon** distribuisce le nuove applicazioni in nodi di agenti *privati* . Per distribuire l'applicazione nei nodi *pubblici*, è necessario farlo in modo esplicito mentre la si crea. Selezionare la scheda **Optional** (Facoltativo) e immettere **slave_public** come valore di **Accepted Resource Roles** (Ruoli risorsa accettati). Questo processo è documentato [qui](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) e nella documentazione di [DC\OS](https://dcos.io/docs/1.7/administration/installing/custom/create-public-agent/).
+Per impostazione predefinita, **maratona** consente di distribuire qualsiasi nuova toohello applicazione *privata* nodi agente. Si dispone di tooexplicitly distribuire toohello applicazione hello *pubblica* nodi durante la creazione di un'applicazione hello hello. Seleziona hello **facoltativo** scheda e immettere **slave_public** per hello **accettato ruoli risorse** valore. Questo processo è documentato [qui](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) e hello [DC/OS](https://dcos.io/docs/1.7/administration/installing/custom/create-public-agent/) documentazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Sono disponibili altre informazioni sulla [gestione dei contenitori DC/OS](container-service-mesos-marathon-ui.md).
 
-* Informazioni su come [aprire il firewall](container-service-enable-public-access.md) fornito da Azure per consentire l'accesso pubblico ai contenitori DC/OS.
+* Informazioni su come troppo[aprire hello firewall](container-service-enable-public-access.md) fornito dai contenitori di Azure tooallow accesso pubblico tooyour controller di dominio o del sistema operativo.
 

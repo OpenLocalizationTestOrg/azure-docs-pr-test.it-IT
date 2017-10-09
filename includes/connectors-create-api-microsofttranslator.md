@@ -1,14 +1,14 @@
 ### <a name="prerequisites"></a>Prerequisiti
 * Un account [MicrosoftTranslator](https://www.microsoft.com/translator)  
 
-Prima di poter usare l'account MicrosoftTranslator in un'app per la logica, è necessario autorizzare l'app per la logica a connettersi all'account MicrosoftTranslator. Fortunatamente, è possibile eseguire questa operazione in modo facile dalla propria app per la logica nel Portale di Azure.  
+Prima di poter utilizzare l'account MicrosoftTranslator in un'app di logica, è necessario autorizzare l'account di hello logica app tooconnect tooyour MicrosoftTranslator. Fortunatamente, è possibile farlo facilmente all'interno dell'app logica su hello portale di Azure.  
 
-Ecco i passaggi per autorizzare l'app per la logica a connettersi all'account MicrosoftTranslator:  
+Di seguito è hello passaggi tooauthorize il tooyour tooconnect di logica app MicrosoftTranslator account:  
 
-1. Per creare una connessione a MicrosoftTranslator, nella finestra di progettazione dell'app per la logica selezionare **Mostra API gestite da Microsoft** nell'elenco a discesa, quindi immettere *MicrosoftTranslator* nella casella di ricerca. Selezionare il trigger o l'azione che si desidera usare:   
+1. toocreate tooMicrosoftTranslator una connessione, nella finestra di progettazione di hello logica app, selezionare **Mostra Microsoft API gestite** in hello nell'elenco a discesa, quindi immettere *MicrosoftTranslator* nella casella di ricerca hello. Selezionare trigger hello o azione che ti toouse:  
    ![Passaggio di creazione della connessione a MicrosoftTranslator](./media/connectors-create-api-microsofttranslator/microsofttranslator-1.png)  
-2. Se non sono mai state create connessioni a MicrosoftTranslator prima d'ora, verrà chiesto di fornire le credenziali di MicrosoftTranslator. Queste credenziali verranno usate per autorizzare l'app per la logica a connettersi e ad accedere ai dati dell'account MicrosoftTranslator:  
+2. Se è ancora stato creato alcun tooMicrosoftTranslator connessioni prima, si otterrà tooprovide richieste le credenziali MicrosoftTranslator. Queste credenziali verranno utilizzato tooauthorize tooconnect di app la logica per e accedere ai dati del tuo account MicrosoftTranslator:  
    ![Passaggio di creazione della connessione a MicrosoftTranslator](./media/connectors-create-api-microsofttranslator/microsofttranslator-2.png)  
-3. Si noti che la connessione è stata creata ed è ora possibile procedere con gli altri passaggi nell'app per la logica:   
+3. Si noti hello connessione è stata creata e si è ora disponibile tooproceed con altri hello i passaggi nell'app logica:  
    ![Passaggio di creazione della connessione a MicrosoftTranslator](./media/connectors-create-api-microsofttranslator/microsofttranslator-3.png)  
 

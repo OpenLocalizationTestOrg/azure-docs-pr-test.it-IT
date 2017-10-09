@@ -1,7 +1,7 @@
-Se si vuole creare una connessione da punto a sito da un computer client diverso da quello usato per generare i certificati client, è necessario installare un certificato client. Quando si installa un certificato client, è necessaria la password che è stata creata durante l'esportazione del certificato client.
+Se si desidera un P2S toocreate connessione da un computer client diverso hello è utilizzato i certificati di toogenerate hello client, è necessario tooinstall un certificato client. Quando si installa un certificato client, è necessario password hello creata quando è stato esportato il certificato di client hello.
 
-1. Individuare e copiare il file *.pfx* nel computer client. Nel computer client, fare doppio clic sul file *.pfx* per installarlo. Lasciare l'opzione **Percorso archivio** impostata su **Utente corrente** e quindi fare clic su **Avanti**.
-2. Nella pagina **File da importare** non apportare alcuna modifica. Fare clic su **Avanti**.
-3. Nella pagina **Protezione della chiave privata** immettere la password per il certificato o verificare che l'entità di sicurezza sia corretta e quindi fare clic su **Avanti**.
-4. Nella pagina **Archivio certificati** lasciare la posizione come predefinita e quindi fare clic su **Avanti**.
-5. Fare clic su **Fine**. In **Avviso di sicurezza** per l'installazione del certificato fare clic su **Sì**. È possibile fare clic su "Sì" perché il certificato è stato generato. Il certificato è stato importato correttamente.
+1. Individuare e copiare hello *PFX* computer client toohello di file. Nel computer client hello, fare doppio clic su hello *PFX* tooinstall del file. Lasciare hello **negozio** come **utente corrente**, quindi fare clic su **Avanti**.
+2. In hello **File** tooimport pagina, non apportare alcuna modifica. Fare clic su **Avanti**.
+3. In hello **protezione della chiave privata** pagina, immettere una password hello certificato hello, oppure verificare che tale entità di sicurezza hello sia corretto, quindi fare clic su **Avanti**.
+4. In hello **archivio certificati** pagina lasciare percorso predefinito di hello e quindi fare clic su **Avanti**.
+5. Fare clic su **Finish**. In hello **avviso di sicurezza** per l'installazione del certificato hello, fare clic su **Sì**. È possibile familiarizzare facendo clic su 'Sì' perché è stato generato il certificato di hello. certificato Hello è stata importata correttamente.

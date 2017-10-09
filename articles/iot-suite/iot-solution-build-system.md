@@ -1,6 +1,6 @@
 ---
 title: 'Esempio di IoT di Azure MyDriving: compilare l''applicazione | Microsoft Docs'
-description: Compilare un'app che rappresenta una dimostrazione completa di come progettare un sistema IoT con Microsoft Azure, inclusi analisi di flusso, Machine Learning e hub eventi.
+description: "Creazione di un'applicazione che è una dimostrazione completa di come tooarchitect un sistema IoT utilizzando Microsoft Azure, tra cui flusso Analitica, Machine Learning e hub eventi."
 services: 
 documentationcenter: .net
 suite: 
@@ -14,106 +14,106 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/30/2017
 ms.author: harikm
-ms.openlocfilehash: c4b19cc76ca11f606ca8af6b0f3277b5aa46ac5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e78571225697f745fe011c722e57c8600704c392
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-and-deploy-the-mydriving-solution-to-your-environment"></a>Compilare e distribuire la soluzione MyDriving nell'ambiente
-MyDriving è una soluzione di Internet delle cose (IoT) che raccoglie dati dall'automobile, li elabora con Machine Learning e li presenta sul telefono cellulare. Il back-end è costituito da un'ampia gamma di servizi offerti da Microsoft Azure. I client possono essere telefoni Android, iOS o Windows 10.
+# <a name="build-and-deploy-hello-mydriving-solution-tooyour-environment"></a>Compilare e distribuire l'ambiente di hello MyDriving soluzione tooyour
+MyDriving è una soluzione di Internet delle cose (IoT) che raccoglie dati dall'automobile, li elabora con Machine Learning e li presenta sul telefono cellulare. back-end Hello è costituito da un'ampia gamma di servizi forniti da Microsoft Azure. i client Hello possono essere telefoni Android, iOS o Windows 10.
 
-La soluzione MyDriving è stata creata per offrire agli utenti la possibilità di iniziare a creare rapidamente il proprio sistema IoT. Dal [repository MyDriving in GitHub](https://github.com/Azure-Samples/MyDriving)è possibile ottenere gli script di Azure Resource Manager per distribuire l'architettura di back-end nel proprio account Azure. Sarà quindi possibile riconfigurare i diversi servizi, modificare le query in base ai propri dati e così via. Questi script, il codice per l'app per dispositivi mobili, il progetto API del servizio app di Azure e altro ancora sono disponibili nel repository MyDriving.
+Abbiamo creato hello MyDriving soluzione toogive di base per la creazione del proprio sistema IoT. Da hello [MyDriving repository in GitHub](https://github.com/Azure-Samples/MyDriving), è possibile ottenere gli script di gestione risorse di Azure architettura back-end di hello toodeploy nell'account Azure. Da questo punto, può riconfigurare servizi diversi hello, modificare hello query toosuit i propri dati e così via. È possibile trovare questi script, insieme a codice per app per dispositivi mobili hello, il progetto di API di servizio App di Azure hello e altro ancora, nel repository MyDriving hello.
 
-Agli utenti che non abbiano ancora provato l'app si consiglia di leggere la [guida introduttiva](iot-solution-get-started.md).
+Se non hai ancora provato app hello, esaminare hello [Guida introduttiva Get](iot-solution-get-started.md).
 
-Una descrizione dettagliata dell'architettura è fornita nella [guida di riferimento a MyDriving](http://aka.ms/mydrivingdocs). Sono in sintesi disponibili numerose risorse per creare un progetto simile:
+Un account dettagliato dell'architettura di hello in hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs). In sintesi, esistono diverse parti che impostiamo toocreate un progetto simile:
 
-* Un' **app client** viene eseguita su telefoni Android, iOS e Windows 10. Viene usata la piattaforma Xamarin per condividere la maggior parte del codice, che viene archiviato su GitHub in `src/MobileApp`. L'app esegue due funzioni distinte:
-  * Inoltra dati di telemetria dal dispositivo di diagnostica di bordo (OBD) e dal proprio servizio di posizionamento al back-end cloud del sistema.
+* Un' **app client** viene eseguita su telefoni Android, iOS e Windows 10. Utilizziamo hello Xamarin piattaforma tooshare gran parte del codice hello, che viene archiviato su GitHub in `src/MobileApp`. app Hello eseguirà in realtà due funzioni distinte:
+  * L'inoltro di dati di telemetria da dispositivo di hello sistemi diagnostici (OBD) e dal back-end di un proprio percorso servizio toohello sistema cloud.
   * Si tratta di un'interfaccia utente che consente di eseguire query sui dati dei viaggi su strada registrati.
-* Un **servizio cloud** inserisce i dati dei viaggi su strada in tempo reale e li elabora. L'attività principale della creazione di questo servizio consiste nella scelta, nella definizione dei parametri e nel collegamento di un'ampia gamma di servizi di Azure. Alcune parti richiedono script per filtrare ed elaborare i dati in ingresso. Viene usato un modello di Azure Resource Manager per configurare tutte le parti.
-* Un' **app per servizi mobili** rappresenta il servizio Web usato dall'interfaccia utente dell'app per dispositivi. La sua funzione principale è l'esecuzione di query sul database di dati elaborati archiviati. Il relativo codice è disponibile su GitHub in `src/MobileAppService`.
-* **Visual Studio con Xamarin** . Xamarin, disponibile sia come componente di Visual Studio, sia come ambiente di sviluppo integrato (IDE) autonomo, viene usato per compilare il codice di dispositivi multipiattaforma. Per compilare il codice iOS è necessario disporre di un'istanza di Xamarin in esecuzione in un computer OS X. Se necessario, Xamarin può essere eseguito come agente gestito da Visual Studio.
-* **unit test** delle app per dispositivi vengono eseguiti in Xamarin Test Cloud.
-* **GitHub** è il repository in cui vengono archiviati il codice, gli script e i modelli.
-* **Visual Studio Team Services** è un servizio cloud usato per gestire le continue attività di compilazione e test del servizio Web e delle app per dispositivi.
-* **HockeyApp** viene usato per distribuire le versioni del codice di dispositivo. Raccoglie anche report di utilizzo e arresto anomalo e commenti degli utenti.
-* **Visual Studio Application Insights** monitora il servizio Web per dispositivi mobili.
+* Oggetto **servizio cloud** inserisce i dati di viaggio hello in tempo reale e lo elabora. Hello principale di creazione di questo servizio è toochoose, parametrizzare e associare un'ampia gamma di servizi di Azure. Alcune delle parti hello richiedono script toofilter dati e processi hello in arrivo. Utilizziamo un tooconfigure modello di gestione risorse di Azure tutte le parti hello.
+* Oggetto **servizio mobile app** hello il servizio web protetto da parte dell'interfaccia utente di hello dell'app per dispositivi hello. Il processo principale è database hello tooquery dei dati archiviati, elaborati. Il relativo codice è disponibile su GitHub in `src/MobileAppService`.
+* **Visual Studio con Xamarin** . Xamarin, esiste come un componente di Visual Studio e come un ambiente autonomo di sviluppo integrato (IDE), viene utilizzato codice multipiattaforma dispositivo di toobuild hello. codice di iOS toobuild hello, è necessario toohave un'istanza di Xamarin in esecuzione in un computer di OS X. Se necessario, Xamarin può essere eseguito come agente gestito da Visual Studio.
+* **Unit test** del dispositivo hello App viene eseguita in Xamarin Test Cloud.
+* **GitHub** hello repository in cui vengono archiviati tutti i codice hello, script e i modelli.
+* **Visual Studio Team Services** è un servizio cloud utilizzato compilazione continua di toomanage hello e test di hello servizio App web e dispositivi.
+* **HockeyApp** è toodistribute utilizzate versioni del codice dispositivo hello. Raccoglie anche report di utilizzo e arresto anomalo e commenti degli utenti.
+* **Visual Studio Application Insights** monitoraggi hello servizio web per dispositivi mobili.
 
 Ora verrà esaminata la procedura. 
 
 > [!NOTE] 
-> Molti dei passaggi seguenti sono facoltativi.
+> Molte delle hello seguendo i passaggi sono facoltativi.
 >
 >
 
 ## <a name="sign-up-for-accounts"></a>Iscrizione per la creazione di account
-* [Visual Studio Dev Essentials](https://www.visualstudio.com/products/visual-studio-dev-essentials-vs.aspx). Questo programma gratuito consente di accedere facilmente a molti strumenti e servizi di sviluppo tra cui Visual Studio, Visual Studio Team Services e Azure. Offre un credito di $ 25 al mese per Azure per dodici mesi. Include le sottoscrizioni al training Pluralsight e a Xamarin University. È anche possibile iscriversi separatamente per accedere ai livelli gratuiti di [Azure](https://azure.com) e [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx), che tuttavia non offrono crediti Azure.
+* [Visual Studio Dev Essentials](https://www.visualstudio.com/products/visual-studio-dev-essentials-vs.aspx). Questo programma gratuito fornisce gli strumenti di sviluppo toomany un accesso semplice e servizi, tra cui Visual Studio, Visual Studio Team Services e Azure. Offre un credito di $ 25 al mese per Azure per dodici mesi. Include anche sottoscrizioni tooPluralsight training e Xamarin University. È anche possibile iscriversi separatamente per accedere ai livelli gratuiti di [Azure](https://azure.com) e [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx), che tuttavia non offrono crediti Azure.
 * [HockeyApp](https://rink.hockeyapp.net/) (facoltativo) per gestire la distribuzione di test di app per dispositivi mobili e raccogliere dati di telemetria.
-* [Xamarin](https://xamarin.com/) (obbligatorio) per compilare le app per dispositivi mobili ed eseguire test e debug su [Xamarin Test Cloud](https://xamarin.com/test-cloud).
-* [GitHub](https://github.com/Azure-Samples/MyDriving/) (facoltativo) per creare repository pubblici gratuiti per il proprio codice. I repository privati sono a pagamento. In alternativa, per i repository privati è possibile usare il piano Basic in Visual Studio Team Services.
-* [Power BI](https://powerbi.microsoft.com/) (facoltativo) per creare visualizzazioni avanzate dei dati nell'intero sistema.
+* [Xamarin](https://xamarin.com/) (obbligatorio), per la compilazione di esecuzioni di debug e test di app per dispositivi mobili hello e in esecuzione in [Xamarin Test Cloud](https://xamarin.com/test-cloud).
+* [GitHub](https://github.com/Azure-Samples/MyDriving/) (facoltativo), toocreate repository pubblico disponibile per il proprio codice (repository privati sono a pagamento). In alternativa, è possibile utilizzare piano base hello in Visual Studio Team Services per i repository privati.
+* [Power BI](https://powerbi.microsoft.com/) le visualizzazioni dettagliate toocreate (facoltativo), dei dati tra l'intero sistema hello.
 
 > [!NOTE]
-> Non è necessario un account GitHub per accedere al codice MyDriving nel [repository MyDriving in GitHub](https://github.com/Azure-Samples/MyDriving).
+> Non è necessario un archivio GitHub tooaccess account hello codice MyDriving [hello repository GitHub MyDriving](https://github.com/Azure-Samples/MyDriving).
 > 
 > 
 
 ## <a name="install-development-tools"></a>Installare gli strumenti di sviluppo
-La configurazione seguente è destinata allo sviluppo della soluzione completa: un'app multipiattaforma per iOS, Android e Windows 10 Mobile con un back-end di Azure.
+Hello seguente è per lo sviluppo di soluzioni completa hello: un iOS, Android e Windows 10 Mobile app multipiattaforma, con un Azure back-end.
 
-In alternativa è possibile usare Xamarin Studio in Mac o Windows per sviluppare app per dispositivi mobili, se non si usa il back-end di Azure.
+In alternativa, è possibile utilizzare Xamarin Studio su Mac o Windows toodevelop hello App per dispositivi mobili, se non sono in uso in hello Azure nuovamente terminare.
 
 Vedere qui per una [descrizione più dettagliata di questa configurazione](https://msdn.microsoft.com/library/mt613162.aspx).
 
 ### <a name="windows-development-machine"></a>Computer di sviluppo Windows
-Lo strumento centrale in Windows è Visual Studio, per l'uso dell'app MyDriving per Android e Windows, del progetto di API del servizio app e delle estensioni del microservizio.
+lo strumento centrale Hello in Windows è Visual Studio, per l'utilizzo di hello MyDriving app per Android e Windows, il progetto di API del servizio App hello e le estensioni del microservizio.
 
 Xamarin, Git, emulatori e altri componenti utili sono tutti integrati in Visual Studio.
 
 Installare:
 
 * [Visual Studio con Xamarin](https://www.visualstudio.com/products/visual-studio-community-vs) (qualsiasi edizione; l'edizione Community è gratuita).
-* [SQLite per la piattaforma UWP (Universal Windows Platform)](https://visualstudiogallery.msdn.microsoft.com/4913e7d5-96c9-4dde-a1a1-69820d615936). Necessario per compilare il codice di Windows 10 Mobile.
-* [Azure SDK per Visual Studio](https://www.visualstudio.com/vs/azure-tools/). Offre l'SDK per l'esecuzione di app in Azure e strumenti da riga di comando per la gestione di Azure.
-* [Azure Service Fabric SDK](http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric). Necessario per compilare l'estensione del [microservizio](../service-fabric/service-fabric-get-started.md) .
+* [SQLite per la piattaforma UWP (Universal Windows Platform)](https://visualstudiogallery.msdn.microsoft.com/4913e7d5-96c9-4dde-a1a1-69820d615936). Necessario codice di Windows 10 Mobile toobuild hello.
+* [Azure SDK per Visual Studio](https://www.visualstudio.com/vs/azure-tools/). Consente di SDK hello per le applicazioni in esecuzione in Azure, insieme agli strumenti da riga di comando per la gestione di Azure.
+* [Azure Service Fabric SDK](http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric). Hello obbligatorio toobuild [microservizio](../service-fabric/service-fabric-get-started.md) estensione.
 
-Assicurarsi di disporre delle estensioni di Visual Studio corrette. Verificare che in **Strumenti** siano visualizzati **Android, iOS, Xamarin e così via**. In caso contrario, aprire Visual Studio, cercare Xamarin e seguire le istruzioni per installarlo. Verificare anche che sia installato **GitHub per Windows**. In caso contrario, in Visual Studio eseguirne la ricerca e seguire le istruzioni per installarlo. 
+Assicurarsi di disporre di estensioni di Visual Studio destra hello. Verificare che in **Strumenti** siano visualizzati **Android, iOS, Xamarin e così via**. In caso contrario, aprire Visual Studio, eseguire la ricerca di Xamarin e seguire tooinstall prompt hello è. Verificare anche che sia installato **GitHub per Windows**. Se non è, in Visual Studio, effettuare una ricerca e seguire tooinstall prompt hello è. 
 
 ### <a name="mac-development-machine"></a>Computer di sviluppo Mac
-Il computer Mac (Yosemite o versione successiva) è necessario se si intende sviluppare per iOS. Anche se usiamo Visual Studio con Xamarin in Windows per sviluppare e gestire tutto il codice, Xamarin usa un agente installato in un computer Mac per compilare e firmare il codice iOS
+Hello Mac (Yosemite o versione successiva) è necessario se si desidera toodevelop per iOS. Anche se si usa Visual Studio con Xamarin su Windows toodevelop e gestione tutto il codice hello, Xamarin utilizza un agente installato su un Mac in ordine toobuild e sign hello codice iOS.
 
 ![Sviluppare in Windows e compilare in Mac](./media/iot-solution-build-system/image1.png)
 
-(in alternativa, è possibile usare Xamarin Studio direttamente nel computer Mac per sviluppare app multipiattaforma).
+(In alternativa, è possibile utilizzare Xamarin Studio direttamente in App multipiattaforma di hello Mac toodevelop.)
 
-Il computer Mac non è necessario se non si vuole includere iOS come piattaforma di destinazione.
+Se non si desidera tooinclude iOS come piattaforma di destinazione non è necessario hello Mac.
 
 Installare:
 
 * [Xamarin Studio per iOS](https://developer.xamarin.com/guides/ios/getting_started/installation/mac/). È anche possibile configurare Visual Studio e Xamarin in un computer Mac che esegue una macchina virtuale Windows. Vedere [Configurazione, installazione e verifiche per gli utenti Mac](https://msdn.microsoft.com/library/mt488770.aspx) su MSDN.
 * [Strumenti di sviluppo Azure](https://azure.microsoft.com/downloads/) (facoltativo).
 
-Abilitare l'accesso remoto sul computer Mac. Aprire **Preferenze di Sistema** > **Condivisione** e quindi selezionare **Account di accesso remoto**.
+Abilitare l'accesso remoto nell'hello Mac. Aprire **Preferenze di Sistema** > **Condivisione** e quindi selezionare **Account di accesso remoto**.
 
-Quando si apre un progetto iOS in Visual Studio su Windows, il plug-in Xamarin richiederà l'ID del computer Mac.
+Quando si apre un progetto iOS in Visual Studio in Windows, hello Xamarin plug-in verrà richiesto per l'ID di hello di hello Mac.
 
-## <a name="fetch-the-github-repository"></a>Recuperare il repository GitHub
-Recuperare una copia locale del [repository MyDriving di GitHub](https://github.com/Azure-Samples/MyDriving) usando il pulsante **Download ZIP** in GitHub, Visual Studio o un altro client Git.
+## <a name="fetch-hello-github-repository"></a>Recuperare il repository di GitHub hello
+Recuperare una copia locale di [hello repository GitHub MyDriving](https://github.com/Azure-Samples/MyDriving) utilizzando hello **ZIP di Download** pulsante in un altro client Git, GitHub o Visual Studio.
 
-Decomprimere il file in una cartella con un nome di percorso breve, ad esempio C:\\codice.
+Decomprimere tooa cartella hello con un nome di percorso breve, ad esempio c:\\codice.
 
-In alternativa, per rimanere aggiornati sul codice o fornire il proprio contributo, clonare il repository come segue:
+In alternativa, se si desidera tookeep backup toodate con o fornire codice tooour, eseguire la clonazione hello repository come indicato di seguito:
 
 **git clone https://github.com/Azure-Samples/MyDriving.git**
 
 ## <a name="get-a-bing-maps-api-key"></a>Ottenere una chiave API di Bing Mappe
 [Eseguire la registrazione per ottenere una chiave API di Bing Mappe](https://msdn.microsoft.com/library/ff428642.aspx).
 
-È necessario sostituire questo codice nella riga 22 in `src/MobileApps/MyDriving/MyDriving.Utils/Logger.cs`.
+È necessario tooreplace di questa riga in 22 `src/MobileApps/MyDriving/MyDriving.Utils/Logger.cs`.
 
-## <a name="build-the-demo-app"></a>Compilare l'app demo
+## <a name="build-hello-demo-app"></a>Compilare app demo hello
 In Visual Studio aprire le soluzioni seguenti:
 
 * src\MobileApps\MyDriving.sln
@@ -122,98 +122,98 @@ In Visual Studio aprire le soluzioni seguenti:
 
 Verranno visualizzati prompt per:
 
-* Considerare attendibili alcuni progetti potenzialmente non attendibili. Per procedere, scegliere di aprirli.
+* Considerare attendibili alcuni progetti potenzialmente non attendibili. Scegliere tooopen, se si desidera toogo-ahead.
 * Impostare la modalità sviluppatore se si usa un nuovo computer Windows 10.
 * Fornire le credenziali Xamarin.
-* Connettersi al computer Mac Xamarin. Se non si usa un computer Mac, fare clic con il pulsante destro del mouse sul progetto iOS in Visual Studio e quindi scegliere **Scarica progetto**.
+* Connettersi toohello Mac. Xamarin Se non si dispone di un computer Mac, iOS hello rapida del progetto in Visual Studio e quindi selezionare **Scarica progetto**.
 
-Ricompilare la soluzione.
+Ricompila soluzione hello.
 
-In caso di problemi con la compilazione, provare queste soluzioni per comportamenti anomali:
+Se si dispone di compilazione di problemi, provare a hello tooquirks di soluzioni che è stata trovata:
 
-* *Il progetto VINLookupApplication non viene caricato*: assicurarsi di avere installato [Azure SDK per Visual Studio](https://www.visualstudio.com/vs/azure-tools/).
-* *Il progetto di Service Fabric non viene compilato*: compilare prima i progetti di interfaccia e assicurarsi che Service Fabric SDK sia installato.
+* *Non viene caricato il progetto VINLookupApplication*: assicurarsi che sia installato hello [Azure SDK per Visual Studio](https://www.visualstudio.com/vs/azure-tools/).
+* *Non compila il progetto Service Fabric*: compilare progetti interfaccia hello innanzitutto e assicurarsi che sia installato hello Service Fabric SDK.
 * *L'app per Android non viene compilata*:
   
   * Aprire **Strumenti** > **Android** > **Android SDK Manager** e quindi assicurarsi che la piattaforma Android 6 (API 23)/SDK sia installata.
   * Eliminare questa directory e quindi ricompilare:<br/>
     `%LocalAppData%\Xamarin\zips`
 
-## <a name="get-to-know-the-code"></a>Conoscere il codice
-In questa soluzione sono disponibili:
+## <a name="get-tooknow-hello-code"></a>Ottenere il codice hello tooknow
+Nella soluzione hello, sono disponibili:
 
 * Estensioni di Azure: Service Fabric.
 * Azure HDInsight: script per l'elaborazione dei dati di viaggio in Azure.
-* App per dispositivi mobili: app per dispositivi.
-* MobileAppsService/MyDrivingService: back-end Web.
-* Power BI: definizione dei report.
+* App per dispositivi mobili: hello App per dispositivi.
+* MobileAppsService/MyDrivingService: terminare web hello nuovamente.
+* Power BI: definizione di report hello.
 * Scripts:
   
-  * Resource Manager: modelli per creare le risorse di Azure.
-  * PowerShell: script per eseguire i modelli di Resource Manager.
+  * Gestione risorse: modelli toobuild hello risorse di Azure.
+  * PowerShell: Modelli di gestione risorse hello toorun script.
   * Database SQL di Azure: debug dei database.
 * Database SQL: CreateTables: definizioni dello schema.
-* Analisi di flusso di Azure: query che consentono di trasformare il flusso di dati in ingresso.
+* Azure flusso Analitica: Esegue una query di trasformazione hello in arrivo del flusso di dati.
 
-## <a name="run-the-apps-in-development-mode"></a>Eseguire le app in modalità di sviluppo
-Predisporre l'esecuzione delle app in base al dispositivo in uso:
+## <a name="run-hello-apps-in-development-mode"></a>Eseguire App hello in modalità di sviluppo
+Eseguire toorun azione App hello, basata sul dispositivo hello in uso:
 
-* Back-end: impostare MyDrivingService come progetto di avvio, quindi premere F5 per eseguire il servizio Web back-end. Verrà aperta una visualizzazione browser dell'elenco delle API.
-* Client per dispositivi mobili: le [app per dispositivi mobili vengono sviluppate in Xamarin](https://developer.xamarin.com/guides/cross-platform/deployment,_testing,_and_metrics/debugging_with_xamarin/).
+* Back-end: MyDrivingService Set come progetto di avvio hello, premere F5 toorun hello back-end servizio. Si aprirà una visualizzazione esplorazione dell'elenco di hello API.
+* Client mobili: hello [App per dispositivi mobili vengono sviluppate in Xamarin](https://developer.xamarin.com/guides/cross-platform/deployment,_testing,_and_metrics/debugging_with_xamarin/).
   
   * Android: per i dettagli, vedere l'articolo relativo al [debug di Android in Xamarin](http://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/debugging_with_xamarin_android/).
   * iOS: per i dettagli, vedere l'articolo relativo al [debug in iOS](http://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/debugging_in_xamarin_ios/).
   * Windows Phone: per i dettagli, vedere l'articolo relativo a [Xamarin + Windows Phone](https://developer.xamarin.com/guides/cross-platform/windows/phone/).
 
-## <a name="upload-the-mobile-app-to-hockeyapp"></a>Caricare l'app per dispositivi mobili su HockeyApp
-HockeyApp gestisce la distribuzione dell'app per Android, iOS o Windows agli utenti di test, inviando loro notifiche relative alla disponibilità di nuove versioni. Raccoglie anche utili segnalazioni di arresti anomali, commenti degli utenti con screenshot e metriche di utilizzo.
+## <a name="upload-hello-mobile-app-toohockeyapp"></a>Caricare hello tooHockeyApp di app per dispositivi mobili
+HockeyApp gestisce la distribuzione hello gli utenti di tootest app Android, iOS o Windows, la notifica agli utenti di nuove versioni. Raccoglie anche utili segnalazioni di arresti anomali, commenti degli utenti con screenshot e metriche di utilizzo.
 
-[Iniziare caricando](http://support.hockeyapp.net/kb/app-management-2/how-to-create-a-new-app) l'app compilata. Accedere quindi a [HockeyApp](https://rink.hockeyapp.net) dal computer di sviluppo. Nel dashboard di sviluppo fare clic su **New App** (Nuova app) e trascinare i file compilati nella finestra (in un secondo momento è possibile automatizzare il servizio di compilazione per eseguire questa operazione).
+[Iniziare caricando](http://support.hockeyapp.net/kb/app-management-2/how-to-create-a-new-app) l'app compilata. Quindi, eseguire l'accesso troppo[HockeyApp](https://rink.hockeyapp.net) dal computer di sviluppo. Nel dashboard sviluppatore hello, fare clic su **nuova App**, quindi trascinare file hello compilato finestra hello. (In un secondo momento, è possibile automatizzare il toodo servizio di compilazione questo.)
 
 Viene visualizzato il dashboard dell'app.
 
-![Scheda Overview nel dashboard dell'app](./media/iot-solution-build-system/image2.png)
+![Panoramica sul dashboard app hello](./media/iot-solution-build-system/image2.png)
 
-Ripetere il processo per ogni piattaforma in cui viene eseguita l'app. A questo punto è possibile eseguire queste operazioni:
+Ripetere il processo di hello per ogni piattaforma per l'app viene eseguita in. Quindi, è possibile eseguire il seguente hello:
 
-* Usare l' [ID app](http://support.hockeyapp.net/kb/app-management-2/how-to-find-the-app-id) nel dashboard per inviare dati di arresto anomalo e commenti dall'app. In MyDriving aggiornare gli ID in src/MobileApps/MyDriving/MyDriving.Utils/Logger.cs.
-* [Invitare utenti di test](http://support.hockeyapp.net/kb/app-management-2/how-to-invite-beta-testers). Si riceverà un URL per selezionare gli utenti di test, che potranno registrarsi al team, scaricare l'app e inviare commenti.
-* Se si preferisce una versione beta più aperta, impostare la distribuzione come pubblica. Fare clic su **Manage App** (Gestisci app) > **Distribution** (Distribuzione) > **Download = Public (Download = Pubblico)**. In questo modo tutti gli utenti possono scaricare l'app e inviare commenti, oltre a visualizzare una notifica quando viene pubblicata una nuova versione, ed è anche possibile ricevere da loro alcune segnalazioni di arresti anomali.
+* Hello utilizzare [ID app](http://support.hockeyapp.net/kb/app-management-2/how-to-find-the-app-id) dai dati di arresto anomalo di hello dashboard toosend e commenti e suggerimenti dall'app. In MyDriving, aggiornare gli ID hello in src/MobileApps/MyDriving/MyDriving.Utils/Logger.cs.
+* [Invitare utenti di test](http://support.hockeyapp.net/kb/app-management-2/how-to-invite-beta-testers). È possibile ottenere un toorecruit URL agli utenti di tester. Essi verrà toosign grado per il team, scaricare l'applicazione hello e inviare commenti e suggerimenti.
+* Se si preferisce una versione beta più aperta, impostare toopublic distribuzione hello. Fare clic su **Manage App** (Gestisci app) > **Distribution** (Distribuzione) > **Download = Public (Download = Pubblico)**. In questo modo tutti gli utenti possono scaricare l'app e inviare commenti, oltre a visualizzare una notifica quando viene pubblicata una nuova versione, ed è anche possibile ricevere da loro alcune segnalazioni di arresti anomali.
   
-   ![Team sul dashboard](./media/iot-solution-build-system/image3.png)
-* [Collegare le segnalazioni di arresto anomalo a Visual Studio Team Services](http://support.hockeyapp.net/kb/third-party-bug-trackers-services-and-webhooks/how-to-use-hockeyapp-with-visual-studio-team-services-vsts-or-team-foundation-server-tfs). Fare clic su **Manage App** (Gestisci app) > **Visual Studio Team Services**. HockeyApp è in grado di creare automaticamente gli elementi di lavoro in Team Services quando sono presenti segnalazioni di arresti anomali o si ricevono commenti.
+   ![Team nel dashboard di hello](./media/iot-solution-build-system/image3.png)
+* [Arresto anomalo di collegamento report tooVisual Studio Team Services](http://support.hockeyapp.net/kb/third-party-bug-trackers-services-and-webhooks/how-to-use-hockeyapp-with-visual-studio-team-services-vsts-or-team-foundation-server-tfs). Fare clic su **Manage App** (Gestisci app) > **Visual Studio Team Services**. HockeyApp è in grado di creare automaticamente gli elementi di lavoro in Team Services quando sono presenti segnalazioni di arresti anomali o si ricevono commenti.
 
-Altre informazioni sono disponibili sul [sito HockeyApp](https://hockeyapp.net).
+Lettura di più, a hello [HockeyApp sito](https://hockeyapp.net).
 
-## <a name="test-the-mobile-app-on-xamarin-test-cloud"></a>Eseguire i test dell'app per dispositivi mobili in Xamarin Test Cloud
-[Xamarin Test Cloud](https://developer.xamarin.com/guides/testcloud/introduction-to-test-cloud/) automatizza i test dell'interfaccia utente su dispositivi reali nel cloud. Con il framework NUnit è possibile scrivere test che eseguono l'app con l'interfaccia utente.
+## <a name="test-hello-mobile-app-on-xamarin-test-cloud"></a>Test di app per dispositivi mobili hello in Xamarin Test Cloud
+[Xamarin Test Cloud](https://developer.xamarin.com/guides/testcloud/introduction-to-test-cloud/) automatizza il test dell'interfaccia utente nei dispositivi reali nel cloud hello. Tramite il framework di NUnit hello, scrivere test che eseguono l'app tramite interfaccia utente di hello.
 
-Per usare Xamarin incorporare nell'app l'SDK [Xamarin.UITests](https://developer.xamarin.com/guides/testcloud/uitest/intro-to-uitest/) , disponibile come pacchetto NuGet. È disponibile nell'app demo ed è incluso quando si creano nuovi progetti di test con i modelli Xamarin.
+toouse Xamarin, si incorpora hello [Xamarin.UITests](https://developer.xamarin.com/guides/testcloud/uitest/intro-to-uitest/) SDK nell'applicazione, è disponibile come pacchetto NuGet. Sono disponibili in app demo hello e è incluso quando si creano nuovi progetti di test con hello modelli di Xamarin.
 
-![Posizione dell'SDK multipiattaforma nell'interfaccia](./media/iot-solution-build-system/image4.png)
+![Dove toofind hello SDK multipiattaforma sull'interfaccia hello](./media/iot-solution-build-system/image4.png)
 
-Un progetto di test di esempio è incluso con l'app nel repository. In [MyDriving](https://github.com/Azure-Samples/MyDriving/tree/master/src/MobileAppService) cercare in [src](https://github.com/Azure-Samples/MyDriving/tree/master/src)/MobileApps/[MyDriving](https://github.com/Azure-Samples/MyDriving/tree/master/src/MobileApps/MyDriving)/MyDriving.UITests/.
+Un progetto di test di esempio è incluso in hello app in repository hello. In [MyDriving](https://github.com/Azure-Samples/MyDriving/tree/master/src/MobileAppService) cercare in [src](https://github.com/Azure-Samples/MyDriving/tree/master/src)/MobileApps/[MyDriving](https://github.com/Azure-Samples/MyDriving/tree/master/src/MobileApps/MyDriving)/MyDriving.UITests/.
 
-Se si usa una build di Visual Studio Team Services è facile scrivere unit test dell'interfaccia utente di Xamarin ed eseguirli nell'ambito della build.
+Se si usa una compilazione di Visual Studio Team Services, è facile toowrite unità UI Xamarin test ed eseguirli come parte della compilazione.
 
 ## <a name="deploy-azure-services"></a>Distribuire servizi di Azure
-Vedere le istruzioni dettagliate in **scripts/README.md**per eseguire la distribuzione automatica dei servizi di Azure e dei servizi di compilazione di Team Services.
+tooperform una distribuzione automatica di servizi di Azure e servizi di compilazione di Team Services, vedere toohello dettagliate in **scripts/README.md**.
 
-Microsoft Azure offre un'ampia gamma di servizi diversi che è possibile usare per compilare applicazioni cloud. Anche se molti di essi possono essere usati singolarmente, ad esempio il servizio app/app Web, producono risultati ottimali quando vengono collegati per formare un sistema integrato come quello usato in MyDriving.
+Microsoft Azure offre una vasta gamma di servizi diversi che è possibile utilizzare le applicazioni cloud toobuild. Sebbene molte possono essere utilizzate singolarmente (ad esempio applicazioni di servizio Web e App), ma sono a loro scelta migliore quando si sono stai interconnesse tooform un sistema integrato come quello utilizziamo MyDriving.
 
-È possibile creare e collegare manualmente i servizi di Azure, ma l'uso dei modelli di Azure Resource Manager rappresenta una soluzione molto più rapida e affidabile. [Resource Manager](../azure-resource-manager/resource-group-overview.md) automatizza la distribuzione delle risorse di una soluzione e la creazione di interconnessioni tra di esse.
+È possibile toocreate e interconnessione manualmente i servizi di Azure, ma è molto più veloci e più affidabili i modelli di toouse Gestione risorse di Azure. [Gestione risorse](../azure-resource-manager/resource-group-overview.md) automatizza hello la distribuzione delle risorse di una soluzione e rendendo interconnessioni hello tra di essi.
 
-Il modello per il sistema MyDriving è disponibile nel repository GitHub in [scripts/ARM](https://github.com/Azure-Samples/MyDriving/tree/master/scripts/ARM). Offre una visualizzazione completa e concisa della modalità di interconnessione dei diversi servizi nell'architettura. Tali servizi vengono descritti in dettaglio nella [guida di riferimento a MyDriving](http://aka.ms/mydrivingdocs), ma è possibile acquisire molte informazioni anche leggendo il modello stesso.
+Sono disponibili per il sistema di MyDriving hello modello hello nel repository GitHub hello in [script/ARM](https://github.com/Azure-Samples/MyDriving/tree/master/scripts/ARM). Fornisce una visualizzazione completa e concisa della modalità di interconnessione tra diversi servizi di hello nell'architettura. Tutti questi elementi in modo dettagliato in hello spiegheremo [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs), ma è possibile ottenere molte semplicemente leggendo modello hello stesso.
 
 > [!NOTE]
-> La maggior parte dei servizi di Azure comporta un costo in funzione del piano tariffario. Se non si ha familiarità con Azure è possibile [provarlo gratuitamente](https://azure.microsoft.com/free/). Se tuttavia non si intende usare alcuni componenti nel sistema MyDriving, rimuoverli per evitare l'addebito di costi. La sezione "Stimare i costi operativi" più avanti in questo articolo offre un riepilogo delle spese di servizio standard.
+> Servizi di Azure più avere un costo associato, a seconda di hello piano tariffario. Se si tooAzure nuova, è possibile [provare gratuitamente](https://azure.microsoft.com/free/). Tuttavia, se non si intende toouse alcuni componenti di sistema MyDriving hello, essere tooremove che li tooavoid i costi di assunzione. sezione "Stima dei costi operativi" Hello più avanti in questo articolo viene fornito un riepilogo delle spese di servizio tipico.
 > 
 > 
 
-### <a name="edit-the-template"></a>Modificare il modello
-Per personalizzare la distribuzione, ad esempio per rimuovere componenti non necessari o aggiungerne altri, prima di tutto creare copie di scenario\_complete.params.json e scenario\_complete.json in cui apportare le modifiche.
+### <a name="edit-hello-template"></a>Modifica modello hello
+toocustomize la distribuzione, ad esempio tooremove necessari componenti o tooadd ad altri utenti, innanzitutto copie dello scenario\_complete.params.json e scenario\_complete.json in cui le modifiche toomake.
 
-È possibile usare il file scenario\_complete.params.json per eseguire l'override di diversi valori predefiniti, ad esempio lo SKU del servizio o il tipo di replica di archiviazione come descritto nella tabella seguente. I valori predefiniti corrispondono alle opzioni di costo più basse.
+È possibile utilizzare uno scenario di hello\_complete.params.json file toooverride vari valori predefiniti, ad esempio hello servizio SKU o hello replica tipo di archiviazione, come descritto in hello nella tabella seguente. i valori predefiniti di Hello selezionare le opzioni di costo più basso hello.
 
 | **Parametro** | **Descrizione** | **Valore predefinito** |
 | --- | --- | --- |
@@ -224,35 +224,35 @@ Per personalizzare la distribuzione, ad esempio per rimuovere componenti non nec
 
 In scenario\_complete.json:
 
-* Cercare "baseName" e modificarne il nome con uno di propria scelta.
+* Cercare "base" e modificarlo tooa nome desiderato.
 * Cercare "Create". Ognuna di queste sezioni crea una risorsa.
-* Impostare sqlServerAdminLogin e sqlServerAdminPassword su valori appropriati.
-* Prima di eliminare una sezione che crea una risorsa, verificare se esistono elementi dipendenti cercando il nome della sezione nelle altre parti del file. Si noti che ogni sezione che crea un servizio include una sezione *dependsOn* che elenca le relative dipendenze.
+* Impostare sqlServerAdminLogin e sqlServerAdminPassword toosuitable valori.
+* Prima di eliminare una sezione che crea una risorsa, controllare la presenza di dipendenti, cercare il nome in un' posizione nel file hello. Si noti che ogni sezione che crea un servizio include una sezione *dependsOn* che elenca le relative dipendenze.
 
-La tabella seguente descrive gli elementi configurati dal modello. I dettagli sono disponibili nella [guida di riferimento](http://aka.ms/mydrivingdocs).
+Ecco il modello di hello Configura. Dettagli inclusi nel hello [Guida di riferimento](http://aka.ms/mydrivingdocs).
 
 | **Servizio** | **Descrizione e dettagli** |
 | --- | --- |
-| Account di archiviazione |Il modello crea tre account: |
-| -   Un database SQL che riceve i dati di telemetria aggregati da Analisi di flusso e funge da archivio di backup per le tabelle del Servizio app di Azure che espongono tali dati usando gli endpoint API. | |
-| -   L'archivio BLOB che accumula i dati cronologici di un altro processo di analisi di flusso, per l'elaborazione in HDInsight. | |
+| Account di archiviazione |Hello modello consente di creare tre account: |
+| -Un database SQL che riceve dati di telemetria aggregati dal flusso Analitica e funge da archivio di backup hello per le tabelle di Azure App Service che espongono i dati tramite gli endpoint dell'API. | |
+| -L'archiviazione blob accumula i dati cronologici da un altro processo di flusso Analitica, toobe elaborati da HDInsight. | |
 | -   Un database SQL che riceve i risultati elaborati da HDInsight per l'uso con Power BI. | |
-| Hub IoT Azure |Stabilisce una connessione bidirezionale per ogni dispositivo connesso. Nella soluzione MyDriving, l'app per dispositivi mobili viene usata come gateway sul campo per inviare dati all'hub IoT di Azure. L'hub IoT di Azure viene quindi usato come input per analisi di flusso. |
-| Hub eventi di Azure |Un output per un processo di analisi di flusso che accoda l'output alle estensioni create con Azure Service Fabric. |
+| Hub IoT Azure |Stabilisce un dispositivo connesso tooeach di connessione bidirezionale. Nella soluzione MyDriving hello, app per dispositivi mobili hello agisce come un tooAzure di dati toosend gateway campo IoT Hub. IoT Hub Azure funge quindi da un input tooStream Analitica. |
+| Hub eventi di Azure |Un output per un processo di flusso Analitica che code hello tooextensions di output creati con Azure Service Fabric. |
 | Azure SQL Data Warehouse | |
-| Processi di analisi di flusso |Consentono di connettere input e output con una query, usata successivamente per aggregare i dati in tempo reale e i dati cronologici per le API del servizio app, Azure Machine Learning, le estensioni e Power BI. |
+| Processi di analisi di flusso |La connessione di input e output con una query, ovvero tooaggregate utilizzati dati cronologici e in tempo reale per hello App API dei servizi, Azure Machine Learning, estensioni e Power BI. |
 | Area di lavoro di Machine Learning |Include esperimenti, codice R e servizio API. |
 | Data factory di Azure |Ripetizione del training di Machine Learning pianificata. |
 | Piano di hosting di Service Fabric |Per le estensioni. |
-| Servizio app ("App per dispositivi mobili") |Ospita il progetto API per dispositivi mobili che fornisce gli endpoint per l'app per dispositivi mobili. Il codice API deve essere distribuito nel servizio app da Visual Studio. |
-| Regole di avviso |Invia un messaggio di posta elettronica se le risposte delle app indicano errori. |
-| Application Insights |Per il monitoraggio delle prestazioni delle API nel servizio app. È necessario configurare la connessione in Visual Studio. |
-| Insieme di credenziali chiave Azure |Per salvare il certificato del cluster del servizio Web. |
+| Servizio app ("App per dispositivi mobili") |Progetto API App Mobile hello host che fornisce gli endpoint hello App per dispositivi mobili. Hello codice API deve essere distribuito tooApp servizio da Visual Studio. |
+| Regole di avviso |Invia che posta elettronica se le risposte app hello indicano gli errori. |
+| Application Insights |Per il monitoraggio delle prestazioni di hello API nel servizio App. Si ha una connessione hello tooconfigure in Visual Studio. |
+| Insieme di credenziali chiave Azure |Per salvare il certificato del cluster del servizio web hello. |
 
-### <a name="run-the-template"></a>Eseguire il modello
-Istruzioni dettagliate per l'esecuzione del modello sono disponibili in **scripts/README.md**.
+### <a name="run-hello-template"></a>Eseguire il modello di hello
+In **scripts/README.md**, sono disponibili istruzioni dettagliate per il modello di hello in esecuzione.
 
-Per eseguire il provisioning di tutti questi servizi nel proprio account Azure usando lo script, eseguire una di queste operazioni:
+tooprovision tutti questi servizi del proprio account Azure utilizzando uno script di hello, effettuare una delle seguenti hello:
 
 * Usare PowerShell:
   
@@ -262,28 +262,28 @@ Per eseguire il provisioning di tutti questi servizi nel proprio account Azure u
   deploy.ps1 *location* *resourceGroupName*
   ```
   
-  * *location* è la [località di Azure](https://azure.microsoft.com/regions/), ad esempio `North Europe` o `West US`. Usare `Get-AzureLocation` per trovare un elenco delle località disponibili.
-  * *resourceGroupName* è il nome da assegnare al gruppo al quale apparterranno tutte le risorse. Dopo aver usato le risorse sarà possibile eliminarle tutte contemporaneamente eliminando questo gruppo.
+  * *percorso* è hello [località di Azure](https://azure.microsoft.com/regions/), ad esempio `North Europe` o `West US`. Utilizzare `Get-AzureLocation` toofind un elenco dei percorsi disponibili.
+  * *resourceGroupName* hello nome che si desidera toogive toohello gruppo appartenenti a tutte le risorse di hello. Quando si è finito di lavorare con le risorse di hello, è possibile eliminare tali tutti insieme tramite l'eliminazione di questo gruppo.
 * Eseguire DeploymentScripts/Bash/deploy.sh con Bash.
-* Aprire e compilare la soluzione di Visual Studio DeploymentScripts/VS/DeployARM.sln.
+* Aprire e compilare la soluzione di Visual Studio hello DeploymentScripts/VS/DeployARM.sln.
 
-Si noti che ogni volta che viene eseguito il modello, viene creato un nuovo set di risorse con nuovi nomi. Per eliminare le risorse, passare al portale ed eliminare il gruppo di risorse.
+Si noti che ogni modello hello in fase di esecuzione, viene creato un nuovo set di risorse con i nuovi nomi. risorse hello toodelete, passare toohello portale ed eliminare il gruppo di risorse hello.
 
-Se per qualsiasi motivo lo script non riesce, è possibile eseguirlo nuovamente.
+Se lo script hello non riesce per qualsiasi motivo, è possibile eseguirla nuovamente.
 
-Lo script consente di configurare l'integrazione continua in Visual Studio Team Services. Se è stato configurato un progetto Team Services, sarà disponibile un URL https://yourAccountName.visualstudio.com. Immettere l'URL completo quando viene richiesto. È possibile assegnare all'URL un nome nuovo o esistente per un progetto Team Services.
+Consente di script Hello hello opzione di configurazione di integrazione continua in Visual Studio Team Services. Se è stato configurato un progetto Team Services, sarà disponibile un URL https://yourAccountName.visualstudio.com. Immettere l'URL completo di hello quando viene richiesto. È possibile assegnare all'URL un nome nuovo o esistente per un progetto Team Services.
 
 ## <a name="set-up-build-and-test-definitions-in-visual-studio-team-services"></a>Configurare definizioni di compilazione e test in Visual Studio Team Services
-In questo progetto viene usato Team Services principalmente per le relative funzionalità di compilazione e test. Offre tuttavia anche un supporto eccellente per la collaborazione, ad esempio la gestione delle attività con le lavagne Kanban, la revisione del codice integrata con le attività e il controllo del codice sorgente e le compilazioni gestite. Si integra bene con altri strumenti, ad esempio GitHub, Xamarin, HockeyApp e naturalmente Visual Studio. È possibile accedervi con l'interfaccia Web o Visual Studio, a seconda di quale sia la scelta più comoda in un dato momento.
+In questo progetto viene usato Team Services principalmente per le relative funzionalità di compilazione e test. Offre tuttavia anche un supporto eccellente per la collaborazione, ad esempio la gestione delle attività con le lavagne Kanban, la revisione del codice integrata con le attività e il controllo del codice sorgente e le compilazioni gestite. Si integra bene con altri strumenti, ad esempio GitHub, Xamarin, HockeyApp e naturalmente Visual Studio. È possibile accedervi tramite l'interfaccia web hello o Visual Studio, a seconda del valore è più conveniente in qualsiasi momento.
 
-I passaggi contenuti nelle definizioni di compilazione e versione usano un'ampia gamma di servizi plug-in disponibili nel [Marketplace](https://marketplace.visualstudio.com/VSTS)di Team Services. Oltre alle utilità di base per eseguire le righe di comando o copiare i file, esistono servizi che richiamano le build di Xamarin, Android e di altri fornitori e che si interfacciano con HockeyApp.
+Hello di passaggi di compilazione hello e definizioni di versione utilizzano un'ampia gamma di plug-in servizi disponibili in hello Team Services [Marketplace](https://marketplace.visualstudio.com/VSTS). In righe di comando toorun utilità toobasic aggiunta o la copia di file, sono presenti servizi che richiamano le compilazioni da altri fornitori, Android e Xamarin e che si connettono tooHockeyApp.
 
 ![Opzioni di compilazione in Team Services](./media/iot-solution-build-system/image5.png)
 
 ### <a name="build-definitions"></a>Definizioni di compilazione
-Sono disponibili definizioni di compilazione per ognuna delle destinazioni principali. Sono anche disponibili varianti per test di funzionalità e di regressione. Le definizioni sono le seguenti:
+Sono disponibili definizioni di compilazione per ciascuna delle destinazioni di hello principale. Sono anche disponibili varianti per test di funzionalità e di regressione. Le definizioni sono le seguenti:
 
-* MyDriving.Services: app Web back-end per l'app per dispositivi mobili
+* MyDriving.Services (hello back-end dell'app web app per dispositivi mobili hello)
 * MyDriving.Xamarin.Android
   
   * MyDriving.Xamarin.Android: funzionalità
@@ -297,59 +297,59 @@ Sono disponibili definizioni di compilazione per ognuna delle destinazioni princ
   * MyDriving.Xamarin.UWP: funzionalità
   * MyDriving.Xamarin.UWP: regressione
 
-Per visualizzare i dettagli completi della configurazione, vedere la sezione 4.7 relativa alla configurazione della build e della versione della [guida di riferimento a MyDriving](http://aka.ms/mydrivingdocs). Seguono lo stesso modello generale. Lo script:
+Se si desidera toosee hello dettagli completi la configurazione, vedere la sezione 4.7 di hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs), "Compilazione e configurazione di rilascio". Le funzioni seguono hello stesso modello generale. script Hello:
 
-1. Ripristina il pacchetto NuGet. Il codice compilato non viene mantenuto nel repository, quindi i primi passaggi di ogni compilazione prevedono il ripristino dei pacchetti NuGet necessari.
-2. Attiva la licenza. La compilazione viene eseguita nel cloud; nei casi in cui sia necessaria una licenza, in particolare per il servizio di compilazione Xamarin, è quindi necessario attivare la licenza nel computer di compilazione corrente. Subito dopo è necessario disattivarla per consentirne l'uso in un altro computer.
-3. Esegue la compilazione con il servizio appropriato. Per le app per dispositivi mobili vengono usate le build di Xamarin, mentre per il servizio Web back-end vengono usate le build di Visual Studio.
+1. Ripristina pacchetto NuGet hello. È non mantenere il codice compilato nel repository di hello, in modo hello prima di ogni compilazione passaggi hello toorestore necessari pacchetti NuGet.
+2. Attiva licenza hello. Hello compilazione viene eseguita nel cloud hello, pertanto, in cui è necessaria una licenza, in particolare, hello - servizio di compilazione Xamarin può essere tooactivate la licenza nel computer di compilazione corrente hello. Quindi, abbiamo disattivarlo immediatamente dopo, tooallow è toobe utilizzato in un altro computer.
+3. Compilazioni tramite servizio appropriato hello. Utilizziamo compilazioni Xamarin hello App per dispositivi mobili e Visual Studio viene compilato per il servizio back-end web hello.
 4. Compila i test.
-5. Esegue i test. I test delle app per dispositivi mobili vengono eseguiti in Xamarin Test Cloud.
-6. Pubblica il risultato della compilazione nel percorso di rilascio.
+5. Esegue i test. Esegui test di app per dispositivi mobili hello nel Xamarin Test Cloud.
+6. Pubblica percorso di rilascio toohello risultati compilazione hello.
 
-Il trigger per le compilazioni principali è impostato per l'integrazione continua. In altre parole, la compilazione viene eseguita ogni volta che viene archiviato codice nel ramo master.
+trigger Hello per le compilazioni principale hello è impostato toocontinuous integration. Compilazione di hello, ovvero viene eseguito ogni volta che viene archiviato il codice nel ramo master toohello.
 
-![Interfaccia nella quale il trigger è impostato per l'integrazione continua](./media/iot-solution-build-system/image6.png)
+![Interfaccia in cui il trigger di hello è set toocontinuous integrazione](./media/iot-solution-build-system/image6.png)
 
 ### <a name="release-definitions"></a>Definizioni di versione
-Le definizioni di versione vengono configurate nello stesso modo.
+Definizioni di versione sono configurate in quantità hello stesso modo.
 
-Per il servizio Web, la distribuzione viene configurata come un'app Web di Azure:
+Per il servizio web hello, impostiamo distribuzione come un'app web di Azure:
 
 ![Interfaccia per la configurazione della distribuzione come app Web di Azure](./media/iot-solution-build-system/image7.png)
 
-Il trigger versione è impostato per la distribuzione continua. In altre parole, ogni archiviazione seguita da una compilazione riuscita produce un aggiornamento per l'app Web.
+E viene impostato in modo hello rilascio trigger toocontinuous della distribuzione. Ogni archiviazione, seguito da una compilazione corretta risultati in un'app web toohello di aggiornamento.
 
-![Interfaccia per l'impostazione del trigger versione per la distribuzione continua](./media/iot-solution-build-system/image8.png)
+![Interfaccia per l'impostazione hello rilascio trigger toocontinuous della distribuzione](./media/iot-solution-build-system/image8.png)
 
-Per le app per dispositivi mobili, la distribuzione viene effettuata in HockeyApp:
+App per dispositivi mobili, distribuire tooHockeyApp:
 
-![Interfaccia per la distribuzione di un'app per dispositivi mobili in HockeyApp](./media/iot-solution-build-system/image9.png)
+![Interfaccia per la distribuzione di un tooHockeyApp app per dispositivi mobili](./media/iot-solution-build-system/image9.png)
 
 ## <a name="explore-telemetry-by-using-application-insights"></a>Esplorare i dati di telemetria con Application Insights
-[Application Insights](../application-insights/app-insights-overview.md) raccoglie dati di telemetria su prestazioni e utilizzo dei servizi Web. Application Insights SDK invia dati di telemetria dal servizio alla risorsa di Application Insights in Azure.
+[Application Insights](../application-insights/app-insights-overview.md) raccoglie dati di telemetria sull'utilizzo dei servizi web e le prestazioni di hello. Application Insights SDK Hello invia dati di telemetria da hello servizio toohello risorsa di Application Insights in Azure.
 
-Passare alla risorsa di Application Insights configurata dal modello, dove è possibile esplorare i grafici delle prestazioni del [progetto del servizio app per dispositivi mobili](https://github.com/Azure-Samples/MyDriving/tree/master/src/MobileAppService). Nei grafici sono mostrate le richieste di server e i tempi di risposta, gli errori e i conteggi delle eccezioni. Sono anche disponibili grafici dei tempi di risposta delle dipendenze, ovvero chiamate al database e alle API REST, ad esempio Machine Learning. Se sono presenti problemi di prestazioni, sarà possibile vedere quale parte del sistema ne è la causa.
+Sfoglia risorsa di Application Insights toohello tale modello hello impostato. Non esiste, è possibile esplorare i grafici delle prestazioni hello il [progetto di servizio App Mobile](https://github.com/Azure-Samples/MyDriving/tree/master/src/MobileAppService). Nei grafici sono mostrate le richieste di server e i tempi di risposta, gli errori e i conteggi delle eccezioni. Sono inoltre grafici dipendenza dei tempi di risposta, ovvero database toohello chiamate e tooREST API, ad esempio Machine Learning. Se sono presenti problemi di prestazioni, sarà in grado di toosee sta provocando quale parte del sistema.
 
 ![Esempio di grafico delle prestazioni](./media/iot-solution-build-system/image11.png)
 
-Se è presente un servizio Web configurato manualmente è possibile ottenere facilmente gli stessi grafici. Nel pannello del servizio Web fare clic su **Strumenti** > **Estensioni** > **Aggiungi**. Selezionare **Application Insights**.
+Se si dispone di un servizio web configurata manualmente, è facile tooget hello grafici stesso. Nel Pannello di servizio web di hello, fare clic su **strumenti** > **estensioni** > **Aggiungi**. Selezionare **Application Insights**.
 
-![Interfaccia per la selezione di Application Insights per ottenere i grafici](./media/iot-solution-build-system/image12.png)
+![Interfaccia per la selezione di grafici di hello tooget Application Insights](./media/iot-solution-build-system/image12.png)
 
-La funzionalità diventa operativa instrumentando l'applicazione con Application Insights SDK.
+funzionalità di Hello funziona tramite strumentazione dell'applicazione con hello Application Insights SDK.
 
-È possibile aggiungere dati di telemetria personalizzati (o instrumentare un'applicazione in esecuzione all'esterno di Azure) [aggiungendo Application Insights SDK](../application-insights/app-insights-asp-net.md) in fase di sviluppo. Si tratta di una funzionalità utile per registrare le metriche che dipendono dall'applicazione, ad esempio la lunghezza media del viaggio o il chilometraggio totale degli utenti. In Visual Studio fare clic con il pulsante destro del mouse sul progetto e quindi scegliere **Aggiungi Application Insights**.
+È possibile aggiungere dati di telemetria personalizzati (o instrumentare un'applicazione è in esecuzione in un punto qualsiasi all'esterno di Azure) da [aggiunta hello Application Insights SDK](../application-insights/app-insights-asp-net.md) in fase di sviluppo. Questo è utile toolog metriche che dipendono da un'applicazione hello, ad esempio lunghezza media di andata e ritorno degli utenti o al chilometraggio in totale. In Visual Studio, fare clic sul progetto hello e quindi selezionare **Aggiungi Application Insights**.
 
-![Interfaccia per la selezione di Aggiungi Application Insights per aggiungere dati di telemetria personalizzati](./media/iot-solution-build-system/image10.png)
+![Interfaccia per la selezione di dati di telemetria personalizzati tooadd Aggiungi Application Insights](./media/iot-solution-build-system/image10.png)
 
 Application Insights invierà avvisi di posta elettronica se rileva un numero insolito di risposte di errore. È anche possibile impostare avvisi su diverse metriche, ad esempio i tempi di risposta.
 
-Per assicurarsi che il servizio Web sia sempre operativo è possibile configurare [test di disponibilità](../application-insights/app-insights-monitor-web-app-availability.md). Questi test effettuano il ping del sito da diverse località in tutto il mondo ogni 15 minuti. Anche in questo caso si riceverà un messaggio di posta elettronica in caso di problemi.
+Toobe semplicemente che il servizio web è sempre attivo e in esecuzione, è possibile impostare [disponibilità test](../application-insights/app-insights-monitor-web-app-availability.md). Questi test il ping del sito da diverse posizioni in tutto il mondo hello ogni 15 minuti. Nuovamente, verrà visualizzato un messaggio di posta elettronica se ci toobe un problema.
 
 ## <a name="estimate-operational-costs"></a>Stimare i costi operativi
-L'esecuzione di un'app come questa su scala ridotta è molto conveniente. Per molti dei servizi sono disponibili livelli di base gratuiti, in modo da ridurre al minimo i costi di sviluppo e gestione su scala ridotta. E, naturalmente, non è necessario che le app usino tutte le funzionalità illustrate in MyDriving.
+È molto basso costo toorun un'app come questa su scala ridotta. Molti dei servizi di hello hanno livelli di base gratuiti, in modo che lo sviluppo e piccole dimensioni operazione costi molto limitata. E, naturalmente, le app non dispone di tutte le funzionalità di hello illustrate in MyDriving toouse.
 
-Di seguito è disponibile una stima approssimativa dei costi di impostazione della configurazione di sviluppo per MyDriving. Si notino anche alcune alternative che *non* sono state usate. Queste informazioni possono essere utili per la stima dei costi.
+Ecco una stima approssimativa dei costi per l'impostazione di configurazione di sviluppo hello per MyDriving. Si notino anche alcune alternative che *non* sono state usate. Queste informazioni possono essere utili per la stima dei costi.
 
 Si presuppone quanto segue:
 
@@ -358,16 +358,16 @@ Si presuppone quanto segue:
 * 100 utenti che effettuano 4 viaggi al giorno.
 
 > [!NOTE]
-> Se non si ha familiarità con Azure, è disponibile un [account gratuito](https://azure.microsoft.com/free/).
+> Se si tooAzure nuova, è presente un [libero account](https://azure.microsoft.com/free/).
 > 
 > 
 
 | **Servizio/Componente** | **Note** | **Costo/mese** |
 | --- | --- | --- |
-| [Visual Studio 2015 Community](https://www.visualstudio.com/products/visual-studio-community-vs) con [Xamarin](https://visualstudiogallery.msdn.microsoft.com/dcd5b7bd-48f0-4245-80b6-002d22ea6eee) <br/>Ambiente di sviluppo multipiattaforma |Visual Studio Community. Richiede [Visual Studio Professional](https://www.visualstudio.com/vs-2015-product-editions) per [Xamarin.Forms](https://xamarin.com/forms) per progettare la multipiattaforma da una singola codebase. |$ 0 |
-| [Hub IoT Azure](https://azure.microsoft.com/pricing/details/iot-hub/) <br/>Connessione bidirezionale ai dispositivi |8.000 messaggi + 0,5 KB/messaggio gratuiti. |$ 0 |
-| [Analisi di flusso](https://azure.microsoft.com/pricing/details/stream-analytics/)  <br/>   Elaborazione di volumi elevati di dati del flusso |Costo di $ 0,031 per unità di streaming all'ora, quando è abilitata. Scegliere il numero di unità di streaming; aumentarlo per aumentare le prestazioni. |$ 23 |
-| [Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/)<br/> Risposte adattive |$ 10/postazione/mese. <br/>                                                                                                                                                                                 + esperimento di 3 ore \* $ 1/ora di esperimento. <br/>                                                                                                                                                           + CPU API da 3,5 ore \* $2/ora di CPU di produzione. <br/>                                                                                                                                                          Il tempo per CPU API presuppone 5 min/giorno di ripetizione del training, anche se questo valore potrebbe aumentare con l'incremento dei dati di input.                   <br/>                                                                                                                                                                     + assegnazione dei punteggi di 2 min/giorno per elaborare 400 viaggi/giorno. |$ 20 |
+| [Visual Studio 2015 Community](https://www.visualstudio.com/products/visual-studio-community-vs) con [Xamarin](https://visualstudiogallery.msdn.microsoft.com/dcd5b7bd-48f0-4245-80b6-002d22ea6eee) <br/>Ambiente di sviluppo multipiattaforma |Visual Studio Community. (Necessario [Visual Studio Professional](https://www.visualstudio.com/vs-2015-product-editions) per [xamarin. Forms](https://xamarin.com/forms), toodesign multipiattaforma da una sola codebase.) |$ 0 |
+| [Hub IoT Azure](https://azure.microsoft.com/pricing/details/iot-hub/) <br/>Toodevices connessione bidirezionale dei dati |8.000 messaggi + 0,5 KB/messaggio gratuiti. |$ 0 |
+| [Analisi di flusso](https://azure.microsoft.com/pricing/details/stream-analytics/)  <br/>   Elaborazione di volumi elevati di dati del flusso |Costo di $ 0,031 per unità di streaming all'ora, quando è abilitata. Scegliere il numero di hello di unità di streaming che si desidera. tooscale ulteriori backup. |$ 23 |
+| [Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/)<br/> Risposte adattive |$ 10/postazione/mese. <br/>                                                                                                                                                                                 + esperimento di 3 ore \* $ 1/ora di esperimento. <br/>                                                                                                                                                           + CPU API da 3,5 ore \* $2/ora di CPU di produzione. <br/>                                                                                                                                                          Il tempo per CPU API presuppone 5 min/giorno di ripetizione del training, anche se questo valore potrebbe aumentare con l'incremento dei dati di input.                   <br/>                                                                                                                                                                     + assegnazione dei punteggi tooprocess 400 trip/giorno 2 min al giorno. |$ 20 |
 | [Servizio app](https://azure.microsoft.com/pricing/details/app-service/)  <br/> Host per back-end per dispositivi mobili |Livello B1: app Web di produzione. |$ 56 |
 | [Visual Studio Team Services ](https://azure.microsoft.com/pricing/details/visual-studio-team-services/)  <br/> Gestione della compilazione, degli unit test e delle versioni; gestione delle attività |Agenti privati, cinque utenti. |$ 0 |
 | [Application Insights](https://azure.microsoft.com/pricing/details/application-insights/) <br/>Monitoraggio delle prestazioni e dell'utilizzo di servizi Web e siti |Livello gratuito. |$ 0 |
@@ -389,17 +389,17 @@ Per altre informazioni, vedere:
 * [Calcolatore dei prezzi di Azure](https://azure.microsoft.com/pricing/calculator/)
 
 ## <a name="send-us-your-feedback"></a>Invio di commenti
-MyDriving è stato creato per aiutare gli utenti a usare rapidamente i propri sistemi IoT. Per questo motivo sarà molto apprezzato qualsiasi commento sul funzionamento. Indicare se:
+Perché abbiamo creato MyDriving toohelp iniziare subito a usare i propri sistemi IoT, si desidera certamente toohear da parte dell'utente, sulle modalità di funzionamento. Indicare se:
 
 * Si sono riscontrate difficoltà o problematiche.
-* Esiste un punto di estensione che potrebbe renderlo più adatto al proprio scenario.
-* Si è trovato un modo più efficace per soddisfare determinate esigenze.
+* C'è un punto di estensione che potrebbe renderlo scenario tooyour più adatto.
+* Trovare un tooaccomplish modo più efficiente determinate esigenze.
 * Si hanno altri suggerimenti per migliorare MyDriving o questa documentazione.
 
-Per inviare commenti e suggerimenti, inviare un [problema su GitHub] o lasciare un commento qui sotto nella pagina in lingua inglese (codice lingua en-us).
+commenti e suggerimenti toogive, [problema su GitHub] del file o lasciare un commento di seguito (en-us edition).
 
-Tutti i commenti e suggerimenti saranno apprezzati.
+Saremo lieti toohearing da parte dell'utente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-È consigliabile leggere la [guida di riferimento a MyDriving](http://aka.ms/mydrivingdocs), una descrizione completa della progettazione del sistema e dei relativi componenti.
+Si consiglia di hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs), che è una descrizione completa di progettazione di hello del sistema hello e i relativi componenti.
 

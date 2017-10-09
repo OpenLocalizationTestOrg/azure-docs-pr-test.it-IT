@@ -1,6 +1,6 @@
 ---
-title: Annullare ed eliminare un processo di Importazione/Esportazione di Azure | Documentazione Microsoft
-description: Informazioni su come annullare ed eliminare i processi per il servizio Importazione/Esportazione di Microsoft Azure.
+title: aaaCancel ed eliminare un processo di importazione/esportazione di Azure | Documenti Microsoft
+description: Informazioni su come toocancel ed eliminare i processi per hello servizio importazione/esportazione di Microsoft Azure.
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: e0a7ff391e5a03ed563912dea54c7cfe73111bcf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d2aba510dafd0ca9a10f5643f721e7059a6a8f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="canceling-and-deleting-azure-importexport-jobs"></a>Annullamento ed eliminazione dei processi di Importazione/Esportazione di Azure
 
-È possibile richiedere che un processo venga annullato prima che entri nello stato `Packaging` chiamando l'operazione [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) e impostando l'elemento `CancelRequested` su `true`. Il processo verrà annullato nel modo più efficiente possibile. Se nelle unità è in corso il trasferimento dei dati, dati possono continuare a essere trasferiti anche dopo che è stato richiesto l'annullamento.
+È possibile richiedere che un processo annullato prima che sia in hello `Packaging` stato dal chiamante hello [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) operazione e impostazione hello `CancelRequested` elemento troppo`true`. il processo di Hello verrà annullato con cadenza principio del best effort. Se le unità sono nel processo di hello di trasferimento dei dati, dati possono continuare toobe trasferiti anche dopo che è stato richiesto l'annullamento.
 
- Un processo annullato passa nello stato `Completed` e vi rimane per 90 giorni, dopo i quali verrà eliminato.
+ Un processo annullato passerà toohello `Completed` stato e verrà conservato per 90 giorni, a quel punto verrà eliminato.
 
- Per eliminare un processo, chiamare l'operazione [Elimina processo](/rest/api/storageimportexport/jobs#Jobs_Delete) prima che questo venga inviato (*ad esempio*, mentre il processo si trova nello stato `Creating`). È possibile eliminare un processo anche quando è nello stato `Completed`. Dopo che un processo è stato eliminato, il relativo stato e le relative informazioni non saranno più accessibili tramite l'API REST o il portale di Azure.
+ toodelete un processo, chiamata hello [Elimina processo](/rest/api/storageimportexport/jobs#Jobs_Delete) operazione prima di hello processo venga spedito (*ad esempio*, durante il processo di hello hello `Creating` stato). È anche possibile eliminare un processo in questo caso hello `Completed` stato. Dopo aver eliminato un processo, lo stato e le relative informazioni non saranno più accessibili tramite l'API REST hello o hello portale di Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Uso dell'API REST del servizio Importazione/Esportazione](storage-import-export-using-the-rest-api.md)
+* [Tramite l'API REST del servizio importazione/esportazione hello](storage-import-export-using-the-rest-api.md)

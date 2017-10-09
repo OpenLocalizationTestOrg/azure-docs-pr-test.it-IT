@@ -1,6 +1,6 @@
 ---
-title: Servizio DNS di Azure Service Fabric | Microsoft Docs
-description: Usare il servizio DNS di Service Fabric per individuare microservizi dall'interno del cluster.
+title: servizio Service Fabric DNS aaaAzure | Documenti Microsoft
+description: Il servizio dns dell'infrastruttura servizio per l'individuazione di microservizi da utilizzare all'interno di cluster hello.
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/27/2017
 ms.author: msfussell
-ms.openlocfilehash: 9871bc5aa4e74ab0faef401d67c4e9558eb5e14b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fa536f0e41f52c4942702d0a1bdcd3ed7d418d6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dns-service-in-azure-service-fabric"></a>Servizio DNS in Azure Service Fabric
-Il servizio DNS è un servizio di sistema facoltativo che è possibile abilitare nel cluster per individuare altri servizi usando il protocollo DNS.
+Hello servizio DNS è un servizio di sistema facoltativo che è possibile abilitare il toodiscover cluster altri servizi che utilizzano il protocollo DNS hello.
 
-Molti servizi, in particolare quelli in contenitori, possono avere un nome di URL esistente. La possibilità di risolverli usando il protocollo DNS standard, invece del protocollo di servizio Naming, è preferibile, in particolare negli scenari di applicazioni "lift-and-shift". Il servizio DNS consente di eseguire il mapping di nomi DNS a nomi di servizi e di conseguenza di risolvere gli indirizzi IP degli endpoint. 
+Molti servizi, in particolare nei contenitori, possono avere un nome URL esistente e che sia in grado di tooresolve li utilizzando il protocollo DNS standard di hello (anziché il protocollo di Naming Service hello) è utile, in particolare in scenari "sollevare e spostare". Hello servizio DNS consente si toomap nomi tooa servizio nome DNS e quindi risolvere indirizzi IP degli endpoint. 
 
-Il servizio DNS esegue il mapping dei nomi DNS ai nomi di servizi, che vengono quindi risolti dal servizio Naming per restituire l'endpoint di servizio. Il nome DNS per il servizio viene fornito al momento della creazione. 
+Hello servizio DNS esegue il mapping di nomi tooservice i nomi DNS, che a sua volta vengono risolti dall'endpoint del servizio hello tooreturn hello Naming Service. nome DNS Hello hello servizio viene fornito al momento di hello della creazione. 
 
 ![Endpoint del servizio][0]
 
-## <a name="enabling-the-dns-service"></a>Abilitazione del servizio DNS
-È innanzitutto necessario abilitare il servizio DNS nel cluster. Ottenere il modello per il cluster che si vuole distribuire. È possibile usare i [modelli di esempio](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype) o creare un modello di Resource Manager. Per abilitare il servizio DNS, seguire questa procedura:
+## <a name="enabling-hello-dns-service"></a>Abilitazione del servizio DNS hello
+È necessario innanzitutto il servizio DNS tooenable hello del cluster. Ottiene il modello di hello per cluster hello che si desidera toodeploy. È possibile l'uso hello [modelli di esempio](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype) oppure creare un modello di gestione risorse. È possibile abilitare il servizio DNS hello con hello alla procedura seguente:
 
-1. Verificare che `apiversion` sia impostato su `2017-07-01-preview` per la risorsa `Microsoft.ServiceFabric/clusters` e, se non lo è, aggiornarlo come illustrato nel frammento seguente:
+1. Verificare che hello `apiversion` è troppo`2017-07-01-preview` per hello `Microsoft.ServiceFabric/clusters` risorsa e in caso contrario, lo aggiorna come illustrato nel seguente frammento di codice hello:
 
     ```json
     {
@@ -44,7 +44,7 @@ Il servizio DNS esegue il mapping dei nomi DNS ai nomi di servizi, che vengono q
     }
     ```
 
-2. A questo punto abilitare il servizio DNS aggiungendo la sezione `addonFeatures` seguente dopo la sezione `fabricSettings`, come illustrato nel frammento seguente: 
+2. Ora abilitare il servizio DNS hello aggiungendo segue hello `addonFeatures` sezione dopo hello `fabricSettings` sezione come illustrato nel seguente frammento di codice hello: 
 
     ```json
         "fabricSettings": [
@@ -55,18 +55,18 @@ Il servizio DNS esegue il mapping dei nomi DNS ai nomi di servizi, che vengono q
         ],
     ```
 
-3. Dopo avere aggiornato il modello di cluster con le modifiche precedenti, applicarle e consentire il completamento dell'aggiornamento. Dopo aver completato l'aggiornamento, viene avviata l'esecuzione nel cluster del servizio di sistema DNS, denominato `fabric:/System/DnsService`, sotto la sezione dei servizi di sistema in Service Fabric Explorer. 
+3. Dopo aver aggiornato il modello di cluster con hello precedente le modifiche, applicarli e consentire l'aggiornamento completo hello. Al termine dell'operazione, il servizio di sistema DNS hello viene avviata l'esecuzione del cluster che viene chiamato `fabric:/System/DnsService` nella sezione di servizio di sistema in Esplora Service Fabric hello. 
 
-In alternativa, è possibile abilitare il servizio DNS tramite il portale durante la creazione del cluster. Il servizio DNS può essere abilitato selezionando la casella per `Include DNS service` nel menu `Cluster configuration`, come illustrato nello screenshot seguente:
+In alternativa, è possibile abilitare il servizio DNS tramite il portale di hello hello in fase di creazione del cluster di hello. Hello servizio DNS può essere abilitata selezionando la casella hello per `Include DNS service` in hello `Cluster configuration` menu come illustrato nella seguente schermata hello:
 
-![Abilitazione del servizio DNS tramite il portale][2]
+![Abilitazione del servizio DNS tramite il portale di hello][2]
 
 
-## <a name="setting-the-dns-name-for-your-service"></a>Impostazione del nome DNS del servizio
-Quando il servizio DNS è in esecuzione nel cluster, è possibile impostare un nome DNS per i servizi in modo dichiarativo per i servizi predefiniti in `ApplicationManifest.xml` oppure tramite i comandi di PowerShell.
+## <a name="setting-hello-dns-name-for-your-service"></a>Impostazione hello del nome DNS per il servizio
+Una volta hello servizio DNS è in esecuzione nel cluster, è possibile impostare un nome DNS per i servizi in modo dichiarativo per servizi predefiniti in hello `ApplicationManifest.xml` o tramite i comandi di Powershell.
 
-### <a name="setting-the-dns-name-for-a-default-service-in-the-applicationmanifestxml"></a>Impostazione del nome DNS per un servizio predefinito nel file ApplicationManifest.xml
-Aprire il progetto in Visual Studio, o nell'editor preferito, quindi aprire il file `ApplicationManifest.xml`. Passare alla sezione relativa ai servizi predefiniti e per ciascuno di esso aggiungere l'attributo `ServiceDnsName`. Nell'esempio seguente viene mostrato come impostare il nome DNS del servizio su `service1.application1`
+### <a name="setting-hello-dns-name-for-a-default-service-in-hello-applicationmanifestxml"></a>Impostazione del nome DNS hello per un servizio predefinito in ApplicationManifest.xml hello
+Aprire il progetto in Visual Studio o l'editor preferito e hello `ApplicationManifest.xml` file. Passare sezione servizi toohello predefinito e per ogni hello Aggiungi servizio `ServiceDnsName` attributo. Hello di esempio seguente viene illustrato come tooset hello nome DNS del servizio hello troppo`service1.application1`
 
 ```xml
     <Service Name="Stateless1" ServiceDnsName="service1.application1">
@@ -75,12 +75,12 @@ Aprire il progetto in Visual Studio, o nell'editor preferito, quindi aprire il f
     </StatelessService>
     </Service>
 ```
-Dopo aver distribuito l'applicazione, l'istanza del servizio in Service Fabric Explorer visualizza il nome DNS di tale istanza, come mostrato nella figura seguente: 
+Una volta distribuita un'applicazione hello, istanza servizio hello in hello Service Fabric explorer Mostra il nome DNS hello per questa istanza, come illustrato nella seguente illustrazione hello: 
 
 ![Endpoint del servizio][1]
 
-### <a name="setting-the-dns-name-for-a-service-using-powershell"></a>Impostazione del nome DNS per un servizio mediante PowerShell
-È possibile impostare il nome DNS di un servizio al momento della creazione usando `New-ServiceFabricService` Powershell. Nell'esempio seguente viene creato un nuovo servizio senza stato con il nome DNS `service1.application1`
+### <a name="setting-hello-dns-name-for-a-service-using-powershell"></a>Impostazione del nome DNS hello per un servizio tramite Powershell
+È possibile impostare il nome DNS hello per un servizio quando viene creata utilizzando hello `New-ServiceFabricService` Powershell. Hello seguente viene creato un nuovo servizio senza stato con nome DNS hello`service1.application1`
 
 ```powershell
     New-ServiceFabricService `
@@ -94,9 +94,9 @@ Dopo aver distribuito l'applicazione, l'istanza del servizio in Service Fabric E
 ```
 
 ## <a name="using-dns-in-your-services"></a>Uso del protocollo DNS nei servizi
-Se si distribuisce più di un servizio, è possibile trovare gli endpoint di altri servizi con cui comunicare usando un nome DNS. Il servizio DNS è valido solo per i servizi senza stato perché il protocollo DNS non può comunicare con i servizi con stato. Per i servizi con stato, è possibile usare il proxy inverso predefinito in modo che le chiamate HTTP siano dirette a una particolare partizione del servizio.
+Se si distribuisce più di un servizio, è possibile trovare l'endpoint di hello di toocommunicate altri servizi con utilizzando un nome DNS. Hello servizio DNS è solo servizi toostateless applicabile, poiché hello protocollo DNS non è possibile comunicare con i servizi con stati. Per i servizi con stati, è possibile utilizzare i proxy inverso incorporato hello per toocall chiamate http una partizione specifica del servizio.
 
-Il codice seguente illustra come chiamare un altro servizio. Si tratta semplicemente di una normale chiamata HTTP in cui si specificano la porta ed eventuali percorsi facoltativi come parte dell'URL.
+Hello codice seguente viene illustrato come toocall un altro servizio, è semplicemente un regolare http chiama in cui fornire porta hello e qualsiasi percorso facoltativi come parte dell'URL hello.
 
 ```csharp
 public class ValuesController : Controller
@@ -125,7 +125,7 @@ public class ValuesController : Controller
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulla comunicazione tra i servizi all'interno del cluster, vedere [Connettersi e comunicare con i servizi in Service Fabric](service-fabric-connect-and-communicate-with-services.md)
+Ulteriori informazioni sulla comunicazione tra servizi all'interno di cluster hello con [connettersi e comunicare con i servizi](service-fabric-connect-and-communicate-with-services.md)
 
 [0]: ./media/service-fabric-connect-and-communicate-with-services/dns.png
 [1]: ./media/service-fabric-dnsservice/servicefabric-explorer-dns.PNG

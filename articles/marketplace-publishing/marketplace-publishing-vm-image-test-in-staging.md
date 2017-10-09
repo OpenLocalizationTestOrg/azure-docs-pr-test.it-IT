@@ -1,6 +1,6 @@
 ---
-title: Testare l'offerta di macchine virtuali per il Marketplace | Microsoft Docs
-description: Informazioni su come testare l'immagine della macchina virtuale per Azure Marketplace.
+title: "la macchina virtuale è offrire per hello Marketplace aaaTest | Documenti Microsoft"
+description: Comprendere in che modo tootest immagine di macchina virtuale per hello Azure Marketplace.
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: hascipio
-ms.openlocfilehash: 26f856059b381be91b9cdd1f98a11dc90813c0c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab166d2c3c536810a3a8f48330f0482b9b4e58d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="test-your-vm-offer-for-the-azure-marketplace-in-staging"></a>Testare la propria offerta di VM per Azure Marketplace nella gestione temporanea
-Per gestione temporanea si intende la distribuzione della SKU in un ambiente "sandbox" privato, in cui è possibile testarne e convalidarne le funzionalità prima di distribuirla nel Marketplace. La SKU viene visualizzata nella gestione temporanea esattamente come verrebbe mostrata a un cliente che l'ha distribuita. L'immagine della macchina virtuale deve essere certificata per il push nella gestione temporanea.
+# <a name="test-your-vm-offer-for-hello-azure-marketplace-in-staging"></a>Testare l'offerta VM per hello Azure Marketplace in gestione temporanea
+Indica lo SKU in una "sandbox" in cui è possibile testare e convalidare le funzionalità prima di distribuirlo toohello Marketplace privata di distribuzione di gestione temporanea. Hello SKU viene visualizzato come nel caso tooa cliente che ha distribuito di gestione temporanea. L'immagine di macchina virtuale deve essere toostaging toobe Certificate inserito.
 
-## <a name="step-1-push-your-offer-to-staging"></a>Passaggio 1: push dell'offerta nella gestione temporanea
-1. Nella scheda **Publish** (Pubblica) fare clic su **Push to Staging** (Passa a gestione temporanea).
+## <a name="step-1-push-your-offer-toostaging"></a>Passaggio 1: Push toostaging l'offerta
+1. In hello **pubblica** scheda, fare clic su **Push tooStaging**.
    
     ![disegno](media/marketplace-publishing-vm-image-test-in-staging/vm-image-push-to-staging.png)
-2. Se il portale di pubblicazione notifica eventuali errori, correggerli.
-3. Nella finestra di dialogo **Chi può accedere all'offerta di gestione temporanea?** immettere l'elenco delle sottoscrizioni di Azure che verrà utilizzato per l'anteprima dell’offerta nel [portale di anteprima di Azure](https://portal.azure.com).
+2. Se hello portale di pubblicazione invia una notifica di eventuali errori, è necessario correggerli.
+3. In hello **chi può accedere l'offerta di installazione di appoggio?** finestra di dialogo immettere elenco hello delle sottoscrizioni di Azure che si utilizzeranno toopreview l'offerta in hello [portale di anteprima Azure](https://portal.azure.com).
    
    > [!NOTE]
    > Per le macchine virtuali e i modelli di soluzioni, **non** aggiungere all'elenco degli elementi consentiti le sottoscrizioni di tipo CSP, DreamSpark o Azure in Open.
    > 
    > 
 
-    > Per le macchine virtuali, quando si fa clic sul pulsante **PASSA A GESTIONE TEMPORANEA**, dietro le quinte vengono eseguiti i passaggi seguenti. Sarà quindi possibile visualizzare lo stato di avanzamento di ogni passaggio nella scheda PUBBLICA nel portale di pubblicazione. È necessario controllare questa pagina regolarmente (fino a quando lo stato diventa ANTEPRIMA) per eventuali informazioni di errore che richiedono correzioni.
+    > In caso di macchine virtuali, quando si fa clic sul pulsante hello **tooSTAGING PUSH**, hello alla procedura seguente viene eseguita dietro la scena hello. Si sarà in grado di tooview lo stato di avanzamento hello di ogni passaggio nella scheda pubblicazione hello hello portale di pubblicazione. È necessario controllare questa pagina a intervalli regolari (fino a ottenere lo stato di hello APPRONTATO) per qualsiasi informazione di errore che necessitano di correzione da end.
 
-    > - Inizialmente la richiesta di gestione temporanea viene inviata al team di certificazione che convalida il VHD. Se invece la richiesta include solo modifiche commerciali, il passaggio di certificazione viene ignorato.
-    > - Una volta completata la certificazione, viene avviata la replica dell'offerta in tutti i data center di Azure. Il completamento della replica richiede in genere 24-48 ore ma potrebbe richiedere fino a una settimana a seconda della dimensione del VHD. Se invece la richiesta include solo modifiche commerciali, la replica è più veloce.
-    > - Una volta completata la replica, l'offerta sarà disponibile nel [portale di Azure](http:/portal.azure.com). A quel punto lo stato diventerà ANTEPRIMA nel portale di pubblicazione. Un'offerta in gestione temporanea è visibile nel [portale di Azure](http:/portal.azure.com) solo usando gli ID di posta elettronica associati con la sottoscrizione con cui l'offerta è gestita temporaneamente.
+    > - Inizialmente la richiesta di gestione temporanea passa team certificazione toohello che convalidare hello vhd. Tuttavia, se la richiesta dispone solo di marketing modifica, quindi hello certificazione passaggio viene ignorato.
+    > - Una volta completata la certificazione hello, replica di inizio offerta hello in tutti hello Data Center di Azure. In genere richiede 24-48hours per hello replica toocomplete ma può richiedere fino a settimana tooa a seconda delle dimensioni di hello del disco rigido virtuale hello. Tuttavia, se la richiesta dispone di marketing solo modifiche, replica hello è più veloce.
+    > - Una volta completata la replica di hello, quindi offerta hello saranno disponibile in hello [portale di Azure](http:/portal.azure.com). A tale hello ora stato diventano presenti hello portale di pubblicazione. Un'offerta di gestione temporanea è visibile in hello [portale di Azure](http:/portal.azure.com) solo tramite gli ID di posta elettronica hello associati hello sottoscrizione con cui hello viene gestita l'offerta.
 
-1. Accedere al [portale di anteprima di Azure](https://portal.azure.com) usando una delle sottoscrizioni di Azure elencate nel passaggio precedente.
+1. Accedi toohello [portale di anteprima Azure](https://portal.azure.com) utilizzando uno dei hello le sottoscrizioni di Azure è elencato nel passaggio precedente hello.
 2. Individuare la propria offerta e convalidare i punti dell'immagine della macchina virtuale:
    
-   * Assicurarsi che il contenuto di marketing venga visualizzato correttamente nel Marketplace.
-   * Distribuzione end-to-end dell'immagine della VM.
+   * Assicurarsi che il contenuto di marketing venga visualizzata correttamente in hello Marketplace.
+   * Distribuzione end-to-end dell'immagine di macchina virtuale hello.
      
       ![img-map-portal](media/marketplace-publishing-push-to-staging/pubportal-mapping-azure-portal.jpg)
 
 > [!IMPORTANT]
-> L'offerta resterà nella fase di gestione temporanea fino a quando non si notifica a Microsoft tramite il portale di pubblicazione [scheda **Publish** (Pubblica) > clic sul pulsante **"Request Approval to Push to Production"** (Richiedi approvazione per push in produzione)] che si è pronti per passare alla fase di produzione. A questo punto, è opportuno chiedere a tutti i membri del team di verificare tutti gli aspetti preliminari all'elencazione dell'offerta.
+> L'offerta rimarrà fino a quando non è informare Microsoft tramite hello portale di pubblicazione di gestione temporanea [**pubblica** scheda > fare clic sul pulsante hello **"Richiesta di approvazione tooPush tooProduction"**] che si è pronti toopush tooproduction. Si tratta di un toohave ideale ora che tutti i membri del team di controllare tutti gli elementi in preparazione per l'offerta prevede elencati.
 > 
-> La piattaforma di gestione temporanea è progettata per il test dell'offerta in una modalità di anteprima da parte dell'autore. È fortemente sconsigliato l'uso di questa piattaforma a fini commerciali.
+> Hello piattaforma di gestione temporanea è progettato per test offerta hello in modalità di anteprima da server di pubblicazione hello. È fortemente sconsigliato l'uso di questa piattaforma a fini commerciali.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che l'offerta è in "gestione temporanea" e ne sono stati testati le funzionalità e i contenuti di marketing, è possibile procedere alla fase di pubblicazione finale, ovvero il **Passaggio 4**: [Distribuzione dell'offerta nel Marketplace](marketplace-publishing-push-to-production.md).
+Ora che l'offerta è "gestione temporanea" e dopo aver testato le funzionalità e contenuti di marketing, è possibile procedere pubblicazione finale toohello fase **passaggio 4**: [distribuzione il toohello offerta Marketplace](marketplace-publishing-push-to-production.md).
 
 ## <a name="see-also"></a>Vedere anche
-* [Guida introduttiva: Come pubblicare un'offerta in Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Guida introduttiva: come toopublish un toohello offerta Azure Marketplace](marketplace-publishing-getting-started.md)
 

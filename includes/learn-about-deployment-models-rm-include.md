@@ -1,0 +1,2 @@
+> [!NOTE]
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../articles/azure-resource-manager/resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo di modello di distribuzione di gestione delle risorse hello, si consiglia per nuove distribuzioni anziché il modello di distribuzione classica hello.

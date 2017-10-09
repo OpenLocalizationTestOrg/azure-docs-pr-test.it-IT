@@ -1,6 +1,6 @@
 ---
-title: Come usare l'archiviazione BLOB da Node.js | Microsoft Docs
-description: Archiviare i dati non strutturati nel cloud con l'archivio BLOB (archivio di oggetti) di Azure.
+title: aaaHow toouse archiviazione Blob da Node.js | Documenti Microsoft
+description: Archiviare dati non strutturati nel cloud hello con archiviazione Blob di Azure (archiviazione di oggetti).
 services: storage
 documentationcenter: nodejs
 author: mmacy
@@ -14,33 +14,33 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: e83ad647f6b7c70f34ef0c69b5bf322da5b6d60d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 572e7fc9f7b19ff01720a7cadd495c809ed49fb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-nodejs"></a>Come usare l'archiviazione BLOB da Node.js
+# <a name="how-toouse-blob-storage-from-nodejs"></a>Come toouse archiviazione Blob da Node.js
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-check-out-samples-all](../../../includes/storage-check-out-samples-all.md)]
 
 ## <a name="overview"></a>Panoramica
-Questo articolo illustra scenari comuni relativi all'uso dell'archiviazione BLOB. Gli esempi sono scritti usando l'API Node.js. Gli scenari presentati illustrano come caricare, elencare, scaricare ed eliminare i BLOB.
+In questo articolo illustra come tooperform scenari comuni di utilizzo dell'archiviazione Blob. esempi di Hello vengono scritti tramite hello API Node.js. scenari di Hello trattati includono come tooupload, elenco, scaricare ed eliminare i BLOB.
 
 [!INCLUDE [storage-blob-concepts-include](../../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-nodejs-application"></a>Creare un'applicazione Node.js
-Per istruzioni su come creare un'applicazione Node.js, vedere [Creare un'app Web Node.js in Servizio app di Azure], [Creazione e distribuzione di un'applicazione Node.js a un servizio cloud di Azure](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) -- con Windows PowerShell, o [Build and deploy a Node.js web app to Azure using Web Matrix](https://www.microsoft.com/web/webmatrix/) (Creazione e distribuzione di un'app Web Node.js in Azure con WebMatrix).
+Per istruzioni su come toocreate un'applicazione Node.js, vedere [creare un'app web Node.js in Azure App Service], [compilare e distribuire un tooan di applicazione del servizio Cloud di Azure Node.js](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) : utilizzo di Windows PowerShell, o [compilare e distribuire un tooAzure di app web Node. js utilizzando WebMatrix](https://www.microsoft.com/web/webmatrix/).
 
-## <a name="configure-your-application-to-access-storage"></a>Configurare l'applicazione per l'accesso all'archiviazione
-Per usare Archiviazione di Azure, è necessario disporre di Azure Storage SDK per Node.js, che comprende un set di pratiche librerie che comunicano con i servizi di archiviazione REST.
+## <a name="configure-your-application-tooaccess-storage"></a>Configurare l'archiviazione tooaccess applicazione
+toouse archiviazione di Azure, è necessario hello Azure Storage SDK per Node.js, che include un set di librerie di praticità che comunicano con servizi REST di archiviazione hello.
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>Usare Node Package Manager (NPM) per ottenere il pacchetto
-1. Usare un'interfaccia della riga di comando come **PowerShell** (Windows), **Terminal** (Mac) o **Bash** (Unix) per spostarsi nella cartella in cui è stata creata l'applicazione di esempio.
-2. Digitare **npm install azure-storage** nella finestra di comando. L'output da questo comando sarà simile all'esempio di codice seguente.
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>Utilizzare un pacchetto di hello tooobtain nodo Package Manager (NPM)
+1. Utilizzare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac), o **Bash** (Unix), toonavigate toohello cartella in cui è stato creato l'esempio applicazione.
+2. Tipo **npm installare archiviazione di azure** nella finestra di comando hello. Output del comando hello è simile toohello esempio di codice seguente.
 
         azure-storage@0.5.0 node_modules\azure-storage
         +-- extend@1.2.1
@@ -52,35 +52,35 @@ Per usare Archiviazione di Azure, è necessario disporre di Azure Storage SDK pe
         +-- readable-stream@1.0.33 (string_decoder@0.10.31, isarray@0.0.1, inherits@2.0.1, core-util-is@1.0.1)
         +-- xml2js@0.2.7 (sax@0.5.2)
         +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
-3. È possibile eseguire manualmente il comando **ls** per verificare che sia stata creata una cartella **node\_modules**. All'interno di tale cartella trovare il pacchetto **azure-storage** , che contiene le librerie necessarie per accedere all'archiviazione.
+3. È possibile eseguire manualmente hello **ls** comando tooverify che un **nodo\_moduli** cartella è stata creata. All'interno di tale cartella, trovare hello **archiviazione di azure** pacchetto che contiene le librerie di hello che è necessario un archivio tooaccess.
 
-### <a name="import-the-package"></a>Importare il pacchetto
-Usando il Blocco note o un altro editor di testo, aggiungere quanto segue alla parte superiore del file **server.js** dell'applicazione in cui si intende usare l'archiviazione:
+### <a name="import-hello-package"></a>Importa pacchetto di hello
+Utilizzando blocco note o un altro editor di testo, aggiungere hello seguente toohello cima hello **server.js** file dell'applicazione hello in cui si intende toouse archiviazione:
 
 ```nodejs
 var azure = require('azure-storage');
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di archiviazione di Azure
-Il modulo di Azure leggerà le variabili di ambiente `AZURE_STORAGE_ACCOUNT` e `AZURE_STORAGE_ACCESS_KEY` o `AZURE_STORAGE_CONNECTION_STRING` per ottenere le informazioni necessarie per la connessione all'account di archiviazione di Azure. Se queste variabili di ambiente non sono impostate, sarà necessario specificare le informazioni relative all'account quando si chiama **createBlobService**.
+Hello modulo Azure verrà lette le variabili di ambiente hello `AZURE_STORAGE_ACCOUNT` e `AZURE_STORAGE_ACCESS_KEY`, o `AZURE_STORAGE_CONNECTION_STRING`, per le informazioni necessarie tooconnect tooyour account di archiviazione Azure. Se non vengono impostate queste variabili di ambiente, è necessario specificare le informazioni sull'account hello quando si chiama **createBlobService**.
 
-Per un esempio di impostazione delle variabili di ambiente nel [portale di Azure](https://portal.azure.com) per un'app Web di Azure, vedere [App Web Node.js con il servizio tabelle di Azure](../../app-service-web/storage-nodejs-use-table-storage-web-site.md).
+Per un esempio di impostazione delle variabili di ambiente hello in hello [portale di Azure](https://portal.azure.com) per un'app web di Azure, vedere [app web Node. js utilizzando hello del servizio tabelle di Azure](../../app-service-web/storage-nodejs-use-table-storage-web-site.md).
 
 ## <a name="create-a-container"></a>Creare un contenitore
-L'oggetto **BlobService** consente di lavorare con contenitori e BLOB. Il codice seguente consente di creare un oggetto **BlobService** . Aggiungere il codice seguente nella parte superiore di **server.js**:
+Hello **BlobService** oggetto consente di collaborare con i contenitori e BLOB. Hello codice seguente viene creata una **BlobService** oggetto. Aggiungere il seguente hello parte superiore di hello di **server.js**:
 
 ```nodejs
 var blobSvc = azure.createBlobService();
 ```
 
 > [!NOTE]
-> È possibile accedere a un BLOB in modo anonimo usando **createBlobServiceAnonymous** e specificando l'indirizzo host. Ad esempio, usare `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`.
+> È possibile accedere in modo anonimo un blob utilizzando **createBlobServiceAnonymous** e fornendo l'indirizzo host hello. Ad esempio, usare `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`.
 >
 >
 
 [!INCLUDE [storage-container-naming-rules-include](../../../includes/storage-container-naming-rules-include.md)]
 
-Per creare un nuovo contenitore, usare **createContainerIfNotExists**. L'esempio di codice seguente crea un nuovo contenitore denominato "mycontainer":
+Utilizzare un nuovo contenitore, toocreate **createContainerIfNotExists**. Hello esempio di codice seguente crea un nuovo contenitore denominato 'mycontainer':
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', function(error, result, response){
@@ -90,54 +90,54 @@ blobSvc.createContainerIfNotExists('mycontainer', function(error, result, respon
 });
 ```
 
-Se il contenitore viene creato, `result.created` è true. Se il contenitore esiste già, `result.created` è false. `response` contiene informazioni sull'operazione, incluse le informazioni sull'ETag per il contenitore.
+Se il contenitore di hello appena creato, `result.created` è true. Se il contenitore di hello esiste già, `result.created` è false. `response`contiene informazioni sull'operazione di hello, incluse le informazioni di hello ETag per il contenitore di hello.
 
 ### <a name="container-security"></a>Sicurezza del contenitore
-Per impostazione predefinita, i nuovi contenitori sono privati e non è possibile accedervi in modo anonimo. Per rendere pubblico il contenitore affinché sia accessibile in modo anonimo, è possibile impostarne il livello di accesso su **blob** o **container**.
+Per impostazione predefinita, i nuovi contenitori sono privati e non è possibile accedervi in modo anonimo. contenitore di hello toomake pubblico in modo che sia possibile accedervi in modo anonimo, è possibile impostare il livello di accesso del contenitore hello troppo**blob** o **contenitore**.
 
-* **blob** consente l'accesso anonimo in lettura al contenuto e ai metadati del BLOB all'interno di quel contenitore, ma non ai metadati del contenitore, ad esempio l'elenco di tutti i BLOB all'interno di un contenitore.
-* **container** consente l'accesso anonimo in lettura al contenuto e ai metadati del BLOB, nonché ai metadati del contenitore.
+* **BLOB** -consente l'accesso in lettura anonimo tooblob contenuto e i metadati all'interno del contenitore, ma non toocontainer metadati, ad esempio l'elenco di tutti i BLOB in un contenitore
+* **contenitore** -consente l'accesso in lettura anonimo tooblob contenuto e i metadati, nonché i metadati del contenitore
 
-L'esempio di codice seguente illustra l'impostazione del livello di accesso su **blob**:
+Hello esempio di codice riportato di seguito viene illustrato il livello di accesso hello impostazione troppo**blob**:
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', {publicAccessLevel : 'blob'}, function(error, result, response){
     if(!error){
       // Container exists and allows
-      // anonymous read access to blob
+      // anonymous read access tooblob
       // content and metadata within this container
     }
 });
 ```
 
-In alternativa, è possibile modificare il livello di accesso di un contenitore usando **setContainerAcl** per specificare il livello di accesso. L'esempio di codice seguente illustra la modifica del livello di accesso al contenitore:
+In alternativa, è possibile modificare il livello di accesso hello di un contenitore utilizzando **setContainerAcl** toospecify il livello di accesso hello. esempio modifiche hello accesso livello toocontainer di codice seguente di Hello:
 
 ```nodejs
 blobSvc.setContainerAcl('mycontainer', null /* signedIdentifiers */, {publicAccessLevel : 'container'} /* publicAccessLevel*/, function(error, result, response){
   if(!error){
-    // Container access level set to 'container'
+    // Container access level set too'container'
   }
 });
 ```
 
-Il risultato contiene informazioni sull'operazione, incluso l' **ETag** corrente per il contenitore.
+risultato Hello contiene informazioni sull'operazione di hello, tra cui hello corrente **ETag** per contenitore hello.
 
 ### <a name="filters"></a>Filtri
-È possibile applicare operazioni di filtro facoltative alle operazioni eseguite usando **BlobService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con la firma:
+È possibile applicare facoltativo il filtraggio operazioni toooperations eseguita mediante **BlobService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con firma hello:
 
 ```nodejs
 function handle (requestOptions, next)
 ```
 
-Dopo aver eseguito la pre-elaborazione sulle opzioni della richiesta, il metodo deve chiamare "next" passando un callback con la firma seguente:
+Dopo aver eseguito il pre-elaborazione sulle opzioni di richiesta di hello, metodo hello deve toocall "Avanti", il passaggio di un callback con hello seguente firma:
 
 ```nodejs
 function (returnObject, finalCallback, next)
 ```
 
-In questo callback, e dopo l'elaborazione del returnObject (la risposta della richiesta al server), il callback deve richiamare "next", se questo esiste, per continuare a elaborare altri filtri oppure semplicemente richiamare finalCallback per concludere la chiamata al servizio.
+In questo callback e dopo l'elaborazione di hello returnObject (risposta hello dal server di hello richiesta toohello), il callback di hello richiede tooeither richiamare successivamente se esiste l'elaborazione di altri filtri toocontinue o semplicemente richiamare servizio hello di finalCallback tooend chiamata.
 
-In Azure SDK per Node.js sono inclusi due filtri che implementano la logica di ripetizione dei tentativi. Sono **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**. Il codice seguente consente di creare un oggetto **BlobService** che usa **ExponentialRetryPolicyFilter**:
+Due filtri, che implementano la logica di ripetizione sono inclusi in Azure SDK per Node.js, hello **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**. Hello seguito creato un **BlobService** oggetto che utilizza hello **ExponentialRetryPolicyFilter**:
 
 ```nodejs
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
@@ -145,17 +145,17 @@ var blobSvc = azure.createBlobService().withFilter(retryOperations);
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>Caricare un BLOB in un contenitore
-Esistono tre tipi di BLOB: BLOB in blocchi, BLOB di pagine e BLOB di accodamento. I BLOB in blocchi consentono di caricare in modo più efficiente dati di grandi dimensioni. I BLOB di accodamento sono ottimizzati per le operazioni di accodamento. I BLOB di pagine sono ottimizzati per le operazioni di lettura/scrittura. Per altre informazioni, vedere [Informazioni sui BLOB in blocchi, sui BLOB di aggiunta e sui BLOB di pagine](http://msdn.microsoft.com/library/azure/ee691964.aspx).
+Esistono tre tipi di BLOB: BLOB in blocchi, BLOB di pagine e BLOB di accodamento. I BLOB in blocchi è toomore in modo efficiente caricare i dati di grandi dimensioni. I BLOB di accodamento sono ottimizzati per le operazioni di accodamento. I BLOB di pagine sono ottimizzati per le operazioni di lettura/scrittura. Per altre informazioni, vedere [Informazioni sui BLOB in blocchi, sui BLOB di aggiunta e sui BLOB di pagine](http://msdn.microsoft.com/library/azure/ee691964.aspx).
 
 ### <a name="block-blobs"></a>BLOB in blocchi
-Per caricare i dati in un BLOB in blocchi, usare le operazioni seguenti:
+blob in blocchi tooa dati tooupload, utilizzare hello seguenti:
 
-* **createBlockBlobFromLocalFile** : crea un nuovo BLOB in blocchi e carica il contenuto di un file
-* **createBlockBlobFromStream** : crea un nuovo BLOB in blocchi e carica il contenuto di un flusso
-* **createBlockBlobFromText** : crea un nuovo BLOB in blocchi e carica il contenuti di una stringa
-* **createWriteStreamToBlockBlob** : fornisce un flusso di scrittura a un BLOB in blocchi
+* **createBlockBlobFromLocalFile** : crea un nuovo blob in blocchi e carica il contenuto di hello di un file
+* **createBlockBlobFromStream** : crea un nuovo blob in blocchi e carica il contenuto di hello di un flusso
+* **createBlockBlobFromText** : crea un nuovo blob in blocchi e carica il contenuto di hello di una stringa
+* **createWriteStreamToBlockBlob** -fornisce un blob in blocchi tooa flusso scrittura
 
-L'esempio di codice seguente carica il contenuto del file **test.txt** nel BLOB **myblob**.
+esempio di codice seguente Hello carica il contenuto di hello di hello **test.txt** file **myblob**.
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', function(error, result, response){
@@ -165,17 +165,17 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', functi
 });
 ```
 
-L'oggetto `result` restituito da questi metodi contiene informazioni sull'operazione, ad esempio l' **ETag** del BLOB.
+Hello `result` restituito da questi metodi contiene informazioni sull'operazione di hello, ad esempio hello **ETag** del blob hello.
 
 ### <a name="append-blobs"></a>BLOB di accodamento
-Per caricare i dati in un nuovo BLOB di accodamento, usare le API seguenti:
+tooupload dati tooa nuovo blob di accodamento, utilizzare hello seguente:
 
-* **createAppendBlobFromLocalFile** : crea un nuovo BLOB di accodamento e carica i contenuti di un file
-* **createAppendBlobFromStream** : crea un nuovo BLOB di accodamento e carica i contenuti di un flusso
-* **createAppendBlobFromText** : crea un nuovo BLOB di accodamento e carica i contenuti di una stringa
-* **createWriteStreamToNewAppendBlob** : crea un nuovo BLOB di accodamento e quindi fornisce un flusso per la scrittura nel BLOB stesso
+* **createAppendBlobFromLocalFile** : crea un nuovo blob di aggiunta e carica il contenuto di hello di un file
+* **createAppendBlobFromStream** : crea un nuovo blob di aggiunta e carica il contenuto di hello di un flusso
+* **createAppendBlobFromText** : crea un nuovo blob di aggiunta e carica il contenuto di hello di una stringa
+* **createWriteStreamToNewAppendBlob** : crea un nuovo blob di aggiunta e quindi fornisce un tooit toowrite flusso
 
-L'esempio di codice seguente carica il contenuto del file **test.txt** nel BLOB **myappendblob**.
+esempio di codice seguente Hello carica il contenuto di hello di hello **test.txt** file **myappendblob**.
 
 ```nodejs
 blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt', function(error, result, response){
@@ -185,23 +185,23 @@ blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt',
 });
 ```
 
-Per accodare un blocco a un blob di accodamento esistente, usare quanto segue:
+tooappend un tooan blocco esistente aggiungere blob, utilizzare hello seguenti:
 
-* **appendFromLocalFile** : consente di accodare i contenuti di un file a un BLOB di accodamento esistente
-* **appendFromStream** : consente di accodare i contenuti di un flusso a un BLOB di accodamento esistente
-* **appendFromText** : consente di accodare i contenuti di una stringa a un BLOB di accodamento esistente
-* **appendBlockFromStream** : consente di accodare i contenuti di un flusso a un BLOB di accodamento esistente
-* **appendBlockFromText** : consente di accodare i contenuti di una stringa a un BLOB di accodamento esistente
+* **appendFromLocalFile** -accodare hello contenuto di un file tooan esistente aggiungere blob
+* **appendFromStream** -accodare hello contenuto di un flusso tooan esistente aggiungere blob
+* **appendFromText** -aggiungere contenuto hello di tooan una stringa esistente aggiungere blob
+* **appendBlockFromStream** -accodare hello contenuto di un flusso tooan esistente aggiungere blob
+* **appendBlockFromText** -aggiungere contenuto hello di tooan una stringa esistente aggiungere blob
 
 > [!NOTE]
-> Le API appendFromXXX consentono di eseguire rapidamente alcune convalide sul lato client per evitare chiamate al server non necessarie, contrariamente alle API appendBlockFromXXX.
+> appendFromXXX API eseguirà alcune chiamate non necessari server di convalida lato client toofail tooavoid veloce. contrariamente alle API appendBlockFromXXX.
 >
 >
 
-L'esempio di codice seguente carica il contenuto del file **test.txt** nel BLOB **myappendblob**.
+esempio di codice seguente Hello carica il contenuto di hello di hello **test.txt** file **myappendblob**.
 
 ```nodejs
-blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', function(error, result, response){
+blobSvc.appendFromText('mycontainer', 'myappendblob', 'text toobe appended', function(error, result, response){
   if(!error){
     // text appended
   }
@@ -209,15 +209,15 @@ blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', fun
 ```
 
 ### <a name="page-blobs"></a>BLOB di pagine
-Per caricare i dati in un BLOB di pagine, usare le operazioni seguenti:
+blob di pagine tooa dati tooupload, utilizzare hello seguenti:
 
 * **createPageBlob** : crea un nuovo BLOB di pagine con una lunghezza specifica
-* **createPageBlobFromLocalFile** : crea un nuovo BLOB di pagine e carica i contenuti di un file
-* **createPageBlobFromStream** : crea un nuovo BLOB di pagine e carica i contenuti di un flusso
-* **createWriteStreamToExistingPageBlob** : fornisce un flusso di scrittura a un BLOB di pagine esistente
-* **createWriteStreamToNewPageBlob** : crea un nuovo BLOB di pagine e quindi fornisce un flusso per la scrittura nel BLOB stesso
+* **createPageBlobFromLocalFile** : crea un nuovo blob di pagine e carica il contenuto di hello di un file
+* **createPageBlobFromStream** : crea un nuovo blob di pagine e carica il contenuto di hello di un flusso
+* **createWriteStreamToExistingPageBlob** -fornisce un blob di pagine esistente scrittura flusso tooan
+* **createWriteStreamToNewPageBlob** : crea un nuovo blob di pagine e quindi fornisce un tooit toowrite flusso
 
-L'esempio di codice seguente carica il contenuto del file **test.txt** nel BLOB **mypageblob**.
+esempio di codice seguente Hello carica il contenuto di hello di hello **test.txt** file **mypageblob**.
 
 ```nodejs
 blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', function(error, result, response){
@@ -232,29 +232,29 @@ blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', fun
 >
 >
 
-## <a name="list-the-blobs-in-a-container"></a>Elencare i BLOB in un contenitore
-Per elencare i BLOB all'interno di un contenitore, usare il metodo **listBlobsSegmented** . Per fare in modo che vengano restituiti i BLOB con un prefisso specifico, usare il metodo **listBlobsSegmentedWithPrefix**.
+## <a name="list-hello-blobs-in-a-container"></a>Elenco di BLOB hello in un contenitore
+BLOB di hello toolist in un contenitore, usare hello **listBlobsSegmented** metodo. Se si desidera tooreturn BLOB con un prefisso specifico, utilizzare **listBlobsSegmentedWithPrefix**.
 
 ```nodejs
 blobSvc.listBlobsSegmented('mycontainer', null, function(error, result, response){
   if(!error){
-      // result.entries contains the entries
-      // If not all blobs were returned, result.continuationToken has the continuation token.
+      // result.entries contains hello entries
+      // If not all blobs were returned, result.continuationToken has hello continuation token.
   }
 });
 ```
 
-`result` contiene una raccolta di `entries`, ovvero una matrice di oggetti che descrivono ogni BLOB. Se non vengono restituiti tutti i BLOB, `result` fornisce anche un `continuationToken`, che può essere usato come secondo parametro per recuperare voci aggiuntive.
+Hello `result` contiene un `entries` raccolta, ovvero una matrice di oggetti che descrivono ogni blob. Se non è possibile restituire tutti i BLOB, hello `result` fornisce inoltre un `continuationToken`, che è possibile utilizzare come hello secondo parametro tooretrieve ulteriori voci.
 
 ## <a name="download-blobs"></a>Scaricare BLOB
-Per scaricare i dati da un BLOB, usare le operazioni seguenti:
+dati toodownload da un blob, utilizzare l'esempio hello:
 
-* **getBlobToLocalFile** - scrive i contenuti del BLOB in un file.
-* **getBlobToStream** : scrive il contenuto del BLOB in un flusso
-* **getBlobToText** : scrive il contenuto del BLOB in una stringa
-* **createReadStream** : fornisce un flusso per la lettura dal BLOB.
+* **getBlobToLocalFile** -scrive hello blob contenuto toofile
+* **getBlobToStream** -scrive hello blob contenuto tooa flusso
+* **getBlobToText** -scrive il contenuto di blob hello tooa stringa
+* **createReadStream** -fornisce un tooread flusso dal blob hello
 
-L'esempio di codice seguente illustra l'uso di **getBlobToStream** per scaricare il contenuto del BLOB **myblob** e archiviarlo nel file **output.txt** usando un flusso:
+Hello esempio di codice seguente viene illustrato come utilizzare **getBlobToStream** contenuto hello toodownload di hello **myblob** blob e di archiviarlo toohello **txt** file utilizzando un flusso:
 
 ```nodejs
 var fs = require('fs');
@@ -265,10 +265,10 @@ blobSvc.getBlobToStream('mycontainer', 'myblob', fs.createWriteStream('output.tx
 });
 ```
 
-`result` contiene informazioni sul BLOB, incluse le informazioni sull' **ETag** .
+Hello `result` contiene informazioni sui blob di hello, tra cui **ETag** informazioni.
 
 ## <a name="delete-a-blob"></a>Eliminare un BLOB
-Per eliminare un BLOB, infine, chiamare **deleteBlob**. L'esempio di codice seguente elimina il BLOB denominato **myblob**.
+Chiamare infine toodelete un blob, **deleteBlob**. Hello eliminazioni hello blob denominato di esempio di codice seguente **myblob**.
 
 ```nodejs
 blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
@@ -279,15 +279,15 @@ blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
 ```
 
 ## <a name="concurrent-access"></a>Accesso simultaneo
-Per supportare l'accesso simultaneo a un BLOB da più client o da più istanze di processo, è possibile usare gli **ETag** o **lease**.
+blob di tooa toosupport accesso simultaneo da più client o più istanze di processo, è possibile utilizzare **eTag** o **lease**.
 
-* **Etag** : fornisce un modo per rilevare le eventuali modifiche apportate al BLOB o contenitore da un altro processo
-* **Lease** : consente di ottenere accesso esclusivo, rinnovabile, in scrittura o eliminazione a un BLOB per un periodo di tempo
+* **ETag** -fornisce un modo toodetect che hello blob o contenitore è stato modificato da un altro processo
+* **Lease** : fornisce una scrittura esclusivo, rinnovabile, tooobtain modo o eliminare il blob tooa di accesso per un periodo di tempo
 
 ### <a name="etag"></a>ETag
-Usare gli ETag se è necessario consentire a più client o istanze di scrivere simultaneamente nel BLOB in blocchi o nel BLOB di pagine. L'ETag consente di determinare se il contenitore o il BLOB è stato modificato dalla data di creazione o dell'ultima lettura per evitare di sovrascrivere le modifiche già sottoposte a commit da un altro client o processo.
+Se è necessario tooallow più client o istanze toowrite toohello Blob di pagine o blocchi del Blob contemporaneamente, utilizzare ETag. Hello ETag consente toodetermine se hello contenitore o blob è stato modificato dopo la lettura di inizialmente o creato, che consente di sovrascrivere le modifiche a commit da un altro client o processo tooavoid.
 
-È possibile impostare le condizioni degli ETag usando il parametro `options.accessConditions` facoltativo. L'esempio di codice seguente carica il file **test.txt** solo se il BLOB è già presente e include il valore di ETag contenuto in `etagToMatch`.
+È possibile impostare le condizioni di ETag utilizzando hello facoltativo `options.accessConditions` parametro. Hello esempio di codice seguente solo carica hello **test.txt** contenuti file se il blob hello esiste già e contiene il valore di ETag hello `etagToMatch`.
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { accessConditions: { EtagMatch: etagToMatch} }, function(error, result, response){
@@ -297,15 +297,15 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { acce
 });
 ```
 
-Il modello generale per l'uso degli ETag è il seguente:
+Quando si utilizzano valori eTag, modello generale di hello è:
 
-1. Ottenere l'ETag in seguito a un'operazione create, list o get.
-2. Eseguire un'azione verificando che il valore ETag non sia stato modificato.
+1. Ottenere hello ETag come risultato di hello di creazione un elenco operazione get.
+2. Eseguire un'azione, il controllo che non è stato modificato il valore ETag hello.
 
-Se il valore è stato modificato, significa che un altro client o un'altra istanza ha modificato il BLOB o il contenitore in un momento successivo a quello in cui è stato ottenuto il valore ETag.
+Se è stato modificato il valore di hello, ciò indica che un altro client o un'istanza modificato hello blob o contenitore perché è stato ottenuto il valore di ETag hello.
 
 ### <a name="lease"></a>Lease
-È possibile acquisire un nuovo lease usando il metodo **acquireLease** e specificando il BLOB o il contenitore per il quale si vuole ottenere il lease. Il codice seguente ad esempio acquisisce un lease sul BLOB **myblob**.
+È possibile acquisire un nuovo lease utilizzando hello **acquireLease** metodo, specificando hello blob o il contenitore che si desidera tooobtain un lease in. Ad esempio, hello seguente codice acquisisce un lease su **myblob**.
 
 ```nodejs
 blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
@@ -315,26 +315,26 @@ blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
 });
 ```
 
-Le operazioni successive sul BLOB **myblob** devono fornire il parametro `options.leaseId`. L'ID del lease viene restituito come `result.id` da **acquireLease**.
+Operazioni successive su **myblob** deve fornire hello `options.leaseId` parametro. come viene restituito l'ID lease di Hello `result.id` da **acquireLease**.
 
 > [!NOTE]
-> Per impostazione predefinita, la durata del lease è infinita. Per definire una durata non infinita (compresa tra 15 e 60 secondi), specificare il parametro `options.leaseDuration` .
+> Per impostazione predefinita, la durata del lease hello è infinita. È possibile specificare una durata non infinito (compreso tra 15 e 60 secondi), fornendo hello `options.leaseDuration` parametro.
 >
 >
 
-Per rimuovere un lease, usare il metodo **releaseLease**. Per interrompere un lease e impedire ad altri di ottenere un nuovo lease fintanto che la durata originale non scade, usare il metodo **breakLease**.
+Utilizzare tooremove un lease, **releaseLease**. toobreak un lease, ma impedire ad altri utenti di ottenere un nuovo lease finché la durata originale hello è scaduto, utilizzare **breakLease**.
 
 ## <a name="work-with-shared-access-signatures"></a>Usare le firme di accesso condiviso di Azure
-Le firme di accesso condiviso rappresentano un modo sicuro per fornire accesso granulare a BLOB e contenitori senza specificare il nome o le chiavi dell'account di archiviazione. Tali firme vengono spesso usate per fornire accesso limitato ai dati, ad esempio per consentire a un'app per dispositivi mobili di accedere ai BLOB.
+Firme di accesso condiviso (SAS) sono un tooblobs di accesso granulare tooprovide in modo sicuro e contenitori senza fornire il nome account di archiviazione o chiavi. Firme di accesso condiviso sono spesso i dati tooyour di accesso utilizzato tooprovide limitate, ad esempio per consentire a un'app mobile tooaccess BLOB.
 
 > [!NOTE]
-> Benché sia anche possibile consentire l'accesso anonimo ai BLOB, le firme di accesso condiviso garantiscono un accesso più controllato, in quanto devono essere generate.
+> Mentre è inoltre possibile consentire l'accesso anonimo tooblobs, firme di accesso condiviso consentono di tooprovide più controllato l'accesso, come è necessario generare hello SAS.
 >
 >
 
-Un'applicazione attendibile, ad esempio un servizio basato sul cloud, genera una firma di accesso condiviso tramite il metodo **generateSharedAccessSignature** dell'oggetto **BlobService** e la fornisce a un'applicazione non attendibile o parzialmente attendibile, ad esempio a un'app per dispositivi mobili. La firma di accesso condiviso viene generata tramite un criterio che indica le date di inizio e di fine del periodo di validità della firma, nonché il livello di accesso concesso al titolare della firma.
+Un'applicazione attendibile, ad esempio un servizio basato su cloud genera firme di accesso condiviso utilizzando hello **generateSharedAccessSignature** di hello **BlobService**e fornisce tooan non attendibili o applicazione con attendibilità parziale, ad esempio un'app per dispositivi mobili. Le firme generate utilizzando un criterio, che descrive l'avvio di hello di accesso condiviso e la data di fine durante cui hello firme di accesso condiviso sono valide, nonché hello accedere titolare livello di firme di accesso condiviso toohello concesso.
 
-L'esempio di codice seguente genera un nuovo criterio di accesso condiviso che consente al titolare della firma di accesso condiviso di eseguire operazioni di lettura nel BLOB **myblob** e che scadrà 100 minuti dopo la data di creazione.
+esempio di codice seguente Hello genera un nuovo criterio di accesso condiviso che consente di hello condiviso accesso firme titolare tooperform operazioni di lettura nel hello **myblob** blob e scade 100 minuti dopo il tempo di hello viene creato.
 
 ```nodejs
 var startDate = new Date();
@@ -354,9 +354,9 @@ var blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', 'myblob', sha
 var host = blobSvc.host;
 ```
 
-Si noti che devono essere fornite anche le informazioni sull'host, in quanto sono necessarie quando il titolare della firma di accesso condiviso tenta di accedere al contenitore.
+Si noti che le informazioni sull'host hello deve essere fornito, come richiesto quando titolare firme di accesso condiviso hello tenta anche contenitore hello tooaccess.
 
-L'applicazione client usa quindi la firma di accesso condiviso con **BlobServiceWithSAS** per eseguire operazioni sul BLOB. L'operazione seguente consente di recuperare informazioni sul BLOB **myblob**.
+quindi l'applicazione client Hello utilizza le firme di accesso condiviso con **BlobServiceWithSAS** tooperform operazioni blob hello. Hello seguente ottiene informazioni sul **myblob**.
 
 ```nodejs
 var sharedBlobSvc = azure.createBlobServiceWithSas(host, blobSAS);
@@ -367,12 +367,12 @@ sharedBlobSvc.getBlobProperties('mycontainer', 'myblob', function (error, result
 });
 ```
 
-Poiché la firma di accesso condiviso è stata generata con l'accesso in sola lettura, verrà restituito un errore se viene eseguito un tentativo di modificare il BLOB.
+Poiché le firme di accesso condiviso hello generate con accesso in sola lettura, se viene effettuato un tentativo di blob hello toomodify, verrà restituito un errore.
 
 ### <a name="access-control-lists"></a>Elenchi di controllo di accesso
-Per impostare i criteri di accesso per una firma di accesso condiviso, è anche possibile usare un elenco di controllo di accesso. Questa soluzione è utile quando si desidera consentire a più client di accedere a un contenitore, impostando tuttavia criteri di accesso diversi per ogni client.
+È anche possibile utilizzare criteri di accesso di accesso controllo elenco (ACL) tooset hello di SAS. Ciò è utile se si desidera tooallow più client tooaccess un contenitore ma forniscono criteri di accesso diversi per ogni client.
 
-Un elenco di controllo di accesso viene implementato usando una matrice di criteri di accesso, con un ID associato a ogni criterio. L'esempio di codice seguente definisce due criteri, uno per 'user1' e uno per 'user2':
+Un elenco di controllo di accesso viene implementato usando una matrice di criteri di accesso, con un ID associato a ogni criterio. Hello esempio di codice seguente definisce due criteri, uno per "user1" e uno per 'Utente2':
 
 ```nodejs
 var sharedAccessPolicy = {
@@ -389,7 +389,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-L'esempio di codice seguente recupera l'elenco di controllo di accesso corrente per **mycontainer** e quindi aggiunge i nuovi criteri tramite **setBlobAcl**. Risultato:
+Hello seguente ottiene di esempio di codice hello gli ACL per **mycontainer**e quindi aggiunge nuovi criteri hello utilizzando **setBlobAcl**. Risultato:
 
 ```nodejs
 var extend = require('extend');
@@ -405,23 +405,23 @@ blobSvc.getBlobAcl('mycontainer', function(error, result, response) {
 });
 ```
 
-Dopo aver impostato l'elenco di controllo di accesso, è possibile creare una firma di accesso condiviso in base all'ID di un criterio. L'esempio di codice seguente crea una nuova firma di accesso condiviso per 'user2':
+Una volta hello che ACL viene impostato, è possibile quindi creare le firme di accesso condiviso in base all'ID di hello per un criterio. esempio di codice seguente Hello crea nuove firme di accesso condiviso per 'Utente2':
 
 ```nodejs
 blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', { Id: 'user2' });
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni, vedere le risorse seguenti:
+Per ulteriori informazioni, vedere hello seguenti risorse.
 
 * [Riferimento per le API di Azure Storage SDK per Node][Riferimento per le API di Azure Storage SDK per Node]
 * [Blog del team di Archiviazione di Azure][Blog del team di Archiviazione di Azure]
 * Repository di [Azure Storage SDK per Node][Azure Storage SDK for Node] su GitHub
 * [Centro per sviluppatori di Node. js](https://azure.microsoft.com/develop/nodejs/)
-* [Trasferire dati con l'utilità della riga di comando AzCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
+* [Trasferimento dati con hello utilità della riga di comando AzCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
 
-[App Web Node.js con il servizio tabelle di Azure](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)    
-[Build and deploy a Node.js web app to Azure using Web Matrix (Creazione e distribuzione di un'app Web Node.js in Azure con WebMatrix)]: https://www.microsoft.com/web/webmatrix/  
-[Uso dell'API REST]: http://msdn.microsoft.com/library/azure/hh264518.aspx [Portale di Azure]: https://portal.azure.com [Creazione e distribuzione di un'applicazione Node.js a un servizio cloud di Azure](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Blog del team di Archiviazione di Azure]: http://blogs.msdn.com/b/windowsazurestorage/ [Riferimento per le API di Azure Storage SDK per Node]: http://dl.windowsazure.com/nodestoragedocs/index.html
+[App web Node. js utilizzando hello del servizio tabelle di Azure](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)    
+[Compilare e distribuire un tooAzure di app web Node. js utilizzando WebMatrix]: https://www.microsoft.com/web/webmatrix/  
+[Utilizzando hello REST API]: [portale] http://msdn.microsoft.com/library/azure/hh264518.aspx: https://portal.azure.com [compilare e distribuire un tooan di applicazione del servizio Cloud di Azure Node.js](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Blog del Team di archiviazione di Azure]: http:// [Azure Storage SDK per nodo di riferimento all'API] blogs.msdn.com/b/windowsazurestorage/: http://dl.windowsazure.com/nodestoragedocs/index.html

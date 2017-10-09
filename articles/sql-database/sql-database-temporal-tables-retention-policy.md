@@ -1,6 +1,6 @@
 ---
-title: Gestire i dati cronologici nelle tabelle temporali con criteri di conservazione | Microsoft Docs
-description: Informazioni su come usare criteri di conservazione temporale per tenere sotto controllo i dati cronologici.
+title: aaaManage i dati cronologici nelle tabelle temporali con criteri di conservazione | Documenti Microsoft
+description: Informazioni su come toouse conservazione temporale criteri tookeep dati cronologici sotto il proprio controllo.
 services: sql-database
 documentationcenter: 
 author: bonova
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: NA
 ms.workload: sql-database
 ms.date: 10/12/2016
 ms.author: bonova
-ms.openlocfilehash: 8975d7a7d39114b2758d64a4df9f992cba6bf561
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a72a6111a6cd7322d734d08bf3852e95f5ffea8b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-historical-data-in-temporal-tables-with-retention-policy"></a>Gestire i dati cronologici nelle tabelle temporali con criteri di conservazione
-Le tabelle temporali possono aumentare le dimensioni del database più delle tabelle normali, in particolare se si conservano i dati cronologici per un periodo di tempo più lungo. Di conseguenza, i criteri di conservazione per i dati cronologici sono un aspetto importante della pianificazione e della gestione del ciclo di vita di ogni tabella temporale. Le tabelle temporali nel database SQL Azure sono dotate di un meccanismo di conservazione di facile uso che aiuta a eseguire questa operazione.
+Le tabelle temporali possono aumentare le dimensioni del database più delle tabelle normali, in particolare se si conservano i dati cronologici per un periodo di tempo più lungo. Di conseguenza, i criteri di conservazione dei dati cronologici sono un aspetto importante della pianificazione e gestione del ciclo di vita di hello di ogni tabella temporale. Le tabelle temporali nel database SQL Azure sono dotate di un meccanismo di conservazione di facile uso che aiuta a eseguire questa operazione.
 
-Il periodo di conservazione della cronologia temporale può essere configurato a livello di singola tabella, per consentire agli utenti di creare criteri di giacenza flessibili. L'applicazione della conservazione temporale è semplice: è necessario configurare un solo parametro durante la creazione della tabella o la modifica dello schema.
+Periodo memorizzazione cronologia temporale può essere configurate a livello di singola tabella hello, che consente agli utenti di criteri di durata flessibile toocreate. L'applicazione di memorizzazione temporale è semplice: è necessario un solo parametro toobe, impostato durante la modifica dello schema o di creazione tabella.
 
-Dopo aver definito i criteri di conservazione, il database SQL di Azure avvia una verifica periodica per controllare se sono presenti righe di cronologia idonee alla pulizia automatica dei dati. L'identificazione delle righe corrispondenti e la loro rimozione della tabella di cronologia si verificano in modo trasparente, nell'attività in background pianificata ed eseguita dal sistema. Le condizioni di età per le righe della tabella della cronologia vengono controllate in base alla colonna che rappresenta la fine del periodo SYSTEM_TIME. Se, ad esempio, il periodo di conservazione definito è di sei mesi, le righe della tabella idonee per la pulizia soddisfano la condizione seguente:
+Dopo aver definito i criteri di conservazione, il database SQL di Azure avvia una verifica periodica per controllare se sono presenti righe di cronologia idonee alla pulizia automatica dei dati. Identificazione delle righe corrispondenti e la rimozione dalla tabella di cronologia hello si verificano in modo trasparente, attività in background pianificata, eseguire dal sistema hello hello. Condizione di validità per le righe nella tabella di cronologia hello viene controllato in base colonna hello che rappresenta di fine del periodo SYSTEM_TIME. Se il periodo di memorizzazione, ad esempio, è impostato toosix mesi, le righe della tabella idonee per la pulizia soddisfano hello seguente condizione:
 
 ````
 ValidTo < DATEADD (MONTH, -6, SYSUTCDATETIME())
 ````
 
-L'esempio precedente presuppone che la colonna **ValidTo** corrisponda alla fine del periodo SYSTEM_TIME.
+Nella finestra di hello sopra riportato, si presuppone che **ValidTo** colonna corrisponde toohello fine del periodo SYSTEM_TIME.
 
-## <a name="how-to-configure-retention-policy"></a>Come si configurano i criteri di conservazione?
-Prima di configurare criteri di conservazione per una tabella temporale, innanzitutto è necessario controllare se la conservazione della cronologia temporale è abilitata *a livello di database*.
+## <a name="how-tooconfigure-retention-policy"></a>Come criteri di conservazione tooconfigure?
+Prima di configurare criteri di conservazione per una tabella temporale, controllare innanzitutto se è abilitato memorizzazione cronologia temporale *a livello di database hello*.
 
 ````
 SELECT is_temporal_history_retention_enabled, name
 FROM sys.databases
 ````
 
-Il flag del database **is_temporal_history_retention_enabled** è impostato su ON per impostazione predefinita, tuttavia gli utenti possono sostituirlo con l'istruzione ALTER DATABASE. Inoltre, viene impostato automaticamente su OFF dopo l'operazione di [ripristino temporizzato](sql-database-recovery-using-backups.md). Per abilitare la pulizia della conservazione della cronologia temporale per il database, eseguire l'istruzione seguente:
+Flag del database **is_temporal_history_retention_enabled** è tooON set per impostazione predefinita, ma gli utenti possono modificare con l'istruzione ALTER DATABASE. È inoltre automaticamente tooOFF set dopo [ripristino temporizzato](sql-database-recovery-using-backups.md) operazione. pulizia di memorizzazione cronologia temporale tooenable per il database, eseguire hello seguente istruzione:
 
 ````
 ALTER DATABASE <myDB>
@@ -54,7 +54,7 @@ SET TEMPORAL_HISTORY_RETENTION  ON
 > 
 > 
 
-I criteri di conservazione vengono configurati durante la creazione di una tabella specificando il valore per il parametro HISTORY_RETENTION_PERIOD:
+Criteri di conservazione viene configurato durante la creazione della tabella, specificando un valore per il parametro HISTORY_RETENTION_PERIOD hello:
 
 ````
 CREATE TABLE dbo.WebsiteUserInfo
@@ -76,9 +76,9 @@ CREATE TABLE dbo.WebsiteUserInfo
  );
 ````
 
-Il database SQL di Azure consente di specificare il periodo di conservazione tramite unità di tempo diverse: DAYS, WEEKS, MONTHS e YEARS. Se HISTORY_RETENTION_PERIOD viene omesso, viene usata la conservazione INFINITE. È inoltre possibile usare esplicitamente la parola chiave INFINITE.
+Database SQL di Azure consente il periodo di memorizzazione toospecify con unità di tempo diversi: giorni, settimane, mesi e anni. Se HISTORY_RETENTION_PERIOD viene omesso, viene usata la conservazione INFINITE. È inoltre possibile usare esplicitamente la parola chiave INFINITE.
 
-In alcuni scenari, è possibile configurare la conservazione dopo la creazione della tabella o per modificare un valore configurato in precedenza. In questo caso usare l'istruzione ALTER TABLE:
+In alcuni scenari, è opportuno tooconfigure conservazione dopo la creazione della tabella o toochange precedentemente configurato come valore. In questo caso usare l'istruzione ALTER TABLE:
 
 ````
 ALTER TABLE dbo.WebsiteUserInfo
@@ -86,11 +86,11 @@ SET (SYSTEM_VERSIONING = ON (HISTORY_RETENTION_PERIOD = 9 MONTHS));
 ````
 
 > [!IMPORTANT]
-> Con l'impostazione di SYSTEM_VERSIONING su OFF il valore relativo al periodo di conservazione *non viene mantenuto*. Con l'impostazione di SYSTEM_VERSIONING su ON senza specificare esplicitamente HISTORY_RETENTION_PERIOD si ottiene come risultato un periodo di conservazione INFINITE.
+> Impostazione dell'attributo SYSTEM_VERSIONING tooOFF *non mantiene* valore del periodo di memorizzazione. Impostazione dell'attributo SYSTEM_VERSIONING tooON senza HISTORY_RETENTION_PERIOD specificato esplicitamente risultati nel periodo di conservazione infinito hello.
 > 
 > 
 
-Per esaminare lo stato corrente del criterio di conservazione, usare la seguente query che unisce il flag di abilitazione della conservazione temporale a livello di database con i periodi di conservazione per le singole tabelle:
+stato corrente di tooreview del criterio di conservazione hello, tale flag di abilitazione della memorizzazione temporale join a livello di database hello con periodi di memorizzazione per le singole tabelle di query utilizzare hello seguente:
 
 ````
 SELECT DB.is_temporal_history_retention_enabled,
@@ -107,30 +107,30 @@ ON T1.history_table_id = T2.object_id WHERE T1.temporal_type = 2
 
 
 ## <a name="how-sql-database-deletes-aged-rows"></a>In che modo vengono eliminate le righe obsolete dal database SQL?
-Il processo di pulizia dipende dal layout indice della tabella di cronologia. È importante notare che *solo nelle tabelle di cronologia con un indice cluster (struttura B-tree o columnstore) è possibile avere la configurazione dei criteri di conservazione definiti*. Viene creata un'attività in background per eseguire la pulizia dei dati obsoleti per tutte le tabelle temporali con periodo di conservazione definito.
-La logica di pulizia per l'indice in cluster rowstore (B-tree) elimina la riga obsoleta in blocchi più piccoli (fino a 10.000) riducendo al minimo pressione sul log del database e sul sottosistema I/O. Anche se la logica di pulizia usa un indice B-tree obbligatorio, l'ordine di eliminazione per le righe antecedenti il periodo di conservazione non può essere garantito saldamente. Di conseguenza, *non è consentito accettare le dipendenze nell'ordine di pulizia nelle applicazioni*.
+il processo di pulizia Hello dipende dal layout indice hello della tabella di cronologia hello. È importante toonotice che *solo le tabelle di cronologia con un indice cluster (albero B o columnstore) possono avere criteri di conservazione finito configurato*. Un'attività in background viene creata tooperform pulizia dei dati obsoleti per tutte le tabelle temporali con periodo di memorizzazione finito.
+Logica di pulizia per l'indice cluster rowstore (albero B) di hello Elimina riga obsoleto in blocchi più piccoli (backup too10K) riducendo al minimo l'utilizzo nei log del database e il sottosistema dei / o. Anche se viene utilizzata la logica di pulizia necessarie indice B-tree, ordine di eliminazioni di righe hello anteriore al periodo di conservazione non può essere garantito sia ben. Di conseguenza, *non accettano tutte le dipendenze nell'ordine di pulizia hello nelle applicazioni*.
 
-L'attività di pulizia per columnstore in cluster rimuove interi [gruppi di righe](https://msdn.microsoft.com/library/gg492088.aspx) in una sola volta (in genere ogni gruppo contiene un milione di righe); questa procedura è molto efficace, soprattutto quando vengono generati dati cronologici a ritmo elevato.
+Hello attività di pulizia per hello clustered columnstore rimuove intero [gruppi di righe](https://msdn.microsoft.com/library/gg492088.aspx) in una sola volta (in genere contiene 1 milione di righe ogni), che è molto efficiente, in particolare quando i dati cronologici viene generati a un ritmo elevato.
 
 ![Conservazione di columnstore in cluster](./media/sql-database-temporal-tables-retention-policy/cciretention.png)
 
 Un'ottima compressione dei dati e un'efficace pulizia per la conservazione fanno dell'indice columnstore in cluster la scelta ideale per gli scenari in cui il carico di lavoro genera rapidamente elevate quantità di dati cronologici. Tale modello è tipico per un l'[elaborazione transazionale intensiva dei carichi di lavoro che usano tabelle temporali](https://msdn.microsoft.com/library/mt631669.aspx) per il rilevamento delle modifiche e il controllo, l'analisi delle tendenze o l'inserimento dei dati IoT.
 
 ## <a name="index-considerations"></a>Considerazioni sull'indice
-L'attività di pulizia per le tabelle con indice rowstore in cluster richiede che l'indice inizi con la colonna che corrisponde alla fine del periodo SYSTEM_TIME. Se questa colonna non esiste, non è possibile configurare un periodo di conservazione finito:
+attività di pulizia Hello per le tabelle con indice cluster rowstore richiede indice toostart con estremità corrispondente hello hello colonna di periodo SYSTEM_TIME. Se questa colonna non esiste, non è possibile configurare un periodo di conservazione finito:
 
-*Msg 13765, Level 16, State 1 <br></br> L'impostazione del periodo di conservazione definito ha avuto esito negativo nella tabella temporale con controllo delle versioni del sistema 'temporalstagetestdb.dbo.WebsiteUserInfo' perché la tabella di cronologia 'temporalstagetestdb.dbo.WebsiteUserInfoHistory' non contiene l'indice in cluster richiesto. È consigliabile creare un columnstore cluster o indice B-tree a partire dalla colonna che corrisponde alla fine del periodo SYSTEM_TIME nella tabella di cronologia.*
+*Msg 13765, livello 16, stato 1 <br> </br> impostazione periodo di memorizzazione finito non è riuscita nella tabella temporale con controllo delle versioni del sistema 'temporalstagetestdb.dbo.WebsiteUserInfo' perché la tabella di cronologia hello ' temporalstagetestdb.dbo.WebsiteUserInfoHistory' non contiene alcun indice cluster richiesto. È consigliabile creare una columnstore cluster o un indice albero B a partire dalla colonna hello corrispondente alla fine di SYSTEM_TIME period, nella tabella di cronologia hello.*
 
-È importante notare che la tabella di cronologia predefinito già creata dal database SQL di Azure dispone già dell'indice in cluster, che è conforme a criteri di conservazione. Se si tenta di rimuovere l'indice in una tabella con periodo di conservazione definito, l'operazione ha esito negativo con l'errore seguente:
+È importante toonotice che hello tabella di cronologia predefinita creata dal Database di SQL Azure è già un indice, che è conforme a criteri di conservazione è cluster. Se si tenta di tooremove tale indice in una tabella con periodo di memorizzazione finito, operazione non riesce con hello errore seguente:
 
-*Msg 13766, Level 16, State 1 <br></br> Impossibile eliminare l'indice cluster 'WebsiteUserInfoHistory.IX_WebsiteUserInfoHistory' perché è usato per la pulizia automatica dei dati obsoleti. Si consiglia di impostare HISTORY_RETENTION_PERIOD su INFINITE nella corrispondente tabella temporale con controllo delle versioni del sistema se è necessario eliminare l'indice.*
+*Msg 13766, livello 16, stato 1 <br> </br> non è possibile eliminare l'indice cluster hello 'WebsiteUserInfoHistory.IX_WebsiteUserInfoHistory' perché è utilizzato per la pulizia automatica dei dati obsoleti. Prendere in considerazione impostazione HISTORY_RETENTION_PERIOD tooINFINITE sulla tabella di temporale con controllo delle versioni del sistema corrispondente hello se è necessario toodrop questo indice.*
 
-La pulizia dell'indice columnstore in cluster funziona in modo ottimale se vengono inserite righe cronologiche in ordine crescente (ordinate in base alla fine della colonna del periodo); questo viene sempre applicato quando la tabella di cronologia viene popolata esclusivamente dal meccanismo SYSTEM_VERSIONIOING. Se le righe della tabella di cronologia non sono ordinate in base alla fine della colonna del periodo (ad esempio in caso di migrazione dei dati cronologici esistenti), è necessario ricreare un indice columnstore in cluster sull'indice rowstore B-tree ordinato in modo corretto, per ottenere prestazioni ottimali.
+Pulizia sull'indice columnstore cluster hello funziona in modo ottimale se vengono inserite righe cronologiche in ordine crescente (ordinati in base al fine di hello della colonna periodo), che avviene sempre hello quando la tabella di cronologia hello viene popolata in modo esclusivo da hello System _ hello Meccanismo VERSIONIOING. Se righe nella tabella di cronologia hello non vengono ordinate dalla fine della colonna periodo (che può essere case hello se sono stati migrati i dati cronologici esistenti), è necessario ricreare un indice columnstore cluster in indice rowstore con albero B ordinata correttamente, tooachieve ottimale prestazioni.
 
-Evitare la ricompilazione dell'indice columnstore in cluster nella tabella di cronologia con il periodo di conservazione definito, perché può cambiare l'ordine nei gruppi di righe imposti naturalmente dall'operazione di controllo delle versioni di sistema. Se è necessario ricompilare l'indice columnstore in cluster della tabella di cronologia, crearne uno nuovo al posto dell'indice B-tree conforme, mantenendo l'ordinamento in gruppi di righe necessario per la pulizia dei dati regolare. Lo stesso approccio deve essere adottato se si crea una tabella temporale con la tabella di cronologia esistente che dispone di un indice di colonna in cluster senza ordine dei dati garantito:
+Evitare di ricompilare l'indice columnstore cluster nella tabella di cronologia hello con periodo di memorizzazione finito di hello, poiché potrebbe essere modificato l'ordinamento in gruppi di righe hello naturalmente imposti dall'operazione di controllo delle versioni di sistema hello. Se si desidera toorebuild l'indice columnstore cluster nella tabella di cronologia hello, a tale scopo crearne uno nuovo nella parte superiore conformi indice albero B, mantenendo l'ordinamento in rowgroup hello necessarie per la pulizia dei dati regolare. Hello stesso approccio deve essere eseguita se si crea una tabella temporale con tabella di cronologia esistente che dispone di un indice di colonna senza ordine dei dati garantita cluster:
 
 ````
-/*Create B-tree ordered by the end of period column*/
+/*Create B-tree ordered by hello end of period column*/
 CREATE CLUSTERED INDEX IX_WebsiteUserInfoHistory ON WebsiteUserInfoHistory (ValidTo)
 WITH (DROP_EXISTING = ON);
 GO
@@ -139,41 +139,41 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_WebsiteUserInfoHistory ON WebsiteUserInfoH
 WITH (DROP_EXISTING = ON);
 ````
 
-Quando viene configurato il periodo di conservazione definito per la tabella di cronologia con l'indice columnstore in cluster, non è possibile creare indici B-tree non in cluster aggiuntivi nella tabella:
+Quando il periodo di memorizzazione finito è configurato per la tabella di cronologia hello con indice columnstore cluster hello, è possibile creare indici albero B non cluster aggiuntivi in tale tabella:
 
 ````
 CREATE NONCLUSTERED INDEX IX_WebHistNCI ON WebsiteUserInfoHistory ([UserName])
 ````
 
-Un tentativo di eseguire l'istruzione sopra indicata avrà esito negativo con l'errore seguente:
+Un tentativo tooexecute prima istruzione non riesce con hello errore seguente:
 
 *Msg 13772, Level 16, State 1 <br></br> Impossibile creare un indice non in cluster in una tabella di cronologia temporale 'WebsiteUserInfoHistory' perché ha un periodo di conservazione definito e l'indice columnstore in cluster è definito.*
 
 ## <a name="querying-tables-with-retention-policy"></a>Esecuzione di query su tabelle con criteri di conservazione
-Tutte le query sulla tabella temporale consentono di escludere automaticamente tramite filtro le righe cronolgiche definite corrispondenti, per evitare risultati imprevisti e incoerenti, poiché è possibile eliminare righe obsolete tramite l'attività di pulizia, *in qualsiasi momento e in ordine arbitrario*.
+Tutte le query sulla tabella temporale hello filtrare automaticamente le righe di cronologia corrispondente di criteri di conservazione finito tooavoid risultati imprevedibili e incoerente, poiché è possono eliminare le righe obsolete tramite attività di pulizia hello, *in qualsiasi punto nel tempo e in ordine arbitrario*.
 
-Nell'immagine seguente viene illustrato il piano di query per una query semplice:
+Hello immagine riportata di seguito viene illustrato il piano di query hello per una query semplice:
 
 ````
 SELECT * FROM dbo.WebsiteUserInfo FOR SYSTEM_TIME ALL;
 ````
 
-Il piano di query include un altro filtro applicato alla fine della colonna del periodo (ValidTo) nell'operatore Clustered Index Scan nella tabella di cronologia (evidenziata). Questo esempio presuppone che il periodo di conservazione di un MONTH sia stato impostato nella tabella WebsiteUserInfo.
+query Hello piano include ulteriore filtro applicato tooend della colonna periodo (ValidTo) nell'operatore Clustered Index Scan hello nella tabella di cronologia hello (evidenziata). Questo esempio presuppone che il periodo di conservazione di un MONTH sia stato impostato nella tabella WebsiteUserInfo.
 
 ![Filtro di query di conservazione](./media/sql-database-temporal-tables-retention-policy/queryexecplanwithretention.png)
 
-Tuttavia, se si esegue una query direttamente in una tabella di cronologia, è possibile vedere le righe precedenti al periodo di conservazione specificato, ma senza alcuna garanzia relativa ai risultati ripetibili. Nell'immagine seguente è mostrato il piano di esecuzione di query per la query nella tabella di cronologia senza altri filtri applicati:
+Tuttavia, se si esegue una query direttamente in una tabella di cronologia, è possibile vedere le righe precedenti al periodo di conservazione specificato, ma senza alcuna garanzia relativa ai risultati ripetibili. Hello immagine seguente viene illustrato un piano di esecuzione per query hello nella tabella di cronologia hello senza filtri aggiuntivi applicati:
 
 ![Esecuzione di query senza filtro di conservazione](./media/sql-database-temporal-tables-retention-policy/queryexecplanhistorytable.png)
 
 Non affidare la logica di business alla lettura della tabella di cronologia oltre il periodo di conservazione, perché si potrebbero ottenere risultati incoerenti o imprevisti. È consigliabile usare query temporali con la clausola FOR SYSTEM_TIME per l'analisi dei dati nelle tabelle temporali.
 
 ## <a name="point-in-time-restore-considerations"></a>Considerazioni sul ripristino temporizzato
-Quando si crea un nuovo database attraverso il [ripristino di un database esistente in un punto specifico nel tempo](sql-database-recovery-using-backups.md), la conservazione temporale è disabilitata a livello di database. (Il flag **is_temporal_history_retention_enabled** è impostato su OFF). Questa funzionalità consente di esaminare tutte le righe di cronologia al momento del ripristino, senza doversi preoccupare che le righe obsolete vengano rimosse prima di procedere con l'esecuzione di query. È possibile usarla per *esaminare i dati cronologici oltre il periodo di conservazione configurato*.
+Quando si crea nuovo database da [ripristino esistente database tooa temporizzato nel tempo](sql-database-recovery-using-backups.md), dispone di conservazione temporale disabilitato a livello di database hello. (**is_temporal_history_retention_enabled** tooOFF impostato flag). Questa funzionalità consente tutte le righe di cronologia al momento del ripristino, senza doversi righe obsoleti vengono rimossi prima di ottenere tooquery tooexamine li. È possibile utilizzare anche*controllare i dati cronologici supera il periodo di memorizzazione configurato*.
 
-Si supponga che per una tabella temporale sia specificato il periodo di conservazione MONTH. Se il database è stato creato al livello di servizio Premium, è possibile creare una copia del database con lo stato del database risalendo fino a 35 giorni prima. Una tale efficacia consentirebbe di analizzare le righe cronologiche risalenti anche a 65 giorni prima eseguendo una query direttamente nella tabella di cronologia.
+Si supponga che per una tabella temporale sia specificato il periodo di conservazione MONTH. Se il database è stato creato nel livello di servizio Premium, sarà in grado di toocreate copia del database con stato del database hello dei giorni too35 in hello precedente. Che in modo efficace consentirebbe righe di cronologia tooanalyze di backup too65 giorni eseguendo una query sulla tabella di cronologia hello direttamente.
 
-Se si desidera attivare la pulizia della conservazione temporale, eseguire l'istruzione Transact-SQL seguente dopo il ripristino temporizzato:
+Se si desidera la pulizia di memorizzazione temporale tooactivate, eseguire hello seguente istruzione Transact-SQL dopo il ripristino temporizzato:
 
 ````
 ALTER DATABASE <myDB>
@@ -181,9 +181,9 @@ SET TEMPORAL_HISTORY_RETENTION  ON
 ````
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni su come usare le tabelle temporali nelle applicazioni, consultare [Introduzione alle tabelle temporali nel database SQL di Azure](sql-database-temporal-tables.md).
+come le tabelle temporali toouse nelle applicazioni, estrarre toolearn [Introduzione alle tabelle temporali nel Database SQL di Azure](sql-database-temporal-tables.md).
 
-Andare su Channel 9 per ascoltare una [storia di successo reale relativa all'implementazione temporale di un cliente](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions) e guardare una [dimostrazione temporale in tempo reale](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016).
+Visita Channel 9 toohear un [reale implementazione temporale storie di successo](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions) ed espressioni di controllo un [live dimostrazione temporale](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016).
 
 Per informazioni dettagliate sulle tabelle temporali, esaminare la [documentazione su MSDN](https://msdn.microsoft.com/library/dn935015.aspx).
 

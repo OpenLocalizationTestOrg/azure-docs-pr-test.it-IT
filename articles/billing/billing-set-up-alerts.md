@@ -1,5 +1,5 @@
 ---
-title: Impostare avvisi di fatturazione o di credito per le sottoscrizioni di Azure | Microsoft Docs
+title: aaaSet di avvisi di fatturazione o carta di credito per le sottoscrizioni di Azure | Documenti Microsoft
 description: "Viene descritto come è possibile impostare gli avvisi di fatturazione di Azure per evitare sorprese fatturazione."
 keywords: avviso di credito, avviso di fatturazione
 services: 
@@ -17,46 +17,46 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: vikdesai
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7a1b579fdde831fdc3afa0a2aee4c24890216ed1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 711b9c72c59874792b0e229cdc5ec0fa517c24c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-billing-or-credit-alerts-for-your-microsoft-azure-subscriptions"></a>Impostare avvisi di fatturazione o di credito per le sottoscrizioni di Microsoft Azure
-Se si amministrano gli account per una sottoscrizione di Azure, è possibile usare Azure Billing Alert Service per creare avvisi di fatturazione personalizzati che consentono di monitorare e gestire l'attività di fatturazione per gli account Azure.
+Se si è amministratore dell'Account di hello per una sottoscrizione di Azure, è possibile utilizzare hello Azure fatturazione avviso servizio avvisi di fatturazione toocreate personalizzati che consentono di monitorare e gestire attività di fatturazione per l'account di Azure.
 
-Questo servizio è in anteprima, pertanto è necessario abilitarlo nella pagina relativa alle funzionalità di anteprima.
+Questo servizio è in anteprima, pertanto è necessario tooenable nella pagina di funzionalità di anteprima hello prima.
 
-## <a name="set-the-alert-threshold-and-email-recipients"></a>Impostare la soglia di avviso e i destinatari di posta elettronica
-1. Visitare la [pagina relativa alle funzionalità di anteprima](https://account.windowsazure.com/PreviewFeatures) e abilitare **Billing Alert Service**.
+## <a name="set-hello-alert-threshold-and-email-recipients"></a>Impostare i destinatari di posta elettronica e di soglia avviso hello
+1. Visitare [pagina di funzionalità di anteprima hello](https://account.windowsazure.com/PreviewFeatures) e abilitare **servizio di avvisi di fatturazione**.
 
-1. Dopo aver ricevuto tramite posta elettronica la conferma dell'attivazione del servizio di fatturazione per la sottoscrizione, visitare la [pagina relativa alle sottoscrizioni](https://account.windowsazure.com/Subscriptions) nel portale degli account. Fare clic sulla sottoscrizione che si desidera monitorare, quindi selezionare **Avvisi**.
+1. Dopo aver ricevuto una conferma tramite posta elettronica hello che servizio di fatturazione hello è attivata per la sottoscrizione, visitare [pagina sottoscrizioni hello](https://account.windowsazure.com/Subscriptions) nel portale di account hello. Fare clic su sottoscrizione hello desidera toomonitor e quindi fare clic su **avvisi**.
 
-    ![Schermata delle sottoscrizioni del Centro account di Azure, con gli avvisi in evidenza][Image1]
+    ![Schermata di vista delle sottoscrizioni hello del centro Account Azure, con gli avvisi evidenziato][Image1]
 
-2. Successivamente, fare clic su **Aggiungi avviso** per creare il primo avviso. È possibile impostare un totale di cinque avvisi di fatturazione per sottoscrizione, con una soglia diversa e un massimo di due destinatari di posta elettronica per ciascun avviso.
+2. Successivamente, fare clic su **Aggiungi avviso** toocreate uno. È possibile impostare su un totale di cinque avvisi di fatturazione per sottoscrizione, con un'altra soglia e dei destinatari di posta elettronica tootwo per ogni avviso.
 
-    ![Schermata degli avvisi, in cui è possibile aggiungere un avviso][Image2]
+    ![Schermata di visualizzazione di avvisi, in cui è possibile aggiungere avviso hello][Image2]
 
-3. Quando si aggiunge un avviso, assegnare un nome univoco, scegliere una soglia di spesa e gli indirizzi di posta elettronica a cui verrà inviato. Mentre si imposta la soglia, è possibile scegliere un valore per **Totale fattura** o **Credito monetario** dall'elenco **Avviso per**. Se si specifica un totale fattura, viene inviato un avviso quando la spesa per la sottoscrizione supera la soglia. Se si specifica un credito monetario, viene inviato un avviso quando i crediti monetari scendono al di sotto del limite. I crediti monetari in genere si applicano alle sottoscrizioni della versione di valutazione gratuita e Visual Studio.
+3. Quando si aggiunge un avviso, assegnare un nome univoco, scegliere una soglia di spesa e scegliere hello indirizzi di posta elettronica in cui gli avvisi vengono inviati. Quando si imposta la soglia hello, è possibile scegliere un **totale fattura** o **credito monetario** da hello **avviso per** elenco. Per un totale di fatturazione, viene inviato un avviso quando spesa per la sottoscrizione supera la soglia di hello. Per un credito monetario, viene inviato un avviso quando il credito monetario scende sotto il limite di hello. I crediti monetari in genere applicano tooFree le sottoscrizioni di valutazione e Visual Studio.
 
-    ![Schermata della funzionalità di aggiunta avviso, in cui è possibile configurare i destinatari][Image3]
+    ![Schermata della visualizzazione di avvisi aggiunta hello, in cui è possibile configurare destinatari][Image3]
 
-Azure supporta qualsiasi indirizzo di posta elettronica ma non ne verifica il corretto funzionamento, pertanto è necessario accertarsi che non siano presenti errori di digitazione.
+Azure supporta qualsiasi indirizzo di posta elettronica, ma non verificare il funzionamento dell'indirizzo di posta elettronica hello, pertanto si consiglia di controllare gli errori di battitura.
 
 ## <a name="check-on-your-alerts"></a>Controllare gli avvisi
-Dopo aver impostato gli avvisi, nel centro account viene visualizzato un elenco degli avvisi già impostati ed è indicato il numero di avvisi aggiuntivi che è possibile ancora impostare. Per ogni avviso è possibile visualizzare la data e l'ora di invio, il tipo di avviso (per totale fattura o credito monetario) e il limite impostato. Il formato dell'ora è 24 ore UTC (Universal Time Coordinate) e il formato della data è aaaa-mm-gg. Fare clic sul segno più per modificare un avviso nell'elenco o sul simbolo del cestino per eliminarlo.
+Dopo aver impostato gli avvisi, hello centro Account li elenca e illustra il numero è più possibile configurare. Per ogni avviso, vedere hello data e l'ora di invio, se si tratta di un avviso per totale fattura o a crediti monetari e limite hello impostati. il formato di data e ora Hello è 24 ore coordinare UTC (Universal Time) e data hello è formato aaaa-mm-gg. Scegliere hello e firmarlo per un avviso in hello elenco tooedit o toodelete Cestino hello è.
 
 ## <a name="billing-alerts-for-enterprise-agreement-ea-customers"></a>Avvisi di fatturazione per i clienti con contratto Enterprise (EA, Enterprise Agreement)
-Nell'ambito di una registrazione i clienti EA possono usufruire di avvisi per ogni reparto, impostando le quote di spesa. Per iniziare, vedere [Department Spending Quotas](https://ea.azure.com/helpdocs/departmentSpendingQuotas) (Quote di spesa per reparto) nel portale EA.
+Nell'ambito di una registrazione i clienti EA possono usufruire di avvisi per ogni reparto, impostando le quote di spesa. Vedere [reparto spesa quote](https://ea.azure.com/helpdocs/departmentSpendingQuotas) nel portale tooget EA hello avviato.
 
 ## <a name="learn-more-about-azure-cost-management"></a>Altre informazioni sulla gestione dei costi in Azure
-- Stimare i costi usando il [calcolatore dei prezzi](https://azure.microsoft.com/pricing/calculator/), il [calcolatore del costo totale di proprietà](https://aka.ms/azure-tco-calculator) e quando si aggiunge un servizio.
+- Stima dei costi mediante hello [calcolatore dei costi](https://azure.microsoft.com/pricing/calculator/), [costo totale di calcolatrice di proprietà](https://aka.ms/azure-tco-calculator), e quando si aggiunge un servizio.
 - [Verificare regolarmente uso e costi nel portale di Azure](billing-getting-started.md#costs).
 - Attivare i [consigli di Azure Advisor sui costi](../advisor/advisor-cost-recommendations.md).
 
-Per altre informazioni, vedere [Introduzione alla gestione dei costi e alla fatturazione di Azure](billing-getting-started.md).
+vedere, più toolearn [Guida alla gestione dei costi Azure](billing-getting-started.md).
 
 [Image1]: ./media/azure-billing-set-up-alerts/billingalert1.png 
 [Image2]: ./media/azure-billing-set-up-alerts/billingalert2.png

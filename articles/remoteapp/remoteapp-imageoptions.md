@@ -1,6 +1,6 @@
 ---
-title: Creare un'immagine di Azure RemoteApp | Microsoft Docs
-description: Informazioni sulle opzioni disponibili per la creazione di immagini per Azure RemoteApp
+title: un'immagine di Azure RemoteApp aaaCreate | Documenti Microsoft
+description: Informazioni sulle opzioni di hello disponibili per la creazione di immagini per Azure RemoteApp
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4b8ba6f264f982e03930c5ad4ccdb2d80f2c8665
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54e63b6fa13addfcda96ce581910e1ac48d91e70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-remoteapp-image"></a>Creare un'immagine di Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Azure RemoteApp usa immagini per contenere le app condivise con gli utenti. (Prendiamo l'immagine e la usiamo per creare macchine virtuali, ovvero il punto raggiunto dagli utenti quando accedono a RemoteApp di Azure). Per creare una raccolta Azure RemoteApp con una scelta di applicazioni personalizzata, nel cloud o ibrida, iniziare con la creazione di un'immagine contenente le applicazioni installate. Creare quindi una raccolta che usa l'immagine, assegnare utenti alla raccolta e pubblicare le app per gli utenti desiderati.
+Azure RemoteApp utilizza immagini toohold hello App che si condivide con gli utenti. (È acquisire l'immagine e usarlo come macchine virtuali toocreate - questo è l'accedono agli utenti di hello quando effettuano l'accesso in Azure RemoteApp.) toocreate una raccolta di Azure RemoteApp con la scelta delle applicazioni, anche se la cloud ibrida, è innanzitutto necessario creare un'immagine con le applicazioni installate. Quindi, creare una raccolta che utilizza quell'immagine, assegnare gli utenti toohello insieme e pubblicare gli utenti toothose app.
 
-Per creare o usare le immagini sono disponibili diverse opzioni. Il [requisito](remoteapp-imagereqs.md) di base per un'immagine è che sia in esecuzione Windows Server 2012 R2 e che sia installato il ruolo Host sessione Desktop remoto (RDSH). Sarà interessante vedere come soddisfare questo requisito.
+Per creare o usare le immagini sono disponibili diverse opzioni. Hello base [requisito](remoteapp-imagereqs.md) per un'immagine che eseguono Windows Server 2012 R2 e che hanno installato il ruolo hello sessione Desktop remoto Host (). Sarà interessante vedere come soddisfare questo requisito.
 
-Per le immagini sono disponibili le opzioni seguenti:
+Sono disponibili le opzioni seguenti per quanto riguarda tooimages hello:
 
-* È possibile importare e usare un' [immagine basata su una macchina virtuale di Azure](remoteapp-image-on-azurevm.md). Questa opzione è utile per le applicazioni line-of-business che richiedono impostazioni personalizzate. È possibile personalizzare l'immagine per il funzionamento con l'applicazione.
+* È possibile importare e usare un' [immagine basata su una macchina virtuale di Azure](remoteapp-image-on-azurevm.md). Questa opzione è utile per le applicazioni line-of-business che richiedono impostazioni personalizzate. È possibile personalizzare hello immagine toowork per app hello.
 * È possibile [creare e caricare un'immagine personalizzata](remoteapp-create-custom-image.md). Questa opzione è utile se si ha già un'immagine usata per la distribuzione locale di Servizi Desktop remoto.
-* È possibile usare una delle [immagini modello](remoteapp-images.md) incluse nella sottoscrizione di RemoteApp. Queste immagini vengono create e gestite dal team di RemoteApp e contengono alcune applicazioni standard (come le applicazioni Office) che è possibile rendere disponibili agli utenti. Si noti che in un ambiente di produzione è possibile usare solo l'immagine di Office 365 Pro Plus.
+* È possibile utilizzare uno di hello [immagini modello](remoteapp-images.md) inclusi nella sottoscrizione di RemoteApp. Queste immagini vengono create e gestiti da team RemoteApp hello e contengono alcune applicazioni standard (ad esempio applicazioni di Office hello) che è possibile rendere disponibili tooyour utenti. Si noti che solo immagine di Office 365 Pro Plus hello può essere utilizzata in un ambiente di produzione.
 
-Indipendentemente da dove si ottiene l'immagine o da come la si crea, è opportuno verificare di avere compreso i [requisiti per le app](remoteapp-appreqs.md) per garantire il corretto funzionamento dell'app in RemoteApp. Il passaggio successivo consiste nel creare una raccolta [nel cloud](remoteapp-create-cloud-deployment.md) o [ibrida](remoteapp-create-hybrid-deployment.md).
+Indipendentemente da dove si ottenga un'immagine o modalità di creazione, è opportuno conoscere hello toomake [requisiti delle app](remoteapp-appreqs.md) tooensure che l'app funziona bene in RemoteApp. Quindi, hello è toocreate un [cloud](remoteapp-create-cloud-deployment.md) o [ibrida](remoteapp-create-hybrid-deployment.md) insieme.
 

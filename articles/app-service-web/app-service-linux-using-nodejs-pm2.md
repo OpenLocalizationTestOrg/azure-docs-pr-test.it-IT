@@ -1,5 +1,5 @@
 ---
-title: Uso della configurazione PM2 per Node.js in App Web di Azure su Linux | Microsoft Docs
+title: configurazione aaaUsing PM2 per Node.js in Azure Web App in Linux | Documenti Microsoft
 description: Uso della configurazione PM2 per Node.js in App Web di Azure su Linux
 keywords: Servizio app di Azure, app Web, nodejs, PM2, Linux, OSS
 services: app-service
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 5002400a673e2c5cc4290bab488b839fb2282966
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 923783ffe656e01c43318899d1a656b553ebb5f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-pm2-configuration-for-nodejs-in-azure-web-app-on-linux"></a>Usare la configurazione PM2 per Node.js in App Web di Azure su Linux
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-Se si imposta lo stack di applicazioni su Node.js per App Web di Azure in Linux, è possibile ottenere l'opzione per impostare un file di avvio in Node.js, come illustrato nell'immagine seguente:
+Se si imposta hello applicazione stack tooNode.js per l'App Web di Azure in Linux, viene visualizzato hello opzione tooset un file di avvio Node.js come illustrato nella seguente immagine hello:
 
 ![Impostare un file di avvio Node.js][1]
 
-È possibile usare questa opzione per una delle attività seguenti:
+È possibile utilizzare questa opzione toodo uno di hello seguenti attività:
 
-* Specificare lo script di avvio per l'app Node.js (ad esempio: /bin/server.js).
-* Specificare il file di configurazione PM2 da usare per l'app Node.js (ad esempio: /foo/process.json).
+* Specificare uno script di avvio hello per l'app Node.js (ad esempio: /bin/server.js).
+* Specificare toouse di file di configurazione di hello PM2 per l'app Node.js (ad esempio: /foo/process.json).
   
   > [!NOTE]
-  > Per riavviare automaticamente i processi Node.js quando vengono modificati determinati file, usare la configurazione PM2. In caso contrario, l'applicazione non verrà riavviata quando riceve notifiche di modifica, ad esempio quando viene modificato il codice dell'applicazione.
+  > Se si desidera il toorestart processi Node.js automaticamente quando vengono modificate di determinati file, utilizzare configurazione PM2 hello. In caso contrario, l'applicazione non verrà riavviata quando riceve notifiche di modifica, ad esempio quando viene modificato il codice dell'applicazione.
   > 
   > 
 
-È possibile vedere la [documentazione del file di processo](http://pm2.keymetrics.io/docs/usage/application-declaration/) per tutte le opzioni. Il seguente è un esempio di codice che è possibile usare come file process.json:
+È possibile controllare hello Node.js [elaborare documentazione file](http://pm2.keymetrics.io/docs/usage/application-declaration/) per tutte le opzioni di hello, ma di seguito è riportato un esempio di ciò che è possibile utilizzare come file di process.json:
 
         {
           "name"        : "worker",
@@ -56,12 +56,12 @@ Se si imposta lo stack di applicazioni su Node.js per App Web di Azure in Linux,
           }
         }
 
-In questa configurazione è importante notare quanto segue:
+Toonote aspetti importanti in questa configurazione sono:
 
-* La proprietà "script" specifica lo script di avvio dell'applicazione.
-* La proprietà "instances" specifica quante istanze del processo del nodo avviare. Se si esegue l'applicazione in VM di dimensioni maggiori con più core, è consigliabile ottimizzare le risorse impostando un valore più elevato qui.
-* La matrice "watch" specifica tutti i file per cui si vuole riavviare il processo del nodo quando vengono modificati.
-* Per "watch_options", attualmente è necessario impostare "usePolling" su true a causa del modo in cui viene montato il contenuto dell'applicazione.
+* proprietà "script" Hello specifica script di avvio dell'applicazione.
+* proprietà di "instances" Hello specifica il numero di istanze di hello nodo processo toolaunch. Se si esegue l'applicazione in macchine virtuali di dimensioni maggiori con più core, è una buona idea toomaximize delle risorse impostando un valore più alto qui.
+* Hello "controllo" matrice specifica tutti i file che si desidera che toorestart hello nodo processo per quando vengono modificate.
+* Per "watch_options" hello, è attualmente necessario toospecify "usePolling" come true a causa delle modalità di hello che è montato il contenuto dell'applicazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Definizione di App Web di Azure in Linux](app-service-linux-intro.md)

@@ -1,6 +1,6 @@
 ---
 title: 'Dispositivo simulato e gateway Azure IoT: lezione 4: Archivio tabelle | Documentazione Microsoft'
-description: Salvare i messaggi da Intel NUC all'hub IoT, scriverli nell'archivio tabelle di Azure e quindi leggerli dal cloud.
+description: Salvare i messaggi dall'hub IoT di Intel NUC tooyour, scriverli archiviazione tabelle tooAzure e quindi leggerli dal cloud hello.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,36 +17,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: de5fae794c195132e2a487c0095845c756aa28e3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43e299d63bbbe10d4d867af25e700c3a7cc07c53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="read-messages-persisted-in-azure-table-storage"></a>Leggere i messaggi con salvataggio permanente nell'archivio tabelle di Azure
 
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
 
-- Eseguire l'applicazione di esempio gateway nel gateway che invia messaggi all'hub IoT.
-- Eseguire il codice di esempio nel computer host per leggere i messaggi nell'archivio tabelle di Azure.
+- Eseguire l'applicazione di esempio hello gateway nel gateway che invia l'hub IoT tooyour messaggi.
+- Eseguire il codice di esempio in messaggi tooread computer host nell'archiviazione tabelle di Azure.
 
-In caso di problemi, cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-gateway-kit-c-sim-troubleshooting.md).
+Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-gateway-kit-c-sim-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
 
-Come usare lo strumento gulp per eseguire il codice di esempio per leggere i messaggi nell'archivio tabelle di Azure.
+Hello toouse gulp come strumento toorun hello codice tooread messaggi di esempio nell'archiviazione tabelle di Azure.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-Sono state eseguite le attività seguenti:
+È stato hello quanto segue:
 
-- [Creazione dell'app per le funzioni di Azure e dell'account di archiviazione di Azure](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md).
-- [Esecuzione dell'applicazione di esempio gateway](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md).
+- [Creare app di Azure funzione hello e account di archiviazione di Azure hello](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md).
+- [Eseguire l'applicazione di esempio hello gateway](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md).
 - [Lettura di messaggi dall'hub IoT](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md).
 
 ## <a name="get-your-azure-storage-connection-strings"></a>Ottenere le stringhe di connessione di archiviazione di Azure
 
-All'inizio di questa lezione è stato creato un account di archiviazione di Azure. Per ottenere la stringa di connessione dell'account di archiviazione di Azure, usare i comandi seguenti:
+All'inizio di questa lezione è stato creato un account di archiviazione di Azure. stringa di connessione tooget hello dell'account di archiviazione di Azure hello, eseguire hello seguenti comandi:
 
 * Elencare tutti gli account di archiviazione.
 
@@ -60,13 +60,13 @@ az storage account list -g iot-gateway --query [].name
 az storage account show-connection-string -g iot-gateway -n {storage name}
 ```
 
-Usare `iot-gateway` come valore di `{resource group name}` se nella lezione 2 non si è modificato il valore.
+Utilizzare `iot-gateway` come valore hello `{resource group name}` se non si sono modificati valore hello nella lezione 2.
 
-## <a name="configure-the-device-connection"></a>Configurare la connessione del dispositivo
+## <a name="configure-hello-device-connection"></a>Configurare una connessione al dispositivo hello
 
-Aggiornare il file `config-azure.json` in modo che il codice di esempio eseguito nel computer host possa leggere i messaggi nell'archivio tabelle di Azure. Per configurare la connessione al dispositivo, seguire questa procedura.
+Hello aggiornamento `config-azure.json` file in modo che i codice di esempio hello in esecuzione nel computer host hello può leggere messaggio nell'archiviazione tabelle di Azure. tooconfigure hello connessione al dispositivo, seguire questi passaggi:
 
-1. Aprire il file di configurazione del dispositivo `config-azure.json` eseguendo questi comandi:
+1. File di configurazione dispositivo aprire hello `config-azure.json` eseguendo hello seguenti comandi:
 
    ```bash
    # For Windows command prompt
@@ -77,26 +77,26 @@ Aggiornare il file `config-azure.json` in modo che il codice di esempio eseguito
 
    ![configurazione](media/iot-hub-gateway-kit-lessons/lesson4/config_azure.png)
 
-2. Sostituire `[Azure storage connection string]` con la stringa di connessione di archiviazione di Azure ottenuta.
+2. Sostituire `[Azure storage connection string]` con hello stringa di connessione di archiviazione di Azure che è stato ottenuto.
 
    `[IoT hub connection string]` dovrebbe già essere stata sostituita nella sezione [Leggere messaggi dall'hub IoT di Azure](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md) della lezione 3.
 
 ## <a name="read-messages-in-your-azure-table-storage"></a>Leggere i messaggi nell'archivio tabelle di Azure
 
-Eseguire l'applicazione di esempio gateway e leggere i messaggi usando il comando seguente:
+Eseguire l'applicazione di esempio gateway hello e leggere i messaggi di archiviazione di tabelle di Azure da hello comando seguente:
 
 ```bash
 gulp run --table-storage
 ```
 
-L'hub IoT attiva l'applicazione per le funzioni di Azure per salvare il messaggio nell'archivio tabelle di Azure quando arriva il nuovo messaggio.
-Il comando `gulp run` esegue l'applicazione di esempio gateway che invia i messaggi all'hub IoT. Con il parametro `table-storage`, genera anche un processo figlio per ricevere il messaggio salvato nell'archivio tabelle di Azure.
+L'hub IoT attiva il messaggio di toosave applicazione Azure funzione nell'archiviazione tabelle Azure quando arriva un messaggio nuovo.
+Hello `gulp run` comando esegue l'applicazione di esempio gateway che invia l'hub IoT tooyour messaggi. Con `table-storage` parametro, anche genera un hello tooreceive del processo figlio salvato messaggio nell'archiviazione tabelle di Azure.
 
-I messaggi inviati e ricevuti vengono visualizzati tutti immediatamente nella stessa finestra della console nel computer host. L'istanza dell'applicazione di esempio terminerà automaticamente in 40 secondi.
+messaggi Hello che vengono inviati e ricevuti sono tutti hello visualizzati immediatamente nella stessa finestra di console hello computer host. istanza di applicazione di esempio Hello verrà terminato automaticamente 40 secondi.
 
    ![Lettura gulp](media/iot-hub-gateway-kit-lessons/lesson4/gulp_run_read_table_simudev.png)
 
 
 ## <a name="summary"></a>Riepilogo
 
-È stato eseguito il codice di esempio per leggere i messaggi nell'archivio tabelle di Azure, salvati dall'applicazione per le funzioni di Azure.
+Eseguire i messaggi hello hello esempio codice tooread nell'archiviazione tabelle di Azure salvato dall'applicazione di funzione di Azure.

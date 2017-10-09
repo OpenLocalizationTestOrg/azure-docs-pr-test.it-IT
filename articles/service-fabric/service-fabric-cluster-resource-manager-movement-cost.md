@@ -14,23 +14,23 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 5de07c259d1d327d0211338c2911804445dd6b60
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 65d4ac73efffcf7b25b1e95da6f9012a9238cb75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-movement-cost"></a>Costo di spostamento dei servizi
-Un fattore preso in considerazione da Cluster Resource Manager di Service Fabric nel tentativo di determinare le modifiche da apportare a un cluster è il costo di tali modifiche. Il concetto di "costo" viene compensato sulla base di quanto il cluster può essere migliorato. Il factoring del costo avviene durante lo spostamento di servizi di bilanciamento del carico, la deframmentazione e altri requisiti. L'obiettivo è soddisfare i requisiti nel modo meno problematico o costoso. 
+Un fattore che hello gestione delle risorse Cluster dell'infrastruttura del servizio prende in considerazione durante il tentativo toodetermine quali cluster tooa toomake di modifiche è il costo di hello di tali modifiche. il concetto di Hello "costo" verrà scambiato con quanti cluster hello possono essere migliorate. Il factoring del costo avviene durante lo spostamento di servizi di bilanciamento del carico, la deframmentazione e altri requisiti. obiettivo di Hello è requisiti hello toomeet hello almeno modo dannose o costosa. 
 
-Lo spostamento dei servizi comporta costi, come minimo in termini di tempo della CPU e ampiezza di banda della rete. Per i servizi con stato, è necessario copiare lo stato di tali servizi, consumando disco e memoria aggiuntivi. La riduzione del costo delle soluzioni offerta da Cluster Resource Manager di Azure Service Fabric contribuisce a garantire che le risorse del cluster non vengono usate inutilmente. Ma non bisogna neppure ignorare le soluzioni in grado di migliorare significativamente l'allocazione delle risorse del cluster.
+Lo spostamento dei servizi comporta costi, come minimo in termini di tempo della CPU e ampiezza di banda della rete. Per i servizi con stati, è necessario copiando hello stato di tali servizi, utilizzo disco e memoria aggiuntiva. Ridurre il costo di hello di soluzioni che hello gestione delle risorse Cluster di Azure Service Fabric è dotato della contribuisce a garantire che le risorse del cluster di hello non impiegate inutilmente. Tuttavia, non si desideri tooignore soluzioni che possono migliorare notevolmente allocazione hello di risorse cluster hello.
 
-Cluster Resource Manager prevede due modalità di calcolo dei costi e del relativo contenimento quando tenta di gestire il cluster. Il primo meccanismo è semplicemente il conteggio ogni spostamento che verrebbe eseguito. Se due soluzioni vengono generate in modo bilanciato, ovvero con un punteggio analogo, Cluster Resource Manager sceglie quella con il costo minore (numero totale degli spostamenti).
+Gestione delle risorse Cluster Hello ha due modalità di calcolo dei costi e servirsi mentre tenta di cluster hello toomanage. primo meccanismo Hello è semplicemente il conteggio ogni spostamento che renderebbe. Se vengono generate due soluzioni con hello stesso bilancia (punteggio), quindi hello gestione delle risorse Cluster preferito hello uno con costo più basso (numero totale degli spostamenti) hello.
 
-Questa strategia funziona bene. Ma come con i carichi predefiniti o statici, è improbabile che in qualsiasi sistema complesso tutti gli spostamenti siano uguali. Alcuni possono risultare molto più costosi.
+Questa strategia funziona bene. Ma come con i carichi predefiniti o statici, è improbabile che in qualsiasi sistema complesso tutti gli spostamenti siano uguali. Alcuni sono probabilmente toobe molto più costoso.
 
 ## <a name="setting-move-costs"></a>Impostazione dei costi di spostamento 
-È possibile specificare il costo predefinito degli spostamenti di un servizio al momento della creazione:
+Quando viene creato, è possibile specificare hello costo predefinito dello spostamento di un servizio:
 
 PowerShell:
 
@@ -43,12 +43,12 @@ C#:
 ```csharp
 FabricClient fabricClient = new FabricClient();
 StatefulServiceDescription serviceDescription = new StatefulServiceDescription();
-//set up the rest of the ServiceDescription
+//set up hello rest of hello ServiceDescription
 serviceDescription.DefaultMoveCost = MoveCost.Medium;
 await fabricClient.ServiceManager.CreateServiceAsync(serviceDescription);
 ```
 
-È anche possibile specificare o aggiornare in modo dinamico MoveCost per un servizio dopo averlo creato: 
+È anche possibile specificare o aggiornare in modo dinamico MoveCost per un servizio dopo aver creato il servizio hello: 
 
 PowerShell: 
 
@@ -66,7 +66,7 @@ await fabricClient.ServiceManager.UpdateServiceAsync(new Uri("fabric:/AppName/Se
 
 ## <a name="dynamically-specifying-move-cost-on-a-per-replica-basis"></a>Specificare in modo dinamico il costo di spostamento su base di replica
 
-I precedenti frammenti di codice sono tutti per la specifica di MoveCost contemporaneamente per un intero servizio all'esterno del servizio stesso. Tuttavia, il costo di spostamento è maggiormente utile quando questo cambia per un servizio specifico durante la sua durata. Poiché i servizi stessi sono a conoscenza del costo del loro spostamento in un determinato momento, è disponibile un'API per i servizi che notifica i singoli costi di spostamento in fase di runtime. 
+Hello frammenti di codice precedente sono tutti per specificare MoveCost per un intero servizio contemporaneamente dal servizio esterno hello stesso. Tuttavia, spostare il costo è più utile è quando cambia costo di spostamento hello di un oggetto servizio specifico per la sua durata. Poiché hello servizi probabilmente che hello migliore di come costose sono toomove un determinato momento, è un'API per servizi tooreport i propri singolo spostamento dei costi in fase di esecuzione. 
 
 C#:
 
@@ -75,20 +75,20 @@ this.Partition.ReportMoveCost(MoveCost.Medium);
 ```
 
 ## <a name="impact-of-move-cost"></a>Impatto del costo di spostamento
-MoveCost ha quattro livelli: Zero, Low, Medium e High. Ad eccezione del livello Zero, tali livelli sono correlati. Se un costo di spostamento è di livello Zero, significa che lo spostamento è gratuito e non deve influire sul punteggio della soluzione. L'impostazione del costo di spostamento su High *non* garantisce che la replica rimanga in un'unica posizione.
+MoveCost ha quattro livelli: Zero, Low, Medium e High. MoveCosts sono relativo tooeach altri, ad eccezione di Zero. Costo pari a zero spostamento significa che lo spostamento è gratuito e deve non inclusi nel conteggio per il punteggio di hello della soluzione hello. Impostazione Sposta costo tooHigh *non* garantisce che la replica hello rimane in un'unica posizione.
 
 <center>
 ![Costo di spostamento come fattore da considerare per la selezione delle repliche da spostare][Image1]
 </center>
 
-MoveCost consente di trovare le soluzioni che causano un'interruzione complessivamente minima e che sono più facili da realizzare garantendo allo stesso tempo un bilanciamento equivalente. Il concetto di costo di un servizio può essere correlato a molti aspetti. I fattori più comuni per il calcolo del costo di spostamento sono:
+MoveCost consente di individuare soluzioni hello che causa hello complessiva di un'interruzione minima del e è ancora che pervengono a bilanciare equivalente tooachieve più semplice. Nozione di un servizio di costo può essere di tipo toomany relativo. Hello più comuni per il calcolo del costo di spostamento sono fattori:
 
-- La quantità di stato o dati che il servizio deve spostare.
-- Il costo di disconnessione dei client. Lo spostamento di una replica primaria è solitamente più costoso dello spostamento di una replica secondaria.
-- Il costo di interruzione di un'operazione in corso. Alcune operazioni a livello di archivio dati o operazioni eseguite in risposta a una chiamata del client sono costose. Dopo un certo punto è preferibile non arrestarle se non è indispensabile. Durante l'esecuzione dell'operazione, aumentare il costo di spostamento di questo oggetto del servizio per ridurre la probabilità che si sposti. Al termine dell'operazione, reimpostare il costo sul valore normale.
+- quantità di Hello di dati che il servizio di hello è toomove o dello stato.
+- costo di Hello di disconnessione dei client. Lo spostamento di una replica primaria è in genere più costoso costo hello dello spostamento di una replica secondaria.
+- costo di Hello di interrompere un'operazione in corso. Alcune operazioni dati hello archiviano livello o operazioni eseguite nella chiamata di risposta tooa client sono dispendiose. Dopo un certo punto, non si desidera toostop, se non è necessario. In modo durante l'operazione di hello in corso, aumento dei costi di spostamento hello di probabilità hello tooreduce oggetto servizio che si sposta. Al termine dell'operazione di hello, impostare hello costo indietro toonormal.
 
 ## <a name="enabling-move-cost-in-your-cluster"></a>Abilitazione del costo di spostamento del cluster
-Per considerare il MoveCosts più granulare, è necessario abilitare MoveCost nel cluster. Senza questa impostazione, viene usata la modalità predefinita per conteggio degli spostamenti per calcolare MoveCost e i report di MoveCost vengono ignorati.
+Affinché hello più granulare MoveCosts toobe, prendere in considerazione, MoveCost deve essere abilitata nel cluster. Senza questa impostazione, modalità predefinita di hello del conteggio spostamenti viene utilizzata per calcolare MoveCost e MoveCost report vengono ignorati.
 
 
 ClusterManifest.xml:
@@ -116,7 +116,7 @@ mediante ClusterConfig.json per le distribuzioni autonome o Template.json per i 
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Cluster Resource Manger di Service Fabric usa le repliche per gestire il consumo e la capacità del cluster. Per altre informazioni sulle metriche e sulla relativa configurazione, consultare [Gestione dell'utilizzo delle risorse e del carico in Service Fabric con le metriche](service-fabric-cluster-resource-manager-metrics.md).
-- Per informazioni sul modo in cui Cluster Resource Manager gestisce e bilancia il carico nel cluster, vedere [Bilanciamento del carico nel cluster di Service Fabric](service-fabric-cluster-resource-manager-balancing.md).
+- Gestore di risorse Cluster dell'infrastruttura del servizio utilizza consumo toomanage metriche e la capacità in cluster hello. ulteriori informazioni sulle metriche toolearn come tooconfigure, archiviazione ed estrazione [consumo delle risorse di gestione e il carico in Service Fabric con le metriche](service-fabric-cluster-resource-manager-metrics.md).
+- toolearn sulla modalità di gestione delle risorse Cluster hello gestisce e bilancia il carico nel cluster hello, estrarre [bilanciamento del carico del cluster di Service Fabric](service-fabric-cluster-resource-manager-balancing.md).
 
 [Image1]:./media/service-fabric-cluster-resource-manager-movement-cost/service-most-cost-example.png

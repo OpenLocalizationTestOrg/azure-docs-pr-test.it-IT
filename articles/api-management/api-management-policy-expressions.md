@@ -1,5 +1,5 @@
 ---
-title: Espressioni di criteri di Gestione API di Azure | Microsoft Docs
+title: espressioni di criteri di gestione API aaaAzure | Documenti Microsoft
 description: Informazioni sulle espressioni di criteri in Gestione API di Azure.
 services: api-management
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: d96dde8c74141d000c1f7c5fd9ef624ff5e46953
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79da0d6ca3963307ec811a33aaac3d63a7abd97d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-policy-expressions"></a>Espressioni di criteri di Gestione API
-La sintassi delle espressioni di criteri è C# 6.0. Ogni espressione ha accesso alla variabile [context](api-management-policy-expressions.md#ContextVariables) fornita implicitamente e a un [subset](api-management-policy-expressions.md#CLRTypes) autorizzato di tipi di .NET Framework.  
+La sintassi delle espressioni di criteri è C# 6.0. Ogni espressione ha accesso toohello fornito in modo implicito [contesto](api-management-policy-expressions.md#ContextVariables) variabile e un consentiti [subset](api-management-policy-expressions.md#CLRTypes) dei tipi .NET Framework.  
   
 > [!NOTE]
->  Per ulteriori informazioni sulle espressioni di criteri, vedere il video [Espressioni di criteri](https://azure.microsoft.com/documentation/videos/policy-expressions-in-azure-api-management/).  
+>  Per ulteriori informazioni sulle espressioni di criteri, vedere hello [espressioni di criteri](https://azure.microsoft.com/documentation/videos/policy-expressions-in-azure-api-management/) video.  
 >   
->  Per una dimostrazione relativa alla configurazione dei criteri usando le espressioni, vedere l'[episodio 177 di Cloud Cover su altre funzionalità di Gestione API con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/). Il video include le seguenti dimostrazioni di espressioni di criteri.  
+>  Per una dimostrazione relativa alla configurazione dei criteri usando le espressioni, vedere l'[episodio 177 di Cloud Cover su altre funzionalità di Gestione API con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/). In questo video contiene hello seguito alle dimostrazioni di espressione di criteri.  
 >   
->  -   10:30: informazioni su come applicare criteri al livello dell'API per fornire informazioni di contesto al servizio back-end usando i criteri [Imposta parametro di stringa della query](api-management-transformation-policies.md#SetQueryStringParameter) e [Imposta intestazione HTTP](api-management-transformation-policies.md#SetHTTPheader). A 12:10 minuti viene illustrata una dimostrazione su come chiamare un'operazione nel portale per sviluppatori, dove è possibile vedere all'opera i criteri stessi.  
-> -   13:50: informazioni su come usare il criterio [Convalida JWT](api-management-access-restriction-policies.md#ValidateJWT) per preautorizzare l'accesso alle operazioni in base alle attestazioni dei token. Passare a 15:00 minuti per vedere i criteri configurati nell'editor dei criteri e quindi a 18:50 minuti per una dimostrazione della chiamata di un'operazione dal portale per sviluppatori, con e senza il token di autorizzazione richiesto.  
-> -   21:00: informazioni su come usare una traccia di [Controllo API](https://azure.microsoft.com/documentation/articles/api-management-howto-api-inspector/) per visualizzare il modo in cui i criteri vengono valutati e le valutazioni stesse.   
-> -   25:25: informazioni su come usare le espressioni di criteri con i criteri [Recupera dalla cache](api-management-caching-policies.md#GetFromCache) e [Archivia nella cache](api-management-caching-policies.md#StoreToCache) per configurare la durata della memorizzazione nella cache di Gestione API corrispondente alla memorizzazione delle risposte nella cache del serivzio back-end, come specificato dalla direttiva `Cache-Control` del servizio in questione.  
-> -   34:30: informazioni su come eseguire operazioni di filtro sui contenuti rimuovendo elementi dati dalla risposta ricevuta dal servizio back-end usando i criteri [Flusso di controllo](api-management-advanced-policies.md#choose) e [Imposta corpo](api-management-transformation-policies.md#SetBody). Andare al minuto 31:50 per visualizzare una panoramica di [The Dark Sky Forecast API](https://developer.forecast.io/), l'API usata in questa dimostrazione.  
-> -   Le istruzioni dei criteri usate in questo video sono disponibili nel repository di github [api-management-samples/policies](https://github.com/Azure/api-management-samples/tree/master/policies).  
+>  -   10:30 - vedere come il criterio tooapply hello API livello toosupply contesto informazioni toohello back-end servizio utilizzando hello [impostare il parametro di stringa di query](api-management-transformation-policies.md#SetQueryStringParameter) e [intestazione HTTP impostare](api-management-transformation-policies.md#SetHTTPheader) criteri. 12:10 è una dimostrazione di chiamata di un'operazione nel portale per sviluppatori hello in cui è possibile visualizzare questi criteri al lavoro.  
+> -   13:50 - vedere come hello toouse [convalidare JWT](api-management-access-restriction-policies.md#ValidateJWT) toopre criteri-autorizzare l'accesso toooperations basata sulle attestazioni di token. Avanzamento rapido too15:00 criteri hello toosee configurati nell'editor Criteri di hello e quindi too18:50 per una dimostrazione di chiamata di un'operazione dal portale per sviluppatori di hello con e senza hello necessari token di autorizzazione.  
+> -   Vedere 21:00 - come toouse un [API controllo](https://azure.microsoft.com/documentation/articles/api-management-howto-api-inspector/) toosee come criteri vengono valutati e risultati delle valutazioni hello hello di traccia.  
+> -   25:25 - vedere come espressioni di criteri toouse con hello [ottenere dalla cache](api-management-caching-policies.md#GetFromCache) e [archivio toocache](api-management-caching-policies.md#StoreToCache) risposta di gestione API tooconfigure criteri che corrispondenze hello risposta la memorizzazione nella cache di hello permanenza nella cache il servizio back-end come specificato da hello backup del servizio `Cache-Control` direttiva.  
+> -   34:30 - vedere come contenuto tooperform applicando un filtro per la rimozione degli elementi di dati dalla risposta hello ricevuto dal servizio back-end hello utilizzando hello [flusso di controllo](api-management-advanced-policies.md#choose) e [impostare corpo](api-management-transformation-policies.md#SetBody) criteri. Inizia dal 31:50 toosee Cenni preliminari [hello scuro Sky previsione API](https://developer.forecast.io/) utilizzato per questa dimostrazione.  
+> -   le istruzioni dei criteri di hello toodownload utilizzate in questo video, vedere hello [esempi di gestione api/criteri](https://github.com/Azure/api-management-samples/tree/master/policies) repository github.  
   
   
 ##  <a name="Syntax"></a> Sintassi  
@@ -68,13 +68,13 @@ La sintassi delle espressioni di criteri è C# 6.0. Ogni espressione ha accesso 
 ```  
   
 ##  <a name="PolicyExpressionsUsage"></a> Uso  
- Le espressioni possono essere usate come valori di attributo o valori di testo in uno qualsiasi dei [criteri](api-management-policies.md) di Gestione API, salvo diversamente specificato dai criteri.  
+ Espressioni possono essere utilizzate come valori di attributo o valori di testo in uno qualsiasi di hello gestione API [criteri](api-management-policies.md), a meno che il riferimento di criteri di hello specifica in caso contrario.  
   
 > [!IMPORTANT]
->  Si noti che quando si usano espressioni di criteri, è prevista solo una verifica limitata di tali espressioni quando i criteri vengono definiti. Poiché le espressioni vengono eseguite dal gateway al momento del runtime nella pipeline in entrata o in uscita, eventuali eccezioni di runtime generate dalle espressioni di criteri porteranno a un errore di runtime nella chiamata dell'API.  
+>  Si noti che quando si usano le espressioni di criteri, esiste solo limitata verifica hello delle espressioni di criteri quando il criterio di hello è definito. Poiché le espressioni di hello vengono eseguite in fase di esecuzione nella pipeline in ingresso o in uscita di hello dal gateway hello, eventuali eccezioni di runtime generate da espressioni di criteri hello comporterà un errore di runtime nella chiamata API hello.  
   
-##  <a name="CLRTypes"></a> Tipi di .NET framework consentiti nelle espressioni di criteri  
- Nella tabella seguente sono elencati i tipi di .NET Framework e i relativi membri consentiti nelle espressioni di criteri.  
+##  <a name="CLRTypes"></a> Tipi di .NET Framework consentiti nelle espressioni di criteri  
+ Hello nella tabella seguente sono elencati i tipi di .NET Framework hello e i membri che sono consentiti nelle espressioni di criteri.  
   
 |Tipo CLR|Metodi supportati|  
 |--------------|-----------------------|  
@@ -168,7 +168,7 @@ La sintassi delle espressioni di criteri è C# 6.0. Ogni espressione ha accesso 
 |System.Xml.XmlNodeType|Tutti|  
   
 ##  <a name="ContextVariables"></a> Variabile di contesto  
- Una variabile denominata `context` è disponibile in modo implicito in ogni [espressione](api-management-policy-expressions.md#Syntax) di criteri. I suoi membri forniscono informazioni riguardanti `\request`. Tutti i membri di `context` sono di sola lettura.  
+ Una variabile denominata `context` è disponibile in modo implicito in ogni [espressione](api-management-policy-expressions.md#Syntax) di criteri. I suoi membri forniscono informazioni pertinenti toohello `\request`. Tutti i hello `context` membri sono di sola lettura.  
   
 |Variabile di contesto|Metodi, proprietà e valori di parametro consentiti|  
 |----------------------|-------------------------------------------------------|  
@@ -179,26 +179,26 @@ La sintassi delle espressioni di criteri è C# 6.0. Ogni espressione ha accesso 
 |context.Operation|Id: string<br /><br /> Method: string<br /><br /> Name: string<br /><br /> UrlTemplate: string|  
 |context.Product|Apis: IEnumerable<IApi\><br /><br /> ApprovalRequired: bool<br /><br /> Groups: IEnumerable<IGroup\><br /><br /> Id: string<br /><br /> Name: string<br /><br /> State: enum ProductState {NotPublished, Published}<br /><br /> SubscriptionLimit: int?<br /><br /> SubscriptionRequired: bool|  
 |context.Request|Body: IMessageBody<br /><br /> Certificate: System.Security.Cryptography.X509Certificates.X509Certificate2<br /><br /> Headers: IReadOnlyDictionary<string, string[]><br /><br /> IpAddress: string<br /><br /> MatchedParameters: IReadOnlyDictionary<string, string><br /><br /> Method: string<br /><br /> OriginalUrl:IUrl<br /><br /> Url: IUrl|  
-|string context.Request.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> Restituisce valori di intestazione di richiesta separati da virgole oppure `defaultValue` se non viene trovata l'intestazione.|  
+|string context.Request.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> Restituisce separati da virgole i valori di intestazione di richiesta o `defaultValue` se non viene trovata intestazione hello.|  
 |context.Response|Body: IMessageBody<br /><br /> Headers: IReadOnlyDictionary<string, string[]><br /><br /> StatusCode: int<br /><br /> StatusReason: string|  
-|string context.Response.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> Restituisce valori di intestazione di risposta separati da virgole oppure `defaultValue` se non viene trovata l'intestazione.|  
+|string context.Response.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> Restituisce i valori delle intestazioni di risposta separati da virgole o `defaultValue` se non viene trovata intestazione hello.|  
 |context.Subscription|CreatedTime: DateTime<br /><br /> EndDate: DateTime?<br /><br /> Id: string<br /><br /> Key: string<br /><br /> Name: string<br /><br /> PrimaryKey: string<br /><br /> SecondaryKey: string<br /><br /> StartDate: DateTime?|  
 |context.User|Email: string<br /><br /> FirstName: string<br /><br /> Groups: IEnumerable<IGroup\><br /><br /> Id: string<br /><br /> Identities: IEnumerable<IUserIdentity\><br /><br /> LastName: string<br /><br /> Note: string<br /><br /> RegistrationDate: DateTime|  
 |IApi|Id: string<br /><br /> Name: string<br /><br /> Path: string<br /><br /> Protocols: IEnumerable<string\><br /><br /> ServiceUrl: IUrl<br /><br /> SubscriptionKeyParameterNames: ISubscriptionKeyParameterNames|  
 |IGroup|Id: string<br /><br /> Name: string|  
-|IMessageBody|As<T\>(preserveContent: bool = false): Where T: string, JObject, JToken, JArray, XNode, XElement, XDocument<br /><br /> I metodi `context.Request.Body.As<T>` e `context.Response.Body.As<T>` vengono usati per leggere il corpo dei messaggi di richiesta e di risposta in un tipo `T` specificato. Per impostazione predefinita, il metodo usa il flusso del corpo del messaggio originale e lo rende non disponibile dopo aver restituito un valore. Per evitarlo, far sì che il metodo venga eseguito su una copia del flusso del corpo impostando il parametro `preserveContent` su `true`. Per un esempio, vedere [qui](api-management-transformation-policies.md#SetBody).|  
+|IMessageBody|As<T\>(preserveContent: bool = false): Where T: string, JObject, JToken, JArray, XNode, XElement, XDocument<br /><br /> Hello `context.Request.Body.As<T>` e `context.Response.Body.As<T>` metodi vengono utilizzati tooread organismi in un tipo specificato di un messaggio di richiesta e risposta `T`. Per impostazione predefinita hello metodo utilizza hello originale messaggio flusso del corpo e reneders disponibile dopo di esso restituisce. tooavoid che mediante il metodo hello operano su una copia del flusso del corpo hello, hello set `preserveContent` parametro troppo`true`. Passare [qui](api-management-transformation-policies.md#SetBody) toosee un esempio.|  
 |IUrl|Host: string<br /><br /> Path: string<br /><br /> Port: int<br /><br /> Query: IReadOnlyDictionary<string, string[]><br /><br /> QueryString: string<br /><br /> Scheme: string|  
 |IUserIdentity|Id: string<br /><br /> Provider: string|  
 |ISubscriptionKeyParameterNames|Header: string<br /><br /> Query: string|  
-|string IUrl.Query.GetValueOrDefault(queryParameterName: string, defaultValue: string)|queryParameterName: string<br /><br /> defaultValue: string<br /><br /> Restituisce valori di parametro separati da virgole oppure `defaultValue` se il parametro non viene trovato.|  
-|T context.Variables.GetValueOrDefault<T\>(variableName: string, defaultValue: T)|variableName: string<br /><br /> defaultValue: T<br /><br /> Restituisce il valore della variabile nel tipo `T` oppure `defaultValue` se la variabile non viene trovata.<br /><br /> Questo metodo genera un'eccezione se il tipo specificato non corrisponde al tipo effettivo della variabile restituita.|  
-|BasicAuthCredentials AsBasic(input: this string)|input: string<br /><br /> Se il parametro di input contiene un valore di intestazione di richiesta di autorizzazione Autenticazione HTTP di base valido, il metodo restituisce un oggetto di tipo `BasicAuthCredentials`; in caso contrario restituisce un valore null.|  
-|bool TryParseBasic(input: this string, result: out BasicAuthCredentials)|input: string<br /><br /> result: out BasicAuthCredentials<br /><br /> Se il parametro di input contiene un valore di intestazione di richiesta di autorizzazione Autenticazione HTTP di base valido, il metodo restituisce un oggetto di tipo `true` e il parametro risultante contiene un valore di tipo `BasicAuthCredentials`; in caso contrario restituisce `false`.|  
+|string IUrl.Query.GetValueOrDefault(queryParameterName: string, defaultValue: string)|queryParameterName: string<br /><br /> defaultValue: string<br /><br /> Restituisce separati da virgole i valori di parametro di query o `defaultValue` se non viene trovato il parametro hello.|  
+|T context.Variables.GetValueOrDefault<T\>(variableName: string, defaultValue: T)|variableName: string<br /><br /> defaultValue: T<br /><br /> Restituisce il valore della variabile cast tootype `T` o `defaultValue` se hello variabile non viene trovata.<br /><br /> Questo metodo genera un'eccezione se hello tipo specificato non corrisponde hello al tipo effettivo di hello restituito variabile.|  
+|BasicAuthCredentials AsBasic(input: this string)|input: string<br /><br /> Se il parametro di input hello contiene un valore di intestazione di richiesta di autorizzazione di autenticazione HTTP di base valido, il metodo hello restituisce un oggetto di tipo `BasicAuthCredentials`; in caso contrario hello restituisce null.|  
+|bool TryParseBasic(input: this string, result: out BasicAuthCredentials)|input: string<br /><br /> result: out BasicAuthCredentials<br /><br /> Se il parametro di input hello contiene un valore di intestazione di richiesta di autorizzazione di autenticazione HTTP di base valido, il metodo di hello restituisce `true` e parametro hello del risultato contiene un valore di tipo `BasicAuthCredentials`; in caso contrario metodo hello restituisce `false`.|  
 |BasicAuthCredentials|Password: string<br /><br /> UserId: string|  
-|Jwt AsJwt(input: this string)|input: string<br /><br /> Se il parametro di input contiene un valore di token JWT valido, il metodo restituisce un oggetto di tipo `Jwt`; in caso contrario restituisce `null`.|  
-|bool TryParseJwt(input: this string, result: out Jwt)|input: string<br /><br /> result: out Jwt<br /><br /> Se il parametro di input contiene un valore di token JWT valido, il metodo restituisce `true` e il parametro del risultato contiene un valore di tipo `Jwt`; in caso contrario il metodo restituisce `false`.|  
+|Jwt AsJwt(input: this string)|input: string<br /><br /> Se il parametro di input hello contiene un valore di token JWT valido, il metodo hello restituisce un oggetto di tipo `Jwt`; in caso contrario metodo hello restituisce `null`.|  
+|bool TryParseJwt(input: this string, result: out Jwt)|input: string<br /><br /> result: out Jwt<br /><br /> Se il parametro di input hello contiene un valore di token JWT valido, il metodo di hello restituisce `true` e parametro hello del risultato contiene un valore di tipo `Jwt`; in caso contrario metodo hello restituisce `false`.|  
 |Jwt|Algorithm: string<br /><br /> Audience: IEnumerable<string\><br /><br /> Claims: IReadOnlyDictionary<string, string[]><br /><br /> ExpirationTime: DateTime?<br /><br /> Id: string<br /><br /> Issuer: string<br /><br /> NotBefore: DateTime?<br /><br /> Subject: string<br /><br /> Type: string|  
-|string Jwt.Claims.GetValueOrDefault(claimName: string, defaultValue: string)|claimName: string<br /><br /> defaultValue: string<br /><br /> Restituisce valori di attestazione separati da virgole oppure `defaultValue` se non viene trovata l'intestazione.|
+|string Jwt.Claims.GetValueOrDefault(claimName: string, defaultValue: string)|claimName: string<br /><br /> defaultValue: string<br /><br /> Restituisce i valori attestazione separati da virgole o `defaultValue` se non viene trovata intestazione hello.|
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni sull'uso dei criteri, vedere [Criteri di Gestione API](api-management-howto-policies.md).  

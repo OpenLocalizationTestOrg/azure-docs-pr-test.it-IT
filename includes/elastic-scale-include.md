@@ -1,0 +1,2 @@
+## <a name="additional-resources"></a>Risorse aggiuntive
+Se non si usano gli strumenti di database elastici, vedere la [Guida introduttiva](../articles/sql-database/sql-database-elastic-scale-get-started.md).  Per domande, rivolgersi toous su hello [forum di Database SQL](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted) e per le richieste di funzionalità, aggiungerli toohello [forum sul feedback su Database SQL](https://feedback.azure.com/forums/217321-sql-database/).

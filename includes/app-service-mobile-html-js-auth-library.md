@@ -1,8 +1,8 @@
 ### <a name="server-auth"></a>Procedura: Eseguire l'autenticazione con un provider (flusso server)
-Per consentire alle app per dispositivi mobili di gestire il processo di autenticazione nella propria app, è necessario effettuare la registrazione dell'app con il provider di identità. Nel proprio servizio app di Azure è quindi necessario configurare l'ID e il segreto dell'applicazione forniti dal provider.
-Per altre informazioni, vedere l'esercitazione [Aggiungere l'autenticazione all'app di Servizi mobili](../articles/app-service-mobile/app-service-mobile-cordova-get-started-users.md).
+App per dispositivi mobili toohave gestire il processo di autenticazione hello nell'app, è necessario registrare l'app con il provider di identità. Quindi il servizio App di Azure, è necessario tooconfigure hello ID dell'applicazione e il segreto fornite dal provider.
+Per ulteriori informazioni, vedere l'esercitazione hello [Aggiungi autenticazione tooyour app](../articles/app-service-mobile/app-service-mobile-cordova-get-started-users.md).
 
-Dopo aver effettuato la registrazione del provider di identità, chiamare il metodo `.login()` con il nome del provider. Per accedere ad esempio con Facebook, utilizzare il codice seguente:
+Dopo aver registrato il provider di identità, chiamare hello `.login()` metodo con nome hello del provider. Ad esempio, toologin con Facebook utilizzare hello seguente codice:
 
 ```
 client.login("facebook").done(function (results) {
@@ -12,16 +12,16 @@ client.login("facebook").done(function (results) {
 });
 ```
 
-I valori validi per il provider sono "aad", "facebook", "google", "microsoftaccount" e "twitter".
+i valori validi per il provider di hello Hello sono 'aad', 'facebook', 'google', 'microsoftaccount' e 'twitter'.
 
 > [!NOTE]
-> L'autenticazione di Google attualmente non funziona tramite Flusso server.  Per eseguire l'autenticazione con Google, è necessario usare un [metodo di flusso client](#client-auth).
+> L'autenticazione di Google attualmente non funziona tramite Flusso server.  tooauthenticate con Google, è necessario utilizzare un [metodo flusso client](#client-auth).
 
-In questo caso, il Servizio app di Azure gestisce il flusso di autenticazione OAuth 2.0.  Viene visualizzata la pagina di accesso al provider selezionato e viene generato un token di autenticazione del Servizio app dopo aver eseguito correttamente l'accesso con il provider di identità. La funzione login, una volta completata, restituisce un oggetto JSON che espone l'ID utente e il token di autenticazione del servizio app rispettivamente nei campi userId e authenticationToken. È possibile memorizzare questo token nella cache e riutilizzarlo fino alla scadenza.
+In questo caso, il servizio App di Azure gestisce il flusso di autenticazione OAuth 2.0 hello.  Visualizza la pagina di accesso hello del provider selezionato hello e genera un token di autenticazione del servizio App dopo aver eseguito correttamente l'accesso con provider di identità hello. funzione di accesso Hello, al termine, restituisce un oggetto JSON che espone sia l'ID utente hello e App servizio token di autenticazione nei campi di ID utente e authenticationToken hello, rispettivamente. È possibile memorizzare questo token nella cache e riutilizzarlo fino alla scadenza.
 
 ###<a name="client-auth"></a>Procedura: Eseguire l'autenticazione con un provider (flusso client)
 
-L'app può anche contattare il provider di identità in modo indipendente e quindi fornire il token restituito al servizio app per l'autenticazione. Mediante il flusso client è possibile consentire agli utenti di effettuare l'accesso un'unica volta o recuperare dal provider di identità dati utente aggiuntivi.
+L'app può anche in modo indipendente, contattare il provider di identità hello e fornire hello restituiti token tooyour servizio App per l'autenticazione. Questo flusso client consente un'esperienza di accesso singola per gli utenti o i dati utente aggiuntivi tooretrieve dal provider di identità hello tooprovide.
 
 #### <a name="social-authentication-basic-example"></a>Esempio di base di autenticazione tramite social network
 
@@ -38,11 +38,11 @@ client.login(
 });
 
 ```
-In questo esempio si presuppone che il token fornito dall'SDK del rispettivo provider sia archiviato nella variabile token.
+Questo esempio si presuppone che token hello fornito dal provider rispettivi hello SDK viene archiviato nella variabile token hello.
 
 #### <a name="microsoft-account-example"></a>Esempio di account Microsoft
 
-Nell'esempio seguente viene utilizzato Live SDK, che supporta Single-Sign-On per le app di Windows Store tramite un account Microsoft:
+Hello seguente viene illustrato come utilizzare hello Live SDK, che supporta single sign-on per applicazioni Windows Store con Account Microsoft:
 
 ```
 WL.login({ scope: "wl.basic"}).then(function (result) {
@@ -59,11 +59,11 @@ WL.login({ scope: "wl.basic"}).then(function (result) {
 
 ```
 
-Questo esempio ottiene un token da Live Connect, che viene fornito al servizio app chiamando la funzione login.
+In questo esempio Ottiene un token da Live Connect, ovvero tooyour fornito servizio App chiamando la funzione di accesso hello.
 
-###<a name="auth-getinfo"></a>Procedura: Ottenere informazioni relative all'utente autenticato
+###<a name="auth-getinfo"></a>Procedura: ottenere informazioni sull'utente autenticato hello
 
-Le informazioni di autenticazione possono essere recuperate dall'endpoint `/.auth/me` usando una chiamata HTTP con una libreria AJAX qualsiasi.  Assicurarsi di impostare l'intestazione `X-ZUMO-AUTH` sul token di autenticazione.  Il token di autenticazione è memorizzato in `client.currentUser.mobileServiceAuthenticationToken`.  Ad esempio, per usare l'API fetch:
+informazioni di autenticazione Hello possono essere recuperate da hello `/.auth/me` endpoint utilizzando HTTP chiamare con qualsiasi libreria AJAX.  Assicurarsi di impostare hello `X-ZUMO-AUTH` token di autenticazione tooyour intestazione.  Hello token di autenticazione viene archiviato `client.currentUser.mobileServiceAuthenticationToken`.  Ad esempio, toouse hello recupero API:
 
 ```
 var url = client.applicationUrl + '/.auth/me';
@@ -73,8 +73,8 @@ fetch(url, { headers: headers })
     .then(function (data) {
         return data.json()
     }).then(function (user) {
-        // The user object contains the claims for the authenticated user
+        // hello user object contains hello claims for hello authenticated user
     });
 ```
 
-L'operazione di recupero è disponibile come [pacchetto npm](https://www.npmjs.com/package/whatwg-fetch) oppure può essere scaricato tramite il browser da [CDNJS](https://cdnjs.com/libraries/fetch). È anche possibile usare jQuery o un'altra API AJAX per recuperare le informazioni.  I dati saranno ricevuti come oggetto JSON.
+L'operazione di recupero è disponibile come [pacchetto npm](https://www.npmjs.com/package/whatwg-fetch) oppure può essere scaricato tramite il browser da [CDNJS](https://cdnjs.com/libraries/fetch). È anche possibile usare jQuery o informazioni di un'altra API AJAX toofetch hello.  I dati saranno ricevuti come oggetto JSON.

@@ -1,27 +1,27 @@
 1. In Gestione cluster di failover espandere **Ruoli** e quindi evidenziare il gruppo di disponibilità.  
 
-2. Nella scheda **Risorse** fare clic con il pulsante destro del mouse sul nome del listener e scegliere **Proprietà**.
+2. In hello **risorse** scheda, fare doppio clic su nome del listener hello e quindi fare clic su **proprietà**.
 
-3. Selezionare la scheda **Dipendenze** . Se sono presenti più risorse elencate, verificare che gli indirizzi IP abbiano dipendenze OR anziché AND.  
+3. Fare clic su hello **dipendenze** scheda. Se sono elencate più risorse, verificare che gli indirizzi IP hello OR, not e le dipendenze.  
 
 4. Fare clic su **OK**.
 
-5. Fare clic con il pulsante destro del mouse sul nome del listener e quindi scegliere **Porta online**.
+5. Il nome del listener hello destro e quindi fare clic su **in linea**.
 
-6. Quando il listener è online, nella scheda **Risorse** fare clic con il pulsante destro del mouse sul gruppo di disponibilità e quindi scegliere **Proprietà**.
+6. Dopo aver hello listener è online, su hello **risorse** scheda, fare doppio clic su gruppo di disponibilità hello e quindi fare clic su **proprietà**.
    
-    ![Configurare la risorsa del gruppo di disponibilità](./media/virtual-machines-sql-server-configure-alwayson-availability-group-listener/IC678772.gif)
+    ![Configurare una risorsa del gruppo di disponibilità hello](./media/virtual-machines-sql-server-configure-alwayson-availability-group-listener/IC678772.gif)
 
-7. Creare una dipendenza nella risorsa nome del listener, non il nome della risorsa indirizzo IP, e quindi fare clic su **OK**.
+7. Creare una dipendenza sulla risorsa nome di listener hello (non hello nome indirizzo IP risorse) e quindi fare clic su **OK**.
    
-    ![Aggiungere una dipendenza al nome del listener](./media/virtual-machines-sql-server-configure-alwayson-availability-group-listener/IC678773.gif)
+    ![Aggiungere il nome del listener hello dipendenza](./media/virtual-machines-sql-server-configure-alwayson-availability-group-listener/IC678773.gif)
 
-8. Avviare SQL Server Management Studio e connettersi alla replica primaria.
+8. Avviare SQL Server Management Studio e connettiti toohello replica primaria.
 
-9. Passare a **Disponibilità elevata AlwaysOn** > **Gruppi di disponibilità** > **\<AvailabilityGroupName\>** > **Listener gruppo di disponibilità**.  
-    Verrà visualizzato il nome del listener creato in Gestione cluster di failover.
+9. Andare troppo**disponibilità elevata AlwaysOn** > **gruppi di disponibilità** > **\<AvailabilityGroupName\>**   >  **Listener del gruppo di disponibilità**.  
+    il nome del listener Hello creati in Gestione Cluster di Failover deve essere visualizzato.
 
-10. Fare clic con il pulsante destro del mouse sul nome del listener e quindi su **Proprietà**.
+10. Il nome del listener hello destro e quindi fare clic su **proprietà**.
 
-11. Nella casella **Porta** specificare il numero di porta per il listener del gruppo di disponibilità usando il valore di $EndpointPort usato in precedenza e quindi fare clic su **OK**. In questa esercitazione 1433 era l'impostazione predefinita.
+11. In hello **porta** , specificare il numero di porta hello del listener del gruppo di disponibilità hello utilizzando hello $EndpointPort utilizzata in precedenza (in questa esercitazione, 1433 è predefinito hello), quindi fare clic su **OK**.
 

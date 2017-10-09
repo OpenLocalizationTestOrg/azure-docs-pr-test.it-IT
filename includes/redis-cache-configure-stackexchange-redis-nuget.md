@@ -1,31 +1,31 @@
-Le applicazioni .NET possono usare il client della cache **StackExchange.Redis** , che può essere configurato in Visual Studio con un pacchetto NuGet per semplificare la configurazione delle applicazioni client della cache. 
+Applicazioni .NET possono usare hello **stackexchange. Redis** client della cache, che possono essere configurate in Visual Studio usando un pacchetto NuGet che semplifica la configurazione di hello di applicazioni client della cache. 
 
 > [!NOTE]
-> Per altre informazioni, vedere la pagina di Github [StackExchange.Redis](http://github.com/StackExchange/StackExchange.Redis)e la [documentazione del client della cache StackExchange.Redis](http://github.com/StackExchange/StackExchange.Redis#documentation).
+> Per ulteriori informazioni, vedere hello [stackexchange. Redis](http://github.com/StackExchange/StackExchange.Redis) github pagina e hello [documentazione relativa al client della cache stackexchange. Redis](http://github.com/StackExchange/StackExchange.Redis#documentation).
 > 
 > 
 
-Per configurare un'applicazione client in Visual Studio con il pacchetto NuGet StackExchange.Redis, fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Gestisci pacchetti NuGet**. 
+tooconfigure un'applicazione client in Visual Studio usando hello pacchetto NuGet stackexchange. Redis, fare clic sul progetto hello in **Esplora** e scegliere **Gestisci pacchetti NuGet**. 
 
 ![Manage NuGet packages](media/redis-cache-configure-stackexchange-redis-nuget/redis-cache-manage-nuget-menu.png)
 
-Digitare **StackExchange.Redis** o **StackExchange.Redis.StrongName** nella casella di testo di ricerca, selezionare la versione desiderata nei risultati e fare clic su **Installa**.
+Tipo **stackexchange. Redis** o **Stackexchange** nella casella di testo di ricerca hello, selezionare la versione desiderata di hello dai risultati hello e fare clic su **installare**.
 
 > [!NOTE]
-> Se si preferisce usare una versione con nome sicuro della libreria client **StackExchange.Redis**, scegliere **StackExchange.Redis.StrongName**. In caso contrario, scegliere **StackExchange.Redis**.
+> Se si preferisce una versione con nome sicuro di hello toouse **stackexchange. Redis** libreria client, scegliere **Stackexchange**; in caso contrario scegliere **Stackexchange**.
 > 
 > 
 
 ![StackExchange.Redis NuGet package](media/redis-cache-configure-stackexchange-redis-nuget/redis-cache-stackexchange-redis.png)
 
-Il pacchetto NuGet scarica e aggiunge i riferimenti ad assembly necessari per consentire all'applicazione client di accedere a Cache Redis di Azure con il client della cache StackExchange.Redis.
+Hello NuGet pacchetto Scarica e aggiunge hello necessari riferimenti ad assembly per il tooaccess di applicazione client Cache Redis di Azure con i client della cache di hello stackexchange. Redis.
 
 > [!NOTE]
-> Se il progetto è stato configurato per utilizzare StackExchange.Redis, è possibile controllare la presenza di aggiornamenti per il pacchetto da **Gestione pacchetti NuGet**. Per controllare e installare le versioni aggiornate del pacchetto NuGet StackExchange.Redis, fare clic su **Aggiornamenti** nella finestra di **Gestione pacchetti NuGet**. Se è disponibile un aggiornamento per il pacchetto NuGet StackExchange.Redis, è possibile aggiornare il progetto in modo da utilizzare la versione aggiornata.
+> Se in precedenza è stato configurato il toouse progetto stackexchange. Redis, è possibile cercare il pacchetto toohello gli aggiornamenti da hello **Gestione pacchetti NuGet**. toocheck per e versioni aggiornate di installazione di hello pacchetto NuGet stackexchange. Redis, fare clic su **aggiornamenti** in hello hello **Gestione pacchetti NuGet** finestra. Se un toohello aggiornamento pacchetto NuGet stackexchange. Redis è disponibile, è possibile aggiornare la versione di hello aggiornato toouse di progetto.
 > 
 > 
 
-È anche possibile installare il pacchetto NuGet StackExchange.Redis facendo clic su **Gestione pacchetti NuGet**, **Console di Gestione pacchetti** dal menu **Strumenti** ed eseguendo questo comando dalla finestra **Console di Gestione pacchetti**.
+È inoltre possibile installare il pacchetto NuGet stackexchange. Redis hello facendo **Gestione pacchetti NuGet**, **Package Manager Console** da hello **strumenti** menu e hello in esecuzione comando seguente da hello **Package Manager Console** finestra.
     
 ```
 Install-Package StackExchange.Redis

@@ -4,36 +4,36 @@
 > * [C#](../articles/iot-hub/iot-hub-csharp-csharp-twin-getstarted.md)
 > * [Java](../articles/iot-hub/iot-hub-java-java-twin-getstarted.md)
 
-I dispositivi gemelli sono documenti JSON nei quali vengono archiviate informazioni sullo stato dei dispositivi (metadati, configurazioni e condizioni). L'hub IoT rende permanente un dispositivo gemello per ogni dispositivo che si connette.
+I dispositivi gemelli sono documenti JSON nei quali vengono archiviate informazioni sullo stato dei dispositivi (metadati, configurazioni e condizioni). IoT Hub persiste doppi un dispositivo per ogni dispositivo che si connette tooit.
 
 Usare i dispositivi gemelli per:
 
 * Archiviare i metadati dei dispositivi dal back-end della soluzione.
-* Segnalare informazioni sullo stato corrente, come funzionalità disponibili e condizioni (ad esempio, il metodo di connettività usato) dall'app per dispositivi.
-* Sincronizzare lo stato dei flussi di lavoro a esecuzione prolungata (come gli aggiornamenti del firmware e della configurazione) tra un'app per dispositivi e un'app di back-end.
+* Report informazioni sullo stato corrente, ad esempio le funzionalità disponibili e le condizioni (ad esempio, la connettività metodo hello usato) dall'app del dispositivo.
+* Sincronizzazione dello stato di hello dei flussi di lavoro di lunga durata (ad esempio aggiornamenti firmware e la configurazione) tra un'app del dispositivo e un'applicazione back-end.
 * Eseguire query sui metadati, la configurazione o lo stato dei dispositivi.
 
 > [!NOTE]
-> I dispositivi gemelli sono progettati per la sincronizzazione e per l'esecuzione di query sulle configurazioni e le condizioni dei dispositivi. Altre informazioni su quando usare i dispositivi gemelli sono reperibili in [Informazioni sui dispositivi gemelli][lnk-twins].
+> I dispositivi gemelli sono progettati per la sincronizzazione e per l'esecuzione di query sulle configurazioni e le condizioni dei dispositivi. Ulteriori informazioni sulle quando gemelli dispositivo toouse sono reperibile [comprendere gemelli dispositivo][lnk-twins].
 
 I dispositivi gemelli vengono archiviati in un hub IoT e contengono gli elementi seguenti.
 
-* *Tag*: metadati dei dispositivi accessibili solo dal back-end della soluzione
-* *Proprietà desiderate*: oggetti JSON modificabili dal back-end della soluzione e osservabili dall'app per dispositivi
-* *Proprietà segnalate*: oggetti JSON modificabili dall'app per dispositivi e leggibili dal back-end della soluzione I tag e le proprietà non possono contenere matrici, ma gli oggetti possono essere annidati.
+* *tag*, accessibili solo dal back-end soluzione hello; metadati del dispositivo
+* *le proprietà desiderate*, oggetti JSON modificabili dalla soluzione hello indietro end e observable tramite app per dispositivi hello; e
+* *proprietà segnalati*, oggetti JSON modificabili per app per dispositivi hello e leggibili dal back-end di hello soluzione. I tag e le proprietà non possono contenere matrici, ma gli oggetti possono essere annidati.
 
 ![][img-twin]
 
-Il back-end della soluzione può anche eseguire query sui dispositivi gemelli in base a tutti i dati sopra indicati.
-Vedere [Informazioni sui dispositivi gemelli][lnk-twins] per altre informazioni sui dispositivi gemelli e [Linguaggio di query per hub IoT][lnk-query] per informazioni sull'esecuzione di query.
+Inoltre, è possibile eseguire hello soluzione back-end query gemelli di dispositivo in base a tutti hello di sopra dei dati.
+Fare riferimento troppo[comprendere gemelli dispositivo] [ lnk-twins] per ulteriori informazioni su gemelli di dispositivo e toohello [il linguaggio di query di IoT Hub] [ lnk-query] riferimento Per eseguire una query.
 
 > [!NOTE]
-> Al momento i dispositivi gemelli sono accessibili solo dai dispositivi che si connettono all'hub IoT tramite il protocollo MQTT. Per istruzioni su come convertire l'app per dispositivo esistente in modo che usi MQTT, vedere l'articolo [Supporto di MQTT][lnk-devguide-mqtt].
+> A questo punto, sono accessibili solo da dispositivi che si connettono tooIoT Hub gemelli di dispositivo utilizzando il protocollo MQTT hello. Consultare toohello [supporto MQTT] [ lnk-devguide-mqtt] per istruzioni su come tooconvert esistente dispositivo app toouse MQTT.
 
 Questa esercitazione illustra come:
 
-* Creare un'app back-end che aggiunge *tag* a un dispositivo gemello e un'app per dispositivo simulato che segnala il proprio canale di connettività come *proprietà segnalata* nel dispositivo gemello.
-* Eseguire query sui dispositivi dall'app back-end con filtri sui tag e sulle proprietà creati in precedenza.
+* Creare un'applicazione back-end che aggiunge *tag* tooa gemelli di dispositivo e un'app per dispositivo simulato che segnala la connettività del canale come un *segnalati proprietà* in un doppio dispositivo hello.
+* Eseguire una query dispositivi dall'app back-end utilizzando i filtri tag hello e proprietà creata in precedenza.
 
 <!-- images -->
 [img-twin]: media/iot-hub-selector-twin-get-started/twin.png

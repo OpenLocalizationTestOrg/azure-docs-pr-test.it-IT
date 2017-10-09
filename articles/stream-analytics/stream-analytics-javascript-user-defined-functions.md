@@ -1,5 +1,5 @@
 ---
-title: Funzioni JavaScript definite dall'utente in Analisi di flusso di Azure | Microsoft Docs
+title: le funzioni definite dall'utente flusso Analitica JavaScript aaaAzure | Documenti Microsoft
 description: Eseguire i meccanismi di query avanzate con funzioni JavaScript definite dall'utente
 keywords: javascript, funzioni definite dall'utente, udf
 services: stream-analytics
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: e4a9e6c7078031240c22a51378c0459426b7f626
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 28eeb8f6437c23989e8887687b950361fed4414c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stream-analytics-javascript-user-defined-functions"></a>Funzioni JavaScript definite dall'utente in Analisi di flusso di Azure
-L'Analisi di flusso di Azure supporta le funzioni definite dall'utente nel linguaggio JavaScript. Con il vasto set di metodi **String**, **RegExp**, **Math**, **Array** e **Date** offerti da JavaScript, risulta più facile creare trasformazioni di dati complessi con processi di Analisi di flusso.
+L'Analisi di flusso di Azure supporta le funzioni definite dall'utente nel linguaggio JavaScript. Ampia gamma di hello di **stringa**, **RegExp**, **matematiche**, **matrice**, e **data** metodi che JavaScript fornisce, le trasformazioni di dati complessi con i processi di flusso Analitica diventano toocreate più semplice.
 
 ## <a name="javascript-user-defined-functions"></a>Funzioni JavaScript definite dall'utente
-Le funzioni JavaScript definite dall'utente supportano funzioni senza stato e di solo calcolo che non richiedono connettività esterna. Il valore restituito di una funzione può essere solo un valore scalare singolo. Dopo aver aggiunto una funzione JavaScript definita dall'utente a un processo, è possibile utilizzare la funzione in un punto qualsiasi nella query, ad esempio una funzione scalare incorporata.
+Le funzioni JavaScript definite dall'utente supportano funzioni senza stato e di solo calcolo che non richiedono connettività esterna. Hello restituiscono valore di una funzione può essere solo un valore scalare (singolo). Dopo aver aggiunto un processo di tooa JavaScript funzione definita dall'utente, è possibile utilizzare la funzione hello in qualsiasi punto nella query hello, ad esempio una funzione scalare predefinita.
 
 Ecco alcuni scenari in cui potrebbero essere utili le funzioni JavaScript definite dall'utente:
 * Analisi e manipolazione delle stringhe con funzioni di espressione regolare, ad esempio **Regexp_Replace()** e **Regexp_Extract()**
@@ -37,31 +37,31 @@ Ecco alcune operazioni non eseguibili con una funzione JavaScript definita dall'
 * Esecuzione della serializzazione o deserializzazione negli input e output di un formato evento personalizzato
 * Creazione di aggregazioni personalizzate
 
-Sebbene le funzioni come **Date.GetDate()** o **Math.random()** non sono bloccate nella definizione delle funzioni, è consigliabile evitare di utilizzarle. Queste funzioni, infatti, **non** restituiscono lo stesso risultato ogni volta che vengono chiamate e Analisi di flusso di Azure non conserva un giornale di chiamate di funzione e dei risultati restituiti. Se una funzione restituisce risultati diversi per gli stessi eventi, non viene garantita la ripetibilità in caso di processo riavviato dall'utente o dal servizio di Analisi di flusso.
+Sebbene le funzioni come **Date.GetDate()** o **Math.random()** non sono bloccate nella definizione di funzioni hello, è consigliabile evitare di utilizzarle. Queste funzioni **non** hello restituito stesso risultato ogni volta che vengono chiamati e hello servizio Analitica di flusso di Azure non mantiene una registrazione di chiamate di funzione e ha restituito risultati. Se una funzione restituisce risultati diversi in hello stessi eventi, ripetibilità non è garantito quando un processo viene riavviato dall'utente o dal servizio di flusso Analitica hello.
 
-## <a name="add-a-javascript-user-defined-function-in-the-azure-portal"></a>Aggiungere una funzione JavaScript definita dall'utente nel portale di Azure
-I passaggi seguenti illustrano come creare una semplice funzione JavaScript definita dall'utente in un processo esistente di Analisi di flusso:
+## <a name="add-a-javascript-user-defined-function-in-hello-azure-portal"></a>Aggiungere una funzione definita dall'utente di JavaScript nel portale di Azure hello
+toocreate una funzione definita dall'utente JavaScript semplice in un processo di flusso Analitica esistente, eseguire questi passaggi:
 
-1.  Nel portale di Azure individuare il processo di Analisi di flusso.
+1.  Nel portale di Azure hello, trovare il processo di flusso Analitica.
 2.  In **TOPOLOGIA PROCESSO** selezionare la funzione. Viene visualizzato un elenco vuoto di funzioni.
-3.  Per creare una nuova funzione definita dall'utente, selezionare **Aggiungi**.
-4.  Sul pannello **Nuova funzione** selezionare **JavaScript** per **Tipo funzione**. Nell'editor viene visualizzato un modello di funzione predefinita.
-5.  Per l'**alias della funzione definita dall'utente**, inserire **hex2Int** e modificare l'implementazione della funzione come indicato di seguito:
+3.  Selezionare una nuova funzione definita dall'utente, toocreate **Aggiungi**.
+4.  In hello **nuova funzione** pannello per **tipo di funzione**selezionare **JavaScript**. Un modello di funzione predefinita viene visualizzata nell'editor di hello.
+5.  Per hello **alias funzione definita dall'utente**, immettere **hex2Int**e modifica di implementazione della funzione hello come segue:
 
     ```
-    // Convert Hex value to integer.
+    // Convert Hex value toointeger.
     function main(hexValue) {
         return parseInt(hexValue, 16);
     }
     ```
 
-6.  Selezionare **Salva**. La funzione viene visualizzata nell'elenco delle funzioni.
-7.  Selezionare la nuova funzione **hex2Int** e controllare la definizione di funzione. Per ogni funzione, all'alias della funzione viene aggiunto un prefisso della **funzione definita dall'utente**. È necessario *includere il prefisso* quando si chiama la funzione nella query Analisi di flusso. In questo caso, si chiama **UDF.hex2Int**.
+6.  Selezionare **Salva**. La funzione viene visualizzato nell'elenco di hello di funzioni.
+7.  Seleziona hello nuovo **hex2Int** funzione e controllare la definizione di funzione hello. Tutte le funzioni hanno un **funzione definita dall'utente** alias di funzione di prefisso toohello aggiunto. È necessario troppo*includere il prefisso hello* quando si chiama la funzione hello nella query Analitica di flusso. In questo caso, si chiama **UDF.hex2Int**.
 
 ## <a name="call-a-javascript-user-defined-function-in-a-query"></a>Chiamare una funzione JavaScript definita dall'utente nella query
 
-1. Nell'editor di query, in **TOPOLOGIA PROCESSO**, selezionare **Query**.
-2.  Modificare la query e quindi chiamare la funzione definita dall'utente, simile alla seguente:
+1. In hello editor di query, in **processo TOPOLOGIA**selezionare **Query**.
+2.  Modificare la query e quindi chiamare hello-funzione definita dall'utente, simile al seguente:
 
     ```
     SELECT
@@ -73,8 +73,8 @@ I passaggi seguenti illustrano come creare una semplice funzione JavaScript defi
         InputStream
     ```
 
-3.  Per caricare un file di dati di esempio, fare clic con il tasto destro del mouse sull'input del processo.
-4.  Per testare la query, selezionare **Test**.
+3.  file di dati di esempio hello tooupload, rapida hello processo input.
+4.  tootest della query, seleziona **Test**.
 
 
 ## <a name="supported-javascript-objects"></a>Oggetti JavaScript supportati
@@ -82,11 +82,11 @@ Le funzioni JavaScript definite dall'utente in Analisi di flusso di Azure suppor
 
 ### <a name="stream-analytics-and-javascript-type-conversion"></a>Conversione dei tipi di Analisi di flusso e JavaScript
 
-Esistono delle differenze tra i tipi supportati da JavaScript e dal linguaggio di query di Analisi di flusso. Questa tabella elenca i mapping di conversione tra i due:
+Esistono differenze nei tipi di hello che supportano il linguaggio di query flusso Analitica hello e JavaScript. Questa tabella elenca i mapping di conversione hello tra hello due:
 
-Analisi dei flussi | JavaScript
+Analisi di flusso | JavaScript
 --- | ---
-bigint | Numero (per la precisione, JavaScript può rappresentare solo numeri interi fino a 2^53)
+bigint | Numero (JavaScript possono rappresentare solo valori interi di tooprecisely 2 ^ 53)
 DateTime | Data (JavaScript supporta solo millisecondi)
 double | Number
 nvarchar(MAX) | string
@@ -100,7 +100,7 @@ Ecco le conversioni da JavaScript ad Analisi di flusso:
 
 JavaScript | Analisi dei flussi
 --- | ---
-Number | Bigint (se il numero è arrotondato e compreso tra long.MinValue e long.MaxValue, in caso contrario è doppio)
+Number | Bigint (se il numero di hello è arrotondamento e tra long. MinValue e long. MaxValue; in caso contrario, viene applicato il doppio)
 Date | DateTime
 String | nvarchar(MAX)
 Oggetto | Record
@@ -109,13 +109,13 @@ Null, Undefined | NULL
 Qualsiasi altro tipo (ad esempio, una funzione o un errore) | Non supportato (risultati nell'errore di runtime)
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-Gli errori di runtime in JavaScript sono considerati irreversibili ed esposti tramite il log attività. Per recuperare il log, nel portale di Azure passare al processo e selezionare **Log attività**.
+Errori di runtime di JavaScript sono considerati irreversibili e resi visibili tramite log attività hello. log hello tooretrieve, nel portale di Azure hello, andare tooyour processo e scegliere **log attività**.
 
 
 ## <a name="other-javascript-user-defined-function-patterns"></a>Altri modelli della funzione JavaScript definita dall'utente
 
-### <a name="write-nested-json-to-output"></a>Scrivere una stringa JSON nidificata in output
-In caso di passaggi di elaborazione successivi che utilizzano un output di un processo di Analisi di flusso come input e l'output richiede un formato JSON, è possibile scrivere una stringa JSON in output. L'esempio successivo chiama la funzione **JSON.stringify()** per raccogliere tutte le coppie nome/valore dell'input e quindi scriverle come valore di stringa singola nell'output.
+### <a name="write-nested-json-toooutput"></a>Scrivere toooutput JSON nidificata
+Se si dispone di un passaggio di completamento di elaborazione che utilizza un processo Analitica di flusso di output come input, ed è necessario un formato JSON, è possibile scrivere un toooutput stringa JSON. esempio Hello chiama hello **JSON.stringify()** funzione toopack tutte le coppie nome/valore di hello di input e quindi li scrivono come un singolo valore stringa nell'output.
 
 **Definizione della funzione JavaScript definita dall'utente:**
 
@@ -142,7 +142,7 @@ FROM
 Per ulteriore assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi di flusso di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

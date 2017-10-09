@@ -1,6 +1,6 @@
 ---
-title: Distribuire macchine virtuali Linux in una rete esistente con il portale di Azure | Microsoft Docs
-description: Distribuire una macchina virtuale Linux in una rete virtuale di Azure esistente tramite il portale.
+title: aaaDeploy le macchine virtuali Linux in una rete esistente con il portale di Azure | Documenti Microsoft
+description: Distribuire una VM Linux in una rete virtuale esistente a Azure tramite il portale di hello.
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: iainfoulds
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 964c0fc41773b50a9fbe476df47460484c2ada66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 51272b8cdb1dc7f3fe768d2ebbf4ebe0d754cf19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-deploy-a-linux-virtual-machine-into-an-existing-azure-virtual-network-with-the-azure-portal"></a>Come distribuire una macchina virtuale Linux in una rete virtuale Azure esistente con il portale di Azure
+# <a name="how-toodeploy-a-linux-virtual-machine-into-an-existing-azure-virtual-network-with-hello-azure-portal"></a>Come toodeploy una macchina virtuale di Linux in una rete virtuale di Azure esistente con hello portale di Azure
 
-Questo articolo illustra come usare distribuire una macchina virtuale in una rete virtuale esistente. Gli asset di Azure, come le reti virtuali e i gruppi di sicurezza di rete, devono essere risorse statiche, ovvero di lunga durata e distribuite raramente. Dopo essere stata distribuita, una rete virtuale può essere usata in nuove distribuzioni costanti, senza alcun effetto negativo sull'infrastruttura. Si pensi a una rete virtuale come se fosse analoga a uno switch di rete hardware tradizionale, il quale non richiede una nuova configurazione a ogni distribuzione.  
+In questo articolo illustra come toodeploy una macchina virtuale (VM) in una rete virtuale esistente (VNet). Gli asset di Azure, come le reti virtuali e i gruppi di sicurezza di rete, devono essere risorse statiche, ovvero di lunga durata e distribuite raramente. Dopo la distribuzione di una rete virtuale, può essere riutilizzato da ridistribuzioni costante senza alcuna infrastruttura toohello effetto negativo. Pensa a una rete virtuale come un tradizionale commutatore di rete hardware - non è necessario passare un nuovo hardware per ciascuna distribuzione tooconfigure.  
 
-In una rete virtuale configurata in modo appropriato, è possibile continuare a distribuire nuovi server più volte, apportando solo le modifiche indispensabili durante il ciclo di vita della rete virtuale.
+Con una rete virtuale è configurata correttamente, è possibile continuare toodeploy nuovi server in tale rete virtuale a più volte con alcuni, se presente, le modifiche richieste per la durata hello di hello rete virtuale.
 
-## <a name="create-the-resource-group"></a>Creare il gruppo di risorse.
+## <a name="create-hello-resource-group"></a>Creare il gruppo di risorse hello
 
-Prima creare un gruppo di risorse per organizzare tutti gli elementi che si creano durante questa procedura dettagliata. Per altre informazioni sui gruppi di risorse di Azure, vedere [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)
+Creare innanzitutto un tooorganize gruppo di risorse tutti gli oggetti creati in questa procedura dettagliata. Per altre informazioni sui gruppi di risorse di Azure, vedere [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)
 
 ![createResourceGroup](./media/deploy-linux-vm-into-existing-vnet-using-portal/createResourceGroup.png)
 
 
-## <a name="create-the-vnet"></a>Creare la rete virtuale
+## <a name="create-hello-vnet"></a>Creare hello rete virtuale
 
-Creare una rete virtuale in cui eseguire le macchine virtuali. La rete virtuale contiene una subnet e verrà associata al gruppo di sicurezza di rete con questa subnet in un passaggio successivo.
+Successivamente, compilare un hello toolaunch di rete virtuale le macchine virtuali in. Hello rete virtuale contiene una subnet e associato al gruppo di sicurezza di rete hello con questa subnet in un passaggio successivo.
 
 ![createVNet](./media/deploy-linux-vm-into-existing-vnet-using-portal/createVNet.png)
 
-## <a name="add-a-vnic-to-the-subnet"></a>Aggiungere una scheda di interfaccia di rete virtuale alla subnet
+## <a name="add-a-vnic-toohello-subnet"></a>Aggiungere una subnet toohello VNic
 
-Le schede di interfaccia rete virtuale sono importanti in quanto è connetterle a macchine virtuali diverse. In questo modo la scheda di interfaccia di rete virtuale diventa una risorsa statica, mentre le macchine virtuali possono essere temporanee. Creare una scheda di interfaccia di rete virtuale e associarla alla subnet creata nel passaggio precedente.
+Schede di rete virtuale (VNics) sono importanti, come è possibile collegare le macchine virtuali toodifferent. Questo approccio consente di mantenere hello VNic come una risorsa statica durante hello macchine virtuali può essere temporaneo. Creare una scheda di rete virtuale e associarlo a subnet hello creato nel passaggio precedente hello.
 
 ![createVNic](./media/deploy-linux-vm-into-existing-vnet-using-portal/createVNic.png)
 
-## <a name="create-the-network-security-group"></a>Creare il gruppo di sicurezza di rete
+## <a name="create-hello-network-security-group"></a>Creare un gruppo di sicurezza di rete hello
 
-I gruppi di sicurezza di rete di Azure sono analoghi a un firewall a livello di rete. Per altre informazioni sui gruppi di sicurezza di rete di Azure, vedere [Che cos'è un gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md).
+Gruppi di sicurezza di rete di Azure sono equivalenti tooa firewall a livello di rete hello. Per altre informazioni sui gruppi di sicurezza di rete di Azure, vedere [Che cos'è un gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md).
 
 ![createNSG](./media/deploy-linux-vm-into-existing-vnet-using-portal/createNSG.png)
 
 ## <a name="add-an-inbound-ssh-allow-rule"></a>Aggiungere una regola di assenso SSH in ingresso
 
-La macchina virtuale deve accedere da Internet, pertanto viene creata una regola che consente di lasciare entrare il traffico in ingresso verso la porta 22 della macchina virtuale.
+Hello VM richiede l'accesso da hello internet, in modo da una regola che consente la porta in ingresso 22 traffico toobe passati tramite hello rete tooport 22 hello viene creata la VM.
 
 ![createInboundSSH](./media/deploy-linux-vm-into-existing-vnet-using-portal/createInboundSSH.png)
 
-## <a name="associate-the-nsg-with-the-subnet"></a>Associare il gruppo di sicurezza di rete alla subnet
+## <a name="associate-hello-nsg-with-hello-subnet"></a>Associare subnet hello hello NSG
 
-Dopo aver creato la rete virtuale e la subnet, il gruppo di sicurezza di rete viene associato alla subnet. È possibile associare i gruppi di sicurezza di rete a un'intera subnet o a una scheda di rete virtuale singola. Con il firewall che filtra il traffico a livello di subnet, tutte le schede di interfaccia di rete virtuale e le macchine virtuali all'interno della subnet sono protette dal gruppo di sicurezza di rete. L'altro approccio è l'associazione del gruppo di sicurezza di rete con una sola scheda di interfaccia di rete virtuale e con la protezione di una sola macchina virtuale.
+Con rete virtuale hello e una subnet hello creato, associare il gruppo di sicurezza rete hello subnet hello. È possibile associare i gruppi di sicurezza di rete a un'intera subnet o a una scheda di rete virtuale singola. Con il filtro di traffico a livello di subnet hello firewall di hello, tutti VNics e hello macchine virtuali all'interno di subnet hello sono protetti dal gruppo di sicurezza di rete hello. Hello altri approcci è hello gruppo di sicurezza di rete viene associato solo un singolo VNic e protegge solo una macchina virtuale.
 
 ![associateNSG](./media/deploy-linux-vm-into-existing-vnet-using-portal/associateNSG.png)
 
 
-## <a name="deploy-the-vm-into-the-vnet-and-nsg"></a>Distribuire la macchina virtuale nella rete virtuale e nel gruppo di sicurezza di rete
+## <a name="deploy-hello-vm-into-hello-vnet-and-nsg"></a>Distribuire hello VM nella rete virtuale hello e gruppo
 
-Tramite il portale di Azure, la VM Linux viene distribuita nel gruppo di risorse, nella rete virtuale, nella subnet e nella scheda di rete virtuale esistenti.
+Utilizzo di hello portale di Azure, hello VM Linux è toohello distribuito esistente al gruppo di risorse di Azure, rete virtuale, Subnet e scheda di rete virtuale.
 
 ![createVM](./media/deploy-linux-vm-into-existing-vnet-using-portal/createVM.png)
 
-Usando il portale per scegliere le risorse esistenti, si indica ad Azure di distribuire la macchina virtuale all'interno della rete esistente. Una volta distribuite la rete virtuale e la subnet possono essere usate come risorse statiche o permanenti nell'area di Azure.  
+Utilizzando le risorse esistenti di hello toochoose portale, è possibile indicare hello toodeploy Azure VM all'interno di una rete esistente hello. Una volta distribuite la rete virtuale e la subnet possono essere usate come risorse statiche o permanenti nell'area di Azure.  
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Usare un modello di Azure Resource Manager per creare una distribuzione specifica](../windows/cli-deploy-templates.md)
+* [Utilizzare un toocreate modello di gestione risorse di Azure una distribuzione specifica](../windows/cli-deploy-templates.md)
 * [Creare un ambiente Linux completo mediante l'interfaccia della riga di comando di Azure](create-cli-complete.md)
 * [Creare una VM Linux in Azure usando i modelli](create-ssh-secured-vm-from-template.md)

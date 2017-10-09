@@ -1,6 +1,6 @@
 ---
 title: "Verifica della connettività: guida alla risoluzione dei problemi di Azure ExpressRoute | Microsoft Docs"
-description: "Questa pagina fornisce istruzioni sulla risoluzione dei problemi e convalida della connettività end-to-end di un circuito ExpressRoute."
+description: "Questa pagina vengono fornite istruzioni sulla risoluzione dei problemi e convalida della connettività tooend fine di un circuito ExpressRoute."
 documentationcenter: na
 services: expressroute
 author: rambk
@@ -14,93 +14,93 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/01/2017
 ms.author: cherylmc
-ms.openlocfilehash: 5a6360b56963d219ab576fb3e2636b6c51dd72ac
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 713c39c7eafd77a4380b2a91902a9686f2ce1d85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="verifying-expressroute-connectivity"></a>Verifica della connettività di ExpressRoute
-ExpressRoute, che consente di estendere una rete locale nel cloud Microsoft tramite una connessione privata fornita da un provider di connettività, coinvolge le tre diverse aree di rete seguenti:
+ExpressRoute, che estende una rete locale nel cloud di Microsoft hello su una connessione privata mediante un provider di connettività, prevede hello seguenti tre aree di rete distinti:
 
 -   Rete del cliente
 -   Rete del provider
 -   Datacenter Microsoft
 
-Lo scopo di questo documento è di aiutare l'utente a identificare dove (o anche se) esiste un problema di connettività e all'interno di quale area, in modo tale da richiedere assistenza al team appropriato per risolvere il problema. Se per risolvere un problema è necessaria l'assistenza tecnica di Microsoft, aprire un ticket di supporto al [supporto tecnico Microsoft][Support].
+scopo di Hello di questo documento è toohelp utente tooidentify dove (o anche se) esiste un problema di connettività e all'interno della zona, che in tal modo tooseek Guida dal problema di hello tooresolve team appropriato. Se il supporto tecnico Microsoft è necessario tooresolve un problema, aprire un ticket di supporto con [supporto Microsoft][Support].
 
 > [!IMPORTANT]
-> Questo documento è pensato per aiutare l'utente a rilevare e risolvere problemi semplici. Non sostituisce tuttavia il supporto tecnico Microsoft. Se non si riesce a risolvere il problema tramite la procedura descritta, è necessario aprire un ticket di supporto al [supporto tecnico Microsoft][Support].
+> Questo documento è previsto toohelp la diagnosi e la risoluzione dei problemi di tipo semplici. Non è previsto toobe una sostituzione per il supporto tecnico Microsoft. Aprire un ticket di supporto con [supporto Microsoft] [ Support] in caso di problema hello toosolve Impossibile utilizzando istruzioni hello disponibili.
 >
 >
 
 ## <a name="overview"></a>Panoramica
-Il diagramma seguente illustra la connettività logica della rete di un cliente alla rete Microsoft usando ExpressRoute.
+Hello diagramma seguente mostra la connettività logico hello di una rete di tooMicrosoft cliente tramite ExpressRoute.
 [![1]][1]
 
-Nel diagramma precedente i numeri indicano i punti principali delle reti. Tali punti sono spesso citati in questo articolo tramite il numero associato.
+Nel precedente diagramma di hello, hello numeri indicano i punti chiave di rete. punti di rete Hello fa riferimento spesso questo articolo il numero associato.
 
-A seconda del modello di connettività ExpressRoute (condivisione percorso per Cloud Exchange, connessione Ethernet punto a punto o any-to-any (IPVPN)), i punti 3 e 4 della rete potrebbero essere switch (dispositivi di livello 2). I punti principali delle reti illustrati sono i seguenti:
+A seconda della connettività di ExpressRoute hello modello (Cloud Exchange condivisione percorso, connessione Ethernet o Any per qualsiasi (IPVPN)) hello rete punti 3 e 4 potrebbero essere switch (dispositivi di livello 2). di seguito sono riportati i punti chiave di rete Hello illustrati:
 
 1.  Dispositivo di calcolo del cliente (ad esempio, un server o un PC)
 2.  CE: router perimetrali del cliente 
-3.  PE (rivolti verso i CE): router/switch perimetrali del provider rivolti verso i router perimetrali del cliente. Indicata con il nome di PE-CE nel presente documento.
-4.  PE (rivolti verso gli MSEE): router/switch perimetrali del provider rivolti verso gli MSEE. Indicata con il nome di PE-MSEE nel presente documento.
+3.  PE (rivolti verso i CE): router/switch perimetrali del provider rivolti verso i router perimetrali del cliente. Cui tooas PE CEs in questo documento.
+4.  PE (rivolti verso gli MSEE): router/switch perimetrali del provider rivolti verso gli MSEE. Cui tooas PE MSEEs in questo documento.
 5.  MSEE: router ExpressRoute Microsoft Enterprise Edge (MSEE)
 6.  Gateway di rete virtuale (VNet)
-7.  Dispositivo di calcolo sulla rete virtuale di Azure
+7.  Dispositivo di rete virtuale di Azure hello di calcolo
 
-Se vengono usati modelli di connettività di condivisione percorso per Cloud Exchange o connessione Ethernet punto a punto, il router perimetrale del cliente (2) stabilisce il peering BGP con gli MSEE (5). I punti 3 e 4 sono ancora presenti, ma in forma trasparente, come dispositivi di livello 2.
+Se si utilizzano i modelli di connettività Cloud Exchange condivisione percorso o connessione Ethernet hello, router perimetrale del cliente hello (2) si possa stabilire BGP peering con MSEEs (5). I punti 3 e 4 sono ancora presenti, ma in forma trasparente, come dispositivi di livello 2.
 
-Se si usa il modello di connettività any-to-any (IPVPN), i PE (rivolti verso gli MSEE) (4) stabiliscono il peering BGP con gli MSEE (5). Le route si propagano quindi nuovamente alla rete del cliente attraverso la rete del provider di servizi IPVPN.
+Se si utilizza modello di integrazione applicativa hello Any per qualsiasi (IPVPN), hello PEs (con connessione MSEE) (4) si possa stabilire BGP peering con MSEEs (5). Le route propagherebbe quindi rete cliente toohello indietro tramite una rete hello IPVPN service provider.
 
 >[!NOTE]
->Per la disponibilità elevata di ExpressRoute, Microsoft richiede una coppia ridondante di sessioni BGP tra MSEE (5) e PE-MSEE (4). Si consiglia anche una coppia ridondante di percorsi di rete tra rete del cliente e PE-CE. Tuttavia, nel modello di connessione any-to-any (IPVPN), un singolo dispositivo CE (2) può essere collegato a uno o più PE (3).
+>Per la disponibilità elevata di ExpressRoute, Microsoft richiede una coppia ridondante di sessioni BGP tra MSEE (5) e PE-MSEE (4). Si consiglia anche una coppia ridondante di percorsi di rete tra rete del cliente e PE-CE. Nel modello (IPVPN) Any per qualsiasi connessione, tuttavia, un singolo dispositivo CE (2) può essere connesso tooone o più file PE (3).
 >
 >
 
-Per convalidare un circuito ExpressRoute, vengono seguiti i seguenti passaggi, con il punto di rete indicato dal numero associato:
+(con hello rete indicata dal numero di hello associata) vengono trattati i toovalidate un circuito ExpressRoute, hello alla procedura seguente:
 1. [Convalidare il provisioning del circuito e lo stato (5)](#validate-circuit-provisioning-and-state)
 2. [Convalidare la configurazione di almeno un peering di ExpressRoute (5)](#validate-peering-configuration)
-3. [Convalidare ARP tra Microsoft e il provider di servizi (collegamento tra 4 e 5)](#validate-arp-between-microsoft-and-the-service-provider)
-4. [Convalidare BGP e route sul MSEE (BGP tra 4 e 5 e 5 e 6 se una rete virtuale è connessa)](#validate-bgp-and-routes-on-the-msee)
-5. [Verificare le statistiche del traffico (traffico che attraversa 5)](#check-the-traffic-statistics)
+3. [Convalidare ARP tra provider di servizi Microsoft e hello (collegamento tra 4 e 5)](#validate-arp-between-microsoft-and-the-service-provider)
+4. [Convalidare il protocollo BGP e route su hello MSEE (BGP tra too5 4 e 5 too6 se una rete virtuale è connesso)](#validate-bgp-and-routes-on-the-msee)
+5. [Controllo hello statistiche sul traffico (traffico che attraversa 5)](#check-the-traffic-statistics)
 
-In futuro verranno aggiunti altri controlli e maggiori convalide. Si consiglia quindi di verificare mensilmente.
+Altre convalide e controlli verranno aggiunti in hello future, verificare mensile!
 
 ##<a name="validate-circuit-provisioning-and-state"></a>Convalidare il provisioning del circuito e lo stato
-Indipendentemente dal modello di connettività, è necessario creare un circuito ExpressRoute e, pertanto, generare una chiave del servizio per il provisioning del circuito. Il provisioning di un circuito ExpressRoute stabilisce connessioni ridondanti di livello 2 tra PE-MSEE (4) e MSEE (5). Per altre informazioni su come creare, modificare, eseguire il provisioning e verificare un circuito ExpressRoute, vedere l'articolo [Creare e modificare un circuito ExpressRoute][CreateCircuit].
+Indipendentemente dal modello di integrazione applicativa hello, un circuito ExpressRoute ha toobe creato e quindi un servizio chiave generata per il provisioning del circuito. Il provisioning di un circuito ExpressRoute stabilisce connessioni ridondanti di livello 2 tra PE-MSEE (4) e MSEE (5). Per ulteriori informazioni su come toocreate, modificare, eseguire il provisioning e verificare un circuito ExpressRoute, vedere l'articolo hello [creare e modificare un circuito ExpressRoute][CreateCircuit].
 
 >[!TIP]
->Una chiave del servizio identifica in modo univoco un circuito ExpressRoute. Questa chiave è necessaria per la maggior parte dei comandi di Powershell indicati in questo documento. Se fosse necessario richiedere l'assistenza di Microsoft o di un partner ExpressRoute per risolvere un problema di ExpressRoute, fornire la chiave del servizio per identificare facilmente il circuito.
+>Una chiave del servizio identifica in modo univoco un circuito ExpressRoute. Questa chiave è obbligatoria per la maggior parte dei comandi di powershell hello citate in questo documento. È inoltre necessario richiedere assistenza da Microsoft o da un tootroubleshoot partner ExpressRoute un problema di ExpressRoute, fornire il servizio di hello tooreadily chiave identifica il circuito hello.
 >
 >
 
-###<a name="verification-via-the-azure-portal"></a>Verifica tramite il portale di Azure
-Nel portale di Azure lo stato di un circuito ExpressRoute può essere controllato selezionando ![2][2] nel menu sulla barra laterale sinistra e quindi selezionando il circuito ExpressRoute. La selezione di un circuito ExpressRoute elencato in "All resources" (Tutte le risorse) determina l'apertura del pannello del circuito ExpressRoute. Nella sezione ![3][3] del pannello sono elencate le informazioni di base di ExpressRoute come illustrato nella schermata seguente:
+###<a name="verification-via-hello-azure-portal"></a>Verifica tramite hello portale di Azure
+In hello portale di Azure, lo stato di hello di un circuito ExpressRoute può essere controllato selezionando ![2][2] su hello menu laterale a sinistra e quindi selezionando hello circuito ExpressRoute. Selezione di ExpressRoute circuito sotto "Tutte le risorse" apre il pannello di circuito ExpressRoute hello. In hello ![3][3] sezione del pannello hello, hello ExpressRoute essentials sono elencati come illustrato nella seguente cattura di schermata hello:
 
 ![4][4]    
 
-Nelle informazioni di base di ExpressRoute *Stato circuito* indica lo stato del circuito sul lato Microsoft. *Stato provider* indica se si tratta di un circuito con *Provisioning eseguito/Senza provisioning* sul lato del provider dei servizi. 
+In Essentials ExpressRoute, hello *Circuit stato* indica lo stato di hello del circuito hello in hello lato Microsoft. *Stato provider* indica se è stato circuito hello */non provisioning eseguito il provisioning* sul lato di provider di servizi di hello. 
 
-Per consentire il funzionamento di un circuito ExpressRoute, *Stato circuito* deve essere impostato su *Abilitato* e *Stato provider* su *Provisioning eseguito*.
+Per un toobe di circuito ExpressRoute operativa, hello *Circuit stato* deve essere *abilitato* hello e *stato Provider* deve essere *provisioning eseguito*.
 
 >[!NOTE]
->Se *Stato circuito* non è impostato su Abilitato, contattare il [supporto tecnico Microsoft][Support]. Se *Stato provider* è impostato su Senza provisioning, contattare il provider dei servizi.
+>Se hello *Circuit stato* non è abilitato, contattare [supporto Microsoft][Support]. Se hello *stato Provider* non è disponibile, contattare il provider di servizi.
 >
 >
 
 ###<a name="verification-via-powershell"></a>Verifica tramite PowerShell
-Per elencare tutti i circuiti ExpressRoute in un gruppo di risorse, usare il comando seguente:
+toolist tutti hello circuiti ExpressRoute in un gruppo di risorse, usare hello comando seguente:
 
     Get-AzureRmExpressRouteCircuit -ResourceGroupName "Test-ER-RG"
 
 >[!TIP]
->È possibile ottenere il nome del gruppo di risorse tramite il portale di Azure. Vedere la sezione precedente di questo documento e notare che il nome del gruppo di risorse è elencato nella schermata di esempio.
+>È possibile ottenere il nome del gruppo di risorse tramite hello portale di Azure. Vedere hello sottosezione precedente di questo documento e si noti che il nome del gruppo di risorse hello è elencato nella schermata dell'esempio hello.
 >
 >
 
-Per selezionare uno specifico circuito ExpressRoute in un gruppo di risorse, usare il comando seguente:
+tooselect un particolare circuito ExpressRoute in un gruppo di risorse, utilizzare hello comando seguente:
 
     Get-AzureRmExpressRouteCircuit -ResourceGroupName "Test-ER-RG" -Name "Test-ER-Ckt"
 
@@ -129,22 +129,22 @@ Una risposta di esempio:
     Peerings                         : []
     Authorizations                   : []
 
-Per verificare se un circuito ExpressRoute è operativo, prestare particolare attenzione ai campi seguenti:
+tooconfirm se un circuito ExpressRoute è operativo, è necessario prestare particolare attenzione toohello seguenti campi:
 
     CircuitProvisioningState         : Enabled
     ServiceProviderProvisioningState : Provisioned
 
 >[!NOTE]
->Se *CircuitProvisioningState* non è abilitato, contattare il [supporto tecnico Microsoft][Support]. Se *ServiceProviderProvisioningState* è senza provisioning, contattare il provider di servizi.
+>Se hello *stato di provisioning* non è abilitato, contattare [supporto Microsoft][Support]. Se hello *ServiceProviderProvisioningState* non è disponibile, contattare il provider di servizi.
 >
 >
 
 ###<a name="verification-via-powershell-classic"></a>Verifica tramite PowerShell (versione classica)
-Per elencare tutti i circuiti ExpressRoute in una sottoscrizione, usare il comando seguente:
+toolist tutti hello circuiti ExpressRoute in una sottoscrizione, utilizzare hello comando seguente:
 
     Get-AzureDedicatedCircuit
 
-Per selezionare uno specifico circuito ExpressRoute, usare il comando seguente:
+tooselect un particolare circuito ExpressRoute, utilizzare hello comando seguente:
 
     Get-AzureDedicatedCircuit -ServiceKey **************************************
 
@@ -160,41 +160,41 @@ Una risposta di esempio:
     Sku                              : Standard
     Status                           : Enabled
 
-Per verificare se un circuito ExpressRoute è operativo, prestare particolare attenzione ai campi seguenti: ServiceProviderProvisioningState: Provisioned Status: Enabled
+tooconfirm se un circuito ExpressRoute è operativo, prestare particolare attenzione toohello seguenti campi: ServiceProviderProvisioningState: lo stato di provisioning: abilitato
 
 >[!NOTE]
->Se *Status* non è abilitato, contattare il [supporto tecnico Microsoft][Support]. Se *ServiceProviderProvisioningState* è senza provisioning, contattare il provider di servizi.
+>Se hello *stato* non è abilitato, contattare [supporto Microsoft][Support]. Se hello *ServiceProviderProvisioningState* non è disponibile, contattare il provider di servizi.
 >
 >
 
 ##<a name="validate-peering-configuration"></a>Convalidare la configurazione del peering
-Dopo che il provider di servizi ha completato il provisioning del circuito ExpressRoute, è possibile creare una configurazione di routing sul circuito ExpressRoute tra MSEE-PR (4) e MSEE (5). Ogni circuito ExpressRoute può avere uno, due o tre contesti di routing abilitati: peering privato di Azure, ovvero il traffico verso reti virtuali private in Azure, peering pubblico di Azure, ovvero il traffico verso indirizzi IP pubblici in Azure e peering Microsoft, ovvero il traffico verso Office 365 e Dynamics 365. Per altre informazioni su come creare e modificare la configurazione di routing, vedere l'articolo [Creare e modificare il routing per un circuito ExpressRoute][CreatePeering].
+Dopo il provider di servizi di hello ha completato hello provisioning del circuito ExpressRoute hello, è possibile creare una configurazione di routing su hello circuito ExpressRoute tra MSEE (4), le prenotazioni permanenti e MSEEs (5). Ogni circuito ExpressRoute può avere uno, due o tre contesti di routing abilitati: peering privato di Azure (traffico tooprivate reti virtuali in Azure), peering pubblico di Azure (traffico toopublic gli indirizzi IP in Azure) e (traffico tooOffice 365 peering Microsoft e Dynamics 365). Per ulteriori informazioni su come toocreate e modificare la configurazione di routing, vedere l'articolo hello [creare e modificare il routing per un circuito ExpressRoute][CreatePeering].
 
-###<a name="verification-via-the-azure-portal"></a>Verifica tramite il portale di Azure
+###<a name="verification-via-hello-azure-portal"></a>Verifica tramite hello portale di Azure
 >[!IMPORTANT]
->Esiste un bug noto nel portale di Azure in cui i peering di ExpressRoute *NON* sono mostrati nel portale se configurati dal provider di servizi. Aggiungendo peering di ExpressRoute tramite il portale o PowerShell *si sovrascrivono le impostazioni del provider di servizi*. Questa operazione interrompe il routing del circuito ExpressRoute ed è richiesto il supporto del provider di servizi per ripristinare le impostazioni e ristabilire il routing normale. Modificare i peering di ExpressRoute solo se si è certi che il provider di servizi offre esclusivamente servizi di livello 2.
+>È presente un bug noto nel portale di Azure in cui il peering ExpressRoute è hello *non* visualizzata nel portale di hello se configurato dal provider di servizi di hello. Aggiunta di peering ExpressRoute tramite il portale di hello o PowerShell *sovrascrive le impostazioni del provider servizio hello*. Questa azione interrompe hello routing sul circuito ExpressRoute hello e richiede il supporto di hello hello impostazioni del servizio provider toorestore hello e ristabilire la normale di routing. Modificare solo il peering ExpressRoute hello se si è certi che il provider di servizi di hello fornisce solo servizi di livello 2.
 >
 >
 
 <p/>
 >[!NOTE]
->Se il provider offre servizi di livello 3 e i peering non sono mostrati nel portale, è possibile usare PowerShell per visualizzare le impostazioni configurate del provider di servizi.
+>Se layer 3 viene fornito da hello peering hello e di provider di servizio sono vuote nel portale di hello, PowerShell può essere utilizzato toosee hello servizio provider configurato impostazioni.
 >
 >
 
-Nel portale di Azure lo stato di un circuito ExpressRoute può essere controllato selezionando ![2][2] nel menu sulla barra laterale sinistra e quindi selezionando il circuito ExpressRoute. La selezione di un circuito ExpressRoute elencato in "All resources" (Tutte le risorse) determina l'apertura del pannello del circuito ExpressRoute. Nella sezione ![3][3] del pannello saranno elencate le informazioni di base di ExpressRoute come illustrato nella schermata seguente:
+In hello portale di Azure, lo stato di un circuito ExpressRoute può essere controllato selezionando ![2][2] su hello menu laterale a sinistra e quindi selezionando hello circuito ExpressRoute. Selezione di ExpressRoute circuito sotto "Tutte le risorse" aprire Pannello circuito ExpressRoute di hello. In hello ![3][3] sezione del pannello hello, hello ExpressRoute essentials sarà elencato come illustrato nella seguente cattura di schermata hello:
 
 ![5][5]
 
-Nell'esempio precedente, come indicato, il contesto di routing di peering privato di Azure è abilitato, mentre i contesti di routing di peering pubblico e Microsoft non sono abilitati. Per un contesto di peering abilitato correttamente vengono anche elencate le subnet punto a punto primarie e secondarie (per il protocollo BGP). Le /30 subnet vengono usate per l'indirizzo IP dell'interfaccia degli MSEE e PE-MSEE. 
+In hello sopra riportato, come indicato Azure contesto di routing di peering privato è abilitata, mentre Azure pubblico e contesti di routing peering Microsoft non sono abilitati. Un contesto di peering abilitato correttamente avrebbe subnet primario e secondario Point-to-(obbligatorio per il protocollo BGP) hello elencate. subnet Hello /30 vengono utilizzate per l'indirizzo IP dell'interfaccia hello di hello MSEEs e PE MSEEs. 
 
 >[!NOTE]
->Se non è abilitato alcun peering, verificare se le subnet primarie e secondarie assegnate corrispondono alla configurazione su PE-MSEE. In caso contrario, per modificare la configurazione sui router MSEE, fare riferimento a [Creare e modificare il routing per un circuito ExpressRoute][CreatePeering]
+>Se un peering non è abilitato, verificare se subnet primario e secondario hello assegnata corrisponde configurazione hello PE MSEEs. Se non, toochange hello configurazione router MSEE, fare riferimento troppo[creare e modificare il routing per un circuito ExpressRoute][CreatePeering]
 >
 >
 
 ###<a name="verification-via-powershell"></a>Verifica tramite PowerShell
-Per ottenere i dettagli di configurazione del peering privato di Azure, usare i comandi seguenti:
+tooget hello Azure privata peering dettagli di configurazione, utilizzare hello seguenti comandi:
 
     $ckt = Get-AzureRmExpressRouteCircuit -ResourceGroupName "Test-ER-RG" -Name "Test-ER-Ckt"
     Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt
@@ -216,19 +216,19 @@ Una risposta di esempio, per un peering privato configurato correttamente:
     MicrosoftPeeringConfig     : null
     ProvisioningState          : Succeeded
 
- In un contesto di peering abilitato correttamente vengono elencati i prefissi di indirizzi primari e secondari. Le /30 subnet vengono usate per l'indirizzo IP dell'interfaccia degli MSEE e PE-MSEE.
+ Un contesto di peering abilitato correttamente avrebbe prefissi di indirizzo primario e secondario hello elencati. subnet Hello /30 vengono utilizzate per l'indirizzo IP dell'interfaccia hello di hello MSEEs e PE MSEEs.
 
-Per ottenere i dettagli di configurazione del peering pubblico di Azure, usare i comandi seguenti:
+tooget hello Azure pubblica peering dettagli di configurazione, utilizzare hello seguenti comandi:
 
     $ckt = Get-AzureRmExpressRouteCircuit -ResourceGroupName "Test-ER-RG" -Name "Test-ER-Ckt"
     Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -Circuit $ckt
 
-Per ottenere i dettagli di configurazione del peering Microsoft, usare i comandi seguenti:
+tooget hello Microsoft peering dettagli di configurazione, utilizzare hello seguenti comandi:
 
     $ckt = Get-AzureRmExpressRouteCircuit -ResourceGroupName "Test-ER-RG" -Name "Test-ER-Ckt"
     Get-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -Circuit $ckt
 
-Se non è configurato alcun peering, viene visualizzato un messaggio di errore. Una risposta di esempio, quando il peering indicato (peering pubblico di Azure in questo esempio) non è configurato all'interno del circuito:
+Se non è configurato alcun peering, viene visualizzato un messaggio di errore. Una risposta di esempio, quando hello indicato peering (pubblico di Azure peering in questo esempio) non è configurata nel circuito hello:
 
     Get-AzureRmExpressRouteCircuitPeeringConfig : Sequence contains no matching element
     At line:1 char:1
@@ -240,12 +240,12 @@ Se non è configurato alcun peering, viene visualizzato un messaggio di errore. 
 
 <p/>
 >[!NOTE]
->Se non è abilitato alcun peering, verificare se le subnet primarie e secondarie assegnate corrispondono alla configurazione sul PE-MSEE collegato. Controllare anche che siano usati i valori corretti *VlanId*, *AzureASN* e *PeerASN* sugli MSEE e che tali valori corrispondano a quelli usati sul PE-MSEE collegato. Se si sceglie l'hash MD5, la chiave condivisa deve essere identica nella coppia MSEE e PE-MSEE. Per modificare la configurazione sui router MSEE, fare riferimento a [Creare e modificare il routing per un circuito ExpressRoute][CreatePeering].  
+>Se un peering non è abilitato, verificare se hello corrispondenza hello primario e secondario subnet assegnate configurazione hello collegato PE MSEE. Anche verificare se hello correggere *VlanId*, *AzureASN*, e *PeerASN* vengono utilizzati su MSEEs e se questi valori viene eseguito il mapping toohello quelli utilizzati in hello collegato PE MSEE. Se si sceglie di hash MD5, la chiave condivisa hello deve corrispondere in coppia MSEE e PE MSEE. configurazione di hello toochange in router MSEE hello, fare riferimento troppo [creare e modificare il routing per un circuito ExpressRoute] [CreatePeering].  
 >
 >
 
 ### <a name="verification-via-powershell-classic"></a>Verifica tramite PowerShell (versione classica)
-Per ottenere i dettagli di configurazione del peering privato di Azure, usare il comando seguente:
+tooget hello Azure privata peering dettagli di configurazione, utilizzare hello comando seguente:
 
     Get-AzureBGPPeering -AccessType Private -ServiceKey "*********************************"
 
@@ -264,40 +264,40 @@ Una risposta di esempio, per un peering privato configurato correttamente:
     State                          : Enabled
     VlanId                         : 100
 
-In un contesto di peering abilitato correttamente vengono elencate le subnet peer primarie e secondarie. Le /30 subnet vengono usate per l'indirizzo IP dell'interfaccia degli MSEE e PE-MSEE.
+Abilitato correttamente, un contesto di peering avrebbe subnet peer primaria e secondaria hello elencate. subnet Hello /30 vengono utilizzate per l'indirizzo IP dell'interfaccia hello di hello MSEEs e PE MSEEs.
 
-Per ottenere i dettagli di configurazione del peering pubblico di Azure, usare i comandi seguenti:
+tooget hello Azure pubblica peering dettagli di configurazione, utilizzare hello seguenti comandi:
 
     Get-AzureBGPPeering -AccessType Public -ServiceKey "*********************************"
 
-Per ottenere i dettagli di configurazione del peering Microsoft, usare i comandi seguenti:
+tooget hello Microsoft peering dettagli di configurazione, utilizzare hello seguenti comandi:
 
     Get-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************"
 
 >[!IMPORTANT]
->Se il provider di servizi ha impostato peering di livello 3, l'impostazione dei peering di ExpressRoute tramite il portale o PowerShell sovrascrive le impostazioni del provider di servizi. La riconfigurazione delle impostazioni di peering lato provider richiede il supporto del provider di servizi. Modificare i peering di ExpressRoute solo se si è certi che il provider di servizi offre esclusivamente servizi di livello 2.
+>Se peering di livello 3 sono state impostate dal provider di servizi di hello, l'impostazione di peering ExpressRoute hello tramite il portale di hello o PowerShell sovrascrive le impostazioni del provider servizio hello. Reimpostazione delle impostazioni peer hello provider lato richiede il supporto di hello hello del provider di servizi. Modificare solo il peering ExpressRoute hello se si è certi che il provider di servizi di hello fornisce solo servizi di livello 2.
 >
 >
 
 <p/>
 >[!NOTE]
->Se non è abilitato alcun peering, verificare se le subnet peer primarie e secondarie assegnate corrispondono alla configurazione sul PE-MSEE collegato. Controllare anche che siano usati i valori corretti *VlanId*, *AzureASN* e *PeerASN* sugli MSEE e che tali valori corrispondano a quelli usati sul PE-MSEE collegato. Per modificare la configurazione sui router MSEE, fare riferimento a [Creare e modificare il routing per un circuito ExpressRoute][CreatePeering].
+>Se un peering non è abilitato, verificare se hello peer primario e secondario subnet assegnate corrispondenza hello configurazione su hello collegato PE MSEE. Anche verificare se hello correggere *VlanId*, *AzureAsn*, e *PeerAsn* vengono utilizzati su MSEEs e se questi valori viene eseguito il mapping toohello quelli utilizzati in hello collegato PE MSEE. configurazione di hello toochange in router MSEE hello, fare riferimento troppo [creare e modificare il routing per un circuito ExpressRoute] [CreatePeering].
 >
 >
 
-## <a name="validate-arp-between-microsoft-and-the-service-provider"></a>Convalidare ARP tra Microsoft e il provider di servizi
-In questa sezione vengono usati i comandi di PowerShell (versione classica). Se si usano i comandi di PowerShell basati su Azure Resource Manager, assicurarsi di disporre dell'accesso di amministratore/coamministratore alla sottoscrizione tramite il [portale di Azure classico][OldPortal]. Per la risoluzione dei problemi tramite i comandi di Azure Resource Manager, vedere il documento [Recupero di tabelle ARP nel modello di distribuzione Resource Manager][ARP].
+## <a name="validate-arp-between-microsoft-and-hello-service-provider"></a>Convalidare ARP tra Microsoft e hello provider del servizio
+In questa sezione vengono usati i comandi di PowerShell (versione classica). Se si utilizza i comandi di gestione risorse di Azure PowerShell, assicurarsi di avere accesso amministratore/coamministratore toohello sottoscrizione tramite [portale di Azure classico][OldPortal]. Per la risoluzione dei problemi mediante Gestione risorse di Azure i comandi, vedere toohello [tabelle recupero ARP nel modello di distribuzione di gestione risorse di hello] [ ARP] documento.
 
 >[!NOTE]
->Per ottenere ARP, è possibile usare sia il portale di Azure sia i comandi di PowerShell basati su Azure Resource Manager. In caso di errori con i comandi di PowerShell basati su Azure Resource Manager, i comandi classici di PowerShell dovrebbero essere operativi in quanto tali comandi funzionano anche con circuiti ExpressRoute in Azure Resource Manager.
+>tooget ARP, sia hello portale di Azure e i comandi di PowerShell di gestione risorse di Azure può essere utilizzato. Se si verificano errori con i comandi di PowerShell di gestione risorse di Azure hello, i comandi di PowerShell classici dovrebbero funzionare come PowerShell classico comandi funzionano anche con circuiti ExpressRoute di gestione risorse di Azure.
 >
 >
 
-Per ottenere la tabella ARP dal router MSEE primario per il peering privato, usare il comando seguente:
+tooget hello tabella ARP hello MSEE del router principale per il peering privato hello, usare hello comando seguente:
 
     Get-AzureDedicatedCircuitPeeringArpInfo -AccessType Private -Path Primary -ServiceKey "*********************************"
 
-Un esempio di risposta per il comando, nello scenario di esito positivo:
+Una risposta di esempio per il comando di hello, in caso di esito positivo hello:
 
     ARP Info:
 
@@ -305,28 +305,28 @@ Un esempio di risposta per il comando, nello scenario di esito positivo:
                  113             On-Prem       10.0.0.1           e8ed.f335.4ca9
                    0           Microsoft       10.0.0.2           7c0e.ce85.4fc9
 
-Allo stesso modo è possibile controllare la tabella ARP dal MSEE nel percorso *Primary*/*Secondary* per peering *Private*/*Public*/*Microsoft*.
+Analogamente, è possibile controllare la tabella ARP da Ciao MSEE hello hello *primario*/*secondario* percorso, per *privata* /  *Pubblica*/*Microsoft* peering.
 
-L'esempio seguente mostra la risposta del comando per un peering inesistente.
+Hello esempio seguente viene mostrato hello risposta del comando hello per un peering non esiste.
 
     ARP Info:
        
 >[!NOTE]
->Se la tabella ARP non dispone di indirizzi IP delle interfacce associate agli indirizzi MAC, esaminare le informazioni seguenti:
->1. Se il primo indirizzo IP delle /30 subnet assegnate per il collegamento tra il MSEE-PR e il MSEE viene usato nell'interfaccia di MSEE-PR. Azure usa sempre il secondo indirizzo IP per MSEE.
->2. Verificare se i tag VLAN del cliente (C-Tag) e del servizio (S-Tag) corrispondono nella coppia MSEE-PR e MSEE.
+>Se la tabella ARP hello non dispone di indirizzi IP delle interfacce hello eseguire il mapping di indirizzi tooMAC, hello esaminare le seguenti informazioni:
+>1. Se hello primo indirizzo IP del subnet hello /30 assegnato per il collegamento hello tra hello MSEE PR e MSEE viene utilizzato nell'interfaccia hello del MSEE PR Azure Usa sempre l'indirizzo IP secondo hello per MSEEs.
+>2. Verificare se cliente hello (C-Tag) e i tag VLAN servizio (S-Tag) corrispondano entrambi in coppia MSEE PR e MSEE.
 >
 >
 
-## <a name="validate-bgp-and-routes-on-the-msee"></a>Convalidare BGP e route sul MSEE
-In questa sezione vengono usati i comandi di PowerShell (versione classica). Se si usano i comandi di PowerShell basati su Azure Resource Manager, assicurarsi di disporre dell'accesso di amministratore/coamministratore alla sottoscrizione tramite il [portale di Azure classico][OldPortal]
+## <a name="validate-bgp-and-routes-on-hello-msee"></a>Convalidare il protocollo BGP e route su hello MSEE
+In questa sezione vengono usati i comandi di PowerShell (versione classica). Se si utilizza i comandi di gestione risorse di Azure PowerShell, assicurarsi di avere accesso amministratore/coamministratore toohello sottoscrizione tramite [portale di Azure classico][OldPortal]
 
 >[!NOTE]
->Per ottenere informazioni BGP, è possibile usare sia il portale di Azure sia i comandi di PowerShell basati su Azure Resource Manager. In caso di errori con i comandi di PowerShell basati su Azure Resource Manager, i comandi classici di PowerShell dovrebbero essere operativi in quanto tali comandi funzionano anche con circuiti ExpressRoute in Azure Resource Manager.
+>tooget BGP informazioni, entrambi hello è possibile utilizzare il portale di Azure e i comandi di PowerShell di gestione risorse di Azure. Se si verificano errori con i comandi di PowerShell di gestione risorse di Azure hello, i comandi di PowerShell classici dovrebbero funzionare come PowerShell classico comandi funzionano anche con circuiti ExpressRoute di gestione risorse di Azure.
 >
 >
 
-Per ottenere il riepilogo della tabella di routing (BGP adiacente) per un particolare contesto di routing, usare il comando seguente:
+tooget hello tabella di routing (adiacente BGP) riepilogo per un particolare contesto di routing, utilizzare hello comando seguente:
 
     Get-AzureDedicatedCircuitPeeringRouteTableSummary -AccessType Private -Path Primary -ServiceKey "*********************************"
 
@@ -337,24 +337,24 @@ Una risposta di esempio:
             Neighbor                   V                  AS              UpDown         StatePfxRcd
             10.0.0.1                   4                ####                8w4d                  50
 
-Come illustrato nell'esempio precedente, il comando è utile per determinare da quanto tempo è stato stabilito il contesto di routing. Indica inoltre il numero di prefissi di route annunciati dal router di peering.
+Come illustrato nell'esempio sopra riportato hello, hello è utile toodetermine per quanto tempo contesto routing hello è stata stabilita. Indica inoltre il numero di prefissi di route annunciate dal router di peering hello.
 
 >[!NOTE]
->Se lo stato è attivo o inattivo, verificare se le subnet peer primarie e secondarie assegnate corrispondono alla configurazione sul PE-MSEE collegato. Controllare anche che siano usati i valori corretti *VlanId*, *AzureASN* e *PeerASN* sugli MSEE e che tali valori corrispondano a quelli usati sul PE-MSEE collegato. Se si sceglie l'hash MD5, la chiave condivisa deve essere identica nella coppia MSEE e PE-MSEE. Per modificare la configurazione sui router MSEE, fare riferimento a [Creare e modificare il routing per un circuito ExpressRoute][CreatePeering].
+>Se lo stato di hello è attivo o inattivo, controllare se hello peer primario e secondario subnet assegnate corrispondenza hello configurazione su hello collegato PE MSEE. Anche verificare se hello correggere *VlanId*, *AzureAsn*, e *PeerAsn* vengono utilizzati su MSEEs e se questi valori viene eseguito il mapping toohello quelli utilizzati in hello collegato PE MSEE. Se si sceglie di hash MD5, la chiave condivisa hello deve corrispondere in coppia MSEE e PE MSEE. configurazione di hello toochange in router MSEE hello, fare riferimento troppo[creare e modificare il routing per un circuito ExpressRoute][CreatePeering].
 >
 >
 
 <p/>
 >[!NOTE]
->Se alcune destinazioni non sono raggiungibili tramite un particolare peering, controllare la tabella di route dei MSEE appartenente al contesto di peering specifico. Se un prefisso corrispondente, ad esempio un IP su cui è stato eseguito il NAT, questo è presente nella tabella di routing, controllare che ci siano firewalls/NSG/ACLs nel percorso e che questi consentano il traffico.
+>Se alcune destinazioni non sono raggiungibili su un particolare peering, controllare la tabella di route hello di hello MSEEs appartenenti toohello particolare contesto peer. Se un prefisso corrispondente (potrebbe essere NATed IP) è presente nella tabella di routing hello, controllare se sono presenti firewall/gruppo/ACL nel percorso hello e consentono il traffico di hello.
 >
 >
 
-Per ottenere la tabella di routing completa da MSEE sul percorso *Primary* per il contesto di routing *Private* specifico, usare il comando seguente:
+tooget hello completa tabella di routing da MSEE su hello *primario* percorso per hello particolare *privata* contesto routing, utilizzare hello comando seguente:
 
     Get-AzureDedicatedCircuitPeeringRouteTableInfo -AccessType Private -Path Primary -ServiceKey "*********************************"
 
-Un risultato positivo di esempio per il comando:
+È un risultato positivo di esempio per il comando hello:
 
     Route Table Info:
 
@@ -363,24 +363,24 @@ Un risultato positivo di esempio per il comando:
          10.2.0.0/16            10.0.0.1                                       0    #### ##### #####
     ...
 
-Allo stesso modo è possibile controllare la tabella di routing dal MSEE nel percorso *Primary*/*Secondary*, per un contesto di peering *Private*/*Public*/*Microsoft*.
+Analogamente, è possibile controllare tabella di routing hello da Ciao MSEE hello *primario*/*secondario* percorso, per *privata* / *Pubblica*/*Microsoft* un contesto di peer.
 
-L'esempio seguente mostra la risposta del comando per un peering inesistente:
+Hello esempio seguente viene mostrato hello risposta del comando hello per un peering non esiste:
 
     Route Table Info:
 
-##<a name="check-the-traffic-statistics"></a>Controllare le statistiche sul traffico
-Per ottenere le statistiche sul traffico del percorso primario e secondario combinato, byte in entrata e in uscita, di un contesto di peering, usare il comando seguente:
+##<a name="check-hello-traffic-statistics"></a>Controllare le statistiche sul traffico hello
+hello tooget combinati e disconnettersi, statistiche sul traffico percorso primario e secondario - byte di un contesto di peering, utilizzare hello comando seguente:
 
     Get-AzureDedicatedCircuitStats -ServiceKey 97f85950-01dd-4d30-a73c-bf683b3a6e5c -AccessType Private
 
-Output di esempio del comando:
+Un esempio di output del comando hello è:
 
     PrimaryBytesIn PrimaryBytesOut SecondaryBytesIn SecondaryBytesOut
     -------------- --------------- ---------------- -----------------
          240780020       239863857        240565035         239628474
 
-Output di esempio del comando per un peering inesistente:
+È un esempio di output del comando hello per un peering non esistente:
 
     Get-AzureDedicatedCircuitStats : ResourceNotFound: Can not find any subinterface for peering type 'Public' for circuit '97f85950-01dd-4d30-a73c-bf683b3a6e5c' .
     At line:1 char:1
@@ -390,7 +390,7 @@ Output di esempio del comando per un peering inesistente:
         + FullyQualifiedErrorId : Microsoft.WindowsAzure.Commands.ExpressRoute.GetAzureDedicatedCircuitPeeringStatsCommand
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per maggiori informazioni o assistenza, consultare i collegamenti seguenti:
+Per ulteriori informazioni o assistenza, vedere hello seguenti collegamenti:
 
 - [Supporto tecnico Microsoft][Support]
 - [Creare e modificare un circuito ExpressRoute][CreateCircuit]

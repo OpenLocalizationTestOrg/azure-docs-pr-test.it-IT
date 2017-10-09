@@ -1,5 +1,5 @@
 >[!NOTE]
->Per le risorse non fisse è possibile richiedere l'aumento delle quote aprendo un ticket di supporto. **Non** creare altri account di Servizi multimediali di Azure per provare a ottenere limiti superiori.
+>Per le risorse che non sono corretti, è possibile chiedere che hello quote toobe generato, aprendo un ticket di supporto. Eseguire **non** creare altri account di servizi multimediali di Azure nel tentativo limiti più elevati tooobtain.
 
 | Risorsa | Limite predefinito | 
 | --- | --- | 
@@ -18,28 +18,28 @@
 | Unità di streaming per endpoint di streaming  |10 |
 | Account di archiviazione | 1.000<sup>(5)</sup> (fisso) |
 | Criteri | 1.000.000<sup>(6)</sup> |
-| Dimensioni complete| In alcuni scenari è previsto un limite per le dimensioni massime dei file supportate per l'elaborazione in Servizi multimediali. <sup>7</sup> |
+| Dimensioni complete| In alcuni scenari è previsto un limite alle dimensioni massime del file hello è supportata per l'elaborazione in servizi multimediali. <sup>7</sup> |
   
-<sup>1</sup> Le unità riservate S3 non sono disponibili in India occidentale. Se il cliente modifica il tipo, ad esempio da S2 a S1, i limiti massimi per le UR vengono reimpostati. 
+<sup>1</sup> Le unità riservate S3 non sono disponibili in India occidentale. limiti RU max Hello reimpostati se cliente hello Cambia tipo di hello (ad esempio, da tooS1 S2). 
 
-<sup>2</sup> Questo numero include i processi in coda, terminati, attivi e annullati. Non include invece i processi eliminati. È possibile eliminare i processi obsoleti usando **IJob.Delete** o la richiesta HTTP **DELETE**.
+<sup>2</sup> Questo numero include i processi in coda, terminati, attivi e annullati. Non include invece i processi eliminati. È possibile eliminare i processi di hello precedente mediante **IJob.Delete** o hello **eliminare** richiesta HTTP.
 
-A partire dall'1 aprile 2017, tutti i record di processo presenti nell'account e più vecchi di 90 giorni verranno eliminati automaticamente, insieme ai record attività associati, anche se il numero totale di record è inferiore alla quota massima. Se è necessario archiviare le informazioni sul processo o sull'attività, è possibile usare il codice descritto [qui](../articles/media-services/media-services-dotnet-manage-entities.md).
+A partire dal 1 aprile 2017, qualsiasi record di processo più vecchi di 90 giorni account vengono eliminate automaticamente, insieme ai relativi record di attività associato, anche se il numero di record hello sotto la quota massima di hello. Se sono necessarie informazioni di processi/attività hello tooarchive, è possibile utilizzare codice hello descritto [qui](../articles/media-services/media-services-dotnet-manage-entities.md).
 
-<sup>3</sup> L'elenco di entità Job restituite può includere al massimo 1.000 voci per richiesta. Per tenere traccia di tutte le entità Job inviate, si possono usare le opzioni top/skip descritte nell'argomento [Opzioni query di sistema OData](http://msdn.microsoft.com/library/gg309461.aspx).
+<sup>3</sup> quando si effettua una richiesta di entità Job toolist, verrà restituito un massimo di 1.000 per ogni richiesta. Se è necessario tookeep traccia di tutti i processi inviati, come descritto in, è possibile utilizzare top/skip [opzioni di query di sistema OData](http://msdn.microsoft.com/library/gg309461.aspx).
 
-<sup>4</sup> I localizzatori non sono progettati per gestire il controllo di accesso per utente. Per assegnare a singoli utenti diritti di accesso diversi, è possibile usare soluzioni DRM (Digital Rights Management). Per altre informazioni, vedere [questa](../articles/media-services/media-services-content-protection-overview.md) sezione.
+<sup>4</sup> I localizzatori non sono progettati per gestire il controllo di accesso per utente. toogive gli utenti tooindividual diritti di accesso diverso, usare le soluzioni di Digital Rights Management (DRM). Per altre informazioni, vedere [questa](../articles/media-services/media-services-content-protection-overview.md) sezione.
 
-<sup>5</sup> Gli account di archiviazione devono appartenere alla stessa sottoscrizione di Azure.
+<sup>5</sup> gli account di archiviazione hello devono essere compreso hello stessa sottoscrizione di Azure.
 
 <sup>6</sup> È previsto un limite di 1.000.000 criteri per i diversi criteri di servizi multimediali di Azure (ad esempio, per i criteri Locator o ContentKeyAuthorizationPolicy). 
 
 >[!NOTE]
-> Se si utilizzano sempre gli stessi giorni, autorizzazioni di accesso e così via, è necessario utilizzare lo stesso ID criterio. Per informazioni e un esempio, vedere [questa](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies) sezione.
+> È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni / le autorizzazioni di accesso e così via. Per informazioni e un esempio, vedere [questa](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies) sezione.
 
-<sup>7</sup>Se si caricano contenuti in un asset in Servizi multimediali di Azure per elaborarli con uno dei processori di contenuti multimediali del servizio, ad esempio codificatori come Media Encoder Standard e il flusso di lavoro Premium del codificatore multimediale oppure motori di analisi come Face Detector, è necessario essere consapevoli del vincolo relativo alle dimensioni massime. 
+<sup>7</sup>se si sta caricando contenuto tooan le risorse multimediali di Azure servizi con tooprocess preventivo hello con uno dei processori di contenuti multimediali hello in servizio (ad esempio codificatori come motori Media Encoder Standard e flusso di lavoro Premium del codificatore multimediale o analisi come tipo di carattere Rilevatore), quindi è necessario essere consapevoli del vincolo hello sulla dimensione massima di hello. 
 
-A partire dal 15 maggio 2017, le dimensioni massime supportate per un singolo BLOB sono 195 TB. In caso di file di dimensioni superiori a tale limite, l'attività avrà esito negativo. Microsoft sta lavorando per trovare la soluzione a questo limite. Viene inoltre applicato il vincolo seguente relativo alle dimensioni massime dell'asset.
+A partire da 15 maggio 2017, dimensione massima di hello è supportato per un singolo blob è 195 TB - con largers file superiore al limite specificato, l'attività avrà esito negativo. Stiamo lavorando tooaddress una correzione di questo limite. Inoltre, hello vincolo sulla dimensione massima di hello di hello Asset è come indicato di seguito.
 
 | Unità riservata multimediale | Dimensioni massime input (GB)| 
 | --- | --- | 

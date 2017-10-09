@@ -1,16 +1,16 @@
 ## <a name="scenario"></a>Scenario
-Per illustrare meglio come creare un NSG, in questo documento verrà utilizzato lo scenario seguente.
+toobetter viene illustrato come NSGs toocreate, questo documento verrà utilizzato uno scenario di hello riportato di seguito.
 
 ![Scenario di una rete virtuale](./media/virtual-networks-create-nsg-scenario-include/figure1.png)
 
-In questo scenario si creerà un NSG per ogni subnet nella rete virtuale **TestVNet** , come illustrato di seguito: 
+In questo scenario verrà creato un gruppo per ogni subnet in hello **TestVNet** rete virtuale, come illustrato di seguito: 
 
-* **NSG-FrontEnd**. Il front-end NSG verrà applicato per il subnet *front-end* , e contiene due regole:    
-  * **regola-rdp**. Questa regola consente il traffico RDP verso il subnet *front-end* .
-  * **regola-web**. Questa regola consente il traffico HTTP verso il subnet *front-end* .
-* **Back-end di NSG**. Il back-end NSG verrà applicato per il subnet *back-end* , e contiene due regole:    
-  * **regola sql**. Questa regola consente il traffico SQL solo dal subnet *front-end* .
-  * **regola-web**. Questa regola nega tutto il traffico associato ad internet proveniente dal subnet *back-end* .
+* **NSG-FrontEnd**. Hello front-end di gruppo saranno applicata toohello *front-end* , subnet e contenere due regole:    
+  * **regola-rdp**. Questa regola consente toohello il traffico RDP *front-end* subnet.
+  * **regola-web**. Questa regola consente toohello il traffico HTTP *front-end* subnet.
+* **Back-end di NSG**. back-end di Hello gruppo saranno applicata toohello *back-end* , subnet e contenere due regole:    
+  * **regola sql**. Questa regola consente il traffico SQL solo da hello *front-end* subnet.
+  * **regola-web**. Questa regola Nega tutte internet al traffico in uscita da hello *back-end* subnet.
 
-La combinazione di queste regole crea uno scenario simile alla rete perimetrale, dove la subnet di back-end può solo ricevere traffico in ingresso per SQL dalla subnet front-end e non dispone dell'accesso a Internet, mentre la subnet front-end può comunicare con Internet e ricevere solo le richieste HTTP in ingresso.
+combinazione di queste regole Hello creare uno scenario simile rete Perimetrale, dove subnet back-end hello può solo ricevere il traffico in ingresso per SQL dalla subnet front-end hello e non ha toohello accesso Internet, mentre subnet front-end hello può comunicare con Internet hello, e ricevere solo le richieste HTTP in ingresso.
 

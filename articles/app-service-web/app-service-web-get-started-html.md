@@ -1,6 +1,6 @@
 ---
-title: Creare un'app Web HTML statica in Azure | Microsoft Docs
-description: Informazioni su come eseguire app Web nel servizio app di Azure mediante la distribuzione di un'app HTML statica di esempio.
+title: app web aaaCreate HTML statico in Azure | Documenti Microsoft
+description: Informazioni su come le app web toorun in Azure App Service distribuendo un HTML statico app di esempio.
 services: app-service\web
 documentationcenter: 
 author: rick-anderson
@@ -15,48 +15,48 @@ ms.topic: quickstart
 ms.date: 05/26/2017
 ms.author: riande
 ms.custom: mvc
-ms.openlocfilehash: 42af5b08b8d2ff0c75fd73dcfa61c861647fd2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: efd8c8189a3aa1ac35602b688eeb31bff6f5a373
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-static-html-web-app-in-azure"></a>Creare un'app Web HTML statica in Azure
 
-Le [app Web di Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) forniscono un servizio di hosting Web ad alta scalabilità e con funzioni di auto-correzione.  Questa guida introduttiva illustra come distribuire un sito HTML e CSS di base in un'app Web di Azure. Si creerà l'app Web usando l'[interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) e si userà Git per distribuire il contenuto HTML di esempio nell'app Web.
+Le [app Web di Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) forniscono un servizio di hosting Web ad alta scalabilità e con funzioni di auto-correzione.  Questa Guida rapida illustra toodeploy HTML + CSS base dei siti tooAzure Web App. Si crea app web hello utilizzando hello [CLI di Azure](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), e si utilizza Git toodeploy app web di esempio HTML toohello contenuto.
 
 ![Home page dell'app di esempio](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-È possibile eseguire queste procedure con un computer Mac, Windows o Linux. Una volta installati i prerequisiti, sono necessari circa cinque minuti per completare la procedura.
+È possibile eseguire operazioni di hello seguenti utilizzando un computer Mac, Windows o Linux. Una volta installati i prerequisiti di hello, sono necessari circa cinque minuti toocomplete passaggi hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa guida introduttiva:
+toocomplete questa Guida rapida:
 
 - [Installare Git](https://git-scm.com/)
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
-## <a name="download-the-sample"></a>Scaricare l'esempio
+## <a name="download-hello-sample"></a>Scaricare l'esempio hello
 
-In una finestra del terminale eseguire il comando seguente per clonare il repository dell'app di esempio nel computer locale.
+In una finestra terminale, eseguire hello successivo comando tooclone hello esempio app repository tooyour computer locale.
 
 ```bash
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-Questa finestra del terminale dovrà essere usata per eseguire tutti i comandi presenti in questa guida introduttiva.
+Utilizzare questo toorun finestra terminale tutti i comandi di hello in questa Guida rapida.
 
-## <a name="view-the-html"></a>Visualizzare il codice HTML
+## <a name="view-hello-html"></a>Visualizzare hello HTML
 
-Passare alla directory contenente il codice HTML di esempio. Aprire il file *index.html* nel browser.
+Passare toohello directory che contiene l'esempio hello HTML. Aprire hello *index.html* file nel browser.
 
 ![Home page dell'app di esempio](media/app-service-web-get-started-html/hello-world-in-browser.png)
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -72,11 +72,11 @@ Passare alla directory contenente il codice HTML di esempio. Aprire il file *ind
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 13, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (11/11), done.
 Writing objects: 100% (13/13), 2.07 KiB | 0 bytes/s, done.
 Total 13 (delta 2), reused 0 (delta 0)
@@ -96,52 +96,52 @@ remote: Copying file: 'README.md'
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a>Passare all'app
+## <a name="browse-toohello-app"></a>Esplorare app toohello
 
-In un browser passare all'URL dell'app Web di Azure:
+In un browser, passare l'URL dell'app web di Azure toohello:
 
 ```
 http://<app_name>.azurewebsites.net
 ```
 
-La pagina è in esecuzione come un'app Web del servizio app di Azure.
+pagina Hello è in esecuzione come un'app web di servizio App di Azure.
 
 ![Home page dell'app di esempio](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-**Congratulazioni.** La distribuzione della prima app HTML nel Servizio app è stata completata.
+**Congratulazioni.** È stato distribuito il primo tooApp di app HTML del servizio.
 
-## <a name="update-and-redeploy-the-app"></a>Aggiornare e ridistribuire l'app
+## <a name="update-and-redeploy-hello-app"></a>Aggiornare e ridistribuire l'applicazione hello
 
-Aprire il file *index.html* in un editor di testo e apportare una modifica al markup. Modificare ad esempio l'intestazione H1 da "Servizio app di Azure - Sito HTML statico di esempio" a "Servizio app di Azure".
+Aprire hello *index.html* file in un editor di testo e verificare un markup toohello di modifica. Ad esempio, modificare l'intestazione H1 hello da "Azure App Service – esempio sito HTML statico" toojust "servizio App di Azure'.
 
-Eseguire il commit delle modifiche in Git e quindi effettuare il push delle modifiche al codice in Azure.
+Eseguire il commit delle modifiche in Git e quindi push tooAzure modifiche di codice hello.
 
 ```bash
 git commit -am "updated HTML"
 git push azure master
 ```
 
-Al termine della distribuzione, aggiornare il browser per visualizzare le modifiche.
+Una volta completata la distribuzione, aggiornare le modifiche di hello toosee browser.
 
 ![Home page dell'app di esempio aggiornata](media/app-service-web-get-started-html/hello-azure-in-browser-az.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>Gestire la nuova app Web di Azure
 
-Accedere al <a href="https://portal.azure.com" target="_blank">portale di Azure</a> per gestire l'app Web creata.
+Passare toohello <a href="https://portal.azure.com" target="_blank">portale di Azure</a> toomanage hello web app è stato creato.
 
-Nel menu a sinistra fare clic su **Servizi app** e quindi sul nome dell'app Web di Azure.
+Scegliere dal menu a sinistra hello **servizi App**, quindi fare clic su nome hello dell'app web di Azure.
 
-![Passare all'app Web di Azure nel portale](./media/app-service-web-get-started-html/portal1.png)
+![Spostamento del portale tooAzure web app](./media/app-service-web-get-started-html/portal1.png)
 
 Verrà visualizzata la pagina di panoramica dell'app Web. Qui è possibile eseguire attività di gestione di base come l'esplorazione, l'arresto, l'avvio, il riavvio e l'eliminazione dell'app. 
 
 ![Pannello del servizio app nel portale di Azure](./media/app-service-web-get-started-html/portal2.png)
 
-Il menu a sinistra fornisce varie pagine per la configurazione dell'app. 
+menu a sinistra di Hello fornisce diverse pagine di configurazione app. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

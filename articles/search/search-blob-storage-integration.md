@@ -1,6 +1,6 @@
 ---
-title: Aggiunta di Ricerca di Azure all'archiviazione BLOB | Microsoft Docs
-description: Creare un indice nel codice tramite l'API REST HTTP di Ricerca di Azure.
+title: Ricerca di Azure di aaaAdding tooBlob archiviazione | Documenti Microsoft
+description: Creare un indice nel codice utilizzando hello API REST HTTP ricerca di Azure.
 services: search
 documentationcenter: 
 author: ashmaka
@@ -9,51 +9,51 @@ ms.service: search
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: ashmaka
-ms.openlocfilehash: 0cd0cbb05c465d32a9ef02f9350ebdf9ccea36c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3801790067bf169693b500e83799286b7387a77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="searching-blob-storage-with-azure-search"></a>Ricerca nell'archiviazione BLOB tramite Ricerca di Azure
 
-La ricerca in un'ampia gamma di tipi di contenuto inclusi nell'archiviazione BLOB di Azure può rivelarsi un problema complesso da risolvere. Tuttavia, è possibile indicizzare e cercare il contenuto dei BLOB in pochi clic usando Ricerca di Azure. La ricerca nell'archiviazione BLOB richiede il provisioning di un servizio di Ricerca di Azure. I diversi limiti del servizio e i piani tariffari di Ricerca di Azure sono disponibili nella [pagina dei prezzi](https://aka.ms/azspricing).
+La ricerca tra hello diversi tipi di contenuto archiviato in archiviazione Blob di Azure può essere toosolve un problema difficile. Tuttavia, è possibile indicizzare e ricerca hello contenuto del BLOB in pochi clic tramite ricerca di Azure. La ricerca nell'archiviazione BLOB richiede il provisioning di un servizio di Ricerca di Azure. Hello diversi limiti di servizio e di ricerca di Azure i livelli di prezzo sono reperibile in hello [pagina dei prezzi](https://aka.ms/azspricing).
 
-## <a name="what-is-azure-search"></a>Che cos'è Ricerca di Azure?
-[Ricerca di Azure](https://aka.ms/whatisazsearch) è una soluzione di ricerca che aiuta gli sviluppatori a integrare solide esperienze di ricerca full-text in applicazioni per dispositivi mobili e Web. In qualità di servizio, Ricerca di Azure elimina la necessità di gestire qualsiasi infrastruttura di ricerca, offrendo un [contratto di servizio con tempo di attività del 99,9%](https://aka.ms/azuresearchsla).
+## <a name="what-is-azure-search"></a>Che cos'è la Ricerca di Azure?
+[Ricerca di Azure](https://aka.ms/whatisazsearch) è una soluzione di ricerca che rende più semplice per ricerca full-text affidabile di sviluppatori tooadd riscontra tooweb e applicazioni per dispositivi mobili. Come servizio, ricerca di Azure consente di rimuovere hello necessità toomanage qualsiasi ricerca infrastruttura offrendo al contempo un [tempi di attività pari al 99,9% SLA](https://aka.ms/azuresearchsla).
 
-Con supporto avanzato per 56 lingue, Ricerca di Azure può analizzare il contenuto e gestire in modo intelligente i costrutti specifici di ogni lingua. Ricerca di Azure offre inoltre gli strumenti necessari per creare un'esperienza di ricerca avanzata per gli utenti. Con Ricerca di Azure è facile aggiungere alle interfacce utente funzionalità come l'esplorazione in base a facet, i suggerimenti di ricerca con completamento automatico e l'evidenziazione dei risultati. Per informazioni sulle funzionalità di Ricerca di Azure, vedere la [documentazione](https://aka.ms/azsearchdocs) del servizio.
+Con supporto avanzato per 56 lingue, Ricerca di Azure può analizzare il contenuto e gestire in modo intelligente i costrutti specifici di ogni lingua. Ricerca di Azure offre inoltre hello strumenti toobuild un'esperienza utente di ricerca avanzate. È semplice tooadd funzionalità quali navigazione con facet, i suggerimenti di ricerca typeahead e hit interfacce toouser evidenziazione mediante ricerca di Azure. toolearn sulle funzionalità di ricerca di Azure, è possibile leggere del servizio hello [documentazione](https://aka.ms/azsearchdocs).
 
-## <a name="crack-open-and-search-through-the-content-of-enterprise-document-formats"></a>Estrazione e ricerca nel contenuto con formati di documento aziendali
-Grazie al supporto per l'[estrazione di documenti](https://aka.ms/azsblobindexer) nell'archiviazione BLOB di Azure, Ricerca di Azure può indicizzare il contenuto di un'ampia gamma di tipi di file archiviati in BLOB:
+## <a name="crack-open-and-search-through-hello-content-of-enterprise-document-formats"></a>Abbreviazione aperto e la ricerca tramite contenuto hello di formati di documenti aziendali
+Con il supporto per [documento estrazione](https://aka.ms/azsblobindexer) nell'archiviazione Blob di Azure, ricerca di Azure è possibile indicizzare contenuto hello di vari tipi di file archiviati nel BLOB:
 - PDF
 - Microsoft Office: DOCX/DOC, XLSX/XLS, PPTX/PPT, MSG (messaggi di posta elettronica di Outlook)
 - HTML
 - File di testo normale
 
-L'estrazione di testo e metadati di questi tipi di file semplifica la ricerca tra più formati di file con un'unica query per trovare i documenti più pertinenti, indipendentemente dal tipo. Indicizzando il contenuto e i metadati di documenti di Microsoft Office, PDF e messaggi di posta elettronica, è possibile creare una solida soluzione di gestione del contenuto aziendale tramite l'archiviazione BLOB e Ricerca di Azure.
+Tramite l'estrazione di testo e i metadati di questi tipi di file, è facile toosearch in più formati di file con i documenti più rilevanti hello toofind singola query indipendentemente dal tipo. Per l'indicizzazione dei metadati di contenuto e hello hello di documenti di Microsoft Office, file PDF e messaggi di posta elettronica, è possibile toobuild una soluzione di gestione del contenuto aziendale affidabile tramite l'archiviazione di Blob e di ricerca di Azure.
 
 ## <a name="search-through-your-blob-metadata"></a>Ricerca nei metadati dei BLOB
-Uno scenario comune che semplifica l'ordinamento nei BLOB di qualsiasi tipo di contenuto consiste nell'indicizzare i metadati dei BLOB personalizzati e definiti dall'utente, nonché le proprietà di sistema per ognuno dei BLOB. In questo modo, vengono indicizzate le informazioni per ogni BLOB indipendentemente dal tipo di documento nel BLOB, in modo da poter ordinare ed esplorare in base a facet tutto il contenuto dell'archiviazione BLOB con semplicità.
+Uno scenario comune che rende facile toosort tramite i BLOB di qualsiasi tipo di contenuto è le proprietà di sistema di metadati del blob personalizzata definita dall'utente hello tooindex nonché hello per ognuno dei BLOB. In questo modo, le informazioni per ogni blob viene indicizzate indipendentemente dal tipo di documento in blob hello in modo semplice, è possibile ordinare e il facet di hello in tutto il contenuto di archiviazione Blob.
 
 [Altre informazioni sull'indicizzazione dei metadati dei BLOB.](https://aka.ms/azsblobmetadataindexing)
 
 ## <a name="image-search"></a>Ricerca di immagini
-Le funzionalità di ricerca full-text, esplorazione in base a facet e ordinamento di Ricerca di Azure possono ora essere applicate ai metadati delle immagini archiviate in BLOB.
+Ricerca full-text di ricerca di Azure, navigazione con facet e funzionalità di ordinamento può essere applicato toohello metadati delle immagini archiviate nei blob.
 
-Se queste immagini vengono pre-elaborate con l'[API Visione artificiale](https://www.microsoft.com/cognitive-services/computer-vision-api) di Servizi cognitivi di Microsoft, è possibile indicizzare il contenuto visivo di ogni immagine, anche con OCR e riconoscimento della grafia. Microsoft sta lavorando all'aggiunta di OCR e di altre funzionalità di elaborazione delle immagini direttamente a Ricerca di Azure. Chiunque sia interessato a queste funzionalità può immettere una richiesta in [UserVoice](https://aka.ms/azsuv) o inviare un [messaggio di posta elettronica](mailto:azscustquestions@microsoft.com).
+Se queste immagini sono pre-elaborate utilizzando hello [Computer Vision API](https://www.microsoft.com/cognitive-services/computer-vision-api) da cognitivi servizi Microsoft, quindi è possibile tooindex hello visual sono presenti contenuti in ciascuna immagine inclusi OCR e della grafia. Stiamo lavorando sull'aggiunta di funzionalità di elaborazione immagini OCR e altri direttamente tooAzure ricerca, se è interessati a queste funzionalità, inviare una richiesta nel nostro [UserVoice](https://aka.ms/azsuv) o [e-mail](mailto:azscustquestions@microsoft.com).
 
 ## <a name="index-and-search-through-json-blobs"></a>Indicizzare e cercare contenuto in BLOB JSON
-È possibile configurare Ricerca di Azure in modo da estrarre il contenuto strutturato dei BLOB che contengono JSON. Ricerca di Azure può leggere BLOB JSON e analizzare il contenuto strutturato nei campi appropriati di un documento di Ricerca di Azure. Ricerca di Azure può anche usare BLOB che contengono una matrice di oggetti JSON ed eseguire il mapping di ogni elemento a un documento di Ricerca di Azure separato.
+Ricerca di Azure può essere configurato tooextract strutturato contenuto blob che contengono JSON. Ricerca di Azure è possibile leggere i BLOB JSON e analisi hello strutturato contenuto nei campi appropriati di hello di un documento di ricerca di Azure. Ricerca di Azure può richiedere anche blob che contengono una matrice di oggetti JSON e di eseguire il mapping di ogni documento di ricerca di Azure separato tooa elemento.
 
-Notare che l'analisi JSON non è attualmente configurabile tramite il portale. [Altre informazioni sull'analisi JSON in Ricerca di Azure.](https://aka.ms/azsjsonblobindexing)
+Si noti che l'analisi di JSON non è attualmente configurabile tramite il portale di hello. [Altre informazioni sull'analisi JSON in Ricerca di Azure.](https://aka.ms/azsjsonblobindexing)
 
 ## <a name="quick-start"></a>Avvio rapido
-È possibile aggiungere Ricerca di Azure ai BLOB direttamente dal pannello del portale dell'archiviazione BLOB.
+Ricerca di Azure può essere aggiunto tooblobs direttamente dal pannello portale archiviazione Blob di hello.
 
 ![](./media/search-blob-storage-integration/blob-blade.png)
 
-Facendo clic sull'opzione "Aggiungi Ricerca di Azure", viene avviato un flusso in cui è possibile selezionare un servizio di Ricerca di Azure esistente o crearne uno nuovo. Se si crea un nuovo servizio, non si sarà più connessi al portale dell'account di archiviazione. Sarà necessario riaccedere al pannello del portale di archiviazione e selezionare di nuovo l'opzione "Aggiungi Ricerca di Azure", in cui selezionare il servizio esistente.
+Facendo clic sull'opzione di "Ricerca di Azure aggiungere" hello, verrà avviato un flusso in cui è possibile selezionare un servizio di ricerca di Azure esistente o creare un nuovo servizio. Se si crea un nuovo servizio, non si sarà più connessi al portale dell'account di archiviazione. Sarà necessario toore-passare portale Pannello di toohello archiviazione e selezionare nuovamente l'opzione "Ricerca di Azure aggiungere" hello, in cui è possibile selezionare servizio esistente hello.
 
 ### <a name="next-steps"></a>Passaggi successivi
-Altre informazioni sull'indicizzatore BLOB di Ricerca di Azure sono disponibili nella [documentazione](https://aka.ms/azsblobindexer) completa.
+Altre informazioni su hello Blob indicizzatore di ricerca di Azure in hello completo [documentazione](https://aka.ms/azsblobindexer).

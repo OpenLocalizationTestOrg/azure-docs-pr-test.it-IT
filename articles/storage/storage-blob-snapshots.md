@@ -1,6 +1,6 @@
 ---
-title: Creare uno snapshot di sola lettura di un BLOB in Archiviazione di Azure | Microsoft Docs
-description: "Scoprire come creare snapshot di un BLOB per eseguire il backup dei dati BLOB in un determinato momento. Comprendere come vengono fatturati gli snapshot e come utilizzarli per ridurre i costi di capacità."
+title: aaaCreate uno snapshot di sola lettura di un blob in archiviazione di Azure | Documenti Microsoft
+description: "Informazioni su come toocreate uno snapshot di un tooback blob dei dati blob in un determinato momento. Comprendere come gli snapshot vengono fatturati e come toouse li toominimize addebiti di capacità."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/11/2017
 ms.author: marsma
-ms.openlocfilehash: 6ebb77f4ec5f1887e5c55bf1c8c64224a9233654
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e7af611e885d83df69d3329217f261b3f3f333e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-blob-snapshot"></a>Creare uno snapshot del BLOB
 
 Uno snapshot è una versione di sola lettura di un BLOB eseguito in un determinato momento. Gli snapshot sono utili per il backup dei BLOB. Dopo aver creato uno snapshot, è possibile leggerlo, copiarlo o eliminarlo, ma non modificarlo.
 
-Uno snapshot di un BLOB è identico al relativo BLOB di base, ad eccezione del fatto che all'URI del BLOB viene aggiunto un valore **DateTime** per indicare data e ora di acquisizione dello snapshot. Ad esempio, se un URI del BLOB di pagine è `http://storagesample.core.blob.windows.net/mydrives/myvhd`, l'URI dello snapshot è simile a `http://storagesample.core.blob.windows.net/mydrives/myvhd?snapshot=2011-03-09T01:42:34.9360000Z`.
+Uno snapshot di un blob di blob di base tooits identiche, ad eccezione di blob hello URI ha un **DateTime** valore aggiunto ora toohello blob URI tooindicate hello in cui hello dello snapshot. Ad esempio, se l'URI del blob di una pagina è `http://storagesample.core.blob.windows.net/mydrives/myvhd`, hello snapshot URI è simile a troppo`http://storagesample.core.blob.windows.net/mydrives/myvhd?snapshot=2011-03-09T01:42:34.9360000Z`.
 
 > [!NOTE]
-> Tutti gli snapshot condividono l'URI del BLOB di base. L'unica distinzione tra il BLOB di base e lo snapshot è il valore **DateTime** aggiunto.
+> Tutti gli snapshot condividono l'URI del blob base hello. Hello solo distinzione tra i blob di base hello e snapshot hello è hello aggiunto **DateTime** valore.
 >
 
-Un BLOB può avere un numero qualsiasi di snapshot. Gli snapshot vengono mantenuti fino all'eliminazione esplicita. Uno snapshot non può sopravvivere al relativo BLOB di base. È possibile enumerare gli snapshot associati al BLOB di base per tenere traccia degli snapshot correnti.
+Un BLOB può avere un numero qualsiasi di snapshot. Gli snapshot vengono mantenuti fino all'eliminazione esplicita. Uno snapshot non può sopravvivere al relativo BLOB di base. È possibile enumerare gli snapshot di hello associati hello blob di base tootrack degli snapshot correnti.
 
-Quando si crea uno snapshot di un BLOB, le proprietà di sistema del BLOB vengono copiate nello snapshot con gli stessi valori. Anche i metadati del BLOB di base vengono copiati nello snapshot, se non si specificano metadati separati per lo snapshot durante la creazione.
+Quando si crea uno snapshot di un blob, hello proprietà del sistema del blob vengono copiati toohello snapshot con hello stessi valori. metadati del blob base Hello sono copiato toohello dello snapshot, a meno che non si specificano i metadati separato per hello durante la creazione di snapshot.
 
-Eventuali lease associati al BLOB di base non vengono copiati nello snapshot. Non è possibile acquisire un lease in uno snapshot.
+Un lease associati al blob di base hello non influenzano snapshot hello. Non è possibile acquisire un lease in uno snapshot.
 
-Un file di disco rigido virtuale viene usato per archiviare lo stato e le informazioni correnti per il disco della macchina virtuale. È possibile scollegare il disco dall'interno della macchina virtuale o arrestare la macchina virtuale e quindi creare uno snapshot del relativo file di disco rigido virtuale. È possibile usare il file di snapshot successivamente per recuperare il file di disco rigido virtuale in quel determinato momento e ricreare la macchina virtuale.
+Un file VHD è usato toostore hello le informazioni e lo stato per un disco di macchina virtuale. È possibile scollegare un disco da all'interno di hello VM o arrestare hello macchina virtuale e quindi eseguire uno snapshot del file di disco rigido virtuale. È possibile utilizzare tale file di snapshot successive tooretrieve hello disco rigido virtuale del file in tale punto nel tempo e ricreare hello macchina virtuale.
 
-Se la Crittografia del servizio di archiviazione (SSE) è abilitata per l'account di archiviazione in cui si trova il BLOB, per gli snapshot del BLOB verrà eseguita la crittografia dei dati inattivi.
+Se la crittografia del servizio di archiviazione (SSE) è abilitata per l'account di archiviazione hello in quale hello blob si trova, quindi verranno crittografate a riposo alle istantanee del blob.
 
 ## <a name="create-a-snapshot"></a>Creare uno snapshot
-L'esempio seguente illustra come creare uno snapshot usando la [libreria client di Archiviazione di Azure per .NET](https://www.nuget.org/packages/WindowsAzure.Storage/). Questo esempio specifica metadati aggiuntivi per lo snapshot al momento della creazione.
+Hello esempio di codice seguente viene illustrato come toocreate uno snapshot utilizzando hello [Azure Storage Client Library per .NET](https://www.nuget.org/packages/WindowsAzure.Storage/). In questo esempio consente di specificare metadati aggiuntivi per snapshot hello quando viene creato.
 
 ```csharp
 private static async Task CreateBlockBlobSnapshot(CloudBlobContainer container)
 {
-    // Create a new block blob in the container.
+    // Create a new block blob in hello container.
     CloudBlockBlob baseBlob = container.GetBlockBlobReference("sample-base-blob.txt");
 
     // Add blob metadata.
@@ -54,15 +54,15 @@ private static async Task CreateBlockBlobSnapshot(CloudBlobContainer container)
 
     try
     {
-        // Upload the blob to create it, with its metadata.
+        // Upload hello blob toocreate it, with its metadata.
         await baseBlob.UploadTextAsync(string.Format("Base blob: {0}", baseBlob.Uri.ToString()));
 
         // Sleep 5 seconds.
         System.Threading.Thread.Sleep(5000);
 
-        // Create a snapshot of the base blob.
-        // Specify metadata at the time that the snapshot is created to specify unique metadata for the snapshot.
-        // If no metadata is specified when the snapshot is created, the base blob's metadata is copied to the snapshot.
+        // Create a snapshot of hello base blob.
+        // Specify metadata at hello time that hello snapshot is created toospecify unique metadata for hello snapshot.
+        // If no metadata is specified when hello snapshot is created, hello base blob's metadata is copied toohello snapshot.
         Dictionary<string, string> metadata = new Dictionary<string, string>();
         metadata.Add("ApproxSnapshotCreatedDate", DateTime.UtcNow.ToString());
         await baseBlob.CreateSnapshotAsync(metadata, null, null, null);
@@ -79,95 +79,95 @@ private static async Task CreateBlockBlobSnapshot(CloudBlobContainer container)
 ## <a name="copy-snapshots"></a>Copiare gli snapshot
 Le operazioni di copia che interessano BLOB e snapshot si attengono alle seguenti regole:
 
-* È possibile copiare uno snapshot sul relativo BLOB di base. Promuovendo uno snapshot alla posizione del BLOB di base, è possibile ripristinare la versione precedente di un BLOB. Lo snapshot resta, ma il BLOB di base viene sovrascritto con una copia scrivibile dello snapshot.
-* È possibile copiare uno snapshot in un BLOB di destinazione con un nome diverso. Il BLOB di destinazione risultante è un BLOB scrivibile, non uno snapshot.
-* Quando si copia un BLOB di origine, gli snapshot del BLOB di origine non vengono copiati nella destinazione. Quando un BLOB di destinazione viene sovrascritto con una copia, gli eventuali snapshot associati al BLOB di destinazione originale rimangono invariati.
-* Quando si crea uno snapshot di un BLOB in blocchi, anche l'elenco di blocchi di cui è stato eseguito il commit del BLOB viene copiato nello snapshot. Eventuali blocchi di cui non è stato eseguito il commit non vengono copiati.
+* È possibile copiare uno snapshot sul relativo BLOB di base. La promozione di una posizione toohello snapshot del blob di base hello, è possibile ripristinare una versione precedente di un blob. Hello snapshot viene mantenuto, ma i blob di base hello viene sovrascritta con una copia modificabile di snapshot di hello.
+* È possibile copiare un blob di destinazione tooa snapshot con un nome diverso. blob di destinazione risultante Hello è un blob scrivibile e non è uno snapshot.
+* Quando viene copiato un blob di origine, gli snapshot del blob di origine hello non sono copiati toohello destinazione. Quando un blob di destinazione viene sovrascritto con una copia, gli snapshot associati al blob di destinazione originale hello rimangono invariati.
+* Quando si crea uno snapshot di un blob in blocchi, elenco dei blocchi eseguito il commit del blob hello è anche snapshot toohello copiato. Eventuali blocchi di cui non è stato eseguito il commit non vengono copiati.
 
 ## <a name="specify-an-access-condition"></a>Specificare una condizione di accesso
-Quando si chiama [CreateSnapshotAsync][dotnet_CreateSnapshotAsync], è possibile specificare una condizione di accesso in modo da creare lo snapshot solo se viene soddisfatta tale condizione. Per specificare una condizione di accesso, usare il parametro [AccessCondition][dotnet_AccessCondition]. Se la condizione specificata non viene soddisfatta, lo snapshot non viene creato e il servizio BLOB restituisce il codice di stato [HTTPStatusCode][dotnet_HTTPStatusCode].PreconditionFailed.
+Quando si chiama [CreateSnapshotAsync][dotnet_CreateSnapshotAsync], è possibile specificare una condizione di accesso in modo che hello snapshot viene creato solo se viene soddisfatta una condizione. toospecify una condizione di accesso, utilizzare hello [AccessCondition] [ dotnet_AccessCondition] parametro. Se non specificato hello condizione non viene soddisfatta, hello snapshot non viene creato e hello servizio Blob restituisce il codice di stato [HTTPStatusCode][dotnet_HTTPStatusCode]. PreconditionFailed.
 
 ## <a name="delete-snapshots"></a>Eliminare gli snapshot
-Non è possibile eliminare un BLOB contenente snapshot a meno che non si eliminino anche gli snapshot. È possibile eliminare uno snapshot singolarmente o specificare di eliminare tutti gli snapshot quando si elimina il BLOB di origine. Se si tenta di eliminare un BLOB per il quale esistono ancora degli snapshot, viene restituito un errore.
+È possibile eliminare un blob con snapshot a meno che non vengono eliminati anche gli snapshot hello. È possibile eliminare uno snapshot singolarmente o consente di eliminare tutti gli snapshot quando viene eliminato il blob di origine hello. Se si tenta di toodelete un blob che presenta ancora degli snapshot, viene generato un errore.
 
-L'esempio seguente illustra come eliminare un BLOB e i relativi snapshot in .NET, dove `blockBlob` è un oggetto di tipo [CloudBlockBlob][dotnet_CloudBlockBlob]:
+Hello seguente esempio di codice viene illustrato come toodelete un blob e i relativi snapshot in .NET, in cui `blockBlob` è un oggetto di tipo [CloudBlockBlob][dotnet_CloudBlockBlob]:
 
 ```csharp
 await blockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, null, null, null);
 ```
 
 ## <a name="snapshots-with-azure-premium-storage"></a>Snapshot con archiviazione Premium di Azure
-Per usare snapshot con Archiviazione Premium è necessario attenersi alle regole seguenti:
+Quando si utilizzano snapshot con archiviazione Premium, si applica hello seguenti regole:
 
-* Il numero massimo di snapshot per BLOB di pagine in un account di archiviazione Premium è 100. Se si supera questo limite, l'operazione Snapshot BLOB restituisce il codice errore 409 (`SnapshotCountExceeded`).
-* È possibile creare uno snapshot di un BLOB di pagine in un account di archiviazione Premium una volta ogni 10 minuti. Se si supera questa frequenza, l'operazione Snapshot BLOB restituisce il codice errore 409 (`SnapshotOperationRateExceeded`).
-* Per leggere uno snapshot, è possibile usare l'operazione Copy BLOB per copiare uno snapshot in un altro BLOB di pagine nell'account. Il BLOB di destinazione per l'operazione di copia non deve contenere snapshot. Se il BLOB di destinazione contiene snapshot, l'operazione Copy BLOB restituisce il codice errore 409 (`SnapshotsPresent`).
+* numero massimo di Hello di snapshot per ogni blob di pagine in un account di archiviazione premium è 100. Se tale limite viene superato, hello operazione Snapshot Blob restituisce il codice errore 409 (`SnapshotCountExceeded`).
+* È possibile creare uno snapshot di un BLOB di pagine in un account di archiviazione Premium una volta ogni 10 minuti. Se la velocità viene superata, hello operazione Snapshot Blob restituisce il codice errore 409 (`SnapshotOperationRateExceeded`).
+* tooread uno snapshot, è possibile utilizzare toocopy operazione di copia Blob hello un blob di pagine tooanother snapshot nell'account hello. blob di destinazione Hello hello operazione di copia non deve includere snapshot esistenti. Se il blob di destinazione hello include snapshot, quindi hello operazione Copy Blob restituisce il codice errore 409 (`SnapshotsPresent`).
 
-## <a name="return-the-absolute-uri-to-a-snapshot"></a>Restituire l'URI assoluto a uno snapshot
-Questo esempio di codice C# consente di creare uno snapshot e scrive l'URI assoluto per la posizione primaria.
+## <a name="return-hello-absolute-uri-tooa-snapshot"></a>Snapshot tooa URI assoluto di hello restituito
+Questo esempio di codice c# crea uno snapshot e scrive hello URI assoluto per la posizione primaria hello.
 
 ```csharp
-//Create the blob service client object.
+//Create hello blob service client object.
 const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
 
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-//Get a reference to a container.
+//Get a reference tooa container.
 CloudBlobContainer container = blobClient.GetContainerReference("sample-container");
 container.CreateIfNotExists();
 
-//Get a reference to a blob.
+//Get a reference tooa blob.
 CloudBlockBlob blob = container.GetBlockBlobReference("sampleblob.txt");
 blob.UploadText("This is a blob.");
 
-//Create a snapshot of the blob and write out its primary URI.
+//Create a snapshot of hello blob and write out its primary URI.
 CloudBlockBlob blobSnapshot = blob.CreateSnapshot();
 Console.WriteLine(blobSnapshot.SnapshotQualifiedStorageUri.PrimaryUri);
 ```
 
 ## <a name="understand-how-snapshots-accrue-charges"></a>Informazioni sull'incremento dei costi dovuto agli snapshot
-La creazione di uno snapshot, una copia di sola lettura di un BLOB, può dar luogo a costi di archiviazione dei dati aggiuntivi sul conto. Nel progettare l'applicazione, è importante essere coscienti di come i costi possono aumentare, in modo da poterli ridurre al minimo.
+Creazione di uno snapshot, che è una copia di sola lettura di un blob, può comportare account tooyour costi di archiviazione dati aggiuntivi. Quando si progetta l'applicazione, è importante toobe conoscenza di come questi potrebbe delle spese in modo che è possibile ridurre i costi.
 
 ### <a name="important-billing-considerations"></a>Considerazioni importanti sulla fatturazione
-Nell'elenco seguente sono inclusi i punti principali da considerare quando si crea uno snapshot.
+Hello seguente elenco include i punti chiave tooconsider durante la creazione di uno snapshot.
 
-* Sono previsti costi per l'account di archiviazione per blocchi univoci o pagine, sia che si trovino nel BLOB che nello snapshot. Non sono previsti costi aggiuntivi per gli snapshot associati a un BLOB finché il BLOB su cui si basano non viene aggiornato. Dopo aver aggiornato il BLOB di base, questo differisce dai relativi snapshot. In questo caso, vengono addebitati costi per i blocchi univoci o le pagine in ogni BLOB o snapshot.
-* Quando si sostituisce un blocco all'interno di un BLOB in blocchi, tale blocco viene successivamente addebitato come blocco univoco. Ciò è vero persino se il blocco ha lo stesso ID blocco e la stessa data che ha nello snapshot. Una volta che il blocco viene inviato nuovamente, differisce dalla controparte in ogni snapshot e all'utente verrà addebitato un costo per i relativi dati. Lo stesso vale per una pagina in un BLOB di pagine che viene aggiornata con dati identici.
-* Se si sostituisce un BLOB in blocchi tramite chiamata al metodo [UploadFromFile][dotnet_UploadFromFile], [UploadText][dotnet_UploadText], [UploadFromStream][dotnet_UploadFromStream] o [UploadFromByteArray][dotnet_UploadFromByteArray], il metodo sostituisce tutti i blocchi nel BLOB. Se è presente uno snapshot associato al BLOB, tutti i blocchi del BLOB di base e lo snapshot a questo punto differiranno e all'utente verranno addebitati i costi di tutti i blocchi in entrambi i BLOB. Questo vale persino se i dati nel BLOB di base e nello snapshot restano identici.
-* Il servizio BLOB di Azure non dispone dei mezzi per determinare se due blocchi contengono dati identici. Ogni blocco che viene caricato e inviato viene trattato come univoco, persino se contiene gli stessi dati e ha lo stesso ID blocco. Poiché i costi aumentano per i blocchi univoci, è importante considerare che se si aggiorna un BLOB contenente uno snapshot, si generano altri blocchi univoci e i costi aggiuntivi aumentano.
+* L'account di archiviazione comporta addebiti per blocchi univoci o pagine, siano essi in blob hello o nello snapshot hello. L'account non comporta costi aggiuntivi per gli snapshot associati a un blob finché non si aggiorna il blob hello in cui sono basate. Dopo aver aggiornato i blob di base hello, è diverso dai relativi snapshot. In questo caso, vengono addebitati i hello blocchi o pagine univoche in ogni blob o snapshot.
+* Quando si sostituisce un blocco all'interno di un BLOB in blocchi, tale blocco viene successivamente addebitato come blocco univoco. Questo vale anche se il blocco di hello è hello stesso ID del blocco e hello stesso dati perché sono nello snapshot hello. Dopo il blocco di hello viene eseguito il commit, diverso dalla relativa controparte nello snapshot e verranno addebitati i dati. Hello che ciò vale anche per una pagina in un blob di pagine viene aggiornato con dati identici.
+* Sostituzione di un blob in blocchi dal chiamante hello [UploadFromFile][dotnet_UploadFromFile], [UploadText][dotnet_UploadText], [UploadFromStream] [ dotnet_UploadFromStream], o [UploadFromByteArray] [ dotnet_UploadFromByteArray] metodo sostituisce tutti i blocchi nel blob hello. Se si dispone di uno snapshot associato al blob, tutti i blocchi nel blob di base hello e snapshot divergono e verrà addebitato per tutti i blocchi di hello in entrambi i BLOB. Questo vale anche se i dati di hello in blob di base hello e snapshot hello rimangono identici.
+* Hello servizio Blob di Azure non dispone di un toodetermine indica se due blocchi contengono dati identici. Ogni blocco caricato e il commit viene considerato univoco, anche se dispone di hello stessi dati e hello stesso blocco di ID. Poiché le spese aumentano per blocchi univoci, è importante tooconsider che l'aggiornamento di un blob che presenta uno snapshot comporta altri blocchi univoci e costi aggiuntivi.
 
 ### <a name="minimize-cost-with-snapshot-management"></a>Ridurre al minimo i costi con la gestione degli snapshot
 
-Si consiglia di gestire gli snapshot con attenzione per evitare costi supplementari. È possibile seguire queste procedure consigliate per ridurre al minimo i costi che sorgono con l'archiviazione degli snapshot:
+È consigliabile gestire attentamente gli snapshot tooavoid costi aggiuntivi. È possibile seguire queste procedure consigliate toohelp ridurre al minimo i costi associati hello archiviando hello gli snapshot:
 
-* Eliminare e ricreare gli snapshot associati a un BLOB ogni volta che si aggiorna il BLOB, persino se l'aggiornamento viene eseguito con dati identici, a meno che la progettazione dell'applicazione non richieda di mantenerli. Se si eliminano e si ricreano gli snapshot del BLOB, ci si garantisce che il BLOB e gli snapshot non differiscano.
-* Quando si gestiscono gli snapshot per un BLOB, evitare di chiamare il metodo [UploadFromFile][dotnet_UploadFromFile], [UploadText][dotnet_UploadText], [UploadFromStream][dotnet_UploadFromStream] o [UploadFromByteArray][dotnet_UploadFromByteArray] per aggiornare il BLOB. Questi metodi sostituiscono tutti i blocchi nel BLOB, creando così delle differenze significative tra il BLOB di base e gli snapshot. Aggiornare invece il minor numero possibile di blocchi usando i metodi [PutBlock][dotnet_PutBlock] e [PutBlockList][dotnet_PutBlockList].
+* Eliminare e ricreare gli snapshot associati a un blob quando si aggiorna il blob di hello, anche se si sta aggiornando con dati identici, a meno che la progettazione dell'applicazione è necessario mantenere gli snapshot. L'eliminazione e ricreazione degli snapshot del blob hello, è possibile garantire che gli snapshot e blob hello non siano diversi.
+* Se si gestiscono snapshot per un blob, evitare di chiamare [UploadFromFile][dotnet_UploadFromFile], [UploadText][dotnet_UploadText], [ UploadFromStream][dotnet_UploadFromStream], o [UploadFromByteArray] [ dotnet_UploadFromByteArray] blob hello tooupdate. Questi metodi sostituiscono tutti i blocchi di hello in blob hello, provocando il blob di base e relativi toodiverge snapshot in modo significativo. Invece hello minor numero possibile di blocchi di aggiornamento tramite hello [PutBlock] [ dotnet_PutBlock] e [PutBlockList] [ dotnet_PutBlockList] metodi.
 
 ### <a name="snapshot-billing-scenarios"></a>Scenari di fatturazione degli snapshot
-Gli scenari seguenti dimostrano in che modo aumentano i costi per un BLOB in blocchi e i relativi snapshot.
+Hello gli scenari seguenti viene illustrato come delle spese per un blob in blocchi e i relativi snapshot.
 
 **Scenario 1**
 
-Nello Scenario 1, il BLOB di base non è stato aggiornato da quanto è stato scattato lo snapshot, pertanto i costi sono relativi sono ai blocchi univoci 1, 2 e 3.
+Nello scenario 1, i blob di base hello non è stato aggiornato dopo hello dello snapshot, pertanto le spese vengono addebitate solo per i blocchi univoci 1, 2 e 3.
 
 ![Risorse di archiviazione di Azure](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-1.png)
 
 **Scenario 2**
 
-Nello Scenario 2, il BLOB di base è stato aggiornato, ma lo snapshot no. Il blocco 3 è stato aggiornato, e sebbene contenga gli stessi dati e lo stesso ID, non è lo stesso del blocco 3 nello snapshot. Di conseguenza, all'account vengono addebitati quattro blocchi.
+Nello scenario 2, hello blob di base è stato aggiornato, ma non è stato snapshot hello. Il blocco 3 è stato aggiornato e anche se contiene hello stessi dati e hello lo stesso ID, è hello non uguale al blocco 3 nello snapshot hello. Di conseguenza, l'account di hello vengono addebitati quattro blocchi.
 
 ![Risorse di archiviazione di Azure](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-2.png)
 
 **Scenario 3**
 
-Nello Scenario 3, il BLOB di base è stato aggiornato, ma lo snapshot no. Il blocco 3 è stato sostituito con il blocco 4 nel BLOB di base, ma lo snapshot continua a riflettere il blocco 3. Di conseguenza, all'account vengono addebitati quattro blocchi.
+Nello scenario 3, hello blob di base è stato aggiornato, ma non è stato snapshot hello. Il blocco 3 è stato sostituito con il blocco 4 nel blob di base hello ma hello snapshot riflette ancora il blocco 3. Di conseguenza, l'account di hello vengono addebitati quattro blocchi.
 
 ![Risorse di archiviazione di Azure](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-3.png)
 
 **Scenario 4**
 
-Nello Scenario 4, il BLOB di base è stato completamente aggiornato e non contiene nessuno dei blocchi originali. Di conseguenza, all'account vengono addebitati tutti gli otto blocchi univoci. Questo scenario può verificarsi se si usa un metodo di aggiornamento come [UploadFromFile][dotnet_UploadFromFile], [UploadText][dotnet_UploadText], [UploadFromStream][dotnet_UploadFromStream] o [UploadFromByteArray][dotnet_UploadFromByteArray], in quanto questi metodi sostituiscono tutto il contenuto di un BLOB.
+Nello scenario 4, i blob di base hello è stato completamente aggiornato e contiene nessuno dei blocchi originali. Di conseguenza, hello viene addebitato per tutti e otto i blocchi univoci. Questo scenario può verificarsi se si utilizza un metodo di aggiornamento, ad esempio [UploadFromFile][dotnet_UploadFromFile], [UploadText][dotnet_UploadText], [ UploadFromStream][dotnet_UploadFromStream], o [UploadFromByteArray][dotnet_UploadFromByteArray], poiché questi metodi sostituiscono tutto il contenuto di hello di un blob.
 
 ![Risorse di archiviazione di Azure](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-4.png)
 
@@ -175,7 +175,7 @@ Nello Scenario 4, il BLOB di base è stato completamente aggiornato e non contie
 
 * Altre informazioni sull'utilizzo di snapshot di dischi di macchina virtuale (VM) sono disponibili in [Eseguire il backup dei dischi di VM non gestiti con snapshot incrementali](storage-incremental-snapshots.md).
 
-* Per altri esempi di codice che usano l'archiviazione BLOB, vedere [Esempi di codice per Azure](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob). È possibile scaricare un'applicazione di esempio ed eseguirla oppure esaminare il codice in GitHub.
+* Per altri esempi di codice che usano l'archiviazione BLOB, vedere [Esempi di codice per Azure](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob). È possibile scaricare un'applicazione di esempio ed eseguirlo o esaminare il codice hello su GitHub.
 
 [dotnet_AccessCondition]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.accesscondition.aspx
 [dotnet_CloudBlockBlob]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.cloudblockblob.aspx

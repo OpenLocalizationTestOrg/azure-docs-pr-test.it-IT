@@ -1,6 +1,6 @@
 ---
-title: Installare l'interfaccia della riga di comando del controller di dominio/sistema operativo | Documentazione Microsoft
-description: Installare l'interfaccia della riga di comando del controller di dominio/sistema operativo.
+title: hello aaaInstall CLI di controller di dominio o del sistema operativo | Documenti Microsoft
+description: Installare hello CLI di controller di dominio o del sistema operativo.
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/10/2016
 ms.author: rogardle
-ms.openlocfilehash: a8ea47f158c0d666340815d2e039995c7483257f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b077c05beff9a5638486ea5efe9df31089e32701
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 > [!NOTE]
-> Questa procedura è necessaria per l'uso di cluster ACS basati su controller di dominio/sistema operativo. Non è necessario eseguirla per i cluster ACS basati su Swarm.
+> Questa procedura è necessaria per l'uso di cluster ACS basati su controller di dominio/sistema operativo. Non è alcuna necessità toodo questo per i cluster basato su sciame ACS.
 > 
 > 
 
-È prima di tutto necessario [connettersi ai cluster ACS basati su controller di dominio/sistema operativo](../articles/container-service/container-service-connect.md). Dopo la connessione, è possibile installare l'interfaccia della riga di comando del controller di dominio/sistema operativo nel computer client con i comandi seguenti:
+Prima di tutto, [connettersi cluster basato su controller di dominio/OS ACS tooyour](../articles/container-service/container-service-connect.md). Dopo aver eseguito questo, è possibile installare hello CLI di controller di dominio o del sistema operativo del computer client con comandi hello riportati di seguito:
 
 ```bash
 sudo pip install virtualenv
@@ -38,7 +38,7 @@ chmod +x install-optout-dcos-cli.sh
 
 Se si usa una versione precedente di Python, è possibile che vengano visualizzati avvisi di tipo "InsecurePlatformWarnings". È possibile ignorare questi avvisi.
 
-Per iniziare senza riavviare la shell, eseguire:
+In ordine tooget avviato senza dover riavviare la shell, eseguire:
 
 ```bash
 source ~/.bashrc
@@ -46,7 +46,7 @@ source ~/.bashrc
 
 Questo passaggio non sarà necessario quando si avviano nuove shell.
 
-È ora possibile verificare che l'interfaccia della riga di comando sia stata installata:
+È ora possibile verificare tale hello che CLI è installato:
 
 ```bash
 dcos --help

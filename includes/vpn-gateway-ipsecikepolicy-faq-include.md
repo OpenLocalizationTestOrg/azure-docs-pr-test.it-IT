@@ -7,8 +7,8 @@ Per una determinata connessione è possibile specificare ***una*** sola combinaz
 ### <a name="can-i-specify-a-partial-policy-on-a-connection-eg-only-ike-algorithms-but-not-ipsec"></a>Per una connessione è possibile specificare criteri parziali, ad esempio solo algoritmi IKE ma non IPsec?
 No. È necessario specificare tutti gli algoritmi e i parametri sia per IKE (modalità principale) che per IPsec (modalità rapida). Non è consentito specificare criteri parziali.
 
-### <a name="what-are-the-algorithms-and-key-strengths-supported-in-the-custom-policy"></a>Quali algoritmi e tipi di attendibilità della chiave sono supportati nei criteri personalizzati?
-La tabella seguente riporta l'elenco degli algoritmi di crittografia e dei tipi di attendibilità della chiave supportati e configurabili dai clienti. È necessario selezionare un'opzione per ogni campo.
+### <a name="what-are-hello-algorithms-and-key-strengths-supported-in-hello-custom-policy"></a>Quali sono gli algoritmi di hello e vantaggi chiave supportate nei criteri personalizzati di hello?
+tabella di Hello seguente sono elencati i vantaggi chiave configurabile da parte dei clienti hello e algoritmi di crittografia di hello è supportato. È necessario selezionare un'opzione per ogni campo.
 
 | **IPsec/IKEv2**  | **Opzioni**                                                                   |
 | ---              | ---                                                                           |
@@ -23,14 +23,14 @@ La tabella seguente riporta l'elenco degli algoritmi di crittografia e dei tipi 
 |                  |                                                                               |
 
 > [!IMPORTANT]
-> 1. DHGroup2048 e PFS2048 corrispondono al gruppo Diffie-Hellman **14** in PFS IKE e IPsec. Per i mapping completi, vedere [Gruppi Diffie-Hellman](#DH).
-> 2. Per gli algoritmi GCMAES, è necessario specificare lo stesso algoritmo e la stessa lunghezza della chiave GCMAES sia per la crittografia che per l'integrità IPsec.
-> 3. Nei gateway VPN di Azure la durata dell'associazione di sicurezza IKEv2 (modalità principale) è fissata a 28.800 secondi
+> 1. DHGroup2048 & PFS2048 sono hello stesso come gruppo Diffie-Hellman **14** IKE e IPsec PFS. Vedere [gruppi Diffie-Hellman](#DH) per hello completare i mapping.
+> 2. Per gli algoritmi GCMAES, è necessario specificare hello stessa lunghezza di chiave e l'algoritmo GCMAES per la crittografia di IPsec e integrità.
+> 3. Durata SA modalità principale di IKEv2 è fissata a 28.800 secondi nei gateway VPN di Azure hello
 > 4. Le durate dell'associazione di sicurezza QM sono parametri facoltativi. Se non ne è stato specificato nessuno, vengono usati i valori predefiniti pari a 27.000 secondi (7,5 ore) e 102400000 KB (102 GB).
-> 5. UsePolicyBasedTrafficSelector è un parametro facoltativo per la connessione. Per informazioni su "UsePolicyBasedTrafficSelectors", vedere la domanda frequente successiva.
+> 5. UsePolicyBasedTrafficSelector è un parametro di opzione nella connessione hello. Vedere Domande frequenti hello articolo per "UsePolicyBasedTrafficSelectors"
 
-### <a name="does-everything-need-to-match-between-the-azure-vpn-gateway-policy-and-my-on-premises-vpn-device-configurations"></a>È necessaria la corrispondenza di tutti gli elementi tra i criteri del gateway VPN di Azure e le configurazioni dei dispositivi VPN locali?
-La configurazione del dispositivo VPN locale deve contenere o corrispondere agli algoritmi e ai parametri seguenti specificati nei criteri IPsec/IKE di Azure:
+### <a name="does-everything-need-toomatch-between-hello-azure-vpn-gateway-policy-and-my-on-premises-vpn-device-configurations"></a>Tutto il necessario toomatch tra hello criteri gateway VPN di Azure e le configurazioni del dispositivo VPN personale locale?
+La configurazione del dispositivo VPN locale deve corrispondere o contenere hello seguenti algoritmi e i parametri specificati in hello criteri IPsec/IKE Azure:
 
 * Algoritmo di crittografia IKE
 * Algoritmo di integrità IKE
@@ -40,18 +40,18 @@ La configurazione del dispositivo VPN locale deve contenere o corrispondere agli
 * Gruppo PFS
 * Selettore di traffico (*)
 
-La durata delle associazioni di sicurezza è una specifica locale. Non è necessaria la corrispondenza.
+durate Hello SA solo specifiche locale, non è necessario toomatch.
 
-Se si abilita **UsePolicyBasedTrafficSelectors**, è necessario verificare che i selettori di traffico corrispondenti siano definiti nel dispositivo VPN con tutte le combinazioni dei prefissi della rete locale (gateway di rete locale) da/verso i prefissi della rete virtuale di Azure, anziché any-to-any. Se i prefissi della rete locale sono 10.1.0.0/16 e 10.2.0.0/16 e i prefissi della rete virtuale sono 192.168.0.0/16 e 172.16.0.0/16, ad esempio, è necessario specificare i selettori di traffico seguenti:
+Se si abilita **UsePolicyBasedTrafficSelectors**, è necessario il dispositivo VPN è hello corrispondenza selettori traffico definiti con tutte le combinazioni dei prefissi (gateway di rete locale) di rete locale a/da hello tooensure Prefissi di rete virtuale di Azure, anziché any per qualsiasi. Ad esempio, se i prefissi di rete locale sono 10.1.0.0/16 e 10.2.0.0/16 e i prefissi di rete virtuale sono 192.168.0.0/16 e 172.16.0.0/16, è necessario hello toospecify selettori di traffico seguenti:
 * 10.1.0.0/16 <====> 192.168.0.0/16
 * 10.1.0.0/16 <====> 172.16.0.0/16
 * 10.2.0.0/16 <====> 192.168.0.0/16
 * 10.2.0.0/16 <====> 172.16.0.0/16
 
-Per altri dettagli sull'uso di questa opzione, vedere l'articolo su come [connettere più dispositivi VPN basati su criteri locali](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md).
+Fare riferimento troppo[connettere più dispositivi VPN locale basata su criteri](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) per ulteriori informazioni su come toouse questa opzione.
 
 ### <a name ="DH"></a>Quali gruppi Diffie-Hellman sono supportati?
-La tabella seguente elenca i gruppi Diffie-Hellman supportati per IKE (DHGroup) e IPsec (PFSGroup):
+tabella di Hello seguente sono elencati i gruppi di Diffie-Hellman hello è supportato per IKE (DHGroup) e IPsec (PFSGroup):
 
 | **Gruppo Diffie-Hellman**  | **DHGroup**              | **PFSGroup** | **Lunghezza chiave** |
 | ---                       | ---                      | ---          | ---            |
@@ -63,25 +63,25 @@ La tabella seguente elenca i gruppi Diffie-Hellman supportati per IKE (DHGroup) 
 | 24                        | DHGroup24                | PFS24        | MODP a 2048 bit  |
 |                           |                          |              |                |
 
-Per altre informazioni, vedere [RFC3526](https://tools.ietf.org/html/rfc3526) e [RFC5114](https://tools.ietf.org/html/rfc5114).
+Fare riferimento troppo[RFC3526](https://tools.ietf.org/html/rfc3526) e [RFC5114](https://tools.ietf.org/html/rfc5114) per altri dettagli.
 
-### <a name="does-the-custom-policy-replace-the-default-ipsecike-policy-sets-for-azure-vpn-gateways"></a>I criteri personalizzati sostituiscono i set di criteri IPsec/IKE predefiniti per i gateway VPN di Azure?
-Sì. Quando per una connessione vengono specificati criteri personalizzati, il gateway VPN di Azure userà solo tali criteri per la connessione, sia come iniziatore IKE che come risponditore IKE.
+### <a name="does-hello-custom-policy-replace-hello-default-ipsecike-policy-sets-for-azure-vpn-gateways"></a>Criteri personalizzati di hello sostituisce hello IPsec/IKE criteri predefiniti per i gateway VPN di Azure?
+Sì, dopo aver specificato un criterio personalizzato su una connessione, il gateway VPN di Azure utilizzerà solo criteri hello in connessione hello, sia come iniziatore IKE e il risponditore IKE.
 
-### <a name="if-i-remove-a-custom-ipsecike-policy-does-the-connection-become-unprotected"></a>Se si rimuovono i criteri IPsec/IKE personalizzati, la connessione diventa non protetta?
-No. La connessione sarà comunque protetta tramite IPsec/IKE. Dopo la rimozione dei criteri personalizzati da una connessione, il gateway VPN di Azure ripristinerà l'[elenco predefinito delle proposte IPsec/IKE](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md) e riavvierà nuovamente l'handshake IKE con il dispositivo VPN locale.
+### <a name="if-i-remove-a-custom-ipsecike-policy-does-hello-connection-become-unprotected"></a>Se si rimuove un criterio IPsec/IKE personalizzato, non connessione hello diventa non protetto?
+No, connessione hello comunque essere protetti da IPsec/IKE. Dopo aver rimosso i criteri personalizzati di hello da una connessione, i gateway VPN di Azure hello verrà ripristinato toohello Indietro [elenco predefinito delle proposte di IPsec/IKE](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md) e riavviare hello handshake IKE nuovamente con il dispositivo VPN locale.
 
 ### <a name="would-adding-or-updating-an-ipsecike-policy-disrupt-my-vpn-connection"></a>L'aggiunta o l'aggiornamento di criteri IPsec/IKE determinerà un'interruzione della connessione VPN?
-Sì. Potrebbe causare una breve interruzione di alcuni secondi perché il gateway VPN di Azure chiuderà la connessione esistente e riavvierà l'handshake IKE per ristabilire il tunnel IPsec con i nuovi algoritmi di crittografia e i nuovi parametri. Per ridurre al minimo l'interruzione, verificare che il dispositivo VPN locale sia configurato anche con gli algoritmi e i tipi di attendibilità della chiave corrispondenti.
+Sì, potrebbe causare un'interruzione di piccole dimensioni (alcuni secondi) come gateway VPN di Azure hello verranno nuovamente avviati hello toore handshake IKE e chiudere la connessione esistente hello-stabilire il tunnel IPsec hello con nuovi algoritmi di crittografia hello e parametri. Verificare che il dispositivo VPN locale viene inoltre configurato con gli algoritmi corrispondente hello e interruzioni di hello toominimize vantaggi chiave.
 
 ### <a name="can-i-use-different-policies-on-different-connections"></a>È possibile usare criteri diversi per connessioni diverse?
-Sì. I criteri personalizzati vengono applicati in base alla connessione. È possibile creare e applicare criteri IPsec/IKE diversi per connessioni diverse. Si possono anche applicare criteri personalizzati a un sottoinsieme di connessioni. Le connessioni rimanenti useranno i set di criteri IPsec/IKE predefiniti di Azure.
+Sì. I criteri personalizzati vengono applicati in base alla connessione. È possibile creare e applicare criteri IPsec/IKE diversi per connessioni diverse. È anche possibile scegliere tooapply criteri personalizzati in un subset di connessioni. Hello restanti utilizzerà hello Azure IPsec/IKE criteri predefiniti.
 
-### <a name="can-i-use-the-custom-policy-on-vnet-to-vnet-connection-as-well"></a>È possibile usare criteri personalizzati anche per una connessione da rete virtuale a rete virtuale?
+### <a name="can-i-use-hello-custom-policy-on-vnet-to-vnet-connection-as-well"></a>È possibile utilizzare i criteri personalizzati di hello sulla connessione di rete virtuale a nonché?
 Sì. È possibile applicare criteri personalizzati sia a connessioni cross-premise IPsec che a connessioni da rete virtuale a rete virtuale.
 
-### <a name="do-i-need-to-specify-the-same-policy-on-both-vnet-to-vnet-connection-resources"></a>È necessario specificare gli stessi criteri per entrambe le risorse di connessione da rete virtuale a rete virtuale?
-Sì. Un tunnel da rete virtuale a rete virtuale è costituito da due risorse di connessione di Azure, una per ogni direzione. È necessario verificare che entrambe le risorse di connessione abbiano gli stessi criteri. In caso contrario, la connessione da rete virtuale a rete virtuale non verrà stabilita.
+### <a name="do-i-need-toospecify-hello-same-policy-on-both-vnet-to-vnet-connection-resources"></a>Necessario toospecify hello stessi criteri in entrambe le risorse di connessione di rete virtuale a?
+Sì. Un tunnel da rete virtuale a rete virtuale è costituito da due risorse di connessione di Azure, una per ogni direzione. È necessario tooensure dispongono di entrambe le risorse connessione hello stesso criterio, non consentirà di stabilire hello othereise da rete connessione.
 
 ### <a name="does-custom-ipsecike-policy-work-on-expressroute-connection"></a>I criteri IPsec/IKE personalizzati funzionano in una connessione ExpressRoute?
-No. I criteri IPsec/IKE funzionano solo in connessioni VPN da sito a sito e da rete virtuale a rete virtuale tramite gateway VPN di Azure.
+No. Criteri IPsec/IKE funziona solo su VPN S2S e le connessioni di rete virtuale a tramite gateway VPN di Azure hello.

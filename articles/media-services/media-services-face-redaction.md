@@ -1,6 +1,6 @@
 ---
-title: Offuscare i volti con Analisi Servizi multimediali di Azure | Documentazione Microsoft
-description: Questo argomento illustra come offuscare i volti con Analisi Servizi multimediali di Azure.
+title: i caratteri tipografici aaaRedact con Azure Media Analitica | Documenti Microsoft
+description: "In questo argomento viene illustrato come è rivolto tooredact con analitica multimediali di Azure."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;
-ms.openlocfilehash: 747f3ae1a7484515083c590942de3da22568cd39
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f5688a8c6374151c526a9c702b904d8c3e46164
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics"></a>Offuscare i volti con Analisi Servizi multimediali di Azure
 ## <a name="overview"></a>Panoramica
-**Azure Media Redactor** è un processore di contenuti multimediali di [Analisi Servizi multimediali di Azure](media-services-analytics-overview.md) che offre funzionalità scalabili di offuscamento dei volti nel cloud. L'offuscamento dei volti consente di modificare un video per sfocare i volti di persone selezionate. Può essere opportuno usare tale servizio in scenari di pubblica sicurezza e notizie giornalistiche. Offuscare manualmente alcuni minuti di filmato contenenti più volti può richiedere ore, ma con questo servizio il processo di offuscamento dei volti richiederà pochi semplici passaggi. Per altre informazioni, vedere [questo](https://azure.microsoft.com/blog/azure-media-redactor/) blog.
+**Azure Media Redactor** è un [Azure Media Analitica](media-services-analytics-overview.md) processore di contenuti multimediali (MP) che offre redazione faccia scalabile nel cloud hello. Adattamento faccia consente si toomodify video in facce tooblur ordine dei singoli utenti selezionati. È opportuno toouse hello faccia redazione servizio pubblica sicurezza e i supporti di notizie negli scenari in. Pochi minuti di riprese che contiene più caratteri tipografici possono richiedere ore tooredact manualmente, ma con questa faccia hello servizio processo di adattamento richiederà solo alcuni semplici passaggi. Per altre informazioni, vedere [questo](https://azure.microsoft.com/blog/azure-media-redactor/) blog.
 
-Questo argomento contiene informazioni dettagliate su **Azure Media Redactor** e illustra come usare questa funzionalità con Media Services SDK per .NET.
+In questo argomento fornisce informazioni dettagliate sulle **Azure Media Redactor** e Mostra come toouse con Media Services SDK per .NET.
 
-Il processore di contenuti multimediali **Azure Media Redactor** è attualmente in anteprima. È disponibile in tutte le aree di Azure pubbliche, nonché nei data center cinesi e del governo degli USA. Al momento questa versione di anteprima è disponibile gratuitamente. 
+Hello **Azure Media Redactor** Management Pack è attualmente in anteprima. È disponibile in tutte le aree di Azure pubbliche, nonché nei data center cinesi e del governo degli USA. Al momento questa versione di anteprima è disponibile gratuitamente. 
 
 ## <a name="face-redaction-modes"></a>Modalità per l'offuscamento dei volti
-La funzionalità di offuscamento dei volti rileva i volti in ogni fotogramma del video e monitora l'oggetto volto avanti e indietro nel tempo in modo da consentire la sfocatura della stessa persona anche da altre angolazioni. Il processo di offuscamento automatizzato è molto complesso e non sempre produce al 100% l'output desiderato. Per tale motivo, Analisi Servizi multimediali offre alcuni modi per modificare l'output finale.
+Adattamento facciale works rilevando facce in ogni frame di video e rilevamento viso hello oggetto entrambi avanti e indietro nel tempo, in modo che hello stessa persona può essere sfocatura dagli altri angoli anche. Hello il processo di adattamento automatico è molto complesso e non producono sempre 100% dell'output desiderata per questo motivo che Analitica supporti sono disponibili un paio di modi output finale di toomodify hello.
 
-In aggiunta a una modalità interamente automatica, esiste un flusso di lavoro in due passaggi che consente di selezionare/deselezionare i volti trovati tramite un elenco di ID. Per apportare modifiche arbitrarie per singolo fotogramma, inoltre, il processore di contenuti multimediali usa un file di metadati in formato JSON. Il flusso di lavoro è suddiviso nelle modalità **analisi** e **offuscamento**. È possibile combinare le due modalità in un singolo passaggio che esegue entrambe le attività in un unico processo. Questa modalità è detta **combinata**.
+In modalità automatica tooa aggiunta, è un flusso di lavoro in due passaggi che consente di hello selezione/deserializzare-selection di facce trovate tramite un elenco di ID. Inoltre, toomake arbitrario per hello regolazioni frame MP utilizza un file di metadati in formato JSON. Il flusso di lavoro è suddiviso nelle modalità **analisi** e **offuscamento**. È possibile combinare due modalità di hello in un unico passaggio che esegue entrambe le attività in un processo. Questa modalità è detta **combinata**.
 
 ### <a name="combined-mode"></a>Modalità combinata
 Questa modalità produce automaticamente un file mp4 offuscato senza alcun input manuale.
@@ -49,14 +49,14 @@ Questa modalità produce automaticamente un file mp4 offuscato senza alcun input
 [Guardare il video](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc6608001-e5da-429b-9ec8-d69d8f3bfc79%2Fdance_redacted.mp4)
 
 ### <a name="analyze-mode"></a>Modalità analisi
-Nel flusso di lavoro in due passaggi, il passaggio dell' **analisi** usa un input video e produce un file JSON di posizioni di volti e immagini jpg di ogni volto rilevato.
+Hello **analizzare** passaggio del flusso di lavoro in due passaggi hello accetta un input video e produce un file JSON di percorsi faccia e immagini jpg di ogni rilevato tipo di carattere.
 
 | Fase | File Name | Note |
 | --- | --- | --- |
 | Asset di input |foo.bar |Video in formato WMV, MPV o MP4 |
 | Configurazione di input |Set di impostazioni di configurazione del processo |{'version':'1.0', 'options': {'mode':'analyze'}} |
-| Asset di output |foo_annotations.json |Dati di annotazione delle posizioni dei volti in formato JSON, modificabili dall'utente per modificare i rettangoli di selezione della sfocatura. Vedere l'esempio di seguito. |
-| Asset di output |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |File jpg ritagliato di ogni volto rilevato, in cui il numero indica l'ID etichetta del volto |
+| Asset di output |foo_annotations.json |Dati di annotazione delle posizioni dei volti in formato JSON, Questo può essere modificato dal hello utente toomodify hello sfocatura rettangoli di selezione. Vedere l'esempio di seguito. |
+| Asset di output |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |Un'immagine jpg ritagliata di ogni rilevato tipo di carattere, in cui il numero di hello indica labelId hello del carattere tipografico hello |
 
 #### <a name="output-example"></a>Esempio di output:
 
@@ -108,22 +108,22 @@ Nel flusso di lavoro in due passaggi, il passaggio dell' **analisi** usa un inpu
     … truncated
 
 ### <a name="redact-mode"></a>Modalità offuscamento
-Il secondo passaggio del flusso di lavoro usa un numero superiore di input che devono essere combinati in un singolo asset.
+secondo passaggio del flusso di lavoro hello di Hello accetta un numero maggiore di input che devono essere combinati in un singolo asset.
 
-Gli input includono un elenco di ID da sfocare, il video originale e il file JSON delle annotazioni. Questa modalità usa le annotazioni per applicare la sfocatura nel video di input.
+Questo include un elenco di ID tooblur video originale hello e annotazioni hello JSON. Questa modalità utilizza hello annotazioni tooapply sfocatura nel video di input hello.
 
-L'output del passaggio dell'analisi non include il video originale. Il video deve essere caricato nell'asset di input per l'attività della modalità offuscamento ed essere selezionato come file primario.
+Hello output di analisi hello non include video originale hello. Hello video deve toobe caricato nell'asset di input per l'attività in modalità Redact hello hello e selezionato come file primario hello.
 
 | Fase | File Name | Note |
 | --- | --- | --- |
 | Asset di input |foo.bar |Video in formato WMV, MPV o MP4. Stesso video del passaggio 1. |
 | Asset di input |foo_annotations.json |File di metadati delle annotazioni della prima fase, con modifiche facoltative. |
-| Asset di input |foo_IDList.txt (facoltativo) |Elenco facoltativo separato da caratteri di nuova riga di ID volto da offuscare. Se viene lasciato vuoto, vengono sfocati tutti i volti. |
+| Asset di input |foo_IDList.txt (facoltativo) |Elenco del carattere tipografico tooredact ID separati da facoltativa nuova riga. Se viene lasciato vuoto, vengono sfocati tutti i volti. |
 | Configurazione di input |Set di impostazioni di configurazione del processo |{'version':'1.0', 'options': {'mode':'redact'}} |
 | Asset di output |foo_redacted.mp4 |Video con sfocatura applicata in base alle annotazioni. |
 
 #### <a name="example-output"></a>Output di esempio
-Questo output viene ottenuto da un elenco di ID con un ID selezionato.
+Questo è l'output di hello da un IDList con un ID selezionato.
 
 [Guardare il video](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fad6e24a2-4f9c-46ee-9fa7-bf05e20d19ac%2Fdance_redacted1.mp4)
 
@@ -135,9 +135,9 @@ Esempio foo_IDList.txt
 
 ## <a name="blur-types"></a>Tipi di sfocature
 
-Nella modalità **Combined** o **Redact**, sono disponibili 5 modalità di sfocatura diverse tra cui scegliere tramite la configurazione di input JSON: **Low**, **Med**, **High**, **Debug** e **Black**. Per impostazione predefinita, viene usata **Med**.
+In hello **combinata** o **Redact** modalità, sono disponibili 5 sfocatura diverse modalità, è possibile scegliere tra mediante la configurazione di input JSON hello: **bassa**, **Med**, **Elevata**, **Debug**, e **nero**. Per impostazione predefinita, viene usata **Med**.
 
-Di seguito sono riportati alcuni esempi dei tipi di sfocature.
+È possibile trovare esempi di hello sfocatura tipi più avanti.
 
 ### <a name="example-json"></a>JSON di esempio:
 
@@ -163,25 +163,25 @@ Di seguito sono riportati alcuni esempi dei tipi di sfocature.
 
 ![Nero](./media/media-services-face-redaction/blur5.png)
 
-## <a name="elements-of-the-output-json-file"></a>Elementi del file di output JSON
+## <a name="elements-of-hello-output-json-file"></a>Elementi hello JSON del file di output
 
-Il processore di contenuti multimediali per l'offuscamento offre funzionalità di rilevamento della posizione e monitoraggio dei volti ad alta precisione che possono rilevare fino a 64 volti umani in un fotogramma video. Le riprese anteriori producono risultati ottimali, mentre profili e volti di piccole dimensioni (inferiori o uguali a 24x24 pixel) presentano alcune problematiche.
+Hello redazione MP fornisce il rilevamento di percorso faccia ad alta precisione e rilevamento in grado di rilevare il too64 viso umana in un frame video. Volti frontali forniscono risultati ottimali hello, mentre i caratteri tipografici lato e facce di piccole dimensioni (minore o uguale a too24x24 pixel) rappresentano una sfida.
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
 ## <a name="net-sample-code"></a>Codice di esempio .NET
 
-Il programma seguente illustra come:
+esempio Hello programma mostra come:
 
-1. Creare un asset e caricare un file multimediale nell'asset.
-2. Creare un processo con un'attività di offuscamento dei volti in base a un file di configurazione contenente il set di impostazioni JSON seguente. 
+1. Creare un asset e caricare un file multimediale nell'asset hello.
+2. Creare un processo con un'attività di adattamento faccia basata su un file di configurazione che contiene i seguenti set di impostazioni json hello. 
    
         {'version':'1.0', 'options': {'mode':'combined'}}
-3. Scaricare i file JSON di output. 
+3. Scaricare i file JSON di output di hello. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Esempio
 
@@ -197,7 +197,7 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -213,17 +213,17 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Run the FaceRedaction job.
+            // Run hello FaceRedaction job.
             var asset = RunFaceRedactionJob(@"C:\supportFiles\FaceRedaction\SomeFootage.mp4",
                         @"C:\supportFiles\FaceRedaction\config.json");
 
-            // Download the job output asset.
+            // Download hello job output asset.
             DownloadAsset(asset, @"C:\supportFiles\FaceRedaction\Output");
         }
 
         static IAsset RunFaceRedactionJob(string inputMediaFilePath, string configurationFile)
         {
-            // Create an asset and upload the input media file to storage.
+            // Create an asset and upload hello input media file toostorage.
             IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
             "My Face Redaction Input Asset",
             AssetCreationOptions.None);
@@ -231,38 +231,38 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
             // Declare a new job.
             IJob job = _context.Jobs.Create("My Face Redaction Job");
 
-            // Get a reference to Azure Media Redactor.
+            // Get a reference tooAzure Media Redactor.
             string MediaProcessorName = "Azure Media Redactor";
 
             var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-            // Read configuration from the specified file.
+            // Read configuration from hello specified file.
             string configuration = File.ReadAllText(configurationFile);
 
-            // Create a task with the encoding details, using a string preset.
+            // Create a task with hello encoding details, using a string preset.
             ITask task = job.Tasks.AddNew("My Face Redaction Task",
             processor,
             configuration,
             TaskOptions.None);
 
-            // Specify the input asset.
+            // Specify hello input asset.
             task.InputAssets.Add(asset);
 
-            // Add an output asset to contain the results of the job.
+            // Add an output asset toocontain hello results of hello job.
             task.OutputAssets.AddNew("My Face Redaction Output Asset", AssetCreationOptions.None);
 
-            // Use the following event handler to check job progress.  
+            // Use hello following event handler toocheck job progress.  
             job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-            // Launch the job.
+            // Launch hello job.
             job.Submit();
 
-            // Check job execution and wait for job to finish.
+            // Check job execution and wait for job toofinish.
             Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
             progressJobTask.Wait();
 
-            // If job state is Error, the event handling
+            // If job state is Error, hello event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

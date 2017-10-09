@@ -1,6 +1,6 @@
 ---
-title: Uso di librerie di classi .NET con Funzioni di Azure | Documenti Docs
-description: Informazioni su come creare librerie di classi .NET da usare con Funzioni di Azure
+title: librerie di classi .NET aaaUsing con le funzioni di Azure | Documenti Microsoft
+description: Informazioni sull'utilizzano di librerie di classi .NET tooauthor per con le funzioni di Azure
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,42 +16,42 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: donnam
-ms.openlocfilehash: 0613bb96d3afb85ff7e684246b128e4eef518d23
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4e0fd954b554006ba1d8ecc47403a9fb1c67c3b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-net-class-libraries-with-azure-functions"></a>Uso di librerie di classi .NET con Funzioni di Azure
 
-Oltre ai file di script, Funzioni di Azure supporta la pubblicazione di una libreria di classi per l'implementazione di una o più funzioni. È consigliabile usare [Visual Studio 2017 Tools per Funzioni di Azure](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/).
+File tooscript, le funzioni di Azure supporta inoltre la pubblicazione di una libreria di classi come implementazione hello per le funzioni di uno o più. È consigliabile usare hello [Azure funzioni 2017 Visual Studio Tools](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/).
 
 ## <a name="prerequisites"></a>Prerequisiti 
 
-I prerequisiti di questo articolo sono i seguenti:
+In questo articolo presenta hello seguenti prerequisiti:
 
-- [Visual Studio 2017 Preview versione 15.3](https://www.visualstudio.com/vs/preview/). Installare i carichi di lavoro **Sviluppo Web e ASP.NET** e **Sviluppo di Azure**.
+- [Visual Studio 2017 Preview versione 15.3](https://www.visualstudio.com/vs/preview/). Installare i carichi di lavoro hello **sviluppo web ASP.NET e** e **lo sviluppo di Azure**.
 - [Visual Studio 2017 Tools per Funzioni di Azure](https://marketplace.visualstudio.com/items?itemName=AndrewBHall-MSFT.AzureFunctionToolsforVisualStudio2017)
 
 ## <a name="functions-class-library-project"></a>Progetto di libreria di classi per Funzioni
 
-Creare un progetto per Funzioni di Azure in Visual Studio. Il modello del nuovo progetto crea i file *host.json* e *local.settings.json*. È possibile [personalizzare le impostazioni di runtime di Funzioni di Azure nel file host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json). 
+Creare un progetto per Funzioni di Azure in Visual Studio. il nuovo modello di progetto Hello crea file hello *host.json* e *local.settings.json*. È possibile [personalizzare le impostazioni di runtime di Funzioni di Azure nel file host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json). 
 
-Nel file *local.settings.json* vengono archiviate le impostazioni dell'app, le stringhe di connessione e le impostazioni per Strumenti di base di Funzioni di Azure. Per altre informazioni sulla struttura, vedere [Scrivere codice per le funzioni di Azure e testarle in locale](functions-run-local.md#local-settings).
+file Hello *local.settings.json* archivia le impostazioni dell'app, le stringhe di connessione e le impostazioni per strumenti di base di funzioni di Azure. toolearn più sulla relativa struttura, vedere [codice e il test funzioni di Azure localmente](functions-run-local.md#local-settings).
 
 ### <a name="functionname-attribute"></a>Attributo FunctionName
 
-L'attributo [`FunctionNameAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/FunctionNameAttribute.cs) contrassegna un metodo come punto di ingresso della funzione. Deve essere usato con un solo trigger e con 0 o più associazioni di input e di output.
+attributo Hello [ `FunctionNameAttribute` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/FunctionNameAttribute.cs) contrassegna un metodo come un punto di ingresso della funzione. Deve essere usato con un solo trigger e con 0 o più associazioni di input e di output.
 
-### <a name="conversion-to-functionjson"></a>Conversione in function.json
+### <a name="conversion-toofunctionjson"></a>Conversione toofunction.json
 
-Quando viene compilato un progetto di Funzioni di Azure, viene generato un file `function.json` nella directory, che corrisponde al nome della funzione definito da `[FunctionName]`. Specifica i trigger, le associazioni e i punti che si riferiscono al file di assembly del progetto.
+Quando viene compilato un progetto di funzioni di Azure, viene generato un file `function.json` nella directory hello corrisponde al nome della funzione hello è definito da `[FunctionName]`. Specifica i trigger e le associazioni e file di assembly progetto toohello punti.
 
-Questa conversione viene eseguita dal pacchetto NuGet [Microsoft\.NET\.Sdk\.Functions](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions). L'origine è disponibile nel repository di GitHub [azure\-functions\-vs\-build\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk).
+Questa conversione viene eseguita dal pacchetto NuGet hello [Microsoft\.NET\.Sdk\.funzioni](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions). origine Hello è disponibile nel repository GitHub hello [azure\-funzioni\-vs\-compilare\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk).
 
 ## <a name="triggers-and-bindings"></a>Trigger e associazioni
 
-Nella tabella seguente sono elencati i trigger e le associazioni disponibili in un progetto di libreria di classi di Funzioni di Azure. Tutti gli attributi sono contenuti nello spazio dei nomi `Microsoft.Azure.WebJobs`.
+Hello nella tabella seguente sono elencati i trigger di hello e associazioni che sono disponibili in un progetto libreria di classi di funzioni di Azure. Tutti gli attributi sono nello spazio dei nomi hello `Microsoft.Azure.WebJobs`.
 
 | Associazione | Attributo | Pacchetto NuGet |
 |------   | ------    | ------        |
@@ -75,7 +75,7 @@ Nella tabella seguente sono elencati i trigger e le associazioni disponibili in 
 
 Funzioni di Azure supporta i trigger e le associazioni di input e di output per l'archiviazione BLOB di Azure. Per altre informazioni sulle espressioni di associazione e sui metadati, vedere [Binding dell'archiviazione BLOB di Funzioni di Azure](functions-bindings-storage-blob.md).
 
-Con l'attributo `[BlobTrigger]` viene definito un trigger del BLOB. È possibile usare l'attributo `[StorageAccount]` per definire l'account di archiviazione usato da un'intera funzione o classe.
+Viene definito un trigger di blob con hello `[BlobTrigger]` attributo. È possibile utilizzare l'attributo hello `[StorageAccount]` account di archiviazione hello toodefine utilizzato da un'intera funzione o una classe.
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -86,7 +86,7 @@ public static void Run([BlobTrigger("samples-workitems/{name}")] Stream myBlob, 
 }
 ```
 
-Gli input e output del BLOB vengono definiti con l'attributo `[Blob]` e con un parametro`FileAccess` che indica la lettura o la scrittura. L'esempio seguente usa un trigger e un'associazione di output del BLOB.
+BLOB di input e output vengono definiti utilizzando hello `[Blob]` attributo, insieme con un `FileAccess` parametro che indica di lettura o scrittura. Hello in seguito viene illustrato come utilizzare un trigger di blob e blob di associazione di output.
 
 ```csharp
 [FunctionName("ResizeImage")]
@@ -122,9 +122,9 @@ private static Dictionary<ImageSize, (int, int)> imageDimensionsTable = new Dict
 
 ### <a name="cosmos-db-input-and-output-bindings"></a>Associazioni di input e di output per Cosmos DB
 
-Funzioni di Azure supporta le associazioni di input e output per Cosmos DB. Per altre informazioni sulle funzionalità dell'associazione per Cosmos DB, vedere [Associazioni di Funzioni di Azure per Cosmos DB](functions-bindings-documentdb.md).
+Funzioni di Azure supporta le associazioni di input e output per Cosmos DB. toolearn più caratteristiche di hello di associazione di hello Cosmos DB, vedere [associazioni Azure funzioni Cosmos DB](functions-bindings-documentdb.md).
 
-Per definire l'associazione a un documento Cosmos DB, usare l'attributo `[DocumentDB]` nel pacchetto NuGet [Microsoft.Azure.WebJobs.Extensions.DocumentDB]. L'esempio seguente contiene un trigger della coda e un'associazione di output dell'API di DocumentDB:
+toobind tooa documento Cosmos DB, utilizzare l'attributo hello `[DocumentDB]` nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.Extensions.DocumentDB]. Hello di esempio seguente è un trigger di coda e una API DocumentDB associazione di output:
 
 ```csharp
 [FunctionName("QueueToDocDB")]        
@@ -143,9 +143,9 @@ public static void Run(
 
 Funzioni di Azure supporta il trigger e le associazioni di output per Hub eventi. Per altre informazioni, vedere [Associazioni di Hub eventi di Funzioni di Azure](functions-bindings-event-hubs.md).
 
-I tipi `[Microsoft.Azure.WebJobs.ServiceBus.EventHubTriggerAttribute]` e `[Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute]` sono definiti nel pacchetto NuGet [Microsoft.Azure.WebJobs.ServiceBus]. 
+tipi di Hello `[Microsoft.Azure.WebJobs.ServiceBus.EventHubTriggerAttribute]` e `[Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute]` sono definiti nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.ServiceBus]. 
 
-Nell'esempio seguente viene usato un trigger per Hub eventi:
+Hello esempio seguente viene utilizzato un trigger di Hub eventi:
 
 ```csharp
 [FunctionName("EventHubTriggerCSharp")]
@@ -155,7 +155,7 @@ public static void Run([EventHubTrigger("samples-workitems", Connection = "Event
 }
 ```
 
-L'esempio seguente contiene un output per Hub eventi che usa il valore restituito dal metodo come output:
+Hello esempio seguente è presente un Hub di eventi di output, con valore restituito del metodo hello come output di hello:
 
 ```csharp
 [FunctionName("EventHubOutput")]
@@ -171,9 +171,9 @@ public static string Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, Trac
 
 ### <a name="external-file-input-and-output"></a>Input e output per file esterni
 
-Funzioni di Azure supporta il trigger e le associazioni di input e di output per file esterni, ad esempio Google Drive, Dropbox e OneDrive. Per altre informazioni, vedere [Associazioni di file esterni in Funzioni di Azure](functions-bindings-external-file.md). Gli attributi `[ExternalFileTrigger]` e `[ExternalFile]` sono definiti nel pacchetto NuGet [Microsoft.Azure.WebJobs.Extensions.ApiHub].
+Funzioni di Azure supporta il trigger e le associazioni di input e di output per file esterni, ad esempio Google Drive, Dropbox e OneDrive. vedere, più toolearn [associazioni di File esterno di Azure funzioni](functions-bindings-external-file.md). Hello attributi `[ExternalFileTrigger]` e `[ExternalFile]` sono definiti nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.Extensions.ApiHub].
 
-Nell'esempio C# seguente viene illustrata l'associazione di input e di output di un file esterno. Il codice copia il file di input nel file di output.
+Hello esempio c# seguente viene illustrato un file esterno di input e output di associazione. copie di codice Hello hello file di output toohello file di input.
 
 ```csharp
 [StorageAccount("MyStorageConnection")]
@@ -192,7 +192,7 @@ public static string Run([QueueTrigger("myqueue-items")] string myQueueItem,
 
 ### <a name="http-and-webhooks"></a>HTTP e webhook
 
-Usare l'attributo `HttpTrigger` per definire un trigger HTTP o un webhook. Questo attributo è definito nel pacchetto NuGet [Microsoft.Azure.WebJobs.Extensions.Http]. È possibile personalizzare livello di autorizzazione, tipo di webhook, route e metodi. L'esempio seguente definisce un trigger HTTP con autenticazione anonima e tipo di webhook _genericJson_.
+Hello utilizzare `HttpTrigger` trigger toodefine HTTP attributo o webhook. Questo attributo viene definito nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.Extensions.Http]. È possibile personalizzare il livello di autorizzazione hello, tipo webhook, route e metodi. esempio Hello definisce un trigger HTTP con l'autenticazione anonima e _genericJson_ tipo webhook.
 
 ```csharp
 [FunctionName("HttpTriggerCSharp")]
@@ -206,9 +206,9 @@ public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous,
 
 ### <a name="mobile-apps-input-and-output"></a>Input e output per App per dispositivi mobili
 
-Funzioni di Azure supporta le associazioni di input e output per App per dispositivi mobili. Per altre informazioni, vedere [Associazioni di app per dispositivi mobili in Funzioni di Azure](functions-bindings-mobile-apps.md). L'attributo `[MobileTable]` è definito nel pacchetto NuGet [Microsoft.Azure.WebJobs.Extensions.MobileApps].
+Funzioni di Azure supporta le associazioni di input e output per App per dispositivi mobili. vedere, più toolearn [associazioni di App mobili di Azure funzioni](functions-bindings-mobile-apps.md). attributo Hello `[MobileTable]` è definito nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.Extensions.MobileApps].
 
-L'esempio seguente illustra un'associazione di output per App per dispositivi mobili:
+esempio Hello illustra un'App per dispositivi mobili associazione di output:
 
 ```csharp
 [FunctionName("MobileAppsOutput")]        
@@ -223,7 +223,7 @@ public static object Run([QueueTrigger("myqueue-items", Connection = "AzureWebJo
 
 ### <a name="notification-hubs-output"></a>Output per Hub di notifica
 
-Funzioni di Azure supporta un'associazione di output per Hub di notifica. Per altre informazioni, vedere [Associazione di output di Hub di notifica in Funzioni di Azure](functions-bindings-notification-hubs.md). L'attributo `[NotificationHub]` è definito nel pacchetto NuGet [Microsoft.Azure.WebJobs.Extensions.NotificationHubs].
+Funzioni di Azure supporta un'associazione di output per Hub di notifica. vedere, più toolearn [associazione di output di Hub di notifica di Azure funzioni](functions-bindings-notification-hubs.md). attributo Hello `[NotificationHub]` è definito nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.Extensions.NotificationHubs].
 
 <a name="queue"></a>
 
@@ -231,7 +231,7 @@ Funzioni di Azure supporta un'associazione di output per Hub di notifica. Per al
 
 Funzioni di Azure supporta il trigger e le associazioni di output per le code di Azure. Per altre informazioni, vedere [Associazioni di archiviazione code in Funzioni di Azure](functions-bindings-storage-queue.md).
 
-Nell'esempio seguente viene illustrato come usare il tipo restituito dalla funzione con un'associazione di output per la coda, tramite l'attributo `[Queue]`. Per definire un trigger della coda, usare l'attributo `[QueueTrigger]`.
+Hello esempio seguente viene illustrato come toouse hello tipo restituito dalla funzione con un coda di output di associazione, tramite hello `[Queue]` attributo. toodefine un trigger di coda, utilizzare hello `[QueueTrigger]` attributo.
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -261,11 +261,11 @@ public static class QueueFunctions
 
 ### <a name="sendgrid-output"></a>Output di SendGrid
 
-Funzioni di Azure supporta un'associazione di output di SendGrid per inviare tramite posta elettronica a livello di programmazione. Per altre informazioni, vedere [Associazioni di SendGrid di Funzioni di Azure](functions-bindings-sendgrid.md).
+Funzioni di Azure supporta un'associazione di output di SendGrid per inviare tramite posta elettronica a livello di programmazione. vedere, più toolearn [associazioni Azure funzioni SendGrid](functions-bindings-sendgrid.md).
 
-L'attributo `[SendGrid]` è definito nel pacchetto NuGet [Microsoft.Azure.WebJobs.Extensions.SendGrid].
+attributo Hello `[SendGrid]` è definito nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.Extensions.SendGrid].
 
-Di seguito è riportato un esempio di utilizzo di un trigger della coda per il bus di servizio e di un binding di output di SendGrid mediante `SendGridMessage`:
+Hello seguito è riportato un esempio di utilizzo di un trigger di coda del Bus di servizio e un'associazione di output SendGrid utilizzando `SendGridMessage`:
 
 ```csharp
 [FunctionName("SendEmail")]
@@ -282,7 +282,7 @@ public static void Run(
 
 public class OutgoingEmail
 {
-    public string To { get; set; }
+    public string too{ get; set; }
     public string From { get; set; }
     public string Subject { get; set; }
     public string Body { get; set; }
@@ -295,9 +295,9 @@ public class OutgoingEmail
 
 Funzioni di Azure supporta il trigger e le associazioni di output per le code e gli argomenti del bus di servizio. Per altre informazioni sulla configurazione delle associazioni, vedere [Associazioni del bus di servizio di Funzioni di Azure](functions-bindings-service-bus.md).
 
-Gli attributi `[ServiceBusTrigger]` e `[ServiceBus]` sono definiti nel pacchetto NuGet [Microsoft.Azure.WebJobs.ServiceBus]. 
+Hello attributi `[ServiceBusTrigger]` e `[ServiceBus]` sono definiti nel pacchetto NuGet hello [Microsoft.Azure.WebJobs.ServiceBus]. 
 
-Di seguito è riportato un esempio di trigger della coda per il bus di servizio:
+Hello Ecco un esempio di un trigger di coda del Bus di servizio:
 
 ```csharp
 [FunctionName("ServiceBusQueueTriggerCSharp")]                    
@@ -307,7 +307,7 @@ public static void Run([ServiceBusTrigger("myqueue", AccessRights.Manage, Connec
 }
 ```
 
-Di seguito è riportato un esempio di un'associazione di output per il bus di servizio che usa il tipo restituito dal metodo come output:
+Hello Ecco un esempio di output un Bus di servizio di associazione, utilizzando il tipo restituito del metodo di hello come output di hello:
 
 ```csharp
 [FunctionName("ServiceBusOutput")]
@@ -323,9 +323,9 @@ public static string ServiceBusOutput([HttpTrigger] dynamic input, TraceWriter l
 
 ### <a name="table-storage-input-and-output"></a>Input e output per l'archiviazione tabelle
 
-Funzioni di Azure supporta le associazioni di input e output per l'archiviazione tabelle di Azure. Per altre informazioni, vedere [Associazioni di archiviazione tabelle in Funzioni di Azure](functions-bindings-storage-table.md).
+Funzioni di Azure supporta le associazioni di input e output per l'archiviazione tabelle di Azure. vedere, più toolearn [associazioni di archiviazione di Azure funzioni tabella](functions-bindings-storage-table.md).
 
-L'esempio seguente si riferisce a una classe con due funzioni e illustra l'associazione di input e di output per l'archiviazione tabelle. 
+Hello seguente viene illustrata una classe con due funzioni, che illustra l'output di archiviazione tabella e le associazioni di input. 
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -346,7 +346,7 @@ public class TableStorage
         return new MyPoco { PartitionKey = "Http", RowKey = Guid.NewGuid().ToString(), Text = input.Text };
     }
 
-    // use the metadata parameter "queueTrigger" to bind the queue payload
+    // use hello metadata parameter "queueTrigger" toobind hello queue payload
     [FunctionName("TableInput")]
     public static void TableInput([QueueTrigger("table-items")] string input, [Table("MyTable", "Http", "{queueTrigger}")] MyPoco poco, TraceWriter log)
     {
@@ -360,11 +360,11 @@ public class TableStorage
 
 ### <a name="timer-trigger"></a>Trigger timer
 
-Funzioni di Azure è dotata di un binding trigger timer che consente di eseguire il codice della funzione secondo una pianificazione definita. Per altre informazioni sulle funzionalità dell'associazione, vedere [Pianificare l'esecuzione di codice con Funzioni di Azure](functions-bindings-timer.md).
+Funzioni di Azure è dotata di un binding trigger timer che consente di eseguire il codice della funzione secondo una pianificazione definita. toolearn più caratteristiche di hello di associazione di hello, vedere [pianificare l'esecuzione di codice con le funzioni di Azure](functions-bindings-timer.md).
 
-Nel piano a consumo è possibile definire le pianificazioni usando un'[espressione CRON](http://en.wikipedia.org/wiki/Cron#CRON_expression). Se si usa un piano di servizio app, è anche possibile usare una stringa TimeSpan. 
+Piano di consumo hello, è possibile definire pianificazioni con un [espressione CRON](http://en.wikipedia.org/wiki/Cron#CRON_expression). Se si usa un piano di servizio app, è anche possibile usare una stringa TimeSpan. 
 
-L'esempio seguente definisce un trigger del timer eseguito ogni 5 minuti:
+Hello di esempio seguente definisce un trigger timer che viene eseguita ogni 5 minuti:
 
 ```csharp
 [FunctionName("TimerTriggerCSharp")]
@@ -378,11 +378,11 @@ public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWr
 
 ### <a name="twilio-output"></a>Output di Twilio
 
-Funzioni di Azure supporta le associazioni di output di Twilio per consentire alle funzioni di inviare SMS. Per altre informazioni, vedere [Inviare messaggi SMS da Funzioni di Azure usando l'associazione di output Twilio](functions-bindings-twilio.md). 
+I messaggi di testo SMS toosend funzioni di Azure supporta funzioni Twilio output tooenable associazioni. vedere, più toolearn [messaggi inviare SMS da funzioni di Azure utilizzando hello Twilio output associazione](functions-bindings-twilio.md). 
 
-L'attributo `[TwilioSms]` è definito nel pacchetto [Microsoft.Azure.WebJobs.Extensions.Twilio].
+attributo Hello `[TwilioSms]` è definito nel pacchetto hello [Microsoft.Azure.WebJobs.Extensions.Twilio].
 
-L'esempio C# seguente usa un trigger della coda e un'associazione di output Twilio:
+esempio c# seguente Hello utilizza una coda trigger e un Twilio associazione di output:
 
 ```csharp
 [FunctionName("QueueTwilio")]
@@ -394,7 +394,7 @@ public static SMSMessage Run([QueueTrigger("myqueue-items", Connection = "AzureW
     var message = new SMSMessage()
     {
         Body = $"Hello {order["name"]}, thanks for your order!",
-        To = order["mobileNumber"].ToString()
+        too= order["mobileNumber"].ToString()
     };
 
     return message;
@@ -423,7 +423,7 @@ Per altre informazioni sull'uso di Funzioni di Azure in script C#, vedere [Guida
 [Microsoft.Azure.WebJobs.Extensions]: http://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions/2.1.0-beta1
 
 
-<!-- Links to source --> 
+<!-- Links toosource --> 
 [DocumentDBAttribute]: https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.DocumentDB/DocumentDBAttribute.cs
 [EventHubAttribute]: https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubAttribute.cs
 [EventHubTriggerAttribute]: https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubTriggerAttribute.cs

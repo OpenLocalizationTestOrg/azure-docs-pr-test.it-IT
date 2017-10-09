@@ -1,9 +1,9 @@
-L'interfaccia della riga di comando di Azure 2.0 consente di creare e gestire le risorse di Azure in macOS, Linux e Windows. Questo articolo illustra in modo dettagliato i comandi più comuni per la creazione e la gestione delle macchine virtuali.
+Hello Azure CLI 2.0 consente toocreate e gestire le risorse di Azure su Windows, Linux e macOS. In questo articolo illustra in dettaglio alcune delle toocreate comandi più comuni di hello e gestire macchine virtuali (VM).
 
-Questo articolo richiede l'interfaccia della riga di comando di Azure 2.0.4 o versioni successive. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0](/cli/azure/install-azure-cli). È anche possibile usare [Cloud Shell](/azure/cloud-shell/quickstart) dal browser.
+In questo articolo richiede hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooupgrade, vedere [installare Azure CLI 2.0](/cli/azure/install-azure-cli). È anche possibile usare [Cloud Shell](/azure/cloud-shell/quickstart) dal browser.
 
 ## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Comandi di base di Azure Resource Manager nell'interfaccia della riga di comando di Azure
-Per una guida più dettagliata con parametri e opzioni della riga di comando specifici, è possibile usare la Guida in linea dei comandi e le relative opzioni digitando `az <command> <subcommand> --help`.
+Per più dettagliate della Guida dei parametri della riga di comando specifici e sulle opzioni, è possibile utilizzare la Guida in linea di comando hello e opzioni digitando `az <command> <subcommand> --help`.
 
 ### <a name="create-vms"></a>Creare VM
 | Attività | Comandi dell'interfaccia della riga di comando di Azure |
@@ -33,7 +33,7 @@ Per una guida più dettagliata con parametri e opzioni della riga di comando spe
 ## <a name="disks-and-images"></a>Dischi e immagini
 | Attività | Comandi dell'interfaccia della riga di comando di Azure |
 | --- | --- |
-| Aggiungere un disco dati a una macchina virtuale | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
+| Aggiungere un tooa disco dati VM | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
 | Rimuovere un disco dati da una macchina virtuale | `az vm disk detach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk` |
 | Ridimensionare un disco | `az disk update --resource-group myResourceGroup --name myDataDisk --size-gb 256` |
 | Snapshot di un disco | `az snapshot create --resource-group myResourceGroup --name mySnapshot --source myDataDisk` |
@@ -42,5 +42,5 @@ Per una guida più dettagliata con parametri e opzioni della riga di comando spe
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per esempi aggiuntivi dei comandi dell'interfaccia della riga di comando, vedere l'esercitazione [Creare e gestire VM Linux con l'interfaccia della riga di comando di Azure](../articles/virtual-machines/linux/tutorial-manage-vm.md).
+Per ulteriori esempi di comandi CLI hello, vedere hello [creare e gestire le macchine virtuali Linux con hello Azure CLI](../articles/virtual-machines/linux/tutorial-manage-vm.md) esercitazione.
 

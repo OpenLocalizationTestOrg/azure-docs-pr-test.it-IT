@@ -1,5 +1,5 @@
 ---
-title: Domande frequenti sulla soluzione di connected factory di Azure IoT Suite | Microsoft Docs
+title: aaaAzure IoT Suite connesso domande frequenti sulla factory | Documenti Microsoft
 description: Domande frequenti sulla soluzione di connected factory di IoT Suite
 services: 
 suite: iot-suite
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: corywink
-ms.openlocfilehash: 35cf824210a14410d7ea2aedddde0040309901f9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4ae9beb0daf1b0578850cd652eaca7635b0d039d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions-for-iot-suite-connected-factory-preconfigured-solution"></a>Domande frequenti sulla soluzione preconfigurata di connected factory di IoT Suite
 
-Vedere anche le [domande frequenti](iot-suite-faq.md) generali su IoT Suite.
+Vedere anche, hello generale [domande frequenti su](iot-suite-faq.md) per IoT Suite.
 
-### <a name="where-can-i-find-the-source-code-for-the-preconfigured-solution"></a>Dove è possibile visualizzare il codice sorgente per la soluzione preconfigurata?
+### <a name="where-can-i-find-hello-source-code-for-hello-preconfigured-solution"></a>Dove trovare il codice sorgente hello per soluzione hello preconfigurato
 
-Il codice sorgente è archiviato nel repository di GitHub seguente:
+codice di origine Hello è archiviato in hello repository GitHub seguente:
 
-* [Soluzione preconfigurata di factory connessa](https://github.com/Azure/azure-iot-connected-factory)
+* [Connected factory preconfigured solution](https://github.com/Azure/azure-iot-connected-factory) (Soluzione preconfigurata di connected factory)
 
 ### <a name="what-is-opc-ua"></a>Che cos'è OPC UA?
 
-OPC Unified Architecture (UA), rilasciato nel 2008, è uno standard di interoperabilità indipendente dalla piattaforma e orientato ai servizi. OPC UA viene anche usato da svariati sistemi e dispositivi di settore, ad esempio PC, PLC e sensori. OPC UA integra la funzionalità delle specifiche OPC Classic in un unico framework estendibile con sicurezza predefinita. È uno standard definito da OPC Foundation. [OPC Foundation](http://opcfoundation.org/) è un'organizzazione no profit che conta più di 440 membri. L'obiettivo dell'organizzazione è di usare le specifiche OPC per realizzare un'interoperabilità sicura e affidabile multifornitore e multipiattaforma tramite:
+OPC Unified Architecture (UA), rilasciato nel 2008, è uno standard di interoperabilità indipendente dalla piattaforma e orientato ai servizi. OPC UA viene anche usato da svariati sistemi e dispositivi di settore, ad esempio PC, PLC e sensori. OPC UA integra la funzionalità di hello specifiche hello OPC classico in un framework estendibile con protezione incorporata. È uno standard che viene gestito dal hello Foundation OPC. Hello [Foundation OPC](http://opcfoundation.org/) è un'organizzazione no profit con più di 440 membri. obiettivo di Hello dell'organizzazione hello è toouse OPC specifiche toofacilitate più fornitori, multipiattaforma, sicura e affidabile interoperabilità tramite:
 
 * Infrastruttura
 * Specifiche
 * Tecnologia
 * Processi
 
-### <a name="why-did-microsoft-choose-opc-ua-for-the-connected-factory-preconfigured-solution"></a>Perché Microsoft ha scelto OPC UA per la soluzione preconfigurata di connected factory?
+### <a name="why-did-microsoft-choose-opc-ua-for-hello-connected-factory-preconfigured-solution"></a>Perché Microsoft ha scelto di che UA OPC per hello connesso soluzione factory preconfigurato?
 
-Microsoft ha scelto OPC UA perché è uno standard aperto, non proprietario, indipendente dalla piattaforma, riconosciuto nel settore e collaudato. È un requisito per le soluzioni basate sull'architettura di riferimento Industrie 4.0 (RAMI4.0) che assicurano l'interoperabilità tra un'ampia serie di processi e attrezzature di produzione. Microsoft è consapevole della richiesta dei clienti di creare soluzioni Industrie 4.0. Il supporto per OPC UA consente di agevolare i clienti nel raggiungimento degli obiettivi e offre immediatamente valore aggiunto.
+Microsoft ha scelto OPC UA perché è uno standard aperto, non proprietario, indipendente dalla piattaforma, riconosciuto nel settore e collaudato. È un requisito per le soluzioni basate sull'architettura di riferimento Industrie 4.0 (RAMI4.0) che assicurano l'interoperabilità tra un'ampia serie di processi e attrezzature di produzione. Microsoft considera richiesta da soluzioni toobuild 4.0 Industrie dei clienti. Supporto per UA OPC consente barriera hello inferiore per i clienti tooachieve gli obiettivi prefissati e toothem valore commerciale immediato.
 
-### <a name="how-do-i-add-a-public-ip-address-to-the-simulation-vm"></a>Come è possibile aggiungere un indirizzo IP pubblico alla macchina virtuale di simulazione?
+### <a name="how-do-i-add-a-public-ip-address-toohello-simulation-vm"></a>Aggiunta di una simulazione di toohello indirizzo VM IP pubblica
 
-Sono disponibili due opzioni per aggiungere l'indirizzo IP:
+Si dispone di due opzioni tooadd hello l'indirizzo IP:
 
-* Usare lo script di PowerShell `Simulation/Factory/Add-SimulationPublicIp.ps1` nel [repository](https://github.com/Azure/azure-iot-connected-factory). Passare il nome della distribuzione come parametro. Per una distribuzione locale, usare `<your username>ConnFactoryLocal`. Lo visualizza l'indirizzo IP della VM.
+* Utilizzare uno script di PowerShell hello `Simulation/Factory/Add-SimulationPublicIp.ps1` in hello [repository](https://github.com/Azure/azure-iot-connected-factory). Passare il nome della distribuzione come parametro. Per una distribuzione locale, usare `<your username>ConnFactoryLocal`. script Hello viene visualizzato un indirizzo IP hello di hello macchina virtuale.
 
-* Nel portale di Azure individuare il gruppo di risorse della distribuzione. Fatta eccezione per una distribuzione locale, il gruppo di risorse ha il nome specificato come nome della soluzione o della distribuzione. Per una distribuzione locale che usa lo script di compilazione, il nome del gruppo di risorse è `<your username>ConnFactoryLocal`. Aggiungere ora una nuova risorsa **Indirizzo IP pubblico** al gruppo di risorse.
+* Nel portale di Azure hello, individuare il gruppo di risorse hello della distribuzione. Ad eccezione di una distribuzione locale, il gruppo di risorse hello ha nome hello che è specificato come soluzione o il nome di distribuzione. Per una distribuzione locale utilizzando uno script di compilazione hello, nome hello hello del gruppo di risorse è `<your username>ConnFactoryLocal`. A questo punto aggiungere un nuovo **indirizzo IP pubblico** toohello gruppo di risorse.
 
 > [!NOTE]
-> In entrambi i casi, assicurarsi di installare le patch più recenti seguendo le istruzioni del [sito Web Ubuntu](https://wiki.ubuntu.com/Security/Upgrades). Mantenere l'installazione aggiornata finché la VM è accessibile tramite un indirizzo IP pubblico.
+> In entrambi i casi, assicurarsi installare la patch più recenti di hello seguendo le istruzioni di hello nella hello [sito Web Ubuntu](https://wiki.ubuntu.com/Security/Upgrades). Mantenere l'installazione di hello backup toodate per fino a quando la macchina virtuale è possibile accedere tramite un indirizzo IP pubblico.
 
-### <a name="how-do-i-remove-the-public-ip-address-to-the-simulation-vm"></a>Come è possibile rimuovere l'indirizzo IP pubblico alla macchina virtuale di simulazione?
+### <a name="how-do-i-remove-hello-public-ip-address-toohello-simulation-vm"></a>Come rimuovere hello pubblica IP indirizzo toohello simulazione VM?
 
-Sono disponibili due opzioni per rimuovere l'indirizzo IP:
+Si dispone di due opzioni tooremove hello l'indirizzo IP:
 
-* Usare lo script di PowerShell Simulation/Factory/Remove-SimulationPublicIp.ps1 del [repository](https://github.com/Azure/azure-iot-connected-factory). Passare il nome della distribuzione come parametro. Per una distribuzione locale, usare `<your username>ConnFactoryLocal`. Lo visualizza l'indirizzo IP della VM.
+* Usare script di PowerShell hello Simulation/Factory/Remove-SimulationPublicIp.ps1 di hello [repository](https://github.com/Azure/azure-iot-connected-factory). Passare il nome della distribuzione come parametro. Per una distribuzione locale, usare `<your username>ConnFactoryLocal`. script Hello viene visualizzato un indirizzo IP hello di hello macchina virtuale.
 
-* Nel portale di Azure individuare il gruppo di risorse della distribuzione. Fatta eccezione per una distribuzione locale, il gruppo di risorse ha il nome specificato come nome della soluzione o della distribuzione. Per una distribuzione locale che usa lo script di compilazione, il nome del gruppo di risorse è `<your username>ConnFactoryLocal`. Rimuovere ora la risorsa **Indirizzo IP pubblico** dal gruppo di risorse.
+* Nel portale di Azure hello, individuare il gruppo di risorse hello della distribuzione. Ad eccezione di una distribuzione locale, il gruppo di risorse hello ha nome hello che è specificato come soluzione o il nome di distribuzione. Per una distribuzione locale utilizzando uno script di compilazione hello, nome hello hello del gruppo di risorse è `<your username>ConnFactoryLocal`. A questo punto, rimuovere hello **indirizzo IP pubblico** risorsa dal gruppo di risorse hello.
 
-### <a name="how-do-i-sign-in-to-the-simulation-vm"></a>Come è possibile accedere alla VM di simulazione?
+### <a name="how-do-i-sign-in-toohello-simulation-vm"></a>Come Accedi toohello simulazione VM?
 
-L'accesso alla VM di simulazione è supportato solo se la soluzione è stata distribuita usando lo script di PowerShell `build.ps1` nel [repository](https://github.com/Azure/azure-iot-connected-factory).
+Firma nella simulazione toohello VM è supportata solo se è stata distribuita la soluzione usando script di PowerShell hello `build.ps1` in hello [repository](https://github.com/Azure/azure-iot-connected-factory).
 
-Se la soluzione è stata distribuita da www.azureiotsuite.com, non è possibile accedere alla VM perché la password viene generata in modo casuale e non è possibile reimpostarla.
+Se è stata distribuita la soluzione hello da www.azureiotsuite.com, è possibile accedere in toohello macchina virtuale. È possibile accedere, perché la password di hello viene generata in modo casuale e non è possibile reimpostare.
 
-1. Aggiungere un indirizzo IP pubblico alla VM. Vedere [Come è possibile aggiungere un indirizzo IP pubblico alla macchina virtuale di simulazione?](#how-do-i-remove-the-public-ip-address-to-the-simulation-vm)
-1. Creare una sessione SSH per la macchina virtuale usando l'indirizzo IP della macchina virtuale.
-1. Il nome utente da usare è: `docker`.
-1. La password da usare dipende dalla versione usata per la distribuzione:
-    * Per le soluzioni distribuite usando lo script build.ps1 prima dell'1 giugno 2017, la password è: `Passw0rd`.
-    * Per le soluzioni distribuite usando lo script build.ps1 dopo l'1 giugno 2017, è possibile trovare la password nel file `<name of your deployment>.config.user`. La password viene archiviata nell'impostazione **VmAdminPassword**. La password viene generata in modo casuale in fase di distribuzione a meno che non la si specifichi usando il parametro `-VmAdminPassword` dello script `build.ps1`
+1. Aggiungere un toohello di indirizzo IP pubblico macchina virtuale. Vedere [come aggiungere una simulazione di toohello indirizzo VM IP pubblica?](#how-do-i-remove-the-public-ip-address-to-the-simulation-vm)
+1. Creare un tooyour sessione SSH VM utilizzando l'indirizzo IP hello di hello macchina virtuale.
+1. è Hello username toouse: `docker`.
+1. Hello password toouse dipende dalla versione di hello utilizzato toodeploy:
+    * Per le soluzioni distribuite mediante script build.ps1 hello prima 1 giugno 2017, password hello è: `Passw0rd`.
+    * Per le soluzioni distribuite mediante script build.ps1 hello dopo il 1 giugno 2017, è possibile trovare la password di hello in hello `<name of your deployment>.config.user` file. Hello password viene archiviata in hello **VmAdminPassword** impostazione. Hello password viene generata in modo casuale in fase di distribuzione se non si specifica utilizzando hello `build.ps1` parametro di script`-VmAdminPassword`
 
-### <a name="how-do-i-stop-and-start-all-docker-processes-in-the-simulation-vm"></a>Come è possibile arrestare e avviare tutti i processi docker nella VM di simulazione?
+### <a name="how-do-i-stop-and-start-all-docker-processes-in-hello-simulation-vm"></a>Come arrestare e avviare tutti i processi di docker nella macchina virtuale di simulazione di hello?
 
-1. Accedere alla VM di simulazione. Vedere [Come è possibile accedere alla VM di simulazione?](#how-do-i-sign-in-to-the-simulation-vm)
-1. Per controllare quali sono i contenitori attivi, eseguire: `docker ps`.
-1. Per arrestare tutti i contenitori della simulazione, eseguire: `./stopsimulation`.
-1. Per avviare tutti i contenitori della simulazione:
-    * Esportare una variabile della shell con il nome **IOTHUB_CONNECTIONSTRING**. Usare il valore dell'impostazione **IotHubOwnerConnectionString** nel file `<name of your deployment>.config.user`. ad esempio:
+1. Accedi simulazione toohello macchina virtuale. Vedere [come effettuare l'accesso nella simulazione toohello macchina virtuale?](#how-do-i-sign-in-to-the-simulation-vm)
+1. eseguire i contenitori sono attivi, toocheck: `docker ps`.
+1. eseguire tutti i contenitori di simulazione, toostop: `./stopsimulation`.
+1. toostart tutti i contenitori di simulazione:
+    * Esportare una variabile della shell con nome hello **IOTHUB_CONNECTIONSTRING**. Utilizzare il valore di hello di hello **IotHubOwnerConnectionString** impostazione hello `<name of your deployment>.config.user` file. ad esempio:
 
         ```
         export IOTHUB_CONNECTIONSTRING="HostName={yourdeployment}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={your key}"
@@ -90,19 +90,19 @@ Se la soluzione è stata distribuita da www.azureiotsuite.com, non è possibile 
 
     * Eseguire `./startsimulation`.
 
-### <a name="how-do-i-update-the-simulation-in-the-vm"></a>Come è possibile aggiornare la simulazione nella VM?
+### <a name="how-do-i-update-hello-simulation-in-hello-vm"></a>Come posso aggiornare simulazione hello nella VM hello?
 
-Se sono state apportate modifiche alla simulazione, è possibile usare lo script di PowerShell `build.ps1` nel [repository](https://github.com/Azure/azure-iot-connected-factory) eseguendo il comando `updatedimulation`. Questo script compila tutti i componenti della simulazione, arresta la simulazione nella VM, li carica, li installa e li avvia.
+Se sono state apportate modifiche toohello simulazione, è possibile utilizzare script di PowerShell hello `build.ps1` in hello [repository](https://github.com/Azure/azure-iot-connected-factory) utilizzando hello `updatedimulation` comando. Questo script compila tutti i componenti di simulazione hello, la simulazione di hello in hello VM si interrompe, caricamenti, installa e avviarle.
 
-### <a name="how-do-i-find-out-the-connection-string-of-the-iot-hub-used-by-my-solution"></a>Come è possibile trovare la stringa di connessione dell'hub IoT usato dalla soluzione?
+### <a name="how-do-i-find-out-hello-connection-string-of-hello-iot-hub-used-by-my-solution"></a>Come scoprire la stringa di connessione hello dell'hub IoT hello utilizzato dalla soluzione?
 
-Se la soluzione è stata distribuita con lo script `build.ps1` nel [repository](https://github.com/Azure/azure-iot-connected-factory), la stringa di connessione è il valore di **IotHubOwnerConnectionString** nel file `<name of your deployment>.config.user`.
+Se è stata distribuita la soluzione con hello `build.ps1` script hello [repository](https://github.com/Azure/azure-iot-connected-factory), la stringa di connessione hello è il valore di hello di **IotHubOwnerConnectionString** in hello `<name of your deployment>.config.user` file.
 
-Per trovare la stringa di connessione, è anche possibile usare il portale di Azure. Nella risorsa Hub IoT del gruppo di risorse della distribuzione individuare le impostazioni della stringa di connessione.
+È inoltre possibile trovare stringa di connessione di hello utilizzando hello portale di Azure. In hello risorsa IoT Hub nel gruppo di risorse hello della distribuzione, individuare le impostazioni della stringa di connessione hello.
 
-### <a name="which-iot-hub-devices-does-the-connected-factory-simulation-use"></a>Quali dispositivi dell'hub IoT usa la simulazione di connected factory?
+### <a name="which-iot-hub-devices-does-hello-connected-factory-simulation-use"></a>Quali dispositivi IoT Hub hello utilizzare simulazione factory connessi?
 
-La simulazione registra automaticamente i dispositivi seguenti:
+Hello simulazione self registra hello seguenti dispositivi:
 
 * proxy.beijing.corp.contoso
 * proxy.capetown.corp.contoso
@@ -117,23 +117,23 @@ La simulazione registra automaticamente i dispositivi seguenti:
 * publisher.rio.corp.contoso
 * publisher.seattle.corp.contoso
 
-Con lo strumento [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) o [iothub-explorer](https://github.com/azure/iothub-explorer), è possibile controllare quali dispositivi sono registrati con l'hub IoT usato dalla soluzione. Per usare questi strumenti, è necessaria la stringa di connessione per l'hub IoT della distribuzione.
+Utilizzando hello [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) o [l'hub IOT Esplora](https://github.com/azure/iothub-explorer) strumento, è possibile controllare quali dispositivi sono registrati con l'hub IoT hello utilizza la soluzione. toouse questi strumenti, è necessario stringa di connessione hello per l'hub IoT hello nella distribuzione.
 
-### <a name="how-can-i-get-log-data-from-the-simulation-components"></a>Come è possibile ottenere i dati dei log dai componenti della simulazione?
+### <a name="how-can-i-get-log-data-from-hello-simulation-components"></a>Come è possibile ottenere dati di log dai componenti di simulazione hello?
 
-Tutti i componenti della simulazione registrano informazioni nei file di log, disponibili nella cartella `home/docker/Logs` della VM. Per recuperare i log, è possibile usare lo script di PowerShell `Simulation/Factory/Get-SimulationLogs.ps1` nel [repository](https://github.com/Azure/azure-iot-connected-factory).
+Tutti i componenti nella simulazione di hello registrare informazioni nei file toolog. Questi file sono reperibile in hello VM nella cartella hello `home/docker/Logs`. log di hello tooretrieve, è possibile utilizzare script di PowerShell hello `Simulation/Factory/Get-SimulationLogs.ps1` in hello [repository](https://github.com/Azure/azure-iot-connected-factory).
 
-È necessario che questo script acceda alla VM. Potrebbe essere necessario specificare le credenziali per l'accesso. Vedere [Come è possibile accedere alla VM di simulazione?](#how-do-i-sign-in-to-the-simulation-vm) per trovare le credenziali.
+Questo script deve toosign in toohello macchina virtuale. Potrebbe essere necessario tooprovide credenziali per l'accesso hello. Vedere [come effettuare l'accesso nella simulazione toohello VM?](#how-do-i-sign-in-to-the-simulation-vm) credenziali hello toofind.
 
-Lo script aggiunge/rimuove un indirizzo IP pubblico nella VM, se non ne è già presente uno che viene rimosso. Lo script inserisce tutti i file di log in un archivio che scarica nella workstation di sviluppo.
+script Hello aggiunge o rimuove un toohello di indirizzo IP pubblico macchina virtuale, se non dispone ancora di uno e lo rimuove. script Hello inserisce tutti i file di log in un archivio e scarica workstation di sviluppo tooyour archivio hello.
 
-In alternativa, accedere alla VM tramite SSH ed esaminare i file di log in fase di esecuzione.
+In alternativa, accedere toohello VM tramite SSH, esaminare i file di log hello in fase di esecuzione.
 
-### <a name="how-can-i-check-if-the-simulation-is-sending-data-to-the-cloud"></a>Come è possibile controllare se la simulazione sta inviando dati al cloud?
+### <a name="how-can-i-check-if-hello-simulation-is-sending-data-toohello-cloud"></a>Come è possibile controllare se la simulazione hello sta inviando dati toohello nel cloud?
 
-Con lo strumento [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) o [iothub-explorer](https://github.com/azure/iothub-explorer), è possibile controllare i dati inviati all'hub IoT da determinati dispositivi. Per usare questi strumenti, è necessario conoscere la stringa di connessione per l'hub IoT della distribuzione. Vedere [Come è possibile trovare la stringa di connessione dell'hub IoT usato dalla soluzione?](#how-do-i-find-out-the-connection-string-of-the-iot-hub-used-by-my-solution)
+Con hello [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) o hello [l'hub IOT Esplora](https://github.com/azure/iothub-explorer) strumento, è possibile controllare i dati di hello inviati tooIoT Hub da alcuni dispositivi. toouse questi strumenti, è necessario stringa di connessione hello tooknow per l'hub IoT hello nella distribuzione. Vedere [come è possibile individuare la stringa di connessione hello dell'hub IoT hello utilizzato dalla soluzione?](#how-do-i-find-out-the-connection-string-of-the-iot-hub-used-by-my-solution)
 
-Esaminare i dati inviati da uno dei dispositivi di pubblicazione:
+Controllare i dati di hello inviati da uno dei dispositivi di server di pubblicazione hello:
 
 * publisher.beijing.corp.contoso
 * publisher.capetown.corp.contoso
@@ -142,12 +142,12 @@ Esaminare i dati inviati da uno dei dispositivi di pubblicazione:
 * publisher.rio.corp.contoso
 * publisher.seattle.corp.contoso
 
-Se non vengono visualizzati dati inviati all'hub IoT, si è verificato un problema con la simulazione. Come primo passaggio è consigliabile analizzare i file di log dei componenti della simulazione. Vedere [Come è possibile ottenere i dati dei log dai componenti della simulazione?](#how-can-i-get-log-data-from-the-simulation-components) Provare quindi ad arrestare e avviare la simulazione e, se non sono ancora presenti dati inviati, aggiornare la simulazione completamente. Vedere [Come è possibile aggiornare la simulazione nella VM?](#how-do-i-update-the-simulation-in-the-vm)
+Se viene non visualizzato alcun dato inviato tooIoT Hub, quindi si verifica un problema con una simulazione hello. Come primo passaggio di analisi è consigliabile analizzare i file di log hello dei componenti di simulazione hello. Vedere [come è possibile ottenere dati di log da hello componenti simulazione?](#how-can-i-get-log-data-from-the-simulation-components) Provare toostop e avviare la simulazione hello e se non sono ancora presenti dati inviati, aggiornare la simulazione hello completamente. Vedere [come aggiornare simulazione hello nella VM hello?](#how-do-i-update-the-simulation-in-the-vm)
 
 ### <a name="next-steps"></a>Passaggi successivi
 
-È anche possibile esplorare alcune altre funzionalità delle soluzioni preconfigurate di IoT Suite:
+È anche possibile esplorare alcune hello altre caratteristiche e funzionalità di soluzioni di IoT Suite preconfigurato hello:
 
 * [Panoramica della soluzione preconfigurata di manutenzione predittiva](iot-suite-predictive-overview.md)
 * [Panoramica della soluzione preconfigurata di connected factory](iot-suite-connected-factory-overview.md)
-* [Sicurezza IoT sin dall'inizio](securing-iot-ground-up.md)
+* [Sicurezza di IoT da hello messa a terra](securing-iot-ground-up.md)

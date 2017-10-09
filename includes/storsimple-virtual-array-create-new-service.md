@@ -1,35 +1,35 @@
-#### <a name="to-create-a-new-service"></a>Per creare un nuovo servizio
+#### <a name="toocreate-a-new-service"></a>toocreate un nuovo servizio
 
-1.  Usare le credenziali dell'account Microsoft per accedere al portale di Azure all'URL seguente: <https://portal.azure.com/>. Se si esegue la distribuzione del dispositivo nel portale per enti pubblici, accedere a: <https://portal.azure.us/>
+1.  Utilizzando le credenziali dell'account Microsoft, accedere toohello portale di Azure a questo URL: <https://portal.azure.com/>. Se la distribuzione dispositivo hello nel portale amministrativo, accedere all'indirizzo: <https://portal.azure.us/>
 
-2.  Nel portale di Azure fare clic su **+ Nuovo** &gt; **Archiviazione** &gt; **Serie di dispositivi virtuali StorSimple**.
+2.  Nel portale di Azure hello, fare clic su **+ nuovo** &gt; **archiviazione** &gt; **serie virtuale StorSimple**.
 
     ![Creare un nuovo servizio](./media/storsimple-virtual-array-create-new-service/createnewservice2.png) 
 
-3.  Nel pannello **Gestione dispositivi StorSimple** visualizzato eseguire queste operazioni:
+3.  In hello **dispositivo StorSimple Manager** pannello in cui è visualizzata, hello seguenti:
 
-    1.  Specificare un **Nome della risorsa** univoco per il servizio. Il nome della risorsa è un nome descrittivo che può essere usato per identificare il servizio. Il nome può contenere da 2 a 50 caratteri che possono essere lettere, numeri e trattini. Il nome deve iniziare e terminare con una lettera o un numero.
+    1.  Specificare un **Nome della risorsa** univoco per il servizio. nome della risorsa Hello è un nome descrittivo che può essere utilizzato il servizio di hello tooidentify. nome di Hello può essere compresa tra 2 e 50 caratteri che possono essere lettere, numeri e trattini. nome Hello deve iniziare e terminare con una lettera o un numero.
 
-    2.  Scegliere una **Sottoscrizione** dall'elenco a discesa. La sottoscrizione viene collegata all'account di fatturazione. Questo campo non è presente se si dispone di una sola sottoscrizione.
+    2.  Scegliere un **sottoscrizione** dall'elenco a discesa hello. sottoscrizione di Hello è collegato tooyour account di fatturazione. Questo campo non è presente se si dispone di una sola sottoscrizione.
 
     3.  Per **Gruppo di risorse** selezionare un gruppo esistente o creare un nuovo gruppo. Per altre informazioni, vedere [Azure resource groups](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-infrastructure-resource-groups-guidelines/) (Gruppi di risorse di Azure).
 
-    4.  Fornire una **Località** per il servizio. Per altre informazioni sui servizi disponibili in aree specifiche, vedere [Aree di Azure](https://azure.microsoft.com/regions/#services) . In generale, scegliere la **posizione** più vicina all'area geografica in cui si vuole distribuire il dispositivo. È inoltre possibile tenere in considerazione quanto segue:
+    4.  Fornire una **Località** per il servizio. Per altre informazioni sui servizi disponibili in aree specifiche, vedere [Aree di Azure](https://azure.microsoft.com/regions/#services) . In generale, scegliere un **percorso** area geografica più vicina toohello in cui si desidera toodeploy il dispositivo. È inoltre possibile toofactor seguenti hello:
 
-        -   Se sono presenti altri carichi di lavoro in Azure che si intende distribuire con il dispositivo StorSimple, è consigliabile usare il data center specifico.
+        -   Se si dispone di carichi di lavoro esistente in cui si prevede inoltre toodeploy con il dispositivo StorSimple di Azure, è consigliabile usare Data Center in questione.
 
-        -   Gestione dispositivi StorSimple e Archiviazione di Azure possono trovarsi in due posizioni distinte. In tal caso, è necessario creare l'account di Gestione dispositivi StorSimple e di Archiviazione di Azure separatamente. Per creare un account di archiviazione di Azure, passare al servizio Archiviazione di Azure nel portale di Azure e seguire la procedura descritta in [Creare un account di archiviazione](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account). Dopo aver creato l'account, aggiungerlo al servizio Gestione dispositivi StorSimple seguendo la procedura descritta in [Configurare un nuovo account di archiviazione per il servizio](https://azure.microsoft.com/en-us/documentation/articles/storsimple-deployment-walkthrough/#configure-a-new-storage-account-for-the-service).
+        -   Gestione dispositivi StorSimple e Archiviazione di Azure possono trovarsi in due posizioni distinte. In tal caso, sono necessari toocreate hello dispositivo StorSimple Manager e account di archiviazione Azure separatamente. toocreate un account di archiviazione di Azure, andare toohello servizio di archiviazione di Azure nel portale di Azure hello e seguire i passaggi di hello in [creare un account di archiviazione di Azure](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account). Dopo aver creato questo account, aggiungerlo di servizio di gestione di dispositivi StorSimple toohello seguendo procedure hello [configurare un nuovo account di archiviazione per il servizio hello](https://azure.microsoft.com/en-us/documentation/articles/storsimple-deployment-walkthrough/#configure-a-new-storage-account-for-the-service).
 
-        -   Se si esegue la distribuzione del dispositivo virtuale nel portale per enti pubblici, il servizio Gestione dispositivi StorSimple è disponibile nelle località statunitensi dell'Iowa e della Virginia.
+        -   Se la distribuzione di periferica virtuale hello hello portale amministrativo, hello del servizio di gestione di dispositivi StorSimple è disponibile nelle posizioni ci Iowa e noi Virginia.
 
-    5.  Selezionare **Crea un nuovo account di archiviazione di Azure** per creare automaticamente un account di archiviazione con il servizio. Specificare un **Nome dell'account di archiviazione**. Se è necessario che i dati siano in un percorso diverso, deselezionare questa casella.
+    5.  Selezionare **creare un nuovo account di archiviazione di Azure** tooautomatically creare un account di archiviazione con il servizio di hello. Specificare un **Nome dell'account di archiviazione**. Se è necessario che i dati siano in un percorso diverso, deselezionare questa casella.
 
-    6.  Selezionare **Aggiungi al dashboard** se si vuole inserire un collegamento rapido al servizio nel dashboard.
+    6.  Controllare **toodashboard Pin** se si desidera un servizio di collegamento rapido toothis nel dashboard.
 
-    7.  Fare clic su **Crea** per creare il servizio Gestione dispositivi StorSimple.
+    7.  Fare clic su **crea** toocreate hello dispositivo StorSimple Manager.
 
         ![Creare un nuovo servizio](./media/storsimple-virtual-array-create-new-service/createnewservice4.png)  
 
-Si viene indirizzati alla pagina di destinazione **Servizio**. La creazione del servizio richiede alcuni minuti. Dopo che il servizio è stato creato, l'utente verrà informato in modo appropriato e lo stato del servizio verrà modificato in **Attivo**.
+Si è diretto toohello **servizio** pagina di destinazione. creazione del servizio Hello richiede alcuni minuti. Dopo che il servizio di hello è stato creato, riceverà una notifica in modo appropriato e stato hello del servizio hello cambia troppo**Active**.
 
 

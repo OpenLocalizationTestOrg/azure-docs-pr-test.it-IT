@@ -1,6 +1,6 @@
 ---
-title: Informazioni sui criteri di sicurezza dei microservizi di Azure | Documentazione Microsoft
-description: Panoramica dell'esecuzione di un'applicazione di Service Fabric con account di sicurezza di sistema e locali, incluso il punto SetupEntry in cui un'applicazione deve eseguire un'azione con privilegi prima dell'avvio
+title: aaaLearn sui criteri di sicurezza di Azure microservizi | Documenti Microsoft
+description: Una panoramica di come toorun un'applicazione di Service Fabric nel sistema e gli account di sicurezza locale, compreso il punto di SetupEntry hello in cui un'applicazione deve tooperform alcune privilegiato azione prima che venga avviato
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: mfussell
-ms.openlocfilehash: e673b45a43a06d18040c3437caf8765704d5c36a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f5afba69e09aa4f3c9efa4d3efc6995c813a1f71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-security-policies-for-your-application"></a>Configurare i criteri di sicurezza per l'applicazione
-Azure Service Fabric consente di proteggere le applicazioni in esecuzione nel cluster con account utente diversi. Service Fabric permette anche di proteggere le risorse usate dalle applicazioni in fase di distribuzione con l'account utente, ad esempio file, directory e certificati. In questo modo le applicazioni in esecuzione, anche in un ambiente ospitato condiviso, sono reciprocamente protette.
+Tramite Azure Service Fabric, è possibile proteggere le applicazioni in esecuzione nel cluster hello con account utente diversi. Service Fabric consente anche di hello sicuro le risorse usate dalle applicazioni in fase di hello della distribuzione con account utente di hello, ad esempio, file, directory e i certificati. In questo modo le applicazioni in esecuzione, anche in un ambiente ospitato condiviso, sono reciprocamente protette.
 
-Per impostazione predefinita, le applicazioni di Service Fabric vengono eseguite con lo stesso account con cui viene eseguito il processo Fabric.exe. Service Fabric consente anche di eseguire le applicazioni con un account utente locale o un account di sistema locale, specificato nel manifesto dell'applicazione. I tipi di account supportati dal sistema locale sono **LocalUser**, **NetworkService**, **LocalService** e **LocalSystem**.
+Per impostazione predefinita, le applicazioni di Service Fabric eseguiti con account di hello cui viene eseguito il processo Fabric.exe hello. Service Fabric fornisce anche funzionalità di hello toorun applicazioni tramite un account di sistema locale, che viene specificato nel manifesto dell'applicazione hello o un account utente locale. I tipi di account supportati dal sistema locale sono **LocalUser**, **NetworkService**, **LocalService** e **LocalSystem**.
 
- Quando si esegue Service Fabric in Windows Server nel data center usando il programma di installazione autonomo, è possibile usare gli account di dominio di Active Directory, inclusi gli account del servizio gestito del gruppo.
+ Quando si esegue Service Fabric in Windows Server nel Data Center tramite il programma di installazione di hello autonomo, è possibile utilizzare l'account di dominio Active Directory, inclusi gli account del servizio gestito di gruppo.
 
-È possibile definire e creare gruppi di utenti per aggiungere uno o più utenti a ogni gruppo e gestirli insieme. Questo aspetto è utile quando sono presenti più utenti per punti di ingresso del servizio differenti che devono avere determinati privilegi comuni disponibili a livello di gruppo.
+È possibile definire e creare gruppi di utenti in modo che è possibile aggiungere uno o più utenti tooeach gruppo toobe gestiti insieme. Ciò è utile quando sono presenti più utenti per i punti di ingresso del servizio diverso e devono toohave determinati privilegi comune che sono disponibili a livello di gruppo hello.
 
-## <a name="configure-the-policy-for-a-service-setup-entry-point"></a>Configurare i criteri per il punto di ingresso dell'installazione del servizio
-Come descritto nel [modello applicativo](service-fabric-application-model.md), il punto di ingresso dell'installazione, **SetupEntryPoint**, è un punto di ingresso con privilegi che viene eseguito con le stesse credenziali di Service Fabric, in genere, l'account *NetworkService*, prima di qualsiasi altro punto di ingresso. L'eseguibile specificato da **EntryPoint** è in genere l'host del servizio a esecuzione prolungata. Un punto di ingresso dell'installazione separato consente di evitare di dover eseguire l'eseguibile dell'host del servizio con privilegi elevati per lunghi periodi di tempo. L'eseguibile specificato da **EntryPoint** viene eseguito dopo che **SetupEntryPoint** termina correttamente. Il processo risultante viene monitorato e riavviato ed inizia di nuovo con **SetupEntryPoint**, se termina o si arresta in modo anomalo.
+## <a name="configure-hello-policy-for-a-service-setup-entry-point"></a>Configurare i criteri di hello per un punto di ingresso del programma di installazione del servizio
+Come descritto in hello [modello applicativo](service-fabric-application-model.md), hello punto di ingresso, il programma di installazione **SetupEntryPoint**, è un punto di ingresso con privilegi che viene eseguito con hello stesso credenziali come Service Fabric (in genere hello *NetworkService* account) prima di qualsiasi altro punto di ingresso. file eseguibile Hello specificato da **EntryPoint** è in genere l'host del servizio hello con esecuzione prolungata. Pertanto, con una voce di programma di installazione separato punto si evita host del servizio hello toorun eseguibile con privilegi elevati per lunghi periodi di tempo. Hello eseguibile che **EntryPoint** specifica viene eseguito dopo **SetupEntryPoint** termina correttamente. Hello processo risultante viene monitorato e riavviato e inizia nuovamente con **SetupEntryPoint** se mai termina o arresti anomali.
 
-Il seguente è un semplice esempio di manifesto del servizio in cui sono presenti SetupEntryPoint e l'elemento EntryPoint principale per il servizio.
+esempio Hello è riportato un esempio di manifesto servizio semplice che mostra hello SetupEntryPoint e il punto di ingresso principale per il servizio hello hello.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -58,8 +58,8 @@ Il seguente è un semplice esempio di manifesto del servizio in cui sono present
 </ServiceManifest>
 ```
 
-### <a name="configure-the-policy-by-using-a-local-account"></a>Configurare i criteri usando un account locale
-Dopo aver configurato un punto di ingresso di configurazione per il servizio, è possibile modificare le autorizzazioni di sicurezza in base alle quali viene eseguito nel manifesto dell'applicazione. L'esempio seguente illustra come configurare il servizio in modo che venga eseguito con i privilegi dell'account amministratore utenti.
+### <a name="configure-hello-policy-by-using-a-local-account"></a>Configurare i criteri di hello utilizzando un account locale
+Dopo aver configurato hello servizio toohave un punto di ingresso del programma di installazione, è possibile modificare le autorizzazioni di sicurezza hello utilizzabile nel manifesto dell'applicazione hello. Hello di esempio seguente viene illustrato come tooconfigure hello toorun servizio con privilegi di account utente amministratore.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -83,43 +83,43 @@ Dopo aver configurato un punto di ingresso di configurazione per il servizio, è
 </ApplicationManifest>
 ```
 
-Creare prima di tutto una sezione **Principals** con un nome utente, ad esempio SetupAdminUser. Ciò indica che l'utente è un membro del gruppo di sistema Administrators.
+Creare prima di tutto una sezione **Principals** con un nome utente, ad esempio SetupAdminUser. Questo indica che l'utente hello è un membro del gruppo di amministratori di sistema hello.
 
-Successivamente, configurare nella sezione **ServiceManifestImport** un criterio per applicare tale entità a **SetupEntryPoint**. Ciò indica a Service Fabric che quando viene eseguito il file **mySetup.bat**, deve essere un profilo `RunAs` con privilegi di amministratore. Dato che *non* sono stati applicati criteri al punto di ingresso principale, il codice in **MyServiceHost.exe** viene eseguito con l'account **NetworkService** di sistema, ossia l'account predefinito con cui vengono eseguiti tutti i punti di ingresso del servizio.
+Quindi, in hello **oggetto ServiceManifestImport** sezione, configurare un criterio tooapply questa entità troppo**SetupEntryPoint**. In questo modo Service Fabric che quando hello **MySetup.bat** file viene eseguito, dovrebbe essere `RunAs` con privilegi di amministratore. Disponendo di *non* applicato a un punto di ingresso principale toohello criteri, il codice hello in **MyServiceHost.exe** viene eseguito il sistema hello **NetworkService** account. Si tratta di account predefinito hello che vengono eseguiti tutti i punti di ingresso del servizio.
 
-A questo punto, aggiungere il file MySetup.bat al progetto di Visual Studio per testare i privilegi di amministratore. In Visual Studio fare clic con il pulsante destro del mouse sul progetto di servizio e aggiungere un nuovo file denominato MySetup.bat.
+Aggiungere ora hello file MySetup.bat toohello Visual Studio progetto tootest hello privilegi di amministratore. In Visual Studio, fare clic sul progetto servizio hello e aggiungere un nuovo file denominato MySetup.bat.
 
-Verificare quindi che il file MySetup.bat sia incluso nel pacchetto del servizio. Per impostazione predefinita, non è incluso. Selezionare il file, fare clic con il pulsante destro del mouse per visualizzare il menu di scelta rapida e scegliere **Proprietà**. Nella finestra di dialogo delle proprietà verificare che **Copia nella directory di output** sia impostato su **Copia se più recente**. Vedere lo screenshot seguente.
+Verificare quindi che file MySetup.bat hello è incluso nel pacchetto di servizio hello. Per impostazione predefinita, non è incluso. Selezionare il file hello, menu di scelta rapida hello tooget destro e scegliere **proprietà**. Nella finestra di dialogo Proprietà hello, assicurarsi che **copiare tooOutput Directory** è troppo**copia se più recente**. Vedere la seguente schermata hello.
 
 ![CopyToOutput di Visual Studio per il file batch SetupEntryPoint][image1]
 
-Aprire il file MySetup.bat e aggiungere i comandi seguenti:
+Ora aprire il file MySetup.bat hello e aggiungere hello seguenti comandi:
 
 ```
 REM Set a system environment variable. This requires administrator privilege
 setx -m TestVariable "MyValue"
-echo System TestVariable set to > out.txt
+echo System TestVariable set too> out.txt
 echo %TestVariable% >> out.txt
 
-REM To delete this system variable us
+REM toodelete this system variable us
 REM REG delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v TestVariable /f
 ```
 
-Successivamente, compilare e distribuire la soluzione a un cluster di sviluppo locale. Dopo aver avviato il servizio, come mostrato in Service Fabric Explorer, sarà possibile verificare la corretta esecuzione del file MySetup.bat in due modi. Avviare un prompt dei comandi di PowerShell e digitare:
+Successivamente, compilare e distribuire cluster di sviluppo locale tooa soluzione hello. Dopo aver avviato il servizio di hello, come illustrato in Service Fabric Explorer, è possibile visualizzare che file hello MySetup.bat ha avuto esito positivo in un due modi. Avviare un prompt dei comandi di PowerShell e digitare:
 
 ```
 PS C:\ [Environment]::GetEnvironmentVariable("TestVariable","Machine")
 MyValue
 ```
 
-Annotare il nome del nodo in cui il servizio è stato distribuito e avviato in Service Fabric Explorer, ad esempio Node 2. Passare quindi alla cartella di lavoro dell'istanza dell'applicazione per trovare il file out.txt che mostra il valore di **TestVariable**. Se, ad esempio, il servizio è stato distribuito in Node 2, è possibile passare a questo percorso per **MyApplicationType**:
+Quindi, annotare il nome di hello del nodo di hello in cui il servizio di hello è stato distribuito e avviato, ad esempio, in Service Fabric Explorer - nodo 2. Passare toohello applicazione istanza lavoro cartella toofind hello file out.txt che Mostra valore hello **TestVariable**. Ad esempio, se questo servizio è stato distribuito tooNode 2, è possibile passare il percorso di toothis per hello **MyApplicationType**:
 
 ```
 C:\SfDevCluster\Data\_App\Node.2\MyApplicationType_App\work\out.txt
 ```
 
-### <a name="configure-the-policy-by-using-local-system-accounts"></a>Configurare i criteri usando gli account di sistema locale
-Spesso è preferibile eseguire lo script di avvio usando un account di sistema locale invece di un account amministratore. L'esecuzione dei criteri RunAs come membro del gruppo Administrators in genere non ha esito positivo in quanto per i computer è abilitato il controllo di accesso dell'utente per impostazione predefinita. In questi casi, **è consigliabile eseguire SetupEntryPoint come LocalSystem invece che come utente locale aggiunto al gruppo Administrators**. L'esempio seguente illustra l'impostazione di SetupEntryPoint per l'esecuzione come LocalSystem:
+### <a name="configure-hello-policy-by-using-local-system-accounts"></a>Configurare criteri di hello tramite gli account di sistema locale
+Spesso, è preferibile toorun script di avvio hello utilizzando un account di sistema locale anziché un account amministratore. Esecuzione di criteri di RunAs hello come membro del gruppo Administrators in genere non funziona correttamente poiché macchine dispongono di controllo accesso utente (UAC) abilitata per impostazione predefinita hello. In questi casi, **hello consiglia hello toorun SetupEntryPoint come LocalSystem, anziché come un gruppo di utenti locale aggiunto tooAdministrators**. Hello riportato di seguito impostazione hello SetupEntryPoint toorun come LocalSystem:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -140,15 +140,15 @@ Spesso è preferibile eseguire lo script di avvio usando un account di sistema l
 ```
 
 ## <a name="start-powershell-commands-from-a-setup-entry-point"></a>Avviare i comandi PowerShell da un punto di ingresso dell'installazione
-Per eseguire PowerShell dal punto **SetupEntryPoint**, è possibile eseguire **PowerShell.exe** in un file batch che punta a un file di PowerShell. Aggiungere prima di tutto un file PowerShell al progetto del servizio, ad esempio **MySetup.ps1**. Ricordarsi di impostare la proprietà *Copia se più recente* in modo che il file venga incluso anche nel pacchetto servizio. L'esempio seguente illustra un file batch di esempio per avviare un file PowerShell denominato MySetup.ps1, che imposta una variabile di ambiente di sistema denominata **TestVariable**.
+toorun PowerShell da hello **SetupEntryPoint** punto, è possibile eseguire **PowerShell.exe** in un file batch che punta tooa PowerShell file. Aggiungere innanzitutto un progetto di servizio toohello file di PowerShell, ad esempio, **MySetup.ps1**. Ricordare hello tooset *copia se più recente* proprietà in modo che tale file hello è anche incluso nel pacchetto di servizio hello. Hello esempio seguente viene illustrato un file batch di esempio che avvia un file di PowerShell denominato MySetup.ps1, che consente di impostare una variabile di ambiente system denominata **TestVariable**.
 
-MySetup.bat per avviare il file PowerShell:
+MySetup.bat toostart un file di PowerShell:
 
 ```
 powershell.exe -ExecutionPolicy Bypass -Command ".\MySetup.ps1"
 ```
 
-Nel file di PowerShell aggiungere quanto segue per impostare una variabile di ambiente di sistema:
+Nel file PowerShell hello aggiungere hello tooset una variabile di ambiente di sistema seguente:
 
 ```
 [Environment]::SetEnvironmentVariable("TestVariable", "MyValue", "Machine")
@@ -156,7 +156,7 @@ Nel file di PowerShell aggiungere quanto segue per impostare una variabile di am
 ```
 
 > [!NOTE]
-> Per impostazione predefinita, quando viene eseguito, il file batch cerca i file nella cartella dell'applicazione denominata **work**. In questo caso, quando MySetup.bat viene eseguito, il file MySetup.ps1 deve trovarsi nella stessa cartella, ovvero la cartella **code package** dell'applicazione. Per modificare questa cartella, impostare la cartella di lavoro:
+> Per impostazione predefinita, quando viene eseguito il file batch di hello, Cerca nella cartella dell'applicazione hello **lavoro** per i file. In questo caso, quando MySetup.bat è in esecuzione, si vuole che questo hello toofind MySetup.ps1 file hello stessa cartella, ovvero un'applicazione hello **pacchetto di codice** cartella. toochange questa cartella, la cartella di lavoro hello set:
 > 
 > 
 
@@ -170,14 +170,14 @@ Nel file di PowerShell aggiungere quanto segue per impostare una variabile di am
 ```
 
 ## <a name="use-console-redirection-for-local-debugging"></a>Uso del reindirizzamento della console per il debug locale
-A volte può essere utile visualizzare l'output della console dall'esecuzione di uno script a scopo di debug. A questo scopo, è possibile impostare criteri di reindirizzamento della console che scrivono l'output in un file. L'output del file viene scritto nella cartella dell'applicazione denominata **log** nel nodo in cui l'applicazione viene distribuita ed eseguita. Vedere la posizione in cui si trova nell'esempio precedente.
+In alcuni casi, è utile toosee output della console hello dall'esecuzione di uno script a scopo di debug. toodo, è possibile impostare un criterio di reindirizzamento della console, che scrive file tooa output di hello. Hello file di output viene chiamato cartella dell'applicazione scritta toohello **log** nel nodo hello in cui un'applicazione hello viene distribuita ed eseguita. (Vedere dove toofind in hello sopra riportato.)
 
 > [!WARNING]
-> Non usare mai i criteri di reindirizzamento della console in un'applicazione distribuita nell'ambiente di produzione, perché ciò può incidere sul failover dell'applicazione. Usare questa opzione *solo* a scopo di sviluppo e debug locale.  
+> Non utilizzare mai criterio di reindirizzamento console hello in un'applicazione che viene distribuita nell'ambiente di produzione, perché ciò può influire sul failover dell'applicazione hello. Usare questa opzione *solo* a scopo di sviluppo e debug locale.  
 > 
 > 
 
-L'esempio seguente illustra come impostare il reindirizzamento della console con un valore FileRetentionCount:
+Hello esempio seguente viene illustrato il reindirizzamento della console con un valore FileRetentionCount impostazione hello:
 
 ```xml
 <SetupEntryPoint>
@@ -189,19 +189,19 @@ L'esempio seguente illustra come impostare il reindirizzamento della console con
 </SetupEntryPoint>
 ```
 
-Se si modifica il file MySetup.ps1 per scrivere un comando **Echo**, questo verrà scritto nel file di output a scopo di debug:
+Se si modifica ora hello MySetup.ps1 file toowrite un **Echo** comando, si scriverà toohello i file di output a scopo di debug:
 
 ```
-Echo "Test console redirection which writes to the application log folder on the node that the application is deployed to"
+Echo "Test console redirection which writes toohello application log folder on hello node that hello application is deployed to"
 ```
 
 **Dopo avere eseguito il debug dello script, rimuovere immediatamente i criteri di reindirizzamento della console**.
 
 ## <a name="configure-a-policy-for-service-code-packages"></a>Configurare i criteri per i pacchetti di codice del servizio
-Nei passaggi precedenti è stato illustrato come applicare i criteri RunAs a SetupEntryPoint. A questo punto è possibile vedere come creare entità diverse che possono essere applicate come criteri del servizio.
+In hello passaggi precedenti, si è visto come tooapply un tooSetupEntryPoint criteri RunAs. Vediamo un po' più approfondita in come entità diverse toocreate che possono essere applicate come servizio criteri.
 
 ### <a name="create-local-user-groups"></a>Creare gruppi di utenti locali
-È possibile definire e creare gruppi di utenti che permettono di aggiungere uno o più utenti a un gruppo. Questo aspetto è utile quando sono presenti più utenti per punti di ingresso del servizio differenti che devono avere determinati privilegi comuni disponibili a livello di gruppo. L'esempio seguente illustra un gruppo locale denominato **LocalAdminGroup** con privilegi di amministratore. Due utenti, Customer1 e Customer2, diventano membri di questo gruppo locale.
+È possibile definire e creare gruppi di utenti che consentono di utilizzare uno o più utenti toobe aggiunto tooa del gruppo. Ciò è utile se sono presenti più utenti per i punti di ingresso del servizio diverso e devono toohave determinati privilegi comune che sono disponibili a livello di gruppo hello. Hello esempio seguente viene illustrato un gruppo locale denominato **LocalAdminGroup** che disponga dei privilegi di amministratore. Due utenti, Customer1 e Customer2, diventano membri di questo gruppo locale.
 
 ```xml
 <Principals>
@@ -228,7 +228,7 @@ Nei passaggi precedenti è stato illustrato come applicare i criteri RunAs a Set
 ```
 
 ### <a name="create-local-users"></a>Creare utenti locali
-È possibile creare un utente locale che può essere usato per proteggere un servizio all'interno dell'applicazione. Quando viene specificato un tipo di account **LocalUser** nella sezione Principals del manifesto dell'applicazione, Service Fabric crea account utente locali nei computer in cui viene distribuita l'applicazione. Per impostazione predefinita, questi account non hanno gli stessi nomi di quelli specificati nel manifesto dell'applicazione (Customer3 nell'esempio seguente). Vengono invece generati in modo dinamico e hanno password casuali.
+È possibile creare un utente locale che può essere utilizzati toohelp protetto come un servizio all'interno di un'applicazione hello. Quando un **UtenteLocale** tipo di account viene specificato nella sezione di entità hello del manifesto dell'applicazione hello, Service Fabric crea gli account utente locali nei computer in cui viene distribuita un'applicazione hello. Per impostazione predefinita, questi account non dispone hello nomi identici a quelli specificati in un'applicazione hello manifesto (ad esempio, nel seguente esempio hello Customer3). Vengono invece generati in modo dinamico e hanno password casuali.
 
 ```xml
 <Principals>
@@ -238,7 +238,7 @@ Nei passaggi precedenti è stato illustrato come applicare i criteri RunAs a Set
 </Principals>
 ```
 
-Se un'applicazione richiede che l'account utente e la password siano uguali in tutti i computer, ad esempio per abilitare l'autenticazione NTLM, il manifesto del cluster deve impostare NTLMAuthenticationEnabled su true. Il manifesto del cluster deve anche specificare un elemento NTLMAuthenticationPasswordSecret che verrà usato per generare la stessa password in tutti i computer.
+Se un'applicazione richiede che la password e account utente di hello corrispondere in tutti i computer (ad esempio, l'autenticazione NTLM tooenable), manifesto del cluster hello necessario impostare NTLMAuthenticationEnabled tootrue. Hello manifesto del cluster deve inoltre specificare un NTLMAuthenticationPasswordSecret utilizzato toogenerate hello stessa password in tutti i computer.
 
 ```xml
 <Section Name="Hosting">
@@ -248,8 +248,8 @@ Se un'applicazione richiede che l'account utente e la password siano uguali in t
  </Section>
 ```
 
-### <a name="assign-policies-to-the-service-code-packages"></a>Assegnare criteri ai pacchetti di codice del servizio
-La sezione **RunAsPolicy** di un oggetto **ServiceManifestImport** specifica l'account nella sezione Principals che deve essere usato per eseguire un pacchetto di codice. Associa anche i pacchetti di codice nel manifesto del servizio agli account utente nella sezione Principals. È possibile specificare questa opzione per i punti di ingresso principale o di configurazione oppure specificare `All` per applicarla a entrambi. L'esempio seguente illustra l'applicazione di diversi criteri:
+### <a name="assign-policies-toohello-service-code-packages"></a>Assegnare i criteri toohello pacchetti di codice di servizio
+Hello **RunAsPolicy** sezione un **oggetto ServiceManifestImport** Specifica account hello dalla sezione entità hello che deve essere utilizzati toorun un pacchetto di codice. Codice pacchetti dal servizio hello manifesto inoltre associa gli account utente nella sezione delle entità hello. È possibile specificare questo valore per il programma di installazione di hello o i punti di ingresso principale o è possibile specificare `All` tooapply è tooboth. Hello seguente illustra i diversi criteri applicati:
 
 ```xml
 <Policies>
@@ -258,10 +258,10 @@ La sezione **RunAsPolicy** di un oggetto **ServiceManifestImport** specifica l'a
 </Policies>
 ```
 
-Se **EntryPointType** non è specificato, il valore predefinito è impostato su EntryPointType="Main". Specificare l'oggetto **SetupEntryPoint** risulta particolarmente utile per eseguire determinate operazioni di configurazione con privilegi elevati con un account di sistema, mentre il codice del servizio effettivo può essere eseguito con un account con privilegi inferiori.
+Se **EntryPointType** non viene specificato, impostazione predefinita di hello è tooEntryPointType = "Main". Specifica di **SetupEntryPoint** è particolarmente utile quando si desidera toorun determinate operazioni di installazione con privilegi elevati con un account di sistema. codice di servizio effettivo Hello può essere eseguito con un account con privilegi inferiori.
 
-### <a name="apply-a-default-policy-to-all-service-code-packages"></a>Applicare un criterio predefinito a tutti i pacchetti di codice del servizio
-La sezione **DefaultRunAsPolicy** consente di specificare un account utente predefinito per tutti i pacchetti di codice per i quali non è definito un oggetto **RunAsPolicy** specifico. Se la maggior parte dei pacchetti di codice specificati nel manifesto del servizio usato da un'applicazione deve essere eseguita con lo stesso utente, l'applicazione può definire solo criteri RunAs predefiniti con questo account utente. L'esempio seguente mostra che se l'oggetto **RunAsPolicy** non è specificato per un pacchetto di codice, questo deve essere eseguito con l'account **MyDefaultAccount** specificato nella sezione Principals.
+### <a name="apply-a-default-policy-tooall-service-code-packages"></a>Applicare un pacchetti di codice predefiniti criteri tooall servizio
+Utilizzare hello **DefaultRunAsPolicy** toospecify sezione un account utente predefinito per tutti i pacchetti di codice che non dispongono di uno specifico **RunAsPolicy** definito. Se la maggior parte dei pacchetti di codice hello specificati nel manifesto del servizio hello utilizzato da un'applicazione è necessario toorun in hello stesso utente, hello applicazione possono essere definite solo criteri con tale account utente RunAs predefiniti. Hello esempio seguente specifica che se un pacchetto di codice non dispone di un **RunAsPolicy** specificato, il pacchetto di codice hello deve essere in esecuzione hello **MyDefaultAccount** specificato nella sezione delle entità hello.
 
 ```xml
 <Policies>
@@ -269,11 +269,11 @@ La sezione **DefaultRunAsPolicy** consente di specificare un account utente pred
 </Policies>
 ```
 ### <a name="use-an-active-directory-domain-group-or-user"></a>Uso di un utente o un gruppo di dominio di Active Directory
-Per un'istanza di Service Fabric installata in Windows Server con il programma di installazione autonomo, è possibile eseguire il servizio con le credenziali per un account utente o di gruppo di Active Directory. Si tratta di Active Directory locale nel dominio e non di Azure Active Directory (Azure AD). Usando un utente o un gruppo del dominio, sarà quindi possibile accedere ad altre risorse del dominio (ad esempio, condivisioni file) a cui sono state concesse le autorizzazioni.
+Per un'istanza di Service Fabric è stato installato in Windows Server tramite il programma di installazione di hello autonomo, è possibile eseguire il servizio di hello con le credenziali di hello per un account utente o gruppo di Active Directory. Si tratta di Active Directory locale nel dominio e non di Azure Active Directory (Azure AD). Usando un utente di dominio o un gruppo, possono quindi accedere altre risorse nel dominio hello (ad esempio, le condivisioni di file) che sono state concesse autorizzazioni.
 
-L'esempio seguente illustra un utente di Active Directory denominato *TestUser* con la password del dominio crittografata con un certificato denominato *MyCert*. È possibile usare il comando `Invoke-ServiceFabricEncryptText` PowerShell per creare il testo crittografato segreto. Vedere [Gestione dei segreti nelle applicazioni di Service Fabric](service-fabric-application-secret-management.md).
+Hello riportato di seguito un utente di Active Directory denominato *TestUser* con loro dominio password crittografata usando un certificato denominato *NomeCert*. È possibile utilizzare hello `Invoke-ServiceFabricEncryptText` testo secret crittografato hello toocreate del comando PowerShell. Vedere [Gestione dei segreti nelle applicazioni di Service Fabric](service-fabric-application-secret-management.md).
 
-È necessario distribuire la chiave privata del certificato per decrittografare la password nel computer locale con un metodo fuori banda; in Azure questa operazione viene eseguita usando Azure Resource Manager. Quando distribuisce il pacchetto servizio nel computer, Service Fabric può quindi decrittografare il segreto e, con il nome utente, eseguire l'autenticazione ad Active Directory per l'esecuzione con queste credenziali.
+È necessario distribuire la chiave privata hello del hello certificato toodecrypt hello password toohello computer utilizzando un metodo fuori banda (in Azure, si tratta di con Azure Resource Manager). Quindi quando Service Fabric distribuisce computer toohello pacchetto del servizio hello, è in grado di toodecrypt hello segreto e (insieme al nome utente hello) l'autenticazione con Active Directory toorun con tali credenziali.
 
 ```xml
 <Principals>
@@ -290,26 +290,26 @@ L'esempio seguente illustra un utente di Active Directory denominato *TestUser* 
 <Certificates>
 ```
 ### <a name="use-a-group-managed-service-account"></a>Usare un account del servizio gestito del gruppo.
-Per un'istanza di Service Fabric installata in Windows Server con il programma di installazione autonomo, è possibile eseguire il servizio come account del servizio gestito del gruppo (gMSA). Si noti che si tratta di Active Directory locale nel dominio e non di Azure Active Directory (Azure AD). Usando un account gMSA, nel `Application Manifest` non viene archiviata alcuna password o password crittografata.
+Per un'istanza di Service Fabric è stato installato in Windows Server tramite il programma di installazione di hello autonomo, è possibile eseguire il servizio di hello come un gruppo di Account del servizio gestito (gMSA). Si noti che si tratta di Active Directory locale nel dominio e non di Azure Active Directory (Azure AD). Utilizzando un account non è disponibile la password o archiviata in hello `Application Manifest`.
 
-L'esempio seguente mostra come creare un account gMSA denominato *svc-Test$*, come distribuire tale account del servizio gestito ai nodi del cluster e come configurare l'entità utente.
+Hello esempio seguente viene illustrato come toocreate un account gestito denominato *svc Test$*; come toodeploy grado di gestire i nodi del cluster toohello account del servizio; e come tooconfigure hello dell'entità utente.
 
 ##### <a name="prerequisites"></a>Prerequisiti.
-- Il dominio richiede una chiave radice del Servizio distribuzione chiavi.
-- Il dominio deve essere a livello funzionale di Windows Server 2012 o versione successiva.
+- dominio Hello richiede una chiave radice del servizio distribuzione CHIAVI.
+- dominio Hello deve toobe in un Windows Server 2012 o un livello di funzionalità in un secondo momento.
 
 ##### <a name="example"></a>Esempio
-1. Chiedere a un amministratore di dominio di Active Directory di creare un account del servizio gestito del gruppo usando il cmdlet `New-ADServiceAccount` e assicurarsi che `PrincipalsAllowedToRetrieveManagedPassword` includa tutti i nodi del cluster di Service Fabric. Si noti che `AccountName`, `DnsHostName` e `ServicePrincipalName` devono essere univoci.
+1. Dispone un amministratore di dominio active directory creare un account del servizio gestito di gruppo utilizzando hello `New-ADServiceAccount` cmdlet e assicurarsi che hello `PrincipalsAllowedToRetrieveManagedPassword` include tutti i nodi del cluster hello service fabric. Si noti che `AccountName`, `DnsHostName` e `ServicePrincipalName` devono essere univoci.
 ```
 New-ADServiceAccount -name svc-Test$ -DnsHostName svc-test.contoso.com  -ServicePrincipalNames http/svc-test.contoso.com -PrincipalsAllowedToRetrieveManagedPassword SfNode0$,SfNode1$,SfNode2$,SfNode3$,SfNode4$
 ```
-2. In ognuno dei nodi del cluster di Service Fabric, ad esempio `SfNode0$,SfNode1$,SfNode2$,SfNode3$,SfNode4$`, installare e testare l'account del servizio gestito del gruppo.
+2. In ognuno dei nodi del cluster di infrastruttura servizio hello (ad esempio, `SfNode0$,SfNode1$,SfNode2$,SfNode3$,SfNode4$`), installare e testare hello gMSA.
 ```
 Add-WindowsFeature RSAT-AD-PowerShell
 Install-AdServiceAccount svc-Test$
 Test-AdServiceAccount svc-Test$
 ```
-3. Configurare l'entità utente e RunAsPolicy per fare riferimento all'utente.
+3. Configurazione dell'entità utente hello e configurare hello RunAsPolicy tooreference hello utente.
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="MyApplicationType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -329,36 +329,36 @@ Test-AdServiceAccount svc-Test$
 ```
 
 ## <a name="assign-a-security-access-policy-for-http-and-https-endpoints"></a>Assegnare un criterio di accesso di sicurezza per gli endpoint HTTP e HTTPS
-Se si applicano criteri RunAs a un servizio e il manifesto del servizio dichiara le risorse dell'endpoint con il protocollo HTTP, è necessario specificare **SecurityAccessPolicy** per garantire che le porte allocate a questi endpoint siano correttamente inserite nell'elenco di controllo di accesso per l'account utente RunAs con cui viene eseguito il servizio. In caso contrario, **http.sys** non ha accesso al servizio e le chiamate del client hanno esito negativo. L'esempio seguente applica l'account Customer1 a un endpoint denominato **EndpointName**, a cui assegna diritti di accesso completi.
+Se si applica a un servizio di tooa criteri RunAs e manifesto del servizio hello dichiara le risorse di endpoint con protocollo hello HTTP, è necessario specificare un **SecurityAccessPolicy** tooensure che porte allocato endpoint toothese siano correttamente controllo di accesso elencate per hello account utente RunAs cui viene eseguito il servizio di hello. In caso contrario, **http.sys** dispone di accesso toohello servizio e ottenere gli errori con chiamate da client hello. esempio Hello applica endpoint dell'account hello Customer1 tooan chiamato **EndpointName**, che fornisce i diritti di accesso completo.
 
 ```xml
 <Policies>
    <RunAsPolicy CodePackageRef="Code" UserRef="Customer1" />
-   <!--SecurityAccessPolicy is needed if RunAsPolicy is defined and the Endpoint is http -->
+   <!--SecurityAccessPolicy is needed if RunAsPolicy is defined and hello Endpoint is http -->
    <SecurityAccessPolicy ResourceRef="EndpointName" PrincipalRef="Customer1" />
 </Policies>
 ```
 
-Per l'endpoint HTTPS, è necessario indicare anche il nome del certificato da restituire al client. A tale scopo, è possibile usare **EndpointBindingPolicy**con il certificato definito nella sezione Certificates del manifesto dell'applicazione.
+Per l'endpoint HTTPS hello, è inoltre tooindicate nome di hello del client di toohello tooreturn certificato hello. È possibile farlo tramite **EndpointBindingPolicy**, con il certificato di hello definito in una sezione di certificati nel manifesto dell'applicazione hello.
 
 ```xml
 <Policies>
    <RunAsPolicy CodePackageRef="Code" UserRef="Customer1" />
-  <!--SecurityAccessPolicy is needed if RunAsPolicy is defined and the Endpoint is http -->
+  <!--SecurityAccessPolicy is needed if RunAsPolicy is defined and hello Endpoint is http -->
    <SecurityAccessPolicy ResourceRef="EndpointName" PrincipalRef="Customer1" />
-  <!--EndpointBindingPolicy is needed if the EndpointName is secured with https -->
+  <!--EndpointBindingPolicy is needed if hello EndpointName is secured with https -->
   <EndpointBindingPolicy EndpointRef="EndpointName" CertificateRef="Cert1" />
 </Policies
 ```
 ## <a name="upgrading-multiple-applications-with-https-endpoints"></a>Aggiornamento di più applicazioni con endpoint https
-È necessario prestare attenzione a non utilizzare la **stessa porta** per istanze diverse della stessa applicazione quando si usa http**s**. Ciò è dovuto al fatto che Service Fabric non sarà in grado di aggiornare il certificato per una delle istanze dell'applicazione. Ad esempio, se sia l'applicazione 1 che l'applicazione 2 desiderano eseguire l'aggiornamento del certificato 1 al certificato 2. Al momento dell'aggiornamento, Service Fabric potrebbe avere eliminato la registrazione del certificato 1 con http.sys anche se è ancora utilizzato dall'altra applicazione. Per evitare questo problema, Service Fabric rileva che è già presente un'altra istanza dell'applicazione registrata sulla porta con il certificato (a causa di http.sys) e l'operazione ha esito negativo.
+È necessario fare attenzione toobe non toouse hello **stessa porta** per istanze diverse di hello stessa applicazione quando si usa http**s**. motivo di Hello è che Service Fabric non sarà in grado di tooupgrade cert di hello per una delle istanze dell'applicazione hello. Ad esempio, se l'applicazione 1 o dell'applicazione 2 entrambi desidera tooupgrade loro toocert cert 1, 2. Quando si verifica l'aggiornamento di hello, Service Fabric potrebbero essere eliminate registrazione cert 1 hello con http.sys anche se hello altre applicazioni in uso. tooprevent, Service Fabric rileva che esiste già un'altra istanza dell'applicazione registrata sulla porta hello con certificato hello (scadenza toohttp.sys) e l'operazione di hello ha esito negativo.
 
-Pertanto Service Fabric non supporta l'aggiornamento di due servizi diversi mediante **la stessa porta** in istanze dell'applicazione diverse. In altre parole, non è possibile utilizzare lo stesso certificato in servizi diversi sulla stessa porta. Se è necessario avere un certificato condiviso sulla stessa porta, occorre verificare che i servizi si trovino su computer diversi con vincoli di posizionamento. In alternativa, utilizzare le porte dinamiche di Service Fabric se possibile per ogni servizio in ogni istanza dell'applicazione. 
+Pertanto Service Fabric supporta l'aggiornamento di due servizi diversi utilizzando **hello stessa porta** in istanze diverse dell'applicazione. In altre parole, non è possibile utilizzare hello stesso certificato in servizi diversi in hello stessa porta. Se è necessario toohave condivisa certificato sul hello stessa porta, è necessario tooensure tale hello i servizi vengono inseriti in computer diversi con vincoli di posizionamento. In alternativa, utilizzare le porte dinamiche di Service Fabric se possibile per ogni servizio in ogni istanza dell'applicazione. 
 
-Se si verifica un errore di aggiornamento con https, viene visualizzato un avviso indicante che l'API del server Windows HTTP non supporta più certificati per le applicazioni che condividono una porta.
+Se viene visualizzato un errore di aggiornamento con https, un avviso di errore indicante che "hello API HTTP Server di Windows non supporta più certificati per le applicazioni che condividono una porta."
 
 ## <a name="a-complete-application-manifest-example"></a>Esempio completo del manifesto dell'applicazione
-Il manifesto dell'applicazione seguente illustra molte delle impostazioni:
+Hello manifesto dell'applicazione di seguito sono illustrati molti dei hello impostazioni diverse:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -372,9 +372,9 @@ Il manifesto dell'applicazione seguente illustra molte delle impostazioni:
       <Policies>
          <RunAsPolicy CodePackageRef="Code" UserRef="Customer1" />
          <RunAsPolicy CodePackageRef="Code" UserRef="LocalAdmin" EntryPointType="Setup" />
-        <!--SecurityAccessPolicy is needed if RunAsPolicy is defined and the Endpoint is http -->
+        <!--SecurityAccessPolicy is needed if RunAsPolicy is defined and hello Endpoint is http -->
          <SecurityAccessPolicy ResourceRef="EndpointName" PrincipalRef="Customer1" />
-        <!--EndpointBindingPolicy is needed the EndpointName is secured with https -->
+        <!--EndpointBindingPolicy is needed hello EndpointName is secured with https -->
         <EndpointBindingPolicy EndpointRef="EndpointName" CertificateRef="Cert1" />
      </Policies>
    </ServiceManifestImport>
@@ -414,9 +414,9 @@ Il manifesto dell'applicazione seguente illustra molte delle impostazioni:
 ```
 
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="next-steps"></a>Passaggi successivi
-* [Informazioni sul modello applicativo](service-fabric-application-model.md)
+* [Comprendere il modello di applicazione hello](service-fabric-application-model.md)
 * [Specificare le risorse in un manifesto del servizio](service-fabric-service-manifest-resources.md)
 * [Distribuire un'applicazione](service-fabric-deploy-remove-applications.md)
 

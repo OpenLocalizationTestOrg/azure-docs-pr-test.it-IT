@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico con connessione Internet - Interfaccia della riga di comando di Azure classica | Documentazione Microsoft
-description: Informazioni su come creare un servizio di bilanciamento del carico Internet nel modello di distribuzione classica mediante l'interfaccia della riga di comando di Azure
+title: con una connessione Internet aaaCreate bilanciamento del carico - CLI di Azure classico | Documenti Microsoft
+description: Informazioni su come toocreate un Internet rivolto al bilanciamento del carico in modello di distribuzione classica utilizzando hello CLI di Azure
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: da3a908f17ff5c6d3923549a884ecc0a13cb8e9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6070cbc574f74bca0cccb960ff192847d6511bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-cli"></a>Introduzione alla creazione del servizio di bilanciamento del carico Internet (classico) nell’interfaccia della riga di comando di Azure
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-hello-azure-cli"></a>Introduzione alla creazione di un bilanciamento del carico (classico) in hello CLI di Azure per Internet
 
 > [!div class="op_single_selector"]
-> * [Portale di Azure classico](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
+> * [portale di Azure classico](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
 > * [PowerShell](../load-balancer/load-balancer-get-started-internet-classic-ps.md)
 > * [Interfaccia della riga di comando di Azure](../load-balancer/load-balancer-get-started-internet-classic-cli.md)
 > * [Servizi cloud di Azure](../load-balancer/load-balancer-get-started-internet-classic-cloud.md)
@@ -31,16 +31,16 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Prima di iniziare a usare le risorse di Azure, è importante comprendere che Azure al momento offre due modelli di distribuzione, la distribuzione classica e Azure Resource Manager. È importante comprendere i [modelli e strumenti di distribuzione](../azure-classic-rm.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione relativa a diversi strumenti facendo clic sulle schede nella parte superiore di questo articolo. In questo articolo viene illustrato il modello di distribuzione classica. Vedere [Informazioni su come creare un servizio di bilanciamento del carico Internet in Gestione risorse di Azure](load-balancer-get-started-internet-arm-ps.md).
+> Prima di lavorare con le risorse di Azure, è importante toounderstand che Azure ha due modelli di distribuzione: Gestione risorse di Azure e classica. È importante comprendere i [modelli e strumenti di distribuzione](../azure-classic-rm.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione di hello per diversi strumenti facendo clic sulle schede hello nella parte superiore di hello di questo articolo. Questo articolo descrive il modello di distribuzione classica hello. È anche possibile [informazioni su come una connessione Internet toocreate bilanciamento del carico con Azure Resource Manager](load-balancer-get-started-internet-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="step-by-step-creating-an-internet-facing-load-balancer-using-cli"></a>Procedura dettagliata sulla creazione di un servizio di bilanciamento del carico Internet tramite CLI
 
-In questa guida viene illustrato come creare un servizio di bilanciamento del carico Internet in base allo scenario precedente.
+Questa guida viene spiegato come toocreate un bilanciamento del carico Internet in base a hello scenario precedente.
 
-1. Se l'interfaccia della riga di comando di Azure non è mai stata usata, vedere [Installare e configurare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md) e seguire le istruzioni fino al punto in cui si selezionano l'account e la sottoscrizione di Azure.
-2. Eseguire il comando **azure config mode** per passare alla modalità classica, come illustrato di seguito.
+1. Se non si è mai usato CLI di Azure, vedere [installare e configurare hello Azure CLI](../cli-install-nodejs.md) e seguire le istruzioni di hello toohello un punto in cui si seleziona l'account di Azure e la sottoscrizione.
+2. Eseguire hello **modalità di configurazione azure** comando tooswitch tooclassic modalità come illustrato di seguito.
 
     ```azurecli
     azure config mode asm
@@ -52,12 +52,12 @@ In questa guida viene illustrato come creare un servizio di bilanciamento del ca
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>Creazione dell’endpoint e del set del servizio di bilanciamento del carico
 
-Lo scenario presuppone che le macchine virtuali "web1" e "web2" sono state create.
-In questa guida verrà creato un set del servizio di bilanciamento del carico utilizzando la porta 80 come porta pubblica e la porta 80 come porta locale. Una porta probe è inoltre stata configurata sulla porta 80 e il set del servizio di bilanciamento del carico è stato chiamato "lbset".
+scenario di Hello si presuppone che le macchine virtuali hello "web1" e "web2" sono stati creati.
+In questa guida verrà creato un set del servizio di bilanciamento del carico utilizzando la porta 80 come porta pubblica e la porta 80 come porta locale. Una porta probe viene configurata anche sulla porta 80 e bilanciamento del carico denominato hello imposta "set con carico bilanciato".
 
 ### <a name="step-1"></a>Passaggio 1
 
-Creare il primo endpoint e il set del servizio di bilanciamento del carico utilizzando `azure network vm endpoint create` per la macchina virtuale "web1".
+Creare endpoint prima di hello e bilanciamento del carico impostato utilizzando `azure network vm endpoint create` per la macchina virtuale "web1".
 
 ```azurecli
 azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
@@ -65,7 +65,7 @@ azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 
 
 ## <a name="step-2"></a>Passaggio 2
 
-Aggiungere una seconda macchina virtuale "web2" al set del servizio di bilanciamento del carico.
+Aggiungere un secondo set di bilanciamento carico toohello macchina virtuale "web2".
 
 ```azurecli
 azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
@@ -73,13 +73,13 @@ azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 
 
 ## <a name="step-3"></a>Passaggio 3
 
-Verificare la configurazione del servizio di bilanciamento del carico utilizzando `azure vm show` .
+Verificare tramite configurazione del servizio di bilanciamento carico di hello `azure vm show` .
 
 ```azurecli
 azure vm show web1
 ```
 
-L'output sarà:
+output di Hello sarà:
 
     data:    DNSName "contoso.cloudapp.net"
     data:    Location "East US"
@@ -125,7 +125,7 @@ L'output sarà:
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>Creare un endpoint di desktop remoto per una macchina virtuale
 
-È possibile creare un endpoint di desktop remoto per inoltrare il traffico di rete da una porta pubblica a una porta locale per una macchina virtuale specifica utilizzando `azure vm endpoint create`.
+È possibile creare un traffico di rete tooforward endpoint desktop remoto da una porta locale tooa di porta pubblica per l'utilizzo di una macchina virtuale specifica `azure vm endpoint create`.
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
@@ -133,16 +133,16 @@ azure vm endpoint create web1 54580 -k 3389
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>Rimuovere la macchina virtuale dal servizio di bilanciamento del carico
 
-È necessario eliminare l'endpoint associato al set del servizio di bilanciamento del carico impostato dalla macchina virtuale. Una volta rimosso l'endpoint, la macchina virtuale non appartiene più al set del servizio di bilanciamento del carico.
+È necessario caricare il set di bilanciamento del carico dalla macchina virtuale hello toodelete hello endpoint associato toohello. Dopo la rimozione di endpoint hello, macchina virtuale hello non appartiene a bilanciamento del carico toohello imposta più.
 
-Utilizzando l'esempio precedente, è possibile rimuovere l'endpoint creato per la macchina virtuale "web1" dal servizio di bilanciamento del carico "lbset" utilizzando il comando `azure vm endpoint delete`.
+Utilizzando l'esempio hello precedente, è possibile rimuovere endpoint hello creato per la macchina virtuale "web1" dal servizio di bilanciamento del carico "set con carico bilanciato" utilizzando il comando hello `azure vm endpoint delete`.
 
 ```azurecli
 azure vm endpoint delete web1 tcp-80-80
 ```
 
 > [!NOTE]
-> È possibile esplorare più opzioni per gestire gli endpoint utilizzando il comando `azure vm endpoint --help`
+> È possibile esplorare più endpoint di toomanage opzioni comando hello`azure vm endpoint --help`
 
 ## <a name="next-steps"></a>Passaggi successivi
 

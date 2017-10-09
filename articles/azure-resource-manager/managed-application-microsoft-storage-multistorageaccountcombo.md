@@ -1,6 +1,6 @@
 ---
-title: Elemento MultiStorageAccountCombo dell'interfaccia utente di Applicazione gestita di Azure | Microsoft Docs
-description: Illustra l'elemento Microsoft.Storage.MultiStorageAccountCombo dell'interfaccia utente per le applicazioni gestite di Azure
+title: elemento gestita dell'interfaccia utente dell'applicazione MultiStorageAccountCombo aaaAzure | Documenti Microsoft
+description: Descrive l'elemento dell'interfaccia utente Microsoft.Storage.MultiStorageAccountCombo hello per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 27843b116d949899e4eae65f342324f77ebca70b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 765be145b61c3dbf0a035a7a00aa18eee464a3eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftstoragemultistorageaccountcombo-ui-element"></a>Elemento Microsoft.Storage.MultiStorageAccountCombo dell'interfaccia utente
 Gruppo di controlli per la creazione di più account di archiviazione, con nomi che iniziano con un prefisso comune. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
@@ -52,12 +52,12 @@ Gruppo di controlli per la creazione di più account di archiviazione, con nomi 
 ```
 
 ## <a name="remarks"></a>Osservazioni
-- Il valore per `defaultValue.prefix` viene concatenato a uno o più numeri interi per generare la sequenza di nomi di account di archiviazione. Se ad esempio `defaultValue.prefix` è **foobar** e `count` è **2**, vengono generati i nomi degli account di archiviazione **foobar1** e **foobar2**. L'unicità dei nomi degli account di archiviazione generati viene convalidata automaticamente.
-- I nomi degli account di archiviazione vengono generati in modo lessicografico in base a `count`. Se ad esempio `count` è 10, i nomi degli account di archiviazione terminano con numeri interi a 2 cifre (01, 02, 03 e così via).
-- Il valore predefinito per `defaultValue.prefix` è **null** e quello per `defaultValue.type` è **Premium_LRS**.
+- valore per Hello `defaultValue.prefix` viene concatenato con uno o più numeri interi toogenerate hello sequenza i nomi degli account di archiviazione. Se ad esempio `defaultValue.prefix` è **foobar** e `count` è **2**, vengono generati i nomi degli account di archiviazione **foobar1** e **foobar2**. L'unicità dei nomi degli account di archiviazione generati viene convalidata automaticamente.
+- i nomi degli account di archiviazione Hello vengono generati in modo lessicografico base `count`. Ad esempio, se `count` è 10, quindi i nomi degli account di archiviazione hello terminare con numeri interi a 2 cifre (01, 02, 03, ecc.).
+- il valore predefinito per Hello `defaultValue.prefix` è **null**e per `defaultValue.type` è **Premium_LRS**.
 - I tipi non specificati in `constraints.allowedTypes` vengono nascosti e i tipi non specificati in `constraints.excludedTypes` vengono visualizzati.
 `constraints.allowedTypes` e `constraints.excludedTypes` sono entrambi facoltativi, ma non possono essere usati contemporaneamente.
-- Oltre a generare nomi di account di archiviazione, `count` viene usato per impostare il moltiplicatore appropriato per l'elemento. Supporta un valore statico, ad esempio **2**, o un valore dinamico da un altro elemento, ad esempio `[steps('step1').storageAccountCount]`. Il valore predefinito è **1**.
+- I nomi account di archiviazione toogenerating aggiunta, `count` è tooset usato il moltiplicatore appropriato per un elemento hello. Supporta un valore statico, ad esempio **2**, o un valore dinamico da un altro elemento, ad esempio `[steps('step1').storageAccountCount]`. valore predefinito di Hello è **1**.
 
 ## <a name="sample-output"></a>Output di esempio
 ```json
@@ -70,6 +70,6 @@ Gruppo di controlli per la creazione di più account di archiviazione, con nomi 
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).
-* Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).
+* Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).

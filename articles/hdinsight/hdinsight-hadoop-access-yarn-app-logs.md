@@ -1,5 +1,5 @@
 ---
-title: Accedere ai log applicazioni YARN Hadoop a livello di codice - Azure | Microsoft Docs
+title: aaaAccess applicazione YARN Hadoop a livello di codice - log di Azure | Documenti Microsoft
 description: Accedere ai log applicazioni a livello di codice su un cluster Hadoop in HDInsight.
 services: hdinsight
 documentationcenter: 
@@ -16,17 +16,17 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 90323af4a1f4526ab9b26811c8679337076112d1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 064efee1ea6a864c29ab897692ead0152c926c0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-yarn-application-logs-on-windows-based-hdinsight"></a>Accesso ai log applicazioni YARN in HDInsight basato su Windows
-Questo argomento illustra come accedere ai log delle applicazioni di YARN (Yet Another Resource Negotiator) completati in un cluster Hadoop basato su Windows in Azure HDInsight
+Questo argomento viene illustrato come tooaccess hello registri per le applicazioni di YARN (ancora un'altra risorsa negoziatore) che vengono completate in un cluster basato su Windows Hadoop in HDInsight di Azure
 
 > [!IMPORTANT]
-> Le informazioni contenute in questo documento si applicano solo ai cluster HDInsight basati su Windows. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement). Per informazioni sull'accesso ai log YARN in cluster HDInsight basati su Linux, vedere [Accedere ai log delle applicazioni YARN su Hadoop basato su Linux in HDInsight](hdinsight-hadoop-access-yarn-app-logs-linux.md)
+> informazioni di Hello in questo documento si applicano solo tooWindows basato su cluster di HDInsight. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement). Per informazioni sull'accesso ai log YARN in cluster HDInsight basati su Linux, vedere [Accedere ai log delle applicazioni YARN su Hadoop basato su Linux in HDInsight](hdinsight-hadoop-access-yarn-app-logs-linux.md)
 >
 
 
@@ -34,46 +34,46 @@ Questo argomento illustra come accedere ai log delle applicazioni di YARN (Yet A
 * Un cluster HDInsight basato su Windows.  Vedere [Creare cluster Hadoop basati su Windows in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 
 ## <a name="yarn-timeline-server"></a>Server di sequenza temporale YARN
-Il <a href="http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html" target="_blank">Server di sequenza temporale YARN</a> fornisce informazioni generiche sulle applicazioni completate, nonché informazioni sulle applicazioni specifiche del framework, tramite due interfacce diverse. In particolare:
+Hello <a href="http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html" target="_blank">YARN sequenza temporale Server</a> fornisce informazioni generiche in applicazioni completate anche come informazioni specifiche del framework applicazione tramite due interfacce diverse. In particolare:
 
 * L'archiviazione e il recupero di informazioni generiche sulle applicazioni nei cluster HDInsight sono stati abilitati a partire dalla versione 3.1.1.374.
-* Il componente di informazioni sulle applicazioni specifiche del framework del server di sequenza temporale non è attualmente disponibile nei cluster HDInsight.
+* componente di informazioni specifiche del framework applicazione Hello di hello Server sequenza temporale non è attualmente disponibile nel cluster HDInsight.
 
-Le informazioni generiche sulle applicazioni includono i seguenti tipi di dati:
+Informazioni generiche sulle applicazioni includono hello molti tipi di dati seguenti:
 
-* ID applicazione, un identificatore univoco di un'applicazione
-* Utente che ha avviato l'applicazione
-* Informazioni sui tentativi effettuati per completare l'applicazione
-* Contenitori usati da qualsiasi tentativo dell'applicazione specifico
+* ID dell'applicazione Hello, un identificatore univoco di un'applicazione
+* utente Hello che ha avviato l'applicazione hello
+* Informazioni sui tentativi rese applicazione hello toocomplete
+* contenitori di Hello utilizzati da qualsiasi tentativo di applicazione specifico
 
-Nei cluster HDInsight queste informazioni verranno archiviate da Gestione risorse di Azure in un archivio di cronologia nel contenitore predefinito dell'account di archiviazione di Azure predefinito. Questi dati generici sulle applicazioni completate possono essere recuperati tramite un'API REST:
+Nei cluster di HDInsight, queste informazioni verranno archiviate dall'archivio di cronologia tooa Gestione risorse di Azure nel contenitore predefinito hello di account di archiviazione di Azure predefinito. Questi dati generici sulle applicazioni completate possono essere recuperati tramite un'API REST:
 
     GET on https://<cluster-dns-name>.azurehdinsight.net/ws/v1/applicationhistory/apps
 
 
 ## <a name="yarn-applications-and-logs"></a>Log e applicazioni YARN
-YARN supporta diversi modelli di programmazione, tra cui MapReduce, separando la gestione delle risorse dalla pianificazione e dal monitoraggio dell'applicazione. A tale scopo, vengono usati un oggetto *ResourceManager* (RM) globale, oggetti *NodeManagers* (NM) per ogni nodo di lavoro e oggetti *ApplicationMasters* (AM) per ogni applicazione. L'AM per applicazione negozia le risorse (CPU, memoria, disco e rete) per l'esecuzione dell'applicazione con l'RM. L'oggetto RM opera con gli oggetti NM per concedere queste risorse come *contenitori*. L'AM è responsabile del monitoraggio dello stato dei contenitori assegnati dall'RM. A seconda del tipo, un'applicazione può richiedere più contenitori.
+YARN supporta diversi modelli di programmazione, tra cui MapReduce, separando la gestione delle risorse dalla pianificazione e dal monitoraggio dell'applicazione. A tale scopo, vengono usati un oggetto *ResourceManager* (RM) globale, oggetti *NodeManagers* (NM) per ogni nodo di lavoro e oggetti *ApplicationMasters* (AM) per ogni applicazione. Hello AM per ogni applicazione viene negoziato da risorse (CPU, memoria, disco, rete) per eseguire l'applicazione con RM. hello Hello RM funziona con toogrant NMs queste risorse, che vengono concesse a *contenitori*. è responsabile per tenere traccia dello stato di hello di hello tooit di contenitori assegnati da RM. hello Hello AM Un'applicazione potrebbe richiedere molti contenitori, a seconda della natura hello di un'applicazione hello.
 
-Ogni applicazione, inoltre, può essere costituita da più *tentativi dell'applicazione* finalizzati al completamento in presenza di arresti anomali o di perdita della comunicazione tra gli oggetti AM e RM. Di conseguenza, i contenitori vengono concessi a uno specifico tentativo di un'applicazione. In un certo senso, un contenitore fornisce il contesto per l'unità di base del lavoro eseguito da un'applicazione YARN e tutto il lavoro svolto all'interno del contesto di un contenitore viene eseguito nel singolo nodo di lavoro in cui è stato allocato il contenitore. Per altri riferimenti, vedere [Concetti YARN][YARN-concepts].
+Inoltre, ogni applicazione può essere costituito più *tentativi di applicazione* in ordine toofinish in presenza di hello di arresti anomali del sistema o a causa di toohello perdita di comunicazione tra un AM e un RM. Di conseguenza, i contenitori vengono concesse tooa tentativo specifici di un'applicazione. In un certo senso, un contenitore fornisce il contesto di hello per le unità di base delle operazioni eseguite da un'applicazione di YARN e tutte le operazioni che viene eseguita nel contesto di hello di un contenitore viene eseguita nel nodo singolo lavoro hello in cui hello contenitore è stato allocato. Per altri riferimenti, vedere [Concetti YARN][YARN-concepts].
 
-I log applicazione (e i log contenitore associati) sono essenziali per il debug di applicazioni Hadoop problematiche. YARN offre un framework utile per la raccolta, l'aggregazione e l'archiviazione dei log applicazioni tramite la funzionalità di [aggregazione dei log][log-aggregation]. La funzionalità di aggregazione dei log rende più deterministico l'accesso ai log applicazioni poiché aggrega i log di tutti i contenitori in un nodo di lavoro e li archivia sotto forma di unico file di log aggregato per ogni nodo di lavoro nel file system predefinito dopo il completamento di un'applicazione. L'applicazione può usare centinaia o migliaia di contenitori, ma i log di tutti i contenitori eseguiti su un singolo nodo di lavoro verranno sempre aggregati in un unico file, dando luogo a un solo file di log per ogni nodo di lavoro usato dall'applicazione. La funzionalità di aggregazione dei log è abilitata per impostazione predefinita nei cluster HDInsight (versione 3.0 e successive). I log aggregati si trovano nel contenitore predefinito del cluster nel percorso seguente:
+Registri (registri applicazioni e hello associata contenitore) sono fondamentali per il debug di applicazioni di Hadoop problematiche. YARN fornisce un framework utile per raccogliere, aggregare e l'archiviazione dei log applicazione con hello [Log aggregazione] [ log-aggregation] funzionalità. funzione di aggregazione Log Hello rende più deterministiche, l'accesso ai log di applicazioni come aggrega i log in tutti i contenitori in un nodo di lavoro e li archivia come un aggregato file di log per ogni nodo di lavoro nel file system predefinito hello dopo il completamento di un'applicazione. L'applicazione può utilizzare centinaia o migliaia di contenitori, ma i log per tutti i contenitori devono essere eseguiti in un nodo singolo lavoro sarà sempre tooa aggregato singolo file, risultante in un file di log per ogni nodo di lavoro utilizzata dall'applicazione. Aggregazione di log è abilitato per impostazione predefinita nei cluster HDInsight (versione 3.0 e versioni successive), e aggregati i log si trovano nel contenitore predefinito hello del cluster in hello seguente posizione:
 
     wasb:///app-logs/<user>/logs/<applicationId>
 
-In questo percorso, *user* è il nome dell'utente che ha avviato l'applicazione e *applicationId* è l'identificatore univoco di un'applicazione assegnato dall'oggetto RM YARN.
+In questa posizione, *utente* hello nome dell'utente hello che ha avviato l'applicazione hello, e *applicationId* è l'identificatore univoco di hello di un'applicazione assegnato da RM. YARN hello
 
-I log aggregati non sono leggibili direttamente perché vengono scritti in un oggetto [TFile][T-file], un [formato binario][binary-format] indicizzato dal contenitore. YARN fornisce gli strumenti CLI per eseguire il dump di questi log come testo normale per le applicazioni o i contenitori di interesse. È possibile visualizzare questi log come testo normale eseguendo uno dei seguenti comandi YARN direttamente sui nodi del cluster (dopo la connessione tramite RDP):
+Hello aggregati i registri non sono direttamente leggibili, quando vengono scritti un [TFile][T-file], [formato binario] [ binary-format] indicizzato dal contenitore. YARN fornisce CLI strumenti toodump questi log come testo normale per applicazioni o i contenitori di interesse. È possibile visualizzare questi log come testo normale eseguendo uno dei seguenti comandi YARN direttamente nei nodi del cluster hello (dopo la connessione tooit tramite RDP) hello:
 
     yarn logs -applicationId <applicationId> -appOwner <user-who-started-the-application>
     yarn logs -applicationId <applicationId> -appOwner <user-who-started-the-application> -containerId <containerId> -nodeAddress <worker-node-address>
 
 
 ## <a name="yarn-resourcemanager-ui"></a>Interfaccia utente di ResourceManager YARN
-L'interfaccia utente di YARN ResourceManager viene eseguita sul nodo head del cluster ed è accessibile tramite il dashboard del portale di Azure:
+Ciao YARN ResourceManager UI viene eseguito sul nodo head cluster hello e sono accessibili tramite hello dashboard del portale di Azure:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Scegliere **Esplora** dal menu a sinistra, fare clic su **Cluster HDInsight** e quindi su un cluster basato su Windows da configurare per l'accesso ai log applicazioni YARN.
-3. Nel menu in alto fare clic su **Dashboard**. Verrà aperta una pagina in una nuova scheda del browser denominata **Console query HDInsight**.
+1. Accedi troppo[portale di Azure](https://portal.azure.com/).
+2. Scegliere dal menu a sinistra, hello **Sfoglia**, fare clic su **cluster HDInsight**, fare clic su un cluster basato su Windows che si desidera tooaccess hello YARN registri delle applicazioni.
+3. Scegliere dal menu superiore hello **Dashboard**. Verrà aperta una pagina in una nuova scheda del browser denominata **Console query HDInsight**.
 4. In **HDInsight Query Console** (Console query HDInsight) fare clic su **Yarn UI** (UI YARN).
 
 [YARN-timeline-server]:http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html

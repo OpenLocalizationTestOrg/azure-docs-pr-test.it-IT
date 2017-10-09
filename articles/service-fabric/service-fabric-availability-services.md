@@ -1,5 +1,5 @@
 ---
-title: "Disponibilità dei servizi di Service Fabric | Microsoft Docs"
+title: aaaAvailability dei servizi di Service Fabric | Documenti Microsoft
 description: Descrive il rilevamento degli errori, il failover e il ripristino dei servizi
 services: service-fabric
 documentationcenter: .net
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 41ff2c3129facb0eea9d896ce75d7343ae2a018e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c443aadfe31a1413359b08d34c4b7dd5db4edd16
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="availability-of-service-fabric-services"></a>Disponibilità dei servizi di Service Fabric
 Questo articolo contiene una panoramica sul modo in cui Service Fabric gestisce la disponibilità di un servizio.
 
 ## <a name="availability-of-service-fabric-stateless-services"></a>Disponibilità dei servizi di Service Fabric senza stato
-I servizi Service Fabric di Azure possono essere con o senza stato. Un servizio senza stato è un servizio dell'applicazione che non dispone di uno [stato locale](service-fabric-concepts-state.md) che necessita di essere altamente disponibile o affidabile.
+I servizi Service Fabric di Azure possono essere con o senza stato. Un servizio senza stato è un servizio di applicazione che non dispone di alcuna [stato locale](service-fabric-concepts-state.md) che deve toobe altamente disponibile o affidabile.
 
-La creazione di un servizio senza stato richiede la definizione di un `InstanceCount`. per il numero di istanze di logica dell'applicazione del servizio senza stato da eseguire nel cluster. L'aumento del numero di istanze è la soluzione consigliata per implementare la scalabilità orizzontale di un servizio senza stato.
+La creazione di un servizio senza stato richiede la definizione di un `InstanceCount`. numero di istanze di Hello definisce il numero di hello di istanze della logica dell'applicazione del servizio senza stato hello che deve essere in esecuzione nel cluster hello. Aumentare il numero di hello istanze è hello consigliato modo di scalabilità orizzontale di un servizio senza stato.
 
-Quando un'istanza di un servizio denominato senza stato ha esito negativo, viene creata una nuova istanza in un nodo idoneo del cluster. Ad esempio, un'istanza del servizio senza stato potrebbe non riuscire in Node1 ed essere ricreata in Node5.
+Quando un'istanza di servizio denominato stateless ha esito negativo, viene creata una nuova istanza su un nodo nel cluster hello idoneo. Ad esempio, un'istanza del servizio senza stato potrebbe non riuscire in Node1 ed essere ricreata in Node5.
 
 ## <a name="availability-of-service-fabric-stateful-services"></a>Disponibilità dei servizi di Service Fabric con stato
-Un servizio con stato dispone di uno stato associato. In Service Fabric un servizio con stato è modellato come set di repliche. Ogni replica è un'istanza in esecuzione del codice del servizio che ha anche una copia dello stato per tale servizio. Le operazioni di lettura e scrittura vengono eseguite in una replica (denominata replica primaria). I cambiamenti di stato dovuti a operazioni di scrittura vengono *replicati* in altre repliche nel set di repliche, denominate repliche secondarie attive, e applicati. 
+Un servizio con stato dispone di uno stato associato. In Service Fabric un servizio con stato è modellato come set di repliche. Ogni replica è un'istanza in esecuzione di codice hello del servizio hello che dispone anche di una copia dello stato di hello per quel servizio. Operazioni di lettura e scrittura vengono eseguite in una replica (denominata hello primario). Modifiche toostate da operazioni di scrittura sono *replicati* toohello altre repliche nel set di repliche hello (denominato repliche secondarie attive) e applicata. 
 
-Può esistere solo una replica primaria, ma possono esistere più repliche secondarie attive. Il numero di repliche secondarie attive è configurabile. Più alto è il numero di repliche, maggiore è il numero di errori hardware e software simultanei che è possibile tollerare.
+Può esistere solo una replica primaria, ma possono esistere più repliche secondarie attive. numero di Hello di repliche attive secondarie è configurabile e un elevato numero di repliche è in grado di tollerare un maggior numero di errori hardware e software simultaneo.
 
-Se la replica primaria diventa inattiva, Service Fabric crea come nuova replica primaria una delle repliche secondarie attive. La replica secondaria attiva ha già la versione aggiornata dello stato (mediante il *processo di replica*) e può continuare a elaborare altre operazioni di lettura e scrittura.
+Se la replica primaria hello diventa inattiva, Service Fabric esegue hello secondario attivo repliche hello nuova replica primaria. Questa replica secondaria attiva ha già una versione di hello aggiornamento dello stato di hello (tramite *replica*), e può continuare l'elaborazione di ulteriore lettura e operazioni di scrittura.
 
-Il concetto di replica primaria o replica secondaria attiva è noto come ruolo di replica.
+Questo concetto, di una replica da un database primario o secondario attivo, è noto come hello ruolo della Replica.
 
 ### <a name="replica-roles"></a>Ruoli di replica
-Il ruolo di una replica viene usato per gestire il ciclo di vita dello stato gestito da tale replica. Una replica con ruolo primario gestisce le richieste di lettura. La replica primaria gestisce anche tutte le richieste di scrittura aggiornandone lo stato e replicando le modifiche che vengono applicate alle repliche secondarie attive nel set di repliche. Il compito di una replica secondaria attiva è quello di ricevere i cambiamenti di stato che la primaria ha replicato e di aggiornarne la visualizzazione dello stato.
+ruolo di Hello di una replica è toomanage utilizzati hello di ciclo di vita dello stato di hello gestito da tale replica. Una replica con ruolo primario gestisce le richieste di lettura. Hello primario gestisce anche tutte le richieste di scrittura aggiornando lo stato e la replica delle modifiche hello. Queste modifiche vengono applicata toohello repliche secondarie attive nel set di repliche hello. il processo di Hello di un concetto di secondario attivo è le modifiche dello stato tooreceive hello replica primaria è replicato e aggiornare la visualizzazione dello stato di hello.
 
 > [!NOTE]
-> Modelli di programmazione di livello superiore, come [Reliable Actors](service-fabric-reliable-actors-introduction.md) e [Reliable Services](service-fabric-reliable-services-introduction.md) nascondono il concetto di ruolo di replica allo sviluppatore. In Reliable Actors la nozione di ruolo non è necessaria, mentre in Reliable Services è estremamente semplificata per la maggior parte degli scenari.
+> Modelli di programmazione di livello superiore, ad esempio [Reliable Actors](service-fabric-reliable-actors-introduction.md) e [servizi affidabili](service-fabric-reliable-services-introduction.md) nascondere il concetto di hello del ruolo di replica da Developer Edition hello. In attori, nozione hello del ruolo è necessaria, mentre in servizi di cui si è in gran parte semplificato per la maggior parte degli scenari.
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sui concetti relativi a Service Fabric, vedere gli articoli seguenti:
+Per ulteriori informazioni sui concetti di Service Fabric, vedere hello seguenti articoli:
 
 - [Scalabilità dei servizi di Service Fabric](service-fabric-concepts-scalability.md)
 - [Partizionamento dei servizi di Service Fabric](service-fabric-concepts-partitioning.md)

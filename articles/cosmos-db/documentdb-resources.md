@@ -1,6 +1,6 @@
 ---
-title: Modello di risorsa e concetti relativi ad Azure Cosmos DB | Microsoft Docs
-description: Informazioni sul modello gerarchico di database, raccolte, funzioni definite dall'utente, documenti, autorizzazioni per gestire le risorse e altro ancora in Azure Cosmos DB.
+title: aaaAzure DB Cosmos modello di risorse e concetti | Documenti Microsoft
+description: "Informazioni sul modello gerarchico di Azure Cosmos DB del database, raccolte, la funzione definita dall'utente (UDF), documenti, le autorizzazioni toomanage risorse e più."
 keywords: Modello gerarchico, Cosmos DB, Azure, Microsoft Azure
 services: cosmos-db
 documentationcenter: 
@@ -16,51 +16,51 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: anhoh
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8051742c7c368d1ed84bcd90ab75b20f62105e2f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fc3642232b86cc27901ebd97456c386829324632
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-hierarchical-resource-model-and-core-concepts"></a>Modello di risorsa gerarchico e concetti di base relativi ad Azure Cosmos DB
-Le entità del database gestite da Azure Cosmos DB vengono chiamate **risorse**. Ogni risorsa viene identificata in modo univoco da un URI logico. È possibile interagire con le risorse usando verbi HTTP, intestazioni di richiesta/risposta e codici di stato standard. 
+le entità di database che consente di gestire Azure Cosmos DB Hello sono cui tooas **risorse**. Ogni risorsa viene identificata in modo univoco da un URI logico. È possibile interagire con risorse hello utilizzando i verbi HTTP standard, le intestazioni di richiesta/risposta e i codici di stato. 
 
-Dopo aver letto questo articolo, si riuscirà a rispondere alle domande seguenti:
+Leggendo questo articolo, sarà in grado di tooanswer hello seguenti domande:
 
 * Qual è il modello di risorsa di Cosmos DB?
-* Quali sono le risorse definite dal sistema e quali le risorse definite dall'utente?
+* Quali sono system risorse definite come risorse anziché toouser definito?
 * Come si indirizza una risorsa?
 * Come si usano le raccolte?
 * Come si usano le stored procedure, i trigger e le funzioni definite dall'utente
 
 ## <a name="hierarchical-resource-model"></a>Modello di risorse gerarchico
-Come illustrato nel diagramma seguente, il **modello di risorsa** gerarchico di Cosmos DB è costituito da set di risorse associate a un account di database, ognuna indirizzabile tramite un URI logico e stabile. Un set di risorse viene definito **feed** in questo articolo. 
+Come hello diagramma seguente viene illustrato, hello DB Cosmos gerarchica **modello di risorsa** costituiti da set di risorse con un account di database, ogni indirizzabile tramite URI logico e stabile. Un set di risorse sarà tooas di cui si fa riferimento un **feed** in questo articolo. 
 
 > [!NOTE]
-> Azure Cosmos DB offre un protocollo TCP molto efficiente, con un modello di comunicazione di tipo RESTful, disponibile tramite l'[API .NET client DocumentDB](documentdb-sdk-dotnet.md).
+> DB Cosmos Azure offre un protocollo TCP altamente efficiente che è RESTful anche nel modello di comunicazione, disponibile tramite hello [API client .NET di DocumentDB](documentdb-sdk-dotnet.md).
 > 
 > 
 
 ![Modello di risorsa gerarchico di Azure Cosmos DB][1]  
 **Modello di risorse gerarchico**   
 
-Per iniziare a usare le risorse è necessario [creare un account di database](create-documentdb-dotnet.md) usando la sottoscrizione di Azure. Un account di database può essere costituito da un set di **database**, ognuno contenente più **raccolte**. Ogni raccolta include a propria volta **stored procedure, trigger, funzioni definite dall'utente, documenti** e **allegati** correlati. Un database include anche gli **utenti** associati, ognuno dei quali possiede un set di **autorizzazioni** per accedere a raccolte, stored procedure, trigger, UDF, documenti o allegati. Mentre i database, gli utenti, le autorizzazioni e le raccolte sono ricorse definite dal sistema con schemi noti, i documenti e gli allegati includono contenuto JSON arbitrario definito dagli utenti.  
+toostart utilizzo delle risorse, è necessario [creare un account di database](create-documentdb-dotnet.md) tramite la sottoscrizione di Azure. Un account di database può essere costituito da un set di **database**, ognuno contenente più **raccolte**. Ogni raccolta include a propria volta **stored procedure, trigger, funzioni definite dall'utente, documenti** e **allegati** correlati. Un database è inoltre associate **utenti**, ognuno con un set di **autorizzazioni** tooaccess raccolte, stored procedure, trigger, funzioni definite dall'utente, documenti o gli allegati. Mentre i database, gli utenti, le autorizzazioni e le raccolte sono ricorse definite dal sistema con schemi noti, i documenti e gli allegati includono contenuto JSON arbitrario definito dagli utenti.  
 
 | Risorsa | Descrizione |
 | --- | --- |
 | Account di database |Un account di database è associato a un set di database e a una quantità fissa di archivio BLOB per gli allegati. È possibile creare uno o più account di database usando la sottoscrizione di Azure. Per altre informazioni, visitare la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/cosmos-db/). |
 | Database |Un database è un contenitore logico di archiviazione documenti partizionato nelle raccolte. Un database è anche un contenitore degli utenti |
-| Utente |Spazio dei nomi logico per la definizione dell'ambito delle autorizzazioni. |
-| Autorizzazione |Token di autorizzazione associato a un utente per l'accesso a una risorsa specifica. |
-| Raccolta |Una raccolta è un contenitore di documenti JSON e di logica dell'applicazione JavaScript associata. Una raccolta è un'entità fatturabile, in cui il [costo](performance-levels.md) è determinato dal livello di prestazioni associato alla raccolta. Le raccolte possono estendersi su più partizioni o server e possono essere ridimensionate per gestire volumi praticamente illimitati di archiviazione o di velocità effettiva. |
-| Stored Procedure |Logica dell'applicazione scritta in JavaScript, registrata con una raccolta ed eseguita a livello di transazione all'interno del motore di database. |
+| Utente |Hello spazio dei nomi logico per definire l'ambito delle autorizzazioni. |
+| Autorizzazione |Un token di autorizzazione associato a un utente per la risorsa specifica tooa di accesso. |
+| Raccolta |Una raccolta è un contenitore di documenti JSON e hello associati logica dell'applicazione JavaScript. Una raccolta è un'entità fatturabile, dove hello [costo](performance-levels.md) è determinato dal livello di prestazioni hello associato hello insieme. Le raccolte possono estendersi su uno o più partizioni/server e può essere ridimensionato toohandle praticamente illimitate di volumi di archiviazione o una velocità effettiva. |
+| Stored Procedure |Logica dell'applicazione scritta in JavaScript che viene registrato in una raccolta e livello di transazione eseguita all'interno del motore di database hello. |
 | Trigger |Logica dell'applicazione scritta in JavaScript ed eseguita prima o dopo un'operazione di inserimento, sostituzione o eliminazione. |
-| UDF |Logica dell'applicazione scritta in JavaScript. Le funzioni definite dall'utente consentono di modellare un operatore query personalizzato e quindi di estendere il linguaggio di query di base dell'API di DocumentDB. |
-| Documento |Contenuto JSON definito dall'utente (arbitrario). Per impostazione predefinita, non è necessario definire alcuno schema, né fornire indici secondari per tutti i documenti aggiunti a una raccolta. |
-| Attachment |Un allegato è un documento speciale contenente riferimenti e metadati associati per BLOB/file multimediali esterni. Lo sviluppatore può scegliere se gestire il BLOB con Cosmos DB o archiviarlo con un provider di servizi BLOB esterno, ad esempio OneDrive, Dropbox e così via. |
+| UDF |Logica dell'applicazione scritta in JavaScript. Funzioni definite dall'utente abilitare si toomodel un operatore di query personalizzata e in tal modo estendere linguaggio di query API DocumentDB core hello. |
+| Documento |Contenuto JSON definito dall'utente (arbitrario). Per impostazione predefinita, nessun schema deve essere toobe definito né che sia gli indici secondari toobe fornito per hello tutti i documenti aggiunti tooa insieme. |
+| Attachment |Un allegato è un documento speciale contenente riferimenti e metadati associati per BLOB/file multimediali esterni. sviluppatore Hello scegliere toohave hello gestita blob tramite DB Cosmos o archiviarlo presso un provider di servizi blob esterno come OneDrive, Dropbox e così via. |
 
 ## <a name="system-vs-user-defined-resources"></a>Risorse definite dal sistema e risorse definite dall'utente
-Tutte le risorse quali account di database, database, raccolte, utenti, autorizzazioni, stored procedure, trigger e funzioni UDF hanno uno schema fisso e sono definite risorse di sistema. Per le risorse quali documenti e allegati, invece, non sono previste restrizioni a livello di schema. Si tratta di risorse definite dall'utente. In Cosmos DB le risorse definite sia dal sistema che dall'utente vengono rappresentate e gestite come risorse JSON conformi allo standard. Tutte le risorse, di sistema o definite dall'utente, presentano le proprietà comuni indicate di seguito.
+Tutte le risorse quali account di database, database, raccolte, utenti, autorizzazioni, stored procedure, trigger e funzioni UDF hanno uno schema fisso e sono definite risorse di sistema. Al contrario, le risorse, ad esempio documenti e gli allegati non presentano restrizioni schema hello e sono riportati esempi di risorse definiti dall'utente. In Cosmos DB le risorse definite sia dal sistema che dall'utente vengono rappresentate e gestite come risorse JSON conformi allo standard. Tutte le risorse del sistema o dall'utente, è necessario hello seguenti proprietà comuni.
 
 > [!NOTE]
 > Si noti che, nell'implementazione JSON, tutte le proprietà generate dal sistema in una risorsa hanno come prefisso un carattere di sottolineatura (_).
@@ -77,63 +77,63 @@ Tutte le risorse quali account di database, database, raccolte, utenti, autorizz
         <tr>
             <td valign="top"><p>_rid</p></td>
             <td valign="top"><p>Generata dal sistema</p></td>
-            <td valign="top"><p>Identificatore gerarchico della risorsa, univoco e generato dal sistema</p></td>
+            <td valign="top"><p>Generato dal sistema, un identificatore univoco e gerarchico della risorsa di hello</p></td>
         </tr>
         <tr>
             <td valign="top"><p>_etag</p></td>
             <td valign="top"><p>Generata dal sistema</p></td>
-            <td valign="top"><p>etag della risorsa richiesta per il controllo della concorrenza ottimistica</p></td>
+            <td valign="top"><p>valore eTag della risorsa hello necessaria per il controllo della concorrenza ottimistica</p></td>
         </tr>
         <tr>
             <td valign="top"><p>_ts</p></td>
             <td valign="top"><p>Generata dal sistema</p></td>
-            <td valign="top"><p>Ultimo timestamp aggiornato della risorsa</p></td>
+            <td valign="top"><p>Timestamp ultimo aggiornamento della risorsa hello</p></td>
         </tr>
         <tr>
             <td valign="top"><p>_self</p></td>
             <td valign="top"><p>Generata dal sistema</p></td>
-            <td valign="top"><p>URI univoco indirizzabile della risorsa</p></td>
+            <td valign="top"><p>URI indirizzabile univoco della risorsa hello</p></td>
         </tr>
         <tr>
             <td valign="top"><p>id</p></td>
             <td valign="top"><p>Generata dal sistema</p></td>
-            <td valign="top"><p>Nome univoco della risorsa (con lo stesso valore della chiave di partizione) definito dall'utente. Se l'utente non specifica un ID, quest'ultimo verrà generato dal sistema.</p></td>
+            <td valign="top"><p>Nome univoco della risorsa hello definito dall'utente (con hello stessa partizione di valore chiave). Se l'utente hello non specifica un id, un id sarà generata dal sistema</p></td>
         </tr>
     </tbody>
 </table>
 
 ### <a name="wire-representation-of-resources"></a>Rappresentazione delle risorse
-Cosmos DB non impone estensioni proprietarie o codifiche speciali allo standard JSON e funziona con i documenti JSON conformi a tale standard.  
+COSMOS DB non implica eventuali estensioni proprietarie toohello JSON standard o speciali codifiche; funziona con standard documenti compatibili con JSON.  
 
 ### <a name="addressing-a-resource"></a>Indirizzamento di una risorsa
-Tutte le risorse sono indirizzabili mediante URI. Il valore della proprietà **_self** di una risorsa rappresenta l'URI relativo della risorsa. Il formato dell'URI è dato dai segmenti del percorso /\<feed\>/{_rid}:  
+Tutte le risorse sono indirizzabili mediante URI. valore di hello Hello **_self** proprietà di una risorsa rappresenta hello relativo URI della risorsa di hello. Hello formato dell'URI hello costituito hello /\<feed\>/ { RID} segmenti di percorso:  
 
-| Valore di _self | Descrizione |
+| Valore di self hello | Descrizione |
 | --- | --- |
 | /dbs |Feed dei database in un account di database |
-| /dbs/{dbName} |Database con id corrispondente al valore {dbName} |
+| /dbs/{dbName} |Database con id corrispondente valore hello {dbName} |
 | /dbs/{dbName}/colls/ |Feed delle raccolte in un database |
-| /dbs/{dbName}/colls/{collName} |Raccolta con un id corrispondente al valore {collName} |
+| /dbs/{dbName}/colls/{collName} |Raccolta con id corrispondente valore hello {collName} |
 | /dbs/{dbName}/colls/{collName}/docs |Feed dei documenti in una raccolta |
-| /dbs/{dbName}/colls/{collName}/docs/{docId} |Documento con id corrispondente al valore {doc} |
+| /dbs/{dbName}/colls/{collName}/docs/{docId} |Il documento con un id corrispondente valore hello {doc} |
 | /dbs/{dbName}/users/ |Feed degli utenti in un database |
-| /dbs/{dbName}/users/{userId} |Utente con id corrispondente al valore {user} |
+| /dbs/{dbName}/users/{userId} |Utente con id corrispondente valore hello {user} |
 | /dbs/{dbName}/users/{userId}/permissions |Feed delle autorizzazioni in un utente |
-| /dbs/{dbName}/users/{userId}/permissions/{permissionId} |Autorizzazione con id corrispondente al valore {permission} |
+| /dbs/{dbName}/users/{userId}/permissions/{permissionId} |Autorizzazione con un id corrispondente valore hello {permission} |
 
-Ogni risorsa dispone di un nome utente univoco esposto mediante la proprietà ID. Nota: se l'utente non specifica un ID per i documenti, gli SDK supportati genereranno automaticamente un ID univoco per ogni documento. l'ID è una stringa definita dall'utente contenente fino a 256 caratteri, univoca all'interno del contesto di una risorsa padre specifica. 
+Ogni risorsa ha un nome utente univoco definito esposto tramite proprietà id hello. Nota: per i documenti, se non è specificata, un id utente hello nostri supportato SDK genererà automaticamente un id univoco per il documento hello. id Hello è una stringa definita dall'utente, di backup too256 caratteri univoco all'interno di contesto hello di una risorsa padre specifico. 
 
-Ogni risorsa ha anche un identificatore gerarchico generato dal sistema (chiamato anche RID), disponibile tramite la proprietà _rid. Il RID codifica l'intera gerarchia di una determinata risorsa ed è una rappresentazione interna utile da usare per imporre l'integrità referenziale secondo un metodo distribuito. Il RID è univoco all'interno di un account di database e viene usato internamente da Cosmos DB per un routing efficiente senza necessità di eseguire ricerche su più partizioni. I valori delle proprietà _self e _rid sono entrambi rappresentazioni alternate e canoniche di una risorsa. 
+Ogni risorsa ha anche un identificatore di risorsa gerarchica generata dal sistema (anche noto tooas un RID), che è disponibile tramite proprietà RID hello. Hello RID codifica hello la gerarchia di una determinata risorsa ed è che una rappresentazione interna pratica utilizzato tooenforce l'integrità referenziale in modalità distribuita. è utilizzato internamente da Cosmos DB per il routing efficiente senza le ricerche di partizione tra Hello RID è univoco all'interno di un account di database. i valori Hello self hello e le proprietà di RID hello sono rappresentazioni canoniche sia alternative di una risorsa. 
 
-Le API REST supportano l'indirizzamento delle risorse e il routing delle richieste tramite l'id e le proprietà _rid.
+supporto API REST di Hello indirizzamento delle risorse e il routing delle richieste da id hello sia le proprietà di RID hello.
 
 ## <a name="database-accounts"></a>Account di database
 È possibile effettuare il provisioning di uno o più account di database di Cosmos DB usando la sottoscrizione di Azure.
 
-È possibile creare e gestire account di database di Cosmos DB tramite il portale di Azure all'indirizzo [http://portal.azure.com/](https://portal.azure.com/). Per la creazione e la gestione di un account di database è necessario l'accesso amministrativo e queste operazioni possono essere eseguite solo con una sottoscrizione di Azure. 
+È possibile creare e gestire gli account di database Cosmos DB tramite il portale di Azure hello in [http://portal.azure.com/](https://portal.azure.com/). Per la creazione e la gestione di un account di database è necessario l'accesso amministrativo e queste operazioni possono essere eseguite solo con una sottoscrizione di Azure. 
 
 ### <a name="database-account-properties"></a>Proprietà degli account di database
-Come parte del provisioning e della gestione di un account di database, è possibile configurare e leggere le proprietà seguenti:  
+Come parte di provisioning e la gestione di un account del database è possibile configurare e leggere hello le proprietà seguenti:  
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -143,19 +143,19 @@ Come parte del provisioning e della gestione di un account di database, è possi
         </tr>
         <tr>
             <td valign="top"><p>Criterio di coerenza</p></td>
-            <td valign="top"><p>Impostare questa proprietà per configurare il livello di coerenza predefinito per tutte le raccolte nell'account di database. È possibile eseguire l'override del livello di coerenza per singole richieste usando l'intestazione di richiesta [x-ms-consistency-level]. <p><p>Si noti che questa proprietà è applicabile solo alle <i>risorse definite dall'utente</i>. Tutte le risorse definite dal sistema sono configurate per il supporto di letture/query con coerenza assoluta.</p></td>
+            <td valign="top"><p>Impostare il livello di coerenza proprietà tooconfigure hello predefinito per tutte le raccolte di hello con l'account di database. È possibile eseguire l'override di livello di coerenza hello per ogni richiesta utilizzando l'intestazione della richiesta hello [x-ms-consistency-level]. <p><p>Si noti che questa proprietà si applica solo toohello <i>risorse definito dall'utente</i>. Tutte le risorse di sistema definito sono letture toosupport configurato le query con coerenza assoluta.</p></td>
         </tr>
         <tr>
             <td valign="top"><p>Chiavi di autorizzazione</p></td>
-            <td valign="top"><p>Si tratta delle chiavi master e readonly primaria e secondaria che consentono accesso amministrativo a tutte le risorse nell'account di database.</p></td>
+            <td valign="top"><p>Si tratta di hello primario e secondarie chiavi master e di sola lettura che forniscono amministrazione accesso tooall delle risorse di hello nell'account di database hello.</p></td>
         </tr>
     </tbody>
 </table>
 
-Si noti che oltre al provisioning, alla configurazione e alla gestione dell'account di database dal portale di Azure, è anche possibile creare e gestire account di database Cosmos DB a livello di codice usando le [API REST di Azure Cosmos DB](/rest/api/documentdb/) e gli [SDK client](documentdb-sdk-dotnet.md).  
+Si noti che in aggiunta tooprovisioning, configurazione e gestione di account del database dal portale di Azure, hello è anche a livello di programmazione possono creare e gestire gli account di database DB Cosmos utilizzando hello [API REST di Azure Cosmos DB](/rest/api/documentdb/) come nonché [client SDK](documentdb-sdk-dotnet.md).  
 
 ## <a name="databases"></a>Database
-Un database di Cosmos DB è un contenitore logico di uno o più utenti e raccolte, come illustrato nel diagramma seguente. È possibile creare un numero qualsiasi di database in un account di database Cosmos DB, a condizione di rispettare i limiti di offerta.  
+Un database Cosmos DB è un contenitore logico di uno o più raccolte e gli utenti, come illustrato nel seguente diagramma hello. È possibile creare un numero qualsiasi di database in un oggetto toooffer di DB Cosmos database account limiti.  
 
 ![Modello gerarchico di account di database e raccolte][2]  
 **Un database è un contenitore logico di utenti e raccolte**
@@ -163,64 +163,64 @@ Un database di Cosmos DB è un contenitore logico di uno o più utenti e raccolt
 Un database può contenere risorse di archiviazione di documenti praticamente illimitate partizionate all'interno delle raccolte.
 
 ### <a name="elastic-scale-of-a-cosmos-db-database"></a>Scalabilità elastica di un database di Cosmos DB
-Un database di Cosmos DB è elastico per impostazione predefinita e può includere da pochi GB a diversi petabyte di spazio di archiviazione per i documenti basato su SSD e velocità effettiva con provisioning. 
+Un database DB Cosmos è elastico per impostazione predefinita: compreso fra qualche toopetabytes GB di spazio di archiviazione SSD eseguito il documento e velocità effettiva di provisioning. 
 
-A differenza di un database RDBMS tradizionale, l'ambito di un database in Cosmos DB non è limitato a un singolo computer. Con Cosmos DB, in caso di crescita delle esigenze di scalabilità dell'applicazione, sarà possibile creare più raccolte, più database o entrambi. Molte applicazioni prodotte direttamente da Microsoft usano Cosmos DB su scala consumer, creando database Cosmos DB di dimensioni estremamente elevate, ognuno dei quali include migliaia di raccolte con terabyte di spazio di archiviazione per i documenti. È possibile aumentare o ridurre le dimensioni di un database aggiungendo o rimuovendo raccolte per soddisfare i requisiti di scalabilità dell'applicazione. 
+A differenza di un database tradizionale RDBMS, un database nel database Cosmos non tooa con ambito singolo computer. Con DB Cosmos, come la scalabilità dell'applicazione deve toogrow, è possibile creare più raccolte, il database o entrambi. Molte applicazioni prodotte direttamente da Microsoft usano Cosmos DB su scala consumer, creando database Cosmos DB di dimensioni estremamente elevate, ognuno dei quali include migliaia di raccolte con terabyte di spazio di archiviazione per i documenti. È possibile aumentare o compattare un database aggiungendo o rimuovendo raccolte toomeet requisiti di scalabilità dell'applicazione. 
 
-Il numero di raccolte che è possibile creare in un database dipende dall'offerta. Ogni raccolta dispone di risorse di archiviazione basate su SSD e velocità effettiva di cui è stato eseguito il provisioning in base al livello di prestazioni selezionato.
+È possibile creare un numero qualsiasi di raccolte all'interno di un'offerta di toohello oggetto di database. Ogni raccolta dispone di spazio di archiviazione SSD eseguito e la velocità effettiva il provisioning per l'utente in base al livello di prestazioni selezionati hello.
 
-Un database di Cosmos DB è anche un contenitore di utenti. Un utente, a sua volta, è uno spazio dei nomi logico per un set di autorizzazioni che fornisce autorizzazioni specifiche e accesso a raccolte, documenti e allegati.  
+Un database di Cosmos DB è anche un contenitore di utenti. Un utente, a sua volta, è uno spazio dei nomi logico per un set di autorizzazioni che fornisce gli allegati, documenti e con granularità fine toocollections di accesso e autorizzazione.  
 
-Come per le altre risorse nel modello di risorsa di Cosmos DB, i database possono essere creati, sostituiti, eliminati, letti o enumerati facilmente usando le [API REST](/rest/api/documentdb/) o uno degli [SDK client](documentdb-sdk-dotnet.md). Cosmos DB assicura una coerenza assoluta per la lettura o l'esecuzione di query sui metadati di una risorsa del database. Se si elimina un database, non sarà automaticamente più possibile accedere alle raccolte o agli utenti inclusi nel database.   
+Come con altre risorse nel modello di risorse hello Cosmos DB, è possono creare database, sostituito, eliminare, leggere o enumerati facilmente utilizzando entrambi hello [API REST](/rest/api/documentdb/) o una qualsiasi delle hello [client SDK](documentdb-sdk-dotnet.md). COSMOS DB garantisce la coerenza assoluta per la lettura o di una query hello nei metadati di una risorsa del database. Eliminazione di un database automaticamente assicura che è in grado di recuperare raccolte hello o utenti contenuti al suo interno.   
 
 ## <a name="collections"></a>Raccolte
 Una raccolta di Cosmos DB è un contenitore per i documenti JSON. 
 
 ### <a name="elastic-ssd-backed-document-storage"></a>Archiviazione flessibile di documenti basata su unità SSD
-Una raccolta è intrinsecamente flessibile, poiché le dimensioni della raccolta aumentano o si riducono in seguito all'aggiunta o alla rimozione di documenti. Le raccolte sono risorse logiche e possono comprendere una o più partizioni fisiche o server. Il numero di partizioni in una raccolta è determinato da Cosmos DB in base allo spazio di archiviazione e alla velocità effettiva con provisioning della raccolta. Ogni partizione in Cosmos DB ha una quantità fissa di archiviazione supportata da unità SSD associata e viene replicata per la disponibilità elevata. Le partizioni vengono completamente gestite da Azure Cosmos DB e non è necessario scrivere codice complesso o gestire le partizioni. Le raccolte di Cosmos DB sono **praticamente illimitate** in termini di spazio di archiviazione e velocità effettiva. 
+Una raccolta è intrinsecamente flessibile, poiché le dimensioni della raccolta aumentano o si riducono in seguito all'aggiunta o alla rimozione di documenti. Le raccolte sono risorse logiche e possono comprendere una o più partizioni fisiche o server. numero di Hello delle partizioni all'interno di una raccolta è determinato dal DB Cosmos in base alle dimensioni di archiviazione hello e velocità effettiva di hello provisioning della raccolta. Ogni partizione in Cosmos DB ha una quantità fissa di archiviazione supportata da unità SSD associata e viene replicata per la disponibilità elevata. Gestione delle partizioni è completamente gestiti da Azure Cosmos DB, e non si dispone di codice complesso toowrite o gestire le partizioni. Le raccolte di Cosmos DB sono **praticamente illimitate** in termini di spazio di archiviazione e velocità effettiva. 
 
 ### <a name="automatic-indexing-of-collections"></a>Indicizzazione automatica delle raccolte
-Cosmos DB è un sistema di database effettivamente privo di schema. Non si presuppone o richiede alcuno schema per i documenti JSON. Cosmos DB indicizza automaticamente i documenti aggiunti a una raccolta e li rende disponibili per l'esecuzione di query. L'indicizzazione automatica di documenti senza la necessità di schemi o di indici secondari è una funzionalità chiave di Cosmos DB ed è resa possibile da tecniche di gestione dell'indice ottimizzate per la scrittura, prive di blocco e strutturate in log. Cosmos DB supporta un volume sostenuto di scritture estremamente veloci, gestendo al tempo stesso query coerenti. L'archiviazione documenti e l'archiviazione dell'indice sono usate per calcolare le risorse di archiviazione usate da ogni raccolta. È possibile controllare i compromessi tra archiviazione e prestazioni associati all'indicizzazione tramite la configurazione di un criterio di indicizzazione per una raccolta. 
+Cosmos DB è un sistema di database effettivamente privo di schema. Non presupporre o richiedere uno schema per documenti JSON hello. Come si aggiunge una raccolta di documenti tooa, DB Cosmos li indicizza automaticamente e sono disponibili per si tooquery. L'indicizzazione automatica di documenti senza la necessità di schemi o di indici secondari è una funzionalità chiave di Cosmos DB ed è resa possibile da tecniche di gestione dell'indice ottimizzate per la scrittura, prive di blocco e strutturate in log. Cosmos DB supporta un volume sostenuto di scritture estremamente veloci, gestendo al tempo stesso query coerenti. Il documento e l'indice dell'archiviazione sono stata utilizzata l'archiviazione di hello toocalculate utilizzati da ogni raccolta. È possibile controllare hello di prestazioni e archiviazione vantaggi e svantaggi associati di indicizzazione configurando i criteri di indicizzazione hello per una raccolta. 
 
-### <a name="configuring-the-indexing-policy-of-a-collection"></a>Configurazione dei criteri di indicizzazione di una raccolta
-Il criterio di indicizzazione di ogni raccolta rende possibili i compromessi tra prestazioni e archiviazione associati all'indicizzazione. Le opzioni seguenti sono disponibili come parte della configurazione dell'indicizzazione:  
+### <a name="configuring-hello-indexing-policy-of-a-collection"></a>Configurazione dei criteri di indicizzazione hello di una raccolta
+criteri di ogni raccolta di indicizzazione Hello consente toomake prestazioni e i vantaggi e svantaggi di archiviazione associati di indicizzazione. Hello sono le opzioni seguenti tooyou disponibile come parte della configurazione di indicizzazione:  
 
-* Possibilità di scegliere se la raccolta indicizza automaticamente o meno tutti i documenti. Per impostazione predefinita, saranno indicizzati automaticamente tutti i documenti. È possibile scegliere di disattivare l'indicizzazione automatica e aggiungere in modo selettivo solo documenti specifici all'indice. In alternativa, è possibile scegliere di escludere in modo selettivo solo documenti specifici. Per ottenere questo risultato, impostare la proprietà automatica su true o false nella proprietà indexingPolicy di una raccolta e usare l'intestazione di richiesta [x-ms-indexingdirective] durante l'inserimento, la sostituzione o l'eliminazione di un documento.  
-* Possibilità di scegliere se includere o escludere percorsi o modelli specifici nei documenti dall'indice. Per ottenere questo risultato, impostare rispettivamente includedPaths e excludedPaths in indexingPolicy di una raccolta. È anche possibile configurare i compromessi relativi ad archiviazione e prestazioni per query di intervallo e hash per modelli di percorso specifici. 
-* Possibilità di scegliere tra aggiornamenti sincroni (coerenti) e asincroni (differiti) dell'indice. Per impostazione predefinita, l'indice è aggiornato in modo sincrono a ogni inserimento, sostituzione o eliminazione di un documento nella raccolta. Ciò permette alle query di rispettare lo stesso livello di coerenza delle letture di documenti. Anche se Cosmos DB è ottimizzato per la scrittura e supporta volumi elevati di scritture di documenti, oltre a offrire la manutenzione sincrona dell'indice e la gestione di query coerenti, è possibile configurare determinate raccolte per l'aggiornamento differito dell'indice. L'indicizzazione differita migliora ulteriormente le prestazioni di scrittura ed è ideale per scenari di inserimento in blocco per raccolte principalmente a uso intensivo di lettura.
+* Scegliere se la raccolta hello vengono indicizzati automaticamente tutti i documenti hello o non. Per impostazione predefinita, saranno indicizzati automaticamente tutti i documenti. È possibile scegliere tooturn disattivare l'indicizzazione automatica e aggiungere in modo selettivo solo un indice toohello documenti specifici. Al contrario, è possibile scegliere in modo selettivo tooexclude solo documenti specifici. È possibile ottenere questo risultato impostando hello proprietà automatica toobe true o false in indexingPolicy hello di una raccolta e utilizzo dell'intestazione di richiesta di hello [x-ms-indexingdirective] durante l'inserimento, sostituzione o l'eliminazione di un documento.  
+* Scegliere se tooinclude o exclude percorsi specifici o modelli di documenti da hello indice. È possibile ottenere questa impostazione includedPaths ed excludedPaths in indexingPolicy hello di una raccolta rispettivamente. È anche possibile configurare hello archiviazione e sulle prestazioni dei compromessi per intervallo e hash di query per i modelli di percorso specifico. 
+* Possibilità di scegliere tra aggiornamenti sincroni (coerenti) e asincroni (differiti) dell'indice. Per impostazione predefinita, l'indice di hello viene aggiornato in modo sincrono in ogni inserimento, sostituzione o eliminazione di una raccolta di toohello documento. Questo consente le query hello toohonor hello che di lettura documento hello stesso livello di coerenza. Mentre Cosmos DB è con ottimizzazione per la scrittura e supporta volumi prolungati di scritture di documento e la manutenzione degli indici sincrono e la gestione delle query coerenti, è possibile configurare determinate tooupdate raccolte relativo indice in modo differito. Questo tipo di indicizzazione migliora ulteriormente le prestazioni scrittura hello ed è ideale per gli scenari di inserimento bulk per principalmente le raccolte con intensa attività di lettura.
 
-Il criterio di indicizzazione può essere modificato tramite l'esecuzione di un'operazione PUT sulla raccolta. Può essere ottenuto tramite l'[SDK client](documentdb-sdk-dotnet.md), il [portale di Azure](https://portal.azure.com) o le [API REST](/rest/api/documentdb/).
+criteri di indicizzazione Hello può essere modificato tramite l'esecuzione di un'operazione PUT su una raccolta di hello. Può essere ottenuta tramite hello [client SDK](documentdb-sdk-dotnet.md), hello [portale Azure](https://portal.azure.com) o hello [API REST](/rest/api/documentdb/).
 
 ### <a name="querying-a-collection"></a>Esecuzione di query su una raccolta
-I documenti in una raccolta possono avere schemi arbitrari ed è possibile eseguire query sui documenti in una raccolta senza fornire anticipatamente alcuno schema o alcun indice secondario. È possibile eseguire query sulla raccolta seguendo la procedura descritta in [API di DocumentDB per Azure Cosmos DB: riferimento per la sintassi SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx), che offre avanzati operatori gerarchici, relazionali e spaziali ed estendibilità tramite funzioni definite dall'utente basate su JavaScript. La grammatica JSON permette la modellazione di documenti JSON come alberi con etichette come nodi dell'albero. Viene usata dalle tecniche di indicizzazione automatica dell'API di DocumentDB e dal dialetto SQL dell'API di DocumentDB. Il linguaggio di query dell'API di DocumentDB è caratterizzato da tre aspetti principali:   
+documenti Hello all'interno di una raccolta possono avere schemi arbitrari ed è possibile eseguire una query documenti all'interno di una raccolta senza fornire informazioni dello schema o sin dall'inizio indici secondari. È possibile eseguire query di raccolta hello utilizzando hello [API DocumentDB di Azure Cosmos DB: riferimento alla sintassi SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx), che fornisce RTF gerarchici, relazionali, spaziali e gli operatori ed estendibilità tramite le UDF basate su JavaScript. Consente di grammatica JSON per la modellazione di documenti JSON come alberi con etichette come nodi dell'albero hello. Viene usata dalle tecniche di indicizzazione automatica dell'API di DocumentDB e dal dialetto SQL dell'API di DocumentDB. il linguaggio di query API DocumetDB Hello è costituita da tre aspetti principali:   
 
-1. Un set ridotto di operazioni di query mappate in modo naturale alla struttura ad albero, che include query e proiezioni gerarchiche. 
+1. Un piccolo set di operazioni di query che eseguono il mapping naturalmente struttura ad albero toohello inclusi proiezioni e query gerarchiche. 
 2. Un sottoinsieme di operazioni relazionali, incluse la composizione, l'applicazione di filtri, le proiezioni, le aggregazioni e i self join. 
 3. Funzioni definite dall'utente pure basate su JavaScript in grado di funzionare con (1) e (2).  
 
-Il modello di query di Cosmos DB cerca di raggiungere un equilibrio tra funzionalità, efficienza e semplicità. Il motore di database di Cosmos DB compila ed esegue in modo nativo le istruzioni di query SQL. È possibile eseguire query su una raccolta usando le [API REST](/rest/api/documentdb/) o uno degli [SDK client](documentdb-sdk-dotnet.md). In .NET SDK è disponibile un provider LINQ.
+modello di query Cosmos DB Hello tenta toostrike un equilibrio tra funzionalità, l'efficienza e alla semplicità. motore di database DB Cosmos Hello, in modo nativo, compila ed esegue le istruzioni di query SQL hello. È possibile eseguire query a una raccolta tramite hello [API REST](/rest/api/documentdb/) o una qualsiasi delle hello [client SDK](documentdb-sdk-dotnet.md). Hello .NET SDK include un provider LINQ.
 
 > [!TIP]
-> È possibile provare l'API di DocumentDB ed eseguire query SQL con il set di dati in [Query Playground](https://www.documentdb.com/sql/demo).
+> È possibile provare hello API DocumentDB ed eseguire query SQL nel set di dati in hello [Query Playground](https://www.documentdb.com/sql/demo).
 > 
 > 
 
 ## <a name="multi-document-transactions"></a>Transazioni in più documenti
-Le transazioni di database offrono un modello di programmazione sicuro e prevedibile per la gestione delle modifiche simultanee ai dati. In RDBMS la logica di business è tradizionalmente scritta tramite la scrittura di **stored procedure** e/o **trigger** ed è inviata al server database per l'esecuzione transazionale. In RDBMS il programmatore di applicazioni deve gestire due linguaggi di programmazione diversi: 
+Le transazioni di database offrono un modello di programmazione sicuro e prevedibile per la gestione di modifiche simultanee toohello dato. Nel sistema RDBMS e logica di business di hello modalità tradizionale toowrite è toowrite **stored procedure** e/o **trigger** e consegnare il server di database toohello per l'esecuzione transazionale. Programmatore applicazione hello RDBMS, è necessario toodeal con due diversi linguaggi di programmazione: 
 
-* Linguaggio di programmazione delle applicazioni (non transazionale), ad esempio JavaScript, Python, C#, Java e così via.
-* T-SQL, ovvero il linguaggio di programmazione transazionale eseguito in modo nativo dal database.
+* (non transazionale) Hello linguaggio di programmazione (ad esempio, JavaScript, Python, c#, Java e così via)
+* T-SQL, hello transazionale linguaggio di programmazione che viene eseguito in modo nativo dal database hello
 
-In virtù dell'integrazione completa di JavaScript e JSON direttamente nel motore di database, Cosmos DB offre un modello di programmazione intuitivo per eseguire la logica dell'applicazione basata su JavaScript direttamente nelle raccolte in termini di stored procedure e trigger. Questo offre entrambi i vantaggi seguenti:
+Grazie all'impegno complete tooJavaScript e JSON direttamente all'interno del motore di database hello, Cosmos DB fornisce un modello di programmazione intuitivo per JavaScript in esecuzione in base a logica dell'applicazione direttamente nelle raccolte di hello in termini di stored procedure e trigger. In questo modo per entrambe operazioni hello seguenti:
 
-* Implementazione efficiente del controllo della concorrenza, ripristino e indicizzazione automatica dei grafici di oggetti JSON direttamente nel motore di database.
-* Espressione naturale di flusso di controllo, definizione dell'ambito delle variabili e assegnazione e integrazione delle primitive di gestione delle eccezioni con transazioni di database direttamente sotto forma di linguaggio di programmazione JavaScript.
+* Controllare l'implementazione efficiente di concorrenza, ripristino, l'indicizzazione di grafici di oggetti JSON hello direttamente nel motore di database hello automatico
+* Naturalmente esprimere il flusso di controllo, variabili dell'ambito, l'assegnazione e integrazione di gestione delle eccezioni primitive con transazioni di database direttamente in termini di linguaggio di programmazione JavaScript hello
 
-La logica JavaScript registrata a livello di raccolta può quindi rilasciare operazioni sui documenti della raccolta specifica. Cosmos DB esegue implicitamente il wrapping di stored procedure e trigger basati su JavaScript in transazioni di ambiente ACID con isolamento degli snapshot nei documenti in una raccolta. Se JavaScript genera un'eccezione durante l'esecuzione, l'intera transazione sarà interrotta. Il modello di programmazione risultante è molto semplice ma efficace. Gli sviluppatori JavaScript ottengono un modello di programmazione "durevole", usando al tempo stesso i costrutti dei propri linguaggi preferiti e i primitivi di librerie.   
+logica di JavaScript Hello registrata a livello di raccolta può quindi eseguire operazioni di database su documenti hello di hello fornito insieme. DB COSMOS in modo implicito hello esegue il wrapping JavaScript basati su stored procedure e trigger all'interno di un ambiente transazioni ACID con isolamento dello snapshot in documenti all'interno di una raccolta. Durante l'esecuzione, hello se hello JavaScript verrà generata un'eccezione, quindi hello dell'intera transazione viene interrotta. Hello risulta modello di programmazione è molto semplice potenti. Gli sviluppatori JavaScript ottengono un modello di programmazione "durevole", usando al tempo stesso i costrutti dei propri linguaggi preferiti e i primitivi di librerie.   
 
-La possibilità di eseguire JavaScript direttamente nel motore di database nello stesso spazio di indirizzi del pool di buffer permette l'esecuzione efficiente e transazionale di operazioni di database nei documenti di una raccolta. Poiché il motore di database di Cosmos DB adotta completamente JSON e JavaScript, elimina eventuali mancate corrispondenze di impedenza tra i sistemi di tipi dell'applicazione e del database.   
+Hello possibilità tooexecute JavaScript direttamente all'interno del database hello motore in hello stesso spazio degli indirizzi del pool di buffer hello consente ad alte prestazioni e l'esecuzione transazionale di operazioni sui documenti hello del database di una raccolta. Inoltre, motore di database DB Cosmos rende toohello un impegno complete JSON e JavaScript elimina qualsiasi mancata corrispondenza tra i sistemi di tipi hello dell'applicazione e database hello.   
 
-Dopo aver creato una raccolta, è possibile registrare stored procedure, trigger e UDF con la raccolta usando le [API REST](/rest/api/documentdb/) o uno degli [SDK client](documentdb-sdk-dotnet.md). Dopo la registrazione, sarà possibile farvi riferimento ed eseguire questi elementi. La stored procedure seguente, scritta interamente in JavaScript, accetta due argomenti (titolo del libro e nome dell'autore) e crea un nuovo documento, esegue query per un documento e quindi lo aggiorna. Tutte queste operazioni sono eseguite tramite una transazione ACID implicita. Se in un punto qualsiasi dell'esecuzione viene generata un'eccezione JavaScript, l'intera transazione viene interrotta.
+Dopo aver creato una raccolta, è possibile registrare le stored procedure, trigger e funzioni definite dall'utente con una raccolta tramite hello [API REST](/rest/api/documentdb/) o una qualsiasi delle hello [client SDK](documentdb-sdk-dotnet.md). Dopo la registrazione, sarà possibile farvi riferimento ed eseguire questi elementi. Prendere in considerazione hello seguente stored procedure scritta interamente in JavaScript, codice hello seguente accetta due argomenti (nome e il nome dell'autore) e crea un nuovo documento, una query per un documento e quindi aggiorna il – tutti all'interno di una transazione ACID implicita. In qualsiasi momento durante l'esecuzione di hello, se viene generata un'eccezione JavaScript, hello intera transazione si interrompe.
 
     function businessLogic(name, author) {
         var context = getContext();
@@ -242,10 +242,10 @@ Dopo aver creato una raccolta, è possibile registrare stored procedure, trigger
 
                         context.getResponse().setBody(matchingDocuments.length);
 
-                        // Replace the author name for all documents that satisfied the query.
+                        // Replace hello author name for all documents that satisfied hello query.
                         for (var i = 0; i < matchingDocuments.length; i++) {
                             matchingDocuments[i].author = "George R. R. Martin";
-                            // we don’t need to execute a callback because they are in parallel
+                            // we don’t need tooexecute a callback because they are in parallel
                             collectionManager.replaceDocument(matchingDocuments[i]._self,
                                 matchingDocuments[i]);   
                         }
@@ -253,7 +253,7 @@ Dopo aver creato una raccolta, è possibile registrare stored procedure, trigger
             })
     };
 
-Il client può "inviare" la logica JavaScript precedente al database per l'esecuzione transazionale tramite POST HTTP. Per altre informazioni sull'uso di metodi HTTP, vedere [RESTful interactions with Azure Cosmos DB resources](https://msdn.microsoft.com/library/azure/mt622086.aspx) (Interazioni RESTful con risorse di Azure Cosmos DB). 
+client Hello "spedire" hello sopra database toohello logica di JavaScript per l'esecuzione transazionale tramite HTTP POST. Per altre informazioni sull'uso di metodi HTTP, vedere [RESTful interactions with Azure Cosmos DB resources](https://msdn.microsoft.com/library/azure/mt622086.aspx) (Interazioni RESTful con risorse di Azure Cosmos DB). 
 
     client.createStoredProcedureAsync(collection._self, {id: "CRUDProc", body: businessLogic})
        .then(function(createdStoredProcedure) {
@@ -269,14 +269,14 @@ Il client può "inviare" la logica JavaScript precedente al database per l'esecu
         });
 
 
-Poiché il database comprende in modo nativo JSON e JavaScript, non si verificano mancate corrispondenze tra sistemi di tipi né sono necessari "mapping OR" o generazione di codice.   
+Si noti che poiché il database di hello in modo nativo riconosce JSON e JavaScript, non è non corrispondenti di sistema di tipo, "mapping OR" o chiave di generazione di codice richiesto.   
 
-Le stored procedure e i trigger interagiscono con una raccolta e con i documenti in una raccolta tramite un modello a oggetti ben definito, che espone il contesto corrente della raccolta.  
+Stored procedure e trigger interagire con i documenti in una raccolta tramite un modello a oggetti ben definiti, che espone il contesto insieme corrente di hello hello e di raccolta.  
 
-Le raccolte nell'API di DocumentDB possono essere create, eliminate, lette o enumerate facilmente usando le [API REST](/rest/api/documentdb/) o uno degli [SDK client](documentdb-sdk-dotnet.md). L'API di DocumentDB offre sempre una coerenza assoluta per la lettura o l'esecuzione di query sui metadati di una raccolta. Se si elimina una raccolta, non sarà automaticamente più possibile accedere a documenti, allegati, stored procedure, trigger e funzioni UDF inclusi nella raccolta stessa.   
+Le raccolte in hello API DocumentDB è possibile creare, eliminare, leggere o enumerati facilmente utilizzando entrambi hello [API REST](/rest/api/documentdb/) o una qualsiasi delle hello [client SDK](documentdb-sdk-dotnet.md). Hello API DocumentDB fornisce sempre coerenza assoluta per la lettura o di una query hello nei metadati di una raccolta. L'eliminazione di una raccolta automaticamente assicura che non è possibile accedere a uno qualsiasi dei documenti hello, allegati, stored procedure, trigger e funzioni definite dall'utente in esso contenuti.   
 
 ## <a name="stored-procedures-triggers-and-user-defined-functions-udf"></a>Stored procedure, trigger e funzioni definite dall'utente (UDF)
-Come illustrato nella sezione precedente, è possibile scrivere logica dell'applicazione per l'esecuzione direttamente in una transazione nel motore del database. La logica dell'applicazione può essere scritta interamente in JavaScript e può essere modellata come stored procedure, trigger o funzione definita dall'utente (UDF, User-Defined Function). Il codice JavaScript in una stored procedure o un trigger può inserire, sostituire, eliminare, leggere o sottoporre a query documenti all'interno di una raccolta. Il codice JavaScript all'interno di una funzione definita dall'utente, invece, non può inserire, sostituire o eliminare documenti. Le funzioni definite dall'utente enumerano i documenti di un set di risultati di query e producono un altro set di risultati. Per la multi-tenancy, Cosmos DB applica una rigida governance delle risorse basata sulle prenotazioni. Ogni stored procedure, trigger o funzione UDF ottiene una quantità fissa di risorse del sistema operativo per l'esecuzione delle operazioni. Le stored procedure, i trigger o le funzioni UDF, inoltre, non possono collegarsi a librerie JavaScript esterne e saranno disattivati in caso di superamento dei rispettivi budget di risorse allocati. È possibile eseguire o annullare la registrazione di stored procedure, trigger o funzioni definite dall'utente con una raccolta usando le API REST.  Durante la registrazione, una stored procedure, un trigger o una funzione UDF saranno precompilati e archiviati come codice byte, che sarà eseguito in seguito. La sezione seguente illustra come usare Cosmos DB JavaScript SDK per la registrazione, l'esecuzione e l'annullamento della registrazione di una stored procedure, un trigger e una funzione definita dall'utente. JavaScript SDK è un semplice wrapper per le [API REST](/rest/api/documentdb/). 
+Come descritto nella sezione precedente di hello, è possibile scrivere applicazioni logica toorun direttamente all'interno di una transazione all'interno del motore di database hello. la logica dell'applicazione Hello può essere scritta interamente in JavaScript e può essere modellata come una stored procedure, trigger o una funzione definita dall'utente. Hello codice JavaScript all'interno di una stored procedure o un trigger può inserire, sostituire, eliminazione e lettura o la query documenti all'interno di una raccolta. In hello invece, non è possibile inserire, sostituire o eliminare documenti hello JavaScript all'interno di una funzione definita dall'utente. Funzioni definite dall'utente enumerare documenti hello del set di risultati di query e restituire un altro set di risultati. Per la multi-tenancy, Cosmos DB applica una rigida governance delle risorse basata sulle prenotazioni. Ogni stored procedure, trigger o una funzione definita dall'utente ottiene un quantum predefinito del sistema operativo risorse toodo il proprio lavoro. Inoltre, le stored procedure, trigger o funzioni definite dall'utente non è possibile collegare in librerie JavaScript esterne e sono disattivato se superano i budget di risorsa hello allocati toothem. È possibile registrare, annullare la registrazione di stored procedure, trigger o funzioni definite dall'utente con una raccolta usando le API REST di hello.  Durante la registrazione, una stored procedure, un trigger o una funzione UDF saranno precompilati e archiviati come codice byte, che sarà eseguito in seguito. Hello seguente sezione viene illustrato come è possibile utilizzare hello Cosmos DB JavaScript SDK tooregister, eseguire e annullare la registrazione di una stored procedure, trigger e una funzione definita dall'utente. Hello SDK per JavaScript è un semplice wrapper su hello [API REST](/rest/api/documentdb/). 
 
 ### <a name="registering-a-stored-procedure"></a>Registrazione di una stored procedure
 La registrazione di una stored procedure consiste nel creare una nuova risorsa stored procedure in una raccolta tramite un metodo HTTP POST.  
@@ -305,7 +305,7 @@ La registrazione di una stored procedure consiste nel creare una nuova risorsa s
         });
 
 ### <a name="executing-a-stored-procedure"></a>Esecuzione di una stored procedure
-L'esecuzione di una stored procedure avviene tramite l'esecuzione di un metodo HTTP POST su una risorsa stored procedure esistente passando i parametri alla procedura nel corpo della richiesta.
+Esecuzione di una stored procedure viene eseguita inviando una richiesta POST HTTP su una risorsa stored procedure esistente passando i parametri procedure toohello nel corpo della richiesta hello.
 
     var inputDocument = {id : "document1", author: "G. G. Marquez"};
     client.executeStoredProcedureAsync(createdStoredProcedure.resource._self, inputDocument)
@@ -327,7 +327,7 @@ L'annullamento della registrazione di una stored procedure avviene tramite la se
 
 
 ### <a name="registering-a-pre-trigger"></a>Registrazione di un trigger
-La registrazione di un trigger è eseguita tramite la creazione di una nuova risorsa trigger in una raccolta tramite HTTP POST. È possibile specificare se si tratta di un trigger di tipo pre o post e il tipo di operazione a cui può essere associato, ad esempio creazione, sostituzione, eliminazione o tutte le operazioni.   
+La registrazione di un trigger è eseguita tramite la creazione di una nuova risorsa trigger in una raccolta tramite HTTP POST. È possibile specificare se i trigger di hello è una versione preliminare o un tipo di trigger e hello post dell'operazione può essere associata a (ad esempio Create, Replace, Delete o tutti).   
 
     var preTrigger = {
         id: "upperCaseId",
@@ -348,9 +348,9 @@ La registrazione di un trigger è eseguita tramite la creazione di una nuova ris
         });
 
 ### <a name="executing-a-pre-trigger"></a>Esecuzione di un trigger
-L'esecuzione di un trigger è effettuata specificando il nome di un trigger esistente contemporaneamente all'emissione della richiesta POST/PUT/DELETE di una risorsa documento tramite l'intestazione della richiesta.  
+Esecuzione di un trigger viene eseguita specificando il nome di hello di un trigger esistente in fase di hello di hello di richiesta POST, PUT o eliminazione di una risorsa documento tramite l'intestazione della richiesta hello.  
 
-    client.createDocumentAsync(collection._self, { id: "doc1", key: "Love in the Time of Cholera" }, { preTriggerInclude: "upperCaseId" })
+    client.createDocumentAsync(collection._self, { id: "doc1", key: "Love in hello Time of Cholera" }, { preTriggerInclude: "upperCaseId" })
         .then(function(createdDocument) {
             assert.equal(createdDocument.resource.id, "DOC1");
         }, function(error) {
@@ -383,8 +383,8 @@ La registrazione di una funzione UDF è eseguita tramite la creazione di una nuo
             console.log("Error");
         });
 
-### <a name="executing-a-udf-as-part-of-the-query"></a>Esecuzione di una funzione UDF come parte della query
-Una funzione definita dall'utente può essere specificata come parte della query SQL e viene usata per estendere il [linguaggio di query SQL dell'API di DocumentDB](https://msdn.microsoft.com/library/azure/dn782250.aspx) di base.
+### <a name="executing-a-udf-as-part-of-hello-query"></a>L'esecuzione di una funzione definita dall'utente come parte di query hello
+Una funzione definita dall'utente può essere specificato come parte della query SQL hello e viene utilizzato come un core di hello tooextend modo [linguaggio di query SQL per l'API DocumentDB hello](https://msdn.microsoft.com/library/azure/dn782250.aspx).
 
     var filterQuery = "SELECT udf.mathSqrt(r.Age) AS sqrtAge FROM root r WHERE r.FirstName='John'";
     client.queryDocuments(collection._self, filterQuery).toArrayAsync();
@@ -404,56 +404,56 @@ L'annullamento della registrazione di una funzione definita dall'utente avviene 
             console.log("Error");
         });
 
-Anche se i frammenti di codice precedenti illustrano la registrazione (POST), l'annullamento della registrazione (PUT), la lettura/creazione di un elenco (GET) e l'esecuzione (POST) tramite [JavaScript SDK](https://github.com/Azure/azure-documentdb-js), è anche possibile usare le [API REST](/rest/api/documentdb/) o altri [SDK del client](documentdb-sdk-dotnet.md). 
+Anche se ha dimostrato hello i frammenti di codice precedente registrazione hello (POST), l'annullamento della registrazione (PUT), lettura/elenco (GET) e l'esecuzione (POST) tramite hello [JavaScript SDK](https://github.com/Azure/azure-documentdb-js), è inoltre possibile utilizzare hello [API REST](/rest/api/documentdb/) o altri [client SDK](documentdb-sdk-dotnet.md). 
 
 ## <a name="documents"></a>Documenti
-È possibile inserire, sostituire, eliminare, leggere, enumerare ed eseguire query in documenti JSON arbitrari in una raccolta. Cosmos DB non rende obbligatorio alcuno schema e non richiede indici secondari per il supporto delle query sui documenti di una raccolta. Le dimensioni massime per un documento sono pari a 2 MB.   
+È possibile inserire, sostituire, eliminare, leggere, enumerare ed eseguire query in documenti JSON arbitrari in una raccolta. COSMOS DB non implica qualsiasi schema e non richiede gli indici secondari in ordine toosupport l'esecuzione di query sui documenti in una raccolta. dimensione massima di Hello per un documento è 2 MB.   
 
-Essendo un vero e proprio servizio di database aperto, Cosmos DB non genera tipi di dati specializzati (ad esempio, data e ora) né codifiche specifiche per i documenti JSON. Tenere presente che Cosmos DB non richiede alcuna convenzione JSON specifica per codificare le relazioni tra i diversi documenti. La sintassi SQL di Cosmos DB offre operatori di query avanzati gerarchici e relazionali per eseguire query e proiezioni sui documenti senza annotazioni speciali o senza dover codificare le relazioni tra i documenti usando proprietà distinte.  
+Essendo un vero e proprio servizio di database aperto, Cosmos DB non genera tipi di dati specializzati (ad esempio, data e ora) né codifiche specifiche per i documenti JSON. Si noti che DB Cosmos non richiedono speciali JSON convenzioni toocodify hello relazioni tra i vari documenti. la sintassi SQL Hello del DB Cosmos fornisce gli operatori di query relazionale e gerarchica molto potente tooquery e progetto documenti senza annotazioni speciali o necessità toocodify relazioni tra i documenti con proprietà distinte.  
 
-Analogamente a tutte le altre risorse, i documenti possono essere creati, sostituiti, eliminati, letti, enumerati e sottoposti a query con facilità tramite le API REST o uno degli [SDK dei client](documentdb-sdk-dotnet.md). Se si elimina un documento, la quota corrispondente a tutti gli allegati annidati sarà resa immediatamente disponibile. Il livello di coerenza di lettura dei documenti segue i criteri di coerenza applicati all'account di database. È possibile eseguire l'override di questo criterio per le singole richieste, in base ai requisiti di coerenza dei dati specifici dell'applicazione. Durante l'esecuzione di query nei documenti, la coerenza di lettura si basa sulla modalità di indicizzazione impostata per la raccolta. Ai fini della coerenza, si basa sui criteri di coerenza dell'account. 
+Come con tutte le altre risorse, è possono creare documenti, sostituito, eliminare, leggere, enumerati e individuato facilmente utilizzando le API REST o uno qualsiasi dei hello [client SDK](documentdb-sdk-dotnet.md). L'eliminazione di un documento immediatamente consente di liberare hello tooall corrispondente di quota di allegati hello annidato. Hello lettura a livello di coerenza dei documenti segue criteri coerenza hello account database hello. È possibile eseguire l'override di questo criterio per le singole richieste, in base ai requisiti di coerenza dei dati specifici dell'applicazione. Quando una query su documenti, hello leggere coerenza segue hello l'indicizzazione in modalità di raccolta hello. Per "coerente", questo segue i criteri di consistenza dell'account hello. 
 
 ## <a name="attachments-and-media"></a>Allegati e file multimediali
-Cosmos DB consente di archiviare BLOB/file multimediali binari con Cosmos DB (al massimo 2 GB per account) o nello store multimediale remoto. Permette anche di rappresentare i metadati dei file multimediali sotto forma di un documento speciale definito allegato. Un allegato in Cosmos DB è un documento speciale (JSON) che fa riferimento a file multimediali/BLOB archiviati altrove. Un allegato è semplicemente un documento speciale che acquisisce i metadati, come percorso, autore e così via, di un file multimediale archiviato in una risorsa di archiviazione multimediale remota. 
+COSMOS DB consente toostore binario BLOB o dei supporti con DB Cosmos (massimo di 2 GB per ogni account) o tooyour multimediali remoti proprio archivio. Consente inoltre toorepresent hello metadati di un supporto in termini di un documento speciale denominato allegato. Allegato a un database Cosmos è un documento di (JSON) speciale che riferimenti hello multimediale/blob archiviati in un' posizione. Un allegato è semplicemente un documento speciale che acquisisce hello metadati (ad esempio percorso, autore e così via) di una media archiviato in un archivio remoto supporti. 
 
-Si prenda in considerazione un'applicazione di lettura di social media che usa Cosmos DB per archiviare annotazioni a penna e metadati, inclusi commenti, evidenziazioni, segnalibri, valutazioni, commenti di tipo mi piace/non mi piace e così via, associati a un e-book di un utente specifico.   
+Si consideri un'applicazione di social networking di lettura che utilizza le annotazioni a penna toostore DB Cosmos ed evidenzia metadati comprensivo di commenti, segnalibri, classificazioni, simili/preferenze e così via associati per un e-book di un determinato utente.   
 
-* Il contenuto del libro stesso è archiviato nel supporto di memorizzazione disponibile come parte dell'account di database di Cosmos DB o in uno store multimediale remoto. 
+* Hello contenuto del libro hello stesso viene archiviato nell'archivio multimediale hello è disponibile come parte dell'account database DB Cosmos o un archivio remoto supporti. 
 * Un'applicazione può archiviare i metadati di ogni utente come documento distinto, ad esempio i metadati di Joe per book1 saranno archiviati in un documento a cui si fa riferimento come /colls/joe/docs/book1. 
-* Gli allegati che fanno riferimento alle pagine di contenuto di un determinato e-book di un utente sono archiviati nel documento corrispondente, ad esempio /colls/joe/docs/book1/chapter1, /colls/joe/docs/book1/chapter2 e così via. 
+* Gli allegati che punta toohello pagine di contenuto di un libro di un utente specifico vengono archiviati nel documento corrispondente hello /colls/joe/docs/book1/chapter1 ad esempio, /colls/joe/docs/book1/chapter2 e così via. 
 
-Si noti che gli esempi appena riportati usano ID descrittivi per indicare la gerarchia delle risorse. L'accesso alle risorse è effettuato tramite le API REST mediante ID di risorsa univoci. 
+Si noti che gli esempi di hello elencati sopra Usa gerarchia di risorse hello tooconvey ID descrittivo. Le risorse sono accessibili tramite le API REST di hello tramite gli ID di risorsa univoca. 
 
-Nel caso dei file multimediali gestiti da Cosmos DB, la proprietà _media dell'allegato farà riferimento al file multimediale tramite l'URI. Cosmos DB assicura la garbage collection del file multimediale dopo il rilascio di tutti i riferimenti in sospeso. Cosmos DB genera automaticamente gli allegati quando si caricano nuovi file multimediali e popola la proprietà _media per poter fare riferimento ai nuovi file multimediali aggiunti. Se si sceglie di archiviare i file multimediali in un archivio BLOB remoto gestito personalmente, ad esempio OneDrive, Archiviazione di Azure, Dropbox e così via, sarà comunque possibile usare gli allegati per fare riferimento ai file multimediali. In questo caso sarà necessario creare personalmente l'allegato e popolarne la proprietà _media.   
+Per un supporto hello che è gestito da DB Cosmos, proprietà Media hello di allegato hello farà riferimento supporti hello dal relativo URI. COSMOS DB modo supporti hello collect toogarbage quando tutti i riferimenti in attesa di hello vengono eliminati. COSMOS DB genera allegato hello quando si carica un nuovo supporto hello e popolati automaticamente hello Media toopoint toohello appena aggiunto supporto. Se si sceglie supporti hello toostore in un archivio blob remoti gestito dall'utente (ad esempio, OneDrive, l'archiviazione di Azure, DropBox e così via), è possibile utilizzare ancora media di hello tooreference allegati. In questo caso, si verrà personalizzate allegato hello e popolare la relativa proprietà Media.   
 
-Analogamente a tutte le altre risorse, gli allegati possono essere creati, sostituiti, eliminati, letti o enumerati con facilità tramite le API REST o uno degli SDK dei client. Come per i documenti, il livello di coerenza di lettura degli allegati segue i criteri di coerenza applicati all'account di database. È possibile eseguire l'override di questo criterio per le singole richieste, in base ai requisiti di coerenza dei dati specifici dell'applicazione. Durante l'esecuzione di query relative agli allegati, la coerenza di lettura si basa sulla modalità di indicizzazione impostata per la raccolta. Ai fini della coerenza, si basa sui criteri di coerenza dell'account. 
+Come con tutte le altre risorse, gli allegati possono essere creati, sostituito, eliminare, leggere o enumerati facilmente utilizzando le API REST o uno qualsiasi dei client hello SDK. Con i documenti, hello lettura a livello di coerenza degli allegati di segue i criteri di verifica coerenza hello account database hello. È possibile eseguire l'override di questo criterio per le singole richieste, in base ai requisiti di coerenza dei dati specifici dell'applicazione. Quando si eseguono query per gli allegati, hello lettura coerenza segue hello l'indicizzazione in modalità di raccolta hello. Per "coerente", questo segue i criteri di consistenza dell'account hello. 
  
 
 ## <a name="users"></a>Utenti
-Un utente di Cosmos DB rappresenta uno spazio dei nomi logico per il raggruppamento di autorizzazioni. Un utente di Cosmos DB può corrispondere a un utente in un sistema di gestione delle identità o a un ruolo applicazione predefinito. In Cosmos DB un utente rappresenta semplicemente un'astrazione per raggruppare un set di autorizzazioni in un database.   
+Un utente di Cosmos DB rappresenta uno spazio dei nomi logico per il raggruppamento di autorizzazioni. Un utente DB Cosmos potrebbe corrispondere tooa utente in un sistema di gestione di identità o un ruolo applicazione predefinita. Per Cosmos DB, un utente rappresenta semplicemente un toogroup astrazione un set di autorizzazioni in un database.   
 
-Per l'implementazione della multi-tenancy nell'applicazione, è possibile creare utenti in Cosmos DB corrispondenti agli effettivi utenti o ai tenant dell'applicazione. È quindi possibile creare autorizzazioni per un utente specifico, corrispondenti al controllo di accesso su diversi documenti, raccolte, allegati e così via.   
+Per l'implementazione di multi-tenancy nell'applicazione, è possibile creare utenti in Cosmos DB che corrisponde a utenti effettivi tooyour o tenant hello dell'applicazione. È quindi possibile creare le autorizzazioni per un determinato utente corrispondenti toohello di controllo di accesso su varie raccolte, documenti, allegati e così via.   
 
-Poiché la scalabilità delle applicazione deve essere adeguata all'incremento degli utenti, è possibile adottare modi diversi per partizionare i dati. È possibile modellare ogni utente in modo che:   
+Come le applicazioni devono tooscale con l'aumento delle dimensioni dell'utente, è possibile adottare diversi modi tooshard i dati. È possibile modellare ogni utente in modo che:   
 
-* Ogni utente venga mappato a un database.
-* Ogni utente venga mappato a una raccolta. 
-* I documenti corrispondenti a più utenti passino a una raccolta dedicata. 
-* I documenti corrispondenti a più utenti passino a un set di raccolte.   
+* Ogni utente esegue il mapping tooa database.
+* Ogni utente esegue il mapping tooa insieme. 
+* Documenti corrispondenti agli utenti di toomultiple passare insieme tooa dedicato. 
+* Documenti corrispondenti agli utenti di toomultiple passare tooa set di raccolte.   
 
-Indipendentemente dalla strategia scelta per partizionare i dati, è possibile modellare gli utenti effettivi come utenti nel database di Cosmos DB e associare autorizzazioni dettagliate a ogni utente.  
+Indipendentemente dalla strategia di partizionamento orizzontale specifica hello che scelta, è possibile modellare gli utenti effettivi come gli utenti di database DB Cosmos e associare utente tooeach autorizzazioni specifiche.  
 
 ![Raccolte degli utenti][3]  
 **Strategie di partizionamento orizzontale e modellazione degli utenti**
 
-Analogamente a tutte le altre risorse, gli utenti in Cosmos DB possono essere creati, sostituiti, eliminati, letti o enumerati con facilità usando le API REST o uno degli SDK client. Cosmos DB offre sempre una coerenza assoluta per la lettura o l'esecuzione di query sui metadati di una risorsa utente. È utile segnalare che se si elimina un utente, non sarà automaticamente più possibile accedere alle autorizzazioni incluse nell'utente stesso. Anche se Cosmos DB recupera in background la quota di autorizzazioni come parte dell'utente eliminato, le autorizzazioni eliminate saranno disponibili immediatamente per un nuovo uso.  
+Come tutte le altre risorse, gli utenti nel database Cosmos possono essere creati, sostituito, eliminati, leggere o enumerati facilmente utilizzando le API REST o uno qualsiasi dei client hello SDK. COSMOS DB fornisce sempre coerenza assoluta per la lettura o di una query hello nei metadati di una risorsa utente. È importante precisare che l'eliminazione di un utente automaticamente garantisce che non è possibile accedere autorizzazioni hello in esso contenuti. Anche se quota hello di autorizzazioni hello viene recuperato da hello DB Cosmos come parte dell'utente eliminato hello in background hello, autorizzazioni hello eliminato è disponibile immediatamente nuovamente per si toouse.  
 
-## <a name="permissions"></a>autorizzazioni
-Dal punto di vista del controllo di accesso, le risorse quali account di database, database, utenti e autorizzazioni sono considerate come risorse *amministrative* perché necessitano di autorizzazioni amministrative. L'ambito di risorse quali raccolte, documenti, allegati, stored procedure, trigger e funzioni UDF invece è limitato a un database specifico e queste risorse sono considerate *risorse dell'applicazione*. Il modello di autorizzazione, che corrisponde ai due tipi di risorse e ai ruoli che vi accedono, ovvero l'amministratore e l'utente, definisce due tipi di *chiavi di accesso*: *chiave master* e *chiave risorsa*. La chiave master fa parte dell'account di database ed è fornita allo sviluppatore o all'amministratore che esegue il provisioning dell'account di database. La chiave master usa semantica di amministratore, ovvero può essere usata per autorizzare l'accesso alle risorse amministrative e dell'applicazione. La chiave di risorsa, invece, è una chiave di accesso granulare che permette l'accesso a una risorsa *specifica* dell'applicazione. Acquisisce quindi la relazione tra l'utente di un database e le autorizzazioni di cui l'utente dispone per una risorsa specifica, ad esempio una raccolta, un documento, un allegato, una stored procedure, un trigger o una funzione UDF.   
+## <a name="permissions"></a>Autorizzazioni
+Dal punto di vista del controllo di accesso, le risorse quali account di database, database, utenti e autorizzazioni sono considerate come risorse *amministrative* perché necessitano di autorizzazioni amministrative. In hello altra parte, incluse le raccolte di hello, documenti, allegati, stored procedure, trigger, risorse e funzioni definite dall'utente sono con ambito in un determinato database e considerati *risorse dell'applicazione*. Corrispondente toohello due tipi di risorse e i ruoli hello accedervi (vale a dire hello amministratore e utente), il modello di autorizzazione hello definisce due tipi di *le chiavi di accesso*: *chiave master* e *chiave di risorsa*. chiave master di Hello è una parte dell'account database hello e viene fornito per sviluppatori toohello (o amministratore) che esegue il provisioning account hello del database. La chiave master utilizza la semantica di amministratore, in quanto può essere utilizzato tooauthorize accesso tooboth amministrativi e le risorse dell'applicazione. Al contrario, una chiave di risorsa è una chiave di accesso granulare che consente accesso tooa *specifico* risorsa dell'applicazione. Di conseguenza, l'acquisizione di relazione hello tra utente hello di un database e hello autorizzazioni hello utente per una risorsa specifica (ad esempio, insieme, documento, allegati, stored procedure, trigger o funzione definita dall'utente).   
 
-L'unico modo per ottenere una chiave di risorsa consiste nella creazione di una risorsa di autorizzazione per un utente specifico. Si noti che per creare o recuperare un'autorizzazione è necessario presentare una chiave master nell'intestazione dell'autorizzazione. Una risorsa di autorizzazione associa la risorsa, l'accesso e l'utente. Dopo la creazione di una risorsa di autorizzazione, l'utente dovrà solo presentare la chiave di risorsa associata per ottenere l'accesso alla risorsa rilevante. Una chiave di risorsa può essere quindi considerata come una rappresentazione logica e compatta della risorsa di autorizzazione.  
+Hello solo modo tooobtain che una chiave di risorsa è tramite la creazione di una risorsa di autorizzazione in un determinato utente. Si noti che nell'ordine toocreate o recuperare un'autorizzazione, una chiave master deve essere presentata nell'intestazione di autorizzazione hello. Una risorsa di autorizzazione Collega utente di risorse, l'accesso e hello hello. Dopo la creazione di una risorsa di autorizzazione, utente hello deve solo una chiave di risorsa associata toopresent hello nella risorsa pertinente toohello accesso toogain ordine. Di conseguenza, una chiave di risorsa può essere visualizzata come una rappresentazione compatta e logica della risorsa di autorizzazione hello.  
 
-Come per tutte le altre risorse, le autorizzazioni in Cosmos DB possono essere create, sostituite, eliminate, lette o enumerate facilmente usando le API REST o uno degli SDK client. Cosmos DB offre sempre una coerenza assoluta per la lettura o l'esecuzione di query sui metadati di un'autorizzazione. 
+Come con tutte le altre risorse, le autorizzazioni nel database Cosmos possono essere create, sostituito, eliminare, leggere o enumerati facilmente utilizzando le API REST o uno qualsiasi dei client hello SDK. COSMOS DB fornisce sempre coerenza assoluta per la lettura o di una query hello nei metadati di un'autorizzazione. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni sull'utilizzo di risorse tramite comandi HTTP, vedere [RESTful interactions with Cosmos DB resources](https://msdn.microsoft.com/library/azure/mt622086.aspx) (Interazioni di tipo RESTful con risorse di Cosmos DB).

@@ -1,6 +1,6 @@
 ---
-title: Panoramica della soluzione di connected factory di Azure IoT Suite | Microsoft Docs
-description: Descrizione della soluzione preconfigurata di connected factory di Azure IoT Suite.
+title: Panoramica di factory di connesso aaaAzure IoT Suite | Documenti Microsoft
+description: Una descrizione di hello Azure IoT Suite connesso soluzione factory preconfigurato.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,263 +15,263 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2017
 ms.author: dobett
-ms.openlocfilehash: d502c8e2e2715899279f6ebcf7ed89c19a1bb9a6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 929b5ed41ef7d82c9b4480d02aa3f0db38931919
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-connected-factory-preconfigured-solution"></a>Introduzione alla soluzione preconfigurata di connected factory
+# <a name="get-started-with-hello-connected-factory-preconfigured-solution"></a>Introduzione a soluzioni factory preconfigurato hello connesso
 
-Le [soluzioni preconfigurate][lnk-preconfigured-solutions] di Azure IoT Suite combinano più servizi IoT di Azure per fornire soluzioni end-to-end che implementano scenari aziendali IoT comuni. La soluzione preconfigurata di *connected factory* si connette ai dispositivi industriali e li monitora. È possibile usare la soluzione per analizzare il flusso di dati dei dispositivi e ottimizzare la produttività e la redditività operativa.
+Azure IoT Suite [preconfigurato soluzioni] [ lnk-preconfigured-solutions] combinare più Azure IoT servizi toodeliver end-to-end soluzioni che implementano i comuni scenari di business IoT. Hello *factory connesso* soluzione preconfigurata si connette i dispositivi industriali tooand monitoraggi. È possibile utilizzare hello soluzione tooanalyze hello flusso di dati dai dispositivi e toodrive operativo produttività e la redditività.
 
-Questa esercitazione illustra come effettuare il provisioning della soluzione preconfigurata di connected factory. Ne descrive anche le funzionalità di base. È possibile accedere a molte di queste funzionalità dal *dashboard* distribuito come parte della soluzione preconfigurata:
+Questa esercitazione viene illustrato il modo in cui tooprovision hello connesse factory preconfigurato soluzione. Illustra anche funzionalità di base della soluzione hello preconfigurato hello. Molte di queste funzionalità accessibili dalla soluzione hello *dashboard* che distribuisce come parte della soluzione preconfigurata hello:
 
 ![Dashboard della soluzione preconfigurata di connected factory][img-cf-home]
 
-Per completare l'esercitazione, è necessaria una sottoscrizione di Azure attiva.
+toocomplete questa esercitazione, è necessaria una sottoscrizione di Azure attiva.
 
 > [!NOTE]
 > Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure][lnk_free_trial].
 > 
 > 
 
-## <a name="provision-the-solution"></a>Effettuare il provisioning della soluzione
+## <a name="provision-hello-solution"></a>Eseguire il provisioning hello soluzione
 
-1. Accedere ad azureiotsuite.com con le credenziali dell'account Azure e fare clic su "**+**" per creare una soluzione.
-2. Fare clic su **Seleziona** e sul riquadro **Connected factory**.
+1. Accedere utilizzando le credenziali dell'account Azure tooazureiotsuite.com e fare clic su "**+**" toocreate una soluzione.
+2. Fare clic su **selezionare** su hello **factory connesso** riquadro.
 3. Immettere un valore in **Nome soluzione** per la soluzione preconfigurata di connected factory.
-4. Selezionare la **sottoscrizione** e l'**area** da usare per il provisioning della soluzione.
-5. Fare clic su **Crea soluzione** per iniziare il processo di provisioning. In genere il processo richiede alcuni minuti.
+4. Seleziona hello **sottoscrizione** e **area** si desidera toouse tooprovision hello soluzione.
+5. Fare clic su **crea soluzione** hello toobegin processo di provisioning. Questo processo è in genere richiede diversi minuti toorun.
 
-### <a name="while-you-wait-for-the-provisioning-process-to-complete"></a>In attesa del completamento del provisioning
+### <a name="while-you-wait-for-hello-provisioning-process-toocomplete"></a>Durante l'attesa per hello toocomplete processo di provisioning
 
-1. Fare clic sul riquadro della soluzione con stato **Provisioning**.
-2. Notare gli stati **Provisioning** man mano che i servizi di Azure vengono distribuiti nella sottoscrizione di Azure.
-3. Al termine del provisioning, lo stato cambierà in **Pronto**.
-4. Fare clic sul riquadro per visualizzare i dettagli della soluzione nel riquadro di destra.
+1. Fare clic sul riquadro hello per la soluzione con **Provisioning** stato.
+2. Hello preavviso **Provisioning stati** come servizi di Azure vengono distribuiti nella sottoscrizione di Azure.
+3. Una volta al termine del provisioning, hello modifiche allo stato troppo**pronto**.
+4. Fare clic su dettagli di hello riquadro toosee hello della soluzione nel riquadro di destra hello.
 
 > [!NOTE]
-> In caso di problemi nella distribuzione della soluzione preconfigurata, vedere [Autorizzazioni per il sito azureiotsuite.com][lnk-permissions] e le [domande frequenti sulla soluzione di connected factory](iot-suite-faq-cf.md). Se i problemi persistono, creare un ticket di servizio nel [portale][lnk-portal].
+> Se si verificano problemi di distribuzione di soluzioni hello preconfigurato, esaminare [le autorizzazioni nel sito azureiotsuite.com hello] [ lnk-permissions] hello e [connesso domande frequenti sulla factory](iot-suite-faq-cf.md). Se persistono problemi hello, creare un ticket di servizio in hello [portale][lnk-portal].
 
-Se ci sono dettagli importanti non elencati per la soluzione, è possibile inviare suggerimenti sulle funzionalità usando i [suggerimenti degli utenti](https://feedback.azure.com/forums/321918-azure-iot).
+Sono presenti dettagli che ci si aspetta toosee che non sono elencati per la soluzione? è possibile inviare suggerimenti sulle funzionalità usando i [suggerimenti degli utenti](https://feedback.azure.com/forums/321918-azure-iot).
 
 ## <a name="scenario-overview"></a>Panoramica dello scenario
 
-Nel momento in cui viene distribuita, la soluzione preconfigurata di connected factory viene prepopolata con risorse che consentono di eseguire uno scenario industriale comune. In questo scenario, diversi stabilimenti connessi alla soluzione generano report con i valori dei dati necessari per calcolare l'OEE (Overall Equipment Efficiency) e gli indicatori di prestazioni chiave (KPI). Le sezioni seguenti mostrano come:
+Quando si distribuisce hello connesso factory preconfigurato soluzione, viene popolato preliminarmente con le risorse che consentono di toostep tramite uno scenario comune industriale. In questo scenario, le factory diverse connesso report soluzione toohello toocompute necessari valori dei dati di hello efficienza di apparecchiature (OEE) e indicatori di prestazioni chiave (KPI). Hello nelle sezioni seguenti illustrano come fare per:
 
 * Monitorare stabilimenti, linee di produzione, OEE delle postazioni e valori KPI
-* Analizzare i dati di telemetria generati da questi dispositivi usando Azure Time Series Insights
-* Intervenire in caso di avviso per risolvere i problemi
+* Analizzare i dati di telemetria hello generati da tali dispositivi utilizzando Azure ora serie Insights
+* Agire sui problemi toofix avvisi
 
-Una particolarità di questo scenario consiste nella possibilità di eseguire tutte queste azioni in remoto dal dashboard della soluzione, senza dover accedere fisicamente ai dispositivi.
+Una funzionalità chiave di questo scenario è che è possibile eseguire in modalità remota tutte queste azioni dal dashboard di soluzione hello. Non è necessario dispositivi toohello accesso fisico.
 
-## <a name="view-the-solution-dashboard"></a>Visualizzare il dashboard della soluzione
+## <a name="view-hello-solution-dashboard"></a>Dashboard di soluzione hello View
 
-Il dashboard della soluzione consente di gestire la soluzione distribuita. Si tratta di una rappresentazione gerarchica della configurazione globale degli stabilimenti. È ad esempio possibile visualizzare OEE e KPI, pubblicare nuovi nodi per la telemetria e attivare avvisi.
+dashboard di soluzione Hello consente soluzione hello distribuito toomanage. Si tratta di una rappresentazione gerarchica della configurazione globale degli stabilimenti. È ad esempio possibile visualizzare OEE e KPI, pubblicare nuovi nodi per la telemetria e attivare avvisi.
 
-1. Al termine del provisioning, quando il riquadro della soluzione preconfigurata indica **Pronto**, scegliere **Avvia** per aprire il portale della soluzione di connected factory in una nuova scheda.
+1. Quando il provisioning di hello è completato e riquadro hello per la soluzione preconfigurata indica **pronto**, scegliere **avviare** tooopen portale soluzione factory connesso in una nuova scheda.
 
-    ![Avviare la soluzione preconfigurata][img-launch-solution]
+    ![Avviare la soluzione hello preconfigurato][img-launch-solution]
 
-1. Per impostazione predefinita, il portale della soluzione visualizza il *dashboard*. Per passare ad altre aree del portale, usare il menu a sinistra della pagina.
+1. Per impostazione predefinita, il portale di soluzione hello Mostra hello *dashboard*. toonavigate tooother aree del portale di hello, utilizzare il menu di hello sulla parte sinistra della pagina hello hello.
 
     ![Dashboard della soluzione preconfigurata di connected factory][cf-img-menu]
 
-Il dashboard visualizza le informazioni seguenti:
+dashboard Hello Visualizza hello le seguenti informazioni:
 
-* Un pannello con l'**elenco degli stabilimenti** che visualizza stato, località e configurazione di produzione corrente nella soluzione. Quando si esegue la soluzione per la prima volta, sono disponibili alcuni dispositivi simulati. La simulazione delle linee di produzione è costituita da tre server OPC UA reali per ogni linea di produzione che eseguono attività simulate e condividono i dati. Per altre informazioni su OPC UA, vedere le [domande frequenti sulla soluzione di connected factory](iot-suite-faq-cf.md).
-* Una **mappa** che visualizza la posizione di ogni dispositivo connesso alla soluzione. La soluzione può usare l'API di Bing Mappe per tracciare le informazioni sulla mappa. Se la sottoscrizione è abilitata per l'API di Bing Mappe per le aziende, questa funzionalità viene usata automaticamente. In caso contrario, vedere le [domande frequenti][lnk-faq] per informazioni su come rendere dinamica la mappa.
+* Oggetto **elenco Factory** pannello che mostra lo stato di hello, la posizione e configurazione di produzione corrente nella soluzione hello. Quando si esegue prima soluzione hello, esistono numerosi dispositivi simulati. simulazione di linea di produzione Hello è composta da tre reale OPC UA server per ogni linea di produzione che eseguano attività simulata e condividere i dati. Per ulteriori informazioni su OPC UA, vedere hello [connesso domande frequenti sulla factory](iot-suite-faq-cf.md).
+* Oggetto **mappa** che consente di visualizzare hello posizione di ogni dispositivo connesso toohello soluzione. soluzione hello è possibile utilizzare informazioni tooplot di hello API di Bing mappe nella mappa hello. Se la sottoscrizione è abilitata per l'API di Bing Mappe per le aziende, questa funzionalità viene usata automaticamente. In caso contrario, vedere hello [domande frequenti su] [ lnk-faq] toolearn come toomake hello dinamici della mappa.
 * Un pannello degli **avvisi** che visualizza gli avvisi generati quando un valore OEE/KPI o di telemetria supera una soglia specifica.
-* Un pannello **Overall Equipment Efficiency** che visualizza i valori OEE per l'intera azienda o per lo stabilimento, la linea di produzione o la postazione in esame. Questo valore viene aggregato dalla vista della postazione fino al livello aziendale. Il valore OEE e i relativi elementi costitutivi possono essere analizzati nei dettagli.
-* Un pannello **Key Performance Indicators** (Indicatori di prestazioni chiave) che visualizza il numero di unità prodotte e l'energia usata dall'intera azienda o dallo stabilimento, dalla linea di produzione o dalla postazione in esame. Questi valori vengono aggregati dalla vista della postazione fino al livello aziendale.
+* Un **efficienza apparecchiature** pannello che mostra i valori OEE hello per l'intera azienda hello o hello factory/produzione riga/stazione si sta visualizzando. Questo valore viene aggregato dal livello di organizzazione toohello visualizzazione hello stazione. Figura OEE Hello e i relativi elementi costitutivi possono essere ulteriormente analizzati.
+* **Indicatori di prestazioni chiave** pannello che visualizza il numero di hello di unità prodotte e di energia utilizzata dall'intera azienda hello o hello factory/produzione/stazione si sta visualizzando. Questi valori vengono aggregati da un livello di organizzazione toohello visualizzazione stazione.
 
 ## <a name="view-factories"></a>Visualizzare gli stabilimenti
 
-Il pannello degli *stabilimenti* visualizza la posizione geografica di tutti gli stabilimenti presenti nella soluzione, con lo stato e la configurazione di produzione corrente. Dall'elenco delle località è possibile passare agli altri livelli della gerarchia della soluzione. Le righe nell'elenco sono collegamenti ipertestuali che consentono di visualizzare i dettagli delle linee di produzione di tale località. È quindi possibile esaminare i dettagli delle linee di produzione fino al livello della postazione. È anche possibile applicare un filtro all'elenco.
+Hello *factory* pannello Mostra hello posizione geografica di tutte le factory hello nei soluzione hello, stato e configurazione di produzione corrente. Dall'elenco di percorsi hello, è possibile passare toohello altri livelli nella gerarchia di soluzione hello. righe Hello hello elenco sono collegamenti ipertestuali che collegano i dettagli delle linee di produzione hello in tale posizione. È quindi possibile toodrill i dettagli di linea di produzione hello e toohello visualizzazione a livello di espansione verso il basso. È inoltre possibile applicare un elenco di filtri toohello.
 
 ![Stabilimenti della soluzione preconfigurata di connected factory][cf-img-factories] 
 
-1. Il **pannello degli stabilimenti** visualizza l'elenco di stabilimenti presenti in questa soluzione.
+1. Hello **pannello Factory** Mostra hello elenco di factory per questa soluzione.
 
-2. L'elenco degli stabilimenti visualizza inizialmente sei stabilimenti creati dal processo di provisioning. È possibile aggiungere altri dispositivi fisici e simulati alla soluzione.
+2. elenco di factory Hello viene inizialmente sei factory creata dal processo di provisioning hello. È possibile aggiungere soluzioni toohello altri dispositivi simulati e fisico.
 
-3. Per visualizzare i dettagli di uno stabilimento, fare clic sulla riga corrispondente nell'elenco degli stabilimenti.
+3. dettagli di hello tooview di una factory, fare clic su riga hello nell'elenco di factory hello.
 
-4. Per visualizzare i dettagli di una linea di produzione, fare clic sulla riga corrispondente nell'elenco.
+4. dettagli di hello tooview di una linea di produzione, fare clic su riga hello hello elenco.
 
-5. Per visualizzare i nodi OPC UA pubblicati di una postazione nella linea di produzione, fare clic sulla riga corrispondente nell'elenco.
+5. hello tooview pubblicato nodi OPC UA una stazione in linea di produzione hello, fare clic sulla riga hello hello elenco.
 
-6. Per visualizzare i dettagli in un nodo specifico nella postazione, fare clic sulla riga corrispondente nell'elenco. Questa azione consente di avviare il pannello contestuale con visualizzazioni di Time Series Insights. Fare clic su questi grafici per eseguire altre analisi nell'ambiente di esplorazione di Time Series Insights.
+6. Dettagli tooview in un nodo specifico nella stazione hello, fare clic su riga hello hello elenco. Questa azione avvia il pannello contesto hello con visualizzazioni ora serie Insights. Fare clic su questi ulteriori analisi di grafici toodo nell'ambiente di hello ora serie Insights explorer.
 
 ## <a name="view-map"></a>Visualizzare la mappa
 
-Se la sottoscrizione ha accesso all'API di Bing Mappe, la mappa degli *stabilimenti* visualizza la posizione geografica e lo stato di tutti gli stabilimenti presenti nella soluzione. Per esaminare i dettagli, fare clic sulle località visualizzate sulla mappa.
+Se la sottoscrizione ha accesso toohello API di Bing mappe, hello *factory* mappa Mostra la posizione geografica hello e lo stato di tutte le factory hello in soluzione hello. toodrill i dettagli di percorso hello, fare clic su percorsi hello visualizzati nella mappa hello.
 
 ![Mappa della soluzione preconfigurata di connected factory][cf-img-map]
 
 ## <a name="view-alerts"></a>Visualizzare gli avvisi
 
-Il pannello **Alert** (Avvisi) indica gli avvisi generati a causa di un valore segnalato o un valore OEE/KPI calcolato superiore alla soglia configurata. Questo pannello visualizza gli avvisi per ogni livello della gerarchia, dalla vista a livello di postazione fino alla vista globale. Gli avvisi contengono descrizione dell'avviso, data, ora, località e numero di occorrenze. È possibile ottenere informazioni dettagliate sulle cause dell'avviso usando i dati di Time Series Insights. I dati di Time Series Insights vengono visualizzati negli avvisi, se applicabile. Gli amministratori possono eseguire azioni predefinite sugli avvisi, ad esempio:
+Hello **avviso** pannello mostra gli avvisi generati a causa di tooa segnalati valore o un valore calcolato di OEE/KPI superare la soglia configurata. Questo consente di visualizzare gli avvisi a ogni livello della gerarchia di hello, dalla visualizzazione globale toohello hello stazione visualizzazione a livello. avvisi di Hello contengono una descrizione dell'avviso hello, data, ora, posizione e numero di occorrenze. È possibile ottenere informazioni dettagliate nei dati toohello che ha determinato avviso hello utilizzando hello dati di Insights di serie di tempo. Hello ora serie Insights dati viene visualizzati nella hello avvisi, se applicabile. Se si è un amministratore, è possibile eseguire le azioni predefinite agli avvisi di hello, ad esempio:
 
-* Chiudere l'avviso.
-* Confermare l'avviso.
+* Avviso di hello Chiudi.
+* Confermare l'avviso hello.
 
-È anche possibile eseguire operazioni più complesse. Ad esempio, per il nodo OPC UA relativo alla pressione del gruppo di componenti è possibile:
+È anche possibile eseguire operazioni più complesse. Ad esempio, per hello pressione OPC UA nodo di hello Assembly, è possibile:
 
 * Visualizzare informazioni di supporto in una pagina Web in una nuova finestra del browser.
-* Attenuare la causa dell'avviso chiamando un metodo OPC UA sul dispositivo.
-* Rendere indisponibili le azioni predefinite.
+* Mitigare causa hello dell'avviso hello chiamando un metodo OPC UA sul dispositivo hello.
+* Esclusione di disponibilità hello di azioni predefinite hello.
 
     ![Avvisi della soluzione preconfigurata di connected factory][cf-img-alerts]
 
 > [!NOTE]
-> Questi avvisi vengono generati da regole specificate in un file di configurazione della soluzione preconfigurata. Queste regole possono generare avvisi quando i valori di OEE o KPI o del nodo OPC UA superano la soglia configurata.
+> Gli avvisi vengono generati da regole che vengono specificate in un file di configurazione nella soluzione hello preconfigurato. Queste regole possono generare avvisi quando hello OEE o cifre di indicatore KPI o i valori del nodo UA OPC superano la soglia configurata.
 
-1. Il **pannello degli avvisi** indica gli avvisi generati in questa soluzione.
+1. Hello **pannello avvisi** Mostra hello gli avvisi generati in questa soluzione.
 
-2. Per visualizzare i dettagli di un avviso, fare clic su di esso nel pannello.
+2. dettagli di hello tooview di un avviso, fare clic su avviso hello nel Pannello di hello avvisi.
 
-3. Per eseguire altre analisi sui dati dell'avviso, fare clic sul grafico nel pannello degli avvisi per aprire l'ambiente di esplorazione di Time Series Insights.
+3. toofurther analizzare i dati di avviso hello, fare clic su grafico hello nell'ambiente di hello pannello avviso tooopen hello ora serie Insights explorer.
 
-4. Per risolvere l'avviso, il pannello mette a disposizione diverse azioni. Scegliere l'opzione appropriata e fare clic sul pulsante di comando per l'esecuzione dell'azione.
+4. avviso di hello tooaddress, sono disponibili nel Pannello di avviso hello diverse azioni. Scegliere hello opzione appropriata per l'utente e fare clic su hello eseguire pulsante di comando di azione.
 
 ## <a name="view-overall-equipment-efficiency"></a>Visualizzare il valore di OEE (Overall Equipment Efficiency)
 
-Il valore di OEE valuta l'efficienza del processo di produzione usando parametri operativi chiave correlati alla produzione. Il valore di OEE è una misura standard di settore calcolata moltiplicando la disponibilità, le prestazioni e la qualità: OEE = disponibilità x prestazioni x qualità.
+Tariffe OEE hello l'efficienza del processo di produzione di hello utilizzando una chiave parametri operativi correlate alla produzione. OEE è uno standard misura calcolata moltiplicando la tariffa di disponibilità hello, velocità delle prestazioni e la percentuale di qualità: OEE = disponibilità x qualità delle prestazioni x.
 
 ![OEE della soluzione preconfigurata di connected factory][cf-img-oee]
 
-1. Per visualizzare il valore di OEE per qualsiasi livello della gerarchia, passare alla vista specifica. Il valore di OEE per la vista verrà visualizzato nel pannello insieme a tutti gli elementi che costituiscono la percentuale OEE.
+1. tooview OEE di qualsiasi livello di gerarchia hello, passare toohello di visualizzazione desiderata. OEE per la visualizzazione viene visualizzato nel Pannello di hello insieme a tutti gli elementi che costituiscono hello percentuale OEE hello.
 
-2. Per eseguire altre analisi sul valore di OEE per qualsiasi livello della gerarchia di dati, fare clic sulla percentuale OEE, della disponibilità, delle prestazioni o della qualità. Si aprirà un pannello contestuale con visualizzazioni di Time Series Insights che indicano i dati dell'ultima ora, delle ultime 24 ore e degli ultimi 7 giorni.
+2. toofurther analizzare hello OEE di qualsiasi livello di dati della gerarchia hello, fare clic su hello OEE, disponibilità, prestazioni o la percentuale di qualità. Contesto verrà visualizzato un pannello con tempo serie Insights spenta visualizzazioni che mostrano i dati da hello ultima ora, ultime 24 ore e ultimi 7 giorni.
 
     ![Visualizzazione TSI della soluzione preconfigurata di connected factory][cf-img-tsi-visualization]
 
-3. Per eseguire altre analisi sui dati dell'avviso, fare clic sul grafico nel pannello degli avvisi. Si aprirà così l'ambiente di esplorazione di Time Series Insights.
+3. toofurther analizzare i dati di avviso hello, fare clic su grafico hello nel Pannello di avviso di hello. Questa azione apre l'ambiente di hello ora serie Insights explorer.
 
     ![Ambiente di esplorazione TSI della soluzione preconfigurata di connected factory][cf-img-tsi-explorer]
 
 ## <a name="view-key-performance-indicators"></a>Visualizzare gli indicatori di prestazioni chiave
 
-La soluzione offre due indicatori di prestazioni chiave, *unità per ogni ora* ed *energia usata in kWh*.
+soluzione Hello fornisce due indicatori di prestazioni chiave, *unità per ora* e *energia nelle kWh*.
 
 ![KPI della soluzione preconfigurata di connected factory][cf-img-kpi]
 
-1. Per visualizzare le unità per ogni ora o l'energia usata per qualsiasi livello della gerarchia, passare alla vista specifica. Le unità per ogni ora e l'energia usata verranno visualizzate nel pannello.
+1. tooview unità per ogni ora o energia usata per qualsiasi livello nella gerarchia di hello, passare toohello di visualizzazione desiderata. unità di Hello per ora e di energia usate visualizzato nel Pannello di hello.
 
-2. Per eseguire altre analisi sulle unità per ogni ora o sull'energia usata per qualsiasi livello della gerarchia, fare clic sul misuratore nel pannello **Key Performance Indicators** (Indicatori di prestazioni chiave). Si aprirà un pannello contestuale con visualizzazioni di Time Series Insights che indicano i dati dell'ultima ora, delle ultime 24 ore e degli ultimi 7 giorni.
+2. tooanalyze unità per ogni ora o energia usata per qualsiasi livello nella gerarchia di hello ulteriormente, fare clic su misuratore hello in hello **indicatori di prestazioni chiave** pannello. Verrà visualizzato un pannello di contesto con visualizzazioni ora serie Insights con tecnologia consentendo dati tooview hello ultima ora, hello ultime 24 ore e ultimi 7 giorni.
 
 ## <a name="scenario-review"></a>Analisi dello scenario
 
-In questo scenario sono stati monitorati i valori di OEE e KPI nel dashboard. È stato quindi usato Time Series Insights per ottenere altre informazioni e analizzare i dati di telemetria per OEE e KPI al fine di rilevare le anomalie. È stato anche usato il pannello degli avvisi per visualizzare i problemi degli stabilimenti e le azioni disponibili per risolvere l'avviso.
+In questo scenario, i valori OEE e indicatori KPI di factory, nel dashboard di hello è stata monitorata. Quindi utilizzato tooprovide ora serie approfondimenti più informazioni toohelp esaminare ulteriormente i dati di telemetria hello per toohelp OEE e indicatori KPI con il rilevamento di anomalie. Sono stati usati anche i problemi di hello pannello avviso tooview con le factory e avviso di hello azioni disponibili tooyou tooresolve hello è stato utilizzato.
 
 ## <a name="other-features"></a>Altre funzionalità
 
-Le sezioni seguenti descrivono alcune funzionalità aggiuntive della soluzione di connected factory non descritte nello scenario precedente.
+Hello le sezioni seguenti vengono descritte alcune funzionalità aggiuntive di hello connesso factory soluzione che non sono descritti nello scenario precedente hello.
 
 ## <a name="apply-filters"></a>Applicare filtri
 
-1. Fare clic sulla **freccia di espansione** per visualizzare un elenco dei filtri disponibili nel pannello delle località degli stabilimenti o nel pannello degli avvisi.
+1. Fare clic su hello **freccia di espansione** toodisplay un elenco dei filtri disponibili nel Pannello di percorsi di factory hello o pannello avvisi hello.
 
-2. Verrà visualizzato il pannello dei filtri. 
+2. Pannello filtri Hello è visualizzato per l'utente. 
 
     ![Filtri della soluzione preconfigurata di connected factory][cf-img-alert-filter]
 
-3. Scegliere il filtro necessario. È anche possibile digitare testo libero nei campi di filtro.
+3. Scegliere Filtro hello necessari. È inoltre possibile tootype testo libero nei campi filtro hello.
 
-4. Il filtro verrà quindi applicato. Lo stato del filtro viene visualizzato nel dashboard anche tramite un imbuto visibile nelle tabelle degli stabilimenti e degli avvisi.
+4. Hello filtro viene applicato automaticamente. lo stato del filtro Hello viene inoltre visualizzato nel dashboard di hello tramite un grafico a imbuto consente di visualizzare nella factory hello e segnala le tabelle.
 
     ![Filtri della soluzione preconfigurata di connected factory][cf-img-alert-filter-funnel]
 
     > [!NOTE]
-    > Un filtro attivo non ha effetto sui valori di OEE e KPI visualizzati, filtra solo il contenuto dell'elenco.
+    > Un filtro attivo non influisce sulla hello visualizzato valori OEE e indicatori KPI, ma solo di filtrare il contenuto di elenco hello.
 
-5. Per cancellare un filtro, fare clic sull'imbuto e quindi sul filtro nel pannello contestuale dei filtri. Il testo **All** (Tutti) viene visualizzato nelle tabelle degli stabilimenti e degli avvisi.
+5. tooclear un filtro, fare clic su grafico a imbuto hello e fare clic su filtro nel riquadro del contesto filtro hello. testo Hello **tutti** viene visualizzato nella factory hello e gli avvisi di tabelle.
 
 ## <a name="browse-an-opc-ua-server"></a>Esplorare un server OPC UA
 
-Quando si distribuisce la soluzione preconfigurata, viene effettuato automaticamente il provisioning dei server OPC UA simulati che è possibile esplorare tramite il browser della soluzione. Questi server sono *server OPC UA simulati* . I server simulati consentono di provare facilmente la soluzione preconfigurata senza la necessità di distribuire server fisici reali. Per connettere un server OPC UA reale alla soluzione, vedere l'esercitazione [Connettere il dispositivo OPC UA alla soluzione preconfigurata di connected factory][lnk-connect-cf].
+Quando si distribuisce la soluzione hello preconfigurato, automaticamente effettuato il provisioning di server OPC UA simulati che è possibile esplorare tramite browser soluzione hello Questi server sono *server OPC UA simulati* . Server simulato semplificano automaticamente tooexperiment con la soluzione hello preconfigurato senza hello necessità toodeploy reale server fisici. Se si desidera tooconnect una soluzione di toohello server OPC UA reale, vedere hello [connettere la soluzione di factory preconfigurato OPC UA dispositivo connesso toohello] [ lnk-connect-cf] esercitazione.
 
-1. Fare clic sull'**icona dello stabilimento** nella barra di spostamento del dashboard.
+1. Fare clic su hello **icona factory** nella barra di navigazione del dashboard hello.
 
     ![Browser dei server della soluzione preconfigurata di connected factory][cf-img-server-browser]
 
-2. Scegliere uno dei server dall'elenco preconfigurato. Questo elenco visualizza i server distribuiti nella soluzione preconfigurata.
+2. Scegliere uno dei server hello da elenco preconfigurato hello. Questo elenco Mostra i server hello che vengono distribuiti automaticamente nella soluzione hello preconfigurato.
 
     ![Selezione del server della soluzione preconfigurata di connected factory][cf-img-server-choice]
 
-3. Fare clic su **Connect** (Connetti). Verrà visualizzata una finestra di dialogo di sicurezza. Per la simulazione è possibile fare clic su **Proceed** (Continua)
+3. Fare clic su **Connect** (Connetti). Verrà visualizzata una finestra di dialogo di sicurezza. Per la simulazione di hello è sicuro tooclick **continua**
 
-4. Per espandere uno dei nodi dell'albero dei server, fare clic su di esso. I nodi che pubblicano i dati di telemetria hanno un segno di spunta accanto.
+4. tooexpand uno qualsiasi dei nodi di hello nell'albero di server hello, farvi clic sopra. I nodi che pubblicano i dati di telemetria hanno un segno di spunta accanto.
 
     ![Albero dei server della soluzione preconfigurata di connected factory][cf-img-server-tree]
 
-5. Fare clic con il pulsante destro del mouse su un elemento per leggere, scrivere, pubblicare o chiamare il nodo. Le azioni disponibili variano a seconda delle autorizzazioni e degli attributi del nodo. L'opzione di lettura visualizza un pannello contestuale con il valore del nodo specifico. L'opzione di scrittura visualizza un pannello contestuale in cui è possibile immettere un nuovo valore. L'opzione di chiamata visualizza un nodo in cui è possibile immettere i parametri per la chiamata.
+5. Fare doppio clic su un elemento di tooread, scrivere, pubblicare o chiamare tale nodo. Hello azioni disponibili tooyou dipendono le autorizzazioni e gli attributi di hello del nodo hello. Hello lettura opzione toodisplays un pannello del contesto che mostra il valore di hello di nodo specifico hello. Hello scrivere opzione consente di visualizzare un pannello del contesto in cui è possibile immettere un nuovo valore. opzione di chiamata Hello Visualizza un nodo in cui è possibile immettere i parametri di hello per chiamata hello.
 
 ## <a name="publish-a-node"></a>Pubblicare un nodo
 
-Quando si esplora un *server OPC UA simulato* è anche possibile scegliere di pubblicare nuovi nodi. È possibile analizzare i dati di telemetria da questi nodi nella soluzione. Questi *server OPC UA simulati* consentono di provare facilmente la soluzione preconfigurata senza distribuire dispositivi fisici reali.
+Quando si Esplora un *server OPC UA simulato*, è anche possibile scegliere toopublish nuovi nodi. È possibile analizzare i dati di telemetria hello da questi nodi nella soluzione hello. Questi *simulato Server OPC UA* renderlo tooexperiment semplice con la soluzione hello preconfigurato senza distribuire i dispositivi fisici reali.
 
-1. Passare a un nodo da pubblicare nell'albero del browser dei server OPC UA.
+1. Sfoglia tooa nodo nell'albero del server OPC UA browser che si desidera toopublish hello.
 
-2. Fare clic con il pulsante destro del mouse sul nodo.
+2. Fare clic sul nodo hello.
 
 3. Scegliere **Publish** (Pubblica).
 
     ![Pubblicare un nodo nella soluzione di connected factory][cf-img-publish-node]
 
-4. Verrà visualizzato un pannello contestuale che indica che la pubblicazione ha avuto esito positivo. Il nodo viene visualizzato al livello delle postazioni con un segno di spunta accanto.
+4. Verrà visualizzato un pannello di contesto che indica che hello pubblicazione ha avuto esito positivo. nodo Hello viene visualizzato nella visualizzazione di livello stazione hello con un segno di spunta.
 
     ![Pubblicazione eseguita nella soluzione preconfigurata di connected factory][cf-img-publish-success]
 
 ## <a name="command-and-control"></a>Comando e controllo
 
-La soluzione di connected factory consente di comandare e gestire i dispositivi industriali direttamente dal cloud. È possibile usare questa funzionalità per rispondere agli avvisi generati dal dispositivo. È ad esempio possibile inviare un comando al dispositivo dal cloud. È possibile trovare i comandi disponibili nel nodo **StationCommands** dell'albero del browser dei server OPC UA. In questo scenario si apre una valvola di sfiato nella postazione di un gruppo di componenti di una linea di produzione situata a Monaco di Baviera. Per usare la funzionalità di comando e controllo è necessario il ruolo **Amministratore** per la distribuzione della soluzione preconfigurata.
+factory connesso Hello consente di comando e controllare i dispositivi di settore direttamente dal cloud hello. È possibile utilizzare questo tooalerts toorespond funzionalità generato per dispositivo hello. Ad esempio, è possibile inviare un dispositivo toohello comando dal cloud hello. È possibile trovare i comandi disponibili hello in hello **StationCommands** nodo nell'albero di browser server OPC UA hello. In questo scenario, si apre una versione valvola sulla stazione di assembly hello di una linea di produzione Monaco. funzionalità di comando e controllo di hello toouse, è necessario essere in hello **amministratore** ruolo per hello preconfigurato distribuzione della soluzione.
 
-1. Passare al nodo **StationCommands** nell'albero del browser dei server OPC UA.
+1. Sfoglia toohello **StationCommands** nodo nell'albero del browser server OPC UA hello.
 
-2. Scegliere il comando che si vuole usare.
+2. Scegliere il comando hello che si desidera utilizzare.
 
-3. Fare clic con il pulsante destro del mouse sul nodo.
+3. Fare clic sul nodo hello.
 
 4. Scegliere **Call** (Chiama).
 
     ![Comando di chiamata della soluzione preconfigurata di connected factory][cf-img-call-command]
 
-5. Viene visualizzato un pannello contestuale che indica il metodo che si sta per chiamare e i dettagli dei parametri applicabili.
+5. Viene indicato quale metodo si sta toocall ed eventuali dettagli del parametro è applicabile, viene visualizzato un riquadro contesto.
 
 6. Scegliere **Call** (Chiama).
 
     ![Contesto di chiamata della soluzione preconfigurata di connected factory][cf-img-call-context]
 
-7. Il pannello contestuale viene aggiornato per indicare che la chiamata al metodo ha avuto esito positivo. È possibile verificare che la chiamata abbia avuto esito positivo leggendo il valore del nodo della pressione aggiornato in seguito alla chiamata.
+7. Pannello contesto Hello è tooinform aggiornato che hello chiamata al metodo ha avuto esito positivo. È possibile verificare chiamata hello ha avuto esito positivo, leggere il valore di hello del nodo di pressione hello aggiornati in seguito chiamata hello.
 
     ![Chiamata eseguita nella soluzione preconfigurata di connected factory][cf-img-call-success]
 
 
-## <a name="behind-the-scenes"></a>Dietro le quinte
+## <a name="behind-hello-scenes"></a>Background hello
 
-Quando si distribuisce una soluzione preconfigurata, il processo di distribuzione crea più risorse nella sottoscrizione di Azure selezionata. È possibile visualizzare queste risorse nel [portale][lnk-portal] di Azure. Il processo di distribuzione crea un **gruppo di risorse** con un nome basato sul nome scelto per la soluzione preconfigurata:
+Quando si distribuisce una soluzione preconfigurata, il processo di distribuzione hello crea più risorse hello Azure sottoscrizione selezionata. È possibile visualizzare queste risorse in Azure hello [portale][lnk-portal]. il processo di distribuzione Hello crea un **gruppo di risorse** con un nome basato sul nome hello scelto per la soluzione preconfigurata:
 
-![Soluzione preconfigurata nel portale di Azure][img-cf-portal]
+![Soluzione preconfigurata in hello portale di Azure][img-cf-portal]
 
-È possibile visualizzare le impostazioni di ogni risorsa selezionandola nell'elenco di risorse nel gruppo di risorse.
+È possibile visualizzare le impostazioni di hello di ogni risorsa selezionandolo nell'elenco di hello delle risorse nel gruppo di risorse hello.
 
-È anche possibile visualizzare il codice sorgente per la soluzione preconfigurata. Il codice sorgente della soluzione preconfigurata di connected factory si trova nel repository GitHub [azure-iot-connected-factory][lnk-cfgithub]:
+È anche possibile visualizzare il codice sorgente hello per soluzione hello preconfigurato. Hello factory connesso preconfigurato soluzione codice sorgente è in hello [azure iot-connessione-factory] [ lnk-cfgithub] repository GitHub:
 
-Al termine, è possibile eliminare la soluzione preconfigurata dalla sottoscrizione di Azure nel sito [azureiotsuite.com][lnk-azureiotsuite]. Questo sito consente di eliminare facilmente tutte le risorse di cui è stato effettuato il provisioning quando si è creata la soluzione preconfigurata.
+Al termine, è possibile eliminare la soluzione hello preconfigurato dalla sottoscrizione di Azure su hello [azureiotsuite.com] [ lnk-azureiotsuite] sito. Questo sito consente tooeasily Elimina che tutte le risorse che è sono eseguito il provisioning durante la creazione di soluzioni hello preconfigurato di hello.
 
 > [!NOTE]
-> Per assicurarsi di eliminare tutti gli elementi correlati alla soluzione preconfigurata, eseguire l'eliminazione dal sito [azureiotsuite.com][lnk-azureiotsuite]. Non eliminare il gruppo di risorse nel portale.
+> tooensure di eliminare tutti gli elementi correlati soluzione toohello preconfigurato, l'eliminazione hello [azureiotsuite.com] [ lnk-azureiotsuite] sito. Non eliminare il gruppo di risorse hello nel portale di hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver distribuito una soluzione preconfigurata è possibile proseguire con l'introduzione a IoT Suite vedendo gli articoli seguenti:
+Dopo aver distribuito una soluzione appropriata preconfigurato, è possibile continuare introduzione IoT Suite leggendo hello seguenti articoli:
 
 * [Procedura dettagliata per la soluzione preconfigurata di connected factory][lnk-rm-walkthrough]
-* [Connettere il dispositivo alla soluzione preconfigurata di connected factory][lnk-connect-cf]
-* [Autorizzazioni per il sito azureiotsuite.com][lnk-permissions]
+* [Connettere la soluzione di factory connesso preconfigurato toohello dispositivo][lnk-connect-cf]
+* [Autorizzazioni nel sito azureiotsuite.com hello][lnk-permissions]
 
 [img-cf-home]:media/iot-suite-connected-factory-overview/cf-dashboard.png
 [img-launch-solution]: media/iot-suite-connected-factory-overview/launch-cf.png

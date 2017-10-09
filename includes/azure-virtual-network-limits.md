@@ -1,4 +1,4 @@
-<a name="virtual-networking-limits-classic"></a>I limiti seguenti si applicano solo per le risorse di rete gestite tramite il modello di distribuzione classica per sottoscrizione.
+<a name="virtual-networking-limits-classic"></a>Hello seguenti limiti si applicano solo per le risorse gestite tramite il modello di distribuzione classica hello per ogni sottoscrizione di rete.
 
 | Risorsa | Limite predefinito | Limite massimo |
 | --- | --- | --- |
@@ -18,7 +18,7 @@
 | Elenchi di controllo di accesso (ACL) per endpoint |50 |50 |
 
 #### <a name="azure-resource-manager-virtual-networking-limits"></a>Limiti relativi alle reti - Azure Resource Manager
-I seguenti limiti si applicano solo per le risorse di rete gestite tramite Azure Resource Manager per area per sottoscrizione.
+Hello seguenti limiti si applicano solo per le risorse gestite tramite Gestione risorse di Azure per regione per ogni sottoscrizione di rete.
 
 | Risorsa | Limite predefinito | Limite massimo |
 | --- | --- | --- |
@@ -44,5 +44,5 @@ I seguenti limiti si applicano solo per le risorse di rete gestite tramite Azure
 | Certificati radice Point-to-Site per ogni gateway VPN |20 |20 |
 | Configurazioni IP secondarie per rete virtuale |1000 |Contattare il supporto tecnico |
 
-Se è necessario aumentare i limiti rispetto all'impostazione predefinita, [contattare il supporto tecnico](../articles/azure-supportability/resource-manager-core-quotas-request.md ).
+[Contattare il supporto tecnico](../articles/azure-supportability/resource-manager-core-quotas-request.md ) nel caso in cui è necessario tooincrease limiti da predefinito.
 

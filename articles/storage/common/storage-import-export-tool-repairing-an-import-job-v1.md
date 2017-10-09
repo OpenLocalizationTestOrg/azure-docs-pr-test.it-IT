@@ -1,6 +1,6 @@
 ---
-title: Riparazione di un processo di importazione in Importazione/Esportazione di Azure - versione 1 | Documentazione Microsoft
-description: "Informazioni su come ripristinare un processo di importazione che è stato creato ed eseguito usando il servizio Importazione/Esportazione di Azure."
+title: un processo di importazione di importazione/esportazione di Azure - v1 aaaRepairing | Documenti Microsoft
+description: "Informazioni su come un processo di importazione che è stato creato ed eseguito con toorepair hello importazione/esportazione di Azure service."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: c837713fd9e7d03287ae5a3644fd6bb47714c9d4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b1cb7d7832276a05c0912cf57505e2a5d79e7846
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repairing-an-import-job"></a>Riparazione di un processo di importazione
-Il servizio Importazione/Esportazione di Microsoft Azure potrebbe non riuscire a copiare alcuni file o parti di file nel servizio BLOB di Windows Azure. I motivi includono:  
+servizio di importazione/esportazione di Microsoft Azure Hello potrebbe non riuscire toocopy alcuni dei file o parti di toohello un file del servizio Blob di Windows Azure. I motivi includono:  
   
 -   File corrotti  
   
 -   Unità danneggiate  
   
--   Chiave dell'account di archiviazione modificata durante il trasferimento del file.  
+-   chiave dell'account archiviazione Hello modificata durante il trasferimento file hello.  
   
-È possibile eseguire lo strumento di importazione/esportazione di Microsoft Azure con i file di log di copia del processo di importazione. In questo caso, lo strumento carica i file mancanti (o parti di file) nell'account di archiviazione di Windows Azure per completare il processo di importazione.  
+È possibile eseguire hello strumento di importazione/esportazione di Microsoft Azure con del processo di importazione hello copia log, file e hello strumento caricamenti hello file mancanti (o parti di un file) tooyour Windows Azure storage account toocomplete hello processo di importazione.  
   
 ## <a name="repairimport-parameters"></a>Parametri di RepairImport
 
-È possibile specificare i parametri seguenti con **RepairImport**: 
+Hello seguenti parametri possono essere specificati con **RepairImport**: 
   
 |||  
 |-|-|  
-|**/r:**<RepairFile\>|**Obbligatorio.** Percorso del file di ripristino che tiene traccia dell'avanzamento del ripristino e consente di riprendere un ripristino interrotto. Ogni unità deve contenere un solo file di ripristino. Quando si avvia un ripristino per una determinata unità, si viene spostati nel percorso di un file di ripristino che non esiste ancora. Per riprendere un ripristino interrotto, è consigliabile inserire il nome di un file di ripristino esistente. Il file di ripristino corrispondente all'unità di destinazione deve essere sempre specificato.|  
-|**/logdir:**<LogDirectory\>|**Facoltativo.** Directory dei log. in cui vengono scritti file di log dettagliati. Se non è specificata alcuna directory dei log, viene usata la directory corrente.|  
-|**/d:**<TargetDirectories\>|**Obbligatorio.** Una o più directory separate da punto e virgola contenenti i file originali che sono stati importati. È possibile usare anche l'unità di importazione, ma non è obbligatorio se sono disponibili posizioni alternative per i file originali.|  
-|**/bk:**<BitLockerKey\>|**Facoltativo.** È necessario specificare la chiave BitLocker se si desidera che lo strumento sblocchi un'unità crittografata in cui sono disponibili i file originali.|  
-|**/sn:**<StorageAccountName\>|**Obbligatorio.** Nome dell'account di archiviazione per il processo di importazione.|  
-|**/sk:**<StorageAccountKey\>|**Obbligatorio** solo se non è specificata una firma di accesso condiviso del contenitore. Chiave dell'account per l'account di archiviazione per il processo di importazione.|  
-|**/csas:**<ContainerSas\>|**Obbligatorio** solo se non è specificata la chiave dell'account di archiviazione. Firma di accesso condiviso del contenitore per l'accesso ai BLOB associati al processo di importazione.|  
-|**/CopyLogFile:**<DriveCopyLogFile\>|**Obbligatorio.** Percorso del file dei log di copia dell'unità (log dettagliato o log di errore). Il file viene generato dal servizio di Importazione/Esportazione di Azure e può essere scaricato dall'archiviazione BLOB associata al processo. Il file dei log di copia contiene informazioni sui BLOB non riusciti o sui file da ripristinare.|  
-|**/PathMapFile:**<DrivePathMapFile\>|**Facoltativo.** Percorso di un file di testo che può essere usato per risolvere le ambiguità, se si dispone di più file con lo stesso nome importati nello stesso processo. La prima volta che viene eseguito lo strumento, è possibile popolare questo file con tutti i nomi ambigui. Le esecuzioni successive dello strumento useranno questo file per risolvere le ambiguità.|  
+|**/r:**&lt;RepairFile\>|**Obbligatorio.** File di correzione toohello percorso, che tiene traccia dell'avanzamento hello di correzione hello e consente un ripristino interrotto tooresume. Ogni unità deve contenere un solo file di ripristino. Quando si avvia un ripristino per una determinata unità, passare hello percorso tooa file di ripristino, non esiste ancora. tooresume un ripristino interrotto, è necessario passare nel nome hello di un file di ripristino esistente. è necessario specificare sempre Hello Ripristina file corrispondente toohello unità di destinazione.|  
+|**/logdir:**&lt;LogDirectory\>|**Facoltativo.** directory dei log Hello. File di log dettagliati vengono scritti toothis directory. Se non viene specificata alcuna directory di log, la directory corrente hello viene utilizzata come directory di log hello.|  
+|**/d:**<TargetDirectories\>|**Obbligatorio.** Uno o più directory di separati da punto e virgola contenenti hello file originali importati. unità di importazione Hello può anche essere usata, ma non è obbligatorio se sono disponibili posizioni alternative per i file originali.|  
+|**/bk:**&lt;BitLockerKey\>|**Facoltativo.** Specificare la chiave di BitLocker hello se si desidera hello strumento toounlock un'unità crittografata in cui sono disponibili i file originali hello.|  
+|**/sn:**<NomeAccountArchiviazione\>|**Obbligatorio.** nome Hello hello dell'account di archiviazione per hello processo di importazione.|  
+|**/sk:**&lt;ChiaveAccountArchiviazione\>|**Obbligatorio** solo se non è specificata una firma di accesso condiviso del contenitore. processo di importazione chiave Hello per l'account di archiviazione hello per hello.|  
+|**/csas:**&lt;ContainerSas\>|**Richiesto** se e solo se chiave dell'account di archiviazione hello non è specificato. contenitore di Hello SAS per accedere agli oggetti BLOB hello associato al processo di importazione hello.|  
+|**/CopyLogFile:**&lt;DriveCopyLogFile\>|**Obbligatorio.** Percorso toohello copia file di log unità (log dettagliato o log degli errori). file Hello viene generato dal servizio di importazione/esportazione di Azure hello e può essere scaricato dall'archiviazione blob hello associata al processo hello. file di log di copia Hello contiene informazioni sui blob non riuscito o file, che sono toobe riparato.|  
+|**/PathMapFile:**<DrivePathMapFile\>|**Facoltativo.** File di testo percorso tooa che può essere usato hello di ambiguità tooresolve se si dispone di più file con hello stesso nome che importati nello stesso processo. strumento di hello Hello prima ora viene eseguito, è possibile popolare questo file con tutti i nomi ambigui hello. Le esecuzioni successive dello strumento hello utilizzano ambiguità di hello tooresolve questo file.|  
   
-## <a name="using-the-repairimport-command"></a>Uso del comando RepairImport  
-Per ripristinare i dati di importazione tramite flusso di dati in rete, è necessario specificare le directory contenenti i file originali importati usando il parametro `/d`. È anche necessario specificare il file di log di copia scaricato dall'account di archiviazione. Una tipica riga di comando per ripristinare un processo di importazione con errori parziali è:  
+## <a name="using-hello-repairimport-command"></a>Comando RepairImport hello  
+toorepair importazione di dati per flusso di dati di hello rete hello, è necessario specificare le directory hello contenenti hello file originali importati utilizzando hello `/d` parametro. È anche necessario specificare i file di log di copia hello scaricato dall'account di archiviazione. Toorepair una riga di comando tipica di un processo di importazione con errori parziali è simile:  
   
 ```  
 WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bob\Pictures;X:\BobBackup\photos /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C2V.log  
 ```  
   
-Nell'esempio seguente di file dei log di copia, una parte da 64 K di un file era corrotta nell'unità inviata per il processo di importazione. Poiché si tratta dell'unico errore indicato, il resto dei BLOB nel processo sono stati importati.  
+In hello seguente esempio di un file di log di copia, una parte di 64 KB di un file era danneggiata nell'unità spedita per il processo di importazione hello hello. Poiché questa è l'unico errore indicato hello, rest hello di BLOB hello nel processo di hello siano stati importati correttamente.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -73,39 +73,39 @@ Nell'esempio seguente di file dei log di copia, una parte da 64 K di un file era
 </DriveLog>  
 ```
   
-Quando questo log di copia viene passato allo strumento di importazione/esportazione di Azure, lo strumento prova a completare l'importazione del file copiando i contenuti mancanti in rete. Come nell'esempio precedente, lo strumento cerca il file originale `\animals\koala.jpg` all'interno delle due directory `C:\Users\bob\Pictures` e `X:\BobBackup\photos`. Se il file `C:\Users\bob\Pictures\animals\koala.jpg` esiste, lo strumento di importazione/esportazione di Azure copia l'intervallo di dati mancante nel BLOB corrispondente `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`.  
+Quando questo log di copia viene passato toohello strumento di importazione/esportazione di Azure, lo strumento hello tenta importazione hello toofinish del file copiando i contenuti mancanti hello in rete hello. Dopo l'esempio hello precedente, strumento hello Cerca file originale hello `\animals\koala.jpg` all'interno delle directory hello due `C:\Users\bob\Pictures` e `X:\BobBackup\photos`. Se hello file `C:\Users\bob\Pictures\animals\koala.jpg` esiste, lo strumento di importazione/esportazione di Azure intervallo mancante hello copie del blob di dati toohello corrispondente hello `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`.  
   
 ## <a name="resolving-conflicts-when-using-repairimport"></a>Risoluzione dei conflitti quando si usa RepairImport  
-In alcune situazioni lo strumento potrebbe non essere in grado di trovare o aprire il file necessario per uno dei motivi seguenti: è impossibile trovare il file, il file non è accessibile, il nome del file è ambiguo oppure il contenuto del file non è più corretto.  
+In alcuni casi, lo strumento hello potrebbe non essere toofind in grado di aprire hello necessari file o per uno dei seguenti motivi hello: Impossibile trovare il file hello, hello file non è accessibile, il nome di file hello è ambiguo o hello contenuto del file hello non è più corretto.  
   
-Potrebbe verificarsi un errore di ambiguità se lo strumento tenta di individuare `\animals\koala.jpg` ed esiste un file con lo stesso nome sia in `C:\Users\bob\pictures` sia in `X:\BobBackup\photos`. Ovvero sia `C:\Users\bob\pictures\animals\koala.jpg` che `X:\BobBackup\photos\animals\koala.jpg` esistono nelle unità del processo di importazione.  
+Potrebbe verificarsi un errore ambiguo se strumento hello tenta toolocate `\animals\koala.jpg` ed è presente un file con lo stesso nome in entrambi `C:\Users\bob\pictures` e `X:\BobBackup\photos`. Ovvero, entrambi `C:\Users\bob\pictures\animals\koala.jpg` e `X:\BobBackup\photos\animals\koala.jpg` esiste in unità di processo di importazione hello.  
   
-L'opzione `/PathMapFile` consente di risolvere questi errori. È possibile specificare il nome del file contenente l'elenco di file che lo strumento non è stato in grado di identificare in modo corretto. La riga di comando di esempio seguente consente di popolare `9WM35C2V_pathmap.txt`:  
+Hello `/PathMapFile` consente tooresolve questi errori. È possibile specificare il nome di hello del file hello, che contiene l'elenco hello dei file hello strumento non è in grado di identificare toocorrectly. Hello esempio della riga di comando seguente consente di popolare `9WM35C2V_pathmap.txt`:  
   
 ```
 WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bob\Pictures;X:\BobBackup\photos /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C2V.log /PathMapFile:C:\WAImportExport\9WM35C2V_pathmap.txt  
 ```
   
-Lo strumento scriverà quindi i percorsi dei file problematici in `9WM35C2V_pathmap.txt`, uno per ogni riga. Ad esempio, dopo l'esecuzione del comando il file potrebbe contenere le voci seguenti:  
+Hello strumento scriverà quindi i percorsi di file problematico hello troppo`9WM35C2V_pathmap.txt`, uno per ogni riga. Ad esempio, file hello può contenere hello seguenti voci dopo l'esecuzione comando hello:  
  
 ```
 \animals\koala.jpg  
 \animals\kangaroo.jpg  
 ```
   
- Per ogni file nell'elenco, è consigliabile tentare di individuare e aprire il file per assicurarsi che sia disponibile per lo strumento. Se si desidera indicare in modo esplicito allo strumento dove trovare un file, è possibile modificare il file di mappa del percorso e aggiungere i percorsi di tutti i file nella stessa riga, separati da un carattere di tabulazione:  
+ Per ogni file nell'elenco di hello, si deve tentare toolocate e aprire tooensure file hello è lo strumento toohello disponibile. Se si desidera strumento hello tootell in modo esplicito in un file toofind, è possibile modificare il percorso di hello file di mappa e aggiungere hello percorso tooeach file su hello stessa riga, separati da un carattere di tabulazione:  
   
 ```
 \animals\koala.jpg           C:\Users\bob\Pictures\animals\koala.jpg  
 \animals\kangaroo.jpg        X:\BobBackup\photos\animals\kangaroo.jpg  
 ```
   
-Dopo aver reso disponibili i file necessari allo strumento o aver aggiornato il file di mappa del percorso, è possibile eseguire nuovamente lo strumento per completare il processo di importazione.  
+Dopo che lo strumento di toohello disponibili i file necessari hello o l'aggiornamento del file hello percorso mappa, è possibile eseguire nuovamente processo di importazione hello toocomplete strumento hello.  
   
 ## <a name="next-steps"></a>Passaggi successivi
  
-* [Configurazione dello strumento Importazione/Esportazione di Azure](storage-import-export-tool-setup-v1.md)   
+* [Impostazione hello strumento di importazione/esportazione di Azure](storage-import-export-tool-setup-v1.md)   
 * [Preparing hard drives for an import job](../storage-import-export-tool-preparing-hard-drives-import-v1.md) (Preparazione dei dischi rigidi per un processo di importazione)   
 * [Reviewing job status with copy log files](storage-import-export-tool-reviewing-job-status-v1.md) (Revisione dello stato dei processi con i file di log di copia)   
 * [Repairing an export job](../storage-import-export-tool-repairing-an-export-job-v1.md) (Riparazione di un processo di esportazione)   
-* [Risoluzione dei problemi relativi allo strumento Importazione/Esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)
+* [Risoluzione dei problemi hello strumento di importazione/esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)

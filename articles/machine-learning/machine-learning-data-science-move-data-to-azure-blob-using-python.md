@@ -1,6 +1,6 @@
 ---
-title: Spostamento dei dati da e verso l'archiviazione BLOB di Azure utilizzando Python | Documentazione Microsoft
-description: Spostamento dei dati da e verso l'archiviazione BLOB di Azure utilizzando Python.
+title: aaaMove tooand di dati dall'archiviazione Blob di Azure usando Python | Documenti Microsoft
+description: Spostare dati tooand dall'archiviazione Blob di Azure Usa Python
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 0eea1ff8e4f4c1d108445e1a1250b6fa8ff48910
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c2be9600e0d6cb05bcf4109a8d554db522704ecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-and-from-azure-blob-storage-using-python"></a>Spostamento dei dati da e verso l'archivio BLOB di Azure tramite Python
-Questo argomento descrive come elencare, caricare e scaricare BLOB usando l'API Python. Con l'API Python fornita in Azure SDK, è possibile:
+# <a name="move-data-tooand-from-azure-blob-storage-using-python"></a>Spostare dati tooand dall'archiviazione Blob di Azure Usa Python
+In questo argomento viene descritto come toolist, caricare e scaricare BLOB utilizzando hello API Python. Con hello API Python fornito in Azure SDK, è possibile:
 
 * Creare un contenitore
 * Caricare un BLOB in un contenitore
 * Scaricare BLOB
-* Elencare i BLOB in un contenitore
+* Elenco di BLOB hello in un contenitore
 * Eliminare un BLOB
 
-Per ulteriori informazioni sull'utilizzo dell’API di Python, vedere [Come utilizzare il servizio di archiviazione BLOB da Python](../storage/blobs/storage-python-how-to-use-blob-storage.md).
+Per ulteriori informazioni sull'utilizzo di hello Python API, vedere [come tooUse hello servizio di archiviazione Blob da Python](../storage/blobs/storage-python-how-to-use-blob-storage.md).
 
 [!INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
 
 > [!NOTE]
-> Se si utilizza una macchina virtuale che è stata impostata con gli script forniti da [Macchine virtuali della scienza dei dati in Azure](machine-learning-data-science-virtual-machines.md), allora AzCopy è già installata nella macchina virtuale.
+> Se si utilizza macchina virtuale che è stato configurato con gli script hello disponibili in [macchine virtuali di analisi scientifica dei dati in Azure](machine-learning-data-science-virtual-machines.md), quindi AzCopy è già installata nella macchina virtuale hello.
 > 
 > [!NOTE]
-> Per un'introduzione completa all'archiviazione BLOB di Azure, vedere [Introduzione all'archivio BLOB di Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md) e [Servizio BLOB di Azure](https://msdn.microsoft.com/library/azure/dd179376.aspx).
+> Per un'archiviazione blob tooAzure introduzione completa, vedere troppo[nozioni fondamentali di Blob di Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md) e troppo[servizio Blob di Azure](https://msdn.microsoft.com/library/azure/dd179376.aspx).
 > 
 > 
 
 ## <a name="prerequisites"></a>Prerequisiti
-In questo documento si presuppone di avere una sottoscrizione di Azure, un account di archiviazione e chiavi di archiviazione corrispondenti per quell'account. Prima di caricare/scaricare i dati, è necessario conoscere il nome e la chiave del proprio account di archiviazione di Azure.
+Questo documento si presuppone la presenza di una sottoscrizione di Azure, un account di archiviazione e chiave di archiviazione per l'account corrispondente hello. Prima di caricare/scaricare i dati, è necessario conoscere il nome e la chiave del proprio account di archiviazione di Azure.
 
-* Per configurare una sottoscrizione di Azure, vedere [Versione di prova gratuita di un mese](https://azure.microsoft.com/pricing/free-trial/).
+* tooset di una sottoscrizione di Azure, vedere [la versione di un mese valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
 * Per istruzioni sulla creazione di un account di archiviazione e per ottenere informazioni sull’account e la chiave, vedere [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
 
-## <a name="upload-data-to-blob"></a>Caricamento di dati BLOB
-Aggiungere lo snippet seguente vicino all'inizio di ogni codice Python in cui si desidera accedere all'archiviazione di Azure a livello di programmazione:
+## <a name="upload-data-tooblob"></a>Caricare dati tooBlob
+Aggiungere hello seguente frammento di codice superiore hello del codice Python in cui si desidera tooprogrammatically accesso di archiviazione di Azure:
 
     from azure.storage.blob import BlobService
 
-L'oggetto **BlobService** consente di lavorare con contenitori e BLOB. Il codice seguente crea un oggetto BlobService usando il nome e la chiave dell'account di archiviazione. Sostituire nome e chiave dell'account con la chiave e l'account effettivi.
+Hello **BlobService** oggetto consente di collaborare con i contenitori e BLOB. Hello di codice seguente crea un oggetto di BlobService tramite hello archiviazione nome account e la chiave dell'account. Sostituire nome e chiave dell'account con la chiave e l'account effettivi.
 
     blob_service = BlobService(account_name="<your_account_name>", account_key="<your_account_key>")
 
-Per caricare dati in un BLOB, utilizzare i metodi seguenti:
+Utilizzare hello blob tooa di metodi tooupload dati seguenti:
 
-1. put\_block\_blob\_from\_path (consente di caricare il contenuto di un file dal percorso specificato)
-2. put\_block_blob\_from\_file (consente di caricare il contenuto da un flusso/file già aperto)
+1. inserire\_blocco\_blob\_da\_percorso (carica il contenuto di hello di un file dal percorso specificato hello)
+2. inserire\_block_blob\_da\_file (carica il contenuto di hello dal flusso file già aperto)
 3. put\_block\_blob\_from\_bytes (consente di caricare una matrice di byte)
-4. put\_block\_blob\_from\_text (consente di caricare il valore di testo specificato mediante la codifica specificata)
+4. inserire\_blocco\_blob\_da\_testo (Carica hello specificato il valore di testo utilizzando hello specificato codifica)
 
-Il seguente codice di esempio consente di caricare un file locale in un contenitore:
+Hello seguente codice di esempio carica un contenitore di tooa file locale:
 
     blob_service.put_block_blob_from_path("<your_container_name>", "<your_blob_name>", "<your_local_file_name>")
 
-Il seguente codice di esempio consente di caricare tutti i file (a esclusione delle directory) in una directory locale in un'archiviazione BLOB:
+Hello codice di esempio seguente consente di caricare tutti i file hello (escluse le directory) in un archivio tooblob directory locale:
 
     from azure.storage.blob import BlobService
     from os import listdir
@@ -80,7 +80,7 @@ Il seguente codice di esempio consente di caricare tutti i file (a esclusione de
     LOCAL_DIRECT = "<your_local_directory>"        
 
     blob_service = BlobService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
-    # find all files in the LOCAL_DIRECT (excluding directory)
+    # find all files in hello LOCAL_DIRECT (excluding directory)
     local_file_list = [f for f in listdir(LOCAL_DIRECT) if isfile(join(LOCAL_DIRECT, f))]
 
     file_num = len(local_file_list)
@@ -90,24 +90,24 @@ Il seguente codice di esempio consente di caricare tutti i file (a esclusione de
         try:
             blob_service.put_block_blob_from_path(CONTAINER_NAME, blob_name, local_file)
         except:
-            print "something wrong happened when uploading the data %s"%blob_name
+            print "something wrong happened when uploading hello data %s"%blob_name
 
 
 ## <a name="download-data-from-blob"></a>Download dei dati dal BLOB
-Per scaricare dati da un BLOB, utilizzare i metodi seguenti:
+Utilizzare hello seguente dati toodownload metodi da un blob:
 
 1. get\_blob\_to\_path
 2. get\_blob\_to\_file
 3. get\_blob\_to\_bytes
 4. get\_blob\_to\_text
 
-Questi sono metodi che eseguono il blocco dei dati necessario quando le dimensioni superano i 64 MB.
+Questi metodi che eseguono hello necessarie suddivisione in blocchi quando hello hello dati superano di 64 MB.
 
-Il seguente codice di esempio consente di scaricare i contenuti di un BLOB in un contenitore in un file locale:
+Hello codice di esempio seguente consente di scaricare contenuto hello di un blob in un file locale tooa di contenitore:
 
     blob_service.get_blob_to_path("<your_container_name>", "<your_blob_name>", "<your_local_file_name>")
 
-Il seguente codice di esempio consente di scaricare tutti i BLOB da un contenitore. Usa list\_blobs per ottenere un elenco di BLOB disponibili nel contenitore e li scarica in una directory locale.
+Hello codice di esempio seguente Scarica tutti i BLOB da un contenitore. Usa elenco\_BLOB elenco hello tooget di BLOB disponibili nel contenitore hello e li scarica tooa directory locale.
 
     from azure.storage.blob import BlobService
     from os.path import join
@@ -127,4 +127,4 @@ Il seguente codice di esempio consente di scaricare tutti i BLOB da un contenito
         try:
             blob_service.get_blob_to_path(CONTAINER_NAME, blob.name, local_file)
         except:
-            print "something wrong happened when downloading the data %s"%blob.name
+            print "something wrong happened when downloading hello data %s"%blob.name

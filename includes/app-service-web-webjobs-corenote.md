@@ -1,2 +1,2 @@
 >[!NOTE]
->WebJobs SDK non supporta ancora .NET Core.
+>Hello WebJobs SDK non supporta ancora .NET Core.

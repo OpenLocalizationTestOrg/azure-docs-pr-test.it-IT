@@ -1,6 +1,6 @@
 ---
-title: Automatizzare la distribuzione di risorse per un'app per le funzioni in Funzioni di Azure | Microsoft Docs
-description: Informazioni su come creare un modello di Azure Resource Manager per distribuire l'app per le funzioni.
+title: distribuzione di risorse aaaAutomate per un'app di funzione in funzioni di Azure | Documenti Microsoft
+description: Informazioni su come toobuild un modello di gestione risorse di Azure che consente di distribuire l'app di funzione.
 services: Functions
 documtationcenter: na
 author: lindydonna
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 15496e4ab2858b2aa319d53f1c438a259a3d5e49
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0df0d4ef9fe93213f7b1cb1d1e6b4e14f8b3a30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-resource-deployment-for-your-function-app-in-azure-functions"></a>Automatizzare la distribuzione di risorse per l'app per le funzioni in Funzioni di Azure
 
-È possibile usare un modello di Azure Resource Manager per distribuire un'app per le funzioni. Questo articolo descrive le risorse e i parametri necessari per questa operazione. A seconda dei [trigger e dei binding](functions-triggers-bindings.md) potrebbe essere necessario distribuire risorse aggiuntive nell'app per le funzioni.
+È possibile utilizzare un toodeploy modello di gestione risorse di Azure un'app di funzione. Questo articolo vengono illustrati hello necessarie risorse e i parametri per questa operazione. Potrebbe essere necessario toodeploy altre risorse, a seconda di hello [trigger e le associazioni](functions-triggers-bindings.md) nell'app di funzione.
 
 Per altre informazioni sulla creazione dei modelli, vedere [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 
@@ -56,9 +56,9 @@ Per un'app per le funzioni è necessario l'account di archiviazione di Azure. È
 }
 ```
 
-È anche necessario specificare le proprietà `AzureWebJobsStorage` e `AzureWebJobsDashboard` come impostazioni dell'app nella configurazione del sito. Il runtime di Funzioni di Azure usa la stringa di connessione `AzureWebJobsStorage` per creare code interne. La stringa di connessione `AzureWebJobsDashboard` viene usata per accedere all'archivio tabelle di Azure e abilitare la scheda **Monitoraggio** nel portale.
+Inoltre, hello proprietà `AzureWebJobsStorage` e `AzureWebJobsDashboard` deve essere specificata come impostazioni dell'app nella configurazione del sito hello. il runtime di Azure funzioni Hello utilizza hello `AzureWebJobsStorage` code interne toocreate stringa di connessione. stringa di connessione Hello `AzureWebJobsDashboard` è usato toolog tooAzure tabella archiviazione e la potenza hello **monitoraggio** scheda nel portale di hello.
 
-Queste proprietà sono specificate nella raccolta `appSettings` dell'oggetto `siteConfig`:
+Queste proprietà sono specificate in hello `appSettings` insieme in hello `siteConfig` oggetto:
 
 ```json
 "appSettings": [
@@ -74,11 +74,11 @@ Queste proprietà sono specificate nella raccolta `appSettings` dell'oggetto `si
 
 ### <a name="hosting-plan"></a>Piano di hosting
 
-La definizione del piano di hosting varia a seconda che si usi un piano a consumo o un piano di servizio app. Vedere [Distribuire un'app per le funzioni nel piano a consumo](#consumption) e [Distribuire un'app per le funzioni nel piano di servizio app](#app-service-plan).
+definizione di Hello del piano di hosting hello varia a seconda se si utilizza un piano di servizio App o di utilizzo. Vedere [distribuire un'app di funzione nel piano di consumo hello](#consumption) e [distribuire un'app di funzione nel piano di servizio App hello](#app-service-plan).
 
 ### <a name="function-app"></a>App per le funzioni
 
-L'app per le funzioni viene definita usando una risorsa **Microsoft.Web/Site** di tipo **functionapp**:
+risorse app di funzione Hello sono definita tramite una risorsa di tipo **Microsoft.Web/Site** e tipo **functionapp**:
 
 ```json
 {
@@ -95,15 +95,15 @@ L'app per le funzioni viene definita usando una risorsa **Microsoft.Web/Site** d
 
 <a name="consumption"></a>
 
-## <a name="deploy-a-function-app-on-the-consumption-plan"></a>Distribuire un'app per le funzioni nel piano a consumo
+## <a name="deploy-a-function-app-on-hello-consumption-plan"></a>Distribuire un'app di funzione nel piano di consumo hello
 
-È possibile eseguire un'app per le funzioni in due modalità diverse, ovvero con piano a consumo e piano di servizio app di Azure. Il piano a consumo alloca automaticamente funzionalità di calcolo durante l'esecuzione del codice, aumenta il numero di istanze in base alla necessità per gestire il carico e quindi riduce le prestazioni quando il codice non è in esecuzione. Non è quindi necessario pagare per le macchine virtuali inattive e riservare in anticipo la capacità. Per altre informazioni sui piani di hosting, vedere [Piani a consumo e piani di servizio app di Funzioni di Azure](functions-scale.md).
+È possibile eseguire un'app di funzione in due modalità diverse: hello piano il consumo e hello piano di servizio App. piano di consumo Hello alloca automaticamente potenza di calcolo quando il codice è in esecuzione, consente una scalabilità orizzontale come carico toohandle necessarie e quindi il ridimensionamento quando codice non è in esecuzione. In tal caso, non si dispone di toopay per le macchine virtuali inattive e non è la capacità di tooreserve in anticipo. vedere toolearn ulteriori informazioni sui piani di hosting [i piani di consumo di funzioni di Azure e servizio App](functions-scale.md).
 
 Per un modello di Azure Resource Manager di esempio, vedere [App per le funzioni nel piano a consumo].
 
 ### <a name="create-a-consumption-plan"></a>Creare un piano a consumo
 
-Un piano a consumo è un tipo particolare di risorsa "serverfarm". Viene specificato usando il valore `Dynamic` per le proprietà `computeMode` e `sku`:
+Un piano a consumo è un tipo particolare di risorsa "serverfarm". Specificare tramite hello `Dynamic` valore per hello `computeMode` e `sku` proprietà:
 
 ```json
 {
@@ -121,7 +121,7 @@ Un piano a consumo è un tipo particolare di risorsa "serverfarm". Viene specifi
 
 ### <a name="create-a-function-app"></a>Creare un'app per le funzioni
 
-Un piano a consumo richiede anche due impostazioni aggiuntive nella configurazione del sito: `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` e `WEBSITE_CONTENTSHARE`. Queste proprietà consentono di configurare l'account di archiviazione e il percorso in cui vengono archiviati il codice dell'app per le funzioni e la configurazione.
+Inoltre, un piano di consumo richiede due impostazioni aggiuntive nella configurazione del sito hello: `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` e `WEBSITE_CONTENTSHARE`. Queste proprietà consentono di configurare hello storage account e il percorso in cui sono archiviati hello funzione app codice e la configurazione.
 
 ```json
 {
@@ -166,9 +166,9 @@ Un piano a consumo richiede anche due impostazioni aggiuntive nella configurazio
 
 <a name="app-service-plan"></a> 
 
-## <a name="deploy-a-function-app-on-the-app-service-plan"></a>Distribuire un'app per le funzioni nel piano di servizio app
+## <a name="deploy-a-function-app-on-hello-app-service-plan"></a>Distribuire un'app di funzione nel piano di servizio App hello
 
-Nel piano di servizio app, le app per le funzioni vengono eseguite in macchine virtuali dedicate in SKU Basic, Standard e Premium, analogamente alle app Web. Per informazioni dettagliate sul funzionamento del piano di servizio app, vedere [Panoramica approfondita dei piani di servizio app di Azure](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md). 
+Nel piano di servizio App hello, l'app di funzione viene eseguita nelle macchine virtuali dedicate Basic, Standard e Premium SKU, App tooweb simile. Per informazioni dettagliate sul funzionamento di hello piano di servizio App, vedere hello [piani di servizio App di Azure ad approfondimenti su](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md). 
 
 Per un modello di Azure Resource Manager di esempio, vedere [App per le funzioni nel piano di servizio app di Azure].
 
@@ -192,12 +192,12 @@ Per un modello di Azure Resource Manager di esempio, vedere [App per le funzioni
 
 ### <a name="create-a-function-app"></a>Creare un'app per le funzioni 
 
-Dopo aver selezionato un'opzione di scalabilità, creare un'app per le funzioni. L'app è il contenitore che incorpora tutte le funzioni.
+Dopo aver selezionato un'opzione di scalabilità, creare un'app per le funzioni. app Hello è hello contenitore contiene tutte le funzioni.
 
-Un'app per le funzioni contiene numerose risorse figlio che possono essere usate nella distribuzione, incluse le impostazioni dell'app e le opzioni di controllo del codice sorgente. È anche possibile scegliere di rimuovere la risorsa figlio **sourcecontrols** e usare un'altra [opzione di distribuzione](functions-continuous-deployment.md).
+Un'app per le funzioni contiene numerose risorse figlio che possono essere usate nella distribuzione, incluse le impostazioni dell'app e le opzioni di controllo del codice sorgente. È anche possibile scegliere hello tooremove **sourcecontrols** risorse figlio e utilizzare un altro [opzione di distribuzione](functions-continuous-deployment.md) invece.
 
 > [!IMPORTANT]
-> Per poter distribuire l'applicazione usando Azure Resource Manager, è importante comprendere come vengono distribuite le risorse in Azure. Nell'esempio seguente, le configurazioni di livello superiore vengono applicate usando **siteConfig**. È importante impostare le configurazioni a un livello superiore perché forniscono informazioni al motore di runtime e di distribuzione di Funzioni di Azure. Le informazioni di livello superiore sono necessarie prima di applicare la risorsa figlia **sourcecontrols/web**. Anche se è possibile configurare queste impostazioni nella risorsa **config/appSettings** del livello figlio, in alcuni casi l'app per le funzioni deve essere distribuita *prima* di applicare **config/appSettings**. Quando ad esempio si usano le funzioni con [app per la logica](../logic-apps/index.md), le funzioni sono una dipendenza di un'altra risorsa.
+> toosuccessfully distribuire l'applicazione usando Gestione risorse di Azure, è importante toounderstand la distribuzione di risorse in Azure. Nell'esempio seguente di hello, vengono applicate le configurazioni di livello superiore tramite **della configurazione di sito**. È importante tooset queste configurazioni in un alto livello, non vengono utilizzati solo informazioni toohello funzioni runtime e la distribuzione del motore. Informazioni di primo livello sono necessario prima figlio hello **sourcecontrols/web** è applicata una risorsa. Sebbene sia possibile tooconfigure queste impostazioni in hello livello figlio **config/appSettings** risorse, in alcuni casi l'app di funzione deve essere distribuito *prima* **config/appSettings**  viene applicato. Quando ad esempio si usano le funzioni con [app per la logica](../logic-apps/index.md), le funzioni sono una dipendenza di un'altra risorsa.
 
 ```json
 {
@@ -252,25 +252,25 @@ Un'app per le funzioni contiene numerose risorse figlio che possono essere usate
 }
 ```
 > [!TIP]
-> Questo modello usa il valore dell'impostazione app [Project](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file), che imposta la directory di base in cui il motore di distribuzione di Funzioni di Azure (Kudu) cercherà il codice distribuibile. Nel repository le funzioni sono in una sottocartella della cartella **src**. Pertanto, nell'esempio precedente abbiamo impostato il valore di impostazione dell'app su `src`. Se le funzioni sono nella radice del repository o se non si sta distribuendo dal controllo del codice sorgente, è possibile rimuovere questo valore di impostazione dell'app.
+> Questo modello Usa hello [progetto](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file) valore di impostazioni applicazione, che imposta hello directory di base in cui hello il motore di distribuzione di funzioni (Kudu) esegue la ricerca di codice distribuibile. Il repository, nostro funzioni sono in una sottocartella di hello **src** cartella. In tal caso, nell'hello sopra riportato, viene impostato il valore delle impostazioni app hello troppo`src`. Se le funzioni si trovano nella radice di hello del repository, o se non si sta distribuendo dal controllo del codice sorgente, è possibile rimuovere questo valore di impostazioni di app.
 
 ## <a name="deploy-your-template"></a>Distribuire il modello
 
-Il modello può essere distribuito in uno dei modi seguenti:
+È possibile utilizzare uno qualsiasi dei seguenti modi toodeploy hello del modello:
 
 * [PowerShell](../azure-resource-manager/resource-group-template-deploy.md)
 * [Interfaccia della riga di comando di Azure](../azure-resource-manager/resource-group-template-deploy-cli.md)
 * [Portale di Azure](../azure-resource-manager/resource-group-template-deploy-portal.md)
 * [API REST](../azure-resource-manager/resource-group-template-deploy-rest.md)
 
-### <a name="deploy-to-azure-button"></a>Pulsante Deploy to Azure per la distribuzione in Azure
+### <a name="deploy-tooazure-button"></a>Pulsante tooAzure di distribuzione
 
-Sostituire ```<url-encoded-path-to-azuredeploy-json>``` con una versione [con codifica URL](https://www.bing.com/search?q=url+encode) del percorso non elaborato del file `azuredeploy.json` in GitHub.
+Sostituire ```<url-encoded-path-to-azuredeploy-json>``` con un [con codifica URL](https://www.bing.com/search?q=url+encode) versione di hello path non elaborato del `azuredeploy.json` file in GitHub.
 
 Di seguito è riportato un esempio che usa la sintassi markdown:
 
 ```markdown
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
+[![Deploy tooAzure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
 ```
 
 Di seguito è riportato un esempio che usa HTML:
@@ -281,10 +281,10 @@ Di seguito è riportato un esempio che usa HTML:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Altre informazioni su come sviluppare e configurare le Funzioni di Azure.
+Per ulteriori informazioni su toodevelop e configurare le funzioni di Azure.
 
 * [Guida di riferimento per gli sviluppatori di Funzioni di Azure](functions-reference.md)
-* [Come configurare le impostazioni dell'app per le funzioni di Azure](functions-how-to-use-azure-function-app-settings.md)
+* [Funzionamento delle impostazioni dell'app Azure tooconfigure](functions-how-to-use-azure-function-app-settings.md)
 * [Create your first Azure function](functions-create-first-azure-function.md) (Creare la prima funzione di Azure)
 
 <!-- LINKS -->

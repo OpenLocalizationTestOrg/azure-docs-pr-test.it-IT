@@ -1,6 +1,6 @@
 ---
-title: "Configurazione della scalabilità automatica di un servizio cloud nel portale | Documentazione Microsoft"
-description: "Informazioni su come usare il portale per configurare le regole di scalabilità automatica per un ruolo Web o un ruolo di lavoro del servizio cloud in Azure."
+title: aaaAuto scalare un servizio cloud nel portale di hello | Documenti Microsoft
+description: "Informazioni su come toouse hello tooconfigure portale regole di scalabilità automatica per un ruolo web del servizio cloud o un ruolo di lavoro in Azure."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: e9683d4c5779450fd67fa42ab13095c7f201b4cd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 265f4c8ec5e1ec2f85585df25f18cd0d0c9946a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-auto-scaling-for-a-cloud-service-in-the-portal"></a>Come configurare la scalabilità automatica per un servizio cloud nel portale
+# <a name="how-tooconfigure-auto-scaling-for-a-cloud-service-in-hello-portal"></a>Come tooconfigure auto scaling per un servizio Cloud nel portale di hello
 > [!div class="op_single_selector"]
 > * [Portale di Azure](cloud-services-how-to-scale-portal.md)
 > * [Portale di Azure classico](cloud-services-how-to-scale.md)
 
-È possibile impostare condizioni per un ruolo di lavoro del servizio cloud che attivano operazioni di scalabilità verticale o orizzontale. Le condizioni per il ruolo possono essere basate sulla CPU, sul disco o sul carico di rete del ruolo. È anche possibile impostare una condizione in base a una coda di messaggi o alla metrica di un'altra risorsa di Azure associata alla sottoscrizione.
+È possibile impostare condizioni per un ruolo di lavoro del servizio cloud che attivano operazioni di scalabilità verticale o orizzontale. le condizioni di Hello per ruolo hello possono essere basate su hello CPU, disco o il carico di rete del ruolo hello. È inoltre possibile impostare una condizione in base a una metrica messaggio hello o coda di un'altra risorsa di Azure associata alla sottoscrizione.
 
 > [!NOTE]
 > Questo articolo è incentrato sui ruoli Web e di lavoro del servizio cloud. Quando si crea una macchina virtuale (distribuzione classica) direttamente, questa viene ospitata in un servizio cloud. È possibile ridimensionare una macchina virtuale standard tramite l'associazione con un [set di disponibilità](../virtual-machines/windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) e attivarla o disattivarla manualmente.
 
 ## <a name="considerations"></a>Considerazioni
-Prima di configurare la scalabilità per l'applicazione, tenere presente quanto segue:
+È necessario considerare le seguenti informazioni prima di configurare la scalabilità per l'applicazione hello:
 
 * La scalabilità è influenzata dall'utilizzo di core.
 
-    Le istanze del ruolo più ampie usano più core. È possibile ridimensionare il numero di istanze di un'applicazione solo entro i limiti di core previsti dalla sottoscrizione. Si supponga, ad esempio, che la sottoscrizione abbia un limite di 20 core. Se si esegue un'applicazione con due servizi cloud di medie dimensioni (per un totale di 4 core), l'aumento di altre distribuzioni del servizio cloud nella sottoscrizione è limitata ai 16 core rimanenti. Per altre informazioni sulle dimensioni, vedere [Dimensioni dei servizi cloud](cloud-services-sizes-specs.md).
+    Le istanze del ruolo più ampie usano più core. È possibile scalare un'applicazione solo entro il limite di hello di core per la sottoscrizione. Si supponga, ad esempio, che la sottoscrizione abbia un limite di 20 core. Se si esegue un'applicazione con i due servizi di cloud di medie dimensioni (un totale di 4 core), è possibile solo scalabilità verticale altre distribuzioni del servizio cloud nella sottoscrizione da 16 core hello rimanenti. Per altre informazioni sulle dimensioni, vedere [Dimensioni dei servizi cloud](cloud-services-sizes-specs.md).
 
-* È possibile eseguire la scalabilità in base a una soglia di messaggi in coda. Per altre informazioni sull'uso delle code, vedere l'articolo relativo all' [uso del servizio di archiviazione code](../storage/queues/storage-dotnet-how-to-use-queues.md).
+* È possibile eseguire la scalabilità in base a una soglia di messaggi in coda. Per ulteriori informazioni su come toouse code, vedere [come toouse hello servizio di archiviazione code](../storage/queues/storage-dotnet-how-to-use-queues.md).
 
 * È anche possibile ridimensionare altre risorse associate alla sottoscrizione.
 
-* Per abilitare la disponibilità elevata dell'applicazione, è necessario accertarsi che sia distribuita con due o più istanze del ruolo. Per altre informazioni, vedere [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
+* tooenable la disponibilità elevata dell'applicazione, è necessario assicurarsi che venga distribuito con due o più istanze del ruolo. Per altre informazioni, vedere [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
 
 
 ## <a name="where-scale-is-located"></a>Posizione della scalabilità
-Dopo aver selezionato il servizio cloud, viene visualizzato il pannello del servizio cloud.
+Dopo aver selezionato il servizio cloud, è necessario il pannello servizi di cloud hello è visibile.
 
-1. Nel pannello del servizio cloud, nel riquadro **Ruoli e istanze** , selezionare il nome del servizio cloud.   
-   **IMPORTANTE**: assicurarsi di selezionare il ruolo del servizio cloud, non l'istanza del ruolo che si trova sotto il ruolo.
+1. Nel pannello del servizio cloud hello, su hello **ruoli e istanze** riquadro, nome selezionare hello del servizio cloud hello.   
+   **IMPORTANTE**: rendere cloud di hello tooclick che servizio ruolo, non hello istanza del ruolo che si trova sotto il ruolo di hello.
 
     ![](./media/cloud-services-how-to-scale-portal/roles-instances.png)
-2. Selezionare il riquadro **Ridimensiona** .
+2. Seleziona hello **scala** riquadro.
 
     ![](./media/cloud-services-how-to-scale-portal/scale-tile.png)
 
 ## <a name="automatic-scale"></a>Scalabilità automatica
-È possibile configurare le impostazioni di scalabilità per un ruolo scegliendo tra due modalità **manuale** o **automatica**. Con la modalità manuale, come si può immaginare, si imposta il numero assoluto di istanze. La modalità automatica consente tuttavia di impostare regole che determinano il modo e la dimensione della scalabilità.
+È possibile configurare le impostazioni di scalabilità per un ruolo scegliendo tra due modalità **manuale** o **automatica**. Manuale è come previsto, si imposta numero assoluto di hello delle istanze. Automatica consente tuttavia tooset regole che determinano la modalità e in quale molto è consigliabile applicare la scalabilità.
 
-Impostare l'opzione **Ridimensiona di** su **regole per la pianificazione e le prestazioni**.
+Set hello **scalare** opzione troppo**le regole di pianificazione e delle prestazioni**.
 
 ![Impostazioni di scalabilità dei servizi cloud con profilo e regola](./media/cloud-services-how-to-scale-portal/schedule-basics.png)
 
 1. Un profilo esistente.
-2. Aggiungere una regola per il profilo padre.
+2. Aggiungere una regola per profilo padre hello.
 3. Aggiungere un altro profilo.
 
-Selezionare **Aggiungi profilo**. Il profilo determina la modalità da usare per la scalabilità: **sempre**, **ricorrenza**, **data fissa**.
+Selezionare **Aggiungi profilo**. profilo Hello determina la modalità desiderata toouse per scala hello: **sempre**, **ricorrenza**, **data fissa**.
 
-Dopo aver configurato il profilo e le regole, selezionare l'icona **Salva** nella parte superiore.
+Dopo aver configurato il profilo di hello e regole, selezionare hello **salvare** icona nella parte superiore di hello.
 
 #### <a name="profile"></a>Profilo
-Il profilo imposta istanze minime e massime per la scalabilità, anche quando è attivo questo intervallo di scalabilità.
+profilo Hello imposta minimo e massimo di istanze per hello scalabilità anche quando l'intervallo di scala è attivo.
 
 * **Sempre**
 
@@ -80,35 +80,35 @@ Il profilo imposta istanze minime e massime per la scalabilità, anche quando è
     ![Servizio cloud che esegue sempre la scalabilità](./media/cloud-services-how-to-scale-portal/select-always.png)
 * **Ricorrenza**
 
-    Consente di scegliere un set di giorni della settimana per la scalabilità.
+    Scegliere un set di giorni di hello settimana tooscale.
 
     ![Scalabilità del servizio cloud con pianificazione ricorrente](./media/cloud-services-how-to-scale-portal/select-recurrence.png)
 * **Data fissa**
 
-    Un intervallo di date fisso per eseguire la scalabilità del ruolo.
+    Un ruolo di hello tooscale intervallo di date fisse.
 
     ![Scalabilità del servizio cloud con data fissa](./media/cloud-services-how-to-scale-portal/select-fixed.png)
 
-Dopo aver configurato il profilo, selezionare il pulsante **OK** nella parte inferiore del pannello del profilo.
+Dopo aver configurato il profilo di hello, selezionare hello **OK** pulsante nella parte inferiore di hello del pannello profilo hello.
 
 #### <a name="rule"></a>Regola
-Le regole vengono aggiunte al profilo e rappresentano la condizione che attiva la scalabilità.
+Le regole vengono aggiunti tooa profilo e rappresentano una condizione che attiva la scala hello.
 
-Il trigger della regola è basato su una metrica del servizio cloud (uso della CPU, attività del disco o attività di rete) a cui è possibile aggiungere un valore condizionale. È anche possibile impostare il trigger in base a una coda di messaggi o alla metrica di un'altra risorsa di Azure associata alla sottoscrizione.
+trigger della regola Hello è basato su una metrica di servizio cloud di hello (utilizzo della CPU, attività del disco o un'attività di rete) toowhich è possibile aggiungere un valore condizionale. È inoltre possibile avere trigger hello in base a una metrica messaggio hello o coda di un'altra risorsa di Azure associata alla sottoscrizione.
 
 ![](./media/cloud-services-how-to-scale-portal/rule-settings.png)
 
-Dopo aver configurato la regola, selezionare il pulsante **OK** nella parte inferiore del pannello della regola.
+Dopo aver configurato la regola hello, selezionare hello **OK** pulsante nella parte inferiore di hello del pannello regole hello.
 
-## <a name="back-to-manual-scale"></a>Ritorno alla scalabilità manuale
-Accedere a [Impostazioni scalabilità](#where-scale-is-located) e impostare l'opzione **Ridimensiona di** su **numero di istanze immesso manualmente**.
+## <a name="back-toomanual-scale"></a>Scala toomanual indietro
+Passare toohello [le impostazioni di scalabilità](#where-scale-is-located) e set hello **scalare** opzione troppo**un numero di istanze immesso manualmente**.
 
 ![Impostazioni di scalabilità dei servizi cloud con profilo e regola](./media/cloud-services-how-to-scale-portal/manual-basics.png)
 
-Questa impostazione rimuove la scalabilità automatica dal ruolo e quindi è possibile impostare direttamente il numero di istanze.
+Questa impostazione consente di rimuovere il ridimensionamento automatico dal ruolo hello e quindi è possibile impostare il numero di istanze di hello direttamente.
 
-1. L'opzione di scalabilità (manuale o automatica).
-2. Un dispositivo di scorrimento delle istanze del ruolo per impostare le istanze da ridimensionare.
-3. Istanze del ruolo da ridimensionare.
+1. opzione della scala (manuali o automatizzati) Hello.
+2. Un ruolo istanza dispositivo di scorrimento tooset hello istanze tooscale per.
+3. Istanze di hello ruolo tooscale per.
 
-Dopo aver configurato il profilo e le regole, selezionare l'icona **Salva** nella parte superiore.
+Dopo aver configurato le impostazioni di scalabilità di hello, selezionare hello **salvare** icona nella parte superiore di hello.

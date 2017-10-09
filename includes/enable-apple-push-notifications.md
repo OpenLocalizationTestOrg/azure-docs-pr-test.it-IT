@@ -1,0 +1,3 @@
+
+* [Registrare un ID applicazione per l'app](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingProfiles/MaintainingProfiles.html#//apple_ref/doc/uid/TP40012582-CH30-SW991). Creare un ID app esplicita (non un ID di app con caratteri jolly) e, per **ID Bundle**, utilizzare l'ID bundle esatta hello che è nel progetto di avvio rapido di Xcode. È anche fondamentale che si seleziona hello **le notifiche Push** opzione. 
+* Successivamente, [tooprepare per la configurazione delle notifiche push](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6), creare un "Sviluppo" o "Distribuzione" certificato SSL.

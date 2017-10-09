@@ -1,6 +1,6 @@
 ---
-title: Informazioni sui processi hub IoT di Azure | Microsoft Docs
-description: "Guida per sviluppatori - Pianificazione di processi da eseguire in più dispositivi connessi all'hub di IoT. I processi possono aggiornare i tag e le proprietà desiderate e richiamare metodi diretti su più dispositivi."
+title: i processi di IoT Hub Azure aaaUnderstand | Documenti Microsoft
+description: "Guida per sviluppatori - pianificazione processi toorun su più dispositivi connessi tooyour IoT hub. I processi possono aggiornare i tag e le proprietà desiderate e richiamare metodi diretti su più dispositivi."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
-ms.openlocfilehash: abb7f80662650efa8f158f32125ebc5350cb4f62
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8be134e6c379feae5087df8f562a74505c57afee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schedule-jobs-on-multiple-devices"></a>Pianificare processi in più dispositivi
 ## <a name="overview"></a>Panoramica
-Come descritto in articoli precedenti, l'hub IoT di Azure consente un numero di blocchi predefiniti ([tag e proprietà di dispositivi gemelli][lnk-twin-devguide] e [metodi diretti][lnk-dev-methods]).  In genere, le app back-end consentono agli amministratori dei dispositivi e agli operatori di aggiornare i dispositivi IoT in blocco e a un'ora pianificata e di interagirvi.  I processi incapsulano l'esecuzione di aggiornamenti dei dispositivi gemelli e i metodi diretti rispetto a un set di dispositivi a un'ora pianificata.  Ad esempio, un operatore userà un'app back-end avviata e terrà traccia di un processo per riavviare un set di dispositivi al terzo piano dell'edificio 43 in un orario opportuno per non interrompere le attività dell'edificio.
+Come descritto in articoli precedenti, l'hub IoT di Azure consente un numero di blocchi predefiniti ([tag e proprietà di dispositivi gemelli][lnk-twin-devguide] e [metodi diretti][lnk-dev-methods]).  In genere, le applicazioni back-end abilitare tooupdate amministratori e operatori di dispositivo e interagiscono con i dispositivi IoT in blocco e a un'ora pianificata.  I processi di incapsulano esecuzione hello di due aggiornamenti del dispositivo e metodi diretti rispetto a un set di dispositivi in una fase di pianificazione.  Ad esempio, un operatore utilizzerebbe un'app di back-end che avviano e tenere traccia di un tooreboot processo un set di dispositivi nella compilazione 43 e floor 3 in un momento che non sarebbe operazioni toohello comportano interruzioni del servizio di compilazione hello.
 
-### <a name="when-to-use"></a>Quando usare le autorizzazioni
-È consigliabile usare processi quando il back-end di una soluzione deve pianificare e tenere traccia dell'avanzamento di una qualsiasi delle attività seguenti in un set di dispositivi:
+### <a name="when-toouse"></a>Quando toouse
+È consigliabile utilizzare processi quando: una soluzione back-end esigenze tooschedule e tenere traccia dello stato delle seguenti attività su un set di dispositivi hello:
 
 * Aggiornare le proprietà desiderate
 * Aggiornare i tag
 * Richiamare metodi diretti
 
 ## <a name="job-lifecycle"></a>Ciclo di vita dei processi
-I processi vengono avviati dal back-end della soluzione e mantenuti dall'hub IoT.  È possibile avviare un processo tramite un URI del servizio (`{iot hub}/jobs/v2/{device id}/methods/<jobID>?api-version=2016-11-14`) ed eseguire query riguardo allo stato di avanzamento in un processo in esecuzione tramite un URI del servizio (`{iot hub}/jobs/v2/<jobId>?api-version=2016-11-14`).  Dopo l'avvio del processo, l'esecuzione di query relative ai processi consente all'app back-end aggiornare lo stato dei processi in esecuzione.
+I processi sono avviati dal back-end di soluzione hello e mantenuti dall'IoT Hub.  È possibile avviare un processo tramite un URI del servizio (`{iot hub}/jobs/v2/{device id}/methods/<jobID>?api-version=2016-11-14`) ed eseguire query riguardo allo stato di avanzamento in un processo in esecuzione tramite un URI del servizio (`{iot hub}/jobs/v2/<jobId>?api-version=2016-11-14`).  Una volta che viene avviato un processo, l'esecuzione di query per i processi consente hello app back-end toorefresh hello stato processi in esecuzione.
 
 > [!NOTE]
-> Quando si avvia un processo, i valori e i nomi di proprietà possono contenere solo caratteri alfanumerici US-ASCII stampabili, ad eccezione dei seguenti: ``{'$', '(', ')', '<', '>', '@', ',', ';', ':', '\', '"', '/', '[', ']', '?', '=', '{', '}', SP, HT}``.
+> Quando si avvia un processo, i valori e nomi di proprietà possono contenere solo US-ASCII stampabili caratteri alfanumerici, ad eccezione di quelli hello seguente insieme: ``{'$', '(', ')', '<', '>', '@', ',', ';', ':', '\', '"', '/', '[', ']', '?', '=', '{', '}', SP, HT}``.
 > 
 > 
 
 ## <a name="reference-topics"></a>Argomenti di riferimento:
-Gli argomenti di riferimento seguenti offrono altre informazioni sull'uso dei processi.
+Hello argomenti di riferimento seguenti offrono ulteriori informazioni sull'utilizzo di processi.
 
-## <a name="jobs-to-execute-direct-methods"></a>Processi per eseguire metodi diretti
-Di seguito sono riportati i dettagli di una richiesta HTTP 1.1 per eseguire un [metodo diretto][lnk-dev-methods] in un set di dispositivi tramite un processo:
+## <a name="jobs-tooexecute-direct-methods"></a>Metodi di processi tooexecute diretti
+Hello Ecco i dettagli della richiesta hello HTTP 1.1 per l'esecuzione di un [metodo diretto] [ lnk-dev-methods] in un set di dispositivi tramite un processo:
 
     ```
     PUT /jobs/v2/<jobId>?api-version=2016-11-14
@@ -66,7 +66,7 @@ Di seguito sono riportati i dettagli di una richiesta HTTP 1.1 per eseguire un [
         maxExecutionTimeInSeconds: <maxExecutionTimeInSeconds>        
     }
     ```
-La condizione di query può anche trovarsi in un ID dispositivo singolo o in un elenco di ID dispositivo, come illustrato di seguito.
+condizione di query Hello può anche essere in un singolo Id di dispositivo o in un elenco di ID come mostrato di seguito
 
 **esempi**
 ```
@@ -76,8 +76,8 @@ queryCondition = "deviceId IN ['MyDevice1']
 ```
 [Linguaggio di query dell'hub IoT][lnk-query] illustra il linguaggio di query dell'hub IoT in maggiore dettaglio.
 
-## <a name="jobs-to-update-device-twin-properties"></a>Processi per aggiornare le proprietà dei dispositivi gemelli
-Di seguito sono riportati i dettagli di una richiesta HTTP 1.1 per aggiornare le proprietà dei dispositivi gemelli tramite un processo:
+## <a name="jobs-tooupdate-device-twin-properties"></a>Proprietà dei processi tooupdate dispositivi doppi
+Hello Ecco i dettagli della richiesta HTTP 1.1 hello per aggiornare le proprietà di un doppio dispositivo tramite un processo:
 
     ```
     PUT /jobs/v2/<jobId>?api-version=2016-11-14
@@ -97,7 +97,7 @@ Di seguito sono riportati i dettagli di una richiesta HTTP 1.1 per aggiornare le
     ```
 
 ## <a name="querying-for-progress-on-jobs"></a>Esecuzione di query sull'avanzamento dei processi
-Di seguito sono riportati i dettagli di una richiesta HTTP 1.1 per [eseguire query sui processi][lnk-query]:
+Hello Ecco hello i dettagli della richiesta HTTP 1.1 per [l'esecuzione di query per i processi][lnk-query]:
 
     ```
     GET /jobs/v2/query?api-version=2016-11-14[&jobType=<jobType>][&jobStatus=<jobStatus>][&pageSize=<pageSize>][&continuationToken=<continuationToken>]
@@ -108,49 +108,49 @@ Di seguito sono riportati i dettagli di una richiesta HTTP 1.1 per [eseguire que
     User-Agent: <sdk-name>/<sdk-version>
     ```
 
-La risposta fornisce continuationToken.  
+Hello continuationToken viene fornito dalla risposta hello.  
 
 ## <a name="jobs-properties"></a>Proprietà dei processi
-Di seguito è riportato un elenco di proprietà e corrispondenti descrizioni che è possibile usare quando si eseguono query sui processi o sui relativi risultati.
+Hello seguito è riportato un elenco di proprietà e le descrizioni corrispondente, che possono essere utilizzate quando si eseguono query per i processi o i risultati del processo.
 
 | Proprietà | Description |
 | --- | --- |
-| **jobId** |ID fornito dall'applicazione per il processo. |
-| **startTime** |Ora di inizio fornita dall'applicazione (ISO 8601) per il processo. |
-| **endTime** |Data fornita dall'hub IoT (ISO 8601) per il completamento del processo. È valida solo quando il processo raggiunge lo stato di completamento. |
+| **jobId** |ID dell'applicazione specificato per il processo di hello. |
+| **startTime** |Ora di avvio di applicazioni fornito (ISO 8601) per processo hello. |
+| **endTime** |Data (ISO 8601) IoT Hub previste quando hello processo completato. Valido solo quando il processo di hello raggiunge lo stato 'completato' hello. |
 | **type** |Tipi di processi: |
-| **scheduledUpdateTwin**: un processo usato per aggiornare un set di proprietà o tag desiderati. | |
-| **scheduledDeviceMethod**: un processo usato per richiamare un metodo di dispositivo in un set di dispositivi gemelli. | |
-| **Stato** |Stato corrente del processo. Valori possibili per lo stato: |
-| **pending**: processo pianificato e in attesa del prelievo da parte del servizio del processo. | |
-| **scheduled**: processo pianificato per un'ora futura. | |
+| **scheduledUpdateTwin**: tooupdate un processo utilizzato un set di proprietà desiderata o i tag. | |
+| **scheduledDeviceMethod**: tooinvoke un processo utilizzato un metodo di dispositivo in un set di gemelli di dispositivo. | |
+| **Stato** |Stato corrente del processo di hello. Valori possibili per lo stato: |
+| **in sospeso** : pianificata e in attesa toobe prelevato dal servizio processo hello. | |
+| **pianificato** : pianificata per un'ora nel futuro hello. | |
 | **running**: processo attualmente attivo. | |
 | **cancelled**: processo annullato. | |
 | **failed**: processo non riuscito. | |
 | **completed**: processo completato. | |
-| **deviceJobStatistics** |Statistiche sull'esecuzione del processo. |
+| **deviceJobStatistics** |Statistiche sull'esecuzione del processo di hello. |
 
 Proprietà **deviceJobStatistics**.
 
 | Proprietà | Description |
 | --- | --- |
-| **deviceJobStatistics.deviceCount** |Numero di dispositivi nel processo. |
-| **deviceJobStatistics.failedCount** |Numero di dispositivi in cui il processo non è riuscito. |
-| **deviceJobStatistics.succeededCount** |Numero di dispositivi in cui il processo è riuscito. |
-| **deviceJobStatistics.runningCount** |Numero di dispositivi in cui il processo è in esecuzione. |
-| **deviceJobStatistics.pendingCount** |Numero di dispositivi in cui il processo è in attesa. |
+| **deviceJobStatistics.deviceCount** |Numero di dispositivi nel processo di hello. |
+| **deviceJobStatistics.failedCount** |Numero di dispositivi in cui il processo di hello non è riuscito. |
+| **deviceJobStatistics.succeededCount** |Numero di dispositivi in cui il processo di hello ha avuto esito positivo. |
+| **deviceJobStatistics.runningCount** |Numero di dispositivi che sono attualmente in esecuzione il processo di hello. |
+| **deviceJobStatistics.pendingCount** |Numero di dispositivi che sono in attesa processo hello toorun. |
 
 ### <a name="additional-reference-material"></a>Materiale di riferimento
-Di seguito sono indicati altri argomenti di riferimento reperibili nella Guida per gli sviluppatori dell'hub IoT:
+Altri argomenti di riferimento nella Guida per sviluppatori di IoT Hub hello includono:
 
-* [Endpoint dell'hub IoT][lnk-endpoints] illustra i diversi endpoint esposti da ogni hub IoT per operazioni della fase di esecuzione e di gestione.
-* [Quote e limitazioni][lnk-quotas] descrive le quote applicabili al servizio Hub IoT e il comportamento di limitazione previsto quando si usa il servizio.
-* [Azure IoT SDK per dispositivi e servizi][lnk-sdks] elenca gli SDK nei diversi linguaggi da usare quando si sviluppano app per dispositivi e servizi che interagiscono con l'hub IoT.
-* [Il linguaggio di query dell'hub IoT per dispositivi gemelli, processi e routing di messaggi][lnk-query] descrive il linguaggio di query dell’hub IoT che è possibile usare per recuperare informazioni dall’hub IoT sui processi e i dispositivi gemelli.
-* [Supporto di MQTT nell'hub IoT][lnk-devguide-mqtt] offre altre informazioni sul supporto dell'hub IoT per il protocollo MQTT.
+* [Gli endpoint IoT Hub] [ lnk-endpoints] descrive hello vari endpoint che espone ogni hub IoT per le operazioni in fase di esecuzione e gestione.
+* [Limitazione delle richieste e le quote] [ lnk-quotas] descrive le quote di hello che si applicano toohello servizio IoT Hub e hello limitazione tooexpect comportamento quando si utilizza servizio hello.
+* [Gli SDK di dispositivi e servizi di Azure IoT] [ lnk-sdks] elenchi hello language vari SDK è possibile utilizzare quando si sviluppano applicazioni di servizio sia sul dispositivo che interagiscono con l'IoT Hub.
+* [Il linguaggio di query IoT Hub per gemelli di dispositivo, processi e il routing dei messaggi] [ lnk-query] descrive hello linguaggio di query IoT Hub è possibile utilizzare tooretrieve informazioni dall'IoT Hub sul gemelli di dispositivo e i processi.
+* [Supporto di IoT Hub MQTT] [ lnk-devguide-mqtt] fornisce ulteriori informazioni sul supporto di IoT Hub per protocollo MQTT hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per provare alcuni dei concetti descritti in questo articolo, può essere utile l'esercitazione seguente sull'hub IoT:
+Se si desidera tootry alcuni dei concetti di hello descritti in questo articolo, si potrebbero essere interessati hello segue esercitazione IoT Hub:
 
 * [Pianificare e trasmettere processi][lnk-jobs-tutorial]
 

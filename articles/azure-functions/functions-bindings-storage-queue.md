@@ -1,6 +1,6 @@
 ---
-title: Associazioni dell'archiviazione code di Funzioni di Azure | Microsoft Docs
-description: Informazioni su come usare trigger e associazioni di Archiviazione di Azure in Funzioni di Azure.
+title: associazioni di archiviazione della coda funzioni aaaAzure | Documenti Microsoft
+description: Comprendere come toouse di archiviazione di Azure attiva e le associazioni in funzioni di Azure.
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,49 +16,49 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: glenga
-ms.openlocfilehash: e007acd75a2210d54f512e2c6698c90919f0fcd2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 438b4f63e823149072c86fdefa7e15bfd2a2c4df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-queue-storage-bindings"></a>Associazione dell'archiviazione code di Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo illustra come configurare e scrivere il codice delle associazioni archiviazione code di Azure in Funzioni di Azure. Funzioni di Azure supporta il trigger e le associazioni di output per le code di Azure. Per le funzionalità disponibili in tutte le associazioni, vedere [Concetti di Trigger e associazioni di Funzioni di Azure](functions-triggers-bindings.md).
+Questo articolo viene descritto come associazioni di archiviazione Azure coda tooconfigure e codice nelle funzioni di Azure. Funzioni di Azure supporta il trigger e le associazioni di output per le code di Azure. Per le funzionalità disponibili in tutte le associazioni, vedere [Concetti di Trigger e associazioni di Funzioni di Azure](functions-triggers-bindings.md).
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="trigger"></a>
 
 ## <a name="queue-storage-trigger"></a>Trigger per l'archiviazione code
-Il trigger dell'archiviazione code di Azure consente di monitorare l'archiviazione code di nuovi messaggi e di intraprendere le azioni necessarie. 
+trigger di archiviazione di Azure coda Hello consente si toomonitor di archiviazione di Accodamento di nuovi messaggi e reagire toothem. 
 
-Definire un trigger di coda usando la scheda **Integrazione** nel portale Funzioni. Il portale crea la definizione seguente nella sezione **associazioni** di *function.json*:
+Definire un trigger di coda utilizzando hello **integrazione** scheda nel portale le funzioni hello. portale Hello crea hello seguente definizione di hello **associazioni** sezione *function.json*:
 
 ```json
 {
     "type": "queueTrigger",
     "direction": "in",
-    "name": "<The name used to identify the trigger data in your code>",
-    "queueName": "<Name of queue to poll>",
+    "name": "<hello name used tooidentify hello trigger data in your code>",
+    "queueName": "<Name of queue toopoll>",
     "connection":"<Name of app setting - see below>"
 }
 ```
 
-* La proprietà `connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione alla risorsa di archiviazione. Nel portale di Azure l'editor standard disponibile nella scheda **Integrazione** configura questa impostazione app quando si sceglie un account di archiviazione.
+* Hello `connection` proprietà deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione. Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per l'utente quando si seleziona un account di archiviazione.
 
-È possibile specificare impostazioni aggiuntive in un [file host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) per ottimizzare i trigger dell'archiviazione code. Ad esempio, è possibile modificare l'intervallo di polling della coda in host.json.
+È possibile specificare impostazioni aggiuntive un [host.json file](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) toofurther ottimizzare i trigger di archiviazione della coda. Ad esempio, è possibile modificare l'intervallo di polling della coda hello in host.json.
 
 <a name="triggerusage"></a>
 
 ## <a name="using-a-queue-trigger"></a>Uso di un trigger della coda
-Nelle funzioni Node.js si accede ai dati della coda usando `context.bindings.<name>`.
+Nelle funzioni di Node.js, accedere utilizzando dati di hello coda `context.bindings.<name>`.
 
 
-Nelle funzioni .NET è possibile accedere al payload della coda con un parametro del metodo, ad esempio `CloudQueueMessage paramName`. In questo caso, `paramName` è il valore specificato nella [configurazione del trigger](#trigger). Il messaggio della coda può essere deserializzato in uno qualsiasi dei seguenti tipi:
+Nelle funzioni .NET, accedere payload coda hello utilizzando un parametro di metodo, ad esempio `CloudQueueMessage paramName`. In questo caso, `paramName` hello valore specificato in hello [configurazione trigger](#trigger). messaggio della coda può essere deserializzato tooany di hello seguenti tipi:
 
-* Oggetto POCO. Usare se il payload della coda è un oggetto JSON. Il runtime di Funzioni deserializza il payload nell'oggetto POCO. 
+* Oggetto POCO. Utilizzare se il payload di coda hello è un oggetto JSON. il runtime di funzioni Hello deserializza payload hello in oggetto POCO hello. 
 * `string`
 * `byte[]`
 * [`CloudQueueMessage`]
@@ -66,22 +66,22 @@ Nelle funzioni .NET è possibile accedere al payload della coda con un parametro
 <a name="meta"></a>
 
 ### <a name="queue-trigger-metadata"></a>Metadati del trigger della coda
-Il trigger della coda contiene diverse proprietà di metadati. Queste proprietà possono essere usate come parte delle espressioni di associazione in altre associazioni o come parametri nel codice. I valori hanno la stessa semantica di [`CloudQueueMessage`].
+trigger coda Hello fornisce diverse proprietà di metadati. Queste proprietà possono essere usate come parte delle espressioni di associazione in altre associazioni o come parametri nel codice. i valori Hello hanno hello stessa semantica [ `CloudQueueMessage` ].
 
 * **QueueTrigger**: payload della coda, se si tratta di una stringa valida
-* **DequeueCount**: digitare `int`. Il numero di volte in cui questo messaggio è stato rimosso dalla coda.
-* **ExpirationTime**: digitare `DateTimeOffset?`. Ora di scadenza del messaggio.
+* **DequeueCount**: digitare `int`. Hello numero di volte in cui che il messaggio è stato rimosso dalla coda.
+* **ExpirationTime**: digitare `DateTimeOffset?`. tempo di Hello la scadenza di tale messaggio hello.
 * **Id**: digitare `string`. ID del messaggio in coda.
-* **InsertionTime**: digitare `DateTimeOffset?`. L'ora in cui il messaggio è stato aggiunto alla coda.
-* **NextVisibleTime** - Tipo `DateTimeOffset?`. Ora in cui il messaggio sarà visibile.
-* **PopReceipt**: digitare `string`. Ricezione del messaggio.
+* **InsertionTime**: digitare `DateTimeOffset?`. tempo di Hello toohello coda è stato aggiunto il messaggio hello.
+* **NextVisibleTime** - Tipo `DateTimeOffset?`. tempo di Hello tale messaggio sarà successivamente visibile.
+* **PopReceipt**: digitare `string`. ricezione del messaggio Hello.
 
-Per informazioni su come usare i metadati della coda, vedere l'[esempio di trigger](#triggersample).
+Vedere come toouse hello i metadati della coda in [esempio Trigger](#triggersample).
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>Esempio di trigger
-Si supponga di avere il seguente function.json, che definisce un trigger della coda:
+Si supponga di avere seguito function.json hello che definisce un trigger di coda:
 
 ```json
 {
@@ -98,7 +98,7 @@ Si supponga di avere il seguente function.json, che definisce un trigger della c
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che recupera e registra i metadati della coda.
+Vedere l'esempio specifico del linguaggio di hello che recupera e registra i metadati della coda.
 
 * [C#](#triggercsharp)
 * [Node.js](#triggernodejs)
@@ -160,35 +160,35 @@ module.exports = function (context) {
 ```
 
 ### <a name="handling-poison-queue-messages"></a>Gestione di messaggi della coda non elaborabili
-Quando una funzione di trigger della coda ha esito negativo, Funzioni di Azure ritenta l'esecuzione fino a cinque volte per un dato messaggio della coda, incluso il primo tentativo. Se tutti i cinque tentativi hanno esito negativo, il runtime di Funzioni aggiunge un messaggio a un'archiviazione code denominata *&lt;originalqueuename>-poison*. È possibile scrivere una funzione per elaborare i messaggi dalla coda non elaborabile archiviandoli o inviando una notifica della necessità di un intervento manuale. 
+Quando una funzione di attivazione coda ha esito negativo, le funzioni di Azure Ritenta la funzione di toofive volte per un messaggio nella coda specificata, inclusi hello innanzitutto provare. Se tutti e cinque i tentativi hanno esito negativo, il runtime di funzioni hello aggiunge una tooa coda di archiviazione denominata  *&lt;originalqueuename >-non elaborabile*. È possibile scrivere messaggi tooprocess un funzione dalla coda non elaborabile hello registrarle o inviando una notifica che è necessario un intervento manuale. 
 
-Per gestire manualmente i messaggi non elaborabili, controllare `dequeueCount` nel messaggio della coda. Vedere [Metadati del trigger della coda](#meta).
+i messaggi non elaborabili toohandle controllare manualmente, hello `dequeueCount` di messaggio della coda hello (vedere [i metadati della coda trigger](#meta)).
 
 <a name="output"></a>
 
 ## <a name="queue-storage-output-binding"></a>Associazione di output dell'archiviazione code
-L'associazione di output dell'archiviazione code di Azure consente di scrivere i messaggi in una coda. 
+Hello l'archiviazione delle code di Azure output associazione consente toowrite messaggi tooa coda. 
 
-Definire un'associazione di output in coda usando la scheda **Integrazione** nel portale Funzioni. Il portale crea la definizione seguente nella sezione **associazioni** di *function.json*:
+Definire una coda di associazione di output utilizzando hello **integrazione** scheda nel portale le funzioni hello. portale Hello crea hello seguente definizione di hello **associazioni** sezione *function.json*:
 
 ```json
 {
    "type": "queue",
    "direction": "out",
-   "name": "<The name used to identify the trigger data in your code>",
-   "queueName": "<Name of queue to write to>",
+   "name": "<hello name used tooidentify hello trigger data in your code>",
+   "queueName": "<Name of queue toowrite to>",
    "connection":"<Name of app setting - see below>"
 }
 ```
 
-* La proprietà `connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione alla risorsa di archiviazione. Nel portale di Azure l'editor standard disponibile nella scheda **Integrazione** configura questa impostazione app quando si sceglie un account di archiviazione.
+* Hello `connection` proprietà deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione. Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per l'utente quando si seleziona un account di archiviazione.
 
 <a name="outputusage"></a>
 
 ## <a name="using-a-queue-output-binding"></a>Uso dell'associazione di output della coda
-Nelle funzioni Node.js si accede alla coda di output usando `context.bindings.<name>`.
+Nelle funzioni di Node.js, accedere coda di output di hello utilizzando `context.bindings.<name>`.
 
-Nelle funzioni .NET è anche possibile eseguire l'output in uno dei tipi seguenti. Quando vi è un parametro di tipo `T`, `T` deve essere uno dei tipi di output supportati, ad esempio `string` o un oggetto POCO.
+Nelle funzioni .NET, è possibile creare tooany dei seguenti tipi di hello. Quando è un parametro di tipo `T`, `T` deve essere uno dei tipi di output di hello è supportato, ad esempio `string` o un POCO.
 
 * `out T`, serializzato come JSON
 * `out string`
@@ -198,12 +198,12 @@ Nelle funzioni .NET è anche possibile eseguire l'output in uno dei tipi seguent
 * `IAsyncCollector<T>`
 * [`CloudQueue`](/dotnet/api/microsoft.windowsazure.storage.queue.cloudqueue)
 
-È anche possibile usare il tipo restituito del metodo come associazione di output.
+È inoltre possibile utilizzare il tipo restituito del metodo di hello come hello associazione di output.
 
 <a name="outputsample"></a>
 
 ## <a name="queue-output-sample"></a>Esempio di output in coda
-*function.json* seguente definisce un trigger HTTP e un'associazione di output della coda:
+esempio Hello *function.json* definisce un trigger HTTP e una coda di associazione di output:
 
 ```json
 {
@@ -230,7 +230,7 @@ Nelle funzioni .NET è anche possibile eseguire l'output in uno dei tipi seguent
 }
 ``` 
 
-Vedere l'esempio specifico del linguaggio che restituisce un messaggio in coda con il payload HTTP in ingresso.
+Vedere l'esempio specifico del linguaggio hello che restituisce un messaggio nella coda con payload HTTP in ingresso hello.
 
 * [C#](#outcsharp)
 * [Node.js](#outnodejs)
@@ -240,7 +240,7 @@ Vedere l'esempio specifico del linguaggio che restituisce un messaggio in coda c
 ### <a name="queue-output-sample-in-c"></a>Esempio di output della coda in C# #
 
 ```cs
-// C# example of HTTP trigger binding to a custom POCO, with a queue output binding
+// C# example of HTTP trigger binding tooa custom POCO, with a queue output binding
 public class CustomQueueMessage
 {
     public string PersonName { get; set; }
@@ -253,7 +253,7 @@ public static CustomQueueMessage Run(CustomQueueMessage input, TraceWriter log)
 }
 ```
 
-Per inviare più messaggi, usare `ICollector`:
+toosend più messaggi, utilizzare un `ICollector`:
 
 ```cs
 public static void Run(CustomQueueMessage input, ICollector<CustomQueueMessage> myQueueItem, TraceWriter log)
@@ -273,11 +273,11 @@ module.exports = function (context, input) {
 };
 ```
 
-Oppure, per inviare più messaggi,
+In alternativa, toosend più messaggi,
 
 ```javascript
 module.exports = function(context) {
-    // Define a message array for the myQueueItem output binding. 
+    // Define a message array for hello myQueueItem output binding. 
     context.bindings.myQueueItem = ["message 1","message 2"];
     context.done();
 };
@@ -285,7 +285,7 @@ module.exports = function(context) {
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per un esempio di funzione che usa trigger e associazioni della coda, vedere [Creare una funzione di Azure connessa a un servizio di Azure](functions-create-an-azure-connected-function.md).
+Per un esempio di una funzione che utilizza i trigger di archiviazione della coda e le associazioni, vedere [un tooan funzione Azure connesso il servizio di Azure creare](functions-create-an-azure-connected-function.md).
 
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 

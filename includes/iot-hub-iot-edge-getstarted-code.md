@@ -1,6 +1,6 @@
 ## <a name="typical-output"></a>Output tipico
 
-L'esempio seguente mostra l'output scritto nel file di log dall'esempio Hello World. L'output è formattato per migliorare la leggibilità:
+Hello seguente esempio Mostra output di hello scritto il file di log toohello dall'esempio hello World Hello. formattazione dell'output di Hello per migliorare la leggibilità:
 
 ```json
 [{
@@ -32,13 +32,13 @@ L'esempio seguente mostra l'output scritto nel file di log dall'esempio Hello Wo
 
 ## <a name="code-snippets"></a>Frammenti di codice
 
-In questa sezione vengono descritte alcune sezioni chiave del codice nell'esempio hello\_world.
+Questa sezione vengono illustrate alcune sezioni di codice hello in hello hello chiave\_esempio world.
 
 ### <a name="iot-edge-gateway-creation"></a>Creazione del gateway IoT Edge
 
-È necessario implementare un *processo del gateway*. Questo programma crea l'infrastruttura interna, ovvero il broker, carica i moduli di IoT Edge e configura il processo del gateway. IoT Edge specifica la funzione **Gateway\_Create\_From\_JSON** per consentire di avviare un gateway da un file JSON. Per usare la funzione **Gateway\_Create\_From\_JSON**, chiamarla dal percorso di un file JSON che specifica i moduli di IoT Edge da caricare.
+È necessario implementare un *processo del gateway*. Questo programma crea l'infrastruttura interna hello (broker hello), carica moduli IoT Edge hello e configura il processo di gateway hello. Bordo IoT fornisce hello **Gateway\_crea\_da\_JSON** funzione tooenable è toobootstrap un gateway da un file JSON. hello toouse **Gateway\_crea\_da\_JSON** di funzione, passarlo hello percorso tooa file JSON specifica hello tooload moduli IoT Edge.
 
-È possibile trovare il codice per il processo del gateway nell'esempio *Hello World* nel file [main.c][lnk-main-c]. Per migliorare la leggibilità, il frammento di codice seguente illustra una versione abbreviata del codice del processo del gateway. Questo programma di esempio crea un gateway e quindi attende che l'utente prema **INVIO** prima di rimuove il gateway.
+È possibile trovare codice hello per processo gateway hello hello *Hello World* sample in hello [Main. c] [ lnk-main-c] file. Per migliorare la leggibilità, hello frammento di codice seguente viene illustrata una versione abbreviata del codice del processo gateway hello. Il programma di esempio crea un gateway e quindi attende hello di hello utente toopress **invio** chiave prima che elimina gateway hello.
 
 ```c
 int main(int argc, char** argv)
@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     GATEWAY_HANDLE gateway;
     if ((gateway = Gateway_Create_From_JSON(argv[1])) == NULL)
     {
-        printf("failed to create the gateway from JSON\n");
+        printf("failed toocreate hello gateway from JSON\n");
     }
     else
     {
@@ -59,16 +59,16 @@ int main(int argc, char** argv)
 }
 ```
 
-Il file di impostazioni JSON contiene un elenco di moduli di IoT Edge da caricare e i collegamenti tra i moduli. Ogni modulo di IoT Edge deve specificare:
+file di impostazioni JSON Hello contiene un elenco di collegamenti di hello tra i moduli di hello e tooload moduli IoT Edge. Ogni modulo di IoT Edge deve specificare:
 
-* **name**: nome univoco per il modulo.
-* **loader**: un caricatore che riesca a caricare il modulo appropriato. I caricatori sono punti di estensione per il caricamento di tipi diversi di moduli. IoT Edge offre caricatori da usare con moduli scritti in C, Node.js, Java e .NET nativi. L'esempio Hello World usa solo il caricatore C nativo perché tutti i moduli in questo esempio sono librerie dinamiche scritte in C. Per altre informazioni su come usare moduli di IoT Edge scritti in linguaggi diversi, vedere gli esempi [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample) o [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample).
-    * **name**: nome del caricatore usato per caricare il modulo.
-    * **entrypoint**: percorso della libreria che contiene il modulo. In Linux questa libreria è un file con estensione so, in Windows è un file con estensione dll. Il punto di ingresso è specifico per il tipo di caricatore in uso. Il punto di ingresso del caricatore Node.js è un file con estensione js. Il punto di ingresso del caricatore Java è un percorso di classe e un nome di classe. Il punto di ingresso del caricatore .NET è un nome di assembly e un nome di classe.
+* **nome**: un nome univoco per il modulo hello.
+* **caricatore**: un caricatore che sa come hello tooload desiderato modulo. I caricatori sono punti di estensione per il caricamento di tipi diversi di moduli. IoT Edge offre caricatori da usare con moduli scritti in C, Node.js, Java e .NET nativi. esempio Hello World Hello utilizza solo caricatore C nativo hello perché tutti i moduli di hello in questo esempio sono librerie dinamiche scritte in C. Per ulteriori informazioni su come i moduli di Edge IoT toouse scritti in linguaggi diversi, vedere hello [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), o [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) esempi.
+    * **nome**: nome hello del caricatore di hello utilizzato modulo hello tooload.
+    * **punto di ingresso**: libreria di toohello hello percorso contenente il modulo hello. In Linux questa libreria è un file con estensione so, in Windows è un file con estensione dll. punto di ingresso Hello è il tipo di toohello specifico del caricatore in uso. Hello punto di ingresso del caricatore di Node.js è un file. js. punto di ingresso del caricatore Java Hello è un percorso di classe e un nome di classe. punto di ingresso del caricatore .NET Hello è un nome di assembly e un nome di classe.
 
-* **args**: le informazioni di configurazione necessarie per il modulo.
+* **args**: necessita di qualsiasi modulo hello informazioni di configurazione.
 
-Il codice seguente illustra l'uso di JSON per dichiarare tutti i moduli di IoT Edge per l'esempio Hello World in Linux. L'uso di argomenti nei moduli dipende dalla loro struttura. In questo esempio, il modulo logger include un argomento che specifica il percorso del file di output e il modulo hello\_world non include nessun argomento.
+Hello seguente codice mostra hello JSON utilizzato toodeclare tutti hello moduli IoT bordo per l'esempio Hello World hello in Linux. Se un modulo richiede argomenti dipende dalla progettazione hello del modulo hello. In questo esempio, il modulo di logger hello accetta un argomento di file di output di hello percorso toohello e hello hello\_modulo world non dispone di argomenti.
 
 ```json
 "modules" :
@@ -96,14 +96,14 @@ Il codice seguente illustra l'uso di JSON per dichiarare tutti i moduli di IoT E
 ]
 ```
 
-Il file JSON contiene anche i collegamenti tra i moduli che vengono passati al broker. Un collegamento ha due proprietà:
+file JSON Hello contiene anche collegamenti hello tra moduli hello che vengono passati toohello broker. Un collegamento ha due proprietà:
 
-* **source**: il nome di un modulo dalla sezione `modules` oppure `\*`.
-* **sink**: il nome di un modulo dalla sezione `modules`.
+* **origine**: il nome di un modulo da hello `modules` sezione o `\*`.
+* **sink**: il nome di un modulo da hello `modules` sezione.
 
-Ogni collegamento definisce una route messaggi e una direzione. I messaggi dal modulo **source** vengono recapitati al modulo **sink**. È possibile impostare il modulo **source** su `\*`, che indica che il modulo **sink** riceve messaggi da qualsiasi modulo.
+Ogni collegamento definisce una route messaggi e una direzione. I messaggi da hello **origine** modulo recapitati toohello **sink** modulo. È possibile impostare hello **origine** modulo troppo`\*`, che indica che hello **sink** modulo riceve messaggi da qualsiasi modulo.
 
-Il codice seguente illustra l'uso di JSON per configurare i collegamenti tra i moduli usati nell'esempio hello\_world in Linux. Tutti i messaggi generati dal modulo `hello_world` vengono utilizzati dal modulo `logger`.
+Hello codice seguente viene illustrato hello JSON utilizzati collegamenti tooconfigure tra moduli hello utilizzati in hello hello\_esempio world in Linux. Tutti i messaggi prodotti da hello `hello_world` modulo è utilizzato da hello `logger` modulo.
 
 ```json
 "links":
@@ -117,7 +117,7 @@ Il codice seguente illustra l'uso di JSON per configurare i collegamenti tra i m
 
 ### <a name="helloworld-module-message-publishing"></a>Pubblicazione dei messaggi del modulo hello\_world
 
-Il codice usato dal modulo hello\_world per pubblicare i messaggi è disponibile nel file ["hello_world.c"][lnk-helloworld-c]. Il frammento di codice seguente riporta una versione modificata, per una maggior leggibilità, in cui sono stati aggiunti commenti ed è stata rimossa parte del codice per la gestione degli errori:
+È possibile trovare il codice hello utilizzato da hello hello\_world modulo toopublish messaggi hello ['hello_world.c'] [ lnk-helloworld-c] file. Hello frammento seguente mostra una versione modificata del codice hello e i commenti aggiunti alcuni codice rimosso per migliorare la leggibilità di gestione degli errori:
 
 ```c
 int helloWorldThread(void *param)
@@ -128,18 +128,18 @@ int helloWorldThread(void *param)
     MAP_HANDLE propertiesMap = Map_Create(NULL);
 
     // add a property named "helloWorld" with a value of "from Azure IoT
-    // Gateway SDK simple sample!" to a set of message properties that
-    // will be appended to the message before publishing it. 
+    // Gateway SDK simple sample!" tooa set of message properties that
+    // will be appended toohello message before publishing it. 
     Map_AddOrUpdate(propertiesMap, "helloWorld", "from Azure IoT Gateway SDK simple sample!")
 
-    // set the content for the message
+    // set hello content for hello message
     msgConfig.size = strlen(HELLOWORLD_MESSAGE);
     msgConfig.source = HELLOWORLD_MESSAGE;
 
-    // set the properties for the message
+    // set hello properties for hello message
     msgConfig.sourceProperties = propertiesMap;
 
-    // create a message based on the msgConfig structure
+    // create a message based on hello msgConfig structure
     MESSAGE_HANDLE helloWorldMessage = Message_Create(&msgConfig);
 
     while (1)
@@ -147,11 +147,11 @@ int helloWorldThread(void *param)
         if (handleData->stopThread)
         {
             (void)Unlock(handleData->lockHandle);
-            break; /*gets out of the thread*/
+            break; /*gets out of hello thread*/
         }
         else
         {
-            // publish the message to the broker
+            // publish hello message toohello broker
             (void)Broker_Publish(handleData->brokerHandle, helloWorldMessage);
             (void)Unlock(handleData->lockHandle);
         }
@@ -167,7 +167,7 @@ int helloWorldThread(void *param)
 
 ### <a name="helloworld-module-message-processing"></a>Elaborazione dei messaggi del modulo hello\_world
 
-Il modulo hello\_world non elabora mai messaggi pubblicati da altri moduli di IoT Edge nel broker. L'implementazione del callback dei messaggi nel modulo hello\_world è quindi una funzione no-op.
+hello Hello\_modulo world non elabora mai i messaggi che altri moduli IoT Edge pubblicano toohello broker. Pertanto, hello implementazione del callback messaggio hello in hello hello\_modulo world è una funzione viene eseguita alcuna operazione.
 
 ```c
 static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -178,9 +178,9 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 
 ### <a name="logger-module-message-publishing-and-processing"></a>Elaborazione e pubblicazione dei messaggi del modulo di logger
 
-Il modulo logger riceve messaggi dal broker e li scrive in un file, ma non pubblica mai messaggi. Il codice del modulo logger quindi non chiama mai la funzione **Broker_Publish**.
+modulo di logger Hello riceve messaggi dal broker hello e li scrive file tooa. ma non pubblica mai messaggi. Pertanto, il codice hello del modulo di logger hello non chiama mai hello **Broker_Publish** (funzione).
 
-La funzione **Logger_Receive** nel file [logger.c][lnk-logger-c] è il callback che viene richiamato dal broker per recapitare i messaggi al modulo logger. Il frammento di codice seguente riporta una versione modificata, per una maggior leggibilità, in cui sono stati aggiunti commenti ed è stata rimossa parte del codice per la gestione degli errori:
+Hello **Logger_Receive** funzione hello [logger.c] [ lnk-logger-c] file è broker hello di callback hello richiama modulo logger toohello di toodeliver messaggi. Hello frammento seguente mostra una versione modificata e i commenti aggiunti alcuni codice rimosso per migliorare la leggibilità di gestione degli errori:
 
 ```c
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -190,32 +190,32 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
     struct tm* t = localtime(&temp);
     char timetemp[80] = { 0 };
 
-    // Get the message properties from the message
+    // Get hello message properties from hello message
     CONSTMAP_HANDLE originalProperties = Message_GetProperties(messageHandle); 
     MAP_HANDLE propertiesAsMap = ConstMap_CloneWriteable(originalProperties);
 
-    // Convert the collection of properties into a JSON string
+    // Convert hello collection of properties into a JSON string
     STRING_HANDLE jsonProperties = Map_ToJSON(propertiesAsMap);
 
-    //  base64 encode the message content
+    //  base64 encode hello message content
     const CONSTBUFFER * content = Message_GetContent(messageHandle);
     STRING_HANDLE contentAsJSON = Base64_Encode_Bytes(content->buffer, content->size);
 
-    // Start the construction of the final string to be logged by adding
-    // the timestamp
+    // Start hello construction of hello final string toobe logged by adding
+    // hello timestamp
     STRING_HANDLE jsonToBeAppended = STRING_construct(",{\"time\":\"");
     STRING_concat(jsonToBeAppended, timetemp);
 
-    // Add the message properties
+    // Add hello message properties
     STRING_concat(jsonToBeAppended, "\",\"properties\":"); 
     STRING_concat_with_STRING(jsonToBeAppended, jsonProperties);
 
-    // Add the content
+    // Add hello content
     STRING_concat(jsonToBeAppended, ",\"content\":\"");
     STRING_concat_with_STRING(jsonToBeAppended, contentAsJSON);
     STRING_concat(jsonToBeAppended, "\"}]");
 
-    // Write the formatted string
+    // Write hello formatted string
     LOGGER_HANDLE_DATA *handleData = (LOGGER_HANDLE_DATA *)moduleHandle;
     addJSONString(handleData->fout, STRING_c_str(jsonToBeAppended);
 }
@@ -223,7 +223,7 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questo articolo è stato eseguito un gateway IoT Edge semplice che ha scritto messaggi in un file di log. Per eseguire un esempio che invia messaggi all'hub IoT, vedere [IoT Edge: inviare messaggi da dispositivo a cloud con un dispositivo simulato usando Linux][lnk-gateway-simulated-linux] o [IoT Edge: inviare messaggi da dispositivo a cloud con un dispositivo simulato usando Windows][lnk-gateway-simulated-windows].
+In questo articolo è stato eseguito un gateway perimetrale IoT semplice che scrive file di log tooa messaggi. vedere un esempio che invia messaggi tooIoT Hub, toorun [IoT Edge: inviare i messaggi da dispositivo a cloud con un dispositivo simulato con Linux] [ lnk-gateway-simulated-linux] o [IoT Edge: inviare i messaggi da dispositivo a cloud con un dispositivo simulato mediante Windows][lnk-gateway-simulated-windows].
 
 
 <!-- Links -->

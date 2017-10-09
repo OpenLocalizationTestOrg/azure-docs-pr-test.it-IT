@@ -1,0 +1,2 @@
+> [!NOTE]
+> Hello [necessario trasferimento sicuro](../articles/storage/common/storage-require-secure-transfer.md) funzionalità consente di applicare tutti i conti tooyour richieste tramite una connessione protetta. Questa funzionalità è supportata solo dal cluster HDInsight versione 3.6 o successiva. Per altre informazioni, vedere [Creare un cluster Hadoop con account di archiviazione con trasferimento sicuro in Azure HDInsight](../articles/hdinsight/hdinsight-hadoop-create-linux-clusters-with-secure-transfer-storage.md).

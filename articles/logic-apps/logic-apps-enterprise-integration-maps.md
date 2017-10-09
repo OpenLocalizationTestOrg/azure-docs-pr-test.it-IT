@@ -1,6 +1,6 @@
 ---
-title: Trasformare i dati XML con le mappe XSLT - App per la logica di Azure | Microsoft Docs
-description: Aggiungere mappe XSLT per trasformare i dati XML con App per la logica di Azure ed Enterprise Integration Pack
+title: aaaTransform XML con XSLT mappe - App Azure per la logica | Documenti Microsoft
+description: Aggiungere che XSLT esegue il mapping di dati XML tootransform con le applicazioni di logica di Azure e hello Enterprise Integration Pack
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 4445a84a6c6425110e7d705019a28b5cc5447046
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 720e6f988b8542136dfcc402c3c463fcfb2f23cf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-maps-for-xml-data-transform"></a>Aggiungere mappe per la trasformazione dei dati XML
 
-Enterprise Integration usa mappe per trasformare i dati XML da un formato all'altro. Una mappa è un documento XML che definisce i dati di un documento che devono essere trasformati in un altro formato. 
+Utilizza integrazione di Enterprise esegue il mapping dei dati XML tootransform tra formati. Una mappa è un documento XML che definisce i dati hello in un documento che deve essere trasformato in un altro formato. 
 
 ## <a name="why-use-maps"></a>Perché usare le mappe?
 
-Si supponga di ricevere regolarmente fatture o ordini B2B da un cliente che usa il formato AAAMMGG per le date. In azienda però le date vengono archiviare nel formato MMGGAAA. È possibile usare una mappa per *trasformare* il formato di data AAAMMGG in MMGGAAA prima di archiviare i dettagli dell'ordine o della fattura nel database relativo.
+Si supponga che riceve regolarmente B2B ordini o fatture da un cliente che utilizza il formato YYYMMDD hello per le date. All'interno dell'organizzazione, tuttavia, archiviare le date nel formato MMDDYYY hello. È possibile utilizzare una mappa troppo*trasformare* formato di data YYYMMDD hello in hello MMDDYYY prima di archiviare i dettagli dell'ordine o una fattura hello nel database di attività dei clienti.
 
 ## <a name="how-do-i-create-a-map"></a>Come si crea una mappa?
 
-È possibile creare progetti BizTalk Integration con [Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack") per Visual Studio 2015. È quindi possibile creare un file Integration Map che consente di eseguire il mapping visivo degli elementi tra due file di schema XML. Dopo aver compilato il progetto, si disporrà di un documento XSLT.
+È possibile creare progetti di integrazione di BizTalk con hello [Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "informazioni sul pacchetto di integrazione di enterprise hello") per Visual Studio 2015. È quindi possibile creare un file Integration Map che consente di eseguire il mapping visivo degli elementi tra due file di schema XML. Dopo aver compilato il progetto, si disporrà di un documento XSLT.
 
 ## <a name="how-do-i-add-a-map"></a>Come si aggiunge una mappa?
 
-1. Nel Portale di Azure selezionare **Sfoglia**.
+1. Nel portale di Azure hello, selezionare **Sfoglia**.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-1.png)
 
-2. Nella casella di ricerca per filtrare immettere **integrazione**, quindi selezionare **Account di integrazione** dall'elenco dei risultati.
+2. Nella casella di ricerca hello filtro immettere **integrazione**, quindi selezionare **account di integrazione** dall'elenco dei risultati di hello.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-2.png)
 
-3. Selezionare l'account di integrazione in cui si desidera aggiungere la mappa.
+3. Selezionare l'account di integrazione hello in cui si desidera mappa hello tooadd.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-3.png)
 
-4. Selezionare il riquadro **Mappe**.
+4. Seleziona hello **mappe** riquadro.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-1.png)
 
-5. Quando il pannello Mappe è aperto, scegliere **Aggiungi**.
+5. Dopo l'apertura di blade mappe hello, scegliere **Aggiungi**.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-2.png)  
 
-6. Immettere un **nome** per la mappa. Per caricare il file di mappa, scegliere l'icona a forma di cartella a destra della casella di testo **Mappa**. Al termine del processo di caricamento, scegliere **OK**.
+6. Immettere un **nome** per la mappa. mappa di hello tooupload file, scegliere l'icona della cartella hello sul lato destro hello di hello **mappa** casella di testo. Al termine del processo di caricamento hello, scegliere **OK**.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-3.png)
 
-7. Dopo che Azure aggiunge la mappa all'account di integrazione, viene visualizzato un messaggio che indica se il file di mappa è stato aggiunto. Dopo aver visualizzato il messaggio, scegliere il riquadro **Mappe** in modo da visualizzare la mappa appena aggiunta.
+7. Dopo che Azure aggiunge l'account di integrazione tooyour hello mappa, viene visualizzato un messaggio sullo schermo che mostra se il file di mapping è stato aggiunto. Dopo il messaggio viene visualizzato, scegliere hello **mappe** riquadro in modo da visualizzare hello appena aggiunto mappa.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-4.png)
 
 ## <a name="how-do-i-edit-a-map"></a>Come si modifica una mappa?
 
-È necessario caricare un nuovo file di mappa con le modifiche desiderate. È anche possibile scaricare la mappa e poi modificarla.
+È necessario caricare un nuovo file di mappa con modifiche hello che si desidera. È possibile scaricare innanzitutto mappa hello per la modifica.
 
-Per caricare una nuova mappa che sostituisce una mappa esistente, attenersi ai passaggi seguenti.
+tooupload una nuova mappa che sostituisce una mappa esistente hello, seguire questi passaggi.
 
-1. Scegliere il riquadro **Mappe**.
+1. Scegliere hello **mappe** riquadro.
 
-2. Quando il pannello Mappe è aperto, selezionare la mappa da modificare.
+2. Dopo l'apertura di blade mappe hello, selezionare la mappa di hello che si desidera tooedit.
 
-3. Nel pannello **Mappe** scegliere **Aggiorna**.
+3. In hello **mappe** pannello, scegliere **aggiornamento**.
 
     ![](./media/logic-apps-enterprise-integration-maps/edit-1.png)
 
-4. Nella selezione file selezionare il file di mappa da caricare, quindi scegliere **Apri**.
+4. In selezione file hello, selezionare i file di mappa hello che si desidera tooupload, quindi selezionare **aprire**.
 
     ![](./media/logic-apps-enterprise-integration-maps/edit-2.png)
 
-## <a name="how-to-delete-a-map"></a>Come eliminare una mappa?
+## <a name="how-toodelete-a-map"></a>Come toodelete una mappa?
 
-1. Scegliere il riquadro **Mappe**.
+1. Scegliere hello **mappe** riquadro.
 
-2. Quando il pannello Mappe è aperto, selezionare la mappa da eliminare.
+2. Dopo l'apertura di blade mappe hello, selezionare mappa hello che si desidera toodelete.
 
 3. Scegliere **Elimina**.
 
     ![](./media/logic-apps-enterprise-integration-maps/delete.png)
 
-4. Confermare che si desidera eliminare la mappa.
+4. Confermare che si desidera mappa hello toodelete.
 
     ![](./media/logic-apps-enterprise-integration-maps/delete-confirmation-1.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Altre informazioni su Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack")  
+* [Altre informazioni su Enterprise Integration Pack hello](logic-apps-enterprise-integration-overview.md "apprendere Enterprise Integration Pack")  
 * [Altre informazioni sui contratti](../logic-apps/logic-apps-enterprise-integration-agreements.md "Informazioni sui contratti di Enterprise Integration")  
 * [Altre informazioni sulle trasformazioni](logic-apps-enterprise-integration-transform.md "Informazioni sulle trasformazioni di Enterprise Integration")  
 

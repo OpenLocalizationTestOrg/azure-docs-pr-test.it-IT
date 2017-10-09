@@ -1,0 +1,11 @@
+Vedere i seguenti collegamenti per informazioni sulla configurazione di hello:
+
+- Per informazioni sui dispositivi VPN compatibili, vedere l'articolo relativo ai [dispositivi VPN](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md).
+- Prima di configurare il dispositivo VPN, verificare la presenza di [noti problemi di compatibilità dei dispositivi](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#known) per dispositivo VPN hello che si desidera toouse.
+- Per le impostazioni di configurazione toodevice di collegamenti, vedere [i dispositivi VPN convalidati](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#devicetable). vengono forniti collegamenti di configurazione dispositivo di Hello con cadenza principio del best effort. È sempre toocheck migliore con il produttore del dispositivo per le informazioni di configurazione più recente hello.
+- Per una panoramica della configurazione di dispositivi VPN, vedere [Panoramica delle configurazioni di dispositivi VPN di terze parti](../articles/vpn-gateway/vpn-gateway-3rdparty-device-config-overview.md).
+- Per informazioni sulla modifica degli esempi, vedere [Modifica degli esempi di configurazione di dispositivo](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#editing).
+- Per i requisiti di crittografia, vedere [About cryptographic requirements and Azure VPN gateways](../articles/vpn-gateway/vpn-gateway-about-compliance-crypto.md) (Informazioni sui requisiti di crittografia e i gateway VPN di Azure).
+- Per informazioni sui parametri IPsec/IKE, vedere [Informazioni sui dispositivi VPN e sui parametri IPsec/IKE per connessioni del Gateway VPN da sito a sito](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#ipsec).
+- Per la procedura di configurazione dei criteri IPsec/IKE, vedere [Configure IPsec/IKE policy for S2S VPN or VNet-to-VNet connections](../articles/vpn-gateway/vpn-gateway-ipsecikepolicy-rm-powershell.md) (Configurare i criteri IPsec/IKE per connessioni VPN S2S o tra reti virtuali).
+- vedere più dispositivi VPN basata su criteri tooconnect [toomultiple gateway VPN di Azure connettersi locale basata su criteri di dispositivi VPN con PowerShell](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md).

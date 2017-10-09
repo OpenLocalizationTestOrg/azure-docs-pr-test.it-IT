@@ -1,5 +1,5 @@
 ---
-title: Associazioni di file esterni in Funzioni di Azure (Anteprima) | Microsoft Docs
+title: associazioni di File esterno funzioni aaaAzure (anteprima) | Documenti Microsoft
 description: Utilizzo di associazioni di file esterni in Funzioni di Azure
 services: functions
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: alkarche
-ms.openlocfilehash: 2082e4e9b23271be93f3e3ab43997c3243238da8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 583d9c0b871dc68a79614749ba6ac6711fa820fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-external-file-bindings-preview"></a>Associazioni di file esterni in Funzioni di Azure (Anteprima)
-Questo articolo illustra come modificare i file da diversi provider di SaaS (ad esempio OneDrive, Dropbox) all'interno della funzione che usa binding incorporati. Funzioni di Azure supporta il trigger e le associazioni di output per i file esterni.
+Questo articolo illustra come file toomanipulate da SaaS diversi provider (ad esempio, OneDrive, Dropbox) all'interno della funzione che utilizzano associazioni predefinite. Funzioni di Azure supporta il trigger e le associazioni di output per i file esterni.
 
-Il binding crea connessioni API ai provider SaaS o usa quelle esistenti prelevandole dal gruppo di risorse dell'app per le funzioni.
+Questa associazione consente di creare connessioni API tooSaaS provider oppure Usa connessioni API esistenti dal gruppo di risorse dell'applicazione (funzione).
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -44,21 +44,21 @@ Il binding crea connessioni API ai provider SaaS o usa quelle esistenti prelevan
 
 ## <a name="external-file-trigger-binding"></a>Associazione di trigger di file esterni
 
-Il trigger di file esterni di Azure consente di monitorare una cartella remota ed eseguire il codice della funzione qualora vengano rilevate modifiche.
+i trigger di file esterno Azure Hello consente di monitorare una cartella remota ed eseguire il codice di funzione, quando vengono rilevate modifiche.
 
-Tale trigger usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:
+i trigger di file esterno Hello utilizza hello seguendo gli oggetti JSON in hello `bindings` matrice function.json
 
 ```json
 {
   "type": "apiHubFileTrigger",
   "name": "<Name of input parameter in function signature>",
   "direction": "in",
-  "path": "<folder to monitor, and optionally a name pattern - see below>",
+  "path": "<folder toomonitor, and optionally a name pattern - see below>",
   "connection": "<name of external file connection - see above>"
 }
 ```
 <!---
-See one of the following subheadings for more information:
+See one of hello following subheadings for more information:
 
 * [Name patterns](#pattern)
 * [File receipts](#receipts)
@@ -68,14 +68,14 @@ See one of the following subheadings for more information:
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>Modelli di nome
-È possibile specificare un modello di nome per il file nella proprietà `path`, La cartella a cui si fa riferimento deve esistere nel provider SaaS.
+È possibile specificare un modello di nome file in hello `path` proprietà. cartella Hello a cui fa riferimento deve essere presente nel provider SaaS hello.
 Esempi:
 
 ```json
 "path": "input/original-{name}",
 ```
 
-Questo percorso individua il file denominato *original-File1.txt* nella cartella *input* e il valore della variabile `name` nel codice della funzione sarà `File1.txt`.
+Questo percorso potrebbe trovare un file denominato *originale File1.txt* in hello *input* cartella e il valore di hello di hello `name` variabile nel codice della funzione sarebbe `File1.txt`.
 
 Un altro esempio:
 
@@ -83,49 +83,49 @@ Un altro esempio:
 "path": "input/{filename}.{fileextension}",
 ```
 
-Anche questo percorso individua un file denominato *original-File1.txt* e i valori delle variabili `filename` e `fileextension` nel codice della funzione saranno *original-File1* e *txt*.
+Questo percorso potrebbe anche trovare un file denominato *originale File1.txt*e il valore di hello di hello `filename` e `fileextension` variabili nel codice della funzione sarebbe *originale File1* e  *txt*.
 
-È possibile limitare il tipo di file dei file usando un valore fisso per l'estensione del file. Ad esempio:
+È possibile limitare il tipo di file hello del file con un valore fisso per l'estensione del file hello. ad esempio:
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-In questo caso, la funzione verrà attivata solo dai file *.png* nella cartella *samples*.
+In questo caso, solo *PNG* file hello *esempi* funzione hello trigger di cartella.
 
-Le parentesi graffe sono caratteri speciali nei modelli di nome. Per specificare nomi di file con parentesi graffe nel nome, raddoppiare le parentesi graffe.
+Le parentesi graffe sono caratteri speciali nei modelli di nome. i nomi di file toospecify con doppie parentesi graffe in nome hello hello parentesi graffe.
 ad esempio:
 
 ```json
 "path": "images/{{20140101}}-{name}",
 ```
 
-Questo percorso troverà un file denominato *{20140101}-soundfile.mp3* nella cartella *images* e il valore della variabile `name` nel codice della funzione sarà *soundfile.mp3*.
+Questo percorso potrebbe trovare un file denominato *{20140101}-soundfile.mp3* in hello *immagini* cartella e hello `name` valore variabile nel codice della funzione hello sarebbe *soundfile.mp3*.
 
 <a name="receipts"></a>
 
 <!--- ### File receipts
-The Azure Functions runtime makes sure that no external file trigger function gets called more than once for the same new or updated file.
-It does so by maintaining *file receipts* to determine if a given file version has been processed.
+hello Azure Functions runtime makes sure that no external file trigger function gets called more than once for hello same new or updated file.
+It does so by maintaining *file receipts* toodetermine if a given file version has been processed.
 
-File receipts are stored in a folder named *azure-webjobs-hosts* in the Azure storage account for your function app
-(specified by the `AzureWebJobsStorage` app setting). A file receipt has the following information:
+File receipts are stored in a folder named *azure-webjobs-hosts* in hello Azure storage account for your function app
+(specified by hello `AzureWebJobsStorage` app setting). A file receipt has hello following information:
 
-* The triggered function ("*&lt;function app name>*.Functions.*&lt;function name>*", for example: "functionsf74b96f7.Functions.CopyFile")
-* The folder name
-* The file type ("BlockFile" or "PageFile")
-* The file name
-* The ETag (a file version identifier, for example: "0x8D1DC6E70A277EF")
+* hello triggered function ("*&lt;function app name>*.Functions.*&lt;function name>*", for example: "functionsf74b96f7.Functions.CopyFile")
+* hello folder name
+* hello file type ("BlockFile" or "PageFile")
+* hello file name
+* hello ETag (a file version identifier, for example: "0x8D1DC6E70A277EF")
 
-To force reprocessing of a file, delete the file receipt for that file from the *azure-webjobs-hosts* folder manually.
+tooforce reprocessing of a file, delete hello file receipt for that file from hello *azure-webjobs-hosts* folder manually.
 --->
 <a name="poison"></a>
 
 ### <a name="handling-poison-files"></a>Gestione di file non elaborabili
-Quando una funzione di trigger del file esterno ha esito negativo, per impostazione predefinita Funzioni di Azure ritenta l'esecuzione fino a 5 volte (incluso il primo tentativo) per un dato messaggio.
-Se tutti i 5 tentativi non riescono, Funzioni di Azure aggiunge un messaggio a una coda di archiviazione denominata *webjobs-apihubtrigger-poison*. Il messaggio di coda per i file non elaborabili è un oggetto JSON che contiene le seguenti proprietà:
+Quando una funzione di attivazione di file esterno ha esito negativo, tale funzione too5 ore di funzioni di Azure tentativi per impostazione predefinita (inclusi provare prima a hello) per un determinato file.
+Se non tutti i tentativi di 5, le funzioni aggiunge una coda di archiviazione tooa messaggio denominata *non elaborabili processi Web-apihubtrigger*. messaggio della coda Hello per i file di messaggi non elaborabili è un oggetto JSON contenente hello le proprietà seguenti:
 
-* FunctionId (nel formato *&lt;nome dell'app per le funzioni>*.Functions.*&lt;nome della funzione>*)
+* FunctionId (in formato hello  *&lt;nome della funzione app >*. Funzioni.  *&lt;nome funzione >*)
 * FileType
 * FolderName
 * FileName
@@ -135,16 +135,16 @@ Se tutti i 5 tentativi non riescono, Funzioni di Azure aggiunge un messaggio a u
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>Uso dei trigger
-Nelle funzioni C# l'associazione ai dati del file di input viene eseguita usando un parametro denominato nella firma funzione, ad esempio `<T> <name>`.
-`T` è il tipo di dati in cui si vogliono deserializzare i dati e `paramName` è il nome specificato nel [JSON del trigger](#trigger). Nelle funzioni Node.js si accede ai dati del file di input usando `context.bindings.<name>`.
+In c# le funzioni, è associare i dati di file di input toohello tramite un parametro denominato nella firma di funzione, come `<T> <name>`.
+In cui `T` è che si desidera toodeserialize hello dati del tipo di dati hello e `paramName` è specificato nel nome di hello il [attivare JSON](#trigger). Nelle funzioni di Node.js, si accede a dati di file di input hello tramite `context.bindings.<name>`.
 
-È possibile deserializzare il file in uno dei tipi seguenti:
+file Hello può essere deserializzato in uno dei seguenti tipi di hello:
 
 * Qualsiasi [oggetto](https://msdn.microsoft.com/library/system.object.aspx): utile per i dati dei file serializzati con JSON.
-  Se si dichiara un tipo di input personalizzato, ad esempio `FooType`, Funzioni di Azure tenta di deserializzare i dati JSON nel tipo specificato.
+  Se si dichiara un tipo di input personalizzato (ad esempio `FooType`), le funzioni di Azure tenta i dati JSON hello toodeserialize nel tipo specificato.
 * Stringa: utile per i dati del file di testo.
 
-Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei tipi seguenti e il runtime di Funzioni di Azure tenta di deserializzare i dati del file usando quel tipo:
+In c# le funzioni, è anche possibile associare tooany dei seguenti tipi di hello e hello funzioni runtime tenta di deserializzare mediante quel tipo di dati del file hello:
 
 * `string`
 * `byte[]`
@@ -153,7 +153,7 @@ Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei tipi segu
 * `TextReader`
 
 ## <a name="trigger-sample"></a>Esempio di trigger
-Si supponga di avere il function.json seguente, che definisce un trigger di file esterno:
+Si supponga di avere seguito function.json hello, che definisce un trigger di file esterno:
 
 ```json
 {
@@ -170,7 +170,7 @@ Si supponga di avere il function.json seguente, che definisce un trigger di file
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che registra i contenuti di ogni file aggiunto alla cartella monitorata.
+Vedere l'esempio specifico del linguaggio hello che registra il contenuto di hello di ogni file che viene aggiunta una cartella monitorata toohello.
 
 * [C#](#triggercsharp)
 * [Node.js](#triggernodejs)
@@ -208,9 +208,9 @@ module.exports = function(context) {
 <a name="input"></a>
 
 ## <a name="external-file-input-binding"></a>Associazione di input di file esterni
-L'associazione di input di file esterni di Azure consente di usare un file da una cartella esterna nella funzione.
+associazione di input di file esterno Azure Hello consente toouse un file da una cartella in una funzione esterna.
 
-L'input del file esterno in una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:
+funzione di file esterno tooa input Hello utilizza hello seguendo gli oggetti JSON in hello `bindings` matrice function.json:
 
 ```json
 {
@@ -222,23 +222,23 @@ L'input del file esterno in una funzione usa gli oggetti JSON seguenti nella mat
 },
 ```
 
-Tenere presente quanto segue:
+Si noti hello segue:
 
-* `path` deve contenere il nome della cartella e il nome del file. Se, ad esempio, nella funzione è presente un [trigger della coda](functions-bindings-storage-queue.md), è possibile usare `"path": "samples-workitems/{queueTrigger}"` in modo che punti a un file nella cartella `samples-workitems` con un nome che corrisponde al nome di file specificato nel messaggio di trigger.   
+* `path`deve contenere il nome di cartella hello e nome del file hello. Ad esempio, se dispone di un [trigger coda](functions-bindings-storage-queue.md) nella funzione, è possibile utilizzare `"path": "samples-workitems/{queueTrigger}"` toopoint tooa file hello `samples-workitems` cartella con un nome che corrisponde al nome file hello specificato nel messaggio hello del trigger.   
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Uso dell'input
-Nelle funzioni C# l'associazione ai dati del file di input viene eseguita usando un parametro denominato nella firma funzione, ad esempio `<T> <name>`.
-`T` è il tipo di dati in cui si vogliono deserializzare i dati e `paramName` è il nome specificato nell'[associazione di input](#input). Nelle funzioni Node.js si accede ai dati del file di input usando `context.bindings.<name>`.
+In c# le funzioni, è associare i dati di file di input toohello tramite un parametro denominato nella firma di funzione, come `<T> <name>`.
+In cui `T` è che si desidera toodeserialize hello dati del tipo di dati hello e `paramName` è specificato nel nome di hello il [associazione di input](#input). Nelle funzioni di Node.js, si accede a dati di file di input hello tramite `context.bindings.<name>`.
 
-È possibile deserializzare il file in uno dei tipi seguenti:
+file Hello può essere deserializzato in uno dei seguenti tipi di hello:
 
 * Qualsiasi [oggetto](https://msdn.microsoft.com/library/system.object.aspx): utile per i dati dei file serializzati con JSON.
-  Se si dichiara un tipo di input personalizzato, ad esempio `InputType`, Funzioni di Azure tenta di deserializzare i dati JSON nel tipo specificato.
+  Se si dichiara un tipo di input personalizzato (ad esempio `InputType`), le funzioni di Azure tenta i dati JSON hello toodeserialize nel tipo specificato.
 * Stringa: utile per i dati del file di testo.
 
-Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei tipi seguenti e il runtime di Funzioni di Azure tenta di deserializzare i dati del file usando quel tipo:
+In c# le funzioni, è anche possibile associare tooany dei seguenti tipi di hello e hello funzioni runtime tenta di deserializzare mediante quel tipo di dati del file hello:
 
 * `string`
 * `byte[]`
@@ -250,9 +250,9 @@ Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei tipi segu
 <a name="output"></a>
 
 ## <a name="external-file-output-binding"></a>Associazione di output di file esterni
-L'associazione di input di file esterni di Azure consente di usare un file da una cartella esterna nella funzione.
+associazione consente cartella esterna toowrite file tooan nella funzione di output Hello Azure file esterno.
 
-L'output del file esterno per una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:
+file esterni di Hello di output per una funzione utilizza i seguenti oggetti JSON in hello hello `bindings` matrice function.json:
 
 ```json
 {
@@ -264,22 +264,22 @@ L'output del file esterno per una funzione usa gli oggetti JSON seguenti nella m
 }
 ```
 
-Tenere presente quanto segue:
+Si noti hello segue:
 
-* `path` deve contenere il nome della cartella e il nome del file in cui scrivere. Se, ad esempio, nella funzione è presente un [trigger della coda](functions-bindings-storage-queue.md), è possibile usare `"path": "samples-workitems/{queueTrigger}"` in modo che punti a un file nella cartella `samples-workitems` con un nome che corrisponde al nome di file specificato nel messaggio di trigger.   
+* `path`deve contenere il nome di cartella hello e toowrite di nome file hello per. Ad esempio, se dispone di un [trigger coda](functions-bindings-storage-queue.md) nella funzione, è possibile utilizzare `"path": "samples-workitems/{queueTrigger}"` toopoint tooa file hello `samples-workitems` cartella con un nome che corrisponde al nome file hello specificato nel messaggio hello del trigger.   
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Uso dell'output
-Nelle funzioni C# è possibile eseguire l'associazione al file di output usando il parametro denominato `out` nella firma funzione, ad esempio `out <T> <name>`, dove `T` è il tipo di dati in cui si vuole serializzare i dati e `paramName` è il nome specificato nell'[associazione di output](#output). Nelle funzioni Node.js si accede al file di output usando `context.bindings.<name>`.
+In c# le funzioni, associare il file di output toohello utilizzando hello denominato `out` parametro nella firma di funzione, ad esempio `out <T> <name>`, dove `T` è che si desidera tooserialize hello dati del tipo di dati hello e `paramName` è hello nome specificato nella [associazione di output](#output). Nelle funzioni di Node.js, si accedere ai file di output di hello utilizzando `context.bindings.<name>`.
 
-È possibile scrivere nel file di output usando uno dei tipi seguenti:
+È possibile scrivere il file di output toohello utilizzando uno dei seguenti tipi di hello:
 
 * Qualsiasi [oggetto](https://msdn.microsoft.com/library/system.object.aspx), utile per la serializzazione con JSON.
-  Se si dichiara un tipo di output personalizzato (ad esempio `out OutputType paramName`), Funzioni di Azure tenta di serializzare l'oggetto in JSON. Se il parametro di output è null quando la funzione viene chiusa, il runtime di Funzioni crea un file come un oggetto null.
-* Stringa: `out string paramName`utile per i dati del file di testo. Il runtime di Funzioni crea un file solo se il parametro di stringa è diverso da null quando la funzione viene chiusa.
+  Se si dichiara un tipo di output personalizzato (ad esempio `out OutputType paramName`), le funzioni di Azure tenta tooserialize oggetto in JSON. Se il parametro di output di hello è null quando si esce dalla funzione hello, hello funzioni runtime crea un file come un oggetto null.
+* Stringa: `out string paramName`utile per i dati del file di testo. Hello funzioni runtime crea un file solo se il parametro della stringa non null quando si esce dalla funzione hello.
 
-Nelle funzioni C# è anche possibile eseguire l'output in uno dei tipi seguenti:
+In c# le funzioni può inoltre restituire tooany di hello seguenti tipi:
 
 * `TextWriter`
 * `Stream`
@@ -293,7 +293,7 @@ Nelle funzioni C# è anche possibile eseguire l'output in uno dei tipi seguenti:
 <a name="sample"></a>
 
 ## <a name="input--output-sample"></a>Esempio di input e output
-Si supponga di avere il function.json seguente, che definisce un [trigger della coda di archiviazione](functions-bindings-storage-queue.md), un input del file esterno e un output del file esterno:
+Si supponga di avere seguito function.json hello, che definisce un [trigger coda di archiviazione](functions-bindings-storage-queue.md), un file esterno di input e output di un file esterno:
 
 ```json
 {
@@ -324,7 +324,7 @@ Si supponga di avere il function.json seguente, che definisce un [trigger della 
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che copia il file di input nel file di output.
+Vedere l'esempio specifico del linguaggio hello che copia i file di output toohello hello file di input.
 
 * [C#](#incsharp)
 * [Node.js](#innodejs)

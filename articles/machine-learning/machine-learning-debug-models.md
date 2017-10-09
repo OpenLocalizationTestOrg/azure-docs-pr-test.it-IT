@@ -1,6 +1,6 @@
 ---
-title: Eseguire il debug del modello in Azure Machine Learning | Documentazione Microsoft
-description: Come eseguire il debug di errori generati dai moduli dal training e dalla classificazione del modello in Azure Machine Learning.
+title: aaaDebug il modello in Azure Machine Learning | Documenti Microsoft
+description: Gli errori di toodebug generati dal modello di training e il modello di punteggio come moduli in Azure Machine Learning.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bradsev;garye
-ms.openlocfilehash: d4cc94a6395ea45bccf65d9a9f3118ec98cb258d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee38ca8ce38d4fc7add5ba70c80ab9bb2ceaf1d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debug-your-model-in-azure-machine-learning"></a>Debug del modello in Azure Machine Learning
 
-In questo articolo vengono spiegati i potenziali motivi per i quali possono verificarsi i due errori indicati di seguito durante l'esecuzione di un modello:
+Questo articolo descrive le cause possibili di hello perché uno dei seguenti due errori hello potrebbero essere presenti durante l'esecuzione di un modello:
 
-* il modulo [Train Model][train-model] genera un errore 
-* il modulo [Score Model][score-model] genera risultati non corretti 
+* Hello [Train Model] [ train-model] modulo genera un errore 
+* Hello [Score Model] [ score-model] modulo genera risultati non corretti 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
@@ -33,41 +33,41 @@ In questo articolo vengono spiegati i potenziali motivi per i quali possono veri
 
 ![Immagine1](./media/machine-learning-debug-models/train_model-1.png)
 
-Il modulo [Training del modello][train-model] prevede i due valori di input seguenti:
+Hello [Train Model] [ train-model] modulo prevede due input:
 
-1. Il tipo di modello di Machine Learning della raccolta di modelli forniti da Azure Machine Learning.
-2. I dati di training con una colonna Etichetta specifica che indica la variabile da stimare (le altre colonne vengono considerate funzionalità).
+1. tipo di Hello del modello di machine learning dalla raccolta hello di modelli forniti da Azure Machine Learning.
+2. dati di training con una colonna di etichetta specificata, che specifica Hello hello toopredict variabile (hello altre colonne vengono considerate toobe funzionalità).
 
-Questo modulo può generare un errore nei casi seguenti:
+Questo modulo può produrre un errore in hello seguenti casi:
 
-1. La colonna Etichetta è stata specificata in modo errato. Questo può succedere se è selezionata più di una colonna come Etichetta oppure se è selezionato un indice di colonna non corretto. Ad esempio, il secondo caso è applicabile se è stato usato un indice di colonna pari a 30 con un set di dati di input dotato di 25 colonne soltanto.
+1. colonna di etichetta Hello è stato specificato correttamente. Questa situazione può verificarsi se è selezionata più di una colonna come etichetta hello o un indice di colonna non è selezionato. Ad esempio, secondo caso hello verrà applicata se viene utilizzato un indice di colonna pari a 30 con un set di dati di input che ha solo 25 colonne.
 
-2. Il set di dati non contiene nessuna colonna per le caratteristiche. Se ad esempio il set di dati di input dispone solo di una colonna, contrassegnata come colonna Etichetta, non sono presenti caratteristiche con cui creare il modello. In questo caso, il modulo [Train Model][train-model] genera un errore.
+2. Hello dataset non contiene tutte le colonne di funzionalità. Ad esempio, se hello di un set di dati dell'input ha una sola colonna, che è contrassegnata come colonna di etichetta hello, non vi sarà alcuna funzionalità con il modello di hello toobuild. In questo caso, hello [Train Model] [ train-model] modulo genera un errore.
 
-3. Il set di dati di input (caratteristiche o etichetta) contiene Infinity come valore.
+3. Hello input set di dati (funzionalità o etichetta) contiene un numero infinito come valore.
 
 ## <a name="score-model-module-produces-incorrect-results"></a>Il modulo Classificazione del modello genera risultati non corretti
 
 ![Immagine2](./media/machine-learning-debug-models/train_test-2.png)
 
-In un tipico esperimento di training/testing per l'apprendimento supervisionato, il modulo [Divisione dei dati][split] separa il set di dati originale in due parti: una usata per eseguire il training del modello e l'altra riservata alla classificazione delle prestazioni del modello. Il modello sottoposto a training viene quindi usato per calcolare il punteggio dei dati di test, dopo il quale vengono valutati i risultati per determinare la precisione del modello.
+In genere esperimento per l'apprendimento supervisionato training/test, hello [dati divisi] [ split] modulo suddivide hello set di dati originale in due parti: una parte è il modello di hello tootrain utilizzato e viene utilizzata una parte tooscore come modello con training hello prestazioni. modello con training Hello è usato tooscore hello dati di test, dopo il quale i risultati di hello sono valutate toodetermine hello accuratezza del modello di hello.
 
-Il modulo [Score Model][score-model] richiede due input:
+Hello [Score Model] [ score-model] modulo richiede due input:
 
-1. Output del modello sottoposto a training dal modulo [Training modello][train-model].
-2. Un set di dati per la classificazione diverso da quello usato per il training del modello.
+1. Un output di un modello con Training da hello [Train Model] [ train-model] modulo.
+2. Un punteggio set di dati che è diverso dal set di dati hello utilizzato il modello di hello tootrain.
 
-Può accadere che, nonostante il buon esito dell'esperimento, il modulo [Classificazione modello][score-model] produca risultati non corretti. Ciò può essere dovuto a diversi scenari:
+È possibile che, anche se ha esito positivo esperimento hello, hello del [Score Model] [ score-model] modulo genera risultati non corretti. Diversi scenari possono generare questo toohappen:
 
-1. Se l'etichetta specificata è categorica e un modello di regressione è sottoposto a training sui dati, può essere prodotto un output errato dal modulo [Score Model][score-model]. Questo si verifica perché la regressione richiede una variabile di risposta continua. In questo caso sarebbe più opportuno usare un modello di classificazione. 
+1. Se hello specificato etichetta è categorica e un modello di regressione è sottoposto a training sui dati hello, verrà prodotto un output non corretto da hello [Score Model] [ score-model] modulo. Questo si verifica perché la regressione richiede una variabile di risposta continua. In questo caso, sarebbe più adatta toouse un modello di classificazione. 
 
-2. Analogamente, se un modello di classificazione è sottoposto a training su un set di dati con numeri a virgola mobile nella colonna Etichetta, tale modello può produrre risultati indesiderati. Questo si verifica perché la classificazione richiede una variabile di risposta discreta che ammette solo valori all'interno di un set di classi finito e solitamente di dimensioni ridotte.
+2. Analogamente, se un modello di classificazione viene eseguito il training su un set di dati con numeri a virgola mobile nella colonna di etichetta hello, può produrre risultati indesiderati. Questo si verifica perché la classificazione richiede una variabile di risposta discreta che ammette solo valori all'interno di un set di classi finito e solitamente di dimensioni ridotte.
 
-3. Se il set di dati non contiene tutte le caratteristiche usate per eseguire il training del modello, il modulo [Score Model][score-model] genera un errore.
+3. Se hello punteggio set di dati non contiene tutti i modelli di hello tootrain di funzionalità utilizzate hello, hello [Score Model] [ score-model] genera un errore.
 
-4. Il modulo [Score Model][score-model] non genera alcun output corrispondente a una riga nel set di dati di punteggio contenente un valore mancante o infinito per una delle proprie caratteristiche.
+4. Se una riga nel set di dati di punteggio hello contiene un valore mancante o un valore infinito per tutte le sue funzionalità, hello [Score Model] [ score-model] non produrrà qualsiasi riga di output corrispondente toothat.
 
-5. Il modulo [Score Model][score-model] può generare output identici per tutte le righe nel set di dati di punteggio. Ciò potrebbe verificarsi, ad esempio, quando si tenta di eseguire una classificazione usando insiemi di decisioni se il numero minimo di esempi per nodo foglia viene scelto per superare il numero di esempi di training disponibili.
+5. Hello [Score Model] [ score-model] può produrre output identici per tutte le righe nel set di dati di punteggio hello. Ciò può verificarsi, ad esempio, quando si tenta di classificazione utilizzando foreste delle decisioni, numero minimo di hello degli esempi per ogni nodo foglia sia toobe più hello numero di esempi di training disponibili.
 
 <!-- Module References -->
 [score-model]: https://msdn.microsoft.com/library/azure/401b4f92-e724-4d5a-be81-d5b0ff9bdb33/

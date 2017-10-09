@@ -1,6 +1,6 @@
 ---
-title: Usare PowerShell per eseguire il backup di Windows Server in Azure | Documentazione Microsoft
-description: Informazioni su come distribuire e gestire Backup di Azure mediante PowerShell
+title: aaaUse tooback di PowerShell di Windows Server tooAzure | Documenti Microsoft
+description: Informazioni su come toodeploy e gestire il Backup di Azure tramite PowerShell
 services: backup
 documentationcenter: 
 author: saurabhsensharma
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: saurse;markgal;jimpark;nkolli;trinadhk
-ms.openlocfilehash: d3f165c749af0553c4918b33b0d24cc1e21af2a9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f13224f53abd6fbd132fee4347b0b99e8f5e2678
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-backup-to-azure-for-windows-serverwindows-client-using-powershell"></a>Distribuire e gestire il backup in Azure per server Windows/client Windows mediante PowerShell
+# <a name="deploy-and-manage-backup-tooazure-for-windows-serverwindows-client-using-powershell"></a>Distribuire e gestire backup tooAzure per Windows Server e Windows Client tramite PowerShell
 > [!div class="op_single_selector"]
 > * [ARM](backup-client-automation.md)
 > * [Classico](backup-client-automation-classic.md)
 >
 >
 
-Questo articolo illustra come usare PowerShell per configurare Backup di Azure in un server o un client Windows e per gestire le operazioni di backup e ripristino.
+In questo articolo illustra come toouse PowerShell per la configurazione di Backup di Azure in Windows Server o un client Windows e la gestione di backup e ripristino.
 
 ## <a name="install-azure-powershell"></a>Installare Azure PowerShell
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-Questo articolo illustra i cmdlet di Azure Resource Manager e di PowerShell per Microsoft Azure Online Backup che consentono di usare un'insieme di credenziali di Servizi di ripristino in un gruppo di risorse.
+Questo articolo è incentrato su hello Azure Resource Manager (ARM) e hello MS Online Backup cmdlet che consentono di toouse un insieme di credenziali di servizi di ripristino in un gruppo di risorse.
 
-A ottobre 2015 è stato rilasciato Azure PowerShell 1.0. Questa versione ha fatto seguito alla versione 0.9.8 introducendo alcune modifiche significative, in particolare nel modello di denominazione dei cmdlet. I cmdlet 1.0 seguono il criterio di denominazione {verb}-AzureRm{noun}, mentre i nomi 0.9.8 non includono **Rm** (ad esempio, New-AzureRmResourceGroup anziché New-AzureResourceGroup). Quando si usa Azure PowerShell 0.9.8, è innanzitutto necessario abilitare la modalità Gestione risorse eseguendo il comando **Switch-AzureMode AzureResourceManager** . Questo comando non è necessario nella versione di 1.0 o successiva.
+A ottobre 2015 è stato rilasciato Azure PowerShell 1.0. Questa versione ha avuto esito positivo versione 0.9.8 hello e portato sulle modifiche significative, in particolare nel modello di denominazione dei cmdlet hello hello. eseguire i cmdlet 1.0 hello del modello di denominazione {verbo di}-AzureRm {nome}; mentre, non includono nomi hello 0.9.8 **Rm** (ad esempio, New-AzureRmResourceGroup anziché New AzureResourceGroup). Quando si utilizza Azure PowerShell 0.9.8, è prima necessario attivare la modalità di gestione risorse hello eseguendo hello **Switch-AzureMode AzureResourceManager** comando. Questo comando non è necessario nella versione di 1.0 o successiva.
 
-Se si vogliono usare script scritti per l'ambiente 0.9.8 nell'ambiente 1.0 o versione successiva, occorre testare e aggiornare attentamente gli script in un ambiente di preproduzione prima di usarli nell'ambiente di produzione, per evitare un impatto non previsto.
+Se si desidera toouse gli script scritti per ambiente hello 0.9.8, nell'hello 1.0 o versione successiva, si deve aggiornare e testare attentamente script hello in un ambiente di pre-produzione prima di usarli in produzione tooavoid impatto imprevisto.
 
-[Scaricare la versione più recente di PowerShell](https://github.com/Azure/azure-powershell/releases) (la versione minima richiesta è: 1.0.0)
+[Scaricare l'ultima versione di PowerShell hello](https://github.com/Azure/azure-powershell/releases) (versione minima richiesta è: 1.0.0)
 
 [!INCLUDE [arm-getting-setup-powershell](../../includes/arm-getting-setup-powershell.md)]
 
-## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali dei servizi di ripristino
-Nei passaggi seguenti viene descritto come creare un insieme di credenziali dei servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è diverso da un insieme di credenziali di backup.
+## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali di Servizi di ripristino
+Hello alla procedura seguente per facilitare la creazione di un insieme di credenziali di servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è diverso da un insieme di credenziali di backup.
 
-1. Se si sta usando Backup di Azure per la prima volta, è necessario usare il cmdlet **Register-AzureRMResourceProvider** per registrare il provider di Servizi di ripristino di Azure con la propria sottoscrizione.
+1. Se si utilizza Azure Backup per hello prima volta, è necessario utilizzare hello **registro AzureRMResourceProvider** provider di servizi di ripristino di Azure di cmdlet tooregister hello con la sottoscrizione.
 
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-2. L'insieme di credenziali dei servizi di ripristino è una risorsa ARM, pertanto è necessario inserirlo all'interno di un gruppo di risorse. È possibile usare un gruppo di risorse esistente o crearne uno nuovo. Quando si crea un nuovo gruppo di risorse, è necessario specificare il nome e percorso per il gruppo di risorse.  
+2. Hello insieme di credenziali di servizi di ripristino è una risorsa ARM, pertanto è necessario tooplace all'interno di un gruppo di risorse. È possibile usare un gruppo di risorse esistente o crearne uno nuovo. Quando si crea un nuovo gruppo di risorse, specificare il nome di hello e il percorso per il gruppo di risorse hello.  
 
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "WestUS"
     ```
-3. Per creare il nuovo insieme di credenziali usare il cmdlet **New-AzureRmRecoveryServicesVault** . Assicurarsi di specificare per l'insieme di credenziali lo stesso percorso usato per il gruppo di risorse.
+3. Hello utilizzare **New AzureRmRecoveryServicesVault** cmdlet toocreate hello nuovo insieme di credenziali. Assicurarsi che toospecify hello stesso percorso per l'insieme di credenziali hello utilizzata per il gruppo di risorse hello.
 
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "WestUS"
     ```
-4. Specificare il tipo di ridondanza di archiviazione da usare, ad esempio [archiviazione con ridondanza locale (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) o [archiviazione con ridondanza geografica (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Nell'esempio seguente l'opzione BackupStorageRedundancy per testVault è impostata su GeoRedundant.
+4. Specificare il tipo di hello di toouse di ridondanza di archiviazione; è possibile utilizzare [archiviazione con ridondanza locale (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) o [archiviazione con ridondanza geografica (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Hello riportato di seguito hello - BackupStorageRedundancy per testVault impostazione tooGeoRedundant.
 
    > [!TIP]
-   > Molti cmdlet di Backup di Azure richiedono l'oggetto dell'insieme di credenziali dei servizi di ripristino come input. Per questo motivo, è utile archiviare l'oggetto dell'insieme di credenziali dei servizi di ripristino di Backup in una variabile.
+   > Molti cmdlet di Azure Backup richiede l'oggetto insieme di credenziali di servizi di ripristino hello come input. Per questo motivo, è utile toostore hello servizi di ripristino di Backup dell'insieme di credenziali oggetto in una variabile.
    >
    >
 
@@ -72,10 +72,10 @@ Nei passaggi seguenti viene descritto come creare un insieme di credenziali dei 
     PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
     ```
 
-## <a name="view-the-vaults-in-a-subscription"></a>Visualizzare gli insiemi di credenziali in un abbonamento
-Usare **Get-AzureRmRecoveryServicesVault** per visualizzare l'elenco di tutti gli insiemi di credenziali della sottoscrizione corrente. È possibile usare questo comando per verificare che sia stato creato un nuovo insieme di credenziali o per vedere quali insiemi di credenziali sono disponibili nell'abbonamento.
+## <a name="view-hello-vaults-in-a-subscription"></a>Visualizza gli insiemi di credenziali hello in una sottoscrizione
+Utilizzare **Get AzureRmRecoveryServicesVault** elenco hello tooview di tutti gli insiemi di credenziali nella sottoscrizione corrente hello. È possibile utilizzare questo toocheck di comando che è stato creato un nuovo insieme di credenziali o toosee quali insiemi di credenziali sono disponibili nella sottoscrizione hello.
 
-L'esecuzione del comando **Get-AzureRmRecoveryServicesVault** visualizza tutti gli insiemi di credenziali disponibili nella sottoscrizione.
+Eseguire il comando di hello, **Get AzureRmRecoveryServicesVault**, e sono elencati tutti gli insiemi di credenziali di sottoscrizione hello.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault
@@ -89,10 +89,10 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 ```
 
 
-## <a name="installing-the-azure-backup-agent"></a>Installazione dell'agente di Backup di Azure
-Per installare l'agente di Backup di Azure, è necessario aver scaricato il programma di installazione nel server Windows. È possibile ottenere la versione più recente del programma di installazione dall' [Area download Microsoft](http://aka.ms/azurebackup_agent) o dalla pagina Dashboard dell'insieme di credenziali dei servizi di ripristino. Salvare il programma di installazione in un percorso facilmente accessibile come *C:\Downloads\*.
+## <a name="installing-hello-azure-backup-agent"></a>Installare hello Azure Backup agent
+Prima di installare l'agente Azure Backup hello, è necessario il programma di installazione di toohave hello scaricato e presenti sul Server di Windows hello. È possibile ottenere una versione più recente di hello del programma di installazione hello da hello [Microsoft Download Center](http://aka.ms/azurebackup_agent) o dalla pagina Dashboard dell'insieme di credenziali hello servizi di ripristino. Salvare installer hello tooan posizione facilmente accessibile, ad esempio * C:\Downloads\*.
 
-In alternativa, usare PowerShell per ottenere il downloader:
+In alternativa, usare il downloader di hello tooget di PowerShell:
  
  ```
  $MarsAURL = 'Http://Aka.Ms/Azurebackup_Agent'
@@ -101,33 +101,33 @@ In alternativa, usare PowerShell per ottenere il downloader:
  C:\Downloads\MARSAgentInstaller.EXE /q
  ```
 
-Per installare l'agente, eseguire il comando seguente in una console di Azure PowerShell con privilegi elevati:
+tooinstall hello esecuzione dell'agente, hello seguente comando in una console di PowerShell con privilegi elevata:
 
 ```
 PS C:\> MARSAgentInstaller.exe /q
 ```
 
-L'agente verrà installato con tutte le opzioni predefinite. L'installazione richiede alcuni minuti in background. Se non si specifica l'opzione */nu* , la finestra **Windows Update** si aprirà al termine dell'installazione per verificare la presenza di eventuali aggiornamenti. Dopo essere stato installato, l'agente verrà visualizzato nell'elenco dei programmi installati.
+Consente di installare agente hello con tutte le opzioni predefinite di hello. installazione di Hello richiede alcuni minuti in background hello. Se non si specifica hello */nu* opzione quindi hello **Windows Update** aprirà la finestra alla fine hello hello toocheck di installazione per tutti gli aggiornamenti. Una volta installato, agente hello verrà visualizzati nell'elenco di hello dei programmi installati.
 
-Per visualizzare l'elenco dei programmi installati, passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità**.
+elenco di hello toosee dei programmi installati, andare troppo**Pannello di controllo** > **programmi** > **programmi e funzionalità**.
 
 ![Agente installato](./media/backup-client-automation/installed-agent-listing.png)
 
 ### <a name="installation-options"></a>Opzioni di installazione
-Per visualizzare tutte le opzioni disponibili tramite la riga di comando, utilizzare il comando seguente:
+toosee tutti hello opzioni disponibili tramite hello della riga di comando, usare hello comando seguente:
 
 ```
 PS C:\> MARSAgentInstaller.exe /?
 ```
 
-Le opzioni disponibili includono:
+Hello le opzioni disponibili includono:
 
 | Opzione | Dettagli | Default |
 | --- | --- | --- |
 | /q |Installazione non interattiva |- |
-| /p:"location" |Percorso della cartella di installazione per l'agente di Backup di Azure. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure |
-| /s:"location" |Percorso della cartella della cache per l'agente di Backup di Azure. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure\Scratch |
-| /m |Consenso esplicito a Microsoft Update |- |
+| /p:"location" |Cartella di installazione toohello percorso per l'agente Azure Backup hello. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure |
+| /s:"location" |Cartella cache toohello percorso per l'agente Azure Backup hello. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure\Scratch |
+| /m |Consenso esplicito tooMicrosoft aggiornamento |- |
 | /nu |Al termine dell'installazione non vengono cercati gli aggiornamenti |- |
 | /d |Disinstalla l'agente di Servizi di ripristino di Microsoft Azure |- |
 | /ph |Indirizzo host proxy |- |
@@ -135,31 +135,31 @@ Le opzioni disponibili includono:
 | /pu |Nome utente host proxy |- |
 | /pw |Password proxy |- |
 
-## <a name="registering-windows-server-or-windows-client-machine-to-a-recovery-services-vault"></a>Registrazione di Windows Server o di un client Windows con l'insieme di credenziali dei servizi di ripristino
-Dopo aver creato l'insieme di credenziali dei servizi di ripristino, scaricare l'ultimo agente e le credenziali dell'insieme di credenziali e archiviarli in un percorso semplice da ricordare, ad esempio C:\Downloads.
+## <a name="registering-windows-server-or-windows-client-machine-tooa-recovery-services-vault"></a>Registrazione di Windows Server o Windows client macchina tooa insieme di credenziali di servizi di ripristino
+Dopo la creazione di credenziali di servizi di ripristino hello, scaricare l'ultima versione dell'agente hello e l'insieme di credenziali hello e archiviarlo in una posizione comoda come C:\Downloads.
 
 ```
 PS C:\> $credspath = "C:\downloads"
 PS C:\> $credsfilename = Get-AzureRmRecoveryServicesVaultSettingsFile -Backup -Vault $vault1 -Path  $credspath
 ```
 
-In Windows Server o in un client Windows, eseguire il cmdlet [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) per registrare il computer con l'insieme di credenziali.
-Questo cmdlet e altri cmdlet usati per il backup sono inclusi nel modulo MSONLINE, che è stato aggiunto da Mars AgentInstaller durante il processo di installazione. 
+Nel Server di Windows hello o computer client Windows, eseguire hello [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) macchina di hello tooregister cmdlet con insieme di credenziali hello.
+Questo e altri cmdlet utilizzati per il backup, sono dal modulo MSONLINE hello quali hello Agent Installer Mars aggiunti come parte del processo di installazione di hello. 
 
-Il programma di installazione dell'agente non aggiorna la variabile $Env:PSModulePath. Il caricamento automatico del modulo avrà quindi esito negativo. Per risolvere il problema, è possibile procedere come segue:
+programma di installazione dell'agente Hello non aggiorna hello $Env: variabile PSModulePath. Il caricamento automatico del modulo avrà quindi esito negativo. tooresolve questo è possibile eseguire il seguente hello:
 
 ```
 PS C:\>  $Env:psmodulepath += ';C:\Program Files\Microsoft Azure Recovery Services Agent\bin\Modules
 ```
 
-In alternativa, è possibile caricare manualmente il modulo nello script, come segue:
+In alternativa, è possibile caricare manualmente il modulo hello nello script come indicato di seguito:
 
 ```
 PS C:\>  Import-Module  'C:\Program Files\Microsoft Azure Recovery Services Agent\bin\Modules\MSOnlineBackup'
 
 ```
 
-Dopo il caricamento dei cmdlet di Online Backup, registrare le credenziali dell'insieme di credenziali:
+Dopo aver caricato i cmdlet di Backup in linea hello, per registrare l'insieme di credenziali hello:
 
 
 ```
@@ -173,16 +173,16 @@ Machine registration succeeded.
 ```
 
 > [!IMPORTANT]
-> Non utilizzare percorsi relativi per specificare il file dell'insieme di credenziali. È necessario fornire un percorso assoluto come input per il cmdlet.
+> Non usare file delle credenziali dell'insieme di credenziali hello toospecify i percorsi relativi. È necessario fornire un percorso assoluto come un cmdlet toohello input.
 >
 >
 
 ## <a name="networking-settings"></a>Impostazioni di rete
-Quando il computer Windows si connette a Internet mediante un server proxy, le impostazioni del proxy possono essere fornite anche all'agente. In questo esempio non è presente alcun server proxy, pertanto sono state eliminate tutte le informazioni relative al proxy.
+Quando la connettività di hello di hello toohello che è internet tramite un server proxy del computer Windows, impostazioni del proxy hello è possibile specificare anche toohello agente. In questo esempio non è presente alcun server proxy, pertanto sono state eliminate tutte le informazioni relative al proxy.
 
-È anche possibile controllare l'utilizzo della larghezza di banda con le opzioni ```work hour bandwidth``` e ```non-work hour bandwidth``` per un dato set di giorni della settimana.
+Utilizzo della larghezza di banda può essere controllata anche con le opzioni di hello di ```work hour bandwidth``` e ```non-work hour bandwidth``` per un set specificato di giorni della settimana hello.
 
-L'impostazione dei dettagli relativi a proxy e larghezza di banda viene eseguita mediante il cmdlet [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) :
+L'impostazione dei dettagli di proxy e la larghezza di banda hello viene eseguita utilizzando hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) cmdlet:
 
 ```
 PS C:\> Set-OBMachineSetting -NoProxy
@@ -193,7 +193,7 @@ Server properties updated successfully.
 ```
 
 ## <a name="encryption-settings"></a>Impostazioni crittografia
-I dati di backup inviati a Backup di Azure vengono crittografati per proteggere la riservatezza dei dati. La passphrase di crittografia è la "password" per decrittografare i dati in fase di ripristino.
+backup di dati inviati di Hello tooAzure Backup è tooprotect crittografato hello riservatezza dei dati di hello. la passphrase di crittografia Hello è dati hello toodecrypt di password"hello" in fase di hello del ripristino.
 
 ```
 PS C:\> ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force | Set-OBMachineSetting
@@ -204,30 +204,30 @@ Server properties updated successfully
 ```
 
 > [!IMPORTANT]
-> Dopo l'impostazione, conservare le informazioni sulla passphrase al sicuro. Non è possibile ripristinare i dati da Azure senza la passphrase.
+> Mantenere informazioni passphrase hello sicuro e dopo che è stata impostata. Non è in grado di toorestore dati da Azure senza questa passphrase.
 >
 >
 
 ## <a name="back-up-files-and-folders"></a>Eseguire il backup di file e cartelle
-Tutti i backup dei server e dei client Windows in Backup di Azure sono regolati da un criterio, costituito da tre parti:
+Tutti i backup di Windows Server e client tooAzure Backup sono regolati da criteri. criteri di Hello è costituito da tre parti:
 
-1. Una **pianificazione dei backup** che specifica quando è necessario eseguire i backup e sincronizzarli con il servizio.
-2. Una **pianificazione di conservazione** che indica per quanto tempo è necessario conservare i punti di ripristino in Azure.
+1. Oggetto **pianificazione del backup** che specifica quando i backup necessitano toobe portato e sincronizzato con il servizio di hello.
+2. Oggetto **pianificazione della conservazione** che specifica quanto tempo i punti di ripristino hello tooretain in Azure.
 3. Una **specifica di inclusione/esclusione di file** che determina i contenuti di cui eseguire il backup.
 
-Dal momento che in questo documento si esegue un backup automatico, si presuppone che non siano stati configurati elementi. Si inizia creando un nuovo criterio di backup tramite il cmdlet [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) .
+Dal momento che in questo documento si esegue un backup automatico, si presuppone che non siano stati configurati elementi. Iniziare creando un nuovo criterio di backup utilizzando hello [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) cmdlet.
 
 ```
 PS C:\> $newpolicy = New-OBPolicy
 ```
 
-In questo momento il criterio è vuoto e sono necessari altri cmdlet per definire quali elementi verranno inclusi o esclusi, quando verranno eseguiti i backup e dove verranno archiviati.
+In questo hello ora criteri sono vuoto e altri cmdlet sono necessari toodefine gli elementi che verranno inclusi o esclusi, quando i backup verranno eseguiti e hello in cui verranno archiviati i backup.
 
-### <a name="configuring-the-backup-schedule"></a>Configurazione della pianificazione dei backup
-La prima delle tre parti di un criterio è la pianificazione dei backup, che viene creata tramite il cmdlet [New-OBSchedule](https://technet.microsoft.com/library/hh770401) . La pianificazione dei backup definisce quando è necessario eseguire i backup. Quando si crea una pianificazione è necessario specificare due parametri di input:
+### <a name="configuring-hello-backup-schedule"></a>La configurazione della pianificazione di backup hello
+Hello prima di hello 3 parti di un criterio è hello pianificazione dei backup, che viene creata utilizzando hello [New-OBSchedule](https://technet.microsoft.com/library/hh770401) cmdlet. pianificazione del backup Hello definisce quando i backup necessitano toobe eseguita. Quando si crea una pianificazione è necessario toospecify 2 parametri di input:
 
-* **Giorni della settimana** in cui deve essere eseguito il backup. È possibile eseguire il processo di backup in un solo giorno oppure tutti i giorni della settimana o specificando qualsiasi combinazione di giorni.
-* **Orari della giornata** in cui deve essere eseguito il backup. È possibile definire fino a tre orari della giornata diversi in cui verrà attivato il backup.
+* **Giorni della settimana hello** deve essere eseguito il backup di hello. È possibile eseguire processo di backup in un solo giorno, hello o ogni giorno della settimana hello o qualsiasi combinazione tra.
+* **Ore del giorno hello** quando eseguire il backup di hello. È possibile definire le ore del giorno di hello quando verrà attivato backup hello too3.
 
 Ad esempio, è possibile configurare un criterio di backup eseguito alle 16.00 ogni sabato e domenica.
 
@@ -235,20 +235,20 @@ Ad esempio, è possibile configurare un criterio di backup eseguito alle 16.00 o
 PS C:\> $sched = New-OBSchedule -DaysofWeek Saturday, Sunday -TimesofDay 16:00
 ```
 
-La pianificazione dei backup deve essere associata a un criterio ed è possibile eseguire questa operazione tramite il cmdlet [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) .
+pianificazione del backup Hello deve toobe associati ai criteri e questo può essere ottenuto utilizzando hello [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) cmdlet.
 
 ```
 PS C:> Set-OBSchedule -Policy $newpolicy -Schedule $sched
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s) DsList : PolicyName : RetentionPolicy : State : New PolicyState : Valid
 ```
 ### <a name="configuring-a-retention-policy"></a>Configurazione di un criterio di conservazione
-Il criterio di conservazione definisce il periodo di conservazione dei punti di ripristino creati dai processi di backup. Quando si crea un nuovo criterio di conservazione usando il cmdlet [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) , è possibile specificare il numero di giorni per cui conservare i punti di ripristino dei backup con Backup di Azure. L'esempio seguente imposta un criterio di conservazione di 7 giorni.
+criteri di conservazione Hello definiscono il tempo di ripristino punti creati dai processi di backup vengono mantenuti. Quando si crea un nuovo criterio di conservazione utilizzando hello [New OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) cmdlet, è possibile specificare il numero di hello di giorni per cui hello punti di ripristino di backup necessario toobe mantenuti con Azure Backup. esempio Hello seguente imposta i criteri di conservazione di 7 giorni.
 
 ```
 PS C:\> $retentionpolicy = New-OBRetentionPolicy -RetentionDays 7
 ```
 
-Il criterio di conservazione deve essere associato al criterio principale usando il cmdlet [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):
+Hello criteri di conservazione devono essere associato a criteri di hello principale utilizzando cmdlet hello [Set OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):
 
 ```
 PS C:\> Set-OBRetentionPolicy -Policy $newpolicy -RetentionPolicy $retentionpolicy
@@ -272,16 +272,16 @@ RetentionPolicy : Retention Days : 7
 State           : New
 PolicyState     : Valid
 ```
-### <a name="including-and-excluding-files-to-be-backed-up"></a>Inclusione ed esclusione di file per il backup
-Un oggetto ```OBFileSpec``` definisce i file da includere o escludere in un backup. Si tratta di un set di regole che definiscono l'ambito di cartelle e file protetti in un computer. È possibile disporre del numero desiderato di regole di inclusione o esclusione di file e associare le regole a un criterio. Quando si crea un nuovo oggetto OBFileSpec, è possibile:
+### <a name="including-and-excluding-files-toobe-backed-up"></a>Inclusione ed esclusione di file toobe backup
+Un ```OBFileSpec``` oggetto definisce hello file toobe inclusi ed esclusi in un backup. Si tratta di un set di regole di ambito out hello file e cartelle protetti in un computer. È possibile disporre del numero desiderato di regole di inclusione o esclusione di file e associare le regole a un criterio. Quando si crea un nuovo oggetto OBFileSpec, è possibile:
 
-* Specificare file e cartelle da includere
-* Specificare file e cartelle da escludere
-* Specificare un backup ricorsivo dei dati in una cartella (o) se eseguire il backup solo dei file di livello principale nella cartella specificata.
+* Specificare hello toobe file e cartelle inclusi
+* Specificare hello toobe cartelle e file esclusi
+* Specificare ricorsiva di backup dei dati in una cartella (o) che devono essere eseguiti solo hello file di primo livello nella cartella specificata hello backup.
 
-Quest'ultima impostazione si ottiene usando il flag -NonRecursive nel comando New-OBFileSpec.
+Hello quest'ultimo viene ottenuta utilizzando il flag - non ricorsive di hello nel comando New-OBFileSpec hello.
 
-Nell'esempio seguente viene eseguito il backup dei volumi C: e D: e vengono esclusi i file binari del sistema operativo nella cartella Windows e nelle cartelle temporanee. A tale scopo, vengono create due specifiche dei file usando il cmdlet [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) , una per l'inclusione e una per l'esclusione. Dopo essere state create, le specifiche dei file vengono associate al criterio usando il cmdlet [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) .
+Nell'esempio hello riportato di seguito viene backup volume c: e d ed escludere i file binari del sistema operativo hello nella cartella di Windows hello e le cartelle temporanee. toodo verrà quindi creata utilizzando hello due specifiche di file [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) cmdlet - uno per l'inclusione e uno per l'esclusione. Dopo avere create le specifiche di file hello, ma sono associati con criteri di hello mediante hello [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) cmdlet.
 
 ```
 PS C:\> $inclusions = New-OBFileSpec -FileSpec @("C:\", "D:\")
@@ -372,19 +372,19 @@ State           : New
 PolicyState     : Valid
 ```
 
-### <a name="applying-the-policy"></a>Applicazione del criterio
-A questo punto l'oggetto criterio è completo e associato a una pianificazione dei backup, un criterio di conservazione e un elenco di inclusione o esclusione di file. È ora possibile eseguire il commit del criterio affinché venga usato in Backup di Azure. Prima di applicare il criterio appena creato, assicurarsi che non vi siano criteri di backup esistenti associati al server usando il cmdlet [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) . Per la rimozione del criterio verrà richiesta una conferma. Per ignorare la conferma, usare il flag ```-Confirm:$false``` con il cmdlet.
+### <a name="applying-hello-policy"></a>L'applicazione dei criteri di hello
+Ora l'oggetto Criteri di hello è stata completata e dispone di una pianificazione di backup associata, criteri di conservazione e un elenco di inclusione/esclusione dei file. Questo criterio può essere eseguito il commit per toouse Azure Backup. Prima di applicare hello appena creato criteri verificare che non sono presenti criteri di backup esistenti associati a server hello utilizzando hello [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) cmdlet. Rimozione dei criteri di hello verrà chiesta conferma. Conferma hello tooskip utilizzare hello ```-Confirm:$false``` flag con i cmdlet di hello.
 
 ```
 PS C:> Get-OBPolicy | Remove-OBPolicy
-Microsoft Azure Backup Are you sure you want to remove this backup policy? This will delete all the backed up data. [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Are you sure you want tooremove this backup policy? This will delete all hello backed up data. [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
 ```
 
-Il commit dell'oggetto criterio viene eseguito usando il cmdlet [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) . Anche in questo caso verrà richiesto di confermare. Per ignorare la conferma, usare il flag ```-Confirm:$false``` con il cmdlet.
+Viene eseguito il commit oggetto Criteri di hello utilizzando hello [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) cmdlet. Anche in questo caso verrà richiesto di confermare. Conferma hello tooskip utilizzare hello ```-Confirm:$false``` flag con i cmdlet di hello.
 
 ```
 PS C:> Set-OBPolicy -Policy $newpolicy
-Microsoft Azure Backup Do you want to save this backup policy ? [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Do you want toosave this backup policy ? [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s)
 DsList : {DataSource
          DatasourceId:4508156004108672185
@@ -425,7 +425,7 @@ RetentionPolicy : Retention Days : 7
 State : Existing PolicyState : Valid
 ```
 
-È possibile visualizzare i dettagli del criterio di backup esistente usando il cmdlet [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) . È possibile eseguire ulteriormente il drill-down usando il cmdlet [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) per la pianificazione dei backup e il cmdlet[Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) per i criteri di conservazione
+È possibile visualizzare i dettagli di hello hello esistenti del criterio di backup utilizzando hello [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) cmdlet. È possibile drill-down usando hello [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) cmdlet per la pianificazione del backup hello e hello [Get OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) cmdlet per i criteri di conservazione hello
 
 ```
 PS C:> Get-OBPolicy | Get-OBSchedule
@@ -466,32 +466,32 @@ IsRecursive : True
 ```
 
 ### <a name="performing-an-ad-hoc-backup"></a>Esecuzione di un backup ad hoc
-Una volta impostato un criterio di backup, i backup verranno eseguiti in base alla pianificazione. È possibile attivare un backup ad hoc anche tramite il cmdlet [Start-OBBackup](https://technet.microsoft.com/library/hh770426) :
+Dopo aver impostato un criterio di backup verrà eseguito alcun backup hello per ogni pianificazione hello. Attivazione di un backup ad hoc è inoltre possibile utilizzare hello [inizio OBBackup](https://technet.microsoft.com/library/hh770426) cmdlet:
 
 ```
 PS C:> Get-OBPolicy | Start-OBBackup
 Initializing
 Taking snapshot of volumes...
 Preparing storage...
-Generating backup metadata information and preparing the metadata VHD...
-Data transfer is in progress. It might take longer since it is the first backup and all data needs to be transferred...
-Data transfer completed and all backed up data is in the cloud. Verifying data integrity...
+Generating backup metadata information and preparing hello metadata VHD...
+Data transfer is in progress. It might take longer since it is hello first backup and all data needs toobe transferred...
+Data transfer completed and all backed up data is in hello cloud. Verifying data integrity...
 Data transfer completed
 In progress...
 Job completed.
-The backup operation completed successfully.
+hello backup operation completed successfully.
 ```
 
 ## <a name="restore-data-from-azure-backup"></a>Ripristinare i dati da Backup di Azure
-Questa sezione illustra i passaggi per l'automazione del ripristino dei dati da Backup di Azure. A tale scopo, sono necessari i passaggi seguenti:
+In questa sezione guiderà passaggi hello per automatizzare il ripristino dei dati da Backup di Azure. Ciò comporta pertanto hello alla procedura seguente:
 
-1. Selezionare il volume di origine
-2. Scegliere un punto di backup da ripristinare
-3. Scegliere un elemento da ripristinare
-4. Attivare il processo di ripristino
+1. Selezionare il volume di origine hello
+2. Scegliere un backup toorestore punto
+3. Scegliere un elemento di toorestore
+4. Processo di ripristino hello trigger
 
-### <a name="picking-the-source-volume"></a>Selezione del volume di origine
-Per ripristinare un elemento da Backup di Azure, è necessario innanzitutto identificare l'origine dell'elemento. Poiché i comandi vengono eseguiti nel contesto di un server o un client Windows, il computer è già identificato. Il passaggio successivo nell'identificazione dell'origine consiste nell'identificare il volume che la contiene. È possibile recuperare un elenco dei volumi o delle origini di cui viene eseguito il backup per il computer eseguendo il cmdlet [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) . Questo comando restituisce una matrice di tutte le origini di cui viene eseguito il backup nel server/client.
+### <a name="picking-hello-source-volume"></a>Volume di origine di prelievo hello
+In ordine toorestore un elemento da Backup di Azure, è necessario innanzitutto origine hello tooidentify dell'elemento hello. Poiché l'esecuzione nel contesto di hello di un Server di Windows o un client Windows, i comandi di hello macchina hello è già identificato. passaggio successivo Hello identificazione origine hello è volume hello tooidentify che lo contiene. Un elenco di volumi o di origine viene eseguito il backup da questo computer può essere recuperato tramite l'esecuzione di hello [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) cmdlet. Questo comando restituisce una matrice di tutte le origini hello backup da questo server/client.
 
 ```
 PS C:> $source = Get-OBRecoverableSource
@@ -505,8 +505,8 @@ RecoverySourceName : D:\
 ServerName : myserver.microsoft.com
 ```
 
-### <a name="choosing-a-backup-point-from-which-to-restore"></a>Scelta di un punto di backup da cui eseguire il ripristino
-Per recuperare un elenco di punti di backup, eseguire il cmdlet [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) con i parametri appropriati. Nell'esempio viene scelto il punto di backup più recente per il volume di origine *D:* , che viene usato per ripristinare un file specifico.
+### <a name="choosing-a-backup-point-from-which-toorestore"></a>Scelta di un punto di backup da cui toorestore
+Per recuperare un elenco di punti di backup eseguendo hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet con i parametri appropriati. In questo esempio, verrà scelto punto di backup più recente hello per volume di origine hello *unità d:* e usarlo toorecover un file specifico.
 
 ```
 PS C:> $rps = Get-OBRecoverableItem -Source $source[1]
@@ -532,12 +532,12 @@ ServerName : myserver.microsoft.com
 ItemSize :
 ItemLastModifiedTime :
 ```
-L'oggetto ```$rps``` è una matrice di punti di backup. Il primo elemento è il punto più recente e l'elemento N è il punto meno recente. Per scegliere il punto più recente, si userà ```$rps[0]```.
+oggetto Hello ```$rps``` è una matrice di punti di backup. primo elemento Hello è l'ultimo punto di hello ed ennesimo elemento hello è punto meno recente hello. ultimo punto hello toochoose, si utilizzerà ```$rps[0]```.
 
-### <a name="choosing-an-item-to-restore"></a>Scelta di un elemento da ripristinare
-Per identificare la cartella o il file esatto da ripristinare, usare in modo ricorsivo il cmdlet [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) . In questo modo, è possibile esplorare la gerarchia di cartelle usando esclusivamente ```Get-OBRecoverableItem```.
+### <a name="choosing-an-item-toorestore"></a>Scelta di un elemento di toorestore
+tooidentify hello esatti del file o cartella toorestore, in modo ricorsivo utilizzare hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet. Gerarchia di cartelle hello che modo può essere visualizzato utilizzando esclusivamente hello ```Get-OBRecoverableItem```.
 
-In questo esempio, se si desidera ripristinare il file *finances.xls*, è possibile farvi riferimento usando l'oggetto ```$filesFolders[1]```.
+In questo esempio, se lo si desidera file hello toorestore *finances.xls* si può fare riferimento che utilizzano oggetti hello ```$filesFolders[1]```.
 
 ```
 PS C:> $filesFolders = Get-OBRecoverableItem $rps[0]
@@ -578,20 +578,20 @@ ItemSize : 96256
 ItemLastModifiedTime : 21-Jun-14 6:43:02 AM
 ```
 
-È anche possibile cercare gli elementi da ripristinare usando il cmdlet ```Get-OBRecoverableItem``` . Nell'esempio, per cercare *finances.xls* è possibile ottenere un handle sul file eseguendo il comando seguente:
+È inoltre possibile cercare elementi toorestore utilizzando hello ```Get-OBRecoverableItem``` cmdlet. In questo esempio, toosearch per *finances.xls* è stato possibile ottenere un handle di file hello eseguendo questo comando:
 
 ```
 PS C:\> $item = Get-OBRecoverableItem -RecoveryPoint $rps[0] -Location "D:\MyData" -SearchString "finance*"
 ```
 
-### <a name="triggering-the-restore-process"></a>Attivazione del processo di ripristino
-Per attivare il processo di ripristino, è prima necessario specificare le opzioni di ripristino. A tale scopo, è possibile usare il cmdlet [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) . Per questo esempio, si supponga di voler ripristinare i file in *C:\temp*. Si supponga inoltre di voler ignorare i file già presenti nella cartella di destinazione *C:\temp*. Per creare un'opzione di ripristino di questo tipo, usare il comando seguente:
+### <a name="triggering-hello-restore-process"></a>Attivare il processo di ripristino hello
+processo di ripristino tootrigger hello, è necessario innanzitutto le opzioni di ripristino toospecify hello. Questa operazione può essere eseguita tramite hello [New OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) cmdlet. In questo esempio, si supponga ad esempio che si desidera file hello toorestore troppo*C:\temp*. Si supponga inoltre che si desidera tooskip i file già esistenti nella cartella di destinazione hello *C:\temp*. toocreate tali un'opzione di ripristino, utilizzare hello comando seguente:
 
 ```
 PS C:\> $recovery_option = New-OBRecoveryOption -DestinationPath "C:\temp" -OverwriteType Skip
 ```
 
-Attivare quindi il processo di ripristino usando il comando [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) sull'oggetto ```$item``` selezionato dall'output del cmdlet ```Get-OBRecoverableItem```:
+Attivare ora il processo di ripristino hello utilizzando hello [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) comando hello selezionato ```$item``` dall'output di hello di hello ```Get-OBRecoverableItem``` cmdlet:
 
 ```
 PS C:\> Start-OBRecovery -RecoverableItem $item -RecoveryOption $recover_option
@@ -600,29 +600,29 @@ Estimating size of backup items...
 Estimating size of backup items...
 Estimating size of backup items...
 Job completed.
-The recovery operation completed successfully.
+hello recovery operation completed successfully.
 ```
 
 
-## <a name="uninstalling-the-azure-backup-agent"></a>Disinstallazione dell'agente di Backup di Azure
-La disinstallazione dell'agente di Backup di Azure può essere eseguita mediante il seguente comando:
+## <a name="uninstalling-hello-azure-backup-agent"></a>La disinstallazione dell'agente di Backup di Azure hello
+La disinstallazione dell'agente di Backup di Azure hello può essere eseguita con hello comando seguente:
 
 ```
 PS C:\> .\MARSAgentInstaller.exe /d /q
 ```
 
-La disinstallazione dei file binari dell'agente dal computer comporta alcune conseguenze da tenere in considerazione:
+La disinstallazione di binari agente hello dalla macchina di hello è tooconsider alcune conseguenze:
 
-* Il filtro di file viene rimosso dal computer e il rilevamento delle modifiche viene arrestato.
-* Tutte le informazioni sui criteri vengono rimosse dal computer, ma continuano a essere archiviate nel servizio.
+* Filtro di file hello viene rimosso dal computer hello e viene arrestato il rilevamento delle modifiche.
+* Tutte le informazioni dei criteri viene rimossa dalla macchina di hello, ma le informazioni sui criteri hello continua toobe archiviati nel servizio di hello.
 * Tutte le pianificazioni dei backup vengono rimosse e non vengono eseguiti ulteriori backup.
 
-Tuttavia, i dati archiviati in Azure continueranno a rimanere presenti e verranno conservati in base alla configurazione del criterio di conservazione specificata. I punti meno recenti scadono automaticamente.
+Tuttavia, hello dati archiviati in Azure rimane e viene mantenuto in base a impostazione dei criteri di conservazione hello da parte dell'utente. I punti meno recenti scadono automaticamente.
 
 ## <a name="remote-management"></a>Gestione remota
-Tutte le operazioni di gestione di origini dati, criteri e agente di Backup di Azure possono essere eseguite in remoto mediante PowerShell. Il computer che verrà gestito in remoto deve essere preparato correttamente.
+Tutti i management hello intorno agente Azure Backup hello, i criteri e le origini dati può essere eseguito in remoto tramite PowerShell. macchina Hello che verrà gestito in modalità remota deve toobe preparato correttamente.
 
-Per impostazione predefinita, il servizio Gestione remota Windows è configurato per l'avvio manuale. Il tipo di avvio deve essere impostato su *Automatico* e il servizio deve essere avviato. Per verificare che il servizio Gestione remota Windows sia in esecuzione, il valore della proprietà Status deve essere *In esecuzione*.
+Per impostazione predefinita, il servizio Gestione remota Windows hello è configurato per l'avvio manuale. è necessario impostare il tipo di avvio Hello troppo*automatica* e hello servizio deve essere avviato. tooverify che hello servizio Gestione remota Windows è in esecuzione, il valore di hello di hello proprietà Status deve essere *esecuzione*.
 
 ```
 PS C:\> Get-Service WinRM
@@ -636,14 +636,14 @@ PowerShell deve essere configurato per la comunicazione remota.
 
 ```
 PS C:\> Enable-PSRemoting -force
-WinRM is already set up to receive requests on this computer.
+WinRM is already set up tooreceive requests on this computer.
 WinRM has been updated for remote management.
 WinRM firewall exception enabled.
 
 PS C:\> Set-ExecutionPolicy unrestricted -force
 ```
 
-È ora possibile gestire il computer in remoto, a partire dall'installazione dell'agente. Ad esempio, il seguente script copia l'agente nel computer remoto e lo installa.
+macchina Hello può ora essere gestita in remoto, a partire dall'installazione hello dell'agente di hello. Ad esempio, hello lo script seguente computer remoto di hello agente toohello copia e lo installa.
 
 ```
 PS C:\> $dloc = "\\REMOTESERVER01\c$\Windows\Temp"
@@ -658,5 +658,5 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni su Backup di Azure per Windows Server/Client, vedere
 
-* [Introduzione a Backup di Azure](backup-introduction-to-azure-backup.md)
+* [Introduzione tooAzure Backup](backup-introduction-to-azure-backup.md)
 * [Backup di server Windows](backup-configure-vault.md)

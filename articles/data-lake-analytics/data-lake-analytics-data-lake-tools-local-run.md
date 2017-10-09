@@ -1,6 +1,6 @@
 ---
-title: Eseguire test e debug di processi U-SQL tramite l'esecuzione locale e l'SDK U-SQL di Azure Data Lake | Microsoft Docs
-description: Informazioni su come usare gli strumenti di Azure Data Lake per Visual Studio e l'SDK U-SQL di Azure Data Lake per eseguire test e debug dei processi di U-SQL nella workstation locale.
+title: aaaTest debug U-SQL processi utilizzando locali eseguire ed e hello Azure Data Lake U-SQL SDK | Documenti Microsoft
+description: Informazioni su come toouse Azure Data Lake Tools per Visual Studio e hello Azure Data Lake U-SQL SDK tootest debug U-SQL per i processi nella workstation locale.
 services: data-lake-analytics
 documentationcenter: 
 author: mumian
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 11/15/2016
 ms.author: yanacai
-ms.openlocfilehash: 771a96df5cc66bac46e7144785be8cc072b57b31
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: be04558a504acf6a088e207608ee2d4a011d3ffc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="test-and-debug-u-sql-jobs-by-using-local-run-and-the-azure-data-lake-u-sql-sdk"></a>Eseguire test e debug di processi U-SQL tramite l'esecuzione locale e l'SDK U-SQL di Azure Data Lake
+# <a name="test-and-debug-u-sql-jobs-by-using-local-run-and-hello-azure-data-lake-u-sql-sdk"></a>Test e il debug di processi U-SQL utilizzando locale eseguire e hello SDK Azure Data Lake U-SQL
 
-È possibile usare Strumenti di Azure Data Lake per Visual Studio e l'SDK U-SQL di Azure Data Lake per eseguire i processi di U-SQL nella workstation, esattamente come nel servizio Azure Data Lake. Queste due funzionalità eseguite localmente permettono di risparmiare tempo per le operazioni di test e debug dei processi di U-SQL.
+È possibile utilizzare Azure Data Lake Tools per Visual Studio e i processi di hello Azure Data Lake U-SQL SDK toorun U-SQL nella workstation, come nel servizio Azure Data Lake hello. Queste due funzionalità eseguite localmente permettono di risparmiare tempo per le operazioni di test e debug dei processi di U-SQL.
 
-## <a name="understand-the-data-root-folder-and-the-file-path"></a>Comprendere la cartella data-root e il percorso dei file
+## <a name="understand-hello-data-root-folder-and-hello-file-path"></a>Comprendere cartella dati radice hello e percorso del file hello
 
-Sia l'SDK di U-SQL che l'esecuzione locale richiedono una cartella data-root. La cartella data-root è un "archivio locale" per l'account di calcolo locale, equivalente all'account di Azure Data Lake Store di un account Data Lake Analytics. Il passaggio a un'altra cartella data-root è identico al passaggio a un account archivio differente. Se si vuole accedere a dati comunemente condivisi con cartelle data-root diverse, è necessario usare percorsi assoluti negli script. In alternativa è possibile creare collegamenti simbolici del file system (ad esempio **mklink** in un sistema NTFS) nella cartella data-root che puntino ai dati condivisi.
+Esecuzione locale sia hello SDK U-SQL richiedono una cartella radice di dati. cartella dati radice Hello è "archivio locale" per l'account di calcolo locale hello. Account archivio Azure Data Lake toohello equivalente di un account Data Lake Analitica è. Cartella radice di dati diverso cambio tooa è analoga a commutazione tooa archivio diverso account. Se si desidera tooaccess comunemente condiviso dati con le cartelle radice di dati diverso, è necessario utilizzare i percorsi assoluti negli script. In alternativa, creare collegamenti simbolici di file system (ad esempio, **mklink** in NTFS) in hello dati radice cartella toopoint toohello di dati condivisi.
 
-La cartella data-root viene usata per:
+cartella dati radice Hello viene utilizzato per:
 
 - Archiviare i metadati, inclusi database, tabelle, funzione con valori di tabella e assembly.
-- Cercare i percorsi di input e output che sono definiti come percorsi relativi in U-SQL. L'uso di percorsi relativi semplifica la distribuzione dei progetti di U-SQL in Azure.
+- Cercare hello di input e i percorsi di output che sono definiti come percorsi relativi nel U-SQL. Utilizzando i percorsi relativi rende più semplice toodeploy il tooAzure progetti U-SQL.
 
-Negli script U-SQL è possibile usare sia un percorso relativo sia un percorso assoluto locale. Il percorso relativo è relativo al percorso della cartella data-root specificato. È consigliabile usare "/" come separatore del percorso per rendere gli script compatibili con il lato server. Di seguito sono riportati alcuni esempi di percorsi relativi e dei loro percorsi assoluti equivalenti. In questi esempi la cartella data-root è C:\LocalRunDataRoot.
+Negli script U-SQL è possibile usare sia un percorso relativo sia un percorso assoluto locale. percorso relativo di Hello è toohello relativo percorso della cartella radice di dati specificato. È consigliabile che si utilizza "/" come script compatibili con lato server hello hello toomake separatore di percorso. Di seguito sono riportati alcuni esempi di percorsi relativi e dei loro percorsi assoluti equivalenti. In questi esempi, C:\LocalRunDataRoot è cartella dati radice hello.
 
 |Percorso relativo|Percorso assoluto|
 |-------------|-------------|
@@ -47,65 +47,65 @@ Gli Strumenti di Data Lake per Visual Studio offrono un'esperienza di esecuzione
 
 - Eseguire uno script U-SQL in locale, insieme agli assembly C#.
 - Eseguire il debug di un assembly C# localmente.
-- Creare, visualizzare ed eliminare i cataloghi di U-SQL (database locali, assembly, schemi e tabelle) da Esplora server. Il catalogo locale è disponibile anche in Esplora server.
+- Creare, visualizzare ed eliminare i cataloghi di U-SQL (database locali, assembly, schemi e tabelle) da Esplora server. È inoltre possibile trovare catalogo locale hello anche da Esplora Server.
 
     ![Catalogo locale dell'esecuzione locale degli strumenti di Data Lake per Visual Studio](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-local-catalog.png)
 
-Il programma di installazione di Strumenti di Data Lake crea la cartella C:\LocalRunRoot che diventa la cartella data-root predefinita. Il parallelismo di esecuzione locale predefinito è 1.
+programma di installazione del Data Lake Tools Hello crea un toobe cartella C:\LocalRunRoot utilizzata come cartella radice dati predefinita di hello. il parallelismo di esecuzione locale di Hello predefinito è 1.
 
-### <a name="to-configure-local-run-in-visual-studio"></a>Configurare l'esecuzione locale in Visual Studio
+### <a name="tooconfigure-local-run-in-visual-studio"></a>tooconfigure locale eseguito in Visual Studio
 
 1. Aprire Visual Studio.
 2. Aprire **Esplora server**.
 3. Espandere **Azure** > **Data Lake Analytics**.
-4. Aprire il menu **Data Lake** e fare clic su **Opzioni e impostazioni**.
-5. Nella struttura ad albero a sinistra espandere **Azure Data Lake** e **Generale**.
+4. Fare clic su hello **Data Lake** menu e quindi fare clic su **opzioni e impostazioni**.
+5. Nell'albero a sinistra hello espandere **Azure Data Lake**, quindi espandere **generale**.
 
     ![Impostazioni di configurazione dell'esecuzione locale degli strumenti di Data Lake per Visual Studio](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-configure.png)
 
 Per poter eseguire la funzionalità di esecuzione locale è richiesto un progetto U-SQL di Visual Studio. Questa parte è diversa rispetto all'esecuzione di script U-SQL da Azure.
 
-### <a name="to-run-a-u-sql-script-locally"></a>Eseguire uno script U-SQL localmente
+### <a name="toorun-a-u-sql-script-locally"></a>script U-SQL toorun localmente
 1. Aprire il progetto U-SQL in Visual Studio.   
 2. In Esplora soluzioni fare clic con il pulsante destro del mouse su uno script U-SQL e selezionare **Invia script**.
-3. Selezionare **(Locale)** come account di Analytics per eseguire lo script in locale.
-È anche possibile fare clic sull'account **(Locale)** nella parte superiore della finestra dello script, quindi selezionare **Invia** (o usare la combinazione di tasti CTRL+F5).
+3. Selezionare **(Local)** hello Analitica account RunAs toorun lo script in locale.
+È anche possibile fare clic su hello **(Local)** account nella parte superiore di hello della finestra di script e quindi fare clic su **Invia** (o utilizzare hello Ctrl + tasto di scelta rapida di F5).
 
     ![Processi di invio dell'esecuzione locale degli strumenti di Data Lake per Visual Studio](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-submit-job.png)
 
 ### <a name="debug-scripts-and-c-assemblies-locally"></a>Eseguire il debug degli script e delle assembly C# in locale
 
-È possibile eseguire il debug degli assembly C# senza inviarli e registrarli al servizio Azure Data Lake Analytics. È possibile impostare dei punti di interruzione sia nei file dietro il codice, sia nel progetto C# a cui si fa riferimento.
+È possibile eseguire il debug di assembly c# senza l'invio e la relativa registrazione tooAzure Data Lake Analitica Service. È possibile impostare i punti di interruzione in entrambi hello file code-behind e in un progetto c# a cui fa riferimento.
 
-#### <a name="to-debug-local-code-in-code-behind-file"></a>Per eseguire il debug del codice locale nel file code-behind
+#### <a name="toodebug-local-code-in-code-behind-file"></a>toodebug codice locale nel file code-behind
 
-1. Impostare dei punti di interruzione nel file dietro il codice.
-2. Premere F5 per eseguire il debug dello script in locale.
+1. Impostare i punti di interruzione nel codice hello file code-behind.
+2. Premere F5 toodebug hello script in locale.
 
 > [!NOTE]
-   > La procedura seguente funziona solo in Visual Studio 2015. Nella versione precedente di Visual Studio potrebbe essere necessario aggiungere manualmente i file .pdb.  
+   > Hello seguente procedura funziona solo in Visual Studio 2015. In Visual Studio precedente potrebbe essere necessario toomanually aggiungere i file pdb hello.  
    >
    >
 
-#### <a name="to-debug-local-code-in-a-referenced-c-project"></a>Per eseguire il debug del codice locale in un progetto C# a cui si fa riferimento
+#### <a name="toodebug-local-code-in-a-referenced-c-project"></a>toodebug codice locale in un progetto di cui viene fatto riferimento in c#
 
-1. Creare un progetto Assembly C# e compilarlo per generare l’output dll.
-2. Registrare la dll utilizzando un'istruzione U-SQL:
+1. Creare un progetto c# Assembly e compilarlo toogenerate hello dll di output.
+2. Registrare dll hello utilizzando un'istruzione U-SQL:
 
         CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
         
-3. Impostare i punti di interruzione nel codice C#.
-4. Premere F5 per eseguire il debug dello script con riferimento alla DLL C# in locale.
+3. Impostare i punti di interruzione nel codice c# di hello.
+4. Premere F5 script di hello toodebug con riferimento a dll c# hello in locale.
 
-## <a name="use-local-run-from-the-data-lake-u-sql-sdk"></a>Usare l'esecuzione locale dall'SDK U-SQL di Data Lake
+## <a name="use-local-run-from-hello-data-lake-u-sql-sdk"></a>Utilizzo locale esecuzione da hello SDK Data Lake U-SQL
 
-Oltre a eseguire gli script U-SQL localmente con Visual Studio, è possibile usare anche l'SDK U-SQL di Azure Data Lake per eseguire gli script U-SQL localmente con le interfacce della riga di comando e di programmazione. In questo modo è possibile scalare il test locale di U-SQL.
+Inoltre toorunning U-SQL script localmente utilizzando Visual Studio, è possibile utilizzare gli script U-SQL di hello Azure Data Lake U-SQL SDK toorun localmente con le interfacce della riga di comando e di programmazione. In questo modo è possibile scalare il test locale di U-SQL.
 
 Sono disponibili altre informazioni sull'[SDK U-SQL di Azure Data Lake](data-lake-analytics-u-sql-sdk.md).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per visualizzare una query più complessa, vedere [Analizzare i log dei siti Web con Analisi Azure Data Lake](data-lake-analytics-analyze-weblogs.md).
-* Per visualizzare i dettagli del processo, vedere [Usare Job Browser e Job View (Visualizzazione processo) per i processi di Azure Data Lake Analytics](data-lake-analytics-data-lake-tools-view-jobs.md).
-* Per usare la visualizzazione esecuzioni vertici, vedere [Usare la visualizzazione esecuzioni vertici in Azure Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).
+* toosee una query più complessa, vedere [analizzare i log di sito Web usando Azure Data Lake Analitica](data-lake-analytics-analyze-weblogs.md).
+* vedere i dettagli dei processi, tooview [Browser di processo di utilizzo e visualizzazione dei processi per i processi di Azure Data Lake Analitica](data-lake-analytics-data-lake-tools-view-jobs.md).
+* visualizzazione di esecuzione vertice hello toouse, vedere [hello utilizzare Visualizzazione esecuzione vertice in Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).

@@ -1,6 +1,6 @@
 ---
-title: Esercitazione per un'applicazione Web Python Flask per Azure Cosmos DB | Microsoft Docs
-description: Esaminare un'esercitazione del database sull'utilizzo di Azure Cosmos DB per archiviare e accedere ai dati da un'applicazione web Python Flask ospitata in Azure. Trovare soluzioni di sviluppo dell'applicazione.
+title: esercitazione di applicazione web pallone aaaPython per Azure Cosmos DB | Documenti Microsoft
+description: Esaminare un'esercitazione database sull'uso di Azure Cosmos DB toostore e accedere ai dati da un'applicazione web di Python pallone ospitato in Azure. Trovare soluzioni di sviluppo dell'applicazione.
 keywords: Sviluppo di applicazioni, Python Flask, applicazione Web Python, sviluppo Web Python
 services: cosmos-db
 documentationcenter: python
@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 08/09/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ed5284b5a265840c43dbc9890082a7c038d22975
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 87b73c656ed96a7efbd162843a1529d435f027f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-python-flask-web-application-using-azure-cosmos-db"></a>Creare un'applicazione Web Python Flask con Azure Cosmos DB
 > [!div class="op_single_selector"]
@@ -31,73 +31,73 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-Questa esercitazione mostra come usare Azure Cosmos DB per archiviare e accedere ai dati forniti da un'applicazione Web Python ospitata in Azure e presuppone che si siano già usati Python e Siti Web di Azure.
+In questa esercitazione Mostra come toouse Azure Cosmos DB toostore e accedere ai dati da un Python web applicazione ospitata in Azure e si presuppongono di aver esperienza precedente usando Python e siti Web di Azure.
 
 In questa esercitazione del database vengono trattati i seguenti argomenti:
 
 1. Creazione e provisioning di un account Cosmos DB.
 2. Creazione di un'applicazione Python Flask.
-3. Connettersi e usare Azure Cosmos DB dall'applicazione Web.
-4. Distribuzione dell'applicazione Web in Azure.
+3. Connessione tooand utilizzando Cosmos DB dall'applicazione web.
+4. Distribuzione hello tooAzure di applicazione web.
 
-Seguendo questa esercitazione, si creerà una semplice applicazione di voto che consente di votare per un sondaggio.
+Seguendo questa esercitazione, si creerà una semplice applicazione di voto che consente di toovote per un sondaggio.
 
-![Screenshot dell'applicazione di voto creata in questa esercitazione del database](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
+![Cattura di schermata dell'applicazione di voto hello creata da questa esercitazione database](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
 
 ## <a name="database-tutorial-prerequisites"></a>Prerequisiti per l'esercitazione del database
-Prima di seguire le istruzioni di questo articolo, verificare che siano disponibili i seguenti elementi:
+Prima di seguire le istruzioni di hello in questo articolo, è necessario assicurarsi di aver installato quanto segue hello:
 
 * Un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
  
     OPPURE 
 
-    Un'installazione locale dell'[emulatore Azure Cosmos DB](local-emulator.md).
+    Un'installazione locale di hello [emulatore di Azure Cosmos DB](local-emulator.md).
 * [Microsoft Visual Studio Community 2017](http://www.visualstudio.com/).  
 * [Python Tools for Visual Studio](https://github.com/Microsoft/PTVS/).  
 * [Microsoft Azure SDK per Python 2.7](https://azure.microsoft.com/downloads/). 
 * [Python 2.7.13](https://www.python.org/downloads/windows/). 
 
 > [!IMPORTANT]
-> Se si installa Python 2.7 per la prima volta, nella schermata Customize Python 2.7.13 (Personalizza Python 2.7.13) assicurarsi di selezionare **Add python.exe to Path** (Aggiungi python.exe a percorso).
+> Se si sta installando Python 2.7 hello per la prima volta, assicurarsi che nella schermata di Python personalizzare 2.7.13 hello, selezionare **aggiungere python.exe tooPath**.
 > 
-> ![Schermata Customize Python 2.7.11, in cui è necessario selezionare Add python.exe to Path](./media/documentdb-python-application/cosmos-db-python-install.png)
+> ![Cattura di schermata della schermata di Python personalizzare 2.7.11 hello, in cui è necessario tooselect Aggiungi python.exe tooPath](./media/documentdb-python-application/cosmos-db-python-install.png)
 > 
 > 
 
 * [Compilatore Microsoft Visual C++ per Python 2.7](https://www.microsoft.com/en-us/download/details.aspx?id=44266).
 
 ## <a name="step-1-create-an-azure-cosmos-db-database-account"></a>Passaggio 1: Creare un account del database di Azure Cosmos DB
-Creare prima di tutto un account Cosmos DB. Se si ha già un account o si usa l'emulatore Azure Cosmos DB per questa esercitazione, è possibile andare al [Passaggio 2: Creare una nuova applicazione Web Python Flask](#step-2-create-a-new-python-flask-web-application).
+Creare prima di tutto un account Cosmos DB. Se è già un account o se si utilizza hello Azure Cosmos DB emulatore per questa esercitazione, è possibile ignorare troppo[passaggio 2: creare una nuova applicazione web Python pallone](#step-2-create-a-new-python-flask-web-application).
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 <br/>
-Verrà ora illustrata in dettaglio la procedura per creare un'applicazione Web Python Flask completamente nuova.
+È ora verrà illustrata la modalità messa a terra toocreate una nuova applicazione web di Python pallone da hello.
 
 ## <a name="step-2-create-a-new-python-flask-web-application"></a>Passaggio 2: Creare una nuova applicazione Web Python Flask
-1. Scegliere **Nuovo** dal menu **File** di Visual Studio e quindi fare clic su **Progetto**.
+1. In Visual Studio, su hello **File** menu, scegliere troppo**New**e quindi fare clic su **progetto**.
    
-    Verrà visualizzata la finestra di dialogo **Nuovo progetto** .
-2. Nel riquadro sinistro espandere **Modelli** e quindi **Python**, quindi fare clic su **Web**. 
-3. Selezionare **Flask Web Project** (Progetto Web Flask) nel riquadro centrale, quindi digitare **tutorial** (esercitazione) nella casella **Nome** e fare clic su **OK**. Tenere presente che i nomi di pacchetto Python devono essere tutti in lettere minuscole, come descritto nella [guida di stile per il codice Python](https://www.python.org/dev/peps/pep-0008/#package-and-module-names).
+    Hello **nuovo progetto** viene visualizzata la finestra di dialogo.
+2. Nel riquadro sinistro hello espandere **modelli** e quindi **Python**, quindi fare clic su **Web**. 
+3. Selezionare **progetto Web pallone** nel riquadro centrale hello, quindi nell'hello **nome** digitare **esercitazione**e quindi fare clic su **OK**. Tenere presente che i nomi di pacchetto di Python devono essere tutti in lettere minuscole, come descritto in hello [Guida di stile per il codice Python](https://www.python.org/dev/peps/pep-0008/#package-and-module-names).
    
-    Se è la prima volta che si usa Python Flask, si tratta di un framework di sviluppo di applicazioni Web che consente di creare applicazioni Web in Python più velocemente.
+    Per tali nuovi tooPython pallone, è un framework di sviluppo di applicazioni web che consente di compilare applicazioni web in Python più velocemente.
    
-    ![Schermata della finestra Nuovo progetto in Visual Studio con Python selezionato a sinistra, progetto web Flask selezionato nella parte centrale ed esercitazioni sul nome nella casella nome](./media/documentdb-python-application/image9.png)
-4. Nella finestra **Python Tools for Visual Studio** selezionare **Install into a virtual environment** (Installa in un ambiente virtuale). 
+    ![Cattura di schermata della finestra Nuovo progetto hello in Visual Studio con Python evidenziato nella finestra di sinistra, Python pallone Web progetto selezionato in intermedio hello ed esercitazione nome hello nella casella Nome hello hello](./media/documentdb-python-application/image9.png)
+4. In hello **Python Tools per Visual Studio** finestra, fare clic su **installare in un ambiente virtuale**. 
    
-    ![Schermata dell'esercitazione del database - Python Tools per la finestra di Visual Studio](./media/documentdb-python-application/python-install-virtual-environment.png)
-5. Nella finestra **Add Virtual Environment** (Aggiungi ambiente virtuale) è possibile accettare le impostazioni predefinite e usare Python 2.7 come ambiente di base, perché PyDocumentDB attualmente non supporta Python 3.x, quindi fare clic su **Create**. Questo permette di configurare l'ambiente virtuale Python per il progetto.
+    ![Cattura di schermata dell'esercitazione database hello - Python Tools per la finestra di Visual Studio](./media/documentdb-python-application/python-install-virtual-environment.png)
+5. In hello **aggiungere ambiente virtuale** finestra, è possibile accettare le impostazioni predefinite hello e utilizzare Python 2.7 ambiente base hello PyDocumentDB supporta attualmente Python 3. x e quindi fare clic su **crea**. Viene impostata l'ambiente virtuale di Python hello necessario per il progetto.
    
-    ![Schermata dell'esercitazione del database - Python Tools per la finestra di Visual Studio](./media/documentdb-python-application/image10_A.png)
+    ![Cattura di schermata dell'esercitazione database hello - Python Tools per la finestra di Visual Studio](./media/documentdb-python-application/image10_A.png)
    
-    Se l'installazione dell'ambiente riesce, nella finestra di output verrà visualizzato il messaggio `Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.5 itsdangerous-0.24 'requirements.txt' was installed successfully.` .
+    Visualizza finestra di output di Hello `Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.5 itsdangerous-0.24 'requirements.txt' was installed successfully.` quando ambiente hello è stato installato correttamente.
 
-## <a name="step-3-modify-the-python-flask-web-application"></a>Passaggio 3: Modificare l'applicazione Web Python Flask
-### <a name="add-the-python-flask-packages-to-your-project"></a>Aggiungere i pacchetti Python Flask al progetto
-Dopo la configurazione del progetto sarà necessario aggiungere i pacchetti Flask necessari per il progetto, compreso pydocumentdb, il pacchetto python per DocumentDB.
+## <a name="step-3-modify-hello-python-flask-web-application"></a>Passaggio 3: Modificare un'applicazione web Python pallone hello
+### <a name="add-hello-python-flask-packages-tooyour-project"></a>Aggiungere hello Python pallone pacchetti tooyour progetto
+Una volta configurato il progetto, è necessario tooadd hello necessario pallone pacchetti tooyour progetto, inclusi pydocumentdb, pacchetto di Python hello per DocumentDB.
 
-1. In Esplora soluzioni aprire il file denominato **requirements.txt** e sostituire il contenuto esistente con quello riportato di seguito:
+1. In Esplora soluzioni, aprire il file hello denominato **requirements.txt** e sostituire il contenuto di hello con hello seguente:
    
         flask==0.9
         flask-mail==0.7.6
@@ -110,34 +110,34 @@ Dopo la configurazione del progetto sarà necessario aggiungere i pacchetti Flas
         flask-babel==0.8
         flup
         pydocumentdb>=1.0.0
-2. Salvare il file **requirements.txt** . 
+2. Salvare hello **requirements.txt** file. 
 3. In Esplora soluzioni fare clic con il pulsante destro del mouse su **env** e scegliere **Install from requirements.txt**.
    
-    ![Schermata che mostra env (Python 2.7) selezionata con l'installazione da requirements.txt evidenziato nell'elenco](./media/documentdb-python-application/cosmos-db-python-install-from-requirements.png)
+    ![Cattura di schermata che mostra env (Python 2.7) selezionato con l'installazione da requirements.txt evidenziato nell'elenco di hello](./media/documentdb-python-application/cosmos-db-python-install-from-requirements.png)
    
-    Al termine dell'installazione, la finestra di output visualizza quanto segue:
+    Al termine dell'installazione, finestra di output di hello Visualizza seguente hello:
    
         Successfully installed Babel-2.3.2 Tempita-0.5.2 WTForms-2.1 Whoosh-2.7.4 blinker-1.4 decorator-4.0.9 flask-0.9 flask-babel-0.8 flask-mail-0.7.6 flask-sqlalchemy-0.16 flask-whooshalchemy-0.55a0 flask-wtf-0.8.4 flup-1.0.2 pydocumentdb-1.6.1 pytz-2013b0 speaklater-1.3 sqlalchemy-0.7.9 sqlalchemy-migrate-0.7.2
    
    > [!NOTE]
-   > In rari casi è possibile che venga visualizzato un errore nella finestra di output. In un'eventualità di questo tipo, verificare se l'errore è correlato alla pulizia. Talvolta la pulizia può avere esito negativo, ma l'installazione viene comunque completata correttamente (scorrere verso l'alto nella finestra di output per verificarlo). È possibile controllare l'installazione [verificando l'ambiente virtuale](#verify-the-virtual-environment). Se l'installazione non è riuscita, ma la verifica ha esito positivo, è possibile continuare.
+   > In rari casi, è possibile visualizzare un errore nella finestra di output di hello. In tal caso, controllare se l'errore hello è toocleanup correlati. Talvolta pulizia hello ha esito negativo, ma sarà comunque possibile eseguire installazione di hello (scorrere verso l'alto tooverify finestra output di hello questo). È possibile verificare l'installazione da [ambiente virtuale di verifica hello](#verify-the-virtual-environment). Se hello installazione non è riuscita ma hello verifica ha esito positivo, è toocontinue OK.
    > 
    > 
 
-### <a name="verify-the-virtual-environment"></a>Verifica dell'ambiente virtuale
+### <a name="verify-hello-virtual-environment"></a>Verificare l'ambiente virtuale hello
 È importante verificare che tutto sia installato correttamente.
 
-1. Premere **CTRL**+**MAIUSC**+**B** per compilare la soluzione.
-2. Al termine della compilazione, avviare il sito Web premendo **F5**. Verranno avviati il server di sviluppo Flask e il Web browser. Dovrebbe essere visualizzata la pagina seguente:
+1. Compilare la soluzione hello premendo **Ctrl**+**MAIUSC**+**B**.
+2. Al termine della compilazione hello, avviare il sito Web di hello premendo **F5**. Verrà avviato il server di sviluppo pallone hello e avvia il browser web. Dovrebbe essere hello dopo.
    
-    ![Il progetto di sviluppo web Python Flask vuoto visualizzato in un browser](./media/documentdb-python-application/image12.png)
-3. Per arrestare il debug del sito Web, premere **MAIUSC**+**F5**.
+    ![Hello Python pallone progetto web vuoto sviluppo visualizzato in un browser](./media/documentdb-python-application/image12.png)
+3. Arrestare il debug del sito Web hello premendo **MAIUSC**+**F5** in Visual Studio.
 
 ### <a name="create-database-collection-and-document-definitions"></a>Creare definizioni di database, raccolta e documento
 Ora viene creata l'applicazione di voto aggiungendo nuovi file e aggiornandone altri.
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **tutorial**, (esercitazione) quindi scegliere **Aggiungi** e infine **Nuovo elemento**. Selezionare **Empty Python File** (File di Python vuoto) e denominare il file **forms.py**.  
-2. Aggiungere il codice seguente al file forms.py e quindi salvare il file.
+1. In Esplora soluzioni fare doppio clic su hello **esercitazione** del progetto, fare clic su **Aggiungi**, quindi fare clic su **nuovo elemento**. Selezionare **File Python vuoto** e nome file di hello **forms.py**.  
+2. Aggiungere i seguenti file di codice toohello forms.py hello e quindi salvare il file hello.
 
 ```python
 from flask.ext.wtf import Form
@@ -151,9 +151,9 @@ class VoteForm(Form):
 ```
 
 
-### <a name="add-the-required-imports-to-viewspy"></a>Aggiungere le importazioni necessarie a views.py
-1. In Esplora soluzioni espandere la cartella **tutorial** (esercitazione) e aprire il file **views.py**. 
-2. Aggiungere le istruzioni import seguenti all'inizio del file **views.py** e quindi salvare il file. Queste importano i pacchetti PythonSDK e Flask di Cosmos DB.
+### <a name="add-hello-required-imports-tooviewspy"></a>Aggiungere tooviews.py importazioni hello richiesto
+1. In Esplora soluzioni espandere hello **esercitazione** cartella e aprire hello **views.py** file. 
+2. Aggiungere hello dopo l'importazione istruzioni toohello cima hello **views.py** file, quindi salvare il file hello. Questi importare Cosmos DB PythonSDK e hello pacchetti pallone.
    
     ```python
     from forms import VoteForm
@@ -162,15 +162,15 @@ class VoteForm(Form):
     ```
 
 ### <a name="create-database-collection-and-document"></a>Creare il database, la raccolta e il documento
-* Ancora in **views.py**aggiungere il codice seguente alla fine del file. Verrà creato il database usato dal form. Non eliminare nessuna porzione del codice esistente dal file **views.py**. Aggiungere semplicemente la parte nuova alla fine del file.
+* Ancora in **views.py**, aggiungere hello successivo toohello codice alla fine del file hello. Questo si occupa di creazione del database hello utilizzato dal modulo hello. Non eliminare il codice esistente in hello **views.py**. Consente di accodare questo fine toohello.
 
 ```python
 @app.route('/create')
 def create():
-    """Renders the contact page."""
+    """Renders hello contact page."""
     client = document_client.DocumentClient(config.DOCUMENTDB_HOST, {'masterKey': config.DOCUMENTDB_KEY})
 
-    # Attempt to delete the database.  This allows this to be used to recreate as well as create
+    # Attempt toodelete hello database.  This allows this toobe used toorecreate as well as create
     try:
         db = next((data for data in client.ReadDatabases() if data['id'] == config.DOCUMENTDB_DATABASE))
         client.DeleteDatabase(db['_self'])
@@ -201,7 +201,7 @@ def create():
 
 
 ### <a name="read-database-collection-document-and-submit-form"></a>Leggere il database, la raccolta e il documento e inviare il form
-* Ancora in **views.py**aggiungere il codice seguente alla fine del file. Verrà configurato il form e verranno letti il database, la raccolta e il documento. Non eliminare nessuna porzione del codice esistente dal file **views.py**. Aggiungere semplicemente la parte nuova alla fine del file.
+* Ancora in **views.py**, aggiungere hello successivo toohello codice alla fine del file hello. Questo si occupa della configurazione di modulo hello, la lettura di documenti, raccolta e database hello. Non eliminare il codice esistente in hello **views.py**. Consente di accodare questo fine toohello.
 
 ```python
 @app.route('/vote', methods=['GET', 'POST'])
@@ -220,11 +220,11 @@ def vote():
         # Read documents and take first since id should not be duplicated.
         doc = next((doc for doc in client.ReadDocuments(coll['_self']) if doc['id'] == config.DOCUMENTDB_DOCUMENT))
 
-        # Take the data from the deploy_preference and increment our database
+        # Take hello data from hello deploy_preference and increment our database
         doc[form.deploy_preference.data] = doc[form.deploy_preference.data] + 1
         replaced_document = client.ReplaceDocument(doc['_self'], doc)
 
-        # Create a model to pass to results.html
+        # Create a model toopass tooresults.html
         class VoteObject:
             choices = dict()
             total_votes = 0
@@ -251,11 +251,11 @@ def vote():
 ```
 
 
-### <a name="create-the-html-files"></a>Creare i file HTML
-1. Nella cartella **tutorial** (esercitazione) in Esplora soluzioni fare clic con il pulsante destro del mouse sulla cartella **modelli**, scegliere **Aggiungi** e infine **Nuovo elemento**. 
-2. Selezionare **Pagina HTML** e nella casella del nome digitare **create.html**. 
-3. Ripetere i passaggi 1 e 2 per creare altri due file HTML: results.html e vote.html.
-4. Aggiungere il codice seguente al file **create.html** in the `<body>` . Consente di visualizzare un messaggio che comunica l'avvenuta creazione di un nuovo database, di una raccolta e di un documento.
+### <a name="create-hello-html-files"></a>Creare hello file HTML
+1. In Esplora soluzioni, in hello **esercitazione** cartella, a destra fare clic su hello **modelli** cartella, fare clic su **Aggiungi**, quindi fare clic su **nuovo elemento**. 
+2. Selezionare **pagina HTML**e quindi nella casella digitare nome di hello **create.html**. 
+3. Ripetere i passaggi 1 e 2 toocreate due altri file HTML: results.html e vote.html.
+4. Aggiungere hello seguente codice troppo**create.html** in hello `<body>` elemento. Consente di visualizzare un messaggio che comunica l'avvenuta creazione di un nuovo database, di una raccolta e di un documento.
    
     ```html
     {% extends "layout.html" %}
@@ -265,12 +265,12 @@ def vote():
     <p><a href="{{ url_for('vote') }}" class="btn btn-primary btn-large">Vote &raquo;</a></p>
     {% endblock %}
     ```
-5. Aggiungere il codice seguente al file **results.html** nell'elemento `<body`>. Consente di visualizzare i risultati del sondaggio.
+5. Aggiungere hello seguente codice troppo**results.html** in hello `<body`> elemento. Visualizza risultati hello di polling hello.
    
     ```html
     {% extends "layout.html" %}
     {% block content %}
-    <h2>Results of the vote</h2>
+    <h2>Results of hello vote</h2>
         <br />
    
     {% for choice in vote_object.choices %}
@@ -290,12 +290,12 @@ def vote():
     <a class="btn btn-primary" href="{{ url_for('vote') }}">Vote again?</a>
     {% endblock %}
     ```
-6. Aggiungere il codice seguente al file **vote.html** nell'elemento `<body`>. Consente di visualizzare il sondaggio e di accettare i voti. Alla registrazione dei voti il controllo viene passato a views.py che riconoscerà il voto espresso e ne effettuerà l'aggiunta al documento.
+6. Aggiungere hello seguente codice troppo**vote.html** in hello `<body`> elemento. Visualizza il polling di hello e accetta hello voti. Registrazione voti hello, controllo hello viene passato tramite tooviews.py in cui verrà riconoscere hello voto cast e aggiungere il documento hello conseguenza.
    
     ```html
     {% extends "layout.html" %}
     {% block content %}
-    <h2>What is your favorite way to host an application on Azure?</h2>
+    <h2>What is your favorite way toohost an application on Azure?</h2>
     <form action="" method="post" name="vote">
         {{form.hidden_tag()}}
             {{form.deploy_preference}}
@@ -303,21 +303,21 @@ def vote():
     </form>
     {% endblock %}
     ```
-7. Nella cartella **modelli** sostituire il contenuto del file **index.html** con il codice seguente. Questo fungerà da pagina di destinazione per l'applicazione.
+7. In hello **modelli** Sostituisci hello contenuto della cartella **index.html** con seguenti hello. Funge da hello pagina per l'applicazione di destinazione.
    
     ```html
     {% extends "layout.html" %}
     {% block content %}
     <h2>Python + Azure Cosmos DB Voting Application.</h2>
     <h3>This is a sample Cosmos DB voting application using PyDocumentDB</h3>
-    <p><a href="{{ url_for('create') }}" class="btn btn-primary btn-large">Create/Clear the Voting Database &raquo;</a></p>
+    <p><a href="{{ url_for('create') }}" class="btn btn-primary btn-large">Create/Clear hello Voting Database &raquo;</a></p>
     <p><a href="{{ url_for('vote') }}" class="btn btn-primary btn-large">Vote &raquo;</a></p>
     {% endblock %}
     ```
 
-### <a name="add-a-configuration-file-and-change-the-initpy"></a>Aggiungere un file di configurazione e modificare \_\_init\_\_.py
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **tutorial** (esercitazione), scegliere **Aggiungi**, **Nuovo elemento** e infine **Empty Python File** (File di Python vuoto), quindi denominare il file **config.py**. Questo file config è necessario per i moduli in Flask. È possibile usarlo anche per fornire una chiave privata. Tale chiave non sarà tuttavia necessaria per questa esercitazione.
-2. Aggiungere il codice seguente al file config.py. Nel passaggio successivo sarà necessario modificare i valori di **DOCUMENTDB\_HOST** e **DOCUMENTDB\_KEY**.
+### <a name="add-a-configuration-file-and-change-hello-initpy"></a>Aggiungere un file di configurazione e modificare hello \_ \_init\_\_. py.
+1. In Esplora soluzioni fare doppio clic su hello **esercitazione** del progetto, fare clic su **Aggiungi**, fare clic su **nuovo elemento**selezionare **File Python vuoto**e quindi file con nome hello **config.py**. Questo file config è necessario per i moduli in Flask. È possibile utilizzarlo tooprovide anche una chiave privata. Tale chiave non sarà tuttavia necessaria per questa esercitazione.
+2. Aggiungere il seguente hello tooconfig.py di codice, è necessario valori hello tooalter di **DOCUMENTDB\_HOST** e **DOCUMENTDB\_chiave** nel passaggio successivo hello.
    
     ```python
     CSRF_ENABLED = True
@@ -330,13 +330,13 @@ def vote():
     DOCUMENTDB_COLLECTION = 'voting collection'
     DOCUMENTDB_DOCUMENT = 'voting document'
     ```
-3. Nel [portale di Azure](https://portal.azure.com/) passare al pannello **Chiavi** facendo clic su **Esplora** e quindi su **Account Azure Cosmos DB**, fare doppio clic sul nome dell'account da usare e quindi fare clic sul pulsante **Chiavi** nell'area **Informazioni di base**. Nel pannello **Chiavi** copiare il valore **URI** e incollarlo nel file **config.py** come valore della proprietà **DOCUMENTDB\_HOST**. 
-4. Tornare al portale di Azure. Nel pannello **Chiavi** copiare il valore della **Chiave primaria** o della **Chiave secondaria** e incollarlo nel file **config.py** come valore della proprietà **DOCUMENTDB\_KEY**.
-5. Aggiungere la riga seguente al file **\_\_init\_\_.py**. 
+3. In hello [portale di Azure](https://portal.azure.com/), passare toohello **chiavi** pannello facendo **Sfoglia**, **gli account di Azure Cosmos DB**, fare doppio clic sul nome hello di hello toouse dell'account e quindi fare clic su hello **chiavi** pulsante hello **Essentials** area. In hello **chiavi** blade, hello copia **URI** valore e incollarlo in hello **config.py** file, come valore hello hello **DOCUMENTDB\_HOST**  proprietà. 
+4. Nel portale di Azure in hello hello **chiavi** pannello hello copia valore hello **chiave primaria** o hello **chiave secondaria**e incollarlo in hello **config.py**  file, come valore hello hello **DOCUMENTDB\_chiave** proprietà.
+5. In hello  **\_ \_init\_\_py** file, aggiungere hello successiva riga. 
    
         app.config.from_object('config')
    
-    Il contenuto del file deve essere analogo al seguente:
+    In modo che il contenuto del file hello hello è:
    
     ```python
     from flask import Flask
@@ -344,59 +344,59 @@ def vote():
     app.config.from_object('config')
     import tutorial.views
     ```
-6. Dopo aver aggiunto tutti i file, l'aspetto di Esplora soluzioni dovrebbe risultare simile al seguente:
+6. Dopo avere aggiunto tutti i file hello, Esplora soluzioni dovrebbe essere simile al seguente:
    
-    ![Schermata della finestra Esplora soluzioni di Visual Studio](./media/documentdb-python-application/cosmos-db-python-solution-explorer.png)
+    ![Cattura di schermata della finestra Esplora soluzioni di Visual Studio hello](./media/documentdb-python-application/cosmos-db-python-solution-explorer.png)
 
 ## <a name="step-4-run-your-web-application-locally"></a>Passaggio 4: Esecuzione dell'applicazione Web in locale
-1. Premere **CTRL**+**MAIUSC**+**B** per compilare la soluzione.
-2. Al termine della compilazione, avviare il sito Web premendo **F5**. Dovrebbe venire visualizzata la schermata seguente.
+1. Compilare la soluzione hello premendo **Ctrl**+**MAIUSC**+**B**.
+2. Al termine della compilazione hello, avviare il sito Web di hello premendo **F5**. Esempio hello dovrebbe sullo schermo.
    
-    ![Screenshot di Python e dell'applicazione per votazione di Azure Cosmos DB visualizzati in un Web browser](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
-3. Fare clic su **Create/Clear the Voting Database** per generare il database.
+    ![Cattura di schermata della hello Python + Cosmos DB voto applicazione Azure visualizzata in un web browser](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
+3. Fare clic su **creazione e la cancellazione hello voto Database** database hello toogenerate.
    
-    ![Schermata della pagina di creazione dell'applicazione web - informazioni dettagliate sullo sviluppo](./media/documentdb-python-application/cosmos-db-python-run-create-page.png)
+    ![Cattura di schermata della hello crea una pagina dell'applicazione web hello-informazioni sullo sviluppo](./media/documentdb-python-application/cosmos-db-python-run-create-page.png)
 4. Fare quindi clic su **Voto** e selezionare un'opzione.
    
-    ![Schermata dell'applicazione Web con una domanda relativa al voto](./media/documentdb-python-application/cosmos-db-vote.png)
-5. Ogni voto espresso va a incrementare il contatore appropriato.
+    ![Cattura di schermata dell'applicazione web hello una domanda voto poste](./media/documentdb-python-application/cosmos-db-vote.png)
+5. Per ogni voto che si esegue il cast, incrementa il numero appropriato di hello.
    
-    ![Schermata dei risultati della pagina voto visualizzata](./media/documentdb-python-application/cosmos-db-voting-results.png)
-6. Per arrestare il debug del sito Web, premere MAIUSC+F5.
+    ![Cattura di schermata dei risultati della pagina di voto hello illustrato hello](./media/documentdb-python-application/cosmos-db-voting-results.png)
+6. Arrestare il debug di progetti hello premendo MAIUSC + F5.
 
-## <a name="step-5-deploy-the-web-application-to-azure"></a>Passaggio 5: Distribuire l'applicazione Web in Azure
-Ora che l'applicazione completa funziona correttamente su Cosmos DB, è possibile distribuirla in Azure.
+## <a name="step-5-deploy-hello-web-application-tooazure"></a>Passaggio 5: Distribuire hello web applicazione tooAzure
+Dopo aver creato un'applicazione completa hello funziona correttamente con DB Cosmos, verrà toodeploy questo tooAzure.
 
-1. Fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni, assicurarsi che il progetto non sia ancora in esecuzione localmente e quindi selezionare **Pubblica**.  
+1. Progetto hello pulsante destro del mouse in Esplora soluzioni (assicurarsi che non si è ancora in esecuzione, in locale) e selezionare **pubblica**.  
    
-     ![Schermata dell'esercitazione selezionata in Esplora soluzioni, con l'opzione Pubblica evidenziata](./media/documentdb-python-application/image20.png)
-2. Nella finestra di dialogo **Pubblica** selezionare **Servizio app di Microsoft Azure**, selezionare **Crea nuovo** e quindi fare clic su **Pubblica**.
+     ![Cattura di schermata dell'esercitazione hello selezionato in Esplora soluzioni, con l'opzione pubblica hello evidenziato](./media/documentdb-python-application/image20.png)
+2. In hello **pubblica** nella finestra di dialogo **servizio App di Microsoft Azure**selezionare **Crea nuovo**, quindi fare clic su **pubblica**.
    
-    ![Screenshot della finestra Pubblica sul Web con Servizio app di Microsoft Azure evidenziato](./media/documentdb-python-application/cosmos-db-python-publish.png)
-3. Nella finestra di dialogo **Crea servizio app** immettere il nome dell'app Web, specificando anche **Sottoscrizione**, **Gruppo di risorse** e **Piano di Servizio app**, quindi fare clic su **Crea**.
+    ![Cattura di schermata della finestra di hello pubblica sul Web con Microsoft Azure App Service evidenziato](./media/documentdb-python-application/cosmos-db-python-publish.png)
+3. In hello **Crea servizio App** finestra di dialogo immettere il nome di hello per le app web con il **sottoscrizione**, **gruppo di risorse**, e **piano di servizio App** , quindi fare clic su **crea**.
    
-    ![Screenshot della finestra App Web di Microsoft Azure](./media/documentdb-python-application/cosmos-db-python-create-app-service.png)
+    ![Cattura di schermata della finestra di hello finestra App Web di Microsoft Azure](./media/documentdb-python-application/cosmos-db-python-create-app-service.png)
 4. Dopo alcuni secondi, Visual Studio completerà la pubblicazione del servizio app e avvierà un browser in cui sarà possibile osservare il proprio lavoro in esecuzione in Azure.
 
-    ![Screenshot della finestra App Web di Microsoft Azure](./media/documentdb-python-application/cosmos-db-python-appservice-created.png)
+    ![Cattura di schermata della finestra di hello finestra App Web di Microsoft Azure](./media/documentdb-python-application/cosmos-db-python-appservice-created.png)
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-Se si tratta della prima app Python eseguita nel computer, assicurarsi che le cartelle seguenti o i percorsi di installazione equivalenti siano inclusi nella variabile PATH:
+Se si tratta di hello prima applicazione Python è stato eseguito nel computer, verificare che segue hello nella variabile di percorso sono inclusi cartelle (o percorsi di installazione equivalente hello):
 
     C:\Python27\site-packages;C:\Python27\;C:\Python27\Scripts;
 
-Se si riceve un errore nella pagina di voto e il progetto ha un nome diverso da **tutorial** (esercitazione), assicurarsi che **\_\_init\_\_.py** faccia riferimento al nome di progetto corretto nella riga `import tutorial.view`.
+Se si riceve un errore nella pagina del voto e si nome progetto diverso da **esercitazione**, assicurarsi che  **\_ \_init\_\_py** riferimenti hello Nome progetto corretto nella riga hello: `import tutorial.view`.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Congratulazioni. È stata appena creata la prima applicazione Web Python con Cosmos DB, che è stata quindi pubblicata in Azure.
+Congratulazioni. Solo avere completato la prima applicazione web di Python usando DB Cosmos e pubblicarlo tooAzure.
 
-Questo argomento viene aggiornato e migliorato spesso in base al feedback degli utenti.  Dopo aver completato l'esercitazione, utilizzare i pulsanti per la votazione nella parte superiore e inferiore della pagina e assicurarsi di includere il feedback sui miglioramenti che si desidera vedere. Se si desidera contattarci, è possibile includere l'indirizzo di posta elettronica nel commento per il follow-up.
+Questo argomento viene aggiornato e migliorato spesso in base al feedback degli utenti.  Una volta completati esercitazione hello utilizzando hello voto pulsanti hello superiore e inferiore di questa pagina ed essere tooinclude che commenti e suggerimenti su quali miglioramenti si desidera toosee apportate. Se desideri toocontact direttamente, ritieni libero tooinclude posta nei commenti.
 
-Per aggiungere altre funzionalità all'applicazione Web, esaminare le API disponibili in [Azure Cosmos DB Python SDK](documentdb-sdk-python.md).
+applicazione web tooyour con funzionalità aggiuntive di tooadd, revisione hello API disponibili in hello [Azure Cosmos DB Python SDK](documentdb-sdk-python.md).
 
-Per altre informazioni su Azure, Visual Studio e Python, vedere il [centro per sviluppatori di Python](https://azure.microsoft.com/develop/python/). 
+Per ulteriori informazioni su Azure, Visual Studio e Python, vedere hello [Centro per sviluppatori Python](https://azure.microsoft.com/develop/python/). 
 
-Per altre esercitazioni su Python Flask, vedere [The Flask Mega-Tutorial, Part I: Hello, World!](http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)(Esercitazione su Flask, parte I: Hello, World!). 
+Per ulteriori esercitazioni pallone Python, vedere [hello pallone Mega-esercitazione, Part i: Hello, World!](http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). 
 
 [Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx
 [2]: https://www.python.org/downloads/windows/

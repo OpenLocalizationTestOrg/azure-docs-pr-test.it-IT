@@ -1,5 +1,5 @@
 ---
-title: Risolvere i problemi di archiviazione file di Azure in Linux | Microsoft Docs
+title: problemi di archiviazione di File di Azure aaaTroubleshoot in Linux | Documenti Microsoft
 description: Risoluzione dei problemi di archiviazione file di Azure in Linux
 services: storage
 documentationcenter: 
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: genli
-ms.openlocfilehash: 0cab2e3540afdbdc64cb77fca4b9219c77258166
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4bdc3c6ed2e48f245060a03632fca9bd14d33545
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-file-storage-problems-in-linux"></a>Risolvere i problemi di archiviazione file di Azure in Linux
 
-Questo articolo elenca i problemi comuni correlati all'archiviazione file di Microsoft Azure quando si esegue la connessione da client Linux. L'articolo descrive anche le possibili cause e risoluzioni per tali problemi.
+Questo articolo vengono elencati i problemi comuni che sono correlati tooMicrosoft archiviazione di File di Azure per la connessione dal client Linux. L'articolo descrive anche le possibili cause e risoluzioni per tali problemi.
 
 <a id="permissiondenied"></a>
-## <a name="permission-denied-disk-quota-exceeded-when-you-try-to-open-a-file"></a>"[accesso negato] Quota disco superata" quando si tenta di aprire un file
+## <a name="permission-denied-disk-quota-exceeded-when-you-try-tooopen-a-file"></a>"quota [autorizzazione negata] del disco superata" quando si tenta di tooopen un file
 
-In Linux si riceve un messaggio di errore simile al seguente:
+In Linux, viene visualizzato un messaggio di errore simile al seguente hello:
 
 **<filename> [accesso negato] Quota disco superata**
 
 ### <a name="cause"></a>Causa
 
-È stato raggiunto il limite massimo di handle aperti simultaneamente consentito per un file.
+È stato raggiunto limite massimo di hello di handle aperti simultanei consentite per un file.
 
 ### <a name="solution"></a>Soluzione
 
-Ridurre il numero di handle aperti simultaneamente chiudendone alcuni e quindi riprovare. Per altre informazioni, vedere [Elenco di controllo di prestazioni e scalabilità per Archiviazione di Microsoft Azure](../common/storage-performance-checklist.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json).
+Ridurre il numero di hello di handle aperti simultanei chiudendo alcuni handle e quindi ripetere l'operazione di hello. Per altre informazioni, vedere [Elenco di controllo di prestazioni e scalabilità per Archiviazione di Microsoft Azure](../common/storage-performance-checklist.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json).
 
 <a id="slowfilecopying"></a>
-## <a name="slow-file-copying-to-and-from-azure-file-storage-in-linux"></a>Rallentamento della copia del file da e verso l'archiviazione file di Azure in Linux
+## <a name="slow-file-copying-tooand-from-azure-file-storage-in-linux"></a>File lenta copia tooand dall'archiviazione di File di Azure in Linux
 
--   In assenza di un requisito minimo specifico per la dimensione di I/O, è consigliabile usare 1 MB per assicurare prestazioni ottimali.
--   Se si conosce la dimensione finale del file che si vuole estendere con operazioni di scrittura e il software non presenta problemi di compatibilità se la parte finale del file non ancora scritta contiene zeri, impostare la dimensione del file in fase preliminare anziché lasciare che ogni operazione di scrittura venga considerata un'estensione.
--   Usare il metodo di copia corretto:
+-   Se non si dispone di un requisito delle dimensioni i/o minimo specifico, è consigliabile utilizzare 1 MB come hello dimensioni i/o per ottenere prestazioni ottimali.
+-   Se si conosce hello dimensione finale di un file che si estende per l'utilizzo di scritture e del software non riscontrare problemi di compatibilità quando una coda non scritta nel file hello contiene zeri, quindi impostare la dimensione del file hello in anticipo anziché eseguire ogni operazione di scrittura di un'estensione scrittura.
+-   Utilizzare il metodo di copia destra hello:
     -   Usare [AzCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#file-copy) per i trasferimenti tra due condivisioni file.
     -   Usare [Robocopy](https://blogs.msdn.microsoft.com/granth/2009/12/07/multi-threaded-robocopy-for-faster-copies/) tra condivisioni file in un computer locale.
 
 <a id="error112"></a>
 ## <a name="mount-error112-host-is-down-because-of-a-reconnection-time-out"></a>"Errore di montaggio (112): Host inattivo" perché la riconnessione è scaduta
 
-Un errore di montaggio "112" si verifica nel client Linux quando il client è stato inattivo per lungo tempo. Dopo un lungo tempo di inattività, il client si disconnette e la connessione scade.  
+Quando il client di hello è rimasto inattivo per un lungo periodo, nel client Linux hello si verifica un errore di montaggio "112". Dopo il tempo di inattività esteso, timeout della connessione hello hello client si disconnette.  
 
 ### <a name="cause"></a>Causa
 
-La connessione può rimanere inattiva per i motivi seguenti:
+Hello connessione può rimanere inattiva per hello seguenti motivi:
 
--   Errori di comunicazione della rete che impediscono di ristabilire una connessione TCP al server quando viene usata l'opzione di montaggio predefinita "soft".
+-   Errori di comunicazione di rete che impediscono la ristabilire un server di toohello connessione TCP quando viene utilizzata l'opzione di montaggio "soft" hello predefinita
 -   Correzioni di riconnessione recenti che non sono presenti in kernel precedenti
 
 ### <a name="solution"></a>Soluzione
 
-Questo problema di riconnessione nel kernel Linux è stato corretto nell'ambito delle modifiche seguenti:
+Questo problema di riconnessione del kernel Linux hello è stato ora corretto come parte di hello seguenti modifiche:
 
-- [Fix reconnect to not defer smb3 session reconnect long after socket reconnect](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/cifs?id=4fcd1813e6404dd4420c7d12fb483f9320f0bf93) (Correggere la funzionalità di riconnessione in modo da non rinviare la riconnessione della sessione smb3 a molto tempo dopo la riconnessione del socket)
+- [Correzione di riconnettersi toonot rinviare smb3 sessione riconnettersi molto tempo dopo la riconnessione socket](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/cifs?id=4fcd1813e6404dd4420c7d12fb483f9320f0bf93)
 -   [Call echo service immediately after socket reconnect](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b8c600120fc87d53642476f48c8055b38d6e14c7) (Chiamare il servizio echo immediatamente dopo la riconnessione del socket)
 -   [CIFS: Fix a possible memory corruption during reconnect](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=53e0e11efe9289535b060a51d4cf37c25e0d0f2b) (CIFS: correggere un possibile danneggiamento della memoria dopo la riconnessione)
 -   [CIFS: Fix a possible double locking of mutex during reconnect - for kernels v4.9 and later](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=96a988ffeb90dba33a71c3826086fe67c897a183) (CIFS: Correggere un possibile doppio blocco del mutex durante la riconnessione, per i kernel 4.9 e versioni successive)
 
-È tuttavia possibile che queste modifiche non siano state ancora trasferite a tutte le distribuzioni di Linux. Questa e altre correzioni di riconnessione sono state apportate nei kernel Linux di uso più comune seguenti: 4.4.40, 4.8.16 e 4.9.1. Per ottenere questa correzione, eseguire l'aggiornamento a una di queste versioni del kernel consigliate.
+Tuttavia, queste modifiche potrebbero non essere trasferite ancora tooall hello distribuzioni di Linux. Sono state questa correzione e altre correzioni di riconnessione in seguito diffusi kernel Linux hello: 4.4.40 4.8.16 e 4.9.1. È possibile ottenere questa correzione aggiornando tooone di queste versioni del kernel consigliato.
 
 ### <a name="workaround"></a>Soluzione alternativa
 
-È possibile ovviare a questo problema specificando un hard mount. L'hard mount forza il client ad attendere fino a quando la connessione non viene stabilita o non viene interrotta in modo esplicito e può essere usato per evitare gli errori causati dai timeout di rete. Questa soluzione può tuttavia causare attese interminabili. Occorre quindi essere pronti a interrompere la connessione se necessario.
+È possibile ovviare a questo problema specificando un hard mount. In questo modo hello client toowait fino a quando non viene stabilita una connessione o fino a quando non viene interrotto in modo esplicito e può essere utilizzato tooprevent errori a causa di timeout di rete. Questa soluzione può tuttavia causare attese interminabili. Essere preparata toostop le connessioni in base alle esigenze.
 
-Se non è possibile eseguire l'aggiornamento alle versioni del kernel più recenti, si può ovviare a questo problema conservando un file nella condivisione file di Azure in cui scrivere ogni 30 secondi o meno. Deve trattarsi di un'operazione di scrittura, ad esempio la riscrittura della data di creazione o di modifica del file. In caso contrario, i risultati verrebbero memorizzati nella cache e l'operazione potrebbe non attivare la riconnessione.
+Se non è possibile aggiornare versioni kernel più recenti toohello, è possibile utilizzare questo problema, mantenendo un file nella condivisione di file di Azure hello scrivere tooevery 30 secondi o meno. Deve trattarsi di un'operazione di scrittura, ad esempio la riscrittura hello creato o modificato data nel file hello. In caso contrario, si potrebbero ottenere risultati memorizzati nella cache e l'operazione potrebbe non generare riconnessione hello.
 
 <a id="error115"></a>
 ## <a name="mount-error115-operation-now-in-progress-when-you-mount-azure-file-storage-by-using-smb-30"></a>"Errore di montaggio (115): L'operazione è in corso" quando si esegue il montaggio dell'archiviazione file di Azure usando SMB 3.0
 
 ### <a name="cause"></a>Causa
 
-Alcune distribuzioni Linux non supportano le funzionalità di crittografia in SMB 3.0 e gli utenti potrebbero ricevere un messaggio di errore "115" se tentano di eseguire il montaggio dell'archiviazione file di Azure usando SMB 3.0.
+Alcune distribuzioni di Linux non supporta ancora le funzionalità di crittografia SMB 3.0 e gli utenti potrebbero ricevere un messaggio di errore "115" se tentano di archiviazione di File di Azure toomount tramite SMB 3.0 a causa di una caratteristica mancante.
 
 ### <a name="solution"></a>Soluzione
 
-La funzionalità di crittografia per SMB 3.0 per Linux è stata introdotta nel kernel 4.11. Questa funzionalità consente di montare la condivisione file di Azure in locale o in un'altra area di Azure. Al momento della pubblicazione, di questa funzionalità è stato eseguito il backport in Ubuntu 17.04 e Ubuntu 16.10. Se il client Linux SMB non supporta la crittografia, montare l'archiviazione file di Azure usando SMB 2.1 da una VM Linux di Azure presente nello stesso data center dell'account di archiviazione file.
+La funzionalità di crittografia per SMB 3.0 per Linux è stata introdotta nel kernel 4.11. Questa funzionalità consente di montare la condivisione file di Azure in locale o in un'altra area di Azure. In fase di hello della pubblicazione, questa funzionalità è stata backported tooUbuntu 17.04 e Ubuntu 16.10. Se il client SMB Linux non supporta la crittografia, montare l'archiviazione di File di Azure tramite SMB 2.1 da una macchina virtuale Linux di Azure in hello stesso Data Center come account di archiviazione di File hello.
 
 <a id="slowperformance"></a>
 ## <a name="slow-performance-on-an-azure-file-share-mounted-on-a-linux-vm"></a>Rallentamento delle prestazioni in una condivisione file di Azure montata in una VM Linux
@@ -97,32 +97,32 @@ Una possibile causa del rallentamento delle prestazioni è la disattivazione del
 
 ### <a name="solution"></a>Soluzione
 
-Per controllare se la memorizzazione nella cache è disattivata, cercare la voce **cache =**. 
+toocheck se la memorizzazione nella cache è disabilitata, cercare hello **cache =** voce. 
 
-**cache=none** indica che la memorizzazione nella cache è disattivata.  Eseguire nuovamente il montaggio della condivisione usando il comando di montaggio predefinito o aggiungendo esplicitamente l'opzione **cache=strict** al comando di montaggio per assicurarsi che la modalità di memorizzazione nella cache predefinita o "strict" sia attivata.
+**cache=none** indica che la memorizzazione nella cache è disattivata.  Rimontaggio hello condivisione utilizzando il comando di montaggio predefinito di hello o aggiungendo in modo esplicito hello **cache = strict** è abilitata l'opzione toohello montaggio comando tooensure che utilizza l'impostazione predefinita in modalità di memorizzazione nella cache di memorizzazione nella cache o "strict".
 
-In alcuni scenari, l'opzione di montaggio **serverino** può far sì che il comando **ls** esegua stat rispetto a ogni voce di directory. Questo comportamento determina un calo delle prestazioni quando si elenca una directory di grandi dimensioni. È possibile controllare le opzioni di montaggio nella voce **/etc/fstab**:
+In alcuni scenari, hello **serverino** opzione di montaggio può provocare hello **ls** stat toorun comando su ogni voce della directory. Questo comportamento determina un calo delle prestazioni quando si elenca una directory di grandi dimensioni. È possibile verificare le opzioni di montaggio hello nel **/e così via/fstab** voce:
 
 `//azureuser.file.core.windows.net/cifs /cifs cifs vers=3.0,serverino,username=xxx,password=xxx,dir_mode=0777,file_mode=0777`
 
-È inoltre possibile controllare se vengono usate le opzioni corrette eseguendo il comando **sudo mount | grep cifs** e controllandone l'output, ad esempio l'output dell'esempio seguente:
+È inoltre possibile verificare se le opzioni corrette hello in uso eseguendo hello **sudo montaggio | grep cifs** comando e archiviare l'output, ad esempio hello output di esempio riportato di seguito:
 
 `//mabiccacifs.file.core.windows.net/cifs on /cifs type cifs (rw,relatime,vers=3.0,sec=ntlmssp,cache=strict,username=xxx,domain=X,uid=0,noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777, dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
 
-Se l'opzione **cache=strict** o **serverino** non è presente, smontare e montare nuovamente l'archiviazione file di Azure eseguendo il comando di montaggio dalla [documentazione](../storage-how-to-use-files-linux.md). Verificare quindi di nuovo che la voce **/etc/fstab** disponga delle opzioni corrette.
+Se hello **cache = strict** o **serverino** opzione è non presentare, disinstallare e installare nuovamente la memorizzazione dei File di Azure eseguendo il comando di montaggio hello da hello [documentazione](../storage-how-to-use-files-linux.md). Quindi, verificare di nuovo tale hello **/e così via/fstab** voce contiene opzioni corrette hello.
 
 <a id="timestampslost"></a>
-## <a name="time-stamps-were-lost-in-copying-files-from-windows-to-linux"></a>I timestamp sono andati persi durante la copia dei file da Windows a Linux
+## <a name="time-stamps-were-lost-in-copying-files-from-windows-toolinux"></a>Timestamp sono andati persi nella copia dei file da Windows tooLinux
 
-Nelle piattaforme Linux/Unix il comando **cp -p** ha esito negativo se file 1 e file 2 sono di proprietà di utenti diversi.
+Sulle piattaforme Linux/Unix hello **cp -p** comando non riesce se il file di 1 e 2 file sono di proprietà da utenti diversi.
 
 ### <a name="cause"></a>Causa
 
-Il flag force **f** in COPYFILE determina l'esecuzione di **cp -p -f** in Unix. Questo comando non riesce anche a mantenere il timestamp del file di cui non si è proprietari.
+Hello flag force **f** in COPYFILE comporta l'esecuzione di **cp -p -f** su Unix. Questo comando ha esito negativo anche timestamp hello toopreserve, del file hello che non si è proprietari.
 
 ### <a name="workaround"></a>Soluzione alternativa
 
-Usare l'account utente di archiviazione per copiare i file:
+Utilizzare account utente di hello archiviazione per la copia dei file hello:
 
 - `Useadd : [storage account name]`
 - `Passwd [storage account name]`
@@ -131,4 +131,4 @@ Usare l'account utente di archiviazione per copiare i file:
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
 
-Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
+Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.

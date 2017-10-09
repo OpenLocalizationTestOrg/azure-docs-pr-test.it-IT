@@ -1,6 +1,6 @@
 ---
-title: Informazioni sulla sicurezza dell'hub IoT di Azure | Microsoft Docs
-description: Guida per sviluppatori - Come controllare l'accesso all'hub IoT per app back-end e per dispositivi. Include informazioni sui token di sicurezza e sul supporto per i certificati x.509.
+title: sicurezza di Azure IoT Hub aaaUnderstand | Documenti Microsoft
+description: "Le istruzioni per sviluppatori - modalità toocontrol accesso tooIoT Hub per le app di dispositivo e back-end. Include informazioni sui token di sicurezza e sul supporto per i certificati x.509."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,135 +14,135 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: e4fe5400ffcf4446392015aada031dd4dfbf238a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 717726328a6bb5c5c334a123d0abfed711b2c3b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="control-access-to-iot-hub"></a>Controllare l'accesso all'hub IoT
+# <a name="control-access-tooiot-hub"></a>Controllo accesso tooIoT Hub
 
-Questo articolo illustra le opzioni per la protezione dell'hub IoT. L'hub IoT usa le *autorizzazioni* per concedere l'accesso a ogni endpoint dell'hub stesso. Le autorizzazioni limitano l'accesso a un hub IoT in base alla funzionalità.
+Questo articolo descrive le opzioni di hello per proteggere l'hub IoT. Usa IoT Hub *autorizzazioni* endpoint hub IoT di toogrant accesso tooeach. Le autorizzazioni di limitano l'hub IoT tooan accesso hello in base alle funzionalità.
 
 L'articolo illustra:
 
-* Le diverse autorizzazioni che è possibile concedere a un'app per dispositivo o back-end per accedere all'hub IoT.
-* Il processo di autenticazione e i token usati per verificare le autorizzazioni.
-* Come definire l'ambito delle credenziali per limitare l'accesso a risorse specifiche.
+* Hello diverse autorizzazioni che è possibile concedere tooa dispositivo o app back-end tooaccess l'hub IoT.
+* Hello processo e hello i token di autenticazione usa tooverify autorizzazioni.
+* Come tooscope credenziali toospecific toolimit accedere alle risorse.
 * Supporto dell'hub IoT per i certificati x.509.
 * Meccanismo di autenticazione personalizzata del dispositivo che usa gli schemi di autenticazione o i registri di identità del dispositivo esistenti.
 
-### <a name="when-to-use"></a>Quando usare le autorizzazioni
+### <a name="when-toouse"></a>Quando toouse
 
-È necessario avere le autorizzazioni appropriate per accedere agli endpoint dell'hub IoT. Un dispositivo, ad esempio, deve includere un token contenente le credenziali di sicurezza con ogni messaggio inviato all'hub IoT.
+È necessario disporre delle autorizzazioni appropriate tooaccess qualsiasi endpoint Hub IoT hello. Ad esempio, un dispositivo deve includere un token contenente le credenziali di sicurezza con ogni messaggio inviato tooIoT Hub.
 
 ## <a name="access-control-and-permissions"></a>Controllo dell'accesso e autorizzazioni
 
-Per concedere le [autorizzazioni](#iot-hub-permissions) è possibile procedere nei modi seguenti:
+È possibile concedere [autorizzazioni](#iot-hub-permissions) in hello seguenti modi:
 
-* **Criteri di accesso condivisi a livello di hub IoT**. I criteri di accesso condiviso possono concedere qualsiasi combinazione di [autorizzazioni](#iot-hub-permissions). È possibile definire i criteri nel [portale di Azure][lnk-management-portal] o a livello di codice usando le [API REST del provider di risorse dell'hub IoT][lnk-resource-provider-apis]. Un hub IoT appena creato ha i criteri predefiniti seguenti:
+* **Criteri di accesso condivisi a livello di hub IoT**. I criteri di accesso condiviso possono concedere qualsiasi combinazione di [autorizzazioni](#iot-hub-permissions). È possibile definire i criteri in hello [portale di Azure][lnk-management-portal], o a livello di programmazione utilizzando hello [il provider di risorse IoT Hub API REST][lnk-resource-provider-apis]. Un hub IoT appena creato è hello criteri predefiniti seguenti:
 
   * **iothubowner**: criteri con tutte le autorizzazioni.
   * **service**: criteri con autorizzazione **ServiceConnect**.
   * **device**: criteri con autorizzazione **DeviceConnect**.
   * **registryRead**: criteri con autorizzazione **RegistryRead**.
   * **registryReadWrite**: criteri con autorizzazioni **RegistryRead** e RegistryWrite.
-  * **Credenziali di sicurezza specifiche del dispositivo**. Ogni hub IoT contiene un [registro delle identità][lnk-identity-registry]. Per ogni dispositivo presente in questo registro delle identità è possibile configurare credenziali di sicurezza che concedono autorizzazioni **DeviceConnect** con ambito agli endpoint di dispositivo corrispondenti.
+  * **Credenziali di sicurezza specifiche del dispositivo**. Ogni hub IoT contiene un [registro delle identità][lnk-identity-registry]. Per ogni dispositivo in questo registro di sistema di identità, è possibile configurare le credenziali di sicurezza che concedono **DeviceConnect** autorizzazioni con ambito toohello gli endpoint di periferica corrispondente.
 
 Ad esempio, in una soluzione IoT tipica:
 
-* Il componente di gestione dei dispositivi usa i criteri *registryReadWrite* .
-* Il componente processore di eventi usa i criteri *service* .
-* Il componente della logica di business di runtime del dispositivo usa i criteri *service* .
-* I singoli dispositivi si connettono usando le credenziali archiviate nel registro delle identità dell'hub IoT.
+* componente di Gestione periferiche Hello utilizza hello *registryReadWrite* criteri.
+* componente elaboratore eventi di Hello utilizza hello *servizio* criteri.
+* componente della logica di business in fase di esecuzione dispositivo Hello utilizza hello *servizio* criteri.
+* I singoli dispositivi di connetteranno utilizzando le credenziali archiviate nel Registro di sistema dell'hub IoT hello identità.
 
 > [!NOTE]
 > Per informazioni dettagliate, vedere [Autorizzazioni](#iot-hub-permissions).
 
-## <a name="authentication"></a>Authentication
+## <a name="authentication"></a>Autenticazione
 
-L'hub IoT di Azure concede l'accesso agli endpoint tramite la verifica di un token rispetto ai criteri di accesso condiviso e alle credenziali di sicurezza del registro delle identità.
+IoT Hub Azure concede accesso tooendpoints verificando un token con i criteri di accesso condiviso hello e credenziali di sicurezza del Registro di sistema di identità.
 
-Le credenziali di sicurezza, ad esempio le chiavi asimmetriche, non vengono mai trasmesse in rete.
+Le credenziali di sicurezza, ad esempio le chiavi simmetriche, non vengono mai inviate in transito hello.
 
 > [!NOTE]
-> Il provider di risorse dell'hub IoT di Azure viene protetto tramite la sottoscrizione di Azure, analogamente a tutti i provider in [Azure Resource Manager][lnk-azure-resource-manager].
+> Hello provider di risorse IoT Hub di Azure è protetto tramite una sottoscrizione di Azure, sono tutti i provider di hello [Azure Resource Manager][lnk-azure-resource-manager].
 
-Per altre informazioni sulla creazione e sull'uso di token di sicurezza, vedere [Token di sicurezza dell'hub IoT][lnk-sas-tokens].
+Per ulteriori informazioni su come tooconstruct e l'utilizzo di token di sicurezza, vedere [i token di sicurezza di IoT Hub][lnk-sas-tokens].
 
 ### <a name="protocol-specifics"></a>Specifiche del protocollo
 
 Ogni protocollo supportato, ad esempio MQTT, AMQP e HTTP, trasporta i token in modo diverso.
 
-Quando si usa MQTT, il pacchetto CONNECT ha deviceId come valore di ClientId, {iothubhostname}/{deviceId} nel campo Username e un token di firma di accesso condiviso nel campo Password. Il valore di {iothubhostname} deve essere il record CName completo dell'hub IoT, ad esempio contoso.azure-devices.net.
+Quando si utilizza MQTT, pacchetto CONNETTI hello ha hello deviceId hello ClientId, {iothubhostname} / {deviceId} nel campo nome utente hello e un token di firma di accesso condiviso nel campo Password hello. {iothubhostname} deve essere hello CName completo dell'hub IoT hello (ad esempio, contoso.azure devices.net).
 
 Quando si usa [AMQP][lnk-amqp], l'hub IoT supporta [SASL PLAIN][lnk-sasl-plain] e la [sicurezza basata sulle attestazioni AMQP][lnk-cbs].
 
-Se si usa la sicurezza basata sulle attestazioni AMQP, lo standard specifica come trasmettere questi token.
+Se si usa AMQP attestazioni in base a sicurezza, specifica hello standard come tootransmit questi token.
 
-Per SASL PLAIN **username** può essere:
+Per il normale SASL, hello **username** può essere:
 
 * `{policyName}@sas.root.{iothubName}` nel caso di token a livello di hub IoT.
 * `{deviceId}@sas.{iothubname}` ne caso di token con ambito relativo al dispositivo.
 
-In entrambi i casi, il campo della password contiene il token, come descritto in [Token di sicurezza dell'hub IoT][lnk-sas-tokens].
+In entrambi i casi, il campo di password hello contiene token hello, come descritto in [i token di sicurezza di IoT Hub][lnk-sas-tokens].
 
-Il protocollo HTTP implementa l'autenticazione includendo un token valido nell'intestazione della richiesta **Authorization** .
+HTTP implementa l'autenticazione con l'inclusione di un token valido in hello **autorizzazione** intestazione della richiesta.
 
 #### <a name="example"></a>Esempio
 
 Nome utente (per DeviceId viene fatta distinzione tra maiuscole e minuscole): `iothubname.azure-devices.net/DeviceId`
 
-Password (generare il token di firma di accesso condiviso con lo strumento [Device Explorer][lnk-device-explorer]): `SharedAccessSignature sr=iothubname.azure-devices.net%2fdevices%2fDeviceId&sig=kPszxZZZZZZZZZZZZZZZZZAhLT%2bV7o%3d&se=1487709501`
+Password (token di firma di accesso condiviso generato con hello [Esplora dispositivo] [ lnk-device-explorer] strumento):`SharedAccessSignature sr=iothubname.azure-devices.net%2fdevices%2fDeviceId&sig=kPszxZZZZZZZZZZZZZZZZZAhLT%2bV7o%3d&se=1487709501`
 
 > [!NOTE]
-> Gli [Azure IoT SDK][lnk-sdks] generano automaticamente i token durante la connessione al servizio. In alcuni casi, gli Azure IoT SDK non supportano tutti i protocolli o tutti i metodi di autenticazione.
+> Hello [Azure IoT SDK] [ lnk-sdks] generare automaticamente i token durante la connessione del servizio toohello. In alcuni casi, hello Azure IoT SDK non supportano tutti i protocolli di hello o tutti i metodi di autenticazione hello.
 
 ### <a name="special-considerations-for-sasl-plain"></a>Considerazioni speciali su SASL PLAIN
 
-Quando si usa SASL PLAIN con AMQP, un client che si connette a un hub IoT potrà usare un singolo token per ogni connessione TCP. Quando il token scade, la connessione TCP si disconnette dal servizio e attiva una riconnessione. Questo comportamento non genera problemi per un'app back-end, ma è dannoso per un'app per dispositivi per i motivi seguenti:
+Quando si utilizza SASL normale con AMQP, un client che si connette l'hub IoT tooan è possibile utilizzare un token singolo per ogni connessione TCP. Quando il token hello scade, hello connessione TCP disconnette dal servizio hello e viene attivata una riconnessione. Questo comportamento, mentre non problematico per un'applicazione back-end, danneggiare per un'applicazione di dispositivo per hello seguenti motivi:
 
-* I gateway si connettono in genere per conto di molti dispositivi. Quando si usa SASL PLAIN, devono creare una connessione TCP distinta per ogni dispositivo che si connette a un hub IoT. Questo scenario aumenta in modo considerevole il consumo energetico e delle risorse di rete e incrementa la latenza della connessione di ogni dispositivo.
-* L'aumento dell'uso delle risorse per la riconnessione dopo la scadenza di ogni token influisce negativamente sui dispositivi vincolati alle risorse.
+* I gateway si connettono in genere per conto di molti dispositivi. Quando si utilizza SASL normale, hanno il toocreate una connessione TCP distinta per ogni dispositivo di connessione hub IoT tooan. Questo scenario notevolmente aumenta al consumo di energia e le risorse di rete hello e aumenta la latenza di hello di ogni connessione del dispositivo.
+* Dispositivi con risorse limitate possono essere influenzati negativamente mediante l'utilizzo di hello aumentato di risorse tooreconnect dopo ogni scadenza del token.
 
 ## <a name="scope-iot-hub-level-credentials"></a>Definire l'ambito delle credenziali a livello di hub IoT
 
-È possibile definire l'ambito dei criteri di sicurezza a livello di hub IoT creando token con URI di risorsa con limitazioni. L'endpoint per l'invio di messaggi da dispositivo a cloud da un dispositivo, ad esempio, è **/devices/{deviceId}/messages/events**. È anche possibile usare criteri di accesso condiviso a livello di hub IoT con autorizzazioni **DeviceConnect** per firmare un token il cui valore resourceURI è **/devices/{deviceId}**. Questo approccio crea un token che può essere usato solo per l'invio di messaggi per conto del dispositivo **deviceId**.
+È possibile definire l'ambito dei criteri di sicurezza a livello di hub IoT creando token con URI di risorsa con limitazioni. Ad esempio, i messaggi da dispositivo a cloud di hello endpoint toosend da un dispositivo è **/devices/ {deviceId} / messaggi/eventi**. È inoltre possibile utilizzare un criterio di accesso condiviso a livello di hub IoT con **DeviceConnect** toosign autorizzazioni un token di cui resourceURI **/devices/ {deviceId}**. Questo approccio consente di creare un token solo messaggi toosend utilizzabile per conto di dispositivo **deviceId**.
 
-Questo meccanismo è simile ai [criteri dell'entità di pubblicazione di Hub eventi][lnk-event-hubs-publisher-policy] e consente di implementare metodi di autenticazione personalizzati.
+Questo meccanismo è simile toohello [criteri dell'editore hub eventi][lnk-event-hubs-publisher-policy]ed è possibile tooimplement metodi di autenticazione personalizzati.
 
 ## <a name="security-tokens"></a>Token di sicurezza
 
-Hub IoT usa i token di sicurezza per autenticare i dispositivi e i servizi ed evitare l'invio in rete delle chiavi. Inoltre, i token di sicurezza hanno una validità limitata in termini di tempo e portata. Gli [Azure IoT SDK][lnk-sdks] generano automaticamente i token senza richiedere una configurazione speciale. In alcuni scenari è necessario generare e usare direttamente i token di sicurezza. Tali scenari includono:
+IoT Hub utilizza la protezione del token tooauthenticate dispositivi e servizi tooavoid l'invio delle chiavi durante la trasmissione hello. Inoltre, i token di sicurezza hanno una validità limitata in termini di tempo e portata. Gli [Azure IoT SDK][lnk-sdks] generano automaticamente i token senza richiedere una configurazione speciale. Alcuni scenari richiedono toogenerate e utilizzare direttamente i token di sicurezza. Tali scenari includono:
 
-* L'uso diretto di superfici MQTT, AMQP o HTTP.
-* L'implementazione del modello di servizio token, come descritto in [Autenticazione personalizzata del dispositivo][lnk-custom-auth].
+* utilizzo diretto di Hello superfici hello MQTT, AMQP o HTTP.
+* Hello implementazione del modello di servizio token di hello, come illustrato in [l'autenticazione del dispositivo personalizzato][lnk-custom-auth].
 
-Hub IoT consente ai dispositivi di autenticarsi con l'hub IoT usando [certificati X.509][lnk-x509].
+IoT Hub consente inoltre alle periferiche tooauthenticate con l'IoT Hub utilizzando [certificati x. 509][lnk-x509].
 
 ### <a name="security-token-structure"></a>Formato del token di sicurezza
 
-I token di sicurezza consentono di concedere a dispositivi e servizi l'accesso con limite temporale a funzionalità specifiche dell'hub IoT. Per ottenere l'autorizzazione per connettersi all'hub IoT, i dispositivi e i servizi devono inviare i token di sicurezza firmati con una chiave di accesso condiviso o una chiave simmetrica. Tali chiavi vengono archiviate con un'identità del dispositivo nel registro delle identità.
+Si utilizza protezione token toogrant accesso limitato al tempo toodevices e servizi toospecific funzionalità nell'IoT Hub. tooget autorizzazione tooconnect tooIoT Hub, dispositivi e servizi devono inviare i token di sicurezza firmati con un accesso condiviso o della chiave simmetrica. Tali chiavi vengono archiviate con un'identità del dispositivo nel Registro di sistema di hello identità.
 
-Un token firmato con una chiave di accesso condiviso concede l'accesso a tutte le funzionalità associate alle autorizzazioni dei criteri di accesso condiviso. Un token firmato con una chiave simmetrica dell'identità dispositivo concede solo l'autorizzazione **DeviceConnect** per l'identità del dispositivo associato.
+Un token firmato con un'accesso condiviso chiave concede accesso tooall hello funzionalità associate le autorizzazioni di criteri di accesso condiviso hello. Un token firmato con hello simmetrica chiave concede solo dell'identità del dispositivo **DeviceConnect** l'autorizzazione per hello è associata l'identità del dispositivo.
 
-Il token di sicurezza ha il formato seguente:
+token di sicurezza Hello è hello seguente formato:
 
 `SharedAccessSignature sig={signature-string}&se={expiry}&skn={policyName}&sr={URL-encoded-resourceURI}`
 
-I valori previsti sono i seguenti:
+Di seguito sono i valori previsti hello:
 
 | Valore | Descrizione |
 | --- | --- |
-| {signature} |Stringa della firma HMAC-SHA256 nel formato: `{URL-encoded-resourceURI} + "\n" + expiry`. **Importante**: la chiave viene decodificata dalla codifica Base64 e usata come chiave per eseguire il calcolo di HMAC-SHA256. |
-| {resourceURI} |Prefisso URI (per segmento) degli endpoint a cui è possibile accedere tramite questo token e che inizia con il nome host dell'hub IoT senza il protocollo. Ad esempio: `myHub.azure-devices.net/devices/device1` |
-| {expiry} |Stringhe UTF8 per il numero di secondi trascorsi dalle 00:00:00 UTC dell'1 gennaio 1970. |
-| {URL-encoded-resourceURI} |Codifica URL con lettere minuscole dell'URI della risorsa con lettere minuscole |
-| {policyName} |Nome del criterio di accesso condiviso a cui fa riferimento il token. Assente se il token fa riferimento a credenziali del registro dei dispositivi. |
+| {signature} |Una stringa di firma del modulo hello HMAC-SHA256: `{URL-encoded-resourceURI} + "\n" + expiry`. **Importante**: chiave hello è decodificare da base64 e utilizzato come chiave tooperform calcolo di hello HMAC-SHA256. |
+| {resourceURI} |Prefisso URI (per segmento) di endpoint hello che è possibile accedere con questo token, a partire da nome host dell'hub IoT hello (nessun protocol). Ad esempio, `myHub.azure-devices.net/devices/device1` |
+| {expiry} |Stringhe UTF8 per il numero di secondi trascorsi hello epoch 00:00:00 UTC del 1 ° gennaio 1970. |
+| {URL-encoded-resourceURI} |Più basso caso la codifica URL della risorsa di lettere minuscole hello URI |
+| {policyName} |nome di Hello di hello condiviso toowhich di criteri di accesso che fa riferimento il token. Assente se il token hello fa riferimento credenziali toodevice Registro di sistema. |
 
-**Nota sul prefisso**: il prefisso dell'URI viene calcolato in base al segmento e non in base al carattere. Ad esempio `/a/b` è un prefisso per `/a/b/c` ma non per `/a/bc`.
+**Nota sul prefisso**: prefisso URI hello viene calcolato dal segmento e non dai caratteri. Ad esempio `/a/b` è un prefisso per `/a/b/c` ma non per `/a/bc`.
 
-Il frammento seguente di Node.js mostra una funzione denominata **generateSasToken** che calcola il token dagli input `resourceUri, signingKey, policyName, expiresInMins`. Nelle sezioni successive viene illustrato nel dettaglio come inizializzare gli input a seconda del caso d'uso.
+Hello frammento Node.js seguente viene illustrata una funzione denominata **generateSasToken** che calcola hello token dagli input hello `resourceUri, signingKey, policyName, expiresInMins`. Nelle sezioni successive di Hello in dettaglio come i diversi input hello tooinitialize per token diverso hello casi d'uso.
 
 ```nodejs
 var generateSasToken = function(resourceUri, signingKey, policyName, expiresInMins) {
@@ -166,7 +166,7 @@ var generateSasToken = function(resourceUri, signingKey, policyName, expiresInMi
 };
 ```
 
-Per fare un confronto, l'equivalente in termini di codice Python per generare un token di sicurezza è:
+Come un confronto, hello equivalente toogenerate di codice Python che è un token di sicurezza:
 
 ```python
 from base64 import b64encode, b64decode
@@ -194,36 +194,36 @@ def generate_sas_token(uri, key, policy_name, expiry=3600):
 ```
 
 > [!NOTE]
-> Poiché la validità temporale del token viene verificata sui computer hub IoT, lo sfasamento dell'orologio del computer che genera il token deve essere minimo.
+> Poiché hello tempo di validità delle token hello viene convalidato in computer IoT Hub, deviazione hello su clock hello del computer di hello che genera token hello deve essere minimo.
 
 ### <a name="use-sas-tokens-in-a-device-app"></a>Usare i token di firma di accesso condiviso in un dispositivo client
 
-Esistono due modi per ottenere le autorizzazioni **DeviceConnect** con l'hub IoT con i token di sicurezza: usare una [chiave del dispositivo simmetrica dal registro delle identità](#use-a-symmetric-key-in-the-identity-registry) oppure usare una [chiave di accesso condiviso](#use-a-shared-access-policy).
+Esistono due modi tooobtain **DeviceConnect** autorizzazioni con l'IoT Hub con i token di sicurezza: utilizzare un [chiave simmetrica dispositivo dal Registro di sistema identità hello](#use-a-symmetric-key-in-the-identity-registry), oppure utilizzare un [chiavediaccessocondiviso](#use-a-shared-access-policy).
 
 Tenere presente che, per impostazione predefinita, tutte le funzionalità accessibili dai dispositivi vengono esposte negli endpoint con il prefisso `/devices/{deviceId}`.
 
 > [!IMPORTANT]
-> L'unico modo di cui dispone l'hub IoT per autenticare un dispositivo specifico è tramite la chiave simmetrica identità dispositivo. Nei casi in cui si acceda alle funzionalità del dispositivo tramite criteri di accesso condiviso, la soluzione deve considerare il componente che emette il token di sicurezza come sottocomponente attendibile.
+> chiave simmetrica identità del dispositivo hello utilizza Hello unico modo che l'IoT Hub autentica un dispositivo specifico. Quando un criterio di accesso condiviso viene usato tooaccess funzionalità del dispositivo, soluzione hello deve considerare la possibilità componente hello emissione di token di sicurezza hello come sottocomponente attendibile.
 
-Gli endpoint per il dispositivo sono, indipendentemente dal protocollo:
+gli endpoint che utilizzano il dispositivo di Hello sono (indipendentemente dal protocollo hello):
 
 | Endpoint | Funzionalità |
 | --- | --- |
 | `{iot hub host name}/devices/{deviceId}/messages/events` |Invio di messaggi da dispositivo a cloud. |
 | `{iot hub host name}/devices/{deviceId}/devicebound` |Ricezione di messaggi da cloud a dispositivo. |
 
-### <a name="use-a-symmetric-key-in-the-identity-registry"></a>Usare una chiave simmetrica nel registro identità
+### <a name="use-a-symmetric-key-in-hello-identity-registry"></a>Utilizzare una chiave simmetrica nel Registro di sistema di hello identità
 
-Quando si usa una chiave simmetrica dell'identità del dispositivo per generare un token, l'elemento policyName (`skn`) del token viene omesso.
+Quando si utilizza toogenerate chiave simmetrica un token dell'identità del dispositivo, hello policyName (`skn`) elemento di token hello viene omesso.
 
-Ad esempio, un token creato per accedere a tutte le funzionalità del dispositivo deve avere i seguenti parametri:
+Ad esempio, un token creato tooaccess tutte le funzionalità di dispositivo deve avere hello seguenti parametri:
 
 * URI della risorsa: `{IoT hub name}.azure-devices.net/devices/{device id}`,
-* Chiave di firma: qualsiasi chiave simmetrica per l'identità `{device id}` ,
+* chiave di firma: qualsiasi chiave simmetrica per hello `{device id}` identità,
 * Nessun nome di criterio,
 * Qualsiasi ora di scadenza.
 
-Un esempio di uso della funzione di Node.js precedente sarebbe il seguente:
+Un esempio di utilizzo hello precedente Node.js funzione sarà:
 
 ```nodejs
 var endpoint ="myhub.azure-devices.net/devices/device1";
@@ -232,32 +232,32 @@ var deviceKey ="...";
 var token = generateSasToken(endpoint, deviceKey, null, 60);
 ```
 
-Il risultato, che concede l'accesso a tutte le funzionalità per device1, sarà:
+risultato Hello, che concede l'accesso tooall funzionalità per la periferica 1, sarà:
 
 `SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697`
 
 > [!NOTE]
-> È possibile generare un token SAS con lo strumento [Esplora dispositivi][lnk-device-explorer] di .NET o tramite l'utilità da riga di comando [iothub-explorer][lnk-iothub-explorer], multipiattaforma e basata su nodi.
+> È possibile toogenerate un token di firma di accesso condiviso usando .NET hello [Esplora dispositivo] [ lnk-device-explorer] degli strumenti o hello multipiattaforma, basato su nodi [l'hub IOT Esplora] [ lnk-iothub-explorer] utilità della riga di comando.
 
 ### <a name="use-a-shared-access-policy"></a>Usare criteri di accesso condiviso
 
-Quando si crea un token da criteri di accesso condiviso, impostare il campo `skn` sul nome dei criteri. Questi criteri devono concedere l'autorizzazione **DeviceConnect**.
+Quando si crea un token da un criterio di accesso condiviso, impostare hello `skn` toohello nome dei criteri di hello. Questo criterio deve concedere hello **DeviceConnect** autorizzazione.
 
-I due scenari principali per l'uso di criteri di accesso condiviso per accedere alla funzionalità dei dispositivi sono:
+Hello due scenari principali per l'utilizzo di funzionalità della periferica di tooaccess criteri di accesso condiviso sono:
 
 * [gateway del protocollo cloud][lnk-endpoints],
-* [servizi token][lnk-custom-auth] tramite i quali implementare schemi di autenticazione personalizzati.
+* [servizi token] [ lnk-custom-auth] utilizzato tooimplement schemi di autenticazione personalizzati.
 
-Poiché i criteri di accesso condiviso possono potenzialmente autorizzare la connessione a qualsiasi dispositivo, in fase di creazione dei token di sicurezza è importante usare l'URI risorsa corretto. Questa impostazione è particolarmente importante per i servizi token, che devono limitare l'ambito del token a un dispositivo specifico usando l'URI risorsa. Questo punto è meno importante per i gateway di protocollo, in quanto già filtrano il traffico per tutti i dispositivi.
+Poiché hello criteri di accesso condiviso possono potenzialmente concedere accesso tooconnect qualsiasi dispositivo, che è importante toouse hello corretto URI della risorsa durante la creazione di token di sicurezza. Questa impostazione è particolarmente importante per i servizi token, che hanno tooscope hello tooa token dispositivo specifico utilizzando l'URI della risorsa hello. Questo punto è meno importante per i gateway di protocollo, in quanto già filtrano il traffico per tutti i dispositivi.
 
-Ad esempio, un servizio token che usa il criterio di accesso condiviso già esistente denominato **device** creerebbe un token con i parametri seguenti:
+Ad esempio, un servizio token utilizzando hello creato in precedenza condivise criterio di accesso denominato **dispositivo** creerebbe un token con hello seguenti parametri:
 
 * URI della risorsa: `{IoT hub name}.azure-devices.net/devices/{device id}`,
-* chiave di firma: una delle chiavi del criterio `device` ,
+* chiave di firma: una delle chiavi di hello di hello `device` criteri,
 * nome criterio: `device`,
 * Qualsiasi ora di scadenza.
 
-Un esempio di uso della funzione di Node.js precedente sarebbe il seguente:
+Un esempio di utilizzo hello precedente Node.js funzione sarà:
 
 ```nodejs
 var endpoint ="myhub.azure-devices.net/devices/device1";
@@ -267,17 +267,17 @@ var policyKey = '...';
 var token = generateSasToken(endpoint, policyKey, policyName, 60);
 ```
 
-Il risultato, che concede l'accesso a tutte le funzionalità per device1, sarà:
+risultato Hello, che concede l'accesso tooall funzionalità per la periferica 1, sarà:
 
 `SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697&skn=device`
 
-Un gateway di protocollo potrebbe usare lo stesso token per tutti i dispositivi semplicemente impostando l'URI della risorsa su `myhub.azure-devices.net/devices`.
+Un gateway di protocollo Impossibile usare hello stesso token per tutti i dispositivi semplicemente impostazione hello URI risorsa troppo`myhub.azure-devices.net/devices`.
 
 ### <a name="use-security-tokens-from-service-components"></a>Usare token di sicurezza da componenti del servizio
 
-I componenti del servizio possono generare token di sicurezza solo usando criteri di accesso condiviso che concedono le autorizzazioni appropriate, come illustrato prima.
+Componenti del servizio possono solo generare token di sicurezza usando i criteri di accesso condiviso concessione delle autorizzazioni appropriate di hello come descritto in precedenza.
 
-Di seguito vengono indicate le funzioni del servizio esposte sugli endpoint:
+Ecco funzioni hello del servizio esposte su endpoint hello:
 
 | Endpoint | Funzionalità |
 | --- | --- |
@@ -286,10 +286,10 @@ Di seguito vengono indicate le funzioni del servizio esposte sugli endpoint:
 | `{iot hub host name}/servicebound/feedback` |Ricezione di feedback per messaggi da cloud a dispositivo. |
 | `{iot hub host name}/devicebound` |Invio di messaggi da cloud a dispositivo. |
 
-Ad esempio, un servizio che usa il criterio di accesso condiviso già esistente denominato **registryRead** creerebbe un token con i parametri seguenti:
+Ad esempio, un servizio di generazione utilizzando hello creato in precedenza condivise criterio di accesso denominato **registryRead** creerebbe un token con hello seguenti parametri:
 
 * URI della risorsa: `{IoT hub name}.azure-devices.net/devices`,
-* chiave di firma: una delle chiavi del criterio `registryRead` ,
+* chiave di firma: una delle chiavi di hello di hello `registryRead` criteri,
 * nome criterio: `registryRead`,
 * Qualsiasi ora di scadenza.
 
@@ -301,32 +301,32 @@ var policyKey = '...';
 var token = generateSasToken(endpoint, policyKey, policyName, 60);
 ```
 
-Il risultato, che concede l'accesso in lettura a tutte le identità dispositivo, sarà:
+risultato Hello, che viene concesso l'accesso tooread tutte le identità del dispositivo, sarà:
 
 `SharedAccessSignature sr=myhub.azure-devices.net%2fdevices&sig=JdyscqTpXdEJs49elIUCcohw2DlFDR3zfH5KqGJo4r4%3D&se=1456973447&skn=registryRead`
 
 ## <a name="supported-x509-certificates"></a>Certificati X.509 supportati
 
-È possibile usare qualsiasi certificato X.509 per autenticare un dispositivo con hub IoT. I certificati inclusi sono i seguenti:
+È possibile utilizzare qualsiasi tooauthenticate certificato x. 509 un dispositivo con l'IoT Hub. I certificati inclusi sono i seguenti:
 
-* **Un certificato X.509 esistente**. Un dispositivo potrebbe già avere un certificato X.509 associato. Il dispositivo può usare questo certificato per autenticarsi con hub IoT.
-* **Un certificato X-509 auto-generato e auto-firmato**. Un produttore di dispositivi o un distributore interno può generare questi certificati e archiviare la chiave privata corrispondente (e il certificato) nel dispositivo. È possibile usare strumenti come [OpenSSL][lnk-openssl] e l'utilità [Windows SelfSignedCertificate][lnk-selfsigned] per questo scopo.
-* **Certificato X.509 firmato da un'autorità di certificazione**. Per identificare un dispositivo e autenticarlo con l'hub IoT, è possibile usare un certificato X.509 generato e firmato da un'autorità di certificazione (CA). L'hub IoT verifica solo che l'identificazione personale presentata corrisponda all'identificazione personale configurata. IoTHub non convalida la catena di certificati.
+* **Un certificato X.509 esistente**. Un dispositivo potrebbe già avere un certificato X.509 associato. dispositivo Hello è possibile utilizzare questo tooauthenticate certificato con l'IoT Hub.
+* **Un certificato X-509 auto-generato e auto-firmato**. Un produttore del dispositivo o i distributori interne possono generare questi certificati e archiviare la chiave privata corrispondente di hello (e certificato) su dispositivo hello. È possibile usare strumenti come [OpenSSL][lnk-openssl] e l'utilità [Windows SelfSignedCertificate][lnk-selfsigned] per questo scopo.
+* **Certificato X.509 firmato da un'autorità di certificazione**. tooidentify un dispositivo e l'autenticazione con l'IoT Hub, è possibile usare un certificato x. 509 generato e firmato da un'autorità di certificazione (CA). IoT Hub verifica solo tale identificazione digitale hello presentati corrispondente identificazione personale hello configurato. L'hub IOT non viene convalidata la catena di certificati hello.
 
 Un dispositivo può usare un certificato X.509 o un token di sicurezza per l'autenticazione, ma non per entrambi.
 
 ### <a name="register-an-x509-certificate-for-a-device"></a>Registrare un certificato X.509 per un dispositivo
 
-Il componente [Azure IoT SDK per servizi per C#][lnk-service-sdk] (versione 1.0.8+) supporta la registrazione di un dispositivo che usa un certificato X.509 per l'autenticazione. Anche altre API come quelle per l'importazione e l'esportazione dei dispositivi supportano i certificati X.509.
+Hello [SDK di servizi IoT di Azure per c#] [ lnk-service-sdk] (versione 1.0.8+) supporta la registrazione di un dispositivo che usa un certificato x. 509 per l'autenticazione. Anche altre API come quelle per l'importazione e l'esportazione dei dispositivi supportano i certificati X.509.
 
 ### <a name="c-support"></a>Supporto per C\#
 
-La classe **RegistryManager** offre un modo di registrare un dispositivo a livello di codice. In particolare, i metodi **AddDeviceAsync** e **UpdateDeviceAsync** consentono di registrare e aggiornare un dispositivo nel registro delle identità dell'hub IoT. Questi due metodi accettano un'istanza **Device** come input. La classe **Device** include una proprietà **Authentication** che consente di specificare le identificazioni primarie e secondarie del certificato X.509. L'identificazione personale rappresenta un hash SHA-1 del certificato X.509 archiviato usando la codifica DER binaria. Gli utenti hanno la possibilità di specificare un'identificazione personale primaria, una secondaria o entrambe. Le identificazioni personali primarie e secondarie sono supportate per gestire scenari di rollover dei certificati.
+Hello **RegistryManager** classe fornisce un modo programmatico di tooregister un dispositivo. In particolare, hello **AddDeviceAsync** e **UpdateDeviceAsync** metodi consentono di tooregister e aggiornare un dispositivo in hello del Registro di sistema di IoT Hub identità. Questi due metodi accettano un'istanza **Device** come input. Hello **dispositivo** classe include un **autenticazione** proprietà che è possibile toospecify primarie e secondarie x. 509 identificazioni personali del certificato. identificazione personale Hello rappresenta un hash SHA-1 del certificato x. 509 hello (archiviato utilizzando la codifica DER binaria). È possibile hello che specifica un'identificazione personale del primaria o un'identificazione personale del secondario o entrambi. Identificazioni personali primarie e secondarie sono toohandle supportati scenari di rollover dei certificati.
 
 > [!NOTE]
-> L'hub IoT non richiede o archivia l'intero certificato X.509 ma solo l'identificazione personale.
+> IoT Hub non è necessario né archiviare il certificato x. 509 intera hello, solo identificazione personale hello.
 
-Ecco un frammento di codice C\# di esempio per registrare un dispositivo usando un certificato X.509:
+Di seguito è riportato un esempio C\# tooregister frammento di codice un dispositivo utilizzando un certificato x. 509:
 
 ```csharp
 var device = new Device(deviceId)
@@ -345,11 +345,11 @@ await registryManager.AddDeviceAsync(device);
 
 ### <a name="use-an-x509-certificate-during-run-time-operations"></a>Usare un certificato X.509 durante le operazioni di runtime
 
-[Azure IoT SDK per dispositivi per .NET][lnk-client-sdk] (versione 1.0.11+) supporta l'uso dei certificati X.509.
+Hello [dispositivo IoT di Azure SDK per .NET] [ lnk-client-sdk] (versione 1.0.11+) supporta l'utilizzo di hello di certificati x. 509.
 
 ### <a name="c-support"></a>Supporto per C\#
 
-La classe **DeviceAuthenticationWithX509Certificate** supporta la creazione di istanze di **DeviceClient** usando un certificato X.509. Il certificato X.509 deve essere nel formato PFX, denominato anche PKCS #12, che include la chiave privata.
+classe Hello **DeviceAuthenticationWithX509Certificate** supporta hello creazione di **DeviceClient** istanze tramite un certificato x. 509. certificato x. 509 Hello deve essere nel formato PFX (denominato anche PKCS #12) hello che include la chiave privata di hello.
 
 Di seguito è riportato un frammento di codice di esempio:
 
@@ -361,68 +361,68 @@ var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 
 ## <a name="custom-device-authentication"></a>Autenticazione personalizzata del dispositivo
 
-È possibile usare il [registro delle identità][lnk-identity-registry] dell'hub IoT per configurare il controllo dell'accesso e le credenziali di sicurezza per ogni dispositivo usando i [token][lnk-sas-tokens]. Se una soluzione IoT ha già un registro personalizzato delle identità e/o uno schema di autenticazione, valutare la possibilità di creare un *servizio token* per integrare l'infrastruttura con l'hub IoT. In questo modo, è possibile usare altre funzionalità IoT nella soluzione.
+È possibile usare l'IoT Hub hello [Registro di sistema di identità] [ lnk-identity-registry] tooconfigure le credenziali di sicurezza per ogni dispositivo e controllo dell'accesso tramite [token] [ lnk-sas-tokens] . Se una soluzione IoT dispone già di una combinazione di identità personalizzato del Registro di sistema e/o l'autenticazione, è consigliabile creare un *servizio token* toointegrate questa infrastruttura con l'IoT Hub. In questo modo, è possibile usare altre funzionalità IoT nella soluzione.
 
-Un servizio token è un servizio cloud personalizzato. Usa i *criteri di accesso condiviso* dell'hub IoT con autorizzazioni **DeviceConnect** per creare token *basati sul dispositivo*. Questi token abilitano la connessione di un dispositivo all'hub IoT.
+Un servizio token è un servizio cloud personalizzato. Usa un IoT Hub *criterio di accesso condiviso* con **DeviceConnect** autorizzazioni toocreate *con ambito dispositivo* token. Questi token abilitare l'hub IoT tooyour tooconnect un dispositivo.
 
-![Passaggi del modello di servizio token][img-tokenservice]
+![Passaggi del modello di servizio token di hello][img-tokenservice]
 
-Di seguito vengono indicati i passaggi principali del modello del servizio token:
+Ecco i passaggi principali hello del modello di servizio token di hello:
 
-1. Creare i criteri di accesso condiviso dell'hub IoT con autorizzazioni **DeviceConnect** per l'hub IoT. È possibile creare questi criteri nel [portale di Azure][lnk-management-portal] o a livello di programmazione. Il servizio token usa questi criteri per firmare i token creati.
-1. Quando un dispositivo deve accedere all'hub IoT, richiede un token firmato dal servizio token. Il dispositivo può eseguire l'autenticazione con il registro delle identità personalizzato/lo schema di autenticazione per determinare l'identità del dispositivo usata dal servizio token per creare il token.
-1. Il servizio token restituisce un token. Il token viene creato usando `/devices/{deviceId}` come `resourceURI`, con `deviceId` come dispositivo da autenticare. Il servizio token usa i criteri di accesso condivisi per costruire il token.
-1. Il dispositivo usa il token direttamente con l'hub IoT.
+1. Creare i criteri di accesso condiviso dell'hub IoT con autorizzazioni **DeviceConnect** per l'hub IoT. È possibile creare questo criterio in hello [portale di Azure] [ lnk-management-portal] o a livello di codice. il servizio token di Hello utilizza i token di hello toosign questo criterio viene creato.
+1. Quando un dispositivo deve tooaccess l'hub IoT, richiede un token firmato dal servizio token. Hello dispositivo può eseguire l'autenticazione con l'identità del dispositivo identità personalizzato del Registro di sistema o di autenticazione schema toodetermine hello che il servizio token di hello utilizza token hello toocreate.
+1. il servizio token di Hello restituisce un token. Hello token viene creato utilizzando `/devices/{deviceId}` come `resourceURI`, con `deviceId` come dispositivo hello da autenticare. il servizio token di Hello utilizza il token hello tooconstruct di hello accesso condiviso dei criteri.
+1. dispositivo di Hello Usa token hello direttamente con l'hub IoT hello.
 
 > [!NOTE]
-> È possibile usare la classe .NET [SharedAccessSignatureBuilder][lnk-dotnet-sas] o la classe Java [IotHubServiceSasToken][lnk-java-sas] per creare un token nel servizio token.
+> È possibile utilizzare una classe .NET hello [SharedAccessSignatureBuilder] [ lnk-dotnet-sas] o hello classe Java [IotHubServiceSasToken] [ lnk-java-sas] toocreate un token nel servizio di token.
 
-Il servizio token può impostare la scadenza del token, in base alle esigenze. Quando il token scade, l'hub IoT interrompe la connessione del dispositivo. Quindi, il dispositivo deve richiedere un nuovo token dal servizio token. Un intervallo di scadenza breve aumenta il carico sia sul dispositivo che sul servizio token.
+il servizio token di Hello è possibile impostare scadenza del token hello in base alle esigenze. Quando il token hello scade, l'hub IoT hello server connessione dispositivo hello. Quindi, dispositivo hello deve richiedere un nuovo token dal servizio token di hello. Una scadenza breve aumenta il carico di hello sul dispositivo hello e servizio token di hello.
 
-Perché un dispositivo si connetta all'hub, è comunque necessario aggiungerlo al registro delle identità dell'hub IoT anche se il dispositivo usa un token e non una chiave di dispositivo per la connessione. È quindi possibile continuare a usare il controllo dell'accesso per ogni dispositivo abilitando o disabilitando le identità dei dispositivi nel [registro delle identità][lnk-identity-registry]. In questo modo si riduce il rischio che vengano usati token con intervalli di scadenza prolungati.
+Per un hub di tooyour tooconnect dispositivo, è necessario comunque aggiungerla toohello del Registro di sistema di IoT Hub identità, anche se hello dispositivo usa un token e non una chiave tooconnect di dispositivo. Pertanto, è possibile continuare controllo di accesso per ogni dispositivo toouse abilitando o disabilitando le identità del dispositivo in hello [Registro di sistema di identità][lnk-identity-registry]. Questo approccio consente di ridurre i rischi di hello di utilizzo di token con ore di scadenza lunga.
 
 ### <a name="comparison-with-a-custom-gateway"></a>Confronto con un gateway personalizzato
 
-Il modello di servizio token è il metodo consigliato per implementare uno schema di autenticazione/registro di identità personalizzato con l'hub IoT. Questo schema è consigliato perché l'hub IoT continua a gestire la maggior parte del traffico della soluzione. Tuttavia, se lo schema di autenticazione personalizzato è molto legato al protocollo, può essere necessario un *gateway personalizzato* per elaborare tutto il traffico. Un esempio di tale scenario prevede l'uso del [protocollo TLS (Transport Layer Security) e di chiavi precondivise][lnk-tls-psk]. Per altre informazioni, vedere l'articolo relativo al [gateway del protocollo][lnk-protocols].
+modello di servizio token di Hello è hello consigliato in modo tooimplement una combinazione di identità personalizzato del Registro di sistema o di autenticazione con l'IoT Hub. Questo modello è consigliato perché l'IoT Hub continua toohandle la maggior parte del traffico di soluzione hello. Tuttavia, se lo schema di autenticazione personalizzato hello è così interconnesse con protocollo hello, potrebbe essere necessario un *gateway personalizzato* tooprocess tutti hello traffico. Un esempio di tale scenario prevede l'uso del [protocollo TLS (Transport Layer Security) e di chiavi precondivise][lnk-tls-psk]. Per ulteriori informazioni, vedere hello [gateway del protocollo] [ lnk-protocols] argomento.
 
 ## <a name="reference-topics"></a>Argomenti di riferimento:
 
-Gli argomenti di riferimento seguenti offrono altre informazioni sul controllo dell'accesso all'hub IoT.
+Hello argomenti di riferimento seguenti offrono ulteriori informazioni su controllo hub IoT tooyour di accesso.
 
 ## <a name="iot-hub-permissions"></a>Autorizzazioni per l'hub IoT
 
-La tabella seguente elenca le autorizzazioni che è possibile usare per controllare l'accesso all'hub IoT.
+Hello nella tabella seguente elenca le autorizzazioni di hello è possibile usare l'hub IoT accesso tooyour toocontrol.
 
 | Autorizzazione | Note |
 | --- | --- |
-| **RegistryRead** |Concede l'accesso di sola lettura al registro di identità. Per altre informazioni, vedere [Registro delle identità][lnk-identity-registry]. <br/>Questa autorizzazione viene usata dai servizi cloud back-end. |
-| **RegistryReadWrite** |Concede l'accesso di lettura e scrittura al registro di identità. Per altre informazioni, vedere [Registro delle identità][lnk-identity-registry]. <br/>Questa autorizzazione viene usata dai servizi cloud back-end. |
-| **ServiceConnect** |Concede l'accesso alle comunicazioni per il servizio cloud e al monitoraggio degli endpoint. <br/>Concede l'autorizzazione per la ricezione di messaggi da dispositivo a cloud, l'invio di messaggi da cloud a dispositivo e il recupero degli acknowledgment di recapito corrispondenti. <br/>Concede l'autorizzazione per il recupero degli acknowledgement di recapito per caricamenti di file. <br/>Concede l'autorizzazione per l'accesso a dispositivi gemelli per l'aggiornamento dei tag e delle proprietà indicate, il recupero delle proprietà segnalate e l'esecuzione di query. <br/>Questa autorizzazione viene usata dai servizi cloud back-end. |
-| **DeviceConnect** |Concede l'accesso agli endpoint per il dispositivo. <br/>Concede l'autorizzazione per l'invio di messaggi da dispositivo a cloud e la ricezione di messaggi da cloud a dispositivo. <br/>Concede l'autorizzazione per il caricamento di file da un dispositivo. <br/>Concede l'autorizzazione per la ricezione di notifiche su particolari proprietà del dispositivo gemello e l'aggiornamento delle proprietà segnalate di quest'ultimo. <br/>Concede l'autorizzazione per il caricamento di file. <br/>Questa autorizzazione viene usata dai dispositivi. |
+| **RegistryRead** |Concede l'accesso in lettura toohello identità Registro di sistema. Per altre informazioni, vedere [Registro delle identità][lnk-identity-registry]. <br/>Questa autorizzazione viene usata dai servizi cloud back-end. |
+| **RegistryReadWrite** |Concede l'accesso in lettura e scrittura toohello identità Registro di sistema. Per altre informazioni, vedere [Registro delle identità][lnk-identity-registry]. <br/>Questa autorizzazione viene usata dai servizi cloud back-end. |
+| **ServiceConnect** |Concede l'accesso toocloud orientati ai servizi comunicazione e gli endpoint di monitoraggio. <br/>Concede l'autorizzazione i messaggi da dispositivo a cloud tooreceive, inviare messaggi da cloud a dispositivo e recuperare hello corrispondente conferma di recapito. <br/>Concede l'autorizzazione tooretrieve recapito riconoscimenti per il file caricato. <br/>Concede l'autorizzazione tooaccess dispositivo gemelli tooupdate tag e le proprietà desiderate, recuperare le proprietà segnalate ed eseguire query. <br/>Questa autorizzazione viene usata dai servizi cloud back-end. |
+| **DeviceConnect** |Concede l'accesso gli endpoint orientati toodevice. <br/>Concede l'autorizzazione toosend dispositivo a cloud dei messaggi e ricevere messaggi da cloud a dispositivo. <br/>Concede l'autorizzazione tooperform il caricamento di file da un dispositivo. <br/>Concede l'autorizzazione tooreceive doppi desiderato proprietà notifiche e aggiornamento dispositivo doppio proprietà segnalate. <br/>Carica file di tooperform concede l'autorizzazione. <br/>Questa autorizzazione viene usata dai dispositivi. |
 
 ## <a name="additional-reference-material"></a>Materiale di riferimento
 
-Di seguito sono indicati altri argomenti di riferimento reperibili nella Guida per gli sviluppatori dell'hub IoT:
+Altri argomenti di riferimento nella Guida per sviluppatori di IoT Hub hello includono:
 
-* [Endpoint dell'hub IoT][lnk-endpoints] illustra i diversi endpoint esposti da ogni hub IoT per operazioni della fase di esecuzione e di gestione.
-* [Quote e limitazioni][lnk-quotas] descrive le quote e i comportamenti di limitazione applicabili al servizio hub IoT.
-* [Azure IoT SDK per dispositivi e servizi][lnk-sdks] elenca gli SDK nei diversi linguaggi che è possibile usare quando si sviluppano app per dispositivi e servizi che interagiscono con l'hub IoT.
-* [Linguaggio di query dell'hub IoT][lnk-query] descrive il linguaggio di query che è possibile usare per recuperare informazioni dall'hub IoT sui dispositivi gemelli e sui processi.
-* [Supporto di MQTT nell'hub IoT][lnk-devguide-mqtt] offre altre informazioni sul supporto dell'hub IoT per il protocollo MQTT.
+* [Gli endpoint IoT Hub] [ lnk-endpoints] descrive hello vari endpoint che espone ogni hub IoT per le operazioni in fase di esecuzione e gestione.
+* [Limitazione delle richieste e le quote] [ lnk-quotas] descrive le quote di hello e la limitazione di comportamenti che si applicano toohello servizio IoT Hub.
+* [Gli SDK di dispositivi e servizi di Azure IoT] [ lnk-sdks] elenchi hello language vari SDK è possibile utilizzare quando si sviluppano applicazioni di servizio sia sul dispositivo che interagiscono con l'IoT Hub.
+* [Il linguaggio di query di IoT Hub] [ lnk-query] descrive il linguaggio di query hello è possibile utilizzare tooretrieve informazioni dall'IoT Hub sul gemelli di dispositivo e i processi.
+* [Supporto di IoT Hub MQTT] [ lnk-devguide-mqtt] fornisce ulteriori informazioni sul supporto di IoT Hub per protocollo MQTT hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione si è appreso come controllare l'accesso all'hub IoT. Altri argomenti di interesse reperibili nella Guida per sviluppatori sono i seguenti:
+Ora si è appreso come toocontrol accedere IoT Hub, potrebbero essere interessati hello seguenti argomenti della Guida per sviluppatori IoT Hub:
 
-* [Use device twins to synchronize state and configurations][lnk-devguide-device-twins] (Usare dispositivi gemelli per sincronizzare lo stato e le configurazioni)
+* [Utilizzare lo stato del dispositivo gemelli toosynchronize e configurazioni][lnk-devguide-device-twins]
 * [Richiamare un metodo diretto in un dispositivo][lnk-devguide-directmethods]
 * [Pianificare processi in più dispositivi][lnk-devguide-jobs]
 
-Per provare alcuni dei concetti descritti in questo articolo, possono essere utili le esercitazioni di hub IoT seguenti:
+Se si desidera tootry alcuni dei concetti di hello descritti in questo articolo, si potrebbero essere interessati hello seguenti esercitazioni IoT Hub:
 
 * [Introduzione all'hub IoT di Azure][lnk-getstarted-tutorial]
-* [Inviare messaggi da cloud a dispositivo con l'hub IoT][lnk-c2d-tutorial]
-* [Elaborare messaggi da dispositivo a cloud dell'hub IoT][lnk-d2c-tutorial]
+* [La modalità toosend cloud a dispositivo dei messaggi con l'IoT Hub][lnk-c2d-tutorial]
+* [Come tooprocess messaggi da dispositivo a cloud IoT Hub][lnk-d2c-tutorial]
 
 <!-- links and images -->
 

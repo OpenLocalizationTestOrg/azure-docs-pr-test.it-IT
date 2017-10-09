@@ -1,6 +1,6 @@
 ---
-title: Creare, collegare, eliminare o spostare un account di integrazione in App per la logica di Azure | Documentazione Microsoft
-description: Come creare un account di integrazione e collegarlo ad app per la logica
+title: aaaCreate, collegamento, eliminare o spostare un account di integrazione in App per la logica di Azure | Documenti Microsoft
+description: Come toocreate un'integrazione account, quindi collegarlo tooyour logica App
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2017
 ms.author: LADocs; mandia
-ms.openlocfilehash: 716e7b5bab8725dea0fd2b760d0e46e8e892c5b4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fda6c91723b3e3624ee176df112ba8b6c9800273
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-an-integration-account"></a>Cos'è un account di integrazione?
 
-Un account di integrazione consente alle app di integrazione aziendale di gestire elementi diversi, ad esempio schemi, mappe, certificati, partner e contratti. Qualsiasi applicazione di integrazione create usa un account di integrazione per accedere a tali schemi, mappe, certificati e così via.
+Un account di integrazione consente enterprise integration App toomanage elementi, inclusi gli schemi, mappe, i certificati, partner e contratti. Qualsiasi applicazione di integrazione che è creare Usa un tooaccess account integrazione questi schemi, mappe, i certificati e così via.
 
 ## <a name="create-an-integration-account"></a>Creare un account di integrazione
 
-1.  Accedere al [Portale di Azure](http://portal.azure.com "Portale di Azure"). Fare clic su **Altri servizi** nel menu a sinistra.
+1.  Accedi toohello [portale di Azure](http://portal.azure.com "portale di Azure"). Scegliere dal menu a sinistra hello **più servizi**.
 
     ![Selezionare "Altri servizi"](./media/logic-apps-enterprise-integration-accounts/account-1.png)
 
-2. Nella casella di ricerca, digitare "integrazione" come filtro. Nell'elenco dei risultati selezionare **Account di integrazione**.
+2. Nella casella di ricerca hello, digitare "integrazione" per il filtro. Selezionare dall'elenco risultati hello **account di integrazione**.
 
     ![Filtro su "integrazione", selezionare "Account di integrazione"](./media/logic-apps-enterprise-integration-accounts/account-2.png)  
 
-3. Nella parte superiore della pagina fare clic su **Aggiungi**.
+3. Nella parte superiore di hello della pagina hello, scegliere **Aggiungi**.
 
     ![Scegliere Aggiungi](./media/logic-apps-enterprise-integration-accounts/account-3.png)
 
-4. Denominare l'account di integrazione e selezionare la sottoscrizione di Azure da usare. È possibile creare un nuovo **Gruppo di risorse** o selezionarne uno esistente. Selezionare quindi la **località** in cui eseguire l'hosting dell'account di integrazione e un **piano tariffario**. 
+4. Denominare l'account di integrazione e la sottoscrizione di Azure che si desidera toouse di hello Seleziona. È possibile creare un nuovo **Gruppo di risorse** o selezionarne uno esistente. Selezionare quindi la **località** in cui eseguire l'hosting dell'account di integrazione e un **piano tariffario**. 
 
     Al termine, scegliere **Crea**.
 
     ![Immettere i dettagli dell'account di integrazione](./media/logic-apps-enterprise-integration-accounts/account-4.png)
 
-    Azure esegue il provisioning dell'account di integrazione nella località selezionata. L'esecuzione dell'operazione dura circa 1 minuto.
+    Provisioning tramite Azure l'account di integrazione nel percorso selezionato hello, che deve essere completato entro 1 minuto.
 
-5. Aggiornare la pagina. Il nuovo account di integrazione verrà visualizzato nell'elenco.
+5. Aggiornare la pagina hello. Il nuovo account di integrazione verrà visualizzato nell'elenco.
 
     ![Visualizzazione del nuovo account di integrazione](./media/logic-apps-enterprise-integration-accounts/account-5.png) 
 
-Collegare quindi l'account di integrazione creato all'app per la logica. 
+Successivamente, creare collegamenti account integrazione hello è creato tooyour logica app. 
 
-## <a name="link-an-integration-account-to-a-logic-app"></a>Collegare un account di integrazione a un'app per la logica
+## <a name="link-an-integration-account-tooa-logic-app"></a>Collegare un'applicazione di integrazione account tooa logica
 
-Per consentire alle app per la logica di accedere a mappe, schemi, contratti e altri elementi nell'account di integrazione, collegare quest'ultimo all'app per la logica.
+toogive App per la logica di accesso toomaps, schemi, contratti e altri elementi nell'account di integrazione, collegamento hello integrazione account tooyour logica app.
 
 ### <a name="prerequisites"></a>Prerequisiti
 
@@ -62,10 +62,10 @@ Per consentire alle app per la logica di accedere a mappe, schemi, contratti e a
 * App per la logica
 
 > [!NOTE] 
-> Prima di iniziare, assicurarsi che l'account di integrazione e l'app per la logica si trovino nella *stessa posizione di Azure*.
+> Verificare che l'applicazione di account e la logica di integrazione siano hello *nello stesso percorso Azure* prima di iniziare.
 
 
-1. Nel portale di Azure, selezionare l'app per la logica e controllarne la località.
+1. Nel portale di Azure hello, selezionare l'app per la logica e controllare la posizione logica dell'applicazione.
 
     ![Selezionare l'app per la logica, controllare la località](./media/logic-apps-enterprise-integration-accounts/linkaccount-1.png)
 
@@ -73,15 +73,15 @@ Per consentire alle app per la logica di accedere a mappe, schemi, contratti e a
 
     ![Selezionare "Account di integrazione"](./media/logic-apps-enterprise-integration-accounts/linkaccount-2.png)
 
-3. Nell'elenco**Selezionare un account di integrazione** selezionare l'account di integrazione da collegare all'app per la logica. Per completare il collegamento, selezionare **Salva**.
+3. Da hello **selezionare un account di integrazione** elencare, account di integrazione hello selezionare desiderato toolink tooyour logica app. Scegliere il collegamento, toofinish **salvare**.
 
     ![Selezionare l'account di integrazione](./media/logic-apps-enterprise-integration-accounts/linkaccount-3.png)
 
-    Viene visualizzata una notifica con l'avviso che l'account di integrazione è stato collegato all'app per la logica e che tutti gli elementi nell'account di integrazione sono ora disponibili.
+    Si riceve una notifica che mostra l'integrazione di account è collegato tooyour logica app e che tutti gli elementi nell'account di integrazione sono ora disponibili tooyour logica app.
 
-    ![L'app per la logica è collegata all'account di integrazione.](./media/logic-apps-enterprise-integration-accounts/linkaccount-5.png)
+    ![Logica app è collegata tooyour account di integrazione](./media/logic-apps-enterprise-integration-accounts/linkaccount-5.png)
 
-Ora che l'account di integrazione è collegato all'app per la logica, è possibile usare i connettori B2B presenti nelle app per la logica. Alcuni connettori B2B comuni includono la convalida XML e la codifica e decodifica di file flat.  
+Ora che l'account di integrazione è collegato tooyour logica app, è possibile utilizzare i connettori di hello B2B nelle App logica. Alcuni connettori B2B comuni includono la convalida XML e la codifica e decodifica di file flat.  
 
 ## <a name="delete-your-integration-account"></a>Eliminare l'account di integrazione
 
@@ -89,40 +89,40 @@ Ora che l'account di integrazione è collegato all'app per la logica, è possibi
 
     ![Selezionare "Altri servizi"](./media/logic-apps-enterprise-integration-accounts/account-1.png)
 
-2. Nella casella di ricerca, digitare "integrazione" come filtro. Nell'elenco dei risultati selezionare **Account di integrazione**.
+2. Nella casella di ricerca hello, digitare "integrazione" per il filtro. Selezionare dall'elenco risultati hello **account di integrazione**.
 
     ![Filtro su "integrazione", selezionare "Account di integrazione"](./media/logic-apps-enterprise-integration-accounts/account-2.png)  
 
-3. Selezionare l'account di integrazione da eliminare.
+3. Selezionare l'account di integrazione hello che si desidera toodelete.
 
-    ![Selezionare l'account di integrazione da eliminare](./media/logic-apps-enterprise-integration-accounts/account-5.png)
+    ![Selezionare toodelete account di integrazione](./media/logic-apps-enterprise-integration-accounts/account-5.png)
 
-4. Dal menu, scegliere **Elimina**.
+4. Scegliere dal menu hello **eliminare**.
 
     ![Scegliere "Elimina"](./media/logic-apps-enterprise-integration-accounts/delete.png)
 
-5. Confermare la scelta di eliminazione dell'account di integrazione.
+5. Confermare l'account di integrazione di hello toodelete scelte.
 
 ## <a name="move-your-integration-account"></a>Spostare l'account di integrazione
 
-Per spostare un account di integrazione a un'altra sottoscrizione o gruppo di risorse di Azure, seguire questa procedura.
+toomove un tooanother account integrazione gruppo sottoscrizione o la risorsa di Azure, seguire questi passaggi.
 
 > [!IMPORTANT]
-> Dopo lo spostamento di un account di integrazione è necessario aggiornare tutti gli script in modo che usino i nuovi ID risorsa.
+> Dopo aver spostato un account di integrazione, è necessario aggiornare tutti gli script toouse hello nuovi ID di risorsa.
 
 1. Selezionare **Altri servizi**.
 
     ![Selezionare "Altri servizi"](./media/logic-apps-enterprise-integration-accounts/account-1.png)
 
-2. Nella casella di ricerca, digitare "integrazione" come filtro. Nell'elenco dei risultati selezionare **Account di integrazione**.
+2. Nella casella di ricerca hello, digitare "integrazione" per il filtro. Selezionare dall'elenco risultati hello **account di integrazione**.
 
     ![Filtro su "integrazione", selezionare "Account di integrazione"](./media/logic-apps-enterprise-integration-accounts/account-2.png)
 
-3. Selezionare l'account di integrazione da spostare. In **Impostazioni**, scegliere **Proprietà**.
+3. Selezionare l'account di integrazione hello che si desidera toomove. In **Impostazioni**, scegliere **Proprietà**.
 
-    ![Selezionare l'account di integrazione da spostare. In Impostazioni, scegliere Proprietà](./media/logic-apps-enterprise-integration-accounts/move.png)
+    ![Selezionare toomove account di integrazione. In Impostazioni, scegliere Proprietà](./media/logic-apps-enterprise-integration-accounts/move.png)
 
-5. Modificare il gruppo di risorse o la sottoscrizione di Azure associati all'account di integrazione.
+5. Modificare il gruppo di risorse hello o sottoscrizione di Azure che è associato all'account di integrazione.
 
     ![Scegliere Cambia il gruppo di risorse o Cambia sottoscrizione](./media/logic-apps-enterprise-integration-accounts/move-2.png)
 

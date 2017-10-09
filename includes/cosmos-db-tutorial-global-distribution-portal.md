@@ -5,41 +5,41 @@ In questo video di Azure Friday, con Scott Hanselman e Karthik Raman, Principal 
 
 Per informazioni sul funzionamento della replica di database globale in Cosmos DB, vedere [Distribuire i dati a livello globale con Azure Cosmos DB](../articles/documentdb/documentdb-distribute-data-globally.md).
 
-## <a id="addregion"></a>Aggiungere aree di database globali tramite il portale di Azure
-Azure Cosmos DB è disponibile in tutte le [aree di Azure][azureregions] del mondo. Dopo aver selezionato il livello di coerenza predefinito per l'account di database, è possibile associare una o più aree, a seconda del livello di coerenza predefinito e delle esigenze di distribuzione globale scelti.
+## <a id="addregion"></a>Aggiungere aree database globale utilizzando hello portale di Azure
+Azure Cosmos DB è disponibile in tutte le [aree di Azure][azureregions] del mondo. Dopo aver selezionato a livello di coerenza hello predefinito per l'account di database, è possibile associare uno o più aree (a seconda la scelta delle esigenze di distribuzione globale e a livello di coerenza predefinito).
 
-1. Nella barra a sinistra del [portale di Azure](https://portal.azure.com/) fare clic su **Azure Cosmos DB**.
-2. Nel pannello **Azure Cosmos DB** selezionare l'account di database da modificare.
-3. Nel pannello dell'account fare clic su **Replica i dati a livello globale** dal menu.
-4. Nel pannello **Replica i dati a livello globale** selezionare le aree da aggiungere o rimuovere facendo clic su di esse nella mappa e quindi scegliere **Salva**. L'aggiunta di aree ha un costo. Per altre informazioni, vedere la [pagina relativa ai prezzi](https://azure.microsoft.com/pricing/details/documentdb/) o l'articolo [Distribuire i dati a livello globale con DocumentDB](../articles/documentdb/documentdb-distribute-data-globally.md).
+1. In hello [portale di Azure](https://portal.azure.com/)in hello barra sinistra, fare clic su **Azure Cosmos DB**.
+2. In hello **Azure Cosmos DB** blade, hello selezionare database account toomodify.
+3. Nel Pannello di hello account, fare clic su **replicare i dati a livello globale** dal menu di hello.
+4. In hello **replicare i dati a livello globale** pannello selezionare hello aree tooadd o rimuovere, fare clic su aree mappa hello e quindi fare clic su **salvare**. È presente un aree tooadding costo, vedere hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/documentdb/) o hello [distribuire dati a livello globale con DocumentDB](../articles/documentdb/documentdb-distribute-data-globally.md) per ulteriori informazioni.
    
-    ![Fare clic sulle aree nella mappa per aggiungerle o rimuoverle][1]
+    ![Fare clic su aree hello in hello mappa tooadd o rimuoverli][1]
     
-Dopo l'aggiunta di una seconda area, nel pannello **Replica i dati a livello globale** del portale viene abilitata l'opzione **Failover manuale**. È possibile usare questa opzione per testare il processo di failover o per modificare l'area di scrittura primaria. Dopo avere aggiunto una terza area, l'opzione **Priorità di failover** viene abilitata nello stesso pannello per poter modificare l'ordine di failover per le operazioni di lettura.  
+Dopo aver aggiunto una seconda area, hello **Failover manuale** opzione è abilitata nei hello **replicare i dati a livello globale** pannello nel portale di hello. È possibile utilizzare questo processo di failover di opzione tootest hello o modificare l'area primaria scrittura hello. Dopo aver aggiunto un'area del terzo, hello **le priorità di Failover** è attivata l'opzione hello pannello stesso in modo che è possibile modificare l'ordine di failover hello per le letture.  
 
 ### <a name="selecting-global-database-regions"></a>Selezionare aree di database globali
 Esistono due scenari comuni per la configurazione di due o più aree:
 
-1. Offerta di accesso con bassa latenza ai dati indipendentemente dalla posizione del mondo in cui si trovano gli utenti finali
+1. Recapito a bassa latenza accesso agli utenti di tooend toodata indipendentemente da dove si trovano in tutto il mondo hello
 2. Aggiunta di resilienza a livello di area per garantire continuità aziendale e ripristino di emergenza (BCDR)
 
-Per offrire l'accesso con bassa latenza agli utenti finali, è consigliabile distribuire l'applicazione e aggiungere Azure Cosmos DB nelle aree corrispondenti alla località in cui si trovano gli utenti dell'applicazione.
+Per la fornitura a bassa latenza tooend utenti, è consigliabile toodeploy entrambi hello applicazione e aggiungere database Cosmos Azure in aree hello corrispondenti agli utenti dell'applicazione hello toowhere si trovano.
 
-Per finalità BCDR, è consigliabile aggiungere le aree in base alle coppie di aree descritte nell'articolo [Continuità aziendale e ripristino di emergenza nelle aree geografiche abbinate di Azure][bcdr].
+Per BCDR, è consigliabile tooadd aree in base alle coppie di area hello descritte in hello [Business continuità e ripristino di emergenza (BCDR): aree abbinate Azure] [ bcdr] articolo.
 
 <!--
 
-## <a id="selectwriteregion"></a>Select the write region
+## <a id="selectwriteregion"></a>Select hello write region
 
-While all regions associated with your Cosmos DB database account can serve reads (both, single item as well as multi-item paginated reads) and queries, only one region can actively receive the write (insert, upsert, replace, delete) requests. To set the active write region, do the following  
+While all regions associated with your Cosmos DB database account can serve reads (both, single item as well as multi-item paginated reads) and queries, only one region can actively receive hello write (insert, upsert, replace, delete) requests. tooset hello active write region, do hello following  
 
 
-1. In the **Azure Cosmos DB** blade, select the database account to modify.
-2. In the account blade, click **Replicate data globally** from the menu.
-3. In the **Replicate data globally** blade, click **Manual Failover** from the top bar.
-    ![Change the write region under Azure Cosmos DB Account > Replicate data globally > Manual Failover][2]
-4. Select a read region to become the new write region, click the checkbox to confirm triggering a failover, and click OK
-    ![Change the write region by selecting a new region in list under Azure Cosmos DB Account > Replicate data globally > Manual Failover][3]
+1. In hello **Azure Cosmos DB** blade, select hello database account toomodify.
+2. In hello account blade, click **Replicate data globally** from hello menu.
+3. In hello **Replicate data globally** blade, click **Manual Failover** from hello top bar.
+    ![Change hello write region under Azure Cosmos DB Account > Replicate data globally > Manual Failover][2]
+4. Select a read region toobecome hello new write region, click hello checkbox tooconfirm triggering a failover, and click OK
+    ![Change hello write region by selecting a new region in list under Azure Cosmos DB Account > Replicate data globally > Manual Failover][3]
 
 --->
 
@@ -48,7 +48,7 @@ While all regions associated with your Cosmos DB database account can serve read
 [2]: ./media/cosmos-db-tutorial-global-distribution-portal/azure-cosmos-db-manual-failover-1.png
 [3]: ./media/cosmos-db-tutorial-global-distribution-portal/azure-cosmos-db-manual-failover-2.png
 
-<!--Reference style links - using these makes the source content way more readable than using inline links-->
+<!--Reference style links - using these makes hello source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: ../articles/cosmos-db/consistency-levels.md
 [azureregions]: https://azure.microsoft.com/regions/#services

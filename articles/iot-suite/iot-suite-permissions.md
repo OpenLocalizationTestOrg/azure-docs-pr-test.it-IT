@@ -1,6 +1,6 @@
 ---
-title: Azure IoT Suite e Azure Active Directory | Documentazione Microsoft
-description: Descrive in che modo Azure IoT Suite usa Azure Active Directory per gestire le autorizzazioni.
+title: aaaAzure IoT Suite e Azure Active Directory | Documenti Microsoft
+description: Descrive l'utilizzo di autorizzazioni di Azure Active Directory toomanage Azure IoT Suite.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,134 +15,134 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: dobett
-ms.openlocfilehash: 518e6a481ab6385b03dd3ddc2e155fb724e677fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4768630f2de4bb431731fbd4e8929232bc80b9f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="permissions-on-the-azureiotsuitecom-site"></a>Autorizzazioni per il sito azureiotsuite.com
+# <a name="permissions-on-hello-azureiotsuitecom-site"></a>Autorizzazioni nel sito azureiotsuite.com hello
 
 ## <a name="what-happens-when-you-sign-in"></a>Cosa accade quando si accede
 
-Quando si accede per la prima volta ad [azureiotsuite.com][lnk-azureiotsuite], il sito determina i livelli di autorizzazione in base al tenant di Azure Active Directory (AAD) attualmente selezionato e alla sottoscrizione di Azure.
+Hello prima volta che accedi a [azureiotsuite.com][lnk-azureiotsuite], sito hello determina i livelli di autorizzazione hello basato sul hello attualmente selezionato tenant Azure Active Directory (AAD) e Azure sottoscrizione.
 
-1. Per prima cosa, il sito cerca prima in Azure a quale tenant di AAD appartiene l'utente per popolare l'elenco di tenant visualizzato accanto al nome utente connesso. In questo momento, il sito può ricevere solo i token utente per un tenant alla volta. Di conseguenza, quando si passa a un tenant diverso usando l'elenco a discesa nell'angolo superiore destro, il sito registra di nuovo l'utente nel tenant per ottenere il token di tale tenant.
+1. In primo luogo, elenco toopopulate hello del nome utente tooyour Avanti tenant visualizzato sito hello rileva da Azure cui si appartiene i tenant AAD. Attualmente, sito hello può ricevere solo i token utente per un tenant alla volta. Pertanto, quando si passa tenant usando l'elenco a discesa hello nell'angolo superiore destro di hello, sito hello consente l'accesso i token di hello toothat tenant tooobtain per tenant.
 
-2. Successivamente, il sito cerca in Azure quali sottoscrizioni sono state associate dall'utente al tenant selezionato. Le sottoscrizioni disponibili vengono visualizzate quando si crea una nuova soluzione preconfigurata.
+2. Successivamente, il sito hello rileva dalle sottoscrizioni che sono stati associati a hello selezionato tenant di Azure. Vedrai sottoscrizioni disponibili hello quando si crea una nuova soluzione preconfigurata.
 
-3. Infine, il sito recupera tutte le risorse nelle sottoscrizioni e nei gruppi di risorse contrassegnati come soluzioni preconfigurate e popola i riquadri nella home page.
+3. Infine, sito hello recupera tutte le risorse di hello in sottoscrizioni hello e gruppi di risorse contrassegnate come soluzioni preconfigurate e popola riquadri hello hello home page.
 
-Le sezioni seguenti descrivono i ruoli che controllano l'accesso alle soluzioni preconfigurate.
+Hello le sezioni seguenti vengono descritti i ruoli di hello che controllano l'accesso toohello preconfigurato soluzioni.
 
 ## <a name="aad-roles"></a>Ruoli AAD
 
-I ruoli AAD controllano la capacità di provisioning delle soluzioni preconfigurate e gestiscono gli utenti in una soluzione preconfigurata.
+ruoli AAD Hello le soluzioni di effettuare il provisioning preconfigurato possibilità hello di controllo e gestire gli utenti in una soluzione preconfigurata.
 
-Per altre informazioni sui ruoli di amministratore in AAD, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory][lnk-aad-admin]. L'articolo corrente è incentrato sui ruoli della directory di **Amministratore globale** e **Utente** usati dalle soluzioni preconfigurate.
+Per altre informazioni sui ruoli di amministratore in AAD, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory][lnk-aad-admin]. Hello corrente viene descritta la hello **amministratore globale** hello e **utente** ruoli della directory utilizzata da hello preconfigurato soluzioni.
 
 ### <a name="global-administrator"></a>Amministratore globale
 
 Per ogni tenant di AAD possono essere presenti più amministratori globali:
 
-* Quando si crea un tenant di AAD, si è per impostazione predefinita l'amministratore globale del tenant.
-* L'amministratore globale può eseguire il provisioning di una soluzione preconfigurata e gli viene assegnato un ruolo **Admin** per l'applicazione all'interno di tenant di AAD.
-* Se un altro utente nello stesso tenant di AAD crea un'applicazione, il ruolo predefinito concesso all'amministratore globale è **ReadOnly**.
-* Gli amministratori globali possono assegnare agli utenti dei ruoli per le applicazioni tramite il [portale di Azure][lnk-portal].
+* Quando si crea un tenant di AAD, si è amministratore predefinito hello globale del tenant.
+* amministratore globale di Hello è possibile eseguire il provisioning di una soluzione preconfigurata e viene assegnato un **Admin** ruolo per l'applicazione hello interno al proprio tenant AAD.
+* Se un altro utente in hello stesso tenant di AAD viene creata un'applicazione, ruolo predefinito hello concesso toohello amministratore globale è **ReadOnly**.
+* Un amministratore globale può assegnare tooroles gli utenti per applicazioni che utilizzano hello [portale di Azure][lnk-portal].
 
 ### <a name="domain-user"></a>Utente di dominio
 
 Per ogni tenant di AAD possono essere presenti molti utenti del dominio:
 
-* Un utente di dominio può effettuare il provisioning di una soluzione preconfigurata tramite il sito [azureiotsuite.com][lnk-azureiotsuite]. Per impostazione predefinita, all'utente di dominio viene concesso il ruolo di **Amministratore** nell'applicazione in cui è stato eseguito il provisioning.
-* Un utente di dominio può creare un'applicazione usando lo script build.cmd nel repository [azure-iot-remote-monitoring][lnk-rm-github-repo], [azure-iot-predictive-maintenance][lnk-pm-github-repo] oppure [azure-iot-connected-factory][lnk-cf-github-repo]. Tuttavia, il ruolo predefinito concesso all'utente di dominio è **ReadOnly**, perché un utente di dominio non dispone dell'autorizzazione per assegnare i ruoli.
-* Se un altro utente nel tenant di AAD crea un'applicazione, all'utente di dominio viene assegnato il ruolo **ReadOnly** per impostazione predefinita per l'applicazione.
+* Un utente di dominio può eseguire il provisioning di una soluzione preconfigurata tramite hello [azureiotsuite.com] [ lnk-azureiotsuite] sito. Per impostazione predefinita, utente di dominio hello viene concessa hello **Admin** ruolo in hello il provisioning dell'applicazione.
+* Un utente di dominio è possibile creare un'applicazione tramite lo script build.cmd hello in hello [azure iot-remoto monitoraggio][lnk-rm-github-repo], [azure-iot--manutenzione predittiva] [ lnk-pm-github-repo], o [azure iot-connessione-factory] [ lnk-cf-github-repo] repository. Tuttavia, ruolo predefinito hello concesso è utente di dominio toohello **ReadOnly**, perché un utente di dominio non dispone di ruoli tooassign di autorizzazione.
+* Se un altro utente nel tenant AAD hello viene creata un'applicazione, utente di dominio hello viene assegnato hello **ReadOnly** ruolo per impostazione predefinita per l'applicazione.
 * Un utente di dominio non può assegnare ruoli per le applicazioni, quindi non può aggiungere utenti o ruoli per gli utenti di un'applicazione anche se ne è stato effettuato il provisioning.
 
 ### <a name="guest-user"></a>Utente guest
 
-Per ogni tenant AAD possono essere presenti molti utenti guest. Gli utenti guest hanno un set di diritti limitato nel tenant di AAD. Di conseguenza, gli utenti guest non possono effettuare il provisioning di una soluzione preconfigurata nel tenant di AAD.
+Per ogni tenant AAD possono essere presenti molti utenti guest. Gli utenti guest dispongono di un set limitato di diritti nel tenant AAD hello. Di conseguenza, gli utenti guest non è possibile eseguire il provisioning di una soluzione preconfigurata nel tenant AAD hello.
 
-Per altre informazioni sugli utenti e i ruoli in AAD, vedere le risorse seguenti:
+Per ulteriori informazioni su utenti e ruoli in AAD, vedere hello seguenti risorse:
 
 * [Creare utenti in Azure AD][lnk-create-edit-users]
-* [Assegnare utenti alle app][lnk-assign-app-roles]
+* [Assegnare gli utenti tooapps][lnk-assign-app-roles]
 
 ## <a name="azure-subscription-administrator-roles"></a>Ruoli di amministratore della sottoscrizione di Azure
 
-I ruoli di amministrazione di Azure controllano la possibilità di eseguire il mapping di una sottoscrizione di Azure a un tenant di AD.
+ruoli di amministratore di Azure Hello controllare hello possibilità toomap tenant di tooan AD una sottoscrizione di Azure.
 
-È possibile trovare altre informazioni sui ruoli di amministratore nell'articolo [Come aggiungere o modificare i ruoli Co-amministratore, Amministratore del servizio e Amministratore account di Azure][lnk-admin-roles].
+Maggiori informazioni sui ruoli di amministratore Azure hello nell'articolo hello [come tooadd o modificare l'Account amministratore, amministratore del servizio e Azure CO-amministratore][lnk-admin-roles].
 
 ## <a name="application-roles"></a>Ruoli applicazione
 
-I ruoli applicazione controllano l'accesso ai dispositivi nella soluzione preconfigurato.
+i ruoli applicazione Hello controllano accesso toodevices nella soluzione preconfigurata.
 
 In un'applicazione su cui è stato eseguito il provisioning sono stati definiti due ruoli e uno implicito:
 
-* **Admin:** dispone di autorizzazioni complete per aggiungere, gestire, rimuovere i dispositivi e modificare le impostazioni.
+* **Amministratore:** ha tooadd controllo completo, gestire, rimuovere i dispositivi e modificare le impostazioni.
 * **ReadOnly:** è possibile visualizzare i dispositivi, le regole, le azioni, i processi e i dati di telemetria.
 
-È possibile trovare le autorizzazioni assegnate a ogni ruolo nel file di origine [RolePermissions.cs][lnk-resource-cs].
+È possibile trovare le autorizzazioni di hello assegnato il ruolo di tooeach in hello [RolePermissions.cs] [ lnk-resource-cs] file di origine.
 
 ### <a name="changing-application-roles-for-a-user"></a>Modifica dei ruoli applicazione di un utente
 
-È possibile usare la procedura seguente per configurare un utente di Active Directory come amministratore della soluzione preconfigurata.
+È possibile utilizzare hello seguendo procedure toomake un utente in Active Directory un amministratore della soluzione preconfigurata.
 
-Per modificare i ruoli per un utente, è necessario essere un amministratore globale di AAD:
+È necessario essere un ruolo di toochange AAD amministratore globale per un utente:
 
-1. Accedere al [portale di Azure][lnk-portal].
+1. Passare toohello [portale di Azure][lnk-portal].
 2. Selezionare **Azure Active Directory**.
-3. Verificare che si sta usando la directory selezionata in azureiotsuite.com durante il provisioning della soluzione. Se si dispone di più directory associate alla sottoscrizione, è possibile passare da una all'altra facendo clic sul nome dell'account in alto a destra del portale.
+3. Verificare che si utilizzano directory hello che scelto azureiotsuite.com quando è stato effettuato il provisioning della soluzione. Se si dispone di più directory associata alla sottoscrizione, è possibile passare tra loro se si sceglie il nome dell'account in alto a destra di hello del portale hello.
 4. Fare clic su **Applicazioni aziendali**, quindi su **Tutte le applicazioni**.
 4. Vengono visualizzate **Tutte le applicazioni** con stato **Qualsiasi**. Eseguire quindi una ricerca per un'applicazione con il nome della soluzione preconfigurata.
-5. Fare clic sul nome dell'applicazione che coincide con il nome della soluzione preconfigurata.
+5. Fare clic su nome hello dell'applicazione hello che corrisponde al nome della soluzione preconfigurata.
 6. Fare clic su **Utenti e gruppi**.
-7. Selezionare l'utente per cui si vogliono scambiare i ruoli.
-8. Fare clic su **Assegna** e selezionare il ruolo, ad esempio **Amministratore**, da assegnare all'utente, fare clic sul segno di spunta.
+7. Selezionare utente hello tooswitch ruoli.
+8. Fare clic su **assegnare** e selezionare hello ruolo (ad esempio **Admin**) tooassign toohello utente, fare clic su hello segno di spunta.
 
-## <a name="faq"></a>Domande frequenti
+## <a name="faq"></a>domande frequenti
 
-### <a name="im-a-service-administrator-and-id-like-to-change-the-directory-mapping-between-my-subscription-and-a-specific-aad-tenant-how-do-i-complete-this-task"></a>Un amministratore del servizio vuole modificare il mapping della directory tra la sottoscrizione e un tenant di AAD specifico. Come completare questa attività
+### <a name="im-a-service-administrator-and-id-like-toochange-hello-directory-mapping-between-my-subscription-and-a-specific-aad-tenant-how-do-i-complete-this-task"></a>Sono un amministratore del servizio e il mapping della directory hello toochange vorrei tra la sottoscrizione e un tenant di Azure ad specifico. Come completare questa attività
 
-1. Accedere al [portale di Azure classico][lnk-classic-portal] e fare clic su **Impostazioni** nell'elenco dei servizi sul lato sinistro.
-2. Selezionare la sottoscrizione per cui si vuole modificare il mapping della directory.
+1. Passare toohello [portale di Azure classico][lnk-classic-portal], fare clic su **impostazioni** nell'elenco di hello dei servizi sul lato sinistro di hello.
+2. Selezionare la sottoscrizione di hello che desideri toochange hello directory mapping.
 3. Fare clic su **Modifica directory**.
-4. Nell'elenco a discesa selezionare la **Directory** si vuole usare. Fare clic sulla freccia Avanti.
-5. Verificare il mapping della directory e i coamministratori interessati. Se ci si sposta da un'altra directory, tutti i coamministratori dalla directory originale verranno rimossi.
+4. Seleziona hello **Directory** desiderato nell'elenco a discesa hello toouse. Fare clic sulla freccia avanti hello.
+5. Confermare il mapping della directory hello e coamministratori interessati. Se si stanno spostando da un'altra directory, vengono rimossi tutti i hello coamministratori dalla directory originale hello.
 
-### <a name="im-a-domain-usermember-on-the-aad-tenant-and-ive-created-a-preconfigured-solution-how-do-i-get-assigned-a-role-for-my-application"></a>Un utente o membro di dominio del tenant di AAD ha creato una soluzione preconfigurata. Come gli viene assegnato un ruolo per l'applicazione?
+### <a name="im-a-domain-usermember-on-hello-aad-tenant-and-ive-created-a-preconfigured-solution-how-do-i-get-assigned-a-role-for-my-application"></a>Un utente/membro di dominio nel tenant AAD hello e ho creato una soluzione preconfigurata. Come gli viene assegnato un ruolo per l'applicazione?
 
-Contattare l'amministratore globale per diventare amministratore globale del tenant di AAD e assegnare ruoli agli utenti. In alternativa, contattare l'amministratore globale per assegnare direttamente un ruolo. Se si vuole modificare il tenant di AAD in cui è stata distribuita la soluzione preconfigurata, vedere la domanda successiva.
+Chiedere a un amministratore globale di toomake è un amministratore globale in hello AAD tenant e quindi assegnare i ruoli toousers. In alternativa, chiedere tooassign un amministratore globale è un ruolo direttamente. Se si desidera tenant AAD toochange hello in che è stata distribuita la soluzione preconfigurata, vedere la domanda successiva hello.
 
-### <a name="how-do-i-switch-the-aad-tenant-my-remote-monitoring-preconfigured-solution-and-application-are-assigned-to"></a>Come si cambia il tenant AAD a cui sono assegnate l'applicazione e soluzione preconfigurata di monitoraggio remoto?
+### <a name="how-do-i-switch-hello-aad-tenant-my-remote-monitoring-preconfigured-solution-and-application-are-assigned-to"></a>Come passare la soluzione preconfigurata di monitoraggio remoto e l'applicazione assegnati ai tenant AAD hello?
 
-È possibile eseguire una distribuzione cloud da <https://github.com/Azure/azure-iot-remote-monitoring> ed eseguire una ridistribuizione con un tenant AAD appena creato. Poiché per impostazione predefinita quando si crea un nuovo tenant di AAD si diventa un amministratore globale, si dispone anche dell'autorizzazione per aggiungere utenti e assegnare loro dei ruoli.
+È possibile eseguire una distribuzione cloud da <https://github.com/Azure/azure-iot-remote-monitoring> ed eseguire una ridistribuizione con un tenant AAD appena creato. Poiché sono, per impostazione predefinita, un amministratore globale quando si crea un tenant di AAD, gli utenti tooadd le autorizzazioni e assegnare ruoli agli utenti di toothose.
 
-1. Creare una directory di AAD nel [Portale di Azure][lnk-portal].
-2. Passare a <https://github.com/Azure/azure-iot-remote-monitoring>.
+1. Creare una directory AAD in hello [portale di Azure][lnk-portal].
+2. Andare troppo<https://github.com/Azure/azure-iot-remote-monitoring>.
 3. Eseguire `build.cmd cloud [debug | release] {name of previously deployed remote monitoring solution}`. Ad esempio `build.cmd cloud debug myRMSolution`.
-4. Quando richiesto, impostare il **tenantid** come tenant appena creato al posto del tenant precedente.
+4. Quando richiesto, impostare hello **tenantid** toobe tenant appena creato, anziché del tenant precedente.
 
-### <a name="i-want-to-change-a-service-administrator-or-co-administrator-when-logged-in-with-an-organisational-account"></a>Si vuole modificare un amministratore del servizio o coamministratore quando si accede con un account dell'organizzazione
+### <a name="i-want-toochange-a-service-administrator-or-co-administrator-when-logged-in-with-an-organisational-account"></a>Voglio toochange amministratore del servizio o coamministratore quando l'accesso con un account organizzativo
 
-Vedere l'articolo di supporto [Modifica dell'amministratore del servizio e del coamministratore quando si effettua l'accesso con un account dell'organizzazione][lnk-service-admins].
+Vedere l'articolo del supporto tecnico hello [modifica amministratore del servizio e coamministratore quando l'accesso con un account organizzativo][lnk-service-admins].
 
-### <a name="why-am-i-seeing-this-error-your-account-does-not-have-the-proper-permissions-to-create-a-solution-please-check-with-your-account-administrator-or-try-with-a-different-account"></a>Perché viene visualizzato un errore simile al seguente? "L'account non ha le autorizzazioni appropriate per creare una soluzione. Rivolgersi all'amministratore account o provare con un account diverso".
+### <a name="why-am-i-seeing-this-error-your-account-does-not-have-hello-proper-permissions-toocreate-a-solution-please-check-with-your-account-administrator-or-try-with-a-different-account"></a>Perché viene visualizzato un errore simile al seguente? "L'account non dispone hello delle autorizzazioni appropriate toocreate una soluzione. Rivolgersi all'amministratore account o provare con un account diverso".
 
-Per indicazioni vedere il diagramma seguente:
+Esaminare hello diagramma per linee guida seguenti:
 
 ![][img-flowchart]
 
 > [!NOTE]
-> Se si continua a visualizzare l'errore dopo aver confermato di essere un amministratore globale del tenant AAD e un coamministratore della sottoscrizione, l'amministratore dell'account dovrà rimuovere l'utente e assegnare nuovamente le autorizzazioni necessarie in questo ordine. Innanzitutto, dovrà aggiungere l'utente come amministratore globale e quindi aggiungere l'utente come coamministratore della sottoscrizione di Azure. Se i problemi persistono, contattare il tema [Guida e supporto][lnk-help-support].
+> Se si continua l'errore hello toosee dopo la convalida si è un amministratore globale nel tenant AAD hello e un coamministratore della sottoscrizione di hello, chiedere all'amministratore di account rimuovere utente hello e riassegnare le autorizzazioni necessarie per questo ordine. Innanzitutto, aggiungere hello utente come amministratore globale e quindi aggiungere l'utente come coamministratore su hello sottoscrizione di Azure. Se i problemi persistono, contattare il tema [Guida e supporto][lnk-help-support].
 
-### <a name="why-am-i-seeing-this-error-when-i-have-an-azure-subscription-an-azure-subscription-is-required-to-create-pre-configured-solutions-you-can-create-a-free-trial-account-in-just-a-couple-of-minutes"></a>Perché viene visualizzato questo errore quando si dispone di una sottoscrizione di Azure? "Per creare soluzioni preconfigurate è necessaria una sottoscrizione di Azure. È possibile creare un account di valutazione gratuito in pochi minuti."
+### <a name="why-am-i-seeing-this-error-when-i-have-an-azure-subscription-an-azure-subscription-is-required-toocreate-pre-configured-solutions-you-can-create-a-free-trial-account-in-just-a-couple-of-minutes"></a>Perché viene visualizzato questo errore quando si dispone di una sottoscrizione di Azure? "Una sottoscrizione di Azure è necessario toocreate preconfigurato soluzioni. È possibile creare un account di valutazione gratuito in pochi minuti."
 
-Se si è certi di avere una sottoscrizione di Azure, convalidare il mapping del tenant per la sottoscrizione e verificare che sia selezionato il tenant corretto nell'elenco a discesa. Se si è verificato che il tenant desiderato è corretto, seguire il diagramma precedente e verificare il mapping della sottoscrizione e il tenant di AAD.
+Se si è certi di avere una sottoscrizione di Azure, convalidare i mapping per la sottoscrizione del tenant hello e verificare tenant corretto hello sia selezionato nell'elenco a discesa hello. Se è stato convalidato hello desiderato tenant è corretto, seguire hello precedente diagramma e convalidare il mapping di hello della sottoscrizione e questo tenant AAD.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni su IoT Suite, vedere come [personalizzare una soluzione preconfigurata][lnk-customize].
+toocontinue apprendendo IoT Suite, vedere come è possibile [personalizzare una soluzione preconfigurata][lnk-customize].
 
 [img-flowchart]: media/iot-suite-permissions/flowchart.png
 

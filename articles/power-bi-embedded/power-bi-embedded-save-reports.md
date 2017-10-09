@@ -1,6 +1,6 @@
 ---
-title: Salvare i report in Azure Power BI Embedded | Microsoft Docs
-description: Informazioni su come salvare i report in Power BI Embedded. Per il corretto funzionamento sono necessarie le autorizzazioni appropriate.
+title: aaaSave report in Power BI Embedded Azure | Documenti Microsoft
+description: "Informazioni sull'incorporamento di report toosave all'interno di Power BI. Ciò richiede autorizzazioni appropriate nell'ordine toowork correttamente."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: ad895004cc2972f2ded81566186325a16d401151
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 984537ce1ce1afc787d6c6c9f61ae8d6226d1171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="save-reports-in-power-bi-embedded"></a>Salvare i report in Power BI Embedded
 
-Informazioni su come salvare i report in Power BI Embedded. Per il corretto funzionamento sono necessarie le autorizzazioni appropriate.
+Informazioni sull'incorporamento di report toosave all'interno di Power BI. Ciò richiede autorizzazioni appropriate nell'ordine toowork correttamente.
 
-Con Power BI Embedded è possibile modificare report esistenti e salvarli, nonché creare un nuovo report ed eseguirne il salvataggio con nome.
+Con Power BI Embedded è possibile modificare report esistenti e salvarli, È anche possibile creare un nuovo report e salvare come un nuovo toocreate report uno.
 
-Per salvare un report, è prima di tutto necessario creare un token per il report specifico con gli ambiti corretti:
+In ordine toosave un report è necessario innanzitutto toocreate un token per il report specifico di hello con ambiti destra hello:
 
-* Per abilitare il salvataggio, è necessario l'ambito Report.ReadWrite
-* Per abilitare il salvataggio con nome, sono necessari gli ambiti Report.Read e Workspace.Report.Copy
-* Per abilitare entrambi, sono necessari Report.ReadWrite e Workspace.Report.Copy
+* è necessario tooenable Salva Report.ReadWrite ambito
+* tooenable Salva come ambiti Report.Read e Workspace.Report.Copy sono necessari
+* tooenable salvataggio e la Salva con nome, Report.ReadWrite e Workspace.Report.Copy requierd
 
-Per abilitare i pulsanti Salva/Salva con nome corretti nel menu File, è necessario specificare l'autorizzazione appropriata nella configurazione di incorporamento quando si incorpora il report, rispettivamente:
+Rispettivamente in hello tooenable ordine destra Salva o Salva come i pulsanti nel menu file necessario tooprovide hello destro autorizzazione nella configurazione di incorporamento hello quando si incorpora hello report:
 
 * models.Permissions.ReadWrite
 * models.Permissions.Copy
 * models.Permissions.All
 
 > [!NOTE]
-> Anche il token di accesso necessita degli ambiti appropriati. Per altre informazioni, vedere [Scopes](power-bi-embedded-app-token-flow.md#scopes) (Ambiti).
+> Il token di accesso deve inoltre dagli ambiti appropriati hello. Per altre informazioni, vedere [Scopes](power-bi-embedded-app-token-flow.md#scopes) (Ambiti).
 
 ## <a name="embed-report-in-edit-mode"></a>Incorporare un report in modalità di modifica
 
-Se si vuole incorporare un report in modalità di modifica all'interno dell'app, è sufficiente passare le proprietà corrette nella configurazione di incorporamento e chiamare powerbi.embed(). Per visualizzare i pulsanti Salva e Salva con nome in modalità di modifica, sarà necessario specificare le autorizzazioni e una modalità di visualizzazione. Per altre informazioni, vedere [Embed configuration details](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details) (Dettagli della configurazione di incorporamento).
+Di seguito si desidera tooEmbed un report in modalità di modifica all'interno dell'app, toodo così sufficiente passare le proprietà a destra di hello nella configurazione di incorporamento chiamare powerbi.embed(). Sarà necessario toosupply autorizzazioni e un viewMode di hello toosee di ordine di salvataggio e salvare come pulsanti quando è in modalità di modifica. Per altre informazioni, vedere [Embed configuration details](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details) (Dettagli della configurazione di incorporamento).
 
 In JavaScript, ad esempio:
 
@@ -54,7 +54,7 @@ In JavaScript, ad esempio:
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,10 +71,10 @@ In JavaScript, ad esempio:
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
@@ -82,10 +82,10 @@ Un report sarà così incorporato nell'app in modalità di modifica.
 
 ## <a name="save-report"></a>Salvare il report
 
-Dopo aver incorporato il report in modalità di modifica con il token e le autorizzazioni appropriati, è possibile salvare il report dal menu File o da JavaScript:
+Dopo che i report di hello Embbeding in modalità con diritto token hello e autorizzazioni di modifica è possibile salvare report hello dal menu file hello o da javascript:
 
 ```
- // Get a reference to the embedded report.
+ // Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
 
  // Save report
@@ -95,7 +95,7 @@ Dopo aver incorporato il report in modalità di modifica con il token e le autor
 ## <a name="save-as"></a>Salva con nome
 
 ```
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
     
     var saveAsParameters = {
@@ -107,9 +107,9 @@ Dopo aver incorporato il report in modalità di modifica con il token e le autor
 ```
 
 > [!IMPORTANT]
-> Un nuovo report viene creato solo dopo l'operazione *Salva con nome*. Dopo il salvataggio, l'area di disegno continuerà a visualizzare il report precedente in modalità di modifica e non il nuovo report. Si dovrà incorporare il nuovo report creato. A questo scopo è necessario un nuovo token di accesso, perché vengono creati per singolo report.
+> Un nuovo report viene creato solo dopo l'operazione *Salva con nome*. Dopo hello salvato, area di disegno hello è ancora visualizzazione di report precedente hello modifica la modalità e non hello nuovo report. Sarà necessario tooembed hello nuovo report che è stato creato. A questo scopo è necessario un nuovo token di accesso, perché vengono creati per singolo report.
 
-Dopo il *salvataggio con nome* sarà quindi necessario caricare il nuovo report. Questa operazione è simile all'incorporamento di qualsiasi report.
+Sarà quindi necessario nuovo report hello tooload dopo un *salvare come*. Ciò è simile tooembedding qualsiasi report.
 
 ```
 <div id="reportContainer"></div>
@@ -120,7 +120,7 @@ var embedConfiguration = {
         reportId: '5dac7a4a-4452-46b3-99f6-a25915e0fe54',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Embed report
@@ -135,5 +135,5 @@ var embedConfiguration = {
 [Autenticazione e autorizzazione con Power BI Embedded](power-bi-embedded-app-token-flow.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [Esempio di incorporamento con JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-Altre domande? [Contattare la community di Power BI](http://community.powerbi.com/)
+Altre domande? [Provare a hello Community di Power BI](http://community.powerbi.com/)
 

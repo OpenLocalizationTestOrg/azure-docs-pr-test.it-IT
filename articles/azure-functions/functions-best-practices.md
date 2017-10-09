@@ -1,5 +1,5 @@
 ---
-title: Procedure consigliate per Funzioni di Azure | Documentazione Microsoft
+title: aaaBest procedure consigliate per le funzioni di Azure | Documenti Microsoft
 description: Informazioni su modelli e procedure consigliate per Funzioni di Azure.
 services: functions
 documentationcenter: na
@@ -17,69 +17,69 @@ ms.workload: na
 ms.date: 06/13/2017
 ms.author: glenga
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 645a5dd16e72619e7c2470ab8f03098f0fa6c7f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bd3d826b75267a740e355b008943a48f71ebd339
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="optimize-the-performance-and-reliability-of-azure-functions"></a>Ottimizzare le prestazioni e l'affidabilità delle funzioni di Azure
+# <a name="optimize-hello-performance-and-reliability-of-azure-functions"></a>Ottimizzare le prestazioni di hello e l'affidabilità delle funzioni di Azure
 
-Questo articolo fornisce indicazioni per migliorare le prestazioni e l'affidabilità delle app per le funzioni. 
+Questo articolo fornisce informazioni aggiuntive tooimprove hello prestazioni e affidabilità delle app di funzione. 
 
 
 ## <a name="avoid-long-running-functions"></a>Evitare funzioni con esecuzione prolungata
 
-Le funzioni con esecuzione prolungata e di grandi dimensioni possono causare problemi di timeout imprevisti. Le dimensioni di una funzione possono diventare grandi a causa della presenza di molte dipendenze di Node.js. L'importazione delle dipendenze può anche fare aumentare i tempi di caricamento causando timeout imprevisti. Le dipendenze vengono caricate in modo sia esplicito che implicito. Un singolo modulo caricato dal codice potrebbe caricare i propri moduli aggiuntivi.  
+Le funzioni con esecuzione prolungata e di grandi dimensioni possono causare problemi di timeout imprevisti. Una funzione può risultare lungo a causa di dipendenze di Node.js toomany. L'importazione delle dipendenze può anche fare aumentare i tempi di caricamento causando timeout imprevisti. Le dipendenze vengono caricate in modo sia esplicito che implicito. Un singolo modulo caricato dal codice potrebbe caricare i propri moduli aggiuntivi.  
 
-Quando è possibile, suddividere le funzioni di grandi dimensioni in gruppi di funzioni più piccoli che possono interagire tra loro e restituire rapidamente le risposte. Ad esempio, un webhook o una funzione di trigger HTTP potrebbe richiedere una risposta di acknowledgment entro un determinato limite di tempo. È normale per i webhook richiedere una risposta immediata. È possibile passare il payload del trigger HTTP in una coda perché venga elaborato da una funzione di trigger della coda. Questo approccio consente di rinviare l'operazione effettiva e di restituire una risposta immediata.
+Quando è possibile, suddividere le funzioni di grandi dimensioni in gruppi di funzioni più piccoli che possono interagire tra loro e restituire rapidamente le risposte. Ad esempio, un webhook o una funzione di attivazione HTTP potrebbe richiedere una risposta di riconoscimento all'interno di un determinato limite di tempo; è comune per webhook toorequire un intervento immediato. È possibile passare i payload di hello HTTP trigger in una coda toobe elaborati da una funzione di attivazione coda. Questo approccio consente il lavoro effettivo toodefer hello e restituire una risposta immediata.
 
 
 ## <a name="cross-function-communication"></a>Comunicazioni tra funzioni
 
-Quando si integrano più funzioni, in genere è opportuno usare le code di archiviazione per la comunicazione tra funzioni.  Il motivo principale è che le code di archiviazione sono più economiche ed è molto più facile sottoporle a provisioning. 
+Quando si integra più funzioni, è in genere un best practice toouse le code di archiviazione per le comunicazioni di funzione tra.  Hello principale, infatti, le code di archiviazione sono più economiche e tooprovision molto più semplice. 
 
-Le dimensioni dei singoli messaggi in una coda di archiviazione sono limitate a 64 KB. Se è necessario passare i messaggi di dimensioni superiori tra le funzioni, è possibile usare una coda del bus di servizio di Azure per supportare dimensioni dei messaggi fino a 256 KB.
+Singoli messaggi in una coda di archiviazione sono limitati in dimensioni too64 KB. Se è necessario toopass i messaggi di grandi dimensioni tra le funzioni, una coda di Service Bus di Azure potrebbe essere le dimensioni dei messaggi utilizzati toosupport too256 KB.
 
 Gli argomenti del bus di servizio sono utili se è necessario filtrare i messaggi prima dell'elaborazione.
 
-Gli hub eventi sono utili per supportare comunicazioni con volumi elevati.
+Gli hub eventi sono utili toosupport le comunicazioni di volumi elevati.
 
 
-## <a name="write-functions-to-be-stateless"></a>Scrivere le funzioni in modo che siano senza stato 
+## <a name="write-functions-toobe-stateless"></a>Scrivere funzioni toobe senza stato 
 
-Le funzioni devono essere senza stato e idempotenti se possibile. Associare ai dati eventuali informazioni obbligatorie sullo stato. Ad esempio, un ordine in fase di elaborazione probabilmente ha un membro `state` associato. Una funzione può elaborare un ordine basato su tale stato rimanendo però una funzione senza stato. 
+Le funzioni devono essere senza stato e idempotenti se possibile. Associare ai dati eventuali informazioni obbligatorie sullo stato. Ad esempio, un ordine in fase di elaborazione probabilmente ha un membro `state` associato. Una funzione è riuscito a elaborare un ordine in base a tale stato mentre funzione hello stessa rimane senza stato. 
 
-Le funzioni idempotenti sono consigliate in particolare con i trigger timer. Ad esempio, se si deve assolutamente eseguire un'azione una volta al giorno, scriverla in modo che possa essere eseguita a qualsiasi ora del giorno con gli stessi risultati. La funzione può essere chiusa quando non è presente alcun lavoro da svolgere per un determinato giorno. Anche se un'esecuzione precedente non è stata completata, l'esecuzione successiva riprenderà da dove era stata interrotta.
+Le funzioni idempotenti sono consigliate in particolare con i trigger timer. Ad esempio, se si dispone di un elemento che è assolutamente necessario eseguire una volta al giorno, viene scritto in modo è possibile eseguire qualsiasi momento durante il giorno hello con hello stessi risultati. funzione Hello può uscire quando non sono presenti operazioni per un determinato giorno. Anche se un'esecuzione precedente non è riuscito toocomplete hello prossima esecuzione deve prelevare dove era stata interrotta.
 
 
 ## <a name="write-defensive-functions"></a>Scrivere funzioni difensive
 
-Si supponga che la funzione possa rilevare un'eccezione in qualsiasi momento. Progettare le funzioni con la possibilità di continuare da un punto di errore precedente durante l'esecuzione successiva. Si consideri uno scenario che richiede le azioni seguenti:
+Si supponga che la funzione possa rilevare un'eccezione in qualsiasi momento. Durante l'esecuzione successiva hello, progettare le funzioni con hello possibilità toocontinue da un punto di errore precedente. Si consideri uno scenario che richiede hello seguenti azioni:
 
 1. Query per 10.000 righe in un database.
-2. Creare un messaggio in coda per ognuna delle righe da elaborare ulteriormente in un secondo tempo.
+2. Creare un messaggio nella coda per ognuna di tali righe tooprocess ulteriormente verso il basso la riga hello.
  
-In base alla complessità del sistema, è possibile che i servizi downstream coinvolti non funzionino correttamente, che si verifichino interruzioni della rete, che vengano raggiunti i limiti di quota e così via. Tutti questi elementi possono influire sulla funzione in qualsiasi momento. È necessario progettare le funzioni in modo che siano preparate.
+In base alla complessità del sistema, è possibile che i servizi downstream coinvolti non funzionino correttamente, che si verifichino interruzioni della rete, che vengano raggiunti i limiti di quota e così via. Tutti questi elementi possono influire sulla funzione in qualsiasi momento. È necessario toodesign toobe le funzioni pronti a.
 
 Come reagisce il codice in caso di errore dopo l'inserimento di 5.000 di tali elementi in una coda per l'elaborazione? Tenere traccia degli elementi in un set già completato. In caso contrario, è possibile inserirli di nuovo la volta successiva. Ciò può influire in modo negativo sul flusso di lavoro. 
 
-Se un elemento della coda è già stato elaborato, consentire alla funzione di essere no-op.
+Se un elemento della coda è già stato elaborato, consentire toobe la funzione alcuna operazione.
 
-Sfruttare le misure difensive già messe a disposizione per i componenti usati nella piattaforma Funzioni di Azure. Ad esempio, vedere **Gestione di messaggi della coda non elaborabili** nella documentazione relativa ai [trigger della coda di Archiviazione di Azure](functions-bindings-storage-queue.md#trigger).
+È possibile sfruttare le misure di difesa già fornito per i componenti che si utilizza nella piattaforma Azure funzioni hello. Ad esempio, vedere **la gestione dei messaggi di coda non elaborabile** nella documentazione di hello per [coda di archiviazione di Azure attiva](functions-bindings-storage-queue.md#trigger).
  
 
-## <a name="dont-mix-test-and-production-code-in-the-same-function-app"></a>Non combinare codice di test e di produzione nella stessa app per le funzioni
+## <a name="dont-mix-test-and-production-code-in-hello-same-function-app"></a>Non combinazione di test e produzione di codice in hello stesso app (funzione)
 
-Le funzioni all'interno di un'app per le funzioni condividono le risorse. Ad esempio, la memoria è condivisa. Se si usa un'app per le funzioni nell'ambiente di produzione, non aggiungere funzioni e risorse relative ai test, per evitare possibili sovraccarichi imprevisti durante l'esecuzione del codice di produzione.
+Le funzioni all'interno di un'app per le funzioni condividono le risorse. Ad esempio, la memoria è condivisa. Se si usa un'app di funzione nell'ambiente di produzione, non aggiungere funzioni relative ai test e tooit risorse. per evitare possibili sovraccarichi imprevisti durante l'esecuzione del codice di produzione.
 
-Prestare attenzione a quello che si carica nelle app per le funzioni di produzione. La memoria viene calcolata in ogni funzione nell'app.
+Prestare attenzione a quello che si carica nelle app per le funzioni di produzione. Memoria Media viene calcolata in ogni funzione nell'app hello.
 
-Se si usa un assembly condiviso a cui si fa riferimento in più funzioni di .Net, inserirlo in una cartella condivisa comune. Fare riferimento all'assembly con un'istruzione simile all'esempio seguente: 
+Se si usa un assembly condiviso a cui si fa riferimento in più funzioni di .Net, inserirlo in una cartella condivisa comune. Assembly di riferimento hello con un toohello simile istruzione esempio seguente: 
 
     #r "..\Shared\MyAssembly.dll". 
 
-In caso contrario, è facile distribuire accidentalmente più versioni di prova dello stesso binario che si comportano in modo diverso nelle varie funzioni.
+In caso contrario, è facile tooaccidentally distribuire più versioni di test dello stesso file binario che si comportano in modo diverso tra le funzioni hello.
 
 Non usare la registrazione dettagliata nel codice di produzione. Ha un impatto negativo sulle prestazioni.
 
@@ -87,13 +87,13 @@ Non usare la registrazione dettagliata nel codice di produzione. Ha un impatto n
 
 ## <a name="use-async-code-but-avoid-blocking-calls"></a>Usare codice asincrono ma evitare di bloccare le chiamate
 
-La programmazione asincrona è una procedura consigliata. Evitare sempre, tuttavia, di fare riferimento alla proprietà `Result` o di chiamare il metodo `Wait` su un'istanza di `Task`. Questo approccio può causare l'esaurimento di un thread.
+La programmazione asincrona è una procedura consigliata. Tuttavia, non sempre fare riferimento a hello `Result` proprietà o chiamare `Wait` metodo su un `Task` istanza. Questo approccio può causare un esaurimento toothread.
 
 
 [!INCLUDE [HTTP client best practices](../../includes/functions-http-client-best-practices.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni, vedere le seguenti risorse:
+Per ulteriori informazioni, vedere hello seguenti risorse:
 
 Poiché Funzioni di Azure usa Servizio app di Azure, è consigliabile vedere anche le linee guida del servizio app.
 * [Schemi e procedure per le ottimizzazioni delle prestazioni HTTP](https://docs.microsoft.com/azure/architecture/antipatterns/improper-instantiation/)

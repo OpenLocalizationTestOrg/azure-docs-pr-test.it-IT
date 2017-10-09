@@ -1,6 +1,6 @@
 ---
-title: Uso di Hub di notifica di Azure per inviare notifiche agli utenti per iOS con back-end .NET
-description: Informazioni su come inviare notifiche push agli utenti in Azure. Gli esempi di codice sono scritti in Objective-C e nell'API .NET per il back-end.
+title: aaaAzure utenti notificare gli hub di notifica per iOS con back-end .NET
+description: Informazioni su come toosend push toousers notifiche in Azure. Esempi di codice scritti in Objective-C e hello API .NET per hello di back-end.
 documentationcenter: ios
 author: ysxu
 manager: erikre
@@ -14,68 +14,68 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 0fa7a886e1ecb0a90b6aebc1dbf9ef0c6ce1acf1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 56aed5b04d2d985b3f0e50c58991607f07b61248
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-notify-users-for-ios-with-net-backend"></a>Uso di Hub di notifica di Azure per inviare notifiche agli utenti per iOS con back-end .NET
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>Panoramica
-Il supporto per le notifiche push in Azure consente di accedere a un'infrastruttura push facile da usare, multipiattaforma e con scalabilità orizzontale, che semplifica considerevolmente l'implementazione delle notifiche push sia per le applicazioni consumer sia per quelle aziendali per piattaforme mobili. In questa esercitazione viene illustrato come usare Hub di notifica di Azure per inviare notifiche push a un utente specifico dell'app su un dispositivo specifico. Per autenticare i client e generare le notifiche viene usato un back-end di API Web ASP.NET, come illustrato nell'argomento [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) (Registrazione dal back-end dell'app).
+Supporto di notifica push in Azure consente tooaccess un semplice utilizzo, multipiattaforma e infrastruttura push di scalabilità orizzontale, che semplifica notevolmente l'implementazione di hello delle notifiche push per le applicazioni aziendali e per dispositivi mobili piattaforme. Questa esercitazione viene illustrato come toouse gli hub di notifica di Azure toosend push utente app specifica tooa di notifiche in un dispositivo specifico. Un back-end ASP.NET WebAPI è tooauthenticate utilizzati client e le notifiche di toogenerate, come illustrato nell'argomento Guida hello [registrazione dal back-end app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).
 
 > [!NOTE]
-> In questa esercitazione si presuppone che l'utente abbia creato e configurato l'hub di notifica come descritto in [Introduzione ad Hub di notifica (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md). È inoltre propedeutica all'esercitazione [Push sicuro (iOS)](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md) .
-> Se si desidera usare le app per dispositivi mobili come servizio back-end, vedere [Introduzione alle app per dispositivi mobili con notifiche push](../app-service-mobile/app-service-mobile-ios-get-started-push.md).
+> In questa esercitazione si presuppone che l'utente abbia creato e configurato l'hub di notifica come descritto in [Introduzione ad Hub di notifica (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md). In questa esercitazione è anche hello prerequisiti toohello [Secure Push (iOS)](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md) esercitazione.
+> Se si desidera toouse App per dispositivi mobili come il servizio back-end, vedere hello [Mobile App introduzione Push](../app-service-mobile/app-service-mobile-ios-get-started-push.md).
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
 ## <a name="modify-your-ios-app"></a>Modificare l'app per iOS
-1. Aprire l'app di visualizzazione Pagina singola creata nell'esercitazione [Introduzione ad Hub di notifica (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) .
+1. Aprire hello singola pagina Visualizza app è stato creato in hello [Introduzione agli hub di notifica (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) esercitazione.
    
    > [!NOTE]
-   > In questa sezione si presuppone che il progetto sia configurato con un nome di organizzazione vuoto. In caso contrario, sarà necessario anteporre il nome dell'organizzazione a tutti i nomi di classi.
+   > In questa sezione si presuppone che il progetto sia configurato con un nome di organizzazione vuoto. In caso contrario, sarà necessario tooprepend i nomi di classe tooall nome dell'organizzazione.
    > 
    > 
-2. In Main.storyboard aggiungere i componenti illustrati nella schermata seguente dalla libreria di oggetti.
+2. Nel Main aggiungere componenti hello illustrati nella schermata di hello seguito dalla libreria di oggetti hello.
    
     ![][1]
    
-   * **Nome utente**: oggetto UITextField con testo segnaposto, *Enter Username*, immediatamente sotto l'etichetta per l'invio dei risultati e limitato dai margini sinistro e destro.
-   * **Password**: oggetto UITextField con testo segnaposto, *Enter Password*, immediatamente sotto il campo di testo del nome utente e limitato dai margini sinistro e destro. Selezionare l'opzione **Secure Text Entry** in Attribute Inspector sotto *Return Key*.
-   * **Accesso**: oggetto UIButton con etichetta immediatamente sotto il campo di testo della password; deselezionare l'opzione **Abilitato** in Attributes Inspector sotto *Control-Content*.
-   * **WNS**: etichetta e opzione per consentire l'invio della notifica al servizio di notifica Windows se è stato configurato nell'hub. Vedere l'esercitazione [Introduzione a Windows](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md).
-   * **GCM**: etichetta e opzione per consentire l'invio della notifica a Google Cloud Messaging se è stato configurato nell'hub. Vedere l'esercitazione [Introduzione ad Android](notification-hubs-android-push-notification-google-gcm-get-started.md) .
-   * **APNS**: etichetta e opzione per consentire l'invio della notifica al servizio di notifica della piattaforma di Apple.
-   * **Nome utente del destinatario**: oggetto UITextField con testo segnaposto, *Recipient username tag*, immediatamente sotto l'etichetta GCM e limitato dai margini sinistro e destro.
+   * **Nome utente**: UITextField A con il testo segnaposto, *immettere nome utente*, immediatamente di sotto di hello inviare etichetta risultati e toohello vincolata a sinistra e i margini destro e di sotto di hello inviare etichetta risultati.
+   * **Password**: UITextField A con il testo segnaposto, *immettere la Password*, immediatamente sotto hello campo di testo Nome utente e toohello vincolata a sinistra e a destra i margini e di sotto di campo di testo Nome utente hello. Controllare hello **Secure testo** opzione nel controllo di attributo, hello in *restituire chiave*.
+   * **Accedi**: UIButton A con l'etichetta immediatamente sotto il campo di testo password hello e deselezionare hello **abilitato** opzione nel controllo gli attributi, hello in *contenuto del controllo*
+   * **WNS**: etichetta e l'invio di commutatore tooenable hello notifica il servizio di notifica di Windows se sia stata impostata su hub hello. Vedere hello [Windows Introduzione](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) esercitazione.
+   * **GCM**: etichetta e l'invio di commutatore tooenable hello tooGoogle notifica messaggistica Cloud se sia stata impostata su hub hello. Vedere l'esercitazione [Introduzione ad Android](notification-hubs-android-push-notification-google-gcm-get-started.md) .
+   * **APNS**: etichetta e l'invio di commutatore tooenable hello notifica toohello Apple piattaforma Notification Service.
+   * **Recipent Username**: UITextField A con il testo segnaposto, *tag username destinatario*immediatamente di sotto di hello GCM etichetta e vincolata toohello sinistro e destro margini e di sotto di hello GCM assegnare un'etichetta.
 
-    Alcuni componenti sono stati aggiunti nell'esercitazione [Introduzione ad Hub di notifica (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) esercitazione.
+    Alcuni componenti sono stati aggiunti in hello [Introduzione agli hub di notifica (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) esercitazione.
 
-1. **CTRL** dai componenti nella visualizzazione a ViewController.h e aggiungere questi nuovi outlet.
+1. **CTRL** trascinare componenti hello tooViewController.h visualizzazione hello e aggiungere questi punti vendita di nuovo.
    
         @property (weak, nonatomic) IBOutlet UITextField *UsernameField;
         @property (weak, nonatomic) IBOutlet UITextField *PasswordField;
         @property (weak, nonatomic) IBOutlet UITextField *RecipientField;
         @property (weak, nonatomic) IBOutlet UITextField *NotificationField;
    
-        // Used to enable the buttons on the UI
+        // Used tooenable hello buttons on hello UI
         @property (weak, nonatomic) IBOutlet UIButton *LogInButton;
         @property (weak, nonatomic) IBOutlet UIButton *SendNotificationButton;
    
-        // Used to enabled sending notifications across platforms
+        // Used tooenabled sending notifications across platforms
         @property (weak, nonatomic) IBOutlet UISwitch *WNSSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *GCMSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *APNSSwitch;
    
         - (IBAction)LogInAction:(id)sender;
-2. In ViewController.h aggiungere l'elemento `#define` seguente sotto le istruzioni di importazione. Sostituire il segnaposto *<Enter Your Backend Endpoint>\>* con l'URL di destinazione usato per distribuire il back-end dell'app nella sezione precedente. Ad esempio, *http://you_backend.azurewebsites.net*.
+2. In ViewController.h, aggiungere hello seguente `#define` subito dopo le istruzioni di importazione. Hello Substitute *< immettere l'Endpoint di back-end\>*  segnaposto con URL di destinazione utilizzato toodeploy back-end app nella sezione precedente hello hello. Ad esempio, *http://you_backend.azurewebsites.net*.
    
         #define BACKEND_ENDPOINT @"<Enter Your Backend Endpoint>"
-3. Nel progetto creare una nuova **classe Cocoa Touch** denominata **RegisterClient** da usare come interfaccia con il back-end ASP.NET creato. Creare la classe che eredita da `NSObject`. Aggiungere quindi il codice seguente in RegisterClient.h.
+3. Nel progetto, creare un nuovo **Cocoa tocco classe** denominato **RegisterClient** toointerface con hello ASP.NET back-end è stato creato. Creare l'eredità dalla classe hello `NSObject`. Aggiungere quindi hello seguente di codice hello RegisterClient.h.
    
         @interface RegisterClient : NSObject
    
@@ -87,7 +87,7 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
         -(instancetype) initWithEndpoint:(NSString*)Endpoint;
    
         @end
-4. In RegisterClient.m aggiornare la sezione `@interface` :
+4. In hello RegisterClient.m aggiornare hello `@interface` sezione:
    
         @interface RegisterClient ()
    
@@ -102,7 +102,7 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
                     tags:(NSSet*)tags andCompletion:(void(^)(NSURLResponse*, NSError*))completion;
    
         @end
-5. Sostituire la sezione `@implementation` in RegisterClient.m con il codice seguente.
+5. Sostituire hello `@implementation` sezione hello RegisterClient.m con hello seguente codice.
 
         @implementation RegisterClient
 
@@ -261,32 +261,32 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
 
         @end
 
-    Il codice riportato sopra implementa la logica illustrata nell'articolo di istruzioni [Registrazione dal back-end dell'app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) usando NSURLSession per eseguire chiamate REST al back-end dell'app e NSUserDefaults per archiviare in locale l'ID registrazione restituito dall'hub di notifica.
+    codice Hello precedente implementa la logica di hello descritto nell'articolo Guida hello [registrazione dal back-end app](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) utilizzando NSURLSession tooperform REST chiama back-end app tooyour e NSUserDefaults toolocally archivio hello registrationId restituito dall'hub di notifica hello.
 
-    Si noti che per il corretto funzionamento di questa classe è necessario che sia impostata la relativa proprietà **authorizationHeader** . Questa proprietà viene impostata tramite la classe **ViewController** dopo l'accesso.
+    Si noti che questa classe richiede la relativa proprietà **authorizationHeader** toobe set in ordine toowork correttamente. Questa proprietà è impostata tramite hello **ViewController** classe dopo l'accesso hello.
 
-1. In ViewController.h aggiungere un'istruzione `#import` per RegisterClient.h. Aggiungere quindi una dichiarazione per il token del dispositivo e fare riferimento a un'istanza di `RegisterClient` nella sezione `@interface`:
+1. In ViewController.h aggiungere un'istruzione `#import` per RegisterClient.h. Quindi aggiungere una dichiarazione di token del dispositivo hello e fare riferimento a tooa `RegisterClient` istanza in hello `@interface` sezione:
    
         #import "RegisterClient.h"
    
         @property (strong, nonatomic) NSData* deviceToken;
         @property (strong, nonatomic) RegisterClient* registerClient;
-2. In ViewController.m aggiungere una dichiarazione di metodo privato nella sezione `@interface` :
+2. In ViewController.m, aggiungere una dichiarazione di metodo privato in hello `@interface` sezione:
    
         @interface ViewController () <UITextFieldDelegate, NSURLConnectionDataDelegate, NSXMLParserDelegate>
    
-        // create the Authorization header to perform Basic authentication with your app back-end
+        // create hello Authorization header tooperform Basic authentication with your app back-end
         -(void) createAndSetAuthenticationHeaderWithUsername:(NSString*)username
                         AndPassword:(NSString*)password;
    
         @end
 
 > [!NOTE]
-> Il frammento seguente non è uno schema di autenticazione sicuro. È consigliabile sostituire l'implementazione di **createAndSetAuthenticationHeaderWithUsername:AndPassword:** con il meccanismo di autenticazione specifico che genera un token di autenticazione che deve essere usato dalla classe client di registrazione, ad esempio OAuth o Active Directory.
+> Hello frammento seguente non è uno schema di autenticazione sicura, è necessario sostituire l'implementazione di hello di hello **createAndSetAuthenticationHeaderWithUsername:AndPassword:** con il meccanismo di autenticazione specifico viene generato un toobe token di autenticazione utilizzato da hello register classe client, ad esempio OAuth, Active Directory.
 > 
 > 
 
-1. Aggiungere quindi nella sezione `@implementation` di ViewController.m il codice seguente che aggiunge l'implementazione per l'impostazione del token del dispositivo e dell'intestazione di autenticazione.
+1. Quindi in hello `@implementation` sezione di ViewController.m aggiungere hello seguente di codice che aggiunge l'implementazione di hello per impostazione hello dispositivo token e l'autenticazione dell'intestazione.
    
         -(void) setDeviceToken: (NSData*) deviceToken
         {
@@ -311,8 +311,8 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
             return YES;
         }
    
-    Si noti come impostando il token del dispositivo viene abilitato il pulsante di accesso. Questo dipende dal fatto che, nell'ambito dell'azione di accesso, il controller di visualizzazione esegue la registrazione per le notifiche push con il back-end dell'app. L'azione di accesso deve quindi essere accessibile solo dopo che il token del dispositivo è stato correttamente configurato. È possibile separare l'accesso dalla registrazione push, purché la prima azione avvenga prima della seconda.
-2. In ViewController.m usare i frammenti di codice seguenti per implementare il metodo di azione per il pulsante **Log In** e un metodo per inviare il messaggio di notifica con il back-end ASP.NET.
+    Si noti come token del dispositivo hello impostazione consenta hello pulsante Accedi. In questo modo come parte dell'azione di account di accesso hello, controller di visualizzazione hello registra le notifiche push con back-end app hello. Di conseguenza, non è desiderabile che accedi toobe azione accessibile fino a quando i token del dispositivo hello è stato impostato correttamente. È possibile separare hello Accedi dalla registrazione push hello come primo hello si verifica prima hello quest'ultimo.
+2. In ViewController.m, utilizzare hello seguente metodo di azione hello tooimplement frammenti di codice per il **Accedi** pulsante e un metodo toosend hello messaggio di notifica tramite hello back-end ASP.NET.
    
        - (IBAction) LogInAction: mittente (id) {/ / crea l'intestazione di autenticazione e impostate nel registro client NSString * username = self. UsernameField.text;   Password NSString * = self. PasswordField.text;
    
@@ -322,15 +322,15 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
 
         - (void)SendNotificationASPNETBackend:(NSString*)pns UsernameTag:(NSString*)usernameTag            Message:(NSString*)message {    NSURLSession* session = [NSURLSession        sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil        delegateQueue:nil];
 
-            Passare il tag pns e il nome utente come parametri con l'URL di REST per il back-end ASP.NET NSURL * requestURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/api/notifications? pns = % @& to_tag = % @", BACKEND_ENDPOINT, pns, usernameTag]];
+            Passare i tag di hello pns e il nome utente come parametri con hello URL REST toohello back-end ASP.NET NSURL * requestURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/api/notifications? pns = % @& to_tag = % @", BACKEND_ENDPOINT, pns, usernameTag]];
 
             Richiesta NSMutableURLRequest * = [NSMutableURLRequest requestWithURL:requestURL];    [richiesta setHTTPMethod:@"POST"];
 
-            Ottenere la simulazione authenticationheader dal client register NSString * authorizationHeaderValue = [NSString stringWithFormat:@"Basic % @", self.registerClient.authenticationHeader];    [richiesta setValue:authorizationHeaderValue forHTTPHeaderField:@"Authorization"];
+            Ottenere hello fittizio authenticationheader dal client register hello NSString * authorizationHeaderValue = [NSString stringWithFormat:@"Basic % @", self.registerClient.authenticationHeader];    [richiesta setValue:authorizationHeaderValue forHTTPHeaderField:@"Authorization"];
 
-            Aggiungere il corpo del messaggio di notifica [richiesta setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];    [richiesta setHTTPBody: [messaggi dataUsingEncoding:NSUTF8StringEncoding]];
+            Aggiungere il corpo di messaggio di notifica hello [richiesta setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];    [richiesta setHTTPBody: [messaggi dataUsingEncoding:NSUTF8StringEncoding]];
 
-            Eseguire l'API REST di inviare una notifica su dataTask NSURLSessionDataTask back-end ASP.NET * = [completionHandler:^(NSData *data, NSURLResponse *response, NSError  *di dataTaskWithRequest:request sessione Errore) {NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) risposta.        Se (errore | | HttpResponse. StatusCode! = 200) {NSString* stato = [NSString stringWithFormat:@"Error stato per % @: % d\nError: %@\n", pns, HttpResponse. StatusCode, errore];            dispatch_async(dispatch_get_main_queue(), ^ {/ / aggiungere testo, in quanto tutte le chiamate PNS 3 potrebbero inoltre disporre delle informazioni alla visualizzazione [self.sendResults setText:[self.sendResults.text stringByAppendingString:status]];            });            NSLog(status);        }
+            Eseguire hello invia notifica API REST su hello ASP.NET back-end NSURLSessionDataTask * dataTask = [completionHandler:^(NSData *data, NSURLResponse *response, NSError  *di dataTaskWithRequest:request sessione Errore) {NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) risposta.        Se (errore | | HttpResponse. StatusCode! = 200) {NSString* stato = [NSString stringWithFormat:@"Error stato per % @: % d\nError: %@\n", pns, HttpResponse. StatusCode, errore];            dispatch_async(dispatch_get_main_queue(), ^ {/ / aggiungere testo, poiché tutte le chiamate PNS 3 possono anche avere informazioni tooview [self.sendResults setText:[self.sendResults.text stringByAppendingString:status]];            });            NSLog(status);        }
 
                 if (data != NULL)
                 {
@@ -341,7 +341,7 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
             }];    [dataTask resume]; }
 
 
-1. Aggiornare l'azione per il pulsante **Send Notification** per usare il back-end ASP.NET e inviare a qualsiasi PNS abilitato da un'opzione.
+1. Aggiornare l'azione di hello per hello **invia una notifica** pulsante back-end ASP.NET di hello toouse e inviare tooany PNS abilitato per un commutatore.
 
         - (IBAction)SendNotificationMessage:(id)sender
         {
@@ -368,15 +368,15 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
 
 
 
-1. Nella funzione **ViewDidLoad**aggiungere quanto segue per creare l'istanza di RegisterClient e impostare il delegato per i campi di testo.
+1. Nella funzione **ViewDidLoad**, aggiungere hello successivo tooinstantiate hello RegisterClient istanza e impostare hello delegato per i campi di testo.
    
        self.UsernameField.delegate = self;
        self.PasswordField.delegate = self;
        self.RecipientField.delegate = self;
        self.registerClient = [[RegisterClient alloc] initWithEndpoint:BACKEND_ENDPOINT];
-2. In **AppDelegate.m** rimuovere tutto il contenuto del metodo **application:didRegisterForPushNotificationWithDeviceToken:** e sostituirlo con il seguente per assicurarsi che il controller di visualizzazione contenga il token del dispositivo più recente recuperato dagli APN:
+2. Ora in **appdelegate. M**, rimuovere tutto il contenuto del metodo hello hello **applicazione: didRegisterForPushNotificationWithDeviceToken:** e sostituirlo con hello seguente toomake assicurarsi che hello vista controller contiene hello più recente token del dispositivo recuperati dal servizio APN:
    
-       // Add import to the top of the file
+       // Add import toohello top of hello file
        #import "ViewController.h"
    
        - (void)application:(UIApplication *)application
@@ -385,23 +385,23 @@ Il supporto per le notifiche push in Azure consente di accedere a un'infrastrutt
            ViewController* rvc = (ViewController*) self.window.rootViewController;
            rvc.deviceToken = deviceToken;
        }
-3. Infine in **AppDelegate.m**verificare che sia presente il metodo seguente:
+3. Infine in **appdelegate. M**, assicurarsi di avere hello seguente metodo:
    
        - (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
            NSLog(@"%@", userInfo);
            [self MessageBox:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"]];
        }
 
-## <a name="test-the-application"></a>Testare l'applicazione
-1. In XCode eseguire l'app su un dispositivo iOS fisico (le notifiche push non funzioneranno nel simulatore).
-2. Nell'interfaccia utente dell'app per iOS immettere un nome utente e una password. Può trattarsi di qualsiasi stringa, ma devono avere entrambi lo stesso valore di stringa. Quindi fare clic su **Log In**.
+## <a name="test-hello-application"></a>Hello test dell'applicazione
+1. In XCode, eseguire l'applicazione hello in un dispositivo dei / o fisici (push delle notifiche non funzionerà nel simulatore hello).
+2. Nell'app iOS hello dell'interfaccia utente, immettere un nome utente e password. Può trattarsi di qualsiasi stringa, ma devono essere entrambi hello stesso valore di stringa. Quindi fare clic su **Log In**.
    
     ![][2]
 3. Verrà visualizzata una finestra popup che informa che la registrazione è stata completata. Fare clic su **OK**.
    
     ![][3]
-4. Nel campo di testo **Recipient username tag* (Tag nome utente destinatario) immettere il tag del nome utente usato con la registrazione da un altro dispositivo.
-5. Immettere un messaggio di notifica e fare clic su **Send Notification**.  Solo i dispositivi che hanno una registrazione con il tag del nome utente del destinatario riceveranno il messaggio di notifica.  Viene inviato solo a tali utenti.
+4. In hello **tag username destinatario* testo immettere i tag del nome utente hello utilizzato con la registrazione di hello da un altro dispositivo.
+5. Immettere un messaggio di notifica e fare clic su **Send Notification**.  Solo i dispositivi di hello che dispone di una registrazione con tag del nome utente destinatario hello ricevono il messaggio di notifica hello.  Viene inviato solo gli utenti toothose.
    
     ![][4]
 

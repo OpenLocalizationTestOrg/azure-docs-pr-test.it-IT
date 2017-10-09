@@ -1,6 +1,6 @@
 ---
-title: Servizio Web app per dispositivi mobili del server Azure MFA | Microsoft Docs
-description: L'app Microsoft Authenticator offre un'opzione di autenticazione fuori banda aggiuntiva.  Consente al server MFA di inviare notifiche push agli utenti.
+title: "Servizio Web App Mobile Server di autenticazione a più fattori aaaAzure | Documenti Microsoft"
+description: app Microsoft Authenticator Hello offre un'opzione di autenticazione fuori banda aggiuntiva.  Consente di hello toousers le notifiche push MFA server toouse.
 services: multi-factor-authentication
 documentationcenter: 
 author: MicrosoftGuyJFlo
@@ -15,90 +15,90 @@ ms.date: 08/23/2017
 ms.author: joflore
 ms.reviewer: alexwe
 ms.custom: it-pro
-ms.openlocfilehash: bf758d1241f2a56eba4d5c92ace713d6e563df65
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4175b68fcbf85ec3fd53d8edf4e07306c75a4c71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-mobile-app-authentication-with-azure-multi-factor-authentication-server"></a>Abilitare l'autenticazione con il server Azure Multi-Factor Authentication
 
-L'app Microsoft Authenticator offre un'opzione di verifica fuori banda aggiuntiva. Invece di effettuare una chiamata automatizzata o di inviare un SMS all'utente durante l'accesso, Azure Multi-Factor Authentication inoltra una notifica push all'app Microsoft Authenticator sul tablet o sullo smartphone dell'utente. L'utente tocca semplicemente **Verifica** (o immette un PIN e tocca "Esegui autenticazione") nell'app per eseguire l'accesso.
+app Microsoft Authenticator Hello offre un'opzione di verifica fuori banda aggiuntiva. Invece di effettuare una chiamata automatizzata o utente toohello SMS durante l'accesso, Azure multi-Factor Authentication inserisce un'app di Microsoft Authenticator notifica toohello dell'utente hello smartphone o sul tablet. Hello utente tocca semplicemente **verificare** (o immette il PIN e tocca "Esegui autenticazione") in hello app toocomplete loro Accedi.
 
-Quando la ricezione del telefono non è affidabile, è preferibile usare un'app per dispositivi mobili per la verifica in due passaggi. Se si usa l'app come un generatore di token OATH, non è necessaria una connessione di rete o Internet.
+Quando la ricezione del telefono non è affidabile, è preferibile usare un'app per dispositivi mobili per la verifica in due passaggi. Se si utilizza l'applicazione hello come un generatore di token OATH, non richiede una connessione di rete o internet.
 
-A seconda dell'ambiente, è possibile distribuire il servizio Web per app per dispositivi mobili nello stesso server in cui è in esecuzione il server Azure Multi-Factor Authentication o in un altro server con connessione Internet.
+A seconda dell'ambiente, è consigliabile toodeploy servizio web app per dispositivi mobili di hello in hello nello stesso server come Server Azure multi-Factor Authentication o in un altro server con connessione internet.
 
 ## <a name="requirements"></a>Requisiti
 
-Per usare l'app Microsoft Authenticator, è necessario quanto segue in modo che l'app possa comunicare correttamente con il servizio Web app per dispositivi mobili:
+app Microsoft Authenticator hello toouse seguente hello sono necessarie affinché hello app in grado di comunicare con il servizio Web App Mobile:
 
 * Server Azure Multi-Factor Authentication v6.0 o versioni successive
 * Installare il servizio Web app per dispositivi mobili in un server Web con connessione Internet che esegue Microsoft® [Internet Information Services (IIS) 7.x o versione successiva](http://www.iis.net/)
-* ASP.NET v4.0.30319 deve essere installato, registrato e impostato su Consentito
+* ASP.NET v 4.0.30319 è installato, registrato e impostato tooAllowed
 * I servizi ruolo obbligatori includono ASP.NET e Compatibilità metabase IIS 6
 * Il servizio Web app per dispositivi mobili deve essere accessibile tramite un URL pubblico
 * Il servizio Web app per dispositivi mobili deve essere protetto con un certificato SSL.
-* Installare l'SDK del servizio Web Azure Multi-Factor Authentication in IIS 7.x o versione successiva **nello stesso server in cui è in esecuzione il server Azure Multi-Factor Authentication**
-* L'SDK del servizio Web Azure Multi-Factor Authentication deve essere protetto con un certificato SSL.
-* Il servizio Web app per dispositivi mobili deve essere in grado di connettersi all'SDK servizio Web Azure Multi-Factor Authentication tramite SSL
-* Il servizio Web app per dispositivi mobili deve essere in grado di eseguire l'autenticazione all'SDK servizio Web Azure MFA usando le credenziali di un account di servizio membro del gruppo di sicurezza "PhoneFactor Admins". Questo account e gruppo del servizio esistono in Active Directory se il server Azure Multi-Factor Authentication si trova su un server appartenente a un dominio. Questo account del servizio e il gruppo esistono in locale sul server Azure Multi-Factor Authentication se non è aggiunto a un dominio.
+* Installare hello Azure multi-Factor Authentication Web Service SDK in IIS 7. x o versione successiva hello **nello stesso server hello del Server Azure multi-Factor Authentication**
+* Hello Azure multi-Factor Authentication Web Service SDK è protetto con un certificato SSL.
+* Servizio Web App mobile può connettersi toohello Azure multi-Factor Authentication Web Service SDK tramite SSL
+* Servizio Web App mobile può autenticare toohello SDK servizi Web di Azure MFA con hello credenziali di un account di servizio che è un membro del gruppo di sicurezza "PhoneFactor Admins" hello. Questo account del servizio e il gruppo esistono in Active Directory se hello del Server Azure multi-Factor Authentication è in un server di dominio. Questo account del servizio e il gruppo esistono in locale sul Server Azure multi-Factor Authentication hello in caso contrario tooa aggiunti a un dominio.
 
-## <a name="install-the-mobile-app-web-service"></a>Installare il servizio Web app per dispositivi mobili
+## <a name="install-hello-mobile-app-web-service"></a>Installare il servizio web app per dispositivi mobili hello
 
-Prima di installare il servizio Web app per dispositivi mobili, tenere presente i dettagli seguenti:
+Prima di installare servizio web app per dispositivi mobili di hello, tenere hello seguenti dettagli:
 
-* È necessario un account del servizio che fa parte del gruppo "PhoneFactor Admins". L'account può essere lo stesso usato per l'installazione del portale utenti.
-* È utile aprire un browser Web nel server Web connesso a Internet e andare all'URL dell'SDK servizio Web riportato nel file web.config. Se il browser è in grado di accedere al servizio Web, chiederà le credenziali. Immettere il nome utente e la password immessi nel file web.config esattamente come visualizzati nel file. Assicurarsi che non vengano visualizzati errori o avvisi relativi al certificato.
-* Se un proxy inverso o un firewall si trova prima del server Web del servizio Web app per dispositivi mobili ed esegue l'offload SSL, è possibile modificare il file web.config del servizio Web app per dispositivi mobili in modo che il servizio Web app per dispositivi mobili possa usare il protocollo http anziché https. SSL è comunque richiesto dall'app per dispositivi mobili per il proxy inverso o per il firewall. Aggiungere la chiave seguente alla sezione \<appSettings\>:
+* È necessario un account del servizio che fa parte del gruppo "PhoneFactor Admins". Questo account può essere identico a quello hello uno utilizzato per l'installazione di portale per gli utenti hello hello.
+* È utile tooopen un web browser nel server web con connessione Internet di hello e passare toohello URL di Web Service SDK immesso nel file Web. config hello hello. Se il browser hello può accedere correttamente a servizio web toohello, venga chiesto di credenziali. Immettere nome utente hello e la password precedentemente immessi nel file Web. config hello esattamente come appaiono nel file hello. Assicurarsi che non vengano visualizzati errori o avvisi relativi al certificato.
+* Se un proxy inverso o un firewall si trova davanti al server web di servizio Web App Mobile hello che esegue SSL offloading, è possibile modificare i file Web. config di servizio Web App Mobile hello in modo che hello servizio Web App Mobile di usare http anziché https. SSL è sempre necessario dall'hello proxy firewall/inversa toohello di App per dispositivi mobili. Aggiungere hello seguente toohello chiave \<appSettings\> sezione:
 
         <add key="SSL_REQUIRED" value="false"/>
 
-### <a name="install-the-web-service-sdk"></a>Installare l'SDK del servizio Web
+### <a name="install-hello-web-service-sdk"></a>Installare il SDK servizi web di hello
 
-In entrambi gli scenari, se l'SDK del servizio Web Azure Multi-Factor Authentication **non** è già installato nel server Azure Multi-Factor Authentication (MFA), seguire questa procedura:
+In entrambi gli scenari, se hello Azure multi-Factor Authentication Web Service SDK è **non** già installati nel Server Azure multi-Factor Authentication (MFA) hello, hello completato i passaggi che seguono.
 
-1. Aprire la console del server Multi-Factor Authentication.
-2. Passare all'**SDK del servizio Web** e selezionare **Installa SDK servizio Web**.
-3. Completare l'installazione usando le impostazioni predefinite, a meno che non sia necessario modificarle per qualche motivo.
-4. Associare un certificato SSL al sito in IIS.
+1. Aprire la console di Server multi-Factor Authentication hello.
+2. Passare toohello **Web Service SDK** e selezionare **installare Web Service SDK**.
+3. Installazione completa di hello utilizzando le impostazioni predefinite di hello a meno che non è necessario toochange per qualche motivo.
+4. Associare un sito di toohello certificato SSL in IIS.
 
-Per eventuali dubbi sulla configurazione di un certificato SSL in un server IIS, vedere l'articolo [How to Set Up SSL on IIS](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) (Come configurare SSL in IIS).
+Se hai domande sulla configurazione di un certificato SSL in un server IIS, vedere l'articolo hello [come configurare SSL in IIS tooSet](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis).
 
-L'SDK servizio Web deve essere protetto con un certificato SSL. Un certificato autofirmato è accettabile per questo scopo. Importare il certificato nell'archivio "Autorità di certificazione radice disponibile nell'elenco locale" dell'account del computer locale nel server Web del portale utenti, in modo che venga considerato attendibile all'avvio della connessione SSL.
+Hello Web Service SDK deve essere protetto con un certificato SSL. Un certificato autofirmato è accettabile per questo scopo. Importare il certificato di hello nell'archivio "Autorità di certificazione" hello dell'account Computer locale hello server web del portale per gli utenti hello in modo da considerare attendibile tale certificato quando si avvia una connessione SSL hello.
 
 ![Configurazione del server MFA, SDK servizio Web](./media/multi-factor-authentication-get-started-server-webservice/sdk.png)
 
-### <a name="install-the-service"></a>Installare il servizio
+### <a name="install-hello-service"></a>Installare il servizio hello
 
-1. **Nel server MFA** passare al percorso di installazione.
-2. Passare alla cartella in cui è installato il server Azure MFA, l'impostazione predefinita è **C:\Program Files\Azure Multi-Factor Authentication**.
-3. Trovare il file di installazione **MultiFactorAuthenticationMobileAppWebServiceSetup64**. Se il server **non** ha una connessione Internet, copiare il file di installazione nel server connesso a Internet.
-4. Se il server MFA **non** ha una connessione Internet, passare al **server con connessione Internet**.
-5. Eseguire il file di installazione **MultiFactorAuthenticationMobileAppWebServiceSetup64** come amministratore, modificare il sito se necessario ed eventualmente sostituire il nome della directory virtuale con un nome breve.
-6. Dopo aver completato l'installazione, passare a **C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService** o alla directory appropriata in base al nome della directory virtuale e modificare il file Web.Config.
+1. **Nel Server di autenticazione a più fattori hello**, individuare il percorso di installazione toohello.
+2. Passare toohello cartella in cui hello Azure MFA Server predefinito installato hello è **c:\Programmi\Microsoft c:\programmi\azure multi-Factor Authentication**.
+3. Individuare il file di installazione di hello **MultiFactorAuthenticationMobileAppWebServiceSetup64**. Se il server di hello **non** con connessione Internet, il server di accesso a Internet toohello copia hello installazione file.
+4. Se hello Server MFA è **non** switch con connessione internet toohello **server con connessione internet**.
+5. Eseguire hello **MultiFactorAuthenticationMobileAppWebServiceSetup64** installare file come amministratore, se si desidera modificare hello del sito e modificare nome breve tooa directory virtuale hello se si desidera.
+6. Dopo il completamento dell'installazione, hello Sfoglia troppo**C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService** (o alla directory appropriata in base al nome di directory virtuale hello) e modificare file Web. config hello.
 
-   * Trovare la chiave **"WEB_SERVICE_SDK_AUTHENTICATION_USERNAME"** e sostituire **value=""** con **value="DOMAIN\User"**, dove DOMAIN\User è un account del servizio che fa parte del gruppo "PhoneFactor Admins".
-   * Trovare la chiave **"WEB_SERVICE_SDK_AUTHENTICATION_PASSWORD"** e sostituire **value=""** con **value="Password"**, dove Password è la password dell'account del servizio specificato alla riga precedente.
-   * Trovare l'impostazione **pfMobile App Web Service_pfwssdk_PfWsSdk** e sostituire il valore **http://localhost:4898/PfWsSdk.asmx** con l'URL dell'SDK servizio Web, ad esempio https://mfa.contoso.com/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx.
-   * Salvare il file Web.Config e chiudere il Blocco note.
+   * Trovare la chiave di hello **"WEB_SERVICE_SDK_AUTHENTICATION_USERNAME"** e modificare **valore = ""** troppo**valore = "Dominio\nomeutente"** dove dominio\utente è un Account del servizio che fa parte di Gruppo "Amministratori di PhoneFactor".
+   * Trovare la chiave di hello **"WEB_SERVICE_SDK_AUTHENTICATION_PASSWORD"** e modificare **valore = ""** troppo**valore = "Password"** in cui Password è hello per hello servizio Account specificato nella riga precedente hello.
+   * Trovare hello **impostazione pfMobile App Web Service_pfwssdk_PfWsSdk** impostare e modificare il valore di hello da **http://hostlocale:4898/pfwssdk.asmx** toohello URL SDK servizio Web (esempio: https://mfa.contoso.com/ MultiFactorAuthWebServiceSdk/PfWsSdk.asmx).
+   * Salvare i file Web. config hello e chiudere il blocco note.
 
    > [!NOTE]
-   > Dato che per la connessione viene usato SSL, è necessario fare riferimento all'SDK servizio Web come **nome di dominio completo** e **non come indirizzo IP**. Il certificato SSL viene rilasciato per il nome di dominio completo e l'URL usato deve corrispondere al nome sul certificato.
+   > Poiché SSL viene utilizzato per questa connessione, è necessario fare riferimento hello Web Service SDK con **il nome di dominio completo (FQDN)** e **non l'indirizzo IP**. Hello certificato SSL sarebbe rilasciato per hello FQDN e hello URL utilizzato deve corrispondere hello nome sul certificato hello.
 
-7. Se il sito Web in cui è installato il servizio Web per app per dispositivi mobili non è già stato associato a un certificato firmato pubblicamente, installare il certificato nel server, aprire Gestione IIS e associare il certificato al sito Web.
-8. Aprire un Web browser da qualsiasi computer e passare all'URL in cui è stato installato il servizio Web per app per dispositivi mobili, ad esempio https://mfa.contoso.com/MultiFactorAuthMobileAppWebService. Assicurarsi che non vengano visualizzati errori o avvisi relativi al certificato.
+7. Se il sito Web di hello installati nel servizio Web App Mobile non è già associato con un certificato firmato pubblicamente, installare hello certificato nel server di hello, aprire Gestione IIS e associare sito Web di toohello certificato hello.
+8. Aprire un web browser da qualsiasi computer, quindi spostarsi toohello URL in cui è stato installato il servizio Web App Mobile (esempio: https://mfa.contoso.com/MultiFactorAuthMobileAppWebService). Assicurarsi che non vengano visualizzati errori o avvisi relativi al certificato.
 
-## <a name="configure-the-mobile-app-settings-in-the-azure-multi-factor-authentication-server"></a>Configurare le impostazioni dell'app per dispositivi mobili nel server Azure Multi-Factor Authentication
+## <a name="configure-hello-mobile-app-settings-in-hello-azure-multi-factor-authentication-server"></a>Configurare le impostazioni di app per dispositivi mobili hello in hello del Server Azure multi-Factor Authentication
 
-Il servizio Web app per dispositivi mobili è ora installato. È necessario configurare il server Azure Multi-Factor Authentication per l'utilizzo con il portale.
+Ora che servizio web app per dispositivi mobili di hello è installato, è necessario tooconfigure hello del Server Azure multi-Factor Authentication toowork con il portale di hello.
 
-1. Nella console del server Multi-Factor Authentication fare clic sull'icona del portale utenti. Se gli utenti sono autorizzati a controllare i metodi di autenticazione, nella scheda Impostazioni, in **Consenti agli utenti di selezionare il metodo**, selezionare **App per dispositivi mobili**. Se questa funzionalità non è abilitata, agli utenti finali viene richiesto di contattare l'help desk per completare l'attivazione dell'app per dispositivi mobili.
-2. Selezionare la casella **Consenti agli utenti di attivare l'app mobile**.
-3. Selezionare la casella **Consenti registrazione utente**.
-4. Fare clic sull'icona dell'**app per dispositivi mobili**.
-5. Immettere l'URL usato con la directory virtuale creata durante l'installazione di MultiFactorAuthenticationMobileAppWebServiceSetup64, ad esempio https://mfa.contoso.com/MultiFactorAuthMobileAppWebService/ nel campo **URL servizio Web app mobile**.
-6. Popolare il campo **Nome account** con il nome della società o dell'organizzazione da visualizzare nell'app per dispositivi mobili per questo account.
+1. Nella console di Server multi-Factor Authentication hello, fare clic sull'icona portale per gli utenti di hello. Se gli utenti sono autorizzati toocontrol controllare i propri metodi di autenticazione, **App Mobile** nella scheda Impostazioni hello in **consentire agli utenti il metodo tooselect**. Senza questa funzionalità è abilitata, gli utenti finali sono necessari toocontact l'attivazione di toocomplete dell'Help Desk per hello App per dispositivi mobili.
+2. Controllare hello **consentire agli utenti tooactivate App Mobile** casella.
+3. Controllare hello **Consenti registrazione utente** casella.
+4. Fare clic su hello **App Mobile** icona.
+5. Immettere l'URL di hello viene utilizzato con la directory virtuale hello creato durante l'installazione di MultiFactorAuthenticationMobileAppWebServiceSetup64 (esempio: https://mfa.contoso.com/MultiFactorAuthMobileAppWebService/) nel campo hello  **URL del servizio Web App mobile:**.
+6. Popolare hello **nome Account** campo toodisplay di nome di società o organizzazione hello in un'applicazione hello per dispositivi mobili per questo account.
    ![Impostazioni dell'app per dispositivi mobili per la configurazione del server MFA](./media/multi-factor-authentication-get-started-server-webservice/mobile.png)
 
 ## <a name="next-steps"></a>Passaggi successivi

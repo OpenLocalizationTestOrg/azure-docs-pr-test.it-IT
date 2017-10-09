@@ -1,6 +1,6 @@
 ---
-title: Soluzione Capacity and Performance in Azure Log Analytics | Microsoft Docs
-description: "Usare la soluzione Capacity and Performance di Log Analytics per determinare la capacità dei server Hyper-V."
+title: aaaCapacity e soluzione di prestazioni in Azure Log Analitica | Documenti Microsoft
+description: "Hello di utilizzo della capacità e la soluzione di prestazioni in toohelp Log Analitica comprendere hello capacità dei server Hyper-V."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: banders
-ms.openlocfilehash: 5ca005127721092b8efcf0ac83cc967ab15fe72d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c47bb1e8bb9d4460b0241e89a616f3b356844b08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="plan-hyper-v-virtual-machine-capacity-with-the-capacity-and-performance-solution-preview"></a>Pianificare la capacità delle macchine virtuali Hyper-V con la soluzione Capacity and Performance (anteprima)
+# <a name="plan-hyper-v-virtual-machine-capacity-with-hello-capacity-and-performance-solution-preview"></a>Pianificare la capacità di macchine virtuali Hyper-V con capacità hello ed Esplora prestazioni (anteprima)
 
 ![Simbolo di Capacità e prestazioni](./media/log-analytics-capacity/capacity-solution.png)
 
-È possibile usare la soluzione Capacity and Performance di Log Analytics per determinare la capacità dei server Hyper-V. La soluzione fornisce informazioni approfondite sull'ambiente Hyper-V illustrando l'utilizzo generale (CPU, memoria e disco) dell'host e delle macchine virtuali in esecuzione negli host Hyper-V. Vengono acquisite le metriche relative a CPU, memoria e dischi di tutti gli host e delle macchine virtuali in esecuzione su tali server.
+È possibile utilizzare hello capacità e soluzione di prestazioni in toohelp Log Analitica comprendere hello capacità dei server Hyper-V. soluzione Hello fornisce approfondite ambiente Hyper-V mostrando hello utilizzo complessivo (CPU, memoria e disco) di host hello e hello macchine virtuali in esecuzione negli host Hyper-V. Vengono raccolte le metriche per CPU, memoria e dischi tra host e macchine virtuali hello in esecuzione su di essi.
 
-La soluzione:
+soluzione Hello:
 
 -   Visualizza gli host con l'utilizzo più alto e più basso di CPU e memoria
 -   Visualizza le VM con l'utilizzo più alto e più basso di CPU e memoria
 -   Visualizza le VM con l'utilizzo più alto e più basso di operazioni di I/O al secondo e velocità effettiva
 -   Visualizza le VM in esecuzione nei diversi host
--   Visualizza i dischi con velocità effettiva, operazioni di I/O al secondo e latenza più elevate nei volumi condivisi cluster
-- Consente di personalizzare e applicare filtri in base ai gruppi
+-   Mostra primi dischi con velocità effettiva elevata, IOPS, hello e latenza in cluster i volumi condivisi
+- Consente di toocustomize e filtrare in base ai gruppi
 
 > [!NOTE]
-> La versione precedente della soluzione Capacity and Performance, denominata Gestione della capacità, richiede sia System Center Operations Manager che System Center Virtual Machine Manager. Questa soluzione aggiornata non prevede tali dipendenze.
+> versione precedente di Hello di hello capacità ed Esplora prestazioni chiamato gestione delle capacità necessarie sia System Center Operations Manager e System Center Virtual Machine Manager. Questa soluzione aggiornata non prevede tali dipendenze.
 
 
 ## <a name="connected-sources"></a>Origini connesse
 
-La tabella seguente descrive le origini connesse che sono supportate da questa soluzione.
+Hello nella tabella seguente descrive hello connesso origini supportate da questa soluzione.
 
 | Origine connessa | Supporto | Descrizione |
 |---|---|---|
-| [Agenti Windows](log-analytics-windows-agents.md) | Sì | La soluzione raccoglie informazioni su capacità e prestazioni dagli agenti Windows. |
-| [Agenti Linux](log-analytics-linux-agents.md) | No    | La soluzione non raccoglie informazioni su capacità e prestazioni dagli agenti Linux diretti.|
-| [Gruppo di gestione SCOM](log-analytics-om-agents.md) | Sì |La soluzione raccoglie dati su capacità e prestazioni dagli agenti in un gruppo di gestione SCOM connesso. Non è necessaria una connessione diretta dall'agente SCOM a OMS. I dati vengono inoltrati dal gruppo di gestione al repository OMS.|
+| [Agenti Windows](log-analytics-windows-agents.md) | Sì | soluzione Hello raccoglie le informazioni di dati di capacità e prestazioni dagli agenti di Windows. |
+| [Agenti Linux](log-analytics-linux-agents.md) | No    | soluzione Hello non raccoglie informazioni di dati di capacità e prestazioni dagli agenti Linux diretti.|
+| [Gruppo di gestione SCOM](log-analytics-om-agents.md) | Sì |soluzione Hello raccoglie i dati di capacità e prestazioni dagli agenti in un gruppo di gestione SCOM connesso. Una connessione diretta da hello SCOM agente tooOMS non è necessaria. Dati viene inoltrati dal repository OMS toohello di hello gestione gruppo.|
 | [Account di archiviazione di Azure](log-analytics-azure-storage.md) | No | Archiviazione di Azure non include dati di capacità e prestazioni.|
 
 ## <a name="prerequisites"></a>Prerequisiti
@@ -57,51 +57,51 @@ La tabella seguente descrive le origini connesse che sono supportate da questa s
 
 ## <a name="configuration"></a>Configurazione
 
-Eseguire questo passaggio per aggiungere la soluzione Capacity and Performance all'area di lavoro.
+Eseguire hello seguente passaggio tooadd hello capacità e prestazioni soluzione tooyour dell'area di lavoro.
 
-- Aggiungere la soluzione Capacity and Performance all'area di lavoro di OMS usando la procedura descritta nell'articolo [Aggiungere soluzioni di Log Analytics dalla Raccolta soluzioni](log-analytics-add-solutions.md).
+- Aggiungere hello capacità e prestazioni soluzione tooyour area di lavoro OMS tramite il processo di hello descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md).
 
 ## <a name="management-packs"></a>Management Pack
 
-Se il gruppo di gestione SCOM è connesso all'area di lavoro di OMS, i Management Pack seguenti verranno installati in SCOM quando si aggiunge questa soluzione. Per questi Management Pack non è richiesta alcuna configurazione o manutenzione.
+Se il gruppo di gestione di SCOM è l'area di lavoro OMS tooyour connesso, hello seguenti management pack verrà quindi installata in SCOM quando si aggiunge questa soluzione. Per questi Management Pack non è richiesta alcuna configurazione o manutenzione.
 
 - Microsoft.IntelligencePacks.CapacityPerformance
 
-L'evento 1201 è simile al seguente:
+evento 1201 Hello è simile a:
 
 
 ```
 New Management Pack with id:"Microsoft.IntelligencePacks.CapacityPerformance", version:"1.10.3190.0" received.
 ```
 
-Quando la soluzione Capacity and Performance viene aggiornata, il numero di versione viene modificato.
+Quando viene aggiornato hello soluzione capacità e prestazioni, verrà modificato il numero di versione di hello.
 
-Per maggiori informazioni sulla modalità di aggiornamento dei Management Pack, vedere [Connettere Operations Manager a Log Analytics](log-analytics-om-agents.md).
+Per ulteriori informazioni sulla modalità di aggiornamento dei management pack di soluzione, vedere [tooLog connettere Operations Manager Analitica](log-analytics-om-agents.md).
 
-## <a name="using-the-solution"></a>Uso della soluzione
+## <a name="using-hello-solution"></a>Utilizzo di soluzione hello
 
-Quando si aggiunge la soluzione Capacity and Performance all'area di lavoro, Capacity and Performance viene aggiunta al dashboard Panoramica. Questo riquadro visualizza un conteggio del numero degli host Hyper-V attualmente attivi e del numero di macchine virtuali monitorate nel periodo selezionato.
+Quando si aggiunge hello capacità e prestazioni soluzione tooyour dell'area di lavoro, hello capacità e prestazioni viene aggiunto toohello dashboard Panoramica. Questo riquadro Visualizza un conteggio del numero di hello di host Hyper-V attualmente attivo e il numero di hello di macchine virtuali attive che sono stati monitorati per hello periodo di tempo selezionato.
 
 ![Riquadro Capacity and Performance](./media/log-analytics-capacity/capacity-tile.png)
 
 
 ### <a name="review-utilization"></a>Esaminare l'utilizzo
 
-Fare clic sul riquadro Capacity and Performance per aprire il dashboard Capacity and Performance. Il dashboard include le colonne nella tabella seguente. Ogni colonna elenca fino a dieci elementi corrispondenti ai criteri della colonna per l'ambito e l'intervallo di tempo specificati. È possibile eseguire una ricerca log per ottenere tutti i record facendo clic su **Vedi tutto** nella parte inferiore della colonna o facendo clic sull'intestazione di colonna.
+Fare clic su hello capacità e prestazioni riquadro tooopen hello capacità e prestazioni del dashboard. dashboard Hello sono incluse colonne hello hello nella tabella seguente. Ogni colonna sono elencati i tooten elementi corrispondenti ai criteri della colonna per hello specificato intervallo di ambito e tempo. È possibile eseguire una ricerca di log che restituisce tutti i record facendo **tutti** nella parte inferiore di hello della colonna hello o facendo clic sull'intestazione di colonna hello.
 
 - **Host**
-    - **Utilizzo CPU host** Visualizza una tendenza grafica dell'utilizzo della CPU da parte dei computer host e un elenco di host, in base al periodo di tempo selezionato. Passare il puntatore sul grafico a linee per visualizzare i dettagli di uno specifico punto nel tempo. Fare clic sul grafico per visualizzare altri dettagli nella ricerca log. Fare clic su un nome host per aprire la ricerca log e visualizzare i dettagli dei contatori CPU per le VM ospitate.
-    - **Utilizzo memoria host** Visualizza una tendenza grafica dell'utilizzo della memoria da parte dei computer host e un elenco di host, in base al periodo di tempo selezionato. Passare il puntatore sul grafico a linee per visualizzare i dettagli di uno specifico punto nel tempo. Fare clic sul grafico per visualizzare altri dettagli nella ricerca log. Fare clic su un nome host per aprire la ricerca log e visualizzare i dettagli del contatore della memoria per le VM ospitate.
+    - **Utilizzo della CPU host** illustra una tendenza di utilizzo della CPU hello del computer host e un elenco di host, in base al periodo di tempo selezionato hello con interfaccia grafica. Passare il mouse su hello riga grafico tooview i dettagli per uno specifico punto nel tempo. Fare clic su hello grafico tooview altre informazioni, vedere ricerca nei log. Fare clic su qualsiasi ricerca nei log tooopen nome host e visualizzare i dettagli sul contatore della CPU per le macchine virtuali ospitate.
+    - **Utilizzo di memoria host** viene mostrata una tendenza di utilizzo della memoria hello del computer host e un elenco di host, in base al periodo di tempo selezionato hello grafica. Passare il mouse su hello riga grafico tooview i dettagli per uno specifico punto nel tempo. Fare clic su hello grafico tooview altre informazioni, vedere ricerca nei log. Fare clic su qualsiasi host nome tooopen log ricerca e visualizzazione contatore dettagli relativi alla memoria per le macchine virtuali ospitate.
 - **Macchine virtuali**
-    - **Utilizzo CPU VM** Visualizza una tendenza grafica dell'utilizzo della CPU da parte delle macchine virtuali e un elenco di macchine virtuali, in base al periodo di tempo selezionato. Passare il puntatore sul grafico a linee per visualizzare i dettagli di uno specifico punto nel tempo per le prime 3 VM. Fare clic sul grafico per visualizzare altri dettagli nella ricerca log. Fare clic su un nome VM per aprire la ricerca log e visualizzare i dettagli dei contatori CPU aggregati per le VM.
-    - **Utilizzo memoria VM** Visualizza una tendenza grafica dell'utilizzo della memoria da parte delle macchine virtuali e un elenco di macchine virtuali, in base al periodo di tempo selezionato. Passare il puntatore sul grafico a linee per visualizzare i dettagli di uno specifico punto nel tempo per le prime 3 VM. Fare clic sul grafico per visualizzare altri dettagli nella ricerca log. Fare clic su un nome VM per aprire la ricerca log e visualizzare i dettagli dei contatori della memoria aggregati per le VM.
-    - **Totale operazioni di I/O al secondo del disco della macchina virtuale** Visualizza una tendenza grafica del totale delle operazioni di I/O al secondo del disco per le macchine virtuali e un elenco di macchine virtuali con le operazioni di I/O al secondo per ognuna, in base al periodo di tempo selezionato. Passare il puntatore sul grafico a linee per visualizzare i dettagli di uno specifico punto nel tempo per le prime 3 VM. Fare clic sul grafico per visualizzare altri dettagli nella ricerca log. Fare clic su un nome VM per aprire la ricerca log e visualizzare i dettagli dei contatori di operazioni di I/O al secondo del disco aggregati per le VM.
-    - **Totale velocità effettiva del disco della macchina virtuale** Visualizza una tendenza grafica del totale della velocità effettiva del disco per le macchine virtuali e un elenco di macchine virtuali con il totale della velocità effettiva del disco per ognuna, in base al periodo di tempo selezionato. Passare il puntatore sul grafico a linee per visualizzare i dettagli di uno specifico punto nel tempo per le prime 3 VM. Fare clic sul grafico per visualizzare altri dettagli nella ricerca log. Fare clic su un nome VM per aprire la ricerca log e visualizzare i dettagli dei contatori del totale della velocità effettiva del disco aggregati per le VM.
+    - **Utilizzo della CPU di VM** viene mostrata una tendenza con interfaccia grafica di utilizzo della CPU hello delle macchine virtuali e un elenco di macchine virtuali, basate su hello periodo di tempo selezionato. Passare il mouse su hello riga grafico tooview i dettagli per uno specifico punto nel tempo per hello primi 3 macchine virtuali. Fare clic su hello grafico tooview altre informazioni, vedere ricerca nei log. Fare clic su qualsiasi ricerca nei log tooopen nome macchina virtuale e visualizzare i dettagli di contatore CPU aggregati per hello VM.
+    - **Utilizzo della memoria VM** viene mostrata una tendenza grafica di utilizzo della memoria hello delle macchine virtuali e un elenco di macchine virtuali, basate su hello periodo di tempo selezionato. Passare il mouse su hello riga grafico tooview i dettagli per uno specifico punto nel tempo per hello primi 3 macchine virtuali. Fare clic su hello grafico tooview altre informazioni, vedere ricerca nei log. Fare clic su qualsiasi ricerca nei log tooopen nome macchina virtuale e visualizzare i dettagli sul contatore memoria aggregati per hello macchina virtuale.
+    - **Totale di IOPS disco VM** illustra una tendenza con interfaccia grafica di hello totale su disco di IOPS per macchine virtuali e un elenco di macchine virtuali con hello IOPS per ogni tipo, nel periodo di tempo selezionato hello. Passare il mouse su hello riga grafico tooview i dettagli per uno specifico punto nel tempo per hello primi 3 macchine virtuali. Fare clic su hello grafico tooview altre informazioni, vedere ricerca nei log. Fare clic su qualsiasi ricerca nei log tooopen nome macchina virtuale e una visualizzazione disco aggregato IOPS contatore i dettagli per hello macchina virtuale.
+    - **Velocità effettiva del disco totale VM** Mostra una tendenza grafica della velocità effettiva totale del disco hello per le macchine virtuali e un elenco di macchine virtuali con una velocità effettiva totale del disco hello per ogni, hello in base a periodo di tempo selezionato. Passare il mouse su hello riga grafico tooview i dettagli per uno specifico punto nel tempo per hello primi 3 macchine virtuali. Fare clic su hello grafico tooview altre informazioni, vedere ricerca nei log. Fare clic su qualsiasi ricerca nei log tooopen nome macchina virtuale e visualizzare i dettagli sul contatore velocità effettiva aggregata totale su disco per hello macchina virtuale.
 - **Volumi condivisi cluster**
-    - **Totale velocità effettiva** Visualizza la somma delle operazioni di lettura e di scrittura nei volumi condivisi cluster.
-    - **Totale operazioni di I/O al secondo** Visualizza la somma di operazioni di input/output al secondo nei volumi condivisi cluster.
-    - **Totale latenza** Visualizza il totale della latenza nei volumi condivisi cluster.
-- **Densità host** Il riquadro superiore visualizza il numero totale di host e di macchine virtuali disponibili per la soluzione. Fare clic sul riquadro superiore per visualizzare altri dettagli nella ricerca log. Elenca anche tutti gli host e il numero di macchine virtuali ospitate. Fare clic su un host per esaminare i risultati delle VM in una ricerca log.
+    - **Velocità effettiva totale** Mostra somma hello di entrambi legge e scrive su volumi condivisi cluster.
+    - **Totale di IOPS** somma hello Mostra operazioni di input/output al secondo in volumi condivisi cluster.
+    - **Latenza totale** Mostra latenza totale hello in volumi condivisi cluster.
+- **Ospitare densità** riquadro superiore di hello Mostra numero totale di hello della soluzione toohello disponibile host e macchine virtuali. Fare clic su dettagli aggiuntivi tooview riquadro superiore di hello nella ricerca nei log. Vengono elencati anche tutti gli host e numero di hello di macchine virtuali ospitate. Fare clic su un host di toodrill i risultati della VM hello in una ricerca di log.
 
 
 ![Pannello Host del dashboard](./media/log-analytics-capacity/dashboard-hosts.png)
@@ -111,14 +111,14 @@ Fare clic sul riquadro Capacity and Performance per aprire il dashboard Capacity
 
 ### <a name="evaluate-performance"></a>Valutare le prestazioni
 
-Gli ambienti di elaborazione di produzione sono molto diversi da un'organizzazione all'altra. Anche i carichi di lavoro di capacità e prestazioni possono dipendere da come vengono eseguite le VM e da che cosa si considera normale. È probabile che specifiche procedure per misurare le prestazioni non si applichino a tutti gli ambienti. Per questo è meglio presentare indicazioni prescrittive più generiche. Microsoft pubblica svariati articoli con indicazioni prescrittive che consentono di misurare le prestazioni.
+Ambienti di produzione differiscono notevolmente dalle tooanother di un'organizzazione. Anche i carichi di lavoro di capacità e prestazioni possono dipendere da come vengono eseguite le VM e da che cosa si considera normale. Ambiente tooyour probabilmente non si applichino toohelp procedure specifiche misurare le prestazioni. Pertanto, più generalizzato indicazioni è più adatta toohelp. Microsoft pubblica una serie di istruzioni articoli toohelp misurare le prestazioni.
 
-In sintesi, la soluzione raccogli i dati su capacità e prestazioni da svariate origini, inclusi i contatori delle prestazioni. Usare tali dati su capacità e prestazioni che vengono presentati in diverse superfici della soluzione e confrontare i risultati con quelli dell'articolo [Measuring Performance on Hyper-V](https://msdn.microsoft.com/library/cc768535.aspx) (Misurazione delle prestazioni in Hyper-V). Anche se la pubblicazione dell'articolo non è recente, le metriche, le considerazioni e le linee guida sono ancora valide. L'articolo contiene collegamenti ad altre risorse utili.
+toosummarize, hello soluzione consente di raccogliere dati di prestazioni e capacità da diverse origini, tra cui i contatori delle prestazioni. Utilizzare i dati di capacità e prestazioni presentati in varie aree di soluzione hello e confrontare i risultati toothose in hello [misurazione delle prestazioni in Hyper-V](https://msdn.microsoft.com/library/cc768535.aspx) articolo. Anche se articolo hello è stato pubblicato qualche tempo fa, linee guida, considerazioni e le metriche hello sono ancora valide. articolo Hello contiene risorse utili tooother di collegamenti.
 
 
 ## <a name="sample-log-searches"></a>Ricerche di log di esempio
 
-La tabella seguente presenta ricerche log di esempio per i dati su capacità e prestazioni raccolti e calcolati da questa soluzione.
+Hello nella tabella seguente fornisce ricerche log di esempio per i dati di capacità e prestazioni raccolti e calcolato per questa soluzione.
 
 | Query | Descrizione |
 |---|---|
@@ -131,7 +131,7 @@ La tabella seguente presenta ricerche log di esempio per i dati su capacità e p
 | Scomposizione totale latenza tra tutti i CSV | <code> Type=Perf ObjectName="Capacity and Performance" (CounterName="CSV Read Latency" OR CounterName="CSV Write Latency") &#124; top 2500 &#124; measure avg(CounterValue) by CounterName, InstanceName interval 1HOUR</code> |
 
 >[!NOTE]
-> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), le query precedenti verranno sostituite da quelle seguenti.
+> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), quindi hello sopra query modificherebbe toohello seguente.
 
 > | Query | Descrizione |
 |:--- |:--- |
@@ -145,4 +145,4 @@ La tabella seguente presenta ricerche log di esempio per i dati su capacità e p
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per visualizzare informazioni dettagliate su capacità e prestazioni, usare [Ricerche log in Log Analytics](log-analytics-log-searches.md).
+* Utilizzare [Accedi ricerche Log Analitica](log-analytics-log-searches.md) tooview in dettaglio i dati di capacità e prestazioni.

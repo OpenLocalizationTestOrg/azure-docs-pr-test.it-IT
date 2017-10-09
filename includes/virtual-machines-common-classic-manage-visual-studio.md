@@ -1,133 +1,133 @@
 È possibile creare macchine virtuali in Azure usando Esplora server in Visual Studio.
 
 ## <a name="create-an-azure-virtual-machine-in-server-explorer"></a>Creare una macchina virtuale di Azure in Esplora server
-Anche se è possibile creare una macchina virtuale nel [portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103)è possibile creare una macchina virtuale anche in Azure usando i comandi in Esplora server. È possibile usare le macchine virtuali, ad esempio, per fornire un front-end dietro un comune endpoint pubblico con carico bilanciato.
+Sebbene sia possibile creare una macchina virtuale in hello [il portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103), è anche possibile creare una macchina virtuale in Azure usando i comandi in Esplora Server. Macchine virtuali possono essere utilizzate, ad esempio, tooprovide un front end dietro a un endpoint di pubblico comune con bilanciamento del carico.
 
-### <a name="to-create-a-new-virtual-machine"></a>Per creare una nuova macchina virtuale
-1. In Esplora Server, aprire il nodo **Azure** e fare clic su **Macchine virtuali**.
-2. Nel menu di scelta rapida fare clic su **Crea macchina virtuale**.
+### <a name="toocreate-a-new-virtual-machine"></a>toocreate una nuova macchina virtuale
+1. In Esplora Server, aprire hello **Azure** nodo e fare clic su **macchine virtuali**.
+2. Nel menu di scelta rapida hello, fare clic su **crea macchina virtuale**.
    
-    Viene visualizzata la procedura guidata **Creare una nuova macchina virtuale** .
+    Hello **creare una nuova macchina virtuale** procedura guidata viene visualizzata.
    
-    ![Comando Crea macchina virtuale](./media/virtual-machines-common-classic-create-manage-visual-studio/IC718342.png)
-3. Nella pagina **Scegliere una sottoscrizione** selezionare una sottoscrizione da usare durante la creazione della macchina virtuale e quindi fare clic su **Avanti**.
+    ![Hello comando Crea macchina virtuale](./media/virtual-machines-common-classic-create-manage-visual-studio/IC718342.png)
+3. In hello **scegliere una sottoscrizione** selezionare toouse una sottoscrizione durante la creazione di macchine virtuali hello e quindi fare clic su **Avanti**.
    
-    Se non si è connessi ad Azure, fare clic su **Accedi** per effettuare l'accesso. Quindi, se non è già selezionata, selezionare la propria sottoscrizione di Azure nell'elenco a discesa.
-4. Nella pagina **Selezionare un'immagine di macchina virtuale** selezionare un tipo di immagine nell'elenco a discesa **Tipo immagine** e quindi selezionare le immagini di una macchina virtuale nell'elenco a discesa **Nome immagine**. Al termine, fare clic su **Avanti**.
+    Se non sei connesso tooAzure, fare clic su **Accedi** toosign in. Quindi, selezionare la sottoscrizione di Azure nella casella di riepilogo a discesa hello se non è già selezionata.
+4. In hello **selezionare un'immagine di macchina virtuale** pagina, selezionare un tipo di immagine in hello **tipo di immagine** nella casella di riepilogo a discesa e quindi selezionare un'immagine di macchina virtuale in hello **nome immagine** casella di riepilogo. Al termine, fare clic su **Avanti**.
    
     ![Selezionare una pagina di immagini di macchine virtuali](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744137.png)
    
-    È possibile scegliere tra i seguenti tipi di immagine.
+    È possibile scegliere i seguenti tipi di immagine hello.
    
    * **Immagini pubbliche** sono elencate le immagini di macchine virtuali dei sistemi operativi e del software di server come Windows Server ed SQL Server.
-   * **Immagini MSDN** sono elencate le immagini di macchine virtuali del software disponibile agli abbonati MSDN, ad esempio Visual Studio e Microsoft Dynamics.
+   * **Immagini MSDN** vengono elencate le immagini di macchina virtuale di sottoscrittori tooMSDN disponibili software, ad esempio Visual Studio e Microsoft Dynamics.
    * **Immagini private** sono elencate le immagini di macchine virtuali specializzate e generalizzate create dall'utente.
      
-     Per altre informazioni sulle macchine virtuali specializzate e generalizzate, vedere il post di blog sull' [immagine della macchina virtuale](https://azure.microsoft.com/blog/2014/04/14/vm-image-blog-post/). Per informazioni su come trasformare una macchina virtuale in un modello da usare per creare rapidamente nuove macchine virtuali preconfigurate, vedere [Come acquisire una macchina virtuale Windows da usare come modello](https://azure.microsoft.com/documentation/articles/virtual-machines-capture-image-windows-server/) .
+     toolearn circa specializzate e generalizzate macchine virtuali, vedere [immagine di macchina virtuale](https://azure.microsoft.com/blog/2014/04/14/vm-image-blog-post/). Vedere [come tooCapture tooUse una macchina virtuale di Windows come modello](https://azure.microsoft.com/documentation/articles/virtual-machines-capture-image-windows-server/) per informazioni su come creare una macchina virtuale in un modello che è possibile utilizzare tooquickly tooturn preconfigurato macchine virtuali.
      
-     È possibile fare clic sul nome di un'immagine di macchina virtuale per visualizzare informazioni sull'immagine nel lato destro della pagina.
+     È possibile scegliere un'immagine nome toosee informazioni sulla macchina virtuale sull'immagine di hello hello destra della pagina hello.
      
      > [!NOTE]
-     > Non è possibile aggiungere immagini di macchine virtuali agli elenchi **Immagini pubbliche** o **Immagini MSDN** perché sono di sola lettura. Tutte le macchine virtuali create vengono aggiunte all'elenco **Immagini private** .
+     > Non è possibile aggiungere toohello immagini di macchina virtuale **immagini pubbliche** o **immagini MSDN** Elenca in quanto sono di sola lettura. Tutte le macchine virtuali create vengono aggiunte toohello **immagini Private** elenco.
      > 
      > 
      
      Gli abbonati MSDN con una sottoscrizione di livello Visual Studio possono creare una macchina virtuale di Azure predefinita contenente Visual Studio, oltre a diverse altre immagini. Per altre informazioni, vedere come [creare una macchina virtuale in Visual Studio tramite le immagini della raccolta di Visual Studio 2013 per sottoscrittori MSDN](http://visualstudio2013msdngalleryimage.azurewebsites.net) e le [sottoscrizioni MSDN](https://www.visualstudio.com/products/msdn-subscriptions-vs).|
-5. Nella pagina **Impostazioni di base della macchina virtuale** immettere il nome di una macchina, quindi aggiungere le specifiche della macchina virtuale, inclusi dimensione, nome utente e password. Al termine, fare clic su **Avanti**.
+5. In hello **le impostazioni di base di macchina virtuale** pagina, immettere un nome di computer e quindi aggiungere le specifiche di hello per la macchina virtuale hello, tra cui dimensioni hello e un nome utente e una password. Al termine, fare clic su **Avanti**.
    
-    Il nuovo nome e la password verranno usati per accedere alla macchina con il desktop remoto, quindi è consigliabile prenderne nota. Dopo aver creato una macchina virtuale di Azure in Visual Studio, è possibile modificarne le dimensioni e le altre impostazioni nel [portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103).
-   
-   > [!NOTE]
-   > Se si scelgono dimensioni maggiori per la macchina virtuale potrebbero essere applicati costi aggiuntivi. Per altre informazioni, vedere [Dettagli prezzi per le macchine virtuali](https://azure.microsoft.com/pricing/details/virtual-machines/) .
-   > 
-   > 
-6. Le macchine virtuali create in Visual Studio richiedono un servizio cloud. Nella pagina **Impostazioni servizio cloud** selezionare un servizio cloud per la macchina virtuale oppure fare clic su **<Crea nuovo>** nell'elenco a discesa se non si ha già un servizio cloud oppure si vuole usarne uno nuovo. È anche necessario un account di archiviazione, quindi sceglierne uno (o crearne uno nuovo) nell'elenco a discesa **Account di archiviazione** . Per altre informazioni, vedere [Introduzione ad Archiviazione di Microsoft Azure](../articles/storage/common/storage-introduction.md) .
-7. Per specificare una rete virtuale (facoltativa) selezionarla negli elenchi a discesa Rete virtuale e Subnet.
-   
-    Le macchine virtuali che fanno parte di un set di disponibilità vengono distribuite in diversi domini di errore. Per altre informazioni, vedere [Rete virtuale di Azure](https://azure.microsoft.com/services/virtual-network/) .
-8. Se la macchina virtuale deve appartenere a un set di disponibilità (facoltativo), selezionare la casella di controllo **Specificare un set di disponibilità** e quindi scegliere un set di disponibilità nell'elenco a discesa. Al termine, scegliere il pulsante **Avanti** .
-   
-    L'aggiunta della macchina virtuale a un set di disponibilità garantisce la disponibilità dell'applicazione in caso di errori della rete, guasti hardware di un disco locale ed eventuali tempi di inattività pianificati. Per creare reti virtuali, subnet e set di disponibilità è necessario usare il [portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103) . Per altre informazioni, vedere [Gestione della disponibilità delle macchine virtuali](https://azure.microsoft.com/documentation/articles/manage-availability-virtual-machines/) .
-9. Nella pagina **Endpoint** specificare gli endpoint pubblici che dovranno essere disponibili per gli utenti della macchina virtuale. Ad esempio, è possibile scegliere di abilitare il protocollo HTTP (porta 80) oltre agli endpoint Desktop remoto e PowerShell, che sono abilitati per impostazione predefinita. Per aggiungere un endpoint, sceglierne uno nell'elenco a discesa **Nome porta** e quindi fare clic su **Aggiungi**. Per rimuovere un endpoint, scegliere la **X** rossa accanto al nome nell'elenco di endpoint.
-   
-    ![Pagina Endpoint nella procedura guidata delle macchine virtuali.](./media/virtual-machines-common-classic-create-manage-visual-studio/IC718351.png)
-   
-    Gli endpoint disponibili dipendono dal servizio cloud selezionato per la macchina virtuale. Per altre informazioni, vedere [Endpoint di servizio di Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-set-up-endpoints/) .
+    Si utilizzerà un nuovo nome hello e password toolog macchina hello tramite desktop remoto, pertanto è toowrite una buona idea li verso il basso nel caso si dimentichi. Dopo aver creato una macchina virtuale di Azure in Visual Studio, è possibile modificare le dimensioni e altre impostazioni di hello [il portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103).
    
    > [!NOTE]
-   > L'abilitazione degli endpoint pubblici rende i servizi presenti sulla macchina virtuale disponibili in Internet. Assicurarsi di installare e configurare correttamente gli endpoint e i servizi sulla macchina virtuale, ad esempio impostando gli elenchi di controllo di accesso (ACL) per gli endpoint. Per altre informazioni, vedere la pagina [Come configurare gli endpoint a una macchina virtuale](https://azure.microsoft.com/documentation/articles/virtual-machines-set-up-endpoints/) .
+   > Se si scelgono di dimensioni maggiori per la macchina virtuale hello, aggiuntivi potrebbero essere addebitati. Per altre informazioni, vedere [Dettagli prezzi per le macchine virtuali](https://azure.microsoft.com/pricing/details/virtual-machines/) .
    > 
    > 
-10. Dopo aver terminato di configurare le impostazioni della macchina virtuale, scegliere **Crea** per creare la macchina virtuale.
+6. Le macchine virtuali create in Visual Studio richiedono un servizio cloud. In hello **le impostazioni del servizio Cloud** pagina, selezionare un servizio cloud per la macchina virtuale hello oppure fare clic su **< Crea nuovo … >** nell'elenco a discesa di hello se si dispone già di un cloud service o desidera toouse un nuovo uno. È inoltre necessario un account di archiviazione, quindi scegliere un account di archiviazione (o creare un nuovo account di archiviazione) in hello **account di archiviazione** elenco a discesa. Vedere [tooMicrosoft introduzione di archiviazione di Azure](../articles/storage/common/storage-introduction.md) per ulteriori informazioni.
+7. Se si desidera toospecify una rete virtuale (operazione facoltativa), selezionarlo in hello rete virtuale e Subnet elenchi a discesa.
+   
+    Macchine virtuali che sono membri di un set di disponibilità vengono distribuite toodifferent domini di errore. Per altre informazioni, vedere [Rete virtuale di Azure](https://azure.microsoft.com/services/virtual-network/) .
+8. Se si desidera che il macchina virtuale toobelong tooan set di disponibilità (operazione facoltativa), selezionare hello **specificare un set di disponibilità** casella di controllo e quindi scegliere un set nella casella di riepilogo a discesa hello di disponibilità. Al termine, scegliere hello **Avanti** pulsante.
+   
+    Aggiungere la macchina virtuale di tooan set di disponibilità consente di restare disponibile durante errori di rete, errori hardware del disco locale e qualsiasi tempo di inattività. È necessario hello toouse [il portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103) imposta toocreate le reti virtuali, subnet e la disponibilità. Vedere [Gestisci hello disponibilità delle macchine virtuali](https://azure.microsoft.com/documentation/articles/manage-availability-virtual-machines/) per ulteriori informazioni.
+9. In hello **endpoint** specificare endpoint pubblici di hello che si desidera toousers disponibili della macchina virtuale. Ad esempio, è possibile scegliere tooenable HTTP (porta 80) inoltre toohello Desktop remoto e PowerShell endpoint, che sono abilitati per impostazione predefinita. tooadd un endpoint, sceglierne uno nell'hello **nome porta** elenco a discesa nella casella di riepilogo e quindi scegliere hello **Aggiungi** pulsante. tooremove un endpoint, scegliere hello rosso **X** nome toohello successivo nell'elenco di endpoint hello.
+   
+    ![pagina endpoint Hello nella procedura guidata di hello macchine virtuali.](./media/virtual-machines-common-classic-create-manage-visual-studio/IC718351.png)
+   
+    endpoint Hello disponibili dipendono dal servizio cloud di hello selezionato per la macchina virtuale. Per altre informazioni, vedere [Endpoint di servizio di Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-set-up-endpoints/) .
+   
+   > [!NOTE]
+   > Gli endpoint pubblici abilitando servizi su toohello di disponibile la macchina virtuale internet. Essere tooinstall verificare e configurare correttamente hello endpoint e i servizi sulla macchina virtuale, ad esempio elenchi di controllo di accesso impostazione (ACL) per gli endpoint di hello. Vedere [come configurare gli endpoint di tooSet tooa macchina virtuale](https://azure.microsoft.com/documentation/articles/virtual-machines-set-up-endpoints/) per ulteriori informazioni.
+   > 
+   > 
+10. Dopo la configurazione delle impostazioni hello macchina virtuale, scegliere hello **crea** macchina virtuale di hello toocreate pulsante.
     
-     Durante la creazione della macchina virtuale, la finestra **Log attività di Azure** mostra l'avanzamento dell'operazione di creazione della macchina virtuale.
+     Quando Azure crea macchina virtuale hello, hello **Log attività Azure** Mostra hello lo stato di avanzamento dell'operazione di creazione di hello macchina virtuale.
     
      ![Log attività macchina virtuale - in corso.](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744138.png)
     
-     Per visualizzare solo le informazioni sulla macchina virtuale, scegliere la scheda **Macchine virtuali** nella finestra **Log attività di Microsoft Azure**.
+     informazioni di macchina virtuale solo tooview, scegliere hello **macchine virtuali** scheda hello **Log attività Azure**.
     
      ![Log attività macchina virtuale - completato.](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744139.png)
     
-     Se l'operazione viene completata correttamente, la nuova macchina virtuale viene visualizzata sotto il nodo **Macchine virtuali** in Esplora Server. È possibile accedervi facendo clic con il tasto destro del mouse e scegliendo **Connessione tramite desktop remoto** .
+     Se il completamento dell'operazione di hello, hello nuova macchina virtuale viene visualizzata in hello **macchine virtuali** nodo in Esplora Server. È possibile accedere al suo interno facendo hello **connessione tramite Desktop remoto** scelta rapida.
     
      ![Macchina virtuale visualizzata in Esplora server.](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744140.png)
 
 ## <a name="manage-your-virtual-machines"></a>Gestire le macchine virtuali
-Nella pagina di configurazione della macchina virtuale, oltre a eseguire le operazioni di arresto, connessione, aggiornamento e di aggiunta di checkpoint alla macchina virtuale selezionata, è anche possibile visualizzare o modificare le impostazioni per la macchina virtuale. È possibile:
+Nella pagina di configurazione macchina virtuale hello inoltre tooshutting verso il basso, la connessione, aggiornare e aggiungere checkpoint toohello selezionata macchina virtuale, è anche possibile visualizzare o modificare le impostazioni per la macchina virtuale hello. È possibile:
 
-* Modificare le dimensioni della macchina virtuale.
-* Selezionare il set di disponibilità da usare con la macchina virtuale.
+* Modificare la dimensione di macchina virtuale hello.
+* Set di disponibilità di hello selezionare toouse con la macchina virtuale hello.
 * Aggiungere, rimuovere o modificare le impostazioni per gli endpoint pubblici.
 * Aggiungere, rimuovere o configurare le estensioni delle macchine virtuali.
-* Visualizzare informazioni relative ai dischi associati alla macchina virtuale.
+* Visualizza informazioni sui dischi hello associata a una macchina virtuale hello.
 
 ### <a name="view-or-change-virtual-machine-settings"></a>Visualizzare o modificare impostazioni della macchina virtuale
-1. In Esplora Server, scegliere la macchina virtuale nel nodo **Macchine virtuali di Azure** .
-2. Nel menu di scelta rapida, scegliere **Configura** per visualizzare la pagina di configurazione della macchina virtuale.
+1. In Esplora Server, scegliere la macchina virtuale in hello **macchine virtuali di Azure** nodo.
+2. Scegliere dal menu di scelta rapida di hello **configura** pagina di configurazione tooview hello macchina virtuale.
    
-    ![Pagina di configurazione della macchina virtuale di Azure](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744141.png)
-3. Visualizzare oppure modificare le informazioni relative alla macchina virtuale.
+    ![pagina di configurazione macchina virtuale di Azure Hello](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744141.png)
+3. Consente di visualizzare informazioni della macchina virtuale hello o modificarlo.
 
-### <a name="save-or-restore-the-status-of-your-virtual-machine"></a>Salvare o ripristinare lo stato della macchina virtuale
-Quando si configura la macchina virtuale e vi si installa del software, è consigliabile salvare regolarmente lo stato di avanzamento creando dei checkpoint della macchina virtuale. Un checkpoint è una snapshot (o immagine) dello stato corrente della macchina virtuale. Se si verificano problemi con la macchina virtuale oppure si vuole riconfigurarla, è possibile risparmiare tempo ripristinandone lo stato a un checkpoint precedente anziché ricominciare da zero.
+### <a name="save-or-restore-hello-status-of-your-virtual-machine"></a>Salvare o ripristinare lo stato di hello della macchina virtuale
+Come configurare la macchina virtuale e installare software su di esso, è un tooregularly opportuno salvare lo stato di avanzamento tramite la creazione di checkpoint della macchina virtuale. Un checkpoint è uno snapshot, o immagine, dello stato corrente di hello della macchina virtuale. Se si verificano problemi con la macchina virtuale hello o macchina virtuale di hello tooreconfigure, è possibile risparmiare tempo ripristinandolo tooa lo stato di checkpoint precedente anziché ripartire da zero.
 
-### <a name="to-create-a-virtual-machine-checkpoint"></a>Per creare un checkpoint della macchina virtuale
-1. In Esplora Server, scegliere la macchina virtuale nel nodo **Macchine virtuali di Azure** .
-2. Nel menu di scelta rapida, scegliere **Configura** per visualizzare la pagina di configurazione della macchina virtuale.
-3. Nella pagina di configurazione, scegliere **Capture Image** .
+### <a name="toocreate-a-virtual-machine-checkpoint"></a>toocreate un checkpoint della macchina virtuale
+1. In Esplora Server, scegliere la macchina virtuale in hello **macchine virtuali di Azure** nodo.
+2. Scegliere dal menu di scelta rapida di hello **configura** pagina di configurazione tooview hello macchina virtuale.
+3. Nella pagina Configurazione hello scegliere hello **Acquisisci immagine** pulsante.
    
     ![Pulsante Acquisisci della pagina di configurazione di Azure](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744142.png)
    
-    Verrà visualizzata la finestra di dialogo **Capture Virtual Machine** .
+    Hello **Acquisisci macchina virtuale** viene visualizzata la finestra.
    
     ![Finestra di dialogo Acquisisci macchina virtuale](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744143.png)
 4. Specificare un'etichetta di immagine e una descrizione. Vengono fornite un'etichetta e una descrizione predefinite, ma se si preferisce è possibile sovrascriverle con le proprie.
-5. Se è già stato eseguito Sysprep in questa macchina virtuale, selezionare la casella **Sysprep eseguito sulla macchina virtuale** .
+5. Se già stato eseguito Sysprep nella macchina virtuale, selezionare hello **Sysprep eseguito sulla macchina virtuale hello** casella.
    
-    Sysprep è uno strumento che, tra le altre cose, rimuove i dati specifici del sistema dalla versione della macchina virtuale di Windows, rendendola un modello utilizzabile dagli altri utenti. Per altre informazioni, vedere [Come acquisire una macchina virtuale Windows da usare come modello](https://azure.microsoft.com/documentation/articles/virtual-machines-capture-image-windows-server/) . Eseguire il backup della VM prima di eseguire Sysprep.
-6. Dopo aver terminato di configurare le impostazioni di acquisizione, scegliere **Acquisisci** per creare il checkpoint.
+    Sysprep è uno strumento che, tra le altre cose, rimuove i dati specifici del sistema dalla versione di hello virtuale della macchina virtuale di Windows, creando un modello che altri utenti possono usare. Vedere [come tooCapture tooUse una macchina virtuale di Windows come modello](https://azure.microsoft.com/documentation/articles/virtual-machines-capture-image-windows-server/) per ulteriori informazioni. Eseguire il backup hello VM prima di eseguire Sysprep.
+6. Dopo la configurazione delle impostazioni di acquisizione hello, scegliere hello **acquisire** checkpoint di hello toocreate pulsante.
    
-    Durante la creazione del checkpoint, la finestra **Log attività di Azure** mostra l'avanzamento dell'operazione.
+    Durante la creazione del checkpoint hello, hello **Log attività Azure** Mostra hello lo stato di avanzamento dell'operazione di hello.
    
     ![Acquisizione di un checkpoint della macchina virtuale](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744144.png)
    
-    Il completamento dell'operazione di checkpoint sarà indicato nella finestra **Log attività di Azure**.
+    Al termine dell'operazione di checkpoint hello, verrà visualizzato in hello **Log attività Azure**.
    
     ![Operazione di checkpoint completata](./media/virtual-machines-common-classic-create-manage-visual-studio/IC744145.png)
 
-## <a name="to-manage-virtual-machine-checkpoints"></a>Per gestire i checkpoint delle macchine virtuali
-### <a name="to-restore-a-virtual-machine-to-a-previously-saved-state"></a>Per ripristinare uno stato precedentemente salvato di una macchina virtuale
-* Seguire la procedura dettagliata descritta nella seconda parte del post di blog su come [eseguire ripristini nel cloud delle macchine virtuali di Microsoft Azure con PowerShell](http://blogs.technet.com/b/keithmayer/archive/2014/02/04/step-by-step-perform-cloud-restores-of-windows-azure-virtual-machines-using-powershell-part-2.aspx).
+## <a name="toomanage-virtual-machine-checkpoints"></a>Checkpoint della macchina virtuale toomanage
+### <a name="toorestore-a-virtual-machine-tooa-previously-saved-state"></a>lo stato precedentemente salvato toorestore tooa una macchina virtuale
+* Seguire i passaggi di hello illustrati in [procedura dettagliata: eseguire Cloud Ripristina Microsoft macchine virtuali di Azure con PowerShell - parte 2](http://blogs.technet.com/b/keithmayer/archive/2014/02/04/step-by-step-perform-cloud-restores-of-windows-azure-virtual-machines-using-powershell-part-2.aspx).
 
-### <a name="to-delete-a-checkpoint"></a>Per eliminare un checkpoint
-1. Accedere al [portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103).
-2. Nella parte superiore della pagina di configurazione della macchina virtuale scegliere la scheda **Immagini** .
-3. Scegliere il checkpoint che si vuole eliminare e quindi fare clic su **Elimina** nella parte inferiore della pagina.
+### <a name="toodelete-a-checkpoint"></a>toodelete un checkpoint
+1. Passare toohello [il portale di gestione di Azure](http://go.microsoft.com/fwlink/?LinkID=253103).
+2. Nella pagina di configurazione macchina virtuale hello scegliere hello **immagini** scheda nella parte superiore di hello della pagina hello.
+3. Scegliere checkpoint hello toodelete desiderato e quindi scegliere hello **eliminare** pulsante nella parte inferiore di hello della pagina hello.
 
 ## <a name="shut-down-your-virtual-machine"></a>Arrestare la macchina virtuale
-1. In Esplora Server, scegliere la macchina virtuale che si vuole arrestare nel nodo **Macchine virtuali di Azure** .
-2. Nel menu di scelta rapida scegliere il comando **Arresta** oppure **Configura** per visualizzare la pagina di configurazione della macchina virtuale, quindi fare clic su **Arresta**.
+1. In Esplora Server, scegliere macchina virtuale di hello da tooshut verso il basso in hello **macchine virtuali di Azure** nodo.
+2. Scegliere dal menu di scelta rapida hello, hello **arresto** comando oppure scegliere **configura** tooview hello pagina di configurazione macchina virtuale e quindi scegliere hello **arresto**pulsante.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulla creazione di macchine virtuali, vedere [Creare una macchina virtuale che esegue Linux](../articles/virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) e [Creare una macchina virtuale che esegue Windows nel portale di anteprima di Azure](../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+toolearn informazioni sulla creazione di macchine virtuali, vedere [creare una macchina virtuale che esegue Linux](../articles/virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) e [creare una macchina virtuale in esecuzione Windows nel portale di anteprima di Azure hello](../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

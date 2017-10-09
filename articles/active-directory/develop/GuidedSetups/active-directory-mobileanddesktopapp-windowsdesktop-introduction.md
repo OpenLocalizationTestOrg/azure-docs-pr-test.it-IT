@@ -1,5 +1,5 @@
 ---
-title: Introduzione a Windows Desktop per Azure AD v2 - Intro | Microsoft Docs
+title: aaaAzure AD v2 Windows Desktop Getting Started - introduzione | Documenti Microsoft
 description: Come applicazioni .NET per Windows Desktop (XAML) possono chiamare un'API che richiede token di accesso dall'endpoint di Azure Active Directory v2
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,17 +15,17 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 4a695c00fce4deb02261ba58ec95469746bb1486
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 89d98fc46190ba9e47b7c3095f91e32eca455fcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="call-the-microsoft-graph-api-from-a-windows-desktop-app"></a>Chiamare l'API Microsoft Graph da un'app Windows Desktop
+# <a name="call-hello-microsoft-graph-api-from-a-windows-desktop-app"></a>Chiamare hello Microsoft Graph API da un'app di Windows Desktop
 
 Questa guida dimostra come un'applicazione .NET per Windows Desktop (XAML) nativa può ottenere un token di accesso e chiamare l'API Microsoft Graph o altre API che richiedono token di accesso dall'endpoint di Azure Active Directory v2.
 
-Al termine di questa guida, l'applicazione sarà in grado di chiamare un'API protetta usando sia account personali (ad esempio, outlook.com, live.com e altri) sia account aziendali o di istituti di istruzione di proprietà di aziende o organizzazioni con Azure Active Directory.  
+Alla fine di hello di questa Guida, l'applicazione verrà essere in grado di toocall un'API protetta utilizzando account personali (inclusi outlook.com, live.com e altri), nonché di lavoro e gli account dell'istituto di istruzione da qualsiasi società o organizzazione con Azure Active Directory.  
 
 > Questa guida richiede Visual Studio 2015 Update 3 o Visual Studio 2017.  Se non lo si ha, è possibile [scaricare Visual Studio 2017 gratuitamente](https://www.visualstudio.com/downloads/)
 
@@ -33,21 +33,21 @@ Al termine di questa guida, l'applicazione sarà in grado di chiamare un'API pro
 
 ![Come interpretare questa guida](media/active-directory-mobileanddesktopapp-windowsdesktop-intro/windesktophowitworks.png)
 
-L'applicazione di esempio creata in questa guida consente a un'applicazione per Windows Desktop di eseguire query nell'API Microsoft Graph o in un'API Web che accetta token dall'endpoint di Azure Active Directory v2. Per questo scenario, viene aggiunto un token a richieste HTTP tramite l'intestazione di autorizzazione. L'acquisizione e il rinnovo del token vengono gestiti da Microsoft Authentication Library (MSAL).
+applicazione di esempio Hello creata da questa Guida consente tooquery un'applicazione Desktop di Windows Microsoft Graph API o un'API Web che accetta i token dall'endpoint di Azure Active Directory v2. Per questo scenario, un token viene aggiunto tooHTTP richieste tramite l'intestazione di autorizzazione hello. Acquisizione del token e il rinnovo viene gestita da hello libreria di autenticazione di Microsoft (MSAL).
 
 
 ### <a name="handling-token-acquisition-for-accessing-protected-web-apis"></a>Gestione dell'acquisizione di token per l'accesso ad API Web protette
 
-Dopo che l'utente ha eseguito l'autenticazione, l'applicazione di esempio riceve un token che può essere usato per eseguire query nell'API Microsoft Graph o in un'API Web protetta da Microsoft Azure Active Directory v2.
+Dopo l'autenticazione utente hello, applicazione di esempio hello riceve un token che può essere utilizzato tooquery Microsoft Graph API o un'API Web protetta da Microsoft Azure Active Directory v2.
 
-API come Microsoft Graph richiedono un token di accesso per consentire l'accesso a risorse specifiche, ad esempio per leggere un profilo utente, accedere al calendario dell'utente o inviare un messaggio di posta elettronica. L'applicazione può richiedere un token di accesso usando la libreria MSAL per accedere alle risorse tramite la definizione di ambiti API. Il token di accesso ottenuto viene quindi aggiunto all'intestazione di autorizzazione HTTP per ogni chiamata effettuata alla risorsa protetta. 
+API, ad esempio Microsoft Graph richiedono un tooallow token di accesso sull'accesso alle risorse specifiche – tooread, ad esempio, un profilo utente, del calendario dell'utente di accedere o inviare un messaggio di posta elettronica. L'applicazione può richiedere un token di accesso usando MSAL tooaccess queste risorse specificando gli ambiti di API. Questo token di accesso viene quindi aggiunto toohello intestazione autorizzazione HTTP per ogni chiamata effettuata hello la risorsa protetta. 
 
 La memorizzazione nella cache e l'aggiornamento dei token di accesso vengono gestiti dalla libreria MSAL e non devono quindi essere effettuati dall'applicazione.
 
 
 ### <a name="nuget-packages"></a>Pacchetti NuGet
 
-Questa guida usa i pacchetti NuGet seguenti:
+Questa Guida Usa hello pacchetti NuGet seguenti:
 
 |Libreria|Descrizione|
 |---|---|

@@ -1,5 +1,5 @@
 ---
-title: "Risoluzione dei problemi di Archiviazione di Azure con le funzionalità di diagnostica e Message Analyzer | Documentazione Microsoft"
+title: aaaTroubleshooting archiviazione di Azure con diagnostica & Message Analyzer | Documenti Microsoft
 description: Esercitazione che illustra la risoluzione dei problemi end-to-end mediante Analisi archiviazione di Azure, AzCopy e Microsoft Message Analyzer
 services: storage
 documentationcenter: dotnet
@@ -13,105 +13,105 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/15/2017
 ms.author: robinsh
-ms.openlocfilehash: e2b739772f98a9c23253c58bb2bbd3560814ccaa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f0b7886911c35de1fdc0bcbe6f83c220ddb38cf5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="end-to-end-troubleshooting-using-azure-storage-metrics-and-logging-azcopy-and-message-analyzer"></a>Risoluzione dei problemi end-to-end con le metriche e la registrazione di Archiviazione di Azure, AzCopy e Message Analyzer
 [!INCLUDE [storage-selector-portal-e2e-troubleshooting](../../includes/storage-selector-portal-e2e-troubleshooting.md)]
 
-Diagnostica e risoluzione dei problemi sono competenze fondamentali per la creazione e il supporto di applicazioni client con Archiviazione di Microsoft Azure. Data la natura distribuita di un'applicazione Azure, la diagnostica e la risoluzione dei problemi di prestazioni possono risultare più complesse che in ambienti tradizionali.
+Diagnostica e risoluzione dei problemi sono competenze fondamentali per la creazione e il supporto di applicazioni client con Archiviazione di Microsoft Azure. A causa di natura toohello distribuito di un'applicazione Azure, la diagnosi e la risoluzione dei problemi di prestazioni può essere più complessi in ambienti tradizionali.
 
-In questa esercitazione viene illustrato come identificare alcuni errori che possono influire sulle prestazioni e come risolverli in modo end-to-end usando gli strumenti forniti da Microsoft e Archiviazione di Azure per ottimizzare l'applicazione client.
+In questa esercitazione viene illustrato come tooidentify alcuni errori che potrebbero influire sulle prestazioni e risolvere gli errori da end-to-end utilizzando gli strumenti forniti da Microsoft e di archiviazione di Azure in un'applicazione client hello toooptimize ordine.
 
-Questa esercitazione offre un'esplorazione pratica di uno scenario di risoluzione dei problemi end-to-end. Per una guida approfondita sui concetti relativi alla risoluzione dei problemi delle applicazioni di archiviazione di Azure, vedere [Monitorare, diagnosticare e risolvere i problemi dell'Archiviazione di Microsoft Azure](storage-monitoring-diagnosing-troubleshooting.md).
+Questa esercitazione offre un'esplorazione pratica di uno scenario di risoluzione dei problemi end-to-end. Per un'applicazione di archiviazione di Azure tootroubleshooting Guida concettuale approfondita, vedere [Monitor, diagnosticare e risolvere i problemi di archiviazione di Microsoft Azure](storage-monitoring-diagnosing-troubleshooting.md).
 
 ## <a name="tools-for-troubleshooting-azure-storage-applications"></a>Strumenti per la risoluzione dei problemi delle applicazioni di archiviazione di Azure
-Per risolvere i problemi relativi alle applicazioni client mediante Archiviazione di Microsoft Azure, è possibile usare una combinazione di strumenti per determinare quando si è verificato un problema e quale potrebbe essere la sua causa. Questi strumenti comprendono:
+tootroubleshoot di applicazioni client che usano l'archiviazione di Microsoft Azure, è possibile utilizzare una combinazione di strumenti toodetermine quando si è verificato un problema e può essere determinato quali hello problema hello. Questi strumenti comprendono:
 
 * **Analisi archiviazione di Azure**. [Analisi archiviazione di Azure](/rest/api/storageservices/Storage-Analytics) fornisce metriche e registrazioni per Archiviazione di Azure.
   
-  * **metriche di archiviazione** tengono traccia delle metriche relative alle transazioni e alla capacità per l'account di archiviazione. Le metriche consentono di determinare le prestazioni dell'applicazione in base a un'ampia gamma di misure diverse. Per altre informazioni sui tipi di metriche di cui Analisi archiviazione tiene traccia, vedere [Schema di tabella della metrica di Analisi archiviazione](/rest/api/storageservices/Storage-Analytics-Metrics-Table-Schema) .
-  * **registrazione di archiviazione** registra tutte le richieste in arrivo ai servizi di Archiviazione di Azure in un log sul lato server. Nel log vengono registrati dati dettagliati per ogni richiesta, tra cui l'operazione eseguita, lo stato dell'operazione e le informazioni sulla latenza. Per altre informazioni sui dati di richiesta e risposta che vengono scritti nei log di Analisi di archiviazione, vedere [Formato del log di Analisi archiviazione](/rest/api/storageservices/Storage-Analytics-Log-Format) .
+  * **metriche di archiviazione** tengono traccia delle metriche relative alle transazioni e alla capacità per l'account di archiviazione. Uso delle metriche, è possibile determinare le prestazioni dell'applicazione secondo tooa diverse misure diverse. Vedere [Schema di tabella delle metriche di archiviazione Analitica](/rest/api/storageservices/Storage-Analytics-Metrics-Table-Schema) per ulteriori informazioni sui tipi di hello delle metriche monitorate dall'archiviazione Analitica.
+  * **Registrazione archiviazione** registra ogni registro toohello Azure Storage services tooa sul lato server richiesta. Hello log tracce dati dettagliati per ogni richiesta, inclusa l'operazione hello eseguite stato hello dell'operazione hello e informazioni sulla latenza. Vedere [formato di archiviazione Analitica Log](/rest/api/storageservices/Storage-Analytics-Log-Format) per ulteriori informazioni sui dati di richiesta e risposta hello scritto toohello log dall'archiviazione Analitica.
 
 > [!NOTE]
-> Per gli account di archiviazione con un tipo di replica di archiviazione con ridondanza della zona (ZRS) al momento non sono abilitate le funzionalità di metrica e registrazione. 
+> Account di archiviazione con un tipo di replica di archiviazione con ridondanza della zona (ZRS) non dispone delle metriche hello o abilitata al momento la funzionalità di registrazione. 
 > 
 > 
 
-* **portale di Azure**. Nel [portale di Azure](https://portal.azure.com) è possibile configurare le metriche e la registrazione dell'account di archiviazione. È possibile anche visualizzare grafici che mostrano le prestazioni dell'applicazione nel tempo e configurare gli avvisi per ricevere una notifica se le prestazioni dell'applicazione si discostano dal previsto per una determinata metrica.
+* **portale di Azure**. È possibile configurare le metriche e registrazione per l'account di archiviazione in hello [portale di Azure](https://portal.azure.com). È possibile visualizzare i grafici che mostrano le prestazioni dell'applicazione nel tempo e configurare gli avvisi toonotify che se nell'applicazione viene eseguita in modo diverso rispetto a previsto per una metrica specificata.
   
-    Per informazioni sulla configurazione del monitoraggio nel portale di Azure, vedere [Monitorare un account di archiviazione nel portale di Azure](storage-monitor-storage-account.md).
-* **AzCopy**. I log di Archiviazione di Azure vengono memorizzati come BLOB, quindi è possibile usare AzCopy per copiare i BLOB di log in una directory locale per l'analisi mediante Microsoft Message Analyzer. Per altre informazioni su AzCopy, vedere [Trasferire dati con l'utilità della riga di comando AzCopy](storage-use-azcopy.md) .
-* **Microsoft Message Analyzer**. Message Analyzer è uno strumento che utilizza i file di log e visualizza i dati di log in un formato visivo che ne semplifica il filtraggio, la ricerca e il raggruppamento in set utili da usare per analizzare gli errori e i problemi di prestazioni. Per altre informazioni su Message Analyzer, vedere [la guida operativa di Microsoft Message Analyzer](http://technet.microsoft.com/library/jj649776.aspx) .
+    Vedere [monitorare un account di archiviazione nel portale di Azure hello](storage-monitor-storage-account.md) per informazioni sulla configurazione del monitoraggio nel portale di Azure hello.
+* **AzCopy**. Log del server per l'archiviazione di Azure vengono archiviati come BLOB, pertanto è possibile utilizzare AzCopy toocopy hello BLOB tooa locale directory del registro per l'analisi utilizzando Microsoft Message Analyzer. Vedere [trasferire i dati con l'utilità della riga di comando di AzCopy hello](storage-use-azcopy.md) per ulteriori informazioni su AzCopy.
+* **Microsoft Message Analyzer**. Message Analyzer è uno strumento che utilizza i file di log e visualizza i dati di log in un formato visivo che rende facile toofilter, ricerca e gruppo di registrare i dati in set utili che è possibile utilizzare tooanalyze errori e problemi di prestazioni. Per altre informazioni su Message Analyzer, vedere [la guida operativa di Microsoft Message Analyzer](http://technet.microsoft.com/library/jj649776.aspx) .
 
-## <a name="about-the-sample-scenario"></a>Informazioni sullo scenario di esempio
-In questa esercitazione verrà esaminato uno scenario in cui le metriche di Archiviazione di Azure indicano una bassa percentuale di operazioni riuscite per un'applicazione che chiama Archiviazione di Azure. La metrica relativa alla bassa percentuale di operazioni riuscite (visualizzata come **PercentSuccess** nel [portale di Azure](https://portal.azure.com) e nelle tabelle di metriche) tiene traccia delle operazioni che hanno esito positivo ma restituiscono un codice di stato HTTP maggiore di 299. Nei file di log dell'archiviazione sul lato server, queste operazioni vengono registrate con stato della transazione **ClientOtherErrors**. Per maggiori dettagli sulla metrica relativa alla bassa percentuale di operazioni riuscite, vedere [Le metriche indicano un valore PercentSuccess basso o le voci del log contengono operazioni con stato della transazione ClientOtherErrors](storage-monitoring-diagnosing-troubleshooting.md#metrics-show-low-percent-success).
+## <a name="about-hello-sample-scenario"></a>Su scenario di esempio hello
+In questa esercitazione verrà esaminato uno scenario in cui le metriche di Archiviazione di Azure indicano una bassa percentuale di operazioni riuscite per un'applicazione che chiama Archiviazione di Azure. Hello metrica frequenza bassa percentuale di successo (visualizzate come **PercentSuccess** in hello [portale di Azure](https://portal.azure.com) e nelle tabelle di metrica hello) tiene traccia delle operazioni eseguite con esito positivo, ma che restituiscono un codice di stato HTTP è maggiore di di 299. Nei file di log di archiviazione sul lato server hello, queste operazioni vengono registrate con lo stato delle transazioni **ClientOtherErrors**. Per ulteriori informazioni su metrica bassa percentuale di successo hello, vedere [metrica Mostra PercentSuccess bassa o voci di log analitica sono operazioni con lo stato delle transazioni di ClientOtherErrors](storage-monitoring-diagnosing-troubleshooting.md#metrics-show-low-percent-success).
 
-Le operazioni di Archiviazione di Azure possono restituire codici di stato HTTP maggiori di 299 in condizioni di funzionalità normali. In alcuni casi, tuttavia, questi errori indicano che è possibile ottimizzare l'applicazione client per migliorare le prestazioni.
+Le operazioni di Archiviazione di Azure possono restituire codici di stato HTTP maggiori di 299 in condizioni di funzionalità normali. Ma in alcuni casi questi errori indicano che è in grado di toooptimize l'applicazione client per prestazioni migliorate.
 
-In questo scenario la percentuale di operazioni riuscite sarà considerata bassa se inferiore al 100%. È comunque possibile scegliere un diverso livello di metrica, in base alle esigenze. Durante il test dell'applicazione è consigliabile definire una tolleranza di base per le metriche delle prestazioni chiave. Ad esempio, sulla base dei test è possibile che si stabilisca che l'applicazione deve avere una percentuale di operazioni riuscite costante del 90% o 85%. Se i dati di metrica mostrano una deviazione dell'applicazione da tale valore, è possibile indagare per individuare la causa dell'aumento.
+In questo scenario, si vedrà un toobe frequenza bassa percentuale di successo un valore inferiore al 100%. È possibile scegliere un metrica livello diverso, tuttavia, in base alle esigenze tooyour. Durante il test dell'applicazione è consigliabile definire una tolleranza di base per le metriche delle prestazioni chiave. Ad esempio, sulla base dei test è possibile che si stabilisca che l'applicazione deve avere una percentuale di operazioni riuscite costante del 90% o 85%. Se i dati di metrica mostrano che l'applicazione hello è allontanarsi dalle tale numero, è possibile esaminare che possono causare hello aumento.
 
-Nello scenario di esempio, dopo avere stabilito che la metrica della percentuale di operazioni riuscite è inferiore al 100%, si esamineranno i log per individuare gli errori correlati alle metriche, che saranno usati per risalire al motivo per cui la percentuale di operazioni riuscite è inferiore. Si osserveranno in particolare gli errori nella fascia 400, esaminando in dettaglio gli errori 404 (Non trovato).
+Per questo scenario di esempio, una volta è stata stabilita metrica relativa al tasso percentuale di successo hello è inferiore al 100%, verrà esaminare hello registri toofind hello errori correlati toohello metriche e usarli toofigure il causa percentuale di successo percentuale inferiore di hello. Verrà esaminato in particolare gli errori nell'intervallo di 400 hello. esaminando in dettaglio gli errori 404 (Non trovato).
 
 ### <a name="some-causes-of-400-range-errors"></a>Alcune cause degli errori della fascia 400
-Gli esempi seguenti presentano un campione di errori della serie 400 per le richieste nell'archivio BLOB di Azure e le possibili cause. Tutti questi errori, così come quelli nella fascia 300 e 500, possono contribuire a una bassa percentuale di operazioni riuscite.
+esempio Hello riportato di seguito viene illustrato un campionamento di alcuni errori di 400 intervallo per le richieste nel servizio di archiviazione Blob di Azure e le possibili cause. Uno di questi errori, nonché gli errori in hello 300 intervallo e hello 500, possono contribuire frequenza bassa percentuale di successo tooa.
 
-Tenere presente che gli elenchi riportati sotto sono tutt'altro che completi. Per informazioni dettagliate sugli errori generali di Archiviazione di Azure e sugli errori specifici dei singoli servizi di archiviazione, vedere [Codici di stato e di errore](http://msdn.microsoft.com/library/azure/dd179382.aspx) su MSDN.
+Si noti che hello elencati di seguito non sono complete. Vedere [lo stato e codici di errore](http://msdn.microsoft.com/library/azure/dd179382.aspx) su MSDN per informazioni dettagliate sugli errori generali di archiviazione di Azure e su tooeach specifico di errori dei servizi di archiviazione hello.
 
 **Esempi di codice di stato 404 (Non trovato)**
 
-Si verifica quando un'operazione di lettura in un contenitore o BLOB non riesce perché non viene trovato il BLOB o il contenitore.
+Si verifica quando un'operazione di lettura in un contenitore o blob non hello blob o contenitore non è stato trovato.
 
 * Si verifica se un contenitore o BLOB è stato eliminato da un altro client prima di questa richiesta.
-* Si verifica se si usa una chiamata API che crea il contenitore o il BLOB dopo averne controllato l'esistenza. Le API CreateIfNotExists effettuano una chiamata HEAD per verificare l'esistenza del contenitore o del BLOB. Se non esiste, viene restituito un errore 404 e quindi viene eseguita una seconda chiamata PUT per scrivere il contenitore o il BLOB.
+* Si verifica se si utilizza una chiamata di API che consente di creare blob o contenitore hello dopo aver controllato l'esistenza. Hello CreateIfNotExists APIs rendere HEAD toocheck prima di chiamare l'esistenza di hello di hello contenitore o blob; Se non esiste, viene restituito un errore 404, e viene effettuata una chiamata PUT secondo toowrite hello contenitore o blob.
 
 **Esempi di codice di stato 409 (Conflitto)**
 
-* Si verifica se si usa un'API di creazione per creare un nuovo contenitore o BLOB, senza controllarne prima l'esistenza, ed esiste già un contenitore o BLOB con lo stesso nome.
-* Si verifica se è in corso l'eliminazione di un contenitore e si tenta di crearne uno nuovo con lo stesso nome prima del completamento dell'operazione di eliminazione.
+* Si verifica se si utilizza un toocreate API di creare un nuovo contenitore o blob, senza prima verificare esistenza e un contenitore o blob con lo stesso nome esiste già.
+* Si verifica se un contenitore è stato eliminato e si tenta un nuovo contenitore con stesso nome prima che venga completata l'operazione di eliminazione hello hello toocreate.
 * Si verifica se si specifica un lease in un contenitore o BLOB ed è già presente un lease.
 
 **Esempi di codice di stato 412 (Condizione preliminare non riuscita)**
 
-* Si verifica quando la condizione specificata da un'intestazione condizionale non viene soddisfatta.
-* Si verifica quando l'ID lease specificato non corrisponde all'ID lease per il contenitore o BLOB.
+* Si verifica quando non è stata soddisfatta la condizione di hello specificata da un'intestazione condizionale.
+* Si verifica quando l'ID lease hello specificato non corrisponde all'ID di lease hello nella hello contenitore o blob.
 
 ## <a name="generate-log-files-for-analysis"></a>Generare file di log per l'analisi
-In questa esercitazione viene usato Message Analyzer per utilizzare tre diversi tipi di file di log, anche se è possibile scegliere di utilizzarne uno:
+In questa esercitazione si userà Message Analyzer toowork con tre diversi tipi di file di log, anche se è possibile scegliere toowork con uno qualsiasi di questi elementi:
 
-* Il **log del server**, che viene creato quando abilita la registrazione di Archiviazione di Azure. Il log del server contiene dati relativi a ogni operazione chiamata in uno dei servizi di Archiviazione di Azure, ovvero BLOB, accodamento, tabelle e file. Il log del server indica l'operazione che è stato chiamata e il codice di stato restituito, nonché altri dettagli sulla richiesta e risposta.
-* Il **log del client .NET**, che viene creato quando si abilita la registrazione sul lato client dall'applicazione .NET. Il log del client include informazioni dettagliate sul modo in cui il client prepara la richiesta e riceve ed elabora la risposta.
-* Il **log di traccia di rete HTTP**, che raccoglie i dati relativi alle richieste e risposte HTTP/HTTPS, anche per le operazioni in Archiviazione di Azure. In questa esercitazione, la traccia di rete verrà generata mediante Message Analyzer.
+* Hello **log server**, che viene creato quando si abilita la registrazione di archiviazione di Azure. log del server Hello contiene dati relativi a ogni operazione viene chiamato su uno dei servizi di archiviazione di Azure hello - blob, coda, tabella e file. log del server di Hello indica quale operazione è stato chiamato e il codice di stati restituiti, nonché altri dettagli sull'hello richiesta e risposta.
+* Hello **log del client .NET**, che viene creato quando si abilita la registrazione dal lato client all'interno dell'applicazione .NET. log Hello del client include informazioni dettagliate su come client hello Prepara hello richiesta e riceve ed elabora la risposta hello.
+* Hello **log di traccia di rete HTTP**, che raccoglie i dati sui dati di richiesta e risposta HTTP/HTTPS, incluso per le operazioni nel servizio di archiviazione Azure. In questa esercitazione, si verrà generato di traccia di rete hello tramite Message Analyzer.
 
 ### <a name="configure-server-side-logging-and-metrics"></a>Configurare le metriche e la registrazione sul lato server
-In primo luogo è necessario configurare la registrazione e le metriche di Archiviazione di Azure, in modo da disporre di dati dell'applicazione client per l'analisi. La registrazione e le metriche possono essere configurate in diversi modi: tramite il [portale di Azure](https://portal.azure.com), con PowerShell o a livello di codice. Per informazioni dettagliate sulla registrazione e sulle metriche, vedere [Abilitazione di Metriche di archiviazione e visualizzazione dei dati di metrica](http://msdn.microsoft.com/library/azure/dn782843.aspx) e [Abilitazione di Registrazione archiviazione e accesso ai dati di log](http://msdn.microsoft.com/library/azure/dn782840.aspx) su MSDN.
+In primo luogo, è necessario tooconfigure la registrazione di archiviazione di Azure e le misure, in modo che si dispone di dati da hello client applicazione tooanalyze. È possibile configurare la registrazione e metrica in diversi modi: tramite hello [portale di Azure](https://portal.azure.com), usando PowerShell, o a livello di codice. Per informazioni dettagliate sulla registrazione e sulle metriche, vedere [Abilitazione di Metriche di archiviazione e visualizzazione dei dati di metrica](http://msdn.microsoft.com/library/azure/dn782843.aspx) e [Abilitazione di Registrazione archiviazione e accesso ai dati di log](http://msdn.microsoft.com/library/azure/dn782840.aspx) su MSDN.
 
-**Tramite il portale di Azure**
+**Tramite il portale di Azure hello**
 
-Per configurare la registrazione e le metriche dell'account di archiviazione tramite il [portale di Azure](https://portal.azure.com), seguire le istruzioni disponibili in [Monitorare un account di archiviazione nel portale di Azure](storage-monitor-storage-account.md).
+tooconfigure registrazione e metrica per l'account di archiviazione utilizzando hello [portale di Azure](https://portal.azure.com), seguire le istruzioni di hello in [monitorare un account di archiviazione nel portale di Azure hello](storage-monitor-storage-account.md).
 
 > [!NOTE]
-> Non è possibile impostare metriche al minuto tramite il portale di Azure. Tuttavia, è consigliabile impostarla ai fini di questa esercitazione e per l'analisi dei problemi di prestazioni relativi all'applicazione. La metrica al minuto può essere impostata tramite PowerShell, come mostrato di seguito, o a livello di codice o tramite la libreria del client di archiviazione.
+> Non è possibile tooset metrica al minuto utilizzando hello portale di Azure. Tuttavia, è consigliabile impostare li hello a scopo di questa esercitazione e per analizzare i problemi di prestazioni con l'applicazione. È possibile impostare le metriche al minuto utilizzando PowerShell, come illustrato di seguito, o a livello di codice della libreria client di archiviazione hello.
 > 
-> Il portale di Azure non consente di visualizzare metriche al minuto, ma solo metriche orarie.
+> Si noti che hello portale di Azure non è possibile visualizzare le metriche al minuto, solo le metriche orarie.
 > 
 > 
 
 **Tramite PowerShell**
 
-Per informazioni introduttive su PowerShell per Azure, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+tooget introduttiva a PowerShell per Azure, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
-1. Usare il cmdlet [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0) per aggiungere l'account utente di Azure alla finestra di PowerShell:
+1. Hello utilizzare [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0) tooadd cmdlet toohello finestra di PowerShell dell'account dell'utente di Azure:
    
     ```powershell
     Add-AzureAccount
     ```
 
-2. Nella finestra di **accesso a Microsoft Azure** digitare l'indirizzo di posta elettronica e la password associati all'account. Le informazioni delle credenziali vengono autenticate e salvate in Azure, quindi la finestra viene chiusa.
-3. Impostare l'account di archiviazione predefinito sull'account di archiviazione usato per l'esercitazione eseguendo i comandi seguenti nella finestra di PowerShell:
+2. In hello **Accedi tooMicrosoft Azure** finestra, indirizzo di posta elettronica di tipo hello e la password associata al proprio account. Azure autentica e Salva le informazioni sulle credenziali hello e chiude la finestra hello.
+3. Impostare hello predefinito storage account toohello account di archiviazione in uso per l'esercitazione hello tramite l'esecuzione di questi comandi nella finestra di PowerShell hello:
    
     ```powershell
     $SubscriptionName = 'Your subscription name'
@@ -119,197 +119,197 @@ Per informazioni introduttive su PowerShell per Azure, vedere [Come installare e
     Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
     ```
 
-4. Abilitare la registrazione di archiviazione per il servizio BLOB:
+4. Abilitare la registrazione per hello servizio Blob di archiviazione:
    
     ```powershell
     Set-AzureStorageServiceLoggingProperty -ServiceType Blob -LoggingOperations Read,Write,Delete -PassThru -RetentionDays 7 -Version 1.0
     ```
 
-5. Abilitare la metrica di archiviazione per il servizio BLOB, assicurandosi di impostare **-MetricsType** su `Minute`:
+5. Abilitare metriche di archiviazione per il servizio Blob, rendendo tooset che hello **- MetricsType** troppo`Minute`:
    
     ```powershell
     Set-AzureStorageServiceMetricsProperty -ServiceType Blob -MetricsType Minute -MetricsLevel ServiceAndApi -PassThru -RetentionDays 7 -Version 1.0
     ```
 
 ### <a name="configure-net-client-side-logging"></a>Configurare la registrazione sul lato client .NET
-Per configurare la registrazione sul lato client per un'applicazione .NET, abilitare la diagnostica .NET nel file di configurazione dell'applicazione (web.config o app.config). Per informazioni dettagliate, vedere [Registrazione lato client con la libreria client di archiviazione .NET](http://msdn.microsoft.com/library/azure/dn782839.aspx) e [Registrazione lato client con Microsoft Azure Storage SDK per Java](http://msdn.microsoft.com/library/azure/dn782844.aspx) su MSDN.
+tooconfigure sul lato client la registrazione per un'applicazione .NET, abilitare la diagnostica .NET nel file di configurazione dell'applicazione hello (Web. config o App. config). Vedere [registrazione con hello libreria Client di archiviazione .NET sul lato Client](http://msdn.microsoft.com/library/azure/dn782839.aspx) e [registrazione con Microsoft Azure Storage SDK per Java hello sul lato Client](http://msdn.microsoft.com/library/azure/dn782844.aspx) su MSDN per informazioni dettagliate.
 
-Il log lato client include informazioni dettagliate sul modo in cui il client prepara la richiesta e riceve ed elabora la risposta.
+log lato client Hello include informazioni dettagliate su come client hello Prepara hello richiesta e riceve ed elabora la risposta hello.
 
-La libreria client di archiviazione archivia i dati di log lato client nel percorso specificato nel file di configurazione dell'applicazione (web.config or app.config).
+Libreria Client di archiviazione Hello archivia i dati di log lato client nel percorso di hello specificato nel file di configurazione dell'applicazione hello (Web. config o App. config).
 
 ### <a name="collect-a-network-trace"></a>Raccogliere una traccia di rete
-È possibile usare Message Analyzer per raccogliere una traccia di rete HTTP/HTTPS mentre l'applicazione client è in esecuzione. Message Analyzer usa [Fiddler](http://www.telerik.com/fiddler) sul lato back-end. Prima di raccogliere la traccia di rete, è consigliabile configurare Fiddler per registrare il traffico HTTPS non crittografato:
+È possibile utilizzare Message Analyzer toocollect una traccia di rete HTTP/HTTPS, mentre è in esecuzione l'applicazione client. Messaggio Usa analizzatore [Fiddler](http://www.telerik.com/fiddler) su hello back-end. Prima di raccogliere la traccia di rete hello, si consiglia di configurare il traffico HTTPS Fiddler toorecord non crittografato:
 
 1. Installare [Fiddler](http://www.telerik.com/download/fiddler).
 2. Avviare Fiddler.
 3. Selezionare **Tools | Fiddler Options** (Strumenti | Opzioni Fiddler).
-4. Nella finestra di dialogo Options (Opzioni), verificare che siano selezionate le opzioni **Capture HTTPS CONNECTs** (Acquisisci HTTPS CONNECTs) e **Decrypt HTTPS Traffic** (Decrittografa il traffico HTTPS), come illustrato di seguito.
+4. Nella finestra di dialogo Opzioni hello, assicurarsi che **acquisire connette HTTPS** e **decrittografare il traffico HTTPS** sono entrambe selezionate, come illustrato di seguito.
 
 ![Configurare le opzioni Fiddler](./media/storage-e2e-troubleshooting/fiddler-options-1.png)
 
-Per l'esercitazione, raccogliere e salvare una traccia di rete in Message Analyzer, quindi creare una sessione di analisi per analizzare la traccia e i log. Per raccogliere una traccia di rete in Message Analyzer:
+Per esercitazione hello, raccogliere e salvare una traccia di rete prima di tutto in Message Analyzer, quindi creare una traccia di analisi della sessione tooanalyze hello e hello registri. toocollect una traccia di rete in Message Analyzer:
 
 1. In Message Analyzer selezionare **File | Quick Trace | Unencrypted HTTPS** (File | Traccia rapida | HTTPS non crittografato).
-2. La traccia inizierà immediatamente. Selezionare **Interrompi** per interrompere la traccia in modo da poterla configurare solo per il traffico di archiviazione.
-3. Selezionare **Modifica** per modificare la sessione di traccia.
-4. Selezionare il collegamento **Configura** a destra del provider ETW **Microsoft-Pef-WebProxy**.
-5. Nella finestra di dialogo **Impostazioni avanzate** fare clic sulla scheda **Provider**.
-6. Nel campo **Filtro Hostname Filter** , specificare gli endpoint di archiviazione, separati da spazi. Ad esempio, è possibile specificare gli endpoint nel modo seguente, specificando il nome del proprio account di archiviazione al posto di `storagesample` :
+2. traccia Hello inizierà immediatamente. Selezionare **arrestare** toostop hello traccia in modo che sia possibile configurarlo tootrace solo traffico di archiviazione.
+3. Selezionare **modifica** sessione di traccia tooedit hello.
+4. Seleziona hello **configura** collegamento toohello a destra di hello **Pef-Microsoft-WebProxy** provider ETW.
+5. In hello **impostazioni avanzate** finestra di dialogo, fare clic su hello **Provider** scheda.
+6. In hello **filtro Hostname** , specificare gli endpoint di archiviazione, separati da spazi. Ad esempio, è possibile specificare gli endpoint come segue: modificare `storagesample` toohello nome dell'account di archiviazione:
 
     ```   
     storagesample.blob.core.windows.net storagesample.queue.core.windows.net storagesample.table.core.windows.net
     ```
 
-7. Chiudere la finestra di dialogo e fare clic su **Riavvia** per avviare la raccolta della traccia con il filtro relativo al nome host impostato, in modo da includere nella traccia solo il traffico di rete di Archiviazione di Azure.
+7. Uscire dalla finestra di dialogo hello e fare clic su **riavviare** toobegin di raccolta traccia di hello con filtro di nome host hello sul posto, in modo che solo il traffico di rete di archiviazione di Azure è incluso nella traccia hello.
 
 > [!NOTE]
-> Al termine della raccolta della traccia di rete, è consigliabile ripristinare le impostazioni modificate in Fiddler per decrittografare il traffico HTTPS. Nella finestra di dialogo Fiddler Options (Opzioni Fiddler) deselezionare le caselle di controllo **Capture HTTPS CONNECTs** (Acquisisci HTTPS CONNECTs) e **Decrypt HTTPS Traffic** (Decrittografa il traffico HTTPS).
+> Dopo aver completato la raccolta la traccia di rete, è consigliabile ripristinare le impostazioni di hello modificate del traffico HTTPS toodecrypt Fiddler. Nella finestra di dialogo Opzioni Fiddler hello, deselezionare hello **acquisire connette HTTPS** e **decrittografare il traffico HTTPS** caselle di controllo.
 > 
 > 
 
-Per informazioni dettagliate, vedere [l'argomento relativo all'uso delle funzionalità di traccia di rete](http://technet.microsoft.com/library/jj674819.aspx) su Technet.
+Vedere [con funzionalità di traccia di rete hello](http://technet.microsoft.com/library/jj674819.aspx) su Technet per ulteriori dettagli.
 
-## <a name="review-metrics-data-in-the-azure-portal"></a>Esaminare i dati delle metriche nel portale di Azure
-Dopo un certo periodo di esecuzione dell'applicazione, è possibile esaminare i grafici delle metriche visualizzati nel [portale di Azure](https://portal.azure.com) per verificare le prestazioni del servizio.
+## <a name="review-metrics-data-in-hello-azure-portal"></a>Esaminare i dati di metrica in hello portale di Azure
+Dopo l'applicazione è stata eseguita per un periodo di tempo, è possibile esaminare i grafici di metriche di hello visualizzati nel hello [portale di Azure](https://portal.azure.com) tooobserve come l'esecuzione del servizio.
 
-Come primo passaggio, accedere all'account di archiviazione nel portale di Azure. Per impostazione predefinita, nel pannello dell'account viene visualizzato un grafico di monitoraggio con la metrica **Percentuale di operazioni riuscite**. Se il grafico è stato precedentemente modificato in modo da visualizzare altri tipi di metriche, aggiungere la metrica **Percentuale di operazioni riuscite**.
+Passare innanzitutto tooyour account di archiviazione nel portale di Azure hello. Per impostazione predefinita, un monitoraggio grafico con hello **percentuale di completamento** metrica viene visualizzata nel pannello account hello. Se è stato modificato in precedenza hello grafico toodisplay metriche, aggiungere hello **percentuale di completamento** metrica.
 
-Nel grafico di monitoraggio verrà ora visualizzata la metrica **Percentuale di operazioni riuscite** insieme ad altre metriche eventualmente aggiunte. Nello scenario che si esaminerà analizzando i log in Message Analyzer, la percentuale di operazioni riuscite è leggermente inferiore al 100%.
+Si noterà ora **percentuale di completamento** in hello grafico di monitoraggio, insieme a eventuali altre metriche vengono aggiunte. Nello scenario di hello che analizzeremo successivamente dall'analisi dei log hello in Message Analyzer, frequenza percentuale di successo hello è leggermente inferiore al 100%.
 
 Per altre informazioni sull'aggiunta e la personalizzazione di grafici di metriche, vedere [Personalizzare i grafici delle metriche](storage-monitor-storage-account.md#customize-metrics-charts).
 
 > [!NOTE]
-> Dopo aver abilitato le metriche di archiviazione, è possibile che la visualizzazione dei dati corrispondenti nel portale di Azure non sia immediata. Questo dipende dal fatto che le metriche orarie relative all'ora precedente vengono visualizzate nel portale di Azure solo allo scadere dell'ora in corso. Nel portale di Azure, inoltre, non è supportata la visualizzazione di metriche al minuto. Quindi, per visualizzare i dati relativi alla metrica può essere necessaria fino a un'ora, a seconda del momento in cui è stata abilita.
+> Dopo aver abilitato la metrica di archiviazione potrebbe richiedere del tempo per il tooappear di dati di metrica in hello portale di Azure. Questo avviene perché metrica oraria per hello ora precedente non viene visualizzata nel portale di Azure hello fino a quando non hello è trascorso l'ora corrente. Inoltre, metrica al minuto non è attualmente visualizzata nel portale di Azure hello. A seconda di quando si abilita metriche, potrà richiedere i dati di metrica toosee tootwo ore.
 > 
 > 
 
-## <a name="use-azcopy-to-copy-server-logs-to-a-local-directory"></a>Usare AzCopy per copiare i log del server in una directory locale
-Archiviazione di Azure scrive i dati di log del server nei BLOB, mentre le metriche vengono scritti nelle tabelle. I BLOB di log sono disponibili nel noto contenitore `$logs` per l'account di archiviazione. Dato che i BLOB sono denominati in modo gerarchico per anno, mese, giorno e ora, è possibile individuare facilmente l'intervallo di tempo da esaminare. Ad esempio, nell'account `storagesample`, il contenitore per i BLOB di log relativi al 02/01/2015, dalle 8 alle 9, è `https://storagesample.blob.core.windows.net/$logs/blob/2015/01/08/0800`. I singoli BLOB nel contenitore sono denominati in sequenza, a partire da `000000.log`.
+## <a name="use-azcopy-toocopy-server-logs-tooa-local-directory"></a>Utilizzare directory locale di AzCopy toocopy server log tooa
+Archiviazione di Azure scrive tooblobs di dati del Registro di server, mentre la metrica viene scritta tootables. BLOB dei log sono disponibili in hello noto `$logs` contenitore per l'account di archiviazione. BLOB dei log sono denominate in modo gerarchico per anno, mese, giorno e ora, in modo che l'intervallo di tempo desiderato tooinvestigate di hello consentono di individuare facilmente. Ad esempio, in hello `storagesample` account, il contenitore di hello per BLOB dei log hello per da 8-09: 00, 01/02/2015 `https://storagesample.blob.core.windows.net/$logs/blob/2015/01/08/0800`. BLOB di singoli Hello in questo contenitore sono denominati in sequenza, a partire da `000000.log`.
 
-È possibile usare lo strumento da riga di comando AzCopy per scaricare questi file di log lato server nel percorso desiderato sul computer locale. Ad esempio, tramite il comando seguente è possibile scaricare i file di log per le operazioni BLOB verificatesi il 2 gennaio 2015 nella cartella`C:\Temp\Logs\Server`, sostituendo `<storageaccountname>` con il nome del proprio account di archiviazione e `<storageaccountkey>` con la chiave di accesso dell'account:
+È possibile utilizzare toodownload strumento da riga di comando di AzCopy hello questi log lato server file tooa nel percorso desiderato nel computer locale. Ad esempio, è possibile utilizzare i seguenti file di comando toodownload hello log per operazioni di blob che hanno portato posizionare su hello 2 gennaio 2015 toohello cartella `C:\Temp\Logs\Server`; sostituire `<storageaccountname>` con nome hello dell'account di archiviazione, e `<storageaccountkey>` con il chiave di accesso account:
 
 ```azcopy
 AzCopy.exe /Source:http://<storageaccountname>.blob.core.windows.net/$logs /Dest:C:\Temp\Logs\Server /Pattern:"blob/2015/01/02" /SourceKey:<storageaccountkey> /S /V
 ```
-AzCopy è disponibile per il download nella pagina [Download di Azure](https://azure.microsoft.com/downloads/) . Per informazioni dettagliate sull'uso di AzCopy, vedere [Trasferire dati con l'utilità della riga di comando AzCopy](storage-use-azcopy.md).
+AzCopy è disponibile per il download hello [download di Azure](https://azure.microsoft.com/downloads/) pagina. Per informazioni dettagliate sull'uso di AzCopy, vedere [trasferire i dati con l'utilità della riga di comando di AzCopy hello](storage-use-azcopy.md).
 
 Per altre informazioni sul download dei log sul lato server, vedere [Download dei dati di log di Registrazione archiviazione](http://msdn.microsoft.com/library/azure/dn782840.aspx#DownloadingStorageLogginglogdata).
 
-## <a name="use-microsoft-message-analyzer-to-analyze-log-data"></a>Usare Microsoft Message Analyzer per analizzare i dati di log
-Microsoft Message Analyzer è uno strumento per l'acquisizione, la visualizzazione e l'analisi del traffico di messaggistica del protocollo, degli eventi e di altri messaggi del sistema o dell'applicazione in scenari di diagnostica e risoluzione dei problemi. Message Analyzer consente anche di caricare, aggregare e analizzare i dati da log e file di traccia salvati. Per altre informazioni su Message Analyzer, vedere la [guida operativa di Microsoft Message Analyzer](http://technet.microsoft.com/library/jj649776.aspx).
+## <a name="use-microsoft-message-analyzer-tooanalyze-log-data"></a>Utilizzare i dati di log di Microsoft Message Analyzer tooanalyze
+Microsoft Message Analyzer è uno strumento per l'acquisizione, la visualizzazione e l'analisi del traffico di messaggistica del protocollo, degli eventi e di altri messaggi del sistema o dell'applicazione in scenari di diagnostica e risoluzione dei problemi. Message Analyzer anche consente tooload, aggregazione e analizzare i dati di log e salvare i file di traccia. Per altre informazioni su Message Analyzer, vedere la [guida operativa di Microsoft Message Analyzer](http://technet.microsoft.com/library/jj649776.aspx).
 
-Message Analyzer include risorse per Archiviazione di Azure che consentono di analizzare i log di rete, client e server. In questa sezione viene spiegato come usare questi strumenti per risolvere il problema della bassa percentuale di operazioni riuscite nel log di archiviazione.
+Message Analyzer include risorse di archiviazione di Azure che consentono di tooanalyze server, client e i registri di rete. In questa sezione verrà illustrato come toouse tooaddress tali strumenti hello problema di bassa percentuale di successo in hello i log di archiviazione.
 
-### <a name="download-and-install-message-analyzer-and-the-azure-storage-assets"></a>Scaricare e installare Message Analyzer e le risorse per Archiviazione di Azure
-1. Scaricare [Message Analyzer](http://www.microsoft.com/download/details.aspx?id=44226) dall'Area download Microsoft ed eseguire il programma di installazione.
+### <a name="download-and-install-message-analyzer-and-hello-azure-storage-assets"></a>Scaricare e installare Analizzatore messaggi hello risorse di archiviazione di Azure
+1. Scaricare [Message Analyzer](http://www.microsoft.com/download/details.aspx?id=44226) da hello Microsoft Download Center ed eseguire l'installazione guidata di hello.
 2. Avviare Message Analyzer.
-3. Selezionare **Gestione asset** dal menu **Strumenti**. Nella finestra di dialogo **Gestione asset** selezionare **Download** e filtrare in base ad **Archiviazione di Azure**. Verranno visualizzate le risorse per Archiviazione di Azure, come mostrato nell'immagine seguente.
-4. Fare clic su **Sincronizza tutti gli elementi visualizzati** per installare le risorse per Archiviazione di Azure. Le risorse disponibili includono:
-   * **Regole dei colori di Archiviazione di Azure:** le regole dei colori di Archiviazione di Azure consentono di definire filtri speciali che usano il colore, il testo e il tipo di carattere per evidenziare i messaggi contenenti specifiche informazioni in una traccia.
-   * **Grafici di Archiviazione di Azure:** i grafici di Archiviazione di Azure sono grafici predefiniti in cui vengono riportati i dati di log del server. Si noti che, per utilizzare grafici di Archiviazione di Azure in questa fase, è possibile unicamente caricare il log del server nella griglia di analisi.
-   * **Parser di Archiviazione di Azure:** i parser di Archiviazione di Azure analizzano i log HTTP, client e server di Archiviazione di Azure per visualizzarli nella griglia di analisi.
-   * **Filtri di Archiviazione di Azure:** i filtri di Archiviazione di Azure sono criteri predefiniti che è possibile usare per eseguire query sui dati nella griglia di analisi.
-   * **Layout di Archiviazione di Azure:** i layout di visualizzazione di Archiviazione di Azure sono layout di colonna e raggruppamenti predefiniti nella griglia di analisi.
-5. Riavviare Message Analyzer dopo aver installato le risorse.
+3. Da hello **strumenti** dal menu **gestione Asset**. In hello **gestione Asset** finestra di dialogo Seleziona **Scarica**, quindi filtrare in base **di archiviazione di Azure**. Risorse di archiviazione di Azure hello, verrà visualizzato come illustrato nell'immagine di hello riportata di seguito.
+4. Fare clic su **sincronizzazione tutti visualizzati gli elementi** hello tooinstall risorse di archiviazione di Azure. le risorse disponibili Hello includono:
+   * **Regole colore archiviazione Azure:** regole colore di archiviazione di Azure consentono di filtri speciali toodefine che utilizzano il colore, testo, e tipo di carattere stili toohighlight messaggi che contengono informazioni specifiche in una traccia.
+   * **Grafici di Archiviazione di Azure:** i grafici di Archiviazione di Azure sono grafici predefiniti in cui vengono riportati i dati di log del server. Si noti che toouse grafici di archiviazione di Azure in questo momento, è possibile solo carico hello server log in hello Analysis griglia.
+   * **Parser di archiviazione Azure:** hello del client di archiviazione di Azure hello analisi archiviazione di Azure parser, server e HTTP in ordine toodisplay li registra in hello Analysis griglia.
+   * **I filtri di archiviazione Azure:** i filtri di archiviazione di Azure sono i criteri predefiniti che è possibile utilizzare tooquery i dati in analisi griglia hello.
+   * **Layout della visualizzazione di archiviazione Azure:** layout della visualizzazione di archiviazione di Azure sono raggruppamenti nella griglia Analysis hello e layout di colonne predefinite.
+5. Dopo aver installato gli asset hello, riavviare Message Analyzer.
 
 ![Gestione asset di Message Analyzer](./media/storage-e2e-troubleshooting/mma-start-page-1.png)
 
 > [!NOTE]
-> Installare tutte le risorse di Archiviazione di Azure per questa esercitazione.
+> Installare tutti gli asset di archiviazione di Azure hello scopo hello di questa esercitazione.
 > 
 > 
 
 ### <a name="import-your-log-files-into-message-analyzer"></a>Importare i file di log in Message Analyzer
 È possibile importare tutti i file di log salvati (lato server, lato client e rete) in un'unica sessione di Microsoft Message Analyzer per l'analisi.
 
-1. Scegliere **Nuova sessione** dal menu **File** in Microsoft Message Analyzer e fare clic su **Sessione vuota**. Nella finestra di dialogo **Nuova sessione** immettere un nome per la sessione di analisi. Nel pannello **Dettagli sessione** fare clic sul pulsante **File**.
-2. Per caricare i dati della traccia di rete generati da Message Analyzer, fare clic su **Aggiungi file**, passare al percorso in cui è stato salvato il file con estensione matp della sessione di traccia Web, selezionare il file con estensione matp e fare clic su **Apri**.
-3. Per caricare i dati di log lato server, fare clic su **Aggiungi file**, passare al percorso in cui sono stati scaricati i log lato server, selezionare i file di log relativi all'intervallo di tempo che si vuole analizzare e fare clic su **Apri**. Nel pannello **Dettagli sessione** selezionare **AzureStorageLog** nell'elenco a discesa **Configurazione log di testo** per ogni file di log lato server, per assicurarsi che Microsoft Message Analyzer possa analizzare correttamente il file di log.
-4. Per caricare i dati di log lato client, fare clic su **Aggiungi file**, passare al percorso in cui sono stati salvati i log lato client, selezionare i file di log da analizzare e fare clic su **Apri**. Nel pannello **Dettagli sessione** selezionare **AzureStorageClientDotNetV4** nell'elenco a discesa **Configurazione log di testo** per ogni file di log lato client per assicurarsi che Microsoft Message Analyzer possa analizzare correttamente il file di log.
-5. Fare clic su **Avvia** nella finestra di dialogo **Nuova sessione** per caricare e analizzare i dati di log. I dati di log vengono visualizzati nella griglia di analisi di Message Analyzer.
+1. In hello **File** Microsoft Message Analyzer, scegliere **nuova sessione**, quindi fare clic su **sessione vuoto**. In hello **nuova sessione** finestra di dialogo immettere un nome per la sessione di analisi. In hello **i dettagli di sessione** pannello, fare clic su hello **file** pulsante.
+2. data di tooload hello rete traccia generati dal Message Analyzer, fare clic su **Aggiungi file**, toohello percorso in cui è stato salvato il file .matp dalla sessione di analisi web, file .matp hello select, e fare clic su **aprire**.
+3. dati di log lato server hello tooload, fare clic su **Aggiungi file**individuare toohello percorso in cui sono stati scaricati i registri sul lato server, selezionare il file di log hello per intervallo di tempo hello tooanalyze desiderato e fare clic su **aprire**. Quindi, nel hello **i dettagli di sessione** pannello, hello set **configurazione del Registro di testo** elenco a discesa per ogni file di log sul lato server troppo**AzureStorageLog** tooensure da Microsoft Message Analyzer è possibile analizzare il file di log hello correttamente.
+4. dati di log lato client hello tooload, fare clic su **Aggiungi file**individuare toohello percorso in cui sono stati salvati i log lato client, selezionare i file di log hello tooanalyze desiderato e fare clic su **aprire**. Quindi, nel hello **i dettagli di sessione** pannello, hello set **configurazione del Registro di testo** elenco a discesa per ogni file di log lato client troppo**AzureStorageClientDotNetV4** tooensure che Microsoft Message Analyzer è possibile analizzare il file di log hello correttamente.
+5. Fare clic su **avviare** in hello **nuova sessione** finestra di dialogo tooload e analisi hello dati del log. Consente di visualizzare i dati di log Hello nella griglia di analisi Analizzatore messaggi hello.
 
-La figura seguente mostra una sessione di esempio configurata con i file di log di traccia di rete, client e server.
+immagine Hello riportata di seguito viene illustrato un esempio di sessione configurato con un server, client e file di log di traccia di rete.
 
 ![Configurare la sessione di Message Analyzer](./media/storage-e2e-troubleshooting/configure-mma-session-1.png)
 
-Si noti che Message Analyzer carica i file di log in memoria. Se si dispone di un ampio set di dati di log, è consigliabile filtrarlo per ottenere prestazioni ottimali da Message Analyzer.
+Si noti che Message Analyzer carica i file di log in memoria. Se si dispone di un ampio set di dati del log, è opportuno toofilter in ordine tooget hello migliori prestazioni da Message Analyzer.
 
-Determinare innanzitutto l'intervallo di tempo da esaminare e ridurlo al minimo. In molti casi è sufficiente esaminare al massimo un periodo di qualche minuto o ora. Importare il set di log più piccolo possibile in grado di soddisfare le proprie esigenze.
+Innanzitutto, determinare l'intervallo di tempo hello che si è interessati a esaminare e mantenere ridotte al massimo questo periodo di tempo. In molti casi sarà necessario tooreview un periodo di minuti o ore al massimo. Importare hello set più piccolo dei log in grado di soddisfare le proprie esigenze.
 
-Se la quantità di dati di log è comunque considerevole, è possibile specificare un filtro di sessione per filtrare i dati prima di caricarli. Nel riquadro **Filtro sessione** fare clic sul pulsante **Libreria** e selezionare un filtro predefinito. Ad esempio, scegliere **Global Time Filter I** (Filtro Tempo di esecuzione globale I) nei filtri di Archiviazione di Azure per filtrare in base a un intervallo di tempo. È quindi possibile modificare i criteri di filtro per specificare il timestamp di inizio e fine per l'intervallo che si vuole visualizzare. È anche possibile filtrare in base a un codice di stato specifico, ad esempio caricando solo le voci di log il cui codice di stato è 404.
+Se si dispone ancora di una grande quantità di dati del log, quindi è consigliabile toospecify un toofilter filtro sessione i dati dei log prima di caricarli. In hello **filtro sessione** casella, seleziona hello **libreria** pulsante toochoose un filtro predefinito; ad esempio, scegliere **filtro I globale tempo** da hello i filtri di archiviazione di Azure toofilter in un intervallo di tempo. È quindi possibile modificare hello toospecify criteri filtro di hello avvio e interruzione timestamp per intervallo hello si desidera toosee. È possibile filtrare anche utilizzando un codice di stato specifico. ad esempio, è possibile scegliere tooload solo voci del registro in cui il codice di stato hello è 404.
 
 Per altre informazioni sull'importazione dei dati di log in Microsoft Message Analyzer, vedere [l'argomento relativo al recupero dei dati dei messaggi su](http://technet.microsoft.com/library/dn772437.aspx) TechNet.
 
-### <a name="use-the-client-request-id-to-correlate-log-file-data"></a>Usare l'ID richiesta client per correlare i dati dei file di log
-La libreria client di archiviazione di Azure genera automaticamente un ID richiesta client univoco per ogni richiesta. Questo valore viene scritto nel log del client, nel log del server e nella traccia di rete e può quindi essere usato per correlare i dati nei tre log all'interno di Message Analyzer. Per altre informazioni sull'ID richiesta client, vedere [ID richiesta client](storage-monitoring-diagnosing-troubleshooting.md#client-request-id) .
+### <a name="use-hello-client-request-id-toocorrelate-log-file-data"></a>Utilizzare hello client richiesta ID toocorrelate dati del file registro
+Hello Azure Storage Client Library genera automaticamente un ID richiesta client univoci per ogni richiesta. Questo valore viene scritto toohello client log, log server hello e traccia di rete hello, è possibile utilizzarlo toocorrelate dati in tutte e tre i registri in Message Analyzer. Vedere [ID richiesta Client](storage-monitoring-diagnosing-troubleshooting.md#client-request-id) per ulteriori informazioni su client hello ID richiesta.
 
-Nelle sezioni seguenti viene descritto come usare i layout preconfigurati e personalizzati per correlare e raggruppare i dati in base all'ID richiesta client.
+Hello nelle sezioni seguenti vengono descrivono come toouse preconfigurato e viste di un layout personalizzato toocorrelate e raggruppamento dei dati basano su richiesta del client hello ID.
 
-### <a name="select-a-view-layout-to-display-in-the-analysis-grid"></a>Selezionare un layout per la visualizzazione nella griglia di analisi
-Le risorse di archiviazione per Message Analyzer includono i layout di visualizzazione di Archiviazione di Azure, viste preconfigurate che è possibile usare per presentare i dati con colonne e raggruppamenti utili per i diversi scenari. È anche possibile creare layout di visualizzazione personalizzati e salvarli per riutilizzarli in futuro.
+### <a name="select-a-view-layout-toodisplay-in-hello-analysis-grid"></a>Selezionare un toodisplay layout visualizzazione nella griglia Analysis hello
+Risorse di archiviazione Hello per Message Analyzer includono layout visualizzazione di archiviazione di Azure che sono configurati in precedenza viste che è possibile utilizzare toodisplay i dati con le colonne e i raggruppamenti utili per scenari diversi. È anche possibile creare layout di visualizzazione personalizzati e salvarli per riutilizzarli in futuro.
 
-La figura seguente illustra il menu **Visualizza layout**, disponibile selezionando **Visualizza layout** sulla barra multifunzione. I layout di visualizzazione per Archiviazione di Azure sono raggruppati nel nodo **Archiviazione di Azure** del menu. È possibile cercare `Azure Storage` nella casella di ricerca per filtrare solo i layout di visualizzazione di Archiviazione di Azure. È anche possibile fare clic sulla stella accanto a un layout di visualizzazione per impostarlo come preferito e visualizzarlo nella parte superiore del menu.
+immagine di Hello seguente vengono illustrati hello **visualizzazione Layout** menu, disponibile selezionando **visualizzazione Layout** dalla barra multifunzione di hello barra degli strumenti. layout della visualizzazione Hello per l'archiviazione di Azure sono raggruppate sotto hello **di archiviazione di Azure** nodo nel menu hello. È possibile cercare `Azure Storage` in toofilter casella di ricerca hello nell'archiviazione di Azure consente di visualizzare solo i layout. È inoltre possibile selezionare hello star Avanti tooa visualizzazione layout toomake it a preferito e visualizzarlo nella parte superiore di hello del menu hello.
 
 ![Menu Visualizza layout](./media/storage-e2e-troubleshooting/view-layout-menu.png)
 
-Per iniziare, selezionare **Raggruppati per ClientRequestID e modulo**. In questo layout di visualizzazione sono raggruppati i dati dei tre log prima in base all'ID richiesta client, quindi in base al file di log di origine (o **Modulo** in Message Analyzer). Questa visualizzazione consente di eseguire il drill-down in un particolare ID richiesta client e visualizzare i dati dei tre file di log per tale ID richiesta client.
+toobegin, con l'istruzione select **raggruppati per modulo e ClientRequestID**. In questo layout di visualizzazione sono raggruppati i dati dei tre log prima in base all'ID richiesta client, quindi in base al file di log di origine (o **Modulo** in Message Analyzer). Questa visualizzazione consente di eseguire il drill-down in un particolare ID richiesta client e visualizzare i dati dei tre file di log per tale ID richiesta client.
 
-L'immagine seguente mostra questa visualizzazione di layout applicata ai dati di log di esempio, con un subset di colonne visualizzato. Si noterà che, per un determinato ID richiesta client, nella griglia di analisi sono visualizzati i dati tratti dal log del client, dal log del server e dalla traccia di rete.
+immagine di Hello riportata di seguito viene illustrato questo layout visualizzazione applicata toohello registro dati di esempio, un subset di colonne visualizzate. È possibile visualizzare per un ID richiesta client specifico, hello Analysis griglia visualizza i dati di log client hello e log del server di traccia di rete.
 
 ![Layout di visualizzazione di Archiviazione di Azure](./media/storage-e2e-troubleshooting/view-layout-client-request-id-module.png)
 
 > [!NOTE]
-> Dato che nei diversi file di log possono essere presenti colonne diverse, quando nella griglia di analisi vengono visualizzati i dati da più file di log, è possibile che alcune colonne non contengano dati per una particolare riga. Ad esempio, nell’immagine precedente, nelle righe relative al log del client non vengono visualizzati i dati per le colonne **Timestamp**, **TimeElapsed**, **Source** e **Destination**, in quanto queste colonne non sono presenti nel log del client, ma lo sono nella traccia di rete. Analogamente, nella colonna **Timestamp** vengono visualizzati i dati di timestamp del log del server, ma non vengono visualizzati dati per le colonne **TimeElapsed**, **Source** e **Destination**, che non fanno parte del log del server.
+> Diversi file di log sono colonne diverse, pertanto quando dati da più file di log viene visualizzati nella griglia di analisi di hello, alcune colonne non possono contenere i dati per una determinata riga. Nell'immagine hello precedente, ad esempio, le righe di log client non Mostra tutti i dati per hello **Timestamp**, **TimeElapsed**, **origine**, e **destinazione** colonne, perché queste colonne non sono presenti nel log hello del client, ma presenti nella traccia di rete hello. Analogamente, hello **Timestamp** colonna vengono visualizzati i dati timestamp log hello del server, ma non vengono visualizzati dati per hello **TimeElapsed**, **origine**, e  **Destinazione** colonne, che non fanno parte del log di hello del server.
 > 
 > 
 
-Oltre a usare i layout di visualizzazione di Archiviazione di Azure, è possibile definire e salvare un layout di visualizzazione personalizzato. È anche possibile selezionare altri campi per il raggruppamento dei dati e salvare questo raggruppamento all'interno del layout personalizzato.
+Inoltre layout della visualizzazione di toousing hello archiviazione di Azure, è possibile anche definire e salvare layout personalizzati della visualizzazione. È possibile selezionare altri campi desiderati per il raggruppamento di dati e salvare il raggruppamento di hello come parte di oltre il layout personalizzato.
 
-### <a name="apply-color-rules-to-the-analysis-grid"></a>Applicare le regole colore alla griglia di analisi
-Le risorse di archiviazione includono anche regole colore, che consentono di identificare visivamente i diversi tipi di errore nella griglia di analisi. Le regole colore predefinite sono valide per gli errori HTTP, quindi sono disponibili solo per il log del server e per la traccia di rete.
+### <a name="apply-color-rules-toohello-analysis-grid"></a>Applicare toohello regole colore della griglia di analisi
+Risorse di archiviazione Hello includono anche le regole di colore, che offrono che un oggetto visivo significa tooidentify diversi tipi di errori di analisi griglia hello. Hello predefiniti regole colore si applicano tooHTTP errori, pertanto verranno visualizzati solo per la traccia di log e di rete server hello.
 
-Per applicare le regole colore, selezionare **Regole colori** sulla barra multifunzione. Nel menu sono presenti le regole colore di Archiviazione di Azure. Per l'esercitazione selezionare **Errori del client (StatusCode tra 400 e 499)**, come mostrato nell'immagine seguente.
+Selezionare le regole colore, tooapply **regole colore** dalla barra multifunzione di hello barra degli strumenti. Si noterà che le regole colore hello archiviazione di Azure nel menu hello. Per hello esercitazione, selezionare **gli errori del Client (codice di stato compreso tra 400 e 499)**, come illustrato nell'immagine di hello riportata di seguito.
 
 ![Layout di visualizzazione di Archiviazione di Azure](./media/storage-e2e-troubleshooting/color-rules-menu.png)
 
-Oltre a usare le regole colore di Archiviazione di Azure, è possibile definire e salvare regole colore personalizzate.
+Inoltre le regole dei colori hello toousing di archiviazione di Azure, è anche possibile definire e salvare le regole colore.
 
-### <a name="group-and-filter-log-data-to-find-400-range-errors"></a>Raggruppare e filtrare i dati di log per individuare gli errori nella fascia 400
-A questo punto i dati di log vengono raggruppati e filtrare per trovare tutti gli errori inclusi nella fascia 400.
+### <a name="group-and-filter-log-data-toofind-400-range-errors"></a>Raggruppamento e il filtro log dati toofind 400-errori di intervallo
+Successivamente, si sarà raggruppare e filtrare hello log dati toofind tutti gli errori di intervallo hello 400.
 
-1. Individuare la colonna **StatusCode** nella griglia di analisi, fare clic con il pulsante destro del mouse sull'intestazione di colonna e scegliere **Gruppo**.
-2. Quindi raggruppare in base alla colonna **ClientRequestId** . I dati nella grigli di analisi verranno organizzati in base al codice di stato e all'ID richiesta client.
-3. Visualizzare la finestra degli strumenti View Filter se non è visualizzata. Sulla barra multifunzione selezionare **Finestre degli strumenti** e **Filtro visualizzazione**.
-4. Per filtrare i dati di log in modo da visualizzare solo gli errori della fascia 400, aggiungere i criteri di filtro seguenti nella finestra **Filtro visualizzazione** e fare clic su **Applica**:
+1. Individuare hello **StatusCode** colonna nella griglia Analysis, colonna di hello pulsante destro del mouse sull'intestazione e seleziona hello **gruppo**.
+2. Successivamente, a un gruppo in hello **ClientRequestId** colonna. Si noterà che i dati hello hello che Analysis griglia ora è organizzata in base allo stato del codice e da una richiesta client ID.
+3. Visualizza finestra degli strumenti di filtro di visualizzazione hello se non è già visualizzato. Nella barra multifunzione di hello, selezionare **finestre degli strumenti**, quindi **filtro di visualizzazione**.
+4. toofilter hello log toodisplay intervalli 400 solo errori di dati, aggiungere hello toohello di criteri di filtro seguenti **filtro di visualizzazione** finestra e fare clic su **applica**:
 
     ```   
     (AzureStorageLog.StatusCode >= 400 && AzureStorageLog.StatusCode <=499) || (HTTP.StatusCode >= 400 && HTTP.StatusCode <= 499)
     ```
 
-L'immagine seguente mostra i risultati di questo raggruppamento e filtro. Se si espande il campo **ClientRequestID** sotto il raggruppamento per codice di stato 409, ad esempio, viene visualizzata un'operazione che ha generato questo codice di stato.
+immagine di Hello seguente mostra risultati hello di questo raggruppamento e filtro. Espansione hello **ClientRequestID** campo sotto hello raggruppamento per il codice di stato 409, ad esempio, viene illustrata un'operazione che ha generato il codice di stato.
 
 ![Layout di visualizzazione di Archiviazione di Azure](./media/storage-e2e-troubleshooting/400-range-errors1.png)
 
-Dopo aver applicato il filtro, si noterà che vengono escluse le righe del log del client, dato che in questo log non è presente la colonna **StatusCode** . Si inizierà esaminando i log di traccia di rete e del server per individuare gli errori 404, quindi si tornerà al log del client per esaminare le attività client da cui hanno avuto origine.
+Dopo aver applicato il filtro, si noterà che le righe dal log di hello client vengono escluse, come hello log del client non include un **StatusCode** colonna. verrà quindi restituito toohello log tooexamine hello client le operazioni dei client che ha portato toothem toobegin con, verrà esaminato server hello ed 404 errori toolocate di rete registri traccia.
 
 > [!NOTE]
-> È possibile filtrare in base alla colonna **StatusCode** e visualizzare comunque i dati di tutti e tre i log, compreso il log del client, se si aggiunge un'espressione di filtro che include le voci di log in cui il codice di stato è null. Per costruire questa espressione di filtro, usare:
+> È possibile filtrare hello **StatusCode** colonna e visualizzare i dati da tutti i tre log, ad esempio hello log client, se si aggiunge un filtro toohello espressione che include le voci di log in cui il codice di stato hello è null. tooconstruct questa espressione di filtro, utilizzare:
 > 
 > <code>&#42;StatusCode >= 400 or !&#42;StatusCode</code>
 > 
-> Questo filtro restituisce tutte le righe del log del client e solo righe del log del server e del log HTTP in cui il codice di stato è maggiore di 400. Se viene applicato al layout di visualizzazione raggruppato per ID richiesta client e modulo, è possibile cercare o scorrere le voci di log per trovare quelle in cui sono rappresentati tutte e tre i log.   
+> Questo filtro restituisce tutte le righe da client hello solo le righe dal log di hello del server e di log HTTP e log in cui il codice di stato di hello è maggiore di 400. Se si applica il layout di visualizzazione toohello raggruppato per ID richiesta client e il modulo, è possibile cercare o scorrere hello log toofind voci quelli in cui sono rappresentati tutte e tre i registri.   
 > 
 > 
 
-### <a name="filter-log-data-to-find-404-errors"></a>Filtrare i dati di log per trovare gli errori 404
-Le risorse di archiviazione includono filtri predefiniti che possono essere usati per limitare i dati di log per trovare gli errori o le tendenze che si stanno cercando. A questo punto verranno applicati due filtri predefiniti: uno che filtra il log del server e il log della traccia di rete per trovare gli errori 404 e uno che filtra i dati in un determinato intervallo di tempo.
+### <a name="filter-log-data-toofind-404-errors"></a>Filtrare 404 errori toofind dati di log
+Risorse di archiviazione Hello includono filtri predefiniti che è possibile utilizzare toonarrow registra dati toofind hello errori o le tendenze che si sta cercando. Successivamente, si applicherà due filtri predefiniti: uno che filtra server hello e registri di traccia di rete per gli 404 errori e uno che filtra i dati di hello su un intervallo di tempo specificato.
 
-1. Visualizzare la finestra degli strumenti View Filter se non è visualizzata. Sulla barra multifunzione selezionare **Finestre degli strumenti** e **Filtro visualizzazione**.
-2. Nella finestra Filtro visualizzazione selezionare **Libreria** e cercare in `Azure Storage` per trovare i filtri di Archiviazione di Azure. Selezionare il filtro **Messaggi 404 (non trovato) in tutti i log**.
-3. Visualizzare nuovamente il menu **Libreria** e quindi individuare e selezionare **Global Time Filter** (Filtro tempo di esecuzione globale).
-4. Modificare i timestamp presenti nel filtro impostando l'intervallo che si vuole visualizzare. In questo modo si limiterà l'intervallo di date da analizzare.
-5. Il filtro dovrebbe risultare analogo a quello riportato nell'esempio seguente. Fare clic su **Applica** per applicare il filtro alla griglia di analisi.
+1. Visualizza finestra degli strumenti di filtro di visualizzazione hello se non è già visualizzato. Nella barra multifunzione di hello, selezionare **finestre degli strumenti**, quindi **filtro di visualizzazione**.
+2. Nella finestra di filtro di visualizzazione hello selezionare **libreria**e cercare `Azure Storage` hello toofind i filtri di archiviazione di Azure. Filtro selezionare hello per **404 (non trovato) di messaggi in tutti i log**.
+3. Hello visualizzazione **libreria** menu Nuovo, quindi individuare e selezionare hello **filtro temporale globale**.
+4. Modificare il timestamp di hello nell'intervallo di hello filtro toohello desiderato tooview. Ciò consentirà di intervallo di hello toonarrow di tooanalyze di dati.
+5. Il filtro dovrebbe essere visualizzato simile toohello riportato di seguito viene riportato di seguito. Fare clic su **applica** tooapply hello filtro toohello Analysis griglia.
 
     ```   
     ((AzureStorageLog.StatusCode == 404 || HTTP.StatusCode == 404)) And
@@ -319,35 +319,35 @@ Le risorse di archiviazione includono filtri predefiniti che possono essere usat
     ![Layout di visualizzazione di Archiviazione di Azure](./media/storage-e2e-troubleshooting/404-filtered-errors1.png)
 
 ### <a name="analyze-your-log-data"></a>Analizzare i dati di log
-Con i dati raggruppati e filtrati, è possibile esaminare i dettagli delle singole richieste che hanno generato errori 404. Nel layout di visualizzazione corrente i dati sono raggruppati per ID richiesta client, quindi in base all'origine del log. Poiché vengono filtrate le richieste il cui campo StatusCode contiene 404, saranno visualizzati solo i dati del server e della traccia di rete, non i dati del log del client.
+Ora che si sono raggruppati e filtrati i dati, è possibile esaminare i dettagli di hello delle singole richieste che hanno generato 404 errori. Nel layout di visualizzazione corrente hello, dati hello vengono raggruppati per ID richiesta client, quindi dall'origine di log. Poiché si Filtra per le richieste in cui hello StatusCode campo 404, verranno esaminati solo i server hello e i dati di traccia di rete, non i dati di log relativi ai client di hello.
 
-L'immagine seguente mostra una richiesta specifica in cui un'operazione Get Blob ha restituito un errore 404 perché il BLOB era inesistente. Tenere presente che alcune colonne sono state rimosse dalla visualizzazione standard per mostrare i dati pertinenti.
+immagine Hello seguente mostra una richiesta specifica in cui un'operazione Get Blob ha restituito un errore 404 perché non esisteva blob hello. Si noti che alcune colonne sono state rimosse dalla visualizzazione standard di hello nei dati rilevanti hello toodisplay dell'ordine.
 
 ![Log della traccia di rete e del server filtrati](./media/storage-e2e-troubleshooting/server-filtered-404-error.png)
 
-Successivamente, questo ID richiesta client verrà correlato con i dati del log del client per mostrare le azioni che il client stava effettuando quando si è verificato l'errore. È possibile ottenere una nuova visualizzazione della griglia di analisi per la sessione corrente per visualizzare i dati del log del client, che viene aperto in una seconda scheda:
+Successivamente, si sarà correlare questo ID richiesta client hello client log dati toosee stava richiedendo quali client hello azioni quando si è verificato l'errore hello. È possibile visualizzare una nuova visualizzazione griglia di analisi per questa sessione tooview hello client log dati, che viene aperto in una seconda scheda:
 
-1. Copiare innanzitutto il valore del campo **ClientRequestId** negli Appunti. A questo scopo, selezionare una delle due righe, trovare il campo **ClientRequestId**, fare clic con il pulsante destro del mouse sul valore dei dati e scegliere **Copia 'ClientRequestId'**.
-2. Sulla barra multifunzione selezionare **Nuovo visualizzatore** e selezionare **Griglia analisi** per aprire una nuova scheda. Nella nuova scheda sono visualizzati tutti i dati presenti dei file di log, senza raggruppamenti, filtri o regole colore.
-3. Sulla barra multifunzione selezionare **Visualizza layout** e scegliere **Tutte le colonne del client .NET** nella sezione **Archiviazione di Azure**. In questo layout di visualizzazione sono presenti dati tratti dal log del client, nonché dal log del server e dal log della traccia di rete. Per impostazione predefinita, è ordinato in base alla colonna **MessageNumber** .
-4. Cercare quindi l'ID richiesta client nel log del client. Sulla barra multifunzione selezionare **Trova messaggi** e specificare un filtro personalizzato in base all'ID richiesta client nel campo **Trova**. Usare questa sintassi per il filtro, specificando il proprio ID richiesta client:
+1. Innanzitutto, copiare il valore di hello di hello **ClientRequestId** Appunti toohello campo. È possibile farlo selezionando una riga, individuazione hello **ClientRequestId** campo, facendo clic sul valore dei dati hello e scegliendo **copia 'ClientRequestId'**.
+2. Nella barra multifunzione di hello, selezionare **nuovo visualizzatore**, quindi selezionare **griglia Analysis** tooopen una nuova scheda nuovo hello scheda Visualizza tutti i dati nei file di registro, senza il raggruppamento, filtro o le regole colore.
+3. Nella barra multifunzione di hello, selezionare **visualizzazione Layout**, quindi selezionare **tutte le colonne di Client .NET** in hello **di archiviazione di Azure** sezione. Questa visualizzazione Mostra i dati dal log hello del client, nonché hello i registri di traccia di rete e del server. Per impostazione predefinita l'ordinamento in hello **MessageNumber** colonna.
+4. Cercare quindi log hello del client richiesta ID client hello. Nella barra multifunzione di hello, selezionare **Trova messaggi**, quindi specificare un filtro personalizzato sull'ID di richiesta client hello in hello **trovare** campo. Usare questa sintassi per il filtro di hello, specificando il proprio ID richiesta client:
 
     ```
     *ClientRequestId == "398bac41-7725-484b-8a69-2a9e48fc669a"
     ```
 
-Message Analyzer individua e seleziona la prima voce del log in cui i criterio di ricerca corrispondono all'ID richiesta client. Nel log del client sono presenti varie voci per ogni ID richiesta client, pertanto è consigliabile raggrupparle nel campo **ClientRequestId** per visualizzarle facilmente tutte insieme. L'immagine seguente mostra tutti i messaggi nel log del client per l'ID richiesta client specificato.
+Message Analyzer individua e seleziona hello prima voce di registro in cui i criteri di ricerca hello corrisponde richiesta ID client hello. Nel Registro di hello client, esistono diverse voci per ogni ID richiesta client, pertanto è consigliabile toogroup usarle in hello **ClientRequestId** toomake campo è più facile toosee li tutti insieme. immagine di Hello riportata di seguito mostra tutti i messaggi hello in client hello di log per hello specificato ID di richiesta client.
 
 ![Log del client con errori 404](./media/storage-e2e-troubleshooting/client-log-analysis-grid1.png)
 
-Mediante i dati presenti nei layout di visualizzazione in queste due schede è possibile analizzare i dati della richiesta per determinare le possibili cause dell'errore. È anche possibile esaminare le richieste precedenti per stabilire se l'errore 404 può essere riconducibile a un evento precedente. Ad esempio, è possibile esaminare le voci del log del client precedenti rispetto a questo ID richiesta client per determinare se il BLOB è stato eliminato o se l'errore è dovuto a un'applicazione client che chiama un'API CreateIfNotExists in un contenitore o BLOB. Nel log del client è possibile trovare l'indirizzo del BLOB nel campo **Descrizione**, mentre nel log del server e nel log della traccia di rete queste informazioni sono riportate nel campo **Riepilogo**.
+Utilizza dati hello visualizzati nel layout della visualizzazione hello in queste due schede, è possibile analizzare hello richiesta dati toodetermine ciò che potrebbe essere causato l'errore hello. È anche possibile esaminare le richieste che hanno preceduto questo uno toosee se un evento precedente hanno potuto condurre errore 404 toohello. Ad esempio, è possibile esaminare le voci di log client hello precedono questa toodetermine di ID richiesta client se blob hello potrebbe essere stata eliminata o se l'errore hello scaduto dall'applicazione client toohello che chiama un'API CreateIfNotExists in un contenitore o blob. Nel Registro di client hello, è possibile trovare l'indirizzo del blob hello in hello **descrizione** campo; nel server di hello e registri di traccia di rete, questa informazione viene visualizzata in hello **riepilogo** campo.
 
-Quando si conosce l'indirizzo del BLOB che ha restituito l'errore 404, è possibile effettuare ulteriori approfondimenti. Se esegue una ricerca nelle voci di log per individuare altri messaggi associati alle operazioni nello stesso BLOB, è possibile verificare se l'entità è stata eliminata in precedenza dal client.
+Quando si conosce l'indirizzo di hello del blob hello che hanno restituito errori hello 404, è possibile esaminare ulteriormente. Se si esegue la ricerca voci di log hello per altri messaggi associati con operazioni su hello stesso blob, è possibile verificare se il client hello eliminato in precedenza entità hello.
 
 ## <a name="analyze-other-types-of-storage-errors"></a>Analizzare altri tipi di errori di archiviazione
-Dopo avere acquisito familiarità con l'uso di Message Analyzer per analizzare i dati di log, è possibile analizzare altri tipi di errori usando i layout di visualizzazione, le regole colore e le funzionalità di ricerca/filtro. Nelle tabelle seguenti sono elencati alcuni problemi che possono verificarsi e i criteri di filtro che è possibile usare per individuarli. Per altre informazioni sulla creazione di filtri e sul linguaggio di filtro di Message Analyzer, vedere [l'argomento relativo al filtraggio dei dati dei messaggi](http://technet.microsoft.com/library/jj819365.aspx).
+Ora che si ha familiarità con i dati dei log di tooanalyze Message Analyzer, è possibile analizzare gli altri tipi di errori durante l'utilizzo di visualizzazione layout, le regole colore e la ricerca filtro. Hello tabelle seguente sono elencati alcuni problemi che si possono verificarsi e i criteri di filtro è possibile utilizzare toolocate hello li. Per ulteriori informazioni sulla creazione di filtri e hello Message Analyzer filtro lingua, vedere [filtraggio dei dati di messaggio](http://technet.microsoft.com/library/jj819365.aspx).
 
-| Per esaminare... | Usare l'espressione di filtro... | Log a cui è applicabile l'espressione (client, server, rete, tutti) |
+| tooInvestigate... | Usare l'espressione di filtro... | Espressione si applica tooLog (Client, Server, rete, tutti) |
 | --- | --- | --- |
 | Ritardi imprevisti nel recapito dei messaggi in una coda |AzureStorageClientDotNetV4.Description   contains "Retrying failed operation." |Client |
 | Aumento di PercentThrottlingError HTTP |HTTP.Response.StatusCode   == 500 &#124;&#124; HTTP.Response.StatusCode == 503 |Rete |
@@ -369,7 +369,7 @@ Dopo avere acquisito familiarità con l'uso di Message Analyzer per analizzare i
 Per altre informazioni sugli scenari end-to-end di risoluzione dei problemi di archiviazione di Azure, vedere le risorse seguenti:
 
 * [Monitoraggio, diagnosi e risoluzione dei problemi del servizio di archiviazione di Microsoft Azure](storage-monitoring-diagnosing-troubleshooting.md)
-* [Analisi dell'archiviazione](http://msdn.microsoft.com/library/azure/hh343270.aspx)
-* [Monitorare un account di archiviazione nel portale di Azure](storage-monitor-storage-account.md)
-* [Trasferire dati con l'utilità della riga di comando AzCopy](storage-use-azcopy.md)
+* [Analisi archiviazione](http://msdn.microsoft.com/library/azure/hh343270.aspx)
+* [Monitoraggio di un account di archiviazione nel portale di Azure hello](storage-monitor-storage-account.md)
+* [Trasferimento dati con l'utilità della riga di comando di AzCopy hello](storage-use-azcopy.md)
 * [Guida operativa di Microsoft Message Analyzer](http://technet.microsoft.com/library/jj649776.aspx)

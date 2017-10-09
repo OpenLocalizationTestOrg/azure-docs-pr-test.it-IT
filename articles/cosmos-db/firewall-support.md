@@ -1,6 +1,6 @@
 ---
-title: Supporto del firewall e controllo dell'accesso agli indirizzi IP per Azure Cosmos DB | Microsoft Docs
-description: Informazioni su come usare criteri di controllo di accesso agli indirizzi IP per il supporto del firewall in account del database di Azure Cosmos DB.
+title: controllo di accesso IP e il supporto di firewall Cosmos DB aaaAzure | Documenti Microsoft
+description: Informazioni su come criteri di controllo di accesso toouse IP per firewall il supporto per gli account di database di Azure Cosmos DB.
 keywords: controllo di accesso IP, supporto del firewall
 services: cosmos-db
 author: shahankur11
@@ -16,53 +16,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: ankshah
-ms.openlocfilehash: e08c0ba9c1fc0bab72ae8c1158aafaad4f66920e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5cdbdb28e9d7ee0fd0ea54aad277167b699929f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-firewall-support"></a>Supporto del firewall di Azure Cosmos DB
-Per proteggere i dati archiviati in un account del database di Azure Cosmos DB, Azure Cosmos DB ha reso disponibile il supporto per un [modello di autorizzazione](https://msdn.microsoft.com/library/azure/dn783368.aspx) basato su segreto che usa un codice di autenticazione messaggi basato su hash (HMAC, Hash-based Message Authentication Code). Oltre al modello di autenticazione basato su segreto, Azure Cosmos DB supporta ora controlli dell'accesso agli indirizzi IP basati su criteri per il supporto del firewall in ingresso. Questo modello è molto simile alle regole del firewall di un sistema di database tradizionale e offre un livello aggiuntivo di sicurezza per l'account del database di Azure Cosmos DB. Con questo modello è ora possibile configurare un account del database di Azure Cosmos DB perché sia accessibile solo da un set di computer e/o servizi cloud approvato. Per l'accesso alle risorse di Azure Cosmos DB da questi set di computer e servizi approvati, è comunque necessario che il chiamante presenti un token di autorizzazione valido.
+toosecure dati archiviati in un account di database di Azure Cosmos DB, Cosmos Azure DB ha fornito il supporto per una chiave privata in base [modello di autorizzazione](https://msdn.microsoft.com/library/azure/dn783368.aspx) che usa un codice di autenticazione di messaggi basato su Hash complessa (HMAC). A questo punto, inoltre segreto toohello basato sul modello di autorizzazione, Azure Cosmos DB supporta criteri basati sui controlli di accesso basato su IP per il supporto firewall in ingresso. Questo modello è molto simile toohello regole del firewall di un sistema di database tradizionale e fornisce un ulteriore livello di sicurezza toohello Azure Cosmos DB account del database. Con questo modello, è possibile ora configurare un toobe account database Azure Cosmos DB accessibile solo da un set di computer approvati e/o i servizi cloud. Accedere alle risorse di DB Cosmos tooAzure da questi set di servizi e macchine approvati richiede comunque hello chiamante toopresent un token di autorizzazione valido.
 
 ## <a name="ip-access-control-overview"></a>Panoramica del controllo di accesso IP
-Per impostazione predefinita, un account del database di Azure Cosmos DB è accessibile dalla rete Internet pubblica purché la richiesta sia accompagnata da un token di autorizzazione valido. Per configurare il controllo di accesso IP basato su criteri, l'utente deve fornire il set di indirizzi IP o di intervalli di indirizzi IP in formato CIDR perché venga incluso come elenco di IP client consentiti per un account del database specificato. Dopo aver applicato questa configurazione, tutte le richieste provenienti dai computer non inclusi in questo elenco di client IP consentiti verranno bloccati dal server.  Il flusso di elaborazione della connessione per il controllo di accesso basato su IP viene descritto nel diagramma seguente.
+Per impostazione predefinita, un account di database DB Cosmos Azure è accessibile da internet pubblico, purché hello richiesta è accompagnata da un token di autorizzazione valido. controllo di accesso basata su criteri IP tooconfigure, utente hello deve specificare il set di hello di indirizzi IP o intervalli di indirizzi IP in toobe formato CIDR inclusa come hello consentito l'elenco di IP client per un account di database specificato. Una volta applicata questa configurazione, tutte le richieste provenienti da computer di fuori di questo elenco consentito verranno bloccate dal server hello.  connessione Hello l'elaborazione del flusso di controllo di accesso basato su IP hello è descritto nel seguente diagramma hello.
 
-![Diagramma che mostra il processo di connessione per il controllo di accesso basato su IP](./media/firewall-support/firewall-support-flow.png)
+![Diagramma che illustra il processo di connessione hello per il controllo di accesso basato su IP](./media/firewall-support/firewall-support-flow.png)
 
 ## <a name="connections-from-cloud-services"></a>Connessioni da servizi cloud
-In Azure, i servizi cloud sono uno strumento molto comune per ospitare la logica del servizio di livello intermedio con Azure Cosmos DB. Per consentire l'accesso a un account del database di Azure Cosmos DB da un servizio cloud, l'indirizzo IP pubblico del servizio cloud deve essere aggiunto all'elenco di indirizzi IP consentiti associato all'account del database di Azure Cosmos DB [configurando il criterio di controllo dell'accesso agli indirizzi IP](#configure-ip-policy).  In questo modo, tutte le istanze del ruolo dei servizi cloud hanno accesso all'account del database di Azure Cosmos DB. È possibile recuperare gli indirizzi IP per i servizi cloud nel portale di Azure, come mostrato nello screenshot seguente.
+In Azure, i servizi cloud sono uno strumento molto comune per ospitare la logica del servizio di livello intermedio con Azure Cosmos DB. tooenable accesso tooan Azure Cosmos DB account del database da un servizio cloud, indirizzo IP pubblico hello del servizio cloud hello deve essere aggiunto toohello consentito l'elenco di indirizzi IP associati all'account di database di Azure Cosmos DB da [configurazione criteri di controllo di accesso IP Hello](#configure-ip-policy).  In questo modo si garantisce che tutte le istanze del ruolo di servizi cloud hanno accesso tooyour Azure Cosmos DB account del database. È possibile recuperare gli indirizzi IP per i servizi cloud nel portale di Azure hello, come illustrato nella seguente schermata hello.
 
-![Screenshot che mostra l'indirizzo IP pubblico per un servizio cloud visualizzato nel portale di Azure](./media/firewall-support/public-ip-addresses.png)
+![Schermata di indirizzo IP pubblico hello per un servizio cloud nel portale di Azure hello](./media/firewall-support/public-ip-addresses.png)
 
-Quando si aumenta il numero di istanze del servizio cloud aggiungendo altre istanze del ruolo, le nuove istanze hanno automaticamente accesso all'account del database di Azure Cosmos DB perché fanno parte dello stesso servizio cloud.
+Quando scala in orizzontale il servizio cloud aggiungendo istanze del ruolo aggiuntivi, tali nuove istanze avranno automaticamente accesso account del database Azure Cosmos DB toohello poiché sono parte di hello stesso servizio cloud.
 
 ## <a name="connections-from-virtual-machines"></a>Connessioni da macchine virtuali
-Per ospitare servizi di livello intermedio con Azure Cosmos DB è possibile usare anche [macchine virtuali](https://azure.microsoft.com/services/virtual-machines/) o [set di scalabilità di macchine virtuali](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md).  Per configurare l'account del database di Azure Cosmos DB in modo da consentire l'accesso da macchine virtuali, gli indirizzi IP pubblici della macchina virtuale e/o del set di scalabilità di macchine virtuali devono essere configurati come uno degli indirizzi IP consentiti per l'account del database di Azure Cosmos DB [configurando il criterio di controllo dell'accesso agli indirizzi IP](#configure-ip-policy). È possibile recuperare gli indirizzi IP per le macchine virtuali nel portale di Azure, come mostrato nello screenshot seguente.
+[Macchine virtuali](https://azure.microsoft.com/services/virtual-machines/) o [set di scalabilità di macchine virtuali](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) può anche essere toohost utilizzati servizi di livello intermedio tramite Azure Cosmos DB.  tooconfigure hello Azure Cosmos DB accesso tooallow account al database da macchine virtuali, gli indirizzi IP pubblici di macchina virtuale e/o set di scalabilità della macchina virtuale deve essere configurato come uno degli indirizzi IP per l'account di database di Azure Cosmos DB da consentiti hello [configurazione dei criteri di controllo di accesso IP hello](#configure-ip-policy). È possibile recuperare gli indirizzi IP per le macchine virtuali in hello portale di Azure, come illustrato nella seguente schermata hello.
 
-![Screenshot che mostra un indirizzo IP pubblico per una macchina virtuale visualizzata nel portale di Azure](./media/firewall-support/public-ip-addresses-dns.png)
+![Screenshot che illustra un indirizzo IP pubblico per una macchina virtuale visualizzata nel portale di Azure hello](./media/firewall-support/public-ip-addresses-dns.png)
 
-Quando si aggiungono istanze di macchina virtuale al gruppo, a queste viene automaticamente fornito l'accesso all'account del database di Azure Cosmos DB.
+Quando si aggiunge il gruppo di toohello istanze di macchina virtuale aggiuntiva, vengono fornite automaticamente account di accesso tooyour Azure Cosmos DB del database.
 
-## <a name="connections-from-the-internet"></a>Connessioni da Internet
-Quando si accede a un account del database di Azure Cosmos DB da un computer in Internet, l'indirizzo IP o l'intervallo di indirizzi IP client del computer deve essere aggiunto all'elenco di indirizzi IP consentiti per l'account del database di Azure Cosmos DB. 
+## <a name="connections-from-hello-internet"></a>Le connessioni da hello internet
+Quando l'accesso di un database di Azure Cosmos account da un computer del database su hello internet, hello indirizzo IP del client o l'intervallo di indirizzi IP della macchina hello deve essere aggiunto toohello elenco degli indirizzi IP per l'account del database Azure Cosmos DB hello consentito. 
 
-## <a id="configure-ip-policy"></a> Configurazione dei criteri di controllo di accesso IP
-I criteri di controllo di accesso agli indirizzi IP possono essere configurati nel portale di Azure o a livello di codice tramite l'[interfaccia della riga di comando di Azure](cli-samples.md), [Azure Powershell](powershell-samples.md) o l'[API REST](/rest/api/documentdb/) aggiornando la proprietà `ipRangeFilter`. Gli intervalli di indirizzi IP o i singoli indirizzi IP devono essere delimitati da virgole e non devono contenere spazi. Esempio: "13.91.6.132,13.91.6.1/24". Quando si aggiornano gli account del database con questi metodi, è necessario assicurarsi di popolare tutte le proprietà per impedire il ripristino delle impostazioni predefinite.
-
-> [!NOTE]
-> Abilitando criteri di controllo dell'accesso agli indirizzi IP per l'account del database di Azure Cosmos DB, qualsiasi accesso all'account del database di Azure Cosmos DB da computer non inclusi nell'elenco degli intervalli di indirizzi IP consentiti viene bloccato. Grazie a questo modello, viene bloccata anche l'esplorazione dell'operazione del piano dati dal portale per garantire l'integrità del controllo di accesso.
-
-Per semplificare lo sviluppo, il portale di Azure consente di identificare e aggiungere l'indirizzo IP del computer client all'elenco di indirizzi consentiti, in modo che le app in esecuzione nella macchina virtuale possano accedere all'account Azure Cosmos DB. Si noti che l'indirizzo IP del client viene rilevato in base a quanto visualizzato dal portale. Potrebbe trattarsi dell'indirizzo IP del client della macchina virtuale oppure dell'indirizzo IP del gateway di rete. Non dimenticare di rimuoverlo prima di passare all'ambiente di produzione.
-
-Per configurare i criteri di controllo dell'accesso agli indirizzi IP nel portale di Azure, passare al pannello dell'account Azure Cosmos DB, fare clic su **Firewall** nel menu di navigazione e infine su **SÌ** 
-
-![Screenshot che mostra come aprire il pannello Firewall nel portale di Azure](./media/firewall-support/azure-portal-firewall.png)
-
-Nel nuovo riquadro specificare se il portale di Azure può accedere all'account, quindi aggiungere altri indirizzi e intervalli, in base alla necessità, e infine fare clic su **Salva**.  
+## <a id="configure-ip-policy"></a>Configurazione dei criteri di controllo di accesso IP hello
+criteri di controllo di accesso IP Hello possono essere impostati nel portale di Azure hello o a livello di programmazione tramite [CLI di Azure](cli-samples.md), [Azure Powershell](powershell-samples.md), o hello [API REST](/rest/api/documentdb/) aggiornando hello `ipRangeFilter` proprietà. Gli intervalli di indirizzi IP o i singoli indirizzi IP devono essere delimitati da virgole e non devono contenere spazi. Esempio: "13.91.6.132,13.91.6.1/24". Quando si aggiorna l'account del database tramite questi metodi, toopopulate assicurarsi di essere tutti di hello proprietà tooprevent toodefault reimpostazione.
 
 > [!NOTE]
-> Quando si abilitano criteri di controllo di accesso IP, è necessario aggiungere l'indirizzo IP per il portale di Azure per mantenere l'accesso. Gli indirizzi IP del portale sono i seguenti:
+> Abilita un criterio di controllo di accesso IP per l'account di database di Azure Cosmos DB, tutti accesso tooyour account database DB Cosmos Azure dal computer esterni hello configurato consentito elenco di intervalli di indirizzi IP sono bloccati. In virtù di questo modello, esplorazione l'operazione di hello dati piano dal portale hello anche sarà bloccato tooensure hello integrità del controllo di accesso.
+
+sviluppo toosimplify, hello portale di Azure consente di identificare e aggiungere IP hello del toohello macchina client consentito elenco, in modo che le applicazioni in esecuzione nel computer possono accedere hello account Azure Cosmos DB. Si noti che viene rilevato hello indirizzo IP del client qui indicato dal portale di hello. È possibile indirizzo IP del client hello del computer, ma è anche possibile indirizzo IP di hello del gateway di rete. Non dimenticare tooremove prima tooproduction continua.
+
+tooset criteri di controllo di accesso IP a hello in hello portale di Azure, passare a pannello di account Azure Cosmos DB toohello, fare clic su **Firewall** nel menu di navigazione hello, quindi fare clic su **ON** 
+
+![Screenshot che illustra come tooopen hello pannello Firewall in hello portale di Azure](./media/firewall-support/azure-portal-firewall.png)
+
+Nel riquadro nuova hello, specificare se hello portale di Azure può accedere l'account di hello, aggiungere altri indirizzi e intervalli come appropriato, quindi fare clic su **salvare**.  
+
+> [!NOTE]
+> Quando si abilita un criterio di controllo di accesso IP, è necessario l'indirizzo IP hello tooadd per hello accesso toomaintain portale Azure. gli indirizzi IP portali Hello sono:
 > |Region|Indirizzo IP|
 > |------|----------|
 > |Tutte le aree a eccezione di quelle specificate di seguito| 104.42.195.92|
@@ -71,16 +71,16 @@ Nel nuovo riquadro specificare se il portale di Azure può accedere all'account,
 > |Governo degli Stati Uniti - Arizona|52.244.48.71|
 >
 
-![Screenshot che mostra come configurare le impostazioni del firewall nel portale di Azure](./media/firewall-support/azure-portal-firewall-configure.png)
+![Screenshot che illustra come impostazioni del firewall tooconfigure in hello portale di Azure](./media/firewall-support/azure-portal-firewall-configure.png)
 
-## <a name="troubleshooting-the-ip-access-control-policy"></a>Risoluzione dei problemi relativi ai criteri di controllo di accesso IP
+## <a name="troubleshooting-hello-ip-access-control-policy"></a>Risoluzione dei problemi di criteri di controllo di accesso IP hello
 ### <a name="portal-operations"></a>Operazioni nel portale
-Abilitando criteri di controllo dell'accesso agli indirizzi IP per l'account del database di Azure Cosmos DB, qualsiasi accesso all'account del database di Azure Cosmos DB da computer non inclusi nell'elenco degli intervalli di indirizzi IP consentiti viene bloccato. Se si vogliono abilitare operazioni sul piano dati del portale, ad esempio l'esplorazione di raccolte e le query nei documenti, è quindi necessario consentire esplicitamente l'accesso al portale di Azure usando il pannello **Firewall** nel portale. 
+Abilita un criterio di controllo di accesso IP per l'account di database di Azure Cosmos DB, tutti accesso tooyour account database DB Cosmos Azure dal computer esterni hello configurato consentito elenco di intervalli di indirizzi IP sono bloccati. Pertanto, se si desidera operazioni piano dei dati portale tooenable quali raccolte e query nei documenti di esplorazione, è necessario tooexplicitly consentire l'accesso al portale Azure utilizzando hello **Firewall** pannello nel portale di hello. 
 
-![Screenshot che mostra come abilitare l'accesso al portale di Azure](./media/firewall-support/azure-portal-access-firewall.png)
+![Screenshot che illustra come tooenable accesso toohello portale di Azure](./media/firewall-support/azure-portal-access-firewall.png)
 
 ### <a name="sdk--rest-api"></a>SDK e API REST
-Per motivi di sicurezza, l'accesso tramite SDK o API REST da computer non inclusi nell'elenco degli indirizzi IP consentiti restituisce una risposta generica 404 Non trovato senza altri dettagli. Controllare l'elenco degli indirizzi IP consentiti per l'account del database di Azure Cosmos DB per verificare che all'account sia applicata la configurazione dei criteri corretta.
+Per motivi di sicurezza, l'accesso tramite SDK o l'API REST da computer non in elenco consentiti hello restituirà un generico 404 non trovato risposta con nessun ulteriore dettaglio. Verificare che Hello IP consentito elenco configurato per la configurazione dei criteri corretti di Azure Cosmos DB database account tooensure hello è applicato tooyour Azure Cosmos DB account del database.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per suggerimenti relativi alle prestazioni di rete, vedere [Suggerimenti sulle prestazioni per DocumentDB](performance-tips.md).

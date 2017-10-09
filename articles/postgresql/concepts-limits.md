@@ -1,5 +1,5 @@
 ---
-title: Limiti del Database di Azure per PostgreSQL | Microsoft Docs
+title: nel Database di Azure per PostgreSQL aaaLimitations | Documenti Microsoft
 description: Descrive i limiti del Database di Azure per PostgreSQL.
 services: postgresql
 author: kamathsun
@@ -10,19 +10,19 @@ ms.service: postgresql
 ms.custom: mvc
 ms.topic: article
 ms.date: 06/01/2017
-ms.openlocfilehash: 38988fc5c0dc05331ea078534cd1a05e9eca2493
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f53dd240e55e0633bc1dfb8ad25e1818fa8ae18c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="limitations-in-azure-database-for-postgresql"></a>Limiti del Database di Azure per PostgreSQL
-Il servizio Database di Azure per PostgreSQL è in anteprima pubblica. Nelle sezioni seguenti vengono descritti i limiti delle capacità e funzionali nel servizio del database.
+Hello Azure Database PostgreSQL servizio è in anteprima pubblica. Hello nelle sezioni seguenti vengono descritti la capacità e i limiti funzionali nel servizio di database hello.
 
 ## <a name="service-tier-maximums"></a>Valori massimi del livello di servizio
 Il Database di Azure per PostgreSQL dispone di più livelli di servizio tra cui è possibile scegliere durante la creazione di un server. Per altre informazioni vedere [Opzioni e prestazioni disponibili in ogni livello di servizio](concepts-service-tiers.md).  
 
-Esiste un numero massimo di connessioni, unità di calcolo e archiviazione in ogni livello di servizio durante l'anteprima del servizio, come indicato di seguito: 
+È un numero massimo di connessioni, unità di calcolo e archiviazione in ogni livello di servizio durante l'anteprima del servizio hello, come indicato di seguito: 
 
 |                            |                   |
 | :------------------------- | :---------------- |
@@ -40,7 +40,7 @@ Esiste un numero massimo di connessioni, unità di calcolo e archiviazione in og
 | Livello di servizio Basic         | 1 TB              |
 | Livello di servizio Standard      | 1 TB              |
 
-Quando viene raggiunto un numero eccessivo di connessioni, è possibile che si riceva l'errore seguente:
+Quando vengono raggiunte numero eccessivo di connessioni, potrebbe essere visualizzato il seguente errore hello:
 > FATAL: sorry, too many clients already (ERRORE IRREVERSIBILE: ci sono già troppi client)
 
 ## <a name="preview-functional-limitations"></a>Limiti funzionali dell'anteprima
@@ -56,10 +56,10 @@ Quando viene raggiunto un numero eccessivo di connessioni, è possibile che si r
 - Lo spostamento dinamico di server creati in precedenza tra le sottoscrizioni e il gruppo di risorse non è attualmente supportato.
 
 ### <a name="point-in-time-restore"></a>Ripristino temporizzato
-1.  Il ripristino a un livello di servizio diverso e/o a dimensioni delle unità di calcolo e di archiviazione diverse non è consentito.
+1.  Non è consentito il ripristino a livello di servizio toodifferent e/o dimensioni unità di calcolo e archiviazione.
 2.  Il ripristino di un server eliminato non è supportato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - Informazioni sulle [opzioni e prestazioni disponibili in ogni piano tariffario](concepts-service-tiers.md)
 - Informazione sulle [Supported PostgreSQL Database Versions](concepts-supported-versions.md) (Versioni supportate del Database PostgreSQL)
-- Rivedere [How To Back up and Restore a server in Azure Database for PostgreSQL using the Azure portal](howto-restore-server-portal.md) (Come eseguire il backup e il ripristino di un server nel Database di Azure per PostgreSQL usando il portale di Azure)
+- Revisione [come tooBack backup e ripristino di un server di Database di Azure per l'utilizzo di PostgreSQL hello portale di Azure](howto-restore-server-portal.md)

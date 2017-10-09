@@ -1,6 +1,6 @@
 ---
-title: Come creare e distribuire un servizio Cloud | Documentazione Microsoft
-description: Informazioni su come creare e distribuire un servizio cloud mediante il portale di Azure.
+title: aaaHow toocreate e distribuire un servizio cloud | Documenti Microsoft
+description: Informazioni su come toocreate e distribuire un servizio cloud con hello portale di Azure.
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,84 +14,84 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: e5ce666f1d826c7901c9fd5e7fafe6171139c3ad
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc8b81a594f3514e662c49c9a46a33da8a551f4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-deploy-a-cloud-service"></a>Come creare e distribuire un servizio Cloud
+# <a name="how-toocreate-and-deploy-a-cloud-service"></a>Come toocreate e distribuire un servizio cloud
 > [!div class="op_single_selector"]
 > * [Portale di Azure](cloud-services-how-to-create-deploy-portal.md)
-> * [Portale di Azure classico](cloud-services-how-to-create-deploy.md)
+> * [portale di Azure classico](cloud-services-how-to-create-deploy.md)
 >
 >
 
-Nel portale di Azure sono disponibili due modi per creare e distribuire un servizio cloud: *Creazione rapida* e *Creazione personalizzata*.
+sono disponibili due metodi per l'utente toocreate Hello portale di Azure e distribuire un servizio cloud: *creazione rapida* e *creazione personalizzata*.
 
-In questo argomento viene descritto come usare il metodo di creazione rapida di un nuovo servizio cloud e come caricare e distribuire un pacchetto del servizio cloud in Azure tramite l'opzione **Carica** . Quando si usa questo metodo, il portale di Azure rende disponibili comodi collegamenti per completare tutti i requisiti man mano che si procede. Se si è pronti per distribuire il servizio cloud durante la creazione, è possibile effettuare contemporaneamente entrambe le operazioni usando Creazione personalizzata.
+Questo articolo viene illustrato come toouse hello creazione rapida metodo toocreate un nuovo servizio cloud e quindi utilizzare **caricare** tooupload e distribuire un pacchetto del servizio cloud in Azure. Quando si utilizza questo metodo, hello portale di Azure rende disponibili utili collegamenti per il completamento di tutti i requisiti man mano. Se si è pronti toodeploy durante la creazione del servizio cloud, è possibile eseguire sia hello contemporaneamente utilizzando creazione personalizzata.
 
 > [!NOTE]
-> Se si prevede di pubblicare il servizio cloud da Visual Studio Team Services (VSTS), usare Creazione rapida, quindi configurare la pubblicazione VSTS da Azure Quickstart o dal dashboard. Per altre informazioni, vedere [Recapito continuo in Azure tramite Visual Studio Team Services][TFSTutorialForCloudService] o la guida alla pagina **Avvio rapido**.
+> Se si intende toopublish il servizio cloud da Visual Studio Team Services (VSTS), usare creazione rapida e quindi impostare la pubblicazione di Visual Studio Team Services dal dashboard di avvio rapido di Azure o hello hello. Per ulteriori informazioni, vedere [tooAzure la distribuzione continua da utilizzando Visual Studio Team Services][TFSTutorialForCloudService], vedere la Guida per hello o **avvio rapido** pagina.
 >
 >
 
 ## <a name="concepts"></a>Concetti
-Per distribuire un'applicazione come servizio cloud in Azure, sono necessari tre componenti:
+Tre componenti sono necessari toodeploy un'applicazione come servizio cloud in Azure:
 
 * **Definizione del servizio**  
-  Il file di definizione del servizio cloud (con estensione csdef) definisce il modello di servizio, compreso il numero di ruoli.
+  file di definizione del servizio cloud Hello (con estensione csdef) definisce il modello di servizio hello, incluso il numero di hello dei ruoli.
 * **Configurazione del servizio**  
-  l file di configurazione del servizio cloud (con estensione cscfg) specifica le impostazioni di configurazione per il servizio cloud e i singoli ruoli, incluso il numero di istanze del ruolo.
+  file di configurazione del servizio cloud Hello (. cscfg) fornisce le impostazioni di configurazione per servizio cloud hello e singoli ruoli, tra cui hello numero di istanze del ruolo.
 * **Pacchetto del servizio**  
-  Il pacchetto del servizio (con estensione cspkg) contiene il codice dell'applicazione, le configurazioni e il file di definizione del servizio.
+  pacchetto del servizio Hello (con estensione cspkg) contiene il codice dell'applicazione hello e le configurazioni e file di definizione del servizio hello.
 
-Per altre informazioni in proposito e su come creare un pacchetto, fare clic [qui](cloud-services-model-and-package.md).
+Sono disponibili ulteriori informazioni su questi e in che modo un pacchetto toocreate [qui](cloud-services-model-and-package.md).
 
 ## <a name="prepare-your-app"></a>Preparare l'app
-Per poter distribuire un servizio cloud, è necessario creare il pacchetto di servizio cloud (.cspkg) dal codice dell'applicazione e un file di configurazione del servizio cloud (.cscfg). Azure SDK offre strumenti per la preparazione dei file necessari alla distribuzione. È possibile installare l'SDK dalla pagina di [download](https://azure.microsoft.com/downloads/) di Azure, nel linguaggio in cui si preferisce sviluppare il codice dell'applicazione.
+Prima di poter distribuire un servizio cloud, è necessario creare pacchetto del servizio cloud hello (con estensione cspkg) dal codice dell'applicazione e un file di configurazione del servizio cloud (. cscfg). Hello Azure SDK sono disponibili strumenti per la preparazione di questi file di distribuzione necessarie. È possibile installare SDK hello hello [download di Azure](https://azure.microsoft.com/downloads/) pagina, nella lingua hello in cui si preferisce toodevelop il codice dell'applicazione.
 
 Per poter esportare un pacchetto di servizio, è necessario configurare tre funzionalità del servizio cloud:
 
-* Se si vuole distribuire un servizio cloud che usa SSL (Secure Sockets Layer) per la crittografia dei dati, [configurare l'applicazione](cloud-services-configure-ssl-certificate-portal.md#modify) per SSL.
-* Se si vogliono configurare connessioni Desktop remoto a istanze del ruolo, [configurare i ruoli](cloud-services-role-enable-remote-desktop-new-portal.md) per Desktop remoto.
-* Se si desidera configurare il monitoraggio dettagliato per il servizio cloud, abilitare la Diagnostica Azure per il servizio cloud. *Monitoraggio minimo* (livello di monitoraggio predefinito) ricorre a contatori delle prestazioni raccolti dai sistemi operativi host per istanze del ruolo (macchine virtuali). *Il* monitoraggio dettagliato raccoglie metriche supplementari in base ai dati delle prestazioni all'interno delle istanze del ruolo per consentire un'analisi più accurata dei problemi che si verificano durante l'elaborazione dell'applicazione. Per scoprire come abilitare la Diagnostica Azure, vedere [Abilitazione della diagnostica in Azure](cloud-services-dotnet-diagnostics.md).
+* Se si desidera che un servizio cloud che utilizza Secure Sockets Layer (SSL) per la crittografia dei dati, toodeploy [configurare l'applicazione](cloud-services-configure-ssl-certificate-portal.md#modify) per SSL.
+* Se si desidera tooconfigure istanze di toorole connessioni Desktop remoto, [configurare ruoli hello](cloud-services-role-enable-remote-desktop-new-portal.md) per Desktop remoto.
+* Se si desidera tooconfigure dettagliato di monitoraggio per il servizio cloud, abilitare la diagnostica di Azure per il servizio cloud hello. *Monitoraggio minimo* (impostazione predefinita hello monitoraggio livello) usa i contatori delle prestazioni raccolti dai sistemi operativi host di hello per le istanze del ruolo (macchine virtuali). *Monitoraggio dettagliato* raccoglie le metriche aggiuntive basate sui dati delle prestazioni all'interno di hello ruolo istanze tooenable analisi ravvicinata dei problemi che si verificano durante l'elaborazione dell'applicazione. toofind come tooenable diagnostica di Azure, vedere [abilitazione di diagnostica Azure](cloud-services-dotnet-diagnostics.md).
 
-Per creare un servizio cloud con le distribuzioni dei ruoli Web o dei ruoli di lavoro, è necessario [creare il pacchetto del servizio](cloud-services-model-and-package.md#servicepackagecspkg).
+toocreate un servizio cloud con distribuzioni di ruoli web o ruoli di lavoro, è necessario [Crea pacchetto del servizio hello](cloud-services-model-and-package.md#servicepackagecspkg).
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-* Se Azure SDK non è stato installato, fare clic su **Install Azure SDK** per aprire la pagina di [download](https://azure.microsoft.com/downloads/)di Azure e quindi scaricare l'SDK nel linguaggio in cui si preferisce sviluppare il codice. (È possibile eseguire questa operazione in seguito).
-* Se un'istanza del ruolo lo richiede, creare i certificati. I servizi cloud richiedono un file con estensione pfx con una chiave privata. È possibile caricare i certificati in Azure nel corso della creazione e della distribuzione del servizio cloud.
+* Se non è stato installato hello Azure SDK, fare clic su **installare Azure SDK** tooopen hello [pagina di download di Azure](https://azure.microsoft.com/downloads/)e quindi scaricare hello SDK per la lingua di hello in cui si preferisce toodevelop il codice. (Sarà necessario questo toodo un'opportunità in un secondo momento.)
+* Se tutte le istanze di ruolo richiedono un certificato, è possibile creare certificati hello. I servizi cloud richiedono un file con estensione pfx con una chiave privata. È possibile caricare hello certificati tooAzure come creare e distribuire il servizio di cloud hello.
 
 ## <a name="create-and-deploy"></a>Creazione e distribuzione
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Fare clic su **Nuovo > Calcolo**, quindi scorrere verso il basso e fare clic su **Servizio cloud**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Fare clic su **nuovo > calcolo**e quindi scorrere verso il basso fare clic su tooand **servizio Cloud**.
 
     ![Pubblicare il servizio cloud](media/cloud-services-how-to-create-deploy-portal/create-cloud-service.png)
-3. Nel nuovo pannello **Servizio cloud** immettere un valore per il **nome DNS**.
+3. Nella nuova hello **servizio Cloud** pannello, immettere un valore per hello **nome DNS**.
 4. Creare un nuovo **Gruppo di risorse** o selezionarne uno esistente.
 5. Selezionare un **percorso**.
-6. Fare clic su **Pacchetto**. Verrà visualizzato il pannello **Carica un pacchetto** . Compilare i campi obbligatori. Se sono presenti ruoli contenenti una singola istanza, assicurarsi che l'opzione **Distribuisci anche se uno o più ruoli contengono una singola istanza** sia selezionata.
+6. Fare clic su **Pacchetto**. Verrà aperta hello **caricare un pacchetto** blade. Compilare i campi necessario hello. Se sono presenti ruoli contenenti una singola istanza, assicurarsi che l'opzione **Distribuisci anche se uno o più ruoli contengono una singola istanza** sia selezionata.
 7. Assicurarsi che l'opzione **Avvia distribuzione** sia selezionata.
-8. Fare clic su **OK** per chiudere il pannello **Carica un pacchetto**.
-9. Se non è disponibile un certificato da aggiungere, fare clic su **Crea**.
+8. Fare clic su **OK** verranno chiusi hello **caricare un pacchetto** blade.
+9. Se non si dispone di qualsiasi tooadd certificati, fare clic su **crea**.
 
     ![Pubblicare il servizio cloud](media/cloud-services-how-to-create-deploy-portal/select-package.png)
 
 ## <a name="upload-a-certificate"></a>Caricamento di un certificato
-Se il pacchetto di distribuzione è stato [configurato per usare i certificati](cloud-services-configure-ssl-certificate-portal.md#modify), a questo punto è possibile caricare il certificato.
+Se il pacchetto di distribuzione è stata [configurato i certificati toouse](cloud-services-configure-ssl-certificate-portal.md#modify), è possibile caricare il certificato di hello ora.
 
-1. Selezionare **Certificati** e nel pannello **Aggiungi certificati** selezionare il file con estensione pfx del certificato SSL e fornire la **password** per il certificato.
-2. Fare clic su **Collega certificato** e quindi su **OK** nel pannello **Aggiungi certificati**.
-3. Fare clic su **Crea** nel pannello **Servizio cloud**. Quando la distribuzione ha raggiunto lo stato **Ready** , è possibile procedere con i passaggi successivi.
+1. Selezionare **certificati**e in hello **aggiungere certificati** pannello selezionare file pfx del certificato SSL hello e quindi fornire hello **Password** certificato hello,
+2. Fare clic su **certificato Connetti**, quindi fare clic su **OK** su hello **aggiungere certificati** blade.
+3. Fare clic su **crea** su hello **servizio Cloud** blade. Quando la distribuzione di hello ha raggiunto hello **pronto** stato, è possibile procedere toohello passaggi.
 
     ![Pubblicare il servizio cloud](media/cloud-services-how-to-create-deploy-portal/attach-cert.png)
 
 ## <a name="verify-your-deployment-completed-successfully"></a>Verificare che la distribuzione sia stata completata correttamente
-1. Fare clic sull'istanza del servizio cloud.
+1. Scegliere l'istanza del servizio cloud hello.
 
-    Lo stato del servizio dovrebbe ora essere **In esecuzione**.
-2. In **Informazioni di base** fare clic su **URL sito** per aprire il servizio cloud in un Web browser.
+    Hello stato risulterà che servizio hello è **esecuzione**.
+2. In **Essentials**, fare clic su hello **URL del sito** tooopen del servizio cloud in un web browser.
 
     ![CloudServices_QuickGlance](./media/cloud-services-how-to-create-deploy-portal/running.png)
 

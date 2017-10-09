@@ -1,5 +1,5 @@
-#### <a name="to-shut-down-a-virtual-device"></a>Per arrestare un dispositivo virtuale
-1. Accedere al portale di gestione.
-2. Fare clic su **Macchine virtuali**, quindi selezionare il dispositivo virtuale.
+#### <a name="tooshut-down-a-virtual-device"></a>tooshut verso il basso un dispositivo virtuale
+1. Accedi toohello portale di gestione.
+2. Fare clic su **macchine virtuali**, e quindi selezionare hello dispositivo virtuale.
 3. Fare clic su **Arresta**.
 

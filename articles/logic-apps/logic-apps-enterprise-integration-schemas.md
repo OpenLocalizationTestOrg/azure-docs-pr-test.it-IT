@@ -1,5 +1,5 @@
 ---
-title: Schemi per la convalida XML - App per la logica di Azure | Microsoft Docs
+title: aaaSchemas per la convalida XML - App Azure per la logica | Documenti Microsoft
 description: Convalida dei documenti XML con gli schemi per le app per la logica di Azure ed Enterprise Integration Pack
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,122 +14,122 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 4f58a587c1f10aea1cee89e46fa9ec340e0d21c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 87cf92741e10ff7cccd260f27442909e34928903
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="validate-xml-with-schemas-for-azure-logic-apps-and-the-enterprise-integration-pack"></a>Convalida XML con gli schemi per le app per la logica di Azure ed Enterprise Integration Pack
+# <a name="validate-xml-with-schemas-for-azure-logic-apps-and-hello-enterprise-integration-pack"></a>Convalida XML con schemi per le app di logica di Azure e hello Enterprise Integration Pack
 
-È possibile usare gli schemi per confermare che i documenti XML ricevuti siano validi e avere i dati previsti in un formato predefinito. Gli schemi vengono usati inoltre per convalidare i messaggi scambiati in uno scenario B2B.
+Schemi confermare che si riceve i documenti XML hello siano validi e sia hello previsto i dati in un formato predefinito. Gli schemi vengono usati inoltre per convalidare i messaggi scambiati in uno scenario B2B.
 
 ## <a name="add-a-schema"></a>Aggiungere uno schema
 
-1. Nel Portale di Azure fare clic su **More services** (Altri servizi).
+1. Nel portale di Azure hello, selezionare **più servizi**.
 
     ![Portale di Azure, "More services" (Altri servizi)](media/logic-apps-enterprise-integration-schemas/overview-11.png)
 
-2. Nella casella di ricerca del filtro immettere **integrazione**, quindi selezionare **Account di integrazione** dall'elenco dei risultati.
+2. Nella casella di ricerca hello filtro immettere **integrazione**e selezionare **account di integrazione** dall'elenco dei risultati di hello.
 
     ![Casella di ricerca del filtro](media/logic-apps-enterprise-integration-schemas/overview-21.png)
 
-3. Selezionare l'**account di integrazione** in cui si desidera aggiungere lo schema.
+3. Seleziona hello **account integrazione** in cui si desidera schema hello tooadd.
 
     ![Elenco degli account di integrazione](media/logic-apps-enterprise-integration-schemas/overview-31.png)
 
-4. Selezionare il riquadro **Schemi**.
+4. Scegliere hello **schemi** riquadro.
 
     ![Esempio di account di integrazione, "Schemi"](media/logic-apps-enterprise-integration-schemas/schema-11.png)
 
 ### <a name="add-a-schema-file-smaller-than-2-mb"></a>Aggiungere un file di schema di dimensioni inferiori a 2 MB
 
-1. Nel pannello **Schemi** visualizzato nei passaggi precedenti, selezionare **Aggiungi**.
+1. In hello **schemi** blade che viene visualizzata (da hello passaggi precedenti), scegliere **Aggiungi**.
 
     ![Pannello Schemi, "Aggiungi"](media/logic-apps-enterprise-integration-schemas/schema-21.png)
 
-2. Immettere un nome per lo schema. Caricare il file di schema selezionando l'icona della cartella accanto alla casella di testo **Schema**. Al termine del processo di caricamento, scegliere **OK**.
+2. Immettere un nome per lo schema. Caricare il file di schema hello selezionando hello cartella icona Avanti toohello **Schema** casella. Al termine del processo di caricamento hello, **OK**.
 
     ![Screenshot di "Aggiungi schema", con "File piccolo" evidenziato](media/logic-apps-enterprise-integration-schemas/schema-31.png)
 
-### <a name="add-a-schema-file-larger-than-2-mb-up-to-8-mb-maximum"></a>Aggiungere un file di schema di dimensioni maggiori di 2 MB (fino a un massimo di 8 MB)
+### <a name="add-a-schema-file-larger-than-2-mb-up-too8-mb-maximum"></a>Aggiungere un file di schema maggiore di 2 MB (backup di un massimo di too8 MB)
 
-La procedura dipende dal livello di accesso del contenitore BLOB, ovvero **Pubblico** o **Nessun accesso anonimo**.
+Questi passaggi sono diversi in base ai livelli di accesso di contenitore blob hello: **pubblica** o **Nessun accesso anonimo**.
 
-**Per determinare il livello di accesso**
+**toodetermine questo livello di accesso**
 
 1.  Aprire **Azure Storage Explorer** (Esplora archivi di Azure). 
 
-2.  In **Contenitori Blob**, selezionare il contenitore di blob desiderato. 
+2.  In **contenitori Blob**, selezionare il contenitore di blob hello desiderato. 
 
 3.  Selezionare **Sicurezza**, **Livello di accesso**.
 
-Se il livello di accesso di sicurezza del BLOB è **Pubblico**, seguire questa procedura.
+Se è a livello di accesso di sicurezza blob hello **pubblica**, seguire questi passaggi.
 
 ![Azure Storage Explorer con evidenziate le opzioni "Contenitori BLOB", "Sicurezza" e "Pubblico"](media/logic-apps-enterprise-integration-schemas/blob-public.png)
 
-1. Caricare lo schema nell'account di archiviazione e copiare l'URI.
+1. Caricare l'account di archiviazione tooyour schema hello e copiare hello URI.
 
     ![Account di archiviazione con URI evidenziato](media/logic-apps-enterprise-integration-schemas/schema-blob.png)
 
-2. In **Aggiungi schema** selezionare **File grande**, quindi specificare l'URI nella casella di testo **URI del contenuto**.
+2. In **Aggiungi Schema**selezionare **file di grandi dimensioni**e fornire Ciao URI hello **URI contenuto** casella di testo.
 
     ![Schemi con evidenziati il pulsante "Aggiungi" e l'opzione "Large file" (File grande)](media/logic-apps-enterprise-integration-schemas/schema-largefile.png)
 
-Se il livello di accesso di sicurezza BLOB è **Nessun accesso anonimo**, seguire questa procedura.
+Se è a livello di accesso di sicurezza blob hello **Nessun accesso anonimo**, seguire questi passaggi.
 
 ![Azure Storage Explorer, con evidenziate le opzioni "Contenitori BLOB", "Sicurezza" e "No anonymous access" (Nessun accesso anonimo)](media/logic-apps-enterprise-integration-schemas/blob-1.png)
 
-1. Caricare lo schema nell'account di archiviazione.
+1. Caricare l'account di archiviazione tooyour hello dello schema.
 
     ![Account di archiviazione](media/logic-apps-enterprise-integration-schemas/blob-3.png)
 
-2. Generare una firma di accesso condiviso per lo schema.
+2. Generare una firma di accesso condiviso per lo schema di hello.
 
     ![Account di archiviazione con evidenziata la scheda delle firme di accesso condiviso](media/logic-apps-enterprise-integration-schemas/blob-2.png)
 
-3. In **Aggiungi schema**, selezionare **File grande**, quindi specificare l'URI della firma di accesso condiviso nella casella di testo **URI del contenuto**.
+3. In **Aggiungi Schema**selezionare **file di grandi dimensioni**e fornire una firma di accesso condiviso hello URI in hello **URI contenuto** casella di testo.
 
     ![Schemi con evidenziati il pulsante "Aggiungi" e l'opzione "Large file" (File grande)](media/logic-apps-enterprise-integration-schemas/schema-largefile.png)
 
-4. Nel pannello **Schemi** dell'account di integrazione dovrebbe essere visualizzato lo schema appena aggiunto.
+4. In hello **schemi** pannello dell'account di integrazione, dovrebbe essere visualizzato il nuovo schema.
 
-    ![Account di integrazione EIP con evidenziati il pannello "Schemi" e il nuovo schema](media/logic-apps-enterprise-integration-schemas/schema-41.png)
+    ![L'account di integrazione, con "Schemi" e il nuovo schema hello evidenziato](media/logic-apps-enterprise-integration-schemas/schema-41.png)
 
 ## <a name="edit-schemas"></a>Modificare gli schemi
 
-1. Selezionare il riquadro **Schemi**.
+1. Scegliere hello **schemi** riquadro.
 
-2. Selezionare lo schema da modificare quando il pannello **Schemi** si apre.
+2. Dopo aver hello **schemi** pannello consente di aprire, schema selezionare hello che si desidera tooedit.
 
-3. Nel pannello **Schemi** selezionare **Modifica**.
+3. In hello **schemi** pannello, scegliere **modifica**.
 
     ![Pannello Schemi](media/logic-apps-enterprise-integration-schemas/edit-12.png)
 
-4. Selezionare il file di schema che si desidera modificare, quindi selezionare **Apri**.
+4. File di schema selezionare hello che si desidera tooedit, quindi selezionare **aprire**.
 
-    ![Aprire il file di schema da modificare](media/logic-apps-enterprise-integration-schemas/edit-31.png)
+    ![Apri schema file tooedit](media/logic-apps-enterprise-integration-schemas/edit-31.png)
 
-In Azure viene visualizzato il messaggio che lo schema è stato caricato correttamente.
+Azure Visualizza un messaggio che hello schema caricato correttamente.
 
 ## <a name="delete-schemas"></a>Eliminare gli schemi
 
-1. Selezionare il riquadro **Schemi**.
+1. Scegliere hello **schemi** riquadro.
 
-2. Selezionare lo schema da eliminare quando il pannello **Schemi** si apre.
+2. Dopo aver hello **schemi** pannello consente di aprire, schema selezionare hello desiderato toodelete.
 
-3. Nel pannello **Schemi** selezionare **Elimina**.
+3. In hello **schemi** pannello, scegliere **eliminare**.
 
     ![Pannello Schemi](media/logic-apps-enterprise-integration-schemas/delete-12.png)
 
-4. Per confermare che si desidera eliminare lo schema selezionato scegliere **Sì**.
+4. tooconfirm che si desidera toodelete hello selezionata dello schema, scegliere **Sì**.
 
     ![Messaggio di conferma "Elimina schema"](media/logic-apps-enterprise-integration-schemas/delete-21.png)
 
-    Nel pannello **Schemi** si aggiorna l'elenco degli schemi, che non include più lo schema che è stato eliminato.
+    In hello **schemi** pannello elenco schema hello viene aggiornata e non include più schema hello che è stato eliminato.
 
     ![Account di integrazione con il riquadro "Schemi" evidenziato](media/logic-apps-enterprise-integration-schemas/delete-31.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Altre informazioni su Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack").  
+* [Altre informazioni su Enterprise Integration Pack hello](logic-apps-enterprise-integration-overview.md "informazioni sul pacchetto di integrazione di enterprise hello").  
 

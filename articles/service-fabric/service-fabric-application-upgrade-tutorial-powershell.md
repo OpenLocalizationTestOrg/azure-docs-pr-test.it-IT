@@ -1,6 +1,6 @@
 ---
-title: Aggiornamento di un'app di Service Fabric mediante PowerShell | Documentazione Microsoft
-description: In questo articolo vengono esaminati l'esperienza di distribuzione di un'applicazione di Service Fabric, la modifica del codice e l'implementazione di un aggiornamento tramite PowerShell.
+title: aggiornamento di App Fabric aaaService mediante PowerShell | Documenti Microsoft
+description: In questo articolo vengono esaminati esperienza hello di distribuzione di un'applicazione di Service Fabric, modificare il codice hello e implementazione di un aggiornamento tramite PowerShell.
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 3591ced970887d4eb5a33cec8f6951b5476d04f8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f31212264de45c3b257a0efafb75c10c279b989f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-application-upgrade-using-powershell"></a>Aggiornamento di un'applicazione di Service Fabric mediante PowerShell
 > [!div class="op_single_selector"]
@@ -29,35 +29,35 @@ ms.lasthandoff: 08/18/2017
 
 <br/>
 
-Il metodo di aggiornamento consigliato usato più frequentemente è l'aggiornamento in sequenza in modalità monitorata (Monitored).  Azure Service Fabric monitora l'integrità dell'applicazione che viene aggiornata in base a un set di criteri di integrità. Dopo che un dominio di aggiornamento è stato aggiornato, Service Fabric valuta l'integrità dell'applicazione e poi o passa al dominio di aggiornamento successivo o annulla l'aggiornamento in base ai criteri di integrità.
+Hello utilizzati più di frequente e approccio di aggiornamento consigliato è l'aggiornamento in sequenza hello monitorato.  Azure Service Fabric esegue monitoraggio hello di un'applicazione hello viene aggiornata in base a un set di criteri di integrità. Dopo aver aggiornato un dominio di aggiornamento (UD), Service Fabric valuta l'integrità dell'applicazione hello e procede toohello successivo dominio di aggiornamento o si verifica un errore di aggiornamento hello in base a criteri di integrità hello.
 
-L'aggiornamento di un'applicazione in modalità monitorata può essere eseguito usando le API gestite o native, PowerShell o REST. Per istruzioni su come eseguire un aggiornamento usando Visual Studio, vedere [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md).
+Un aggiornamento dell'applicazione monitorata può essere eseguito mediante hello gestito o le API native, PowerShell o REST. Per istruzioni su come eseguire un aggiornamento usando Visual Studio, vedere [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md).
 
-L'aggiornamento in sequenza in modalità monitorata di Service Fabric consente all'amministratore di applicazioni di configurare i criteri di valutazione dell'integrità usati da Service Fabric per determinare se l'applicazione è integra. L'amministratore può anche configurare l'azione da intraprendere se la valutazione dell'integrità non riesce, ad esempio l'esecuzione di un rollback automatico. Questa sezione descrive in dettaglio un aggiornamento monitorato per uno degli esempi di SDK che usa PowerShell. Il video di Microsoft Virtual Academy seguente illustra anche come aggiornare un'app: <center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=OrHJH66yC_6406218965">
+Con Service Fabric monitorati aggiornamenti in sequenza, amministratore dell'applicazione hello possibile configurare i criteri di valutazione salute hello utilizzato Service Fabric toodetermine se un'applicazione hello è integra. Inoltre, messaggio per l'amministratore può configurare hello toobe di azione eseguita quando si verifica un errore di valutazione dell'integrità hello (ad esempio, eseguire il rollback automatico). In questa sezione vengono illustrati un aggiornamento per uno degli esempi SDK hello che utilizza PowerShell monitorato. Hello video Microsoft Virtual Academy seguente illustra anche un aggiornamento di app:<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=OrHJH66yC_6406218965">
 <img src="./media/service-fabric-application-upgrade-tutorial-powershell/AppLifecycleVid.png" WIDTH="360" HEIGHT="244">
 </a></center>
 
-## <a name="step-1-build-and-deploy-the-visual-objects-sample"></a>Passaggio 1: creare e distribuire l'esempio di oggetti visivi
-Compilare e pubblicare l'applicazione facendo clic con il pulsante destro del mouse sul progetto dell'applicazione, **VisualObjectsApplication**, e selezionando il comando **Pubblica**.  Per altre informazioni, vedere [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md).  In alternativa, è possibile usare PowerShell per distribuire l'applicazione.
+## <a name="step-1-build-and-deploy-hello-visual-objects-sample"></a>Passaggio 1: Creare e distribuire: esempio hello oggetti visivi
+Compilare e pubblicare un'applicazione hello facendo clic sul progetto di applicazione hello **VisualObjectsApplication,** e selezionando hello **pubblica** comando.  Per altre informazioni, vedere [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md).  In alternativa, è possibile utilizzare PowerShell toodeploy l'applicazione.
 
 > [!NOTE]
-> Per poter usare uno dei comandi di Service Fabric in PowerShell è necessario connettersi prima al cluster con il cmdlet `Connect-ServiceFabricCluster`. Si presuppone che il cluster sia stato già configurato nel computer locale. Vedere l'articolo relativo alla [configurazione dell'ambiente di sviluppo di Service Fabric](service-fabric-get-started.md).
+> Prima di tutti i comandi di Service Fabric hello possono essere usati in PowerShell, è necessario innanzitutto tooconnect toohello cluster utilizzando hello `Connect-ServiceFabricCluster` cmdlet. Analogamente, si presuppone che hello che cluster è già stato configurato nel computer locale. Vedere l'articolo hello in [impostazione dell'ambiente di sviluppo di Service Fabric](service-fabric-get-started.md).
 > 
 > 
 
-Dopo aver compilato il progetto in Visual Studio è possibile usare il comando di PowerShell [Copy-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) per copiare il pacchetto dell'applicazione in ImageStore. Se si desidera verificare il pacchetto dell'applicazione in locale, usare il cmdlet [Test-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage). Il passaggio successivo consiste nel registrare l'applicazione nel runtime di Service Fabric mediante il cmdlet [Register-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) . Il passaggio finale consiste nell'avviare un'istanza dell'applicazione con il cmdlet [New-ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) .  Questi tre passaggi sono analoghi all'uso della voce di menu **Distribuisci** in Visual Studio.
+Dopo aver compilato il progetto hello in Visual Studio, è possibile utilizzare il comando di PowerShell hello [copia ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) toohello pacchetto di applicazione hello toocopy ImageStore. Se si desidera localmente pacchetto dell'applicazione hello tooverify, utilizzare hello [Test ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) cmdlet. passaggio successivo Hello è tooregister hello toohello Service Fabric runtime dell'applicazione utilizzando hello [registro ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) cmdlet. Hello passaggio finale è un'istanza di un'applicazione hello toostart utilizzando hello [New ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) cmdlet.  Questi tre passaggi sono analoghi toousing hello **Distribuisci** voce di menu in Visual Studio.
 
-È ora possibile usare [Service Fabric Explorer per visualizzare il cluster e l'applicazione](service-fabric-visualizing-your-cluster.md). L'applicazione dispone di un servizio Web a cui è possibile accedere in Internet Explorer digitando [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects) sulla barra degli indirizzi.  Verranno visualizzati alcuni oggetti visivi mobili sullo schermo.  È anche possibile usare [Get-ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps) per verificare lo stato dell'applicazione.
+A questo punto, è possibile utilizzare [Service Fabric Explorer tooview cluster e hello applicazione hello](service-fabric-visualizing-your-cluster.md). applicazione Hello è un servizio web che è possibile spostarsi tooin Internet Explorer digitare [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects) nella barra degli indirizzi hello.  Si noterà che alcuni oggetti visivi Mobile gli spostamenti nella schermata di hello.  Inoltre, è possibile utilizzare [Get ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps) toocheck stato dell'applicazione hello.
 
-## <a name="step-2-update-the-visual-objects-sample"></a>Passaggio 2: aggiornare l'applicazione Oggetti visivi di esempio
-È possibile osservare che con la versione distribuita al passaggio 1 gli oggetti visivi non ruotano. L'applicazione può essere aggiornata in modo che gli oggetti visivi ruotino.
+## <a name="step-2-update-hello-visual-objects-sample"></a>Passaggio 2: Aggiornare: esempio hello oggetti visivi
+È possibile notare che con la versione di hello che è stato distribuito nel passaggio 1, gli oggetti visivi hello non ruotare. Eseguire l'aggiornamento si tooone questa applicazione in cui gli oggetti visivi hello inoltre ruotare.
 
-Selezionare il progetto VisualObjects.ActorService nella soluzione VisualObjects e aprire il file StatefulVisualObjectActor.cs. All'interno del file passare al metodo `MoveObject`, impostare come commento `this.State.Move()` e rimuovere il commento `this.State.Move(true)`. Questa modifica fa ruotare gli oggetti dopo l'aggiornamento del servizio.
+Selezionare il progetto VisualObjects.ActorService hello all'interno di hello VisualObjects soluzione e aprire il file StatefulVisualObjectActor.cs hello. All'interno del file, passare il metodo toohello `MoveObject`, impostare come commento `this.State.Move()`e rimuovere il commento `this.State.Move(true)`. Questa modifica consente di ruotare oggetti hello dopo l'aggiornamento di servizio hello.
 
-È anche necessario aggiornare il file *ServiceManifest.xml* (in PackageRoot) del progetto **VisualObjects.ActorService**. Aggiornare *CodePackage* e la versione del servizio alla versione 2.0, nonché le righe corrispondenti nel file *ServiceManifest.xml*.
-È possibile usare l'opzione *Edit Manifest Files* (Modifica file manifesto) di Visual Studio dopo aver fatto clic con il pulsante destro del mouse sulla soluzione per apportare le modifiche al file manifesto.
+È anche necessario hello tooupdate *ServiceManifest.xml* file (in PackageRoot) del progetto hello **VisualObjects.ActorService**. Hello aggiornamento *CodePackage* hello servizio versione too2.0 e hello righe corrispondenti hello *ServiceManifest.xml* file.
+È possibile utilizzare Visual Studio hello *modifica file manifesto* opzione dopo fare clic su modifiche al file manifesto di hello soluzione toomake hello.
 
-Dopo aver apportato le modifiche, il manifesto dovrebbe essere simile al seguente (le parti evidenziate indicano le modifiche):
+Dopo aver apportato modifiche di hello, manifesto hello dovrebbe essere simile hello seguente (parti evidenziate mostrano modifiche hello):
 
 ```xml
 <ServiceManifestName="VisualObjects.ActorService" Version="2.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -65,7 +65,7 @@ Dopo aver apportato le modifiche, il manifesto dovrebbe essere simile al seguent
 <CodePackageName="Code" Version="2.0">
 ```
 
-A questo punto il file *ApplicationManifest.xml*, disponibile nel progetto **VisualObjects** della soluzione **VisualObjects**, viene aggiornato alla versione 2.0 del progetto **VisualObjects.ActorService**. Anche la versione dell'applicazione viene aggiornata a 2.0.0.0 da 1.0.0.0. Il file *ApplicationManifest.xml* sarà simile al seguente frammento di codice:
+Ora hello *ApplicationManifest.xml* file (in hello **VisualObjects** progetto sottoposto a hello **VisualObjects** soluzione) viene aggiornato tooversion 2.0 di hello  **VisualObjects.ActorService** progetto. Inoltre, versione dell'applicazione hello è too2.0.0.0 aggiornata dalla 1.0.0.0. Hello *ApplicationManifest.xml* deve hello l'aspetto seguente frammento di codice:
 
 ```xml
 <ApplicationManifestxmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="VisualObjects" ApplicationTypeVersion="2.0.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -74,14 +74,14 @@ A questo punto il file *ApplicationManifest.xml*, disponibile nel progetto **Vis
 ```
 
 
-A questo punto compilare il progetto selezionando solo il progetto **ActorService** e quindi facendo clic con il pulsante destro del mouse e scegliendo l'opzione **Compila** in Visual Studio. Se si seleziona **Ricompila tutto**, è necessario aggiornare le versioni per tutti i progetti, poiché il codice è stato modificato. È quindi possibile aggiungere l'applicazione aggiornata al pacchetto facendo clic con il pulsante destro del mouse sul progetto ***VisualObjectsApplication***, scegliendo il menu Service Fabric e quindi **Pacchetto**. In questo modo viene creato un pacchetto dell'applicazione che può essere distribuito.  L'applicazione aggiornata è pronta per essere distribuita.
+A questo punto, compilare il progetto di hello selezionando solo hello **ActorService** progetto, quindi facendo clic e selezionare hello **compilare** opzione in Visual Studio. Se si seleziona **Ricompila tutto**, è necessario aggiornare le versioni di hello per tutti i progetti, poiché potrebbe aver modificato il codice hello. Successivamente, si hello pacchetto applicazione aggiornata facendo clic su ***VisualObjectsApplication***, selezionando hello Menu dell'infrastruttura del servizio e scegliere **pacchetto**. In questo modo viene creato un pacchetto dell'applicazione che può essere distribuito.  L'applicazione aggiornata è pronto toobe distribuito.
 
 ## <a name="step-3--decide-on-health-policies-and-upgrade-parameters"></a>Passaggio 3: Scegliere i criteri di integrità e i parametri di aggiornamento
-È consigliabile acquisire familiarità con i [parametri di aggiornamento dell'applicazione](service-fabric-application-upgrade-parameters.md) e con il [processo di aggiornamento](service-fabric-application-upgrade.md) per conoscere i diversi parametri di aggiornamento, valori di timeout e criteri di integrità applicati. Per questa procedura dettagliata i criteri predefiniti di valutazione dell'integrità dei servizi sono impostati con i valori consigliati, quindi tutti i servizi e tutte le istanze saranno *integri* dopo l'aggiornamento.  
+Acquisire familiarità con hello [parametri di aggiornamento dell'applicazione](service-fabric-application-upgrade-parameters.md) hello e [processo di aggiornamento](service-fabric-application-upgrade.md) tooget una buona conoscenza di hello vari parametri, valori di timeout e il criterio di integrità applicato l'aggiornamento . Questa procedura dettagliata, criteri di valutazione di integrità servizio hello sono impostare il valore predefinito di toohello (e consigliabile) valori, il che significa che tutti i servizi e le istanze devono essere *integro* dopo l'aggiornamento di hello.  
 
-Aumentare tuttavia il valore di *HealthCheckStableDuration* impostandolo su 60 secondi, in modo che i servizi siano integri per almeno 20 secondi prima che il processo di aggiornamento passi al dominio di aggiornamento successivo.  Impostare quindi *UpgradeDomainTimeout* su 1200 secondi e *UpgradeTimeout* su 3000 secondi.
+Tuttavia, si aumenta hello *HealthCheckStableDuration* too60 secondi (in modo che i servizi di hello siano integri per almeno 20 secondi prima di avviare l'aggiornamento di hello toohello successivamente aggiornare il dominio).  Impostiamo anche hello *UpgradeDomainTimeout* toobe 1200 secondi e hello *UpgradeTimeout* toobe 3.000 secondi.
 
-Infine impostare anche *UpgradeFailureAction* in modo che venga eseguito il rollback. Questa opzione richiede che Service Fabric esegua il rollback dell'applicazione alla versione precedente se riscontra problemi durante l'aggiornamento. Perciò, all'avvio dell'aggiornamento (al passaggio 4), vengono specificati i parametri seguenti:
+Infine, anche impostiamo hello *UpgradeFailureAction* toorollback. Questa opzione richiede la versione precedente di Service Fabric tooroll hello indietro applicazione toohello se vengono rilevati problemi durante l'aggiornamento di hello. Pertanto, quando si avvia l'aggiornamento di hello (nel passaggio 4), hello seguenti parametri vengono specificati:
 
 FailureAction = Rollback
 
@@ -92,53 +92,53 @@ UpgradeDomainTimeoutSec = 1200
 UpgradeTimeout = 3000
 
 ## <a name="step-4-prepare-application-for-upgrade"></a>Passaggio 4: preparare l'applicazione per l'aggiornamento
-L'applicazione ora è compilata e pronta per l'aggiornamento. Se si apre una finestra di PowerShell come amministratore e si digita [Get-ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps), verrà indicato che è stato distribuito il tipo di applicazione 1.0.0.0 di **VisualObject**.  
+Ora di compilazione dell'applicazione hello e pronto toobe aggiornato. Se si apre una finestra di PowerShell come amministratore e si digita [Get-ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps), verrà indicato che è stato distribuito il tipo di applicazione 1.0.0.0 di **VisualObject**.  
 
-Il pacchetto applicazione è archiviato nel percorso relativo seguente, dove è stato decompresso Service Fabric SDK - *Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug*. In questa directory deve essere disponibile una cartella "Package", dove è archiviato il pacchetto dell'applicazione. Controllare i timestamp per assicurarsi che si tratti dell'ultima build. Potrebbe essere anche necessario modificare i percorsi in base alle esigenze.
+Hello pacchetto dell'applicazione viene archiviato in seguito hello percorso relativo in cui non compressi hello Service Fabric SDK - *Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug*. In questa directory in cui è archiviato il pacchetto di applicazione hello, è necessario trovare una cartella "Package". Controllare tooensure timestamp hello è costituito da build più recente di hello (potrebbe essere necessario in modo appropriato anche i percorsi hello toomodify).
 
-Copiare ora il pacchetto applicazione aggiornato in ImageStore di Service Fabric (dove Service Fabric archivia i pacchetti applicazione). Il parametro *ApplicationPackagePathInImageStore* indica a Service Fabric dove è contenuto il pacchetto applicazione. L'applicazione aggiornata è stata inserita in "VisualObjects\_V2" con il comando seguente. Potrebbe essere di nuovo necessario modificare i percorsi in base alle esigenze.
+Ora si hello copia aggiornata toohello pacchetto di applicazione nell'archivio immagini dell'infrastruttura di servizio (in cui i pacchetti di applicazione hello sono archiviati dall'infrastruttura di servizio). parametro Hello *ApplicationPackagePathInImageStore* informa Service Fabric in cui è possibile trovare il pacchetto di applicazione hello. È stato creato l'applicazione hello aggiornato "VisualObjects\_V2" con hello (potrebbe essere necessario toomodify percorsi nuovamente in modo appropriato) di comando seguente.
 
 ```powershell
 Copy-ServiceFabricApplicationPackage  -ApplicationPackagePath .\Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug\Package
 -ImageStoreConnectionString fabric:ImageStore   -ApplicationPackagePathInImageStore "VisualObjects\_V2"
 ```
 
-Il passaggio successivo consiste nel registrare l'applicazione con Service Fabric, operazione che può essere eseguita usando il comando [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps):
+passaggio successivo Hello è tooregister dell'applicazione con Service Fabric, che può essere eseguita mediante hello [registro ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) comando:
 
 ```powershell
 Register-ServiceFabricApplicationType -ApplicationPathInImageStore "VisualObjects\_V2"
 ```
 
-Se il comando precedente non riesce, è probabile che si debbano ricompilare tutti i servizi. Come indicato nel passaggio 2, potrebbe essere necessario aggiornare anche la versione di WebService.
+Se hello comando precedente non riesce, è probabile che sia necessario ricompilare tutti i servizi. Come indicato nel passaggio 2, è possibile tooupdate anche la versione del servizio Web.
 
-## <a name="step-5-start-the-application-upgrade"></a>Passaggio 5: avviare l'aggiornamento dell'applicazione
-Ora è tutto pronto per avviare l'aggiornamento dell'applicazione usando il comando [Start-ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/start-servicefabricapplicationupgrade?view=azureservicefabricps):
+## <a name="step-5-start-hello-application-upgrade"></a>Passaggio 5: Avviare l'aggiornamento dell'applicazione hello
+A questo punto, siamo tutti i set di un'applicazione hello toostart aggiornamento utilizzando hello [Start-ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/start-servicefabricapplicationupgrade?view=azureservicefabricps) comando:
 
 ```powershell
 Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/VisualObjects -ApplicationTypeVersion 2.0.0.0 -HealthCheckStableDurationSec 60 -UpgradeDomainTimeoutSec 1200 -UpgradeTimeout 3000   -FailureAction Rollback -Monitored
 ```
 
 
-Il nome dell'applicazione è lo stesso descritto nel file *ApplicationManifest.xml* . Service Fabric usa questo nome per identificare l'applicazione che viene aggiornata. Se si imposta un valore di timeout troppo breve, è possibile che venga visualizzato un messaggio di errore che indica il problema. Vedere la sezione relativa alla risoluzione dei problemi o aumentare i valori di timeout.
+Hello nome dell'applicazione è hello stesso descritta in hello *ApplicationManifest.xml* file. Service Fabric utilizza tooidentify questo nome è aggiornamento l'applicazione. Se si imposta hello toobe di timeout troppo breve, è possibile riscontrare un messaggio di errore che stati hello problema. Riferimento toohello risoluzione dei problemi di sezione o aumentare il timeout di hello.
 
-Man mano che l'aggiornamento dell'applicazione procede, è possibile monitorarlo con Service Fabric Explorer oppure con il comando di PowerShell [Get-ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/get-servicefabricapplicationupgrade?view=azureservicefabricps): 
+A questo punto, come hello viene eseguito l'aggiornamento dell'applicazione, è possibile monitorare l'utilizzo di Service Fabric Explorer, oppure utilizzando hello [Get-ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/get-servicefabricapplicationupgrade?view=azureservicefabricps) comando di PowerShell: 
 
 ```powershell
 Get-ServiceFabricApplicationUpgrade fabric:/VisualObjects
 ```
 
-In pochi minuti lo stato ottenuto usando il comando di PowerShell precedente indicherà che sono stati aggiornati (completati) tutti i domini di aggiornamento. Inoltre gli oggetti visivi nella finestra del browser hanno iniziato a ruotare.
+In pochi minuti, lo stato di hello ottenuti utilizzando hello precedente comando di PowerShell, devono indicare che sono stati aggiornati tutti i domini di aggiornamento (completato). E si rileverà che gli oggetti visivi hello nella finestra del browser siano stati avviati rotazione!
 
-Come esercizio provare a effettuare l'aggiornamento dalla versione 2 alla versione 3 o dalla versione 2 alla versione 1: anche il passaggio dalla versione 2 alla versione 1 è considerato un aggiornamento. Esercitarsi inoltre con i timeout e i criteri di integrità per acquisire familiarità anche con questi concetti. Quando si esegue la distribuzione in un cluster di Azure, è necessario impostare i parametri in modo appropriato. È consigliabile impostare i timeout su valori contenuti.
+È possibile provare a effettuare l'aggiornamento dalla versione 2 tooversion 3 o dalla versione 2 tooversion 1 come esercizio. Lo spostamento da versione 2 tooversion 1 viene considerato anche un aggiornamento. Provare a usare toomake di criteri di integrità e timeout manualmente familiarità con esse. Quando si distribuiscono cluster Azure tooan, hello set di parametri necessario toobe in modo appropriato. È buona tooset i timeout di hello conservativamente.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md) descrive la procedura di aggiornamento di un'applicazione con Visual Studio.
 
 Controllare l'aggiornamento dell'applicazione tramite [Parametri di aggiornamento](service-fabric-application-upgrade-parameters.md).
 
-Rendere compatibili gli aggiornamenti dell'applicazione imparando a usare la [serializzazione dei dati](service-fabric-application-upgrade-data-serialization.md).
+Apportare aggiornamenti applicazione compatibile da learning come toouse [la serializzazione dei dati](service-fabric-application-upgrade-data-serialization.md).
 
-Per informazioni su come usare funzionalità avanzate durante l'aggiornamento dell'applicazione, vedere [Argomenti avanzati](service-fabric-application-upgrade-advanced.md).
+Informazioni su come toouse funzionalità avanzate durante l'aggiornamento dell'applicazione riferendosi troppo[argomenti avanzati](service-fabric-application-upgrade-advanced.md).
 
-Per informazioni su come risolvere problemi comuni negli aggiornamenti dell'applicazione, vedere i passaggi indicati in [Risoluzione dei problemi relativi agli aggiornamenti dell'applicazione](service-fabric-application-upgrade-troubleshooting.md).
+Risolvere i problemi comuni negli aggiornamenti dell'applicazione riferendosi passaggi toohello [gli aggiornamenti dell'applicazione di risoluzione dei problemi](service-fabric-application-upgrade-troubleshooting.md).
 

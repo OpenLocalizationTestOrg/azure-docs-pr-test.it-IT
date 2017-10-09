@@ -1,6 +1,6 @@
 ---
-title: Eseguire gli esempi di Hadoop in HDInsight - Azure | Microsoft Docs
-description: Informazioni su come iniziare a usare il servizio Azure HDInsight con gli esempi forniti. Usare script PowerShell che eseguono programmi MapReduce su cluster di dati.
+title: esempi di hello aaaRun Hadoop in HDInsight - Azure | Documenti Microsoft
+description: Introduzione all'uso del servizio Azure HDInsight hello con hello esempi forniti. Usare script PowerShell che eseguono programmi MapReduce su cluster di dati.
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,30 +16,30 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 741cce6f2c81efed1e4bd0547fcb46a231815263
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 544856a2cdfe5154cbd9bf1fb05db081af86cd46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-hadoop-mapreduce-samples-in-windows-based-hdinsight"></a>Eseguire esempi di Hadoop MapReduce in HDInsight basato su Windows
 [!INCLUDE [samples-selector](../../includes/hdinsight-run-samples-selector.md)]
 
-Sono disponibili alcuni esempi utili per iniziare a eseguire processi MapReduce nei cluster Hadoop usando Azure HDInsight. Questi esempi sono disponibili in ogni cluster creato e gestito da HDInsight. L'esecuzione di questi esempi permette di acquisire familiarità con l'uso dei cmdlet di Azure PowerShell per l'esecuzione di processi nei cluster Hadoop.
+Toohelp iniziare in esecuzione processi MapReduce in Hadoop cluster con Azure HDInsight è disponibile un set di campioni. Questi esempi vengono resi disponibili in ogni hello HDInsight cluster gestiti creato. In questi esempi di esecuzione di acquisire familiarità con Azure PowerShell cmdlet toorun processi nel cluster Hadoop.
 
 * [**Conteggio delle parole**][hdinsight-sample-wordcount]: conta le occorrenze delle parole in un file di testo.
-* [**Conteggio delle parole di un flusso in C#**][hdinsight-sample-csharp-streaming]: conta le occorrenze delle parole in un file di testo usando l'interfaccia di flusso Hadoop.
-* [**Calcolo del Pi greco**][hdinsight-sample-pi-estimator]: per calcolare il valore del Pi greco viene usato un metodo statistico simile al metodo Monte Carlo.
-* [**Graysort da 10 GB**][hdinsight-sample-10gb-graysort]: esegue un ordinamento GraySort per utilizzo generico in un file da 10 GB usando HDInsight. I processi da eseguire sono tre: Teragen per generare i dati, Terasort per ordinare i dati e Teravalidate per verificare che i dati siano stati ordinati correttamente.
+* [**Conteggio parole streaming c#**][hdinsight-sample-csharp-streaming]: conta le occorrenze di word in un file di testo utilizzando hello Hadoop streaming di interfaccia.
+* [**Estimator pi**][hdinsight-sample-pi-estimator]: Usa una statistica (quasi Monte Carlo) tooestimate hello valore del metodo di pi greco.
+* [**Graysort da 10 GB**][hdinsight-sample-10gb-graysort]: esegue un ordinamento GraySort per utilizzo generico in un file da 10 GB usando HDInsight. Esistono tre processi toorun: Teragen toogenerate hello dati, Terasort toosort hello e tooconfirm Teravalidate che dati hello siano stati ordinati correttamente.
 
 > [!NOTE]
-> Il codice sorgente è disponibile nell'appendice.
+> codice sorgente Hello è reperibile in hello appendice.
 
-Sul Web sono disponibili molti altri documenti per le tecnologie relative a Hadoop, ad esempio il flusso e la programmazione MapReduce basati su Java, oltre alla documentazione sui cmdlet usati negli script di Windows PowerShell. Per altre informazioni su queste risorse, vedere:
+Documentazione aggiuntiva molto esista nel web hello per le tecnologie correlate Hadoop, ad esempio la programmazione basata su Java MapReduce e streaming e documentazione sui cmdlet di hello utilizzabili in Windows PowerShell scripting. Per altre informazioni su queste risorse, vedere:
 
 * [Sviluppare programmi MapReduce Java per Hadoop in HDInsight](hdinsight-develop-deploy-java-mapreduce-linux.md)
 * [Inviare processi Hadoop in HDInsight](hdinsight-submit-hadoop-jobs-programmatically.md)
-* [Introduzione ad Azure HDInsight][hdinsight-introduction]
+* [Introduzione tooAzure HDInsight][hdinsight-introduction]
 
 Molte persone preferiscono oggi Hive e Pig rispetto a MapReduce.  Per altre informazioni, vedere:
 
@@ -49,25 +49,25 @@ Molte persone preferiscono oggi Hive e Pig rispetto a MapReduce.  Per altre info
 **Prerequisiti**:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-* **Un cluster HDInsight**. Per informazioni sui vari metodi disponibili per la creazione dei cluster, vedere [Creare cluster Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
+* **Un cluster HDInsight**. Per istruzioni su hello vari modi in cui è possibile creare cluster di questo tipo, vedere [cluster creare Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 * **Workstation con Azure PowerShell**.
 
     > [!IMPORTANT]
-    > Il supporto di Azure PowerShell per la gestione delle risorse HDInsight tramite Azure Service Manager è **deprecato** e verrà rimosso dal 1° gennaio 2017. La procedura descritta in questo documento usa i nuovi cmdlet HDInsight, compatibili con Azure Resource Manager.
+    > Il supporto di Azure PowerShell per la gestione delle risorse HDInsight tramite Azure Service Manager è **deprecato** e verrà rimosso dal 1° gennaio 2017. Hello passaggi in questo documento usa hello nuovi cmdlet di HDInsight che funzionano con Gestione risorse di Azure.
     >
-    > Per installare la versione più recente, seguire la procedura descritta in [Come installare e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs). Se sono presenti script che devono essere modificati per l'uso dei nuovi cmdlet compatibili con Azure Resource Manager, vedere [Migrazione a strumenti di sviluppo basati su Azure Resource Manager per i cluster HDInsight](hdinsight-hadoop-development-using-azure-resource-manager.md).
+    > Seguire i passaggi di hello in [installare e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs) tooinstall hello più recente di Azure PowerShell. Se si dispone di script che toobe necessità modificato toouse hello nuovi cmdlet che funzionano con Gestione risorse di Azure, vedere [di strumenti di migrazione tooAzure sviluppo basato su Gestione risorse per i cluster HDInsight](hdinsight-hadoop-development-using-azure-resource-manager.md).
 
 ## <a name="hdinsight-sample-wordcount"></a>Conteggio delle parole: Java
-Per inviare un progetto MapReduce, è necessario prima creare una definizione del processo MapReduce. Nella definizione del processo specificare il file con estensione jar del programma MapReduce e il relativo percorso, ovvero **wasb:///example/jars/hadoop-mapreduce-examples.jar**, nonché il nome della classe e gli argomenti.  Il programma MapReduce per il conteggio delle parole accetta due argomenti: il file di origine usato per contare le parole e il percorso di output.
+un progetto di MapReduce toosubmit, creare innanzitutto la definizione di un processo MapReduce. Nella definizione di processo hello, è necessario specificare i file jar di programma MapReduce hello e hello del file jar di hello, che è **wasb:///example/jars/hadoop-mapreduce-examples.jar**, nome della classe hello e hello argomenti.  il programma MapReduce di Hello wordcount accetta due argomenti: file di origine hello parole toocount utilizzato e il percorso di hello per l'output.
 
-Il codice sorgente è disponibile nell' [Appendice A](#apendix-a---the-word-count-MapReduce-program-in-java).
+codice sorgente Hello è reperibile in hello [appendice](#apendix-a---the-word-count-MapReduce-program-in-java).
 
-Per la procedura di sviluppo di un programma MapReduce Java, vedere [Sviluppare programmi MapReduce Java per Hadoop in HDInsight](hdinsight-develop-deploy-java-mapreduce-linux.md)
+Per procedure hello sviluppo MapReduce un linguaggio di programmazione, vedere - [MapReduce Java di sviluppare applicazioni per Hadoop in HDInsight](hdinsight-develop-deploy-java-mapreduce-linux.md)
 
-**Per inviare un processo MapReduce per il conteggio delle parole**
+**un processo MapReduce il conteggio word toosubmit**
 
 1. Aprire **Windows PowerShell ISE**. Per istruzioni, vedere [Installare e configurare Azure PowerShell][powershell-install-configure].
-2. Incollare lo script di PowerShell seguente:
+2. Hello incollare lo script di PowerShell seguente:
 
     ```powershell
     $subscriptionName = "<Azure Subscription Name>"
@@ -76,14 +76,14 @@ Per la procedura di sviluppo di un programma MapReduce Java, vedere [Sviluppare 
 
     Select-AzureRmSubscription -SubscriptionName $subscriptionName
 
-    # Define the MapReduce job
+    # Define hello MapReduce job
     $mrJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
                                 -JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
                                 -ClassName "wordcount" `
                                 -Arguments "wasb:///example/data/gutenberg/davinci.txt", "wasb:///example/data/WordCountOutput"
 
-    # Submit the job and wait for job completion
-    $cred = Get-Credential -Message "Enter the HDInsight cluster HTTP user credential:"
+    # Submit hello job and wait for job completion
+    $cred = Get-Credential -Message "Enter hello HDInsight cluster HTTP user credential:"
     $mrJob = Start-AzureRmHDInsightJob `
                         -ResourceGroupName $resourceGroupName `
                         -ClusterName $clusterName `
@@ -96,7 +96,7 @@ Per la procedura di sviluppo di un programma MapReduce Java, vedere [Sviluppare 
         -HttpCredential $cred `
         -JobId $mrJob.JobId
 
-    # Get the job output
+    # Get hello job output
     $cluster = Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $clusterName
     $defaultStorageAccount = $cluster.DefaultStorageAccount -replace '.blob.core.windows.net'
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccount)[0].Value
@@ -112,36 +112,36 @@ Per la procedura di sviluppo di un programma MapReduce Java, vedere [Sviluppare 
         -JobId $mrJob.JobId `
         -DisplayOutputType StandardError
 
-    # Download the job output to the workstation
+    # Download hello job output toohello workstation
     $storageContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccount -StorageAccountKey $defaultStorageAccountKey
     Get-AzureStorageBlobContent -Container $defaultStorageContainer -Blob example/data/WordCountOutput/part-r-00000 -Context $storageContext -Force
 
-    # Display the output file
+    # Display hello output file
     cat ./example/data/WordCountOutput/part-r-00000 | findstr "there"
     ```
 
-    Il processo MapReduce produce un file denominato *part-r-00000*, che include le parole e i conteggi. Lo script usa il comando **findstr** per elencare tutte le parole contenenti *"there"*.
-3. Impostare le prime tre variabili, quindi eseguire lo script.
+    il processo MapReduce Hello produce un file denominato *parte-r-00000*, che contiene le parole e conta hello. script di Hello utilizza hello **findstr** comando toolist hello tutte le parole che contiene *"there"*.
+3. Impostare hello innanzitutto tre variabili ed eseguire script hello.
 
 ## <a name="hdinsight-sample-csharp-streaming"></a>Conteggio delle parole: flusso in C#
-In Hadoop è disponibile un'API di flusso per MapReduce che consente di scrivere funzioni di mapping e riduzione in linguaggi diversi da Java.
+Hadoop fornisce un flusso tooMapReduce API, che consente di toowrite mappa e ridurre le funzioni in linguaggi diversi da Java.
 
 > [!NOTE]
-> La procedura descritta in questa esercitazione è valida solo per i cluster HDInsight basati su Windows. Per un esempio di flusso per cluster HDInsight basati su Linux, vedere [Sviluppare programmi di streaming Python per HDInsight](hdinsight-hadoop-streaming-python.md).
+> passaggi di Hello in questa esercitazione si applicano solo tooWindows basato su cluster di HDInsight. Per un esempio di flusso per cluster HDInsight basati su Linux, vedere [Sviluppare programmi di streaming Python per HDInsight](hdinsight-hadoop-streaming-python.md).
 
-Nell'esempio il mapper e il reducer sono file eseguibili che leggono l'input da [stdin][stdin-stdout-stderr] (riga per riga) e inviano l'output a [stdout][stdin-stdout-stderr]. Il programma consente di contare tutte le parole del testo.
+Nell'esempio hello mapper hello e riduttore hello sono eseguibili, leggono l'input hello da [stdin] [ stdin-stdout-stderr] (riga per riga) e crea l'output di hello troppo[stdout] [stdin-stdout-stderr]. programma Hello conta tutte le parole nel testo hello hello.
 
-Quando si specifica un file eseguibile per **mapper**, ogni attività del mapper avvia il file eseguibile come processo distinto all'avvio del mapper. Durante l'esecuzione dell'attività del mapper, gli input vengono convertiti in righe che vengono quindi inviate al flusso [stdin][stdin-stdout-stderr] del processo.
+Quando un file eseguibile specificato per **BizTalk Mapper**, ogni attività mapper avvia hello eseguibile come un processo distinto quando viene inizializzato il mapper hello. Esegue attività mapper hello, converte l'input in righe e feed hello righe toohello [stdin] [ stdin-stdout-stderr] del processo di hello.
 
-Nel frattempo il mapper raccoglie gli output basati su riga dal flusso stdout del processo e converte ogni riga in una coppia chiave-valore che viene raccolta come output del mapper. Per impostazione predefinita, il prefisso di una riga fino al primo carattere di tabulazione costituisce la chiave, mentre la parte restante (escluso il carattere di tabulazione) costituisce il valore. Se la riga non contiene caratteri di tabulazione, come chiave viene considerata l'intera riga e il valore è Null.
+In hello frattempo mapper hello raccoglie output orientato alla riga hello da stdout hello del processo di hello. Converte ogni riga in una coppia chiave/valore, che viene raccolto nell'output di hello del mapper hello. Per impostazione predefinita, il prefisso di hello di una riga di toohello primo carattere di tabulazione è chiave hello e resto hello della riga di hello (esclusa hello carattere di tabulazione) è il valore di hello. Se non è presente alcun carattere di tabulazione nella riga hello, riga intera viene considerata come chiave hello e hello valore è null.
 
-Quando si specifica un file eseguibile per **reducer**, ogni attività del reducer avvia il file eseguibile come processo distinto all'avvio del reducer. Durante l'esecuzione dell'attività del reducer, le coppie chiave-valore di input vengono convertite in righe che vengono quindi inviate al flusso [stdin][stdin-stdout-stderr] del processo.
+Quando un file eseguibile specificato per **riduttori**, ogni attività riduttore avvia hello eseguibile come un processo distinto quando viene inizializzato riduttore hello. Hello riduttore attività viene eseguita, relativo coppie chiave/valore di input viene convertito in righe e feed di hello righe toohello [stdin] [ stdin-stdout-stderr] del processo di hello.
 
-Nel frattempo il reducer raccoglie gli output basati su riga dal flusso [stdout][stdin-stdout-stderr] del processo e converte ogni riga in una coppia chiave-valore che viene raccolta come output del reducer. Per impostazione predefinita, il prefisso di una riga fino al primo carattere di tabulazione costituisce la chiave, mentre la parte restante (escluso il carattere di tabulazione) costituisce il valore.
+In hello frattempo riduttore hello raccoglie output orientato alla riga hello dalla hello [stdout] [ stdin-stdout-stderr] del processo di hello. Converte ogni coppia chiave/valore tooa di riga, che viene raccolto nell'output di hello del reducer hello. Per impostazione predefinita, il prefisso di hello di una riga di toohello primo carattere di tabulazione è chiave hello e resto hello della riga di hello (esclusa hello carattere di tabulazione) è il valore di hello.
 
-**Per inviare un processo di conteggio delle parole di un flusso in C#**
+**processo di conteggio toosubmit c# streaming word**
 
-* Seguire la procedura descritta in [Conteggio delle parole: Java](#word-count-java) sostituendo la definizione del processo con la riga seguente:
+* Attenersi alla procedura hello in [Word count - Java](#word-count-java)e sostituire la definizione di processo hello con hello seguente riga:
 
     ```powershell
     $mrJobDefinition = New-AzureRmHDInsightStreamingMapReduceJobDefinition `
@@ -152,18 +152,18 @@ Nel frattempo il reducer raccoglie gli output basati su riga dal flusso [stdout]
                             -OutputPath "/example/data/StreamingOutput/wc.txt"
     ```
 
-    Il file di output avrà l'aspetto seguente:
+    file di output di Hello dovrà essere:
 
         example/data/StreamingOutput/wc.txt/part-00000
 
 ## <a name="hdinsight-sample-pi-estimator"></a>Calcolo del Pi greco
-Per calcolare il valore del Pi greco viene usato un metodo statistico simile al metodo Monte Carlo. I punti posizionati in modo casuale all'interno di un quadrato unitario rientrano anche in un cerchio incluso in tale quadrato con una probabilità uguale all'area del cerchio, Pi greco/4. Il valore di Pi greco può essere stimato in base a valore di 4R, dove R indica il rapporto tra il numero di punti che si trovano all’interno del cerchio e il numero totale di punti che si trovano all’interno del quadrato. La precisione del calcolo è direttamente proporzionale al numero di punti utilizzati.
+Usa una statistica estimator pi Hello (quasi Monte Carlo) tooestimate hello valore del metodo di pi greco. Punti posizionati in modo casuale all'interno di un'unità quadrati anche rientrano in un cerchio figurare all'interno di tale quadrato con un'area toohello uguale probabilità del cerchio hello, pi/4. il valore di Hello di pi greco può essere stimato dal valore hello 4R, dove R è il rapporto di hello del numero di hello di punti che si trovano all'interno di hello cerchio toohello numero totale di punti che si trovano all'interno di quadrato di hello. esempio hello di dimensioni maggiore Hello di punti utilizzati stima più accurata hello hello è.
 
-Lo script fornito per questo esempio invia un processo jar Hadoop ed è configurato per l'esecuzione con un valore pari a 16 mappe, ognuna delle quali è necessaria per il calcolo di 10 milioni di punti campione da parte dei valori del parametro. Tali valori di parametro possono essere modificati per ottimizzare il valore stimato di Pi greco. A scopo di riferimento, si noti che le prime 10 cifre decimali di Pi greco sono 3,1415926535.
+script Hello fornito per questo esempio invia un processo jar Hadoop e viene impostato toorun con un valore 16 mappe, ognuno dei quali è necessario toocompute 10 milioni di esempio punti dai valori di parametro hello. Questi parametri i valori possono essere modificate tooimprove hello stimato valore di pi greco. Per riferimento, hello primi 10 cifre decimali di pi greco sono 3.1415926535.
 
-**Per inviare un processo di calcolo del Pi greco**
+**un processo di stima pi toosubmit**
 
-* Seguire la procedura descritta in [Conteggio delle parole: Java](#word-count-java) sostituendo la definizione del processo con la riga seguente:
+* Attenersi alla procedura hello in [Word count - Java](#word-count-java)e sostituire la definizione di processo hello con hello seguente riga:
 
     ```powershell
     $mrJobJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
@@ -173,25 +173,25 @@ Lo script fornito per questo esempio invia un processo jar Hadoop ed è configur
     ```
 
 ## <a name="hdinsight-sample-10gb-graysort"></a>Graysort da 10 GB
-In questo esempio vengono usati solo 10 GB di dati, in modo da consentire un'esecuzione relativamente rapida. Vengono usate le applicazioni MapReduce sviluppate da Owen O'Malley e Arun Murthy, vincitrici del benchmark annuale di ordinamento generico di terabyte ("daytona") nel 2009 con una velocità pari a 0,578 TB/min (100 TB in 173 minuti). Per ulteriori informazioni su questo e su altri benchmark di ordinamento, vedere il sito [Sortbenchmark](http://sortbenchmark.org/) .
+In questo esempio vengono usati solo 10 GB di dati, in modo da consentire un'esecuzione relativamente rapida. Usa applicazioni MapReduce hello sviluppate da Owen O'Malley e Arun Murthy confermati benchmark ordinamento terabyte hello annuale utilizzo generale ("daytona") nel 2009 con una frequenza di 0.578 TB/min (100 TB in 173 minuti). Per ulteriori informazioni su questo e altri ordinamento benchmark, vedere hello [Sortbenchmark](http://sortbenchmark.org/) sito.
 
 In questo esempio vengono utilizzati tre set di programmi MapReduce:
 
-1. **TeraGen** è un programma MapReduce utilizzabile per generare le righe di dati da ordinare.
-2. **TeraSort**esegue il campionamento dei dati di input e usa MapReduce per organizzare i dati in un ordine totale. TeraSort è un ordinamento standard di funzioni MapReduce, ad eccezione di un partitioner personalizzato che usa un elenco ordinato di N-1 chiavi sottoposte a campionamento che definiscono l'intervallo di chiavi per ogni riduzione. In particolare, tutte le chiavi corrispondenti al criterio sample[i-1]<= chiave < sample[i] vengono inviate alla funzione reduce i. Ciò garantisce che tutti gli output di reduce i siano inferiori all'output della funzione reduce i+1.
-3. **TeraValidate** è un programma MapReduce che convalida l'ordinamento globale dell'output. Crea una funzione map per ogni file nella directory di output e ogni funzione map assicura che ogni chiave sia inferiore o uguale alla precedente. La funzione map genera inoltre record della prima e dell'ultima chiave di ogni file, mentre la funzione reduce assicura che la prima chiave del file sia superiore all'ultima chiave di file i-1. Eventuali problemi vengono segnalati come output della funzione reduce insieme alle chiavi che non rispettano l'ordinamento.
+1. **TeraGen** è un programma MapReduce che è possibile utilizzare le righe di hello toogenerate di toosort di dati.
+2. **TeraSort** Campiona i dati di input hello e utilizza i dati di hello toosort MapReduce in totale dell'ordine. TeraSort è un ordinamento standard delle funzioni di MapReduce, ad eccezione di un partitioner che utilizza un elenco ordinato di chiavi di n-1 campionate che definiscono l'intervallo di chiavi hello per ogni riduzione. In particolare, tutte le chiavi questo tipo di esempio [i-1] < = chiave < [i] di esempio vengono inviati tooreduce i. Ciò garantisce che l'output di hello di ridurre i sono tutti minore di output di hello di ridurre i + 1.
+3. **TeraValidate** è un programma MapReduce che convalida l'output di hello globale viene ordinato. Crea una mappa per ogni file nella directory di output di hello e ogni mappa garantisce che ogni chiave è minore o uguale toohello precedente. funzione mappa Hello genera anche i record di hello prima e ultima chiavi di ogni file e hello reduce (funzione) garantisce che hello prima chiave del file i è maggiore di hello chiave ultimo di i-1 file. I problemi vengano segnalati come output di hello ridurre con chiavi hello che non sono disponibili.
 
-Il formato di input e il formato di output, usati da tutte e tre le applicazioni, consentono di leggere e scrivere i file di testo nel formato corretto. Nell'output della funzione reduce la replica è impostata su 1, anziché sul valore predefinito 3, poiché il contesto del benchmark non richiede la replica dei dati di output in più nodi.
+input Hello e formato di output, utilizzato da tutte e tre le applicazioni, legge e scrive i file di testo hello in formato corretto hello. output di Hello di hello ridurre replica impostati too1, anziché predefinito hello 3, perché concorso benchmark hello non richiede che i dati di output di hello essere replicati nel toomultiple nodi.
 
-L'esempio richiede tre attività, ognuna delle quali corrisponde a uno dei programmi MapReduce illustrati nell'introduzione:
+Esempio hello, ogni tooone corrispondente di programmi MapReduce hello descritto nell'introduzione di hello, sono necessari tre attività:
 
-1. Generazione dei dati per l'ordinamento tramite l'esecuzione del processo MapReduce **TeraGen** .
-2. Ordinamento dei dati tramite l'esecuzione del processo MapReduce **TeraSort** .
-3. Conferma del corretto ordinamento dei dati tramite l'esecuzione del processo MapReduce **TeraValidate** .
+1. Generare dati di hello per l'ordinamento eseguendo hello **TeraGen** processo MapReduce.
+2. Ordinare i dati di hello eseguendo hello **TeraSort** processo MapReduce.
+3. Verificare che i dati hello siano stati ordinati correttamente eseguendo hello **TeraValidate** processo MapReduce.
 
-**Per inviare i processi**
+**processi di hello toosubmit**
 
-* Seguire la procedura descritta in [Conteggio delle parole: Java](#word-count-java) usando le definizioni di processo seguenti:
+* Attenersi alla procedura hello in [Word count - Java](#word-count-java), e utilizzare hello seguendo le definizioni dei processi:
 
     ```powershell
     $teragen = New-AzureRmHDInsightMapReduceJobDefinition `
@@ -211,15 +211,15 @@ L'esempio richiede tre attività, ognuna delle quali corrisponde a uno dei progr
     ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo e negli articoli relativi ai singoli esempi, si è appreso come eseguire gli esempi inclusi nei cluster HDInsight usando Azure PowerShell. Per le esercitazioni sull'uso di Pig, Hive e MapReduce con HDInsight, vedere gli argomenti seguenti:
+Da questo articolo e gli articoli di hello in ognuno degli esempi di hello, si è appreso come esempi hello toorun incluso hello cluster HDInsight tramite Azure PowerShell. Per le esercitazioni sull'uso Pig, Hive e MapReduce con HDInsight, vedere hello seguenti argomenti:
 
-* [Introduzione all'uso di Hadoop con Hive in HDInsight per analizzare l'uso di telefoni cellulari][hdinsight-get-started]
+* [Introduzione all'uso di Hadoop con Hive in uso di HDInsight tooanalyze palmari mobili][hdinsight-get-started]
 * [Usare Pig con Hadoop in HDInsight][hdinsight-use-pig]
 * [Usare Hive con Hadoop in HDInsight][hdinsight-use-hive]
 * [Inviare processi Hadoop in HDInsight][hdinsight-submit-jobs]
 * [Documentazione di Azure HDInsight SDK][hdinsight-sdk-documentation]
 
-## <a name="appendix-a---the-word-count-source-code"></a>Appendice A: Codice sorgente per il conteggio delle parole
+## <a name="appendix-a---hello-word-count-source-code"></a>Appendice A - hello codice sorgente conteggio di Word
 
 ```java
 package org.apache.hadoop.examples;
@@ -291,11 +291,11 @@ System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 ```
 
-## <a name="appendix-b---the-word-count-streaming-source-code"></a>Appendice B - Codice sorgente per il conteggio delle parole di un flusso
-Nel programma MapReduce vengono usate l'applicazione cat.exe come interfaccia di mapping per trasmettere il testo nella console e l'applicazione wc.exe come interfaccia di riduzione per contare il numero di parole trasmesse da un documento. Sia il mapper che il reducer leggono i caratteri, riga per riga, dal flusso di input standard (stdin) e scrivono nel flusso di output standard (stdout).
+## <a name="appendix-b---hello-word-count-streaming-source-code"></a>Appendice B - Conteggio parole hello streaming codice sorgente
+programma MapReduce Hello utilizza un'applicazione cat.exe hello come testo hello toostream interfaccia mapping nella console di hello e un'applicazione hello wc.exe come hello ridurre il numero di hello toocount di interfaccia di parole che sono state trasmesse da un documento. Mapper hello sia riduttore di caratteri, riga per riga, di lettura dal flusso di input standard hello (stdin) e scrivere il flusso di output standard toohello (stdout).
 
 ```csharp
-// The source code for the cat.exe (Mapper).
+// hello source code for hello cat.exe (Mapper).
 
 using System;
 using System.IO;
@@ -326,10 +326,10 @@ namespace cat
 }
 ```
 
-Il codice del mapper nel file cat.cs usa un oggetto [StreamReader][streamreader] per leggere i caratteri del flusso in ingresso nella console. A sua volta, tale oggetto scrive il flusso nel flusso di output standard con il metodo statico [Console.Writeline][console-writeline].
+Hello codice mapper hello cat.cs file utilizza un [StreamReader] [ streamreader] caratteri hello tooread hello in arrivo flusso toohello della console di, che quindi scrive hello flusso toohello flusso di output standard dell'oggetto con hello statico [console. WriteLine] [ console-writeline] metodo.
 
 ```csharp
-// The source code for wc.exe (Reducer) is:
+// hello source code for wc.exe (Reducer) is:
 
 using System;
 using System.IO;
@@ -375,28 +375,28 @@ namespace wc
 }
 ```
 
-Il codice del reducer nel file wc.cs usa un oggetto [StreamReader][streamreader] per leggere dal flusso di input standard i caratteri che sono stati trasmessi dal mapper cat.exe. Durante la lettura dei caratteri con il metodo [Console.Writeline][console-writeline] viene eseguito il conteggio delle parole, inclusi gli spazi e i caratteri di fine riga alla fine di ogni parola. Il totale viene quindi scritto nel flusso di output standard con il metodo [Console.Writeline][console-writeline].
+Hello codice riduttore hello wc.cs file utilizza un [StreamReader] [ streamreader] tooread caratteri dell'oggetto da hello flusso di input standard che sono stati output mapper cat.exe hello. Durante la lettura di caratteri hello con hello [console. WriteLine] [ console-writeline] (metodo), vengono contate le parole hello contando spazi e caratteri di fine della riga alla fine di hello di ogni parola. Viene quindi scritto come flusso di output standard hello toohello totale con hello [console. WriteLine] [ console-writeline] metodo.
 
-## <a name="appendix-c---the-pi-estimator-source-code"></a>Appendice C: Codice sorgente per il calcolo del Pi greco
-Il codice Java Pi Estimator, contenente le funzioni per il mapping e per la riduzione, è disponibile di seguito per l'analisi. Il programma per il mapping consente di generare un numero specifico di punti posizionati in modo casuale all'interno di un quadrato unitario e quindi di contare il numero di tali punti inclusi all'interno del cerchio. Il programma per la riduzione consente di accumulare i punti contati dalle funzioni di mapping e quindi di calcolare il valore di Pi greco in base alla formula 4R, dove R indica il rapporto tra il numero di punti che si trovano all’interno del cerchio e il numero totale di punti che si trovano all’interno del quadrato.
+## <a name="appendix-c---hello-pi-estimator-source-code"></a>Appendice C - hello codice sorgente di pi greco estimator
+estimator pi Hello codice Java che contiene funzioni di BizTalk mapper e del reducer hello è disponibile per l'ispezione riportato di seguito. programma mapper Hello genera un numero specificato di punti posizionato in modo casuale all'interno di un quadrato dell'unità e quindi conta il numero di hello di tali punti di un cerchio hello. programma riduttore Hello accumula punti conteggiati mediante BizTalk Mapper hello e quindi stima valore hello di pi greco dalla formula 4R hello, dove R è il rapporto di hello del numero di hello di punti conteggiati all'interno di hello cerchio toohello numero totale di punti che si trovano all'interno di quadrato di hello.
 
 ```java
 /**
-* Licensed to the Apache Software Foundation (ASF) under one
-* or more contributor license agreements. See the NOTICE file
+* Licensed toohello Apache Software Foundation (ASF) under one
+* or more contributor license agreements. See hello NOTICE file
 * distributed with this work for additional information
-* regarding copyright ownership. The ASF licenses this file
-* to you under the Apache License, Version 2.0 (the
+* regarding copyright ownership. hello ASF licenses this file
+* tooyou under hello Apache License, Version 2.0 (the
 * "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
+* with hello License. You may obtain a copy of hello License at
 *
 * http://www.apache.org/licenses/LICENSE-2.0
 *
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
+* Unless required by applicable law or agreed tooin writing, software
+* distributed under hello License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+* See hello License for hello specific language governing permissions and
+* limitations under hello License.
 */
 
 package org.apache.hadoop.examples;
@@ -428,21 +428,21 @@ import org.apache.hadoop.mapred.SequenceFileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-//A Map-reduce program to estimate the value of Pi
+//A Map-reduce program tooestimate hello value of Pi
 //using quasi-Monte Carlo method.
 //
 //Mapper:
 //Generate points in a unit square
-//and then count points inside/outside of the inscribed circle of the square.
+//and then count points inside/outside of hello inscribed circle of hello square.
 //
 //Reducer:
-//Accumulate points inside/outside results from the mappers.
+//Accumulate points inside/outside results from hello mappers.
 //Let numTotal = numInside + numOutside.
-//The fraction numInside/numTotal is a rational approximation of
-//the value (Area of the circle)/(Area of the square),
-//where the area of the inscribed circle is Pi/4
-//and the area of unit square is 1.
-//Then, Pi is estimated value to be 4(numInside/numTotal).
+//hello fraction numInside/numTotal is a rational approximation of
+//hello value (Area of hello circle)/(Area of hello square),
+//where hello area of hello inscribed circle is Pi/4
+//and hello area of unit square is 1.
+//Then, Pi is estimated value toobe 4(numInside/numTotal).
 //
 
 public class PiEstimator extends Configured implements Tool {
@@ -451,8 +451,8 @@ static private final Path TMP_DIR = new Path(
 PiEstimator.class.getSimpleName() + "_TMP_3_141592654");
 
 //2-dimensional Halton sequence {H(i)},
-//where H(i) is a 2-dimensional point and i >= 1 is the index.
-//Halton sequence is used to generate sample points for Pi estimation.
+//where H(i) is a 2-dimensional point and i >= 1 is hello index.
+//Halton sequence is used toogenerate sample points for Pi estimation.
 private static class HaltonSequence {
 // Bases
 static final int[] P = {2, 3};
@@ -464,8 +464,8 @@ private double[] x;
 private double[][] q;
 private int[][] d;
 
-//Initialize to H(startindex),
-//so the sequence begins with H(startindex+1).
+//Initialize tooH(startindex),
+//so hello sequence begins with H(startindex+1).
 HaltonSequence(long startindex) {
 index = startindex;
 x = new double[K.length];
@@ -490,7 +490,7 @@ x[i] += d[i][j] * q[i][j];
 }
 
 //Compute next point.
-//Assume the current point is H(index).
+//Assume hello current point is H(index).
 //Compute H(index+1).
 //@return a 2-dimensional point with coordinates in [0,1)^2
 double[] nextPoint() {
@@ -512,13 +512,13 @@ return x;
 
 //Mapper class for Pi estimation.
 //Generate points in a unit square and then
-//count points inside/outside of the inscribed circle of the square.
+//count points inside/outside of hello inscribed circle of hello square.
 public static class PiMapper extends MapReduceBase
 implements Mapper<LongWritable, LongWritable, BooleanWritable, LongWritable> {
 
 //Map method.
-//@param offset samples starting from the (offset+1)th sample.
-//@param size the number of samples for this map
+//@param offset samples starting from hello (offset+1)th sample.
+//@param size hello number of samples for this map
 //@param out output {ture->numInside, false->numOutside}
 //@param reporter
 public void map(LongWritable offset,
@@ -534,7 +534,7 @@ for(long i = 0; i < size.get(); ) {
 //generate points in a unit square
 final double[] point = haltonsequence.nextPoint();
 
-//count points inside/outside of the inscribed circle of the square
+//count points inside/outside of hello inscribed circle of hello square
 final double x = point[0] - 0.5;
 final double y = point[1] - 0.5;
 if (x*x + y*y > 0.25) {
@@ -557,13 +557,13 @@ out.collect(new BooleanWritable(false), new LongWritable(numOutside));
 }
 
 //Reducer class for Pi estimation.
-//Accumulate points inside/outside results from the mappers.
+//Accumulate points inside/outside results from hello mappers.
 public static class PiReducer extends MapReduceBase
 implements Reducer<BooleanWritable, LongWritable, WritableComparable<?>, Writable> {
 
 private long numInside = 0;
 private long numOutside = 0;
-private JobConf conf; //configuration for accessing the file system
+private JobConf conf; //configuration for accessing hello file system
 
 //Store job configuration.
 @Override
@@ -571,9 +571,9 @@ public void configure(JobConf job) {
 conf = job;
 }
 
-// Accumulate number of points inside/outside results from the mappers.
-// @param isInside Is the points inside?
-// @param values An iterator to a list of point counts
+// Accumulate number of points inside/outside results from hello mappers.
+// @param isInside Is hello points inside?
+// @param values An iterator tooa list of point counts
 // @param output dummy, not used here.
 // @param reporter
 
@@ -588,10 +588,10 @@ for(; values.hasNext(); numOutside += values.next().get());
 }
 }
 
-//Reduce task done, write output to a file.
+//Reduce task done, write output tooa file.
 @Override
 public void close() throws IOException {
-//write output to a file
+//write output tooa file
 Path outDir = new Path(TMP_DIR, "out");
 Path outFile = new Path(outDir, "reduce-out");
 FileSystem fileSys = FileSystem.get(conf);
@@ -604,7 +604,7 @@ writer.close();
 }
 
 //Run a map/reduce job for estimating Pi.
-//@return the estimated value of Pi.
+//@return hello estimated value of Pi.
 public static BigDecimal estimate(int numMaps, long numPoints, JobConf jobConf
 )
 throws IOException {
@@ -624,7 +624,7 @@ jobConf.setReducerClass(PiReducer.class);
 jobConf.setNumReduceTasks(1);
 
 // turn off speculative execution, because DFS doesn't handle
-// multiple writers to the same file.
+// multiple writers toohello same file.
 jobConf.setSpeculativeExecution(false);
 
 //setup input/output directories
@@ -716,26 +716,26 @@ System.exit(ToolRunner.run(null, new PiEstimator(), argv));
 }
 ```
 
-## <a name="appendix-d---the-10gb-graysort-source-code"></a>Appendice D - Codice sorgente per il Graysort da 10 GB
-Il codice per il programma MapReduce TeraSort viene presentato per la verifica in questa sezione.
+## <a name="appendix-d---hello-10gb-graysort-source-code"></a>Appendice D - codice sorgente di hello 10gb graysort
+codice Hello per il programma TeraSort MapReduce hello viene presentato per un controllo in questa sezione.
 
 ```java
 /**
-    * Licensed to the Apache Software Foundation (ASF) under one
-    * or more contributor license agreements.  See the NOTICE file
+    * Licensed toohello Apache Software Foundation (ASF) under one
+    * or more contributor license agreements.  See hello NOTICE file
     * distributed with this work for additional information
-    * regarding copyright ownership.  The ASF licenses this file
-    * to you under the Apache License, Version 2.0 (the
+    * regarding copyright ownership.  hello ASF licenses this file
+    * tooyou under hello Apache License, Version 2.0 (the
     * "License"); you may not use this file except in compliance
-    * with the License.  You may obtain a copy of the License at
+    * with hello License.  You may obtain a copy of hello License at
     *
     *     http://www.apache.org/licenses/LICENSE-2.0
     *
-    * Unless required by applicable law or agreed to in writing, software
-    * distributed under the License is distributed on an "AS IS" BASIS,
+    * Unless required by applicable law or agreed tooin writing, software
+    * distributed under hello License is distributed on an "AS IS" BASIS,
     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    * See the License for the specific language governing permissions and
-    * limitations under the License.
+    * See hello License for hello specific language governing permissions and
+    * limitations under hello License.
     */
 
 package org.apache.hadoop.examples.terasort;
@@ -763,10 +763,10 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
-    * Generates the sampled split points, launches the job,
-    * and waits for it to finish.
+    * Generates hello sampled split points, launches hello job,
+    * and waits for it toofinish.
     * <p>
-    * To run the program:
+    * toorun hello program:
     * <b>bin/hadoop jar hadoop-examples-*.jar terasort in-dir out-dir</b>
     */
 
@@ -798,7 +798,7 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * An inner trie node that contains 256 children based on the next
+        * An inner trie node that contains 256 children based on hello next
         * character.
         */
     static class InnerTrieNode extends TrieNode {
@@ -832,7 +832,7 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * A leaf trie node that does string compares to figure out where the given
+        * A leaf trie node that does string compares toofigure out where hello given
         * key belongs between lower..upper.
         */
     static class LeafTrieNode extends TrieNode {
@@ -864,11 +864,11 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * Read the cut points from the given sequence file.
-        * @param fs the file system
-        * @param p the path to read
-        * @param job the job config
-        * @return the strings to split the partitions on
+        * Read hello cut points from hello given sequence file.
+        * @param fs hello file system
+        * @param p hello path tooread
+        * @param job hello job config
+        * @return hello strings toosplit hello partitions on
         * @throws IOException
         */
     private static Text[] readPartitions(FileSystem fs, Path p,
@@ -886,14 +886,14 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * Given a sorted set of cut points, build a trie that will find the correct
+        * Given a sorted set of cut points, build a trie that will find hello correct
         * partition quickly.
-        * @param splits the list of cut points
-        * @param lower the lower bound of partitions 0..numPartitions-1
-        * @param upper the upper bound of partitions 0..numPartitions-1
-        * @param prefix the prefix that we have already checked against
-        * @param maxDepth the maximum depth we will build a trie for
-        * @return the trie node that will divide the splits correctly
+        * @param splits hello list of cut points
+        * @param lower hello lower bound of partitions 0..numPartitions-1
+        * @param upper hello upper bound of partitions 0..numPartitions-1
+        * @param prefix hello prefix that we have already checked against
+        * @param maxDepth hello maximum depth we will build a trie for
+        * @return hello trie node that will divide hello splits correctly
         */
     private static TrieNode buildTrie(Text[] splits, int lower, int upper,
                                         Text prefix, int maxDepth) {
@@ -903,7 +903,7 @@ public class TeraSort extends Configured implements Tool {
         }
         InnerTrieNode result = new InnerTrieNode(depth);
         Text trial = new Text(prefix);
-        // append an extra byte on to the prefix
+        // append an extra byte on toohello prefix
         trial.append(new byte[1], 0, 1);
         int currentBound = lower;
         for(int ch = 0; ch < 255; ++ch) {
@@ -919,7 +919,7 @@ public class TeraSort extends Configured implements Tool {
         result.child[ch] = buildTrie(splits, lower, currentBound, trial,
                                         maxDepth);
         }
-        // pick up the rest
+        // pick up hello rest
         trial.getBytes()[depth] = 127;
         result.child[255] = buildTrie(splits, currentBound, upper, trial,
                                     maxDepth);

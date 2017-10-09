@@ -1,27 +1,27 @@
-#### <a name="configure-the-ios-project-in-xamarin-studio"></a>Configurazione del progetto iOS in Xamarin Studio
-1. In Xamarin Studio aprire **Info.plist** e aggiornare il valore in **Bundle Identifier** (Identificatore bundle) con l'ID creata in precedenza.
+#### <a name="configure-hello-ios-project-in-xamarin-studio"></a>Configurazione progetto iOS hello in Studio a Xamarin
+1. In Xamarin.Studio, aprire **Info. plist**e aggiornamento hello **identificatore Bundle** con hello aggregare ID creato in precedenza con il nuovo ID di app.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-21.png)
-2. Scorrere verso il basso fino a **Background Modes** (Modalità in background). Selezionare le caselle **Enable Background Modes** (Abilita modalità in background) e **Remote notifications** (Notifiche remote).
+2. Scorrere verso il basso troppo**modalità di Background**. Seleziona hello **abilitare la modalità di Background** casella e hello **notifiche Remote** casella.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-22.png)
-3. Fare doppio clic sul progetto nel riquadro delle soluzioni per aprire **Opzioni progetto**.
-4. Scegliere **iOS Bundle Signing** (Firma bundle iOS) in **Genera** e selezionare i valori corrispondenti per l'identità e il profilo di provisioning appena configurati per questo progetto.
+3. Fare doppio clic sul progetto in hello soluzione pannello tooopen **opzioni progetto**.
+4. In **compilare**, scegliere **firma Bundle iOS**e selezionare hello identità corrispondente e profilo di provisioning è sufficiente impostare per questo progetto.
 
    ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-20.png)
 
-   Per effetto di questa operazione, il progetto userà il nuovo profilo per la firma del codice. Per la documentazione ufficiale, vedere la pagina relativa al [provisioning del dispositivo Xamarin].
+   In questo modo che il progetto hello utilizza nuovo profilo hello per la firma del codice. Per hello ufficiale Xamarin provisioning dei dispositivi documentazione, vedere [Provisioning dei dispositivi Xamarin].
 
-#### <a name="configure-the-ios-project-in-visual-studio"></a>Configurazione del progetto iOS in Visual Studio
-1. In Visual Studio fare clic con il pulsante destro del mouse sul progetto e quindi scegliere **Proprietà**.
-2. Nelle pagine delle proprietà fare clic sulla scheda **iOS Application** (Applicazione iOS) e aggiornare il campo **Identifier** (Identificatore) con l'ID creato in precedenza.
+#### <a name="configure-hello-ios-project-in-visual-studio"></a>Configurare il progetto di iOS hello in Visual Studio
+1. In Visual Studio, fare clic sul progetto hello e quindi fare clic su **proprietà**.
+2. Nelle pagine delle proprietà hello, fare clic su hello **applicazione iOS** scheda e aggiornamento hello **identificatore** con ID hello creato in precedenza.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-23.png)
-3. Nella scheda **iOS Bundle Signing** (Firma bundle iOS) selezionare i valori corrispondenti per identità e profilo di provisioning appena configurati per questo progetto.
+3. In hello **firma Bundle iOS** scheda identità corrispondenti selezionare hello e provisioning profilo è solo set di backup per questo progetto.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-24.png)
 
-    Per effetto di questa operazione, il progetto userà il nuovo profilo per la firma del codice. Per la documentazione ufficiale, vedere la pagina relativa al [provisioning del dispositivo Xamarin].
-4. Fare doppio clic su Info.plist per aprirlo e abilitare **RemoteNotifications** in **Background Modes** (Modalità in background).
+    In questo modo che il progetto hello utilizza nuovo profilo hello per la firma del codice. Per hello ufficiale Xamarin provisioning dei dispositivi documentazione, vedere [Provisioning dei dispositivi Xamarin].
+4. Fare doppio clic sul file Info. plist tooopen e quindi abilitare **RemoteNotifications** in **modalità di Background**.
 
-[provisioning del dispositivo Xamarin]: http://developer.xamarin.com/guides/ios/getting_started/installation/device_provisioning/
+[Provisioning dei dispositivi Xamarin]: http://developer.xamarin.com/guides/ios/getting_started/installation/device_provisioning/

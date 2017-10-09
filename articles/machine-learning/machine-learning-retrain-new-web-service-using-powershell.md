@@ -1,6 +1,6 @@
 ---
-title: Ripetere il training di un nuovo servizio Web di Machine Learning Azure con PowerShell | Documentazione Microsoft
-description: Informazioni su come ripetere il training di un modello in modo programmatico e aggiornare il servizio Web per l'uso del modello appena sottoposto a training in Azure Machine Learning con i cmdlet di gestione di PowerShell.
+title: un servizio web Azure Machine Learning nuovo con PowerShell aaaRetrain | Documenti Microsoft
+description: Informazioni su come tooprogrammatically ripetere il training di un modello e l'aggiornamento hello toouse hello appena sottoposto a training modello di servizio web in Azure Machine Learning tramite i cmdlet di PowerShell di gestione di Machine Learning hello.
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: v-donglo
-ms.openlocfilehash: 804dd59e62f38ee1878045d93211ee18e0d5bfce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b77fa82cfe17f0b4e90007ef81c506ab712475b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retrain-a-new-resource-manager-based-web-service-using-the-machine-learning-management-powershell-cmdlets"></a>Ripetere il training di un nuovo servizio Web basato su Resource Manager usando i cmdlet di gestione di PowerShell per Machine Learning
-Quando si ripete il training di un nuovo servizio Web, si aggiorna la definizione del servizio Web predittivo perché faccia riferimento al nuovo modello sottoposto a training.  
+# <a name="retrain-a-new-resource-manager-based-web-service-using-hello-machine-learning-management-powershell-cmdlets"></a>Ripetere il training di un servizio web basato su nuovo gestore di risorse utilizzando i cmdlet di PowerShell di gestione di Machine Learning hello
+Quando si ripetere il training di un nuovo servizio web, si aggiorna hello predittiva definizione tooreference hello nuovo sottoposto a training modello di servizio web.  
 
 ## <a name="prerequisites"></a>Prerequisiti
 È necessario impostare un esperimento di training e un esperimento predittivo come illustrato in [Ripetere il training dei modelli di Machine Learning in modo programmatico](machine-learning-retrain-models-programmatically.md). 
 
 > [!IMPORTANT]
-> L'esperimento predittivo deve essere distribuito come servizio Web nuovo di Machine Learning basato su Azure Resource Manager. Per distribuire un nuovo servizio Web è necessario disporre delle autorizzazioni sufficienti nella sottoscrizione a cui si sta distribuendo il servizio Web. Per altre informazioni, vedere [Gestire un servizio Web usando il portale dei servizi Web di Azure Machine Learning](machine-learning-manage-new-webservice.md). 
+> sperimentazione predittiva Hello deve essere distribuito come una gestione risorse di Azure (nuovo) basato su servizio web machine learning. un nuovo servizio web deve disporre di autorizzazioni sufficienti in hello toowhich di sottoscrizione per la distribuzione del servizio web hello toodeploy. Per ulteriori informazioni, vedere [gestire un servizio Web tramite il portale di servizi Web di Azure Machine Learning hello](machine-learning-manage-new-webservice.md). 
 
 Per altre informazioni sulla distribuzione di servizi Web, vedere [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
 
-Questo processo richiede che siano stati installati i cmdlet di Azure Machine Learning. Per l'installazione dei cmdlet di Machine Learning, vedere le informazioni di riferimento sui [cmdlet di Azure Machine Learning](https://msdn.microsoft.com/library/azure/mt767952.aspx) in MSDN.
+Questo processo richiede che sia stato installato hello cmdlet di Azure Machine Learning. Per installare i cmdlet di Machine Learning hello di informazioni, vedere hello [i cmdlet di Azure Machine Learning](https://msdn.microsoft.com/library/azure/mt767952.aspx) riferimento su MSDN.
 
-È necessario aver copiato le informazioni seguenti dall'output di ripetizione del training:
+Hello copiato dalla ripetizione di training output hello le seguenti informazioni:
 
 * BaseLocation
 * RelativeLocation
 
-I passaggi da eseguire sono:
+Hello i passaggi sono:
 
-1. Accedere con l'account di Azure Resource Manager.
-2. Ottenere la definizione del servizio Web
-3. Esportare la definizione del servizio Web in un file in formato JSON
-4. Aggiornare il riferimento al BLOB ilearner nel file JSON.
-5. Importare il file JSON in una definizione del servizio Web
-6. Aggiornare il servizio Web con la nuova definizione
+1. Accedi tooyour account di gestione risorse di Azure.
+2. Ottenere una definizione del servizio web hello
+3. Esportazione hello definizione del servizio Web nel formato JSON
+4. Aggiornare i blob di ilearner toohello riferimento hello in hello JSON.
+5. Importare hello JSON in una definizione del servizio Web
+6. Aggiornare il servizio web hello con nuova definizione del servizio Web
 
-## <a name="sign-in-to-your-azure-resource-manager-account"></a>Accedere con l'account di Azure Resource Manager
-È prima necessario accedere al proprio account Azure dall'interno dell'ambiente di PowerShell tramite il cmdlet [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) .
+## <a name="sign-in-tooyour-azure-resource-manager-account"></a>Accedi tooyour account di gestione risorse di Azure
+È necessario innanzitutto accedere nell'account di Azure dall'ambiente di PowerShell hello utilizzando hello tooyour [Aggiungi AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet.
 
-## <a name="get-the-web-service-definition"></a>Ottenere la definizione del servizio Web
-Ottenere quindi il servizio Web chiamando il cmdlet [Get-AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) . La definizione del servizio Web è una rappresentazione interna del modello sottoposto a training del servizio Web e non è direttamente modificabile. Assicurarsi di recuperare la definizione del servizio Web per l'esperimento predittivo e non per l'esperimento di training.
+## <a name="get-hello-web-service-definition"></a>Ottenere hello definizione del servizio Web
+Quindi, ottenere hello servizio Web dal chiamante hello [Get AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet. Hello definizione del servizio Web è una rappresentazione interna del modello con training di hello del servizio web hello e non è direttamente modificabile. Assicurarsi che si desidera recuperare hello definizione del servizio Web per l'esperimento predittiva e non l'esperimento di training.
 
     $wsd = Get-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 
-Per determinare il nome del gruppo di risorse di un servizio Web esistente, eseguire il cmdlet Get-AzureRmMlWebService senza parametri per visualizzare i servizi Web nella sottoscrizione. Individuare il servizio Web e quindi osservare l'ID del servizio Web. Il nome del gruppo di risorse è il quarto elemento dell'ID, subito dopo l'elemento *resourceGroups* . Nell'esempio seguente, il nome del gruppo di risorse è Default-MachineLearning-SouthCentralUS.
+toodetermine hello Nome gruppo di risorse di un servizio web esistente, eseguire il cmdlet Get-AzureRmMlWebService hello senza servizi parametri toodisplay hello web nella sottoscrizione. Servizio web hello di individuare e quindi esaminare il relativo ID di servizio web. nome di Hello hello del gruppo di risorse è elemento quarto hello ID hello, subito dopo hello *resourceGroups* elemento. Nell'esempio seguente di hello, nome del gruppo di risorse hello è MachineLearning-predefinito-SouthCentralUS.
 
     Properties : Microsoft.Azure.Management.MachineLearning.WebServices.Models.WebServicePropertiesForGraph
     Id : /subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
@@ -64,18 +64,18 @@ Per determinare il nome del gruppo di risorse di un servizio Web esistente, eseg
     Type : Microsoft.MachineLearning/webServices
     Tags : {}
 
-In alternativa, per determinare il nome del gruppo di risorse di un servizio Web esistente, accedere al portale di Microsoft Azure Machine Learning Web Services (Servizi Web di Microsoft Azure Machine Learning). Selezionare il servizio Web. Il nome del gruppo di risorse è il quinto elemento dell'URL del servizio Web, subito dopo l'elemento *resourceGroups* . Nell'esempio seguente, il nome del gruppo di risorse è Default-MachineLearning-SouthCentralUS.
+In alternativa, toodetermine hello Nome gruppo di risorse di un servizio web esistente, i log nel portale di servizi Web di Microsoft Azure Machine Learning toohello. Selezionare servizio web hello. nome del gruppo di risorse Hello è hello quinto elemento hello URL del servizio web hello, subito dopo hello *resourceGroups* elemento. Nell'esempio seguente di hello, nome del gruppo di risorse hello è MachineLearning-predefinito-SouthCentralUS.
 
     https://services.azureml.net/subscriptions/<subcription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
 
 
-## <a name="export-the-web-service-definition-as-json"></a>Esportare la definizione del servizio Web in un file in formato JSON
-Per modificare la definizione per l'uso del modello appena sottoposto a training, è prima necessario usare il cmdlet [Export-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) per esportare la definizione in un file in formato JSON.
+## <a name="export-hello-web-service-definition-as-json"></a>Esportazione hello definizione del servizio Web nel formato JSON
+toomodify hello definizione toohello training del modello toouse hello appena modello con training, è innanzitutto necessario utilizzare hello [esportazione AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) tooexport cmdlet è tooa file di formato JSON.
 
     Export-AzureRmMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
 
-## <a name="update-the-reference-to-the-ilearner-blob-in-the-json"></a>Aggiornare il riferimento al BLOB ilearner nel file JSON.
-Negli asset individuare il [modello con training] e aggiornare il valore *uri* nel nodo *locationInfo* con l'URI del BLOB ilearner. L'URI viene generato combinando i valori di *BaseLocation* e *RelativeLocation* dell'output della chiamata di ripetizione del training del servizio Esecuzione batch. Il percorso viene così aggiornato in modo da fare riferimento al nuovo modello sottoposto a training.
+## <a name="update-hello-reference-toohello-ilearner-blob-in-hello-json"></a>Aggiornare i blob di ilearner toohello riferimento hello in hello JSON.
+Attività hello, individuare hello [modello con training], aggiornamento hello *uri* valore hello *locationInfo* nodo con l'URI del blob ilearner hello hello. Hello URI viene generato dalla combinazione hello *BaseLocation* hello e *RelativeLocation* dall'output di hello di chiamata i BES hello. Aggiorna hello percorso tooreference hello nuovo modello con training.
 
      "asset3": {
         "name": "Retrain Samp.le [trained model]",
@@ -90,20 +90,20 @@ Negli asset individuare il [modello con training] e aggiornare il valore *uri* n
         }
       },
 
-## <a name="import-the-json-into-a-web-service-definition"></a>Importare il file JSON in una definizione del servizio Web
-È necessario usare il cmdlet [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) per convertire di nuovo il file JSON modificato in una definizione del servizio Web che possa essere usata per il relativo aggiornamento.
+## <a name="import-hello-json-into-a-web-service-definition"></a>Importare hello JSON in una definizione del servizio Web
+È necessario utilizzare hello [importazione AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) cmdlet tooconvert hello modificati file JSON in una definizione del servizio Web che è possibile utilizzare tooupdate hello definizione del servizio Web.
 
     $wsd = Import-AzureRmMlWebService -InputFile "C:\temp\mlservice_export.json"
 
 
-## <a name="update-the-web-service-with-new-web-service-definition"></a>Aggiornare il servizio Web con la nuova definizione
-Usare infine il cmdlet [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) per aggiornare la definizione del servizio Web.
+## <a name="update-hello-web-service-with-new-web-service-definition"></a>Aggiornare il servizio web hello con nuova definizione del servizio Web
+Utilizzare infine [aggiornamento AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) cmdlet tooupdate hello definizione del servizio Web.
 
     Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'  -ServiceUpdates $wsd
 
 ## <a name="summary"></a>Riepilogo
-Usando i cmdlet di gestione PowerShell per Machine Learning, è possibile aggiornare il modello con training di un servizio Web predittivo abilitando scenari come:
+Utilizzando i cmdlet di gestione di PowerShell di Machine Learning hello, è possibile aggiornare il modello con training di hello di un servizio Web predittivo l'abilitazione di scenari, ad esempio:
 
 * Ripetizione periodica del training del modello con nuovi dati.
-* Distribuzione di un modello ai clienti per fare in modo che possano ripetere il training del modello con i propri dati.
+* Distribuzione di un modello di toocustomers con obiettivo hello di informarli del training modello di hello usando i propri dati.
 

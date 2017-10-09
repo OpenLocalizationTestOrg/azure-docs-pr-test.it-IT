@@ -1,6 +1,6 @@
 ---
-title: Accedere alle app del proxy app di Azure AD in Teams | Microsoft Docs
-description: Usare il proxy applicazione di Azure AD per accedere all'applicazione locale tramite Microsoft Teams.
+title: Proxy App di Azure AD App nei team aaaAccess | Documenti Microsoft
+description: Utilizzare tooaccess Proxy dell'applicazione Azure Active Directory dell'applicazione locale tramite Teams Microsoft.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,44 +15,44 @@ ms.date: 07/12/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 24e22d7314de536714a825cd7035d2cec2112278
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 13c36e43ae6349df09272e308ad4f40451cbbeb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-your-on-premises-applications-through-microsoft-teams"></a>Accedere alle applicazioni locali tramite Microsoft Teams
 
-Il proxy applicazione di Azure Active Directory consente l'accesso Single Sign-On alle applicazioni locali ovunque ci si trovi e Microsoft Teams ottimizza le attività di collaborazione in un'unica posizione. Integrandoli, gli utenti e possono collaborare in modo produttivo con i colleghi in ogni situazione. 
+Proxy di Active Directory dell'applicazione Azure offre applicazioni single sign-on tooon locale indipendentemente da dove si è e Microsoft Teams semplifica le attività di collaborazione in un'unica posizione. L'integrazione di hello due insieme significa che gli utenti possono essere produttivi con i propri colleghi in qualsiasi situazione. 
 
-Gli utenti possono aggiungere le app per cloud ai canali di Teams [usando le schede](https://support.office.com/article/Video-Using-Tabs-7350a03e-017a-4a00-a6ae-1c9fe8c497b3?ui=en-US&rs=en-US&ad=US), ma, nel caso in cui un sito di SharePoint o uno strumento di pianificazione usato da tutti sia ospitato in locale, il proxy di applicazione è la soluzione ideale. Gli utenti possono aggiungere ai canali le app pubblicate tramite il proxy di applicazione usando gli stessi URL esterni che usano sempre per accedere alle app in remoto e, poiché il proxy di applicazione esegue l'autenticazione tramite Azure Active Directory, viene effettuato lo stesso accesso Single Sign-On.
+Gli utenti possono aggiungere cloud App tootheir team canali [utilizzando schede](https://support.office.com/article/Video-Using-Tabs-7350a03e-017a-4a00-a6ae-1c9fe8c497b3?ui=en-US&rs=en-US&ad=US), ma cosa accade se il sito di SharePoint o un strumento di pianificazione tutte utilizzano è ospitato in locale? Proxy dell'applicazione è la soluzione hello. È possibile aggiungere le app pubblicate tramite il Proxy di applicazione tootheir canali utilizzando hello stesso URL esterni, essi utilizzano sempre tooaccess delle App in modalità remota. E perché esegue l'autenticazione tramite Azure Active Directory, hello stesso esperienza single sign-on esegue tramite Proxy dell'applicazione.
 
 
-## <a name="install-the-application-proxy-connector-and-publish-your-app"></a>Installare il connettore proxy applicazione e pubblicare l'app
+## <a name="install-hello-application-proxy-connector-and-publish-your-app"></a>Installare il connettore Proxy dell'applicazione hello e pubblicare l'app
 
-Se necessario, [configurare il proxy di applicazione per il tenant e installare il connettore](active-directory-application-proxy-enable.md), quindi [pubblicare l'applicazione locale](application-proxy-publish-azure-portal.md) per l'accesso remoto. Quando si pubblica l'app, prendere nota dell'URL esterno perché gli utenti finali hanno bisogno di questa informazione quando aggiungono l'app a Teams.
+Se hai già fatto, [configurare il Proxy di applicazione per il tenant e installare il connettore hello](active-directory-application-proxy-enable.md). quindi [pubblicare l'applicazione locale](application-proxy-publish-azure-portal.md) per l'accesso remoto. Quando si pubblica l'applicazione hello, prendere nota dell'URL esterno hello perché gli utenti finali è necessario che tali informazioni durante l'aggiunta di hello app tooTeams.
 
-Se le app sono già state pubblicate, ma non si ricordano gli URL esterni, cercarli nel [portale di Azure](https://portal.azure.com). Eseguire l'accesso, quindi passare ad **Azure Active Directory** > **Applicazioni aziendali** > **Tutte le applicazioni** > selezionare l'app > **Proxy dell'applicazione**.
+Se già App pubblicata ma non memorizza i relativi URL esterni, cercarli in hello [portale di Azure](https://portal.azure.com). Eseguire l'accesso, quindi passare troppo**Azure Active Directory** > **applicazioni aziendali** > **tutte le applicazioni** > selezionare l'app > **Proxy dell'applicazione**.
 
-## <a name="add-your-app-to-teams"></a>Aggiungere l'app a Teams
+## <a name="add-your-app-tooteams"></a>Aggiungere il tooTeams app
 
-Dopo avere pubblicato l'app tramite il proxy di applicazione, informare gli utenti che possono aggiungerla come scheda direttamente nei canali di Teams. Far eseguire questi tre passaggi:
+Dopo avere pubblicato l'applicazione hello mediante il Proxy di applicazione, informare gli utenti che è possibile aggiungere sotto forma di una scheda direttamente i canali del team. Far eseguire questi tre passaggi:
 
-1. Passare al canale di Teams in cui si vuole aggiungere questa app e selezionare **+** per aggiungere una scheda.
+1. Passare toohello team del canale in cui si desidera tooadd questa app e selezionare  **+**  tooadd una scheda.
 
    ![Selezionare l'opzione per aggiungere una scheda](./media/application-proxy-teams/add-tab.png)
 
-2. Selezionare **Sito Web** dalle opzioni della scheda.
+2. Selezionare **sito Web** da opzioni della scheda hello.
 
    ![Aggiungere un sito Web](./media/application-proxy-teams/website.png)
 
-3. Assegnare un nome alla scheda e impostare l'URL su quello esterno del proxy applicazione. 
+3. Assegnare un nome di scheda hello e impostare l'URL esterno di hello URL toohello Proxy dell'applicazione. 
 
    ![Configurare il nome della scheda e l'URL](./media/application-proxy-teams/tab-name-url.png)
 
-La scheda, dopo che è stata aggiunta da un membro di un team, viene visualizzata da tutti nel canale. Tutti gli utenti che hanno accesso all'app ottengono l'accesso Single Sign-On con le credenziali usate per Microsoft Teams. Gli utenti che non hanno accesso all'app visualizzeranno la scheda in Teams, ma saranno bloccati finché non verranno concesse le autorizzazioni per l'app locale e la versione pubblicata nel portale di Azure dell'app. 
+Una volta che un membro di un team aggiunge una scheda di hello, viene visualizzato per tutti gli utenti nel canale hello. Tutti gli utenti che dispongono di accesso toohello app ottengono l'accesso single sign-on con credenziali hello che usano per Teams Microsoft. Tutti gli utenti non dispongono di accesso toohello app verranno visualizzata la scheda hello in team, ma vengono bloccati finché non si assegnare loro autorizzazioni toohello locale app e hello Azure versione pubblicata del portale di app hello. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Informazioni su come [pubblicare siti di SharePoint locali](application-proxy-enable-remote-access-sharepoint.md) con il proxy di applicazione.
-- Configurare le app per usare i [domini personalizzati](active-directory-application-proxy-custom-domains.md) per l'URL esterno. 
+- Informazioni su come troppo[pubblicare i siti SharePoint locali](application-proxy-enable-remote-access-sharepoint.md) con Proxy dell'applicazione.
+- Configurare il toouse app [domini personalizzati](active-directory-application-proxy-custom-domains.md) per i relativi URL esterni. 

@@ -1,0 +1,2 @@
+Quando si crea un'app web, Microsoft Azure fornisce un sottodominio descrittivo nel dominio azurewebsites.net hello, in modo che gli utenti possono accedere a un'applicazione web tramite un URL come http://&lt;mywebapp&gt;. azurewebsites.net. È anche possibile associare un nome di dominio personalizzato, ad esempio contoso.com, con l'app web in ordine tooprovide un nome di dominio più riconoscibile per gli utenti.
+

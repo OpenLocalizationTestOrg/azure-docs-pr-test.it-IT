@@ -6,14 +6,14 @@
 | Processi attivi e pianificazioni dei processi<sup>5</sup> per ogni account Batch | 20 | 5000<sup>6</sup> |
 | Pool per account Batch | 20 | 2500 |
 
-<sup>1</sup> Le quote di core dedicati riportate riguardano solo gli account in cui la modalità di allocazione pool è impostata su **Servizio Batch**. Per gli account in cui la modalità è impostata su **Sottoscrizione utente**, le quote di core sono basate sulla quota di core delle VM a livello di area o per famiglia di VM nella sottoscrizione.
+<sup>1</sup> quote di core dedicato visualizzate sono solo per gli account in modalità di allocazione del pool di troppo**Batch servizio**. Per gli account con la modalità di hello impostata troppo**sottoscrizione utente**, le quote di core si basano su una quota di core VM hello livello regionale o per il gruppo di macchine Virtuali nella sottoscrizione.
 
-<sup>2</sup> Il numero di core dedicati per ogni account Batch può essere aumentato, ma il numero massimo non è specificato. Contattare il supporto di Azure per ottenere informazioni sulle opzioni di aumento.
+<sup>2</sup> hello numero di core dedicati per ogni account di Batch può essere aumentato, ma non è specificato il numero massimo di hello. Contattare il supporto Azure toodiscuss aumentare le opzioni.
 
-<sup>3</sup> Le quote di core a bassa priorità riportate riguardano solo gli account in cui la modalità di allocazione pool è impostata su **Servizio Batch**. I core a bassa priorità non sono disponibili per gli account in cui la modalità di allocazione pool è impostata su **Sottoscrizione utente**.
+<sup>3</sup> quote di core con priorità bassa visualizzate sono solo per gli account in modalità di allocazione del pool di troppo**Batch servizio**. Core con priorità bassa non sono disponibili per gli account in modalità di allocazione del pool di troppo**sottoscrizione utente**.
 
-<sup>4</sup> Il numero di core a bassa priorità per ogni account Batch può essere aumentato, ma il numero massimo non è specificato. Contattare il supporto di Azure per ottenere informazioni sulle opzioni di aumento.
+<sup>4</sup> hello numero di core con priorità bassa per l'account Batch può essere aumentato, ma non è specificato il numero massimo di hello. Contattare il supporto Azure toodiscuss aumentare le opzioni.
 
 <sup>5</sup> I processi completati e le pianificazioni dei processi non sono limitati.
 
-<sup>6</sup> Se si vuole richiedere un aumento oltre questo limite, contattare il supporto di Azure.
+<sup>6</sup> supporto contattare Azure se si desidera toorequest un aumento oltre questo limite.

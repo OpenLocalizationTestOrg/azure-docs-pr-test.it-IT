@@ -1,6 +1,6 @@
 ---
-title: Trigger timer in Funzioni di Azure | Documentazione Microsoft
-description: Informazioni su come usare trigger timer in Funzioni di Azure.
+title: trigger di timer funzioni aaaAzure | Documenti Microsoft
+description: Comprendere come toouse timer attivi nelle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -17,26 +17,26 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: glenga
 ms.custom: 
-ms.openlocfilehash: 6a97ab8508f889b77d064a5da70e3c726d62900c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 17fca22372dbc55d4684c8c099cc97923a7d3cf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-timer-trigger"></a>Trigger timer in Funzioni di Azure
 
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo illustra come configurare trigger timer in Funzioni di Azure e su come scrivere il relativo codice. Funzioni di Azure è dotata di un binding trigger timer che consente di eseguire il codice della funzione secondo una pianificazione definita. 
+Questo articolo spiega come tooconfigure e il codice di timer attivi nelle funzioni di Azure. Funzioni di Azure è dotata di un binding trigger timer che consente di eseguire il codice della funzione secondo una pianificazione definita. 
 
-Il trigger timer supporta la scalabilità orizzontale a più istanze. Una singola istanza di una particolare funzione timer viene eseguita su tutte le istanze.
+Hello timer trigger supporta la scalabilità orizzontale a più istanze. Una singola istanza di una particolare funzione timer viene eseguita su tutte le istanze.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a id="trigger"></a>
 
 ## <a name="timer-trigger"></a>Trigger timer
-Il trigger timer per una funzione usa l'oggetto JSON seguente nella matrice `bindings` di function.json:
+timer trigger tooa funzione Hello utilizza hello seguente oggetto JSON nella hello `bindings` matrice function.json:
 
 ```json
 {
@@ -47,22 +47,22 @@ Il trigger timer per una funzione usa l'oggetto JSON seguente nella matrice `bin
 }
 ```
 
-Il valore di `schedule` è un'[espressione CRON](http://en.wikipedia.org/wiki/Cron#CRON_expression) che include i 6 campi seguenti: 
+valore di Hello `schedule` è un [espressione CRON](http://en.wikipedia.org/wiki/Cron#CRON_expression) che include questi sei campi: 
 
     {second} {minute} {hour} {day} {month} {day-of-week}
 &nbsp;
 >[!NOTE]   
->In molte delle espressioni CRON disponibili online il campo `{second}` viene omesso. Se si copia da una di esse, è necessario apportare una modifica per il campo `{second}` aggiuntivo. Per esempi specifici, vedere [Esempi di pianificazione](#examples) di seguito.
+>Molti di espressioni cron hello disponibili online omettere hello `{second}` campo. Se si copia da una di esse, è necessario tooadjust per hello aggiuntivo `{second}` campo. Per esempi specifici, vedere [Esempi di pianificazione](#examples) di seguito.
 
-Il fuso orario predefinito usato con le espressioni CRON è Coordinated Universal Time (UTC). Per fare in modo che l'espressione CRON sia basata su un altro fuso orario, creare una nuova impostazione di app per l'app per le funzioni denominata `WEBSITE_TIME_ZONE`. Impostare il valore sul nome del fuso orario prescelto come illustrato nell'[indice dei fusi orari di Microsoft](https://msdn.microsoft.com/library/ms912391.aspx). 
+fuso orario predefinito di Hello utilizzato con le espressioni CRON hello è Coordinated Universal Time (UTC). toohave l'espressione CRON basata su un altro fuso orario, creare una nuova impostazione di app per l'app di funzione denominata `WEBSITE_TIME_ZONE`. Nome valore toohello hello del set di hello desiderato fuso orario, come illustrato nell'hello [indice fuso orario Microsoft](https://msdn.microsoft.com/library/ms912391.aspx). 
 
-Ad esempio, *Ora solare fuso orientale* (EST) è UTC-05:00. Per attivare il timer trigger ogni giorno alle 10:00 EST, usare la seguente espressione CRON che rappresenta il fuso orario UTC:
+Ad esempio, *Ora solare fuso orientale* (EST) è UTC-05:00. toohave il timer di trigger attivati in 10:00 AM EST ogni giorno, utilizzare hello espressione CRON che tengono conto del fuso orario UTC seguente:
 
 ```json
 "schedule": "0 0 15 * * *",
 ``` 
 
-In alternativa, è possibile aggiungere una nuova impostazione di app per l'app per le funzioni denominata `WEBSITE_TIME_ZONE` e impostare il valore su **Ora solare fuso orientale**.  La seguente espressione CRON può quindi essere usata per 10:00 EST: 
+In alternativa, è possibile aggiungere una nuova impostazione di app per app di funzione denominata `WEBSITE_TIME_ZONE` e impostare il valore di hello troppo**ora solare fuso orientale**.  Hello CRON espressione seguente può essere quindi utilizzato per 10:00 AM EST: 
 
 ```json
 "schedule": "0 0 10 * * *",
@@ -72,39 +72,39 @@ In alternativa, è possibile aggiungere una nuova impostazione di app per l'app 
 <a name="examples"></a>
 
 ## <a name="schedule-examples"></a>Esempi di pianificazione
-Di seguito sono riportati alcuni esempi di espressioni CRON che possibile usare per la proprietà `schedule`. 
+Ecco alcuni esempi di espressioni CRON è possibile utilizzare per hello `schedule` proprietà. 
 
-Per attivare una volta ogni 5 minuti:
+una volta ogni cinque minuti tootrigger:
 
 ```json
 "schedule": "0 */5 * * * *"
 ```
 
-Per attivare una volta all'inizio di ogni ora:
+tootrigger una volta in ogni ora di inizio hello:
 
 ```json
 "schedule": "0 0 * * * *",
 ```
 
-Per attivare una volta ogni 2 ore:
+una volta ogni due ore tootrigger:
 
 ```json
 "schedule": "0 0 */2 * * *",
 ```
 
-Per attivare una volta ogni ora dalle 9 alle 17:
+tootrigger una volta ogni ora da too5 09: 00 PM:
 
 ```json
 "schedule": "0 0 9-17 * * *",
 ```
 
-Per attivare alle 9:30 ogni giorno:
+tootrigger in ogni giorno alle 9.30:
 
 ```json
 "schedule": "0 30 9 * * *",
 ```
 
-Per attivare alle 9:30 ogni giorno feriale:
+tootrigger alle 9:30 AM ogni giorno della settimana:
 
 ```json
 "schedule": "0 30 9 * * 1-5",
@@ -112,8 +112,8 @@ Per attivare alle 9:30 ogni giorno feriale:
 
 <a name="usage"></a>
 
-## <a name="trigger-usage"></a>Utilizzo dei trigger
-Quando viene richiamata una funzione di trigger timer, l'[oggetto timer](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs) viene passato alla funzione. Il codice JSON seguente è una rappresentazione di esempio dell'oggetto timer. 
+## <a name="trigger-usage"></a>Uso dei trigger
+Quando viene richiamata una funzione di trigger timer, hello [oggetto timer](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs) viene passata alla funzione hello. Hello JSON seguente è una rappresentazione di esempio dell'oggetto timer hello. 
 
 ```json
 {
@@ -130,7 +130,7 @@ Quando viene richiamata una funzione di trigger timer, l'[oggetto timer](https:/
 <a name="sample"></a>
 
 ## <a name="trigger-sample"></a>Esempio di trigger
-Si supponga che il trigger timer seguente sia presente nella matrice `bindings` di function.json:
+Si supponga di avere seguito trigger timer in hello hello `bindings` matrice function.json:
 
 ```json
 {
@@ -141,7 +141,7 @@ Si supponga che il trigger timer seguente sia presente nella matrice `bindings` 
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che legge l'oggetto timer per verificare se viene eseguito in ritardo.
+Vedere l'esempio specifico del linguaggio hello che legge timer hello toosee oggetto se è in esecuzione in ritardo.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)

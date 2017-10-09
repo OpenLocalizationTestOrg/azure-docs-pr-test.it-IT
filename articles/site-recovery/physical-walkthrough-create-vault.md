@@ -1,6 +1,6 @@
 ---
-title: Configurare un insieme di credenziali per la replica di server fisici in Azure usando Azure Site Recovery | Microsoft Docs
-description: Vengono riepilogati i passaggi necessari per configurare un insieme di credenziali per la replica di server fisici in Azure usando Azure Site Recovery
+title: aaaSet di un insieme di credenziali per il server fisico replica tooAzure usando Azure Site Recovery | Documenti Microsoft
+description: "Vengono riepilogati i passaggi di hello è necessario tooset backup tooAzure di server fisici tooreplicate un insieme di credenziali usando Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: deb5ad0495edc969b374795eeb2698326dd4ff4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 988928e3ece31116823f132cc39223fe44443468
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-6-set-up-a-vault-for-physical-server-replication-to-azure"></a>Passaggio 6: Configurare un insieme di credenziali per la replica di server fisici in Azure
+# <a name="step-6-set-up-a-vault-for-physical-server-replication-tooazure"></a>Passaggio 6: Configurare un insieme di credenziali per tooAzure replica server fisico
 
 
-Questo articolo descrive come configurare un insieme di credenziali. Per creare l'insieme di credenziali e specificare ciò di cui si vuole eseguire la replica dall'ambiente locale in Azure, usare il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
+Questo articolo viene descritto come tooset di un insieme di credenziali. Creare l'insieme di credenziali hello e specificare gli elementi da tooreplicate dal tooAzure percorso locale, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
 
 
-Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 
@@ -37,13 +37,13 @@ Inserire commenti e domande nella parte inferiore di questo articolo oppure nel 
 
 ## <a name="select-a-protection-goal"></a>Scegliere un obiettivo di protezione
 
-Selezionare gli elementi da replicare e la posizione in cui eseguire la replica.
+Selezionare gli elementi da tooreplicate, e in cui si desidera tooreplicate per.
 
 1. Fare clic su **Insiemi di credenziali dei servizi di ripristino** e quindi sull'insieme di credenziali.
-2. Nel menu Risorsa fare clic su **Site Recovery** > **Preparare l'infrastruttura** > **Obiettivo di protezione**.
-3. In **Obiettivo di protezione** selezionare **To Azure (In Azure)** > **Non virtualizzato/Altro**.
+2. In hello risorsa Menu, fare clic su **Site Recovery** > **preparare l'infrastruttura** > **obiettivi della protezione dati**.
+3. In **obiettivi della protezione dati**selezionare **tooAzure** > **non virtualizzato/altri**.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare a [Passaggio 7: Configurare l'origine e la destinazione](physical-walkthrough-source-target.md)
+Andare troppo[passaggio 7: configurare l'origine e di destinazione](physical-walkthrough-source-target.md)

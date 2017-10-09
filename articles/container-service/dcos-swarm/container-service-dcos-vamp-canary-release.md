@@ -1,6 +1,6 @@
 ---
-title: Versione canary con Vamp nel cluster DC/OS di Azure | Microsoft Docs
-description: Come usare Vamp per i servizi della versione canary e applicare filtri intelligenti al traffico in un cluster Azure DC/OS del servizio contenitore di Azure
+title: versione aaaCanary con Vamp nel cluster di controller di dominio o sistema operativo di Azure | Documenti Microsoft
+description: Come toouse Vamp toocanary servizi di rilascio e applicare smart traffico filtro in un cluster di Azure contenitore del servizio controller di dominio o del sistema operativo
 services: container-service
 author: gggina
 manager: rasquill
@@ -12,26 +12,26 @@ ms.tgt_pltfrm: na
 ms.date: 04/17/2017
 ms.author: rasquill
 ms.custom: mvc
-ms.openlocfilehash: 4a20091b59f2643ea71cce99c159a5075706e35d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e7b8658a161a7cddcf718e3e1c12a889a330d3d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="canary-release-microservices-with-vamp-on-an-azure-container-service-dcos-cluster"></a>Microservizi della versione canary con Vamp in un cluster DC/OS del servizio contenitore di Azure
 
-In questa procedura dettagliata viene configurato Vamp nel servizio contenitore di Azure con un cluster DC/OS. Viene rilasciata la versione canary del servizio demo "sava" di Vamp che risolvere un problema di incompatibilità del servizio con Firefox applicando filtri intelligenti al traffico. 
+In questa procedura dettagliata viene configurato Vamp nel servizio contenitore di Azure con un cluster DC/OS. Abbiamo canary rilasciare servizio demo di hello Vamp "sava" e quindi risolvere un problema di incompatibilità del servizio hello con Firefox applicando filtri traffico smart. 
 
 > [!TIP] 
-> In questa procedura dettagliata Vamp viene eseguito in un cluster DC/OS, ma è anche possibile usarlo con Kubernetes come agente di orchestrazione.
+> In questa procedura dettagliata Vamp viene eseguito in un cluster di controller di dominio o del sistema operativo, ma è anche possibile utilizzare Vamp con Kubernetes come orchestrator hello.
 >
 
 ## <a name="about-canary-releases-and-vamp"></a>Informazioni sulle versioni canary e su Vamp
 
 
-La [versione canary](https://martinfowler.com/bliki/CanaryRelease.html) è una strategia di distribuzione intelligente adottata da organizzazioni innovative come Netflix, Facebook e Spotify. È un buon approccio che consente di ridurre i problemi, introdurre reti di sicurezza e aumentare l'innovazione. Perché quindi non lo usato tutte le società? L'estensione di una pipeline CI/CD per includere le strategie canary aggiunge complessità e richiede un'ampia esperienza e una vasta conoscenza di sviluppo. Questa è una motivazione sufficiente affinché società e organizzazioni di piccole dimensioni non riescano ad avviare il processo. 
+La [versione canary](https://martinfowler.com/bliki/CanaryRelease.html) è una strategia di distribuzione intelligente adottata da organizzazioni innovative come Netflix, Facebook e Spotify. È un buon approccio che consente di ridurre i problemi, introdurre reti di sicurezza e aumentare l'innovazione. Perché quindi non lo usato tutte le società? Estendere un tooinclude pipeline CI/CD strategie Canarie aggiunge complessità e richiede esperienza e le informazioni estese devops. È sufficiente tooblock piccole aziende e le aziende possono preliminari sono anche. 
 
-[Vamp](http://vamp.io/) è un sistema open source progettato per facilitare la transizione e portare le funzioni della versione canary all'utilità di pianificazione del contenitore preferita. La funzionalità canary di Vamp va oltre le implementazioni basate su percentuale. È possibile filtrare il traffico e dividerlo in base a una vasta gamma di condizioni, ad esempio in base a destinatari specifici, intervalli di indirizzi IP o dispositivi. Vamp tiene traccia e analizza le metriche delle prestazioni, consentendo l'automazione in base a dati reali. È possibile configurare il ripristino automatico dello stato precedente in caso di errori o aumentare le prestazioni delle varianti dei singoli servizi in base al carico o alla latenza.
+[Vamp](http://vamp.io/) è tooease un sistema open source progettato questa transizione e portare canary rilascio funzionalità tooyour preferito contenitore dell'utilità di pianificazione. La funzionalità canary di Vamp va oltre le implementazioni basate su percentuale. Possibile filtrare il traffico e diviso in base a un'ampia gamma di condizioni, ad esempio tootarget utenti, gli intervalli IP o dispositivi specifici. Vamp tiene traccia e analizza le metriche delle prestazioni, consentendo l'automazione in base a dati reali. È possibile configurare il ripristino automatico dello stato precedente in caso di errori o aumentare le prestazioni delle varianti dei singoli servizi in base al carico o alla latenza.
 
 ## <a name="set-up-azure-container-service-with-dcos"></a>Configurare il servizio contenitore di Azure con DC/OS
 
@@ -39,12 +39,12 @@ La [versione canary](https://martinfowler.com/bliki/CanaryRelease.html) è una s
 
 1. [Distribuire un cluster DC/OS](container-service-deployment.md) con un master e due agenti di dimensioni predefinite. 
 
-2. [Creare un tunnel SSH](../container-service-connect.md) per connettersi al cluster DC/OS. Questo articolo presuppone l'esecuzione del tunneling per il cluster sulla porta locale 80.
+2. [Creare un tunnel SSH](../container-service-connect.md) cluster di tooconnect toohello controller di dominio o del sistema operativo. Questo articolo si presuppone che si tunnel cluster toohello porta locale 80.
 
 
 ## <a name="set-up-vamp"></a>Configurare Vamp
 
-Ora che si dispone di un cluster DC/OS in esecuzione, è possibile installare Vamp dall'interfaccia utente DC/OS (http://localhost:80). 
+Dopo aver creato un cluster di controller di dominio o del sistema operativo in esecuzione, è possibile installare Vamp da hello controller di dominio o del sistema operativo dell'interfaccia utente (http://localhost:80). 
 
 ![Interfaccia utente di DC/OS](./media/container-service-dcos-vamp-canary-release/01_set_up_vamp.png)
 
@@ -52,19 +52,19 @@ L'installazione viene eseguita in due fasi:
 
 1. **Distribuire Elasticsearch**.
 
-2. Quindi **distribuire Vamp** installando il pacchetto Universo DC/OS di Vamp.
+2. Quindi **distribuire Vamp** installando pacchetto universo di hello controller di dominio di Vamp del sistema operativo.
 
 ### <a name="deploy-elasticsearch"></a>Distribuire Elasticsearch
 
-Per la raccolta delle metriche e l'aggregazione Vamp richiede Elasticsearch. Per distribuire uno stack Vamp Elasticsearch compatibile è possibile usare le [immagini magneticio](https://hub.docker.com/r/magneticio/elastic/).
+Per la raccolta delle metriche e l'aggregazione Vamp richiede Elasticsearch. È possibile utilizzare hello [immagini Docker magneticio](https://hub.docker.com/r/magneticio/elastic/) toodeploy uno stack Vamp Elasticsearch compatibile.
 
-1. Nell'interfaccia utente DC/OS passare a **Servizi** e fare clic su **Distribuisci servizio**.
+1. Nell'interfaccia utente di controller di dominio/OS hello, andare troppo**servizi** e fare clic su **distribuzione servizio**.
 
-2. Selezionare **JSON mode** (Modalità JSON) dal popup **Deploy New Service** (Distribuisci il nuovo servizio).
+2. Selezionare **modalità JSON** da hello **distribuire nuovo servizio** popup.
 
   ![Selezione della modalità JSON](./media/container-service-dcos-vamp-canary-release/02_deploy_service_json_mode.png)
 
-3. Incollare il JSON seguente. Questa configurazione esegue il contenitore con 1 GB di RAM e un controllo di integrità di base sulla porta Elasticsearch.
+3. Incollare in hello seguente JSON. Questa configurazione esegue contenitore hello con 1 GB di RAM e di controllo di integrità di base sulla porta Elasticsearch hello.
   
   ```JSON
   {
@@ -95,30 +95,30 @@ Per la raccolta delle metriche e l'aggregazione Vamp richiede Elasticsearch. Per
 
 3. Fare clic su **Distribuisci**.
 
-  DC/OS consente di distribuire il contenitore Elasticsearch. Nella pagina **Servizi** è possibile monitorare l'avanzamento.  
+  Controller di dominio o sistema operativo distribuisce contenitore Elasticsearch hello. È possibile monitorare lo stato di avanzamento in hello **servizi** pagina.  
 
   ![distribuzione di Elasticsearch](./media/container-service-dcos-vamp-canary-release/03_deply_elasticsearch.png)
 
 ### <a name="deploy-vamp"></a>Distribuire Vamp
 
-Quando Elasticsearch segnala lo stato **In esecuzione**, è possibile aggiungere il pacchetto Universo DC/OS di Vamp. 
+Una volta che viene segnalato da Elasticsearch **in esecuzione**, è possibile aggiungere pacchetti di hello Vamp universo dei controller di dominio o del sistema operativo. 
 
-1. Passare a **Universe** (Universo) e cercare **vamp**. 
+1. Andare troppo**universo** e cercare **vamp**. 
   ![Vamp in Universe (Universo) DC/OS](./media/container-service-dcos-vamp-canary-release/04_universe_deploy_vamp.png)
 
-2. Fare clic su **Installa** accanto ai pacchetto vamp e scegliere **Advanced Installation** (Installazione avanzata).
+2. Fare clic su **installare** toohello Avanti vamp pacchetto e scegliere **installazione avanzata**.
 
-3. Scorrere verso il basso e immettere il seguente URL di Elasticsearch: `http://elasticsearch.marathon.mesos:9200`. 
+3. Scorrere verso il basso e immettere hello elasticsearch url seguente: `http://elasticsearch.marathon.mesos:9200`. 
 
   ![Immettere l'URL di Elasticsearch](./media/container-service-dcos-vamp-canary-release/05_universe_elasticsearch_url.png)
 
-4. Fare clic su **Verifica e installa**, quindi fare clic su **Installa** per avviare la distribuzione.  
+4. Fare clic su **verifica e installa**, quindi fare clic su **installare** distribuzione hello toostart.  
 
-  DC/OS distribuisce tutti i componenti necessari di Vamp. Nella pagina **Servizi** è possibile monitorare l'avanzamento.
+  DC/OS distribuisce tutti i componenti necessari di Vamp. È possibile monitorare lo stato di avanzamento in hello **servizi** pagina.
   
   ![Distribuire Vamp come pacchetto universo](./media/container-service-dcos-vamp-canary-release/06_deploy_vamp.png)
   
-5. Dopo aver completato la distribuzione, è possibile accedere all'interfaccia utente di Vamp:
+5. Una volta completata la distribuzione, è possibile accedere hello Vamp dell'interfaccia utente:
 
   ![Servizio Vamp su DC/OS](./media/container-service-dcos-vamp-canary-release/07_deploy_vamp_complete.png)
   
@@ -129,22 +129,22 @@ Quando Elasticsearch segnala lo stato **In esecuzione**, è possibile aggiungere
 
 Ora che Vamp è in esecuzione, è possibile distribuire un servizio da un progetto. 
 
-Nella forma più semplice, un [progetto Vamp](http://vamp.io/documentation/using-vamp/blueprints/) descrive gli endpoint, ovvero i gateway, i cluster e i servizi da distribuire. Vamp usa i cluster per raggruppare diverse varianti dello stesso servizio in gruppi logici per la versione canary o i test A/B.  
+Nella sua forma più semplice, un [Vamp progetto](http://vamp.io/documentation/using-vamp/blueprints/) descrive gli endpoint hello (gateway), i cluster e toodeploy di servizi. Vamp utilizza cluster toogroup diverse varianti di hello stesso servizio in gruppi logici per il rilascio canary o A / B test.  
 
-Questo scenario usa un'applicazione monolitica di esempio denominata [**sava**](https://github.com/magneticio/sava), che è alla versione 1.0. Il monolite viene compresso in un contenitore Docker, disponibile nell'hub Docker in magneticio/sava:1.0.0. L'app generalmente viene eseguita sulla porta 8080, ma in questo caso si desidera esporla nella porta 9050. Distribuire l'app tramite Vamp usando un progetto semplice.
+Questo scenario usa un'applicazione monolitica di esempio denominata [**sava**](https://github.com/magneticio/sava), che è alla versione 1.0. monolito Hello viene compresso in un contenitore Docker, incluso nell'Hub Docker magneticio/sava:1.0.0. applicazione Hello viene normalmente eseguito sulla porta 8080, ma si desidera tooexpose nella porta 9050 in questo caso. Distribuire app hello tramite Vamp utilizzando un progetto semplice.
 
-1. Andare in **Deployments** (Distribuzioni).
+1. Andare troppo**distribuzioni**.
 
 2. Fare clic su **Aggiungi**.
 
-3. Incollare il progetto YAML seguente. Questo progetto contiene un cluster con solo una variante di servizio, che verrà modificata in un passaggio successivo:
+3. Incolla in seguito hello cianografia YAML. Questo progetto contiene un cluster con solo una variante di servizio, che verrà modificata in un passaggio successivo:
 
   ```YAML
   name: sava                        # deployment name
   gateways:
     9050: sava_cluster/webport      # stable endpoint
   clusters:
-    sava_cluster:               # cluster to create
+    sava_cluster:               # cluster toocreate
      services:
         -
           breed:
@@ -154,36 +154,36 @@ Questo scenario usa un'applicazione monolitica di esempio denominata [**sava**](
               webport: 8080/http # cluster endpoint, used for canary releasing
   ```
 
-4. Fare clic su **Salva**. Vamp avvia la distribuzione.
+4. Fare clic su **Salva**. Vamp Avvia distribuzione hello.
 
-La distribuzione viene elencata nella pagina **Distribuzioni**. Fare clic sulla distribuzione per monitorarne lo stato.
+distribuzione di Hello viene elencata in hello **distribuzioni** pagina. Fare clic su hello distribuzione toomonitor il relativo stato.
 
 ![Interfaccia utente Vamp: distribuzione sava](./media/container-service-dcos-vamp-canary-release/09_sava100.png)
 
 ![servizio sava nell'interfaccia utente di Vamp](./media/container-service-dcos-vamp-canary-release/09a_sava100.png)
 
-Sono stati creati due gateway, elencati nella pagina **Gateways** (Gateway):
+Vengono creati due gateway, che sono elencati nella hello **gateway** pagina:
 
-* un endpoint stabile per accedere al servizio in esecuzione, sulla porta 9050 
+* un hello tooaccess stabile endpoint servizio (porta 9050) 
 * un gateway interno gestito da Vamp, altre informazioni su questo gateway verranno date in un secondo momento. 
 
 ![Interfaccia utente di Vamp: gateway sava](./media/container-service-dcos-vamp-canary-release/10_vamp_sava_gateways.png)
 
-Il servizio sava è stato distribuito, ma non è possibile accedervi dall'esterno perché Azure Load Balancer non può ancora inoltrarvi il traffico. Per accedere al servizio, aggiornare la configurazione di rete di Azure.
+servizio sava Hello è ora distribuito, ma non è possibile accedervi esternamente perché hello bilanciamento del carico di Azure non riconosce tooforward traffico tooit ancora. servizio di hello tooaccess, hello aggiornamento configurazione di rete di Azure.
 
 
-## <a name="update-the-azure-network-configuration"></a>Aggiornare la configurazione di Azure
+## <a name="update-hello-azure-network-configuration"></a>Aggiornare la configurazione di rete di Azure hello
 
-Vamp ha distribuito il servizio sava nei nodi dell'agente DC/OS, esponendo un endpoint stabile sulla porta 9050. Per accedere al servizio dall'esterno del cluster DC/OS, apportare le modifiche seguenti alla configurazione di rete di Azure della distribuzione del cluster: 
+Vamp servizio sava hello distribuito nei nodi di agente DC/OS hello, che espone un endpoint porta 9050 stabile. servizio hello tooaccess dal cluster di controller di dominio/OS hello esterno, apportare hello seguente configurazione di rete di Azure toohello modifiche nella distribuzione di cluster: 
 
-1. **Configurare Azure Load Balancer** per gli agenti, la risorsa denominata **dcos-agent-lb-xxxx**, con un probe di integrità e una regola per inoltrare il traffico sulla porta 9050 alle istanze sava. 
+1. **Configurare Bilanciamento carico di Azure hello** per gli agenti di hello (hello risorsa denominata **dcos-agente lb xxxx**) con un probe di integrità e il traffico sulla porta 9050 toohello sava a istanze tooforward una regola di. 
 
-2. **Aggiornare il gruppo di sicurezza di rete** per gli agenti pubblici, la risorsa denominata **XXXX-agent-public-nsg-XXXX**, per consentire il traffico sulla porta 9050.
+2. **Gruppo di sicurezza di rete hello aggiornamento** per gli agenti pubblica hello (hello risorsa denominata **XXXX-agent-public-gruppo-XXXX**) tooallow traffico sulla porta 9050.
 
-Per istruzioni dettagliate su come completare queste attività tramite il portale di Azure, vedere [Abilitare l'accesso pubblico a un'applicazione del servizio contenitore di Azure](container-service-enable-public-access.md). Specificare la porta 9050 per tutte le impostazioni della porta.
+Per i passaggi dettagliati toocomplete queste operazioni usando hello Azure portale, vedere [abilitare l'applicazione del servizio di contenitore di Azure tooan accesso pubblico](container-service-enable-public-access.md). Specificare la porta 9050 per tutte le impostazioni della porta.
 
 
-Dopo aver creato tutti gli elementi, andare nel pannello **Panoramica** del servizio di bilanciamento del carico dell'agente DC/OS, ovvero la risorsa denominata **dcos-agent-lb-xxxx**. Trovare l'**indirizzo IP pubblico** e usarlo per far accedere sava alla porta 9050.
+Una volta tutto ciò che è stato creato, andare toohello **Panoramica** blade di bilanciamento del carico di hello DC/OS agente (hello risorsa denominata **dcos-agente lb xxxx**). Trovare hello **indirizzo IP pubblico**e utilizzare hello indirizzo tooaccess sava porta 9050.
 
 ![Portale di Azure: ottenere l'indirizzo IP pubblico](./media/container-service-dcos-vamp-canary-release/18_public_ip_address.png)
 
@@ -192,106 +192,106 @@ Dopo aver creato tutti gli elementi, andare nel pannello **Panoramica** del serv
 
 ## <a name="run-a-canary-release"></a>Eseguire una versione canary
 
-Si supponga di avere una nuova versione dell'applicazione per cui si desidera rilasciare una versione canary nella produzione. È stata inserita in un contenitore come magneticio/sava:1.1.0 ed è pronta all'uso. Vamp consente di aggiungere facilmente nuovi servizi alla distribuzione in esecuzione. Questi servizi "uniti" vengono distribuiti insieme ai servizi esistenti nel cluster e viene assegnato loro un peso pari a 0%. Il traffico non viene indirizzato a un nuovo servizio unito fino a quando la distribuzione del traffico non viene regolata. Il dispositivo di scorrimento del peso nell'interfaccia utente di Vamp offre il controllo completo sulla distribuzione, consentendo di effettuare modifiche incrementali, ad esempio la versione canary, o un ripristino immediato dello stato precedente.
+Si supponga di che avere una nuova versione dell'applicazione che si desidera toocanary versione nell'ambiente di produzione. È contenitore come magneticio/sava:1.1.0 e sono pronto toogo. Vamp consente di aggiungere facilmente nuovi toohello servizi in esecuzione la distribuzione. Questi servizi "merge" vengono distribuiti insieme ai servizi esistenti di hello cluster hello e assegnati un peso pari a 0%. Nessun traffico è tooa indirizzato appena unito servizio fino a quando non è regolare la distribuzione del traffico hello. dispositivo di scorrimento peso Hello in hello Vamp UI offre controllo completo sulla distribuzione di hello, consentendo di modifiche incrementali (versione canary) o un rollback immediato.
 
 ### <a name="merge-a-new-service-variant"></a>Unire una nuova variante di servizio
 
-Per unire il nuovo servizio sava 1.1 con la distribuzione in esecuzione:
+toomerge hello nuovo sava 1.1 servizio con hello in esecuzione la distribuzione:
 
-1. Nell'interfaccia utente di Vamp fare clic su **Blueprints** (Progetti).
+1. In hello Vamp dell'interfaccia utente, fare clic su **disegni**.
 
-2. Fare clic su **Add** (Aggiungi) e incollare il seguente progetto YAML: questo progetto descrive una nuova variante di servizio, sava: 1.1.0, da distribuire nel cluster esistente, sava_cluster.
+2. Fare clic su **Aggiungi** e Incolla in seguito hello cianografia YAML: questo progetto viene descritto un nuovo toodeploy variant (sava: 1.1.0) di servizio all'interno di cluster esistente hello (sava_cluster).
 
   ```YAML
   name: sava:1.1.0      # blueprint name
   clusters:
-    sava_cluster:       # cluster to update
+    sava_cluster:       # cluster tooupdate
       services:
         -
           breed:
             name: sava:1.1.0    # service variant name
             deployable: magneticio/sava:1.1.0    
             ports:
-              webport: 8080/http # cluster endpoint to update
+              webport: 8080/http # cluster endpoint tooupdate
   ```
   
-3. Fare clic su **Salva**. Il progetto viene archiviato ed elencato nella pagina **Blueprints** (Progetti).
+3. Fare clic su **Salva**. progetto iniziale di Hello viene archiviata ed elencato in hello **disegni** pagina.
 
-4. Aprire il menu di azione nel progetto sava:1.1 e fare clic su **Merge to** (Unisci a).
+4. Dal menu azione hello Apri progetto sava: 1.1 hello e fare clic su **di Merge per**.
 
   ![Interfaccia utente di Vamp: progetti](./media/container-service-dcos-vamp-canary-release/20_sava110_mergeto.png)
 
-5. Selezionare la distribuzione **sava** e fare clic su **Merge** (Unisci).
+5. Seleziona hello **sava** distribuzione e fare clic su **Merge**.
 
-  ![Interfaccia utente di Vamp: progetto di unione alla distribuzione](./media/container-service-dcos-vamp-canary-release/21_sava110_merge.png)
+  ![Vamp dell'interfaccia utente - toodeployment progetto iniziale di tipo merge](./media/container-service-dcos-vamp-canary-release/21_sava110_merge.png)
 
-Vamp consente di distribuire la nuova variante di servizio sava:1.1.0 descritta nel progetto insieme a sava:1.0.0 in **sava_cluster** della distribuzione in esecuzione. 
+Vamp distribuisce hello nuovo sava: 1.1.0 variante servizio descritto nel progetto hello insieme sava: 1.0.0 in hello **sava_cluster** di hello in esecuzione la distribuzione. 
 
 ![Interfaccia utente di Vamp: distribuzione sava aggiornato](./media/container-service-dcos-vamp-canary-release/22_sava_cluster.png)
 
-Anche il gateway **sava/sava_cluster/webport**, ovvero l'endpoint del cluster, viene aggiornato aggiungendo una route per sava:1.1.0 appena distribuito. A questo punto, il traffico non viene indirizzato qui, infatti **WEIGHT** (PESO) è impostato su 0%.
+Hello **sava_cluster/sava/webport** gateway (endpoint cluster hello) viene anche aggiornato, aggiunta di una route toohello appena distribuito sava: 1.1.0. A questo punto, nessun traffico viene indirizzato qui (hello **peso** è set % too0).
 
 ![Interfaccia utente di Vamp: gateway del cluster](./media/container-service-dcos-vamp-canary-release/23_sava_cluster_webport.png)
 
 ### <a name="canary-release"></a>Versione canary
 
-Dopo aver distribuito entrambe le versioni di sava nello stesso cluster, modificare la distribuzione del traffico tra di essi spostando il dispositivo di scorrimento **WEIGHT** (PESO).
+Entrambe le versioni di sava distribuito in hello stesso cluster, regolare hello distribuzione del traffico tra di essi spostando hello **peso** dispositivo di scorrimento.
 
-1. Fare clic su ![Interfaccia utente di Vamp: modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) accanto a **WEIGHT** (PESO).
+1. Fare clic su ![Vamp dell'interfaccia utente - modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) Avanti troppo**peso**.
 
-2. Impostare la distribuzione del peso su 50%/50% e fare clic su **Save** (Salva).
+2. Hello peso distribuzione too50%/50% e fare clic su **salvare**.
 
   ![Interfaccia utente di Vamp: dispositivo di scorrimento del peso del gateway](./media/container-service-dcos-vamp-canary-release/24_sava_cluster_webport_weight.png)
 
-3. Tornare al browser e aggiornare la pagina di sava altre volte. Ora l'applicazione sava passa da una pagina sava:1.0 a una pagina sava:1.1.
+3. Tornare indietro del browser tooyour e aggiornare pagina sava hello alcune altre volte. un'applicazione sava Hello ora si passa dalla pagina sava: 1.0 e una pagina sava: 1.1.
 
   ![alternanza dei servizi sava1.0 e sava1.1](./media/container-service-dcos-vamp-canary-release/25_sava_100_101.png)
 
 
   > [!NOTE]
-  > Questa alternanza della pagina funziona meglio con la modalità "Incognito" (In incognito) o "Anonymous" (Anonimo) del browser a causa della memorizzazione nella cache delle risorse statiche.
+  > L'alternanza della pagina hello funziona meglio con hello "Incognito" o "Anonimo" modalità del browser a causa di risorse statiche la memorizzazione nella cache di hello.
   >
 
 ### <a name="filter-traffic"></a>Filtrare il traffico
 
-Si supponga che in seguito alla distribuzione sia stato individuato un problema di incompatibilità in sava:1.1.0 che causa problemi di visualizzazione nel browser Firefox. È possibile impostare Vamp affinché filtri il traffico in ingresso e indirizzi di nuovo tutti gli utenti di Firefox alla versione stabile di sava:1.0.0. Questo filtro consente di risolvere immediatamente le interruzioni per gli utenti di Firefox, mentre gli altri utenti continuano a sfruttare i vantaggi della versione migliorata di sava:1.1.0.
+Si supponga che in seguito alla distribuzione sia stato individuato un problema di incompatibilità in sava:1.1.0 che causa problemi di visualizzazione nel browser Firefox. È possibile impostare il traffico in entrata toofilter Vamp e indirizzare che tutti gli utenti di Firefox nuovamente toohello noto sava: 1.0.0 stabile. Questo filtro in modo istantaneo risolve hello interruzioni per gli utenti di Firefox, mentre qualsiasi altro utente continua hello vantaggi hello tooenjoy migliorate sava: 1.1.0.
 
-Vamp usa le **condizioni** per filtrare il traffico tra le route in un gateway. Il traffico viene innanzitutto filtrato e indirizzato in base alle condizioni applicate a ogni route. Il traffico restante viene distribuito in base all'impostazione del peso del gateway.
+Usa vamp **condizioni** toofilter il traffico tra le route in un gateway. Il traffico viene innanzitutto filtrato e indirizzati in base toohello condizioni applicate tooeach route. Tutto il traffico rimanente viene distribuito in base a impostazioni del peso toohello gateway.
 
-È possibile creare una condizione per filtrare tutti gli utenti di Firefox e indirizzarli alla versione precedente di sava:1.0.0:
+È possibile creare una condizione toofilter tutti gli utenti di Firefox e invita toohello precedente sava: 1.0.0:
 
-1. Nella pagina **Gateways** (Gateway) sava/sava_cluster/webport fare clic su ![Interfaccia utente di Vamp: modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) per aggiungere una **CONDIZIONE** alla route sava/sava_cluster/sava:1.0.0/webport. 
+1. In hello sava/sava_cluster/webport **gateway** pagina, fare clic su ![Vamp dell'interfaccia utente - modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) tooadd un **condizione** toohello route sava/sava_cluster/sava:1.0.0/webport. 
 
-2. Immettere la condizione **user-agent == Firefox** e fare clic su ![Interfaccia utente di Vamp: salva](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png).
+2. Immettere una condizione di hello **agente utente = = Firefox** e fare clic su ![Vamp dell'interfaccia utente - Salva](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png).
 
-  Vamp aggiunge la condizione con un livello pari a 0%. Per avviare il filtraggio del traffico, è necessario regolare la forza della condizione.
+  Vamp aggiunge condizione hello con un livello di attendibilità predefinito pari a 0%. toostart filtrando il traffico, è necessario livello di condizione tooadjust hello.
 
-3. Fare clic su ![Interfaccia utente di Vamp: modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) per modificare la **forza** applicata alla condizione.
+3. Fare clic su ![Vamp dell'interfaccia utente - modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) toochange hello **forza** toohello condizione applicata.
  
-4. Impostare **STRENGTH** (Forza) al 100% e fare clic su ![Interfaccia utente di Vamp: salva](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png) per salvare.
+4. Set hello **forza** too100% e fare clic su ![Vamp dell'interfaccia utente - Salva](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png) toosave.
 
-  Vamp ora invia tutto il traffico che corrisponde alla condizione, ovvero tutti gli utenti di Firefox, a sava:1.0.0.
+  Vamp ora invia tutto il traffico corrispondente hello condizione (tutti gli utenti Firefox) toosava:1.0.0.
 
-  ![Interfaccia utente di Vamp: condizione applicata al gateway](./media/container-service-dcos-vamp-canary-release/26_apply_condition.png)
+  ![Vamp dell'interfaccia utente - applicare toogateway condizione](./media/container-service-dcos-vamp-canary-release/26_apply_condition.png)
 
-5. Infine, regolare il peso del gateway per l'invio di tutto il traffico rimanente, ovvero tutti gli utenti non Firefox, al nuovo sava:1.1.0. Fare clic su ![Interfaccia utente di Vamp: modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) accanto a **WEIGHT** (PESO) e impostare la distribuzione del peso in modo che il 100% venga indirizzato alla route sava/sava_cluster/sava:1.1.0/webport.
+5. Infine, regolare hello gateway peso toosend tutti i rimanenti traffico (tutti gli utenti non Firefox) toohello nuova sava: 1.1.0. Fare clic su ![Vamp dell'interfaccia utente - modifica](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) Avanti troppo**peso** e impostare distribuzione del peso hello in modo diretto toohello route sava/sava_cluster/sava:1.1.0/webport di è 100%.
 
-  Tutto il traffico non filtrato dalla condizione ora viene indirizzato alla nuova versione di sava:1.1.0.
+  Tutto il traffico non filtrato condizione hello è diretto toohello nuova sava: 1.1.0.
 
-6. Per visualizzare il filtro in azione, aprire due diversi browser, Firefox e un altro browser, e accedere al servizio sava da entrambi. Tutte le richieste di Firefox vengono inviate a sava:1.0.0, mentre tutti gli altri browser vengono indirizzati a sava:1.1.0.
+6. filtro hello toosee in azione, aprire due diversi browser (uno Firefox e un altro browser) e accedere hello sava servizio da entrambi. Tutte le richieste di Firefox vengono inviate toosava:1.0.0, mentre tutti gli altri browser sono toosava:1.1.0 diretto.
 
   ![Interfaccia utente di Vamp: filtrare il traffico](./media/container-service-dcos-vamp-canary-release/27_filter_traffic.png)
 
 ## <a name="summing-up"></a>Riepilogo
 
-Questo articolo contiene una rapida introduzione a Vamp in un cluster DC/OS. Per i principianti, Vamp è stato messo in esecuzione nel cluster DC/OS del servizio contenitore di Azure, è stato distribuito un servizio con un progetto Vamp ed è stato effettuato l'accesso all'endpoint esposto, ovvero il gateway.
+Questo articolo è stato tooVamp una rapida introduzione in un cluster di controller di dominio o del sistema operativo. Per iniziare, ottenuto Vamp e in esecuzione in Azure contenitore del servizio controller di dominio o sistema operativo cluster, distribuito un servizio con un progetto iniziale Vamp e vi ha avuto accesso all'endpoint esposto hello (gateway).
 
-Sono state trattate anche alcune funzioni importanti di Vamp: l'unione di una nuova variante di servizio alla distribuzione in esecuzione e l'introduzione incrementale, quindi il filtraggio del traffico per risolvere un'incompatibilità nota.
+È inoltre stata presa in considerazione alcune potenti funzionalità di Vamp: unione di un nuovo toohello variant di servizio in esecuzione la distribuzione e introducendo in modo incrementale, quindi filtrare il traffico tooresolve un'incompatibilità nota.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Informazioni sulla gestione delle azioni Vamp attraverso le [API REST di Vamp](http://vamp.io/documentation/api/api-reference/).
+* Informazioni sulla gestione delle azioni Vamp tramite hello [Vamp API REST](http://vamp.io/documentation/api/api-reference/).
 
 * Creazione di script di automazione Vamp in Node.js ed esecuzione degli stessi come [flussi di lavoro di Vamp](http://vamp.io/documentation/tutorials/create-a-workflow/).
 

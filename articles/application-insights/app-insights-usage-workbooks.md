@@ -1,5 +1,5 @@
 ---
-title: Analizzare e condividere i dati di utilizzo con cartelle di lavoro interattive in Azure Application Insights | Microsoft docs
+title: aaaInvestigate e condivisione di dati di utilizzo delle cartelle di lavoro interattivi in Azure Application Insights | Documenti Microsoft
 description: Analisi demografica degli utenti dell'app Web.
 services: application-insights
 documentationcenter: 
@@ -12,25 +12,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: bwren
-ms.openlocfilehash: 75028b4fbda43d90f56690a33c7eb624fce049c8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bdcebe0f97fdad0a0b301df5950dc09698f5a4dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="investigate-and-share-usage-data-with-interactive-workbooks-in-application-insights"></a>Analizzare e condividere i dati di utilizzo con cartelle di lavoro interattive in Application Insights
 
-Le cartelle di lavoro combinano le visualizzazioni dei dati di [Azure Application Insights](app-insights-overview.md), le [query di Analisi](app-insights-analytics.md) e il testo in documenti interattivi. Le cartelle di lavoro possono essere modificate da altri membri del team con accesso alla stessa risorsa di Azure. Ciò significa che le query e i controlli usati per creare una cartella di lavoro sono disponibili ad altri utenti che leggono la cartella di lavoro semplificandone l'esplorazione, l'estensione e la ricerca di errori.
+Le cartelle di lavoro combinano le visualizzazioni dei dati di [Azure Application Insights](app-insights-overview.md), le [query di Analisi](app-insights-analytics.md) e il testo in documenti interattivi. Le cartelle di lavoro vengono modificati dagli altri membri del team con accesso toohello stessa risorsa di Azure. Ciò significa hello query e i controlli utilizzati toocreate una cartella di lavoro sono disponibili tooother connetteranno cartella di lavoro hello, rendendoli tooexplore facile estendere e verificare la presenza di errori.
 
 Le cartelle di lavoro sono utili per scenari simili ai seguenti:
 
-* Esplorazione dell'utilizzo dell'app quando non si conoscono le metriche di interesse in anticipo, ovvero il numero di utenti, i tassi di fidelizzazione, i tassi di conversione e così via. A differenza di altri strumenti di analisi dell'utilizzo di Application Insights, le cartelle di lavoro consentono di combinare più tipi di visualizzazioni e analisi risultando ideali per questo tipo di esplorazione in formato libero.
-* Descrizione al proprio team delle prestazioni di una nuova funzionalità rilasciata visualizzando i conteggi degli utenti per le interazioni chiave e altre metriche.
-* Condivisione dei risultati di un esperimento A/B nell'app con altri membri del team. È possibile descrivere gli obiettivi dell'esperimento usando testo e visualizzare ogni metrica di utilizzo e query di Analisi usate per valutare l'esperimento con callout chiari che indicano se la singola metrica è al di sopra o al di sotto del target.
-* Segnalazione dell'impatto di un'interruzione nell'utilizzo dell'app, combinazione dei dati, spiegazione del testo e descrizione dei passaggi successivi per impedire interruzioni future.
+* Esplorazione dell'utilizzo di hello dell'app quando non si conoscono in anticipo le metriche di hello di interesse: numero di utenti, i tassi di conservazione, tassi di conversione, e così via. A differenza di altri strumenti di analisi dell'utilizzo di Application Insights, le cartelle di lavoro consentono di combinare più tipi di visualizzazioni e analisi risultando ideali per questo tipo di esplorazione in formato libero.
+* Descrivere il team tooyour le prestazioni di una funzionalità rilasciata di recente, dall'utente che mostra i conteggi per chiave e le interazioni di altre metriche.
+* Condivisione risultati hello di A / B provare in un'app con altri membri del team. È possibile illustrare gli obiettivi di hello per hello sperimentare testo, quindi mostrano ogni metrica di utilizzo e query Analitica utilizzato esperimento hello tooevaluate, insieme a deselezionare callout per se ogni metrica è di sopra o sotto-destinazione.
+* Report impatto hello di un'interruzione all'utilizzo di hello dell'app, la combinazione di dati, spiegazione di testo e una descrizione delle interruzioni di tooprevent procedura successiva in hello future.
 
 > [!NOTE]
-> La risorsa di Application Insights deve contenere visualizzazioni di pagina o eventi personalizzati per usare le cartelle di lavoro. Vedere le [informazioni su come configurare l'app per la raccolta automatica delle visualizzazioni di pagina con Application Insights JavaScript SDK](app-insights-javascript.md).
+> La risorsa di Application Insights deve contenere le visualizzazioni di pagina o le cartelle di lavoro toouse eventi personalizzati. [Informazioni su come tooset verso l'alto la pagina toocollect app Visualizza automaticamente con Application Insights JavaScript SDK hello](app-insights-javascript.md).
 > 
 > 
 
@@ -38,23 +38,23 @@ Le cartelle di lavoro sono utili per scenari simili ai seguenti:
 
 Una cartella di lavoro è costituita da sezioni: visualizzazioni dell'utilizzo modificabili separatamente, grafici, tabelle, testo o risultati delle query di Analisi.
 
-Per modificare il contenuto di una sezione di una cartella di lavoro, fare clic sul pulsante **Modifica** sotto e a destra della sezione.
+contenuto di hello tooedit di una sezione di cartella di lavoro, fare clic su hello **modifica** pulsante riportato di seguito e toohello destra della sezione di hello cartella di lavoro.
 
 ![Controlli di modifica delle sezioni delle cartelle di controllo di Application Insights](./media/app-insights-usage-workbooks/editing-controls.png)
 
-1. Dopo aver modificato una sezione, fare clic su **Modifica completata** nell'angolo inferiore sinistro della sezione.
+1. Dopo avere una sezione di modifica, fare clic su **modifica eseguita** in hello inferiore sinistro della sezione hello.
 
-2. Per creare un duplicato di una sezione, fare clic sull'icona **Clona questa sezione**. La creazione di sezioni duplicate è un ottimo modo per eseguire l'iterazione in una query senza perdere le iterazioni precedenti.
+2. toocreate un duplicato di una sezione, fare clic su hello **Clone di questa sezione** icona. La creazione di sezioni duplicate è un tooiterate tooway grande su una query senza perdere iterazioni precedenti.
 
-3. Per spostare una sezione verso l'alto in una cartella di lavoro, fare clic sull'icona **Sposta in alto** o **Sposta giù**.
+3. toomove una sezione in una cartella di lavoro, fare clic su hello **spostare verso l'alto** o **Sposta giù** icona.
 
-4. Per rimuovere una sezione in modo permanente, fare clic sull'icona **Rimuovi**.
+4. tooremove una sezione in modo permanente, fare clic su hello **rimuovere** icona.
 
 ## <a name="adding-usage-data-visualization-sections"></a>Aggiunta di sezioni di visualizzazioni dei dati di utilizzo
 
-Le cartelle di lavoro offrono quattro tipi di visualizzazioni di analisi di utilizzo predefiniti. Ogni tipo risponde a una domanda comune sull'utilizzo dell'app. Per aggiungere tabelle e grafici diversi da queste quattro sezioni, aggiungere sezioni di query di Analisi (vedere sotto).
+Le cartelle di lavoro offrono quattro tipi di visualizzazioni di analisi di utilizzo predefiniti. Ogni risponde alle domande comuni sull'utilizzo hello dell'app. tooadd tabelle e grafici diversi da questi quattro sezioni, aggiungere sezioni query Analitica (vedere sotto).
 
-Per aggiungere una sezione Utenti, Sessioni, Eventi o Conservazione alla cartella di lavoro, usare il pulsante **Aggiungi utenti** o un pulsante corrispondente nella parte inferiore della cartella di lavoro o di una sezione.
+tooadd utenti, sessioni, eventi o memorizzazione sezione tooyour cartella di lavoro, utilizzare hello **Aggiungi utenti** o altro pulsante corrispondente nella parte inferiore di hello della cartella di lavoro hello o nella parte inferiore di hello di ogni sezione.
 
 ![Sezione Utenti nelle cartelle di lavoro](./media/app-insights-usage-workbooks/users-section.png)
 
@@ -64,61 +64,61 @@ Le sezioni **Sessioni** rispondono alla domanda "Per quante sessioni gli utenti 
 
 Le sezioni **Eventi** rispondono alla domanda "Quante volte gli utenti hanno visualizzato una pagina o usato una funzionalità del sito?"
 
-Ognuno di questi tre tipi di sezione include gli stessi insiemi di controlli e visualizzazioni:
+Ognuno di questi tipi di tre sezione offre hello stessi set di controlli e le visualizzazioni:
 
 * Vedere le [informazioni sulla modifica delle sezioni Utenti, Sessioni ed Eventi](app-insights-usage-segmentation.md)
-* Attivare o disattivare il grafico principale, le griglie degli istogrammi, le informazioni dettagliate automatiche e le visualizzazioni utenti di esempio usando le caselle di controllo **Mostra grafico**, **Mostra griglia**, **Mostra i dettagli** e **Esempio di questi utenti** nella parte superiore di ogni sezione.
+* Attivare o disattivare grafico principale hello, griglie istogramma, insights automatico e visualizzazioni di utenti di esempio con hello **Mostra grafico**, **Mostra griglia**, **Insights Mostra**e **Esempio di questi utenti** caselle di controllo nella parte superiore di hello di ogni sezione.
 
 ![Sezione Conservazione nelle cartelle di lavoro](./media/app-insights-usage-workbooks/retention-section.png)
 
 Le sezioni **Conservazione** rispondono alla domanda "Degli utenti che hanno visualizzato una pagina o usato una funzionalità in un determinato giorno o settimana quanti sono tornati un giorno o una settimana successiva?"
 
 * Vedere le [informazioni sulla modifica delle sezioni Conservazione](app-insights-usage-retention.md)
-* Attivare o disattivare il grafico Totale conservazione facoltativo usando la casella di controllo **Mostra il grafico generale della conservazione** nella parte superiore della sezione.
+* Attiva/Disattiva hello facoltativo memorizzazione globale grafico utilizzando hello **Mostra grafico di memorizzazione globale** casella di controllo nella parte superiore di hello della sezione hello.
 
 ## <a name="adding-application-insights-analytics-sections"></a>Aggiunta di sezioni di analisi di Application Insights
 
 ![Sezione di analisi nelle cartelle di lavoro](./media/app-insights-usage-workbooks/analytics-section.png)
 
-Per aggiungere una sezione di query di Analisi di Application Insights alla cartella di lavoro, usare il pulsante **Aggiungi query di analisi** nella parte inferiore della cartella di lavoro o nella parte inferiore di una sezione.
+un'applicazione Insights Analitica query sezione tooyour cartella di lavoro tooadd utilizzare hello **query Analitica aggiungere** pulsante nella parte inferiore di hello della cartella di lavoro hello o nella parte inferiore di hello di ogni sezione.
 
-Le sezioni delle query di Analisi consentono di aggiungere query arbitrarie nei dati di Application Insights nelle cartelle di lavoro. Questa flessibilità consente di usare le sezioni di query di Analisi per rispondere a qualsiasi domanda sul sito diversa dalle quattro domande indicate in precedenza per le sezioni Utenti, Sessioni, Eventi e Conservazione, ad esempio:
+Le sezioni delle query di Analisi consentono di aggiungere query arbitrarie nei dati di Application Insights nelle cartelle di lavoro. Questa flessibilità consente a sezioni di query Analitica devono essere il go-toofor rispondere alle domande sul sito diverso da hello quattro elencati in precedenza per gli utenti, sessioni, eventi e memorizzazione, ad esempio:
 
-* Quante eccezioni ha generato il sito nello stesso periodo di tempo come riduzione dell'utilizzo?
-* Qual è stata la distribuzione dei tempi di caricamento della pagina per gli utenti che visualizzano una pagina?
-* Quanti utenti hanno visualizzato un insieme di pagine nel sito ma non un altro insieme di pagine? Queste informazioni possono essere utili per comprendere se sono presenti cluster di utenti che usano sottoinsiemi diversi di funzionalità del sito (usare l'operatore `join` con il modificatore `kind=leftanti` nel linguaggio di query di Log Analytics).
+* Il numero di eccezioni ha throw del sito durante hello stesso periodo, come una diminuzione dell'utilizzo?
+* Qual era distribuzione hello dei tempi di caricamento pagina per gli utenti che visualizzeranno alcuni pagina?
+* Quanti utenti hanno visualizzato un insieme di pagine nel sito ma non un altro insieme di pagine? Se si dispone di gruppi di utenti che utilizzano subset diversi di funzionalità del sito, questo può essere utile toounderstand (utilizzare hello `join` operatore con hello `kind=leftanti` modificatore nel linguaggio di query Log Analitica hello).
 
-Usare le [informazioni di riferimento sul linguaggio di query di Log Analytics](https://docs.loganalytics.io/) per altre informazioni sulla scrittura di query.
+Hello utilizzare [riferimenti al linguaggio di query Log Analitica](https://docs.loganalytics.io/) toolearn ulteriori informazioni sulla scrittura di query.
 
 ## <a name="adding-text-and-markdown-sections"></a>Aggiunta di sezioni di testo e Markdown
 
-L'aggiunta di intestazioni, spiegazioni e commenti nelle cartelle di lavoro consente di trasformare un insieme di tabelle e grafici in un resoconto. Le sezioni di testo nelle cartelle di lavoro supportano la [sintassi Markdown](https://daringfireball.net/projects/markdown/) per la formattazione del testo, ad esempio intestazioni, grassetto, corsivo ed elenchi puntati.
+Aggiunta di intestazioni, spiegazioni e le cartelle di lavoro di commenti tooyour consente di trasformare un set di tabelle e grafici in un resoconto. Le sezioni di testo nelle cartelle di lavoro supportano hello [sintassi Markdown](https://daringfireball.net/projects/markdown/) per la formattazione del testo, ad esempio intestazioni, grassetto, corsivo ed elenchi puntati.
 
-Per aggiungere una sezione di testo alla cartella di lavoro, usare il pulsante **Aggiungi testo** nella parte inferiore della cartella di lavoro o nella parte inferiore di una sezione.
+cartella di lavoro tooyour, sezione testo tooadd utilizzare hello **aggiungere testo** pulsante nella parte inferiore di hello della cartella di lavoro hello o nella parte inferiore di hello di ogni sezione.
 
 ## <a name="saving-and-sharing-workbooks-with-your-team"></a>Salvataggio e condivisione delle cartelle di lavoro con il team
 
-Le cartelle di lavoro vengono salvate all'interno di una risorsa di Application Insights, ovvero nella sezione **Report personali** privata o nella sezione **Report condivisi** accessibile a tutti gli utenti che hanno accesso alla risorsa di Application Insights. Per visualizzare tutte le cartelle di lavoro della risorsa, fare clic sul pulsante **Apri** nella barra delle azioni.
+Le cartelle di lavoro vengono salvati all'interno di una risorsa di Application Insights in hello **report personali** sezione tooyou privata o in hello **report condivisi** sezione tooeveryone accessibili con accesso toohello risorsa di Application Insights. tooview tutte le cartelle di lavoro di hello in risorsa hello, fare clic su hello **aprire** pulsante nella barra delle azioni hello.
 
-Per condividere una cartella di lavoro che è attualmente in **Report personali**:
+una cartella di lavoro è attualmente in tooshare **report personali**:
 
-1. Fare clic su **Apri** nella barra delle azioni
-2. Fare clic sul pulsante "…" accanto alla cartella di lavoro da condividere
-3. Fare clic su **Sposta in Report condivisi**.
+1. Fare clic su **aprire** nella barra delle azioni hello
+2. Fare clic sul pulsante "…" hello accanto a cartella di lavoro hello desiderato tooshare
+3. Fare clic su **spostare report tooShared**.
 
-Per condividere una cartella di lavoro con un collegamento o tramite posta elettronica, fare clic su **Condividi** nella barra delle azioni. Tenere presente che i destinatari del collegamento necessitano dell'accesso alla risorsa nel portale di Azure per visualizzare la cartella di lavoro. Per apportare modifiche, i destinatari devono avere almeno le autorizzazioni di collaboratori per la risorsa.
+Fare clic su una cartella di lavoro con un collegamento o tramite posta elettronica, tooshare **condivisione** nella barra delle azioni hello. Tenere presente che i destinatari del collegamento hello necessitano accedere toothis risorsa nella cartella di lavoro hello hello tooview portale Azure. toomake modifiche, i destinatari devono almeno le autorizzazioni di collaboratore per la risorsa hello.
 
-Per aggiungere un collegamento in una cartella di lavoro in un dashboard di Azure:
+toopin un tooan di cartella di lavoro di collegamento tooa Dashboard di Azure:
 
-1. Fare clic su **Apri** nella barra delle azioni
-2. Fare clic sul pulsante "…" accanto alla cartella di lavoro da aggiungere
-3. Fare clic su **Aggiungi al dashboard**.
-
-## <a name="next-steps"></a>Passaggi successivi
+1. Fare clic su **aprire** nella barra delle azioni hello
+2. Fare clic sul pulsante "…" hello accanto a cartella di lavoro hello desiderato toopin
+3. Fare clic su **toodashboard Pin**.
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Per abilitare le esperienze di utilizzo, iniziare a inviare [eventi personalizzati](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) o [visualizzazioni pagina](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
-- Se si inviano già eventi personalizzati o visualizzazioni pagina, è possibile esplorare gli strumenti relativi all'uso per scoprire come gli utenti usano il servizio.
+
+## <a name="next-steps"></a>Passaggi successivi
+- utilizzo di tooenable esperienze, avviare l'invio [eventi personalizzati](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) o [visualizzazioni pagina](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
+- Se si invia già hello utilizzo strumenti toolearn di esplorare gli eventi personalizzati o le visualizzazioni di pagina, come gli utenti di usare il servizio.
     - [Utenti, sessioni ed eventi](app-insights-usage-segmentation.md)
     - [Grafici a imbuto](usage-funnels.md)
     - [Conservazione](app-insights-usage-retention.md)

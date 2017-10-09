@@ -1,6 +1,6 @@
 ---
-title: Documentazione della rete CDN di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare la rete per la distribuzione di contenuti (CDN) per fornire contenuti da data center globali a qualsivoglia dispositivo. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
+title: aaaAzure CDN documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse contenuto toodeliver rete di contenuti (CDN) di dati globali centri tooany dispositivo. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
 services: cdn
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8b7d2e7825fce74fad391e52dd423dec8f9a0e17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9d1a26398369233d75f3647a5a68f3e7f8698eb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cdn-documentation"></a>Documentazione relativa alla Rete di distribuzione dei contenuti
 
-Informazioni su come usare la rete per la distribuzione di contenuti (CDN) per fornire contenuto a larghezza di banda elevata ospitato in Azure o altrove. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come usare la rete CDN per fornire contenuti da data center globali a qualsivoglia dispositivo.
+Informazioni su come rete di contenuti (CDN) toodeliver larghezza di banda elevata toouse contenuto ospitato in Azure o altrove. Esercitazioni, riferimenti ad API e altra documentazione illustrano come contenuto di toodeliver della rete CDN toouse dai dati globali centri tooany dispositivo.
 
 <ul class="panelContent cardsFTitle">
     <li>

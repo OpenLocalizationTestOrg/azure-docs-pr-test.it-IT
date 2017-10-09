@@ -1,6 +1,6 @@
 ---
-title: Visualizzare la topologia con Network Watcher di Azure - PowerShell | Documentazione Microsoft
-description: Questo articolo descrive come usare PowerShell per eseguire una query relativa alla topologia di rete.
+title: topologia Watcher di rete di Azure aaaView - PowerShell | Documenti Microsoft
+description: "In questo articolo descriverà come toouse PowerShell tooquery la topologia di rete."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 40e01a7a6a2ea6127ab725f04649cec47b9d9422
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bc0ecf5baa81a68be53f55c74f362a7bc97116f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-network-watcher-topology-with-powershell"></a>Visualizzare la topologia di Network Watcher con PowerShell
 
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-topology-cli.md)
 > - [API REST](network-watcher-topology-rest.md)
 
-La funzionalità per la visualizzazione della topologia di Network Watcher offre una rappresentazione visiva delle risorse di rete in una sottoscrizione. Nel portale, questa visualizzazione è automatica. È possibile recuperare le informazioni sottostanti alla visualizzazione della topologia nel portale usando PowerShell.
-Questa funzionalità rende le informazioni sulla topologia più versatili, poiché i dati possono essere usati anche da altri strumenti per compilare la visualizzazione.
+funzionalità di topologia Hello del controllo di rete fornisce una rappresentazione visiva delle risorse di rete hello in una sottoscrizione. Nel portale di hello, questa visualizzazione viene presentata tooyou automaticamente. informazioni Hello dietro vista della topologia hello nel portale di hello è possibile recuperare tramite PowerShell.
+Questa funzionalità rende più versatile come hello dati possono essere utilizzati da altri strumenti toobuild out visualizzazione hello informazioni sulla topologia di hello.
 
-L'interconnessione è modellata in due relazioni.
+interconnessione Hello viene modellata in due relazioni.
 
 - **Contenimento** - Esempio: la rete virtuale contiene una subnet che contiene una scheda NIC
 - **Associazione** - Esempio: la scheda NIC è associata a una macchina virtuale
 
-L'elenco include le proprietà restituite quando si esegue una query all'API REST della topologia.
+Hello seguito sono le proprietà restituite quando si eseguono query hello API REST di topologia.
 
-* **name** - Il nome della risorsa.
-* **id** - L'URI della risorsa.
-* **location** - La località in cui si risiede la risorsa.
-* **associations** - Un elenco di associazioni all'oggetto di riferimento.
-    * **name** - Il nome della risorsa di riferimento.
-    * **resourceId** - ResourceId è l'URI della risorsa di riferimento nell'associazione.
-    * **associationType** - Il valore fa riferimento alla relazione tra l'oggetto figlio e l'oggetto padre. I valori validi sono **Contains** o **Associated**.
+* **nome** : hello nome della risorsa hello
+* **ID** -hello uri della risorsa hello.
+* **percorso** -hello percorso in cui risiede la risorsa hello.
+* **le associazioni** -un elenco di associazioni toohello fa riferimento a oggetto.
+    * **nome** -nome hello di hello risorsa a cui viene fatto riferimento.
+    * **resourceId** -resourceId hello è hello uri della risorsa hello a cui fa riferimento nell'associazione hello.
+    * **associationType** -relazione hello tra l'oggetto figlio hello e padre hello fa riferimento a questo valore. I valori validi sono **Contains** o **Associated**.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-In questo scenario, il cmdlet `Get-AzureRmNetworkWatcherTopology` viene usato per recuperare le informazioni sulla topologia. È anche disponibile un articolo che illustra come [recuperare una topologia di rete con l'API REST](network-watcher-topology-rest.md).
+In questo scenario, si usa hello `Get-AzureRmNetworkWatcherTopology` informazioni sulla topologia di cmdlet tooretrieve hello. È inoltre disponibile un articolo su come troppo[recuperare la topologia di rete con l'API REST](network-watcher-topology-rest.md).
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete.
 
 ## <a name="scenario"></a>Scenario
 
-Lo scenario illustrato in questo articolo consente di recuperare la risposta relativa alla topologia per un gruppo di risorse specificato.
+scenario di Hello illustrato in questo articolo recupera risposta topologia hello per un gruppo di risorse specificato.
 
 ## <a name="retrieve-network-watcher"></a>Recuperare Network Watcher
 
-Il primo passaggio consente di recuperare l'istanza di Network Watcher. La variabile `$networkWatcher` viene passata al cmdlet `Get-AzureRmNetworkWatcherTopology`.
+innanzitutto Hello è l'istanza di tooretrieve hello Watcher di rete. Hello `$networkWatcher` variabile viene passata toohello `Get-AzureRmNetworkWatcherTopology` cmdlet.
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" }
@@ -67,7 +67,7 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="retrieve-topology"></a>Recuperare una topologia
 
-Il cmdlet `Get-AzureRmNetworkWatcherTopology` recupera la topologia per un gruppo di risorse specificato.
+Hello `Get-AzureRmNetworkWatcherTopology` cmdlet recupera la topologia di hello per un gruppo di risorse specificato.
 
 ```powershell
 Get-AzureRmNetworkWatcherTopology -NetworkWatcher $networkWatcher -TargetResourceGroupName testrg
@@ -75,7 +75,7 @@ Get-AzureRmNetworkWatcherTopology -NetworkWatcher $networkWatcher -TargetResourc
 
 ## <a name="results"></a>Risultati
 
-I risultati restituiti hanno il nome proprietà "Resources", che contiene il corpo della risposta in formato JSON per il cmdlet `Get-AzureRmNetworkWatcherTopology`.  La risposta contiene le risorse nel gruppo di sicurezza di rete e le relative associazioni (vale a dire, Contains, Associated).
+Hello risultati restituiti hanno una proprietà nome "Resources", che contiene corpo della risposta json hello per hello `Get-AzureRmNetworkWatcherTopology` cmdlet.  risposta Hello contiene risorse hello hello il gruppo di sicurezza di rete e le relative associazioni (vale a dire, Contains, associate).
 
 ```json
 Id              : 00000000-0000-0000-0000-000000000000
@@ -135,6 +135,6 @@ Resources       : [
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come visualizzare i log dei flussi dei gruppi di sicurezza di rete con Power BI, vedere [Visualizzare i log dei flussi dei gruppi di sicurezza di rete con Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+Informazioni su come toovisualize il flusso di gruppo Registra con Power BI visitando [NSG visualizzare flussi di log con Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
 

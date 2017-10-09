@@ -1,6 +1,6 @@
 ---
-title: Raccogliere log direttamente da un processo del servizio di Azure Service Fabric | Microsoft Azure
-description: Questo articolo illustra come usare le applicazioni di Service Fabric per inviare log direttamente a una posizione centralizzata, come Azure Application Insights o Elasticsearch, senza basarsi sull'agente di Diagnostica di Azure.
+title: aaaCollect log direttamente da un Azure Service Fabric processo del servizio | Microsoft Azure
+description: Descrive le applicazioni possono inviare i log direttamente, come posizione centrale tooa Azure Application Insights o Elasticsearch, senza basarsi sull'agente di diagnostica di Azure di Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: karolz-ms
@@ -15,63 +15,63 @@ ms.workload: NA
 ms.date: 01/18/2017
 ms.author: karolz
 redirect_url: /azure/service-fabric/service-fabric-diagnostics-event-aggregation-eventflow
-ms.openlocfilehash: b7d2541928f4248750417a77d99033c8b4354dcc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0681a2a6aaa76028d7cb469c31c006f24bbe954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-logs-directly-from-an-azure-service-fabric-service-process"></a>Raccogliere log direttamente da un processo del servizio di Azure Service Fabric
 ## <a name="in-process-log-collection"></a>Raccolta di log nel processo
-Nei servizi di **Azure Service Fabric** è possibile raccogliere log applicazioni tramite l'[estensione Diagnostica di Azure](service-fabric-diagnostics-how-to-setup-wad.md) se il set di origini e destinazioni di log è di piccole dimensioni e non cambia spesso e se il mapping tra le origini e le relative destinazioni è semplice. In caso contrario, è possibile consentire ai servizi di inviare i log direttamente a una posizione centralizzata. Questo processo è noto come **raccolta di log nel processo** e presenta diversi vantaggi potenziali:
+Applicazione di raccogliere i log di [l'estensione diagnostica Azure](service-fabric-diagnostics-how-to-setup-wad.md) è un'opzione valida per **Azure Service Fabric** servizi se set hello di log origini e destinazioni è ridotto, non cambiano spesso e non esiste rappresenta un mapping diretto tra origini hello e le destinazioni. In caso contrario, in alternativa, è toohave servizi inviano i log direttamente posizione centrale tooa. Questo processo è noto come **raccolta di log nel processo** e presenta diversi vantaggi potenziali:
 
 * *Facilità di configurazione e distribuzione*
 
-    * La configurazione della raccolta dei dati di diagnostica è solo una parte della configurazione del servizio ed è facile mantenerla sempre "sincronizzata" con il resto dell'applicazione.
+    * configurazione di Hello di raccolta dati di diagnostica è solo parte della configurazione del servizio hello. È facile tooalways keep "sincronizzato" con hello il resto dell'applicazione hello.
     * È facile ottenere la configurazione per ogni applicazione o servizio.
-        * La raccolta di log basata su agenti richiede in genere una distribuzione e configurazione separate dell'agente di diagnostica, che costituisce un'attività amministrativa aggiuntiva e una potenziale fonte di errori. Spesso è consentita solo un'istanza dell'agente per ogni macchina virtuale (nodo) e la configurazione dell'agente è condivisa tra tutte le applicazioni e i servizi in esecuzione nel nodo. 
+        * Raccolta di log basato su agenti richiede in genere una distribuzione separata e la configurazione dell'agente, diagnostica hello è un'attività amministrativa extra e una potenziale fonte di errori. Spesso è presente solo un'istanza dell'agente di hello consentito per ogni macchina virtuale (nodo) e la configurazione dell'agente hello viene condiviso tra tutte le applicazioni e servizi in esecuzione su tale nodo. 
 
 * *Flessibilità*
    
-    * L'applicazione può inviare i dati ogni volta che è necessario, purché sia disponibile una libreria client che supporta il sistema di archiviazione dati di destinazione. È possibile aggiungere nuove destinazioni in base alle esigenze.
+    * un'applicazione Hello può inviare dati di hello ogni volta che è necessario toogo, purché vi è una libreria client che supporta il sistema di archiviazione dati hello di destinazione. È possibile aggiungere nuove destinazioni in base alle esigenze.
     * È possibile implementare complesse regole di acquisizione, filtro e aggregazione dati.
-    * La raccolta di log basata su agenti è spesso limitata dai sink di dati supportati dall'agente. Alcuni agenti sono estendibili.
+    * Raccolta di log basato su agenti è spesso limitata dalla sink dati hello che hello agente supporta. Alcuni agenti sono estendibili.
 
-* *Accesso al contesto e ai dati di applicazione interni*
+* *Contesto e accedere ai dati di applicazione toointernal*
    
-    * Il sottosistema di diagnostica in esecuzione nel processo dell'applicazione o del servizio può facilmente aumentare le tracce con informazioni contestuali.
-    * Nella raccolta di log basata su agenti i dati devono essere inviati a un agente tramite un meccanismo di comunicazione interprocesso, ad esempio Event Tracing for Windows (ETW). Questo meccanismo può imporre limitazioni aggiuntive.
+    * sottosistema di diagnostica Hello in esecuzione nel processo di applicazioni o servizi hello possibile integrare facilmente le tracce di hello con informazioni contestuali.
+    * Con la raccolta di log basato su agenti, hello devono essere inviati dati agente tooan tramite un meccanismo di comunicazione tra processi, ad esempio Event Tracing for Windows. Questo meccanismo può imporre limitazioni aggiuntive.
 
-È possibile combinare i due metodi di raccolta e trarre vantaggio da entrambi. In realtà, potrebbe essere la soluzione migliore per molte applicazioni. La raccolta basata su agenti è una soluzione naturale per la raccolta di log correlati all'intero cluster e a singoli nodi del cluster. Rispetto alla raccolta di log nel processo, è un modo molto più affidabile per diagnosticare i problemi di avvio e gli arresti anomali del servizio. In presenza di molti servizi in esecuzione all'interno di un cluster di Service Fabric, se ogni servizio esegue autonomamente la raccolta di log nel processo si avrà un gran numero di connessioni in uscita dal cluster. Questo può mettere a dura prova sia il sottosistema di rete che la destinazione di log. Un agente come [**Diagnostica di Azure**](../cloud-services/cloud-services-dotnet-diagnostics.md) può raccogliere dati da più servizi e inviarli tutti tramite un numero limitato di connessioni, migliorando così la velocità effettiva. 
+È possibile toocombine e trarre vantaggio da entrambi i metodi di raccolta. Infatti, potrebbe essere la soluzione migliore di hello per molte applicazioni. Basato su agenti di raccolta è una soluzione naturale per la raccolta dell'intero cluster toohello correlati registri e i singoli nodi del cluster. È molto più affidabile, rispetto alla raccolta di log in-process, problemi di avvio del servizio toodiagnose e arresti anomali del sistema. Con molti servizi in esecuzione all'interno di un cluster di Service Fabric, inoltre, ogni servizio esegue la propria raccolta di log in-process comporta molte connessioni in uscita dal cluster hello. È un numero elevato di connessioni in uscita sovraccarico per il sottosistema di rete hello e per la destinazione di log hello. Un agente come [**Diagnostica di Azure**](../cloud-services/cloud-services-dotnet-diagnostics.md) può raccogliere dati da più servizi e inviarli tutti tramite un numero limitato di connessioni, migliorando così la velocità effettiva. 
 
-Questo articolo illustra come configurare una raccolta di log nel processo usando la [**libreria open-source EventFlow**](https://github.com/Azure/diagnostics-eventflow). È possibile usare altre librerie per lo stesso scopo, ma EventFlow ha il vantaggio di essere stata progettata specificamente per la raccolta di log nel processo e per supportare i servizi di Service Fabric. Come destinazione di log viene usato [**Azure Application Insights**](https://azure.microsoft.com/services/application-insights/). Sono supportate anche altre destinazioni, ad esempio [**Hub eventi**](https://azure.microsoft.com/services/event-hubs/) o [**Elasticsearch**](https://www.elastic.co/products/elasticsearch). È sufficiente installare il pacchetto NuGet appropriato e configurare la destinazione nel file di configurazione EventFlow. Per altre informazioni sulle destinazioni di log diverse da Application Insights, vedere la [documentazione di EventFlow](https://github.com/Azure/diagnostics-eventflow).
+In questo articolo viene illustrata la modalità tooset di un processo nel log insieme utilizzando [ **libreria open source EventFlow**](https://github.com/Azure/diagnostics-eventflow). Altre librerie potrebbero essere utilizzate per hello stesso scopo, ma EventFlow ha il vantaggio di hello di che è stato progettato specificatamente per i servizi Service Fabric insieme e toosupport nel processo log. Utilizziamo [ **Azure Application Insights** ](https://azure.microsoft.com/services/application-insights/) come destinazione di log hello. Sono supportate anche altre destinazioni, ad esempio [**Hub eventi**](https://azure.microsoft.com/services/event-hubs/) o [**Elasticsearch**](https://www.elastic.co/products/elasticsearch). È semplicemente una questione di installazione del pacchetto NuGet appropriato e la configurazione di destinazione hello nel file di configurazione EventFlow hello. Per altre informazioni sulle destinazioni di log diverse da Application Insights, vedere la [documentazione di EventFlow](https://github.com/Azure/diagnostics-eventflow).
 
-## <a name="adding-eventflow-library-to-a-service-fabric-service-project"></a>Aggiunta della libreria EventFlow a un progetto di servizio di Service Fabric
-I file binari di EventFlow sono disponibili come set di pacchetti NuGet. Per aggiungere EventFlow a un progetto di servizio di Service Fabric, fare clic sul progetto in Esplora soluzioni e scegliere "Gestisci pacchetti NuGet". Passare alla scheda "Sfoglia" e cercare "`Diagnostics.EventFlow`":
+## <a name="adding-eventflow-library-tooa-service-fabric-service-project"></a>Aggiunta di progetto di servizio Service Fabric tooa EventFlow libreria
+I file binari di EventFlow sono disponibili come set di pacchetti NuGet. tooadd progetto del servizio Service Fabric tooa EventFlow, fare clic sul progetto in Esplora soluzioni hello hello e scegliere "Gestisci NuGet pacchetti". Cambia la scheda "Sfoglia" toohello e cercare "`Diagnostics.EventFlow`":
 
 ![Pacchetti NuGet di EventFlow nell'interfaccia utente di gestione pacchetti NuGet di Visual Studio][1]
 
-Il servizio che ospita EventFlow deve includere pacchetti appropriati a seconda dell'origine e della destinazione dei log applicazioni. Aggiungere i pacchetti seguenti: 
+servizio Hello hosting EventFlow deve includere pacchetti appropriati a seconda di hello origine e di destinazione per i log applicazioni hello. Aggiungere i seguenti pacchetti hello: 
 
 * `Microsoft.Diagnostics.EventFlow.Inputs.EventSource` 
-    * Per acquisire dati dalla classe EventSource del servizio e da oggetti EventSource standard, ad esempio *Microsoft-ServiceFabric-Services* e *Microsoft-ServiceFabric-Actors*.
+    * (toocapture dati dalla classe EventSource del servizio hello e da EventSources standard, ad esempio *ServiceFabric-Microsoft-Services* e *ServiceFabric-Microsoft-attori*)
 * `Microsoft.Diagnostics.EventFlow.Outputs.ApplicationInsights` 
-    * I log verranno inviati a una risorsa di Azure Application Insights.  
+    * (si stabilirà una risorsa di Azure Application Insights tooan di toosend hello log)  
 * `Microsoft.Diagnostics.EventFlow.ServiceFabric` 
-    * Consente l'inizializzazione della pipeline EventFlow dalla configurazione del servizio di Service Fabric e segnala eventuali problemi tramite l'invio di dati di diagnostica in forma di report sull'integrità di Service Fabric.
+    * (consente l'inizializzazione della pipeline EventFlow hello dalla configurazione del servizio Service Fabric e segnala eventuali problemi con l'invio di dati di diagnostica come report di integrità dell'infrastruttura di servizio)
 
 > [!NOTE]
-> Per il pacchetto `Microsoft.Diagnostics.EventFlow.Inputs.EventSource` il progetto di servizio deve puntare a .NET Framework 4.6 o versione successiva. Assicurarsi di impostare il framework di destinazione corretto nelle proprietà del progetto prima di installare questo pacchetto. 
+> `Microsoft.Diagnostics.EventFlow.Inputs.EventSource`il pacchetto richiede hello servizio progetto tootarget .NET Framework 4.6 o versione successiva. Assicurarsi di impostare il framework di destinazione appropriata hello nelle proprietà del progetto prima di installare questo pacchetto. 
 
-Dopo aver installato tutti i pacchetti, è necessario configurare e abilitare EventFlow nel servizio.
+Dopo che tutti hello pacchetti installati, passaggio successivo hello è tooconfigure e abilitare EventFlow nel servizio hello.
 
 ## <a name="configuring-and-enabling-log-collection"></a>Configurazione e abilitazione della raccolta di log
-La pipeline EventFlow, responsabile dell'invio dei log, viene creata da una specifica archiviata in un file di configurazione. Il pacchetto `Microsoft.Diagnostics.EventFlow.ServiceFabric` installa un file di configurazione di iniziale di EventFlow nella cartella `PackageRoot\Config` della soluzione. Il nome del file è `eventFlowConfig.json`. Questo file di configurazione deve essere modificato per l'acquisizione di dati dalla classe `EventSource` del servizio predefinito e l'invio di dati al servizio Application Insights.
+Pipeline EventFlow, responsabile per l'invio di log di hello, viene creata da una specifica archiviata in un file di configurazione. Il pacchetto `Microsoft.Diagnostics.EventFlow.ServiceFabric` installa un file di configurazione di iniziale di EventFlow nella cartella `PackageRoot\Config` della soluzione. nome del file Hello è `eventFlowConfig.json`. Questo file di configurazione deve toobe modificato toocapture dati dal servizio predefinito hello `EventSource` classe e di servizio dati di Insights tooApplication di trasmissione.
 
 > [!NOTE]
-> Si presuppone che si abbia familiarità con il servizio **Azure Application Insights** e che sia disponibile una risorsa di Application Insights da usare per monitorare il servizio di Service Fabric. Per altre informazioni, vedere [Creare una risorsa di Application Insights](../application-insights/app-insights-create-new-resource.md).
+> Si presuppone che si ha familiarità con **Azure Application Insights** servizio e disporre di una risorsa di Application Insights pianificare toouse toomonitor il servizio Service Fabric. Per altre informazioni, vedere [Creare una risorsa di Application Insights](../application-insights/app-insights-create-new-resource.md).
 
-Aprire il file `eventFlowConfig.json` nell'editor e modificarne il contenuto, come illustrato di seguito. Assicurarsi di sostituire il nome ServiceEventSource e la chiave di strumentazione di Application Insights in base ai commenti. 
+Aprire hello `eventFlowConfig.json` file nell'editor di hello e modifica il contenuto, come illustrato di seguito. Verificare che tooreplace hello ServiceEventSource nome e la chiave di strumentazione di Application Insights in base toocomments. 
 
 ```json
 {
@@ -81,7 +81,7 @@ Aprire il file `eventFlowConfig.json` nell'editor e modificarne il contenuto, co
       "sources": [
         { "providerName": "Microsoft-ServiceFabric-Services" },
         { "providerName": "Microsoft-ServiceFabric-Actors" },
-        // (replace the following value with your service's ServiceEventSource name)
+        // (replace hello following value with your service's ServiceEventSource name)
         { "providerName": "your-service-EventSource-name" }
       ]
     }
@@ -95,7 +95,7 @@ Aprire il file `eventFlowConfig.json` nell'editor e modificarne il contenuto, co
   "outputs": [
     {
       "type": "ApplicationInsights",
-      // (replace the following value with your AI resource's instrumentation key)
+      // (replace hello following value with your AI resource's instrumentation key)
       "instrumentationKey": "00000000-0000-0000-0000-000000000000"
     }
   ],
@@ -104,7 +104,7 @@ Aprire il file `eventFlowConfig.json` nell'editor e modificarne il contenuto, co
 ```
 
 > [!NOTE]
-> Il nome dell'oggetto ServiceEventSource del servizio è il valore della proprietà Name dell'oggetto `EventSourceAttribute` applicato alla classe ServiceEventSource. Tutto questo è specificato nel file `ServiceEventSource.cs`, che fa parte del codice del servizio. Ad esempio, nel frammento di codice seguente il nome dell'oggetto ServiceEventSource è *MyCompany-Application1-Stateless1*:
+> Hello ServiceEventSource del servizio è denominato valore hello hello proprietà Name di hello `EventSourceAttribute` toohello ServiceEventSource classe applicato. Tutto è specificato in hello `ServiceEventSource.cs` file, che fa parte del codice del servizio hello. Ad esempio, in hello seguente frammento di codice hello nome del codice hello ServiceEventSource è *MyCompany-Application1-Stateless1*:
 > ```csharp
 > [EventSource(Name = "MyCompany-Application1-Stateless1")]
 > internal sealed class ServiceEventSource : EventSource
@@ -113,9 +113,9 @@ Aprire il file `eventFlowConfig.json` nell'editor e modificarne il contenuto, co
 >} 
 > ```
 
-Si noti che il file `eventFlowConfig.json` fa parte del pacchetto di configurazione del servizio. Le modifiche apportate a questo file possono essere incluse in aggiornamenti del servizio completi o della sola configurazione, in base ai controlli di integrità dell'aggiornamento di Service Fabric e al ripristino dello stato precedente automatico in caso di errore di aggiornamento. Per altre informazioni, vedere [Aggiornamento delle applicazioni di Service Fabric](service-fabric-application-upgrade.md).
+Si noti che il file `eventFlowConfig.json` fa parte del pacchetto di configurazione del servizio. File toothis modifiche può essere inclusi in full o configurazione-solo gli aggiornamenti del servizio di hello, soggetto tooService aggiornamento controlli di integrità e il rollback automatico nel caso di errore di aggiornamento. Per altre informazioni, vedere [Aggiornamento delle applicazioni di Service Fabric](service-fabric-application-upgrade.md).
 
-Il passaggio finale consiste nel creare un'istanza della pipeline EventFlow nel codice di avvio del servizio, situato nel file `Program.cs`. L'esempio seguente mostra le aggiunte correlate a EventFlow contrassegnate con commenti, a partire da `****`:
+passaggio finale Hello è tooinstantiate EventFlow pipeline nel codice di avvio del servizio, si trova `Program.cs` file. In hello aggiunte correlati EventFlow di esempio seguenti sono contrassegnate con commenti a partire da `****`:
 
 ```csharp
 using System;
@@ -132,7 +132,7 @@ namespace Stateless1
     internal static class Program
     {
         /// <summary>
-        /// This is the entry point of the service host process.
+        /// This is hello entry point of hello service host process.
         /// </summary>
         private static void Main()
         {
@@ -161,10 +161,10 @@ namespace Stateless1
 }
 ```
 
-Il nome passato come parametro del metodo `CreatePipeline` di `ServiceFabricDiagnosticsPipelineFactory` è il nome dell'*entità di integrità* che rappresenta la pipeline di raccolta di log EventFlow. Questo nome viene usato se EventFlow rileva un errore e lo segnala tramite il sottosistema di integrità di Service Fabric.
+il nome di Hello passato come parametro hello di hello `CreatePipeline` metodo hello `ServiceFabricDiagnosticsPipelineFactory` nome hello di hello *entità integrità* che rappresenta di pipeline di raccolta log EventFlow hello. Questo nome viene utilizzato se viene rilevato EventFlow e di errore e la segnala tramite hello del sottosistema di integrità di Service Fabric.
 
 ## <a name="verification"></a>Verifica
-Avviare il servizio e osservare la finestra dell'output di debug di Visual Studio. Dopo l'avvio del servizio, dovrebbero essere visibili le prove dell'invio di record di Application Insights Telemetry. Aprire un Web browser e passare alla risorsa di Application Insights. Aprire la scheda "Ricerca", nella parte superiore del pannello predefinito "Panoramica". Dopo alcuni istanti, le tracce dovrebbero essere visibili nel portale di Application Insights:
+Avviare il servizio e osservare hello Debug la finestra di output in Visual Studio. Una volta avviato il servizio di hello, è consigliabile iniziare a visualizzare la prova che il servizio invia i record di "Telemetria di Application Insights". Aprire un web browser e passare la risorsa di Application Insights tooyour passare. Aprire la scheda "Ricerca" (nella parte superiore di hello del Pannello di hello predefinito "Overview"). Dopo un breve ritardo si dovrebbe iniziare a vedere le tracce nel portale Application Insights hello:
 
 ![Portale di Application Insights con i log da un'applicazione di Service Fabric][2]
 

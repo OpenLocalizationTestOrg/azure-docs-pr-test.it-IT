@@ -1,6 +1,6 @@
 ---
-title: Risoluzione dei problemi comuni di Automazione di Azure | Documentazione Microsoft
-description: Questo articolo fornisce informazioni utili per la risoluzione dei problemi e la correzione degli errori comuni di Automazione di Azure.
+title: problemi comuni di automazione di Azure aaaTroubleshooting | Documenti Microsoft
+description: "Questo articolo fornisce informazioni toohelp identificare e risolvere gli errori più comuni di automazione di Azure."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -16,175 +16,175 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/26/2017
 ms.author: sngun; v-reagie
-ms.openlocfilehash: 64548d91e98754210cc5185d9d759141cc0621d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb7d1cc5726f2b7a86c860e8f0c8340fa4221b2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-common-issues-in-azure-automation"></a>Risoluzione dei problemi comuni in Automazione di Azure 
-Questo articolo fornisce informazioni utili per la risoluzione degli errori comuni che si possono verificare in Automazione di Azure e suggerisce possibili soluzioni.
+Questo articolo vengono fornite indicazioni sulla risoluzione di errori comuni si possono verificarsi in automazione di Azure e vengono suggerite le possibili soluzioni tooresolve li.
 
 ## <a name="authentication-errors-when-working-with-azure-automation-runbooks"></a>Errori di autenticazione durante l'utilizzo di runbook di Automazione di Azure
-### <a name="scenario-sign-in-to-azure-account-failed"></a>Scenario: Accesso all'account Azure non riuscito
-**Errore:** viene visualizzato l'errore "Unknown_user_type: tipo di utente sconosciuto" quando si usa uno dei due cmdlet seguenti: Add-AzureAccount o Login-AzureRmAccount.
+### <a name="scenario-sign-in-tooazure-account-failed"></a>Scenario: Accesso tooAzure Account non è riuscita
+**Errore:** errore hello "Unknown_user_type: utente tipo sconosciuto" quando si lavora con i cmdlet Add-AzureAccount o account di accesso AzureRmAccount hello.
 
-**Motivo dell'errore:** questo errore si verifica se il nome dell'asset delle credenziali non è valido o se il nome utente e la password usati per impostare l'asset delle credenziali di automazione non sono validi.
+**Motivo dell'errore hello:** questo errore si verifica se il nome dell'asset credenziali hello non è valido o se hello nome utente e password utilizzati asset credenziali di automazione hello toosetup non sono validi.
 
-**Suggerimenti sulla risoluzione dei problemi:** per determinare la causa del problema, seguire questa procedura:  
+**Risoluzione dei problemi di suggerimenti:** In ordine toodetermine qual è il problema, richiedere hello alla procedura seguente:  
 
-1. Assicurarsi che non siano presenti caratteri speciali, ad esempio il carattere **@** nel nome dell'asset delle credenziali di automazione usato per connettersi ad Azure.  
-2. Verificare che sia possibile usare il nome utente e la password archiviati nelle credenziali di Automazione di Azure nell'editor di PowerShell ISE locale. A questo scopo è possibile eseguire i cmdlet seguenti in PowerShell ISE:  
+1. Assicurarsi che non si dispone di tutti i caratteri speciali, tra cui hello  **@**  carattere nel nome asset credenziali automazione hello che si sta utilizzando tooconnect tooAzure.  
+2. Verificare che è possibile utilizzare hello username e password archiviati in credenziali di automazione di Azure hello nell'editor di PowerShell ISE locale. È possibile farlo eseguendo i seguenti cmdlet di PowerShell ISE hello hello:  
 
         $Cred = Get-Credential  
         #Using Azure Service Management   
         Add-AzureAccount –Credential $Cred  
         #Using Azure Resource Manager  
         Login-AzureRmAccount –Credential $Cred
-3. Se l'autenticazione non riesce in locale, significa che le credenziali di Azure Active Directory non sono state configurate correttamente. Per ottenere la configurazione corretta dell'account Azure Active Directory, vedere il post di blog relativo all' [autenticazione in Azure con Azure Active Directory](https://azure.microsoft.com/blog/azure-automation-authenticating-to-azure-using-azure-active-directory/) .  
+3. Se l'autenticazione non riesce in locale, significa che le credenziali di Azure Active Directory non sono state configurate correttamente. Fare riferimento troppo[l'autenticazione tramite Azure Active Directory tooAzure](https://azure.microsoft.com/blog/azure-automation-authenticating-to-azure-using-azure-active-directory/) account blog post tooget hello Azure Active Directory configurato correttamente.  
 
-### <a name="scenario-unable-to-find-the-azure-subscription"></a>Scenario: Non è possibile trovare la sottoscrizione di Azure
-**Errore:** viene visualizzato l'errore "impossibile trovare la sottoscrizione denominata ``<subscription name>``" quando si usano i cmdlet Select-AzureSubscription o Select-AzureRmSubscription.
+### <a name="scenario-unable-toofind-hello-azure-subscription"></a>Scenario: Hello toofind non è possibile sottoscrizione di Azure
+**Errore:** errore hello "hello sottoscrizione denominata ``<subscription name>`` non è stato trovato" quando si lavora con i cmdlet Select-AzureSubscription o selezionare AzureRmSubscription hello.
 
-**Motivo dell'errore:** questo errore si verifica se il nome della sottoscrizione non è valido o se l'utente di Azure Active Directory che sta tentando di ottenere i dettagli della sottoscrizione non è configurato come amministratore della sottoscrizione.
+**Motivo dell'errore hello:** questo errore si verifica se il nome di sottoscrizione hello non è valido o se hello Azure Active Directory gli utenti i dettagli della sottoscrizione hello tooget sta cercando non sono configurato come un amministratore della sottoscrizione hello.
 
-**Suggerimenti per la risoluzione dei problemi:** per determinare se l'autenticazione in Azure è stata eseguita correttamente e se si ha accesso alla sottoscrizione che si sta tentando di selezionare, seguire questa procedura:  
+**Risoluzione dei problemi di suggerimenti:** In ordine toodetermine se si hanno eseguito correttamente l'autenticazione tooAzure e dispone di accesso toohello sottoscrizione che si sta tentando di tooselect, eseguire hello alla procedura seguente:  
 
-1. Assicurarsi di eseguire il cmdlet **Add-AzureAccount** prima del cmdlet **Select-AzureSubscription**.  
-2. Se viene ancora visualizzato questo messaggio di errore, modificare il codice aggiungendo il cmdlet **Get-AzureSubscription** dopo **Add-AzureAccount**, quindi eseguire il codice.  A questo punto, verificare se l'output di Get-AzureSubscription contiene i dettagli della sottoscrizione.  
+1. Assicurarsi di eseguire hello **Add-AzureAccount** prima di eseguire hello **Select-AzureSubscription** cmdlet.  
+2. Se viene ancora visualizzato questo messaggio di errore, modificare il codice aggiungendo hello **Get-AzureSubscription** cmdlet seguenti hello **Add-AzureAccount** cmdlet e quindi eseguire il codice hello.  A questo punto, verificare se l'output di hello di Get-AzureSubscription contiene i dettagli della sottoscrizione.  
 
-   * Se nell'output non vengono visualizzati i dettagli della sottoscrizione, significa che non è ancora stata inizializzata.  
-   * Se nell'output vengono visualizzati i dettagli della sottoscrizione, assicurarsi di usare il nome o l'ID della sottoscrizione corretto con il cmdlet **Select-AzureSubscription** .   
+   * Se tutti i dettagli della sottoscrizione nell'output di hello non viene visualizzato, significa che la sottoscrizione hello non è ancora inizializzata.  
+   * Se è possibile visualizzare i dettagli della sottoscrizione hello nell'output di hello, confermare che si utilizza nome sottoscrizione corretta hello o un ID con hello **Select-AzureSubscription** cmdlet.   
 
-### <a name="scenario-authentication-to-azure-failed-because-multi-factor-authentication-is-enabled"></a>Scenario: L'autenticazione in Azure non è riuscita perché è abilitata l'autenticazione a più fattori
-**Errore:** viene visualizzato un errore simile al seguente "Add-AzureAccount: AADSTS50079: è necessario eseguire la registrazione di autenticazione avanzata (pagina di registrazione)" durante l'autenticazione in Azure con il nome utente e la password di Azure.
+### <a name="scenario-authentication-tooazure-failed-because-multi-factor-authentication-is-enabled"></a>Scenario: TooAzure di autenticazione non riuscita perché è abilitata l'autenticazione a più fattori
+**Errore:** errore hello "Add-AzureAccount: AADSTS50079: registrazione di autenticazione avanzata (proof-alto) è necessario" per l'autenticazione tooAzure con il nome utente di Azure e la password.
 
-**Motivo dell'errore:** se nell'account Azure è abilitata l'autenticazione a più fattori, non è possibile usare un utente di Azure Active Directory per l'autenticazione in Azure.  È invece necessario usare un certificato o un'entità servizio per l'autenticazione in Azure.
+**Motivo dell'errore hello:** se si dispone di multi-factor authentication nel proprio account Azure, è possibile utilizzare un tooAzure tooauthenticate utente di Azure Active Directory.  In alternativa, è necessario toouse un certificato o una tooAzure tooauthenticate dell'entità servizio.
 
-**Suggerimenti per la risoluzione dei problemi:** per usare un certificato con i cmdlet di gestione del servizio di Azure, vedere il blog relativo alla [creazione e all'aggiunta di un certificato per la gestione dei servizi Azure.](http://blogs.technet.com/b/orchestrator/archive/2014/04/11/managing-azure-services-with-the-microsoft-azure-automation-preview-service.aspx) Per usare un'entità servizio con i cmdlet di Azure Resource Manager, vedere l'argomento relativo alla [creazione di un'entità servizio tramite il portale di Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md) e quello relativo all'[autenticazione di un'entità servizio con Azure Resource Manager.](../azure-resource-manager/resource-group-authenticate-service-principal.md)
+**Risoluzione dei problemi di suggerimenti:** toouse un certificato con hello i cmdlet di gestione dei servizi Azure, vedere troppo[creando e aggiungendo un toomanage certificato Azure servizi.](http://blogs.technet.com/b/orchestrator/archive/2014/04/11/managing-azure-services-with-the-microsoft-azure-automation-preview-service.aspx) toouse un'entità servizio con i cmdlet di gestione risorse di Azure, fare riferimento troppo[creazione servizio principale tramite il portale di Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md) e [l'autenticazione di un'entità servizio con Azure Resource Manager.](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 
 ## <a name="common-errors-when-working-with-runbooks"></a>Errori comuni durante l'utilizzo di runbook
-### <a name="scenario-the-runbook-job-start-was-attempted-three-times-but-it-failed-to-start-each-time"></a>Scenario: l'avvio del processo runbook è stato tentato per tre volte, ma non è mai riuscito
-**Errore:** il runbook ha esito negativo con l'errore "L’esecuzione del processo è stata tentata per tre volte, ma non è riuscita".
+### <a name="scenario-hello-runbook-job-start-was-attempted-three-times-but-it-failed-toostart-each-time"></a>Scenario: avvio del processo di runbook hello è stata tentata tre volte, ma non è riuscito toostart ogni ora
+**Errore:** il runbook ha esito negativo con errore hello "" processo hello è tentato di tre volte, ma non è riuscito."
 
-**Motivo dell'errore:** questo errore può dipendere dalle cause seguenti:  
+**Motivo dell'errore hello:** questo errore può dipendere da hello seguenti motivi:  
 
-1. Limite di memoria.  Esistono dei limiti di quantità di memoria allocata a una sandbox con [limiti del servizio di automazione](../azure-subscription-service-limits.md#automation-limits), pertanto un processo potrebbe non riuscire se utilizza più di 400 MB di memoria. 
+1. Limite di memoria.  È stato documentato limiti sulla quantità di memoria allocata tooa Sandbox [i limiti del servizio di automazione](../azure-subscription-service-limits.md#automation-limits) pertanto un processo potrebbe non riuscire, se si utilizza più di 400 MB di memoria. 
 
 2. Modulo incompatibile.  Ciò può verificarsi se le dipendenze del modulo non sono corrette, e se non lo sono il runbook restituisce in genere il messaggio "Comando non trovato" o "Non è possibile associare il parametro". 
 
-**Suggerimenti per la risoluzione dei problemi:** una qualsiasi delle soluzioni seguenti consente di correggere il problema.  
+**Risoluzione dei problemi di suggerimenti:** una delle seguenti soluzioni hello risolverà il problema di hello:  
 
-* Metodi consigliati per operare entro il limite di memoria sono, ad esempio, dividere il carico di lavoro tra diversi runbook, non elaborare tutti i dati in memoria, non scrivere output non necessari dai runbook oppure tenere in considerazione il numero di checkpoint scritti nei runbook del flusso di lavoro PowerShell.  
+* Metodi consigliati toowork entro il limite di memoria hello sono il carico di lavoro di toosplit hello tra più runbook, non elaborare tutti i dati in memoria, toowrite output non necessari dal runbook o considerare quanti checkpoint scritto nel PowerShell runbook del flusso di lavoro.  
 
-* È necessario aggiornare i moduli di Azure eseguendo i passaggi [Come aggiornare i moduli Azure PowerShell in automazione di Azure](automation-update-azure-modules.md).  
+* È necessario tooupdate i moduli di Azure seguendo i passaggi di hello [come moduli di Azure PowerShell tooupdate in automazione di Azure](automation-update-azure-modules.md).  
 
 
 ### <a name="scenario-runbook-fails-because-of-deserialized-object"></a>Scenario: Runbook con esito negativo a causa di un oggetto deserializzato
-**Errore:** il runbook non riesce con l'errore "Non è possibile associare il parametro ``<ParameterName>``. Non è possibile convertire il valore ``<ParameterType>`` del tipo ``<ParameterType>`` deserializzato nel tipo ``<ParameterType>``".
+**Errore:** il runbook ha esito negativo con errore hello "non è possibile associare il parametro ``<ParameterName>``. Non è possibile convertire hello ``<ParameterType>`` valore di tipo Deserialized ``<ParameterType>`` tootype ``<ParameterType>``".
 
-**Motivo dell'errore:** se il runbook è un flusso di lavoro di PowerShell, archivia gli oggetti complessi in un formato deserializzato per rendere persistente lo stato del runbook se il flusso di lavoro viene sospeso.  
+**Motivo dell'errore hello:** se il runbook è un flusso di lavoro di PowerShell, archivia gli oggetti complessi in un formato deserializzato in ordine toopersist lo stato del runbook se il flusso di lavoro di hello è sospeso.  
 
 **Suggerimenti per la risoluzione dei problemi:**  
-una qualsiasi delle tre soluzioni seguenti consente di correggere questo problema.
+Uno dei seguenti tre soluzioni hello risolverà il problema:
 
-1. Se si inviano tramite pipe oggetti complessi da un cmdlet a altro, eseguire il wrapping dei cmdlet in un InlineScript.  
-2. Passare il nome o il valore necessario dall'oggetto complesso invece di passare l'intero oggetto.  
+1. Se l'invio tramite pipe di oggetti complessi da un cmdlet tooanother, eseguire il wrapping di questi cmdlet in un InlineScript.  
+2. Passare il nome di hello o un valore che è necessario dall'oggetto complesso di hello anziché passare l'intero oggetto hello.  
 3. Usare un runbook di PowerShell invece di un runbook del flusso di lavoro PowerShell.  
 
-### <a name="scenario-runbook-job-failed-because-the-allocated-quota-exceeded"></a>Scenario: Processo del Runbook non riuscito per il superamento della quota allocata
-**Errore:** il processo del runbook non riesce con l'errore "È stata raggiunta la quota per il tempo di esecuzione totale mensile dei processi per la sottoscrizione".
+### <a name="scenario-runbook-job-failed-because-hello-allocated-quota-exceeded"></a>Scenario: Il processo di Runbook non riuscito perché hello allocata quota superata
+**Errore:** il processo del runbook ha esito negativo con errore hello "hello quota hello mensile totale per processi runtime è stato raggiunto per questa sottoscrizione".
 
-**Motivo dell'errore:** questo errore si verifica quando l'esecuzione del processo supera la quota disponibile di 500 minuti per l'account. Questa quota si applica a tutti i tipi di attività di esecuzione del processo, ad esempio il test di un processo, l'avvio di un processo dal portale, l'esecuzione di un processo con webhook e la pianificazione di un processo da eseguire tramite il portale di Azure o nel proprio data center. Per altre informazioni sui prezzi relativi all'automazione, vedere [Prezzi di Automazione](https://azure.microsoft.com/pricing/details/automation/).
+**Motivo dell'errore hello:** questo errore si verifica quando hello l'esecuzione del processo supera la quota disponibile di hello 500 minuti per l'account. Questa quota si applica a tipi tooall esecuzione delle attività di processo, ad esempio un processo di test, avviare un processo dal portale di hello, l'esecuzione di un processo usando webhook e tooexecute un processo di pianificazione utilizzando entrambi hello portale di Azure o nel Data Center. informazioni sui prezzi per l'automazione, vedere toolearn [automazione prezzi](https://azure.microsoft.com/pricing/details/automation/).
 
-**Suggerimenti sulla risoluzione dei problemi:** se si vogliono usare più di 500 minuti di elaborazione al mese, si dovrà modificare la sottoscrizione dal livello gratuito al livello Basic. È possibile eseguire l'aggiornamento al livello Basic seguendo questa procedura.  
+**Risoluzione dei problemi di suggerimenti:** se si desidera toouse più di 500 minuti di elaborazione al mese, sarà necessario toochange la sottoscrizione dal livello Basic toohello livello gratuito di hello. È possibile aggiornare livello Basic toohello da hello richiede alla procedura seguente:  
 
-1. Accedere alla sottoscrizione di Azure.  
-2. Selezionare l'account di automazione che si vuole aggiornare.  
+1. Accedi tooyour sottoscrizione di Azure  
+2. Selezionare l'account di automazione hello desiderato tooupgrade  
 3. Fare clic su **Impostazioni** > **Piano tariffario e utilizzo** > **Piano tariffario**  
-4. Nel pannello **Scegliere il piano tariffario** selezionare **Basic**    
+4. In hello **scegliere il piano tariffario** pannello seleziona **base**    
 
 ### <a name="scenario-cmdlet-not-recognized-when-executing-a-runbook"></a>Scenario: Cmdlet non riconosciuto durante l'esecuzione di un runbook
-**Errore:** il processo del runbook ha esito negativo e restituisce un errore simile al seguente "``<cmdlet name>``: il termine ``<cmdlet name>`` non viene riconosciuto come nome di cmdlet, funzione, file di script o programma eseguibile".
+**Errore:** il processo del runbook ha esito negativo con errore hello "``<cmdlet name>``: termine hello ``<cmdlet name>`` non è riconosciuto come nome di un cmdlet, funzione, file di script, programma eseguibile o di hello."
 
-**Motivo dell'errore:** questo errore si verifica quando il motore di PowerShell non trova il cmdlet usato nel runbook.  È possibile che il modulo che contiene il cmdlet non sia incluso nell'account, che esista un conflitto di nome con il nome di un runbook o che il cmdlet sia presente anche in un altro modulo e che Automazione non possa risolvere il nome.
+**Motivo dell'errore hello:** questo errore si verifica quando il motore di PowerShell hello Impossibile trovare il cmdlet hello in uso nel runbook.  È possibile che il modulo di hello contenente hello cmdlet mancano dall'account hello, si verifica un conflitto di nome con un nome di runbook, o cmdlet hello è presente anche in un altro modulo e automazione non è possibile risolvere il nome di hello.
 
-**Suggerimenti per la risoluzione dei problemi:** una qualsiasi delle soluzioni seguenti consente di correggere il problema.  
+**Risoluzione dei problemi di suggerimenti:** una delle seguenti soluzioni hello risolverà il problema di hello:  
 
-* Verificare di aver immesso correttamente il nome del cmdlet.  
-* Assicurarsi che il cmdlet esista nell'account di automazione e che non siano presenti conflitti. Per verificare se il cmdlet è presente, aprire un runbook in modalità di modifica e cercare il cmdlet nella libreria o eseguire **Get-Command ``<CommandName>``**.  Dopo aver verificato che il cmdlet è disponibile per l'account e che non ci sono conflitti di nomi con altri cmdlet o runbook, aggiungerlo all'area di disegno e assicurarsi di usare un set di parametri valido nel runbook.  
-* Nel caso di un conflitto di nomi e se il cmdlet è disponibile in due moduli diversi, è possibile risolvere questo problema usando il nome completo per il cmdlet. Ad esempio, usare **ModuleName\CmdletName**.  
-* Se si eseguono i runbook in locale in un gruppo di lavoro ibrido, verificare che il modulo/cmdlet sia installato nel computer che ospita il processo di lavoro ibrido.
+* Verificare di avere immesso il nome di cmdlet hello correttamente.  
+* Assicurarsi che il cmdlet hello esista nell'account di automazione e che non sono presenti conflitti. tooverify se cmdlet hello è presente, aprire un runbook in modalità di modifica e ricerca per i cmdlet hello toofind nella libreria hello desiderato oppure eseguire **Get-Command ``<CommandName>``** .  Dopo aver verificato che cmdlet hello è account toohello disponibili, e che non sono presenti conflitti di nome con altri cmdlet o i runbook, aggiungerlo toohello area di disegno, assicurarsi che si sta utilizzando un parametro valido impostato nel runbook.  
+* Se si dispone di un conflitto di nomi e i cmdlet di hello è disponibile in due moduli diversi, è possibile risolvere questo problema utilizzando hello il nome completo di cmdlet hello. Ad esempio, usare **ModuleName\CmdletName**.  
+* Se si eseguono hello runbook locale in un gruppo di lavoro ibridi, assicurarsi che tale hello modulo/cmdlet viene installato nel computer di hello che ospita il ruolo di lavoro di hello ibrido.
 
-### <a name="scenario-a-long-running-runbook-consistently-fails-with-the-exception-the-job-cannot-continue-running-because-it-was-repeatedly-evicted-from-the-same-checkpoint"></a>Scenario: un runbook a esecuzione prolungata ha esito negativo e restituisce un'eccezione simile alla seguente "L'esecuzione del processo non può continuare perché è stato rimosso ripetutamente dallo stesso checkpoint".
-**Motivo dell'errore:** si tratta di un comportamento previsto, causato dalla "condivisione equa" del monitoraggio dei processi in Automazione di Azure, che prevede la sospensione automatica di un runbook se viene eseguito per più di 3 ore. Tuttavia, il messaggio di errore restituito non offre opzioni relative ai passaggi successivi. Un runbook può essere sospeso per una serie di motivi. Le sospensioni si verificano principalmente a causa di errori. Ad esempio, un'eccezione non rilevata in un runbook, un errore di rete o un arresto anomalo nel ruolo di lavoro Runbook che esegue il runbook: in tutti questi casi, il runbook viene sospeso e quando riprende viene avviato dall'ultimo checkpoint.
+### <a name="scenario-a-long-running-runbook-consistently-fails-with-hello-exception-hello-job-cannot-continue-running-because-it-was-repeatedly-evicted-from-hello-same-checkpoint"></a>Scenario: Un runbook con esecuzione prolungata non riesce con eccezione hello: "il processo di hello può continuare a eseguire perché è stato rimosso ripetutamente da hello stesso checkpoint".
+**Motivo dell'errore hello:** questo è il comportamento di progettazione a causa di toohello "Condivisione equa" monitoraggio dei processi all'interno di automazione di Azure, che sospende automaticamente un runbook se viene eseguito più di 3 ore. Tuttavia, hello messaggio di errore restituito non fornisce "passaggi successivi" Opzioni. Un runbook può essere sospeso per una serie di motivi. Sospende verificarsi principalmente tooerrors scadenza. Ad esempio, un'eccezione non rilevata in un runbook, un errore di rete o un arresto anomalo in hello Runbook Worker in esecuzione il runbook hello, tutti causerà hello runbook toobe sospeso e avviare dall'ultimo checkpoint alla ripresa.
 
-**Suggerimenti per la risoluzione dei problemi:** la soluzione documentata per evitare questo problema consiste nell'usare i checkpoint in un flusso di lavoro.  Per altre informazioni, vedere [Informazioni sul flusso di lavoro di Windows PowerShell](automation-powershell-workflow.md#checkpoints).  Una spiegazione più completa della "condivisione equa" e dei checkpoint è disponibile nell'articolo del blog dedicato all'[uso dei checkpoint nei runbook](https://azure.microsoft.com/en-us/blog/azure-automation-reliable-fault-tolerant-runbook-execution-using-checkpoints/).
+**Suggerimenti di risoluzione dei problemi:** hello documentato tooavoid soluzione questo problema è toouse checkpoint in un flusso di lavoro.  toolearn più fare riferimento troppo[flussi di lavoro PowerShell Learning](automation-powershell-workflow.md#checkpoints).  Una spiegazione più completa della "condivisione equa" e dei checkpoint è disponibile nell'articolo del blog dedicato all'[uso dei checkpoint nei runbook](https://azure.microsoft.com/en-us/blog/azure-automation-reliable-fault-tolerant-runbook-execution-using-checkpoints/).
 
 ## <a name="common-errors-when-importing-modules"></a>Errori comuni durante l'importazione di moduli
-### <a name="scenario-module-fails-to-import-or-cmdlets-cant-be-executed-after-importing"></a>Scenario: L'importazione del modulo non riesce o i cmdlet non possono essere eseguiti dopo l'importazione
-**Errore:** l'importazione di un modulo ha esito negativo oppure riesce ma non viene estratto alcun cmdlet.
+### <a name="scenario-module-fails-tooimport-or-cmdlets-cant-be-executed-after-importing"></a>Scenario: Modulo tooimport ha esito negativo o i cmdlet non possono essere eseguiti dopo l'importazione
+**Errore:** un modulo ha esito negativo tooimport o importati correttamente, ma nessun cmdlet vengono estratti.
 
-**Motivo dell'errore:** di seguito sono elencati alcuni motivi comuni che possono causare un'importazione errata di un modulo in Automazione di Azure.  
+**Motivo dell'errore hello:** alcuni comuni motivi che un modulo potrà non importare tooAzure automazione sono:  
 
-* La struttura non corrisponde a quella in cui il modulo dovrebbe essere incluso ai fini dell'automazione.  
-* Il modulo è dipendente da un altro modulo che non è stato distribuito nel proprio account di automazione.  
-* Le dipendenze del modulo non si trovano nella cartella.  
-* Il cmdlet **New AzureRmAutomationModule** viene usato per caricare il modulo e non è stato specificato il percorso di archiviazione completo oppure il modulo non è stato caricato con un URL accessibile pubblicamente.  
+* struttura Hello corrisponde struttura hello che automazione ha bisogno toobe in.  
+* modulo Hello è dipendente da un altro modulo che non è stato distribuito tooyour account di automazione.  
+* modulo Hello mancante nella cartella hello relative dipendenze.  
+* Hello **New AzureRmAutomationModule** cmdlet è in corso modulo hello tooupload utilizzato e non è stato assegnato il percorso di archiviazione completa hello o non sono caricati modulo hello tramite un URL accessibile pubblicamente.  
 
 **Suggerimenti per la risoluzione dei problemi:**  
-una qualsiasi delle soluzioni seguenti consente di correggere il problema.  
+Una delle seguenti soluzioni hello risolverà il problema di hello:  
 
-* Assicurarsi che il modulo rispetti il formato seguente:  
+* Verificare che tale modulo hello segue hello seguente formato:  
   ModuleName.Zip **->** Nome modulo o numero versione **->** (ModuleName.psm1, ModuleName.psd1)
-* Aprire il file con estensione psd1 e vedere se il modulo include dipendenze.  In caso affermativo, caricare i moduli nell'account di automazione.  
-* Assicurarsi che le eventuali DLL a cui viene fatto riferimento siano presenti nella cartella del modulo.  
+* Aprire il file con estensione psd1 hello e se il modulo hello dispone di tutte le dipendenze.  In caso affermativo, è possibile caricare queste toohello moduli account di automazione.  
+* Assicurarsi che siano presenti nella cartella del modulo hello qualsiasi file con estensione DLL a cui fa riferimento.  
 
 ## <a name="common-errors-when-working-with-desired-state-configuration-dsc"></a>Errori comuni durante l'utilizzo di Desired State Configuration (DSC)
 ### <a name="scenario-node-is-in-failed-status-with-a-not-found-error"></a>Scenario: Lo stato di Node risulta non riuscito con un errore "Non trovato"
-**Errore:** il nodo presenta un report con stato **Non riuscito** e contiene l'errore "Impossibile recuperare l'azione dal server https://``<url>``//accounts/``<account-id>``/Nodes(AgentId=``<agent-id>``)/GetDscAction perché non è stata trovata una configurazione ``<guid>`` valida".
+**Errore:** hello nodo dispone di un report con **Failed** lo stato e contenente l'errore hello "hello tentativo tooget hello azione dal server https://``<url>``//accounts/``<account-id>``/Nodes(AgentId=``<agent-id>``) / GetDscAction non è riuscita perché una configurazione valida ``<guid>`` non è stata trovata. "
 
-**Motivo dell'errore:** questo errore si verifica in genere quando al nodo viene assegnato un nome di configurazione, ad esempio ABC, anziché un nome di configurazione nodo, ad esempio ABC.WebServer.  
+**Motivo dell'errore hello:** questo errore si verifica in genere quando hello nodo viene assegnato il nome di configurazione tooa (ad esempio, ABC) anziché un nome di configurazione del nodo (ad esempio, ABC. Server Web).  
 
 **Suggerimenti per la risoluzione dei problemi:**  
 
-* Assicurarsi di assegnare al nodo un "nome di configurazione di nodo" e non un "nome di configurazione".  
-* È possibile assegnare a un nodo una configurazione di nodo usando il portale di Azure o un cmdlet di PowerShell.
+* Assicurarsi che si sta assegnando nodo hello non hello "nome di configurazione" e "Nome configurazione del nodo".  
+* È possibile assegnare un nodo tooa di configurazione utilizzando portale di Azure o con un cmdlet di PowerShell.
 
-  * Per assegnare a un nodo una configurazione nodo mediante il portale di Azure, aprire il pannello **Nodi DSC**, selezionare un nodo e quindi fare clic sul pulsante **Assegna configurazione nodo**.  
-  * Per assegnare a un nodo una configurazione nodo mediante PowerShell, usare il cmdlet **Set-AzureRmAutomationDscNode** .
+  * In ordine tooassign un nodo tooa di configurazione tramite il portale di Azure, aprire hello **i nodi DSC** pannello, quindi selezionare un nodo e fare clic su **configurazione nodo assegnare** pulsante.  
+  * In ordine tooassign un nodo tooa di configurazione utilizzando i cmdlet di PowerShell, usare **Set AzureRmAutomationDscNode** cmdlet
 
 ### <a name="scenario--no-node-configurations-mof-files-were-produced-when-a-configuration-is-compiled"></a>Scenario: non sono state prodotte configurazioni di nodo (file con estensione MOF) durante la compilazione di una configurazione
-**Errore:** il processo di compilazione di DSC viene sospeso e restituisce un errore simile al seguente "La compilazione è stata completata, ma non sono stati generati file con estensione mof di configurazione nodo".
+**Errore:** sospende il processo di compilazione DSC con errore hello: "compilazione completata, ma sono stati generati non MOF di configurazione del nodo".
 
-**Motivo dell'errore:** quando l'espressione accanto alla parola chiave **Node** nella configurazione di DSC restituisce $null, non vengono prodotte configurazioni di nodo.    
+**Motivo dell'errore hello:** hello quando l'espressione riportata di seguito hello **nodo** parola chiave nella configurazione DSC hello valuta troppo$ null, quindi non verranno prodotto alcun configurazioni del nodo.    
 
 **Suggerimenti per la risoluzione dei problemi:**  
-una qualsiasi delle soluzioni seguenti consente di correggere il problema.  
+Una delle seguenti soluzioni hello risolverà il problema di hello:  
 
-* Verificare che l'espressione accanto alla parola chiave **Node** nella definizione di configurazione non restituisca $null.  
-* Se durante la compilazione della configurazione si passano dei dati di configurazione, verificare di specificare i valori previsti necessari per la configurazione da [ConfigurationData](automation-dsc-compile.md#configurationdata).
+* Verificare che tale espressione di hello Avanti toohello **nodo** parola chiave nella definizione della configurazione hello non valuta troppo null$.  
+* Se si passa ConfigurationData durante la compilazione di configurazione di hello, assicurarsi che si siano passando i valori previsti hello richiede che la configurazione di hello da [ConfigurationData](automation-dsc-compile.md#configurationdata).
 
-### <a name="scenario--the-dsc-node-report-becomes-stuck-in-progress-state"></a>Scenario: il report relativo al nodo DSC rimane bloccato sullo stato "in corso"
+### <a name="scenario--hello-dsc-node-report-becomes-stuck-in-progress-state"></a>Scenario: hello report nodi DSC rimane bloccato "in corso"
 **Errore:** l'agente DSC restituisce un errore simile al seguente "Nessuna istanza trovata con i valori di proprietà specificati".
 
-**Motivo dell'errore:** è stato eseguito l'aggiornamento alla versione WMF e WMI è stato danneggiato.  
+**Motivo dell'errore hello:** sono stati aggiornati alla versione WMF e hanno danneggiato WMI.  
 
-**Suggerimenti per la risoluzione dei problemi:** seguire le istruzioni riportate in [Limitazioni e problemi noti di DSC](https://msdn.microsoft.com/powershell/wmf/5.0/limitation_dsc) per risolvere il problema.
+**Risoluzione dei problemi di suggerimenti:** seguire le istruzioni hello hello [DSC problemi noti e limitazioni](https://msdn.microsoft.com/powershell/wmf/5.0/limitation_dsc) problema hello toofix.
 
-### <a name="scenario--unable-to-use-a-credential-in-a-dsc-configuration"></a>Scenario: non è possibile usare le credenziali in una configurazione DSC
-**Errore:** il processo di compilazione di DSC è stato sospeso con un errore simile al seguente "Si è verificato un errore System.InvalidOperationException durante l'elaborazione della proprietà "Credential" di tipo ``<some resource name>``: la conversione e l'archiviazione di una password crittografata come testo non crittografato sono consentite solo se PSDscAllowPlainTextPassword è impostato su true".
+### <a name="scenario--unable-toouse-a-credential-in-a-dsc-configuration"></a>Scenario: Impossibile toouse una credenziale in una configurazione DSC
+**Errore:** il processo di compilazione DSC è stato sospeso con errore hello: "errore System. InvalidOperationException 'Credenziale' di tipo di proprietà di elaborazione ``<some resource name>``: la conversione e archiviazione di una password crittografata come testo normale è consentita solo se PSDscAllowPlainTextPassword è impostato tootrue".
 
-**Motivo dell'errore:** in una configurazione sono state usate credenziali, ma non è stato passato l'oggetto **ConfigurationData** corretto per impostare **PSDscAllowPlainTextPassword** su true per ogni configurazione nodo.  
+**Motivo dell'errore hello:** è stata utilizzata una credenziale in una configurazione ma non forniva corretto **ConfigurationData** tooset **PSDscAllowPlainTextPassword** tootrue per ogni nodo configurazione.  
 
 **Suggerimenti per la risoluzione dei problemi:**  
 
-* Verificare di passare l'oggetto **ConfigurationData** corretto per impostare **PSDscAllowPlainTextPassword** su true per ogni configurazione nodo indicata nella configurazione. Per altre informazioni, vedere [la sezione relativa agli asset in Azure Automation DSC](automation-dsc-compile.md#assets).
+* Apportare toopass che hello corretto **ConfigurationData** tooset **PSDscAllowPlainTextPassword** tootrue per ogni configurazione del nodo indicato nella configurazione di hello. Per ulteriori informazioni, vedere troppo[asset di automazione di Azure DSC](automation-dsc-compile.md#assets).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se è stata seguita la procedura precedente per la risoluzione dei problemi e non è stata trovata la risposta necessaria, è possibile vedere le opzioni di supporto aggiuntive seguenti.
+Se si hanno seguito hello risoluzione dei problemi di passaggi precedenti e non è possibile trovare risposte hello, è possibile esaminare le opzioni di supporto aggiuntive hello seguenti.
 
-* Ottenere assistenza dagli esperti di Azure. Inviare il problema al [forum MSDN dedicato ad Azure o a Stack Overflow](https://azure.microsoft.com/support/forums/).
-* Archiviare un incidente del supporto tecnico di Azure. Aprire il [sito del supporto tecnico di Azure](https://azure.microsoft.com/support/options/) e fare clic su **Ottieni supporto** in **Supporto tecnico e di fatturazione**.
+* Ottenere assistenza dagli esperti di Azure. Inviare il problema toohello [forum MSDN di Azure o di Overflow dello Stack.](https://azure.microsoft.com/support/forums/).
+* Archiviare un incidente del supporto tecnico di Azure. Passare toohello [sito del supporto di Azure](https://azure.microsoft.com/support/options/) e fare clic su **ottenere supporto** in **tecnici e il supporto di fatturazione**.
 * Se si sta cercando una soluzione per i runbook oppure un modulo di integrazione di Automazione di Azure, inviare una richiesta di script a [Script Center](https://azure.microsoft.com/documentation/scripts/) .
 * Inviare commenti o suggerimenti oppure richieste di funzionalità per Automazione di Azure al forum dedicato ai [suggerimenti degli utenti](https://feedback.azure.com/forums/34192--general-feedback).

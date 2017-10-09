@@ -1,14 +1,14 @@
 ## <a name="application-gateway"></a>Gateway applicazione
-Il servizio Gateway applicazione fornisce una soluzione di bilanciamento del carico HTTP gestita da Azure basata sul bilanciamento del carico di livello 7. Il bilanciamento del carico applicazioni consente di usare le regole di routing per il traffico di rete basato su HTTP. 
+Il servizio Gateway applicazione fornisce una soluzione di bilanciamento del carico HTTP gestita da Azure basata sul bilanciamento del carico di livello 7. Bilanciamento del carico di applicazioni consente l'utilizzo di hello regole di routing del traffico di rete basato su HTTP. 
 <BR>
 
 | Proprietà | Descrizione |
 | --- | --- |
-| **backendAddressPools** |L’elenco di indirizzi IP dei server di back-end. Gli indirizzi IP elencati devono appartenere alla subnet della rete virtuale o devono essere indirizzi IP/VIP pubblici o indirizzi IP privati. |
-| **backendHttpSettingsCollection** |Ogni pool ha impostazioni quali porta, protocollo e affinità basate sui cookie. Queste impostazioni sono associate a un pool e vengono applicate a tutti i server nel pool. |
-| **frontendPorts** |Questa porta è la porta pubblica aperta sul gateway applicazione. Il traffico raggiunge questa porta e quindi viene reindirizzato a uno dei server back-end. |
-| **httpListeners** |Il listener ha una porta front-end, un protocollo (Http o Https, con applicazione della distinzione tra maiuscole e minuscole) e il nome del certificato SSL (se si configura l'offload SSL). |
-| **requestRoutingRules** |La regola associa il listener e il pool di server back-end e definisce il pool di server back-end a cui deve essere indirizzato il traffico. Attualmente è supportato solo come Round-robin |
+| **backendAddressPools** |elenco di Hello di indirizzi IP dei server back-end hello. gli indirizzi IP Hello elencati devono appartenere toohello subnet della rete virtuale, o devono essere un indirizzo IP/VIP pubblico o privato IP |
+| **backendHttpSettingsCollection** |Ogni pool ha impostazioni quali porta, protocollo e affinità basate sui cookie. Queste impostazioni sono legato tooa pool e vengono applicati tooall server hello pool |
+| **frontendPorts** |Questa porta è aperta nel gateway applicazione hello la porta pubblica hello. Traffico riscontri questa porta, e quindi ottiene reindirizzato tooone dei server back-end hello |
+| **httpListeners** |Listener dispone di una porta di front-end, un protocollo (Http o Https, si tratta tra maiuscole e minuscole) e il nome certificato SSL hello (se la configurazione di SSL di offload) |
+| **requestRoutingRules** |regola di Hello associa hello pool server back-end del listener e hello e definisce da indirizzare il traffico di hello pool server back-end. Attualmente è supportato solo come Round-robin |
 
 Esempio di un modello Json del gateway applicazione:
 
@@ -19,14 +19,14 @@ Esempio di un modello Json del gateway applicazione:
         "location": {
           "type": "string",
           "metadata": {
-            "description": "Location to deploy to"
+            "description": "Location toodeploy to"
           }
         },
         "addressPrefix": {
           "type": "string",
           "defaultValue": "10.0.0.0/16",
           "metadata": {
-            "description": "Address prefix for the Virtual Network"
+            "description": "Address prefix for hello Virtual Network"
           }
         },
         "subnetPrefix": {

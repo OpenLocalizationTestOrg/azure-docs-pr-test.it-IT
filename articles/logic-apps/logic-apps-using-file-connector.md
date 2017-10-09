@@ -1,6 +1,6 @@
 ---
-title: Connettersi a file system locali dalle app per la logica di Azure | Microsoft Docs
-description: Connettersi a file system locali dal flusso di lavoro dell'app per la logica tramite il gateway dati locale e il connettore File System
+title: aaaConnect tooon locale file System da Azure logica App | Documenti Microsoft
+description: Connettere i sistemi di file locali tooon dal flusso di lavoro logica app tramite gateway dati locale di hello e connettore File System
 keywords: file system
 services: logic-apps
 author: derek1ee
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/27/2017
 ms.author: LADocs; deli
-ms.openlocfilehash: f33e7c58103c57e17e4e273caba1ab9b83f0cd2b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: beb5565293def4aba81f63f19e77d7498aac38c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-on-premises-file-systems-from-logic-apps-with-the-file-system-connector"></a>Connettersi a file system locali dalle app per la logica con il connettore File System
+# <a name="connect-tooon-premises-file-systems-from-logic-apps-with-hello-file-system-connector"></a>Connettere i sistemi di file locale tooon logica App con connettore File System hello
 
-La connettività cloud ibrida è basilare per le app per la logica. In questo modo le app per la logica possono gestire i dati e accedere in modo sicuro alla risorse locali usando il gateway dati locale. Questo articolo descrive come connettersi a un file system locale presentando uno scenario semplice: copiare un file caricato in Dropbox in una condivisione file e successivamente inviare un messaggio di posta elettronica.
+Connettività di cloud ibrido è App toologic centrale, in tal caso toomanage dati e in modo sicuro l'accesso risorse locali, App per la logica è possibile usare gateway dati locale di hello. In questo articolo viene illustrata la modalità tooconnect tooan locale file system con uno scenario di base: copiare un file che tooa tooDropbox caricato condivisione file, quindi inviare un messaggio di posta elettronica.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- Installare e configurare il [gateway dati locale](https://www.microsoft.com/download/details.aspx?id=53127) più recente.
-- Installare il gateway dati locale più recente, versione 1.15.6150.1 o successiva. [Connessione al gateway dati locale](http://aka.ms/logicapps-gateway) elenca i passaggi. Prima di procedere con il resto della procedura, è necessario installare il gateway in un computer locale.
+- Installare e configurare più recente hello [gateway dati locale](https://www.microsoft.com/download/details.aspx?id=53127).
+- Installare hello gateway dati più recenti in locale, versione 1.15.6150.1 o versione successiva. [Connessione gateway dati locale di toohello](http://aka.ms/logicapps-gateway) elenchi hello passaggi. gateway di Hello deve essere installato in un computer locale prima di continuare con il resto di hello dei passaggi di hello.
 
-## <a name="add-trigger-and-actions-for-connecting-to-your-file-system"></a>Aggiungere trigger e azioni per la connessione al file system
+## <a name="add-trigger-and-actions-for-connecting-tooyour-file-system"></a>Aggiungere trigger e le azioni per la connessione a system file tooyour
 
 1. Creare un'app per la logica e aggiungere il trigger Dropbox: **Quando viene creato un file** 
-2. Nel trigger scegliere **Passaggio successivo** > **Aggiungi un'azione**. 
-3. Nella casella di ricerca, immettere `file system` in modo da visualizzare tutte le azioni supportate per il connettore File System.
+2. In trigger hello, scegliere **passaggio successivo** > **aggiungere un'azione**. 
+3. Nella casella di ricerca hello, immettere `file system` in modo da visualizzare azioni tutte supportate per il connettore File System hello.
 
    ![Cercare il connettore file](media/logic-apps-using-file-connector/search-file-connector.png)
 
-2. Scegliere l'azione **Crea file** e creare una connessione al file system.
+2. Scegliere hello **crea file** action e creare un file system tooyour di connessione.
 
-   Se non è già disponibile una connessione, verrà richiesto di crearne una.
+   Se non si dispone di una connessione esistente, verrà richiesta toocreate uno.
 
    1. Selezionare **Connect via on-premises data gateway** (Connetti tramite gateway dati locale). Vengono visualizzare altre proprietà.
    2. Selezionare la cartella radice per il file system.
       
        > [!NOTE]
-       > La cartella radice è la cartella principale che verrà usata per i percorsi relativi di tutte le azioni correlate ai file. È possibile specificare una cartella locale del computer in cui è installato il gateway dati locale oppure la cartella può essere una condivisione di rete a cui il computer ha accesso.
+       > cartella radice Hello è la cartella padre principale di hello, che viene utilizzata per i percorsi relativi per tutte le azioni relative ai file. È possibile specificare una cartella locale nel computer di hello in cui è installato gateway dati locale di hello o cartella hello può essere una condivisione di rete che hello computer può accedere.
 
-   3. Immettere il nome utente e la password del gateway.
-   4. Selezionare il gateway installato in precedenza.
+   3. Immettere nome utente hello e una password per gateway hello.
+   4. Selezionare il gateway hello installata in precedenza.
 
        ![Configurare la connessione](media/logic-apps-using-file-connector/create-file.png)
 
-3. Dopo aver specificato tutti i dettagli, scegliere **Crea**. 
+3. Dopo aver fornito tutti i dettagli di hello, scegliere **crea**. 
 
-   Le app per la logica configurano ed eseguono il test della connessione, assicurandosi che funzioni correttamente. 
-   Se la connessione è configurata correttamente, vengono visualizzate le opzioni per l'azione selezionata in precedenza. 
-   Il connettore del file system sarà pronto all'uso.
+   Logica App Configura e testa la connessione, assicurarsi che la connessione hello funziona correttamente. 
+   Se la connessione hello è configurata correttamente, si noterà opzioni per l'azione di hello selezionata in precedenza. 
+   connettore file system di Hello è ora pronto per l'utilizzo.
 
-4. Specificare che si desidera copiare i file da Dropbox nella cartella radice per la condivisione di file locale.
+4. Specificare che si desidera file toocopy Dropbox toohello nella cartella radice per la condivisione di file locale.
 
    ![Azione Crea file](media/logic-apps-using-file-connector/create-file-filled.png)
 
-5. Dopo che l'app per la logica ha copiato il file, aggiungere un'azione di Outlook che invia un messaggio di posta elettronica che informa gli utenti del nuovo file. Immettere i destinatari, il titolo e il corpo del messaggio di posta elettronica. 
+5. Dopo la logica app copie hello file, aggiungere un'azione di Outlook che invia un messaggio di posta elettronica in modo che gli utenti sul nuovo file hello. Immettere i destinatari hello, titolo e il corpo del messaggio di posta elettronica hello. 
 
-   Nel selettore di contenuto dinamico, è possibile scegliere output di dati dal connettore di file per aggiungere altri dettagli al messaggio di posta elettronica.
+   Nel selettore contenuto dinamico hello, è possibile scegliere gli output di dati dal connettore file hello, pertanto è possibile aggiungere ulteriori posta elettronica toohello di dettagli.
 
    ![Azione Invia e-mail](media/logic-apps-using-file-connector/send-email.png)
 
-6. Salvare l'app per la logica. Eseguire il test dell'app caricando un file in Dropbox. Il file dovrebbe essere copiato nella condivisione di file locale e si dovrebbe ricevere il relativo messaggio di posta elettronica di notifica.
+6. Salvare l'app per la logica. Testare l'app caricando un file tooDropbox. file Hello deve ottenere toohello copiati in una condivisione locale e dovrebbe essere visualizzato un messaggio di posta elettronica sull'operazione hello.
 
    > [!TIP] 
-   > Informazioni su come [monitorare le app per la logica](../logic-apps/logic-apps-monitor-your-logic-apps.md).
+   > Informazioni su come troppo[monitorare App per la logica](../logic-apps/logic-apps-monitor-your-logic-apps.md).
 
-A questo punto, si disporrà di un'app per la logica funzionante che può connettersi al file system locale. Provare a esplorare altre funzionalità del connettore, ad esempio:
+Congratulazioni, ora è un'app di logica di lavoro che può connettersi tooyour nel file sistema locale. Provare a esplorare altre funzionalità che hello connettore offerte, ad esempio:
 
 - Crea file
 - Elenca i file nella cartella
@@ -86,16 +86,16 @@ A questo punto, si disporrà di un'app per la logica funzionante che può connet
 - Elenca i file nella cartella radice
 - Aggiorna file
 
-## <a name="view-the-swagger"></a>Visualizzare il file Swagger
-Vedere i [dettagli del file Swagger](/connectors/fileconnector/). 
+## <a name="view-hello-swagger"></a>Swagger hello vista
+Vedere hello [swagger dettagli](/connectors/fileconnector/). 
 
 ## <a name="get-help"></a>Ottenere aiuto
 
-Per porre domande, fornire risposte e ottenere informazioni sulle attività degli altri utenti di App per la logica di Azure, vedere il [forum su App per la logica di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).
+rispondere alle domande di domande tooask, e informazioni su quali altri logica app di Azure in caso di utenti, visitare hello [forum di Azure logica app](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).
 
-Per contribuire al miglioramento delle App per la logica di Azure e dei connettori, votare o inviare idee al [sito dei commenti e suggerimenti degli utenti di App per la logica di Azure](http://aka.ms/logicapps-wish).
+toohelp migliorare Azure logica App e connettori, votare o inviare idee in hello [sito commenti e suggerimenti dell'utente di Azure logica app](http://aka.ms/logicapps-wish).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Connettersi ai dati locali](../logic-apps/logic-apps-gateway-connection.md) dalle app per la logica
+- [Connettere i dati locali tooon](../logic-apps/logic-apps-gateway-connection.md) da logica App
 - Informazioni su [Enterprise Integration](../logic-apps/logic-apps-enterprise-integration-overview.md)

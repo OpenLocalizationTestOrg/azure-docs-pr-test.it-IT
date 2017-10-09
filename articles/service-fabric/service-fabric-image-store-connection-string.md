@@ -1,6 +1,6 @@
 ---
-title: Stringa di connessione dell'archivio immagini di Azure Service Fabric | Microsoft Docs
-description: Informazioni sulla stringa di connessione dell'archivio immagini
+title: stringa di connessione di Service Fabric immagine archivio aaaAzure | Documenti Microsoft
+description: Comprendere una stringa di connessione archivio hello immagine
 services: service-fabric
 documentationcenter: .net
 author: alexwun
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: alexwun
-ms.openlocfilehash: f497006a8ba48da0032b82113702d8014952ca20
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83f5ad75b5df07726997da3173722028255b8cae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-the-imagestoreconnectionstring-setting"></a>Informazioni sull'impostazione ImageStoreConnectionString
+# <a name="understand-hello-imagestoreconnectionstring-setting"></a>Comprendere l'impostazione ImageStoreConnectionString hello
 
-In alcuni documenti di Microsoft si accenna brevemente all'esistenza di un parametro "ImageStoreConnectionString" senza che descriverne il significato reale. E dopo aver consultato un articolo come [Deploy and remove applications using PowerShell][10] (Distribuire e rimuovere applicazioni tramite PowerShell), sembra che sia sufficiente copiare e incollare il valore così come viene visualizzato nel manifesto del cluster del cluster di destinazione. L'impostazione quindi deve essere configurabile per ogni cluster, ma quando si crea un cluster nel [Portale di Azure][11], non è possibile configurare questa impostazione che è sempre "fabric:ImageStore". Qual è lo scopo di questa impostazione quindi?
+In alcuni documentazione è indicato brevemente esistenza hello di un parametro "ImageStoreConnectionString" senza che descrive il significato. E dopo aver esaminato un articolo come [distribuire e rimuovere le applicazioni con PowerShell][10], sembra che non è il valore di hello Copia/Incolla, così come viene visualizzato nel manifesto del cluster di destinazione hello hello cluster. Impostazione di hello devono pertanto essere configurabili per ogni cluster, ma quando si crea un cluster tramite hello [portale di Azure][11], non vi è alcun tooconfigure opzione questa impostazione e i relativi sempre "fabric: ImageStore". Qual è la funzione hello di quindi questa impostazione?
 
 ![Manifesto del cluster][img_cm]
 
-Service Fabric inizialmente era una piattaforma usata da diversi team di Microsofti, pertanto alcuni aspetti sono altamente personalizzabili e "Archivio immagini" è uni di questi aspetti. In pratica, l'Archivio di immagini è un repository collegabile per l'archiviazione dei pacchetti di applicazioni. Quando l'applicazione viene distribuita in un nodo del cluster, tale nodo scarica il contenuto del pacchetto dell'applicazione da Archivio immagini. ImageStoreConnectionString è un'impostazione che include tutte le informazioni necessarie sia per i client che per i nodi utile a trovare l'Archivio immagini corretto per un determinato cluster.
+Service Fabric iniziato come piattaforma per l'utilizzo Microsoft interno per molti team diversi, pertanto alcuni aspetti sono altamente personalizzabili: hello, "Image Store" è un aspetto di questo tipo. In pratica, hello Image Store è un repository di collegamento per l'archiviazione dei pacchetti di applicazioni. Quando l'applicazione è distribuita tooa nodo cluster hello, tale nodo Scarica il contenuto di hello del pacchetto di applicazione da hello archivio immagini. ImageStoreConnectionString Hello è un'impostazione che include tutte le informazioni necessarie hello per i client e i nodi toofind hello corretto archivio immagini per un determinato cluster.
 
 Esistono attualmente tre tipi possibili di provider i Archivio immagini e le relative stringhe di connessione sono le seguenti:
 
@@ -36,15 +36,15 @@ Esistono attualmente tre tipi possibili di provider i Archivio immagini e le rel
 
 3. Archiviazione di Azure: "xstore:DefaultEndpointsProtocol=https;AccountName=[...];AccountKey=[...];Container=[...]"
 
-Il tipo di provider utilizzato nell'ambiente di produzione è il Servizio di archiviazione immagini, che è un servizio di sistema persistente con stato che è possibile visualizzare da Service Fabric Explorer. 
+tipo di provider Hello utilizzato nell'ambiente di produzione è hello immagine il servizio di archiviazione, un servizio di sistema persistente con stato che si può vedere dal Service Fabric Explorer. 
 
 ![Servizio di archiviazione immagini][img_is]
 
-Ospitare Archivio immagini in un servizio di sistema all'interno del cluster stesso elimina le dipendenze esterne per il repository del pacchetto e offre un maggiore controllo sulla posizione di archiviazione. È probabile che i miglioramenti futuri di Archivio immagini riguarderanno prima di tutto, o in esclusivamente, il provider di Archivio immagini. La stringa di connessione per il provider del Servizio di archiviazione immagini non dispone di informazioni univoche in quanto il client è già connesso al cluster di destinazione. Per il client è sufficiente sapere che è necessario usare i protocolli per il servizio di sistema.
+Hosting hello Image Store in un servizio di sistema all'interno di cluster hello stesso Elimina dipendenze esterne per il repository di pacchetti hello e offre maggiore controllo sulla località hello di archiviazione. Futuri miglioramenti intorno hello Image Store sono provider dell'archivio di immagini tootarget probabilmente hello in primo luogo, se non in modo esclusivo. stringa di connessione Hello per provider di servizio di archiviazione immagine hello non dispone di informazioni univoche perché il client di hello è già connesso toohello cluster di destinazione. client Hello deve solo tooknow che devono essere utilizzati i protocolli hello servizio di sistema di destinazione.
 
-Il provider di File System viene usato al posto del servizio di archiviazione immagini per i cluster di una casella locali durante lo sviluppo per eseguire il bootstrap del cluster un po' più velocemente. La differenza generalmente è poca, ma è un'ottimizzazione utile a molti durante lo sviluppo. È possibile distribuire un cluster di una casella locale anche con altri tipi di provider per l'archiviazione, ma in genere non è necessario farlo poiché il flusso di lavoro di sviluppo e test rimane invariato indipendentemente dal provider. Oltre a questo uso, i provider di File System e di Archiviazione di Azure esistono solo per il supporto legacy.
+Hello File System provider viene utilizzato anziché hello immagine il servizio di archiviazione per i cluster di una casella locali durante il cluster di sviluppo toobootstrap hello leggermente superiore. differenza Hello è tipicamente piccola, ma è un'ottimizzazione per la maggior parte delle utile durante lo sviluppo. È possibile toodeploy una casella locale di un cluster con hello anche altri tipi di provider di archiviazione, ma non è in genere toodo così poiché il flusso di lavoro di hello sviluppo/test non hello uguali indipendentemente dal provider. Diverso da questo utilizzo, il provider di archiviazione di Azure e File System hello esiste solo per il supporto legacy.
 
-Pertanto nonostante ImageStoreConnectionString sia configurabile, generalmente viene usata solo l'impostazione predefinita. Durante la pubblicazione in Azure tramite [Visual Studio][12], il parametro viene impostato automaticamente in base alle esigenze dell'utente. Per la distribuzione a livello di codice ai cluster ospitati in Azure, la stringa di connessione è sempre "fabric:ImageStore". In caso di dubbi, il suo valore può essere verificato sempre recuperando il manifesto del cluster da [PowerShell](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricclustermanifest), [.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx) o [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest). Sia i test in locale che i cluster di produzione devono essere sempre configurati per poter usare anche il provider del Servizio di archivio immagini.
+Pertanto, mentre hello ImageStoreConnectionString è configurabile, è in genere solo utilizzare hello impostazione predefinita. Quando si pubblicano tooAzure tramite [Visual Studio][12], parametro hello viene impostato automaticamente di conseguenza. Per la distribuzione a livello di codice tooclusters ospitato in Azure, la stringa di connessione hello è sempre "fabric: ImageStore". Anche se in caso di dubbi, il relativo valore può essere verificato sempre recuperando hello manifesto del cluster da [PowerShell](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricclustermanifest), [.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx), o [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest). Test sia in locale e i cluster di produzione devono essere sempre anche provider di servizio di archiviazione immagine hello toouse configurato.
 
 ### <a name="next-steps"></a>Passaggi successivi
 [Deploy and remove applications using PowerShell][10] (Distribuire e rimuovere applicazioni con PowerShell)

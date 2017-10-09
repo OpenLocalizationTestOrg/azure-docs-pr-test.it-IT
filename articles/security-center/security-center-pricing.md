@@ -1,5 +1,5 @@
 ---
-title: Prezzi del Centro sicurezza | Microsoft Docs
+title: prezzi aaaSecurity Center | Documenti Microsoft
 description: Questo articolo fornisce informazioni sui prezzi del Centro sicurezza di Azure.
 services: security-center
 documentationcenter: na
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: 367b8f38cb9fcf3dc36db83641cb1696710608ef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 93cc284540114b048b7a960891c0e68553b008be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-center-pricing"></a>Prezzi del Centro sicurezza di Azure
-Il Centro sicurezza PC di Azure impedisce, rileva e risponde alle minacce mediante visibilità e controllo avanzati della sicurezza delle risorse di Azure. Offre funzionalità integrate di monitoraggio della sicurezza e gestione dei criteri tra le sottoscrizioni di Azure, facilita il rilevamento delle minacce che altrimenti passerebbero inosservate e funziona con un ampio ecosistema di soluzioni di sicurezza.
+Centro sicurezza di Azure consente di impedire, rilevare e rispondere toothreats con una maggiore visibilità e controllo sulla protezione hello delle risorse di Azure. Offre funzionalità integrate di monitoraggio della sicurezza e gestione dei criteri tra le sottoscrizioni di Azure, facilita il rilevamento delle minacce che altrimenti passerebbero inosservate e funziona con un ampio ecosistema di soluzioni di sicurezza.
 
 ## <a name="pricing-tiers"></a>Piani tariffari
 Il Centro sicurezza è disponibile in due livelli:
 
-* Il **livello gratuito** è attivato automaticamente per tutte le sottoscrizioni di Azure. Il livello gratuito permette di conoscere lo stato di protezione delle risorse di Azure, i criteri di sicurezza di base, i consigli sulla sicurezza e l'aspetto di integrazione con i prodotti e i servizi dei partner.
-* Il **livello standard** aggiunge funzionalità avanzate per il rilevamento delle minacce, tra cui business intelligence, analisi del comportamento, rilevamento delle anomalie, eventi imprevisti per la sicurezza e report di valutazione delle minacce. Il livello Standard è gratuito per i primi 60 giorni.
+* Hello **livello gratuito** viene abilitata automaticamente in tutte le sottoscrizioni di Azure. livello gratuito Hello fornisce visibilità stato protezione hello le risorse di Azure, i criteri di sicurezza di base, consigli sulla sicurezza e integrazione con prodotti e servizi di partner.
+* Hello **livello Standard** aggiunge minaccia avanzata funzionalità di rilevamento, tra cui intelligence, l'analisi del comportamento, il rilevamento di anomalie, eventi di sicurezza di minaccia e report di valutazione delle minacce. livello Standard Hello viene offerto gratuitamente per hello 60 giorni prima.
 
-Per altre informazioni, vedere la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/security-center/) del Centro sicurezza.
+Per ulteriori informazioni, vedere il centro di sicurezza hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/security-center/).
 
 ## <a name="try-standard-free-for-60-days"></a>Prova gratuita del livello Standard per 60 giorni
-Il livello Standard è gratuito per i primi 60 giorni. Al termine dei 60 giorni, se si sceglie di continuare a usare il servizio, l'uso verrà addebitato automaticamente.
+livello Standard Hello viene offerto gratuitamente per hello 60 giorni prima. Alla fine di hello di 60 giorni, è consigliabile scegliere toocontinue utilizzando servizio hello, si verrà automaticamente avviato ad addebitare i costi per l'utilizzo.
 
-Per ottenere il livello Standard:
+livello Standard hello tooget:
 
-1. Selezionare il riquadro **Criteri** nel pannello **Centro sicurezza**.
-2. Selezionare la sottoscrizione che si desidera aggiornare al livello Standard.
-3. Nel pannello **Security policy** (Criteri di sicurezza) selezionare **Pricing tier** (Piano tariffario).
-4. Nel pannello **Scegliere un piano tariffario** selezionare **Standard**.
+1. Seleziona hello **criteri** riquadro hello **Centro sicurezza PC** blade.
+2. Selezionare hello sottoscrizione che si desidera tooupgrade tooStandard.
+3. In hello **criteri di sicurezza** pannello seleziona **tariffario**.
+4. In hello **scegliere il piano tariffario** pannello seleziona **Standard**.
 5. Fare clic su **Seleziona**.
 
 
-## <a name="why-upgrade-to-standard"></a>Perché eseguire l'aggiornamento al livello standard?
-Il livello standard del Centro sicurezza fornisce tutte le funzionalità del livello gratuito, con in più il rilevamento avanzato. Il rilevamento avanzato delle minacce consente di identificare le minacce attive dirette alle risorse di Azure, fornendo le informazioni necessarie per rispondervi rapidamente.
+## <a name="why-upgrade-toostandard"></a>Vantaggi dell'aggiornamento tooStandard
+livello Standard di Hello del Centro sicurezza PC fornisce tutte le funzionalità del livello gratuito hello più funzionalità di rilevamento minacce avanzate. Advanced threat rilevamento contribuisce di identificare le minacce attive per le risorse di Azure e vengono fornite informazioni dettagliate hello necessario toorespond rapidamente.
 
-Il Centro sicurezza si avvale di analisi della sicurezza avanzate, che vanno ben oltre gli approcci basati sulle firme. Le ultime innovazioni sul piano delle tecnologie per i Big Data e l'apprendimento automatico vengono usate per valutare gli eventi in tutta l'infrastruttura cloud, rilevando minacce impossibili da identificare con approcci manuali e prevedendo l'evoluzione degli attacchi.
+Il Centro sicurezza si avvale di analisi della sicurezza avanzate, che vanno ben oltre gli approcci basati sulle firme. Successi in dati di grandi dimensioni e le tecnologie di apprendimento automatico sono utilizzati tooevaluate eventi attraverso l'infrastruttura di cloud intera hello: rilevamento minacce che sarebbero Impossibile tooidentify approcci manuali e utilizzato per stimare evoluzione hello di attacchi.
 
-Il livello standard fornisce le analisi di sicurezza seguenti:
+Analitica di sicurezza forniti con il livello Standard hello è:
 
-* **Intelligence per le minacce**: vengono cercate le minacce note usando un'intelligence globale sulle minacce dei prodotti e servizi Microsoft, della Microsoft Digital Crimes Unit, del Microsoft Security Response Center e dei feed esterni
-* **Analisi del comportamento**: vengono applicati schemi noti per individuare comportamenti dannosi
-* **Rilevamento di anomalie**: viene usata la profilatura statistica per creare una baseline cronologica. Questa funzione segnala le deviazioni dalle baseline definite che corrispondono a vettori di potenziali attacchi
+* **Minaccia intelligence** -ha un aspetto per noti cattivi attori, con informazioni sulle minacce globale da prodotti e servizi, Microsoft hello Digital Crimes Unit hello Microsoft Security Response Center e feed esterno
+* **Analisi del comportamento** -applica il comportamento di schemi noti toodiscover dannoso
+* **Rilevamento di anomalie** -Usa statistiche di profiling toobuild una linea di base cronologico. Avvisa sulle deviazioni dalle linee di base stabilite conformi vettore di attacco potenziale tooa
 
-Nel pannello **Avvisi di sicurezza** illustrato di seguito il Centro sicurezza ha rilevato un **evento imprevisto** per la sicurezza. Con la definizione di evento imprevisto per la sicurezza si intende un'aggregazione di tutti gli avvisi relativi a una risorsa corrispondenti a modelli kill chain. Selezionando l'evento imprevisto per la sicurezza, compaiono altri dettagli sull'evento imprevisto, insieme a un elenco degli avvisi correlati. Selezionando l'avviso è possibile avere altre sull'evento imprevisto in questione.
+In hello **degli avvisi di sicurezza** pannello riportato di seguito, il Centro sicurezza PC è stata rilevata una protezione **incidente**. Con la definizione di evento imprevisto per la sicurezza si intende un'aggregazione di tutti gli avvisi relativi a una risorsa corrispondenti a modelli kill chain. Problemi di sicurezza hello selezionando consente di visualizzare ulteriori dettagli sull'evento imprevisto di hello e gli elenchi di hello avvisi correlati. Selezionando l'avviso è possibile avere altre sull'evento imprevisto in questione.
 
 ![Evento imprevisto della sicurezza][2]
 
-L'avviso sulla **comunicazione di rete** qui di seguito fornisce dettagli sull'evento imprevisto. Le informazioni includono una descrizione completa del problema, la gravità, lo stato (che in questo caso viene ignorato, su decisione dell'utente), la risorsa attaccata e le contromisure. È inoltre disponibile un elenco di collegamenti ai report di Microsoft con informazioni sulle minacce, utili per risolvere i problemi di sicurezza e per attuare contromisure di protezione.
+Hello **comunicazione di rete** avviso riportato di seguito vengono fornite informazioni dettagliate sull'avviso hello. I dettagli includono la descrizione completa, la gravità, lo stato corrente (che in questo caso viene ignorata, utente hello significato ha impiegato azione toodismiss è), hello attaccata di risorse e i passaggi correttivi. È inoltre disponibile un elenco di collegamenti tooMicrosoft che riporta informazioni sulle minacce. utili per risolvere i problemi di sicurezza e per attuare contromisure di protezione.
 
 ![Dettagli dell'avviso di sicurezza][3]
 
 ## <a name="enable-data-collection"></a>Abilitare la raccolta di dati
-Per abilitare l'analisi del comportamento delle macchine virtuali, occorre attivare la raccolta dei dati.
+analitica comportamentali di tooenable macchina virtuale, la raccolta dei dati deve essere attivata.
 
-Per controllare che sia abilitata la raccolta dei dati:
+toovalidate che sia abilitata la raccolta dei dati:
 
-1. Selezionare il riquadro **Criterio**. Si apre il pannello **Criteri di sicurezza**, con elencate le sottoscrizioni Azure.
+1. Seleziona hello **criteri** riquadro. Hello **criteri di sicurezza** pannello visualizzata le sottoscrizioni di Azure.
 2. Selezionare una sottoscrizione.
-3. Se la **Raccolta dei dati** è disattivata, attivarla e salvare la modifica.
+3. Se **la raccolta dei dati** è disattivato, modificarlo tooon e salvare la modifica hello.
 
 > [!NOTE]
-> Se si usa la versione gratuita del Centro sicurezza di Azure, è possibile disabilitare la raccolta dati dalle macchine virtuali nei criteri di sicurezza. La raccolta dati è richiesta per le sottoscrizioni a livello Standard.
+> Se si utilizza disponibile Centro sicurezza di Azure, è possibile disabilitare la raccolta dei dati da macchine virtuali in hello criteri di sicurezza. Raccolta dati è obbligatorio per le sottoscrizioni nel livello Standard hello.
 >
 >
 
 Per altre informazioni, vedere [Abilitare la raccolta dati nel Centro sicurezza di Azure](security-center-enable-data-collection.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* In questo documento sono stati presentati i prezzi del Centro sicurezza. Per altre informazioni sui prezzi, vedere la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/security-center/) del Centro sicurezza.
-* Per saperne di più sulle funzionalità di rilevamento avanzate del Centro sicurezza, vedere [Funzionalità di rilevamento del Centro sicurezza di Azure](security-center-detection-capabilities.md).
-* Per informazioni su come i dati vengono gestiti e protetti nel Centro sicurezza, vedere [Sicurezza dei dati nel Centro sicurezza di Azure](security-center-data-security.md).
-* In caso di domande sull'uso del Centro sicurezza, vedere [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md).
-* Se si hanno ancora domande sull'uso del Centro sicurezza o di Azure, visitare i [forum di Azure](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc).
+* In questo documento, sono state introdotte toopricing per centro di sicurezza. Per ulteriori informazioni sui prezzi, vedere il centro di sicurezza hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/security-center/).
+* toolearn ulteriori informazioni su Centro di sicurezza avanzate funzionalità di rilevamento, vedere [funzionalità di rilevamento di Centro protezione Azure](security-center-detection-capabilities.md).
+* vedere toolearn ulteriori informazioni su come i dati vengono gestiti e Centro sicurezza PC, di protezione delle [protezione dei dati di Centro protezione Azure](security-center-data-security.md).
+* Nel caso di domande sull'utilizzo di centro di sicurezza, vedere hello [domande frequenti su Centro protezione di Azure](security-center-faq.md).
+* Se si dispone ancora di domande sull'utilizzo di centro di sicurezza o di Azure, visitare hello [forum di Azure](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc).
 
 <!--Image references-->
 [1]: ./media/security-center-pricing/standard.png

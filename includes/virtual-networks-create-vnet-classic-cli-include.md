@@ -1,8 +1,8 @@
-## <a name="how-to-create-a-classic-vnet-using-azure-cli"></a>Come creare una rete virtuale classica con l’Interfaccia della riga di comando di Azure
-È possibile utilizzare l'interfaccia della riga di comando (CLI) di Azure per gestire le risorse di Azure dal prompt dei comandi da qualsiasi computer con Windows, Linux o OSX. Per creare una rete virtuale utilizzando l'interfaccia della riga di comando di Azure seguire questa procedura.
+## <a name="how-toocreate-a-classic-vnet-using-azure-cli"></a>Come toocreate una rete virtuale classica mediante Azure CLI
+È possibile utilizzare hello Azure CLI toomanage le risorse di Azure dal prompt dei comandi di hello da qualsiasi computer che eseguono Windows, Linux o OSX. una rete virtuale tramite l'interfaccia CLI di Azure, hello toocreate procedura hello riportata di seguito.
 
-1. Se l'interfaccia della riga di comando di Azure non è mai stata usata, vedere [Installare e configurare l'interfaccia della riga di comando di Azure](../articles/cli-install-nodejs.md) e seguire le istruzioni fino al punto in cui si selezionano l'account e la sottoscrizione di Azure.
-2. Eseguire il comando per **creare reti virtuali di Azure** per creare una rete virtuale e una subnet, come illustrato di seguito. Nell'elenco riportato dopo l'output sono indicati i parametri usati.
+1. Se non si è mai usato CLI di Azure, vedere [installare e configurare hello Azure CLI](../articles/cli-install-nodejs.md) e seguire le istruzioni di hello toohello un punto in cui si seleziona l'account di Azure e la sottoscrizione.
+2. Eseguire hello **creazione della rete virtuale di rete di azure** comando toocreate una rete virtuale e una subnet, come illustrato di seguito. elenco di Hello visualizzato dopo l'output di hello illustrati parametri di hello utilizzati.
    
             azure network vnet create --vnet TestVNet -e 192.168.0.0 -i 16 -n FrontEnd -p 192.168.1.0 -r 24 -l "Central US"
    
@@ -14,41 +14,41 @@
             + Setting network configuration
             info:    network vnet create command OK
    
-   * **--vnet**. Nome della rete virtuale da creare. Per questo scenario, *TestVNet*
+   * **--vnet**. Nome di hello toobe di rete virtuale creata. Per questo scenario, *TestVNet*
    * **-e (o --address-space)**. Spazio degli indirizzi della rete virtuale. Per questo scenario, *192.168.0.0*
    * **-i (o -cidr)**. Maschera di rete nel formato CIDR. Per questo scenario, *16*
-   * **- n (o --subnet-name**). Nome della prima subnet. Per questo scenario, *FrontEnd*.
+   * **- n (o --subnet-name**). Nome della subnet prima hello. Per questo scenario, *FrontEnd*.
    * **-p (or --subnet-start-ip)**. Indirizzo IP iniziale per la subnet o spazio di indirizzi della subnet. Per questo scenario, *192.168.1.0*
    * **-r (o --subnet-cidr)**. Maschera di rete nel formato CIDR per la subnet. Per questo scenario, *24*
-   * **-l (o --location)**. Area di Azure in cui verrà creata la rete virtuale. Per questo scenario, *Central US*.
-3. Eseguire il comando per **creare la subnet della rete virtuale di Azure** per creare una subnet, come illustrato di seguito. Nell'elenco riportato dopo l'output sono indicati i parametri usati.
+   * **-l (o --location)**. Area di Azure in cui verrà creato hello rete virtuale. Per questo scenario, *Central US*.
+3. Eseguire hello **subnet di rete virtuale di rete di azure creare** toocreate comando una subnet, come illustrato di seguito. elenco di Hello visualizzato dopo l'output di hello illustrati parametri di hello utilizzati.
    
             azure network vnet subnet create -t TestVNet -n BackEnd -a 192.168.2.0/24
    
-    Di seguito è riportato l'output previsto per il comando precedente:
+    Ecco l'output di hello previsto per comando hello sopra indicato:
    
             info:    Executing command network vnet subnet create
             + Looking up network configuration
             + Creating subnet "BackEnd"
             + Setting network configuration
-            + Looking up the subnet "BackEnd"
+            + Looking up hello subnet "BackEnd"
             + Looking up network configuration
             data:    Name                            : BackEnd
             data:    Address prefix                  : 192.168.2.0/24
             info:    network vnet subnet create command OK
    
-   * **-t (o --vnet-name**. Nome della rete virtuale in cui verrà creata la subnet. Per questo scenario, *TestVNet*.
-   * **-n (o --name)**. Nome della nuova subnet. Per questo scenario, *BackEnd*.
+   * **-t (o --vnet-name**. Nome della rete virtuale in cui verrà creata la subnet hello hello. Per questo scenario, *TestVNet*.
+   * **-n (o --nome)**. Nome della nuova subnet hello. Per questo scenario, *BackEnd*.
    * **-a (o --address-prefix)**. Blocco CIDR della subnet. Per questo scenario, *192.168.2.0/24*.
-4. Eseguire il comando **azure network vnet show** per visualizzare le proprietà della nuova rete virtuale, come illustrato di seguito.
+4. Eseguire hello **Mostra di rete virtuale di rete di azure** comando proprietà hello tooview di hello nuova rete virtuale, come illustrato di seguito.
    
             azure network vnet show
    
-    Di seguito è riportato l'output previsto per il comando precedente:
+    Ecco l'output di hello previsto per comando hello sopra indicato:
    
             info:    Executing command network vnet show
             Virtual network name: TestVNet
-            + Looking up the virtual network sites
+            + Looking up hello virtual network sites
             data:    Name                            : TestVNet
             data:    Location                        : Central US
             data:    State                           : Created

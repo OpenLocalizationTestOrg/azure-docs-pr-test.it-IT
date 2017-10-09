@@ -1,53 +1,53 @@
 <!--author=alkohli last changed: 01/18/17 -->
 
-#### <a name="to-install-updates-via-the-azure-portal"></a>Per installare gli aggiornamenti tramite il portale di Azure
+#### <a name="tooinstall-updates-via-hello-azure-portal"></a>aggiornamenti tooinstall tramite hello portale di Azure
 
-1. Passare a Gestione dispositivi StorSimple e selezionare **Dispositivi**. Dall'elenco dei dispositivi connessi al servizio selezionare e fare clic sul dispositivo che si vuole aggiornare. 
+1. Passare tooyour dispositivo StorSimple Manager e selezionare **dispositivi**. Hello l'elenco di dispositivi connessi tooyour servizio, selezionare e fare clic su dispositivo hello da tooupdate. 
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate1m.png) 
 
-2. Nel pannello **Impostazioni** fare clic su **Aggiornamenti del dispositivo**. 
+2. In hello **impostazioni** pannello, fare clic su **gli aggiornamenti del dispositivo**. 
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate2m.png)  
 
-3. Se sono disponibili aggiornamenti software, verrà visualizzato un messaggio. Per cercare gli aggiornamenti è anche possibile fare clic su **Analizza**.
+3. Se sono disponibili aggiornamenti software hello, viene visualizzato un messaggio. toocheck per gli aggiornamenti, è possibile anche fare clic su **analisi**.
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate3m1.png)
 
-    Si riceverà una notifica dell'avvio dell'analisi e del completamento.
+    Si riceverà la notifica quando analisi hello viene avviato e completato correttamente.
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate5m.png)
 
-4. Dopo aver eseguito l'analisi degli aggiornamenti fare clic su **Scarica aggiornamenti**. 
+4. Una volta hello aggiornamenti vengono analizzati, fare clic su **scaricare gli aggiornamenti**. 
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate6m.png)
 
-5. Nel pannello **Nuovi aggiornamenti** esaminare le informazioni sugli aggiornamenti scaricati e confermare l'installazione. Fare clic su **OK**.
+5. In hello **nuovi aggiornamenti** pannello, rivedere le informazioni hello dopo hello aggiornamenti vengono scaricati, è necessario installazione hello tooconfirm. Fare clic su **OK**.
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate7m.png)
 
-6. Si riceverà una notifica dell'avvio del caricamento e del completamento.
+6. Ricevere notifiche quando il caricamento di hello viene avviato e completato correttamente.
 
      ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate8m.png)
 
-5. Nel pannello **Aggiornamenti del dispositivo** fare clic su **Installa**.
+5. In hello **gli aggiornamenti del dispositivo** pannello, fare clic su **installare**.
 
      ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate11m1.png)   
 
-6. Nel pannello **Nuovi aggiornamenti** viene visualizzato un avviso che comunica che l'aggiornamento è problematico. Poiché l'array virtuale è un dispositivo a nodo singolo, il dispositivo viene riavviato dopo l'aggiornamento. Tutti gli IO in corso verranno interrotti. Fare clic su **OK** per installare gli aggiornamenti. 
+6. In hello **nuovi aggiornamenti** pannello viene visualizzato un avviso che gli aggiornamenti di hello sono un'operazione distruttiva. Array virtuale è un dispositivo singolo nodo, hello dispositivo si riavvia dopo l'aggiornamento. Tutti gli IO in corso verranno interrotti. Fare clic su **OK** tooinstall hello aggiornamenti. 
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate12m.png) 
 
-7. Si riceverà una notifica dell'avvio del processo di installazione. 
+7. Essere informati quando viene avviato il processo di installazione di hello. 
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate13m.png)
 
-8.  Al termine del processo di installazione, fare clic sul collegamento **Visualizzare il processo** nel pannello **Aggiornamenti del dispositivo** per monitorare l'installazione. 
+8.  Dopo aver completato il processo di installazione di hello, fare clic su **Visualizza processo** collegamento hello **gli aggiornamenti del dispositivo** installazione hello toomonitor di blade. 
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate15m1.png)
 
-    Viene visualizzato il pannello **Installa aggiornamenti**. Nel pannello sono visualizzate informazioni dettagliate sul processo.
+    Consente di passare toohello **Installa aggiornamenti** blade. È possibile visualizzare informazioni dettagliate sul processo hello qui.
 
     ![aggiornamento dispositivo](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate16m1.png)
 
-9. Al termine dell'installazione degli aggiornamenti viene visualizzato un messaggio nel pannello **Aggiornamenti del dispositivo**. 
+9. Dopo che sono stati correttamente installati gli aggiornamenti di hello, vedrai un effetto toothis messaggio in hello **gli aggiornamenti del dispositivo** blade. 

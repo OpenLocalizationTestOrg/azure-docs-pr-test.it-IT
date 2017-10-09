@@ -1,6 +1,6 @@
 ---
-title: Inviare eventi a Hub eventi di Azure usando .NET Framework | Documentazione Microsoft
-description: Iniziare a inviare eventi a Hub eventi usando .NET Framework
+title: gli hub di eventi di aaaSend tooAzure eventi usando hello .NET Framework | Documenti Microsoft
+description: Iniziare l'invio di eventi tooEvent hub utilizzando hello .NET Framework
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/12/2017
 ms.author: sethm
-ms.openlocfilehash: 4eb0e7bcc14722010121c2a5945509d6ed736f4f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 05514546a6094096e4a3c800db058190076de80a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-events-to-azure-event-hubs-using-the-net-framework"></a>Inviare eventi a Hub eventi di Azure usando .NET Framework
+# <a name="send-events-tooazure-event-hubs-using-hello-net-framework"></a>Inviare gli eventi di hub di eventi tooAzure utilizzando hello .NET Framework
 
 ## <a name="introduction"></a>Introduzione
 
-Hub eventi è un servizio che consente di elaborare grandi quantità di dati di telemetria sugli eventi da applicazioni e dispositivi connessi. Dopo aver raccolto i dati in Hub eventi, è possibile archiviarli usando un cluster di archiviazione o trasformarli usando un provider di analisi in tempo reale. Questa funzionalità di elaborazione e raccolta di eventi su vasta scala rappresenta un componente chiave delle moderne architetture di applicazioni, tra cui Internet delle cose (IoT).
+Hub eventi è un servizio che consente di elaborare grandi quantità di dati di telemetria sugli eventi da applicazioni e dispositivi connessi. Dopo aver raccolto i dati in hub eventi, è possibile archiviare i dati di hello utilizzando un cluster di archiviazione o trasformare tramite un provider analitica in tempo reale. Questa funzionalità di raccolta e l'elaborazione di eventi su larga scala è un componente fondamentale di architetture di applicazioni moderne inclusi hello Internet delle cose (IoT).
 
-Questa esercitazione illustra come usare il [portale di Azure](https://portal.azure.com) per creare un hub eventi. Descrive anche come inviare eventi a un hub eventi usando un'applicazione console scritta in C# con .NET Framework. Per ricevere eventi usando .NET Framework, vedere l'articolo [Receive events using the .NET Framework](event-hubs-dotnet-framework-getstarted-receive-eph.md) (Ricevere eventi usando .NET Framework) o fare clic sul linguaggio di ricezione appropriato nel sommario a sinistra.
+Questa esercitazione viene illustrato come hello toouse [portale di Azure](https://portal.azure.com) toocreate un hub eventi. Viene inoltre illustrato come hub eventi tooan eventi toosend utilizzando un'applicazione console scritta in c# tramite hello .NET Framework. gli eventi di tooreceive utilizzando hello .NET Framework, vedere hello [ricevere gli eventi utilizzando .NET Framework hello](event-hubs-dotnet-framework-getstarted-receive-eph.md) articolo oppure fare clic sulla lingua ricevente hello appropriata nella tabella a sinistra di hello del contenuto.
 
-Per completare questa esercitazione è necessario soddisfare i prerequisiti seguenti:
+toocomplete questa esercitazione, è necessario hello seguenti prerequisiti:
 
-* [Microsoft Visual Studio 2015 o versione successiva](http://visualstudio.com). Gli screenshot in questa esercitazione illustrano Visual Studio 2017.
+* [Microsoft Visual Studio 2015 o versione successiva](http://visualstudio.com). le schermate di Hello in questa esercitazione usare Visual Studio 2017.
 * Un account Azure attivo. Se non si ha un account, è possibile crearne uno gratuito in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/free/).
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>Creare uno spazio dei nomi di Hub eventi e un hub eventi
 
-Il primo passaggio consiste nell'usare il [portale di Azure](https://portal.azure.com) per creare uno spazio dei nomi di tipo Hub eventi e ottenere le credenziali di gestione necessarie all'applicazione per comunicare con l'hub eventi. Per creare uno spazio dei nomi e un hub eventi, seguire la procedura descritta in [questo articolo](event-hubs-create.md) e quindi procedere con i passaggi seguenti di questa esercitazione.
+primo passaggio Hello è hello toouse [portale di Azure](https://portal.azure.com) toocreate spazio dei nomi di tipo hub eventi e ottenere hello le credenziali di gestione, l'applicazione deve toocommunicate con hub eventi hello. toocreate uno spazio dei nomi e hub eventi, attenersi alla procedura hello in [questo articolo](event-hubs-create.md), quindi procedere con hello seguendo i passaggi in questa esercitazione.
 
 ## <a name="create-a-sender-console-application"></a>Creare un'applicazione console per il mittente
 
-In questa sezione si scriverà un'app console Windows che invia eventi all'hub eventi.
+In questa sezione verrà scritto un'applicazione console di Windows che invia l'hub di eventi tooyour di eventi.
 
-1. In Visual Studio creare un nuovo progetto di app desktop di Visual C# usando il modello di progetto **Applicazione console** . Assegnare al progetto il nome **Sender**.
+1. In Visual Studio, creare un nuovo progetto di App Desktop Visual c# utilizzando hello **applicazione Console** modello di progetto. Progetto hello nome **mittente**.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-send/create-sender-csharp1.png)
-2. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **Sender**, quindi scegliere **Gestisci pacchetti NuGet per la soluzione**. 
-3. Fare clic sulla scheda **Sfoglia** e quindi cercare `Microsoft Azure Service Bus`. Fare clic su **Installa**e accettare le condizioni per l'utilizzo. 
+2. In Esplora soluzioni fare doppio clic su hello **mittente** del progetto e quindi fare clic su **Gestisci pacchetti NuGet per la soluzione**. 
+3. Fare clic su hello **Sfoglia** tab, quindi cercare `Microsoft Azure Service Bus`. Fare clic su **installare**e accettare le condizioni di hello d'uso. 
    
     ![](./media/event-hubs-dotnet-framework-getstarted-send/create-sender-csharp2.png)
    
-    Visual Studio scarica e installa il [pacchetto NuGet delle librerie del bus di servizio di Azure](https://www.nuget.org/packages/WindowsAzure.ServiceBus)e aggiunge un riferimento al pacchetto.
-4. Aggiungere le istruzione `using` seguenti all'inizio del file **Program.cs** :
+    Visual Studio Scarica, installa e aggiunge un riferimento toohello [pacchetto NuGet della libreria di Azure Service Bus](https://www.nuget.org/packages/WindowsAzure.ServiceBus).
+4. Aggiungere il seguente hello `using` le istruzioni nella parte superiore di hello di hello **Program.cs** file:
    
   ```csharp
   using System.Threading;
   using Microsoft.ServiceBus.Messaging;
   ```
-5. Aggiungere i campi seguenti alla classe **Program**, sostituendo i valori segnaposto con il nome dell'hub eventi creato nella sezione precedente e la stringa di connessione a livello di spazio dei nomi salvata in precedenza.
+5. Aggiungere i seguenti campi toohello hello **programma** classe, sostituendo i valori segnaposto hello con nome hello dell'hub eventi hello creato nella sezione precedente hello e stringa di connessione dello spazio dei nomi a livello di hello è stato salvato in precedenza.
    
   ```csharp
   static string eventHubName = "{Event Hub name}";
   static string connectionString = "{send connection string}";
   ```
-6. Aggiungere il metodo seguente alla classe **Program** :
+6. Aggiungere hello seguente metodo toohello **programma** classe:
    
   ```csharp
   static void SendingRandomMessages()
@@ -88,23 +88,23 @@ In questa sezione si scriverà un'app console Windows che invia eventi all'hub e
   }
   ```
    
-  Questo metodo invia continuamente eventi all'hub eventi con un ritardo di 200 millisecondi.
-7. Aggiungere infine le righe seguenti al metodo **Main** :
+  Questo metodo invia in modo continuo hub di eventi eventi tooyour con un ritardo di 200 ms.
+7. Infine, aggiungere hello seguenti righe toohello **Main** metodo:
    
   ```csharp
-  Console.WriteLine("Press Ctrl-C to stop the sender process");
-  Console.WriteLine("Press Enter to start now");
+  Console.WriteLine("Press Ctrl-C toostop hello sender process");
+  Console.WriteLine("Press Enter toostart now");
   Console.ReadLine();
   SendingRandomMessages();
   ```
-8. Eseguire il programma e assicurarsi che non siano presenti errori.
+8. Eseguire il programma hello e assicurarsi che non siano presenti errori.
   
-Congratulazioni. Sono stati inviati messaggi a un hub eventi.
+Congratulazioni. Hub di eventi tooan messaggi inviati a questo punto.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che è stata creata un'applicazione funzionante che crea un hub eventi e invia dati, è possibile passare agli scenari seguenti:
+Dopo aver creato un'applicazione funzionante che crea un hub eventi e invia i dati, è possibile passare toohello seguenti scenari:
 
-* [Receive events using the Event Processor Host](event-hubs-dotnet-framework-getstarted-receive-eph.md) (Ricevere eventi usando l'host processore di eventi)
+* [Ricezione di eventi utilizzando hello Host processore di eventi](event-hubs-dotnet-framework-getstarted-receive-eph.md)
 * [Event Processor Host reference](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost) (Informazioni di riferimento sull'host processore di eventi)
 * [Panoramica di Hub eventi](event-hubs-what-is-event-hubs.md)
 

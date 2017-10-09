@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-title: Documentazione di Inoltro del bus di servizio
-description: Informazioni sul funzionamento del servizio di inoltro di Azure in un ambiente locale e cloud ibrido, con procedure, esercitazioni, video, informazioni di riferimento sulle API e altro.
-ms.openlocfilehash: 43d2c5ca34e4903a41160496fdb4d975cb665de7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+title: Documentazione di inoltro Bus aaaService
+description: Informazioni su hello servizio di inoltro Azure funzionamento in un cloud e locali ambiente ibrido, con procedure, esercitazioni, video, riferimenti ad API e altro ancora.
+ms.openlocfilehash: c042c82c90fa03e91ee9c1b513e325d7e8d33c08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-relay-documentation"></a>Documentazione di Inoltro del bus di servizio
-Informazioni sul modo in cui il servizio di inoltro di Azure consente applicazioni ibride tra ambienti locali e cloud di una rete aziendale e il cloud pubblico, senza dover aprire una connessione firewall o richiedere modifiche di notevole impatto a un'infrastruttura di rete aziendale.
+Informazioni su come Azure inoltro servizio facilita applicazioni ibride tra locali e cloud ambienti all'interno di un'organizzazione aziendale hello e rete cloud pubblico, senza la necessità di una connessione firewall tooopen o richiedono modifiche intrusivo tooa azienda infrastruttura di rete.
 
 <ul class="panelContent cardsFTitle">
     <li>

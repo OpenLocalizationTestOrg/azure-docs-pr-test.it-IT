@@ -2,13 +2,13 @@
 
 Creare un nuovo file JavaScript denominato `sender.js`.
 
-### <a name="add-the-relay-npm-package"></a>Aggiungere il pacchetto NPM di inoltro
+### <a name="add-hello-relay-npm-package"></a>Aggiungere il pacchetto NPM inoltro hello
 
 Eseguire `npm install hyco-ws` dal prompt dei comandi di Node nella cartella del progetto.
 
-### <a name="write-some-code-to-send-messages"></a>Scrivere codice per inviare messaggi
+### <a name="write-some-code-toosend-messages"></a>Scrivere codice toosend messaggi
 
-1. Aggiungere il valore `constants` seguente alla parte iniziale del file `sender.js`.
+1. Aggiungere il seguente hello `constants` toohello cima hello `sender.js` file.
    
     ```js
     const WebSocket = require('hyco-ws');
@@ -18,14 +18,14 @@ Eseguire `npm install hyco-ws` dal prompt dei comandi di Node nella cartella del
             output: process.stdout
         });;
     ```
-2. Aggiungere le costanti seguenti al file `sender.js` per i dettagli della connessione ibrida. Sostituire i segnaposto tra parentesi con i valori ottenuti durante la creazione della connessione ibrida.
+2. Aggiungere hello seguenti costanti toohello `sender.js` file per i dettagli della connessione ibrida hello. Sostituire i segnaposto hello tra parentesi quadre con valori di hello ottenuto al momento della creazione connessione ibrida hello.
    
-   1. `const ns`: spazio dei nomi dell'inoltro. Assicurarsi di usare il nome completo dello spazio dei nomi, ad esempio `{namespace}.servicebus.windows.net`.
-   2. `const path`: nome della connessione ibrida.
-   3. `const keyrule`: nome della chiave di firma di accesso condiviso.
-   4. `const key`: valore della chiave di firma di accesso condiviso.
+   1. `const ns`-hello inoltro dello spazio dei nomi. Nome completo dello spazio dei nomi di hello che toouse; ad esempio, `{namespace}.servicebus.windows.net`.
+   2. `const path`-nome hello della connessione ibrida hello.
+   3. `const keyrule`-nome hello della chiave di firma di accesso condiviso di hello.
+   4. `const key`-hello valore della chiave di firma di accesso condiviso.
 
-3. Aggiungere il codice seguente al file `sender.js`:
+3. Aggiungere i seguenti toohello codice hello `sender.js` file:
    
     ```js
     WebSocket.relayedConnect(

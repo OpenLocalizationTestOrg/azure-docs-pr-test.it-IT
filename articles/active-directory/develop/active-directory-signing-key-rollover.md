@@ -1,6 +1,6 @@
 ---
-title: Rollover della chiave di firma in Azure AD | Microsoft Docs
-description: Questo articolo illustra le procedure consigliate di rollover della chiave di firma per Azure Active Directory
+title: Rollover della chiave di Azure AD aaaSigning | Documenti Microsoft
+description: Questo articolo illustra hello consigliate rollover della chiave di firma per Azure Active Directory
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 228bb9058537af1e4eb38207c376c2eb86aee68c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ac6ade7f3ba2fbd22ea6d447aa5d07a2d6bdd451
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="signing-key-rollover-in-azure-active-directory"></a>Rollover della chiave di firma in Azure Active Directory
-Questo argomento illustra che cosa è necessario sapere sulle chiavi pubbliche usate per la firma dei token di sicurezza in Azure Active Directory (Azure AD). È importante notare che il rollover di queste chiavi viene eseguito periodicamente e in caso di emergenza può essere eseguito immediatamente. Tutte le applicazioni che usano Azure AD devono poter gestire a livello di codice il processo di rollover della chiave o stabilire un processo di rollover manuale periodico. Continuare la lettura per comprendere il funzionamento delle chiavi, come valutare l'impatto del rollover nell'applicazione e come aggiornare l'applicazione o stabilire un processo di rollover manuale periodico per gestire il rollover della chiave, se necessario.
+In questo argomento viene illustrato cosa occorre tooknow sulle chiavi pubbliche hello utilizzati nei token di sicurezza di Azure Active Directory (Azure AD) toosign. È importante toonote che questi rollover delle chiavi su base periodica e, in caso di emergenza, potrebbe essere eseguito il rollover immediatamente. Tutte le applicazioni che usano Azure AD devono essere in grado di tooprogrammatically handle hello rollover della chiave processo o stabilire un processo di rollover manuale periodico. Continuare la lettura toounderstand il funzionamento delle chiavi di hello, come tooassess hello impatto di un'applicazione hello rollover tooyour e come tooupdate l'applicazione o stabilire un rollover della chiave toohandle processo periodico di attivazione manuale, se necessario.
 
 ## <a name="overview-of-signing-keys-in-azure-ad"></a>Informazioni generali sulle chiavi di firma in Azure AD
-Azure AD usa la crittografia a chiave pubblica basata su standard di settore per stabilire una relazione di trust tra se stesso e le applicazioni che usano Azure AD. In termini pratici, Azure AD usa una chiave di firma costituita da una coppia di chiavi pubbliche e private. Quando un utente accede a un'applicazione che usa Azure AD per l'autenticazione, Azure AD crea un token di sicurezza contenente informazioni sull'utente. Questo token viene firmato da Azure AD con la chiave privata prima che venga inviato di nuovo all'applicazione. Per verificare che il token sia valido e sia stato realmente originato da Azure AD, l'applicazione deve convalidare la firma del token usando la chiave pubblica esposta da Azure AD contenuta nel [documento di individuazione di OpenID Connect](http://openid.net/specs/openid-connect-discovery-1_0.html) del tenant o nel [documento dei metadati della federazione](active-directory-federation-metadata.md) SAML/WS-Fed.
+Azure AD Usa la crittografia a chiave pubblica basata su trust tooestablish standard di settore tra l'elemento e hello applicazioni che lo utilizzano. In pratica, questo procedimento funziona nel seguente modo hello: Azure AD Usa una chiave di firma costituita da una coppia di chiavi pubblica e privata. Quando un utente accede tooan applicazione che usa Azure AD per l'autenticazione, Azure AD crea un token di sicurezza che contiene informazioni sull'utente hello. Questo token viene firmato da Azure AD usando la relativa chiave privata prima di inviarlo applicazione toohello indietro. tooverify che hello token sia valido e provenga effettivamente da Azure AD, l'applicazione hello deve convalidare firma del token hello con la chiave pubblica di hello esposta da Azure Active Directory nel tenant di hello [documento di individuazione OpenID Connect](http://openid.net/specs/openid-connect-discovery-1_0.html) o SAML/WS-Fed [documento metadati federazione](active-directory-federation-metadata.md).
 
-Per motivi di sicurezza, il rollover della chiave di firma di Azure AD viene eseguito periodicamente e può essere eseguito immediatamente in caso di emergenza. Qualsiasi applicazione che si integra con Azure AD deve poter gestire un evento di rollover della chiave indipendentemente dalla frequenza con cui può verificarsi. Se l'applicazione non ha la logica necessaria e prova a usare una chiave scaduta per verificare la firma su un token, la richiesta di accesso avrà esito negativo.
+Per motivi di sicurezza, esegue il rollback chiave su base periodica e, nel caso di hello di un'emergenza, di firma di Azure AD può essere eseguito il rollover immediatamente. Qualsiasi applicazione che si integra con Azure AD deve essere preparata toohandle un evento di rollover della chiave non è rilevante la frequenza con cui può verificarsi. Ciò non accade, se l'applicazione tenta di toouse una firma di hello scaduti tooverify chiave su un token, richiesta di accesso hello avrà esito negativo.
 
-È sempre disponibile più di una chiave valida nel documento di individuazione di OpenID Connect e nel documento di metadati della federazione. L'applicazione deve poter usare qualsiasi chiave specificata nel documento perché di una chiave può essere eseguito il rollover a breve, un'altra può essere quella sostitutiva e così via.
+Non esiste più di una chiave valida è sempre disponibile nel documento di individuazione OpenID Connect hello e documento di metadati di federazione hello. L'applicazione deve essere preparata toouse qualsiasi chiave hello specificato nel documento hello, poiché una chiave può essere implementata a breve, un altro può essere relativa sostituzione e così via.
 
-## <a name="how-to-assess-if-your-application-will-be-affected-and-what-to-do-about-it"></a>Come valutare se l'applicazione sarà interessata e come intervenire
-Il modo in cui l'applicazione gestisce il rollover della chiave dipende da variabili come il tipo di applicazione o la libreria e il protocollo di identità usati. Le sezioni seguenti valutano se i tipi di applicazioni più comuni sono interessati dal rollover della chiave e offrono indicazioni su come aggiornare l'applicazione per supportare il rollover automatico o aggiornare la chiave manualmente.
+## <a name="how-tooassess-if-your-application-will-be-affected-and-what-toodo-about-it"></a>Come tooassess se l'applicazione sarà interessata e quale toodo su di esso
+Il modo in cui l'applicazione gestisce il rollover della chiave dipende da variabili quali il tipo di hello di applicazione o il protocollo di identità e la libreria è stata utilizzata. Hello nelle sezioni seguenti vengono valutare se i tipi più comuni di hello delle applicazioni sono interessati da rollover della chiave hello e forniscono indicazioni su come tooupdate il rollover automatico toosupport applicazione hello o aggiornare manualmente la chiave di hello.
 
 * [Applicazioni client native che accedono alle risorse](#nativeclient)
 * [API / applicazioni Web che accedono alle risorse](#webclient)
@@ -45,30 +45,30 @@ Il modo in cui l'applicazione gestisce il rollover della chiave dipende da varia
 * [API Web che proteggono le risorse e sono state create con Visual Studio 2013](#vs2013_webapi)
 * [Applicazioni Web che proteggono le risorse e sono state create con Visual Studio 2012](#vs2012)
 * [Applicazioni Web che proteggono le risorse e sono state create con Visual Studio 2010 o 2008 o con Windows Identity Foundation](#vs2010)
-* [API / applicazioni Web che proteggono le risorse usando qualsiasi altra libreria o con implementazione manuale di qualsiasi protocollo supportato](#other)
+* [Applicazioni Web / API di protezione delle risorse utilizzando qualsiasi altre librerie o implementare manualmente uno di hello protocolli supportati](#other)
 
 Queste indicazioni **non** sono valide per:
 
-* Applicazioni aggiunte dalla raccolta di applicazioni di Azure AD (incluse quelle personalizzate), che hanno indicazioni separate per la chiave di firma. [Altre informazioni.](../active-directory-sso-certs.md)
-* Applicazioni locali pubblicate tramite il proxy di applicazione, che non prevedono le chiavi di firma.
+* Applicazioni aggiunte dalla raccolta di applicazioni AD Azure (incluso personalizzato) hanno apposite istruzioni con relativamente toosigning chiavi. [Altre informazioni.](../active-directory-sso-certs.md)
+* Locale non dispone di applicazioni pubblicate tramite proxy applicazione tooworry sulle chiavi di firma.
 
 ### <a name="nativeclient"></a>Applicazioni client native che accedono alle risorse
-Le applicazioni che si limitano ad accedere alle risorse, come Microsoft Graph, l'insieme di credenziali, l'API Outlook e altre API Microsoft, in genere ottengono soltanto un token e lo passano al proprietario della risorsa. Dato che tali applicazioni non proteggono risorse, il token non viene controllato e quindi non è necessario assicurarsi che sia firmato correttamente.
+Le applicazioni che si limitano ad accedere alle risorse, come Microsoft Graph, KeyVault, API di Outlook e altre APIs Microsoft) in genere solo ottenere un token e passarlo lungo toohello proprietario della risorsa. Dato che non sono per proteggere le risorse, non controllano il token hello e pertanto non è necessario tooensure che è firmato correttamente.
 
-Le applicazioni client native, sia per desktop che per dispositivi mobili, rientrano in questa categoria e quindi non sono interessate dal rollover.
+Le applicazioni client native, se i computer desktop o portatile, in questa categoria rientrano e sono pertanto non è interessate da rollover hello.
 
 ### <a name="webclient"></a>API / applicazioni Web che accedono alle risorse
-Le applicazioni che si limitano ad accedere alle risorse, come Microsoft Graph, l'insieme di credenziali, l'API Outlook e altre API Microsoft, in genere ottengono soltanto un token e lo passano al proprietario della risorsa. Dato che tali applicazioni non proteggono risorse, il token non viene controllato e quindi non è necessario assicurarsi che sia firmato correttamente.
+Le applicazioni che si limitano ad accedere alle risorse, come Microsoft Graph, KeyVault, API di Outlook e altre APIs Microsoft) in genere solo ottenere un token e passarlo lungo toohello proprietario della risorsa. Dato che non sono per proteggere le risorse, non controllano il token hello e pertanto non è necessario tooensure che è firmato correttamente.
 
-Le applicazioni Web e le API Web che usano il flusso solo app (credenziali client / certificato client) rientrano in questa categoria e quindi non sono interessate dal rollover.
+Le applicazioni Web e le API web che utilizzano il flusso solo app hello (credenziali client / certificato client), in questa categoria rientrano e sono pertanto non è interessato da rollover hello.
 
 ### <a name="appservices"></a>API / applicazioni Web che proteggono le risorse e sono state compilate con i servizi app di Azure
-La funzionalità di autenticazione / autorizzazione (EasyAuth) dei servizi app di Azure ha già la logica necessaria per gestire automaticamente il rollover della chiave.
+L'autenticazione di Azure i servizi App / funzionalità di autorizzazione (EasyAuth) dispone già di rollover della chiave toohandle logica necessaria hello automaticamente.
 
 ### <a name="owin"></a>API / applicazioni Web che proteggono le risorse usando middleware .NET OWIN OpenID Connect, WS-Fed o WindowsAzureActiveDirectoryBearerAuthentication
-Se l'applicazione usa middleware .NET OWIN OpenID Connect, WS-Fed o WindowsAzureActiveDirectoryBearerAuthentication, ha già la logica necessaria per gestire automaticamente il rollover della chiave.
+Se l'applicazione utilizza hello .NET OWIN OpenID Connect, WS-Fed o middleware WindowsAzureActiveDirectoryBearerAuthentication, contiene già il rollover della chiave toohandle logica necessaria hello automaticamente.
 
-È possibile verificare che l'applicazione usi middleware di questo tipo cercando uno dei frammenti seguenti nei file Startup.cs o Startup.Auth.cs dell'applicazione
+È possibile verificare che l'applicazione utilizza uno di questi mediante la ricerca di uno qualsiasi dei seguenti frammenti di codice in Startup.cs o Startup.Auth.cs dell'applicazione hello
 
 ```
 app.UseOpenIdConnectAuthentication(
@@ -93,9 +93,9 @@ app.UseWsFederationAuthentication(
 ```
 
 ### <a name="owincore"></a>API / applicazioni Web che proteggono le risorse usando middleware .NET Core OpenID Connect o JwtBearerAuthentication
-Se l'applicazione usa middleware .NET Core OWIN OpenID Connect o JwtBearerAuthentication, ha già la logica necessaria per gestire automaticamente il rollover della chiave.
+Se l'applicazione utilizza hello .NET Core OWIN OpenID Connect o middleware JwtBearerAuthentication, contiene già il rollover della chiave toohandle logica necessaria hello automaticamente.
 
-È possibile verificare che l'applicazione usi middleware di questo tipo cercando uno dei frammenti seguenti nei file Startup.cs o Startup.Auth.cs dell'applicazione
+È possibile verificare che l'applicazione utilizza uno di questi mediante la ricerca di uno qualsiasi dei seguenti frammenti di codice in Startup.cs o Startup.Auth.cs dell'applicazione hello
 
 ```
 app.UseOpenIdConnectAuthentication(
@@ -113,9 +113,9 @@ app.UseJwtBearerAuthentication(
 ```
 
 ### <a name="passport"></a>API / applicazioni Web che proteggono le risorse usando il modulo Node.js passport-azure-ad
-Se l'applicazione usa il modulo Node.js passport-ad, ha già la logica necessaria per gestire automaticamente il rollover della chiave.
+Se l'applicazione utilizza hello Node.js passport ad modulo, contiene già il rollover della chiave toohandle logica necessaria hello automaticamente.
 
-È possibile verificare che l'applicazione usi il modulo passport-ad cercando il frammento seguente nel file app.js dell'applicazione
+È possibile verificare che l'applicazione Active Directory a passport cercando hello seguente frammento di in app.js dell'applicazione
 
 ```
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
@@ -126,31 +126,31 @@ passport.use(new OIDCStrategy({
 ```
 
 ### <a name="vs2015"></a>API/applicazioni Web che proteggono le risorse e sono state create con Visual Studio 2015 o Visual Studio 2017
-Se l'applicazione è stata creata usando un modello di applicazione Web in Visual Studio 2015 o Visual Studio 2017 ed è stata selezionata l'opzione **Account aziendali o dell'istituto di istruzione** nel menu **Modifica autenticazione**, l'applicazione ha già la logica necessaria per gestire automaticamente il rollover della chiave. Questa logica, incorporata nel middleware OWIN OpenID Connect, recupera e memorizza nella cache le chiavi dal documento di individuazione di OpenID Connect e le aggiorna periodicamente.
+Se l'applicazione è stato creato utilizzando un modello di applicazione web in Visual Studio 2015 o Visual Studio 2017 ed è stata selezionata **di lavoro e l'account dell'istituto di istruzione** da hello **Modifica autenticazione** menu, ha già dispone automaticamente di rollover della chiave toohandle hello logica necessaria. Questa logica incorporata nel middleware OWIN OpenID Connect hello, recupera e memorizza nella cache le chiavi di hello dal documento di individuazione OpenID Connect hello e vengono aggiornati periodicamente.
 
-Se l'autenticazione è stata aggiunta alla soluzione manualmente, l'applicazione potrebbe non avare la logica di rollover della chiave necessaria. Sarà necessario scriverla oppure seguire i passaggi illustrati in [API/Applicazioni Web che proteggono le risorse usando qualsiasi altra libreria o con implementazione manuale di qualsiasi protocollo supportato](#other).
+Se si aggiunta manualmente soluzione tooyour di autenticazione, l'applicazione non dispone della logica di rollover della chiave necessario hello. Sarà necessario toowrite, oppure hello seguire i passaggi [applicazioni Web API con tutte le altre librerie o implementare manualmente uno di hello supportati i protocolli.](#other).
 
 ### <a name="vs2013"></a>Applicazioni Web che proteggono le risorse e sono state create con Visual Studio 2013
-Se l'applicazione è stata creata usando un modello di applicazione Web in Visual Studio 2013 e sono stati selezionati **account aziendali** dal menu **Modifica autenticazione**, l'applicazione ha già la logica necessaria per gestire automaticamente il rollover della chiave. Questa logica archivia l'identificatore univoco dell'organizzazione e informazioni sulla chiave di firma in due tabelle di database associate al progetto. La stringa di connessione per il database si trova nel file Web.config del progetto.
+Se l'applicazione è stato creato utilizzando un modello di applicazione web in Visual Studio 2013 ed è stata selezionata **account aziendali** da hello **Modifica autenticazione** menu contiene già hello necessario rollover della chiave automaticamente toohandle logica. Tale logica archivia l'identificatore univoco dell'organizzazione e la firma delle informazioni chiave in due tabelle di database associati al progetto hello hello. È possibile trovare la stringa di connessione hello per database hello nel file Web. config del progetto hello.
 
-Se l'autenticazione è stata aggiunta alla soluzione manualmente, l'applicazione potrebbe non avare la logica di rollover della chiave necessaria. Sarà necessario scriverla oppure seguire i passaggi illustrati in [API/Applicazioni Web che proteggono le risorse usando qualsiasi altra libreria o con implementazione manuale di qualsiasi protocollo supportato](#other).
+Se si aggiunta manualmente soluzione tooyour di autenticazione, l'applicazione non dispone della logica di rollover della chiave necessario hello. Sarà necessario toowrite, oppure hello seguire i passaggi [applicazioni Web API con tutte le altre librerie o implementare manualmente uno di hello supportati i protocolli.](#other).
 
-I passaggi seguenti consentono di verificare il corretto funzionamento della logica dell'applicazione.
+Hello alla procedura seguente consente di verificare il corretto funzionamento di logica di hello nell'applicazione.
 
-1. In Visual Studio 2013 aprire la soluzione e quindi fare clic sulla scheda **Esplora Server** nella finestra di destra.
-2. Espandere **Connessioni dati**, **DefaultConnection** e quindi **Tabelle**. Trovare la tabella **IssuingAuthorityKeys**, fare clic con il pulsante destro del mouse e quindi scegliere **Mostra dati tabella**.
-3. Nella tabella **IssuingAuthorityKeys** sarà presente almeno una riga che corrisponde al valore di identificazione personale per la chiave. Eliminare tutte le righe nella tabella.
-4. Fare clic con il pulsante destro del mouse sulla tabella **Tenant** e quindi scegliere **Mostra dati tabella**.
-5. Nella tabella **Tenant** sarà presente almeno una riga che corrisponde a un identificatore di tenant directory univoco. Eliminare tutte le righe nella tabella. Se non si eliminano le righe nella tabella **Tenant** e nella tabella **IssuingAuthorityKeys**, si verificherà un errore in fase di esecuzione.
-6. Compilare ed eseguire l'applicazione. Dopo aver effettuato l'accesso al proprio account sarà possibile arrestare l'applicazione.
-7. Tornare a **Esplora Server** ed esaminare i valori nelle tabelle **IssuingAuthorityKeys** e **Tenant**. Si noterà che sono stati popolati automaticamente con le informazioni appropriate dal documento di metadati della federazione.
+1. In Visual Studio 2013, aprire la soluzione hello e quindi fare clic su hello **Esplora Server** scheda nella finestra di destra hello.
+2. Espandere **Connessioni dati**, **DefaultConnection** e quindi **Tabelle**. Individuare hello **tenant** tabella pulsante destro del mouse e quindi fare clic su **Mostra dati tabella**.
+3. In hello **tenant** tabella, sarà presente almeno una riga, che corrisponde a toohello valore di identificazione personale per la chiave di hello. Eliminare tutte le righe nella tabella hello.
+4. Pulsante destro del mouse hello **tenant** tabella e quindi fare clic su **Mostra dati tabella**.
+5. In hello **tenant** tabella, sarà presente almeno una riga, che corrisponde l'identificatore del tenant tooa directory univoco. Eliminare tutte le righe nella tabella hello. Se non si elimina righe hello in entrambi hello **tenant** tabella e **tenant** tabella, si verificherà un errore in fase di esecuzione.
+6. Compilare ed eseguire un'applicazione hello. Dopo aver eseguito l'accesso in tooyour account, è possibile arrestare l'applicazione hello.
+7. Restituire toohello **Esplora Server** ed esaminare i valori hello in hello **tenant** e **tenant** tabella. Si noterà sono stati inseriti automaticamente con le informazioni appropriate hello dal documento di metadati di federazione hello.
 
 ### <a name="vs2013"></a>API Web che proteggono le risorse e sono state create con Visual Studio 2013
-Se è stata creata un'applicazione API Web in Visual Studio 2013 usando il modello API Web e sono stati selezionati **account aziendali** dal menu **Modifica autenticazione**, l'applicazione ha già la logica necessaria.
+Se si creato un'applicazione API web in Visual Studio 2013 mediante il modello di API Web hello e quindi selezionato **account aziendali** da hello **Modifica autenticazione** menu già avere hello logica necessaria nell'applicazione.
 
-Se l'autenticazione è stata configurata manualmente, seguire queste istruzioni per informazioni su come configurare l'API Web per aggiornare automaticamente le informazioni sulle chiavi.
+Se è stato configurato manualmente authentication, attenersi alle istruzioni hello seguenti toolearn come tooconfigure tooautomatically l'API Web aggiornare le informazioni sulla chiave.
 
-Il frammento di codice seguente illustra come ottenere le chiavi più recenti dal documento di metadati della federazione e quindi usare il [gestore dei token JWT](https://msdn.microsoft.com/library/dn205065.aspx) per convalidare il token. Il frammento di codice presuppone che si userà il proprio meccanismo di memorizzazione nella cache per mantenere la chiave per la convalida dei futuri token di Azure AD, che si trovino in un database, in un file di configurazione o altrove.
+Hello frammento di codice seguente viene illustrato come tooget hello chiavi più recenti dal documento di metadati di federazione hello e quindi utilizzare hello [gestore dei Token JWT](https://msdn.microsoft.com/library/dn205065.aspx) token hello toovalidate. frammento di codice Hello si presuppone che si utilizzerà un meccanismo per la persistenza toovalidate chiave di hello futuri di memorizzazione nella cache dei token da Azure AD, che può essere in un database, file di configurazione o in un' posizione.
 
 ```
 using System;
@@ -172,7 +172,7 @@ namespace JWTValidation
     {
         private string MetadataAddress = "[Your Federation Metadata document address goes here]";
 
-        // Validates the JWT Token that's part of the Authorization header in an HTTP request.
+        // Validates hello JWT Token that's part of hello Authorization header in an HTTP request.
         public void ValidateJwtToken(string token)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler()
@@ -183,17 +183,17 @@ namespace JWTValidation
 
             TokenValidationParameters validationParams = new TokenValidationParameters()
             {
-                AllowedAudience = "[Your App ID URI goes here, as registered in the Azure Classic Portal]",
-                ValidIssuer = "[The issuer for the token goes here, such as https://sts.windows.net/68b98905-130e-4d7c-b6e1-a158a9ed8449/]",
+                AllowedAudience = "[Your App ID URI goes here, as registered in hello Azure Classic Portal]",
+                ValidIssuer = "[hello issuer for hello token goes here, such as https://sts.windows.net/68b98905-130e-4d7c-b6e1-a158a9ed8449/]",
                 SigningTokens = GetSigningCertificates(MetadataAddress)
 
-                // Cache the signing tokens by your desired mechanism
+                // Cache hello signing tokens by your desired mechanism
             };
 
             Thread.CurrentPrincipal = tokenHandler.ValidateToken(token, validationParams);
         }
 
-        // Returns a list of certificates from the specified metadata document.
+        // Returns a list of certificates from hello specified metadata document.
         public List<X509SecurityToken> GetSigningCertificates(string metadataAddress)
         {
             List<X509SecurityToken> tokens = new List<X509SecurityToken>();
@@ -226,7 +226,7 @@ namespace JWTValidation
                     }
                     else
                     {
-                        throw new InvalidOperationException("There is no RoleDescriptor of type SecurityTokenServiceType in the metadata");
+                        throw new InvalidOperationException("There is no RoleDescriptor of type SecurityTokenServiceType in hello metadata");
                     }
                 }
                 else
@@ -241,17 +241,17 @@ namespace JWTValidation
 ```
 
 ### <a name="vs2012"></a>Applicazioni Web che proteggono le risorse e sono state create con Visual Studio 2012
-Se l'applicazione è stata creata in Visual Studio 2012 è stato probabilmente usato lo strumento Identità e accesso per configurare l'applicazione. È anche probabile che si usi [Validating Issuer Name Registry (VINR)](https://msdn.microsoft.com/library/dn205067.aspx). VINR gestisce le informazioni sui provider di identità attendibili (Azure AD) e le chiavi usate per convalidare i token rilasciati dai provider. VINR semplifica anche l'aggiornamento automatico delle informazioni sulla chiave archiviate in un file Web.config, scaricando il documento di metadati della federazione più recente associato alla directory, verificando se la configurazione è aggiornata con il documento più recente e aggiornando l'applicazione per l'uso della nuova chiave se necessario.
+Se l'applicazione è stata creata in Visual Studio 2012, è stato probabilmente usato hello identità e tooconfigure dello strumento di accesso dell'applicazione. È inoltre probabile che si sta utilizzando hello [convalida Issuer Name Registry (VINR)](https://msdn.microsoft.com/library/dn205067.aspx). Hello VINR è responsabile della gestione delle informazioni sui provider di identità attendibili (Azure AD) e le chiavi di hello utilizzate toovalidate token emesso da essi. Hello VINR rende facile tooautomatically aggiornamento hello informazioni sulle chiavi archiviate in un file Web. config scaricando hello più recente documento metadati federazione associato alla directory, controllando se hello non aggiornato con hello più recente documento e l'aggiornamento hello applicazione toouse hello nuova chiave in base alle esigenze.
 
-Se l'applicazione è stata creata usando uno degli esempi di codice o le procedure dettagliate offerte da Microsoft, la logica di rollover della chiave è già inclusa nel progetto. Si noterà che il codice seguente esiste già nel progetto. Se l'applicazione non ha questa logica, seguire questa procedura per aggiungerla e verificarne il corretto funzionamento.
+Se è stato creato l'applicazione utilizzando uno degli esempi di codice hello o dettagliate fornite da Microsoft, la logica di rollover della chiave hello è già incluso nel progetto. Si noterà che codice hello seguente esiste già nel progetto. Se l'applicazione non dispone già di questa logica, seguire i passaggi di hello sotto tooadd e tooverify che funzioni correttamente.
 
-1. In **Esplora soluzioni** aggiungere un riferimento all'assembly **System.IdentityModel** per il progetto appropriato.
-2. Aprire il file **Global.asax.cs** e aggiungere le direttive using seguenti:
+1. In **Esplora**, aggiungere un riferimento toohello **System. IdentityModel** assembly per il progetto appropriato hello.
+2. Aprire hello **Global.asax.cs** file e aggiungere hello seguenti direttive using:
    ```
    using System.Configuration;
    using System.IdentityModel.Tokens;
    ```
-3. Aggiungere il metodo seguente al file **Global.asax.cs** :
+3. Aggiungere hello seguente metodo toohello **Global.asax.cs** file:
    ```
    protected void RefreshValidationSettings()
    {
@@ -261,7 +261,7 @@ Se l'applicazione è stata creata usando uno degli esempi di codice o le procedu
     ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath);
    }
    ```
-4. Richiamare il metodo **RefreshValidationSettings()** nel metodo **Application_Start()** in **Global.asax.cs** come illustrato:
+4. Richiamare hello **refreshvalidationsettings ()** metodo hello **Application_Start ()** metodo **Global.asax.cs** come illustrato:
    ```
    protected void Application_Start()
    {
@@ -271,11 +271,11 @@ Se l'applicazione è stata creata usando uno degli esempi di codice o le procedu
    }
    ```
 
-Dopo aver eseguito questi passaggi, il file Web.config dell'applicazione verrà aggiornato con le informazioni più recenti del documento di metadati della federazione, incluse le chiavi più recenti. Questo aggiornamento verrà eseguito ogni volta che il pool di applicazioni viene riciclato in IIS. Per impostazione predefinita, IIS è impostato per il riciclo delle applicazioni ogni 29 ore.
+Dopo aver eseguito questi passaggi, Web. config dell'applicazione verrà aggiornato con informazioni più recenti di hello dal documento di metadati di federazione hello, incluse le chiavi più recenti di hello. Questo aggiornamento si verificherà ogni volta che il pool di applicazioni viene riciclato in IIS. Per impostazione predefinita IIS è toorecycle applicazioni 29 ore.
 
-Seguire questa procedura per verificare che la logica di rollover della chiave funzioni.
+Eseguire operazioni di hello seguenti tooverify che la logica di rollover della chiave hello sia in esecuzione.
 
-1. Dopo aver verificato che l'applicazione usi il codice indicato in precedenza, aprire il file **Web.config** e passare al blocco **<issuerNameRegistry>**, verificando in particolare le righe seguenti:
+1. Dopo aver verificato che l'applicazione utilizza codice hello sopra, aprire hello **Web. config** file e passare toohello  **<issuerNameRegistry>**  blocco, cercare in particolare hello alcune righe seguenti:
    ```
    <issuerNameRegistry type="System.IdentityModel.Tokens.ValidatingIssuerNameRegistry, System.IdentityModel.Tokens.ValidatingIssuerNameRegistry">
         <authority name="https://sts.windows.net/ec4187af-07da-4f01-b18f-64c2f5abecea/">
@@ -283,31 +283,31 @@ Seguire questa procedura per verificare che la logica di rollover della chiave f
             <add thumbprint="3A38FA984E8560F19AADC9F86FE9594BB6AD049B" />
           </keys>
    ```
-2. Nella tabella **<add thumbprint=””>** modificare il valore di identificazione personale sostituendo un carattere con uno diverso. Salvare il file **Web.config** .
-3. Compilare l'applicazione ed eseguirla. Se è possibile completare il processo di accesso, l'applicazione aggiorna in modo corretto la chiave scaricando le informazioni necessarie dal documento di metadati della federazione della directory. In caso di problemi di accesso verificare che le modifiche nell'applicazione siano corrette leggendo l'argomento [Adding Sign-On to Your Web Application Using Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) (Aggiunta del processo di accesso nell'applicazione Web tramite Azure AD) oppure scaricando ed esaminando l'esempio di codice seguente: [Multi-Tenant Cloud Application for Azure Active Directory](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b) (Applicazione cloud multi-tenant per Azure Active Directory).
+2. In hello  **<add thumbprint=””>**  impostazione, modificare il valore di identificazione personale hello sostituendo ogni carattere con uno diverso. Salvare hello **Web. config** file.
+3. Compilare un'applicazione hello e quindi eseguirlo. Se è possibile completare hello Accedi processo, l'applicazione aggiorna in modo corretto la chiave hello scaricando informazioni hello necessario dal documento di metadati di federazione della directory. Se si sono verificati problemi di accesso, verificare le modifiche di hello nell'applicazione siano corrette leggendo hello [tooYour aggiunta Sign-On Web dell'applicazione tramite Azure Active Directory](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) argomento oppure scaricare ed esaminare hello nell'esempio di codice seguente: [ Applicazione Cloud multi-Tenant per Azure Active Directory](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b).
 
 ### <a name="vs2010"></a>Applicazioni Web che proteggono le risorse e sono state create con Visual Studio 2008 o 2010 o con Windows Identity Foundation (WIF) v1.0 per .NET 3.5
-Se è stata compilata un'applicazione in WIF v1.0 non esistono meccanismi per aggiornare automaticamente la configurazione dell'applicazione per l'uso di una nuova chiave.
+Se è stata compilata un'applicazione in WIF v 1.0, non vi è alcun aggiornamento tooautomatically meccanismo toouse di configurazione dell'applicazione una nuova chiave.
 
-* *Modo più semplice* : usare lo strumento FedUtil incluso in WIF SDK, che può recuperare il documento di metadati più recente e aggiornare la configurazione.
-* Aggiornare l'applicazione a .NET 4.5, che include la versione più recente di WIF nello spazio dei nomi System. Sarà quindi possibile usare [Validating Issuer Name Registry (VINR)](https://msdn.microsoft.com/library/dn205067.aspx) per eseguire gli aggiornamenti automatici della configurazione dell'applicazione.
-* Eseguire un rollover manuale seguendo le istruzioni alla fine di questo documento.
+* *Il modo più semplice* utilizzare strumento di FedUtil hello incluso in WIF SDK, che può recuperare il documento di metadati più recente hello e aggiornare la configurazione di hello.
+* Aggiornare il too.NET applicazione 4.5, che include la versione più recente di hello di WIF nello spazio dei nomi System hello. È quindi possibile utilizzare hello [convalida Issuer Name Registry (VINR)](https://msdn.microsoft.com/library/dn205067.aspx) tooperform aggiornamenti automatici della configurazione dell'applicazione hello.
+* Eseguire un rollover manuale in base alle istruzioni hello alla fine di hello di questo documento di istruzioni.
 
-Istruzioni per usare FedUtil per aggiornare la configurazione:
+Istruzioni toouse hello FedUtil tooupdate la configurazione:
 
-1. Verificare di avere l'SDK WIF v1.0 installato nel computer di sviluppo per Visual Studio 2008 o 2010. È possibile [scaricarlo da qui](https://www.microsoft.com/en-us/download/details.aspx?id=4451) se non è ancora installato.
-2. In Visual Studio aprire la soluzione, quindi fare clic con il pulsante destro del mouse sul progetto applicabile e scegliere **Update federation metadata**(Aggiorna metadati federazione). Se questa opzione non è disponibile, FedUtil o l'SDK WIF v1.0 non è stato installato.
-3. Al prompt selezionare **Aggiorna** per iniziare l'aggiornamento dei metadati della federazione. Se si ha accesso all'ambiente server in cui è ospitata l'applicazione, è possibile usare facoltativamente l' [utilità di pianificazione dell'aggiornamento automatico dei metadati](https://msdn.microsoft.com/library/ee517272.aspx)di FedUtil.
-4. Fare clic su **Fine** per completare il processo di aggiornamento.
+1. Verificare di aver hello WIF v 1.0 SDK installato nel computer di sviluppo per Visual Studio 2008 o 2010. È possibile [scaricarlo da qui](https://www.microsoft.com/en-us/download/details.aspx?id=4451) se non è ancora installato.
+2. In Visual Studio, aprire la soluzione hello, quindi fare clic sul progetto applicabile hello e selezionare **aggiornare i metadati di federazione**. Se questa opzione non è disponibile, FedUtil o hello WIF v 1.0 SDK non è stato installato.
+3. Dal prompt dei comandi hello, selezionare **aggiornamento** toobegin aggiornare i metadati di federazione. Se si dispone di ambiente server di accesso toohello ospita un'applicazione hello, è possibile utilizzare facoltativamente FedUtil [dell'utilità di pianificazione aggiornamento automatico dei metadati](https://msdn.microsoft.com/library/ee517272.aspx).
+4. Fare clic su **fine** toocomplete processo di aggiornamento hello.
 
-### <a name="other"></a>API / applicazioni Web che proteggono le risorse usando qualsiasi altra libreria o con implementazione manuale di qualsiasi protocollo supportato
-Se si usano altre librerie o si implementa manualmente qualsiasi protocollo supportato, sarà necessario esaminare la libreria o l'implementazione per verificare che la chiave venga recuperata dal documento di individuazione di OpenID Connect o dal documento di metadati della federazione. Un modo per eseguire la verifica è cercare nel codice o nel codice della libreria chiamate al documento di individuazione di OpenID o al documento di metadati della federazione.
+### <a name="other"></a>Applicazioni Web / API di protezione delle risorse utilizzando qualsiasi altre librerie o implementare manualmente uno di hello protocolli supportati
+Se si utilizza qualche altra libreria o implementata manualmente i protocolli supportato hello, dovrai libreria hello tooreview o l'implementazione tooensure che hello chiave viene recuperato dal documento di individuazione OpenID Connect hello o hello documento di metadati di federazione. Un modo toocheck per questo è toodo una ricerca nel codice o nel codice della libreria hello per le chiamate di un documento di individuazione OpenID tooeither hello o documento di metadati di federazione hello.
 
-Se la chiave è archiviata in una posizione qualsiasi o è hardcoded nell'applicazione, è possibile recuperarla manualmente e aggiornarla di conseguenza eseguendo un rollover manuale in base alle istruzioni disponibili alla fine di questo documento. **È vivamente consigliato ottimizzare l'applicazione per il supporto del rollover automatico** usando uno degli approcci descritti in questo articolo per evitare interruzioni future e sovraccarichi se Azure AD aumenta la cadenza di rollover o esegue un rollover di emergenza fuori programma.
+Se la chiave viene archiviato in un punto o hardcoded nell'applicazione, è possibile eseguire manualmente recuperare chiave hello e l'aggiornamento pertanto di eseguire un rollover manuale in base alle istruzioni hello alla fine di hello di questo documento di istruzioni. **Migliorare il rollover automatico toosupport di applicazione è vivamente consigliato** utilizzando uno dei hello si avvicina struttura questo interruzioni future tooavoid di articolo e overhead se Azure Active Directory aumenta la frequenza di rollover o ha un emergenza rollover fuori banda.
 
-## <a name="how-to-test-your-application-to-determine-if-it-will-be-affected"></a>Come testare l'applicazione per stabilire se sarà interessata
-È possibile verificare se l'applicazione supporta il rollover automatico della chiave scaricando gli script e seguendo le istruzioni contenute in [questo repository GitHub](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
+## <a name="how-tootest-your-application-toodetermine-if-it-will-be-affected"></a>Come tootest toodetermine l'applicazione, se ne risentirà
+È possibile verificare se l'applicazione supporta il rollover automatico della chiave download script hello e seguendo le istruzioni di hello in [questo repository GitHub.](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
 
-## <a name="how-to-perform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>Come eseguire un rollover manuale se l'applicazione non supporta il rollover automatico
-Se l'applicazione **non** supporta il rollover automatico, sarà necessario stabilire un processo che monitori periodicamente le chiavi di firma di Azure AD ed esegua un rollover manuale di conseguenza. [Questo repository GitHub](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey) contiene gli script e le istruzioni necessarie.
+## <a name="how-tooperform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>Come tooperform un rollover manuale se l'applicazione non supporta il rollover automatico
+Se l'applicazione **non** supporta il rollover automatico, è necessario pertanto tooestablish un processo di firma del periodicamente monitoraggi Azure AD chiavi ed esegue un aggiornamento manuale. [Questo repository GitHub](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey) contiene script e istruzioni su come toodo questo.
 

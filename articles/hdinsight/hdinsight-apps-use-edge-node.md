@@ -1,6 +1,6 @@
 ---
-title: Usare i nodi perimetrali vuoti sui cluster Hadoop in HDInsight - Azure | Documentazione Microsoft
-description: "Come aggiungere un nodo perimetrale vuoto al cluster HDInsight che può essere usato come un client, quindi testare oppure ospitare le applicazioni HDInsight."
+title: aaaUse vuoto nodi periferici nel cluster Hadoop in HDInsight - Azure | Documenti Microsoft
+description: "Come tooadd tooan di nodo un bordo vuoto HDInsight cluster che può essere utilizzato come un client e quindi/host di test delle applicazioni di HDInsight."
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -16,17 +16,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2017
 ms.author: jgao
-ms.openlocfilehash: e21dabcc6999b1f1047d334e782f723d0c03c2cb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9c910905b51f2fe92e6e5d47d86a32bd5247c2cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-empty-edge-nodes-on-hadoop-clusters-in-hdinsight"></a>Usare i nodi perimetrali vuoti sui cluster Hadoop in HDInsight
 
-Informazioni su come aggiungere un nodo perimetrale vuoto a un cluster HDInsight. Un nodo perimetrale vuoto è una macchina virtuale Linux con gli stessi strumenti client installati e configurati nei nodi head, ma senza servizi Hadoop in esecuzione. Il nodo perimetrale può essere usato per accedere al cluster e per testare e ospitare le applicazioni client. 
+Informazioni su come tooadd vuota bordo cluster HDInsight tooan di nodo. Un nodo del bordo vuoto è una macchina virtuale Linux con hello stessi strumenti client installato e configurato come headnodes hello, ma senza servizi Hadoop in esecuzione. È possibile utilizzare il nodo di edge hello per l'accesso a cluster hello, il testing delle applicazioni client e l'hosting di applicazioni client. 
 
-È possibile aggiungere un nodo perimetrale vuoto a un cluster HDInsight esistente o a un nuovo cluster quando lo si crea. L'aggiunta di un nodo perimetrale vuoto si esegue usando un modello di Azure Resource Manager.  L'esempio seguente illustra come eseguire questa operazione tramite un modello:
+Quando si crea il cluster hello, è possibile aggiungere un cluster HDInsight esistente di un bordo vuoto nodo tooan, tooa nuovo cluster. L'aggiunta di un nodo perimetrale vuoto si esegue usando un modello di Azure Resource Manager.  Hello seguente esempio viene illustrato come questa operazione viene eseguita utilizzando un modello:
 
     "resources": [
         {
@@ -57,108 +57,108 @@ Informazioni su come aggiungere un nodo perimetrale vuoto a un cluster HDInsight
         }
     ],
 
-Come illustrato nell'esempio, è possibile chiamare facoltativamente un'[azione script](hdinsight-hadoop-customize-cluster-linux.md) per eseguire configurazioni aggiuntive, ad esempio per installare [Apache Hue](hdinsight-hadoop-hue-linux.md) nel nodo perimetrale. Lo script dell'azione script deve essere pubblicamente accessibile sul web.  Ad esempio, se lo script viene archiviato in Archiviazione di Azure, usare contenitori o BLOB pubblici.
+Come illustrato nell'esempio hello, è possibile chiamare un [script azione](hdinsight-hadoop-customize-cluster-linux.md) tooperform un'ulteriore configurazione, ad esempio l'installazione [tonalità Apache](hdinsight-hadoop-hue-linux.md) nel nodo edge hello. script dell'azione script Hello deve essere accessibile pubblicamente in web hello.  Ad esempio, se lo script hello è archiviato in archiviazione di Azure, utilizzare contenitori pubblici o BLOB pubblici.
 
-Le dimensioni della macchina virtuale del nodo perimetrale devono soddisfare i requisiti di dimensioni per le macchine virtuali del nodo di lavoro del cluster HDInsight. Per conoscere le dimensioni consigliate per le macchine virtuali dei nodi di lavoro, vedere [Creare cluster Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md#cluster-types).
+dimensioni della macchina virtuale nodo edge Hello devono soddisfare hello HDInsight cluster lavoro nodo vm dimensioni. Per hello consigliato lavoro dimensioni delle macchine virtuali di nodo, vedere [cluster creare Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md#cluster-types).
 
-Dopo aver creato un nodo perimetrale, è possibile connettersi al nodo stesso tramite SSH ed eseguire gli strumenti client per accedere al cluster Hadoop in HDInsight.
+Dopo aver creato un nodo del bordo, è possibile connettere il nodo di edge toohello tramite SSH ed eseguire client cluster di strumenti tooaccess hello Hadoop in HDInsight.
 
 > [!WARNING] 
-> L’utilizzo di un nodo perimetrale vuoto con HDInsight è attualmente in anteprima. I componenti personalizzati che vengono installati nel nodo perimetrale ricevono supporto ragionevole a livello commerciale da Microsoft. Ciò può portare alla risoluzione dei problemi riscontrati. In alternativa, è possibile fare riferimento alle risorse della community per ulteriore assistenza. Di seguito sono indicati alcuni dei siti più attivi per ricevere assistenza dalla community:
+> L’utilizzo di un nodo perimetrale vuoto con HDInsight è attualmente in anteprima. I componenti personalizzati che vengono installati in nodo edge hello ricevano supporto commercialmente ragionevole da Microsoft. Ciò può portare alla risoluzione dei problemi riscontrati. Oppure è possibile che le risorse di cui viene fatto riferimento toocommunity per ulteriore assistenza. esempio Hello è riportate alcune hello la maggior parte dei siti attivi per il recupero della Guida dalla community di hello:
 >
 > * [Forum MSDN per HDInsight](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight)
 > * [http://stackoverflow.com](http://stackoverflow.com).
 >
-> Se si utilizza una tecnologia Apache, è possibile ottenere assistenza tramite i siti di progetto Apache su [http://apache.org](http://apache.org), ad esempio il sito [Hadoop](http://hadoop.apache.org/).
+> Se si utilizza una tecnologia di Apache, potrebbe essere in grado di toofind assistenza tramite hello siti del progetto di Apache nel [http://apache.org](http://apache.org), ad esempio hello [Hadoop](http://hadoop.apache.org/) sito.
 
-## <a name="add-an-edge-node-to-an-existing-cluster"></a>Aggiungere un nodo perimetrale a un cluster esistente
-In questa sezione si userà un modello di Resource Manager per aggiungere un nodo perimetrale a un cluster HDInsight esistente.  Il modello di Resource Manager è disponibile in [GitHub](https://azure.microsoft.com/en-us/resources/templates/101-hdinsight-linux-add-edge-node/). Il modello di Resource Manager chiama un'azione script disponibile in https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-add-edge-node/scripts/EmptyNodeSetup.sh. Lo script non esegue alcuna azione.  Per illustrare la chiamata all'azione script da un modello di Resource Manager.
+## <a name="add-an-edge-node-tooan-existing-cluster"></a>Aggiungere un cluster esistente di nodo tooan bordo
+In questa sezione, utilizzare un tooadd modello di gestione delle risorse cluster HDInsight esistente un bordo nodo tooan.  il modello di gestione risorse di Hello è reperibile [GitHub](https://azure.microsoft.com/en-us/resources/templates/101-hdinsight-linux-add-edge-node/). il modello di gestione risorse di Hello chiama un'azione di script che si trova in https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-add-edge-node/scripts/EmptyNodeSetup.sh. script Hello non eseguire alcuna azione.  È toodemonstrate chiamata dell'azione di script da un modello di gestione risorse.
 
-**Per aggiungere un nodo perimetrale a un cluster esistente**
+**tooadd un cluster esistente di nodo tooan bordo vuoto**
 
 1. Creare un cluster HDInsight, se non ne è ancora disponibile uno.  Vedere [Esercitazione su Hadoop: introduzione all'uso di Hadoop in HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).
-2. Fare clic sull'immagine seguente per accedere ad Azure e aprire il modello di Azure Resource Manager nel portale di Azure. 
+2. Fare clic su hello seguente immagine toosign in tooAzure e modello di gestione risorse di Azure aprire hello in hello portale di Azure. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-add-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy to Azure"></a>
-3. Configurare le proprietà seguenti:
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-add-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+3. Configurare hello le proprietà seguenti:
    
-   * **Sottoscrizione**: selezionare la sottoscrizione di Azure usata per creare il cluster.
-   * **Gruppo di risorse**: selezionare il gruppo di risorse usato per il cluster HDInsight esistente.
-   * **Località**: selezionare la località del cluster HDInsight esistente.
-   * **Nome cluster**: immettere il nome di un cluster HDInsight esistente.
-   * **Edge Node Size** (Dimensioni nodo perimetrale): selezionare una delle dimensioni di VM. Le dimensioni della macchina virtuale devono soddisfare i requisiti di dimensione per le macchine virtuali del nodo di lavoro. Per conoscere le dimensioni consigliate per le macchine virtuali dei nodi di lavoro, vedere [Creare cluster Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md#cluster-types).
-   * **Edge Node Prefix** (Prefisso nodo perimetrale): il valore predefinito è **new**.  Se si usa il valore predefinito, il nome del nodo perimetrale sarà **new-edgenode**.  È possibile personalizzare il prefisso nel portale. Si può anche personalizzare il nome completo nel modello.
+   * **Sottoscrizione**: selezionare una sottoscrizione di Azure usata per la creazione di cluster hello.
+   * **Gruppo di risorse**: gruppo di risorse selezionare hello utilizzato per il cluster HDInsight esistente hello.
+   * **Percorso**: selezionare il percorso di hello del cluster HDInsight esistente hello.
+   * **Nome del cluster**: immettere il nome di hello di un cluster HDInsight esistente.
+   * **Bordo nodo dimensioni**: selezionare una delle dimensioni delle macchine Virtuali di hello. dimensioni della macchina virtuale Hello devono soddisfare hello lavoro nodo vm dimensioni. Per hello consigliato lavoro dimensioni delle macchine virtuali di nodo, vedere [cluster creare Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md#cluster-types).
+   * **Bordo nodo prefisso**: valore predefinito di hello è **nuova**.  Usa valore predefinito di hello, nome del nodo perimetrale hello è **nuova edgenode**.  È possibile personalizzare il prefisso hello dal portale hello. È anche possibile personalizzare nome completo di hello dal modello hello.
 
-4. Selezionare **Accetto le condizioni riportate sopra** e quindi fare clic su **Acquista** per creare il nodo perimetrale.
+4. Controllare **accetto le condizioni indicate in precedenza toohello**, quindi fare clic su **acquisto** nodo di toocreate hello del bordo.
 
 >[!IMPORTANT]
-> Assicurarsi di selezionare il gruppo di risorse di Azure per il cluster HDInsight esistente.  In caso contrario, verrà visualizzato il messaggio di errore "Non è possibile eseguire l'operazione richiesta su una risorsa annidata. La risorsa padre '&lt;NomeCluster>' non è stata trovata".
+> Creare gruppo di risorse di Azure hello tooselect che per il cluster HDInsight esistente hello.  In caso contrario, viene visualizzato errore di hello messaggio "Impossibile eseguire l'operazione richiesta sulla risorsa annidata. La risorsa padre '&lt;NomeCluster>' non è stata trovata".
 
 ## <a name="add-an-edge-node-when-creating-a-cluster"></a>Aggiungere un nodo perimetrale durante la creazione di un cluster
-In questa sezione si userà un modello di Resource Manager per creare un cluster HDInsight con un nodo perimetrale.  Il modello di Resource Manager è disponibile nella [raccolta dei modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/101-hdinsight-linux-with-edge-node/). Il modello di Resource Manager chiama un'azione script disponibile in https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-with-edge-node/scripts/EmptyNodeSetup.sh. Lo script non esegue alcuna azione.  Per illustrare la chiamata all'azione script da un modello di Resource Manager.
+In questa sezione, si utilizza un cluster di HDInsight toocreate di modello di gestione delle risorse con un nodo del bordo.  il modello di gestione risorse di Hello è reperibile in hello [raccolta di modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/101-hdinsight-linux-with-edge-node/). il modello di gestione risorse di Hello chiama un'azione di script che si trova in https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-with-edge-node/scripts/EmptyNodeSetup.sh. script Hello non eseguire alcuna azione.  È toodemonstrate chiamata dell'azione di script da un modello di gestione risorse.
 
-**Per aggiungere un nodo perimetrale a un cluster esistente**
+**tooadd un cluster esistente di nodo tooan bordo vuoto**
 
 1. Creare un cluster HDInsight, se non ne è ancora disponibile uno.  Vedere [Introduzione all'uso di Hadoop in HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).
-2. Fare clic sull'immagine seguente per accedere ad Azure e aprire il modello di Azure Resource Manager nel portale di Azure. 
+2. Fare clic su hello seguente immagine toosign in tooAzure e modello di gestione risorse di Azure aprire hello in hello portale di Azure. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy to Azure"></a>
-3. Configurare le proprietà seguenti:
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+3. Configurare hello le proprietà seguenti:
    
-   * **Sottoscrizione**: selezionare la sottoscrizione di Azure usata per creare il cluster.
-   * **Gruppo di risorse**: creare un nuovo gruppo di risorse usato per il cluster.
-   * **Posizione**: selezionare una posizione per il gruppo di risorse.
-   * **Nome cluster**: immettere un nome per il nuovo cluster da creare.
-   * **Nome utente dell'account di accesso del cluster**: immettere il nome utente HTTP di Hadoop.  Il nome predefinito è **admin**.
-   * **Password dell'account di accesso del cluster**: immettere la password utente HTTP di Hadoop.
-   * **Nome utente SSH**: immettere il nome utente SSH. Il nome predefinito è **sshuser**.
-   * **Password SSH**: immettere la password utente SSH.
-   * **Install Script Action** (Installa azione script): per eseguire questa esercitazione mantenere il valore predefinito.
+   * **Sottoscrizione**: selezionare una sottoscrizione di Azure usata per la creazione di cluster hello.
+   * **Gruppo di risorse**: creare un nuovo gruppo di risorse utilizzato per il cluster di hello.
+   * **Percorso**: selezionare un percorso per il gruppo di risorse hello.
+   * **Nome del cluster**: immettere un nome per toocreate di hello nuovo cluster.
+   * **Nome utente di accesso del cluster**: immettere nome utente di Hadoop HTTP hello.  nome predefinito Hello è **admin**.
+   * **Password di account di accesso cluster**: immettere la password utente di Hadoop HTTP hello.
+   * **SSH nome utente**: nome utente di hello SSH. nome predefinito Hello è **sshuser**.
+   * **SSH Password**: immettere una password dell'utente SSH hello.
+   * **Installare l'azione di Script**: mantenere il valore predefinito hello per passare attraverso questa esercitazione.
      
-     Alcune proprietà sono state impostate come hardcoded nel modello: il tipo di cluster, il numero di nodi del ruolo di lavoro del cluster e le dimensioni e il nome del nodo perimetrale.
-4. Selezionare **Accetto le condizioni riportate sopra** e quindi fare clic su **Acquista** per creare il cluster con il nodo perimetrale.
+     Alcune proprietà sono stati impostati come hardcoded nel modello hello: tipo di Cluster, numero di nodi di lavoro del Cluster, la dimensione del nodo contorno e nome del nodo perimetrale.
+4. Controllare **accetto le condizioni indicate in precedenza toohello**, quindi fare clic su **acquisto** cluster hello toocreate con nodo di hello del bordo.
 
 ## <a name="access-an-edge-node"></a>Accedere a un nodo perimetrale
-L'endpoint SSH del nodo perimetrale è &lt;NomeNodoPerimetrale>.&lt;NomeCluster>-ssh.azurehdinsight.net:22.  Ad esempio, new-edgenode.myedgenode0914-ssh.azurehdinsight.net:22.
+nodo del bordo Hello ssh endpoint è &lt;EdgeNodeName >.&lt; Nome cluster >-ssh.azurehdinsight.net:22.  Ad esempio, new-edgenode.myedgenode0914-ssh.azurehdinsight.net:22.
 
-Il nodo perimetrale viene visualizzato come un'applicazione nel portale di Azure.  Il portale fornisce le informazioni per accedere al nodo perimetrale con SSH.
+nodo di Hello del bordo viene visualizzato come un'applicazione nel portale di Azure hello.  Consente di portale Hello hello hello tooaccess informazioni edge nodo utilizzando SSH.
 
-**Per verificare l'endpoint SSH del nodo perimetrale**
+**endpoint di tooverify hello edge nodo SSH**
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Aprire il cluster HDInsight con un nodo perimetrale.
-3. Fare clic su **Applicazioni** nel pannello del cluster. Verrà visualizzato il nodo perimetrale.  Il nome predefinito è **new-edgenode**.
-4. Fare clic sul nodo perimetrale. Verrà visualizzato l'endpoint SSH.
+1. Accesso toohello [portale di Azure](https://portal.azure.com).
+2. Aprire il cluster di HDInsight hello con un nodo del bordo.
+3. Fare clic su **applicazioni** dal pannello cluster hello. Verrà visualizzato il nodo di edge hello.  nome predefinito Hello è **nuova edgenode**.
+4. Fare clic sul nodo di edge hello. Vedrai endpoint SSH hello.
 
-**Usare Hive nel nodo perimetrale**
+**toouse Hive nel nodo edge hello**
 
-1. Usare SSH per connettersi al nodo perimetrale. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. Usare SSH tooconnect toohello bordo nodo. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Dopo essersi connessi al nodo perimetrale tramite SSH, usare il comando seguente per aprire la console di Hive:
+2. Dopo aver connesso il nodo di edge toohello tramite SSH, utilizzare hello console di Hive hello tooopen dei comandi seguenti:
    
         hive
-3. Eseguire il comando seguente per visualizzare le tabelle Hive nel cluster:
+3. Eseguire hello le tabelle di Hive tooshow comando cluster hello seguenti:
    
         show tables;
 
 ## <a name="delete-an-edge-node"></a>Eliminare un nodo perimetrale
-È possibile eliminare un nodo perimetrale dal portale di Azure.
+È possibile eliminare un nodo del bordo da hello portale di Azure.
 
-**Per accedere a un nodo perimetrale**
+**tooaccess un nodo del bordo**
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Aprire il cluster HDInsight con un nodo perimetrale.
-3. Fare clic su **Applicazioni** nel pannello del cluster. Verrà visualizzato un elenco di nodi perimetrali.  
-4. Fare clic con il pulsante destro del mouse sul nodo perimetrale che si vuole eliminare e quindi scegliere **Elimina**.
-5. Fare clic su **Sì** per confermare.
+1. Accesso toohello [portale di Azure](https://portal.azure.com).
+2. Aprire il cluster di HDInsight hello con un nodo del bordo.
+3. Fare clic su **applicazioni** dal pannello cluster hello. Verrà visualizzato un elenco di nodi perimetrali.  
+4. Il nodo del bordo hello pulsante destro del mouse si desidera toodelete e quindi fare clic su **eliminare**.
+5. Fare clic su **Sì** tooconfirm.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo si è appreso come aggiungere un nodo perimetrale e come accedervi. Per altre informazioni, vedere gli articoli seguenti:
+In questo articolo, si è appreso come tooadd un nodo del bordo e come tooaccess hello nodo del bordo. toolearn informazioni, vedere hello seguenti articoli:
 
-* [Installare applicazioni HDInsight](hdinsight-apps-install-applications.md): informazioni su come installare un'applicazione HDInsight nei cluster.
-* [Installare applicazioni HDInsight personalizzate](hdinsight-apps-install-custom-applications.md): informazioni su come distribuire in HDInsight un'applicazione HDInsight non pubblicata.
-* [Pubblicare applicazioni HDInsight](hdinsight-apps-publish-applications.md): informazioni su come pubblicare applicazioni HDInsight personalizzate in Azure Marketplace.
-* [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN: Installare un'applicazione HDInsight): informazioni su come definire le applicazioni HDInsight.
-* [Personalizzare cluster HDInsight basati su Linux tramite Azioni script](hdinsight-hadoop-customize-cluster-linux.md): informazioni su come usare Azioni script per installare applicazioni aggiuntive.
-* [Creare cluster Hadoop basati su Linux in HDInsight tramite modelli ARM](hdinsight-hadoop-create-linux-clusters-arm-templates.md): informazioni su come chiamare i modelli di Azure Resource Manager per creare cluster HDInsight.
+* [Installare le applicazioni di HDInsight](hdinsight-apps-install-applications.md): informazioni su come tooinstall un tooyour applicazione HDInsight cluster.
+* [Installare le applicazioni personalizzate HDInsight](hdinsight-apps-install-custom-applications.md): informazioni su come toodeploy un tooHDInsight di applicazione non pubblicata di HDInsight.
+* [Pubblicare applicazioni HDInsight](hdinsight-apps-publish-applications.md): informazioni su come toopublish il tooAzure di applicazioni personalizzate HDInsight Marketplace.
+* [MSDN: Installare un'applicazione di HDInsight](https://msdn.microsoft.com/library/mt706515.aspx): informazioni su come toodefine HDInsight applicazioni.
+* [Personalizzazione dei cluster HDInsight basati su Linux con azione Script](hdinsight-hadoop-customize-cluster-linux.md): informazioni su come applicazioni aggiuntive di toouse genera Script azione tooinstall.
+* [Creare i cluster basati su Linux, Hadoop in HDInsight mediante modelli di gestione risorse](hdinsight-hadoop-create-linux-clusters-arm-templates.md): informazioni su come toocreate modelli tramite Gestione risorse toocall HDInsight cluster.
 

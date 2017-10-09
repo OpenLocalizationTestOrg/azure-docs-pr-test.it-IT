@@ -1,5 +1,5 @@
 ---
-title: Creazione e uso di un servizio di bilanciamento del carico interno con un ambiente del servizio app | Documentazione Microsoft
+title: aaaCreating e l'utilizzo di un bilanciamento del carico interno con un ambiente del servizio App | Documenti Microsoft
 description: Creazione e uso di un ambiente del servizio app con bilanciamento del carico interno
 services: app-service
 documentationcenter: 
@@ -14,126 +14,126 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: 9e5a40f18eb9eaf60579af21afc6f05c2d87f4c1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 20799f260993d6e81499408e5b547a2e21430174
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-an-internal-load-balancer-with-an-app-service-environment"></a>Uso di un servizio di bilanciamento del carico interno con un ambiente del servizio app
 
 > [!NOTE] 
-> Questo articolo riguarda l'ambiente del servizio app v1. È disponibile una versione più recente dell'ambiente del servizio app più facile da usare ed eseguita in un'infrastruttura più potente. Per altre informazioni sulla nuova versione, vedere [Introduzione ad Ambiente del servizio app](../app-service/app-service-environment/intro.md).
+> Questo articolo è sull'ambiente del servizio App v1 hello. È una versione più recente di hello ambiente del servizio App che è più facile toouse e viene eseguito sull'infrastruttura più potente. informazioni sulla nuova versione di hello iniziare con hello toolearn [toohello introduzione ambiente del servizio App](../app-service/app-service-environment/intro.md).
 >
 
-La funzionalità degli ambienti del servizio app è un'opzione di servizio Premium del servizio app di Azure che offre una funzionalità di configurazione avanzata non disponibile negli stamp multi-tenant. In breve, la funzionalità Ambiente del servizio app distribuisce il servizio app di Azure nella rete virtuale di Azure (VNet). Per informazioni approfondite delle funzionalità offerte dagli ambienti del servizio app, vedere [Informazioni sull'ambiente del servizio app][WhatisASE]. Se non si conoscono i vantaggi derivanti dall'uso di una rete virtuale, vedere [Domande frequenti sulla rete virtuale di Azure][virtualnetwork]. 
+funzionalità di ambiente del servizio App (ASE) Hello è un'opzione di servizio Premium di Azure App Service che offre una funzionalità avanzata di configurazione che non è disponibile in timbri di hello multi-tenant. funzionalità di ASE Hello distribuisce sostanzialmente hello Azure App Service nel Network(VNet) virtuale di Azure. toogain una maggiore conoscenza delle funzionalità di hello disponibili per gli ambienti del servizio App di leggere hello [che cos'è un ambiente del servizio App] [ WhatisASE] documentazione. Se non si conosce vantaggi hello di operativo in una rete virtuale leggere hello [domande frequenti sulla rete virtuale Azure][virtualnetwork]. 
 
 ## <a name="overview"></a>Panoramica
-Un ambiente del servizio app può essere distribuito con un endpoint accessibile da Internet o con un indirizzo IP nella rete virtuale. Per impostare l'indirizzo IP su un indirizzo di rete virtuale, è necessario distribuire l'ambiente del servizio app con un bilanciamento del carico interno (ILB). Quando l'ambiente è configurato con un bilanciamento del carico interno, fornire:
+Un ambiente del servizio app può essere distribuito con un endpoint accessibile da Internet o con un indirizzo IP nella rete virtuale. In ordine tooset hello IP indirizzo tooa indirizzo di rete virtuale è necessario toodeploy il ASE con un Balancer(ILB) carico interno. Quando l'ambiente è configurato con un bilanciamento del carico interno, fornire:
 
-* il proprio dominio o sottodominio. Per maggiore semplicità, in questo documento si presuppone l'uso di un sottodominio, ma sono possibili entrambe le configurazioni. 
-* il certificato usato per HTTPS
+* il proprio dominio o sottodominio. toomake è più facile, che questo documento presuppone sottodominio ma è possibile configurarla in entrambi i casi. 
+* certificato Hello usato per HTTPS
 * la gestione del DNS per il sottodominio. 
 
 È possibile eseguire operazioni come:
 
-* l'hosting di applicazioni intranet, ad esempio applicazioni line of business, in modo sicuro nel cloud a cui si accede tramite una VPN ExpressRoute o da sito a sito
-* l'hosting delle app nel cloud non presenti nei server DNS pubblici
+* ospitare applicazioni intranet, ad esempio applicazioni line of business, in modo protetto nel hello cloud a cui si accede tramite un sito tooSite o ExpressRoute VPN
+* applicazioni host nel cloud hello che non sono elencate nel server DNS pubblici
 * creazione di applicazioni back-end isolate da Internet con cui le app front-end possono integrarsi in modo sicuro
 
 #### <a name="disabled-functionality"></a>Funzionalità disabilitata
 Non è possibile eseguire alcune operazioni quando si usa un ambiente del servizio app con bilanciamento del carico interno. Alcuni esempi sono:
 
 * uso di IPSSL
-* assegnazione di indirizzi IP ad app specifiche
-* acquisto e uso di un certificato con un'app tramite il portale. È ovviamente ancora possibile ottenere i certificati direttamente con un'autorità di certificazione e usarli con le app, ma non tramite il portale di Azure.
+* assegnazione di indirizzi IP toospecific App
+* acquistare e utilizzare un certificato a un'app tramite il portale di hello. Naturalmente ancora, è possibile ottenere i certificati direttamente con un'autorità di certificazione e usarla con le applicazioni, ma non tramite hello portale di Azure.
 
 ## <a name="creating-an-ilb-ase"></a>Creazione di un ambiente del servizio app con bilanciamento del carico interno
-La creazione di un ambiente del servizio app con bilanciamento del carico interno non è molto diversa dalla creazione di un ambiente del servizio app regolare. Per una trattazione più approfondita sulla creazione di un ambiente del servizio app, vedere [Come creare un ambiente del servizio app][HowtoCreateASE]. La procedura di creazione di un ambiente del servizio app con bilanciamento del carico interno è la stessa nella creazione di una rete virtuale durante la creazione dell'ambiente del servizio app o nella selezione di una rete virtuale già esistente. Per creare un ambiente del servizio app con bilanciamento del carico interno: 
+La creazione di un ambiente del servizio app con bilanciamento del carico interno non è molto diversa dalla creazione di un ambiente del servizio app regolare. Per una discussione più approfondita sulla creazione di un ASE leggere [come un ambiente del servizio App tooCreate][HowtoCreateASE]. Hello processo toocreate ASE un bilanciamento del carico interno è hello uguali tra la creazione di una rete virtuale durante la creazione di base o la selezione di una rete virtuale esistente. toocreate ASE un bilanciamento del carico interno: 
 
-1. Nel portale di Azure selezionare **Nuovo -> Web e dispositivi mobili -> Ambiente del servizio app**
+1. In selezionare portale Azure hello **nuovo -> Web + Mobile -> ambiente del servizio App**
 2. Selezionare la propria sottoscrizione
 3. Selezionare o creare un gruppo di risorse
 4. Selezionare o creare una rete virtuale
 5. Creare una subnet se si seleziona una rete virtuale
-6. Selezionare **Rete virtuale/Località -> Configurazione rete virtuale** e impostare il tipo di indirizzo VIP per l'uso interno
-7. Fornire un nome di sottodominio; questo sarà il sottodominio usato per le app create con questo ambiente del servizio app
+6. Selezionare **/percorso di rete virtuale -> configurazione della rete virtuale** e set hello tooInternal tipo VIP
+7. Specificare il nome di sottodominio (questo è il sottodominio hello utilizzato per le app create con questo ASE)
 8. Selezionare OK, quindi Crea
 
 ![][1]
 
-Nel pannello della rete virtuale è disponibile un'opzione di configurazione di rete virtuale. È possibile scegliere tra un indirizzo VIP esterno o interno. L'opzione predefinita è Esterno. Con questa impostazione, l'ambiente del servizio app userà un indirizzo VIP accessibile da internet. Se si seleziona l'opzione Interno, l'ambiente del servizio app verrà configurato con un bilanciamento del carico interno su un indirizzo IP all'interno della rete virtuale. 
+Nel Pannello di rete virtuale hello è disponibile un'opzione di configurazione della rete virtuale. È possibile scegliere tra un indirizzo VIP esterno o interno. valore predefinito di Hello è esterno. Se è stata impostata tooExternal il ASE utilizzerà un indirizzo VIP accessibile a internet. Se si seleziona l'opzione Interno, l'ambiente del servizio app verrà configurato con un bilanciamento del carico interno su un indirizzo IP all'interno della rete virtuale. 
 
-Dopo aver selezionato Interno, la possibilità di aggiungere più indirizzi IP dell'ambiente del servizio app viene rimossa ed è invece necessario fornire il sottodominio dell'ambiente del servizio app. In un ambiente del servizio app con un indirizzo VIP esterno viene usato il nome dell'ambiente nel sottodominio delle app create in questo ambiente. Se l'ambiente del servizio app è stato denominato ***contosotest*** e l'app in questo ambiente è stata denominata ***mytest***, il formato del sottodominio sarà ***contosotest.p.azurewebsites.net*** e l'URL per questa app sarà ***mytest.contosotest.p.azurewebsites.net***. Se si imposta il tipo di indirizzo VIP su Interno, il nome dell'ambiente del servizio app non viene usato nel sottodominio per l'ambiente. Specificare il sottodominio in modo esplicito. Se il sottodominio è ***contoso.corp.net*** ed è stata creata un'app in ambiente del servizio app denominata ***timereporting***, l'URL per questa app sarà ***timereporting.contoso.corp.net***.
+Dopo aver selezionato l'interno, hello tooadd possibilità più indirizzi IP tooyour che ase viene rimosso ed è invece necessario sottodominio hello tooprovide di hello ASE. In un ASE con hello un indirizzo VIP esterno nome di ASE hello viene utilizzato il sottodominio hello per le app create con tale ASE. Se è stato chiamato il ASE ***contosotest*** e l'applicazione in quel ASE è stato chiamato ***mytest*** sottodominio hello sarà del formato hello ***contosotest.p.azurewebsites.net*** e Hello URL per l'app sarebbe ***mytest.contosotest.p.azurewebsites.net***. Se si imposta il tipo di indirizzo VIP tooInternal hello, il nome di base non viene utilizzato nella sottodominio hello per hello ASE. Specificare il sottodominio hello in modo esplicito. Se il sottodominio ***contoso.corp.net*** ed eseguito in un'app in ASE denominato ***timereporting*** quindi hello URL per tale app sarebbe ***timereporting.contoso.corp.net***.
 
 ## <a name="apps-in-an-ilb-ase"></a>App in un ambiente del servizio app con bilanciamento del carico interno
-La creazione di un'app in un ambiente del servizio app con bilanciamento del carico interno è la stessa che in un ambiente del servizio app regolare. 
+Creazione di un'app in un bilanciamento del carico interno ASE hello come creare un'app in un ASE normalmente. 
 
-1. Nel portale di Azure selezionare **Nuovo -> Web e dispositivi mobili -> Web** o **Dispositivi mobili** o **App per le API**
+1. In selezionare portale Azure hello **nuovo -> Web + Mobile -> Web** o **Mobile** o **App per le API**
 2. Immettere il nome dell'app
 3. Selezionare la sottoscrizione
 4. Selezionare o creare un gruppo di risorse
-5. Selezionare o creare un piano di servizio app (ASP). Se si crea un nuovo piano di servizio app, selezionare l'ambiente del servizio app come posizione e il pool di lavoro in cui si vuole creare l'ASP. Quando si crea l'ASP selezionare l'ambiente del servizio app come posizione e il pool di lavoro. Quando si specifica il nome dell'app, si noterà che il sottodominio sotto il nome dell'app verrà sostituito con il sottodominio dell'ambiente del servizio app. 
-6. Selezionare Crea. Selezionare la casella di controllo **Aggiungi al dashboard** se si vuole che l'app venga visualizzata nel dashboard. 
+5. Selezionare o creare un piano di servizio app (ASP). Se la creazione di un nuovo ASP quindi selezionare il ASE come percorso hello e pool di lavoro selezionare hello si desidera che il toobe ASP creato in. Quando si crea hello ASP selezionare il ASE come percorso di hello e pool di lavoro hello. Quando si specifica il nome di hello dell'app hello in che verrà visualizzato tale sottodominio hello nome dell'app viene sostituito dal sottodominio hello per le ASE. 
+6. Selezionare Crea. È consigliabile selezionare hello **toodashboard Pin** casella di controllo se si desidera hello app tooshow nel dashboard. 
 
 ![][2]
 
-Sotto il nome dell'app il nome del sottodominio viene aggiornato per riflettere il sottodominio dell'ambiente del servizio app. 
+In app hello al nome di sottodominio hello Ottiene sottodominio hello tooreflect aggiornato del ASE. 
 
 ## <a name="post-ilb-ase-creation-validation"></a>Convalida dopo la creazione dell'ambiente del servizio app con bilanciamento del carico interno
-Un ambiente del servizio app con bilanciamento del carico interno è leggermente diverso rispetto all'ambiente del servizio app senza bilanciamento del carico interno. Come già notato è necessario gestire il proprio DNS e fornire un proprio certificato per le connessioni HTTPS. 
+ASE un bilanciamento del carico interno è leggermente diverso rispetto a hello non - ILB ASE. Come già indicato è necessario toomanage proprio DNS e aver inoltre tooprovide il proprio certificato per le connessioni HTTPS. 
 
-Dopo la creazione dell'ambiente del servizio app, si noterà che il sottodominio mostra il sottodominio specificato e che esiste un nuovo elemento nel menu **Impostazione** denominato **Certificato ILB**. L'ambiente del servizio app viene creato con un certificato autofirmato, che semplifica i test di HTTPS. Il portale indicherà che è necessario specificare un certificato per HTTPS, in modo che sia disponibile un certificato associato al sottodominio. 
+Dopo aver creato il ASE si noterà che sottodominio hello Mostra sottodominio hello è specificato e non esiste un nuovo elemento in hello **impostazione** denominata **ILB certificato**. Hello ASE viene creato con un certificato autofirmato che rende più semplice tootest HTTPS. Hello portale indicherà che è necessario tooprovide il proprio certificato per HTTPS, ma si tratta di toodrive si toohave un certificato con il sottodominio. 
 
 ![][3]
 
-Se si sta semplicemente eseguendo alcune prove e non si conosce la procedura per creare un certificato, è possibile usare l'applicazione della console MMC di IIS per creare un certificato autofirmato. Dopo la creazione è possibile esportarlo come file PFX e caricarlo nell'interfaccia utente dei certificati ILB. Quando si accede a un sito protetto con un certificato autofirmato, il browser visualizzerà un avviso che il sito a cui si sta accedendo non è protetto poiché non è possibile convalidare il certificato. Per evitare che venga visualizzato l'avviso, è necessario un certificato firmato correttamente che corrisponda al sottodominio e che disponga di una catena di certificati riconosciuta dal browser.
+Se si sta semplicemente operazioni e sapere come toocreate un certificato, è possibile utilizzare hello MMC IIS toocreate di applicazione console un self-certificato di firma. Dopo averla creata è possibile esportarlo come file PFX e caricarla in hello interfaccia utente di certificati di bilanciamento del carico interno. L'accesso di un sito protetto con un certificato autofirmato, il browser verrà visualizzato un avviso che si accede al sito di hello quando non è sicuro scadenza certificato hello toovalidate impossibilità di toohello. Se si desidera tooavoid tale avviso, che è necessario un certificato firmato correttamente che corrisponde il sottodominio e dispone di una catena di certificati che sono stato riconosciuto dal browser.
 
 ![][6]
 
-Se si vuole provare il flusso con i propri certificati e testare l'accesso HTTP e HTTPS all'ambiente del servizio app:
+Se si desidera tootry hello flusso con i propri certificati e test ASE tooyour di accesso HTTP e HTTPS:
 
-1. Passare all'interfaccia utente dell'ambiente del servizio app dopo la creazione dell'ambiente **Ambiente del servizio app -> Impostazioni -> Certificati ILB**
-2. Impostare il certificato ILB selezionando il file PFX e fornire la password. L'elaborazione di questo passaggio richiede tempo e verrà visualizzato il messaggio indicante un'operazione di ridimensionamento in corso.
-3. Ottenere l'indirizzo ILB per l'ambiente del servizio app (**Ambiente del servizio app -> Proprietà -> Indirizzo IP virtuale**)
+1. Passare tooASE dell'interfaccia utente dopo la creazione di ASE **ASE -> Impostazioni -> certificati di bilanciamento del carico interno**
+2. Impostare il certificato ILB selezionando il file PFX e fornire la password. Questo passaggio richiede un po' durante tooprocess e verrà visualizzato il messaggio hello che è in corso un'operazione di ridimensionamento.
+3. Ottenere l'indirizzo di bilanciamento del carico interno hello per le ASE (**ASE -> Proprietà -> indirizzi IP virtuali**)
 4. Creare un'app Web nell'ambiente del servizio app dopo la creazione 
-5. Creare una VM, se non è disponibile in questa rete virtuale; non crearla nella stessa subnet dell'ambiente del servizio app per evitare errori
-6. Impostare il DNS per il sottodominio. È possibile usare un carattere jolly con il sottodominio nel DNS o se si vuole eseguire alcuni semplici test, modificare il file hosts nella VM per impostare il nome della app Web all'indirizzo IP VIP. Se il nome di sottodominio dell'ambiente del servizio app è ilbase.com e mytestapp app della app Web è stata creata in modo da essere indirizzata a mytestapp.ilbase.com, impostare questo valore nel file hosts. In Windows il file hosts si trova in C:\Windows\System32\drivers\etc\
-7. Usare un browser in questa VM e passare a http://mytestapp.ilbase.com o qualunque sia il nome dell'app web con il sottodominio
-8. Usare un browser in questa VM e passare a https://mytestapp.ilbase.com. Sarà necessario accettare l'assenza di sicurezza se si usa un certificato autofirmato. 
+5. Creare una macchina virtuale se non si dispone di uno in tale rete virtuale (hello non nella stessa subnet hello ASE o interruzione di operazioni)
+6. Impostare il DNS per il sottodominio. È possibile utilizzare un carattere jolly con il sottodominio nel DNS o se si desidera toodo alcuni semplici test, modificare il file hosts hello in VM tooset web app nome tooVIP indirizzo IP. Se il ASE ha il nome di sottodominio hello. ilbase.com e apportate hello mytestapp app web in modo che potrebbe essere risolto a mytestapp.ilbase.com quindi set che nel file hosts. (In Windows hello file degli host è in C:\Windows\System32\drivers\etc\)
+7. Utilizzare un browser su tale macchina virtuale e passare toohttp://mytestapp.ilbase.com (o qualsiasi nome dell'app web è il sottodominio)
+8. Utilizzare un browser su tale macchina virtuale e passare toohttps://mytestapp.ilbase.com è la mancanza di hello tooaccept di sicurezza se si utilizza un certificato autofirmato. 
 
-L'indirizzo IP per il bilanciamento del carico interno è elencato nelle proprietà come indirizzo IP virtuale
+indirizzo IP Hello per il bilanciamento del carico interno è elencato nelle proprietà come indirizzo IP virtuale hello
 
 ![][4]
 
 ## <a name="using-an-ilb-ase"></a>Uso di un ambiente del servizio app con bilanciamento del carico interno
 #### <a name="network-security-groups"></a>Gruppi di sicurezza di rete
-Un ambiente del servizio app con bilanciamento del carico interno consente l'isolamento della rete per le app poiché le app non sono accessibili o persino note da Internet. Questa condizione è ideale per ospitare i siti intranet, ad esempio le applicazioni line of business. Quando è necessario limitare ulteriormente l'accesso, è possibile ancora usare i gruppi di sicurezza di rete (NSG) per controllare l'accesso a livello di rete. 
+Un isolamento di rete consente di ASE ILB per le app come App hello non sono accessibili o anche note da hello internet. Questa condizione è ideale per ospitare i siti intranet, ad esempio le applicazioni line of business. Quando è necessario anche accesso toorestrict ulteriormente è possibile comunque utilizzare accesso toocontrol Groups(NSGs) di sicurezza di rete a livello di rete hello. 
 
-Se si vuole usare i gruppi per limitare ulteriormente l'accesso, è necessario assicurarsi di non interrompere la comunicazione necessaria per il funzionamento dell'ambiente del servizio app. Anche se l'accesso HTTP/HTTPS avviene solo tramite il bilanciamento del carico interno usato dall'ambiente del servizio app, l'ambiente dipende ancora dalla risorsa all'esterno della rete virtuale. Per verificare quale accesso di rete è necessario, esaminare le informazioni disponibili nel documento [Come controllare il traffico in ingresso a un ambiente del servizio app][ControlInbound] e nel documento [Dettagli della configurazione di rete per gli ambienti del servizio app con ExpressRoute][ExpressRoute]. 
+Se si desidera limitare l'accesso toouse NSGs toofurther quindi è necessario che non si interrompe la comunicazione hello toomake tale ASE hello deve in ordine toooperate. Anche se l'accesso HTTP/HTTPS hello solo tramite hello bilanciamento del carico interno utilizzato da hello hello ASE che ase ancora dipende dalla risorsa all'esterno di hello rete virtuale. toosee quali accesso di rete è ancora necessario esaminare le informazioni di hello nel documento hello in [tooan il traffico in ingresso di controllo dell'ambiente del servizio App] [ ControlInbound] e documento hello in [rete Dettagli di configurazione per gli ambienti del servizio App con ExpressRoute][ExpressRoute]. 
 
-Per configurare i gruppi NSG è necessario conoscere l'indirizzo IP usato da Azure per la gestione dell'ambiente del servizio app. Questo indirizzo IP è l'indirizzo IP in uscita dell'ambiente del servizio app se questo esegue richieste tramite internet. L'indirizzo IP in uscita per l'ASE rimane statico per la durata dell'ASE. Se si elimina e si ricrea l'ambiente del servizio app, si ottiene un nuovo indirizzo IP. Per trovare questo indirizzo IP, passare a **Impostazioni -> Proprietà** e trovare **Indirizzo IP in uscita**. 
+tooconfigure il NSGs occorre tooknow hello IP indirizzo che è utilizzato da Azure toomanage il ASE. L'indirizzo IP è anche hello in uscita indirizzo IP del ASE se effettua le richieste internet. indirizzo IP in uscita di Hello per le ASE rimane statico per ciclo di vita di hello del ASE. Se si elimina e si ricrea l'ambiente del servizio app, si ottiene un nuovo indirizzo IP. Questo indirizzo IP andare troppo toofind**Impostazioni -> proprietà** e trovare hello **indirizzo IP in uscita**. 
 
 ![][5]
 
 #### <a name="general-ilb-ase-management"></a>Gestione generale dell'ambiente del servizio app con bilanciamento del carico interno
-La gestione di un ambiente del servizio app con bilanciamento del carico interno è sostanzialmente la stessa che in un ambiente del servizio app regolare. È necessario aumentare i pool di lavoro per ospitare più istanze ASP e aumentare i server front-end per gestire una maggiore quantità di traffico HTTP/HTTPS. Per informazioni generali sulla gestione della configurazione di un ambiente del servizio app, vedere il documento [Configurazione di un ambiente del servizio app][ASEConfig]. 
+La gestione di ASE un bilanciamento del carico interno è in gran parte hello come la gestione di un ASE normalmente. È necessario tooscale backup il toohost di pool di lavoro più istanze ASP e la scalabilità verticale gli importi toohandle aumentato di server front-End del traffico HTTP/HTTPS. Per informazioni generali sulla gestione della configurazione di un ASE hello, leggere il documento di hello in [la configurazione di un ambiente del servizio App][ASEConfig]. 
 
-Le attività di gestione aggiuntive sono la gestione dei certificati e la gestione del DNS. È necessario ottenere e caricare il certificato usato per HTTPS dopo la creazione dell'ambiente del servizio app con bilanciamento del carico interno e sostituirlo prima della scadenza. Poiché Azure possiede il dominio base possiamo fornire i certificati per gli ambienti del servizio app con un indirizzo VIP esterno. Poiché il sottodominio usato da un ambiente del servizio app con bilanciamento del carico interno può essere un qualsiasi elemento, è necessario fornire un certificato per HTTPS. 
+gli elementi di gestione aggiuntivo Hello sono la gestione dei certificati e la gestione di DNS. È necessario tooobtain e caricare il certificato di hello usato per HTTPS dopo la creazione di bilanciamento del carico interno ASE e sostituirlo prima della scadenza. Poiché Azure proprietaria di dominio base hello offriamo i certificati per ASEs con un indirizzo VIP esterno. Poiché il sottodominio hello utilizzato da un ASE di bilanciamento del carico interno può essere qualsiasi elemento, è necessario tooprovide il proprio certificato per HTTPS. 
 
 #### <a name="dns-configuration"></a>Configurazione del DNS
-Quando si usa un indirizzo VIP esterno, il DNS viene gestito da Azure. Qualsiasi app creata nell'ambiente del servizio app viene aggiunta automaticamente al DNS di Azure che è un DNS pubblico. In un ambiente del servizio app con bilanciamento del carico interno è necessario gestire il proprio DNS. Per un sottodominio specifico, ad esempio contoso.corp.net, è necessario creare record A DNS che puntano all'indirizzo del bilanciamento del carico interno per:
+Quando si utilizza un hello VIP esterno che DNS è gestito da Azure. Qualsiasi applicazione creata nel ASE viene aggiunto automaticamente tooAzure DNS che è un DNS pubblico. In una base di bilanciamento del carico interno è necessario toomanage il proprio servizio DNS. Per un sottodominio specifico, ad esempio contoso.corp.net occorre toocreate A DNS registra tale indirizzo ILB tooyour punto:
 
     * 
     *.scm ftp publish 
 
 
-## <a name="getting-started"></a>Introduzione
-Tutti gli articoli e le procedure sugli ambienti del servizio app sono disponibili nel [file LEGGIMI per gli ambienti di servizio dell'applicazione](../app-service/app-service-app-service-environments-readme.md).
+## <a name="getting-started"></a>introduttiva
+Tutti gli articoli e in che modo-per per gli ambienti del servizio App sono disponibili in hello [file Leggimi per gli ambienti del servizio dell'applicazione](../app-service/app-service-app-service-environments-readme.md).
 
-Per iniziare a usare gli ambienti del servizio app, vedere [Introduzione all'ambiente del servizio app][WhatisASE]
+tooget avviato con gli ambienti del servizio App, vedere [tooApp introduzione gli ambienti del servizio][WhatisASE]
 
-Per altre informazioni sulla piattaforma del servizio app di Azure, vedere l'articolo relativo al [servizio app di Azure][AzureAppService].
+Per ulteriori informazioni sulla piattaforma Azure App Service hello, vedere [Azure App Service][AzureAppService].
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

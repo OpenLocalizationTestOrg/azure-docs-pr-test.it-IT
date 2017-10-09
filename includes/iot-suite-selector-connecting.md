@@ -6,61 +6,61 @@
 > 
 
 ## <a name="scenario-overview"></a>Panoramica dello scenario
-In questo scenario, viene creato un dispositivo che invia la seguente telemetria alla [soluzione preconfigurata][lnk-what-are-preconfig-solutions] per il monitoraggio remoto:
+In questo scenario, si crea un dispositivo che invia hello seguendo il monitoraggio remoto di dati di telemetria toohello [preconfigurato soluzione][lnk-what-are-preconfig-solutions]:
 
 * Temperatura esterna
 * Temperatura interna
 * Umidità
 
-Per semplicità, il codice nel dispositivo genera valori di esempio, ma si consiglia di estendere l'esempio connettendo i sensori reali al dispositivo e inviando i dati di telemetria reali.
+Per semplicità, codice hello sul dispositivo hello genera valori di esempio, ma che incoraggia la collaborazione è tooextend: esempio hello connettendosi dispositivo tooyour sensori reale e l'invio di dati di telemetria reale.
 
-Inoltre, il dispositivo è in grado di rispondere ai metodi richiamati dal dashboard di soluzione e ai valori di proprietà desiderati impostati nel dashboard di soluzione.
+dispositivo Hello è anche toomethods toorespond in grado di richiamata dal dashboard di soluzione hello e valori di proprietà impostati in dashboard soluzione hello desiderati.
 
-Per completare l'esercitazione, è necessario un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure][lnk-free-trial].
+toocomplete questa esercitazione, è necessario un account di Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure][lnk-free-trial].
 
 ## <a name="before-you-start"></a>Prima di iniziare
 Prima di scrivere un codice per il dispositivo, occorre eseguire la soluzione preconfigurata di monitoraggio remoto e poi effettuare il provisioning di un nuovo dispositivo personalizzato all'interno della soluzione in questione.
 
 ### <a name="provision-your-remote-monitoring-preconfigured-solution"></a>Eseguire il provisioning della soluzione preconfigurata per il monitoraggio remoto
-Il dispositivo creato in questa esercitazione invia dati a un'istanza della soluzione preconfigurata per il [monitoraggio remoto][lnk-remote-monitoring]. Se nel proprio account Azure non è già stato eseguito il provisioning della soluzione preconfigurata per il monitoraggio remoto, attenersi alla procedura seguente:
+dispositivo Hello si creerà in questa esercitazione invia istanza tooan dati hello [monitoraggio remoto] [ lnk-remote-monitoring] preconfigurato soluzione. Se non hai già effettuato il provisioning hello soluzione preconfigurata nell'account di Azure di monitoraggio remoto, utilizzare hello alla procedura seguente:
 
-1. Nella pagina <https://www.azureiotsuite.com/> fare clic su **+** per creare una soluzione.
-2. Fare clic su **Seleziona** nel pannello **Remote monitoring** (Monitoraggio remoto) per creare la soluzione.
-3. Nella pagina per la **creazione della soluzione di monitoraggio remoto** immettere il nome desiderato in **Nome soluzione** e selezionare l'**area** in cui eseguire la distribuzione e quindi la sottoscrizione di Azure da usare. Fare clic su **Crea soluzione**.
-4. Attendere finché non viene completato il processo di provisioning.
+1. In hello <https://www.azureiotsuite.com/> pagina, fare clic su  **+**  toocreate una soluzione.
+2. Fare clic su **selezionare** su hello **monitoraggio remoto** pannello toocreate la soluzione.
+3. In hello **creare il monitoraggio remoto soluzione** pagina, immettere un **Nome soluzione** di propria scelta, selezionare hello **area** toodeploy per desiderati e selezionare hello Azure toouse toowant di sottoscrizione. Fare clic su **Crea soluzione**.
+4. Attendere il completamento di hello processo di provisioning.
 
 > [!WARNING]
-> Le soluzioni preconfigurate usano servizi di Azure fatturabili. Al termine, assicurarsi di rimuovere la soluzione preconfigurata dalla sottoscrizione per evitare eventuali addebiti non necessari. Per rimuovere completamente una soluzione preconfigurata dalla sottoscrizione, visitare la pagina <https://www.azureiotsuite.com/>.
+> le soluzioni di Hello preconfigurato utilizzano fatturabili servizi di Azure. Verificare tooremove hello soluzione preconfigurata dalla sottoscrizione di una volta con esso tooavoid eventuali addebiti non necessari. È possibile rimuovere completamente una soluzione preconfigurata dalla sottoscrizione, visitare hello <https://www.azureiotsuite.com/> pagina.
 > 
 > 
 
-Al termine del processo di provisioning della soluzione di monitoraggio remoto, fare clic su **Avvia** per aprire il dashboard della soluzione nel browser.
+Termine del processo per la soluzione di monitoraggio remoto hello di provisioning hello, fare clic su **avviare** dashboard di soluzione hello tooopen nel browser.
 
 ![Dashboard della soluzione][img-dashboard]
 
-### <a name="provision-your-device-in-the-remote-monitoring-solution"></a>Effettuare il provisioning del dispositivo nella soluzione di monitoraggio remoto
+### <a name="provision-your-device-in-hello-remote-monitoring-solution"></a>Eseguire il provisioning del dispositivo nella soluzione di monitoraggio remoto hello
 > [!NOTE]
-> Se è già stato eseguito il provisioning di un dispositivo nella soluzione, è possibile saltare questo passaggio. È necessario conoscere le credenziali del dispositivo quando si crea l'applicazione client.
+> Se è già stato eseguito il provisioning di un dispositivo nella soluzione, è possibile saltare questo passaggio. Quando si crea un'applicazione client hello, sono necessarie le credenziali di dispositivo di tooknow hello.
 > 
 > 
 
-Per connettere un dispositivo alla soluzione preconfigurata, è necessario che identifichi se stesso nell'hub IoT mediante delle credenziali valide. È possibile recuperare le credenziali del dispositivo dal dashboard della soluzione. Le istruzioni per includere le credenziali del dispositivo nell'applicazione client sono illustrate più avanti in questa esercitazione.
+Per una soluzione di dispositivo tooconnect toohello preconfigurato, deve identificarsi tooIoT Hub usando credenziali valide. È possibile recuperare le credenziali di dispositivo hello dal dashboard di soluzione hello. Includere le credenziali di dispositivo hello nell'applicazione client più avanti in questa esercitazione.
 
-Per aggiungere un dispositivo alla soluzione per il monitoraggio remoto, completare i passaggi seguenti nel dashboard della soluzione:
+tooadd una soluzione di monitoraggio remoto tooyour di dispositivo, hello completo seguendo i passaggi nel dashboard di soluzione hello:
 
-1. Nell'angolo inferiore sinistro del dashboard fare clic su **Aggiungi un dispositivo**.
+1. Hello angolo in basso a sinistra del dashboard hello, fare clic su **aggiunge un dispositivo**.
    
    ![Aggiungere un dispositivo][1]
-2. Nel pannello **Dispositivo personalizzato** fare clic su **Aggiungi nuovo**.
+2. In hello **dispositivo personalizzato** pannello, fare clic su **Aggiungi nuovo**.
    
    ![Aggiungere un dispositivo personalizzato][2]
-3. Scegliere **Let me define my own Device ID** (Desidero definire il mio ID dispositivo). Immettere un ID dispositivo, ad esempio **mydevice**, fare clic su **Controlla ID** per verificare che tale nome non sia già in uso e quindi fare clic su **Crea** per effettuare il provisioning del dispositivo.
+3. Scegliere **Let me define my own Device ID** (Desidero definire il mio ID dispositivo). Immettere un ID dispositivo, ad esempio **mydevice**, fare clic su **ID controllo** tooverify tale nome è già in uso e quindi fare clic su **crea** dispositivo hello tooprovision.
    
    ![Aggiungere un ID dispositivo][3]
-4. Annotare le credenziali del dispositivo (ID dispositivo, nome host dell'hub IoT e chiave dispositivo). Questi valori sono necessari per consentire all'applicazione client di connettersi alla soluzione per il monitoraggio remoto. Fare quindi clic su **Done**.
+4. Rendere un dispositivo di hello nota le credenziali (ID dispositivo, nome host di Hub IoT e chiave del dispositivo). L'applicazione client deve questi toohello tooconnect valori soluzione di monitoraggio remoto. Fare quindi clic su **Done**.
    
     ![Vedere le credenziali del dispositivo][4]
-5. Selezionare il dispositivo nell'elenco dei dispositivi nel dashboard della soluzione. Nel pannello **Dettagli dispositivo** fare clic su **Attiva dispositivo**. Lo stato del dispositivo è ora **In esecuzione**. La soluzione per il monitoraggio remoto può ora ricevere i dati di telemetria dal dispositivo e richiamare i metodi sul dispositivo.
+5. Selezionare il dispositivo nell'elenco di dispositivi hello nel dashboard di soluzione hello. Quindi, nel hello **dettagli dispositivo** pannello, fare clic su **Abilita periferica**. lo stato di Hello del dispositivo è ora **esecuzione**. soluzione di monitoraggio remoto Hello possa ora ricevere i dati di telemetria dal dispositivo e richiamare metodi sul dispositivo hello.
 
 [img-dashboard]: ./media/iot-suite-selector-connecting/dashboard.png
 [1]: ./media/iot-suite-selector-connecting/suite0.png

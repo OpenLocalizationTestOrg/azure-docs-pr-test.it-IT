@@ -1,9 +1,9 @@
 
 
 ## <a name="applications"></a>Applicazioni
-La tabella seguente elenca alcuni dei modelli di framework applicazione più diffusi. Scegliere un modello per visualizzare altre informazioni, visualizzare il modello in GitHub o eseguire la distribuzione direttamente tramite il portale di Azure.
+Hello nella tabella seguente sono elencati alcuni dei modelli di framework applicazioni più diffusi hello. Scegliere un modello toosee ulteriori informazioni, modello di visualizzazione hello in GitHub o distribuire direttamente tramite hello portale di Azure.
 
-| Applicazione | Altre informazioni | Visualizzare il modello | Distribuirlo subito |
+| Applicazione | Altre informazioni | Modello di visualizzazione hello | Distribuirlo subito |
 |:--- |:---:|:---:|:---:|
 | Active Directory |[Raccolta](https://azure.microsoft.com/documentation/templates/active-directory-new-domain-ha-2-dc/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Factive-directory-new-domain-ha-2-dc%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
 | Apache |[Raccolta](https://azure.microsoft.com/documentation/templates/apache2-on-ubuntu-vm/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/apache2-on-ubuntu-vm) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fapache2-on-ubuntu-vm%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
@@ -23,13 +23,13 @@ La tabella seguente elenca alcuni dei modelli di framework applicazione più dif
 | WordPress |[Raccolta](https://azure.microsoft.com/documentation/templates/wordpress-single-vm-ubuntu/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/wordpress-single-vm-ubuntu) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwordpress-single-vm-ubuntu%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
 | ZooKeeper |[Raccolta](https://azure.microsoft.com/documentation/templates/zookeeper-cluster-ubuntu-vm/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/zookeeper-cluster-ubuntu-vm) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fzookeeper-cluster-ubuntu-vm%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
 
-Oltre che in questi modelli, è possibile cercare nei [modelli della raccolta](https://azure.microsoft.com/documentation/templates/).
+Inoltre modelli toothese, è possibile eseguire ricerche tramite hello [modelli raccolta](https://azure.microsoft.com/documentation/templates/).
 
 
 ## <a name="azure-cli-20"></a>Interfaccia della riga di comando di Azure 2.0
-Questa procedura richiede l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli).
+Questi passaggi richiedono hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooupgrade, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
-Creare prima un gruppo di risorse con [az group create](/cli/azure/group#create). Creare quindi la distribuzione da un modello con [az group deployment create](/cli/azure/group/deployment#create). Specificare l'URI completo per il modello con il parametro `--template-uri` ed eventuali parametri di modello obbligatori in `--parameters`, come indicato di seguito:
+Creare prima un gruppo di risorse con [az group create](/cli/azure/group#create). Creare quindi la distribuzione da un modello con [az group deployment create](/cli/azure/group/deployment#create). Fornire il modello tooyour URI completo di hello hello `--template-uri` parametro ed eventuali necessari parametri di modello in `--parameters` come indicato di seguito:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
@@ -38,13 +38,13 @@ az group deployment create --resource-group myResourceGroup \
     --parameters '{"sshKeyData": {"value": "ssh-rsa AAAAB3N{snip}B9eIgoZ"}}'
 ```
 
-A seconda del modello, la distribuzione delle risorse richiede tempi diversi.
+A seconda modello hello, può richiedere del tempo per le risorse di Azure toodeploy hello.
 
 
 ## <a name="azure-powershell"></a>Azure PowerShell
-Questa procedura richiede il modulo Azure PowerShell 3.6 o versioni successive. Eseguire `Get-Module -ListAvailable AzureRM` per trovare la versione. Se è necessario eseguire l'aggiornamento, vedere [Install Azure PowerShell module](/powershell/azure/install-azurerm-ps) (Installare il modulo di Azure PowerShell).
+Questi passaggi richiedono hello Azure PowerShell versione 3.6 o versioni successive del modulo. Eseguire `Get-Module -ListAvailable AzureRM` versione hello toofind. Se è necessario tooupgrade, vedere [modulo installare Azure PowerShell](/powershell/azure/install-azurerm-ps).
 
-Creare prima di tutto un gruppo di risorse con [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Creare quindi la distribuzione da un modello con [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment). Specificare l'URI completo per il modello con il parametro `-TemplateURI`, come indicato di seguito:
+Creare prima di tutto un gruppo di risorse con [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Creare quindi la distribuzione da un modello con [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment). Fornire il modello tooyour URI completo di hello hello `-TemplateURI` parametro come indicato di seguito:
 
 ```powershell
 New-AzureRmResourceGroup -Name "myResourceGroup" -Location "EastUS"
@@ -52,10 +52,10 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myResourceGroup" `
      -TemplateUri "https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/{template-name}/azuredeploy.json"
 ```
 
-Quando si esegue il comando [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment), è possibile che venga richiesto di immettere i valori per i parametri nel modello. A seconda del modello, la distribuzione delle risorse richiede tempi diversi.
+Quando si esegue hello [New AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) comando, potrebbe essere richiesta tooenter valori per parametri di hello nel modello di hello. A seconda modello hello, può richiedere del tempo per le risorse di Azure toodeploy hello.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Individuare tutti i modelli a disposizione in [GitHub](https://github.com/Azure/azure-quickstart-templates).
+Individua tutti i modelli di hello a disposizione in [GitHub](https://github.com/Azure/azure-quickstart-templates).
 
 Per altre informazioni, vedere [Gestione risorse di Azure](../articles/resource-group-template-deploy.md).

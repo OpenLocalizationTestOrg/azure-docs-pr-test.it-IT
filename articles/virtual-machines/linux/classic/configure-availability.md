@@ -1,6 +1,6 @@
 ---
-title: "Set di disponibilità per macchine virtuali Linux classiche | Microsoft Docs"
-description: "Configurare un set di disponibilità per una macchina virtuale Linux nuova o esistente nel modello di distribuzione classica usando il portale di Azure e Azure PowerShell."
+title: aaaAvailability imposta per le macchine virtuali Linux classico | Documenti Microsoft
+description: "Configurare un gruppo di disponibilità per una macchina virtuale Linux nuova o esistente nel modello di distribuzione classica hello utilizzando hello portale di Azure e Azure PowerShell."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2016
 ms.author: cynthn
-ms.openlocfilehash: 41d427862150d17e1ad726afc51114d6f62f5a8e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8d8d041e3540e42a1921f5665469a2fdcaa30a29
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-an-availability-set-for-linux-virtual-machines-in-the-classic-deployment-model"></a>Come configurare un set di disponibilità per le macchine virtuali Linux nel modello di distribuzione classica
+# <a name="how-tooconfigure-an-availability-set-for-linux-virtual-machines-in-hello-classic-deployment-model"></a>Come tooconfigure un gruppo di disponibilità per le macchine virtuali Linux nel modello di distribuzione classica hello
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. È anche possibile [configurare i set di disponibilità](../../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets) nelle distribuzioni Azure Resource Manager.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. È anche possibile [configurare i set di disponibilità](../../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets) nelle distribuzioni Azure Resource Manager.
 
 [!INCLUDE [virtual-machines-common-classic-configure-availability](../../../../includes/virtual-machines-common-classic-configure-availability.md)]

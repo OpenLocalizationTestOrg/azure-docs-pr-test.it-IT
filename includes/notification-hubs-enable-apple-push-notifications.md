@@ -1,118 +1,118 @@
 
 
-## <a name="generate-the-certificate-signing-request-file"></a>Generare il file di richiesta di firma del certificato
-Il servizio Apple Push Notification Service (APNS) usa i certificati per autenticare le notifiche push. Seguire queste istruzioni per creare il certificato push necessario per inviare e ricevere notifiche. Per altre informazioni su questi concetti, vedere la documentazione ufficiale relativa al servizio [Apple Push Notification Service](http://go.microsoft.com/fwlink/p/?LinkId=272584) .
+## <a name="generate-hello-certificate-signing-request-file"></a>Generare file di richiesta di firma certificato hello
+Hello Apple Push Notification Service (APNS) utilizza certificati tooauthenticate le notifiche push. Seguire questi toosend certificato push necessarie di istruzioni toocreate hello e ricevere le notifiche. Per ulteriori informazioni su questi concetti, vedere ufficiale hello [Apple Push Notification Service](http://go.microsoft.com/fwlink/p/?LinkId=272584) documentazione.
 
-Generare il file della richiesta di firma del certificato usato da Apple per la generazione di un certificato push firmato.
+Creare file di firma richiesta certificato (CSR) hello, che viene utilizzato da toogenerate Apple un certificato firmato push.
 
-1. Sul Mac eseguire lo strumento Accesso Portachiavi. Può essere aperto dalla cartella **Utilities** (Utility) o **Other** (Altro) nella finestra di avvio.
+1. Nel Mac, eseguire lo strumento di accesso portachiavi hello. Può essere aperta da hello **utilità** cartella o hello **altri** cartella nel punto di partenza hello.
 2. Fare clic su **Keychain Access** (Accesso Portachiavi), espandere **Certificate Assistant** (Assistente Certificato), quindi fare clic su **Request a Certificate from a Certificate Authority...** (Richiedi un certificato da una Autorità di Certificazione...).
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-request-cert-from-ca.png)
-3. Selezionare **User Email Address** (Indirizzo e-mail utente) e **Common Name** (Nome comune), assicurarsi che l'opzione **Saved to disk** (Salvata sul disco) sia selezionata, quindi fare clic su **Continue** (Continua). Lasciare vuoto il campo **Indirizzo e-mail CA** , in quanto non è obbligatorio.
+3. Selezionare il **indirizzo di posta elettronica utente** e **nome comune** , assicurarsi che **salvato toodisk** sia selezionata e quindi fare clic su **continua**. Lasciare hello **indirizzo di posta elettronica CA** campo vuoto perché non è obbligatorio.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-csr-info.png)
-4. Digitare un nome per il file della richiesta di firma del certificato (CSR) in **Save As**, (Salva col nome), selezionare il percorso in **Where** (Posizione), quindi fare clic su **Save** (Salva).
+4. Digitare un nome per il file di firma richiesta certificato (CSR) hello in **Salva con nome**, selezionare il percorso di hello in **in**, quindi fare clic su **salvare**.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-save-csr.png)
    
-      Il file CSR viene salvato nel percorso selezionato. Il percorso predefinito è Scrivania. Tenere a mente il percorso scelto per il file.
+      Questo file CSR di hello Salva nel percorso di hello selezionato. percorso predefinito di Hello è hello Desktop. Tenere presente che il percorso di hello scelto per il file.
 
-A questo punto registrare l'app con Apple, abilitare le notifiche push e caricare il file CSR esportato per creare un certificato push.
+Successivamente, si verrà registrare l'app di Apple, abilitare le notifiche push e caricare questo toocreate CSR esportato un certificato per il push.
 
 ## <a name="register-your-app-for-push-notifications"></a>Registrare l'app per le notifiche push
-Per poter inviare notifiche push a un'app per iOS, è necessario registrare l'applicazione con Apple ed eseguire un'altra registrazione per abilitare le notifiche push.  
+toobe toosend in grado di push notifiche tooan app iOS, è necessario registrare l'applicazione con Apple e registrate per le notifiche push.  
 
-1. Se l'app non è ancora stata registrata, accedere al <a href="http://go.microsoft.com/fwlink/p/?LinkId=272456" target="_blank">portale di provisioning iOS</a> su Apple Developer Center, eseguire l'accesso con il proprio ID Apple, fare clic su **Identifiers**, quindi su **App IDs** e infine fare clic sul segno **+** per registrare una nuova app.
+1. Se non è già stato registrato l'app, passare toohello <a href="http://go.microsoft.com/fwlink/p/?LinkId=272456" target="_blank">portale di Provisioning iOS</a> in hello Centro per sviluppatori di Apple, eseguire l'accesso con il proprio ID Apple, fare clic su **identificatori**, quindi fare clic su **ID App** e infine fare clic su hello  **+**  tooregister una nuova app di accedere.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-ios-appids.png)
       
-2. Aggiornare i tre campi seguenti per la nuova app e quindi fare clic su **Continue**:
+2. Aggiornare i seguenti tre campi per la nuova app hello e quindi fare clic su **continua**:
    
-   * **Name**: digitare un nome descrittivo per l'app nel campo **Name** della sezione **App ID Description**.
-   * **Bundle Identifier**: nella sezione **Explicit App ID** immettere un valore in **Bundle Identifier** nel formato `<Organization Identifier>.<Product Name>`, come indicato nel documento [App Distribution Guide](https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html#//apple_ref/doc/uid/TP40012582-CH28-SW8). *Organization Identifier* e *Product Name* devono corrispondere all'identificatore dell'organizzazione e al nome del prodotto che verranno usati quando si crea il progetto XCode. Nella schermata seguente *NotificationHubs* viene usato come identificatore di organizzazione e *GetStarted* viene usato come nome del prodotto. Verificare che corrispondano ai valori che si useranno nel progetto XCode, in modo da usare il profilo di pubblicazione corretto con XCode. 
-   * **Notifiche Push**: selezionare l'opzione **Notifiche Push** nella sezione **Servizi app**.
+   * **Nome**: digitare un nome descrittivo per l'app in hello **nome** campo hello **descrizione dell'ID App** sezione.
+   * **Identificatore di aggregazione**: in hello **ID App esplicito** sezione, immettere un **identificatore Bundle** nel modulo hello `<Organization Identifier>.<Product Name>` come indicato in hello [distribuzione di App Guida](https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html#//apple_ref/doc/uid/TP40012582-CH28-SW8). Hello *identificatore organizzazione* e *nome prodotto* uso deve corrispondere identificatore organizzazione hello e il nome di prodotto che verrà utilizzato quando si crea il progetto XCode. In seguito screeshot di hello *degli hub di notifica* viene utilizzato come l'identificatore di un'organizzazione e *GetStarted* viene utilizzato come nome del prodotto hello. Assicurandosi che corrisponde valori hello che verranno utilizzati nel progetto XCode consentirà è toouse hello corretto profilo di pubblicazione con XCode. 
+   * **Le notifiche push**: hello controllo **le notifiche Push** opzione hello **servizi App** sezione.
      
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-new-appid-info.png)
      
-      Verrà generato l'ID app e all'utente verrà chiesto di confermare le informazioni. Fare clic su **Registra** per confermare il nuovo ID app.
+      Questo genera l'ID di App e si richiede informazioni hello tooconfirm. Fare clic su **registrare** tooconfirm hello nuovo ID di App.
      
-      Dopo aver fatto clic su **Register** (Registrazione) verrà visualizzata la schermata **Registrazione completa**, come illustrato di seguito. Fare clic su **Done**.
+      Quando si fa clic su **registrare**, verrà visualizzato hello **registrazione completare** schermata, come illustrato di seguito. Fare clic su **Done**.
       
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-appid-registration-complete.png)
 
 
-1. In Developer Center, sotto App IDs trovare l'ID app appena creato e fare clic sulla relativa riga.
+1. Nel centro per sviluppatori, con l'ID dell'App, hello individuare hello app ID appena creato, quindi fare clic sulla riga corrispondente.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-ios-appids2.png)
    
-      Facendo clic sull'ID app verranno visualizzati i dettagli relativi all'app. Fare clic sul pulsante **Edit** nella parte inferiore della schermata.
+      Facendo clic sull'ID di app hello verranno visualizzati i dettagli dell'app hello. Fare clic su hello **modifica** pulsante nella parte inferiore di hello.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-edit-appid.png)
       
-2. Scorrere fino alla fine della schermata e fare clic su **Crea Certificato...** nella sezione **Development Push SSL Certificate**.
+2. Scorrere toohello parte inferiore della schermata di hello e fare clic su hello **Create Certificate...**  pulsante nella sezione hello **certificato SSL di Push di sviluppo**.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-appid-create-cert.png)
    
-      Verrà visualizzato l'assistente "Add iOS Certificate".
+      Consente di visualizzare Assistente "Aggiungi certificato iOS" hello.
    
    > [!NOTE]
-   > Questa esercitazione usa un certificato di sviluppo. La stessa procedura viene usata per registrare un certificato di produzione. Per l'invio delle notifiche, assicurarsi di usare lo stesso tipo di certificato.
+   > Questa esercitazione usa un certificato di sviluppo. Hello stesso processo viene utilizzato durante la registrazione di un certificato di produzione. Assicurarsi di utilizzare hello stesso quando si inviano notifiche di tipo di certificato.
    > 
    > 
-3. Fare clic su **Choose File**, passare al percorso in cui è stato salvato il file CSR creato durante la prima attività, quindi fare clic su **Generate**.
+3. Fare clic su **Scegli File**, toohello percorso di salvataggio file CSR hello creato nella prima attività hello Sfoglia, quindi fare clic su **genera**.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-appid-cert-choose-csr.png)
-4. Al termine della creazione del certificato nel portale, fare clic su **Download** e quindi su **Done**.
+4. Dopo aver creato il certificato di hello dal portale di hello, fare clic su hello **scaricare** pulsante e fare clic su **eseguita**.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-appid-download-cert.png)
    
-      Il certificato di firma verrà scaricato e salvato nel computer nella cartella Download.
+      Questo download certificato hello e lo salva tooyour computer nella cartella di download.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-cert-downloaded.png)
    
    > [!NOTE]
-   > Per impostazione predefinita, il file scaricato di un certificato di sviluppo è denominato **aps_development.cer**.
+   > Per impostazione predefinita, hello scaricati file un certificato di sviluppo è denominato **aps_development.cer**.
    > 
    > 
-5. Fare doppio clic sul certificato push scaricato **aps_development.cer**.
+5. Fare doppio clic sul certificato scaricato push hello **aps_development.cer**.
    
-      Il nuovo certificato verrà installato nel Portachiavi, come mostrato di seguito:
+      Questo modo vengono installati nuovo certificato hello hello Keychain, come illustrato di seguito:
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-cert-in-keychain.png)
    
    > [!NOTE]
-   > Il nome del certificato potrebbe essere diverso, ma verrà preceduto da **Apple Development iOS Push Services:**.
+   > nome Hello nel certificato potrebbe essere diverso, ma verrà preceduto **sviluppo Apple iOS servizi Push:**.
    > 
    > 
-6. In Accesso portachiavi fare clic con il pulsante destro del mouse sul nuovo certificato push creato nella categoria **Certificati** . Fare clic su **Esporta**, assegnare un nome al file, selezionare il formato **.p12** e quindi fare clic su **Salva**.
+6. In accesso portachiavi, fare clic sul certificato push nuova hello creati in hello **certificati** categoria. Fare clic su **esportare**, assegnare un nome file hello, selezionare hello **. p12** formattare e quindi fare clic su **salvare**.
    
     ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-export-cert-p12.png)
    
-    Prendere nota del nome del file e del percorso del certificato con estensione p12 esportato. Verrà usato per abilitare l'autenticazione con il servizio APN.
+    Prendere nota del nome file hello e percorso del certificato esportato. p12 hello. Sarà tooenable utilizzata l'autenticazione con il servizio APN.
    
    > [!NOTE]
    > In questa esercitazione viene creato un file QuickStart.p12. Il nome e il percorso del file potrebbero essere diversi.
    > 
    > 
 
-## <a name="create-a-provisioning-profile-for-the-app"></a>Creare un profilo di provisioning per l'app
-1. Nel <a href="http://go.microsoft.com/fwlink/p/?LinkId=272456" target="_blank">portale di provisioning iOS</a> selezionare **Provisioning Profiles**, quindi **All** e infine fare clic sul pulsante **+** per creare un nuovo profilo. Verrà avviata la procedura guidata **Add iOS Provisiong Profile**
+## <a name="create-a-provisioning-profile-for-hello-app"></a>Creare un profilo di provisioning per l'applicazione hello
+1. In hello <a href="http://go.microsoft.com/fwlink/p/?LinkId=272456" target="_blank">portale di Provisioning iOS</a>selezionare **i profili di Provisioning**selezionare **tutti**e quindi fare clic su hello  **+**  pulsante toocreate un nuovo profilo. Verrà avviata hello **aggiungere Provisiong profilo iOS** guidata
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-new-provisioning-profile.png)
-2. Selezionare **iOS App Development** in **Development** come tipo di profilo di provisioning e fare clic su **Continue**. 
-3. Selezionare quindi l'ID app appena creato nell'elenco a discesa **App ID**e fare clic su **Continue**.
+2. Selezionare **lo sviluppo di App iOS** in **sviluppo** come tipo di profilo provisiong hello, fare clic su **continua**. 
+3. Selezionare quindi l'ID app hello appena creata dal hello **ID App** elenco a discesa e fare clic su **continua**
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-select-appid-for-provisioning.png)
-4. Nella schermata **Select certificates** selezionare il solito certificato di sviluppo usato per la firma del codice e fare clic su **Continue**. Questo non è il certificato push appena creato.
+4. In hello **selezionare certificati** schermata, selezionare il certificato di sviluppo consuete utilizzato per la firma del codice e fare clic su **continua**. Non si tratta del certificato per push hello che appena creato.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-provisioning-select-cert.png)
-5. In **Devices** selezionare i dispositivi da usare per il test e fare clic su **Continue**.
+5. Selezionare quindi hello **dispositivi** toouse per i test e fare clic su **continua**
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-provisioning-select-devices.png)
-6. Scegliere infine un nome per il profilo in **Profile Name** e fare clic su **Generate**.
+6. Infine, scegliere un nome per il profilo di hello in **nome profilo**, fare clic su **genera**.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-provisioning-name-profile.png)
-7. Una volta creato il nuovo profilo di provisioning, fare clic per scaricarlo e installarlo nel computer di sviluppo Xcode. Fare quindi clic su **Done**.
+7. Quando viene creato nuovo profilo di provisioning hello fare clic su toodownload e installazione sul computer di sviluppo Xcode. Fare quindi clic su **Done**.
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-provisioning-profile-ready.png)

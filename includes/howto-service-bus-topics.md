@@ -3,35 +3,35 @@ Gli argomenti e le sottoscrizioni del bus di servizio supportano un modello di c
 
 ![Concetti relativi agli argomenti](./media/howto-service-bus-topics/sb-topics-01.png)
 
-Diversamente dalle code del bus di servizio, in cui ogni messaggio viene elaborato da un unico consumer, gli argomenti e le sottoscrizioni offrono una forma di comunicazione "uno a molti" tramite un modello di pubblicazione-sottoscrizione. È possibile registrare più sottoscrizioni a un argomento. Quando un messaggio viene inviato a un argomento, viene reso disponibile affinché ogni sottoscrizione possa gestirlo o elaborarlo in modo indipendente.
+Diversamente dalle code del bus di servizio, in cui ogni messaggio viene elaborato da un unico consumer, gli argomenti e le sottoscrizioni offrono una forma di comunicazione "uno a molti" tramite un modello di pubblicazione-sottoscrizione. È possibile registrare l'argomento di tooa più sottoscrizioni. Quando l'argomento tooa viene inviato un messaggio, viene quindi reso disponibile tooeach sottoscrizione toohandle o il processo in modo indipendente.
 
-La sottoscrizione a un argomento è simile a una coda virtuale che riceve copie dei messaggi che sono stati inviati all'argomento. È possibile registrare regole di filtro per un argomento in base alla sottoscrizione, per poter filtrare o limitare quali messaggi relativi a un argomento vengono ricevuti dalle diverse sottoscrizioni dell'argomento.
+Un argomento tooa sottoscrizione simile a una coda virtuale che riceve copie dei messaggi hello inviati toohello argomento. Facoltativamente, è possibile registrare le regole di filtro per un argomento in una base per ogni sottoscrizione, che consentono di toofilter o limitare l'argomento tooa i messaggi vengono ricevuti dal quale le sottoscrizioni dell'argomento.
 
-Gli argomenti e le sottoscrizioni del bus di servizio consentono la scalabilità e l'elaborazione di grandi quantità di messaggi tra un numero elevato di utenti e applicazioni.
+Le sottoscrizioni e gli argomenti del Bus di servizio consentono di tooscale ed elaborare un numero molto elevato di messaggi tra molti utenti e applicazioni.
 
 ## <a name="create-a-namespace"></a>Creare uno spazio dei nomi
-Per iniziare a usare gli argomenti e le sottoscrizioni del bus di servizio in Azure, è necessario creare prima di tutto uno *spazio dei nomi del servizio*. Uno spazio dei nomi fornisce un contenitore di ambito per fare riferimento alle risorse del bus di servizio all'interno dell'applicazione.
+toobegin utilizzando gli argomenti del Bus di servizio e le sottoscrizioni in Azure, è innanzitutto necessario creare un *spazio dei nomi servizio*. Uno spazio dei nomi fornisce un contenitore di ambito per fare riferimento alle risorse del bus di servizio all'interno dell'applicazione.
 
-Per creare uno spazio dei nomi:
+toocreate uno spazio dei nomi:
 
-1. Accedere al [portale di Azure][Azure portal].
-2. Nel riquadro di spostamento sinistro del portale fare clic su **Nuovo**, quindi su **Enterprise Integration** e infine su **Bus di servizio**.
-3. Nella finestra di dialogo **Crea spazio dei nomi** immettere un nome per lo spazio dei nomi. Verrà effettuato immediatamente un controllo sulla disponibilità del nome.
-4. Dopo aver verificato che il nome dello spazio dei nomi sia disponibile, scegliere il piano tariffario, ovvero Basic, Standard o Premium.
-5. Nel campo **Sottoscrizione** scegliere una sottoscrizione di Azure in cui creare lo spazio dei nomi.
-6. Nel campo **Gruppo di risorse** scegliere un gruppo di risorse esistente nel quale risiederà lo spazio dei nomi oppure crearne uno nuovo.      
-7. In **Località**scegliere il paese o l'area in cui deve essere ospitato lo spazio dei nomi.
+1. Accesso toohello [portale di Azure][Azure portal].
+2. Nel riquadro di spostamento a sinistra di hello del portale di hello, fare clic su **New**, quindi fare clic su **Enterprise Integration**, quindi fare clic su **Bus di servizio**.
+3. In hello **Crea spazio dei nomi** finestra di dialogo immettere un nome di spazio dei nomi. sistema di Hello controlla immediatamente toosee se nome hello è disponibile.
+4. Dopo il nome di spazio dei nomi che hello è disponibile, scegliere hello tariffario (Basic, Standard o Premium).
+5. In hello **sottoscrizione** campo, scegliere una sottoscrizione di Azure in cui lo spazio dei nomi di toocreate hello.
+6. In hello **gruppo di risorse** selezionare un gruppo di risorse esistente in cui hello dello spazio dei nomi in tempo reale oppure crearne uno nuovo.      
+7. In **percorso**, scegliere hello paese in cui lo spazio dei nomi deve essere ospitato.
    
     ![Crea spazio dei nomi][create-namespace]
-8. Selezionare il pulsante **Create** . A questo punto, lo spazio dei nomi verrà creato e abilitato nel sistema. Potrebbero essere necessari alcuni minuti per consentire al sistema di effettuare il provisioning delle risorse per lo spazio dei nomi creato.
+8. Fare clic su hello **crea** pulsante. sistema Hello ora crea uno spazio dei nomi e viene abilitato. Potrebbe essere toowait alcuni minuti per le risorse di hello sistema esegue il provisioning per l'account.
 
-### <a name="obtain-the-credentials"></a>Ottenere le credenziali
-1. Nell'elenco degli spazi dei nomi fare clic sul nome dello spazio dei nomi appena creato.
-2. Nel pannello **Spazio dei nomi del bus di servizio** fare clic su **Criteri di accesso condiviso**.
-3. Nel pannello **Criteri di accesso condivisi** fare clic su **RootManageSharedAccessKey**.
+### <a name="obtain-hello-credentials"></a>Ottenere le credenziali di hello
+1. Nell'elenco di hello degli spazi dei nomi, fare clic su hello appena creato il nome dello spazio dei nomi.
+2. In hello **dello spazio dei nomi Service Bus** pannello, fare clic su **criteri di accesso condiviso**.
+3. In hello **criteri di accesso condiviso** pannello, fare clic su **RootManageSharedAccessKey**.
    
     ![connection-info][connection-info]
-4. Nel pannello **Criteri: RootManageSharedAccessKey** fare clic sul pulsante Copia accanto a **Stringa di connessione - chiave primaria** per copiare la stringa di connessione negli Appunti e usarla in un secondo momento.
+4. In hello **criteri: RootManageSharedAccessKey** pannello, fare clic su pulsante Copia hello Avanti troppo**chiave – primario di stringa di connessione**, negli Appunti toocopy hello connessione stringa tooyour per un uso successivo.
    
     ![connection-string][connection-string]
 

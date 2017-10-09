@@ -1,6 +1,6 @@
 ---
-title: Creare una VM Linux classica usando l'interfaccia della riga di comando di Azure 1.0 | Documentazione Microsoft
-description: Informazioni su come creare una macchina virtuale con l'interfaccia della riga di comando di Azure 1.0 usando il modello di distribuzione classica.
+title: una macchina virtuale Linux classico utilizzando aaaCreate hello Azure CLI 1.0 | Documenti Microsoft
+description: Informazioni su come una macchina virtuale Linux con hello Azure CLI 1.0 toocreate hello modello di distribuzione classica
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: 8ddbacbbb70c0cf1a2537fab4d981a316610a4d7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c3c54e5d1444a79e8e609c76d04a3a621c8d03f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-classic-linux-vm-with-the-azure-cli-10"></a>Come creare una VM Linux classica con l'interfaccia della riga di comando di Azure 1.0
+# <a name="how-toocreate-a-classic-linux-vm-with-hello-azure-cli-10"></a>Come tooCreate un classico VM Linux con hello Azure CLI 1.0
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per la versione di Resource Manager, vedere [qui](../create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per la versione di gestione risorse di hello, vedere [qui](../create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Questo argomento descrive come creare una macchina virtuale con l'interfaccia della riga di comando di Azure 1.0 usando il modello di distribuzione classica. Viene utilizzata un'immagine Linux dalle **IMMAGINI** disponibili in Azure. I comandi dell'interfaccia della riga di comando di Azure 1.0 offrono le opzioni di configurazione seguenti:
+In questo argomento viene descritto come una macchina virtuale Linux (VM) con hello Azure CLI 1.0 toocreate hello modello di distribuzione classica. Viene usata un'immagine Linux da hello disponibile **immagini** in Azure. i comandi CLI di Azure 1.0 Hello offrono hello opzioni di configurazione, tra gli altri seguenti:
 
-* Connessione della macchina virtuale a una rete virtuale
-* Aggiunta della macchina virtuale a un servizio cloud esistente
-* Aggiunta della macchina virtuale a un account di archiviazione esistente
-* Aggiunta della macchina virtuale a un set di disponibilità o a un percorso
+* La connessione di rete virtuale di hello VM tooa
+* Aggiungere il servizio cloud esistente di hello VM tooan
+* Aggiunta di hello VM tooan account di archiviazione esistente
+* Aggiunta di set di disponibilità tooan VM hello o percorso
 
 > [!IMPORTANT]
-> Se si desidera che la macchina virtuale utilizzi una rete virtuale in modo da poter effettuare la connessione direttamente tramite il nome host o configurare connessioni cross-premise, assicurarsi di specificare la rete virtuale quando viene creata la macchina virtuale. Una macchina virtuale può essere configurata per accedere a una rete virtuale solo quando viene creata la macchina virtuale. Per informazioni dettagliate sulle reti virtuali, vedere [Panoramica di Rete virtuale](http://go.microsoft.com/fwlink/p/?LinkID=294063).
+> Se si desidera il toouse VM una rete virtuale per la connessione tooit direttamente dal nome host o configurare connessioni cross-premise, assicurarsi di che specificare la rete virtuale hello quando si crea hello macchina virtuale. Una macchina virtuale può essere toojoin configurata una rete virtuale solo quando si crea hello macchina virtuale. Per informazioni dettagliate sulle reti virtuali, vedere [Panoramica di Rete virtuale](http://go.microsoft.com/fwlink/p/?LinkID=294063).
 > 
 > 
 
-## <a name="how-to-create-a-linux-vm-using-the-classic-deployment-model"></a>Come creare una macchina virtuale Linux usando il modello di distribuzione classica
+## <a name="how-toocreate-a-linux-vm-using-hello-classic-deployment-model"></a>Come toocreate una VM Linux utilizzando hello modello di distribuzione classica
 [!INCLUDE [virtual-machines-create-LinuxVM](../../../../includes/virtual-machines-create-linuxvm.md)]
 

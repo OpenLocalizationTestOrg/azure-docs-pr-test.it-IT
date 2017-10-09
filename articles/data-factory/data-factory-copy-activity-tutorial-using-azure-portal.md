@@ -1,6 +1,6 @@
 ---
-title: 'Esercitazione: Creare una pipeline di Azure Data Factory per copiare dati (portale di Azure) | Microsoft Docs'
-description: "In questa esercitazione si usa il portale di Azure per creare una pipeline di Azure Data Factory con un'attività di copia per copiare i dati da un archivio BLOB di Azure a un database SQL di Azure."
+title: 'Esercitazione: Creare un dati toocopy della pipeline di Data Factory di Azure (portale di Azure) | Documenti Microsoft'
+description: "In questa esercitazione, utilizzare toocreate portale Azure una pipeline di Data Factory di Azure con dati di toocopy un'attività di copia da un database di SQL Azure tooan di archiviazione blob di Azure."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 8072a863fab0b304ccbbba639aa56b403e8f37c7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fadd840fe9a15cd8831cdb25dccbd10ac42fa161
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-use-azure-portal-to-create-a-data-factory-pipeline-to-copy-data"></a>Esercitazione: Usare il portale di Azure per creare una pipeline di Data Factory pipeline per copiare dati 
+# <a name="tutorial-use-azure-portal-toocreate-a-data-factory-pipeline-toocopy-data"></a>Esercitazione: Usare toocreate portale Azure una Data Factory pipeline toocopy di dati 
 > [!div class="op_single_selector"]
 > * [Panoramica e prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [Copia guidata](data-factory-copy-data-wizard-tutorial.md)
@@ -33,135 +33,135 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-In questo articolo viene illustrato come usare il [portale di Azure](https://portal.azure.com) per creare una data factory con una pipeline che copia dati da un archivio BLOB di Azure a un database SQL di Azure. Se non si ha familiarità con Azure Data Factory, prima di eseguire questa esercitazione vedere l'articolo [Introduzione ad Azure Data Factory](data-factory-introduction.md).   
+In questo articolo viene illustrato come toouse [portale di Azure](https://portal.azure.com) toocreate una data factory con una pipeline che copia i dati da un database di SQL Azure tooan di archiviazione blob di Azure. Se si tooAzure nuova Data Factory, leggere hello [tooAzure introduzione Data Factory](data-factory-introduction.md) articolo prima di eseguire questa esercitazione.   
 
-In questa esercitazione si crea una pipeline contenente una sola attività: un'attività di copia che copia i dati da un archivio dati supportato a un archivio dati sink supportato. Per un elenco degli archivi dati supportati come origini e sink, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). e si basa su un servizio disponibile a livello globale che può copiare dati tra diversi archivi dati in modo sicuro, affidabile e scalabile. Per altre informazioni sull'attività di copia, vedere le [attività di spostamento dei dati](data-factory-data-movement-activities.md).
+In questa esercitazione si crea una pipeline contenente una sola attività: un'attività di copia attività di copia Hello copia dati da un archivio dati di sink supportati tooa di archivio di dati supportati. Per un elenco degli archivi dati supportati come origini e sink, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). attività Hello è alimentato da un servizio disponibile a livello globale che è possibile copiare dati tra diversi archivi dati in modo sicuro, affidabile e scalabile. Per ulteriori informazioni sulle attività di copia hello, vedere [attività lo spostamento dei dati](data-factory-data-movement-activities.md).
 
-Una pipeline può includere più attività ed è possibile concatenarne due, ovvero eseguire un'attività dopo l'altra, impostando il set di dati di output di un'attività come set di dati di input dell'altra. Per altre informazioni, vedere [Attività multiple in una pipeline](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
+Una pipeline può includere più attività Inoltre, è possibile concatenare le due attività (eseguire un'attività dopo l'altro) mediante l'impostazione di set di dati di hello output di un'attività come hello input set di dati di hello altre attività. Per altre informazioni, vedere [Attività multiple in una pipeline](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
 
 > [!NOTE] 
-> La pipeline di dati in questa esercitazione copia i dati da un archivio dati di origine a un archivio dati di destinazione. Per un'esercitazione su come trasformare i dati usando Azure Data Factory, vedere [Esercitazione: Creare una pipeline per trasformare i dati usando un cluster Hadoop](data-factory-build-your-first-pipeline.md).
+> pipeline di dati Hello in questa esercitazione consente di copiare dati da un archivio dati di origine dati archivio tooa destinazione. Per un'esercitazione su come dati di tootransform tramite Data Factory di Azure, vedere [esercitazione: creare una pipeline di dati tootransform utilizzando cluster Hadoop](data-factory-build-your-first-pipeline.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di eseguire questa esercitazione, completare i prerequisiti indicati nell'articolo sui [prerequisiti dell'esercitazione](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) .
+Completare i prerequisiti elencati in hello [prerequisiti per l'esercitazione](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) articolo prima di eseguire questa esercitazione.
 
 ## <a name="steps"></a>Passi
-Di seguito sono elencati i passaggi da eseguire in questa esercitazione:
+Ecco i passaggi di hello che è eseguire come parte di questa esercitazione:
 
 1. Creare una **data factory** di Azure. In questo passaggio viene creata una data factory denominata ADFTutorialDataFactory. 
-2. Creare **servizi collegati** nella data factory. In questo passaggio si creano due servizi collegati di tipo Archiviazione di Azure e database SQL di Azure. 
+2. Creare **servizi collegati** nella data factory di hello. In questo passaggio si creano due servizi collegati di tipo Archiviazione di Azure e database SQL di Azure. 
     
-    AzureStorageLinkedService collega l'account di archiviazione di Azure alla data factory. Come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) è stato creato un contenitore e sono stati caricati i dati in questo account di archiviazione.   
+    Hello AzureStorageLinkedService collega la data factory toohello account di archiviazione di Azure. È stato creato un contenitore e caricare l'account di archiviazione di dati toothis come parte di [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).   
 
-    AzureSqlLinkedService collega il database SQL di Azure alla data factory. I dati copiati dall'archivio BLOB vengono archiviati in questo database. Come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) è stata creata una tabella SQL in questo database.   
-3. Creare **set di dati** di input e di output nella data factory.  
+    AzureSqlLinkedService collega il toohello data factory di Azure SQL database. dati Hello che viene copiati dall'archiviazione blob hello vengono archiviati nel database. Come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) è stata creata una tabella SQL in questo database.   
+3. Creazione di input e output **set di dati** nella data factory di hello.  
     
-    Il servizio collegato Archiviazione di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi all'account di archiviazione di Azure. Il set di dati del BLOB di input specifica il contenitore e la cartella che contiene i dati di input.  
+    il servizio di archiviazione di Azure collegati Hello specifica hello stringa di connessione del servizio Data Factory utilizzata in fase di esecuzione tooconnect tooyour account di archiviazione di Azure. E specifica di set di dati blob di input hello hello contenitore e della cartella di hello che contiene i dati di input hello.  
 
-    Analogamente, il servizio collegato per il database SQL di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi al database SQL di Azure e il set di dati della tabella SQL di output specifica la tabella del database in cui vengono copiati i dati dell'archivio BLOB.
-4. Creare una **pipeline** nella data factory. In questo passaggio viene creata una pipeline con un'attività di copia.   
+    Analogamente, hello servizio Database SQL di Azure collegati specifica hello stringa di connessione del servizio Data Factory utilizzata nel database di SQL Azure tooyour tooconnect fase di esecuzione. E specifica di set di dati nella tabella SQL output hello tabella hello nei dati di hello database toowhich hello dall'archiviazione blob hello viene copiata.
+4. Creare un **pipeline** nella data factory di hello. In questo passaggio viene creata una pipeline con un'attività di copia.   
     
-    L'attività di copia esegue la copia dei dati da un BLOB nell'archivio BLOB di Azure a una tabella nel database SQL di Azure. È possibile usare un'attività di copia in una pipeline per copiare i dati da qualsiasi origine supportata a qualsiasi destinazione supportata. Per un elenco degli archivi dati supportati, vedere l'articolo sulle [attività di spostamento dei dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). 
-5. Monitorare la pipeline. In questo passaggio vengono **monitorate** le sezioni dei set di dati di input e di output usando il portale di Azure. 
+    attività di copia Hello copia dati da un blob nella tabella tooa di archiviazione blob di Azure hello in database SQL di Azure hello. È possibile utilizzare un'attività di copia in una pipeline di dati da qualsiasi destinazione tooany supportato di origine supportata toocopy. Per un elenco degli archivi dati supportati, vedere l'articolo sulle [attività di spostamento dei dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). 
+5. Pipeline di hello monitor. In questo passaggio si **monitoraggio** hello sezioni dei set di dati di input e output tramite il portale di Azure. 
 
 ## <a name="create-data-factory"></a>Creare un'istanza di Data Factory
 > [!IMPORTANT]
-> Completare i [prerequisiti per l'esercitazione](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) se non è già stato fatto.   
+> Completamento [prerequisiti per l'esercitazione hello](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) se non è già fatto.   
 
-Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Ad esempio, un'attività di copia per copiare dati da un archivio dati di origine a uno di destinazione e un'attività Hive HDInsight per eseguire uno script Hive e trasformare i dati di input in dati di output di prodotto. In questo passaggio iniziale viene creata la data factory.
+Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Ad esempio, una data toocopy attività di copia da un archivio dati di origine tooa destinazione e un toorun attività Hive di HDInsight un tootransform script Hive i dati di output tooproduct dati di input. Iniziamo con la creazione di data factory di hello in questo passaggio.
 
-1. Dopo aver eseguito l'accesso al [portale di Azure](https://portal.azure.com/), scegliere **Nuovo** dal menu a sinistra, fare clic su **Dati e analisi** e fare clic su **Data Factory**. 
+1. Dopo l'accesso toohello [portale di Azure](https://portal.azure.com/), fare clic su **New** scegliere dal menu a sinistra, hello **dati + Analitica**, fare clic su **Data Factory**. 
    
    ![Nuovo->DataFactory](./media/data-factory-copy-activity-tutorial-using-azure-portal/NewDataFactoryMenu.png)    
-2. Nel pannello **Nuova data factory** :
+2. In hello **nuova data factory** pannello:
    
-   1. Immettere **ADFTutorialDataFactory** come **nome**. 
+   1. Immettere **ADFTutorialDataFactory** per hello **nome**. 
       
          ![Pannello Nuova data factory](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-new-data-factory.png)
       
-       Il nome della data factory di Azure deve essere **univoco a livello globale**. Se viene visualizzato l'errore seguente, modificare il nome della data factory, ad esempio, nomeutenteADFTutorialDataFactory, e provare di nuovo a crearla. Per informazioni sulle regole di denominazione per gli elementi di Data Factory, vedere l'argomento [Azure Data Factory - Regole di denominazione](data-factory-naming-rules.md) .
+       nome Hello di hello Azure data factory deve essere **univoco globale**. Se viene visualizzato il seguente errore hello, modificare il nome di hello di hello data factory (ad esempio, yournameADFTutorialDataFactory) e provare a creare di nuovo. Per informazioni sulle regole di denominazione per gli elementi di Data factory, vedere l'argomento relativo alle [regole di denominazione di Data factory](data-factory-naming-rules.md) .
       
            Data factory name “ADFTutorialDataFactory” is not available  
       
        ![Nome di data factory non disponibile](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-data-factory-not-available.png)
-   2. Selezionare la **sottoscrizione** di Azure in cui creare la data factory. 
-   3. Per il **gruppo di risorse**, eseguire una di queste operazioni:
+   2. Selezionare di Azure **sottoscrizione** in cui si desidera data factory di toocreate hello. 
+   3. Per hello **gruppo di risorse**, effettuare una delle hello alla procedura seguente:
       
-      - Selezionare **Usa esistente**e scegliere un gruppo di risorse esistente dall'elenco a discesa. 
-      - Selezionare **Crea nuovo**e immettere un nome per il gruppo di risorse.   
+      - Selezionare **utilizzare esistente**e selezionare un gruppo di risorse esistente dall'elenco a discesa hello. 
+      - Selezionare **Crea nuovo**e immettere il nome di hello di un gruppo di risorse.   
          
-          Alcuni dei passaggi di questa esercitazione presuppongono l'uso del nome **ADFTutorialResourceGroup** per il gruppo di risorse. Per informazioni sui gruppi di risorse, vedere l'articolo relativo all' [uso di gruppi di risorse per la gestione delle risorse di Azure](../azure-resource-manager/resource-group-overview.md).  
-   4. Selezionare la **località** per la data factory. Nell'elenco a discesa vengono visualizzate solo le aree supportate dal servizio Data Factory.
-   5. Selezionare **Aggiungi al dashboard**.     
+          Alcuni dei passaggi di hello in questa esercitazione si presuppone che venga utilizzato il nome di hello: **ADFTutorialResourceGroup** per il gruppo di risorse hello. toolearn sui gruppi di risorse, vedere [utilizzando risorse gruppi di risorse di Azure toomanage](../azure-resource-manager/resource-group-overview.md).  
+   4. Seleziona hello **percorso** per data factory di hello. Solo le aree supportate dal servizio Data Factory hello vengono visualizzate nell'elenco a discesa hello.
+   5. Selezionare **toodashboard Pin**.     
    6. Fare clic su **Crea**.
       
       > [!IMPORTANT]
-      > Per creare istanze di data factory, è necessario essere membri del ruolo [Collaboratore Data factory](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) a livello di sottoscrizione/gruppo di risorse.
+      > le istanze di Data Factory toocreate, è necessario essere un membro di hello [Data Factory collaboratore](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) ruolo a livello di gruppo di risorse di sottoscrizione/hello.
       > 
-      > Il nome di Data Factory può essere registrato come un nome DNS in futuro e pertanto divenire visibile pubblicamente.                
+      > nome Hello della hello data factory può essere registrato come un nome DNS in futuro hello e pertanto diventano visibili pubblicamente.                
       > 
       > 
-3. Nel dashboard viene visualizzato il riquadro seguente con lo stato: **Deploying data factory** (Distribuzione della data factory). 
+3. Nel dashboard di hello, si vedrà hello segue riquadro con stato: **data factory di distribuzione**. 
 
     ![Riquadro Deploying data factory (Distribuzione della data factory)](media/data-factory-copy-activity-tutorial-using-azure-portal/deploying-data-factory.png)
-4. Al termine della creazione verrà visualizzato il pannello **Data Factory** , come illustrato nell'immagine.
+4. Una volta completata la creazione di hello, vedrai hello **Data Factory** pannello, come illustrato nella figura hello.
    
    ![Home page di Data factory](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-data-factory-home-page.png)
 
-## <a name="create-linked-services"></a>Creazione di servizi collegati
-Si creano servizi collegati in una data factory per collegare gli archivi dati e i servizi di calcolo alla data factory. In questa esercitazione non si usano servizi di calcolo come Azure HDInsight o Azure Data Lake Analytics, ma due archivi dati di tipo Archiviazione di Azure (origine) e database SQL di Azure (destinazione). 
+## <a name="create-linked-services"></a>Creare servizi collegati
+Creare servizi collegati in un toolink factory dati i dati vengono archiviati e toohello data factory di servizi di calcolo. In questa esercitazione non si usano servizi di calcolo come Azure HDInsight o Azure Data Lake Analytics, ma due archivi dati di tipo Archiviazione di Azure (origine) e database SQL di Azure (destinazione). 
 
 Si creano quindi due servizi collegati denominati AzureStorageLinkedService e AzureSqlLinkedService di tipo AzureStorage e AzureSqlDatabase.  
 
-AzureStorageLinkedService collega l'account di archiviazione di Azure alla data factory. L'account di archiviazione è quello in cui, come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md), è stato creato un contenitore e sono stati caricati i dati.   
+Hello AzureStorageLinkedService collega la data factory toohello account di archiviazione di Azure. Questo account di archiviazione è hello uno in cui è stato creato un contenitore e caricato dati hello come parte del [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).   
 
-AzureSqlLinkedService collega il database SQL di Azure alla data factory. I dati copiati dall'archivio BLOB vengono archiviati in questo database. Come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) è stata creata la tabella emp in questo database.  
+AzureSqlLinkedService collega il toohello data factory di Azure SQL database. dati Hello che viene copiati dall'archiviazione blob hello vengono archiviati nel database. Tabella emp hello è stato creato in questo database come parte di [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).  
 
 ### <a name="create-azure-storage-linked-service"></a>Creare il servizio collegato Archiviazione di Azure
-In questo passaggio l'account di archiviazione di Azure viene collegato alla data factory. In questa sezione si specificano il nome e la chiave dell'account di archiviazione di Azure.  
+In questo passaggio si collega la data factory tooyour account di archiviazione di Azure. Specificare il nome di hello e chiave dell'account di archiviazione di Azure in questa sezione.  
 
-1. Nel pannello **Data Factory** fare clic sul riquadro **Creare e distribuire**.
+1. In hello **Data Factory** pannello, fare clic su **autore e distribuire** riquadro.
    
    ![Riquadro Creare e distribuire](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-author-deploy-tile.png) 
-2. L'**editor di Data factory** viene visualizzato come nella figura seguente: 
+2. Vedrai hello **Editor delle Data Factory** come illustrato nella seguente immagine hello: 
 
     ![Editor di Data factory](./media/data-factory-copy-activity-tutorial-using-azure-portal/data-factory-editor.png)
-3. Nell'editor fare clic sul pulsante **Nuovo archivio dati** sulla barra degli strumenti, quindi scegliere **Archiviazione di Azure** dal menu a discesa. Nel riquadro a destra verrà visualizzato il modello JSON per la creazione di un servizio collegato di archiviazione di Azure. 
+3. Nell'editor di hello, fare clic su **nuovo archivio dati** pulsante sulla barra degli strumenti hello e selezionare **archiviazione di Azure** dal menu a discesa hello. Verrà visualizzato il modello JSON hello per la creazione di un servizio collegato di archiviazione Azure nel riquadro di destra hello. 
    
     ![Pulsante Nuovo archivio dati dell'editor](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-newdatastore-button.png)    
-3. Sostituire `<accountname>` e `<accountkey>` con i valori del nome e della chiave dell'account di archiviazione di Azure. 
+3. Sostituire `<accountname>` e `<accountkey>` con hello account nome e l'account di valori di chiave per l'account di archiviazione di Azure. 
    
     ![JSON dell'archivio BLOB dell'editor](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-blob-storage-json.png)    
-4. Fare clic su **Distribuisci** sulla barra degli strumenti. Nella visualizzazione albero dovrebbe essere visibile il servizio **AzureStorageLinkedService** distribuito. 
+4. Fare clic su **Distribuisci** sulla barra degli strumenti hello. Dovrebbe essere distribuito hello **AzureStorageLinkedService** nella struttura ad albero hello ora Visualizza. 
    
     ![Distribuzione dell'archivio BLOB dell'editor](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-blob-storage-deploy.png)
 
-    Per altre informazioni sulle proprietà JSON nella definizione dei servizi collegati, vedere l'articolo relativo al [connettore di Archiviazione BLOB di Azure](data-factory-azure-blob-connector.md#linked-service-properties).
+    Per ulteriori informazioni sulle proprietà JSON nella definizione di servizio collegato hello, vedere [connettore di archiviazione Blob di Azure](data-factory-azure-blob-connector.md#linked-service-properties) articolo.
 
-### <a name="create-a-linked-service-for-the-azure-sql-database"></a>Creare un servizio collegato per il database SQL di Azure
-In questo passaggio il database SQL di Azure viene collegato alla data factory. In questa sezione si specificano il nome del server di Azure SQL, il nome del database, il nome utente e la password utente. 
+### <a name="create-a-linked-service-for-hello-azure-sql-database"></a>Creare un servizio collegato per hello Database SQL di Azure
+In questo passaggio si collega il tooyour data factory di Azure SQL database. Specificare nome del server SQL Azure hello, nome del database, nome utente e password dell'utente in questa sezione. 
 
-1. Nell'**editor di Data Factory** fare clic sul pulsante **Nuovo archivio dati** sulla barra degli strumenti e scegliere **Database SQL di Azure** dal menu a discesa. Nel riquadro a destra verrà visualizzato il modello JSON per la creazione di un servizio collegato SQL di Azure.
+1. In hello **Editor delle Data Factory**, fare clic su **nuovo archivio dati** pulsante sulla barra degli strumenti hello e selezionare **Database SQL di Azure** dal menu a discesa hello. Verrà visualizzato il modello JSON hello per la creazione di servizio collegato SQL Azure hello nel riquadro di destra hello.
 2. Sostituire `<servername>`, `<databasename>`, `<username>@<servername>` e `<password>` con i nomi del server di Azure SQL e del database, l'account utente e la password. 
-3. Fare clic su **Distribuisci** sulla barra degli strumenti per creare e distribuire **AzureSqlLinkedService**.
-4. Assicurarsi che **AzureSqlLinkedService** sia visibile nella visualizzazione albero in **Servizi collegati**.  
+3. Fare clic su **Distribuisci** hello toocreate barra degli strumenti e distribuire hello **AzureSqlLinkedService**.
+4. Verificare che sia visualizzato **AzureSqlLinkedService** nella visualizzazione struttura ad albero di hello in **servizi collegati**.  
 
     Per altre informazioni su queste proprietà JSON, vedere l'articolo relativo al [connettore del database SQL di Azure](data-factory-azure-sql-connector.md#linked-service-properties).
 
 ## <a name="create-datasets"></a>Creare set di dati
-Nel passaggio precedente sono stati creati servizi collegati per collegare l'account di archiviazione di Azure e un database SQL di Azure alla data factory. In questo passaggio vengono definiti due set di dati denominati InputDataset e OutputDataset, che rappresentano i dati di input e di output memorizzati negli archivi dati a cui fanno riferimento rispettivamente AzureStorageLinkedService e AzureSqlLinkedService.
+Nel passaggio precedente hello, servizi collegati toolink è creato l'account di archiviazione di Azure e la data factory di Azure SQL database tooyour. In questo passaggio si definiscono due set di dati denominati InputDataset e OutputDataset che rappresentano l'input e output i dati archiviati in archivi dati hello a cui fa riferimento AzureStorageLinkedService e AzureSqlLinkedService rispettivamente.
 
-Il servizio collegato Archiviazione di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi all'account di archiviazione di Azure. Il set di dati del BLOB di input (InputDataset) specifica il contenitore e la cartella che contiene i dati di input.  
+il servizio di archiviazione di Azure collegati Hello specifica hello stringa di connessione del servizio Data Factory utilizzata in fase di esecuzione tooconnect tooyour account di archiviazione di Azure. E, set di dati blob di input hello (InputDataset) specifica il contenitore di hello e la cartella di hello che contiene i dati di input hello.  
 
-Analogamente, il servizio collegato per il database SQL di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi al database SQL di Azure e il set di dati della tabella SQL di output (OututDataset) specifica la tabella del database in cui vengono copiati i dati dell'archivio BLOB. 
+Analogamente, hello servizio Database SQL di Azure collegati specifica hello stringa di connessione del servizio Data Factory utilizzata nel database di SQL Azure tooyour tooconnect fase di esecuzione. E, di output di hello set di dati nella tabella SQL (OututDataset) specifica la tabella hello in hello di toowhich hello database vengono copiati dati dall'archiviazione blob hello. 
 
 ### <a name="create-input-dataset"></a>Creare set di dati di input
-In questo passaggio viene creato un set di dati denominato InputDataset che punta a un file BLOB (emp.txt) nella cartella radice di un contenitore BLOB (adftutorial) nella risorsa di archiviazione di Azure rappresentata dal servizio collegato AzureStorageLinkedService. Se non si specifica un valore per fileName (o lo si ignora), i dati di tutti i BLOB della cartella di input vengono copiati nella destinazione. In questa esercitazione si specifica un valore per fileName. 
+In questo passaggio, creare un set di dati denominato InputDataset che punta il file di blob tooa (emp.txt) nella cartella radice hello di un contenitore di blob (adftutorial) in hello rappresentato da hello AzureStorageLinkedService collegato servizio di archiviazione di Azure. Se non specifica un valore per il nome file hello (o ignorarlo), i dati da tutti i BLOB nella cartella input hello sono copiati toohello destinazione. In questa esercitazione, si specifica un valore per il nome file hello. 
 
-1. Nell'**editor** della data factory fare clic su **... Altro**, fare clic su **Nuovo set di dati** e quindi scegliere **Archivio BLOB di Azure** dal menu a discesa. 
+1. In hello **Editor** per hello Data Factory, fare clic su **... Ulteriori**, fare clic su **nuovo set di dati**, fare clic su **archiviazione Blob di Azure** dal menu a discesa hello. 
    
     ![Menu Nuovo set di dati](./media/data-factory-copy-activity-tutorial-using-azure-portal/new-dataset-menu.png)
-2. Sostituire il codice JSON nel riquadro a destra con il frammento di codice JSON seguente: 
+2. Sostituire JSON nel riquadro di destra hello con hello frammento di codice JSON seguente: 
    
     ```json
     {
@@ -196,27 +196,27 @@ In questo passaggio viene creato un set di dati denominato InputDataset che punt
     }
     ```   
 
-    La tabella seguente fornisce le descrizioni delle proprietà JSON usate nel frammento di codice:
+    Hello nella tabella seguente vengono fornite descrizioni per le proprietà JSON hello utilizzate nel frammento di codice hello:
 
     | Proprietà | Descrizione |
     |:--- |:--- |
-    | type | La proprietà type è impostata su **AzureBlob** perché i dati risiedono in un archivio BLOB di Azure. |
-    | linkedServiceName | Fa riferimento all'oggetto **AzureStorageLinkedService** creato in precedenza. |
-    | folderPath | Specifica il **contenitore** BLOB e la **cartella** che contiene i BLOB di input. In questa esercitazione adftutorial è il contenitore BLOB e la cartella è la cartella radice. | 
-    | fileName | Questa proprietà è facoltativa. Se si omette questa proprietà, vengono selezionati tutti i file da folderPath. In questa esercitazione come fileName si specifica **emp.txt** e viene quindi selezionato per l'elaborazione solo tale file. |
-    | format -> type |Il file di input è in formato testo, quindi viene usato **TextFormat**. |
-    | columnDelimiter | Le colonne nel file di input sono delimitate da **virgola (`,`)**. |
-    | frequenza/intervallo | La frequenza è impostata su **Hour** e l'intervallo è impostato su **1**, quindi le sezioni di input sono disponibili con cadenza **oraria**. In altre parole, il servizio Data Factory cerca i dati di input ogni ora nella cartella radice del contenitore BLOB specificato (**adftutorial**). Cerca i dati compresi tra l'ora di inizio e di fine della pipeline e non prima o dopo queste ore.  |
-    | external | Questa proprietà è impostata su **true** se i dati non vengono generati da questa pipeline. I dati di input in questa esercitazione sono nel file emp.txt, che non viene generato da questa pipeline, quindi questa proprietà viene impostata su true. |
+    | type | proprietà tipo Hello è troppo**AzureBlob** perché i dati risiedono in una risorsa di archiviazione blob di Azure. |
+    | linkedServiceName | Fa riferimento toohello **AzureStorageLinkedService** creato in precedenza. |
+    | folderPath | Specifica il blob hello **contenitore** hello e **cartella** che contiene il BLOB di input. In questa esercitazione, adftutorial è il contenitore di blob hello e cartella è hello radice. | 
+    | fileName | Questa proprietà è facoltativa. Se si omette questa proprietà, vengono selezionati tutti i file da folderPath hello. In questa esercitazione, **emp.txt** specificato per hello fileName, in modo che solo tale file viene prelevato per l'elaborazione. |
+    | format -> type |file di input di Hello è in formato testo hello, permette di usare **TextFormat**. |
+    | columnDelimiter | Hello colonne nel file di input hello sono delimitate da **carattere virgola (`,`)**. |
+    | frequenza/intervallo | frequenza Hello è troppo**ora** e l'intervallo viene impostato troppo**1**, il che significa che hello di input sono disponibili sezioni **oraria**. In altre parole, hello servizio Data Factory esegue la ricerca di dati di input ogni ora nella cartella radice hello del contenitore di blob (**adftutorial**) specificato. La ricerca di dati hello all'interno di hello pipeline inizio e fine volte, non prima o dopo tali periodi.  |
+    | external | Questa proprietà è impostata troppo**true** se dati hello non viene generati da questa pipeline. dati di input Hello in questa esercitazione sono nel file di emp.txt hello, che non viene generato da questa pipeline, è necessario impostare tootrue questa proprietà. |
 
     Per altre informazioni su queste proprietà JSON, vedere l'articolo relativo al [connettore BLOB di Azure](data-factory-azure-blob-connector.md#dataset-properties).      
-3. Fare clic su **Distribuisci** sulla barra degli strumenti per creare e distribuire il set di dati **InputDataset**. Assicurarsi che **InputDataset** sia visibile nella visualizzazione albero.
+3. Fare clic su **Distribuisci** hello toocreate barra degli strumenti e distribuire hello **InputDataset** set di dati. Assicurarsi di visualizzare hello **InputDataset** nella visualizzazione ad albero di hello.
 
 ### <a name="create-output-dataset"></a>Creare il set di dati di output
-Il servizio collegato per il database SQL di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi al database SQL di Azure. Il set di dati della tabella SQL di output (OututDataset) creato in questo passaggio specifica la tabella del database in cui vengono copiati i dati dell'archivio BLOB.
+servizio collegato Database di SQL Azure Hello specifica hello stringa di connessione del servizio Data Factory utilizzata nel database di SQL Azure tooyour tooconnect fase di esecuzione. Hello output SQL tabella dataset (OututDataset) create in questo passaggio specifica tabella hello nei dati di hello database toowhich hello dall'archiviazione blob hello viene copiata.
 
-1. Nell'**editor** della data factory fare clic su **... Altro**, fare clic su **Nuovo set di dati** e quindi scegliere **Azure SQL** dal menu a discesa. 
-2. Sostituire il codice JSON nel riquadro a destra con il frammento di codice JSON seguente:
+1. In hello **Editor** per hello Data Factory, fare clic su **... Ulteriori**, fare clic su **nuovo set di dati**, fare clic su **SQL Azure** dal menu a discesa hello. 
+2. Sostituire JSON nel riquadro di destra hello con hello frammento di codice JSON seguente:
 
     ```json   
     {
@@ -245,33 +245,33 @@ Il servizio collegato per il database SQL di Azure specifica la stringa di conne
     }
     ```     
 
-    La tabella seguente fornisce le descrizioni delle proprietà JSON usate nel frammento di codice:
+    Hello nella tabella seguente vengono fornite descrizioni per le proprietà JSON hello utilizzate nel frammento di codice hello:
 
     | Proprietà | Descrizione |
     |:--- |:--- |
-    | type | La proprietà type viene impostata su **AzureSqlTable** perché i dati vengono copiati in una tabella in un database SQL di Azure. |
-    | linkedServiceName | Fa riferimento all'oggetto **AzureSqlLinkedService** creato in precedenza. |
-    | tableName | Specifica la **tabella** in cui i dati vengono copiati. | 
-    | frequenza/intervallo | La frequenza viene impostata su **Hour** e l'intervallo è **1**, quindi le sezioni di output vengono generate **ogni ora** tra l'ora di inizio e di fine della pipeline e non prima o dopo queste ore.  |
+    | type | proprietà tipo Hello è troppo**AzureSqlTable** perché dati tabella tooa copiato in un database SQL di Azure. |
+    | linkedServiceName | Fa riferimento toohello **AzureSqlLinkedService** creato in precedenza. |
+    | tableName | Hello specificato **tabella** toowhich hello dati vengono copiati. | 
+    | frequenza/intervallo | Hello frequency è impostato troppo**ora** e l'intervallo è **1**, il che significa che vengono create le sezioni di output di hello **oraria** tra hello pipeline iniziale e finale volte, non prima o Dopo tali periodi.  |
 
-    La tabella emp del database include tre colonne: **ID**, **FirstName** e **LastName**. ID è una colonna Identity, quindi in questo caso è necessario specificare solo **FirstName** e **LastName**.
+    Sono presenti tre colonne: **ID**, **FirstName**, e **LastName** : nella tabella emp hello nel database di hello. ID è una colonna identity, pertanto è necessario solo toospecify **FirstName** e **LastName** qui.
 
     Per altre informazioni su queste proprietà JSON, vedere l'articolo relativo al [connettore SQL di Azure](data-factory-azure-sql-connector.md#dataset-properties).
-3. Fare clic su **Distribuisci** sulla barra degli strumenti per creare e distribuire il set di dati **OutputDataset**. Assicurarsi che **OutputDataset** sia visibile nella visualizzazione albero in **Datasets**. 
+3. Fare clic su **Distribuisci** hello toocreate barra degli strumenti e distribuire hello **OutputDataset** set di dati. Assicurarsi di visualizzare hello **OutputDataset** nella visualizzazione struttura ad albero di hello in **set di dati**. 
 
 ## <a name="create-pipeline"></a>Creare una pipeline
 In questo passaggio viene creata una pipeline con un'**attività di copia** che usa **InputDataset** come input e **OutputDataset** come output.
 
-Attualmente, è il set di dati di output a determinare la pianificazione. In questa esercitazione il set di dati di output viene configurato per generare una sezione una volta ogni ora. La pipeline ha un'ora di inizio e un'ora di fine intervallate da un giorno, ovvero 24 ore. Vengono quindi generate dalla pipeline 24 sezioni di set di dati di output. 
+Set di dati di output è attualmente, quali unità hello pianificazione. In questa esercitazione, set di dati di output è tooproduce configurato una sezione di una volta all'ora. pipeline Hello dispone ora di inizio e ora di fine di un giorno separato, ovvero 24 ore. Pertanto, 24 sezioni del set di dati di output vengono generate dalla pipeline hello. 
 
-1. Nell'**editor** della data factory fare clic su **... Altro** e quindi su **Nuova pipeline**. In alternativa, è possibile fare clic con il pulsante destro del mouse su **Pipeline** nella visualizzazione ad albero e fare clic su **Nuova pipeline**.
-2. Sostituire il codice JSON nel riquadro a destra con il frammento di codice JSON seguente: 
+1. In hello **Editor** per hello Data Factory, fare clic su **... Altro** e quindi su **Nuova pipeline**. In alternativa, è possibile fare doppio clic **pipeline** in visualizzazione struttura ad albero hello e fare clic su **nuova pipeline**.
+2. Sostituire JSON nel riquadro di destra hello con hello frammento di codice JSON seguente: 
 
     ```json   
     {
       "name": "ADFTutorialPipeline",
       "properties": {
-        "description": "Copy data from a blob to Azure SQL table",
+        "description": "Copy data from a blob tooAzure SQL table",
         "activities": [
           {
             "name": "CopyFromBlobToSQL",
@@ -310,105 +310,105 @@ Attualmente, è il set di dati di output a determinare la pianificazione. In que
     } 
     ```   
     
-    Tenere presente quanto segue:
+    Si noti hello seguenti punti:
    
-    - Nella sezione delle attività esiste una sola attività con l'oggetto **type** impostato su **Copy**. Per altre informazioni sull'attività di copia, vedere le [attività di spostamento dei dati](data-factory-data-movement-activities.md). Nelle soluzioni Data Factory è anche possibile usare le [attività di trasformazione dei dati](data-factory-data-transformation-activities.md).
-    - L'input per l'attività è impostato su **InputDataset** e l'output è impostato su **OutputDataset**. 
-    - Nella sezione **typeProperties** vengono specificati **BlobSource** come tipo di origine e **SqlSink** come tipo di sink. Per un elenco completo degli archivi dati supportati dall'attività di copia come origini e sink, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Per informazioni su come usare uno specifico archivio dati supportato come origine/sink, fare clic sul collegamento nella tabella.
-    - Per la data e ora di inizio è necessario usare il [formato ISO](http://en.wikipedia.org/wiki/ISO_8601), ad esempio 2016-10-14T16:32:41Z. Il valore di **end** è facoltativo, ma in questa esercitazione viene usato. Se non si specifica alcun valore per la proprietà **end**, il valore verrà calcolato come "**start + 48 hours**". Per eseguire la pipeline illimitatamente, specificare **9999-09-09** come valore per la proprietà **end**.
+    - Nella sezione attività hello, è presente una sola attività il cui **tipo** è troppo**copia**. Per ulteriori informazioni sulle attività di copia hello, vedere [attività lo spostamento dei dati](data-factory-data-movement-activities.md). Nelle soluzioni Data Factory è anche possibile usare le [attività di trasformazione dei dati](data-factory-data-transformation-activities.md).
+    - Input per attività hello è troppo**InputDataset** e di output per attività hello è troppo**OutputDataset**. 
+    - In hello **typeProperties** sezione **BlobSource** è specificato come tipo di origine hello e **SqlSink** è specificato come tipo di sink hello. Per un elenco completo degli archivi di dati supportati dall'attività di copia hello come origini e sink, vedere [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). toolearn sulla modalità di memorizzazione toouse dati specifici supportati come origine/sink, fare clic su collegamento hello nella tabella hello.
+    - Per la data e l'ora di inizio è necessario usare il [formato ISO](http://en.wikipedia.org/wiki/ISO_8601). ad esempio 2016-10-14T16:32:41Z. Hello **fine** è facoltativo, ma viene usata in questa esercitazione. Se non specifica alcun valore per hello **fine** proprietà, viene calcolato come "**start + 48 ore**". specificare in modo indefinito, pipeline hello toorun **9999-09-09** come valore hello hello **fine** proprietà.
      
-    Nell'esempio precedente sono visualizzate 24 sezioni di dati, perché viene generata una sezione di dati ogni ora.
+    In hello sopra riportato, sono presenti sezioni dati 24 come ogni sezione di dati viene prodotta ogni ora.
 
     Per le descrizioni delle proprietà JSON nella definizione di una pipeline, vedere l'articolo su come [creare pipeline](data-factory-create-pipelines.md). Per le descrizioni delle proprietà JSON nella definizione di un'attività di copia, vedere le [attività di spostamento dei dati](data-factory-data-movement-activities.md). Per le descrizioni delle proprietà JSON supportate da BlobSource, vedere l'articolo relativo al [connettore BLOB di Azure](data-factory-azure-blob-connector.md). Per le descrizioni delle proprietà JSON supportate da SqlSink, vedere l'articolo relativo al [connettore del database SQL di Azure](data-factory-azure-sql-connector.md).
-3. Fare clic su **Distribuisci** sulla barra degli strumenti per creare e distribuire **ADFTutorialPipeline**. Verificare che la pipeline sia visibile nella visualizzazione albero. 
-4. Chiudere quindi il pannello dell'**editor** facendo clic su **X**. Fare clic di nuovo su **X** per visualizzare la home page di **Data Factory** per **ADFTutorialDataFactory**.
+3. Fare clic su **Distribuisci** hello toocreate barra degli strumenti e distribuire hello **ADFTutorialPipeline**. Verificare che sia visualizzato pipeline hello nella visualizzazione ad albero di hello. 
+4. A questo punto, chiudere hello **Editor** pannello facendo **X**. Fare clic su **X** nuovamente toosee hello **Data Factory** home page di hello **ADFTutorialDataFactory**.
 
-**Congratulazioni.** È stata creata una data factory di Azure con una pipeline per copiare dati da un archivio BLOB di Azure a un database SQL di Azure. 
+**Congratulazioni.** Una data factory di Azure è stato creato con una pipeline toocopy dati da un database di SQL Azure tooan di archiviazione blob di Azure. 
 
 
 ## <a name="monitor-pipeline"></a>Monitorare la pipeline
-In questo passaggio viene usato il portale di Azure per monitorare le attività in un'istanza di Azure Data Factory.    
+In questo passaggio, utilizzare hello Azure toomonitor portale cosa accade in un data factory di Azure.    
 
 ### <a name="monitor-pipeline-using-monitor--manage-app"></a>Monitorare la pipeline con l'app Monitoraggio e gestione
-La procedura seguente illustra come monitorare le pipeline nella data factory usando l'applicazione Monitoraggio e gestione: 
+Hello passaggi seguenti viene illustrato come toomonitor pipeline in una factory di dati tramite l'applicazione di monitoraggio e gestione hello: 
 
-1. Fare clic sul riquadro **Monitoraggio e gestione** nella home page della data factory.
+1. Fare clic su **monitoraggio e gestione** riquadro hello home page per la data factory.
    
     ![Riquadro Monitoraggio e gestione](./media/data-factory-copy-activity-tutorial-using-azure-portal/monitor-manage-tile.png) 
 2. L'**applicazione Monitoraggio e gestione** verrà visualizzata in una scheda separata. 
 
     > [!NOTE]
-    > Se il Web browser è bloccato su "Concessione autorizzazioni in corso...", eseguire una di queste operazioni: deselezionare la casella di controllo **Block third-party cookies and site data** (Blocco dei cookie di terze parti e dei dati dei siti) oppure creare un'eccezione per **login.microsoftonline.com** e quindi provare di nuovo ad aprire l'app.
+    > Se viene visualizzato il browser web hello è bloccata su "Autorizzazione …", effettuare una delle seguenti hello: crittografato hello **bloccare i cookie di terze parti e i dati del sito** casella di controllo (o) creare un'eccezione per **login.microsoftonline.com**, quindi riprovare a eseguire tooopen hello app.
 
     ![App Monitoraggio e gestione](./media/data-factory-copy-activity-tutorial-using-azure-portal/monitor-and-manage-app.png)
-3. Modificare l'**Ora di inizio** e l'**Ora di fine** in modo da includere l'inizio (11/05/2017) e la fine (12/05/2017) della pipeline e fare clic su **Applica**.       
-3. Vengono visualizzate le **finestre attività** associate a ogni ora compresa tra l'ora di inizio e l'ora di fine della pipeline nell'elenco del riquadro centrale. 
-4. Per visualizzare i dettagli di una finestra attività, selezionarla nell'elenco **Activity Windows** (Finestre attività). 
+3. Hello modifica **ora di inizio** e **ora di fine** tooinclude avviare (2017-05-11) e fine (2017-05-12) della pipeline e fare clic su **applica**.     
+3. Vedrai hello **windows attività** associata a ogni ora tra l'inizio della pipeline e di fine volte nell'elenco di hello nel riquadro centrale hello. 
+4. Dettagli toosee su una finestra attività hello finestra attività in hello **attività Windows** elenco. 
     ![Dettagli finestra attività](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
 
-    In Activity Window Explorer (Esplora finestre attività) sulla destra è possibile osservare che le sezioni fino all'ora UTC corrente (20:12) sono state tutte elaborate (in verde). Le sezioni 20-21, 21-22, 22-23, 23-00 non sono ancora state elaborate.
+    In Esplora finestra di attività a destra di hello, vedrai che hello intervalli di ora UTC corrente toohello (8:12 PM) vengono elaborati (in verde). le sezioni 8-9 PM, PM 9, 10, 10 11 PM, 11 PM - 12 AM Hello non vengono ancora elaborate.
 
-    La sezione **Tentativi** nel riquadro a destra contiene informazioni sull'attività eseguita per la sezione dati. Se si è verificato un errore, fornisce dettagli sull'errore. Se ad esempio la cartella o il contenitore di input non esiste e l'elaborazione della sezione non riesce, viene visualizzato un messaggio di errore che informa che il contenitore o la cartella non esiste.
+    Hello **tentativi** sezione hello destra riquadro fornisce informazioni per la sezione dati hello di esecuzione dell'attività hello. Se si è verificato un errore, vengono forniti dettagli sull'errore hello. Ad esempio, se l'input hello cartella o del contenitore non esiste e hello sezione elaborazione ha esito negativo, viene visualizzato un messaggio di errore che informa che il contenitore hello o cartella non esiste.
 
     ![Tentativi di esecuzione dell'attività](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-run-attempts.png) 
-4. Avviare **SQL Server Management Studio**, connettersi al database SQL di Azure e verificare che le righe vengano inserite nella tabella **emp** nel database.
+4. Avviare **SQL Server Management Studio**, connettersi toohello Database SQL di Azure e verificare che le righe di hello vengono inserite in toohello **emp** tabella nel database di hello.
     
     ![Risultati della query SQL](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-sql-query-results.png)
 
 Per informazioni dettagliate sull'uso di questa applicazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory con la nuova app di monitoraggio e gestione](data-factory-monitor-manage-app.md).
 
 ### <a name="monitor-pipeline-using-diagram-view"></a>Monitorare la pipeline con la vista diagramma
-È anche possibile monitorare le pipeline di dati usando la vista diagramma.  
+È inoltre possibile pipeline di dati di monitoraggio tramite vista diagramma hello.  
 
-1. Nel pannello **Data Factory** fare clic su **Diagramma**.
+1. In hello **Data Factory** pannello, fare clic su **diagramma**.
    
     ![Pannello Data factory - Riquadro Diagramma](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-datafactoryblade-diagramtile.png)
-2. Verrà visualizzato un diagramma simile all'immagine seguente: 
+2. Dovrebbe essere simile toohello diagramma hello seguente immagine: 
    
     ![Vista diagramma](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-diagram-blade.png)  
-5. Nella vista diagramma fare doppio clic su **InputDataset** per visualizzare le sezioni per il set di dati.  
+5. Nella vista diagramma hello, fare doppio clic su **InputDataset** toosee sezioni per hello set di dati.  
    
     ![Set di dati con InputDataset selezionato](./media/data-factory-copy-activity-tutorial-using-azure-portal/DataSetsWithInputDatasetFromBlobSelected.png)   
-5. Fare clic sul collegamento **Altre informazioni** per visualizzare tutte le sezioni dati. Vengono visualizzate 24 sezioni orarie tra l'ora di inizio e di fine della pipeline. 
+5. Fare clic su **ulteriori** collegamento toosee tutte le sezioni di dati hello. Vengono visualizzate 24 sezioni orarie tra l'ora di inizio e di fine della pipeline. 
    
     ![Tutte le sezioni dati di input](./media/data-factory-copy-activity-tutorial-using-azure-portal/all-input-slices.png)  
    
-    Si noti che le sezioni di dati fino all'ora UTC corrente sono nello stato **Pronto**, perché il file **emp.txt** è sempre presente nel contenitore BLOB **adftutorial\input**. Le sezioni per le ore successive non sono ancora nello stato Pronto. Verificare che non sia visualizzata alcuna sezione in **Sezioni non riuscite di recente** nella parte inferiore della pagina.
-6. Chiudere i pannelli fino a visualizzare la vista diagramma oppure scorrere verso sinistra per visualizzare la vista diagramma, quindi fare doppio clic su **OutputDataset**. 
-8. Fare clic sul collegamento **Altre informazioni** nel pannello **Tabella** per **OutputDataset** per visualizzare tutte le sezioni.
+    Si noti che tutte le sezioni di dati di ora UTC corrente toohello di hello sono **pronto** perché hello **emp.txt** file presente tutto il tempo hello nel contenitore di blob hello: **adftutorial\input**. le sezioni di Hello per le ore future hello non sono ancora nello stato pronto. Verificare che non sono presenti sezioni visualizzati in hello **recente sezioni con errori** sezione nella parte inferiore di hello.
+6. Pannelli hello Chiudi finché non si vedere hello diagramma vista (o) scorrimento sinistro toosee hello visualizzare. quindi fare doppio clic su **OutputDataset**. 
+8. Fare clic su **ulteriori** collegamento hello **tabella** pannello **OutputDataset** toosee tutti hello sezioni.
 
     ![Pannello Sezioni dati](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-dataslices-blade.png) 
-9. Si noti che tutte le sezioni fino all'ora UTC corrente passano dallo stato **L'esecuzione è in sospeso** allo stato => **In corso** ==> **Pronto**. Per impostazione predefinita, le sezioni precedenti (prima dell'ora corrente) vengono elaborate dalla più recente alla meno recente. Se ad esempio l'ora corrente è 20:12 UTC, la sezione 19 - 20 viene elaborata prima della sezione 18 - 19. Per impostazione predefinita, la sezione 20 - 21 viene elaborata alla fine dell'intervallo di tempo, ovvero dopo le 21.  
-10. Fare clic su una qualsiasi sezione dati dell'elenco per visualizzare il pannello **Sezione dati** . I dati associati a una finestra attività vengono chiamati sezione. Una sezione può essere costituita da uno o più file.  
+9. Si noti che tutti hello intervalli di ora UTC corrente toohello spostare da **in attesa di esecuzione** stato = > **In corso** ==> **pronto** stato. Hello sezioni da hello precedente (prima dell'ora corrente) vengono elaborati dal toooldest più recente per impostazione predefinita. Ad esempio, se hello ora corrente è 8:12 PM UTC, sezione hello per 19: 00 - 8 PM viene elaborato prima sezione 6 PM - 7 alle 19 hello. sezione alle 20.00-21: 00 Hello viene elaborata alla fine di hello hello dell'intervallo di tempo per impostazione predefinita, ovvero dopo 21: 00.  
+10. Fare clic su qualsiasi sezione di dati dall'elenco hello e dovrebbe essere hello **sezione dati** blade. I dati associati a una finestra attività vengono chiamati sezione. Una sezione può essere costituita da uno o più file.  
     
      ![Pannello Sezione di dati](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-dataslice-blade.png)
     
-     Se lo stato della sezione non è **Pronto**, sarà possibile visualizzare le sezioni upstream che non sono pronte e bloccano l'esecuzione della sezione corrente nell'elenco **Sezioni upstream non pronte**.
-11. Nel pannello **SEZIONE DI DATI** è possibile visualizzare tutte le esecuzioni di attività nell'elenco in basso. Fare clic su un'**esecuzione di attività** per visualizzare il pannello **Dettagli esecuzione attività**. 
+     Se la sezione hello non hello **pronto** stato, è possibile vedere le sezioni upstream hello che non sono pronti e bloccano l'intervallo corrente di hello l'esecuzione in hello **sezioni Upstream non pronte** elenco.
+11. In hello **sezione dati** pannello, dovrebbe essere esegue tutte le attività nell'elenco di hello nella parte inferiore di hello. Fare clic su un **esecuzione dell'attività** toosee hello **Dettagli esecuzione attività** blade. 
     
     ![Dettagli esecuzione attività](./media/data-factory-copy-activity-tutorial-using-azure-portal/ActivityRunDetails.png)
 
-    In questo pannello vengono visualizzati la durata dell'operazione di copia, la velocità effettiva, il numero di byte di dati letti e scritti, l'ora di inizio dell'esecuzione, l'ora di fine dell'esecuzione e così via.  
-12. Fare clic su **X** per chiudere tutti i pannelli finché non viene visualizzato il pannello iniziale per **ADFTutorialDataFactory**.
-13. (Facoltativo) Fare clic sul riquadro **Set di dati** o sul riquadro **Pipeline** per ottenere i pannelli visualizzati nei passaggi precedenti. 
-14. Avviare **SQL Server Management Studio**, connettersi al database SQL di Azure e verificare che le righe vengano inserite nella tabella **emp** nel database.
+    In questo pannello, viene visualizzato come ha richiesto l'operazione di copia hello lungo, quali la velocità effettiva, il numero di byte di dati sono di lettura e l'ora di inizio scritta, esecuzione, eseguire ora di fine e così via.  
+12. Fare clic su **X** tooclose tutti i pannelli hello fino a tornare toohello pannello home hello **ADFTutorialDataFactory**.
+13. (facoltativo) fare clic su hello **set di dati** riquadro o **pipeline** pannelli di hello tooget riquadro è stato illustrato hello passaggi precedenti. 
+14. Avviare **SQL Server Management Studio**, connettersi toohello Database SQL di Azure e verificare che le righe di hello vengono inserite in toohello **emp** tabella nel database di hello.
     
     ![Risultati della query SQL](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-sql-query-results.png)
 
 
 ## <a name="summary"></a>Riepilogo
-In questa esercitazione è stata creata una data factory di Azure per copiare dati da un BLOB di Azure a un database SQL Azure. È stato usato il portale di Azure per creare la data factory, i servizi collegati, i set di dati e una pipeline. Ecco i passaggi generali eseguiti in questa esercitazione:  
+In questa esercitazione è creato un Azure factory toocopy dati da un database di SQL Azure tooan blob di Azure. È stato utilizzato hello toocreate portale Azure hello data factory, i servizi collegati, i set di dati e una pipeline. Ecco i passaggi di alto livello hello effettuati in questa esercitazione:  
 
 1. Creare un'istanza di Azure **Data Factory**.
 2. Creare **servizi collegati**:
-   1. Un servizio collegato di **Archiviazione di Azure** per collegare l'account di archiviazione di Azure che include i dati di input.     
-   2. Un servizio collegato di **Azure SQL** per collegare il database SQL di Azure che contiene i dati di output. 
+   1. Un **di archiviazione di Azure** collegati toolink service account di archiviazione di Azure che contiene i dati di input.     
+   2. Un **SQL Azure** collegati toolink servizio database SQL di Azure che contiene i dati di output di hello. 
 3. Creare **set di dati** che descrivono dati di input e di output per le pipeline.
 4. Creare una **pipeline** con un'**attività di copia** con **BlobSource** come origine e **SqlSink** come sink.  
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione sono stati usati l'archivio BLOB di Azure come archivio dati di origine e un database SQL di Azure come archivio dati di destinazione in un'operazione di copia. La tabella seguente contiene un elenco degli archivi dati supportati come origini e come destinazioni dall'attività di copia: 
+In questa esercitazione sono stati usati l'archivio BLOB di Azure come archivio dati di origine e un database SQL di Azure come archivio dati di destinazione in un'operazione di copia. Hello nella tabella seguente fornisce un elenco di archivi di dati supportato come origini e destinazioni da attività di copia hello: 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-Per informazioni su come copiare dati da/in un archivio dati, fare clic sul collegamento relativo all'archivio dati nella tabella.
+toolearn su come archiviano dati toocopy da e verso un tipo di dati, fare clic su collegamento hello per hello archivio di dati nella tabella hello.

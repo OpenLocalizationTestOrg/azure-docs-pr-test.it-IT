@@ -1,12 +1,12 @@
 ---
 title: 'Dispositivo SensorTag e gateway Azure IoT: lezione 3: Eseguire l''app di esempio | Documentazione Microsoft'
-description: Eseguire un'applicazione di esempio BLE per ricevere dati da SensorTag BLE e dall'hub IoT.
+description: Eseguire dati tooreceive di applicazione di esempio BILITA da BILITA SensorTag e dall'hub IoT.
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: app BLE, app di monitoraggio dei sensori, raccolta di dati dei sensori, dati dai sensori, dai dati dei sensori al cloud
+keywords: Disattiva app sensore monitoraggio dell'app, la raccolta dei dati del sensore, dati da sensori, sensore dati toocloud
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: b33e53a1-1df7-4412-ade1-45185aec5bef
@@ -17,27 +17,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: f6fa158dbe1d48be7d493efa6217e1e0a759d2f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4a8acdeadd402ffc82d3b766e1ec03a77ddcebb1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-and-run-a-ble-sample-application"></a>Configurare ed eseguire un'applicazione di esempio BLE
 
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
 
-- Clonare il repository di esempio. 
-- Configurare la connettività tra SensorTag e Intel NUC. 
-- Usare l'interfaccia della riga di comando di Azure per ottenere informazioni dall'hub IoT e da SensorTag per un'applicazione di esempio BLE (Bluetooth Low Energy). Configurare ed eseguire l'applicazione di esempio BLE. 
+- Repository di esempio hello clone. 
+- Configurare la connettività di hello tra SensorTag e NUC Intel. 
+- Usare l'hub IoT e informazioni SensorTag hello Azure CLI tooget per un'applicazione di esempio BILITA (Bluetooth consumo energetico). E configurare ed eseguire l'applicazione di esempio BILITA hello. 
 
-In caso di problemi, cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-gateway-kit-c-troubleshooting.md).
+Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-gateway-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
 
 Contenuto dell'articolo:
 
-- Come configurare ed eseguire l'applicazione di esempio BLE.
+- Come tooconfigure e hello esecuzione Disattiva applicazione di esempio.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
@@ -45,23 +45,23 @@ Contenuto dell'articolo:
 
 - [Create an IoT hub and register SensorTag](iot-hub-gateway-kit-c-lesson2-register-device.md) (Creare un hub IoT e registrare SensorTag)
 
-## <a name="clone-the-sample-repository-to-the-host-computer"></a>Clonare il repository di esempio nel computer host
+## <a name="clone-hello-sample-repository-toohello-host-computer"></a>Clonare il computer host toohello di hello esempio repository
 
-Per clonare il repository di esempio, seguire questa procedura nel computer host:
+repository di esempio hello tooclone, seguire questi passaggi nel computer host hello:
 
 1. Aprire una finestra del prompt dei comandi in Windows o aprire un terminale in macOS o in Ubuntu.
-2. Eseguire i comandi seguenti:
+2. Eseguire hello seguenti comandi:
 
    ```bash
    git clone https://github.com/Azure-samples/iot-hub-c-intel-nuc-gateway-getting-started
    cd iot-hub-c-intel-nuc-gateway-getting-started
    ```
 
-## <a name="set-up-the-connectivity-between-sensortag-and-intel-nuc"></a>Configurare la connettività tra SensorTag e Intel NUC
+## <a name="set-up-hello-connectivity-between-sensortag-and-intel-nuc"></a>Configurare la connettività di hello tra SensorTag e Intel NUC
 
-Per configurare la connettività, seguire questa procedura nel computer host:
+tooset della connettività di hello, seguire questi passaggi nel computer host hello:
 
-1. Inizializzare il file di configurazione usando i comandi seguenti:
+1. Inizializzare i file di configurazione hello eseguendo hello seguenti comandi:
 
    ```bash
    cd Lesson3
@@ -69,7 +69,7 @@ Per configurare la connettività, seguire questa procedura nel computer host:
    gulp init
    ```
 
-2. Aprire `config-gateway.json` in Visual Studio Code usando il comando seguente:
+2. Aprire `config-gateway.json` nel codice di Visual Studio eseguendo hello comando seguente:
 
    ```bash
    # For Windows command prompt
@@ -78,48 +78,48 @@ Per configurare la connettività, seguire questa procedura nel computer host:
    code ~/.iot-hub-getting-started/config-gateway.json
    ```
 
-3. Trovare la riga di codice seguente e sostituire `[device hostname or IP address]` con l'indirizzo IP o il nome host di Intel NUC.
+3. Individuare hello successiva riga di codice e sostituire `[device hostname or IP address]` con hello IP indirizzo o il nome host di NUC Intel.
    ![Screenshot del gateway di configurazione](media/iot-hub-gateway-kit-lessons/lesson3/config_gateway.png)
 
-4. Installare gli strumenti helper in Intel NUC usando il comando seguente:
+4. Installare gli strumenti di supporto su Intel NUC eseguendo hello comando seguente:
 
    ```bash
    gulp install-tools
    ```
 
-5. Accendere SensorTag premendo il pulsante di alimentazione, come nell'immagine seguente. Il LED verde inizierà a lampeggiare.
+5. Attivare SensorTag premendo il pulsante di alimentazione hello come immagine hello e hello che dovrebbe lampeggiare LED verde.
 
    ![Accendere SensorTag](media/iot-hub-gateway-kit-lessons/lesson3/turn on_off sensortag.jpg)
 
-6. Analizzare i dispositivi SensorTag usando i comandi seguenti:
+6. Analizza i dispositivi SensorTag eseguendo hello seguenti comandi:
 
    ```bash
    gulp discover-sensortag
    ```
 
-7. Testare la connettività tra SensorTag e Intel NUC usando il comando seguente:
+7. Testare la connettività hello hello SensorTag e Intel NUC eseguendo hello comando seguente:
 
    ```bash
    gulp test-connectivity --mac {mac address}
    ```
 
-   Sostituire `{mac address}` con l'indirizzo MAC ottenuto nel passaggio precedente.
+   Sostituire `{mac address}` con indirizzo MAC ottenuto nel passaggio precedente hello hello.
 
-## <a name="get-the-connection-string-of-sensortag"></a>Ottenere la stringa di connessione di SensorTag
+## <a name="get-hello-connection-string-of-sensortag"></a>Ottiene la stringa di connessione hello di SensorTag
 
-Per ottenere la stringa di connessione dell'hub IoT di Azure per SensorTag, usare questo comando nel computer host:
+hello tooget stringa di connessione hub IoT di Azure di SensorTag, eseguire hello comando nel computer host hello seguente:
 
 ```bash
 az iot device show-connection-string --hub-name {IoT hub name} --device-id mydevice --resource-group iot-gateway
 ```
 
-`{IoT hub name}` è il nome dell'hub IoT usato. Usare iot-gateway come valore di `{resource group name}` e mydevice come valore di `{device id}` se nella lezione 2 non si è modificato il valore.
+`{IoT hub name}`è nome dell'hub IoT hello utilizzato. Usare iot-gateway come valore hello `{resource group name}` e utilizzare mydevice come valore hello `{device id}` se non si sono modificati valore hello nella lezione 2.
 
-## <a name="configure-the-ble-sample-application"></a>Configurare l'applicazione di esempio BLE
+## <a name="configure-hello-ble-sample-application"></a>Configurare l'applicazione di esempio BILITA hello
 
-Per configurare ed eseguire l'applicazione di esempio BLE, seguire questa procedura nel computer host:
+tooconfigure e hello esecuzione applicazione di esempio BILITA, seguire questi passaggi nel computer host hello:
 
-1. Aprire `config-sensortag.json` in Visual Studio Code usando il comando seguente:
+1. Aprire `config-sensortag.json` nel codice di Visual Studio eseguendo hello comando seguente:
 
    ```bash
    # For Windows command prompt
@@ -130,34 +130,34 @@ Per configurare ed eseguire l'applicazione di esempio BLE, seguire questa proced
 
    ![Screenshot di SensorTag di configurazione](media/iot-hub-gateway-kit-lessons/lesson3/config_sensortag.png)
 
-2. Sostituire i valori seguenti nel codice:
-   - Sostituire `[IoT hub name]` con il nome dell'hub IoT usato.
-   - Sostituire `[IoT device connection string]` con la stringa di connessione di SensorTag ottenuta.
-   - Sostituire `[device_mac_address]` con l'indirizzo MAC di SensorTag ottenuto.
+2. Apportare hello sostituzioni nel codice hello seguenti:
+   - Sostituire `[IoT hub name]` con nome dell'hub IoT hello utilizzato.
+   - Sostituire `[IoT device connection string]` con la stringa di connessione hello di SensorTag ottenuto.
+   - Sostituire `[device_mac_address]` con indirizzo MAC di hello SensorTag ottenuto hello.
 
-3. Eseguire l'applicazione di esempio BLE.
+3. Eseguire l'applicazione di esempio BILITA hello.
 
-   Per eseguire l'applicazione di esempio BLE, seguire questa procedura nel computer host:
+   hello toorun applicazione di esempio BILITA, seguire questi passaggi nel computer host hello:
 
    1. Accendere SensorTag.
 
-   2. Distribuire ed eseguire l'applicazione di esempio BLE in Intel NUC usando il comando seguente:
+   2. Distribuire ed eseguire l'applicazione di esempio hello BILITA Intel NUC eseguendo hello comando seguente:
    
       ```bash
       gulp run
       ```
 
-## <a name="verify-that-the-ble-sample-application-works"></a>Verificare il funzionamento dell'applicazione di esempio BLE
+## <a name="verify-that-hello-ble-sample-application-works"></a>Verificare il funzionamento dell'applicazione di esempio BILITA hello
 
-Verrà ora visualizzato un output simile al seguente:
+Viene visualizzato un output simile hello seguente:
 
 ![Output dell'applicazione di esempio BLE](media/iot-hub-gateway-kit-lessons/lesson3/BLE_running.png)
 
-L'applicazione di esempio continua a raccogliere dati sulla temperatura e li invia all'hub IoT. L'applicazione di esempio termina automaticamente dopo 40 secondi di invio.
+applicazione di esempio Hello mantiene la raccolta dei dati di temperatura e lo ha inviato l'hub IoT tooyour. applicazione di esempio Hello termina automaticamente dopo l'invio di 40 secondi.
 
 ## <a name="summary"></a>Riepilogo
 
-È stata configurata la connettività tra SensorTag e Intel NUC ed è stata eseguita un'applicazione di esempio BLE che raccoglie e invia dati da SensorTag all'hub IoT. Ora è possibile passare all'esercitazione che illustra come verificare che l'hub IoT abbia ricevuto i dati.
+Siano correttamente configurare la connettività di hello tra SensorTag e Intel NUC ed eseguire un'applicazione di esempio BILITA che raccoglie e invia i dati da SensorTag tooyour IoT hub. Si è pronti toolearn come tooverify che ha ricevuto l'hub IoT hello dati.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Leggere messaggi dall'hub IoT](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)

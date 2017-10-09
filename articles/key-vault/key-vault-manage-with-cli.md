@@ -1,6 +1,6 @@
 ---
-title: Gestire Azure Key Vault tramite l'interfaccia della riga di comando | Microsoft Docs
-description: "Usare questa esercitazione per automatizzare le attività comuni nell'insieme di credenziali delle chiavi tramite l'interfaccia della riga di comando"
+title: insieme di credenziali chiave di Azure usa CLI aaaManage | Documenti Microsoft
+description: "Utilizzare questa attività comuni di esercitazione tooautomate nell'insieme di credenziali chiave usando hello CLI"
 services: key-vault
 documentationcenter: 
 author: BrucePerlerMS
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: bruceper
-ms.openlocfilehash: c2565a742ce4f6ab5f7639a54c4a475f00cbc260
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9ef506faa67e1f0db5b9e303300d63b135ddd7b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-key-vault-using-cli"></a>Gestire l'insieme di credenziali delle chiavi tramite l'interfaccia della riga di comando
 
-L'insieme di credenziali delle chiavi di Azure è disponibile nella maggior parte delle aree. Per altre informazioni, vedere la [pagina Insieme di credenziali delle chiavi - Prezzi](https://azure.microsoft.com/pricing/details/key-vault/).
+L'insieme di credenziali delle chiavi di Azure è disponibile nella maggior parte delle aree. Per ulteriori informazioni, vedere hello [insieme di credenziali chiave pagina dei prezzi](https://azure.microsoft.com/pricing/details/key-vault/).
 
 ## <a name="introduction"></a>Introduzione
 
-Usare questa esercitazione per imparare a eseguire facilmente le attività iniziali dell'insieme di credenziali delle chiavi di Azure per creare un contenitore finalizzato (insieme di credenziali) in Azure, in cui archiviare e gestire chiavi crittografiche e segreti in Azure. Verrà inoltre descritto come usare l'interfaccia della riga di comando multipiattaforma di Azure per creare un insieme di credenziali contenente una chiave o una password che sarà possibile usare con un'applicazione Azure. L'esercitazione spiega poi come un'applicazione può usare questa chiave o password.
+Utilizzare questa esercitazione toohelp si ottiene avviato con insieme credenziali chiavi Azure toocreate un contenitore di protezione avanzato (un insieme di credenziali) in Azure, toostore e gestire chiavi di crittografia e i segreti in Azure. Illustra hello processo di toocreate interfaccia della riga di comando multipiattaforma di Azure utilizzando un insieme di credenziali che contiene una chiave o una password che è quindi possibile utilizzare con un'applicazione Azure. L'esercitazione spiega poi come un'applicazione può usare questa chiave o password.
 
-**Tempo previsto per il completamento:** 20 minuti
+**Toocomplete tempo stimato:** 20 minuti
 
 > [!NOTE]
-> Questa esercitazione non include istruzioni su come scrivere l'applicazione Azure usata nel passaggio che spiega come autorizzare un'applicazione all'uso di una chiave o un segreto nell'insieme di credenziali delle chiavi.
+> In questa esercitazione non include istruzioni su come toowrite hello applicazione Azure che uno dei passaggi di hello include, che mostra come tooauthorize un toouse applicazione una chiave o la chiave privata della chiave hello insieme di credenziali.
 > 
-> Attualmente non è possibile configurare l'insieme di credenziali delle chiavi di Azure nel portale di Azure. Seguire invece le istruzioni relative all'interfaccia della riga di comando multipiattaforma. In alternativa, per le istruzioni relative ad Azure PowerShell, vedere [questa esercitazione equivalente](key-vault-get-started.md).
+> Attualmente, non è possibile configurare l'insieme di credenziali chiave di Azure nel portale di Azure hello. Seguire invece le istruzioni relative all'interfaccia della riga di comando multipiattaforma. In alternativa, per le istruzioni relative ad Azure PowerShell, vedere [questa esercitazione equivalente](key-vault-get-started.md).
 > 
 > 
 
@@ -41,17 +41,17 @@ Per informazioni generali sull'insieme di credenziali di Azure, vedere [Cos'è l
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare l'esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione, è necessario disporre di hello seguenti:
 
-* Una sottoscrizione a Microsoft Azure. Se non si dispone di una sottoscrizione, è possibile iscriversi per una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial).
-* Interfaccia della riga di comando multipiattaforma versione 0.9.1 o successiva. Per installare l'ultima versione e associarla alla sottoscrizione di Azure, vedere [Installare e configurare l'interfaccia della riga di comando multipiattaforma di Azure](../cli-install-nodejs.md).
-* Un'applicazione che verrà configurata per usare la chiave o la password creata in questa esercitazione. Un'applicazione di esempio è disponibile nell'[Area download Microsoft](http://www.microsoft.com/download/details.aspx?id=45343). Per istruzioni, vedere il file Readme associato.
+* TooMicrosoft una sottoscrizione Azure. Se non si dispone di una sottoscrizione, è possibile iscriversi per una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial).
+* Interfaccia della riga di comando multipiattaforma versione 0.9.1 o successiva. tooinstall hello versione più recente e connettersi tooyour sottoscrizione di Azure, vedere [installare e configurare l'interfaccia della riga di comando multipiattaforma di Azure hello](../cli-install-nodejs.md).
+* Un'applicazione che verrà configurato toouse hello chiave o password creati in questa esercitazione. Un'applicazione di esempio è disponibile da hello [Microsoft Download Center](http://www.microsoft.com/download/details.aspx?id=45343). Per istruzioni, vedere il file Leggimi di accompagnamento hello.
 
 ## <a name="getting-help-with-azure-cross-platform-command-line-interface"></a>Risorse della Guida per l'interfaccia della riga di comando multipiattaforma di Microsoft Azure
 
-Questa esercitazione si presuppone che si abbia familiarità con l'interfaccia della riga di comando (Bash, terminal, prompt dei comandi)
+In questa esercitazione si presuppone che si ha familiarità con l'interfaccia della riga di comando hello (Bash, Terminal, prompt dei comandi)
 
-Il parametro --help o -h consente di visualizzare la Guida per specifici comandi. In alternativa, è anche possibile utilizzare il formato azure help [comando] [opzioni] per ottenere le stesse informazioni. Ad esempio, tutti i comandi seguenti restituiranno le stesse informazioni:
+Hello - Guida o -h parametro può essere utilizzato tooview della Guida in linea per i comandi specifici. In alternativa, help hello azure [comando] [opzioni] formato può essere anche usato tooreturn hello stesse informazioni. Ad esempio, i comandi tutte restituito seguente hello hello stesse informazioni:
 
     azure account set --help
 
@@ -59,50 +59,50 @@ Il parametro --help o -h consente di visualizzare la Guida per specifici comandi
 
     azure help account set
 
-In caso di dubbi sui parametri necessari per un comando, fare riferimento alla Guida utilizzando --help, -h o azure help [comando].
+In caso di dubbi sui parametri hello necessari da un comando, fare riferimento tramite toohelp - help, -h o azure help [comando].
 
-È consigliabile di leggere anche le seguenti esercitazioni per acquisire familiarità con Gestione risorse di Azure nell'interfaccia della riga di comando multipiattaforma di Azure:
+È inoltre possibile leggere hello seguenti esercitazioni tooget familiarità con Gestione risorse di Azure nell'interfaccia della riga di comando multipiattaforma di Azure:
 
-* [Installare e configurare l'interfaccia della riga di comando multipiattaforma di Azure.](../cli-install-nodejs.md)
+* [Come tooinstall e configurare l'interfaccia riga di comando multipiattaforma di Azure](../cli-install-nodejs.md)
 * [Uso dell'interfaccia della riga di comando multipiattaforma di Azure con Gestione risorse di Azure](../xplat-cli-azure-resource-manager.md)
 
-## <a name="connect-to-your-subscriptions"></a>Connettersi alle sottoscrizioni
+## <a name="connect-tooyour-subscriptions"></a>Connettersi tooyour sottoscrizioni
 
-Per accedere utilizzando un account aziendale, utilizzare il comando seguente:
+toolog con un account aziendale, utilizzare hello comando seguente:
 
     azure login -u username -p password
 
-Se invece si vuole accedere digitando in modo interattivo
+o se si desidera toolog digitando in modo interattivo
 
     azure login
 
 > [!NOTE]
-> Il metodo di accesso funziona solo con l'account aziendale. L'account aziendale corrisponde a un utente gestito dall'organizzazione e definito nel tenant Azure Active Directory dell'organizzazione.
+> metodo di accesso Hello funziona solo con account aziendale. L'account aziendale corrisponde a un utente gestito dall'organizzazione e definito nel tenant Azure Active Directory dell'organizzazione.
 > 
 > 
 
-Se non si dispone di un account aziendale e si usa un account Microsoft per accedere alla sottoscrizione di Azure, è possibile crearne facilmente uno utilizzando la procedura seguente.
+Se si dispone attualmente di un account aziendale e si utilizza un toolog account Microsoft in tooyour sottoscrizione di Azure, è possibile creare facilmente tramite hello i passaggi seguenti.
 
-1. Accedere al [portale di gestione di Azure](https://manage.windowsazure.com/)e fare clic su Active Directory.
-2. Se non esistono directory, selezionare Crea directory e fornire le informazioni richieste.
-3. Selezionare la directory e aggiungere un nuovo utente. Questo nuovo utente corrisponde a un account aziendale. Durante la creazione dell'utente, verranno forniti un indirizzo di posta elettronica e una password provvisoria. Salvare queste informazioni perché verranno utilizzate in un altro passaggio.
-4. Nel portale selezionare Impostazioni e quindi Amministratori. Selezionare Aggiungi e aggiungere il nuovo utente come co-amministratore. In questo modo l'account aziendale potrà gestire la sottoscrizione di Azure.
-5. Infine, disconnettersi dal portale Azure ed effettuare di nuovo l'accesso con il nuovo account aziendale. La prima volta che si accede con questo account verrà richiesto di cambiare la password.
+1. Account di accesso toohello accesso toohello [il portale di gestione di Azure](https://manage.windowsazure.com/)e fare clic su Active Directory.
+2. Se è presente alcuna directory, selezionare la directory di creare e fornire hello informazioni richieste.
+3. Selezionare la directory e aggiungere un nuovo utente. Questo nuovo utente corrisponde a un account aziendale. Durante la creazione dell'utente hello hello verrà fornito con un indirizzo di posta elettronica per l'utente hello e una password temporanea. Salvare queste informazioni perché verranno utilizzate in un altro passaggio.
+4. Dal portale di hello, selezionare le impostazioni e quindi selezionare gli amministratori. Selezionare Aggiungi e aggiungere hello nuovo utente come coamministratore. In questo modo hello account aziendale toomanage la sottoscrizione di Azure.
+5. Infine, disconnettersi hello portale di Azure e quindi accedere di nuovo utilizzando hello nuovo account aziendale. Se si tratta di hello prima registrazione in tempo con questo account, sarà password hello toochange richiesta.
 
 Per altre informazioni sull'uso dell'account aziendale con Microsoft Azure, vedere [Iscrizione ad Azure come organizzazione](../active-directory/sign-up-organization.md).
 
-Se si dispone di più sottoscrizioni e se ne vuole specificare una in particolare da usare per l'insieme di credenziali delle chiavi di Azure, digitare quanto segue per visualizzare le sottoscrizioni per il proprio account:
+Se si dispone di più sottoscrizioni e si desidera toospecify un uno toouse specifico per l'insieme di credenziali chiave di Azure, digitare hello sottoscrizioni hello toosee per l'account di seguito:
 
     azure account list
 
-Quindi, per specificare la sottoscrizione da usare, digitare.
+Quindi, toospecify hello sottoscrizione toouse, tipo:
 
     azure account set <subscription name>
 
-Per altre informazioni sulla configurazione dell'interfaccia della riga di comando multipiattaforma di Azure, vedere [Installare e configurare l'interfaccia della riga di comando multipiattaforma di Azure](../cli-install-nodejs.md).
+Per ulteriori informazioni sulla configurazione dell'interfaccia della riga di comando multipiattaforma di Azure, vedere [come tooInstall e l'interfaccia della riga di comando multipiattaforma di Azure configurare](../cli-install-nodejs.md).
 
-## <a name="switch-to-using-azure-resource-manager"></a>Passare all'uso di Gestione risorse di Azure
-Poiché per l'insieme di credenziali delle chiavi è necessario Gestione risorse di Azure, digitare quanto segue per passare alla modalità Gestione risorse di Azure:
+## <a name="switch-toousing-azure-resource-manager"></a>Opzione toousing Gestione risorse di Azure
+insieme di credenziali chiave Hello richiede Gestione risorse di Azure, quindi digitare hello seguenti modalità di gestione risorse tooAzure tooswitch:
 
     azure config mode arm
 
@@ -111,128 +111,128 @@ Quando si usa Gestione risorse di Azure, tutte le risorse correlate vengono crea
 
     azure group create 'ContosoResourceGroup' 'East Asia'
 
-Il primo parametro è il nome del gruppo di risorse e il secondo è la posizione. Per la posizione usare il comando `azure location list` per identificare come si specifica una posizione alternativa a quella di questo esempio. Se servono altre informazioni, digitare: `azure help location`
+primo parametro Hello è il nome di gruppo di risorse e hello secondo parametro è il percorso di hello. Per il percorso, utilizzare il comando di hello `azure location list` tooidentify come toospecify toohello un percorso alternativo uno in questo esempio. Se servono altre informazioni, digitare: `azure help location`
 
-## <a name="register-the-key-vault-resource-provider"></a>Registrare il provider di risorse dell'insieme di credenziali delle chiavi
+## <a name="register-hello-key-vault-resource-provider"></a>Registrazione provider di risorse hello insieme di credenziali chiave
 Verificare che il provider di risorse dell'insieme di credenziali delle chiavi sia registrato nella sottoscrizione:
 
 `azure provider register Microsoft.KeyVault`
 
-Quest'operazione deve essere eseguita una volta sola per ogni sottoscrizione.
+Questa operazione deve solo toobe eseguito una volta per ogni sottoscrizione.
 
 ## <a name="create-a-key-vault"></a>Creare un insieme di credenziali delle chiavi
 
-Usare il comando `azure keyvault create` per creare un insieme di credenziali delle chiavi. Questo script ha tre parametri obbligatori: un nome del gruppo di risorse, un nome dell'insieme di credenziali delle chiavi e la località geografica.
+Hello utilizzare `azure keyvault create` comando toocreate un insieme di credenziali chiave. Questo script ha tre parametri obbligatori: il nome di un gruppo di risorse, un insieme di credenziali delle chiavi e la posizione geografica di hello.
 
-Ad esempio, se si usa il nome dell'insieme di credenziali ContosoKeyVault, il nome del gruppo di risorse ContosoResourceGroup e la posizione East Asia, digitare:
+Ad esempio, se si utilizza il nome dell'insieme di credenziali hello di ContosoKeyVault, nome gruppo di risorse hello di ContosoResourceGroup e il percorso di hello dell'Asia orientale, digitare:
 
     azure keyvault create --vault-name 'ContosoKeyVault' --resource-group 'ContosoResourceGroup' --location 'East Asia'
 
-L'output di questo comando mostra le proprietà dell'insieme di credenziali delle chiavi appena creato. Le due proprietà più importanti sono:
+output di Hello di questo comando Mostra le proprietà dell'insieme di credenziali chiave hello appena creato. proprietà di Hello due più importanti sono:
 
-* **Name**: nell'esempio corrisponde a ContosoKeyVault. Questo nome verrà usato per altri cmdlet di insieme di credenziali delle chiavi.
-* **vaultUri**: nell'esempio corrisponde a https://contosokeyvault.vault.azure.net. Le applicazioni che usano l'insieme di credenziali tramite l'API REST devono usare questo URI.
+* **Nome**: nell'esempio hello tratta ContosoKeyVault. Questo nome verrà usato per altri cmdlet di insieme di credenziali delle chiavi.
+* **vaultUri**: nell'esempio hello tratta https://contosokeyvault.vault.azure.net. Le applicazioni che usano l'insieme di credenziali tramite l'API REST devono usare questo URI.
 
-L'account Azure ora è autorizzato a eseguire qualsiasi operazione su questo insieme di credenziali delle chiavi. Nessun altro lo è ancora.
+L'account di Azure è ora autorizzato tooperform insieme di credenziali di qualsiasi operazione su questa chiave. Nessun altro lo è ancora.
 
-## <a name="add-a-key-or-secret-to-the-key-vault"></a>Aggiungere una chiave o un segreto all'insieme di credenziali delle chiavi
+## <a name="add-a-key-or-secret-toohello-key-vault"></a>Aggiungere una chiave o un insieme di credenziali chiave segreta toohello
 
-Per usare l'insieme di credenziali delle chiavi di Azure per creare automaticamente una chiave protetta tramite software, eseguire il comando `azure key create` e digitare quanto segue:
+Se si desidera toocreate insieme credenziali chiavi Azure una chiave protetta tramite software per l'utente, utilizzare hello `azure key create` comandi e digitare il seguente hello:
 
     azure keyvault key create --vault-name 'ContosoKeyVault' --key-name 'ContosoFirstKey' --destination software
 
-Tuttavia, se si ha una chiave esistente in un file con estensione PEM salvato come file locale in un file denominato softkey.pem che si vuole caricare nell'insieme di credenziali delle chiavi di Azure, digitare il comando seguente per importare la chiave dal file PEM che protegge la chiave tramite software nel servizio dell'insieme di credenziali delle chiavi:
+Tuttavia, se si dispone di una chiave esistente in un file con estensione PEM salvato come file locale in un file denominato softkey.pem che si desidera tooupload tooAzure insieme di credenziali chiave, digitare hello seguenti chiave hello tooimport dagli hello. File con estensione PEM, che protegge hello chiave tramite software nel servizio insieme di credenziali chiave hello:
 
     azure keyvault key import --vault-name 'ContosoKeyVault' --key-name 'ContosoFirstKey' --pem-file './softkey.pem' --password 'PaSSWORD' --destination software
 
-A questo punto è possibile fare riferimento alla chiave creata o caricata nell'insieme di credenziali delle chiavi di Azure, usando il relativo URI. Usare **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** per ottenere sempre la versione corrente e usare **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** per ottenere questa versione specifica.
+È ora possibile fare riferimento chiave hello creati o caricati tooAzure insieme di credenziali chiave utilizzando il relativo URI. Utilizzare **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** tooalways ottenere la versione corrente di hello e usare **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/ cgacf4f763ar42ffb0a1gca546aygd87** tooget tale versione.
 
-Per aggiungere un segreto all'insieme di credenziali, ovvero una password denominata SQLPassword con il valore Pa$$w0rd per l'insieme di credenziali delle chiavi, digitare quanto segue:
+tooadd un insieme di credenziali toohello segreto, che è una password denominata SQLPassword e con valore hello Pa$ $w0rd tooAzure insieme di credenziali chiave hello tipo seguente:
 
     azure keyvault secret set --vault-name 'ContosoKeyVault' --secret-name 'SQLPassword' --value 'Pa$$w0rd'
 
-È ora possibile fare riferimento a questa password aggiunta nell'insieme di credenziali delle chiavi di Azure, usando il relativo URI. Usare **https://ContosoVault.vault.azure.net/secrets/SQLPassword** per ottenere sempre la versione corrente e usare **https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** per ottenere questa versione specifica.
+È ora possibile fare riferimento a questa password che sono state aggiunte tooAzure insieme di credenziali chiave, tramite il relativo URI. Utilizzare **https://ContosoVault.vault.azure.net/secrets/SQLPassword** tooalways ottenere la versione corrente di hello e usare **https://ContosoVault.vault.azure.net/secrets/SQLPassword/ 90018dbb96a84117a0d2847ef8e7189d** tooget tale versione.
 
-Ora si può visualizzare la chiave o il segreto appena creato:
+Si considerino hello chiave o il segreto appena creato:
 
-* Per visualizzare la chiave, digitare: `azure keyvault key list --vault-name 'ContosoKeyVault'`
-* Per visualizzare il segreto, digitare: `azure keyvault secret list --vault-name 'ContosoKeyVault'`
+* tooview il tipo di chiave,:`azure keyvault key list --vault-name 'ContosoKeyVault'`
+* tooview segreto, tipo:`azure keyvault secret list --vault-name 'ContosoKeyVault'`
 
 ## <a name="register-an-application-with-azure-active-directory"></a>Registrare un'applicazione con Azure Active Directory
 
-Questo passaggio di solito viene eseguito da uno sviluppatore, su un computer separato. Anche se non è specifico dell'insieme di credenziali delle chiavi di Azure, viene incluso qui per completezza.
+Questo passaggio di solito viene eseguito da uno sviluppatore, su un computer separato. Non è tooAzure specifico insieme di credenziali chiave ma è incluso in questo caso, per motivi di completezza.
 
 > [!IMPORTANT]
-> Per completare l'esercitazione, l'account, l'insieme di credenziali e l'applicazione in cui si registrerà questo passaggio devono essere tutti nella stessa directory di Azure.
+> esercitazione hello toocomplete, l'account, insieme di credenziali hello e un'applicazione hello che verrà registrato in questo passaggio deve essere in hello stessa directory di Azure.
 > 
 > 
 
-Le applicazioni che usano un insieme di credenziali delle chiavi devono eseguire l'autenticazione con un token di Azure Active Directory. A tale scopo, il proprietario dell'applicazione deve innanzitutto registrare l'applicazione in Azure Active Directory. Al termine della registrazione, il proprietario dell'applicazione ottiene i valori seguenti:
+Le applicazioni che usano un insieme di credenziali delle chiavi devono eseguire l'autenticazione con un token di Azure Active Directory. toodo, hello proprietario di un'applicazione hello deve innanzitutto registrare l'applicazione hello in Azure Active Directory. Alla fine di hello della registrazione, proprietario dell'applicazione hello Ottiene hello seguenti valori:
 
-* Un **ID applicazione** (chiamato anche ID client) e una **chiave di autenticazione** (chiamata anche segreto condiviso). L'applicazione deve presentare entrambi questi valori ad Azure Active Directory per ottenere un token. La configurazione dell'applicazione per eseguire questa operazione dipende dall'applicazione. Per l'applicazione di esempio dell'insieme di credenziali delle chiavi, il proprietario dell'applicazione imposta questi valori nel file app.config.
+* Un **ID applicazione** (noto anche come un ID Client) e **chiave di autenticazione** (noto anche come hello segreto condiviso). un'applicazione Hello deve presentare entrambi questi tooAzure valori tooget un token di Active Directory. Come un'applicazione hello viene configurato toodo che ciò dipende dall'applicazione hello. Per l'applicazione di esempio insieme di credenziali chiave hello, proprietario dell'applicazione hello imposta questi valori nel file app. config hello.
 
-Per registrare l'applicazione in Azure Active Directory:
+applicazione hello tooregister in Azure Active Directory:
 
-1. Accedere al portale di Azure.
-2. A sinistra fare clic su **Active Directory**e quindi selezionare la directory in cui si registrerà l'applicazione. <br> <br> 
+1. Accedi toohello portale di Azure.
+2. A sinistra di hello, fare clic su **Active Directory**, quindi selezionare hello directory in cui è necessario registrare l'applicazione. <br> <br> 
 
 >[!NOTE] 
-> È necessario selezionare la stessa directory che contiene la sottoscrizione di Azure con cui è stato creato l'insieme di credenziali delle chiavi. Se non si sa quale directory selezionare, fare clic su **Impostazioni**, identificare la sottoscrizione con cui si è creato l'insieme di credenziali chiave e prendere nota del nome della directory visualizzata nell'ultima colonna.
+> È necessario selezionare hello stessa directory che contiene hello sottoscrizione di Azure con cui è stato creato l'insieme di credenziali chiave. Non si conosce la directory in questo caso, fare clic su **impostazioni**, identificare hello sottoscrizione con cui è stato creato l'insieme di credenziali chiave e il nome di hello nota della directory hello visualizzato nell'ultima colonna hello.
 
-3. Fare clic su **APPLICAZIONI**. Se nessuna app è stata aggiunta alla directory, in questa pagina sarà visualizzato solo il collegamento **Aggiungi un'app**. Fare clic sul collegamento. In alternativa, è possibile fare clic su **AGGIUNGI** sulla barra dei comandi.
-4. Nella pagina **Come procedere** della procedura guidata **AGGIUNGI APPLICAZIONE** fare clic su **Aggiungi un'applicazione che l'organizzazione sta sviluppando**.
-5. Nella pagina **Informazioni sull'applicazione** specificare un nome per l'applicazione e selezionare **APPLICAZIONE WEB E/O API WEB** (opzione predefinita). Fare clic sull'icona Avanti.
-6. Nella pagina **Proprietà dell'app** specificare **URL ACCESSO** e **URI ID APP** per l'applicazione Web. Se l'applicazione non ha questi valori, è possibile crearli per questo passaggio (ad esempio, è possibile specificare http://test1.contoso.com per entrambe le caselle). Non è importante se questi siti esistono. Ciò che conta è che ogni applicazione nella directory abbia un URI ID app diverso. La directory usa questa stringa per identificare l'app.
-7. Fare clic sull'icona Completa per salvare le modifiche nella procedura guidata.
-8. Nella pagina Avvio rapido fare clic su **CONFIGURA**.
-9. Scorrere fino alla sezione **chiavi**, selezionare la durata e quindi fare clic su **SALVA**. La pagina viene aggiornata e mostra un valore chiave. È necessario configurare l'applicazione con questo valore chiave e con il valore **ID CLIENT** . Le istruzioni per questa configurazione saranno specifiche dell'applicazione.
-10. Copiare da questa pagina il valore dell'ID client che si userà nel passaggio successivo per impostare le autorizzazioni per l'insieme di credenziali.
+3. Fare clic su **APPLICAZIONI**. Se nessuna App è stati aggiunti tooyour directory, questa pagina mostrerà solo hello **aggiungere un'App** collegamento. Fare clic sul collegamento hello o in alternativa, è possibile fare clic su hello **aggiungere** hello barra dei comandi.
+4. In hello **Aggiungi applicazione** procedura guidata hello **cosa si desidera toodo?** pagina, fare clic su **Aggiungi un'applicazione che l'organizzazione sta sviluppando**.
+5. In hello **informazioni sull'applicazione** pagina, specificare un nome per l'applicazione e selezionare **applicazione WEB, e/o API WEB** (hello predefinito). Fare clic sull'icona Avanti hello.
+6. In hello **proprietà App** specificare hello **URL accesso** e **URI ID APP** per l'applicazione web. Se l'applicazione non ha questi valori, è possibile crearli per questo passaggio (ad esempio, è possibile specificare http://test1.contoso.com per entrambe le caselle). Non è importante se esistono di questi siti. aspetto importante è che URI ID app hello per ogni applicazione è diverso per ogni applicazione nella directory. directory Hello usato tooidentify questa stringa l'app.
+7. Fare clic su hello icona completata toosave le modifiche apportate nella procedura guidata hello.
+8. Nella pagina introduttiva hello, fare clic su **configura**.
+9. Scorrere toohello **chiavi** sezione, selezionare la durata hello e quindi fare clic su **salvare**. pagina Hello viene aggiornato e verrà visualizzato un valore di chiave. È necessario configurare l'applicazione con questo valore di chiave e hello **ID CLIENT** valore. Le istruzioni per questa configurazione saranno specifiche dell'applicazione.
+10. Copiare valore dell'ID di hello client dalla pagina, che verrà utilizzato in hello successivo passaggio tooset le autorizzazioni per l'insieme di credenziali.
 
-## <a name="authorize-the-application-to-use-the-key-or-secret"></a>Autorizzare l'applicazione a usare la chiave o il segreto
-Per autorizzare l'accesso da parte dell'applicazione alla chiave o al segreto nell'insieme di credenziali, usare il comando `azure keyvault set-policy` .
+## <a name="authorize-hello-application-toouse-hello-key-or-secret"></a>Autorizzare hello applicazione toouse hello chiave o il segreto
+tooauthorize hello applicazione tooaccess hello chiave o al segreto nell'insieme di credenziali hello, utilizzare hello `azure keyvault set-policy` comando.
 
-Ad esempio, se il nome dell'insieme di credenziali è ContosoKeyVault e l'applicazione che si desidera autorizzare ha un ID client 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed e si vuole autorizzare l'applicazione a decrittografare e firmare con le chiavi dell'insieme di credenziali, eseguire quanto segue:
+Ad esempio, se il nome dell'insieme di credenziali è ContosoKeyVault e hello applicazione cui si desidera tooauthorize ha un ID client 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed e si desidera tooauthorize hello applicazione toodecrypt e accedere con le chiavi nell'insieme di credenziali, quindi eseguire hello seguenti:
 
     azure keyvault set-policy --vault-name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --perms-to-keys '[\"decrypt\",\"sign\"]'
 
 > [!NOTE]
-> Se si eseguono prompt dei comandi di Windows, sostituire le virgolette singole con virgolette doppie e aggiungere il carattere di escape prima delle virgolette doppie interne. Ad esempio: "[\"decrypt\",\"sign\"]".
+> Se si esegue nel prompt dei comandi di Windows, si devono sostituire le virgolette singole con le virgolette doppie e anche di escape doppie interno hello. Ad esempio: "[\"decrypt\",\"sign\"]".
 > 
 > 
 
-Se si desidera autorizzare la stessa applicazione per la lettura di tutti i segreti nell'insieme di credenziali, eseguire le seguenti operazioni:
+Se si desiderano che stessi segreti tooread applicazione tooauthorize nell'insieme di credenziali, eseguire hello:
 
     azure keyvault set-policy --vault-name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --perms-to-secrets '[\"get\"]'
 
-## <a name="if-you-want-to-use-a-hardware-security-module-hsm"></a>Per usare un modulo di protezione hardware
-Per una maggiore sicurezza, è possibile importare o generare le chiavi in moduli di protezione hardware (HSM) che rimangono sempre entro il limite HSM. I moduli di protezione hardware sono certificati per FIPS 140-2 livello 2. Se questo requisito non è applicabile, saltare questa sezione e andare a [Eliminare l'insieme di credenziali delle chiavi e le chiavi e i segreti associati](#delete-the-key-vault-and-associated-keys-and-secrets).
+## <a name="if-you-want-toouse-a-hardware-security-module-hsm"></a>Se si desidera toouse un modulo di protezione hardware (HSM)
+Per maggiore sicurezza, è possibile importare o generare chiavi in moduli di protezione hardware (HSM) che non lasciano mai il limite HSM hello. Hello i moduli HSM sono FIPS 140-2 livello 2 convalidato. Se questo requisito non si applica a tooyou, ignorare questa sezione e passare troppo[Elimina insieme di credenziali chiave hello e le chiavi associate e i segreti](#delete-the-key-vault-and-associated-keys-and-secrets).
 
-Per creare queste chiavi HSM protette, è necessaria una sottoscrizione all'insieme di credenziali che supporti le chiavi HSM protette.
+toocreate queste chiavi HSM protette, è necessario avere una sottoscrizione di insieme di credenziali che supporta chiavi HSM protette.
 
-Quando si crea l'insieme di credenziali, aggiungere il parametro 'sku':
+Quando si crea keyvault hello, aggiungere il parametro 'sku' hello:
 
     azure azure keyvault create --vault-name 'ContosoKeyVaultHSM' --resource-group 'ContosoResourceGroup' --location 'East Asia' --sku 'Premium'
 
-È possibile aggiungere a questo insieme di credenziali chiavi protette tramite software (come illustrato in precedenza) e chiavi HSM protette. Per creare una chiave HSM protetta, impostare il parametro Destination su 'HSM':
+È possibile aggiungere le chiavi protette tramite software (come illustrato in precedenza) e l'insieme di credenziali delle chiavi HSM protette toothis. toocreate una chiave HSM protetta, set hello destinazione parametro too'HSM':
 
     azure keyvault key create --vault-name 'ContosoKeyVaultHSM' --key-name 'ContosoFirstHSMKey' --destination 'HSM'
 
-È possibile usare il comando seguente per importare una chiave da un file con estensione PEM nel computer. Questo comando importa la chiave nei moduli HSM nel servizio dell'insieme di credenziali delle chiavi:
+È possibile utilizzare hello successivo comando tooimport una chiave da un file con estensione PEM nel computer in uso. Questo comando consente di importare chiave hello in hello servizio insieme di credenziali chiave HSM:
 
     azure keyvault key import --vault-name 'ContosoKeyVaultHSM' --key-name 'ContosoFirstHSMKey' --pem-file '/.softkey.pem' --destination 'HSM' --password 'PaSSWORD'
 
-Il comando successivo importa un pacchetto "bring your own key" (BYOK). Ciò consente di generare la chiave nel modulo HSM locale e di trasferirlo in moduli HSM nel servizio dell'insieme di credenziali delle chiavi, senza che la chiave esca dal limite HSM:
+comando successivo Hello Importa un "bring your own key" pacchetto (BYOK). Ciò consente di generare la chiave nel modulo di protezione hardware locale e trasferirlo nel servizio insieme di credenziali chiave, hello tooHSMs senza chiave hello lasciando limite HSM hello:
 
     azure keyvault key import --vault-name 'ContosoKeyVaultHSM' --key-name 'ContosoFirstHSMKey' --byok-file './ITByok.byok' --destination 'HSM'
 
-Per istruzioni più dettagliate su come generare questo pacchetto BYOK, vedere [Come usare chiavi HSM protette con l'insieme di credenziali delle chiavi di Azure](key-vault-hsm-protected-keys.md).
+Per ulteriori istruzioni su come toogenerate il pacchetto BYOK, vedere [come toouse HSM-Protected chiavi insieme di credenziali chiave di Azure](key-vault-hsm-protected-keys.md).
 
-## <a name="delete-the-key-vault-and-associated-keys-and-secrets"></a>Eliminare l'insieme di credenziali delle chiavi e le chiavi e i segreti associati
-Se l'insieme di credenziali delle chiavi e la chiave o il segreto associato non sono più necessari, è possibile eliminare l'insieme di credenziali delle chiavi usando il comando azure keyvault delete:
+## <a name="delete-hello-key-vault-and-associated-keys-and-secrets"></a>Eliminare l'insieme di credenziali chiave hello e le chiavi associate e i segreti
+Se non è più necessario insieme di credenziali chiave hello e hello chiave o il segreto in esso contenuti, è possibile eliminare l'insieme di credenziali chiave hello tramite comando di eliminazione keyvault hello azure:
 
     azure keyvault delete --vault-name 'ContosoKeyVault'
 
-In alternativa, è possibile eliminare l'intero gruppo di risorse di Azure, che include l'insieme di credenziali delle chiavi e tutte le altre risorse incluse in quel gruppo:
+In alternativa, è possibile eliminare un gruppo di risorse di Azure intero, che include l'insieme di credenziali chiave di hello e altre risorse che incluso in tale gruppo:
 
     azure group delete --name 'ContosoResourceGroup'
 
@@ -244,7 +244,7 @@ Questo comando ottiene una visualizzazione tabulare di tutte le chiavi e le prop
 
     azure keyvault key list --vault-name 'ContosoKeyVault'
 
-Questo comando visualizza un elenco completo di proprietà per la chiave specificata:
+Questo comando Visualizza un elenco completo delle proprietà per la chiave specificata hello:
 
     azure keyvault key show --vault-name 'ContosoKeyVault' --key-name 'ContosoFirstKey'
 
@@ -252,15 +252,15 @@ Questo comando ottiene una visualizzazione tabulare di tutti nomi dei segreti e 
 
     azure keyvault secret list --vault-name 'ContosoKeyVault'
 
-Ecco un esempio di come rimuovere una chiave specifica:
+Di seguito è riportato un esempio di come tooremove una chiave specifica:
 
     azure keyvault key delete --vault-name 'ContosoKeyVault' --key-name 'ContosoFirstKey'
 
-Ecco un esempio di come rimuovere un segreto specifico:
+Di seguito è riportato un esempio di come tooremove un segreto specifico:
 
     azure keyvault secret delete --vault-name 'ContosoKeyVault' --secret-name 'SQLPassword'
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per i riferimenti alla programmazione, vedere [Guida per gli sviluppatori dell’insieme di credenziali chiave Azure](key-vault-developers-guide.md).
+Per i riferimenti di programmazione, vedere [hello Guida per gli sviluppatori insieme credenziali chiavi Azure](key-vault-developers-guide.md).
 

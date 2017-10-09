@@ -1,27 +1,27 @@
 
 
-Una macchina virtuale *personalizzata* indica semplicemente una macchina virtuale creata usata una **app in primo piano** dal **Marketplace** poiché esegue gran parte del lavoro per l'utente. Tuttavia, è comunque possibile fare scelte di configurazione che includono i seguenti elementi:
+A *personalizzato* macchina virtuale indica semplicemente una macchina virtuale creata utilizzando una **app in primo piano** da hello **Marketplace** perché richiede molte delle operazioni di hello automaticamente. Ancora, è comunque possibile effettuare scelte di configurazione che includono hello seguenti elementi:
 
-* Collegare una macchina virtuale a Rete virtuale.
-* Installare l'agente di macchina virtuale di Azure e le estensioni di macchina virtuale di Azure, ad esempio per antimalware.
-* Aggiungere la macchina virtuale ai servizi cloud esistenti.
-* Aggiungere la macchina virtuale a un account di archiviazione esistente.
-* Aggiungere una macchina virtuale a un set di disponibilità.
+* Connessione di rete virtuale tooa di hello macchina virtuale.
+* Installazione agente della macchina virtuale Azure hello e le estensioni di macchina virtuale di Azure, ad esempio per antimalware.
+* Aggiunta di servizi cloud tooexisting di hello macchina virtuale.
+* Aggiunta di hello macchina virtuale tooan account di archiviazione esistente.
+* Aggiunta di disponibilità tooan delle macchine virtuali hello set.
 
 <!--
 > [!IMPORTANT]
-> If you want your virtual machine to use a virtual network so you can connect to it directly by host name or set up cross-premises connections, make sure that you specify the virtual network when you create the virtual machine. A virtual machine can be configured to join a virtual network only when you create the virtual machine. For details on virtual networks, see [Azure Virtual Network overview](../articles/virtual-network/virtual-networks-overview.md).
+> If you want your virtual machine toouse a virtual network so you can connect tooit directly by host name or set up cross-premises connections, make sure that you specify hello virtual network when you create hello virtual machine. A virtual machine can be configured toojoin a virtual network only when you create hello virtual machine. For details on virtual networks, see [Azure Virtual Network overview](../articles/virtual-network/virtual-networks-overview.md).
 >
 >
  -->
 
 > [!IMPORTANT]
-> Se si desidera che una macchina virtuale usi una rete virtuale, assicurarsi di specificare la rete quando si crea la macchina virtuale.
+> Se si desidera il toouse macchina virtuale, una rete virtuale, assicurarsi di specificare la rete virtuale hello quando si crea una macchina virtuale hello.
 
-> * Due vantaggi dell'uso di una rete virtuale consistono nel collegarsi direttamente alla macchina virtuale e nel configurare connessioni cross-premise.
+> * Due vantaggi dell'utilizzo di una rete virtuale si connettono direttamente macchina virtuale toohello e tooset le connessioni tra più sedi locali.
 
-> * È possibile configurare una macchina virtuale in modo da aggiungerla a una rete virtuale solo quando viene creata. Per informazioni dettagliate sulle reti virtuali, vedere [Panoramica di Rete virtuale](../articles/virtual-network/virtual-networks-overview.md).
+> * Una macchina virtuale può essere toojoin configurata una rete virtuale solo quando si crea una macchina virtuale hello. Per informazioni dettagliate sulle reti virtuali, vedere [Panoramica di Rete virtuale](../articles/virtual-network/virtual-networks-overview.md).
 >
 >
 
-## <a name="to-create-the-virtual-machine"></a>Per creare la macchina virtuale
+## <a name="toocreate-hello-virtual-machine"></a>macchina virtuale di hello toocreate

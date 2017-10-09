@@ -1,6 +1,6 @@
 ---
-title: Creare una copia della macchina virtuale Linux con l'interfaccia della riga di comando di Azure 1.0 | Documentazione Microsoft
-description: Informazioni su come creare una copia della macchina virtuale Linux di Azure con l'interfaccia della riga di comando di Azure 1.0 nel modello di distribuzione Resource Manager
+title: una copia della VM Linux con hello Azure CLI 1.0 aaaCreate | Documenti Microsoft
+description: Informazioni su come toocreate una copia della macchina virtuale Linux di Azure con hello Azure CLI 1.0 nel modello di distribuzione di gestione risorse di hello
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 62ae54f3596c9383cbf3b401fcfdb42ecfdee63c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 997a2c8109e7083ececd76fd1013e9ed4d3e6afd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure-with-the-azure-cli-10"></a>Creare la copia di una macchina virtuale Linux eseguita in Azure con l'interfaccia della riga di comando di Azure 1.0
-Questo articolo descrive come creare una copia di una macchina virtuale (VM) di Azure che esegue Linux nel modello di distribuzione Resource Manager. Per prima cosa si esegue la copia dei dischi dati e del sistema operativo in un nuovo contenitore, quindi si configurano le risorse di rete e si crea la nuova macchina virtuale.
+# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure-with-hello-azure-cli-10"></a>Creare una copia di una macchina virtuale di Linux in esecuzione in Azure con hello Azure CLI 1.0
+In questo articolo viene illustrato come una copia della macchina virtuale di Azure (VM) in esecuzione Linux utilizzando toocreate hello il modello di distribuzione di gestione risorse. Innanzitutto copiato hello del sistema operativo e dischi tooa nuovo contenitore di dati, quindi impostare le risorse di rete hello e creare hello nuova macchina virtuale.
 
 È anche possibile [caricare e creare una VM da un'immagine disco personalizzata](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando:
+## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI
+È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello:
 
-- Interfaccia della riga di comando di Azure 1.0: interfaccia della riga di comando per i modelli di distribuzione classica e di gestione delle risorse (questo articolo)
-- [Interfaccia della riga di comando di Azure 2.0](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): interfaccia della riga di comando di prossima generazione per il modello di distribuzione di Gestione risorsa
+- CLI di Azure 1.0-nostri CLI per hello classic risorse Gestione modelli di distribuzione e (in questo articolo)
+- [Azure CLI 2.0](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -la prossima generazione CLI per modello di distribuzione di gestione risorse hello
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Accertarsi che prima di iniziare la procedura siano soddisfatti i prerequisiti seguenti:
+Verificare che siano soddisfatti i seguenti prerequisiti prima di iniziare i passaggi di hello hello:
 
-* Nel computer è stata scaricata e installata l' [interfaccia della riga di comando di Azure](../../cli-install-nodejs.md) . 
+* Si dispone di hello [CLI di Azure](../../cli-install-nodejs.md) scaricato e installato nel computer. 
 * Sono anche necessarie alcune informazioni sulla VM Linux di Azure esistente:
 
-| Informazioni sulla VM di origine | Informazioni sulla collocazione |
+| Informazioni sulla VM di origine | Dove tooget è |
 | --- | --- |
-| Nome della VM |`azure vm list` |
+| Nome della VM. |`azure vm list` |
 | Nome del gruppo di risorse |`azure vm list` |
 | Location |`azure vm list` |
 | Nome dell'account di archiviazione |`azure storage account list -g <resourceGroup>` |
 | Nome del contenitore |`azure storage container list -a <sourcestorageaccountname>` |
 | Nome del file VHD della VM di origine |`azure storage blob list --container <containerName>` |
 
-* Sarà necessario scegliere alcune informazioni sulla nuova VM:    <br> -Nome contenitore    <br> -Nome della VM    <br> -Dimensioni della VM    <br> -Nome della vNet    <br> -Nome della SubNet    <br> -Nome dell'IP    <br> -Nome NIC
+* È necessario toomake elencate alcune scelte sulla nuova macchina virtuale:   <br> -Nome contenitore    <br> -Nome della VM    <br> -Dimensioni della VM    <br> -Nome della vNet    <br> -Nome della SubNet    <br> -Nome dell'IP    <br> -Nome NIC
 
 ## <a name="login-and-set-your-subscription"></a>Effettuare l'accesso e impostare la sottoscrizione
-1. Effettuare l'accesso all'interfaccia della riga di comando.
+1. Account di accesso toohello CLI.
 
     ```azurecli
     azure login
@@ -59,14 +59,14 @@ Accertarsi che prima di iniziare la procedura siano soddisfatti i prerequisiti s
     ```azurecli
     azure config mode arm
     ```
-3. Impostare la sottoscrizione corretta. Per un elenco di tutte le sottoscrizioni, consultare l'elenco degli account Azure.
+3. Impostare la sottoscrizione corretta hello. È possibile utilizzare 'elenco di account di azure' toosee tutte le sottoscrizioni.
 
     ```azurecli
     azure account set mySubscriptionID
     ```
 
-## <a name="stop-the-vm"></a>Arrestare la VM
-Arrestare e deallocare la VM di origine. Per un elenco di tutte le VM presenti nella sottoscrizione e dei nomi dei relativi gruppi di risorse, consultare l'elenco delle VM Azure.
+## <a name="stop-hello-vm"></a>Arrestare VM hello
+Arrestare e deallocare una macchina virtuale di origine hello. È possibile utilizzare 'elenco di macchine virtuali di azure' tooget un elenco di tutte le macchine virtuali hello nella sottoscrizione e i relativi nomi di gruppo di risorse.
 
 ```azurecli
 azure vm stop myResourceGroup myVM
@@ -74,10 +74,10 @@ azure vm deallocate myResourceGroup MyVM
 ```
 
 
-## <a name="copy-the-vhd"></a>Copiare il file VHD
-Per copiare il file VHD dall'archiviazione di origine a quella di destinazione, è possibile usare `azure storage blob copy start`. In questo esempio il file VHD viene copiato nello stesso account di archiviazione, ma in un contenitore diverso.
+## <a name="copy-hello-vhd"></a>Copiare hello disco rigido virtuale
+È possibile copiare hello VHD hello origine archiviazione toohello di destinazione utilizzando hello `azure storage blob copy start`. In questo esempio verrà toocopy hello VHD toohello stesso account di archiviazione, ma un contenitore diverso.
 
-Per copiare il file VHD in un altro contenitore dello stesso account di archiviazione, digitare:
+toocopy hello VHD tooanother contenitore hello stesso account di archiviazione, digitare:
 
 ```azurecli
 azure storage blob copy start \
@@ -85,7 +85,7 @@ azure storage blob copy start \
         myNewContainerName
 ```
 
-## <a name="set-up-the-virtual-network-for-your-new-vm"></a>Configurare la rete virtuale per la nuova VM
+## <a name="set-up-hello-virtual-network-for-your-new-vm"></a>Configurare la rete virtuale di hello per la nuova macchina virtuale
 Configurare una rete virtuale e una scheda NIC per la nuova VM. 
 
 ```azurecli
@@ -99,8 +99,8 @@ azure network nic create myResourceGroup myNic -k mySubnet -m myVnet -p myPublic
 ```
 
 
-## <a name="create-the-new-vm"></a>Creare la nuova VM
-A questo punto è possibile creare una VM dal disco rigido virtuale caricato [usando un modello di Resource Manager](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd) oppure tramite l'interfaccia della riga di comando, specificando l'URI del disco copiato come indicato di seguito:
+## <a name="create-hello-new-vm"></a>Creare hello nuova macchina virtuale
+È ora possibile creare una macchina virtuale dal disco virtuale caricato [utilizzando un modello di gestione risorse](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd) o tramite hello CLI specificando hello URI tooyour disco copiato digitando:
 
 ```azurecli
 azure vm create -n myVM -l myLocation -g myResourceGroup -f myNic \
@@ -111,5 +111,5 @@ azure vm create -n myVM -l myLocation -g myResourceGroup -f myNic \
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni su come usare l'interfaccia della riga di comando di Azure per gestire la nuova macchina virtuale, vedere [Comandi dell'interfaccia della riga di comando Azure per Azure Resource Manager](../azure-cli-arm-commands.md).
+toolearn come toouse CLI di Azure toomanage nuova macchina virtuale, vedere [i comandi CLI di Azure per Gestione risorse di Azure hello](../azure-cli-arm-commands.md).
 

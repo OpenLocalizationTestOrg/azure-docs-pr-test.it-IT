@@ -1,6 +1,6 @@
 ---
-title: Eseguire la migrazione del database MySQL mediante dump e ripristino nel database di Azure per MySQL | Microsoft Docs
-description: Questo articolo illustra due modi comuni per eseguire il backup e il ripristino dei database nel database di Azure per MySQL usando strumenti come mysqldump, MySQL Workbench e PHPMyAdmin.
+title: aaaMigrate proprio database di MySQL mediante dump e il ripristino nel Database di Azure per MySQL | Documenti Microsoft
+description: In questo articolo vengono illustrati due tooback modi comuni backup e ripristino di database nel Database di Azure per MySQL, utilizzando strumenti quali PHPMyAdmin mysqldump e MySQL Workbench.
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -9,118 +9,118 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/13/2017
-ms.openlocfilehash: 8606067a8e82c6314ab931eb4816d45755a8e04f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d05d483ff53483df8e005eae2d9a4f8190e8f663
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-your-mysql-database-to-azure-database-for-mysql-using-dump-and-restore"></a>Eseguire la migrazione del database MySQL nel database di Azure mediante dump e ripristino
-Questo articolo illustra due modi comuni per eseguire il backup e il ripristino dei database nel database di Azure per MySQL
-- Dump e ripristino dalla riga di comando( tramite mysqldump) 
+# <a name="migrate-your-mysql-database-tooazure-database-for-mysql-using-dump-and-restore"></a>Eseguire la migrazione del tooAzure database MySQL Database per utilizzo dump e ripristino di MySQL
+In questo articolo vengono illustrati due tooback modi comuni backup e ripristino di database nel Database di Azure per MySQL
+- Dump e il ripristino da hello della riga di comando (tramite mysqldump) 
 - Dump e ripristino con PHPMyAdmin 
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Per proseguire con questa guida è necessario:
+toostep tramite questa procedura-tooguide, è necessario toohave:
 - [Creare un database di Azure per il server MySQL - portale di Azure](quickstart-create-mysql-server-database-using-azure-portal.md)
 - Avere installato su un computer l'utilità della riga di comando [mysqldump](https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html).
-- MySQL Workbench [Download di MySQL Workbench](https://dev.mysql.com/downloads/workbench/), Toad, Navicat o qualsiasi altro strumento MySQL di terze parti per i comandi di dump e ripristino.
+- MySQL Workbench [MySQL Workbench scaricare](https://dev.mysql.com/downloads/workbench/), Toad, Navicat o altri toodo strumento MySQL di terze parti dump e il ripristino di comandi.
 
 ## <a name="use-common-tools"></a>Usare strumenti comuni
-Usare utilità e strumenti comuni, come ad esempio MySQL Workbench, mysqldump, Toad o Navicat per connettersi in modalità remota e ripristinare i dati nel database di Azure per MySQL. Usare tali strumenti sul computer client con una connessione internet per connettersi al database di Azure per MySQL. Usare una connessione SSL crittografata per le procedure di sicurezza consigliate. Vedere anche [Configure SSL connectivity in Azure Database for MySQL](concepts-ssl-connection-security.md) (Configurare la connettività SSL nel database di Azure per MySQL). Durante la migrazione al database di Azure per MySQL non è necessario spostare i file di dump in alcun percorso cloud speciale. 
+Utilizzare i comuni strumenti e utilità, ad esempio tooremotely Workbench di MySQL, mysqldump, Toad o Navicat connettersi e ripristinare i dati nel Database di Azure per MySQL. Utilizzare tali strumenti nel computer client con un toohello tooconnect di connessione internet del Database di Azure per MySQL. Usare una connessione SSL crittografata per le procedure di sicurezza consigliate. Vedere anche [Configure SSL connectivity in Azure Database for MySQL](concepts-ssl-connection-security.md) (Configurare la connettività SSL nel database di Azure per MySQL). Percorso del cloud speciali tooany toomove hello dump file non è necessario durante la migrazione di Database tooAzure per MySQL. 
 
 ## <a name="common-uses-for-dump-and-restore"></a>Usi comuni per il dump e ripristino
-È possibile usare le utilità di MySQL come mysqldump e mysqlpump per il dump e il caricamento di database in un database MySQL di Azure in diversi scenari comuni. In altri scenari è invece possibile usare l'approccio di [importazione ed esportazione](concepts-migrate-import-export.md).
+È possibile utilizzare l'utilità di MySQL come mysqldump e mysqlpump toodump e caricare i database in un MySQL Database di Azure in diversi scenari comuni. In altri scenari, è possibile utilizzare hello [importare ed esportare](concepts-migrate-import-export.md) approccio invece.
 
-- Usare i dump del database quando si esegue la migrazione dell'intero database. Questa indicazione è utile quando si sposta una grande quantità di dati di MySQL o quando si vuole ridurre al minimo l'interruzione del servizio per applicazioni o siti live. 
--  Verificare che tutte le tabelle nel database usino il motore di archiviazione InnoDB quando si caricano dati nel database di Azure per MySQL. Il database di Azure per MySQL supporta solo il motore di archiviazione InnoDB e pertanto non sono supportati motori di archiviazione alternativi. Se le tabelle sono configurate con motori di archiviazione alternativi, convertirli nel formato di motore InnoDB prima della migrazione al database di Azure per MySQL.
-   Se ad esempio si possiede WordPress o WebApp con le tabelle MyISAM, convertire le tabelle eseguendo la migrazione nel formato InnoDB prima del ripristino al database di Azure per MySQL. Usare la clausola `ENGINE=InnoDB` per impostare il motore usato per la creazione di una nuova tabella e quindi trasferire i dati nella tabella compatibile prima del ripristino. 
+- Usa database esegue il dump quando si esegue la migrazione di database intero hello. Questa indicazione può contenere durante lo spostamento di una grande quantità di dati di MySQL o quando si desidera toominimize interruzione del servizio per le applicazioni o siti live. 
+-  Assicurarsi che tutte le tabelle nel database di hello usano il motore di archiviazione InnoDB hello durante il caricamento di dati nel Database di Azure per MySQL. Il database di Azure per MySQL supporta solo il motore di archiviazione InnoDB e pertanto non sono supportati motori di archiviazione alternativi. Se le tabelle sono configurate con altri motori di archiviazione, è necessario convertirli in formato di motore hello InnoDB prima della migrazione tooAzure Database per MySQL.
+   Ad esempio, se si dispone di WordPress WebApp utilizzando tabelle MyISAM hello, convertire innanzitutto tali tabelle eseguendo la migrazione in formato InnoDB prima del ripristino di Database tooAzure per MySQL. Clausola hello utilizzare `ENGINE=InnoDB` tooset hello motore utilizzato quando si crea una nuova tabella, quindi trasferire i dati di hello in tabella compatibile di hello prima del ripristino hello. 
 
    ```sql
    INSERT INTO innodb_table SELECT * FROM myisam_table ORDER BY primary_key_columns
    ```
-- Per evitare eventuali problemi di compatibilità, verificare che venga usata la stessa versione di MySQL nei sistemi di origine e di destinazione durante il dump dei database. Ad esempio, se il server MySQL esistente è versione 5.7, è necessario eseguire la migrazione al database di Azure per MySQL configurato per l'esecuzione della versione 5.7. Il comando `mysql_upgrade` non funziona in un database di Azure per il server MySQL e non è supportato. Se è necessario eseguire l'aggiornamento in tutte le versioni di MySQL, eseguire prima il dump o esportare il database di una versione inferiore in una versione successiva di MySQL nel proprio ambiente. Eseguire quindi `mysql_upgrade` prima di tentare la migrazione in un database di Azure per MySQL.
+- problemi di qualsiasi compatibilità tooavoid, assicurarsi di hello stessa versione di MySQL è utilizzato nei sistemi di origine e destinazione hello durante il dump di database. Ad esempio, se il server MySQL esistente è versione 5.7, quindi è necessario eseguire la migrazione tooAzure Database MySQL configurato toorun versione 5.7. Hello `mysql_upgrade` comando non funziona in un Database di Azure per il server MySQL e non è supportato. Se è necessario tooupgrade tra le versioni di MySQL, prima di eseguire il dump o esportare il database di una versione inferiore in una versione successiva di MySQL nel proprio ambiente. Eseguire quindi `mysql_upgrade` prima di tentare la migrazione in un database di Azure per MySQL.
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
-Per ottimizzare le prestazioni, tenere presenti le considerazioni seguenti durante il dump di database di grandi dimensioni:
--   Usare l'opzione `exclude-triggers` in mysqldump durante il dump dei database. Escludere i trigger dai file di dump per evitare l'attivazione dei comandi di trigger durante il ripristino dei dati. 
--   Evitare l'opzione `single-transaction` in mysqldump durante il dump di database di dimensioni molto estese. Il dump di molte tabelle all'interno di una singola transazione determina un maggior consumo di spazio di archiviazione e risorse di memoria durante il ripristino e può generare ritardi nelle prestazioni o vincoli delle risorse.
--   Usare gli inserimenti multivalore durante il caricamento con SQL per ridurre al minimo il sovraccarico di esecuzione delle istruzioni durante il dump dei database. Quando si usano i file dump generati dall'utilità mysqldump, gli inserimenti multivalore sono abilitati per impostazione predefinita. 
--  Usare l'opzione `order-by-primary` in mysqldump durante il dump dei database, in modo che i dati vengano inseriti nello script nell'ordine delle chiavi primarie.
--   Usare l'opzione `disable-keys` in mysqldump durante il dump dei dati, per disabilitare i vincoli della chiave esterna prima del caricamento. La disabilitazione dei controlli della chiave esterna offre miglioramenti delle prestazioni. Abilitare i vincoli e verificare i dati dopo il caricamento per garantire l'integrità referenziale.
+toooptimize prestazioni, prendere nota di queste considerazioni durante il dump di database di grandi dimensioni:
+-   Hello utilizzare `exclude-triggers` opzione mysqldump durante il dump di database. Escludere i trigger dai comandi dump file tooavoid hello trigger di attivazione durante il ripristino dei dati hello. 
+-   Evitare di hello `single-transaction` opzione mysqldump durante il dump di database di dimensioni molto grandi. Dump molte tabelle all'interno di una singola transazione causa di spazio di archiviazione e toobe risorse di memoria utilizzate durante il ripristino e può causare ritardi nelle prestazioni o limitazioni delle risorse.
+-   Utilizzare gli inserimenti di multivalore durante il caricamento con un sovraccarico di esecuzione istruzione toominimize SQL durante il dump di database. Quando si usano i file dump generati dall'utilità mysqldump, gli inserimenti multivalore sono abilitati per impostazione predefinita. 
+-  Hello utilizzare `order-by-primary` opzione mysqldump durante il dump di database, in modo che i dati di hello viene inserito nello script nell'ordine delle chiavi primarie.
+-   Hello utilizzare `disable-keys` opzione mysqldump durante il dump dei dati, vincoli di chiave esterna toodisable prima di caricamento. La disabilitazione dei controlli della chiave esterna offre miglioramenti delle prestazioni. Abilitare i vincoli hello e verificare dati hello dopo hello carico tooensure integrità referenziale.
 -   Usare le tabelle partizionate quando appropriato.
--   Caricare i dati in parallelo. Evitare un eccessivo parallelismo che comporterebbe il raggiungimento del limite di risorse e monitorare le risorse con le metriche offerta nel portale di Azure. 
--   Usare l'opzione `defer-table-indexes` in mysqlpump durante il dump dei database, in modo che la creazione dell'indice venga eseguita dopo il caricamento dei dati delle tabelle.
+-   Caricare i dati in parallelo. Evitare una quantità eccessiva parallelismo causare toohit un limite di risorse e monitorare le risorse utilizzando hello metriche disponibili nel portale di Azure hello. 
+-   Hello utilizzare `defer-table-indexes` opzione mysqlpump durante il dump di database, in modo che la creazione dell'indice venga eseguita dopo il caricamento di dati di tabelle.
 
-## <a name="create-a-backup-file-from-the-command-line-using-mysqldump"></a>Creare un file di backup dalla riga di comando tramite mysqldump
-Per eseguire il backup di un database MySQL esistente nel server locale o in una macchina virtuale, eseguire il comando seguente: 
+## <a name="create-a-backup-file-from-hello-command-line-using-mysqldump"></a>Creare un file di backup da hello della riga di comando utilizzando mysqldump
+tooback di un database MySQL esistente nel server locale hello o in una macchina virtuale, eseguire hello comando seguente: 
 ```bash
 $ mysqldump --opt -u [uname] -p[pass] [dbname] > [backupfile.sql]
 ```
 
-I parametri da specificare sono:
+Hello parametri tooprovide sono:
 - [uname] Username del database 
-- [pass] Password del database (si noti che non è presente alcuno spazio vuoto tra -p e la password) 
-- [dbname] Nome del database 
-- [backupfile.sql] Filename per il backup del database 
-- [-opt] Opzione mysqldump 
+- [passaggio] hello password per il database (nota non è disponibile spazio tra -p e la password di hello) 
+- nome hello [dbname] del database 
+- nome del file hello [backupfile.sql] per il backup del database 
+- [-opt] hello mysqldump opzione 
 
-Ad esempio, per eseguire il backup di un database denominato "testdb" nel proprio server MySQL con il nome utente "testuser" e senza password in un file testdb_backup.sql, usare il comando seguente. Il comando esegue il backup del database `testdb` in un file denominato `testdb_backup.sql`, che contiene tutte le istruzioni SQL necessarie per ricreare il database. 
+Ad esempio, tooback backup di un database denominato 'testdb' sul server MySQL con nome utente hello "testuser" e non testdb_backup.sql file tooa di password, utilizzare hello comando seguente. Hello comando esegue il backup hello `testdb` database in un file denominato `testdb_backup.sql`, che contiene tutte le istruzioni SQL hello necessari toore-creare database hello. 
 
 ```bash
 $ mysqldump -u root -p testdb > testdb_backup.sql
 ```
-Per selezionare tabelle specifiche nel database di cui si deve eseguire il backup, elencare i nomi delle tabelle separati da spazi. Ad esempio, per eseguire il backup delle sole tabelle table1 e table2 in "testdb", seguire questo esempio: 
+tooselect tabelle specifiche tooback il database di, i nomi delle tabelle di hello elenco separati da spazi. Ad esempio, tooback solo delle tabelle table1 e table2 da hello 'testdb', seguire questo esempio: 
 ```bash
 $ mysqldump -u root -p testdb table1 table2 > testdb_tables_backup.sql
 ```
 
-Per eseguire il backup di più database contemporaneamente, usare lo switch -database ed elencare i nomi dei database separati da spazi. 
+tooback di più di un database in una sola volta, utilizzare hello - opzione di database e i nomi dei database di hello elenco separati da spazi. 
 ```bash
 $ mysqldump -u root -p --databases testdb1 testdb3 testdb5 > testdb135_backup.sql 
 ```
-Per eseguire il backup di tutti i database del server contemporaneamente è necessario usare l'opzione --all-databases (tutti i database).
+tooback backup di tutti i database di hello in server hello in una sola volta, è consigliabile utilizzare hello - opzione di tutti i database.
 ```
 $ mysqldump -u root -p --all-databases > alldb_backup.sql 
 ```
 
-## <a name="create-a-database-on-the-target-azure-database-for-mysql-server"></a>Creare un database sul database di Azure per il server MySQL di destinazione
-Creare un database vuoto nel database di Azure per il server MySQL di destinazione in cui si vuole eseguire la migrazione dei dati. Usare uno strumento come MySQL Workbench, Toad o Navicat per creare il database. Il database può avere lo stesso nome del database che contiene i dati di dump; in alternativa, è possibile creare un database con un nome diverso.
+## <a name="create-a-database-on-hello-target-azure-database-for-mysql-server"></a>Creare un database nel Database di Azure di destinazione hello per il server MySQL
+Creare un database vuoto nel Database di Azure di destinazione hello per MySQL server in cui i dati di hello toomigrate. Utilizzare uno strumento come database di hello toocreate Workbench di MySQL, Toad o Navicat. database Hello può avere hello stesso nome come database hello dati indipendenti hello il dump o è possibile creare un database con un nome diverso.
 
-Per la connessione, individuare le informazioni di connessione nella pagina Proprietà nel database di Azure per MySQL.
-![Trovare le informazioni di connessione nel portale di Azure](./media/concepts-migrate-dump-restore/1_server-properties-name-login.png)
+tooget connessa, trovare le informazioni di connessione di hello nella pagina proprietà hello nel Database di Azure per MySQL.
+![Trovare le informazioni di connessione hello in hello portale di Azure](./media/concepts-migrate-dump-restore/1_server-properties-name-login.png)
 
-Aggiungere le informazioni di connessione in MySQL Workbench.
+Aggiungere informazioni di connessione hello nel Workbench di MySQL.
 ![Stringa di connessione MySQL Workbench](./media/concepts-migrate-dump-restore/2_setup-new-connection.png)
 
 
 ## <a name="restore-your-mysql-database-using-command-line-or-mysql-workbench"></a>Ripristinare il database MySQL mediante una riga di comando o MySQL Workbench
-Dopo avere creato il database di destinazione è possibile usare il comando mysql o MySQL Workbench per ripristinare i dati nel database appena creato specificatamente dal file di dump.
+Dopo aver creato il database di destinazione hello, è possibile utilizzare il comando di mysql hello o MySQL Workbench toorestore hello dati hello specifico appena creata del database dal file di dump hello.
 ```bash
 mysql -h [hostname] -u [uname] -p[pass] [db_to_restore] < [backupfile.sql]
 ```
-In questo esempio, ripristinare i dati nel database appena creato nel database di Azure per il server MySQL di destinazione.
+In questo esempio, ripristinare i dati di hello in hello appena creato database sul Database di Azure di destinazione hello per il server MySQL.
 ```bash
 $ mysql -h myserver4demo.mysql.database.azure.com -u myadmin@myserver4demo -p testdb < testdb_backup.sql
 ```
 
 ## <a name="export-using-phpmyadmin"></a>Esportazione mediante PHPMyAdmin
-Per l'esportazione è possibile usare lo strumento comune phpMyAdmin, che potrebbe essere già installato in locale nel proprio ambiente. Per esportare il database MySQL mediante PHPMyAdmin:
+tooexport, è possibile utilizzare phpMyAdmin strumento comune hello, che potrebbe già installato localmente nell'ambiente in uso. tooexport database MySQL tramite PHPMyAdmin:
 - Aprire phpMyAdmin.
-- Selezionare il database. Fare clic sul nome del database nell'elenco a sinistra. 
-- Fare clic sul collegamento **Export** (Esporta). Viene visualizzata una nuova pagina per eseguire il dump del database.
-- Nell'area Export (Esporta) fare clic sul collegamento **Select All** (Seleziona tutto) per scegliere le tabelle nel database. 
-- Nell'area delle opzioni SQL, fare clic sulle opzioni appropriate. 
-- Fare clic sull'opzione **Save as file** (Salva come file) e sull'opzione di compressione corrispondente e quindi fare clic sul pulsante **Go** (Vai). Verrà visualizzata una finestra di dialogo che richiede di salvare il file in locale.
+- Selezionare il database. Fare clic su nome del database nell'elenco a sinistra di hello hello hello. 
+- Fare clic su hello **esportare** collegamento. Una nuova pagina viene visualizzato il dump hello tooview del database.
+- Nell'area di esportazione hello, fare clic su hello **Seleziona tutto** collegare toochoose hello tabelle nel database. 
+- Nell'area di opzioni SQL hello, fare clic su opzioni appropriate hello. 
+- Fare clic su hello **salvare come file** opzione compressione corrispondente hello opzione e quindi fare clic su hello **passare** pulsante. Richiesta si toosave hello file in locale verrà visualizzata una finestra di dialogo.
 
 ## <a name="import-using-phpmyadmin"></a>Importazione mediante PHPMyAdmin
-L'importazione del database è simile all'esportazione. Procedere come segue:
+Importare il database è tooexporting simile. Hello le seguenti operazioni:
 - Aprire phpMyAdmin. 
-- Nella pagina di impostazione di phpMyAdmin fare clic su **Add** (Aggiungi) per aggiungere il database di Azure per il server MySQL. Specificare i dettagli della connessione e le informazioni di accesso.
-- Creare un database denominato in modo appropriato e selezionarlo a sinistra della schermata. Per riscrivere il database esistente, fare clic sul nome del database, selezionare tutte le caselle di controllo accanto ai nomi delle tabelle e selezionare **Drop** (Elimina) per eliminare le tabelle esistenti. 
-- Fare clic sul collegamento **SQL** per visualizzare la pagina in cui è possibile digitare i comandi SQL o caricare il file SQL. 
-- Usare il pulsante **Browse** (Sfoglia) per trovare il file nel database. 
-- Fare clic sul pulsante **Go** (Vai) per esportare il backup, eseguire i comandi SQL e ricreare il database.
+- Nella pagina di installazione phpMyAdmin hello, fare clic su **Aggiungi** tooadd del Database di Azure per il server MySQL. Fornire i dettagli della connessione hello e informazioni di accesso.
+- Creare un database denominato in modo appropriato e selezionarlo in a sinistra della schermata di hello hello. toorewrite hello database esistente, fare clic sul nome di database hello, selezionare tutte le caselle di controllo hello accanto a nomi di tabella hello e selezionare **Drop** toodelete hello tabelle esistenti. 
+- Fare clic su hello **SQL** collegamento tooshow hello la pagina in cui è possibile digitare nei comandi SQL o caricare il file SQL. 
+- Hello utilizzare **Sfoglia** file di database hello toofind pulsante. 
+- Fare clic su hello **passare** pulsante backup hello tooexport, eseguire i comandi SQL hello e ricreare il database.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Come connettere le applicazioni al database di Azure per MySQL](./howto-connection-string.md)
+[La connessione applicazioni tooAzure Database MySQL](./howto-connection-string.md)

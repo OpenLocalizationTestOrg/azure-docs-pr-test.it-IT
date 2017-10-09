@@ -1,6 +1,6 @@
 ---
-title: Connessione a un account di Servizi multimediali mediante .NET
-description: Questo argomento illustra come connettersi a Servizi multimediali mediante .NET.
+title: aaaConnecting tooMedia servizi Account usando .NET
+description: Questo argomento viene illustrato come tooconnect tooMedia servizi abbonamento .NET.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,42 +14,42 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 892932116934952265a21ab17aac3434b5760136
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a23bd285f7cae17ae5831e1e50e73947afbb9a3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-to-media-services-account-using-media-services-sdk-for-net"></a>Connessione a un account di Servizi multimediali mediante l'SDK di Servizi multimediali per .NET
+# <a name="connecting-toomedia-services-account-using-media-services-sdk-for-net"></a>Connessione tooMedia Account Services con Media Services SDK per .NET
 > [!div class="op_single_selector"]
 > * [REST](media-services-rest-connect-programmatically.md)
 > * [.NET](media-services-dotnet-connect-programmatically.md)
 > 
 > 
 
-Questo argomento descrive come ottenere una connessione a Servizi multimediali di Microsoft Azure a livello di codice quando si programma con Media Services SDK per .NET.
+In questo argomento viene descritto come tooobtain tooMicrosoft una connessione a livello di codice servizi multimediali di Azure quando si programma con hello Media Services SDK per .NET.
 
-## <a name="connecting-to-media-services"></a>Connessione a Servizi multimediali
-Prima di connettersi a Servizi multimediali a livello di codice, è necessario impostare un account Azure, configurare Servizi multimediali su tale account e quindi definire un progetto di Visual Studio per lo sviluppo con l'SDK di Servizi multimediali per .NET. Per altre informazioni, vedere Configurazione per lo sviluppo con l'SDK di Servizi multimediali per .NET.
+## <a name="connecting-toomedia-services"></a>La connessione di servizi tooMedia
+tooconnect tooMedia servizi a livello di codice, è necessario avere già configurato un account Azure, configurato servizi multimediali nell'account e quindi configurare un progetto di Visual Studio per lo sviluppo con hello Media Services SDK per .NET. Per ulteriori informazioni, vedere il programma di installazione per lo sviluppo con hello Media Services SDK per .NET.
 
-Al termine del processo di configurazione dell'account di Servizi multimediali, l'utente ottiene i seguenti valori di connessione obbligatori, che può usare per configurare connessioni a Servizi multimediali a livello di codice.
+Alla fine di hello del processo di installazione di account servizi multimediali hello, ottenuto seguente hello necessari valori di connessione. Utilizzare queste connessioni a livello di codice toomake tooMedia servizi.
 
 * Nome dell'account di Servizi multimediali
 * Chiave dell'account di Servizi multimediali
 
-Per trovare questi valori, passare al portale di gestione di Azure, selezionare l'account di Servizi multimediali e fare clic sull'icona "**GESTISCI CHIAVI**" nella parte inferiore della finestra del portale. Facendo clic sull'icona accanto a ciascuna casella di testo, il valore viene copiato negli Appunti di sistema.
+toofind questi valori, visitare il portale di gestione di Azure toohello, selezionare l'account del servizio di supporto e fare clic su hello "**GESTISCI CHIAVI**" sull'icona nella parte inferiore di hello della finestra portale hello. Facendo clic su hello icona Avanti tooeach testo casella copie hello valore toohello Appunti di sistema.
 
 ## <a name="creating-a-cloudmediacontext-instance"></a>Creazione di un'istanza di CloudMediaContext
-Prima di iniziare la programmazione basata su Servizi multimediali, è necessario creare un'istanza di **CloudMediaContext** che rappresenta il contesto del server. **CloudMediaContext** contiene riferimenti a raccolte importanti composte da processi, asset, file, criteri di accesso e localizzatori.
+programmazione con Media Services è necessario toocreate toostart un **CloudMediaContext** istanza che rappresenta il contesto di server hello. Hello **CloudMediaContext** include riferimenti tooimportant insiemi inclusi i processi, asset, file, i criteri di accesso e localizzatori.
 
 > [!NOTE]
-> La classe **CloudMediaContext** non è di tipo thread-safe. È quindi necessario creare una nuova istanza di CloudMediaContext per ogni thread o set di operazioni.
+> Hello **CloudMediaContext** classe non è thread-safe. È quindi necessario creare una nuova istanza di CloudMediaContext per ogni thread o set di operazioni.
 > 
 > 
 
-CloudMediaContext include cinque overload del costruttore. Si consiglia di usare costruttori che accettano **MediaServicesCredentials** come parametro. Per altre informazioni, vedere la sezione **Riutilizzo dei token del Servizio di controllo di accesso** seguente. 
+CloudMediaContext include cinque overload del costruttore. È consigliato toouse costruttori che accettano **MediaServicesCredentials** come parametro. Per ulteriori informazioni, vedere hello **riutilizzo dei token del servizio controllo di accesso** che segue. 
 
-Nel seguente esempio viene usato il costruttore pubblico CloudMediaContext(MediaServicesCredentials credentials):
+Hello esempio seguente viene utilizzato un costruttore pubblico CloudMediaContext(MediaServicesCredentials credentials) hello:
 
     // _cachedCredentials and _context are class member variables. 
     _cachedCredentials = new MediaServicesCredentials(
@@ -60,22 +60,22 @@ Nel seguente esempio viene usato il costruttore pubblico CloudMediaContext(Media
 
 
 ## <a name="reusing-access-control-service-tokens"></a>Riutilizzo dei token del Servizio di controllo di accesso
-Questa sezione mostra come riutilizzare i token del Servizio di controllo di accesso mediante i costruttori CloudMediaContext che accettano MediaServicesCredentials come parametro.
+In questa sezione viene illustrato come tooreuse Access Control Service token usando CloudMediaContext costruttori che accettano MediaServicesCredentials come parametro.
 
-[Azure Active Directory Access Control](https://msdn.microsoft.com/library/hh147631.aspx) (noto anche come Servizio di controllo di accesso o ACS) è un servizio basato sul cloud che offre un modo semplice per autenticare e autorizzare gli utenti, in modo che possano accedere alle applicazioni Web. Servizi multimediali di Microsoft Azure controlla l'accesso ai servizi tramite il protocollo OAuth che richiede un token ACS. Servizi multimediali riceve i token ACS da un server di autorizzazione.
+[Azure Active Directory Access Control](https://msdn.microsoft.com/library/hh147631.aspx) (noto anche come servizio di controllo di accesso o ACS) è un servizio basato su cloud che fornisce un modo semplice di autenticazione e autorizzazione accesso toogain utenti tootheir le applicazioni web. Servizi multimediali di Microsoft Azure controlla l'accesso tooits servizi tramite il protocollo OAuth che richiede un token ACS. Servizi multimediali riceve i token ACS hello da un server di autorizzazione.
 
-Quando si sviluppa usando l'SDK di Servizi multimediali, è possibile scegliere di non gestire i token, poiché questi vengono gestiti automaticamente dal codice dell'SDK. Tuttavia, se si lascia all'SDK la gestione completa dei token ACS, possono verificarsi richieste di token non necessarie. Le richieste di token richiedono tempo e utilizzano le risorse di client e server. Inoltre, il server ACS limita le richieste in caso di velocità eccessiva. Il limite è di 30 richieste al secondo. Per informazioni dettagliate, vedere [Limitazioni del servizio ACS](https://msdn.microsoft.com/library/gg185909.aspx).
+Quando si sviluppa con hello Media Services SDK, è possibile scegliere gestiscono toonot token hello perché hello Gestioni codice SDK per è. Tuttavia, consentendo agli sviluppatori di hello SDK gestire completamente le richieste di token ACS hello token lead toounnecessary. Le richieste di token richiede tempo e utilizza risorse di hello client e server. Inoltre, server ACS hello limita le richieste di hello se frequenza hello è troppo alto. limite di Hello è di 30 richieste al secondo, vedere [limitazioni del servizio ACS](https://msdn.microsoft.com/library/gg185909.aspx) per altri dettagli.
 
-A partire dalla versione 3.0.0.0 dell'SDK di Servizi multimediali, è possibile riutilizzare i token ACS. I costruttori **CloudMediaContext**, che accettano **MediaServicesCredentials** come parametro, consentono di condividere i token ACS tra più contesti. La classe MediaServicesCredentials incapsula le credenziali di Servizi multimediali. Se è disponibile un token e la data di scadenza è nota, è possibile creare una nuova istanza di MediaServicesCredentials con il token e passarla al costruttore di CloudMediaContext. Si noti che l'SDK di Servizi multimediali aggiorna automaticamente i token ogni volta che scadono. Per riutilizzare i token ACS sono disponibili i due modi illustrati nei seguenti esempi.
+A partire da Media Services SDK versione 3.0.0.0 hello, è possibile riutilizzare i token ACS hello. Hello **CloudMediaContext** costruttori che accettano **MediaServicesCredentials** come parametro consentono di token ACS hello condivisione tra più contesti. Hello MediaServicesCredentials classe incapsula le credenziali di servizi multimediali di hello. Se è disponibile un token ACS e l'ora di scadenza è noto, è possibile creare una nuova istanza di MediaServicesCredentials con token hello e passarlo come costruttore toohello di CloudMediaContext. Si noti che hello Media Services SDK Aggiorna automaticamente i token ogni volta che scadono. Esistono due modi i token ACS tooreuse, come illustrato nell'esempio hello riportato di seguito.
 
-* È possibile memorizzare l'oggetto **MediaServicesCredentials** nella cache, ad esempio in una variabile di classe statica, e quindi passare l'oggetto memorizzato nella cache al costruttore CloudMediaContext. L'oggetto MediaServicesCredentials contiene un token ACS che, se ancora valido, può essere riutilizzato. Se il token non è più valido, verrà aggiornato dall'SDK di Servizi multimediali usando le credenziali fornite al costruttore MediaServicesCredentials.
+* È possibile memorizzare nella cache di hello **MediaServicesCredentials** oggetto in memoria (ad esempio, una variabile di classe statici). Quindi, passare costruttore CloudMediaContext toohello dell'oggetto memorizzato nella cache di hello. oggetto MediaServicesCredentials Hello contiene un token ACS che può essere riutilizzato se è ancora valido. Se il token di hello non è valido, che verrà aggiornato da hello toohello MediaServicesCredentials costruttore utilizzando le credenziali di hello Media Services SDK.
   
-    Si noti che l'oggetto **MediaServicesCredentials** ottiene un token valido dopo la chiamata a RefreshToken. **CloudMediaContext** chiama il metodo **RefreshToken** nel costruttore. Se si prevede di salvare i valori dei token in una risorsa di archiviazione esterna, assicurarsi che il valore di TokenExpiration sia ancora valido prima di salvare i dati del token. Se non è valido, chiamare RefreshToken prima di procedere alla memorizzazione nella cache.
+    Si noti che hello **MediaServicesCredentials** oggetto Ottiene un token valido dopo hello RefreshToken viene chiamato. Hello **CloudMediaContext** hello chiamate **RefreshToken** metodo hello costruttore. Se si prevede di archiviazione esterna tooan toosave hello i valori del token, prendere toocheck che hello TokenExpiration valore sia valido prima di salvare i dati del token hello. Se non è valido, chiamare RefreshToken prima di procedere alla memorizzazione nella cache.
   
-        // Create and cache the Media Services credentials in a static class variable.
+        // Create and cache hello Media Services credentials in a static class variable.
         _cachedCredentials = new MediaServicesCredentials(_mediaServicesAccountName, _mediaServicesAccountKey);
 
-        // Use the cached credentials to create a new CloudMediaContext object.
+        // Use hello cached credentials toocreate a new CloudMediaContext object.
         if(_cachedCredentials == null)
         {
             _cachedCredentials = new MediaServicesCredentials(_mediaServicesAccountName, _mediaServicesAccountKey);
@@ -83,23 +83,23 @@ A partire dalla versione 3.0.0.0 dell'SDK di Servizi multimediali, è possibile 
 
         CloudMediaContext context = new CloudMediaContext(_cachedCredentials);
 
-* È anche possibile memorizzare nella cache la stringa AccessToken e i valori TokenExpiration. I valori possono essere usati successivamente per creare un nuovo oggetto MediaServicesCredentials con i dati del token memorizzati nella cache.  Ciò è particolarmente utile in scenari in cui il token può essere condiviso in modo sicuro tra più processi o computer.
+* È inoltre possibile memorizzare nella cache hello AccessToken valori stringa e hello TokenExpiration. i valori Hello in un secondo momento potrebbe essere utilizzato toocreate MediaServicesCredentials un nuovo oggetto con i dati memorizzati nella cache di hello del token.  Ciò è particolarmente utile per scenari in cui il token hello può essere condiviso in modo sicuro tra più processi o computer.
   
-    I seguenti frammenti di codice chiamano i metodi SaveTokenDataToExternalStorage, GetTokenDataFromExternalStorage e UpdateTokenDataInExternalStorageIfNeeded che non sono definiti in questo esempio. È possibile definire questi metodi per archiviare, recuperare e aggiornare i dati del token in una risorsa di archiviazione esterna. 
+    Hello frammenti di codice seguente chiamano hello metodi SaveTokenDataToExternalStorage, GetTokenDataFromExternalStorage e UpdateTokenDataInExternalStorageIfNeeded non definiti in questo esempio. È possibile definire questi metodi toostore, recuperare e aggiornare i dati token in un archivio esterno. 
   
         CloudMediaContext context1 = new CloudMediaContext(_mediaServicesAccountName, _mediaServicesAccountKey);
   
-        // Get token values from the context.
+        // Get token values from hello context.
         var accessToken = context1.Credentials.AccessToken;
         var tokenExpiration = context1.Credentials.TokenExpiration;
   
         // Save token values for later use. 
-        // The SaveTokenDataToExternalStorage method should check 
-        // whether the TokenExpiration value is valid before saving the token data. 
+        // hello SaveTokenDataToExternalStorage method should check 
+        // whether hello TokenExpiration value is valid before saving hello token data. 
         // If it is not valid, call MediaServicesCredentials’s RefreshToken before caching.
         SaveTokenDataToExternalStorage(accessToken, tokenExpiration);
   
-    Usare i valori del token per creare MediaServicesCredentials.
+    Utilizzare hello salvata token valori toocreate MediaServicesCredentials.
 
         var accessToken = "";
         var tokenExpiration = DateTime.UtcNow;
@@ -116,7 +116,7 @@ A partire dalla versione 3.0.0.0 dell'SDK di Servizi multimediali, è possibile 
 
         CloudMediaContext context2 = new CloudMediaContext(credentials);
 
-    Aggiornare la copia del token, nel caso in cui il token sia stato aggiornato dall'SDK di Servizi multimediali. 
+    Aggiornare copia token hello nel caso in cui il token hello è stato aggiornato da Media Services SDK hello. 
 
         if(tokenExpiration != context2.Credentials.TokenExpiration)
         {
@@ -124,13 +124,13 @@ A partire dalla versione 3.0.0.0 dell'SDK di Servizi multimediali, è possibile 
         }
 
 
-* Se sono presenti più account di Servizi multimediali, ad esempio per la condivisione del carico o la distribuzione geografica, è possibile memorizzare nella cache gli oggetti MediaServicesCredentials tramite la raccolta System.Collections.Concurrent.ConcurrentDictionary, una raccolta thread-safe di coppie chiave/valore a cui possono accedere simultaneamente più thread. È quindi possibile usare il metodo GetOrAdd per ottenere le credenziali memorizzate nella cache. 
+* Se si hanno più account di servizi multimediali (ad esempio, per la condivisione del carico o Geo-distribuzione) è possibile memorizzare nella cache oggetti MediaServicesCredentials utilizzo hello System.Collections.Concurrent.ConcurrentDictionary insieme (Buongiorno Raccolta di ConcurrentDictionary rappresenta una raccolta thread-safe di coppie chiave/valore che è possibile accedere contemporaneamente da più thread). È quindi possibile utilizzare le credenziali memorizzate nella cache di hello tooget di hello GetOrAdd (metodo). 
   
-        // Declare a static class variable of the ConcurrentDictionary type in which the Media Services credentials will be cached.  
+        // Declare a static class variable of hello ConcurrentDictionary type in which hello Media Services credentials will be cached.  
         private static readonly ConcurrentDictionary<string, MediaServicesCredentials> mediaServicesCredentialsCache = 
             new ConcurrentDictionary<string, MediaServicesCredentials>();
 
-        // Cache (or get already cached) Media Services credentials. Use these credentials to create a new CloudMediaContext object.
+        // Cache (or get already cached) Media Services credentials. Use these credentials toocreate a new CloudMediaContext object.
         static public CloudMediaContext CreateMediaServicesContext(string accountName, string accountKey)
         {
             CloudMediaContext cloudMediaContext;
@@ -145,12 +145,12 @@ A partire dalla versione 3.0.0.0 dell'SDK di Servizi multimediali, è possibile 
             return cloudMediaContext;
         }
 
-## <a name="connecting-to-a-media-services-account-located-in-the-north-china-region"></a>Connessione a un account di Servizi multimediali in Cina settentrionale
-Se il proprio account si trova in Cine settentrionale, usare il seguente costruttore:
+## <a name="connecting-tooa-media-services-account-located-in-hello-north-china-region"></a>La connessione di account di servizi multimediali tooa si trova nell'area di hello Cina settentrionale
+Se l'account si trova nell'area di hello Cina settentrionale, usare hello costruttore seguente:
 
     public CloudMediaContext(Uri apiServer, string accountName, string accountKey, string scope, string acsBaseAddress)
 
-Ad esempio:
+ad esempio:
 
     _context = new CloudMediaContext(
         new Uri("https://wamsbjbclus001rest-hs.chinacloudapp.cn/API/"),
@@ -161,9 +161,9 @@ Ad esempio:
 
 
 ## <a name="storing-connection-values-in-configuration"></a>Archiviazione dei valori di connessione nella configurazione
-È consigliabile archiviare i valori di connessione, in particolare quelli sensibili come nome account e password, all'interno della configurazione, e anche crittografare i dati di configurazione sensibili. È possibile crittografare l'intero file di configurazione tramite il sistema EFS (Encrypting File System) di Windows. Per abilitare il sistema EFS per un file, fare clic con il pulsante destro del mouse sul file, scegliere **Proprietà** e abilitare la crittografia nella scheda delle impostazioni **Avanzate**. In alternativa, è possibile creare una soluzione personalizzata per crittografare parti selezionate di un file di configurazione tramite la configurazione protetta. Vedere l'argomento relativo alla [crittografia delle informazioni di configurazione usando la configurazione protetta](https://msdn.microsoft.com/library/53tyfkaw.aspx).
+È un consigliabile toostore connessione valori, particolarmente sensibili, ad esempio il nome dell'account e la password, nella configurazione. Inoltre, si tratta di dati di configurazione sensibili tooencrypt una procedura consigliata. È possibile crittografare hello intero file di configurazione utilizzando hello Windows Encrypting File System (EFS). Selezionare tooenable EFS in un file, il pulsante destro del mouse hello file **proprietà**e abilitare la crittografia in hello **avanzate** scheda Impostazioni. In alternativa, è possibile creare una soluzione personalizzata per crittografare parti selezionate di un file di configurazione tramite la configurazione protetta. Vedere l'argomento relativo alla [crittografia delle informazioni di configurazione usando la configurazione protetta](https://msdn.microsoft.com/library/53tyfkaw.aspx).
 
-Il file App.config contiene i valori di configurazione necessari. I valori nell'elemento <appSettings> sono i valori necessari ottenuti durante il processo di configurazione dell'account di Servizi multimediali.
+Hello seguenti il file app. config contiene valori di connessione hello necessario. Hello valori hello <appSettings> elemento sono valori hello necessario ottenuti nel processo di installazione di account servizi multimediali hello.
 
     <configuration>
       <appSettings>
@@ -173,14 +173,14 @@ Il file App.config contiene i valori di configurazione necessari. I valori nell'
     </configuration>
 
 
-Per recuperare i valori di connessione dalla configurazione, è possibile usare la classe **ConfigurationManager** e quindi assegnare i valori ai campi nel codice:
+tooretrieve i valori di connessione della configurazione, è possibile utilizzare hello **ConfigurationManager** e quindi assegnare toofields valori hello nel codice:
 
     private static readonly string _accountName = ConfigurationManager.AppSettings["MediaServicesAccountName"];
     private static readonly string _accountKey = ConfigurationManager.AppSettings["MediaServicesAccountKey"];
 
 
 
-## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Media Services
+## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>Fornire commenti e suggerimenti

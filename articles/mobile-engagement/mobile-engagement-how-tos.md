@@ -1,5 +1,5 @@
 ---
-title: Interfaccia utente di Azure Mobile Engagement - Procedure di Reach
+title: aaaAzure interfaccia utente di Engagement Mobile - raggiungere procedura
 description: Panoramica dell'interfaccia utente di Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 33a0a9d0c399cb7f0a791c4c16dde2e2d62364ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b6dafd09d894214d4c386f5c6f157a77671606f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-started-using-and-managing-pushes-to-reach-out-to-your-end-users"></a>Come iniziare a usare e gestire le notifiche push per raggiungere gli utenti finali
-Dopo l'integrazione completa dell'SDK nell'app, è possibile iniziare a usare la sezione Reach dell'interfaccia utente per inviare notifiche push agli utenti dell'app.  
+# <a name="how-tooget-started-using-and-managing-pushes-tooreach-out-tooyour-end-users"></a>Come tooget all'utilizzo e gestione inserisce tooreach gli utenti finali tooyour
+Una volta hello SDK è completamente integrato nell'app, è possibile iniziare utilizzando hello hello Reach sezione utenti hello UI tooPush notifiche toohello dell'app.  
 
 ## <a name="do-your-first-push-notification-campaign"></a>Creare la prima campagna di notifica push
-* Verificare che Reach sia integrato nell'app con l'SDK. 
+* Verificare che la copertura è integrato nell'app con hello SDK. 
 * Selezionare l'applicazione.
 
 ![First1][1]
 
-* Andare alla sezione "Reach" e fare clic su "Nuovo annuncio".
+* Visitare la sezione "Copertura" e fare clic su "nuovo annuncio" toohello
 
 ![First2][2]
 
@@ -37,19 +37,19 @@ Dopo l'integrazione completa dell'SDK nell'app, è possibile iniziare a usare la
   
 ![First3][3]
 
-* Selezionare la modalità di recapito della notifica, ad esempio Solo in-app.
+* Selezionare la modalità cui deve essere recapitata notifica hello, come In-app solo
 
 ![First4][4]
 
-* Creare il messaggio di cui si desidera effettuare il push.
+* Creare il messaggio hello da toopush
 
 ![First5][5]
 
-* È possibile scrivere un titolo nella notifica (facoltativo).
+* È possibile scrivere un titolo per la notifica di hello (facoltativo).
 * Scrivere il contenuto del messaggio push.
-* È possibile caricare un'immagine. Tenere presente che le dimensioni del file non possono superare i 32.768 byte.
-* È anche possibile selezionare altre opzioni, ma, per l'obiettivo di questa esercitazione, se ne parlerà in un secondo momento.
-* Selezionare il tipo di contenuto Solo notifica.
+* È possibile caricare un'immagine. Tenere presente che le dimensioni di hello del file hello non possono superare corrispondono a 32.768 byte.
+* È inoltre hello possibilità tooselect di ulteriori opzioni, ma lo stato attivo hello di questa esercitazione, si potrà notare che in un secondo momento.
+* Selezionare solo il tipo di contenuto hello come notifica
 
 ![First6][6]
 
@@ -61,58 +61,58 @@ Dopo l'integrazione completa dell'SDK nell'app, è possibile iniziare a usare la
 ![Test1][8]
 
 * Registrare il dispositivo.
-* Fare clic sulla casella di controllo del dispositivo di cui si vuole effettuare il push.
-* Fare clic sul pulsante "Test" per inviare il push al dispositivo.
+* Fare clic sulla casella di controllo di hello del dispositivo hello desiderato toopush.
+* Fare clic su hello "Test" toosend hello push toohello dispositivo.
 
 ![Test2][9]
 
-* Attivare la campagna.
+* Attivare la campagna hello
 
 ![Test3][10]
 
-* Ora che la campagna è stata creata, è sufficiente attivarla per effettuare il push della notifica agli utenti.
+* Dopo avere creato la campagna è sufficiente tooactivate per hello notifica toobe inserito tooyour utenti.
 
 ## <a name="send-personalized-pushes"></a>Inviare push personalizzati
-* Questo esempio crea un push in cui viene immesso un codice di sconto personalizzato nella notifica push.
+* Questo esempio viene creato un push in cui un codice di sconto personalizzato viene inserito notifica push di hello.
 
 ![Personalize1][11]
 
-La personalizzazione viene ottenuta sostituendo un marcatore da un tag app info, quindi sarà necessario assicurarsi che prima siano stati definiti i valori app-info appropriati per l'utente. In questo esempio, per gli utenti di destinazione verrà definito un tag app info denominato rebate_code.
-Come si può vedere sopra, il contenuto della notifica push include il marker ${rebate_code} che indicherà che deve essere sostituito dal contenuto effettivo del tag app info.
+Personalizzazione works sostituendo un marcatore da un tag di informazioni di app, pertanto, è necessario toomake hello utente che disponga hello corretto app-info definito per primo. In hello in questo esempio, gli utenti di destinazione avrà un tag di info app denominato rebate_code definito.
+Contenuto di notifica push di hello include hello marcatore ${rebate_code} che indica che è sostituito dal contenuto effettivo di hello del tag di hello app info toobe visualizzati sopra.
 
 > [!WARNING]
-> se il tag app info non è definito per l'utente, l'utente non riceverà il push.
+> Se il tag di hello app info non è definito per l'utente hello, utente hello non riceverà push hello.
 
 * Risultato
 
 ![Personalize2][12]
 
-### <a name="you-can-further-personalize-the-text-your-notification"></a>È possibile personalizzare ulteriormente il testo della notifica
+### <a name="you-can-further-personalize-hello-text-your-notification"></a>È possibile personalizzare ulteriormente testo hello la notifica
 ![Personalize3][13]
 
-* Includendo il titolo della notifica
-* e il contenuto del messaggio.
-* Scegliere il tipo di annuncio (visualizzazione testo o Web)
+* Inclusi titolo hello della notifica di hello,
+* E il contenuto del messaggio hello hello.
+* Scegliere il tipo di hello di annuncio (visualizzazione di testo o Web)
 
 ![Personalize4][14]
 
-### <a name="the-body-of-an-announcement-may-also-be-personalized-with"></a>Il corpo di un annuncio può anche essere personalizzato con:
-* L'URL di azione, nel caso in cui si voglia personalizzare la pagina di destinazione
-* Il titolo
-* Il corpo del messaggio
+### <a name="hello-body-of-an-announcement-may-also-be-personalized-with"></a>corpo Hello di un annuncio può inoltre essere personalizzato con:
+* URL di azione Hello, se si vuole hello toocustomize pagina di destinazione
+* titolo Hello,
+* corpo Hello del messaggio hello.
 
 ## <a name="differentiate-your-push-notification-in-or-out-of-app"></a>Differenziare la notifica push (all'interno o all'esterno dell'app)
-* Scegliere il tipo di notifica di cui si effettuerà il push, selezionare l'applicazione, andare alla sezione "Reach", selezionare o creare una campagna push e andare alla sezione "Notifica".
-* Fare clic su "modalità di recapito" desiderata.
-* Fare clic sulla casella di controllo "Limita attività" per inviare la notifica solo quando vengono eseguite attività specifiche (schermate).
+* Scegliere il tipo di hello di notifica si verrà push, selezionare l'applicazione, passare toohello "Copertura" sezione, selezionare o creare una campagna push e passare toohello "Notifica" sezione.
+* Fare clic su "modalità di consegna" hello desiderato.
+* Fare clic sulla casella di controllo "Limitare l'attività" hello notifica si verifica su specifiche attività (schermate) hello.
 
 ![Differentiate1][15]
 
 ### <a name="out-of-app-only-delivery-mode"></a>Modalità di recapito "Solo all'esterno dell'app"
 ![Differentiate2][16]
 
-La modalità di recapito "Solo all'esterno dell'app" fornisce la notifica push quando l'applicazione è chiusa. Questa è la notifica push standard.
-Quando si seleziona "Solo all'esterno dell'app", è necessario aver già fornito i certificati dalla piattaforma su cui si basa l'applicazione (servizio APN o GCM).
+"All'esterno dell'App solo" modalità di recapito notifica push quando un'applicazione hello viene chiuso. Si tratta di notifica push standard hello.
+Quando si seleziona "da solo app", è necessario avere già fornito certificati hello dalla piattaforma hello che l'applicazione si basa sul (APN o GCM).
 
 ### <a name="see-also"></a>Vedere anche
 * [Apple Push Notification Service - Certificati](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging - Certificato](http://developer.android.com/google/gcm/index.html) 
@@ -120,75 +120,75 @@ Quando si seleziona "Solo all'esterno dell'app", è necessario aver già fornito
 ### <a name="in-app-only-delivery-mode"></a>Modalità di recapito "Solo in-app"
 ![Differentiate3][17]
 
-La modalità di recapito "Solo in-app" fornisce la notifica push quando l'applicazione è in esecuzione.
-Per questa notifica, non è necessario passare attraverso il servizio APN e il sistema GCM.
-È possibile usare il sistema di recapito in-app per raggiungere gli utenti finali.
-È possibile personalizzare completamente la notifica e decidere in quale attività (schermata) visualizzare la notifica.
+Modalità di consegna "In-App solo" notifica push durante l'esecuzione di un'applicazione hello.
+Per questa notifica, non è necessario toogo tramite hello APNS e sistema GCM.
+È possibile utilizzare tooreach di sistema di recapito nell'applicazione hello agli utenti finali.
+Completamente, è possibile personalizzare la notifica hello e decidere in quali attività (schermata) verrà visualizzata la notifica hello.
 
 ### <a name="anytime-delivery-mode"></a>Modalità di recapito "Sempre"
-È possibile scegliere la modalità di recapito "Sempre", che consente di raggiungere l'utente finale indipendentemente dal fatto che l'applicazione sia in esecuzione o meno.
-Quando si seleziona "Sempre", è necessario aver già fornito i certificati dalla piattaforma su cui si basa l'applicazione (servizio APN o GCM). 
+È possibile scegliere una modalità di consegna "In qualsiasi momento", si assicura tooreach hello se l'utente finale dell'applicazione è in esecuzione o non.
+Quando si seleziona "In qualsiasi momento", è necessario avere già fornito certificati hello dalla piattaforma hello che l'applicazione è basandosi su (APN o GCM). 
 
 ## <a name="schedule-a-push-campaign"></a>Pianificare una campagna push
-### <a name="plan-to-start-a-campaign"></a>Pianificare l'inizio di una campagna
+### <a name="plan-toostart-a-campaign"></a>Pianificare una campagna tooStart
 ![Shedule1][18]
 
-È il 21 marzo e si vuole diffondere un annuncio alla mezzanotte del 22 marzo. Non è necessario essere davanti all'interfaccia per effettuare un push. È possibile pianificare in anticipo il minuto esatto in cui le notifiche verranno inviate.
+È hello 21 di marzo e si dispone di un annuncio toomake e le per hello 22 di marzo a mezzanotte. Non è toostay davanti hello interfaccia toodo di push. È possibile pianificare in anticipo hello esatta minuto le notifiche verranno inviate.
 
-* Deselezionare la casella di controllo "Nessuna" e selezionare un'ora di inizio 
-* Scegliere la data e ora in cui avviare la campagna push.
+* Deselezionare hello "None" casella di controllo e selezionare un'ora di inizio 
+* Scegliere hello data e ora di hello che toostart hello push campagna.
 
-### <a name="plan-to-end-a-campaign"></a>Pianificare la fine di una campagna
+### <a name="plan-tooend-a-campaign"></a>Pianificare una campagna tooend
 ![Shedule2][19]
 
-Si vuole interrompere la campagna il 25 marzo alle 15, ma si sa che non si sarà presenti per poterlo fare.
-Non è necessario essere davanti all'interfaccia per effettuare un push. È possibile pianificare in anticipo il minuto esatto in cui la campagna verrà interrotta.
+Si desidera toostop la campagna su hello 25 di marzo 3 PM 00 ma si conosce, non sarà presente toodo è.
+Non è toostay davanti toopush interfaccia hello! È possibile pianificare in anticipo hello esatta minuto che la campagna verrà interrotta.
 
-* Fare clic sulla casella di controllo "Nessuna" e selezionare un'ora di fine
-* Scegliere la data e ora in cui terminare la campagna push.
+* Fare clic su hello "None" casella di controllo o selezionare un'ora di fine
+* Scegliere hello data e ora di hello che toofinish hello push campagna.
 
 ### <a name="end-a-campaign-manually"></a>Terminare manualmente una campagna
 ![Shedule3][20]
 
-Per impostazione predefinita, le caselle di controllo "Nessuna" sono selezionate.
-La campagna inizierà al momento dell'attivazione nella sezione Reach e terminerà quando verrà interrotta in questa stessa sezione.
+Per impostazione predefinita, hello "None" vengono selezionate le caselle di controllo.
+Ciò significa che campagna hello verrà avviata appena si attivarlo in hello raggiungere sezione e fine durante l'esecuzione si arresterà in hello raggiungerà sezione.
 
 > [!NOTE]
-> Le campagne create senza una data di fine memorizzano la notifica push nel dispositivo e consentono di visualizzare al successivo avvio dell'app, anche se la campagna è stata interrotta manualmente.
+> Le campagne create senza una data di fine archiviano hello push localmente nel dispositivo hello e visualizzarlo hello successiva apertura app hello anche se la campagna hello manualmente viene terminata.
 
 ## <a name="enhance-a-push-notification-with-a-text-view"></a>Migliorare una notifica push con una visualizzazione testo
 ### <a name="what-is-a-text-view"></a>Cos'è una visualizzazione testo?
 ![TextView1][21]
 
-Una visualizzazione testo è un popup con contenuto testuale. Questo popup viene visualizzato quando l'utente finale fa clic sulla notifica push.
-Una visualizzazione testo consente di presentare più contenuto all'utente finale. È anche un'opportunità per presentare una chiamata a un'azione, ad esempio il passaggio a una pagina dell'app, il reindirizzamento a un archivio, l'apertura di una pagina Web, l'invio di un messaggio di posta elettronica, l'avvio di una ricerca basata sulla posizione geografica e così via.
+Una visualizzazione testo è un popup con contenuto testuale. Questo popup viene visualizzato quando l'utente finale di hello ha fatto clic su notifica push di hello.
+Una visualizzazione di testo consente toopresent più contenuto tooyour per l'utente finale. Si tratta di hello opportunità toopresent tooaction una chiamata, ad esempio del passaggio tooa pagina dell'app, il reindirizzamento tooa archivio, aprire una pagina web, l'invio messaggio di posta elettronica, avviare una ricerca geografica localizzate e così via...
 
 ### <a name="example-text-view"></a>Esempio: visualizzazione testo
-* Creare la campagna di notifica push nella sezione "Reach" e assegnare un nome alla campagna.
+* Creare una campagna di notifica Push nella sezione "Raggiungere" hello e assegnare un nome di una campagna
 
 ![TextView2][22]
 
-* Scrivere il messaggio che verrà visualizzato nella notifica.
-* Selezionare "testo" come tipo di contenuto per l'annuncio.
+* Scrivere un messaggio hello che verrà visualizzato per la notifica di hello.
+* Selezionare tipo di contenuto di annuncio di "testo" hello
 
 ![TextView3][23]
 
 > [!NOTE]
 > Quando si effettua il push di una visualizzazione testo, prima viene sempre visualizzata una notifica. 
 
-* Definire il testo. Dopo aver selezionato il contenuto dell'annuncio di testo, apparirà la sottosezione che consente di definire il testo da visualizzare.
+* Definire il testo hello (dopo la selezione di contenuto di annuncio hello testo, verrà visualizzato sottosezione hello, consentendo toodefine hello testo toobe visualizzato.)
 
 ![TextView4][24]
 
-* Scrivere il titolo che verrà visualizzato nella parte superiore del messaggio.
-* Scrivere il contenuto principale della visualizzazione testo.
-* Scrivere il contenuto che verrà visualizzato sul pulsante di azione. Un pulsante di azione consente all'applicazione di eseguire un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione, il reindirizzamento a un archivio di app o a qualsiasi tipo di origine sia possibile fornire.
-* Scrivere il contenuto che verrà visualizzato sul pulsante di uscita. Facendo clic sul pulsante di uscita, la visualizzazione testo scompare.
-* Creare la campagna di notifica push che verrà visualizzata nell'elenco di campagne.
+* Scrivere hello titolo che verrà visualizzato all'inizio di hello del messaggio hello.
+* Scrivere il contenuto principale hello della visualizzazione di testo hello.
+* Scrivere il contenuto di hello che verrà visualizzato sul pulsante di azione hello (un pulsante di azione consente toomake applicazione hello un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione hello, reindirizzamento tooan App store o qualsiasi tipo di origini, che è possibile fornire).
+* Contenuto di hello scrittura che verrà visualizzato nel pulsante di uscita hello (facendo clic sul pulsante di uscita hello, visualizzazione del testo hello scomparirà.)
+* Creare una campagna di notifica push e verrà visualizzato nell'elenco di hello campagna.
 
 ![TextView5][25]
 
-* Attivare la campagna di notifica push per inviare la visualizzazione testo agli utenti.
+* Attivare i push notifica della campagna toosend hello testo visualizzare tooyour gli utenti.
 
 ![TextView6][26]
 
@@ -196,51 +196,51 @@ Una visualizzazione testo consente di presentare più contenuto all'utente final
 
 ![TextView7][27]
 
-* L'utente riceve la notifica e fa clic su di essa.
-* La visualizzazione testo appare come un popup con cui l'utente può interagire.
+* Hello utente riceve una notifica di hello e fare clic su di esso.
+* visualizzazione del testo Hello viene visualizzato come un toointeract utente hello consentendo a comparsa con esso.
 
 ## <a name="enhance-a-push-notification-with-a-web-view"></a>Migliorare una notifica push con una visualizzazione Web
 ### <a name="what-is-a-web-view"></a>Cos'è una visualizzazione Web?
 ![WebView1][28]
 
-Una visualizzazione Web è un popup con contenuto Web. Questo popup viene visualizzato quando l'utente finale fa clic sulla notifica push.
-Una visualizzazione Web consente una maggiore interazione con l'utente finale.
-È anche un'opportunità per presentare una chiamata a un'azione, ad esempio il reindirizzamento a un archivio di app, l'apertura di una pagina Web, l'invio di un messaggio di posta elettronica, l'avvio di una ricerca basata sulla posizione geografica e così via.
+Una visualizzazione Web è un popup con contenuto Web. Questo popup viene visualizzato quando l'utente finale di hello ha fatto clic su notifica push di hello.
+Una visualizzazione web consente toohave ulteriori interazione dell'utente finale di hello.
+Si tratta di hello opportunità toopresent tooaction una chiamata ad esempio il reindirizzamento tooApp archivio, aprire una pagina web, l'invio messaggio di posta elettronica, avviare una ricerca geografica localizzate e così via...
 
 ### <a name="example-web-view"></a>Esempio: visualizzazione Web
-* Creare la campagna push nella sezione "Reach" e assegnare un nome alla campagna.
+* Creare la campagna Push nella sezione "Raggiungere" hello e assegnare un nome di una campagna.
 
 ![WebView2][29]
 
-* Scrivere il messaggio che verrà visualizzato nella notifica.
-* Selezionare "Web" come tipo di contenuto per l'annuncio.
+* Scrivere un messaggio hello che verrà visualizzato per la notifica di hello.
+* Selezionare il tipo di contenuto annuncio hello come "web".
 
 ![WebView3][30]
 
 ### <a name="about-announcement-types"></a>Informazioni sui tipi di annuncio:
-* Solo notifica: una semplice notifica standard. Vale a dire che se un utente fa clic, non apparirà alcuna ulteriore visualizzazione, ma si verificherà semplicemente l'azione associata.
-* Annuncio di testo: una notifica che invita l'utente a esaminare una visualizzazione testo.
-* Annuncio Web: una notifica che invita l'utente a esaminare una visualizzazione Web.
-  Selezionare il contenuto "Annuncio Web".
+* Solo notifica: una semplice notifica standard. Vale a dire che se un utente fa clic su di esso, non verranno visualizzato visualizzazioni aggiuntive, ma solo l'azione di hello associata tooit si verificherà.
+* Annuncio di testo: si tratta di una notifica che coinvolge hello utente toohave un'occhiata a una visualizzazione di testo.
+* Annuncio Web: si tratta di una notifica che coinvolge hello utente toohave un'occhiata a una visualizzazione web.
+  Selezionare hello contenuto "Annuncio Web".
 
 > [!NOTE]
 > quando si effettua il push di una visualizzazione Web, prima viene sempre visualizzata una notifica.
 
-* Definire il contenuto Web. Dopo aver selezionato il contenuto dell'annuncio Web, apparirà la sottosezione che consente di definire il contenuto della visualizzazione Web da visualizzare.
+* Definire il contenuto web hello (dopo avere selezionato il contenuto web annuncio hello, verrà visualizzata la sottosezione hello, consentendo toodefine hello web Visualizza il contenuto visualizzato toobe.)
 
 ![WebView4][31]
 
-* Scrivere il titolo che verrà visualizzato nella parte superiore del messaggio (facoltativo).
+* Scrivere hello titolo che verrà visualizzato all'inizio di hello del messaggio hello (facoltativo).
 * Scrivere qui il codice HTML.
-* Fare clic sul pulsante della modalità di modifica dell'origine per passare da un'edizione all'altra e verificarne l'aspetto.
-* Scrivere il contenuto che verrà visualizzato sul pulsante di azione. Un pulsante di azione consente all'applicazione di eseguire un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione, il reindirizzamento a un archivio o a qualsiasi tipo di origine sia possibile fornire.
-* Scrivere il contenuto che verrà visualizzato sul pulsante di uscita. Facendo clic sul pulsante di uscita, la visualizzazione Web scompare.
+* Fare clic su origine hello edition tooswitch pulsante di modalità di modifica e verificarne l'aspetto simile.
+* Scrivere il contenuto di hello che verrà visualizzato sul pulsante di azione hello (un pulsante di azione consente toomake applicazione hello un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione hello, reindirizzamento tooa archivio o qualsiasi tipo di origini, che è possibile fornire).
+* Contenuto di hello scrittura che verrà visualizzato nel pulsante di uscita hello (facendo clic sul pulsante di uscita hello, visualizzazione web hello scompare).
 * Risultato
 
 ![WebView5][32]
 
-* L'utente riceve la notifica e fa clic su di essa.
-* La visualizzazione testo appare come un popup con cui l'utente può interagire.
+* utente Hello ricevere una notifica di hello e fare clic su di esso.
+* visualizzazione del testo Hello viene visualizzato come un toointeract utente hello consentendo a comparsa con esso.
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-how-tos/First1.png

@@ -1,6 +1,6 @@
 ---
-title: Esportare i dati di Log Analytics in Power BI | Microsoft Docs
-description: "Power BI è un servizio di analisi business basato sul cloud di Microsoft che fornisce report e visualizzazioni dettagliate per l'analisi di diversi set di dati.  Log Analytics può esportare continuamente dati dal repository OMS in Power BI per poterne sfruttare gli strumenti di analisi e le visualizzazioni.  Questo articolo descrive come configurare query in Log Analytics che eseguono automaticamente l'esportazione in Power BI a intervalli regolari."
+title: aaaExport Log Analitica dati tooPower BI | Documenti Microsoft
+description: "Power BI è un servizio di analisi business basato sul cloud di Microsoft che fornisce report e visualizzazioni dettagliate per l'analisi di diversi set di dati.  Log Analitica può continuamente esportare dati dal repository OMS hello in Power BI in modo che è possibile sfruttare le visualizzazioni e gli strumenti di analisi.  Questo articolo descrive la modalità di query tooconfigure in Analitica di Log che esportano automaticamente tooPower BI a intervalli regolari."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,114 +14,114 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/24/2017
 ms.author: bwren
-ms.openlocfilehash: 98befb16d27387e8f65a27771a2a32c264119d74
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4822f99677e5d1080c72e95cda410da81615bac5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="export-log-analytics-data-to-power-bi"></a>Esportare i dati di Log Analytics in Power BI
+# <a name="export-log-analytics-data-toopower-bi"></a>Esportare i dati di Log Analitica tooPower BI
 
 >[!NOTE]
-> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), questo processo per esportare i dati di Log Analytics in Power BI non funzionerà più.  Le pianificazioni esistenti create prima dell'aggiornamento verranno disabilitate. 
+> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), quindi questo processo per l'esportazione di dati di Log Analitica tooPower BI non funzionerà più.  Le pianificazioni esistenti create prima dell'aggiornamento verranno disabilitate. 
 >
-> Dopo l'aggiornamento, Azure Log Analytics usa la stessa piattaforma di Application Insights e il processo per esportare le query di Log Analytics in Power BI è uguale al [processo usato per esportare le query di Application Insights in Power BI](../application-insights/app-insights-export-power-bi.md#export-analytics-queries).  È possibile esportare la query usando la console di Analytics descritta in tale articolo oppure è possibile selezionare il pulsante **Power BI** nella parte superiore della schermata nel portale di ricerca log.
+> Dopo l'aggiornamento, viene utilizzato Azure Log Analitica hello stessa piattaforma come Application Insights e si utilizza hello stessa procedura adottata tooexport Analitica Log query tooPower BI come [tooexport processo hello Application Insights query tooPower BI](../application-insights/app-insights-export-power-bi.md#export-analytics-queries).  È possibile esportare query hello utilizzando console Analitica hello, come descritto nell'articolo oppure è possibile selezionare hello **Power BI** pulsante nella parte superiore di hello della schermata Ciao nel portale di ricerca nei Log hello.
 
 
 
-[Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) è un servizio di analisi business basato sul cloud di Microsoft che fornisce visualizzazioni dettagliate e report per l'analisi di differenti set di dati.  Log Analytics può esportare automaticamente dati dal repository OMS in Power BI per poterne sfruttare gli strumenti di analisi e le visualizzazioni.
+[Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) è un servizio di analisi business basato sul cloud di Microsoft che fornisce visualizzazioni dettagliate e report per l'analisi di differenti set di dati.  Log Analitica può automaticamente esportare dati dal repository OMS hello in Power BI in modo che è possibile sfruttare le visualizzazioni e gli strumenti di analisi.
 
-Quando si configura Power BI con Log Analytics, si creano query di log che esportano i risultati nei set di dati corrispondenti in Power BI.  La query e l'esportazione continuano a essere eseguite automaticamente in base a una pianificazione definita dall'utente per mantenere aggiornato il set di dati con gli ultimi dati raccolti da Log Analytics.
+Quando si configura Power BI con Log Analitica, creare query di log che esporta i set di risultati toocorresponding dati in Power BI.  esportazione e query hello continua tooautomatically eseguita in una pianificazione che si definisce il set di dati di tookeep hello backup toodate con dati più recenti di hello raccolti da Log Analitica.
 
-![Log Analytics in Power BI](media/log-analytics-powerbi/overview.png)
+![Log Analitica tooPower BI](media/log-analytics-powerbi/overview.png)
 
 ## <a name="power-bi-schedules"></a>Pianificazioni di Power BI
-Una *pianificazione di Power BI* include una ricerca dei log che esporta un set di dati dal repository OMS per un set di dati corrispondente in Power BI e una pianificazione che definisce la frequenza con cui viene eseguita la ricerca per mantenere aggiornato il set di dati.
+Oggetto *Power BI pianificazione* include una ricerca di log che consente di esportare un set di dati da hello OMS repository tooa corrispondente set di dati in Power BI e una pianificazione che definisce la frequenza con cui questa ricerca viene eseguita tookeep hello dataset corrente.
 
-I campi nel set di dati corrisponderanno alle proprietà dei record restituiti dalla ricerca dei log.  Se la ricerca restituisce i record di tipi diversi, il set di dati includerà tutte le proprietà di ognuno dei tipi di record inclusi.  
+i campi nel set di dati hello Hello corrisponderà proprietà hello dei record di hello restituito dalla ricerca log hello.  Se ricerca hello restituisce i record di diversi tipi di set di dati hello includerà tutte le proprietà di hello da ognuno di hello incluse tipi di record.  
 
 > [!NOTE]
-> La procedura consigliata consiste nell'usare una query di ricerca dei log che restituisce dati non elaborati invece di eseguire una qualsiasi operazione di consolidamento usando comandi come [Measure](log-analytics-search-reference.md#measure).  È possibile eseguire qualsiasi aggregazione e calcoli in Power BI da dati non elaborati.
+> Si tratta di un migliore toouse pratica una query di ricerca di log che restituisce dati non elaborati anziché tooperforming qualsiasi consolidamento utilizzando i comandi, ad esempio [misura](log-analytics-search-reference.md#measure).  È possibile eseguire qualsiasi delle aggregazioni e calcoli in Power BI da dati non elaborati hello.
 >
 >
 
-## <a name="connecting-oms-workspace-to-power-bi"></a>Connessione dell'area di lavoro di OMS a Power BI
-Prima di poter esportare da Log Analytics in Power BI, è necessario connettersi l'area di lavoro di OMS all'account Power BI usando la procedura seguente.  
+## <a name="connecting-oms-workspace-toopower-bi"></a>Connessione dell'area di lavoro OMS tooPower BI
+Prima di poter esportare dal Log Analitica tooPower BI, è necessario connettersi all'account di Power BI tooyour dell'area di lavoro OMS utilizzando hello seguente procedura.  
 
-1. Nella console di OMS selezionare il riquadro **Impostazioni** .
+1. Nella console OMS hello fare clic su hello **impostazioni** riquadro.
 2. Selezionare **Account**.
-3. Nella sezione **Informazioni area di lavoro** fare clic su **Connetti all'account Power BI**.
-4. Immettere le credenziali per l'account Power BI.
+3. In hello **Workspace Information** fare clic su sezione **connettersi tooPower Account BI**.
+4. Immettere le credenziali di hello per l'account di Power BI.
 
 ## <a name="create-a-power-bi-schedule"></a>Creare una pianificazione di Power BI
-Creare una pianificazione di Power BI per ogni set di dati usando la procedura seguente.
+Creare una pianificazione di Power BI per ogni set di dati utilizzando hello seguente procedura.
 
-1. Nella console di OMS selezionare il riquadro **Ricerca log** .
-2. Digitare una nuova query o selezionare una ricerca salvata che restituisca i dati da esportare in **Power BI**.  
-3. Fare clic sul pulsante **Power BI** nella parte superiore della pagina per aprire la finestra di dialogo **Power BI**.
-4. Fornire le informazioni nella tabella seguente e fare clic su **Salva**.
+1. Nella console OMS hello fare clic su hello **ricerca nei Log** riquadro.
+2. Digitare una nuova query o selezionare una ricerca salvata, che restituisce hello dati che si desidera tooexport troppo**Power BI**.  
+3. Fare clic su hello **Power BI** pulsante nella parte superiore di hello di hello di hello pagina tooopen **Power BI** finestra di dialogo.
+4. Fornire le informazioni di hello in hello seguente tabella, fare clic **salvare**.
 
 | Proprietà | Descrizione |
 |:--- |:--- |
-| Nome |Nome per identificare la pianificazione quando si visualizza l'elenco di pianificazioni di Power BI. |
-| Ricerca salvata |Ricerca dei log da eseguire.  È possibile selezionare la query corrente o selezionare una ricerca salvata dalla casella a discesa. |
-| Pianificazione |Frequenza con cui eseguire la ricerca salvata ed esportare nel set di dati di Power BI.  Il valore deve essere compreso tra 15 minuti e 24 ore. |
-| Nome del set di dati |Nome del set di dati in Power BI.  Verrà creato se non esiste e aggiornato se esiste. |
+| Nome |Nome tooidentify hello pianificazione quando si visualizza l'elenco di hello di pianificazioni di Power BI. |
+| Ricerca salvata |Hello toorun di ricerca log.  È possibile selezionare la query corrente hello o selezionare una ricerca salvata dalla casella a discesa hello. |
+| Pianificazione |La frequenza con cui hello toorun salvato ricerca e l'esportazione di set di dati toohello Power BI.  il valore di Hello deve essere compreso tra 15 minuti e 24 ore. |
+| Nome del set di dati |nome Hello del set di dati di hello in Power BI.  Verrà creato se non esiste e aggiornato se esiste. |
 
 ## <a name="viewing-and-removing-power-bi-schedules"></a>Visualizzazione e rimozione di pianificazioni di Power BI
-Visualizzare l'elenco di pianificazioni di Power BI esistenti con la procedura seguente.
+Hello visualizzazione esistente le pianificazioni di Power BI con hello seguente procedura.
 
-1. Nella console di OMS selezionare il riquadro **Impostazioni** .
+1. Nella console OMS hello fare clic su hello **impostazioni** riquadro.
 2. Selezionare **Power BI**.
 
-Oltre ai dettagli della pianificazione, vengono visualizzati il numero di volte in cui è stata eseguita la pianificazione nella settimana precedente e lo stato dell'ultima sincronizzazione.  Se la sincronizzazione ha rilevato errori, è possibile fare clic sul collegamento per eseguire una ricerca dei log e trovare i record con i dettagli dell'errore.
+Inoltre di pianificare i dettagli di toohello di hello, quante volte hello pianificazione hello è stato eseguito in hello settimana scorsa e vengono visualizzati lo stato di hello dell'ultima sincronizzazione hello.  Se si verificano errori di sincronizzazione hello, è possibile fare clic su hello collegamento toorun una ricerca di log per i record con i dettagli dell'errore hello.
 
-È possibile rimuovere una pianificazione facendo clic su **X** nella colonna **Rimuovi**.  È possibile disabilitare una pianificazione selezionando **No**.  Per modificare una pianificazione è necessario rimuoverla e ricrearla con le nuove impostazioni.
+È possibile rimuovere una pianificazione facendo clic su hello **X** in hello **Rimuovi colonna**.  È possibile disabilitare una pianificazione selezionando **No**.  toomodify una pianificazione è necessario rimuoverla e ricrearla con le nuove impostazioni hello.
 
 ![Pianificazioni di Power BI](media/log-analytics-powerbi/schedules.png)
 
 ## <a name="sample-walkthrough"></a>Procedura dettagliata di esempio
-La sezione seguente illustra un esempio di creazione di una pianificazione di Power BI e dell'uso del relativo set di dati per creare un report semplice.  In questo esempio tutti i dati sulle prestazioni per un gruppo di computer vengono esportati in Power BI e viene creato un grafico a linee per visualizzare l'utilizzo del processore.
+Hello nella sezione seguente vengono illustrati un esempio di creazione di una pianificazione di Power BI e toocreate il set di dati utilizzando un report semplice.  In questo esempio, tutti i dati sulle prestazioni per un insieme di computer viene esportato tooPower BI e quindi viene creato l'utilizzo del processore toodisplay un grafico a linee.
 
 ### <a name="create-log-search"></a>Creare una ricerca dei log
-Si inizierà dalla creazione di una ricerca dei log per trovare i dati da inviare al set di dati.  In questo esempio si userà una query che restituisce tutti i dati sulle prestazioni per i computer con un nome che inizia con *srv*.  
+Si inizierà creando una ricerca di log per i dati di hello che si desidera toosend toohello set di dati.  In questo esempio si userà una query che restituisce tutti i dati sulle prestazioni per i computer con un nome che inizia con *srv*.  
 
 ![Pianificazioni di Power BI](media/log-analytics-powerbi/walkthrough-query.png)
 
 ### <a name="create-power-bi-search"></a>Creare una ricerca di Power BI
-Fare clic sul pulsante **Power BI** per aprire la finestra di dialogo di Power BI e fornire le informazioni necessarie.  Questa ricerca dovrà essere eseguita una volta ogni ora e sarà necessario creare un set di dati denominato *Contoso Perf*.  Poiché è già aperta una ricerca che crea i dati desiderati, si manterrà il valore predefinito di *Usa query di ricerca corrente* per **Ricerca salvata**.
+Si fa clic hello **Power BI** pulsante finestra di dialogo tooopen hello Power BI e fornire informazioni di hello necessario.  Si desidera questo toorun ricerca una volta ogni ora e creare un set di dati denominato *Contoso Perf*.  Poiché è già aperta hello ricerca che consente di creare dati hello desiderato, è mantenere predefinito hello *query di ricerca corrente utilizzare* per **ricerca salvata**.
 
 ![Ricerca di Power BI](media/log-analytics-powerbi/walkthrough-schedule.png)
 
 ### <a name="verify-power-bi-search"></a>Verificare la ricerca di Power BI
-Per verificare che la pianificazione sia stata creata correttamente, visualizzare l'elenco delle ricerche di Power BI nel riquadro **Impostazioni** nel dashboard di OMS.  Attendere alcuni minuti e aggiornare la visualizzazione fino a quando non segnalerà che la sincronizzazione è stata eseguita.
+tooverify di pianificazione di hello è stato creato correttamente, è elenco hello delle ricerche di Power BI in hello **impostazioni** riquadro nel dashboard OMS hello.  È attendere qualche minuto e aggiornare la visualizzazione finché non vengono segnalati che sia stata eseguita la sincronizzazione hello.
 
 ![Ricerca di Power BI](media/log-analytics-powerbi/walkthrough-schedules.png)
 
-### <a name="verify-the-dataset-in-power-bi"></a>Verificare il set di dati in Power BI
-Accedere con il proprio account a [powerbi.microsoft.com](http://powerbi.microsoft.com/) e scorrere fino alla **et di dati** nella parte inferiore del riquadro a sinistra.  È possibile notare che il set di dati *Contoso Perf* è elencato e indica che l'esportazione è stata eseguita correttamente.
+### <a name="verify-hello-dataset-in-power-bi"></a>Verificare dataset hello in Power BI
+Vengono registrate in conto in [pagina powerbi.microsoft.com](http://powerbi.microsoft.com/) e scorrere troppo**set di dati** nella parte inferiore di hello del riquadro di sinistra hello.  Possiamo vedere che hello *Contoso Perf* set di dati elencato che indica che l'esportazione è stata eseguita correttamente.
 
 ![Set di dati di Power BI](media/log-analytics-powerbi/walkthrough-datasets.png)
 
 ### <a name="create-report-based-on-dataset"></a>Creare report basato sul set di dati
-Selezionare il set di dati **Contoso Perf** e quindi fare clic su **Risultati** nel riquadro **Campi** a destra per visualizzare i campi che fanno parte di questo set di dati.  Per creare un grafico a linee che mostra l'utilizzo del processore per ogni computer, eseguire queste azioni.
+Selezionare hello **Contoso Perf** set di dati e quindi fare clic su **risultati** in hello **campi** riquadro campi di hello tooview destra hello che fanno parte di questo set di dati.  toocreate utilizzo del processore che mostra grafico una riga per ogni computer, eseguire hello seguenti azioni.
 
-1. Selezionare la visualizzazione Grafico a linee.
-2. Trascinare **ObjectName** in **Filtri a livello di report** e selezionare **Processore**.
-3. Trascinare **CounterName** in **Filtri a livello di report** e selezionare **% tempo processore**.
-4. Trascinare **CounterValue** in **Valori**.
-5. Trascinare **Computer** in **Legenda**.
-6. Trascinare **TimeGenerated** in **Asse**.
+1. Selezionare la visualizzazione grafico di riga hello.
+2. Trascinare **ObjectName** troppo**filtro del livello Report** e controllare **processore**.
+3. Trascinare **CounterName** troppo**filtro del livello Report** e controllare **% tempo processore**.
+4. Trascinare **CounterValue** troppo**valori**.
+5. Trascinare **Computer** troppo**legenda**.
+6. Trascinare **TimeGenerated** troppo**asse**.
 
-Si noterà che il grafico risultante viene visualizzato con i dati dal set di dati.
+È possibile osservare che il grafico a linee hello risultante viene visualizzato con dati hello il set di dati.
 
 ![Grafico a linee di Power BI](media/log-analytics-powerbi/walkthrough-linegraph.png)
 
-### <a name="save-the-report"></a>Salvare il report
-Per salvare il report fare clic sul pulsante Salva nella parte superiore della schermata e verificare che sia elencato nella sezione Report nel riquadro a sinistra.
+### <a name="save-hello-report"></a>Salvare il report hello
+Si salva il rapporto hello facendo clic su hello pulsante in alto hello hello Salva e convalida che è ora elencato nella sezione report hello nel riquadro di sinistra hello.
 
 ![Report di Power BI](media/log-analytics-powerbi/walkthrough-report.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su [ricerche dei log](log-analytics-log-searches.md) per compilare query che possono essere esportate in Power BI.
-* Altre informazioni su [Power BI](http://powerbi.microsoft.com) per generare visualizzazioni basate sulle esportazioni di Log Analytics.
+* Informazioni su [log ricerche](log-analytics-log-searches.md) toobuild query che possono essere esportati tooPower BI.
+* Altre informazioni, vedere [Power BI](http://powerbi.microsoft.com) toobuild visualizzazioni in base alle esportazioni Analitica di Log.

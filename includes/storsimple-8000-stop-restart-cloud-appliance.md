@@ -1,9 +1,9 @@
-#### <a name="to-stop-and-start-a-cloud-appliance"></a>Per arrestare e avviare un'appliance cloud
+#### <a name="toostop-and-start-a-cloud-appliance"></a>toostop e avviare un'applicazione cloud
 
-1. Per arrestare un'appliance cloud, passare alla relativa macchina virtuale.
+1. toostop un'applicazione cloud, andare toohello macchina virtuale per l'applicazione cloud.
     ![Macchina virtuale appliance cloud StorSimple](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart1.png)
 
-2. Nella barra dei comandi fare clic su **Arresta**.
+2. Dalla barra dei comandi di hello, fare clic su **arrestare**.
 
     ![Macchina virtuale appliance cloud StorSimple](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart2.png)
 
@@ -11,27 +11,27 @@
 
     ![Macchina virtuale appliance cloud StorSimple](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart3.png)
 
-4. Con l'arresto, la macchina virtuale viene deallocata. Durante l'arresto dell'appliance cloud, il suo stato è **Deallocazione**. Dopo l'arresto dell'appliance cloud, il suo stato è **Arrestato (deallocato)**.
+4. Con l'arresto, la macchina virtuale viene deallocata. Durante l'arresto di appliance di cloud hello, lo stato è **Deallocating**. Dopo l'arresto appliance di cloud hello, lo stato è **arrestato (deallocato)**.
 
     ![Macchina virtuale appliance cloud StorSimple](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart4.png)
 
-5. Dopo l'arresto della macchina virtuale, fare clic su **Avvia** (il pulsante diventa disponibile) per avviare la macchina virtuale. Dopo l'avvio dell'appliance cloud, il suo stato è **Avviato**.
+5. Una volta che una macchina virtuale viene arrestata, fare clic su **avviare** (pulsante diventa disponibile) hello toostart macchina virtuale. Dopo che il dispositivo di cloud hello è stata avviata, il suo stato sia **Started**.
 
     ![Macchina virtuale appliance cloud StorSimple](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart5.png)
 
-Usare i cmdlet seguenti per arrestare e avviare un'appliance cloud.
+Utilizzare hello toostop i cmdlet seguenti e avviare un'applicazione cloud.
 
 `Stop-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
 `Start-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
-#### <a name="to-restart-a-cloud-appliance"></a>Per riavviare un'appliance cloud
+#### <a name="toorestart-a-cloud-appliance"></a>toorestart un'applicazione cloud
 
-Per riavviare un'appliance cloud, passare alla relativa macchina virtuale. Nella barra dei comandi fare clic su **Riavvia**. Quando richiesto, confermare il riavvio. Quando l'appliance cloud è pronta per l'uso, lo stato viene indicato come **In esecuzione**.
+toorestart un'applicazione cloud, andare toohello macchina virtuale per l'applicazione cloud. Dalla barra dei comandi di hello, fare clic su **riavviare**. Quando richiesto, confermare il riavvio di hello. Quando il dispositivo di cloud hello è pronto per si toouse, lo stato è **esecuzione**.
 
 ![Macchina virtuale appliance cloud StorSimple](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart6.png)
 
-Usare il cmdlet seguente per riavviare un'appliance cloud.
+Utilizzare hello seguente cmdlet toorestart un'applicazione cloud.
 
 `Restart-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 

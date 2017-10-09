@@ -1,6 +1,6 @@
 ---
-title: 'Azure Cosmos DB come archivio di valori chiave: Panoramica dei costi | Microsoft Docs'
-description: Informazioni sui costi ridotti correlati all'uso di Azure Cosmos DB come archivio di valori chiave.
+title: 'aaaAzure DB Cosmos come archivio di valore di chiave: Cenni preliminari sul costo | Documenti Microsoft'
+description: Informazioni sui costi hello dell'utilizzo di Azure Cosmos DB come archivio di valore della chiave.
 keywords: archivio di valori chiave
 services: cosmos-db
 author: mimig1
@@ -16,25 +16,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/28/2017
 ms.author: mimig
-ms.openlocfilehash: 33eef1b51a5ee00b0fa67096030ed9ce92cf768e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: de7207760a8e1fca0e30f951109748835dabf4a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-as-a-key-value-store--cost-overview"></a>Azure Cosmos DB come archivio di valori chiave: Panoramica dei costi
 
-Azure Cosmos DB è un servizio di database multimodello distribuito a livello globale che consente di compilare con facilità applicazioni su larga scala e a disponibilità elevata. Per impostazione predefinita, Azure Cosmos DB indicizza automaticamente tutti i dati che inserisce, in modo efficiente. In questo modo è possibile abilitare query [SQL](documentdb-sql-query.md) (e [JavaScript](programming.md)) rapide e coerenti su qualsiasi tipo di dati. 
+Azure Cosmos DB è un servizio di database multimodello distribuito a livello globale che consente di compilare con facilità applicazioni su larga scala e a disponibilità elevata. Per impostazione predefinita, Azure Cosmos DB vengono indicizzati automaticamente tutti i dati di hello che inserisce, in modo efficiente. In questo modo è possibile abilitare query [SQL](documentdb-sql-query.md) (e [JavaScript](programming.md)) rapide e coerenti su qualsiasi tipo di dati. 
 
-L'articolo descrive il costo di Azure Cosmos DB per semplici operazioni di lettura e scrittura, quando usato come archivio di chiavi/valori. Le operazioni di scrittura includono inserimenti, sostituzioni, eliminazioni e upsert di documenti. Oltre a una disponibilità elevata del 99,99%, Azure Cosmos DB garantisce rispettivamente una latenza pari a <10 ms per le letture e a <15 ms per le scritture (indicizzate), al 99° percentile. 
+Questo articolo descrive costo hello Azure Cosmos DB per la scrittura semplice e operazioni di lettura quando viene utilizzato un archivio chiave-valore. Le operazioni di scrittura includono inserimenti, sostituzioni, eliminazioni e upsert di documenti. Oltre a garantire la disponibilità elevata 99,99%, offerte Azure Cosmos DB garantito < 10 ms di latenza per le letture e < latenza 15 ms per hello (indicizzato) scrive rispettivamente alla percentile 99th hello. 
 
 ## <a name="why-we-use-request-units-rus"></a>Perché usare le unità richiesta (UR)
 
-Le prestazioni di Azure Cosmos DB si basano sulla quantità di [unità richiesta](request-units.md) (UR) con provisioning per la partizione. Il provisioning è a una granularità in secondi e viene acquistato in UR/sec e UR/min, [da non confondere con la fatturazione oraria](https://azure.microsoft.com/pricing/details/cosmos-db/). Le UR devono essere considerate come una valuta che semplifica il provisioning della velocità effettiva necessaria per l'applicazione. I clienti non devono pensare a differenziare le unità di capacità tra lettura e scrittura. Il modello singolo di valuta delle UR crea efficienza per condividere la capacità di provisioning tra le letture e le scritture. Questo modello di capacità con provisioning consente al servizio fornire una velocità effettiva prevedibile e coerente, con bassa latenza e disponibilità elevata garantite. Infine, si usano le UR per generare un modello di velocità effettiva, ma ogni UR con provisioning presenta inoltre una quantità di risorse definita (memoria, memoria centrale). UR/sec non si riferisce solo alle operazioni di I/O al secondo (IOPS).
+Prestazioni di Azure Cosmos DB sono in base all'ammontare hello di provisioning [unità richiesta](request-units.md) (RU) per la partizione hello. provisioning Hello in un secondo livello di granularità e acquistato in russo/sec e russo/min ([toobe non confondere con hello fatturazione oraria](https://azure.microsoft.com/pricing/details/cosmos-db/)). RUs deve essere considerato come una valuta che semplifica il provisioning di velocità effettiva necessaria per un'applicazione hello hello. I clienti non è necessario toothink differenziare tra lettura e scrittura delle unità di capacità. modello di sola valuta Hello del servizio aggiornamento destinatari crea efficienza capacità hello provisioning tooshare tra le letture e scritture. Questo modello di provisioning di capacità consente hello servizio tooprovide una velocità effettiva coerenza e prevedibile, bassa latenza e la disponibilità elevata è garantito. Infine, utilizziamo la velocità effettiva toomodel UR ma ogni RU provisioning presenta inoltre una quantità di risorse (memoria, Core). UR/sec non si riferisce solo alle operazioni di I/O al secondo (IOPS).
 
-Come sistema di database distribuito a livello globale, Cosmos DB è il solo servizio di Azure che fornisce un contratto di servizio basato su latenza, velocità effettiva e coerenza oltre che sulla disponibilità elevata. La velocità effettiva con cui viene effettuato il provisioning viene applicata a ognuna delle aree associate all'account di database Cosmos DB. Per le letture, Cosmos DB offre più [livelli di coerenza](consistency-levels.md) ben definiti tra cui scegliere. 
+Come un sistema di database distribuiti in modo globale Cosmos DB è hello solo servizio di Azure che fornisce disponibilità toohigh inoltre un contratto di servizio alla latenza, velocità effettiva e la coerenza. velocità effettiva di Hello che viene effettuato il provisioning è applicato tooeach delle regioni hello associato all'account di database DB Cosmos. Per le letture Cosmos DB offre più ben definito [livelli di coerenza](consistency-levels.md) per toochoose da. 
 
-La tabella seguente mostra il numero di UR necessarie per eseguire transazioni di lettura e scrittura con dimensioni di documento pari a 1 KB e 100 KB.
+Hello nella tabella seguente hello svariate RUs tooperform obbligatorio lettura e scrittura delle transazioni in base alle dimensioni del documento di 1KB e 100KBs.
 
 |Dimensioni dell'elemento|1 Lettura|1 Scrittura|
 |-------------|------|-------|
@@ -43,7 +43,7 @@ La tabella seguente mostra il numero di UR necessarie per eseguire transazioni d
 
 ## <a name="cost-of-reads-and-writes"></a>Costo di letture e scritture
 
-Se si esegue il provisioning di 1.000 UR al secondo, si avrà un totale di 3,6 milioni di UR all'ora e il costo sarà di 0,08 dollari l'ora (negli Stati Uniti e in Europa). Per un documento di 1 KB, ciò significa che è possibile utilizzare 3,6 milioni di letture o 0,72 milioni di scritture (3,6 m UR/5) utilizzando la velocità effettiva con provisioning. Normalizzate in milioni di letture e scritture, il costo sarebbe di 0,022 dollari/milione di letture (0,08 dollari/3,6) e 0,111 dollari/milioni di scritture (0,08 dollari/0,72). Il costo al milione diventa minimo come illustrato nella tabella seguente.
+Se si esegue il provisioning di 1.000 UR/sec, questo importi too3.6m UR/ora e comporta un costo $0,08 per ora hello (in Europa e hello Stati Uniti). Per un documento di 1 KB, ciò significa che è possibile utilizzare 3,6 milioni di letture o 0,72 milioni di scritture (3,6 m UR/5) utilizzando la velocità effettiva con provisioning. Toomillion normalizzato legge e scrive, hello costo sarebbe $0,022 /m letture ($0,08 / 3,6) e $0.111/ m scrive ($0,08 / 0,72). costo Hello milioni diventa minimo, come illustrato nella tabella hello riportata di seguito.
 
 |Dimensioni dell'elemento|1 milione di letture|1 milione di scritture|
 |-------------|-------|--------|
@@ -51,9 +51,9 @@ Se si esegue il provisioning di 1.000 UR al secondo, si avrà un totale di 3,6 m
 |100 KB|$0.222|$1.111|
 
 
-La maggior parte dei servizi di archivi di oggetti o BLOB di base addebita 0,40 dollari per milione di transazioni di lettura e 5 dollari per milione transazioni di scrittura. Se usato in modo ottimale, Cosmos DB è fino al 98% più conveniente di queste altre soluzioni, per le transazioni di 1 KB.
+Maggior parte dei blob di base hello o oggetto archivi servizi addebito $0,40 per milioni di transazioni di lettura e 5 dollari US per ogni transazione di scrittura milioni. Se utilizzato in modo ottimale, è possibile Cosmos DB too98% più economica rispetto a queste altre soluzioni (per le transazioni di 1KB).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Saranno presto disponibili nuovi articoli sull'ottimizzazione del provisioning delle risorse di Azure Cosmos DB. Nel frattempo, è possibile usare il nostro [calcolatore UR](https://www.documentdb.com/capacityplanner).
+Saranno presto disponibili nuovi articoli sull'ottimizzazione del provisioning delle risorse di Azure Cosmos DB. Nel frattempo, hello ritiene toouse disponibile il nostro [calcolatrice RU](https://www.documentdb.com/capacityplanner).
 

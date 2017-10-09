@@ -1,5 +1,5 @@
 ---
-title: Dati di esempio nelle tabelle Hive di Azure HDInsight | Microsoft Docs
+title: aaaSample dati nelle tabelle di Azure HDInsight Hive | Documenti Microsoft
 description: Esecuzione del sotto-campionamento dei dati nelle tabelle Hive (Hadoop) di Azure HDInsight
 services: machine-learning,hdinsight
 documentationcenter: 
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: hangzh;bradsev
-ms.openlocfilehash: d46297dfaf85976114fbf610803e5f1a997041e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5f86df9b5a18facc875f437abfb004dbe3a06ea4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sample-data-in-azure-hdinsight-hive-tables"></a>Dati di esempio nelle tabelle Hive di Azure HDInsight
-In questo articolo, viene descritto come eseguire il downsampling dei dati archiviati nelle tabelle Hive di Azure HDInsight usando le query Hive. Vengono trattati i tre metodi di campionamento utilizzati più frequentemente:
+In questo articolo vengono descritte come toodown-esempio dati archiviati nelle tabelle di Azure HDInsight Hive usano query Hive. Vengono trattati i tre metodi di campionamento utilizzati più frequentemente:
 
 * Campionamento casuale uniforme
 * Campionamento casuale per gruppi
 * Campionamento stratificato
 
-Il **menu** seguente contiene collegamenti ad argomenti che descrivono come campionare dati di vari ambienti di archiviazione.
+esempio Hello **menu** collegamenti tootopics che descrivono come toosample dati da diversi ambienti di archiviazione.
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
 **Perché campionare i dati?**
-Se il set di dati da analizzare è grande, è in genere opportuno sottocampionare i dati per ridurlo e ottenere dimensioni inferiori più facilmente gestibili ma comunque rappresentative. Questa operazione facilita la comprensione e l'esplorazione dei dati, nonché la progettazione di funzionalità. Il suo ruolo nel Processo di analisi scientifica dei dati per i team consiste nell'abilitare la creazione relativa a prototipi di funzioni di elaborazione dei dati e di modelli di Machine Learning.
+Se si prevede di tooanalyze set di dati hello è grande, è in genere un tooreduce di dati di buona toodown esempio hello è tooa più piccolo ma rappresentativo e gestibile dimensioni. Questa operazione facilita la comprensione e l'esplorazione dei dati, nonché la progettazione di funzionalità. Il relativo ruolo nel processo di analisi scientifica dei dati di Team hello è tooenable rapida la creazione di prototipi di funzioni di elaborazione dei dati hello e modelli di machine learning.
 
-Questo campionamento è un passaggio del [Processo di analisi scientifica dei dati per i team (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Questa attività di campionamento è un passaggio di hello [Team Data Science processo (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
-## <a name="how-to-submit-hive-queries"></a>Come inviare query Hive
-Le query Hive possono essere inviate dalla console della riga di comando di Hadoop nel nodo head del cluster Hadoop. Per effettuare questa operazione, accedere al nodo head del cluster Hadoop, aprire la console della riga di comando e inviare le query Hive da tale posizione. Per istruzioni su come inviare le query Hive nella console della riga di comando di Hadoop, vedere [Come inviare le query Hive](machine-learning-data-science-move-hive-tables.md#submit).
+## <a name="how-toosubmit-hive-queries"></a>La modalità query Hive toosubmit
+È possibile inviare query hive dalla console di riga di comando Hadoop hello nel nodo head di hello del cluster Hadoop hello. toodo questa operazione, accedere al nodo head di hello del cluster Hadoop hello, aprire console della riga di comando Hadoop hello e inviare query Hive hello da qui. Per istruzioni sull'invio di query Hive nella console della riga di comando Hadoop hello, vedere [come tooSubmit query Hive](machine-learning-data-science-move-hive-tables.md#submit).
 
 ## <a name="uniform"></a> Campionamento casuale uniforme
-Nel campionamento casuale uniforme tutte le righe del set di dati hanno la stessa possibilità di essere sottoposte a campionamento. Tale metodo può essere implementato aggiungendo un ulteriore campo casuale () al set di dati relativo alla query "select" interna e a quella "select" esterna che condizionano il campo casuale.
+Campionamento casuale Uniform significa che ogni riga nel set di dati hello stessa probabilità di in fase di campionamento. Questo può essere implementata tramite l'aggiunta di un set di dati campo aggiuntivo toohello rand () in query "select" interna hello e hello query "select" esterna tale condizione su quel campo casuale.
 
 Di seguito è fornito un esempio di query:
 
@@ -55,11 +55,11 @@ Di seguito è fornito un esempio di query:
         )a
     where samplekey<='${hiveconf:sampleRate}'
 
-In questo caso, `<sample rate, 0-1>` indica la proporzione di record che gli utenti desiderano campionare.
+In questo caso, `<sample rate, 0-1>` specifica la proporzione di hello di record che gli utenti di hello desiderano toosample.
 
 ## <a name="group"></a> Campionamento casuale per gruppi
-Quando si esegue il campionamento dei dati di categoria, è possibile scegliere di includere o di escludere tutte le istanze di un determinato valore di una variabile di categoria. Questo è il significato di "campionamento per gruppi".
-Ad esempio, se si dispone di variabile di categoria "State" con valori quali NY, MA, CA, NJ, PA e così via, è possibile che l'utente desideri che i record dello stesso stato siano sempre visualizzati insieme, che siano campionati o meno.
+Quando i dati di campionamento per categoria, è opportuno tooeither includere o escludere tutte le istanze di hello di un valore specifico di una variabile per categoria. Questo è il significato di "campionamento per gruppi".
+Ad esempio, se si dispone di una variabile categorica, "Stato", che ha valori NY AG, Canada, NJ, PA, e così via, che si desidera record di hello stesso stato sempre essere insieme, se vengono campionate o non.
 
 Di seguito è presentata una query di esempio che consente di eseguire il campionamento per gruppi:
 
@@ -88,7 +88,7 @@ Di seguito è presentata una query di esempio che consente di eseguire il campio
     on b.catfield=c.catfield
 
 ## <a name="stratified"></a> Campionamento stratificato
-Il campionamento casuale è stratificato rispetto a una variabile di categoria, nel caso in cui i campioni ottenuti presentino, per quella categoria, valori di proporzione equivalente a quelli del popolamento padre dal quale sono stati ottenuti i campioni. Usando lo stesso esempio precedente, si supponga che i dati dispongano di un popolamento secondario in base allo stato. Ad esempio, NJ dispone di 100 osservazioni, NY dispone di 60 osservazioni e WA di 300 osservazioni. Se si specifica che la proporzione del campionamento stratificato sia pari a 0,5, il campione ottenuto deve disporre all'incirca di 50, 30 e 150 osservazioni per NJ, NY e WA
+Campionamento casuale è stratificato con riguardo tooa categorico variabile quando i valori di categoria che devono di esempi di hello ottenuti in hello stesso rapporto come popolamento padre hello ottenuti dal quale hello esempi. Utilizzando hello stesso esempio precedente, si supponga che i dati con popolazioni secondario gli stati, ad esempio NJ ha 100 osservazioni, NY è 60 osservazioni, e WA con 300 osservazioni. Se la frequenza di hello di campionamento toobe 0,5 stratificata, quindi hello ottenuto deve essere circa 50, 30 e 150 osservazioni di NJ NY e WA rispettivamente.
 
 Di seguito è fornito un esempio di query:
 

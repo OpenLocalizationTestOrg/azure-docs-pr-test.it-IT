@@ -1,5 +1,5 @@
 ---
-title: Integrazione di Android SDK per Azure Mobile Engagement
+title: aaaAzure integrazione SDK Android di Mobile Engagement
 description: Ultimi aggiornamenti e procedure relativi ad Azure Mobile Engagement SDK per Android
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,13 +14,13 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 35bd92e52b7a02f58620a03156902f9f91be57ae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4f79936ea0fa6102023dec2b4682032a4a81fa9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-integrate-engagement-on-android"></a>Come integrare Engagement in Android
+# <a name="how-toointegrate-engagement-on-android"></a>Come tooIntegrate Engagement in Android
 > [!div class="op_single_selector"]
 > * [Windows Universal](mobile-engagement-windows-store-integrate-engagement.md)
 > * [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
@@ -29,20 +29,20 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Questa procedura descrive il modo più semplice per attivare le funzioni di analisi e monitoraggio di Engagement in un'applicazione per Android.
+Questa procedura descrive Engagement tooactivate di modo più semplice di hello Analitica e funzioni in un'applicazione Android di monitoraggio.
 
 > [!IMPORTANT]
 > L'API di Android SDK deve essere almeno di livello 10 o superiore (Android 2.3.3 o versioni successive).
 > 
 > 
 
-I passaggi seguenti sono sufficienti per attivare la segnalazione dei log necessari per calcolare tutte le statistiche relative a utenti, sessioni, attività, arresti anomali del sistema e dati tecnici. La segnalazione dei log necessari per calcolare altre statistiche quali eventi, errori e processi deve essere eseguita manualmente mediante l'API di Engagement (vedere [Come usare l'API di Engagement in Android](mobile-engagement-android-use-engagement-api.md) ) poiché queste statistiche dipendono dall'applicazione.
+Hello seguendo i passaggi è che sufficienti tooactivates hello dei log è necessario un report toocompute tutte le statistiche relative agli utenti, sessioni, attività, arresti anomali del sistema e Technicals. Hello dei log è necessario un report toocompute altre statistiche quali processi, errori ed eventi devono essere eseguiti manualmente tramite API di Engagement hello (vedere [come toouse hello avanzate Mobile Engagement tag API in Android](mobile-engagement-android-use-engagement-api.md) poiché questi le statistiche sono dipende dall'applicazione.
 
-## <a name="embed-the-engagement-sdk-and-service-into-your-android-project"></a>Incorporare il servizio ed Engagement SDK nel progetto Android
-Android SDK è disponibile [qui`libs` per il download. Ottenere il file ](https://aka.ms/vq9mfn) e inserirlo nella cartella `mobile-engagement-VERSION.jar` del progetto Android. Creare la cartella libs, se non esiste ancora.
+## <a name="embed-hello-engagement-sdk-and-service-into-your-android-project"></a>Incorporare il progetto Android hello Engagement SDK e servizio
+Download hello Android SDK da [qui](https://aka.ms/vq9mfn) ottenere `mobile-engagement-VERSION.jar` e inserirli in hello `libs` cartella del progetto Android (se non esiste ancora, creare cartelle di librerie hello).
 
 > [!IMPORTANT]
-> Se si compila il pacchetto dell'applicazione con ProGuard, è necessario mantenere alcune classi. È possibile usare il frammento di codice di configurazione seguente:
+> Se si compila il pacchetto dell'applicazione con ProGuard, è necessario tookeep alcune classi. È possibile utilizzare hello seguente frammento di configurazione:
 > 
 > -keep public class * extends android.os.IInterface -keep class com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity$EngagementReachContentJS {
 > 
@@ -50,40 +50,40 @@ Android SDK è disponibile [qui`libs` per il download. Ottenere il file ](https:
 > 
 > 
 
-Specificare la stringa di connessione a Engagement chiamando il metodo seguente nell'attività dell'utilità di avvio:
+Specificare la stringa di connessione Engagement, hello chiamata seguente metodo in attività di avvio hello:
 
             EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
             engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-La stringa di connessione per l'applicazione viene visualizzata nel portale di Azure.
+stringa di connessione Hello per l'applicazione viene visualizzato nel portale di Azure.
 
-* Aggiungere le autorizzazioni Android seguenti, se mancanti, prima del tag `<application>`:
+* Se presente, aggiungere queste autorizzazioni Android hello (prima hello `<application>` tag):
   
           <uses-permission android:name="android.permission.INTERNET"/>
           <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-* Aggiungere la sezione seguente tra i tag `<application>` e `</application>`:
+* Aggiungere hello successiva sezione (tra hello `<application>` e `</application>` tag):
   
           <service
             android:name="com.microsoft.azure.engagement.service.EngagementService"
             android:exported="false"
             android:label="<Your application name>Service"
             android:process=":Engagement"/>
-* Al posto di `<Your application name>` specificare il nome dell'applicazione.
+* Modifica `<Your application name>` dal nome dell'applicazione hello.
 
 > [!TIP]
-> La chiave `android:label` consente di scegliere il nome del servizio Engagement così come verrà presentato agli utenti finali nella schermata dei servizi in esecuzione sul telefono. È consigliabile impostare questo attributo su `"<Your application name>Service"`, ad esempio `"AcmeFunGameService"`.
+> Hello `android:label` attributo consente un nome hello toochoose di hello servizio Engagement come verrà visualizzato agli utenti finali toohello nella schermata di "Servizi in esecuzione" hello del telefono. È consigliabile tooset questo attributo troppo`"<Your application name>Service"` (ad esempio `"AcmeFunGameService"`).
 > 
 > 
 
-Se si specifica l'attributo `android:process` , il servizio Engagement verrà eseguito nel relativo processo (l'esecuzione di Engagement nello stesso processo dell'applicazione può ridurre la reattività del thread principale o dell'interfaccia utente).
+Se si specifica hello `android:process` attributo assicura che il servizio di Engagement hello verrà eseguito nel proprio processo (Engagement in esecuzione nella stessa procedura adottata applicazione renderà il thread principale o dell'interfaccia utente potenzialmente tempi hello).
 
 > [!NOTE]
-> Il codice inserito in `Application.onCreate()` e altri callback dell'applicazione verrà eseguito per tutti i processi dell'applicazione, incluso il servizio Engagement. È possibile che si verifichino effetti collaterali indesiderati, ad esempio allocazioni di memoria e thread superflui nel processo di Engagement oppure ricevitori o servizi di trasmissione duplicati.
+> Inserire nel codice `Application.onCreate()` e per tutti i processi dell'applicazione, incluso hello Engagement servizio verranno eseguiti altri i callback dell'applicazione. Potrebbe avere effetti indesiderati (ad esempio, le allocazioni di memoria non necessari e i thread nel processo di Engagement hello, ricevitori broadcast duplicati o servizi).
 > 
 > 
 
-Se si esegue l'override di `Application.onCreate()`, è consigliabile aggiungere il frammento di codice seguente all'inizio della funzione `Application.onCreate()`:
+Se esegue l'override `Application.onCreate()`, hello tooadd consigliato seguente all'inizio di hello del frammento di codice è il `Application.onCreate()` funzione:
 
              public void onCreate()
              {
@@ -93,13 +93,13 @@ Se si esegue l'override di `Application.onCreate()`, è consigliabile aggiungere
                ... Your code...
              }
 
-È possibile eseguire la stessa operazione per `Application.onTerminate()`, `Application.onLowMemory()` e `Application.onConfigurationChanged(...)`.
+È possibile eseguire hello stessa operazione per `Application.onTerminate()`, `Application.onLowMemory()` e `Application.onConfigurationChanged(...)`.
 
-È anche possibile estendere `EngagementApplication` anziché `Application`: il callback esegue il controllo del processo `Application.onCreate()` e chiama `Application.onApplicationProcessCreate()` solo se il processo corrente non è quello che ospita il servizio Engagement. Per gli altri callback vengono applicate le stesse regole.
+È anche possibile estendere `EngagementApplication` anziché estensione `Application`: hello callback `Application.onCreate()` hello controllo processo e chiama `Application.onApplicationProcessCreate()` solo se il processo corrente hello è non hello uno hello Engagement servizio di hosting, hello stesse regole valide per Hello altre richiamate.
 
 ## <a name="basic-reporting"></a>Segnalazione di base
 ### <a name="recommended-method-overload-your-activity-classes"></a>Metodo consigliato: eseguire l'overload delle classi `Activity`
-Per attivare la segnalazione di tutti i log richiesti da Engagement per il calcolo delle statistiche relative a utenti, sessioni, attività, arresti anomali del sistema e dati tecnici, è sufficiente fare in modo che tutte le sottoclassi `*Activity` ereditino dalle classi `Engagement*Activity` corrispondenti. Ad esempio, se l'attività legacy estende `ListActivity`, fare in modo che estenda `EngagementListActivity`.
+Report hello tooactivate order di tutti i log di hello richiesto da Engagement toocompute utenti, sessioni, attività, arresti anomali del sistema e le statistiche tecniche, è sufficiente toomake tutti i `*Activity` sottoclassi ereditano hello corrispondente `Engagement*Activity` classi (ad esempio, se l'attività legacy estende `ListActivity`, assicurarsi che estende `EngagementListActivity`).
 
 **Senza Engagement:**
 
@@ -136,17 +136,17 @@ Per attivare la segnalazione di tutti i log richiesti da Engagement per il calco
             }
 
 > [!IMPORTANT]
-> Quando si usa `EngagementListActivity` o `EngagementExpandableListActivity`, assicurarsi che tutte le chiamate a `requestWindowFeature(...);` vengano eseguite prima della chiamata a `super.onCreate(...);`. In caso contrario, si verificherà un arresto anomalo del sistema.
+> Quando si utilizza `EngagementListActivity` o `EngagementExpandableListActivity`, assicurarsi che tutte le chiamate troppo`requestWindowFeature(...);` diventa troppo prima chiamata hello`super.onCreate(...);`, in caso contrario si verificherà un arresto anomalo.
 > 
 > 
 
-Queste classi sono incluse nella cartella `src` e possono essere copiate nel progetto. Sono reperibili anche in **JavaDoc**.
+È possibile trovare queste classi in hello `src` cartella e possono copiare nel progetto. classi di Hello sono anche in hello **JavaDoc**.
 
 ### <a name="alternate-method-call-startactivity-and-endactivity-manually"></a>Metodo alternativo: chiamare manualmente `startActivity()` e `endActivity()`
-Se non si può o non si vuole eseguire l'overload delle classi `Activity`, è possibile avviare e terminare le attività chiamando direttamente i metodi di `EngagementAgent`.
+Se non è possibile o non si desidera toooverload il `Activity` classi, è invece possibile iniziare e terminare le attività chiamando `EngagementAgent`del diretta dei metodi.
 
 > [!IMPORTANT]
-> Android SDK non chiama mai il metodo `endActivity()`, neanche alla chiusura dell'applicazione (in Android le applicazioni in realtà non vengono mai chiuse). Per questo motivo, è *ALTAMENTE* consigliabile chiamare il metodo `startActivity()` nel callback `onResume` di *TUTTE* le attività e il metodo `endActivity()` nel callback `onPause()` di *TUTTE* le attività. È l'unico modo per evitare la perdita di sessioni. In caso di perdita di una sessione, il servizio Engagement non si disconnetterà mai dal back-end di Engagement, dato che il servizio rimane connesso fintanto che una sessione è in sospeso.
+> Hello, Android SDK non chiama mai hello `endActivity()` (metodo), anche quando viene chiusa l'applicazione hello (in Android, chiudere le applicazioni sono in realtà non). È pertanto *elevata* consigliato hello toocall `startActivity()` metodo hello `onResume` callback di *tutti* le attività e hello `endActivity()` metodo hello `onPause()` callback di *tutti* delle attività. Si tratta di hello solo modo toobe assicurarsi che le sessioni non andrà perso. Se una sessione viene perso, hello servizio Engagement mai disconnessa dal back-end Engagement hello (dal momento che il servizio di hello rimane connesso, purché una sessione è in sospeso).
 > 
 > 
 
@@ -158,7 +158,7 @@ Di seguito è fornito un esempio:
               protected void onResume()
               {
                 super.onResume();
-                String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at the end.
+                String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at hello end.
                 EngagementAgent.getInstance(this).startActivity(this, activityNameOnEngagement, null);
               }
 
@@ -170,54 +170,54 @@ Di seguito è fornito un esempio:
               }
             }
 
-Questo esempio è molto simile alla classe `EngagementActivity` e alle relative varianti, il cui codice di origine è disponibile nella cartella `src`.
+Questo toohello molto simili di esempio `EngagementActivity` classe e le sue varianti, il cui codice sorgente viene fornito in hello `src` cartella.
 
 ## <a name="test"></a>Test
-Verificare ora l'integrazione, eseguendo l'app per dispositivi mobili in un emulatore o in un dispositivo e verificando che registri una sessione nella scheda Monitoraggio.
+Esegue l'app per dispositivi mobili in un emulatore o un dispositivo e verificando che registra una sessione nella scheda Monitoraggio hello ora. verificare l'integrazione.
 
-Le sezioni successive sono facoltative.
+Nelle sezioni successive di Hello sono facoltative.
 
 ## <a name="location-reporting"></a>Segnalazione della posizione
-Per fare in modo che le posizioni vengano segnalate, è necessario aggiungere alcune righe di configurazione tra i tag `<application>` e `</application>`.
+Se si desidera toobe percorsi segnalato, è necessario tooadd poche righe di configurazione (tra hello `<application>` e `</application>` tag).
 
 ### <a name="lazy-area-location-reporting"></a>Segnalazione differita della posizione
-La segnalazione differita della posizione consente di segnalare il paese, l'area geografica e la località associati ai dispositivi. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. L'area del dispositivo viene segnalata al massimo una volta per sessione. Il GPS non viene mai usato, per cui l'impatto di questo tipo di segnalazione della posizione sulla batteria è minimo, se non addirittura nullo.
+Segnalazione differita della posizione consente paese hello tooreport, area e località associata toodevices. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. area Hello del dispositivo viene segnalato al massimo una volta per ogni sessione. Hello GPS non viene mai utilizzato e, pertanto questo tipo di report di percorso include solo poche (non toosay alcun) impatto sulla batteria hello.
 
-Le aree segnalate vengono usate per calcolare statistiche geografiche relative a utenti, sessioni, eventi ed errori. Possono essere usate anche come criteri nelle campagne Reach.
+Le aree segnalate sono utilizzati toocompute statistiche geografica sugli utenti, sessioni, eventi e gli errori. Possono essere usate anche come criteri nelle campagne Reach.
 
-Per abilitare la segnalazione differita della posizione, è possibile utilizzare la configurazione descritta in precedenza in questa procedura:
+percorso area lazy tooenable reporting, è possibile farlo tramite configurazione hello indicato in precedenza in questa procedura:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setLazyAreaLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-È necessario aggiungere anche le autorizzazioni seguenti, se mancanti:
+È inoltre necessario hello tooadd seguente autorizzazione se mancante:
 
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 Oppure è possibile continuare a utilizzare ``ACCESS_FINE_LOCATION`` se è già utilizzato nell'applicazione.
 
 ### <a name="real-time-location-reporting"></a>Segnalazione della posizione in tempo reale
-La segnalazione della posizione in tempo reale consente di segnalare la latitudine e la longitudine associate ai dispositivi. Per impostazione predefinita, la segnalazione differita della posizione usa solo posizioni di rete (in base all'ID di cella o alla connessione Wi-Fi) ed è attiva solo quando l'applicazione viene eseguita in primo piano, ad esempio durante una sessione.
+La segnalazione della posizione in tempo reale consente tooreport hello latitudine e la longitudine associata toodevices. Per impostazione predefinita, questo tipo di segnalazione della posizione Usa solo i percorsi di rete (basati su ID di cella o Wi-Fi) e reporting hello è attivo solo durante l'esecuzione di un'applicazione hello in primo piano (ad esempio durante una sessione).
 
-Le posizioni in tempo reale *NON* sono usate per calcolare dati statistici. L'unico scopo è consentire l'uso del criterio di definizione del recinto virtuale in tempo reale \<Reach-Audience-geofencing\> nelle campagne di copertura.
+I percorsi in tempo reale sono *non* utilizzato toocompute statistiche. Il loro scopo solo è utilizzare hello tooallow di geo-fencing in tempo reale \<Reach-pubblico-geofencing\> criterio di campagne di copertura.
 
-Per abilitare la segnalazione della posizione in tempo reale, è possibile utilizzare la configurazione descritta in precedenza in questa procedura:
+posizione in tempo reale tooenable reporting, è possibile farlo tramite configurazione hello indicato in precedenza in questa procedura:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-È necessario aggiungere anche le autorizzazioni seguenti, se mancanti:
+È inoltre necessario hello tooadd seguente autorizzazione se mancante:
 
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 Oppure è possibile continuare a utilizzare ``ACCESS_FINE_LOCATION`` se è già utilizzato nell'applicazione.
 
 #### <a name="gps-based-reporting"></a>Segnalazione basata su GPS
-Per impostazione predefinita, la segnalazione della posizione in tempo reale usa solo posizioni di rete. Per abilitare l'uso di posizioni basate su GPS (che sono molto più precise), utilizzare l’oggetto di configurazione:
+Per impostazione predefinita, la segnalazione della posizione in tempo reale usa solo posizioni di rete. Utilizzare hello tooenable di GPS basato su percorsi, che sono molto più precise, usare l'oggetto configurazione hello:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -225,12 +225,12 @@ Per impostazione predefinita, la segnalazione della posizione in tempo reale usa
     engagementConfiguration.setFineRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-È necessario aggiungere anche le autorizzazioni seguenti, se mancanti:
+È inoltre necessario hello tooadd seguente autorizzazione se mancante:
 
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 #### <a name="background-reporting"></a>Segnalazione in background
-Per impostazione predefinita, la segnalazione della posizione in tempo reale è attiva solo quando l'applicazione viene eseguita in primo piano, ad esempio durante una sessione. Per abilitare la segnalazione anche in background, utilizzare l’oggetto di configurazione:
+Per impostazione predefinita, la segnalazione della posizione in tempo reale è attiva solo durante l'esecuzione di un'applicazione hello in primo piano (ad esempio durante una sessione). reporting hello tooenable anche in background, usare hello configurazione oggetto:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -239,11 +239,11 @@ Per impostazione predefinita, la segnalazione della posizione in tempo reale è 
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
 > [!NOTE]
-> Quando l'applicazione viene eseguita in background, vengono segnalate solo le posizioni basate sulla rete, anche se è abilitato il GPS.
+> Quando un'applicazione hello viene eseguito in background, vengono segnalati solo i percorsi di rete di base, anche se è abilitata hello GPS.
 > 
 > 
 
-La segnalazione della posizione in background verrà arrestata se l'utente riavvia il dispositivo. Per fare in modo che venga riavviata automaticamente al riavvio, aggiungere quanto segue:
+report sulla posizione background Hello verrà arrestata se utente hello viene riavviato il dispositivo, è possibile aggiungere questo toomake riavviato automaticamente in fase di avvio:
 
             <receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
                android:exported="false">
@@ -252,28 +252,28 @@ La segnalazione della posizione in background verrà arrestata se l'utente riavv
                </intent-filter>
             </receiver>
 
-È necessario aggiungere anche le autorizzazioni seguenti, se mancanti:
+È inoltre necessario hello tooadd seguente autorizzazione se mancante:
 
             <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 ### <a name="android-m-permissions"></a>Autorizzazioni Android M
 A partire da Android M, alcune autorizzazioni vengono gestite in fase di esecuzione e richiedono l'approvazione dell'utente.
 
-Le autorizzazioni di runtime verranno disattivate per impostazione predefinita per le installazioni di nuove app se la destinazione è il livello 23 dell’API Android. In caso contrario verranno attivate per impostazione predefinita.
+le autorizzazioni di runtime Hello verranno disattivate per impostazione predefinita per le nuove installazioni di app se la destinazione è il livello di API Android 23. In caso contrario verranno attivate per impostazione predefinita.
 
-L'utente può abilitare o disabilitare le autorizzazioni dal menu delle impostazioni del dispositivo. La disattivazione delle autorizzazioni dal menu di sistema elimina i processi in background dell'applicazione; si tratta di un comportamento del sistema e non influisce sulla possibilità di ricevere push in background.
+utente Hello può abilitare o disabilitare le autorizzazioni dal menu di impostazioni dispositivo hello. La disattivazione di autorizzazioni dal menu di sistema di processi in background di un'applicazione hello termina, questo è un comportamento del sistema e non influisce sulla possibilità tooreceive push in background.
 
-Nel contesto di Mobile Engagement, le autorizzazioni che richiedono l'approvazione al runtime sono:
+Nel contesto di hello di Mobile Engagement, le autorizzazioni di hello che richiedono l'approvazione in fase di esecuzione sono:
 
 * `ACCESS_COARSE_LOCATION`
 * `ACCESS_FINE_LOCATION`
 * `WRITE_EXTERNAL_STORAGE` (solo quando la destinazione è il livello 23 dell’API Android)
 
-L’archiviazione esterna viene utilizzata solo per la funzionalità della panoramica generale Reach. Se si ritiene che richiedere agli utenti questa autorizzazione sia problematico, è possibile rimuoverla se è stata utilizzata solo per Mobile Engagement, ma comporta la disattivazione delle funzionalità della panoramica generale.
+archiviazione esterna Hello viene utilizzato solo per funzionalità quadro generale di copertura. Se si trova chiedere agli utenti di questo toobe autorizzazione arresto improvviso, è possibile rimuoverlo se è stato utilizzato solo per Engagement Mobile, ma al costo di hello di disabilitare la funzionalità quadro generale.
 
-Per le funzionalità del percorso, è necessario richiedere le autorizzazioni all'utente tramite una finestra di dialogo di sistema standard. Se l'utente approva, è necessario specificare ``EngagementAgent`` per tenere in considerazione la modifica in tempo reale (in caso contrario la modifica verrà elaborata la volta successiva che l'utente avvia l'applicazione).
+Per le funzionalità di percorso hello, è necessario richiedere autorizzazioni toouser utilizzando una finestra di dialogo di sistema standard. Se l'utente hello Approva, è necessario tootell ``EngagementAgent`` tootake che modificano in considerazione in tempo reale (modifica hello in caso contrario verrà elaborato successivo ora hello utente avvia hello un'applicazione hello).
 
-Ecco un esempio di codice da utilizzare in un'attività dell'applicazione per richiedere autorizzazioni e inoltrare il risultato, se positivo, a ``EngagementAgent``:
+Ecco un toouse di esempio di codice in un'attività, delle autorizzazioni per l'applicazione toorequest e portare avanti hello se positivo troppo``EngagementAgent``:
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -291,14 +291,14 @@ Ecco un esempio di codice da utilizzare in un'attività dell'applicazione per ri
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
       {
         /*
-         * Request location permission, but this won't explain why it is needed to the user.
-         * The standard Android documentation explains with more details how to display a rationale activity to explain the user why the permission is needed in your application.
-         * Putting COARSE vs FINE has no impact here, they are part of the same group for runtime permission management.
+         * Request location permission, but this won't explain why it is needed toohello user.
+         * hello standard Android documentation explains with more details how toodisplay a rationale activity tooexplain hello user why hello permission is needed in your application.
+         * Putting COARSE vs FINE has no impact here, they are part of hello same group for runtime permission management.
          */
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
           requestPermissions(new String[] { android.Manifest.permission.ACCESS_FINE_LOCATION }, 0);
 
-        /* Only if you want to keep features using external storage */
+        /* Only if you want tookeep features using external storage */
         if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
           requestPermissions(new String[] { android.Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
       }
@@ -307,62 +307,62 @@ Ecco un esempio di codice da utilizzare in un'attività dell'applicazione per ri
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
-      /* Only a positive location permission update requires engagement agent refresh, hence the request code matching from above function */
+      /* Only a positive location permission update requires engagement agent refresh, hence hello request code matching from above function */
       if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         getEngagementAgent().refreshPermissions();
     }
 
 ## <a name="advanced-reporting"></a>Segnalazione avanzata
-Facoltativamente, per segnalare eventi, errori e processi specifici dell'applicazione, è necessario usare l'API di Engagement mediante i metodi della classe `EngagementAgent` . Un oggetto di questa classe può essere recuperato chiamando il metodo statico `EngagementAgent.getInstance()` .
+Facoltativamente, se si desidera tooreport eventi specifici di applicazione, gli errori e i processi, è necessario toouse hello API Engagement tramite i metodi di hello di hello `EngagementAgent` classe. Un oggetto di questa classe può essere recuperati dal chiamante hello `EngagementAgent.getInstance()` metodo statico.
 
-L'API di Engagement consente di usare tutte le funzionalità avanzate di Engagement ed è descritta in dettaglio nell'argomento dedicato all'uso dell'API in Android, oltre che nella documentazione tecnica relativa alla classe `EngagementAgent` .
+Consente tutte le funzionalità avanzate di Engagement toouse Hello Engagement API e dettagliato in hello come tooUse l'API di Engagement in Android (nonché in documentazione tecnica di hello di hello `EngagementAgent` classe).
 
 ## <a name="advanced-configuration-in-androidmanifestxml"></a>Configurazione avanzata (in AndroidManifest.xml)
 ### <a name="wake-locks"></a>Wakelocking
-Per assicurarsi che le statistiche vengano inviate in tempo reale quando si usa una connessione Wi-Fi o quando lo schermo è spento, aggiungere la seguente autorizzazione facoltativa:
+Se si desidera assicurarsi che le statistiche vengono inviate in tempo reale quando si utilizza Wi-Fi o se viene disattivata il schermata Ciao toobe, aggiungere hello autorizzazione facoltativi seguenti:
 
             <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
 ### <a name="crash-report"></a>Segnalazione di arresto anomalo 
-Per disabilitare la segnalazione di arresti anomali del sistema, aggiungere quanto segue tra i tag `<application>` e `</application>`:
+Se si desidera toodisable segnalazioni di arresti anomali, aggiungere questo (tra hello `<application>` e `</application>` tag):
 
             <meta-data android:name="engagement:reportCrash" android:value="false"/>
 
 ### <a name="burst-threshold"></a>Soglia del burst
-Per impostazione predefinita, il servizio Engagement segnala i log in tempo reale. Se l'applicazione segnala i log molto spesso, è preferibile memorizzare i log nel buffer e segnalarli tutti insieme con cadenza regolare (la cosiddetta "modalità burst"). A tale scopo, aggiungere quanto segue tra i tag `<application>` e `</application>`:
+Per impostazione predefinita, i report del servizio di Engagement hello registra in tempo reale. Se l'applicazione segnala molto spesso i registri, è preferibile toobuffer hello registri e tooreport usarle in una sola volta in volta regolare base (è chiamata hello "modalità burst"). In tal caso, aggiungere questo toodo (tra hello `<application>` e `</application>` tag):
 
             <meta-data android:name="engagement:burstThreshold" android:value="{interval between too bursts (in milliseconds)}"/>
 
-La modalità burst aumenta lievemente la durata della batteria ma ha un impatto su Monitor di Engagement: la durata di tutte le sessioni e di tutti i processi verrà arrotondata alla soglia di burst (di conseguenza, le sessioni e i processi inferiori alla soglia di burst potrebbero non essere visibili). Si consiglia di usare una soglia di burst non maggiore di 30000 (30 secondi).
+Hello modalità burst leggermente aumentare batteria hello vita ma ha un impatto sulle hello Engagement Monitor: durata di tutte le sessioni e i processi sarà arrotondato toohello burst soglia (in questo modo, le sessioni e i processi è inferiore a soglia burst hello potrebbe non essere visibile). È consigliabile toouse una soglia di potenziamento non più di 30000 (30 s).
 
 ### <a name="session-timeout"></a>Timeout della sessione
-Per impostazione predefinita, una sessione viene terminata 10 secondi dopo la fine dell'ultima attività, che in genere si verifica premendo Home o Indietro, impostando l'inattività del telefono o passando a un'altra applicazione. Questo avviene per evitare una divisione di sessione ogni volta che l'utente esce e rientra nell'applicazione molto rapidamente, come può accadere quando preleva un'immagine, controlla una notifica e così via. Questo parametro può essere modificato. A tale scopo, aggiungere quanto segue tra i tag `<application>` e `</application>`:
+Per impostazione predefinita, una sessione è terminata 10s dopo la fine di hello della propria attività ultima (che in genere si verifica da premendo hello Home o eseguire il backup di chiave, tramite telefono di hello impostazione inattivo o passare a un'altra applicazione). Si tratta di tooavoid una divisione di sessione, ogni utente hello in fase di uscire e tornare rapidamente applicazione toohello (che può verificarsi quando ha prelevati da un'immagine, verificare una notifica e così via.). È opportuno toomodify questo parametro. In tal caso, aggiungere questo toodo (tra hello `<application>` e `</application>` tag):
 
             <meta-data android:name="engagement:sessionTimeout" android:value="{session timeout (in milliseconds)}"/>
 
 ## <a name="disable-log-reporting"></a>Disabilitare la segnalazione di log
 ### <a name="using-a-method-call"></a>Uso di una chiamata del metodo
-Se si vuole che Engagement non invii più log, è possibile chiamare:
+Se si desidera toostop Engagement l'invio di log, è possibile chiamare:
 
             EngagementAgent.getInstance(context).setEnabled(false);
 
 Questa chiamata è persistente: usa un file di preferenze condivise.
 
-Se Engagement è attivo quando si chiama questa funzione, l'arresto del servizio può richiedere 1 minuto. Al successivo avvio dell'applicazione, tuttavia, il servizio non verrà avviato.
+Se Engagement è attivo quando si chiama questa funzione, può richiedere un minuto per hello servizio toostop. Tuttavia, non verrà avviato servizio hello hello tutti successivo avvio di un'applicazione hello.
 
-È possibile abilitare di nuovo la segnalazione di log chiamando la stessa funzione con `true`.
+È possibile abilitare nuovamente reporting chiamando hello stessa funzione con log `true`.
 
 ### <a name="integration-in-your-own-preferenceactivity"></a>Integrazione nella propria classe `PreferenceActivity`
 Invece di chiamare questa funzione, è anche possibile integrare questa impostazione direttamente nella classe `PreferenceActivity` esistente.
 
-È possibile configurare Engagement in modo da usare il file di preferenze (con la modalità desiderata) nel file `AndroidManifest.xml` con `application meta-data`:
+È possibile configurare le preferenze di file (con modalità desiderata di hello) toouse di Engagement in hello `AndroidManifest.xml` file con `application meta-data`:
 
-* La chiave `engagement:agent:settings:name` viene usata per definire il nome del file di preferenze condivise.
-* La chiave `engagement:agent:settings:mode` viene usata per definire la modalità del file di preferenze condivise. È consigliabile adottare la stessa modalità usata per `PreferenceActivity`. La modalità deve essere passata come numero: se si usa una combinazione di flag di costanti nel codice, controllare il valore totale.
+* Hello `engagement:agent:settings:name` chiave è utilizzata toodefine hello nome del file di preferenze condivise hello.
+* Hello `engagement:agent:settings:mode` chiave è la modalità di hello toodefine utilizzate del file di preferenze condivise hello, è necessario utilizzare hello modalità stesso come il `PreferenceActivity`. modalità Hello deve essere passata come un numero: se si utilizza una combinazione di flag costante nel codice, controllare il valore totale di hello.
 
-Engagement usa sempre la chiave booleana `engagement:key` all'interno del file di preferenze per la gestione di questa impostazione.
+Engagement sempre utilizzare hello `engagement:key` booleano chiave all'interno di file di preferenze hello per la gestione di questa impostazione.
 
-L'esempio seguente di `AndroidManifest.xml` mostra i valori predefiniti:
+Hello in seguito ad esempio `AndroidManifest.xml` Mostra hello valori predefiniti:
 
             <application>
                 [...]
@@ -373,7 +373,7 @@ L'esempio seguente di `AndroidManifest.xml` mostra i valori predefiniti:
                   android:name="engagement:agent:settings:mode"
                   android:value="0" />
 
-Sarà quindi possibile aggiungere un elemento `CheckBoxPreference` nel layout delle preferenze simile a quello riportato di seguito:
+È quindi possibile aggiungere un `CheckBoxPreference` nel layout delle preferenze come segue quello hello:
 
             <CheckBoxPreference
               android:key="engagement:enabled"

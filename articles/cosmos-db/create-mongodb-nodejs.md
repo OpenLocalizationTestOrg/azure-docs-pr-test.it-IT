@@ -1,6 +1,6 @@
 ---
-title: Connettere un'app MongoDB ad Azure Cosmos DB tramite Node.js | Microsoft Docs
-description: Informazioni su come connettere un'app MongoDB Node.js esistente ad Azure Cosmos DB
+title: aaaConnect un tooAzure di app di MongoDB DB Cosmos utilizzando Node.js | Documenti Microsoft
+description: Informazioni su come tooconnect un tooAzure di app Node.js MongoDB Cosmos DB esistente
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,17 +15,17 @@ ms.devlang: nodejs
 ms.topic: hero-article
 ms.date: 06/19/2017
 ms.author: mimig
-ms.openlocfilehash: a26477d692cc98ed16c195233ade5434cc536a36
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bc4f17a31d8c18d1ce5e3f002462f4d48eeb1f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-migrate-an-existing-nodejs-mongodb-web-app"></a>Azure Cosmos DB: Eseguire la migrazione di un'app Web MongoDB Node.js esistente 
 
-Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft. È possibile creare ed eseguire rapidamente query su database di documenti, coppie chiave/valore e grafi, sfruttando in ognuno dei casi i vantaggi offerti dalle funzionalità di scalabilità orizzontale e distribuzione globale alla base di Azure Cosmos DB. 
+Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft. Creare rapidamente e query chiave/valore, il documento e database grafico, ognuno dei quali trarre vantaggio dalla distribuzione globale hello e funzionalità di scalabilità orizzontale di base di Azure Cosmos DB hello. 
 
-Questa guida di avvio rapido illustra come usare un'app [MongoDB](mongodb-introduction.md) esistente scritta in Node.js e connetterla al database Azure Cosmos DB, che supporta le connessioni client MongoDB. In altre parole, l'applicazione Node.js sa solo che si sta connettendo a un database usando le API MongoDB. Il fatto che i dati siano archiviati in Azure Cosmos DB è trasparente per l'applicazione.
+Questa Guida introduttiva illustra come toouse esistente [MongoDB](mongodb-introduction.md) app scritte in Node.js e connetterla tooyour DB Cosmos Azure database, che supporta le connessioni client di MongoDB. In altre parole, l'applicazione di Node.js riconosce solo che viene stabilita la connessione database tooa utilizzando APIs MongoDB. È trasparente toohello applicazione hello dati viene archiviato nel database di Azure Cosmos.
 
 Al termine, si avrà un'applicazione MEAN (MongoDB, Express, AngularJS e Node.js) in esecuzione in [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/). 
 
@@ -34,26 +34,26 @@ Al termine, si avrà un'applicazione MEAN (MongoDB, Express, AngularJS e Node.js
 
 [!INCLUDE [cloud-shell-try-it](../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="prerequisites"></a>Prerequisiti 
-Oltre all'interfaccia della riga di comando di Azure, è necessario che [Node.js](https://nodejs.org/) e [Git](http://www.git-scm.com/downloads) siano installati localmente per eseguire i comandi `npm` e `git`.
+Inoltre tooAzure CLI, è necessario [Node.js](https://nodejs.org/) e [Git](http://www.git-scm.com/downloads) installato localmente toorun `npm` e `git` comandi.
 
-È necessario saper usare Node.js. Questa guida di avvio rapido non ha lo scopo di offrire informazioni generali sullo sviluppo di applicazioni Node.js.
+È necessario saper usare Node.js. Questa Guida rapida non è previsto toohelp si con lo sviluppo di applicazioni Node.js in generale.
 
-## <a name="clone-the-sample-application"></a>Clonare l'applicazione di esempio
+## <a name="clone-hello-sample-application"></a>Applicazione di esempio hello clonare
 
-Aprire una finestra del terminale Git, ad esempio Git Bash, ed eseguire il comando `cd` per passare a una directory di lavoro.  
+Aprire una finestra terminale git, ad esempio git bash, e `cd` tooa directory di lavoro.  
 
-Eseguire i comandi seguenti per clonare il repository di esempio. Questo archivio di esempio contiene l'applicazione [MEAN.js](http://meanjs.org/) predefinita. 
+Eseguire hello repository di esempio hello tooclone i comandi seguenti. Il repository di esempio contiene predefinito hello [MEAN.js](http://meanjs.org/) dell'applicazione. 
 
 ```bash
 git clone https://github.com/prashanthmadi/mean
 ```
 
-## <a name="run-the-application"></a>Eseguire l'applicazione
+## <a name="run-hello-application"></a>Eseguire un'applicazione hello
 
-Installare i pacchetti necessari e avviare l'applicazione.
+Installare i pacchetti hello necessarie e avviare un'applicazione hello.
 
 ```bash
 cd mean
@@ -61,27 +61,27 @@ npm install
 npm start
 ```
 
-## <a name="log-in-to-azure"></a>Accedere ad Azure
+## <a name="log-in-tooazure"></a>Accedi tooAzure
 
-Se si usa un'interfaccia della riga di comando di Azure installata, accedere alla sottoscrizione di Azure con il comando [az login](/cli/azure/#login) e seguire le istruzioni visualizzate. Se si usa Azure Cloud Shell, è possibile ignorare questo passaggio.
+Se si utilizza un installato CLI di Azure, accedere tooyour sottoscrizione di Azure con hello [accesso az](/cli/azure/#login) comando e seguire hello le direzioni. È possibile ignorare questo passaggio se si usa hello Shell di Cloud di Azure.
 
 ```azurecli
 az login 
 ``` 
    
-## <a name="add-the-azure-cosmos-db-module"></a>Aggiungere il modulo Azure Cosmos DB
+## <a name="add-hello-azure-cosmos-db-module"></a>Aggiungere il modulo di Azure Cosmos DB hello
 
-Se si usa un'interfaccia della riga di comando di Azure installata, verificare se il componente `cosmosdb` è già installato eseguendo il comando `az`. Se `cosmosdb` è nell'elenco di comandi di base, passare al comando successivo. Se si usa Azure Cloud Shell, è possibile ignorare questo passaggio.
+Se si utilizza un installato CLI di Azure, verificare toosee se hello `cosmosdb` componente è già installato eseguendo hello `az` comando. Se `cosmosdb` è hello elenco di comandi di base, procedere toohello del comando successivo. È possibile ignorare questo passaggio se si usa hello Shell di Cloud di Azure.
 
-Se `cosmosdb` non è nell'elenco dei comandi di base, reinstallare l'[interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli).
+Se `cosmosdb` non è in elenco di comandi di base di hello, reinstallare [CLI di Azure 2.0]( /cli/azure/install-azure-cli).
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Creare un [gruppo di risorse](../azure-resource-manager/resource-group-overview.md) con il comando [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui vengono distribuite e gestite risorse di Azure come app Web, database e account di archiviazione. 
+Creare un [gruppo di risorse](../azure-resource-manager/resource-group-overview.md) con hello [gruppo az creare](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui vengono distribuite e gestite risorse di Azure come app Web, database e account di archiviazione. 
 
-L'esempio seguente crea un gruppo di risorse nell'area Europa occidentale. Scegliere un nome univoco per il gruppo di risorse.
+Hello seguente viene creato un gruppo di risorse nell'area Europa occidentale hello. Scegliere un nome univoco per il gruppo di risorse hello.
 
-Se si usa Azure Cloud Shell, fare clic su **Prova**, seguire le istruzioni visualizzate per eseguire l'accesso e quindi copiare il comando al prompt dei comandi.
+Se si utilizza una Shell di Cloud di Azure, fare clic su **Provalo**, seguire hello istruzioni visualizzate toologin, quindi copiare il comando di hello nel prompt dei comandi di hello.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location "West Europe"
@@ -89,20 +89,20 @@ az group create --name myResourceGroup --location "West Europe"
 
 ## <a name="create-an-azure-cosmos-db-account"></a>Creare un account Azure Cosmos DB
 
-Creare un account Azure Cosmos DB con il comando [az cosmosdb create](/cli/azure/cosmosdb#create).
+Creare un account Azure Cosmos DB con hello [cosmosdb az creare](/cli/azure/cosmosdb#create) comando.
 
-Nel comando seguente sostituire il segnaposto `<cosmosdb-name>` con il nome univoco dell'account Azure Cosmos DB. Questo nome univoco verrà usato come parte dell'endpoint di Azure Cosmos DB, `https://<cosmosdb-name>.documents.azure.com/`, pertanto deve essere univoco rispetto a tutti gli account Azure Cosmos DB presenti in Azure. 
+In hello seguente comando, sostituire il proprio nome di account Azure Cosmos DB univoco in cui si vedere hello `<cosmosdb-name>` segnaposto. Questo nome univoco da utilizzare come parte dell'endpoint Azure Cosmos DB (`https://<cosmosdb-name>.documents.azure.com/`), in modo che nome hello deve toobe univoco in tutti gli account di Azure Cosmos DB in Azure. 
 
 ```azurecli-interactive
 az cosmosdb create --name <cosmosdb-name> --resource-group myResourceGroup --kind MongoDB
 ```
 
-Il parametro `--kind MongoDB` consente le connessioni al client MongoDB.
+Hello `--kind MongoDB` parametro consente le connessioni client di MongoDB.
 
-Dopo la creazione dell'account Azure Cosmos DB, l'interfaccia della riga di comando di Azure mostra informazioni simili all'esempio seguente. 
+Quando viene creato l'account di Azure Cosmos DB hello, hello CLI di Azure Mostra toohello di informazioni simili esempio seguente. 
 
 > [!NOTE]
-> Questo esempio usa JSON come formato di output dell'interfaccia della riga di comando di Azure, ovvero l'impostazione predefinita. Per usare un altro formato di output, vedere [Formati di output per i comandi dell'interfaccia della riga di comando di Azure 2.0](https://docs.microsoft.com/cli/azure/format-output-azure-cli).
+> In questo esempio utilizza JSON come formato di output di hello CLI di Azure, hello predefinito. toouse output di un altro formato, vedere [Output formati per i comandi CLI di Azure 2.0](https://docs.microsoft.com/cli/azure/format-output-azure-cli).
 
 ```json
 {
@@ -136,16 +136,16 @@ DB/databaseAccounts/<cosmosdb-name>",
 } 
 ```
 
-## <a name="connect-your-nodejs-application-to-the-database"></a>Connettere l'applicazione Node.js al database
+## <a name="connect-your-nodejs-application-toohello-database"></a>Connettere il database dell'applicazione toohello di Node.js
 
-In questo passaggio si usa una stringa di connessione MongoDB per connettere l'applicazione di esempio MEAN.js a un database Azure Cosmos DB appena creato. 
+In questo passaggio è connettersi MEAN.js esempio database dell'applicazione tooan DB Cosmos Azure che appena creato, utilizzando una stringa di connessione di MongoDB. 
 
 <a name="devconfig"></a>
-## <a name="configure-the-connection-string-in-your-nodejs-application"></a>Configurare la stringa di connessione nell'applicazione Node.js
+## <a name="configure-hello-connection-string-in-your-nodejs-application"></a>Configurare la stringa di connessione hello nell'applicazione Node.js
 
 Nel repository di MEAN.js aprire `config/env/local-development.js`.
 
-Sostituire il contenuto del file con il codice seguente. Assicurarsi di sostituire anche i due segnaposto `<cosmosdb-name>` con il nome dell'account Azure Cosmos DB.
+Sostituire il contenuto di hello del file con hello seguente codice. Assicurarsi di tooalso sostituire hello due `<cosmosdb-name>` segnaposto con il nome dell'account Azure Cosmos DB.
 
 ```javascript
 'use strict';
@@ -157,25 +157,25 @@ module.exports = {
 };
 ```
 
-## <a name="retrieve-the-key"></a>Recuperare la chiave
+## <a name="retrieve-hello-key"></a>Recuperare la chiave hello
 
-Per connettersi a un database Azure Cosmos DB, è necessaria la chiave del database. Usare il comando [az cosmosdb list-keys](/cli/azure/cosmosdb#list-keys) per recuperare la chiave primaria.
+Nel database di Azure Cosmos DB tooan tooconnect ordine, è necessario chiave hello del database. Hello utilizzare [az cosmosdb elenco chiavi](/cli/azure/cosmosdb#list-keys) chiave primaria di comando tooretrieve hello.
 
 ```azurecli-interactive
 az cosmosdb list-keys --name <cosmosdb-name> --resource-group myResourceGroup --query "primaryMasterKey"
 ```
 
-L'interfaccia della riga di comando di Azure restituisce informazioni simili all'esempio seguente. 
+Hello CLI di Azure genera informazioni toohello simile esempio seguente. 
 
 ```json
 "RUayjYjixJDWG5xTqIiXjC..."
 ```
 
-Copiare il valore di `primaryMasterKey`. Incollarlo tramite `<primary_master_key>` in `local-development.js`.
+Copiare il valore di hello di `primaryMasterKey`. Incollare questo hello `<primary_master_key>` in `local-development.js`.
 
 Salvare le modifiche.
 
-### <a name="run-the-application-again"></a>Eseguire di nuovo l'applicazione.
+### <a name="run-hello-application-again"></a>Eseguire nuovamente l'applicazione hello.
 
 Eseguire di nuovo `npm start`. 
 
@@ -183,45 +183,45 @@ Eseguire di nuovo `npm start`.
 npm start
 ```
 
-Un messaggio della console dovrebbe ora indicare che l'ambiente di sviluppo è operativo. 
+Un messaggio di console dovrebbero ora essere che tale ambiente di sviluppo hello sia in esecuzione. 
 
-Andare a `http://localhost:3000` in un browser. Fare clic su **Iscrizione** nel menu in alto e provare a creare due utenti fittizi. 
+Passare troppo`http://localhost:3000` in un browser. Fare clic su **iscrizione** in toocreate menu e riprovare superiore hello due fittizio gli utenti. 
 
-L'applicazione di esempio MEAN.js archivia i dati utente nel database. Se l'operazione ha esito positivo e l'applicazione MEAN.js accede automaticamente all'utente creato, la connessione ad Azure Cosmos DB funziona. 
+applicazione di esempio MEAN.js Hello archivia i dati utente nel database di hello. Se hanno esito positivo e MEAN.js accede automaticamente a hello creato utente, quindi la connessione di database di Azure Cosmos funziona. 
 
-![MEAN.js si connette correttamente a MongoDB](./media/create-mongodb-nodejs/mongodb-connect-success.png)
+![MEAN.js si connette correttamente tooMongoDB](./media/create-mongodb-nodejs/mongodb-connect-success.png)
 
 ## <a name="view-data-in-data-explorer"></a>Visualizzare i dati in Esplora dati
 
-I dati archiviati da Azure Cosmos DB sono disponibili per la visualizzazione, l'esecuzione di query e l'esecuzione di logica di business nel portale di Azure.
+Dati archiviati da un database di Azure Cosmos sono tooview disponibili, query e esecuzione della logica di business nel portale di Azure hello.
 
-Per visualizzare e usare i dati utente creati nel passaggio precedente, nonché eseguire query su di essi, accedere al [portale di Azure](https://portal.azure.com) nel Web browser.
+tooview, eseguire una query e utilizzare i dati utente hello creati nel passaggio precedente hello, account di accesso toohello [portale di Azure](https://portal.azure.com) nel web browser.
 
-Nella casella di ricerca nella parte superiore digitare Azure Cosmos DB. Quando il pannello dell'account Cosmos DB si apre, selezionare l'account Cosmos DB. Nel riquadro di spostamento a sinistra fare clic su Esplora dati. Espandere la raccolta nel riquadro Raccolte. Sarà quindi possibile visualizzare i documenti nella raccolta, eseguire query sui dati e anche creare ed eseguire stored procedure, trigger e funzioni definite dall'utente. 
+Nella casella di ricerca superiore hello, digitare Azure Cosmos DB. Quando il pannello dell'account Cosmos DB si apre, selezionare l'account Cosmos DB. Nel riquadro di spostamento sinistro di hello, fare clic su Esplora dati. Espandere la raccolta nel riquadro raccolte hello e quindi è possibile visualizzare documenti hello nella raccolta di hello, eseguire query sui dati, hello e anche creare ed eseguire le stored procedure, trigger e funzioni definite dall'utente. 
 
-![Esplora dati nel portale di Azure](./media/create-mongodb-nodejs/cosmosdb-connect-mongodb-data-explorer.png)
+![Esplora dati in hello portale di Azure](./media/create-mongodb-nodejs/cosmosdb-connect-mongodb-data-explorer.png)
 
 
-## <a name="deploy-the-nodejs-application-to-azure"></a>Distribuire l'applicazione Node.js in Azure
+## <a name="deploy-hello-nodejs-application-tooazure"></a>Distribuire hello Node.js applicazione tooAzure
 
-In questo passaggio si distribuisce l'applicazione Node.js connessa a MongoDB in Azure Cosmos DB.
+In questo passaggio, si distribuisce il tooAzure applicazione connessa MongoDB Node.js DB Cosmos.
 
-Si sarà probabilmente notato che il file di configurazione modificato in precedenza è per l'ambiente di sviluppo (`/config/env/local-development.js`). Quando si distribuisce l'applicazione nel servizio app, per impostazione predefinita viene eseguita nell'ambiente di produzione. A questo punto, è quindi necessario apportare la stessa modifica al file di configurazione corrispondente.
+Si è notato che file di configurazione hello che è stato modificato in precedenza è per l'ambiente di sviluppo hello (`/config/env/local-development.js`). Quando si distribuisce il tooApp di applicazione del servizio, verrà eseguito in ambiente di produzione hello per impostazione predefinita. A questo punto, è necessario toomake hello stesso modifica il file di configurazione corrispondente di toohello.
 
 Nel repository di MEAN.js aprire `config/env/production.js`.
 
-Nell'oggetto `db` sostituire il valore di `uri` come mostrato nell'esempio seguente. Assicurarsi di sostituire i segnaposto come fatto in precedenza.
+In hello `db` oggetto, sostituire il valore di hello di `uri` come illustrato nel seguente esempio hello. Impossibile verificare segnaposto tooreplace hello come prima.
 
 ```javascript
 'mongodb://<cosmosdb-name>:<primary_master_key>@<cosmosdb-name>.documents.azure.com:10255/mean?ssl=true&sslverifycertificate=false',
 ```
 
 > [!NOTE] 
-> L'opzione `ssl=true` è importante perché [Azure Cosmos DB richiede l'uso di SSL](connect-mongodb-account.md#connection-string-requirements). 
+> Hello `ssl=true` opzione è importante perché [DB Cosmos Azure richiede SSL](connect-mongodb-account.md#connection-string-requirements). 
 >
 >
 
-Nel terminale eseguire il commit tutte le modifiche in Git. È possibile copiare entrambi i comandi per eseguirli insieme.
+In hello terminal, eseguire il commit di tutte le modifiche in Git. È possibile copiare entrambi toorun comandi insieme.
 
 ```bash
 git add .
@@ -229,14 +229,14 @@ git commit -m "configured MongoDB connection string"
 ```
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Se non si intende continuare a usare l'app, eliminare tutte le risorse create tramite questa guida di avvio rapido nel portale di Azure eseguendo questi passaggi:
+Se non si ha intenzione toocontinue toouse questa app, eliminare tutte le risorse create da questa Guida rapida hello portale di Azure con hello alla procedura seguente:
 
-1. Scegliere **Gruppi di risorse** dal menu a sinistra del portale di Azure e quindi fare clic sul nome della risorsa creata. 
-2. Nella pagina del gruppo di risorse fare clic su **Elimina**, digitare il nome della risorsa da eliminare nella casella di testo e quindi fare clic su **Elimina**.
+1. Dal menu a sinistra di hello in hello portale di Azure, fare clic su **gruppi di risorse** e quindi fare clic su nome hello della risorsa di hello è stato creato. 
+2. Nella pagina di gruppo di risorse, fare clic su **eliminare**, digitare il nome di hello di hello risorsa toodelete nella casella di testo hello e quindi fare clic su **eliminare**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa guida di avvio rapido si è appreso come creare un account Azure Cosmos DB e come creare una raccolta MongoDB tramite Esplora dati. È ora possibile eseguire la migrazione dei dati di MongoDB in Azure Cosmos DB.  
+In questa Guida rapida, si è appreso come un database di Azure Cosmos toocreate account e creare un insieme di MongoDB mediante Esplora dati hello. È ora possibile eseguire la migrazione il tooAzure dati MongoDB DB Cosmos.  
 
 > [!div class="nextstepaction"]
 > [Importare i dati di MongoDB in Azure Cosmos DB](mongodb-migrate.md)

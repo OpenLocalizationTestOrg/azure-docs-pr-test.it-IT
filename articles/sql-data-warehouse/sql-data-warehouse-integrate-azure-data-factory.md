@@ -1,5 +1,5 @@
 ---
-title: Usare Azure Data Factory con SQL Data Warehouse | Microsoft Docs
+title: Data Factory di Azure con SQL Data Warehouse aaaUse | Documenti Microsoft
 description: Suggerimenti per l'uso di Data factory di Azure con Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,27 +15,27 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 7cd113f4a92635bc68253c2beb165ad1f0c96569
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d40a547830f9681504253d39ae3066800a955c04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-data-factory-with-sql-data-warehouse"></a>Usare Data factory di Azure con SQL Data Warehouse
-Data factory di Azure offre un metodo completamente gestito per l'orchestrazione del trasferimento di dati e l'esecuzione di stored procedure in SQL Data Warehouse.  In questo modo è possibile configurare e pianificare più facilmente procedure ETL (Extract, Transform, Load) complesse con SQL Data Warehouse. Per una panoramica più completa di Azure Data Factory, vedere la [documentazione di Azure Data Factory][Azure Data Factory documentation].
+Data Factory di Azure fornisce un metodo completamente gestito per l'orchestrazione trasferimento hello dei dati e l'esecuzione di stored procedure in SQL Data Warehouse.  In questo modo si toomore facilmente installazione e pianificazione estrarre trasformazione e caricamento (ETL) procedure complesse con SQL Data Warehouse. Per una panoramica più completa di Azure Data Factory, vedere hello [documentazione di Azure Data Factory][Azure Data Factory documentation].
 
 ## <a name="data-movement"></a>Spostamento dei dati
-Data factory di Azure consente lo spostamento di dati tra origini locali e diversi servizi di Azure.  In generale, l'attuale integrazione con Data factory di Azure supporta lo spostamento dei dati da e verso le posizioni seguenti:
+Data factory di Azure consente lo spostamento di dati tra origini locali e diversi servizi di Azure.  In generale, corrente integrazione con Data Factory di Azure supporta tooand lo spostamento dei dati da hello posizioni seguenti:
 
 * Archivio BLOB di Azure
 * Database SQL di Azure
 * Server SQL locale
 * SQL Server in IaaS
 
-Per informazioni su come configurare un'attività di copia, vedere [Copiare i dati con Azure Data Factory][Copy data with Azure Data Factory]
+Per informazioni su come attività di copia tooset backup di un tipo di dati, vedere [copiare i dati con Data Factory di Azure][Copy data with Azure Data Factory]
 
 ## <a name="stored-procedures"></a>Stored procedure
- Così come può essere usato per pianificare il trasferimento dei dati, Data factory di Azure può essere usato anche per orchestrare l'esecuzione di stored procedure.  Ciò consente di creare pipeline più complesse ed estende la capacità di Data factory di Azure per sfruttare la potenza di elaborazione di SQL Data Warehouse.
+ In hello stesso modo è possibile utilizzare tooschedule trasferimento dei dati, può essere Data Factory di Azure anche essere utilizzati tooorchestrate hello esecuzione di stored procedure.  In questo modo più complesso toobe pipeline creato e si estende possibilità tooleverage hello la potenza di calcolo della Data Factory di Azure di SQL Data Warehouse.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per una panoramica dell'integrazione, vedere [Panoramica dell'integrazione di SQL Data Warehouse][SQL Data Warehouse integration overview].

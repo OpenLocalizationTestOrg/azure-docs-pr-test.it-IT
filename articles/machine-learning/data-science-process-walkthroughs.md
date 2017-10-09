@@ -1,6 +1,6 @@
 ---
-title: Procedure dettagliate per l'esecuzione del processo di data science per i Team in Azure | Microsoft Docs
-description: Come combinare strumenti cloud, strumenti locali e servizi in un flusso di lavoro o in una pipeline per creare un'applicazione intelligente.
+title: l'esecuzione di aaaWalkthroughs hello Team processo di analisi scientifica dei dati in Azure | Documenti Microsoft
+description: Toocombine di cloud e locali strumenti e servizi in un toocreate del flusso di lavoro o la pipeline di un'applicazione intelligente.
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev
-ms.openlocfilehash: 1d6ac28355752d979490b1790ad45748f56e5c84
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 521da35dec605782fa0f4549044acbb2b84bfef5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="walkthroughs-executing-the-team-data-science-process"></a>Procedure dettagliate del processo di data science per i team
+# <a name="walkthroughs-executing-hello-team-data-science-process"></a>Procedure dettagliate per l'esecuzione di hello processo di analisi scientifica dei dati di Team
 
-Queste **procedure dettagliate complete** illustrano i passaggi del processo di data science per i team in scenari specifici. Viene spiegato come combinare strumenti cloud, strumenti locali e servizi in un flusso di lavoro o in una pipeline per creare un'**applicazione intelligente**. Le procedure dettagliate sono raggruppate in base alla **piattaforma** in uso. Il menu seguente include collegamenti a questi esempi:
+Questi **procedure dettagliate end-to-end** illustrano i passaggi hello in hello Team processo di analisi scientifica dei dati per scenari specifici. Viene illustrato come toocombine cloud, strumenti di on-premise e servizi in un flusso di lavoro o la pipeline di toocreate un **applicazione intelligente**. procedure dettagliate di Hello sono raggruppate per **piattaforma** che usano. Hello seguenti menu contiene i collegamenti esempi toothese:
 
 [!INCLUDE [tdsp-walkthroughs-by-platform](../../includes/tdsp-walkthroughs-by-platform.md)]
 
@@ -31,19 +31,19 @@ Queste **procedure dettagliate complete** illustrano i passaggi del processo di 
 
 Di seguito sono riportate brevi descrizioni di quanto fornito da questi esempi di procedure dettagliate nelle rispettive piattaforme:
 
-- [Procedure dettagliate di HDInsight Spark con PySpark e Scala](data-science-process-walkthroughs-spark.md) Queste procedure dettagliate usano PySpark e Scala in un cluster Spark di Azure per eseguire analisi predittive. 
-- [Procedure dettagliate di HDInsight Hadoop con Hive](data-science-process-walkthroughs-hdinsight-hadoop.md) Queste procedure dettagliate usano Hive con un cluster HDInsight Hadoop per eseguire analisi predittive.
-- [Procedure dettagliate di Azure Data Lake con U-SQL](data-science-process-walkthroughs-azure-data-lake.md) Queste procedure dettagliate usano U-SQL con Azure Data Lake per eseguire analisi predittive.
-- [SQL Server](data-science-process-walkthroughs-sql-server.md) Queste procedure dettagliate usano SQL Server, SQL Server R Services e SQL Server Python Services per eseguire analisi predittive.
-- [SQL Data Warehouse](data-science-process-walkthroughs-sql-data-warehouse.md) Queste procedure dettagliate usano SQL Data Warehouse per eseguire analisi predittive. 
+- [Procedure dettagliate di HDInsight Spark usando PySpark e Scala](data-science-process-walkthroughs-spark.md) PySpark di utilizzare queste procedure dettagliate e Scala su un Azure Spark analitica predittiva toodo del cluster. 
+- [Procedure dettagliate di HDInsight Hadoop Hive utilizzando](data-science-process-walkthroughs-hdinsight-hadoop.md) queste procedure dettagliate usare Hive con un analitica predittiva di cluster toodo HDInsight Hadoop.
+- [Procedure dettagliate di Azure Data Lake tramite U-SQL](data-science-process-walkthroughs-azure-data-lake.md) queste procedure dettagliate utilizzano U-SQL con analitica predittiva toodo di Azure Data Lake.
+- [SQL Server](data-science-process-walkthroughs-sql-server.md) queste procedure dettagliate utilizzano SQL Server, SQL Server R Services e SQL Server Python Services toodo analitica predittiva.
+- [SQL Data Warehouse](data-science-process-walkthroughs-sql-data-warehouse.md) analitica predittiva di SQL Data Warehouse toodo di utilizzare queste procedure dettagliate. 
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per una descrizione dei componenti principali che costituiscono il processo di data science per i team, vedere [Panoramica del processo di data science per i team](data-science-process-overview.md).
+Per una descrizione dei componenti principali di hello che costituiscono hello processo di analisi scientifica dei dati di Team, vedere [Cenni preliminari sul processo di analisi scientifica dei dati di Team](data-science-process-overview.md).
 
-Per una descrizione del ciclo di vita del processo di data science per i team che è possibile usare per definire la struttura dei progetti di data science, vedere [Ciclo di vita del processo di data science per i team](data-science-process-lifecycle.md). Il ciclo di vita descrive tutti i passaggi generalmente seguiti dai progetti in fase di esecuzione. 
+Per una descrizione del ciclo di vita di processo di analisi scientifica dei dati di Team hello che è possibile utilizzare toostructure i progetti di analisi scientifica dei dati, vedere [ciclo di vita del processo di analisi scientifica dei dati di Team](data-science-process-lifecycle.md). ciclo di vita Hello descrive i passaggi di hello, dall'inizio toofinish, i progetti seguenti in genere quando vengono eseguiti. 
 
-Per una panoramica degli argomenti che forniscono informazioni dettagliate sulle attività che costituiscono il processo di analisi scientifica dei dati in Azure, vedere [Processo di analisi scientifica dei dati per i team](http://aka.ms/datascienceprocess). 
+Per una panoramica degli argomenti che consentono di eseguire attività di hello che costituiscono processo di analisi scientifica dei dati hello in Azure, vedere [il processo di analisi scientifica dei dati](http://aka.ms/datascienceprocess). 
 

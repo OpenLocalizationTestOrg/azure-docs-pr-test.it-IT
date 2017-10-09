@@ -1,6 +1,6 @@
 ---
-title: Istruzione switch per diverse azioni in app per la logica di Azure | Microsoft Docs
-description: Scegliere diverse azioni da eseguire in app per la logica in base ai valori di espressione tramite un'istruzione switch
+title: istruzione aaaSwitch per azioni diverse nelle app di logica di Azure | Documenti Microsoft
+description: Scegliere tooperform azioni diverse in base ai valori dell'espressione, utilizzando un'istruzione switch App per la logica
 services: logic-apps
 keywords: Istruzione switch
 author: derek1ee
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: LADocs; deli
-ms.openlocfilehash: 338b6a5b549d7bf81186550295608438ac4aee32
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09ed7e4a752003aba157e9156bf4dc89ef86f5ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="perform-different-actions-in-logic-apps-with-a-switch-statement"></a>Eseguire diverse azioni in app per la logica con un'istruzione switch
 
-Durante la creazione di un flusso di lavoro, è spesso necessario eseguire diverse azioni in base al valore di un oggetto o di un'espressione. Ad esempio, si vuole che l'app per la logica si comporti diversamente in base al codice di stato di una richiesta HTTP o all'opzione selezionata in un messaggio di posta elettronica.
+Durante la creazione di un flusso di lavoro, spesso è tootake azioni diverse in base al valore di hello di un oggetto o l'espressione. Ad esempio, è il toobehave app logica in modo diverso in base al codice di stato hello di una richiesta HTTP o un'opzione selezionata in un messaggio di posta elettronica.
 
-È possibile usare un'istruzione switch per implementare questi scenari. Le app per la logica possono valutare un'espressione o un token e scegliere il case con lo stesso valore per eseguire le azioni specificate. All'istruzione switch deve corrispondere un solo caso.
+È possibile utilizzare un tooimplement istruzione switch questi scenari. L'app di logica possibile valutare un token o un'espressione e scegliere caso hello hello hello di tooexecute stesso valore specificato di azioni. Un solo case deve corrispondere l'istruzione switch hello.
 
 > [!TIP]
 > Come tutti i linguaggi di programmazione, le istruzioni switch supportano solo gli operatori di uguaglianza. Se sono necessari altri operatori relazionali, ad esempio "maggiore di", usare un'istruzione di condizione.
-> Per garantire il comportamento di esecuzione deterministico, i casi devono contenere un valore univoco e statico anziché un token dinamico o un'espressione.
+> comportamento di esecuzione deterministico tooensure, casi devono contenere un valore univoco e statico invece di token dinamico o un'espressione.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 - Una sottoscrizione di Azure attiva. Se non si ha una sottoscrizione di Azure, [creare un account gratuito](https://azure.microsoft.com/free/) o provare l'[App per la logica gratuita](https://tryappservice.azure.com/).
 - [Conoscenze di base di app per la logica](logic-apps-what-are-logic-apps.md)
 
-## <a name="add-a-switch-statement-to-your-workflow"></a>Aggiungere un'istruzione switch al flusso di lavoro
+## <a name="add-a-switch-statement-tooyour-workflow"></a>Aggiungere un flusso di lavoro tooyour istruzione switch
 
-Per illustrare l'uso delle istruzioni switch, questo esempio crea un'app per la logica che monitora i file caricati in Dropbox. Quando i nuovi file vengono caricati, l'app per la logica invia un messaggio di posta elettronica a un revisore che sceglie se trasferire o meno i file a SharePoint. L'app usa un'istruzione switch che esegue diverse azioni in base al valore selezionato dal revisore.
+tooshow funzionamento di un'istruzione switch, in questo esempio crea un'app di logica che i file di monitoraggi caricati tooDropbox. Quando vengono caricati i nuovi file hello, hello logica app Invia messaggio di posta elettronica tooan responsabile sceglie se tootransfer tooSharePoint tali file. app Hello utilizza un'istruzione switch che consente di eseguire azioni diverse in base al valore di hello hello Seleziona responsabile approvazione.
 
 1. Creare un'app per la logica e selezionare questo trigger: **Dropbox - When a file is created** (Dropbox - Quando viene creato un file).
 
    ![Usare il trigger Dropbox - When a file is created (Dropbox - Quando viene creato un file)](./media/logic-apps-switch-case/dropbox-trigger.jpg)
 
-2. Sotto il trigger, aggiungere questa azione: **Outlook.com - Invia messaggio di posta elettronica di approvazione**
+2. Aggiungere trigger hello, questa azione: **Outlook.com - invio di email approvazione**
 
    > [!TIP]
    > Le app per la logica supportano anche gli scenari di posta elettronica di approvazione da un account di Outlook Office 365.
 
-   - Se non si ha una connessione esistente, viene richiesto di crearne una.
-   - Compilare i campi obbligatori. Ad esempio, sotto **A**, specificare l'indirizzo di posta elettronica per inviare il messaggio di posta elettronica al revisore.
+   - Se non si dispone di una connessione esistente, viene chiesto toocreate uno.
+   - Compilare i campi necessario hello. Ad esempio, in **a**, specificare l'indirizzo di posta elettronica hello per l'invio di posta elettronica responsabile approvazione hello.
    - In **Opzioni utente**, inserire `Approve, Reject`.
 
    ![Configurare la connessione](./media/logic-apps-switch-case/send-approval-email-action.jpg)
@@ -58,30 +58,30 @@ Per illustrare l'uso delle istruzioni switch, questo esempio crea un'app per la 
 3. Aggiungere un'istruzione switc.
 
    - Selezionare **+ Nuovo passaggio** > **... Altro** > **Aggiungi istruzione switch case**. 
-   - Si vuole ora selezionare l'azione da eseguire in base all'output di `SelectedOptions` dall'azione *Invia messaggio di posta elettronica di approvazione*. 
-   È possibile trovare questo campo nel selettore **Aggiungi contenuto dinamico**.
-   - Usare *Case1* per eseguire la gestione quando l'utente seleziona `Approve`.
-     - Se approvato, copiare il file originale in SharePoint Online con l'azione [**SharePoint Online - Crea file**](../connectors/connectors-create-api-sharepointonline.md).
-     - Aggiungere un'altra azione nel caso per informare gli utenti che un nuovo file è disponibile in SharePoint.
-   - Aggiungere un altro case da gestire quando l'utente seleziona `Reject`.
-     - In caso di rifiuto, inviare un'email di notifica per informare gli altri approvatori che il file è stato rifiutato e non è richiesta alcuna azione successiva.
-   - Dato che `SelectedOptions` offre solo due opzioni, è possibile lasciare il case vuoto **predefinito**.
+   - Ora desideriamo tooselect hello azione tooperform in base a hello `SelectedOptions` l'output di hello *inviare posta elettronica di approvazione* azione. 
+   Questo campo si trova in hello **aggiungere contenuto dinamico** selettore.
+   - Utilizzare *caso 1* toohandle quando seleziona responsabile approvazione hello `Approve`.
+     - Se approvata, copiare hello originale file tooSharePoint Online con hello [ **SharePoint Online - creare file** azione](../connectors/connectors-create-api-sharepointonline.md).
+     - Aggiungere un'altra azione all'interno di hello case toonotify utenti che un nuovo file è disponibile in SharePoint.
+   - Aggiungere un altro toohandle maiuscole quando l'utente seleziona `Reject`.
+     - Se rifiutata, inviare una notifica tramite posta elettronica per informare gli altri revisori che file hello viene rifiutato e se è necessaria alcuna azione ulteriore.
+   - `SelectedOptions`sono disponibili solo due opzioni, pertanto, è possibile mantenere hello **predefinito** case vuota.
 
    ![Istruzioni switch](./media/logic-apps-switch-case/switch.jpg)
 
    > [!NOTE]
-   > Le istruzioni switch richiedono almeno un case aggiuntivo oltre al case predefinito.
+   > Un'istruzione switch è necessario almeno un case nel caso di aggiunta toohello predefinito.
 
-4. Dopo l'istruzione switch, eliminare il file originale caricato in Dropbox aggiungendo l'azione **Dropbox - Elimina file**
+4. Dopo l'istruzione switch hello, eliminare hello originale file caricato tooDropbox aggiungendo questa azione: **Dropbox - Elimina file**
 
-5. Salvare l'app per la logica. Testare l'app caricando un file in Dropbox. Si dovrebbe ricevere in breve tempo un messaggio di posta elettronica di approvazione. Selezionare un'opzione e osservare il comportamento.
+5. Salvare l'app per la logica. Testare l'app caricando un file tooDropbox. Si dovrebbe ricevere in breve tempo un messaggio di posta elettronica di approvazione. Selezionare un'opzione e osservare il comportamento di hello.
 
    > [!TIP]
-   > Vedere come [monitorare le app per la logica](logic-apps-monitor-your-logic-apps.md).
+   > Estrarre come troppo[monitorare App per la logica](logic-apps-monitor-your-logic-apps.md).
 
-## <a name="understand-the-code-behind-switch-statements"></a>Capire il codice dietro le istruzioni switch
+## <a name="understand-hello-code-behind-switch-statements"></a>Comprendere il codice hello dietro istruzioni switch
 
-Dopo aver creato correttamente un'app per la logica tramite un'istruzione switch, esaminare la definizione del codice dietro l'istruzione switch.
+Ora che è stato creato correttamente un'applicazione logica utilizzando un'istruzione switch, esaminare la definizione di codice hello dietro istruzione switch hello.
 
 ```json
 "Switch": {
@@ -108,20 +108,20 @@ Dopo aver creato correttamente un'app per la logica tramite un'istruzione switch
 }
 ```
 
-* `"Switch"` è il nome dell'istruzione switch che può essere rinominata per migliorarne la leggibilità. 
-* `"type": "Switch"` indica che l'azione è un'istruzione switch. 
-* `"expression"` è l'opzione selezionata dal revisore in questo esempio e viene valutata in ogni case dichiarato successivamente nella definizione. 
-* `"cases"` può contenere qualsiasi numero di case. Per ogni case, `"Case *"` è il nome predefinito del case, che è possibile rinominare per migliorare la leggibilità. 
-`"case"` specifica l'etichetta di case, che viene usata dall'espressione switch per effettuare un confronto e deve contenere un valore costante e univoco. Se nessuno dei case corrisponde all'espressione switch, vengono eseguite le azioni incluse in `"default"`.
+* `"Switch"`è il nome di hello dell'istruzione switch hello, che è possibile rinominare per migliorare la leggibilità. 
+* `"type": "Switch"`indica che l'azione di hello è un'istruzione switch. 
+* `"expression"`è l'opzione del revisore hello in questo esempio e viene valutato rispetto a ogni caso dichiarato in un secondo momento nella definizione di hello. 
+* `"cases"` può contenere qualsiasi numero di case. Per ogni case, `"Case *"` è il nome predefinito hello del case hello, che è possibile rinominare per migliorare la leggibilità. 
+`"case"`Specifica l'etichetta case hello, che hello commutatore utilizzo delle espressioni per il confronto e deve essere un valore costante e univoco. Se nessuno dei casi hello corrisponde espressione switch hello, azioni `"default"` vengono eseguite.
 
 ## <a name="get-help"></a>Ottenere aiuto
 
-Per porre domande, fornire risposte e ottenere informazioni sulle attività degli altri utenti delle app per la logica di Azure, vedere il [forum sulle app per la logica di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).
+in caso di altri utenti le app di logica di Azure, vedere tooask domande e rispondere alle domande visitare hello [forum di Azure logica app](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).
 
-Per contribuire al miglioramento delle App per la logica di Azure e dei connettori, votare o inviare idee al [sito dei commenti e suggerimenti degli utenti di App per la logica di Azure](http://aka.ms/logicapps-wish).
+toohelp migliorare Azure logica App e connettori, votare o inviare idee in hello [sito commenti e suggerimenti dell'utente di Azure logica app](http://aka.ms/logicapps-wish).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Informazioni su come [aggiungere condizioni](logic-apps-use-logic-app-features.md)
+- Informazioni su come troppo[aggiungere condizioni](logic-apps-use-logic-app-features.md)
 - Informazioni sulla [gestione di errori ed eccezioni](logic-apps-exception-handling.md)
 - Esplorare altre [funzionalità di linguaggio del flusso di lavoro](logic-apps-author-definitions.md)

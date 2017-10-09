@@ -1,6 +1,6 @@
 ---
-title: Copiare dati da un'archiviazione BLOB al database SQL - Azure| Documentazione Microsoft
-description: "Questa esercitazione illustra come usare l'attività di copia in una pipeline di Azure Data Factory per copiare i dati da un archivio BLOB a un database SQL."
+title: dati aaaCopy tooSQL Database - archiviazione Blob Azure | Documenti Microsoft
+description: "Questa esercitazione viene illustrato come attività di copia in una Data Factory di Azure toouse pipeline toocopy dati dal database tooSQL di archiviazione Blob."
 keywords: blob sql, archivio blob, copia di dati
 services: data-factory
 documentationcenter: 
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: 730140d15f4dec7ddc1280c2e4da1d247902fe4a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a2c3fb8a4ddd63b0b6b3e75903b7a7eaf188fda4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-copy-data-from-blob-storage-to-sql-database-using-data-factory"></a>Esercitazione: Copiare dati da un archivio BLOB al database SQL usando Data Factory
+# <a name="tutorial-copy-data-from-blob-storage-toosql-database-using-data-factory"></a>Esercitazione: Copiare i dati da archiviazione Blob tooSQL Database tramite Data Factory
 > [!div class="op_single_selector"]
 > * [Panoramica e prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [Copia guidata](data-factory-copy-data-wizard-tutorial.md)
@@ -32,68 +32,68 @@ ms.lasthandoff: 08/29/2017
 > * [API REST](data-factory-copy-activity-tutorial-using-rest-api.md)
 > * [API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 
-In questa esercitazione si crea una data factory con una pipeline per copiare i dati dall'archivio BLOB al database SQL.
+In questa esercitazione, si crea una data factory con una pipeline toocopy dati dal database tooSQL di archiviazione Blob.
 
-L'attività di copia esegue lo spostamento dei dati in Azure Data Factory e si basa su un servizio disponibile a livello globale che può copiare dati tra diversi archivi dati in modo sicuro, affidabile e scalabile. Per informazioni dettagliate sull'attività di copia, vedere [Attività di spostamento dei dati](data-factory-data-movement-activities.md) .  
+Attività di copia Hello esegue lo spostamento dei dati di hello in Azure Data Factory. e si basa su un servizio disponibile a livello globale che può copiare dati tra diversi archivi dati in modo sicuro, affidabile e scalabile. Vedere [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo per informazioni dettagliate sulle attività di copia hello.  
 
 > [!NOTE]
-> Per una panoramica dettagliata del servizio Data factory, vedere l'articolo [Introduzione al servizio Azure Data Factory](data-factory-introduction.md) .
+> Per una panoramica dettagliata di hello servizio Data Factory, vedere hello [tooAzure introduzione Data Factory](data-factory-introduction.md) articolo.
 >
 >
 
-## <a name="prerequisites-for-the-tutorial"></a>Prerequisiti per l'esercitazione
-Prima di iniziare questa esercitazione, sono necessari i prerequisiti seguenti:
+## <a name="prerequisites-for-hello-tutorial"></a>Prerequisiti per l'esercitazione hello
+Prima di iniziare questa esercitazione, è necessario disporre di hello seguenti prerequisiti:
 
-* **Sottoscrizione di Azure**.  Se non è disponibile una sottoscrizione, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere l'articolo [Versione di valutazione gratuita](http://azure.microsoft.com/pricing/free-trial/) .
-* **Account di archiviazione di Azure**. In questa esercitazione l'archivio BLOB viene usato come archivio dati di **origine** . Se non si ha un account di archiviazione di Azure, vedere l'articolo [Creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) per informazioni su come crearne uno.
-* **Database SQL di Azure**. In questa esercitazione viene usato un database SQL di Azure come archivio dati di **destinazione** . Se non è disponibile un database SQL di Azure da usare nell'esercitazione, vedere [Come creare e configurare un database SQL di Azure](../sql-database/sql-database-get-started.md) per crearne uno.
-* **SQL Server 2012/2014 o Visual Studio 2013**. Per creare un database di esempio e per visualizzare i dati risultanti in tale database, viene usato SQL Server Management Studio o Visual Studio.  
+* **Sottoscrizione di Azure**.  Se non è disponibile una sottoscrizione, è possibile creare un account di valutazione gratuita in pochi minuti. Vedere hello [versione di valutazione gratuita](http://azure.microsoft.com/pricing/free-trial/) articolo per informazioni dettagliate.
+* **Account di archiviazione di Azure**. Usare l'archiviazione di blob hello come un **origine** archivio dati in questa esercitazione. Se non si dispone di un account di archiviazione di Azure, vedere hello [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) articolo per passaggi toocreate uno.
+* **Database SQL di Azure**. In questa esercitazione viene usato un database SQL di Azure come archivio dati di **destinazione** . Se non si dispone di un database SQL di Azure che è possibile utilizzare nell'esercitazione di hello, vedere [come toocreate e configurare un Database di SQL Azure](../sql-database/sql-database-get-started.md) toocreate uno.
+* **SQL Server 2012/2014 o Visual Studio 2013**. Si utilizza SQL Server Management Studio o Visual Studio toocreate un database di esempio e dati del risultato hello tooview nel database di hello.  
 
 ## <a name="collect-blob-storage-account-name-and-key"></a>Raccogliere il nome dell'account e la chiave dell'archivio BLOB
-Per eseguire questa esercitazione, sono necessari il nome e la chiave dell'account di archiviazione di Azure. Prendere nota del **nome** e della **chiave** per l'account di archiviazione di Azure.
+È necessario hello account chiave nome e un account di archiviazione Azure toodo questa esercitazione. Prendere nota del **nome** e della **chiave** per l'account di archiviazione di Azure.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Fare clic su **Altri servizi** nel menu a sinistra e selezionare **Account di archiviazione**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Fare clic su **più servizi** su hello dal menu a sinistra **gli account di archiviazione**.
 
     ![Sfoglia - Account di archiviazione](media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/browse-storage-accounts.png)
-3. Nel pannello **Account di archiviazione** selezionare l'**account di archiviazione di Azure** da usare in questa esercitazione.
+3. In hello **gli account di archiviazione** blade, seleziona hello **account di archiviazione Azure** che si desidera toouse in questa esercitazione.
 4. Selezionare **Chiavi di accesso** in **IMPOSTAZIONI**.
-5. Fare clic sul pulsante **copia** (immagine) accanto alla casella di testo **Nome account di archiviazione** e salvarlo/incollarlo, ad esempio, in un file di testo.
-6. Ripetere il passaggio precedente per copiare o annotare la chiave denominata **key1**.
+5. Fare clic su **copia** (immagine) accanto troppo**nome account di archiviazione** testo casella e Salva e incollarlo in un punto (ad esempio: in un file di testo).
+6. Ripetere toocopy passaggio precedente hello o annotare hello **key1**.
 
     ![Chiave di accesso alle risorse di archiviazione](media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/storage-access-key.png)
-7. Fare clic su **X**per chiudere tutti i pannelli.
+7. Chiudere tutti i pannelli hello facendo **X**.
 
 ## <a name="collect-sql-server-database-user-names"></a>Raccogliere i nomi del server, del database e dell'utente per il database SQL
-Per eseguire questa esercitazione, sono necessari i nomi del server, del database e dell'utente di Azure SQL. Annotare i nomi di **server**, **database** e **utente** per il database SQL di Azure.
+È necessario nomi hello del server SQL Azure, database e toodo utente in questa esercitazione. Annotare i nomi di **server**, **database** e **utente** per il database SQL di Azure.
 
-1. Nel **portale di Azure** fare clic su **Altri servizi** a sinistra e selezionare **Database SQL**.
-2. Nel pannello **Database SQL** selezionare il **database** da usare nell'esercitazione. Annotare il **nome database**.  
-3. Nel pannello **Database SQL**, fare clic su **Proprietà** in **IMPOSTAZIONI**.
-4. Annotare i valori per **NOME SERVER** e **ACCOUNT DI ACCESSO AMMINISTRATORE SERVER**.
-5. Fare clic su **X**per chiudere tutti i pannelli.
+1. In hello **portale di Azure**, fare clic su **più servizi** su hello a sinistra e seleziona **database SQL**.
+2. In hello **pannello database SQL**selezionare hello **database** che si desidera toouse in questa esercitazione. Annotare hello **nome del database**.  
+3. In hello **database SQL** pannello, fare clic su **proprietà** in **impostazioni**.
+4. Annotare i valori hello per **nome SERVER** e **account di accesso amministratore SERVER**.
+5. Chiudere tutti i pannelli hello facendo **X**.
 
-## <a name="allow-azure-services-to-access-sql-server"></a>Consentire ai servizi di Azure di accedere a SQL Server
-Assicurarsi che l'impostazione **Consenti l'accesso a Servizi di Azure** sia **ATTIVA** per il server di Azure SQL, in modo che il servizio Data Factory possa accedere al server di Azure SQL. Per verificare e attivare l'impostazione, seguire questa procedura:
+## <a name="allow-azure-services-tooaccess-sql-server"></a>Consentire a servizi di Azure tooaccess SQL server
+Verificare che **Consenti l'accesso ai servizi tooAzure** impostazione disattivata **ON** per il server SQL Azure in modo che il servizio Data Factory di hello può accedere al server di SQL Azure. tooverify e attivare questa impostazione, hello i passaggi seguenti:
 
-1. Fare clic sull'hub **Altri servizi** a sinistra e selezionare **Server SQL**.
+1. Fare clic su **più servizi** hub hello sinistra e fare clic su **istanze di SQL Server**.
 2. Selezionare il server e fare clic su **Firewall** in **IMPOSTAZIONI**.
-3. Nel pannello **Impostazioni del firewall** fare clic su **ATTIVA** per **Consenti l'accesso a Servizi Azure**.
-4. Fare clic su **X**per chiudere tutti i pannelli.
+3. In hello **le impostazioni del Firewall** pannello, fare clic su **ON** per **Consenti l'accesso ai servizi tooAzure**.
+4. Chiudere tutti i pannelli hello facendo **X**.
 
 ## <a name="prepare-blob-storage-and-sql-database"></a>Preparare l'archivio BLOB e il database SQL
-Preparare ora l'archivio BLOB di Azure e il database SQL Azure per l'esercitazione seguendo questa procedura:  
+A questo punto, preparare l'archiviazione blob di Azure e il database SQL di Azure per l'esercitazione hello eseguendo hello alla procedura seguente:  
 
-1. Avviare il Blocco note. Copiare il testo seguente e salvarlo come file **emp.txt** nella cartella **C:\ADFGetStarted** nel disco rigido.
+1. Avviare il Blocco note. Copiare hello segue testo e salvarlo come **emp.txt** troppo**C:\ADFGetStarted** cartella sul disco rigido.
 
     ```
     John, Doe
     Jane, Doe
     ```
-2. Usare strumenti come [Azure Storage Explorer](http://storageexplorer.com/) per creare il contenitore **adftutorial** e per caricare il file **emp.txt** nel contenitore.
+2. Utilizzare strumenti come [Azure Storage Explorer](http://storageexplorer.com/) toocreate hello **adftutorial** hello contenitore e tooupload **emp.txt** contenitore toohello file.
 
-    ![Azure Storage Explorer Copiare dati da un archivio BLOB al database SQL](./media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/getstarted-storage-explorer.png)
-3. Usare il seguente script SQL per creare la tabella **emp** nel database SQL di Azure.  
+    ![Azure Storage Explorer Copiare i dati da database tooSQL di archiviazione Blob](./media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/getstarted-storage-explorer.png)
+3. Hello utilizzare hello toocreate di script SQL seguente **emp** tabella nel Database SQL di Azure.  
 
     ```SQL
     CREATE TABLE dbo.emp
@@ -107,12 +107,12 @@ Preparare ora l'archivio BLOB di Azure e il database SQL Azure per l'esercitazio
     CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID);
     ```
 
-    **Se nel computer è installato SQL Server 2012/2014**, seguire le istruzioni fornite in [Gestione del database SQL di Azure con SQL Server Management Studio](../sql-database/sql-database-manage-azure-ssms.md) per connettersi al server SQL di Azure ed eseguire lo script SQL. Per configurare il firewall per un server SQL di Azure, questo articolo usa il [portale di Azure classico](http://manage.windowsazure.com), non il [nuovo portale di Azure](https://portal.azure.com).
+    **Se è installato nel computer SQL Server 2012/2014:** seguire le istruzioni da [la gestione di Database SQL Azure utilizzando SQL Server Management Studio](../sql-database/sql-database-manage-azure-ssms.md) tooconnect tooyour Azure SQL server ed eseguire hello script SQL. Questo articolo Usa hello [portale di Azure classico](http://manage.windowsazure.com), non hello [nuovo portale di Azure](https://portal.azure.com), tooconfigure firewall per un server SQL Azure.
 
-    Se il client non è autorizzato ad accedere al server di Azure SQL, è necessario configurare il firewall per il server di Azure SQL in modo da consentire l'accesso dal computer (indirizzo IP). Per informazioni sulla procedura per configurare il firewall per il server Azure SQL, vedere [questo articolo](../sql-database/sql-database-configure-firewall-settings.md) .
+    Se il client non è consentito server SQL di Azure di hello tooaccess, è necessario tooconfigure firewall per l'accesso di SQL Azure server tooallow dal computer (indirizzo IP). Vedere [questo articolo](../sql-database/sql-database-configure-firewall-settings.md) per firewall hello tooconfigure di passaggi per il server SQL Azure.
 
 ## <a name="create-a-data-factory"></a>Creare un'istanza di Data factory
-I passaggi relativi ai prerequisiti sono stati completati. È possibile creare un data factory usando uno dei seguenti metodi. Per eseguire l'esercitazione, fare clic su una delle opzioni nell'elenco a discesa in alto oppure sui collegamenti indicati qui di seguito.     
+Siano stati soddisfatti i prerequisiti di hello. È possibile creare una data factory utilizzando uno dei seguenti modi hello. Fare clic su una delle opzioni di hello nell'elenco a discesa hello nella parte superiore di hello o hello segue collegamenti tooperform hello esercitazione.     
 
 * [Copia guidata](data-factory-copy-data-wizard-tutorial.md)
 * [Portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md)
@@ -123,6 +123,6 @@ I passaggi relativi ai prerequisiti sono stati completati. È possibile creare u
 * [API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 
 > [!NOTE]
-> La pipeline di dati in questa esercitazione copia i dati da un archivio dati di origine a un archivio dati di destinazione. Non trasforma i dati di input per produrre dati di output. Per un'esercitazione su come trasformare i dati usando Azure Data Factory, vedere [Esercitazione: Creare la prima pipeline per elaborare i dati usando il cluster Hadoop](data-factory-build-your-first-pipeline.md).
+> pipeline di dati Hello in questa esercitazione consente di copiare dati da un archivio dati di origine dati archivio tooa destinazione. Non Trasforma dati di output tooproduce dati di input. Per un'esercitazione su come dati di tootransform tramite Data Factory di Azure, vedere [esercitazione: creare i primi dati tootransform pipeline utilizzando cluster Hadoop](data-factory-build-your-first-pipeline.md).
 > 
-> È possibile concatenare due attività, ovvero eseguire un'attività dopo l'altra, impostando il set di dati di output di un'attività come set di dati di input di altre attività. Per informazioni dettagliate, vedere [Pianificazione ed esecuzione con Data Factory](data-factory-scheduling-and-execution.md). 
+> È possibile concatenare le due attività (eseguire un'attività dopo l'altro) mediante l'impostazione di set di dati di hello output di un'attività come hello input set di dati di hello altre attività. Per informazioni dettagliate, vedere [Pianificazione ed esecuzione con Data Factory](data-factory-scheduling-and-execution.md). 

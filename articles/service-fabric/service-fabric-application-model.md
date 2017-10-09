@@ -1,6 +1,6 @@
 ---
-title: Modello di applicazione di Azure Service Fabric | Documentazione Microsoft
-description: Come modellare e descrivere le applicazioni e servizi in infrastruttura di servizi.
+title: modello di applicazione di Service Fabric aaaAzure | Documenti Microsoft
+description: Come toomodel e descrivere applicazioni e servizi di Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: ryanwi
-ms.openlocfilehash: e30482427b88eb3e58d39075c7f0734664b79aa2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 54c4d026e7d556be5f697d4a6f2ee886687e1c35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="model-an-application-in-service-fabric"></a>Modellare un'applicazione in Service Fabric
-Questo articolo fornisce una panoramica del modello applicativo di Azure Service Fabric e come definire un'applicazione e un servizio attraverso file manifesto.
+In questo articolo viene fornita una panoramica del modello di applicazione di Azure Service Fabric hello e come toodefine un'applicazione e servizio tramite file manifesto.
 
-## <a name="understand-the-application-model"></a>Informazioni sul modello applicativo
-Un'applicazione è una raccolta di servizi costituenti che eseguono determinate funzioni. Un servizio esegue una funzione completa e autonoma e può essere avviato ed eseguito in modo indipendente da altri servizi.  Un servizio è costituito da codice, configurazione e dati. Per ogni servizio, il codice è costituito dai file binari eseguibili, la configurazione è costituita dalle impostazioni del servizio che possono essere caricate in fase di esecuzione e i dati sono costituiti da dati statici arbitrari che devono essere usati dal servizio. Per ogni componente di questo modello applicativo gerarchico è possibile eseguire il controllo delle versioni e l'aggiornamento in modo indipendente.
+## <a name="understand-hello-application-model"></a>Comprendere il modello di applicazione hello
+Un'applicazione è una raccolta di servizi costituenti che eseguono determinate funzioni. Un servizio esegue una funzione completa e autonoma e può essere avviato ed eseguito in modo indipendente da altri servizi.  Un servizio è costituito da codice, configurazione e dati. Per ogni servizio, codice è costituito da file binari eseguibili hello e dati è costituito da dati statici arbitrario toobe utilizzato dal servizio hello configurazione è costituita da impostazioni del servizio che possono essere caricate in fase di esecuzione. Per ogni componente di questo modello applicativo gerarchico è possibile eseguire il controllo delle versioni e l'aggiornamento in modo indipendente.
 
-![Modello di applicazione di Service Fabric][appmodel-diagram]
+![modello dell'applicazione Hello Service Fabric][appmodel-diagram]
 
-Un tipo di applicazione è una categorizzazione di un'applicazione e consiste in un'aggregazione di tipi di servizi. Un tipo di servizio è una categorizzazione di un servizio. La categorizzazione di un servizio può disporre di impostazioni e configurazioni diverse, ma la funzionalità di base resta la stessa. Le istanze di un servizio sono le diverse varianti di configurazione dello stesso tipo di servizio.  
+Un tipo di applicazione è una categorizzazione di un'applicazione e consiste in un'aggregazione di tipi di servizi. Un tipo di servizio è una categorizzazione di un servizio. categorizzazione di Hello può avere diverse impostazioni e configurazioni, ma rimane la funzionalità di base hello hello stesso. le istanze di un servizio Hello sono variazioni di configurazione di servizio diverso hello di hello stesso tipo di servizio.  
 
-Le classi (o "tipi") di applicazioni e servizi vengono descritte nei file XML (manifesti dell'applicazione e manifesti del servizio).  I manifesti sono i modelli in base ai quali è possibile creare istanze delle applicazioni dall'archivio immagini del cluster. La definizione dello schema per i file ServiceManifest.xml e ApplicationManifest.xml viene installata con l'SDK e gli strumenti di Service Fabric in *C:\Programmi\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
+Le classi (o "tipi") di applicazioni e servizi vengono descritte nei file XML (manifesti dell'applicazione e manifesti del servizio).  i manifesti di Hello sono modelli hello rispetto al quale è possono creare applicazioni dall'archivio di immagini del cluster hello istanze. viene installato con hello Service Fabric SDK Hello definizione dello schema per il file ServiceManifest.xml e ApplicationManifest.xml di hello e strumenti troppo*C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
 
-Il codice di istanze di applicazioni diverse viene eseguito come processo separato anche se ospitato dallo stesso nodo di Service Fabric. Il ciclo di vita di ogni istanza dell'applicazione può inoltre essere gestito, ad esempio aggiornato, in modo indipendente. Il diagramma seguente illustra come i tipi di applicazioni siano costituiti da tipi di servizi, che a loro volta sono costituiti da codice, configurazione e pacchetti di dati. Per semplificare il diagramma, vengono visualizzati solo i pacchetti codice/configurazione/dati relativi a `ServiceType4`, anche se ogni tipo di servizio può includere tutti questi tipi di pacchetti o solo alcuni.
+codice Hello per le istanze dell'applicazione diverso eseguiti come processi distinti, anche quando sono ospitati da hello stesso nodo di Service Fabric. Inoltre, hello ciclo di vita di ogni istanza dell'applicazione può essere gestito (ad esempio, l'aggiornamento) in modo indipendente. Hello diagramma seguente mostra come tipi di applicazioni sono costituiti da tipi di servizio, che a sua volta sono costituiti da codice, configurazione e i pacchetti di dati. diagramma di hello toosimplify, solo i pacchetti dati/config/codice hello per `ServiceType4` vengono visualizzati, anche se ogni tipo di servizio include alcuni o tutti i tipi di pacchetti.
 
 ![Tipi di applicazioni di Service Fabric e tipi di servizio][cluster-imagestore-apptypes]
 
-Vengono usati due diversi file manifesto per descrivere le applicazioni e i servizi: il manifesto del servizio e il manifesto dell'applicazione. I manifesti sono descritti dettagliatamente nelle sezioni seguenti.
+Due diversi file manifesti vengono usate toodescribe applicazioni e servizi: hello manifesto del servizio e manifesto dell'applicazione. I manifesti sono illustrati in dettaglio nelle sezioni che seguono hello.
 
-Nel cluster possono essere attive una o più istanze di un tipo di servizio. Le istanze o le repliche del servizio con stato ad esempio raggiungono un'elevata affidabilità replicando lo stato tra le repliche contenute in nodi diversi del cluster. Essenzialmente, la replica fornisce ridondanza in modo che il servizio sia disponibile anche se un nodo in un cluster ha un malfunzionamento. Un [servizio partizionato](service-fabric-concepts-partitioning.md) suddivide ulteriormente il proprio stato e i modelli di accesso a tale stato tra i nodi del cluster.
+Può essere attivo nel cluster hello uno o più istanze di un tipo di servizio. Ad esempio, le istanze del servizio con stato, o repliche, ottenere affidabilità replica dello stato tra le repliche che si trova in nodi diversi cluster hello. Essenzialmente fornisce la ridondanza per hello servizio toobe disponibile anche se un nodo in un cluster non riesce. Oggetto [partizionata servizio](service-fabric-concepts-partitioning.md) ulteriormente divide il relativo stato (e stato toothat modelli di accesso) tra i nodi del cluster di hello.
 
-Il diagramma seguente illustra la relazione tra applicazioni e istanze di servizi, partizioni e repliche.
+Hello diagramma seguente mostra la relazione hello tra applicazioni e le istanze del servizio, partizioni e repliche.
 
 ![Partizioni e repliche in un servizio][cluster-application-instances]
 
 > [!TIP]
-> È possibile visualizzare il layout delle applicazioni in un cluster usando lo strumento Service Fabric Explorer disponibile all'indirizzo http://&lt;yourclusteraddress&gt;:19080/Explorer. Per altre informazioni, vedere [Visualizzare il cluster con Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
+> È possibile visualizzare il layout di hello delle applicazioni in un cluster con lo strumento Service Fabric Explorer hello disponibile in http://&lt;yourclusteraddress&gt;: 19080/Explorer. Per altre informazioni, vedere [Visualizzare il cluster con Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
 > 
 > 
 
 ## <a name="describe-a-service"></a>Descrivere un servizio
-Il manifesto del servizio definisce in modo dichiarativo il tipo di servizio e la versione. Specifica i metadati del servizio, ad esempio il tipo di servizio, le proprietà di integrità, le metriche del bilanciamento del carico, i file binari del servizio e i file di configurazione.  In altri termini, descrive i pacchetti di codice, configurazione e dati che costituiscono un pacchetto servizio per supportare uno o più tipi di servizi. Questo è un semplice esempio di manifesto del servizio:
+manifesto del servizio Hello definisce in modo dichiarativo il tipo di servizio di hello e versione. Specifica i metadati del servizio, ad esempio il tipo di servizio, le proprietà di integrità, le metriche del bilanciamento del carico, i file binari del servizio e i file di configurazione.  In altre parole, pacchetti di codice, configurazione e dati hello che compongono un toosupport pacchetto servizio descrive uno o più tipi di servizio. Questo è un semplice esempio di manifesto del servizio:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -80,24 +80,24 @@ Il manifesto del servizio definisce in modo dichiarativo il tipo di servizio e l
 </ServiceManifest>
 ```
 
-**Version** sono stringhe non strutturate e non analizzate dal sistema. Gli attributi Version vengono usati per il controllo delle versioni di ogni componente per gli aggiornamenti.
+**Versione** gli attributi sono stringhe non strutturate e non analizzato dal sistema hello. Attributi della versione sono utilizzati tooversion ogni componente per gli aggiornamenti.
 
-**ServiceTypes** dichiara i tipi di servizi supportati da **CodePackages** nel manifesto. Quando viene creata un'istanza di un servizio sulla base di uno di questi tipi di servizi, tutti i pacchetti di codice dichiarati nel manifesto vengono attivati eseguendo i relativi punti di ingresso. I processi risultanti devono registrare i tipi di servizi supportati in fase di esecuzione. I tipi di servizi sono dichiarati a livello di manifesto e non a livello di pacchetto di codice. Se pertanto sono presenti più pacchetti di codice, questi verranno tutti attivati ogni volta che il sistema ricerca uno dei tipi di servizi dichiarati.
+**ServiceTypes** dichiara i tipi di servizi supportati da **CodePackages** nel manifesto. Quando viene creata un'istanza di un servizio sulla base di uno di questi tipi di servizi, tutti i pacchetti di codice dichiarati nel manifesto vengono attivati eseguendo i relativi punti di ingresso. processi risultanti Hello sono tipi di servizio previsto tooregister hello è supportato in fase di esecuzione. Tipi di servizio vengono dichiarati a livello di manifesto hello e non livello di pacchetto codice hello. Pertanto, quando sono presenti più pacchetti di codice, sono tutte attivate ogni volta che il sistema hello cerca uno qualsiasi dei tipi di servizio dichiarati hello.
 
-**SetupEntryPoint** è un punto di ingresso con privilegi che viene eseguito con le stesse credenziali di Service Fabric (in genere l'account *LocalSystem* ) prima di qualsiasi altro punto di ingresso. L'eseguibile specificato da **EntryPoint** è in genere l'host del servizio a esecuzione prolungata. La presenza di un punto di ingresso di configurazione separato consente di evitare di dover eseguire l'host del servizio con privilegi elevati per lunghi periodi di tempo. L'eseguibile specificato da **EntryPoint** viene eseguito dopo che **SetupEntryPoint** termina correttamente. Se il processo termina o si arresta in modo anomalo, il processo risultante viene monitorato e riavviato (iniziando di nuovo con **SetupEntryPoint**).  
+**SetupEntryPoint** è un punto di ingresso con privilegi che viene eseguito con hello stesso credenziali come Service Fabric (in genere hello *LocalSystem* account) prima di qualsiasi altro punto di ingresso. eseguibile Hello specificato da **EntryPoint** è in genere l'host del servizio hello con esecuzione prolungata. presenza di Hello di un punto di ingresso del programma di installazione separato evita l'host del servizio hello toorun con privilegi elevati per lunghi periodi di tempo. eseguibile Hello specificato da **EntryPoint** viene eseguito dopo **SetupEntryPoint** termina correttamente. Se il processo di hello mai termina o si blocca, processo risultante hello viene monitorato e riavviato (a partire da nuovamente con **SetupEntryPoint**).  
 
-Gli scenari tipici per l'uso di **SetupEntryPoint** sono l'esecuzione di un file eseguibile prima dell'avvio del servizio o l'esecuzione di un'operazione con privilegi elevati. ad esempio:
+Scenari tipici per l'utilizzo di **SetupEntryPoint** sono quando si esegue un file eseguibile prima dell'avvio del servizio hello o si esegue un'operazione con privilegi elevati. ad esempio:
 
-* Impostazione e inizializzazione di variabili di ambiente necessari per il file eseguibile del servizio. Questo non è limitato solo agli eseguibili scritti tramite i modelli di programmazione di Service Fabric. Ad esempio, npm.exe richiede alcune variabili di ambiente configurate per la distribuzione di un'applicazione node.js.
+* Impostazione e l'inizializzazione di variabili di ambiente hello esigenze eseguibile del servizio. Non si tratta di file eseguibili tooonly limitato scritti tramite modelli di programmazione di Service Fabric hello. Ad esempio, npm.exe richiede alcune variabili di ambiente configurate per la distribuzione di un'applicazione node.js.
 * Impostazione del controllo di accesso mediante l'installazione di certificati di sicurezza.
 
-Per altre informazioni su come configurare **SetupEntryPoint**, vedere [Configurare i criteri per il punto di ingresso dell'installazione del servizio](service-fabric-application-runas-security.md)
+Per ulteriori informazioni su come hello tooconfigure **SetupEntryPoint** vedere [configurare criteri di hello per un punto di ingresso del programma di installazione del servizio](service-fabric-application-runas-security.md)
 
-**EnvironmentVariables** offre un elenco di variabili di ambiente impostate per questo pacchetto di codice. Le variabili di ambiente possono essere sostituite in `ApplicationManifest.xml` per specificare valori diversi per diverse istanze del servizio. 
+**EnvironmentVariables** offre un elenco di variabili di ambiente impostate per questo pacchetto di codice. Le variabili Environmentment possono essere sottoposto a override in hello `ApplicationManifest.xml` tooprovide valori diversi per diverse istanze del servizio. 
 
-**DataPackage** dichiara una cartella, denominata dall'attributo **Name**, che contiene i dati statici arbitrari che devono essere usati dal processo in fase di esecuzione.
+**DataPackage** dichiara una cartella, denominata da hello **nome** attributo, che contiene i dati statici arbitrario toobe utilizzata dal processo hello in fase di esecuzione.
 
-**ConfigPackage** dichiara una cartella, denominata dall'attributo **Name**, che contiene un file *Settings.xml*. Questo file di impostazioni contiene sezioni di impostazioni di coppie chiave-valore definite dall'utente che vengono lette dal processo in fase di esecuzione. Se durante un aggiornamento è cambiato solo l'attributo **version** **ConfigPackage**, il processo in esecuzione non viene riavviato. Un callback piuttosto notifica al processo che le impostazioni di configurazione sono cambiate affinché vengano ricaricate in modo dinamico. Questo è un esempio di file *Settings.xml* :
+**ConfigPackage** dichiara una cartella, denominata da hello **nome** attributo, che contiene un *Settings* file. file di impostazioni Hello contiene sezioni di impostazioni di coppia chiave-valore specifico definito dall'utente che il processo di hello legge nuovamente in fase di esecuzione. Durante un aggiornamento, se solo hello **ConfigPackage** **versione** è stata modificata, quindi hello esecuzione processo non viene riavviato. Al contrario, un callback di notifica processo hello che le impostazioni di configurazione sono state modificate in modo che possa essere ricaricati in modo dinamico. Questo è un esempio di file *Settings.xml* :
 
 ```xml
 <Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -114,7 +114,7 @@ Per altre informazioni su come configurare **SetupEntryPoint**, vedere [Configur
 > 
 
 <!--
-For more information about other features supported by service manifests, refer to the following articles:
+For more information about other features supported by service manifests, refer toohello following articles:
 
 *TODO: LoadMetrics, PlacementConstraints, ServicePlacementPolicies
 *TODO: Resources
@@ -124,9 +124,9 @@ For more information about other features supported by service manifests, refer 
 -->
 
 ## <a name="describe-an-application"></a>Descrivere un'applicazione
-Il manifesto dell'applicazione descrive in modo dichiarativo il tipo di applicazione e la versione. Specifica i metadati di composizione dei servizi, ad esempio i nomi stabili, lo schema di partizionamento, il numero di istanze/fattore di replica, i criteri di sicurezza/isolamento, i vincoli di posizionamento, gli override di configurazione e i tipi di servizi costituenti. Vengono descritti anche i domini di bilanciamento del carico in cui viene posizionata l'applicazione.
+manifesto dell'applicazione Hello descrive in modo dichiarativo il tipo di applicazione hello e la versione. Specifica i metadati di composizione dei servizi, ad esempio i nomi stabili, lo schema di partizionamento, il numero di istanze/fattore di replica, i criteri di sicurezza/isolamento, i vincoli di posizionamento, gli override di configurazione e i tipi di servizi costituenti. sono descritti anche i domini di bilanciamento del carico Hello in cui viene inserita l'applicazione hello.
 
-Un manifesto dell'applicazione quindi descrive elementi a livello di applicazione e fa riferimento a uno o più manifesti dei servizi per comporre un tipo di applicazione. Questo è un semplice esempio di manifesto dell'applicazione:
+Di conseguenza, un manifesto dell'applicazione vengono descritti gli elementi a livello di applicazione hello e fa riferimento a uno o più servizio manifesti toocompose un tipo di applicazione. Questo è un semplice esempio di manifesto dell'applicazione:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -151,22 +151,22 @@ Un manifesto dell'applicazione quindi descrive elementi a livello di applicazion
 </ApplicationManifest>
 ```
 
-Analogamente ai manifesti dei servizi, gli attributi **Version** sono stringhe non strutturate e non analizzate dal sistema. Gli attributi Version vengono anche usati per il controllo delle versioni di ogni componente per gli aggiornamenti.
+Ad esempio i manifesti del servizio, **versione** gli attributi sono stringhe non strutturate e non vengono analizzati dal sistema hello. Attributi della versione sono anche utilizzati tooversion ogni componente per gli aggiornamenti.
 
-**ServiceManifestImport** contiene riferimenti a manifesti di servizi che costituiscono questo tipo di applicazione. I manifesti di servizi importati determinano i tipi di servizi validi per questo tipo di applicazione. In ServiceManifestImport si esegue l'override dei valori di configurazione nel file Settings.xml e delle variabili di ambiente nel file ServiceManifest.xml. 
+**Oggetto ServiceManifestImport** contiene manifesti tooservice riferimenti che compongono questo tipo di applicazione. I manifesti di servizi importati determinano i tipi di servizi validi per questo tipo di applicazione. All'interno di hello oggetto ServiceManifestImport, eseguire l'override dei valori di configurazione nelle variabili di ambiente e Settings nel file ServiceManifest.xml. 
 
 
-**DefaultServices** dichiara le istanze dei servizi create automaticamente ogni volta che viene creata un'istanza di un'applicazione sulla base di questo tipo di applicazione. I servizi predefiniti vengono forniti per comodità e dopo la creazione si comportano come normali servizi sotto ogni aspetto. Vengono aggiornati insieme agli altri servizi nell'istanza dell'applicazione e possono anche essere rimossi.
+**DefaultServices** dichiara le istanze dei servizi create automaticamente ogni volta che viene creata un'istanza di un'applicazione sulla base di questo tipo di applicazione. I servizi predefiniti vengono forniti per comodità e dopo la creazione si comportano come normali servizi sotto ogni aspetto. Essi vengono aggiornati con tutti gli altri servizi nell'istanza di applicazione hello e possono essere rimossi anche.
 
 > [!NOTE]
 > Un manifesto dell'applicazione può contenere più importazioni di manifesti di servizi e servizi predefiniti. È possibile controllare le versioni di ogni manifesto del servizio in modo indipendente.
 > 
 > 
 
-Per informazioni su come mantenere applicazioni diverse e parametri di servizio per ambienti singoli, vedere [Gestione dei parametri dell'applicazione per più ambienti](service-fabric-manage-multiple-environment-app-configuration.md).
+toolearn toomaintain altra applicazione e i parametri di servizio per i singoli ambienti, vedere [la gestione dei parametri dell'applicazione per più ambienti](service-fabric-manage-multiple-environment-app-configuration.md).
 
 <!--
-For more information about other features supported by application manifests, refer to the following articles:
+For more information about other features supported by application manifests, refer toohello following articles:
 
 *TODO: Application parameters
 *TODO: Security, Principals, RunAs, SecurityAccessPolicy
@@ -176,13 +176,13 @@ For more information about other features supported by application manifests, re
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Creare il pacchetto di un'applicazione](service-fabric-package-apps.md) e prepararlo per la distribuzione.
+[Pacchetto di un'applicazione](service-fabric-package-apps.md) e renderlo pronto toodeploy.
 
-[Distribuire e rimuovere applicazioni con PowerShell][10]: descrive come usare PowerShell per gestire le istanze dell'applicazione.
+[Distribuire e rimuovere le applicazioni] [ 10] viene descritto come le istanze dell'applicazione toomanage toouse PowerShell.
 
-[Gestire i parametri dell'applicazione per più ambienti][11]: descrive come configurare parametri e variabili di ambiente per istanze di applicazione diverse.
+[Gestione dei parametri dell'applicazione per più ambienti] [ 11] viene descritto come tooconfigure parametri e variabili di ambiente per le istanze dell'applicazione diverso.
 
-[Configurare i criteri di sicurezza per l'applicazione][12]: descrive come eseguire i servizi nell'ambito dei criteri di sicurezza per limitare l'accesso.
+[Configurare i criteri di sicurezza per l'applicazione] [ 12] viene descritto come toorun servizi con accesso toorestrict criteri di sicurezza.
 
 [Modelli di hosting dell'applicazione][13] descrive la relazione tra le repliche (o istanze) di un servizio distribuito e il processo host del servizio.
 
@@ -191,7 +191,7 @@ For more information about other features supported by application manifests, re
 [cluster-imagestore-apptypes]: ./media/service-fabric-application-model/cluster-imagestore-apptypes.png
 [cluster-application-instances]: media/service-fabric-application-model/cluster-application-instances.png
 
-<!--Link references--In actual articles, you only need a single period before the slash-->
+<!--Link references--In actual articles, you only need a single period before hello slash-->
 [10]: service-fabric-deploy-remove-applications.md
 [11]: service-fabric-manage-multiple-environment-app-configuration.md
 [12]: service-fabric-application-runas-security.md

@@ -1,6 +1,6 @@
 ---
-title: Informazioni di riferimento sui riquadri per Progettazione viste in Log Analytics di OMS | Documentazione Microsoft
-description: Progettazione viste di Log Analytics consente di creare viste personalizzate nella console di OMS contenenti visualizzazioni diverse dei dati nel repository di OMS. In questo articolo vengono fornite informazioni di riferimento sulle impostazioni relative a ciascun riquadro disponibile per l'uso nelle viste personalizzate.
+title: riferimento aaaTile per Progettazione viste in OMS Log Analitica | Documenti Microsoft
+description: Visualizza finestra di progettazione nel Log Analitica consente toocreate personalizzato visualizzazioni nella console OMS hello contenenti visualizzazioni diverse dei dati nel repository OMS hello. Questo articolo fornisce informazioni di riferimento sulle impostazioni di hello per ognuna delle hello riquadri di toouse disponibili nelle visualizzazioni personalizzate.
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,168 +14,168 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: 2bce5c63b4c6edd3753f1b234cc4f493dcf53dea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4706abb16b8a3719f5dbe8c89cd61739391ab8f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-view-designer-tile-reference"></a>Informazioni di riferimento sui riquadri per Progettazione viste di Log Analytics
-Progettazione viste di Log Analytics consente di creare viste personalizzate nella console di OMS contenenti visualizzazioni diverse dei dati nel repository di OMS. In questo articolo vengono fornite informazioni di riferimento sulle impostazioni relative a ciascun riquadro disponibile per l'uso nelle viste personalizzate.
+Visualizza finestra di progettazione nel Log Analitica Hello consente toocreate personalizzato visualizzazioni nella console OMS hello contenenti visualizzazioni diverse dei dati nel repository OMS hello. Questo articolo fornisce informazioni di riferimento sulle impostazioni di hello per ognuna delle hello riquadri di toouse disponibili nelle visualizzazioni personalizzate.
 
 Altri articoli disponibili su Progettazione viste sono:
 
-* [Progettazione viste](log-analytics-view-designer.md): una panoramica su Progettazione viste e sulle procedure per creare e modificare viste personalizzate.
-* [Informazioni di riferimento sulle parti della visualizzazione](log-analytics-view-designer-parts.md): informazioni di riferimento sulle impostazioni relative a ciascun riquadro disponibile per l'uso nelle viste personalizzate.
+* [Visualizzare Progettazione](log-analytics-view-designer.md) -Panoramica hello Progettazione viste e procedure per la creazione e modifica delle visualizzazioni personalizzate.
+* [Riferimento alla parte visualizzazione](log-analytics-view-designer-parts.md) -riferimento delle impostazioni di hello per ognuna delle hello riquadri toouse disponibili nelle visualizzazioni personalizzate.
 
 >[!NOTE]
-> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), le query in tutte le viste devono essere scritte nel [nuovo linguaggio di query](https://go.microsoft.com/fwlink/?linkid=856078).  Le viste create prima dell'aggiornamento dell'area di lavoro verranno automaticamente convertite.
+> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), le query in tutte le visualizzazioni devono essere scritti in hello [nuovo linguaggio di query](https://go.microsoft.com/fwlink/?linkid=856078).  Le viste che sono state create prima dell'area di lavoro di hello è stato aggiornato sarà venga convertito.
 
-Nella tabella seguente sono elencati i diversi tipi di riquadri disponibili in Progettazione viste.  Nelle sezioni seguenti vengono descritti i dettagli di ogni tipo di riquadro e le relative proprietà.
+Hello nella tabella seguente sono elencati hello diversi tipi di riquadri disponibili in hello Visualizza finestra di progettazione.  Hello nelle sezioni seguenti vengono descrivono ogni tipo di riquadro nel dettaglio e le relative proprietà.
 
 | Riquadro | Descrizione |
 |:--- |:--- |
 | [Number](#number-tile) |Un numero singolo che indica la quantità di record prodotti da una query. |
 | [Due numeri](#two-numbers-tile) |Due numeri singoli che indicano la quantità di record prodotti da due query diverse. |
-| [Anello](#donut-tile) |Un grafico ad anello basato su una query con un valore di riepilogo al centro. |
+| [Anello](#donut-tile) |Grafico ad anello in base a una query con un valore di riepilogo nel centro hello. |
 | [Grafico a linee e callout](#line-chart-amp-callout-tile) |Un grafico a linee basato su una query e un callout con un valore di riepilogo. |
 | [Grafico a linee](#line-chart-tile) |Un grafico a linee basato su una query. |
 | [Due sequenze temporali](#two-timelines-tile) |Un istogramma con due serie, ognuna basata su una query separata. |
 
 ## <a name="number-tile"></a>Riquadro Numero
-Il riquadro **Numero** visualizza un numero singolo che indica la quantità di record prodotti da una query di log e un'etichetta.
+Hello **numero** riquadro Visualizza un singolo numero che mostra il conteggio di hello di record da una query log e un'etichetta.
 
 ![Riquadro Numero](media/log-analytics-view-designer/tile-number.png)
 
 | Impostazione | Description |
 |:--- |:--- |
-| Nome |Testo da visualizzare nella parte superiore del riquadro. |
-| Descrizione |Testo da visualizzare sotto il nome del riquadro. |
+| Nome |Riquadro testo toodisplay nella parte superiore di hello di hello. |
+| Descrizione |Testo toodisplay sotto il nome di sezione hello. |
 | **Riquadro** | |
-| Legenda |Testo da visualizzare sotto il valore. |
-| Query |Query da eseguire.  Verrà visualizzato il conteggio del numero di record restituiti dalla query. |
-| **Funzionalità avanzate** |**> Verifica del flusso di dati** |
-| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro.  Viene fornito un messaggio alternativo se non sono disponibili dati per il riquadro.  In genere viene usato per fornire un messaggio durante il periodo temporaneo in cui la vista viene installata e i dati diventano disponibili. |
-| Query |La query da eseguire per verificare se sono disponibili i dati per la vista.  Se la query non restituisce risultati, viene visualizzato un messaggio anziché il valore dalla query principale. |
-| Message |Il messaggio da visualizzare se la query di verifica del flusso di dati non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
+| Legenda |Testo toodisplay in valore hello. |
+| Query |Eseguire una query toorun.  verrà visualizzato il conteggio di Hello del numero di hello di record restituiti dalla query hello. |
+| **Funzionalità avanzate** |**&gt; Verifica del flusso di dati** |
+| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro hello.  Ciò fornisce un messaggio alternativo se non sono disponibili per il riquadro hello dati.  Si tooprovide in genere utilizzato un messaggio hello temporanea quando è installato Vista hello e dati disponibili. |
+| Query |Eseguire una query toorun toocheck se sono disponibili dati per la visualizzazione hello.  Se la query hello non restituisce alcun risultato, anziché il valore di hello dalla query principale hello viene visualizzato un messaggio. |
+| Message |Messaggio toodisplay se query di verifica del flusso di dati hello non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
 
 
 ## <a name="two-numbers-tile"></a>Riquadro Due numeri
-Nel riquadro **Due numeri** vengono visualizzati due numeri che mostrano il conteggio dei record provenienti da due query di log diverse e un'etichetta per ciascuno.
+Hello **numero due** riquadro Visualizza due numeri con hello conteggi di record da un'etichetta e due query di log diverso.
 
 ![Riquadro Due numeri](media/log-analytics-view-designer/tile-two-numbers.png)
 
 | Impostazione | Description |
 |:--- |:--- |
-| Nome |Testo da visualizzare nella parte superiore del riquadro. |
-| Descrizione |Testo da visualizzare sotto il nome del riquadro. |
+| Nome |Riquadro testo toodisplay nella parte superiore di hello di hello. |
+| Descrizione |Testo toodisplay sotto il nome di sezione hello. |
 | **Primo riquadro** | |
-| Legenda |Testo da visualizzare sotto il valore. |
-| Query |Query da eseguire.  Verrà visualizzato il conteggio del numero di record restituiti dalla query. |
+| Legenda |Testo toodisplay in valore hello. |
+| Query |Eseguire una query toorun.  verrà visualizzato il conteggio di Hello del numero di hello di record restituiti dalla query hello. |
 | **Secondo riquadro** | |
-| Legenda |Testo da visualizzare sotto il valore. |
-| Query |Query da eseguire.  Verrà visualizzato il conteggio del numero di record restituiti dalla query. |
-| **Funzionalità avanzate** |**> Verifica del flusso di dati** |
-| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro.  Viene fornito un messaggio alternativo se non sono disponibili dati per il riquadro.  In genere viene usato per fornire un messaggio durante il periodo temporaneo in cui la vista viene installata e i dati diventano disponibili. |
-| Query |La query da eseguire per verificare se sono disponibili i dati per la vista.  Se la query non restituisce risultati, viene visualizzato un messaggio anziché il valore dalla query principale. |
-| Message |Il messaggio da visualizzare se la query di verifica del flusso di dati non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
+| Legenda |Testo toodisplay in valore hello. |
+| Query |Eseguire una query toorun.  verrà visualizzato il conteggio di Hello del numero di hello di record restituiti dalla query hello. |
+| **Funzionalità avanzate** |**&gt; Verifica del flusso di dati** |
+| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro hello.  Ciò fornisce un messaggio alternativo se non sono disponibili per il riquadro hello dati.  Si tooprovide in genere utilizzato un messaggio hello temporanea quando è installato Vista hello e dati disponibili. |
+| Query |Eseguire una query toorun toocheck se sono disponibili dati per la visualizzazione hello.  Se la query hello non restituisce alcun risultato, anziché il valore di hello dalla query principale hello viene visualizzato un messaggio. |
+| Message |Messaggio toodisplay se query di verifica del flusso di dati hello non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
 
 
 ## <a name="donut-tile"></a>Riquadro Anello
-Nel riquadro **Anello** viene visualizzato un singolo numero riepilogato da una colonna di valore in una query di log.  L'anello visualizza graficamente i risultati dei tre record principali.
+Hello **anello** riquadro Visualizza un singolo numero riepilogato da una colonna del valore in una query log.  anello Hello graficamente i risultati di tre record hello superiore.
 
 ![Riquadro Anello](media/log-analytics-view-designer/tile-donut.png)
 
 | Impostazione | Description |
 |:--- |:--- |
-| Nome |Testo da visualizzare nella parte superiore del riquadro. |
-| Descrizione |Testo da visualizzare sotto il nome del riquadro. |
+| Nome |Riquadro testo toodisplay nella parte superiore di hello di hello. |
+| Descrizione |Testo toodisplay sotto il nome di sezione hello. |
 | **Anello** | |
-| Query |La query da eseguire per l'anello.  La prima proprietà deve essere un valore di testo, mentre la seconda proprietà un valore numerico.  In genere si tratta di una query che usa la parola chiave **measure** per riepilogare i risultati. |
+| Query |Eseguire una query toorun per anello hello.  proprietà prima di Hello deve essere un valore e hello secondo proprietà text un valore numerico.  In genere si tratta di una query che utilizza hello **misura** risultati toosummarize (parola chiave). |
 | **Anello** |**> Centro** |
-| Text |Il testo da visualizzare sotto il valore all'interno dell'anello. |
-| Operazione |L'operazione da eseguire sulla proprietà del valore per riepilogare un singolo valore.<br><br>- Somma: per aggiungere i valori di tutti i record con il valore di proprietà.<br>- Percentuale: la percentuale dei valori sommati dai record con il valore di proprietà rispetto ai valori sommati di tutti i record. |
-| I valori dei risultati usati nell'operazione centrale |Se si desidera, fare clic sul segno più per aggiungere uno o più valori.  I risultati della query saranno limitati ai record con i valori di proprietà specificati.  Se non vengono aggiunti valori, tutti i record sono inclusi nella query. |
+| Text |Testo toodisplay in valore hello all'interno di hello anello. |
+| Operazione |Hello operazione tooperform su hello valore proprietà toosummarize tooa un singolo valore.<br><br>-Somma: Aggiungere i valori hello di tutti i record con valore della proprietà hello.<br>-Percentuale: Percentuale di valori hello sommato dai record con hello proprietà valore confrontato toohello sommati i valori di tutti i record. |
+| I valori dei risultati usati nell'operazione centrale |Facoltativamente, fare clic su hello segno tooadd uno o più valori.  risultati di Hello di hello query sarà limitato toorecords con valori di proprietà hello specificati.  Se nessun valore vengono aggiunti, rispetto a tutti i record sono inclusi nella query hello. |
 | **Anello** |**> Opzioni aggiuntive** |
-| Colori |Il colore da visualizzare per ognuna delle tre proprietà principali.  Se si desidera specificare colori alternativi per valori di proprietà specifici, usare Mappa colori avanzata. |
-| Mappa colori avanzata |Visualizza un colore per valori di proprietà specifici.  Se il valore specificato è fra i primi tre, viene visualizzato il colore alternativo anziché il colore standard.  Se la proprietà non è fra i primi tre, il colore non viene visualizzato. |
-| **Funzionalità avanzate** |**> Verifica del flusso di dati** |
-| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro.  Viene fornito un messaggio alternativo se non sono disponibili dati per il riquadro.  In genere viene usato per fornire un messaggio durante il periodo temporaneo in cui la vista viene installata e i dati diventano disponibili. |
-| Query |La query da eseguire per verificare se sono disponibili i dati per la vista.  Se la query non restituisce risultati, viene visualizzato un messaggio anziché il valore dalla query principale. |
-| Message |Il messaggio da visualizzare se la query di verifica del flusso di dati non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
+| Colori |Hello toodisplay di colore per ogni proprietà hello tre superiore.  Se si desidera toospecify alternativo colori per i valori di proprietà specifico, utilizzare avanzate del Mapping di colore. |
+| Mappa colori avanzata |Visualizza un colore per valori di proprietà specifici.  Se il valore di hello specificato si trova in hello tre superiore, quindi viene visualizzato il colore alternativo hello anziché colori standard hello.  Se la proprietà hello non è hello tre superiore, quindi colori hello non viene visualizzata. |
+| **Funzionalità avanzate** |**&gt; Verifica del flusso di dati** |
+| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro hello.  Ciò fornisce un messaggio alternativo se non sono disponibili per il riquadro hello dati.  Si tooprovide in genere utilizzato un messaggio hello temporanea quando è installato Vista hello e dati disponibili. |
+| Query |Eseguire una query toorun toocheck se sono disponibili dati per la visualizzazione hello.  Se la query hello non restituisce alcun risultato, anziché il valore di hello dalla query principale hello viene visualizzato un messaggio. |
+| Message |Messaggio toodisplay se query di verifica del flusso di dati hello non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
 
 
 ## <a name="line-chart-tile"></a>Riquadro Grafico a linee
-Nel riquadro **Grafico a linee** viene visualizzato un grafico a linee con più serie prodotte da una query di log nel tempo.  
+Hello **grafico a linee** riquadro Visualizza un grafico a linee con più serie da una query del log nel tempo.  
 
 ![Riquadro Grafico a linee e callout](media/log-analytics-view-designer/tile-line-chart.png)
 
 | Impostazione | Description |
 |:--- |:--- |
-| Nome |Testo da visualizzare nella parte superiore del riquadro. |
-| Descrizione |Testo da visualizzare sotto il nome del riquadro. |
+| Nome |Riquadro testo toodisplay nella parte superiore di hello di hello. |
+| Descrizione |Testo toodisplay sotto il nome di sezione hello. |
 | **Grafico a linee** | |
-| Query |La query da eseguire per il grafico a linee.  La prima proprietà deve essere un valore di testo, mentre la seconda proprietà un valore numerico.  In genere si tratta di una query che usa la parola chiave **measure** per riepilogare i risultati.  Se la query usa la parola chiave **interval**, l'asse X del grafico userà questo intervallo di tempo.  Se la query non include la parola chiave **interval**, vengono usati intervalli orari per l'asse X. |
+| Query |Eseguire una query toorun per grafico a linee hello.  proprietà prima di Hello deve essere un valore e hello secondo proprietà text un valore numerico.  In genere si tratta di una query che utilizza hello **misura** risultati toosummarize (parola chiave).  Se la query hello utilizza hello **intervallo** (parola chiave), quindi hello asse x del grafico hello utilizzerà l'intervallo di tempo.  Se la query hello include hello **intervallo** intervalli (parola chiave), quindi ogni ora vengono utilizzati per hello asse x. |
 | **Grafico a linee** |**> Asse Y** |
-| Usa scala logaritmica |Selezionare questa opzione per usare una scala logaritmica per l'asse Y. |
-| Unità |Specifica le unità per i valori restituiti dalla query.  Queste informazioni vengono usate per visualizzare le etichette del grafico che indicano i tipi di valore e, facoltativamente, per convertire i valori.  **Tipo di unità** specifica la categoria dell'unità e definisce i valori **Tipo di unità corrente** che sono disponibili.  Se si seleziona un valore in **Converti in**, i valori numerici vengono convertiti dal tipo **Unità corrente** al tipo **Converti in**. |
-| Etichetta personalizzata |Il testo da visualizzare per l'asse Y accanto all'etichetta per il tipo di unità.  Se non viene specificata alcuna etichetta, viene visualizzato solo il tipo di unità. |
-| **Funzionalità avanzate** |**> Verifica del flusso di dati** |
-| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro.  Viene fornito un messaggio alternativo se non sono disponibili dati per il riquadro.  In genere viene usato per fornire un messaggio durante il periodo temporaneo in cui la vista viene installata e i dati diventano disponibili. |
-| Query |La query da eseguire per verificare se sono disponibili i dati per la vista.  Se la query non restituisce risultati, viene visualizzato un messaggio anziché il valore dalla query principale. |
-| Message |Il messaggio da visualizzare se la query di verifica del flusso di dati non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
+| Usa scala logaritmica |Selezionare toouse una scala logaritmica per hello asse y. |
+| Unità |Specificare unità hello per i valori hello restituiti dalla query hello.  Queste informazioni sono etichette toodisplay utilizzati nel grafico hello che indica i tipi di valore hello e, facoltativamente, per la conversione di valori hello.  Hello **tipo di unità** specifica categoria di hello dell'unità hello e definisce hello **tipo unità corrente** valori disponibili.  Se si seleziona un valore in **convertire** quindi i valori numerici hello vengono convertiti da hello **unità corrente** digitare toohello **convertire** tipo. |
+| Etichetta personalizzata |Testo toodisplay per etichetta successiva toohello hello asse Y per il tipo di unità di hello.  Se l'etichetta non è specificato, viene visualizzato solo il tipo di unità hello. |
+| **Funzionalità avanzate** |**&gt; Verifica del flusso di dati** |
+| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro hello.  Ciò fornisce un messaggio alternativo se non sono disponibili per il riquadro hello dati.  Si tooprovide in genere utilizzato un messaggio hello temporanea quando è installato Vista hello e dati disponibili. |
+| Query |Eseguire una query toorun toocheck se sono disponibili dati per la visualizzazione hello.  Se la query hello non restituisce alcun risultato, anziché il valore di hello dalla query principale hello viene visualizzato un messaggio. |
+| Message |Messaggio toodisplay se query di verifica del flusso di dati hello non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
 
 
 ## <a name="line-chart--callout-tile"></a>Riquadro Grafico a linee e callout
-Nel riquadro **Grafico a linee e callout** viene visualizzato un grafico a linee con più serie prodotto da una query di log nel tempo e un callout con un valore riepilogato.  
+Hello **linea di callout & grafico** riquadro Visualizza un grafico a linee con più serie da una query del log nel tempo e un callout con un valore di riepilogo.  
 
 ![Riquadro Grafico a linee e callout](media/log-analytics-view-designer/tile-line-chart-callout.png)
 
 | Impostazione | Description |
 |:--- |:--- |
-| Nome |Testo da visualizzare nella parte superiore del riquadro. |
-| Descrizione |Testo da visualizzare sotto il nome del riquadro. |
+| Nome |Riquadro testo toodisplay nella parte superiore di hello di hello. |
+| Descrizione |Testo toodisplay sotto il nome di sezione hello. |
 | **Grafico a linee** | |
-| Query |La query da eseguire per il grafico a linee.  La prima proprietà deve essere un valore di testo, mentre la seconda proprietà un valore numerico.  In genere si tratta di una query che usa la parola chiave **measure** per riepilogare i risultati.  Se la query usa la parola chiave **interval**, l'asse X del grafico userà questo intervallo di tempo.  Se la query non include la parola chiave **interval**, vengono usati intervalli orari per l'asse X. |
+| Query |Eseguire una query toorun per grafico a linee hello.  proprietà prima di Hello deve essere un valore e hello secondo proprietà text un valore numerico.  In genere si tratta di una query che utilizza hello **misura** risultati toosummarize (parola chiave).  Se la query hello utilizza hello **intervallo** (parola chiave), quindi hello asse x del grafico hello utilizzerà l'intervallo di tempo.  Se la query hello include hello **intervallo** intervalli (parola chiave), quindi ogni ora vengono utilizzati per hello asse x. |
 | **Grafico a linee** |**> Callout** |
-| Callout |Il testo del titolo da visualizzare sopra il valore di callout. |
-| Nome della serie |Il valore della proprietà per la serie da usare per il valore di callout.  Se non viene fornita alcuna serie, vengono usati tutti i record prodotti dalla query. |
-| Operazione |L'operazione da eseguire sulla proprietà di valore per riepilogare in un singolo valore per il callout.<br>- Media: la media del valore di tutti i record.<br><br>- Numero: la quantità di tutti i record restituiti dalla query.<br>- Ultimo campione: il valore dell'ultimo intervallo incluso nel grafico.<br>- Max: il valore massimo degli intervalli inclusi nel grafico.<br>- Min: il valore minimo risultante dagli intervalli inclusi nel grafico.<br>- Somma: la somma del valore di tutti i record. |
+| Callout |Toodisplay di testo titolo sopra il valore di callout hello. |
+| Nome della serie |Valore della proprietà hello toouse di serie per il valore di callout hello.  Se non viene fornita alcun serie, vengono utilizzati tutti i record da query hello. |
+| Operazione |Hello operazione tooperform hello valore toosummarize tooa singolo valore della proprietà per hello callout.<br>-Media: Media del valore di hello da tutti i record.<br><br>-Conteggio: Conteggio di tutti i record restituiti dalla query hello.<br>-Ultimo campione: Valore dall'ultimo intervallo di hello incluso nel grafico hello.<br>Max: Valore massimo da intervalli hello inclusi nel grafico hello.<br>: Min: Valore minimo da intervalli hello inclusi nel grafico hello.<br>-Somma: La somma del valore di hello da tutti i record. |
 | **Grafico a linee** |**> Asse Y** |
-| Usa scala logaritmica |Selezionare questa opzione per usare una scala logaritmica per l'asse Y. |
-| Unità |Specifica le unità per i valori restituiti dalla query.  Queste informazioni vengono usate per visualizzare le etichette del grafico che indicano i tipi di valore e, facoltativamente, per convertire i valori.  **Tipo di unità** specifica la categoria dell'unità e definisce i valori **Tipo di unità corrente** che sono disponibili.  Se si seleziona un valore in **Converti in**, i valori numerici vengono convertiti dal tipo **Unità corrente** al tipo **Converti in**. |
-| Etichetta personalizzata |Il testo da visualizzare per l'asse Y accanto all'etichetta per il tipo di unità.  Se non viene specificata alcuna etichetta, viene visualizzato solo il tipo di unità. |
-| **Funzionalità avanzate** |**> Verifica del flusso di dati** |
-| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro.  Viene fornito un messaggio alternativo se non sono disponibili dati per il riquadro.  In genere viene usato per fornire un messaggio durante il periodo temporaneo in cui la vista viene installata e i dati diventano disponibili. |
-| Query |La query da eseguire per verificare se sono disponibili i dati per la vista.  Se la query non restituisce risultati, viene visualizzato un messaggio anziché il valore dalla query principale. |
-| Message |Il messaggio da visualizzare se la query di verifica del flusso di dati non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
+| Usa scala logaritmica |Selezionare toouse una scala logaritmica per hello asse y. |
+| Unità |Specificare unità hello per i valori hello restituiti dalla query hello.  Queste informazioni sono etichette toodisplay utilizzati nel grafico hello che indica i tipi di valore hello e, facoltativamente, per la conversione di valori hello.  Hello **tipo di unità** specifica categoria di hello dell'unità hello e definisce hello **tipo unità corrente** valori disponibili.  Se si seleziona un valore in **convertire** quindi i valori numerici hello vengono convertiti da hello **unità corrente** digitare toohello **convertire** tipo. |
+| Etichetta personalizzata |Testo toodisplay per etichetta successiva toohello hello asse Y per il tipo di unità di hello.  Se l'etichetta non è specificato, viene visualizzato solo il tipo di unità hello. |
+| **Funzionalità avanzate** |**&gt; Verifica del flusso di dati** |
+| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro hello.  Ciò fornisce un messaggio alternativo se non sono disponibili per il riquadro hello dati.  Si tooprovide in genere utilizzato un messaggio hello temporanea quando è installato Vista hello e dati disponibili. |
+| Query |Eseguire una query toorun toocheck se sono disponibili dati per la visualizzazione hello.  Se la query hello non restituisce alcun risultato, anziché il valore di hello dalla query principale hello viene visualizzato un messaggio. |
+| Message |Messaggio toodisplay se query di verifica del flusso di dati hello non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
 
 
 ## <a name="two-timelines-tile"></a>Riquadro Due sequenze temporali
-Il riquadro **Due sequenze temporali** visualizza come istogramma i risultati di due query di log nel tempo.  Viene visualizzato un callout per ogni serie.  
+Hello **due sequenze temporali** riquadro Visualizza i risultati di hello di due query log nel tempo come istogramma.  Viene visualizzato un callout per ogni serie.  
 
 ![Riquadro Due sequenze temporali](media/log-analytics-view-designer/tile-two-timelines.png)
 
 | Impostazione | Description |
 |:--- |:--- |
-| Nome |Testo da visualizzare nella parte superiore del riquadro. |
-| Descrizione |Testo da visualizzare sotto il nome del riquadro. |
+| Nome |Riquadro testo toodisplay nella parte superiore di hello di hello. |
+| Descrizione |Testo toodisplay sotto il nome di sezione hello. |
 | Primo grafico | |
-| Legenda |Il testo da visualizzare nel callout per la prima serie. |
-| Colore |Il colore da usare per le colonne della prima serie. |
-| Query grafico |La query da eseguire per la prima serie.  Il conteggio del numero di record in ogni intervallo di tempo sarà rappresentato dalle colonne del grafico. |
-| Operazione |L'operazione da eseguire sulla proprietà di valore per riepilogare in un singolo valore per il callout.<br><br>- Media: la media del valore di tutti i record.<br>- Numero: la quantità di tutti i record restituiti dalla query.<br>- Ultimo campione: il valore dell'ultimo intervallo incluso nel grafico.<br>- Max: il valore massimo degli intervalli inclusi nel grafico. |
+| Legenda |Testo toodisplay in didascalia hello prima serie hello. |
+| Colore |Toouse di colore per le colonne di hello prima serie hello. |
+| Query grafico |Eseguire una query toorun prima serie hello.  conteggio di Hello del numero di hello di record in ogni intervallo di tempo rappresentato da colonne del grafico hello. |
+| Operazione |Hello operazione tooperform hello valore toosummarize tooa singolo valore della proprietà per hello callout.<br><br>-Media: Media del valore di hello da tutti i record.<br>-Conteggio: Conteggio di tutti i record restituiti dalla query hello.<br>-Ultimo campione: Valore dall'ultimo intervallo di hello incluso nel grafico hello.<br>Max: Valore massimo da intervalli hello inclusi nel grafico hello. |
 | **Secondo grafico** | |
-| Legenda |Il testo da visualizzare nel callout per la seconda serie. |
-| Colore |Il colore da usare per le colonne della seconda serie. |
-| Query grafico |La query da eseguire per la seconda serie.  Il conteggio del numero di record in ogni intervallo di tempo sarà rappresentato dalle colonne del grafico. |
-| Operazione |L'operazione da eseguire sulla proprietà di valore per riepilogare in un singolo valore per il callout.<br><br>- Media: la media del valore di tutti i record.<br>- Numero: la quantità di tutti i record restituiti dalla query.<br>- Ultimo campione: il valore dell'ultimo intervallo incluso nel grafico.<br>- Max: il valore massimo degli intervalli inclusi nel grafico. |
-| **Funzionalità avanzate** |**> Verifica del flusso di dati** |
-| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro.  Viene fornito un messaggio alternativo se non sono disponibili dati per il riquadro.  In genere viene usato per fornire un messaggio durante il periodo temporaneo in cui la vista viene installata e i dati diventano disponibili. |
-| Query |La query da eseguire per verificare se sono disponibili i dati per la vista.  Se la query non restituisce risultati, viene visualizzato un messaggio anziché il valore dalla query principale. |
-| Message |Il messaggio da visualizzare se la query di verifica del flusso di dati non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
+| Legenda |Testo toodisplay in hello callout per la seconda serie hello. |
+| Colore |Toouse di colore per le colonne di hello nella seconda serie hello. |
+| Query grafico |Eseguire una query toorun per la seconda serie hello.  conteggio di Hello del numero di hello di record in ogni intervallo di tempo rappresentato da colonne del grafico hello. |
+| Operazione |Hello operazione tooperform hello valore toosummarize tooa singolo valore della proprietà per hello callout.<br><br>-Media: Media del valore di hello da tutti i record.<br>-Conteggio: Conteggio di tutti i record restituiti dalla query hello.<br>-Ultimo campione: Valore dall'ultimo intervallo di hello incluso nel grafico hello.<br>Max: Valore massimo da intervalli hello inclusi nel grafico hello. |
+| **Funzionalità avanzate** |**&gt; Verifica del flusso di dati** |
+| Enabled |Selezionare se la verifica del flusso di dati deve essere abilitata per il riquadro hello.  Ciò fornisce un messaggio alternativo se non sono disponibili per il riquadro hello dati.  Si tooprovide in genere utilizzato un messaggio hello temporanea quando è installato Vista hello e dati disponibili. |
+| Query |Eseguire una query toorun toocheck se sono disponibili dati per la visualizzazione hello.  Se la query hello non restituisce alcun risultato, anziché il valore di hello dalla query principale hello viene visualizzato un messaggio. |
+| Message |Messaggio toodisplay se query di verifica del flusso di dati hello non restituisce dati.  Se non si specifica alcun messaggio, viene visualizzato *Esecuzione della valutazione*. |
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni sulle [ricerche nei log](log-analytics-log-searches.md) per supportare le query nei riquadri.
-* Aggiungere [parti della visualizzazione](log-analytics-view-designer-parts.md) per la vista personalizzata.
+* Informazioni su [log ricerche](log-analytics-log-searches.md) query hello toosupport nei riquadri.
+* Aggiungere [visualizzazione parti](log-analytics-view-designer-parts.md) tooyour di visualizzazione personalizzata.

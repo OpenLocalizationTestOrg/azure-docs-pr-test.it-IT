@@ -3,7 +3,7 @@ DNS di Azure è un servizio di hosting per i domini DNS, che fornisce la risoluz
 
 | Proprietà | Descrizione | Valore di esempio |
 | --- | --- | --- |
-| **DNSzones** |Informazioni sulla zona del dominio per ospitare i record DNS di un particolare dominio. |/subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com" |
+| **DNSzones** |Record DNS toohost delle informazioni di zona di dominio di un determinato dominio |/subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com" |
 
 ### <a name="dns-record-sets"></a>Set di record DNS
 Le zone DNS dispongono di un oggetto figlio denominato set di record. I set di record sono una raccolta di record host in base al tipo per una zona DNS. I tipi record sono A, AAAA, CNAME, MX, NS, SOA, SRV e TXT.
@@ -31,14 +31,14 @@ Esempio di zona DNS nel formato Json:
         "newZoneName": {
           "type": "String",
           "metadata": {
-              "description": "The name of the DNS zone to be created."
+              "description": "hello name of hello DNS zone toobe created."
           }
         },
         "newRecordName": {
           "type": "String",
           "defaultValue": "www",
           "metadata": {
-              "description": "The name of the DNS record to be created.  The name is relative to the zone, not the FQDN."
+              "description": "hello name of hello DNS record toobe created.  hello name is relative toohello zone, not hello FQDN."
           }
         }
       },
@@ -78,7 +78,7 @@ Esempio di zona DNS nel formato Json:
     }
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-Per ulteriori informazioni, leggere la [documentazione dell'API REST per le zone DNS ](https://msdn.microsoft.com/library/azure/mt130626.aspx) .
+Hello lettura [documentazione dell'API REST per le zone DNS ](https://msdn.microsoft.com/library/azure/mt130626.aspx) per ulteriori informazioni.
 
-Leggere la [documentazione dell'API REST per i set di record DNS](https://msdn.microsoft.com/library/azure/mt130627.aspx) per ulteriori informazioni.
+Hello lettura [documentazione dell'API REST per i set di record DNS](https://msdn.microsoft.com/library/azure/mt130627.aspx) per ulteriori informazioni.
 

@@ -1,12 +1,12 @@
 ### <a name="azure-storage-linked-service"></a>Servizio collegato Archiviazione di Azure
-Il **servizio collegato ad Archiviazione di Azure** consente di collegare un account di Archiviazione di Azure a una data factory di Azure tramite la **chiave dell'account**, che fornisce alla data factory l'accesso globale ad Archiviazione di Azure. La tabella seguente fornisce la descrizione degli elementi JSON specifici del servizio collegato Archiviazione di Azure.
+Hello **servizio collegato di archiviazione di Azure** consente toolink un'archiviazione di Azure account tooan data factory di Azure tramite hello **chiave dell'account**, che consente di data factory di hello con accesso globale toohello Azure Spazio di archiviazione. Hello nella tabella seguente fornisce una descrizione JSON elementi specifici tooAzure servizio collegato di archiviazione.
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| type |La proprietà type deve essere impostata su: **AzureStorage** |Sì |
-| connectionString |Specificare le informazioni necessarie per connettersi all’archivio Azure per la proprietà connectionString. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **AzureStorage** |Sì |
+| connectionString |Specificare le informazioni necessarie tooconnect tooAzure archiviazione per la proprietà connectionString hello. |Sì |
 
-Per i passaggi da seguire per visualizzare o copiare la chiave dell'account per Archiviazione di Azure, vedere [Visualizzare, copiare e rigenerare le chiave di accesso alle risorse di archiviazione](../articles/storage/common/storage-create-storage-account.md#manage-your-storage-account).
+Vedere l'articolo per la chiave account hello tooview o copia di passaggi seguente per una risorsa di archiviazione di Azure hello: [visualizzare, copiare e rigenerare le chiavi di accesso di archiviazione](../articles/storage/common/storage-create-storage-account.md#manage-your-storage-account).
 
 **Esempio:**  
 
@@ -23,18 +23,18 @@ Per i passaggi da seguire per visualizzare o copiare la chiave dell'account per 
 ```
 
 ### <a name="azure-storage-sas-linked-service"></a>Servizio collegato di firma di accesso condiviso Archiviazione di Azure
-Una firma di accesso condiviso (SAS) fornisce accesso delegato alle risorse nell'account di archiviazione. Consente di concedere a un client autorizzazioni limitate per BLOB, code o tabelle per un periodo di tempo specificato e con un set di autorizzazioni specificato senza dover condividere le chiavi di accesso dell'account. La firma di accesso condiviso è un URI che racchiude nei parametri di query tutte le informazioni necessarie per l'accesso autenticato a una risorsa di archiviazione. Per accedere alle risorse di archiviazione con la firma di accesso condiviso, il client deve solo passare la firma al costruttore o al metodo appropriato. Per informazioni dettagliate sulle firme di accesso condiviso, vedere [Firme di accesso condiviso, parte 1: conoscere il modello di firma di accesso condiviso](../articles/storage/common/storage-dotnet-shared-access-signature-part-1.md)
+Una firma di accesso condiviso (SAS) fornisce l'accesso delegato tooresources nell'account di archiviazione. In questo modo si toogrant un client limitato tooobjects autorizzazioni nell'account di archiviazione per un determinato periodo di tempo e con un set specificato di autorizzazioni, senza dovere tooshare le chiavi di accesso di account. Hello firma di accesso condiviso è un URI che include i parametri di query di tutte le informazioni di hello necessarie per la risorsa di archiviazione tooa l'accesso autenticato. risorse di archiviazione tooaccess con hello SAS, hello client deve disporre solo toopass nel metodo o costruttore di hello SAS toohello appropriato. Per informazioni dettagliate sulla firma di accesso condiviso, vedere [firme di accesso condiviso: hello comprensione del modello di firma di accesso condiviso](../articles/storage/common/storage-dotnet-shared-access-signature-part-1.md)
 
 > [!IMPORTANT]
-> Azure Data Factory supporta attualmente solo il **servizio di firma di accesso condiviso**, ma non la firma di accesso condiviso dell'account. Vedere [Tipi di firme di accesso condiviso](../articles/storage/common/storage-dotnet-shared-access-signature-part-1.md#types-of-shared-access-signatures) per informazioni dettagliate su questi due tipi e sulla modalità di costruzione. Si noti che l'URL di firma di accesso condiviso generabile dal portale di Azure o da Storage Explorer è una firma di accesso condiviso dell'account, che non è supportata.
+> Azure Data Factory supporta attualmente solo il **servizio di firma di accesso condiviso**, ma non la firma di accesso condiviso dell'account. Vedere [tipi di firme di accesso condiviso](../articles/storage/common/storage-dotnet-shared-access-signature-part-1.md#types-of-shared-access-signatures) per informazioni dettagliate su questi due tipi e come tooconstruct. Nota hello URL SAS generable dal portale Azure Storage Explorer è una firma di accesso condiviso, che non è supportato.
 > 
 
-Il servizio collegato di firma di accesso condiviso Archiviazione di Azure consente di collegare un account di Archiviazione di Azure a Data factory di Azure tramite una firma di accesso condiviso. Offre a Data factory un accesso con restrizioni o limiti di tempo a tutte le risorse o a risorse specifiche (BLOB/contenitore) nella risorsa di archiviazione. La tabella seguente fornisce la descrizione degli elementi JSON specifici del servizio collegato di firma di accesso condiviso Archiviazione di Azure. 
+servizio sa di archiviazione di Azure collegati Hello consente toolink un Account di archiviazione Azure tooan data factory di Azure tramite una firma di accesso condiviso (SAS). Fornisce data factory di hello con accesso limitato/scadenza tooall/specifiche risorse (blob/contenitore) nell'archiviazione hello. Hello nella tabella seguente fornisce una descrizione JSON tooAzure specifico di elementi del servizio di archiviazione SAS collegato. 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| type |La proprietà type deve essere impostata su: **AzureStorageSas** |Sì |
-| sasUri |Specificare l'URI della firma di accesso condiviso per le risorse di Archiviazione di Azure come BLOB, contenitore o tabella.  |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **AzureStorageSas** |Sì |
+| sasUri |Specificare le risorse di archiviazione di Azure toohello URI firma di accesso condiviso, ad esempio una tabella, contenitore o blob.  |Sì |
 
 **Esempio:**
 
@@ -44,15 +44,15 @@ Il servizio collegato di firma di accesso condiviso Archiviazione di Azure conse
     "properties": {  
         "type": "AzureStorageSas",  
         "typeProperties": {  
-            "sasUri": "<Specify SAS URI of the Azure Storage resource>"   
+            "sasUri": "<Specify SAS URI of hello Azure Storage resource>"   
         }  
     }  
 }  
 ```
 
-Quando si crea un **URI della firma di accesso condiviso**considerare quanto segue:  
+Quando si crea un **URI SAS**, prendere in considerazione i seguenti hello:  
 
-* Impostare le **autorizzazioni** appropriate di lettura o scrittura per gli oggetti in base al modo in cui il servizio collegato (lettura, scrittura, lettura/scrittura) viene usato nella data factory.
-* Impostare **Ora di scadenza** in modo appropriato. L'accesso agli oggetti di Archiviazione di Azure non deve scadere nel periodo attivo della pipeline.
-* L'URI deve essere creato al giusto livello di contenitore/BLOB o tabella in base alla necessità. Un URI di firma di accesso condiviso per un BLOB di Azure consente al servizio Data factory di accedere a quel particolare BLOB. Un URI di firma di accesso condiviso per un contenitore BLOB di Azure consente al servizio Data factory di eseguire l'iterazione tra i BLOB in quel contenitore. Se si deve consentire l'accesso a più o meno oggetti in un secondo momento o aggiornare l'URI di firma di accesso condiviso, ricordarsi di aggiornare il servizio collegato con il nuovo URI.   
+* Impostare in lettura/scrittura appropriate **autorizzazioni** per gli oggetti in base a come hello collegato del servizio (lettura, scrittura o lettura/scrittura) viene utilizzato per la data factory.
+* Impostare **Ora di scadenza** in modo appropriato. Assicurarsi che gli oggetti di archiviazione hello accesso tooAzure non scade entro il periodo attivo di hello della pipeline hello.
+* URI deve essere creato alla destra hello contenitore/blob o il livello di tabella in base a hello necessario. Un blob di Azure di tooan Uri SAS consente tooaccess servizio Data Factory di hello blob specifico. Un contenitore di blob di Azure tooan Uri SAS consente tooiterate servizio Data Factory di hello tramite i BLOB nel contenitore. Se è necessario l'accesso tooprovide più/meno gli oggetti in un secondo momento o aggiornamento hello SAS URI, ricordare di servizio collegato hello tooupdate con hello nuovo URI.   
 

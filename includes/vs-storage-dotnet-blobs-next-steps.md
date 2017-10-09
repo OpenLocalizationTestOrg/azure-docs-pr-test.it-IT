@@ -1,10 +1,10 @@
 
-A questo punto, dopo aver appreso le nozioni di base dell'archiviazione BLOB di Azure, visitare i collegamenti seguenti per altre informazioni sulle attività di archiviazione più complesse.
+Ora che si sono appreso i concetti fondamentali di hello dell'archiviazione Blob di Azure, seguire questi toolearn collegamenti sulle attività di archiviazione più complesse.
 
-* Vedere la documentazione di riferimento del servizio BLOB di Azure nella [libreria client di archiviazione per .NET](http://go.microsoft.com/fwlink/?LinkID=390731) per informazioni dettagliate sulle API disponibili.
-* Per altre informazioni su come semplificare il codice scritto da usare con l'archiviazione di Azure, vedere [Informazioni su Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
-* Per altre opzioni di archiviazione dei dati in Azure, consultare altre guide alle funzionalità.
-  * Per lavorare con le tabelle di archiviazione di Azure, vedere [Introduzione all'archiviazione tabelle di Azure con .NET](../articles/cosmos-db/table-storage-how-to-use-dotnet.md).
-  * Per lavorare con le code di archiviazione di Azure, vedere [Introduzione all'archiviazione code di Azure con .NET](../articles/storage/queues/storage-dotnet-how-to-use-queues.md).
-  * Per archiviare i dati relazionali, vedere [Connettersi al database SQL tramite .NET (C#)](../articles/sql-database/sql-database-develop-dotnet-simple.md).
+* Visualizzare la documentazione di riferimento del servizio Blob hello in hello [Azure Storage Client Library per .NET](http://go.microsoft.com/fwlink/?LinkID=390731) riferimento per informazioni dettagliate sulle API disponibili.
+* toolearn come codice hello toosimplify scrivere toowork con l'archiviazione di Azure, consultare [novità hello Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
+* Consente di visualizzare altre toolearn di guide di funzionalità sulle opzioni aggiuntive per l'archiviazione dei dati in Azure.
+  * toowork con tabelle di archiviazione di Azure, vedere [Introduzione all'archiviazione tabelle di Azure usando .NET](../articles/cosmos-db/table-storage-how-to-use-dotnet.md).
+  * toowork con le code di archiviazione di Azure, [Introduzione all'archiviazione di Accodamento di Azure usando .NET](../articles/storage/queues/storage-dotnet-how-to-use-queues.md).
+  * toostore dati relazionali, vedere [tooSQL Database di connettersi tramite .NET (c#)](../articles/sql-database/sql-database-develop-dotnet-simple.md).
 

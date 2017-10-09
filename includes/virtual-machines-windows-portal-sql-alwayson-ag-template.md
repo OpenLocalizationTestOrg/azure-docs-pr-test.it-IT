@@ -1,0 +1,2 @@
+In questa esercitazione illustra la creazione di soluzioni hello hello portale di Azure. Se si è interessati a creare questa soluzione da un modello, scegliere il modello appropriato di hello da [modelli di Microsoft Azure GitHub](http://github.com/Azure/azure-quickstart-templates). Hello [creare un gruppo di disponibilità con macchine virtuali di replica di SQL Server 2014](http://github.com/Azure/azure-quickstart-templates/tree/master/sqlvm-alwayson-cluster) modello crea hello stessa soluzione come questa esercitazione. 
+

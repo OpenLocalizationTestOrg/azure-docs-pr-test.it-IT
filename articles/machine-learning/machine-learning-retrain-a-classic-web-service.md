@@ -1,6 +1,6 @@
 ---
-title: Ripetere il training di un servizio Web classico | Documentazione Microsoft
-description: Informazioni su come ripetere il training di un modello a livello di codice e aggiornare il servizio Web per l'uso del modello appena sottoposto a training in Azure Machine Learning.
+title: un servizio web classica aaaRetrain | Documenti Microsoft
+description: Informazioni su come tooprogrammatically ripetere il training di un modello e aggiornamento hello web servizio toouse hello appena modello con Training in Azure Machine Learning.
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3f9f4cd5ed36262845f7a3139073ccd4e49f472a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3ba21ed75f02868535cb2fcac607643303a9554
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="retrain-a-classic-web-service"></a>Ripetere il training di un servizio Web classico
-Il servizio Web predittivo distribuito è l'endpoint dei punteggi predefinito. Gli endpoint predefiniti vengono mantenuti sincronizzati con gli esperimenti di training e di assegnazione dei punteggi di origine, quindi il modello con training per l'endpoint predefinito non può essere sostituito. Per ripetere il training del servizio Web è necessario aggiungere un nuovo endpoint al servizio Web. 
+Hello predittiva del servizio Web è stato distribuito è predefinito hello punteggio endpoint. Gli endpoint predefiniti vengono mantenuti sincronizzati con hello originali di training e assegnazione dei punteggi esperimenti, e pertanto hello modello con training per l'endpoint predefinito hello non può essere sostituito. servizio web di hello tooretrain, è necessario aggiungere un nuovo servizio web toohello di endpoint. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 È necessario impostare un esperimento di training e un esperimento predittivo come illustrato in [Ripetere il training dei modelli di Machine Learning in modo programmatico](machine-learning-retrain-models-programmatically.md). 
 
 > [!IMPORTANT]
-> L'esperimento predittivo deve essere distribuito come servizio Web di Machine Learning classico. 
+> sperimentazione predittiva Hello deve essere distribuito come un classica servizio web machine learning. 
 > 
 > 
 
 Per altre informazioni sulla distribuzione di servizi Web, vedere [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
 
 ## <a name="add-a-new-endpoint"></a>Aggiungere un nuovo endpoint
-Il servizio Web predittivo distribuito contiene un endpoint di assegnazione dei punteggi predefinito che viene mantenuto sincronizzato con il modello con training originale con esperimenti di training e di assegnazione dei punteggi. Per aggiornare il servizio Web con un nuovo modello con training, è necessario creare un nuovo endpoint di assegnazione dei punteggi. 
+Hello predittiva del servizio Web che è stato distribuito contiene un endpoint che viene mantenuta la sincronizzazione con training originale hello e il modello con training di punteggio esperimenti di punteggio predefinito. tooupdate toowith per il servizio web un nuovo modello con training, è necessario creare un nuovo endpoint di assegnazione dei punteggi. 
 
-Per creare un nuovo endpoint dei punteggi, nel servizio Web predittivo che può essere aggiornato con il modello con training:
+un nuovo endpoint di punteggio, nel servizio Web predittivo che possono essere aggiornate con modello con training hello hello toocreate:
 
 > [!NOTE]
-> Assicurarsi di aggiungere l'endpoint al servizio Web predittivo, non al servizio Web di training. Se sono stati distribuiti correttamente sia un servizio Web di training che uno predittivo, verranno visualizzati due servizi Web elencati separatamente. Il servizio Web predittivo deve terminare con "[predictive exp.]".
+> Assicurarsi che si sta aggiungendo hello toohello di endpoint servizio Web predittivo, non hello servizio Web di Training. Se sono stati distribuiti correttamente sia un servizio Web di training che uno predittivo, verranno visualizzati due servizi Web elencati separatamente. Servizio Web predittivo Hello deve terminare con "[predittiva exp]"..
 > 
 > 
 
-Esistono tre modi per aggiungere un nuovo endpoint a un servizio Web:
+Esistono tre modi in cui è possibile aggiungere un nuovo servizio web di tooa punto finale:
 
 1. A livello di codice
-2. Usare il portale dei servizi Web di Microsoft Azure
-3. Usare il portale di Azure classico
+2. Utilizzare il portale di servizi Web di Microsoft Azure hello
+3. Utilizzare hello portale di Azure classico
 
 ### <a name="programmatically-add-an-endpoint"></a>Aggiungere un endpoint a livello di codice
-È possibile aggiungere endpoint di assegnazione dei punteggi usando il codice di esempio disponibile in questo [repository GitHub](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs).
+È possibile aggiungere endpoint di assegnazione dei punteggi usando il codice di esempio hello fornito in questo [repository github](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs).
 
-### <a name="use-the-microsoft-azure-web-services-portal-to-add-an-endpoint"></a>Usare il portale dei servizi Web di Microsoft Azure per aggiungere un endpoint
-1. In Machine Learning Studio fare clic su Web Services (Servizi Web) nella colonna di spostamento a sinistra.
-2. Nella parte inferiore del dashboard dei servizi Web, fare clic su **Manage endpoints preview** (Gestisci anteprima endpoint).
+### <a name="use-hello-microsoft-azure-web-services-portal-tooadd-an-endpoint"></a>Utilizzare hello tooadd portale di servizi Web di Microsoft Azure un endpoint
+1. In Machine Learning Studio, nella colonna sinistra hello, fare clic su servizi Web.
+2. Nella parte inferiore di hello del dashboard del servizio web hello, fare clic su **anteprima endpoint Gestisci**.
 3. Fare clic su **Aggiungi**.
-4. Immettere un nome e una descrizione per il nuovo endpoint. Selezionare il livello di registrazione e indicare se i dati di esempio sono abilitati. Per altre informazioni sulla registrazione, vedere [Abilitare la registrazione per i servizi Web di Machine Learning](machine-learning-web-services-logging.md).
+4. Digitare un nome e una descrizione per il nuovo endpoint di hello. Selezionare il livello di registrazione hello e indica se sono abilitati i dati di esempio. Per altre informazioni sulla registrazione, vedere [Abilitare la registrazione per i servizi Web di Machine Learning](machine-learning-web-services-logging.md).
 
-### <a name="use-the-azure-classic-portal-to-add-an-endpoint"></a>Usare il portale di Azure classico per aggiungere un endpoint
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com).
-2. Nel menu a sinistra fare clic su **Machine Learning**.
+### <a name="use-hello-azure-classic-portal-tooadd-an-endpoint"></a>Utilizzare hello Azure tooadd portale classico un endpoint
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com).
+2. Nel menu a sinistra di hello, fare clic su **Machine Learning**.
 3. In Nome fare clic sull'area di lavoro e quindi su **Servizi Web**.
 4. In Nome fare clic su **Census Model [predictive exp.]**.
-5. Nella parte inferiore della pagina fare clic su **Aggiungi endpoint**. Per altre informazioni sull'aggiunta di endpoint, vedere [Creazione di endpoint](machine-learning-create-endpoint.md). 
+5. Nella parte inferiore di hello della pagina hello, fare clic su **Aggiungi Endpoint**. Per altre informazioni sull'aggiunta di endpoint, vedere [Creazione di endpoint](machine-learning-create-endpoint.md). 
 
-## <a name="update-the-added-endpoints-trained-model"></a>Aggiornare il modello con training dell'endpoint aggiunto
-Per completare il processo di ripetizione del training, è necessario aggiornare il modello con training del nuovo endpoint aggiunto.
+## <a name="update-hello-added-endpoints-trained-model"></a>Aggiunta di hello aggiornamento modello con training dell'endpoint
+processo di toocomplete i hello, è necessario aggiornare il modello con training di hello di hello nuovo endpoint in cui è stato aggiunto.
 
-* Se il nuovo endpoint è stato aggiunto usando il portale di Azure classico, è possibile fare clic sul nome del nuovo endpoint nel portale, quindi sul collegamento **UpdateResource** per ottenere l'URL necessario per aggiornare il modello dell'endpoint.
-* Se l'endpoint è stato aggiunto usando il codice di esempio, è inclusa la posizione dell'URL della guida identificato dal valore *HelpLocationURL* nell'output.
+* Se è stato aggiunto nuovo endpoint hello usando il portale di Azure classico di hello, è possibile fare clic sul nome dell'endpoint di hello nuovo nel portale di hello quindi hello **UpdateResource** collegamento URL hello tooget è necessario il modello dell'endpoint di tooupdate hello.
+* Se si aggiungono endpoint hello mediante il codice di esempio hello, sono inclusi percorso dell'URL della Guida hello identificato da hello *HelpLocationURL* valore nell'output di hello.
 
-Per recuperare l'URL del percorso:
+tooretrieve hello percorso URL:
 
-1. Copiare e incollare l'URL nel browser.
-2. Fare clic sul collegamento Aggiorna risorsa.
-3. Copiare l'URL POST della richiesta PATCH. Ad esempio:
+1. Copiare e incollare l'URL di hello nel browser.
+2. Fare clic sul collegamento di aggiornamento risorsa hello.
+3. Copiare hello POST URL della richiesta PATCH hello. ad esempio:
    
      PATCH URL: https://management.azureml.net/workspaces/00bf70534500b34rebfa1843d6/webservices/af3er32ad393852f9b30ac9a35b/endpoints/newendpoint2
 
-Ora è possibile usare il modello con training per aggiornare l'endpoint dei punteggi creato prima.
+È ora possibile utilizzare hello tooupdate di modello con training hello punteggio endpoint creato in precedenza.
 
-Il codice di esempio seguente mostra come usare *BaseLocation*, *RelativeLocation*, *SasBlobToken* e l'URL PATCH per aggiornare l'endpoint.
+Hello codice di esempio seguente illustra come hello toouse *BaseLocation*, *RelativeLocation*, *SasBlobToken*e l'URL di PATCH tooupdate hello endpoint.
 
     private async Task OverwriteModel()
     {
@@ -95,8 +95,8 @@ Il codice di esempio seguente mostra come usare *BaseLocation*, *RelativeLocatio
                     Location = new AzureBlobDataReference()
                     {
                         BaseLocation = "https://esintussouthsus.blob.core.windows.net/",
-                        RelativeLocation = "your endpoint relative location", //from the output, for example: “experimentoutput/8946abfd-79d6-4438-89a9-3e5d109183/8946abfd-79d6-4438-89a9-3e5d109183.ilearner”
-                        SasBlobToken = "your endpoint SAS blob token" //from the output, for example: “?sv=2013-08-15&sr=c&sig=37lTTfngRwxCcf94%3D&st=2015-01-30T22%3A53%3A06Z&se=2015-01-31T22%3A58%3A06Z&sp=rl”
+                        RelativeLocation = "your endpoint relative location", //from hello output, for example: “experimentoutput/8946abfd-79d6-4438-89a9-3e5d109183/8946abfd-79d6-4438-89a9-3e5d109183.ilearner”
+                        SasBlobToken = "your endpoint SAS blob token" //from hello output, for example: “?sv=2013-08-15&sr=c&sig=37lTTfngRwxCcf94%3D&st=2015-01-30T22%3A53%3A06Z&se=2015-01-31T22%3A58%3A06Z&sp=rl”
                     }
                 }
             }
@@ -121,28 +121,28 @@ Il codice di esempio seguente mostra come usare *BaseLocation*, *RelativeLocatio
         }
     }
 
-I valori di *apiKey* e *endpointUrl* per la chiamata possono essere ottenuti dal dashboard dell'endpoint.
+Hello *apiKey* hello e *endpointUrl* per chiamata hello può essere ottenuto dal dashboard di endpoint.
 
-Il valore del parametro *Name* in *Resources* deve corrispondere al nome della risorsa del modello sottoposto a training nell'esperimento predittivo. Per ottenere il nome della risorsa:
+valore di hello Hello *nome* parametro *risorse* deve hello corrispondenza nome risorsa di hello salvato il modello con training nella sperimentazione predittiva hello. hello tooget nome risorsa:
 
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com).
-2. Nel menu a sinistra fare clic su **Machine Learning**.
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com).
+2. Nel menu a sinistra di hello, fare clic su **Machine Learning**.
 3. In Nome fare clic sull'area di lavoro e quindi su **Servizi Web**.
 4. In Nome fare clic su **Census Model [predictive exp.]**.
-5. Fare clic sul nuovo endpoint aggiunto.
-6. Nel dashboard dell'endpoint fare clic su **Aggiorna risorsa**.
-7. Nella pagina della documentazione sull'aggiornamento dell'API di risorsa per il servizio Web è possibile trovare **Nome risorsa** in **Risorse aggiornabili**.
+5. Fare clic su nuovo endpoint hello che è stato aggiunto.
+6. Nel dashboard di endpoint hello, fare clic su **aggiornamento risorsa**.
+7. Nella pagina di hello la documentazione dell'API di risorsa di aggiornamento per il servizio web hello, è possibile trovare hello **nome risorsa** in **risorse aggiornabili**.
 
-Se il token di firma di accesso condiviso scade prima di avere terminato l'aggiornamento dell'endpoint, è necessario eseguire un'operazione GET con l'ID processo per ottenere un nuovo token.
+Se il token di firma di accesso condiviso scade prima di completare l'aggiornamento dell'endpoint di hello, è necessario eseguire un'operazione GET con hello Id processo tooobtain un nuovo token.
 
-Al termine dell'esecuzione del codice, il nuovo endpoint verrà avviato con il modello di cui è stato ripetuto il training in circa 30 secondi.
+Quando il codice hello è stato eseguito correttamente, deve iniziare nuovo endpoint hello tramite il modello di training hello in circa 30 secondi.
 
 ## <a name="summary"></a>Riepilogo
-Usando le API per la ripetizione del training, è possibile aggiornare il modello con training di un servizio Web predittivo abilitando scenari come:
+Utilizzando hello API ripetizione di training, è possibile aggiornare hello modello con training di un servizio Web predittivo abilitazione degli scenari, ad esempio:
 
 * Ripetizione periodica del training del modello con nuovi dati.
-* Distribuzione di un modello ai clienti per fare in modo che possano ripetere il training del modello con i propri dati.
+* Distribuzione di un modello di toocustomers con obiettivo hello di informarli del training modello di hello usando i propri dati.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Risoluzione dei problemi relativi alla ripetizione del training di un servizio Web classico di Azure Machine Learning](machine-learning-troubleshooting-retraining-models.md)
+[Risoluzione dei problemi hello ripetizione di training di un servizio web classico di Azure Machine Learning](machine-learning-troubleshooting-retraining-models.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Caricare un'immagine personalizzata per Azure RemoteApp | Documentazione Microsoft
-description: Informazioni su come caricare un'immagine personalizzata per RemoteApp di Azure
+title: un'immagine personalizzata per Azure RemoteApp aaaUpload | Documenti Microsoft
+description: Informazioni su come tooupload immagine di un oggetto personalizzato per Azure RemoteApp
 services: remoteapp
 documentationcenter: 
 author: ericorman
@@ -13,44 +13,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: ericor
-ms.openlocfilehash: 5a235fac88d6e95ea294bda197641108acb4a09f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ad40fe58795ece37f4c7900be01bc713938da87
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-a-custom-image-for-azure-remoteapp"></a>Caricare un'immagine personalizzata per RemoteApp di Azure
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Dopo aver creato o aggiornato con le modifiche l'immagine modello personalizzata, è necessario caricare l'immagine nella raccolta immagini di Azure RemoteApp. Usare i passaggi seguenti.
+Dopo aver creato l'immagine modello personalizzato o lo abbia aggiornato con le modifiche, è necessario tooupload tale libreria di immagini immagine tooyour Azure RemoteApp. Usare i passaggi seguenti.
 
 ## <a name="before-you-start"></a>Prima di iniziare
-1. Verificare che l'immagine personalizzata soddisfi i [requisiti dell'immagine](remoteapp-imagereqs.md) e i [requisiti dell'applicazione](remoteapp-appreqs.md).
-2. Installare il [modulo Azure PowerShell](/powershell/azure/overview).
+1. Verificare che l'immagine personalizzata soddisfi hello [requisiti dell'immagine](remoteapp-imagereqs.md) e [requisiti dell'applicazione](remoteapp-appreqs.md).
+2. Installare hello [modulo Azure PowerShell](/powershell/azure/overview).
 
-## <a name="step-by-step-on-how-to-upload-custom-image"></a>Istruzioni dettagliate su come caricare un'immagine personalizzata
-1. Aprire il portale di gestione di Azure e passare alla pagina RemoteApp.
-2. Nella scheda **Immagini modello** fare clic su **Carica** in fondo alla pagina.
-3. Immettere un nome descrittivo per l'immagine e specificare il percorso dell'account di archiviazione. Verificare che il percorso sia uguale a quello della raccolta RemoteApp oppure che sia il percorso dove verrà creata una nuova raccolta.
-4. Quando richiesto, scaricare lo script nel PC locale.
-5. Copiare negli Appunti i parametri del comando contenuti nella casella di testo.
+## <a name="step-by-step-on-how-tooupload-custom-image"></a>Procedura dettagliata su come immagine personalizzata tooupload
+1. Aprire il portale di gestione di Azure e passare toohello RemoteApp pagina.
+2. In hello **immagini modello** scheda, fare clic su **caricare** nella parte inferiore di hello della pagina hello.
+3. Immettere un nome descrittivo per l'immagine e specificare una posizione dell'account di archiviazione hello. Verificare che il percorso di hello è hello stesso percorso la raccolta RemoteApp o in un percorso in cui si desidera toocreate uno.
+4. Quando richiesto, scaricare hello script tooyour PC locale.
+5. Copiare i parametri del comando hello negli Appunti tooyour casella di testo hello.
 6. Aprire una finestra di Windows PowerShell con privilegi elevati.
-7. Dalla finestra di Windows PowerShell con privilegi elevati passare alla directory in cui è stato scaricato lo script.
-8. Incollare il comando copiato e premere **Invio**.
+7. Da hello finestra Windows PowerShell con privilegi elevati passare toohello stessa directory in cui è stato scaricato script hello.
+8. Hello Incolla copiati comando e premere **invio**.
    
-   Viene avviato il processo di caricamento, la cui durata dipende da diversi fattori, ad esempio la velocità di rete e le dimensioni dell'immagine
-9. Se il caricamento non riesce a causa di interruzioni di rete o problemi simili, è possibile riprendere il processo di caricamento avviato in qualsiasi momento. Per riprendere il caricamento, eseguire di nuovo lo script usando la stessa riga di comando.
+   verrà avviato il processo di caricamento Hello e durata può dipendere da molti fattori, tra cui la velocità di rete e le dimensioni dell'immagine di hello
+9. Se il caricamento non riesce a causa di interruzioni di rete o elementi simili, è sempre possibile riprendere il processo di caricamento hello che è stata avviata. tooresume un'operazione di caricamento, eseguire script hello utilizzando hello stessa riga di comando.
 
 > [!WARNING]
-> Non modificare mai lo script di caricamento. Sono stati implementati controlli specifici che assicurano che l'immagine soddisfi i requisiti per l'immagine e per l'applicazione.
+> Non modificare mai script caricamento hello. Controlli specifici sono stati implementati tooensure che hello immagine soddisfa i requisiti di immagine hello e requisiti dell'applicazione.
 > 
 > 
 
 ## <a name="common-problems"></a>Problemi frequenti
-* Assicurarsi di usare Windows PowerShell, e non Azure PowerShell. È necessario installare il modulo Azure PowerShell perché alcuni moduli sono necessari durante il processo di caricamento.
-* Non modificare in nessun caso lo script. Le convalide sono state applicate per semplificare l'utilizzo da parte degli utenti.
-* Se il file VHD si blocca durante il caricamento, copiare il file o spostarlo in un nuovo percorso e riprovare il caricamento. Il caricamento potrebbe essere ostacolato da qualche processo di Windows in esecuzione.  
+* Assicurarsi di usare Windows PowerShell, e non Azure PowerShell. Modulo di Azure PowerShell tooinstall hello è necessario perché alcuni moduli sono necessari durante il processo di caricamento hello.
+* Non modificare script hello, le convalide sono disponibili per comodità.
+* Se il file di disco rigido virtuale hello Ottiene bloccato durante il caricamento, copiare il file hello o spostarlo tooa nuovo percorso e il tentativo di caricare nuovamente. Il caricamento potrebbe essere ostacolato da qualche processo di Windows in esecuzione.  
 

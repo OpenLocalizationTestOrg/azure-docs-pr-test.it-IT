@@ -1,6 +1,6 @@
 ---
-title: Provider e tipi di risorse di Azure | Microsoft Docs
-description: "Descrive i provider di risorse che supportano Gestione risorse, i relativi schemi e le versioni API disponibili, nonché le aree che possono ospitare le risorse."
+title: aaaAzure i provider di risorse e i tipi di risorsa | Documenti Microsoft
+description: Descrive i provider di risorse hello che supportano Gestione risorse, i relativi schemi e le versioni disponibili di API e le aree di hello in grado di ospitare le risorse di hello.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 6a9128f45d4199404019cee594842d59c7f1aaf3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 23db1d3808a20166f3b44ec801e1bcc46fbb9bd3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-providers-and-types"></a>Provider e tipi di risorse
 
-Quando si distribuiscono risorse, è spesso necessario recuperare informazioni sui provider e i tipi di risorse. Questo articolo illustra come:
+Durante la distribuzione di risorse, spesso necessario tooretrieve informazioni sui tipi e i provider di risorse hello. Questo articolo illustra come:
 
 * Visualizzare tutti i provider di risorse in Azure
 * Controllare lo stato di registrazione di un provider di risorse
@@ -31,11 +31,11 @@ Quando si distribuiscono risorse, è spesso necessario recuperare informazioni s
 * Visualizzare le località valide per un tipo di risorsa
 * Visualizzare le versioni API valide per un tipo di risorsa
 
-È possibile eseguire questi passaggi tramite il portale, PowerShell o l'interfaccia della riga di comando di Azure.
+È possibile eseguire questi passaggi tramite il portale di hello, PowerShell o CLI di Azure.
 
 ## <a name="powershell"></a>PowerShell
 
-Per visualizzare tutti i provider di risorse in Azure e lo stato di registrazione di una sottoscrizione, usare il comando seguente:
+toosee tutti i provider di risorse in Azure e lo stato della registrazione hello per la sottoscrizione, utilizzano:
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
@@ -53,7 +53,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-La registrazione di un provider di risorse configura la sottoscrizione per l'utilizzo del provider di risorse. L'ambito per la registrazione è sempre la sottoscrizione. Per impostazione predefinita, molti provider di risorse vengono registrati automaticamente. Potrebbe essere tuttavia necessario registrare manualmente alcuni provider di risorse. Per registrare un provider di risorse, è necessaria l'autorizzazione per eseguire l'operazione `/register/action` per il provider di risorse. Questa operazione è inclusa nei ruoli Collaboratore e Proprietario.
+Registrazione di un provider di risorse Configura toowork l'abbonamento con provider di risorse hello. ambito Hello per la registrazione è sempre sottoscrizione hello. Per impostazione predefinita, molti provider di risorse vengono registrati automaticamente. Tuttavia, potrebbe essere necessario toomanually registrare alcuni provider di risorse. tooregister un provider di risorse, è necessario disporre di hello tooperform autorizzazione `/register/action` operazione hello provider di risorse. Questa operazione è incluso nei ruoli di proprietario e collaboratore hello.
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -70,7 +70,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 
 Non è possibile annullare la registrazione di un provider di risorse quando nella sottoscrizione sono ancora presenti tipi di risorsa di tale provider di risorse.
 
-Per visualizzare informazioni su un provider di risorse specifico, usare il comando seguente:
+toosee informazioni per un provider di risorse specifico, utilizzare:
 
 ```powershell
 Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -87,7 +87,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 ...
 ```
 
-Per visualizzare i tipi di risorse per un provider di risorse, usare il comando seguente:
+tipi di risorsa hello toosee per un provider di risorse, utilizzare:
 
 ```powershell
 (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes.ResourceTypeName
@@ -102,9 +102,9 @@ locations
 locations/quotas
 ```
 
-La versione dell'API corrisponde a una versione delle operazioni API REST che vengono rilasciate dal provider di risorse. Poiché un provider di risorse abilita nuove funzionalità, rilascia una nuova versione dell'API REST. 
+versione dell'API Hello corrisponde versione tooa di operazioni dell'API REST che vengono rilasciati dal provider di risorse hello. Un provider di risorse consente una nuova funzionalità, viene rilasciata una nuova versione di hello API REST. 
 
-Per ottenere le versioni dell'API disponibili per un tipo di risorsa, usare il comando seguente:
+tooget hello API le versioni disponibili per un tipo di risorsa, utilizzare:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).ApiVersions
@@ -120,9 +120,9 @@ Che restituisce:
 2015-07-01
 ```
 
-Gestione risorse è supportato in tutte le aree, ma le risorse distribuite potrebbero non essere supportate in tutte le aree. Potrebbero essere anche presenti limitazioni sulla sottoscrizione che impediscono l'uso di alcune aree che supportano la risorsa. 
+Gestione risorse è supportata in tutte le aree, ma le risorse di hello che distribuire potrebbero non essere supportate in tutte le aree. Inoltre, potrebbe essere limitazioni per la sottoscrizione di impediscano l'utilizzo di alcune aree che supportano la risorsa hello. 
 
-Per ottenere le località supportate per un tipo di risorsa, usare il comando seguente:
+percorsi di tooget hello è supportato per un tipo di risorsa, utilizzare.
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).Locations
@@ -139,7 +139,7 @@ West US
 ```
 
 ## <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
-Per visualizzare tutti i provider di risorse in Azure e lo stato di registrazione di una sottoscrizione, usare il comando seguente:
+toosee tutti i provider di risorse in Azure e lo stato della registrazione hello per la sottoscrizione, utilizzano:
 
 ```azurecli
 az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
@@ -157,7 +157,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-La registrazione di un provider di risorse configura la sottoscrizione per l'utilizzo del provider di risorse. L'ambito per la registrazione è sempre la sottoscrizione. Per impostazione predefinita, molti provider di risorse vengono registrati automaticamente. Potrebbe essere tuttavia necessario registrare manualmente alcuni provider di risorse. Per registrare un provider di risorse, è necessaria l'autorizzazione per eseguire l'operazione `/register/action` per il provider di risorse. Questa operazione è inclusa nei ruoli Collaboratore e Proprietario.
+Registrazione di un provider di risorse Configura toowork l'abbonamento con provider di risorse hello. ambito Hello per la registrazione è sempre sottoscrizione hello. Per impostazione predefinita, molti provider di risorse vengono registrati automaticamente. Tuttavia, potrebbe essere necessario toomanually registrare alcuni provider di risorse. tooregister un provider di risorse, è necessario disporre di hello tooperform autorizzazione `/register/action` operazione hello provider di risorse. Questa operazione è incluso nei ruoli di proprietario e collaboratore hello.
 
 ```azurecli
 az provider register --namespace Microsoft.Batch
@@ -167,7 +167,7 @@ Che restituisce un messaggio di registrazione in corso.
 
 Non è possibile annullare la registrazione di un provider di risorse quando nella sottoscrizione sono ancora presenti tipi di risorsa di tale provider di risorse.
 
-Per visualizzare informazioni su un provider di risorse specifico, usare il comando seguente:
+toosee informazioni per un provider di risorse specifico, utilizzare:
 
 ```azurecli
 az provider show --namespace Microsoft.Batch
@@ -186,7 +186,7 @@ Che restituisce risultati simili a:
 }
 ```
 
-Per visualizzare i tipi di risorse per un provider di risorse, usare il comando seguente:
+tipi di risorsa hello toosee per un provider di risorse, utilizzare:
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[*].resourceType" --out table
@@ -203,9 +203,9 @@ locations
 locations/quotas
 ```
 
-La versione dell'API corrisponde a una versione delle operazioni API REST che vengono rilasciate dal provider di risorse. Poiché un provider di risorse abilita nuove funzionalità, rilascia una nuova versione dell'API REST. 
+versione dell'API Hello corrisponde versione tooa di operazioni dell'API REST che vengono rilasciati dal provider di risorse hello. Un provider di risorse consente una nuova funzionalità, viene rilasciata una nuova versione di hello API REST. 
 
-Per ottenere le versioni dell'API disponibili per un tipo di risorsa, usare il comando seguente:
+tooget hello API le versioni disponibili per un tipo di risorsa, utilizzare:
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].apiVersions | [0]" --out table
@@ -223,9 +223,9 @@ Result
 2015-07-01
 ```
 
-Gestione risorse è supportato in tutte le aree, ma le risorse distribuite potrebbero non essere supportate in tutte le aree. Potrebbero essere anche presenti limitazioni sulla sottoscrizione che impediscono l'uso di alcune aree che supportano la risorsa. 
+Gestione risorse è supportata in tutte le aree, ma le risorse di hello che distribuire potrebbero non essere supportate in tutte le aree. Inoltre, potrebbe essere limitazioni per la sottoscrizione di impediscano l'utilizzo di alcune aree che supportano la risorsa hello. 
 
-Per ottenere le località supportate per un tipo di risorsa, usare il comando seguente:
+percorsi di tooget hello è supportato per un tipo di risorsa, utilizzare.
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].locations | [0]" --out table
@@ -245,29 +245,29 @@ West US
 
 ## <a name="portal"></a>di Microsoft Azure
 
-Per visualizzare tutti i provider di risorse in Azure e lo stato di registrazione di una sottoscrizione, selezionare **Sottoscrizioni**.
+Selezionare tutti i provider di risorse in Azure e per la sottoscrizione, lo stato della registrazione hello toosee **sottoscrizioni**.
 
 ![selezionare sottoscrizioni](./media/resource-manager-supported-services/select-subscriptions.png)
 
-Scegliere la sottoscrizione da visualizzare.
+Scegliere tooview sottoscrizione hello.
 
 ![specificare la sottoscrizione](./media/resource-manager-supported-services/subscription.png)
 
-Selezionare **Provider di risorse** e visualizzare l'elenco dei provider di risorse disponibili.
+Selezionare **i provider di risorse** e visualizzare l'elenco hello dei provider di risorse disponibili.
 
 ![visualizzare i provider di risorse](./media/resource-manager-supported-services/show-resource-providers.png)
 
-La registrazione di un provider di risorse configura la sottoscrizione per l'utilizzo del provider di risorse. L'ambito per la registrazione è sempre la sottoscrizione. Per impostazione predefinita, molti provider di risorse vengono registrati automaticamente. Potrebbe essere tuttavia necessario registrare manualmente alcuni provider di risorse. Per registrare un provider di risorse, è necessaria l'autorizzazione per eseguire l'operazione `/register/action` per il provider di risorse. Questa operazione è inclusa nei ruoli Collaboratore e Proprietario. Per registrare un provider di risorse, selezionare **Registra**.
+Registrazione di un provider di risorse Configura toowork l'abbonamento con provider di risorse hello. ambito Hello per la registrazione è sempre sottoscrizione hello. Per impostazione predefinita, molti provider di risorse vengono registrati automaticamente. Tuttavia, potrebbe essere necessario toomanually registrare alcuni provider di risorse. tooregister un provider di risorse, è necessario disporre di hello tooperform autorizzazione `/register/action` operazione hello provider di risorse. Questa operazione è incluso nei ruoli di proprietario e collaboratore hello. Selezionare un provider di risorse, tooregister **registrare**.
 
 ![registrare un provider di risorse](./media/resource-manager-supported-services/register-provider.png)
 
 Non è possibile annullare la registrazione di un provider di risorse quando nella sottoscrizione sono ancora presenti tipi di risorsa di tale provider di risorse.
 
-Per visualizzare informazioni su un provider di risorse specifico, selezionare **Altri servizi**.
+toosee informazioni per un provider di risorse specifico, selezionare **più servizi**.
 
 ![selezionare altri servizi](./media/resource-manager-supported-services/more-services.png)
 
-Cercare **Resource Explorer** e selezionarlo dalle opzioni disponibili.
+Cercare **Esplora inventario risorse** e selezionare le opzioni disponibili hello.
 
 ![selezionare resource explorer](./media/resource-manager-supported-services/select-resource-explorer.png)
 
@@ -275,20 +275,20 @@ Selezionare **Provider**.
 
 ![Selezionare i provider](./media/resource-manager-supported-services/select-providers.png)
 
-Selezionare il provider di risorse e il tipo di risorsa da visualizzare.
+Tipo di risorsa e il provider di risorse hello selezionare da tooview.
 
 ![Selezionare il tipo di risorsa](./media/resource-manager-supported-services/select-resource-type.png)
 
-Gestione risorse è supportato in tutte le aree, ma le risorse distribuite potrebbero non essere supportate in tutte le aree. Potrebbero essere anche presenti limitazioni sulla sottoscrizione che impediscono l'uso di alcune aree che supportano la risorsa. Resource Explorer visualizza le località valide per il tipo di risorsa.
+Gestione risorse è supportata in tutte le aree, ma le risorse di hello che distribuire potrebbero non essere supportate in tutte le aree. Inoltre, potrebbe essere limitazioni per la sottoscrizione di impediscano l'utilizzo di alcune aree che supportano la risorsa hello. Esplora inventario risorse Hello consente di visualizzare le posizioni valide per il tipo di risorsa hello.
 
 ![Visualizzare le località](./media/resource-manager-supported-services/show-locations.png)
 
-La versione dell'API corrisponde a una versione delle operazioni API REST che vengono rilasciate dal provider di risorse. Poiché un provider di risorse abilita nuove funzionalità, rilascia una nuova versione dell'API REST. Resource Explorer visualizza le versioni API valide per il tipo di risorsa.
+versione dell'API Hello corrisponde versione tooa di operazioni dell'API REST che vengono rilasciati dal provider di risorse hello. Un provider di risorse consente una nuova funzionalità, viene rilasciata una nuova versione di hello API REST. Esplora inventario risorse Hello Visualizza versioni API valide per il tipo di risorsa hello.
 
 ![Visualizzare le versioni API](./media/resource-manager-supported-services/show-api-versions.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sulla creazione dei modelli, vedere [Creazione di modelli di Gestione risorse di Azure](resource-group-authoring-templates.md).
-* Per informazioni sulla distribuzione delle risorse, vedere [Distribuire un'applicazione con un modello di Gestione risorse di Azure](resource-group-template-deploy.md).
-* Per visualizzare le operazioni di un provider di risorse, vedere [Azure REST API](/rest/api/) (API REST di Azure).
+* toolearn sulla creazione di modelli di gestione delle risorse, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).
+* toolearn sulla distribuzione di risorse, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).
+* operazioni di hello tooview per un provider di risorse, vedere [API REST di Azure](/rest/api/).
 

@@ -1,15 +1,15 @@
-## <a name="push-to-azure-from-git"></a>Effettuare il push in Azure da Git
+## <a name="push-tooazure-from-git"></a>Eseguire il push tooAzure da Git
 
-Aggiungere un'istanza remota di Azure al repository Git locale.
+Aggiungere un repository Git locale tooyour remoto di Azure.
 
 ```bash
 git remote add azure <URI from previous step>
 ```
 
-Effettuare il push all'istanza remota di Azure per distribuire l'app. Verrà richiesta la password creata in precedenza quando è stato creato l'utente della distribuzione. Assicurarsi di immettere la password creata in [Configurare un utente della distribuzione](#configure-a-deployment-user), anziché quella usata per accedere al portale di Azure.
+Effettuare il push dell'app toohello toodeploy remoto di Azure. Viene chiesto di immettere la password di hello creato in precedenza al momento della creazione utente distribuzione hello. Assicurarsi di immettere la password di hello è stato creato in [configurare un utente di distribuzione](#configure-a-deployment-user), non la password di hello utilizzati toolog in toohello portale di Azure.
 
 ```bash
 git push azure master
 ```
 
-Il comando precedente restituisce informazioni simili all'esempio seguente:
+Hello comando precedente consente di visualizzare informazioni toohello simile esempio seguente:

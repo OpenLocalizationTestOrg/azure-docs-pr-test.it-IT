@@ -1,6 +1,6 @@
 ---
-title: Soluzione Wire Data in Log Analytics | Documentazione Microsoft
-description: I dati in transito sono dati consolidati di rete e sulle prestazioni provenienti da computer con agenti OMS, inclusi Operations Manager e gli agenti connessi a Windows. I dati di rete vengono combinati con i dati dei log per poter correlare i dati.
+title: soluzione di dati nel Log Analitica aaaWire | Documenti Microsoft
+description: I dati in transito sono dati consolidati di rete e sulle prestazioni provenienti da computer con agenti OMS, inclusi Operations Manager e gli agenti connessi a Windows. Dati di rete vengono combinati con toohelp di dati del log correlare i dati.
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: banders
-ms.openlocfilehash: eb8ae80f91b9ecad666ab7a2257d99e5669f5b88
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: adafdf98dfbda9d87759643a1a606a84eafd1348
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="wire-data-20-preview-solution-in-log-analytics"></a>Soluzione Wire Data 2.0 (anteprima) in Log Analytics
 
 ![Simbolo di Wire Data](./media/log-analytics-wire-data/wire-data2-symbol.png)
 
-I dati in transito sono dati di rete e sulle prestazioni consolidati provenienti da computer con agenti OMS, tra cui agenti Operations Manager, connessi a Windows e Linux. I dati di rete vengono combinati con altri dati di log per consentire la correlazione dei dati.
+I dati in transito sono dati di rete e sulle prestazioni consolidati provenienti da computer con agenti OMS, tra cui agenti Operations Manager, connessi a Windows e Linux. Dati di rete vengono combinati con altri toohelp di dati del log correlare i dati.
 
-Oltre agli agenti OMS, la soluzione Wire Data usa le istanze di Microsoft Dependency Agent installate nell'infrastruttura IT. Le istanze di Dependency Agent monitorano i dati di rete inviati da e verso i computer per i livelli di rete 2-3 del [modello OSI](https://en.wikipedia.org/wiki/OSI_model), che includono le diverse porte e i vari protocolli usati. I dati vengono quindi inviati a Log Analytics usando gli agenti.
+Gli agenti tooOMS, hello soluzione Wire Data Usa inoltre agenti Dependency Microsoft installato nei computer dell'infrastruttura IT. Tooand dipendenza agenti monitoraggio rete dati inviati dai computer per la rete livelli 2 e 3 in hello [modello OSI](https://en.wikipedia.org/wiki/OSI_model), tra cui hello diversi protocolli e porte usati. I dati vengono quindi inviati tooLog Analitica tramite agenti.
 
 > [!NOTE]
-> Non è possibile aggiungere la versione precedente della soluzione Wire Data a nuove aree di lavoro. Se è stata abilitata la soluzione Wire Data originale, è possibile continuare a usarla. Per usare Wire Data 2.0, tuttavia, è prima necessario rimuovere la versione originale.
+> È possibile aggiungere una versione precedente di hello di aree di lavoro toonew soluzione i dati in transito hello. Se si dispone di soluzione Wire Data originale hello abilitato, è possibile continuare toouse è. Tuttavia, toouse Wire Data 2.0, è necessario innanzitutto rimuovere la versione originale di hello.
 
-Per impostazione predefinita, Log Analytics raccoglie i dati registrati sulle prestazioni di CPU, memoria, dischi e rete dai contatori integrati in Windows. La raccolta dei dati di rete e di altro tipo viene eseguita in tempo reale per ogni agente, inclusi subnet e protocolli a livello di applicazione usati dal computer. È possibile aggiungere altri contatori delle prestazioni nella pagina Settings della scheda Logs.
+Per impostazione predefinita, Log Analytics raccoglie i dati registrati sulle prestazioni di CPU, memoria, dischi e rete dai contatori integrati in Windows. Raccolta di rete e altri dati viene eseguita tempo reale per ogni agente, inclusi subnet e protocolli a livello di applicazione usati dal computer hello. È possibile aggiungere altri contatori delle prestazioni nella pagina Impostazioni hello nella scheda Logs hello.
 
-Se si è usato [sFlow](http://www.sflow.org/) o un altro software con il [protocollo NetFlow di Cisco](http://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-netflow/prod_white_paper0900aecd80406232.html), le statistiche e i dati visualizzati dai dati in transito risulteranno familiari.
+Se è stato usato [sFlow](http://www.sflow.org/) o altro software con [protocollo NetFlow di Cisco](http://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-netflow/prod_white_paper0900aecd80406232.html), quindi hello statistiche e i dati visualizzati dai dati in transito saranno tooyou familiarità.
 
-Alcuni tipi di query di ricerca nei log predefinite includono:
+Alcuni dei tipi di hello di query di ricerca Log predefinite includono:
 
 - Agenti che forniscono dati in transito
 - Indirizzo IP degli agenti che forniscono dati in transito
@@ -48,48 +48,48 @@ Alcuni tipi di query di ricerca nei log predefinite includono:
 - Processi dei computer che hanno avviato o ricevuto traffico di rete
 - Quantità di traffico di rete per un processo
 
-Quando si esegue una ricerca usando i dati in transito, è possibile filtrare e raggruppare i dati per visualizzare le informazioni su agenti e protocolli principali. In alternativa, è possibile visualizzare quando determinati computer (indirizzi IP/indirizzi MAC) hanno comunicato tra loro, per quanto tempo e quanti dati sono stati inviati, visualizzando essenzialmente metadati relativi al traffico di rete basati sulla ricerca.
+Quando esegue la ricerca utilizzando i dati in transito, è possibile filtrare e gruppo dati tooview informazioni hello agenti principali e sui protocolli principali. In alternativa, è possibile visualizzare quando determinati computer (indirizzi IP/indirizzi MAC) hanno comunicato tra loro, per quanto tempo e quanti dati sono stati inviati, visualizzando essenzialmente metadati relativi al traffico di rete basati sulla ricerca.
 
-La visualizzazione di metadati, tuttavia, non è necessariamente utile per una risoluzione dei problemi approfondita. I dati in transito in Log Analytics non sono un'acquisizione completa dei dati di rete e non sono quindi destinati a una risoluzione dei problemi approfondita a livello di pacchetto. Il vantaggio di usare l'agente, rispetto ad altri metodi di raccolta, è che non è necessario installare appliance, riconfigurare i commutatori di rete o eseguire configurazioni complesse. I dati in transito sono basati semplicemente sull'agente, che viene installato in un computer e monitora il proprio traffico di rete. Un altro vantaggio si riscontra quando si vogliono monitorare carichi di lavoro in esecuzione in provider di servizi cloud, provider di servizi di hosting o Microsoft Azure, in cui l'utente non è proprietario del livello infrastruttura.
+La visualizzazione di metadati, tuttavia, non è necessariamente utile per una risoluzione dei problemi approfondita. I dati in transito in Log Analytics non sono un'acquisizione completa dei dati di rete e non sono quindi destinati a una risoluzione dei problemi approfondita a livello di pacchetto. Hello vantaggio dell'utilizzo dell'agente di hello, confrontare i metodi di raccolta tooother, che non siano tooinstall Appliance, riconfigurare i commutatori di rete o eseguire complesse configurazioni. Dati in transito si basano semplicemente sull'agente-installazione agente hello in un computer e monitorerà il proprio traffico di rete. Un altro vantaggio è quando si desidera che i carichi di lavoro toomonitor in esecuzione nei provider di cloud o provider di servizi o Microsoft Azure, dove utente hello non proprietario hello livello infrastruttura.
 
 ## <a name="connected-sources"></a>Origini connesse
 
-Wire Data ottiene i dati da Microsoft Dependency Agent. Dependency Agent dipende dall'agente OMS per le connessioni a Log Analytics, quindi prima di installare Dependency Agent è necessario che in un server sia installato e configurato l'agente OMS. La tabella seguente descrive le origini connesse supportate dalla soluzione Wire Data.
+I dati in transito Ottiene i dati da Microsoft Dependency Agent hello. Hello Dependency Agent dipende da hello agente OMS per il relativo tooLog connessioni Analitica. Ciò significa che un server deve essere hello agente OMS è installato e configurato prima, e quindi si installa hello Dependency Agent. Hello nella tabella seguente vengono descritte hello connesso origini che supporta la soluzione Wire Data hello.
 
 | **Origine connessa** | **Supportato** | **Descrizione** |
 | --- | --- | --- |
-| Agenti di Windows | Sì | Wire Data analizza e raccoglie i dati da computer agente Windows. <br><br> Oltre a [OMS Agent](log-analytics-windows-agents.md), gli agenti Windows richiedono Microsoft Dependency Agent. Per un elenco completo delle versioni del sistema operativo, vedere [Sistemi operativi supportati](../operations-management-suite/operations-management-suite-service-map-configure.md#supported-operating-systems). |
-| Agenti Linux | Sì | Wire Data analizza e raccoglie i dati da computer agente Linux.<br><br> Oltre a [OMS Agent](log-analytics-linux-agents.md), gli agenti Linux richiedono Microsoft Dependency Agent. Per un elenco completo delle versioni del sistema operativo, vedere [Sistemi operativi supportati](../operations-management-suite/operations-management-suite-service-map-configure.md#supported-operating-systems). |
-| Gruppo di gestione di System Center Operations Manager | Sì | Wire Data analizza e raccoglie i dati dagli agenti Windows e Linux in un [gruppo di gestione di System Center Operations Manager](log-analytics-om-agents.md) connesso. <br><br> È necessaria una connessione diretta dal computer agente System Center Operations Manager a Log Analytics. I dati vengono inoltrati dal gruppo di gestione a Log Analytics. |
-| Account di archiviazione di Azure | No | Wire Data raccoglie i dati dai computer agente, quindi non devono essere raccolti dati da Archiviazione di Azure. |
+| Agenti di Windows | Sì | Wire Data analizza e raccoglie i dati da computer agente Windows. <br><br> In aggiunta toohello [agente OMS](log-analytics-windows-agents.md), gli agenti di Windows richiedono hello Microsoft Dependency Agent. Vedere hello [i sistemi operativi supportati](../operations-management-suite/operations-management-suite-service-map-configure.md#supported-operating-systems) per un elenco completo delle versioni del sistema operativo. |
+| Agenti Linux | Sì | Wire Data analizza e raccoglie i dati da computer agente Linux.<br><br> In aggiunta toohello [agente OMS](log-analytics-linux-agents.md), gli agenti Linux richiedono hello Microsoft Dependency Agent. Vedere hello [i sistemi operativi supportati](../operations-management-suite/operations-management-suite-service-map-configure.md#supported-operating-systems) per un elenco completo delle versioni del sistema operativo. |
+| Gruppo di gestione di System Center Operations Manager | Sì | Wire Data analizza e raccoglie i dati dagli agenti Windows e Linux in un [gruppo di gestione di System Center Operations Manager](log-analytics-om-agents.md) connesso. <br><br> È necessaria una connessione diretta da hello System Center Operations Manager agent computer tooLog Analitica. Dati viene inoltrati da hello gestione gruppo tooLog Analitica. |
+| Account di archiviazione di Azure | No | I dati in transito raccoglie i dati dai computer agente, pertanto non sono presenti dati da esso toocollect da archiviazione di Azure. |
 
-In Windows, Microsoft Monitoring Agent (MMA) viene usato sia da System Center Operations Manager che da Log Analytics per raccogliere e inviare dati. A seconda del contesto, l'agente viene chiamato agente System Center Operations Manager, agente OMS, agente Log Analytics, agente MMA o agente diretto. System Center Operations Manager e Log Analytics offrono versioni leggermente diverse dell'agente MMA. Ognuna di queste versioni può inviare segnalazioni a System Center Operations Manager, Log Analytics o entrambi.
+In Windows hello Microsoft Monitoring Agent (MMA) viene utilizzato da System Center Operations Manager sia Analitica Log toogather e inviare i dati. A seconda del contesto di hello, agente hello viene chiamato hello agente System Center Operations Manager, agente OMS, agente di Log Analitica, MMA o agente diretto. System Center Operations Manager e Log Analitica forniscono leggermente diverse versioni di hello MMA. Queste versioni ogni possono segnalare tooSystem Center Operations Manager, tooLog Analitica o tooboth.
 
-In Linux, l'agente OMS per Linux raccoglie e invia i dati a Log Analytics. È possibile usare Wire Data in server con agenti OMS diretti o in server collegati a Log Analytics tramite gruppi di gestione di System Center Operations Manager.
+In Linux, hello agente OMS per Linux raccoglie e invia dati tooLog Analitica. È possibile utilizzare i dati in transito in server con agenti direttamente a OMS o in server che sono collegati tooLog Analitica tramite gruppi di gestione di System Center Operations Manager.
 
-In questo articolo, il termine _agente OMS_ viene usato per fare riferimento a tutti gli agenti, sia Linux che Windows e sia connessi a un gruppo di gestione di System Center Operations Manager che direttamente a Log Analytics. Il nome della distribuzione specifica dell'agente verrà usato solo se necessario per il contesto.
+In questo articolo fa riferimento a tooall agenti, se Linux o Windows, se connessi tooa gruppo di gestione di System Center Operations Manager o direttamente tooLog Analitica sono denominati hello _agente OMS_. Nome di distribuzione specifico hello dell'agente di hello verrà utilizzata solo se è necessario per il contesto.
 
-L'istanza di Dependency Agent non trasmette dati e non richiede modifiche ai firewall o alle porte. I dati in Wire Data vengono sempre trasmessi dall'agente OMS a Log Analytics, direttamente o con il gateway OMS.
+Hello Dependency Agent non trasmette i dati se stesso e non richiede alcun toofirewalls modifiche o le porte. dati Hello in dati in transito sono sempre trasmessi dal hello OMS agent tooLog Analitica, sia direttamente o tramite hello OMS Gateway.
 
 ![Diagramma degli agenti](./media/log-analytics-wire-data/agents.png)
 
-Per un utente di System Center Operations Manager con un gruppo di gestione connesso a Log Analytics:
+Se non è un utente di System Center Operations Manager con un tooLog gruppo connesso gestione Analitica:
 
-- Non è necessaria alcuna configurazione aggiuntiva se gli agenti System Center Operations Manager possono accedere a Internet per connettersi a Log Analytics.
-- È necessario configurare il gateway OMS in modo da usare System Center Operations Manager quando gli agenti System Center Operations Manager non possono connettersi a Log Analytics tramite Internet.
+- Quando gli agenti di System Center Operations Manager è possono accedere hello Internet tooconnect tooLog Analitica, è richiesta alcuna configurazione aggiuntive.
+- Quando gli agenti di System Center Operations Manager non è possibile accedere Log Analitica su hello Internet, è necessario tooconfigure hello OMS Gateway toowork con System Center Operations Manager.
 
-Se si usa l'agente diretto, è necessario configurare l'agente OMS in modo che si connetta a Log Analytics o al gateway OMS. È possibile scaricare il gateway OMS dall'[Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=52666).
+Se si utilizza hello agente diretto, è necessario tooconfigure hello OMS agente tooconnect tooLog Analitica o tooyour OMS Gateway. È possibile scaricare hello OMS Gateway da hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=52666).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- È necessaria la soluzione [Insight & Analytics](https://www.microsoft.com/cloud-platform/operations-management-suite-pricing) offerta.
-- Se si usa la versione precedente della soluzione Wire Data, prima di tutto è necessario rimuoverla. Tutti i dati acquisiti tramite la soluzione Wire Data originale, tuttavia, saranno ancora disponibili in Wire Data 2.0 e nella ricerca log.
-- Per installare o disinstallare Dependency Agent sono necessari privilegi di amministratore.
-- Dependency Agent deve essere installato in un computer con un sistema operativo a 64 bit.
+- Richiede hello [Insight & Analitica](https://www.microsoft.com/cloud-platform/operations-management-suite-pricing) offerta di soluzione.
+- Se si utilizza hello versione precedente di hello soluzione Wire Data, è necessario innanzitutto rimuoverlo. Tuttavia, tutti i dati acquisiti tramite soluzione Wire Data originale hello è ancora disponibile in transito dati 2.0 e ricerca nei log.
+- Privilegi di amministratore sono necessari tooinstall o disinstallare hello Dependency Agent.
+- Hello Dependency Agent deve essere installato in un computer con sistema operativo a 64 bit.
 
 ### <a name="operating-systems"></a>Sistemi operativi
 
-Le sezioni seguenti elencano i sistemi operativi supportati per l'agente di dipendenza. Wire Data non supporta architetture a 32 bit per i sistemi operativi.
+Hello nelle sezioni seguenti vengono elencano i sistemi operativi supportato hello per hello Dependency Agent. Wire Data non supporta architetture a 32 bit per i sistemi operativi.
 
 #### <a name="windows-server"></a>Windows Server
 
@@ -108,7 +108,7 @@ Le sezioni seguenti elencano i sistemi operativi supportati per l'agente di dipe
 #### <a name="red-hat-enterprise-linux-centos-linux-and-oracle-linux-with-rhel-kernel"></a>Red Hat Enterprise Linux, CentOS Linux e Oracle Linux (con il kernel RHEL)
 
 - Sono supportate solo versioni predefinita e SMP del kernel Linux.
-- Le versioni del kernel non standard, ad esempio PAE e Xen, non sono supportate per le distribuzioni Linux. Un sistema con stringa di versione _2.6.16.21-0.8-xen_, ad esempio, non è supportato.
+- Le versioni del kernel non standard, ad esempio PAE e Xen, non sono supportate per le distribuzioni Linux. Ad esempio, un sistema con stringa di versione di hello di _2.6.16.21-0.8-xen_ non è supportata.
 - I kernel personalizzati, tra cui le ricompilazioni dei kernel standard, non sono supportati.
 - Il kernel CentOSPlus non è supportato.
 - Unbreakable Enterprise Kernel (UEK) di Oracle è illustrato in una sezione successiva di questo articolo.
@@ -195,50 +195,50 @@ Le sezioni seguenti elencano i sistemi operativi supportati per l'agente di dipe
 
 ## <a name="configuration"></a>Configurazione
 
-Per configurare la soluzione Wire Data per le proprie aree di lavoro, seguire questa procedura.
+Eseguire hello seguente soluzione Wire Data di passaggi tooconfigure hello per le aree di lavoro.
 
-1. Abilitare la soluzione Log Analytics attività da [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.WireData2OMS?tab=Overview) o seguendo la procedura illustrata in [Aggiungere soluzioni di Log Analytics dalla Raccolta soluzioni](log-analytics-add-solutions.md).
-2. Installare Dependency Agent in ogni computer in cui si vogliono ottenere i dati. Dependency Agent può monitorare le connessioni con i vicini immediati e potrebbe quindi non essere necessario un agente in ogni computer.
+1. Abilitare soluzioni Analitica Log attività hello hello [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.WireData2OMS?tab=Overview) o tramite il processo di hello descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md).
+2. Installare hello Dependency Agent in ogni computer in cui si desidera tooget dati. Hello Dependency Agent consente di monitorare router adiacenti tooimmediate connessioni, pertanto potrebbe non essere necessario un agente in ogni computer.
 
-### <a name="install-the-dependency-agent-on-windows"></a>Installare Dependency Agent in Windows
+### <a name="install-hello-dependency-agent-on-windows"></a>Installare hello Dependency Agent in Windows
 
-Per installare o disinstallare l'agente sono necessari i privilegi di amministratore.
+Privilegi di amministratore sono necessari tooinstall o disinstallare l'agente di hello.
 
-Dependency Agent viene installato nei computer che eseguono Windows con InstallDependencyAgent-Windows.exe. Se si esegue questo file eseguibile senza opzioni, avvia una procedura guidata che consente di completare l'installazione in modo interattivo.
+Hello Dependency Agent viene installato nei computer che eseguono Windows tramite InstallDependencyAgent Windows.exe. Se si esegue il file eseguibile senza opzioni, viene avviata una procedura guidata è possibile seguire tooinstall in modo interattivo.
 
-Per installare Dependency Agent in ogni computer che esegue Windows, seguire questa procedura:
+Utilizzare i seguenti passaggi tooinstall hello Dependency Agent in ogni computer che eseguono Windows hello:
 
-1. Installare l'agente OMS seguendo le istruzioni riportate in [Connettere computer Windows al servizio Log Analytics in Azure](log-analytics-windows-agents.md).
-2. Scaricare l'agente Windows usando il collegamento riportato nella sezione precedente e quindi eseguirlo con questo comando: InstallDependencyAgent-Windows.exe
-3. Seguire la procedura guidata per installare l'agente.
-4. Se l'agente di dipendenza non si avvia, controllare i registri per vedere le informazioni dettagliate sull'errore. Per gli agenti Windows, la directory di log è %Programfiles%\Microsoft Dependency Agent\logs.
+1. Installazione hello agente OMS tramite istruzioni hello in [toohello computer Windows di connettersi servizio Analitica di Log in Azure](log-analytics-windows-agents.md).
+2. Scaricare l'agente di Windows hello utilizzando hello collegamento nella sezione precedente di hello e quindi eseguirlo usando hello comando seguente: InstallDependencyAgent Windows.exe
+3. Eseguire l'agente hello guidata tooinstall hello.
+4. Se hello Dependency Agent non riesce toostart, controllare i registri di hello per informazioni dettagliate sull'errore. Per gli agenti di Windows, directory di log hello è %Programfiles%\Microsoft agent\logs. dipendenza.
 
 #### <a name="windows-command-line"></a>Riga di comando di Windows
 
-Usare le opzioni della tabella seguente per eseguire l'installazione dalla riga di comando. Per visualizzare un elenco dei flag di installazione, eseguire il programma di installazione con il flag /? come segue.
+Utilizzare le opzioni da hello seguente tabella tooinstall dalla riga di comando. un elenco dei flag di installazione hello, eseguire l'installazione hello utilizzando hello toosee /? come segue.
 
 InstallDependencyAgent-Windows.exe /?
 
 | **Flag** | **Descrizione** |
 | --- | --- |
-| <code>/?</code> | Ottenere un elenco delle opzioni della riga di comando. |
+| <code>/?</code> | Ottenere un elenco di opzioni della riga di comando hello. |
 | <code>/S</code> | Eseguire un'installazione invisibile all'utente senza prompt per l'utente. |
 
-Per impostazione predefinita, i file di Dependency Agent per Windows si trovano in C:\Program Files\Microsoft Dependency Agent.
+Per impostazione predefinita, i file per agente dipendenza Windows hello vengono inseriti in c:\Programmi\Microsoft dipendenza Agent.
 
-### <a name="install-the-dependency-agent-on-linux"></a>Installare Dependency Agent in Linux
+### <a name="install-hello-dependency-agent-on-linux"></a>Installare hello Dependency Agent in Linux
 
-Per installare o configurare l'agente è necessario l'accesso alla radice.
+Accesso alla directory radice è necessario tooinstall o configurare l'agente di hello.
 
-Dependency Agent viene installato nei computer Linux con InstallDependencyAgent-Linux64.bin, uno script della shell con un file binario autoestraente. È possibile eseguire il file con _sh_ oppure aggiungere autorizzazioni di esecuzione al file stesso.
+Hello Dependency Agent viene installato nei computer Linux tramite Linux64.bin InstallDependencyAgent, uno script della shell con un file autoestraente binario. È possibile eseguire il file hello utilizzando _sh_ o aggiungere eseguire autorizzazioni toohello file stesso.
 
-Per installare Dependency Agent in ogni computer Linux, seguire questa procedura:
+Utilizzare hello seguendo i passaggi tooinstall hello Dependency Agent in ogni computer Linux:
 
-1. Installare l'agente OMS seguendo le istruzioni per [raccogliere e gestire i dati da computer Linux](log-analytics-agent-linux.md).
-2. Scaricare Dependency Agent per Linux usando il collegamento riportato nella sezione precedente e quindi installarlo come radice con questo comando: sh InstallDependencyAgent-Linux64.bin
-3. Se l'agente di dipendenza non si avvia, controllare i registri per vedere le informazioni dettagliate sull'errore. Per gli agenti Linux, la directory di log è /var/opt/microsoft/dependency-agent/log.
+1. Installazione hello agente OMS tramite istruzioni hello in [raccogliere e gestire i dati da computer Linux](log-analytics-agent-linux.md).
+2. Scaricare l'agente Linux dipendenza hello utilizzando hello collegamento nella sezione precedente di hello e quindi installato come radice utilizzando hello comando seguente: sh InstallDependencyAgent Linux64.bin
+3. Se hello Dependency Agent non riesce toostart, controllare i registri di hello per informazioni dettagliate sull'errore. Per gli agenti Linux, directory del registro hello è: /var/opt/microsoft/dependency-agent/log.
 
-Per visualizzare un elenco dei flag di installazione, eseguire il programma di installazione con il flag `-help` come segue.
+un elenco dei flag di installazione di hello, eseguire il programma di installazione di hello con hello toosee `-help` flag come indicato di seguito.
 
 ```
 InstallDependencyAgent-Linux64.bin -help
@@ -246,11 +246,11 @@ InstallDependencyAgent-Linux64.bin -help
 
 | **Flag** | **Descrizione** |
 | --- | --- |
-| <code>-help</code> | Ottenere un elenco delle opzioni della riga di comando. |
+| <code>-help</code> | Ottenere un elenco di opzioni della riga di comando hello. |
 | <code>-s</code> | Eseguire un'installazione invisibile all'utente senza prompt per l'utente. |
-| <code>--check</code> | Controllare le autorizzazioni e il sistema operativo senza installare l'agente. |
+| <code>--check</code> | Controllare le autorizzazioni e il sistema operativo hello ma non si installa l'agente di hello. |
 
-I file relativi a Dependency Agent sono memorizzati nelle directory seguenti.
+File per hello Dependency Agent vengono posizionati in hello seguente directory:
 
 | **File** | **Posizione** |
 | --- | --- |
@@ -262,7 +262,7 @@ I file relativi a Dependency Agent sono memorizzati nelle directory seguenti.
 
 ### <a name="installation-script-examples"></a>Esempi di script di installazione
 
-Per distribuire facilmente Dependency Agent in più server contemporaneamente, è utile usare uno script. È possibile usare gli esempi di script seguenti per scaricare e installare Dependency Agent in Windows o Linux.
+tooeasily distribuire hello Dependency Agent su più server contemporaneamente, ma consente toouse uno script. È possibile utilizzare hello seguente toodownload esempi di script e installare hello Dependency Agent in Windows o Linux.
 
 #### <a name="powershell-script-for-windows"></a>Script di PowerShell per Windows
 
@@ -286,7 +286,7 @@ sh InstallDependencyAgent-Linux64.bin -s
 
 ### <a name="desired-state-configuration"></a>Configurazione dello stato desiderato
 
-Per distribuire Dependency Agent tramite Desired State Configuration, è possibile usare il modulo xPSDesiredStateConfiguration e un frammento di codice come il seguente:
+hello toodeploy Dependency Agent tramite configurazione dello stato desiderato, è possibile utilizzare modulo xPSDesiredStateConfiguration hello e un po' di codice hello seguente:
 
 ```
 Import-DscResource -ModuleName xPSDesiredStateConfiguration
@@ -299,7 +299,7 @@ Node $NodeName
 
 {
 
-    # Download and install the Dependency Agent
+    # Download and install hello Dependency Agent
 
     xRemoteFile DAPackage
 
@@ -338,19 +338,19 @@ Node $NodeName
 }
 
 ```
-### <a name="uninstall-the-dependency-agent"></a>Disinstallare Dependency Agent
+### <a name="uninstall-hello-dependency-agent"></a>Disinstallare hello Dependency Agent
 
-Per rimuovere Dependency Agent, usare le sezioni seguenti.
+Utilizzare hello seguenti sezioni toohelp rimuovere hello Dependency Agent.
 
-#### <a name="uninstall-the-dependency-agent-on-windows"></a>Disinstallare Dependency Agent in Windows
+#### <a name="uninstall-hello-dependency-agent-on-windows"></a>Disinstallare hello Dependency Agent in Windows
 
-Dependency Agent per Windows può essere disinstallato da un amministratore tramite il Pannello di controllo.
+Un amministratore può disinstallare agente dipendenza hello per Windows tramite il pannello di controllo.
 
-Per disinstallare Dependency Agent, un amministratore può anche eseguire %Programfiles%\Microsoft Dependency Agent\Uninstall.exe.
+Un amministratore può anche eseguire %Programfiles%\Microsoft dipendenza Agent\Uninstall.exe toouninstall hello Dependency Agent.
 
-#### <a name="uninstall-the-dependency-agent-on-linux"></a>Disinstallare Dependency Agent in Linux
+#### <a name="uninstall-hello-dependency-agent-on-linux"></a>Disinstallare hello Dependency Agent in Linux
 
-Per disinstallare completamente Dependency Agent da Linux, è necessario rimuovere l'agente stesso e il connettore che viene installato automaticamente con l'agente. È possibile disinstallare entrambi con il singolo comando seguente:
+Disinstalla toocompletely hello Dependency Agent da Linux, è necessario rimuovere l'agente di hello stesso e hello connettore, che viene installato automaticamente con l'agente di hello. È possibile disinstallare entrambi utilizzando hello singolo comando seguente:
 
 ```
 rpm -e dependency-agent dependency-agent-connector
@@ -358,99 +358,99 @@ rpm -e dependency-agent dependency-agent-connector
 
 ## <a name="management-packs"></a>Management Pack
 
-Quando viene attivato Wire Data in un'area di lavoro di Log Analytics, a tutti i server Windows nell'area di lavoro viene inviato un Management Pack di 300 KB. Se si usano agenti System Center Operations Manager in un [gruppo di gestione connesso](log-analytics-om-agents.md), il Management Pack di Dependency Monitor viene distribuito da System Center Operations Manager. Se gli agenti sono connessi direttamente, il Management Pack viene fornito da Log Analytics.
+Quando i dati in transito viene attivato in un'area di lavoro Log Analitica, un 300 KB management pack vengono inviati i server di Windows hello tooall nell'area di lavoro. Se si usano agenti di System Center Operations Manager in un [gruppo di gestione connesso](log-analytics-om-agents.md), hello management pack di monitoraggio delle dipendenze viene distribuito da System Center Operations Manager. Se gli agenti di hello siano connessi direttamente, Log Analitica recapita management pack di hello.
 
-Il Management Pack è denominato Microsoft.IntelligencePacks.ApplicationDependencyMonitor e viene inserito in %Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs\. L'origine dati usata dal Management Pack è %Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Resources&lt;IDGeneratoAutomaticamente&gt;\Microsoft.EnterpriseManagement.Advisor.ApplicationDependencyMonitorDataSource.dll.
+management pack di Hello è denominato Microsoft.IntelligencePacks.ApplicationDependencyMonitor. e viene inserito in %Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs\. origine dati Hello hello management pack utilizza è: % Program files%\Microsoft Monitoring Agent\Agent\Health Service State\Resources&lt;AutoGeneratedID&gt;\ Microsoft.EnterpriseManagement.Advisor.ApplicationDependencyMonitorDataSource.dll.
 
-## <a name="using-the-solution"></a>Uso della soluzione
+## <a name="using-hello-solution"></a>Utilizzo di soluzione hello
 
-**Installazione e configurazione della soluzione**
+**Installazione e configurazione di soluzione hello**
 
-Usare le informazioni seguenti per installare e configurare la soluzione.
+Utilizzare hello tooinstall le informazioni seguenti e configurare la soluzione hello.
 
-- La soluzione Wire Data acquisisce i dati dai computer che eseguono Windows Server 2012 R2, Windows 8.1 e versioni successive.
-- Nei computer da cui si desidera acquisire i dati in transito è necessario che sia installato Microsoft .NET Framework 4.0 o versione successiva.
-- Aggiungere la soluzione Wire Data all'area di lavoro di Log Analytics usando la procedura descritta nell'articolo su come [aggiungere soluzioni di Log Analytics dalla raccolta soluzioni](log-analytics-add-solutions.md). Non è richiesta alcuna ulteriore configurazione.
-- Se si vogliono visualizzare i dati in transito per una soluzione specifica, è necessario che la soluzione sia già stata aggiunta all'area di lavoro.
+- Hello soluzione Wire Data acquisisce i dati dai computer che eseguono Windows Server 2012 R2, Windows 8.1 e sistemi operativi successivi.
+- Nei computer in cui si desidera tooacquire i dati in transito da, è necessario Microsoft .NET Framework 4.0 o versione successiva.
+- Aggiungere hello i dati in transito soluzione tooyour Log Analitica area di lavoro hello processo descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md). Non è richiesta alcuna ulteriore configurazione.
+- Se si desiderano tooview i dati in transito per una soluzione specifica, è necessario soluzione hello toohave già aggiunto tooyour dell'area di lavoro.
 
-Dopo l'installazione degli agenti e della soluzione, nell'area di lavoro verrà visualizzato il riquadro Wire Data 2.0.
+Dopo che gli agenti installati e installare la soluzione hello, riquadro hello Wire Data 2.0 viene visualizzata nell'area di lavoro.
 
 > [!NOTE]
-> Attualmente, per visualizzare i dati in transito è necessario usare il portale di OMS. Non è possibile usare il portale di Azure a tale scopo.
+> Attualmente, è necessario utilizzare i dati in transito tooview portale OMS hello. Non è possibile utilizzare i dati in transito hello tooview portale Azure.
 
 ![Riquadro Wire Data](./media/log-analytics-wire-data/wire-data-tile.png)
 
-## <a name="using-the-wire-data-20-solution"></a>Uso della soluzione Wire Data 2.0
+## <a name="using-hello-wire-data-20-solution"></a>Con la soluzione Wire Data 2.0 hello
 
-Nel portale di OMS fare clic sul riquadro **Wire Data 2.0** per aprire il dashboard di Wire Data. Il dashboard include i pannelli nella tabella seguente. Ogni panello elenca fino a 10 elementi corrispondenti ai criteri del pannello per lo scope e l'intervallo di tempo specificati. È possibile eseguire una ricerca log per ottenere tutti i record facendo clic su **Vedi tutto** nella parte inferiore del pannello o facendo clic sull'intestazione del pannello.
+Nel portale OMS hello, fare clic su hello **Wire Data 2.0** riquadro tooopen hello i dati in transito dashboard. dashboard Hello include pannelli hello in hello nella tabella seguente. Ogni pannello elenca backup too10 elementi corrispondenti ai criteri del pannello per hello specificato intervallo di ambito e tempo. È possibile eseguire una ricerca di log che restituisce tutti i record facendo **tutti** nella parte inferiore di hello del pannello hello oppure facendo clic sull'intestazione di blade hello.
 
 | **Pannello** | **Descrizione** |
 | --- | --- |
-| Agenti che acquisiscono il traffico di rete | Mostra il numero degli agenti che acquisiscono il traffico di rete e un elenco dei primi 10 computer che acquisiscono il traffico. Fare clic sul numero per eseguire una ricerca nei log per <code>Type:WireData &#124; measure Sum(TotalBytes) by Computer &#124; top 500000</code>. Fare clic su un computer nell'elenco per eseguire una ricerca nei log che restituisca il numero totale dei byte acquisiti. |
-| Subnet locali | Mostra il numero delle subnet locali individuate dagli agenti.  Fare clic sul numero per eseguire una ricerca nei log per <code>Type:WireData &#124; Measure Sum(TotalBytes) by LocalSubnet</code> e ottenere un elenco di tutte le subnet con il numero dei byte inviati tramite ognuna. Fare clic su una subnet nell'elenco per eseguire una ricerca nei log che restituisca il numero totale dei byte inviati tramite la subnet. |
-| Protocolli a livello dell'applicazione | Mostra il numero di protocolli a livello di applicazione in uso, in base a quanto individuato dagli agenti. Fare clic sul numero per eseguire una ricerca nei log per <code>Type:WireData &#124; Measure Sum(TotalBytes) by ApplicationProtocol</code>. Fare clic su un protocollo per eseguire una ricerca nei log che restituisca il numero totale dei byte inviati usando il protocollo. |
+| Agenti che acquisiscono il traffico di rete | Mostra il numero di hello di agenti che acquisisce il traffico di rete ed elenca hello primi 10 computer che sono di acquisizione del traffico. Fare clic su una ricerca di log per hello numero toorun <code>Type:WireData &#124; measure Sum(TotalBytes) by Computer &#124; top 500000</code>. Fare clic su un computer in hello elenco toorun restituzione hello totale dei byte acquisita una ricerca di log. |
+| Subnet locali | Mostra il numero di hello di subnet locali che gli agenti sono individuati.  Fare clic su una ricerca di log per hello numero toorun <code>Type:WireData &#124; Measure Sum(TotalBytes) by LocalSubnet</code> che elenca tutte le subnet con numero di hello di byte inviati in ciascuna di esse. Fare clic su una subnet in hello elenco toorun restituzione hello il numero totale di byte inviati in subnet hello una ricerca di log. |
+| Protocolli a livello dell'applicazione | Mostra il numero di hello di protocolli a livello di applicazione in uso, come individuata dagli agenti. Fare clic su una ricerca di log per hello numero toorun <code>Type:WireData &#124; Measure Sum(TotalBytes) by ApplicationProtocol</code>. Fare clic su un protocollo toorun restituzione hello il numero totale di byte inviati tramite il protocollo hello una ricerca di log. |
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 ![Dashboard di Wire Data](./media/log-analytics-wire-data/wire-data-dash.png)
 
-È possibile usare il pannello **Agenti che acquisiscono il traffico di rete** per determinare la quantità di larghezza di banda utilizzata dai computer. Questo pannello consente di trovare facilmente il computer _più comunicativo_ nel proprio ambiente. Tali computer potrebbero essere sovraccaricati, presentare un funzionamento anomalo o usare una quantità di risorse di rete superiore alla norma.
+È possibile utilizzare hello **agenti che acquisiscono il traffico di rete** toodetermine pannello quanta larghezza di banda di rete utilizzata dai computer. Questo pannello consentono facilmente hello trova _chattiest_ computer nell'ambiente in uso. Tali computer potrebbero essere sovraccaricati, presentare un funzionamento anomalo o usare una quantità di risorse di rete superiore alla norma.
 
 ![Esempio di ricerca log](./media/log-analytics-wire-data/log-search-example01.png)
 
-Analogamente, è possibile usare il pannello **Subnet locali** per determinare la quantità di traffico di rete sulle subnet. Gli utenti spesso definiscono le subnet per aree critiche per le applicazioni. Questo pannello offre un quadro di tali aree.
+Analogamente, è possibile utilizzare hello **subnet locali** toodetermine pannello quanto il traffico di rete si sposta le subnet. Gli utenti spesso definiscono le subnet per aree critiche per le applicazioni. Questo pannello offre un quadro di tali aree.
 
 ![Esempio di ricerca log](./media/log-analytics-wire-data/log-search-example02.png)
 
-Il pannello **Protocolli a livello dell'applicazione** è utile perché è opportuno sapere quali protocolli vengono usati. Se ad esempio si prevede che SSH non venga usato nel proprio ambiente di rete, visualizzando le informazioni disponibili nel pannello è possibile ottenere rapidamente conferma o smentita di tale previsione.
+Hello **protocolli a livello di applicazione** pannello è utile perché è utile sapere quali protocolli sono in uso. Ad esempio, si potrebbe pensare che SSH toonot essere in uso nell'ambiente di rete. Visualizzazione delle informazioni disponibili nel pannello hello rapidamente confermare o disprove la previsione.
 
 ![Esempio di ricerca log](./media/log-analytics-wire-data/log-search-example03.png)
 
-In questo esempio si potrebbero esaminare i dettagli su SSH per scoprire quali computer usano SSH e molti altri dettagli relativi alle comunicazioni.
+In questo esempio, è possibile analizzare i SSH dettagli toosee i computer che utilizzano SSH e molti altri dettagli di comunicazione.
 
 ![Risultati della ricerca su SSH](./media/log-analytics-wire-data/ssh-details.png)
 
-È anche utile sapere se il traffico dei protocolli aumenta o diminuisce nel tempo. L'aumento della quantità di dati trasmessa da un'applicazione, ad esempio, può essere un aspetto di cui è consigliabile essere a conoscenza o che si potrebbe trovare degno di nota.
+È inoltre utile tooknow se il traffico di protocollo è aumentando o riducendo il tempo. Se, ad esempio, quantità hello di dati trasmessi da un'applicazione sta aumentando, che potrebbero essere un elemento di che è necessario essere consapevoli oppure che potrebbero trovare degno di nota.
 
 ## <a name="input-data"></a>Dati di input
 
-Wire Data raccoglie i metadati sul traffico di rete tramite gli agenti abilitati. Ogni agente invia dati ogni 15 secondi circa.
+Raccoglie i dati in transito metadati sul traffico di rete usano agenti hello che è stata abilitata. Ogni agente invia dati ogni 15 secondi circa.
 
 ## <a name="output-data"></a>Dati di output
 
-Per ogni tipo di dati di input vene creato un record con tipo _WireData_. I record WireData includono le proprietà elencate nella tabella seguente:
+Per ogni tipo di dati di input vene creato un record con tipo _WireData_. Record di WireData hanno le proprietà visualizzate in hello nella tabella seguente:
 
 | Proprietà | Descrizione |
 |---|---|
 | Computer | Nome del computer in cui sono stati raccolti i dati |
-| TimeGenerated | Ora del record |
-| LocalIP | Indirizzo IP del computer locale |
+| TimeGenerated | Ora del record di hello |
+| LocalIP | Indirizzo IP del computer locale hello |
 | SessionState | Sessione connessa o disconnessa |
 | ReceivedBytes | Quantità di byte ricevuta |
-| ProtocolName | Nome del protocollo di rete usato |
+| ProtocolName | Nome del protocollo di rete hello utilizzato |
 | IPVersion | Versione IP |
 | Direzione | In ingresso o in uscita |
 | MaliciousIP | Indirizzo IP di un'origine dannosa nota |
 | Severity | Gravità del software dannoso sospetto |
-| RemoteIPCountry | Paese dell'indirizzo IP remoto |
-| ManagementGroupName | Nome del gruppo di gestione di Operations Manager |
+| RemoteIPCountry | Paese dell'indirizzo IP remoto hello |
+| ManagementGroupName | Nome del gruppo di gestione di Operations Manager hello |
 | SourceSystem | Origine in cui sono stati raccolti i dati |
 | SessionStartTime | Data e ora di inizio della sessione |
 | SessionEndTime | Data e ora di fine della sessione |
 | LocalSubnet | Subnet in cui sono stati raccolti i dati |
 | LocalPortNumber | Numero di porta locale |
-| RemoteIP | Indirizzo IP remoto usato dal computer remoto |
-| RemotePortNumber | Numero di porta usato dall'indirizzo IP remoto |
+| RemoteIP | Indirizzo IP remoto utilizzato dal computer remoto hello |
+| RemotePortNumber | Numero di porta utilizzato dall'indirizzo IP remoto hello |
 | SessionID | Valore univoco che identifica la sessione di comunicazione tra due indirizzi IP |
 | SentBytes | Numero di byte inviati |
 | TotalBytes | Numero totale dei byte inviati durante la sessione |
 | ApplicationProtocol | Tipo di protocollo di rete usato   |
 | ProcessID | ID processo Windows |
-| ProcessName | Percorso e nome file del processo |
+| ProcessName | Percorso e il nome del processo di hello |
 | RemoteIPLongitude | Valore di longitudine dell'indirizzo IP |
 | RemoteIPLatitude | Valore di latitudine dell'indirizzo IP |
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Ricerche nei log](log-analytics-log-searches.md) per visualizzare i record di ricerca dettagliati su Wire Data.
+- [Ricerca dei registri](log-analytics-log-searches.md) tooview dettagliate record di ricerca di dati di rete.

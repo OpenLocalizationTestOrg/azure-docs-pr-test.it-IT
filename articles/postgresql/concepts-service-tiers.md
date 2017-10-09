@@ -1,5 +1,5 @@
 ---
-title: Piani tariffari in Database di Azure per PostgreSQL
+title: aaa "Piani tariffari nel Database di Azure per PostgreSQL"
 description: Piani tariffari in Database di Azure per PostgreSQL
 services: postgresql
 author: kamathsun
@@ -10,37 +10,37 @@ ms.custom: mvc
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/31/2017
-ms.openlocfilehash: 59ac187e50527517c402a5cc2aa871717dde5650
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f10389dd2ad1ff04e83b02786a407c10140a007b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-database-for-postgresql-options-and-performance-understand-whats-available-in-each-pricing-tier"></a>Opzioni e prestazioni di Database di Azure per PostgreSQL: funzionalità disponibili in ogni piano tariffario
-Quando si crea un'istanza di Database di Azure per il server PostgreSQL, si può scegliere tra tre opzioni principali per configurare le risorse allocate per il server. Queste scelte influenzano le prestazioni e la scalabilità del server.
-- Piano tariffario
+Quando si crea un Database di Azure per server PostgreSQL, si decide tre opzioni principali risorse hello tooconfigure allocate per il server. Queste scelte impatto sulle prestazioni di hello e la scalabilità del server di hello.
+- Piano tariffario 
 - Unità di calcolo
 - Archiviazione (GB)
 
-Ogni piano tariffario ha diversi livelli di prestazioni, ovvero unità di calcolo, tra cui scegliere, a seconda dei requisiti del carico di lavoro. Livelli di prestazioni più elevati offrono risorse aggiuntive per il server, progettate per garantire una maggiore velocità effettiva. È possibile modificare il livello di prestazioni del server all'interno di un piano tariffario praticamente senza tempi di inattività dell'applicazione.
+Ogni piano tariffario offre una gamma di toochoose (unità di calcolo) i livelli di prestazioni, a seconda dei requisiti di carichi di lavoro. Livelli di prestazioni superiore forniscono risorse aggiuntive per il server toodeliver progettato una velocità effettiva. È possibile modificare il livello di prestazioni del server hello all'interno di un piano tariffario virtualmente senza tempi di inattività dell'applicazione.
 
 > [!IMPORTANT]
-> Mentre il servizio è in anteprima pubblica, non c'è alcun contratto di servizio, SLA, garantito.
+> Servizio di hello è in anteprima pubblica, non c'è un accordo di livello di servizio (SLA) garantito.
 
-In un'istanza di Database di Azure per il server PostgreSQL è possibile avere uno o più database. È possibile scegliere di creare un singolo database per ogni server per usare tutte le risorse o creare più database per condividere le risorse. 
+In un'istanza di Database di Azure per il server PostgreSQL è possibile avere uno o più database. È possibile rifiutare un singolo database per ogni server tooutilize toocreate tutte le risorse di hello o creare più database tooshare risorse hello. 
 
 ## <a name="choose-a-pricing-tier"></a>Scegliere un piano tariffario
 Nell'anteprima, Database di Azure per PostgreSQL offre due piani tariffari: Basic e Standard. Il piano Premium non è ancora disponibile, ma lo sarà presto. 
 
-La tabella seguente elenca esempi dei piani tariffari ottimali per i diversi carichi di lavoro delle applicazioni.
+Hello nella tabella seguente vengono forniti esempi di hello adatti per carichi di lavoro di applicazioni diverso migliori livelli di prezzo.
 
-| Piano tariffario | Carichi di lavoro di destinazione |
+| Piano tariffario  | Carichi di lavoro di destinazione |
 | :----------- | :----------------|
 | Basic | Adatto in particolare a piccoli carichi di lavoro che richiedono livelli di calcolo e archiviazione scalabili senza garanzia di IOPS. Ad esempio, server usati per lo sviluppo o i test oppure applicazioni su scala ridotta usate raramente. |
-| Standard | Opzione ideale per le applicazioni cloud che necessitano di operazioni di I/O al secondo garantite con velocità effettiva elevata. Tra gli esempi sono incluse le applicazioni analitiche e Web. |
-| Premium | Soluzione ottimale per i carichi di lavoro che richiedono una bassa latenza per transazioni e I/O. Fornisce il supporto migliore per più utenti simultanei. Applicabile ai database che supportano applicazioni di importanza strategica.<br />Il piano tariffario Premium non è disponibile in anteprima. |
+| Standard | Hello go-toooption per cloud di garantire le applicazioni che necessitano di IOPS con velocità effettiva elevata. Tra gli esempi sono incluse le applicazioni analitiche e Web. |
+| Premium | Soluzione ottimale per i carichi di lavoro che richiedono una bassa latenza per transazioni e I/O. Fornisce il supporto migliore hello per molti utenti simultanei. Toodatabases applicabili che supportano applicazioni mission-critical.<br />piano tariffario Premium Hello non è disponibile in anteprima. |
 
-Per scegliere il piano tariffario, iniziare determinando se il proprio carico di lavoro necessita di operazioni di I/O al secondo garantite. In caso affermativo, scegliere il piano tariffario Standard.
+toodecide sui prezzi di un livello, primo avvio determinando se il carico di lavoro richiede una garanzia IOPS. In caso affermativo, scegliere il piano tariffario Standard.
 
 | **Caratteristiche del piano tariffario** | **Basic** | **Standard** |
 | :------------------------ | :-------- | :----------- |
@@ -50,15 +50,15 @@ Per scegliere il piano tariffario, iniziare determinando se il proprio carico di
 | Archiviazione IOPS massima | N/D  | 3,000 | 
 | Periodo di conservazione dei backup dei database | 7 giorni | 35 giorni | 
 
-Durante il periodo di anteprima non è possibile modificare il piano tariffario dopo aver creato il server. In futuro sarà possibile effettuare l'upgrade o il downgrade di un server da un piano tariffario a un altro.
+Durante l'intervallo di tempo anteprima hello, è possibile modificare il piano tariffario dopo aver creato il server di hello. In futuro hello, verrà tooupgrade possibili o effettuare il downgrade di un server da un livello tooanother piano tariffario.
 
-## <a name="understand-the-price"></a>Informazioni sul prezzo
-Quando si crea un nuovo database di Azure per PostgreSQL all'interno del [portale di Azure](https://portal.azure.com/#create/Microsoft.PostgreSQLServer), fare clic sul pannello **Piano tariffario** per visualizzare il costo mensile in base alle opzioni selezionate. Se non è disponibile una sottoscrizione di Azure, usare il calcolatore dei prezzi di Azure per ottenere una stima di prezzo. Passare al sito Web del [calcolatore dei prezzi di Azure](https://azure.microsoft.com/pricing/calculator/), quindi fare clic su **Aggiungi elementi**, espandere la categoria **Database** e scegliere **Database di Azure per PostgreSQL** per personalizzare le opzioni.
+## <a name="understand-hello-price"></a>Comprendere il prezzo di hello
+Quando si crea un nuovo Database di Azure per PostgreSQL all'interno di hello [portale Azure](https://portal.azure.com/#create/Microsoft.PostgreSQLServer), fare clic su hello **tariffario** pannello e hello costo mensile viene visualizzato in base alle opzioni di hello è stato selezionato. Se non si dispone di una sottoscrizione di Azure, utilizzare hello tooget calcolatore dei prezzi Azure un prezzo stimato. Visitare hello [calcolatore dei costi Azure](https://azure.microsoft.com/pricing/calculator/) sito Web, quindi fare clic su **aggiungere elementi**, espandere hello **database** categoria e scegliere **per i Database di Azure PostgreSQL** opzioni hello toocustomize.
 
 ## <a name="choose-a-performance-level-compute-units"></a>Scegliere un livello di prestazioni, ovvero le unità di calcolo
-Dopo avere determinato il piano tariffario per l'istanza di Database di Azure per il server PostgreSQL è possibile stabilire il livello di prestazioni selezionando il numero di unità di calcolo necessarie. Si può iniziare con 200 e 400 unità di calcolo per le applicazioni che richiedono maggiore concorrenza degli utenti per i propri carichi di lavoro analitici o Web, quindi aumentare il valore in base alle esigenze. 
+Dopo aver determinato hello piano tariffario per il Database di Azure per server PostgreSQL, si è pronti toodetermine livello di prestazioni hello selezionando hello numero di unità di calcolo necessarie. Si può iniziare con 200 e 400 unità di calcolo per le applicazioni che richiedono maggiore concorrenza degli utenti per i propri carichi di lavoro analitici o Web che si regolano in modo regolare in base alle esigenze. 
 
-Le unità sono una misura della velocità effettiva di elaborazione della CPU garantita come disponibile per un singolo database di Azure per il server PostgreSQL. Un'unità di calcolo è una misura combinata di risorse di CPU e memoria.  Per altre informazioni, vedere [Spiegazione delle unità di calcolo](concepts-compute-unit-and-storage.md)
+Calcolo delle unità sono una misura della velocità effettiva di elaborazione della CPU che è garantita tooa disponibili toobe singolo Database di Azure per server PostgreSQL. Un'unità di calcolo è una misura combinata di risorse di CPU e memoria.  Per altre informazioni, vedere [Spiegazione delle unità di calcolo](concepts-compute-unit-and-storage.md)
 
 ### <a name="basic-pricing-tier-performance-levels"></a>Livelli di prestazioni del piano tariffario Basic:
 
@@ -78,29 +78,29 @@ Le unità sono una misura della velocità effettiva di elaborazione della CPU ga
 | Numero massimo di IOPS predisposte nel server | 3.000 operazioni di I/O al secondo | 3.000 operazioni di I/O al secondo | 3.000 operazioni di I/O al secondo | 3.000 operazioni di I/O al secondo |
 | Numero massimo di IOPS predisposte nel server per GB | 3 IOPS fisse per GB | 3 IOPS fisse per GB | 3 IOPS fisse per GB | 3 IOPS fisse per GB |
 
-\* Lo spazio di archiviazione del server massimo fa riferimento allo spazio di archiviazione massimo predisposto per il server.
+\*Dimensioni di archiviazione del server max, dimensioni massime di archiviazione sottoposto a provisioning toohello fa riferimento per il server.
 
 ## <a name="storage"></a>Archiviazione 
-La configurazione dell'archiviazione definisce la quantità di capacità di archiviazione disponibile per un'istanza di Database di Azure per il server PostgreSQL. La memoria usata dal servizio include i file del database, i log di transazione e i log del server PostgreSQL. Considerare le dimensioni di archiviazione necessarie per ospitare i database e i requisiti delle prestazioni, ovvero le operazioni di I/O al secondo, quando si seleziona la configurazione dell'archiviazione.
+configurazione dell'archiviazione Hello definisce hello di archiviazione capacità disponibile tooan Database di Azure per server PostgreSQL. archiviazione Hello utilizzato dal servizio hello include i file di database hello, log delle transazioni e i registri del server PostgreSQL hello. Prendere in considerazione i database di dimensioni hello di spazio di archiviazione necessario toohost e hello requisiti relativi alle prestazioni (IOPS) quando si seleziona la configurazione di archiviazione hello.
 
-Ogni piano tariffario include una capacità di archiviazione minima, come riportato nella tabella precedente in "Spazio di archiviazione incluso". È possibile aggiungere spazio di archiviazione quando si crea il server, in incrementi di 125 GB, fino a raggiungere lo spazio di archiviazione massimo consentito. La capacità di archiviazione aggiuntiva può essere configurata separatamente dalle unità di calcolo. Il prezzo può variare in base alla quantità di spazio di archiviazione selezionato.
+Alcune capacità di archiviazione è incluso almeno con ogni piano tariffario, indicato in hello precedente tabella come "Inclusi delle dimensioni di archiviazione". È possibile aggiungere capacità di archiviazione aggiuntivi quando viene creato il server di hello, in incrementi di 125 GB, di archiviazione massima consentita di toohello. Hello maggiore capacità di archiviazione può essere configurata indipendentemente dalla configurazione di unità di calcolo hello. variazioni di prezzo Hello in base all'ammontare hello di archiviazione selezionato.
 
-La configurazione delle operazioni di I/O al secondo in ogni livello di prestazioni è correlata al piano tariffario e allo spazio archiviazione scelti. Il piano Basic non offre la garanzia relativa alle operazioni di I/O al secondo. Nel piano tariffario Standard, le operazioni di I/O al secondo variano proporzionalmente allo spazio di archiviazione massimo in un rapporto 3:1 fisso. Le risorse di archiviazione incluse di 125 GB garantiscono il provisioning di 375 IOPS, ognuna con una dimensione I/O massima di 256 KB. È possibile scegliere di aggiungere altro spazio di archiviazione fino a un massimo di 1 TB, per garantire il provisioning di 3.000 operazioni di I/O al secondo.
+configurazione di IOPS Hello in ogni livello di prestazioni relativa toohello piano tariffario e dimensioni di archiviazione hello scelto. Il piano Basic non offre la garanzia relativa alle operazioni di I/O al secondo. All'interno di hello piano tariffario Standard, hello IOPS scala proporzionalmente toomaximum dimensioni di archiviazione in un rapporto 3:1 predefinito. archiviazione Hello incluso garanzie 125 GB per 375 il provisioning di IOPS, ognuno con una dimensione dei / o di too256 KB. È possibile scegliere di ulteriore spazio di archiviazione di massimo TB too1, tooguarantee 3.000 il provisioning di IOPS.
 
-Monitorare il grafico delle metriche nel portale di Azure o scrivere comandi dell'interfaccia della riga di comando di Azure per misurare l'uso dello spazio di archiviazione e delle operazioni di I/O al secondo. Le metriche pertinenti al monitoraggio sono il limite di archiviazione, la percentuale di archiviazione, lo spazio di archiviazione usato e la percentuale di IO.
+Grafico delle metriche di monitoraggio hello in hello Azure portal o scrittura CLI di Azure comandi toomeasure hello consumo di archiviazione e IOPS. Le metriche pertinenti toomonitor sono limite di archiviazione, percentuale di memoria, spazio di archiviazione usato e percentuale dei / o.
 
 >[!IMPORTANT]
-> In anteprima scegliere lo spazio di archiviazione al momento della creazione del server. La modifica delle dimensioni di archiviazione in un server esistente non è ancora supportata. 
+> Mentre è in anteprima, scegliere la quantità hello di archiviazione in fase di hello quando hello server viene creato. Modifica delle dimensioni di archiviazione hello in un server esistente non è ancora supportata. 
 
 ## <a name="scaling-a-server-up-or-down"></a>Ridimensionamento di un server
-Al momento della creazione dell'istanza di Database di Azure per PostgreSQL, è possibile scegliere il livello di prestazioni e il piano tariffario. In seguito è possibile aumentare o ridurre le unità di calcolo in modo dinamico, nell'ambito dello stesso piano tariffario. Nel portale di Azure, selezionare le unità di calcolo con il dispositivo di scorrimento nel pannello del piano tariffario del server o creare degli script seguendo questo esempio: [Monitorare e ridimensionare un singolo server PostgreSQL tramite l'interfaccia della riga di comando di Azure](scripts/sample-scale-server-up-or-down.md)
+Inizialmente, si sceglie hello prezzi a livello di prestazioni e quando si crea il Database di Azure per PostgreSQL. In un secondo momento, è possibile scalare hello unità di calcolo su o giù in modo dinamico, intervallo hello di hello stesso livello di prezzo. In hello portale di Azure, diapositiva hello unità di calcolo nel Pannello di livello del server hello prezzi o crearne uno script per l'esempio seguente: [monitoraggio e la scala di un singolo server PostgreSQL CLI di Azure](scripts/sample-scale-server-up-or-down.md)
 
-Il ridimensionamento delle unità di calcolo viene eseguito indipendentemente dalle dimensioni massime dello spazio di archiviazione scelto.
+Il ridimensionamento di unità di calcolo hello viene eseguito indipendentemente dalle dimensioni massime di archiviazione hello scelto.
 
-In background, la modifica del livello di prestazioni di un database crea una replica del database originale al nuovo livello di prestazioni, quindi passa le connessioni alla replica. Non si perdono dati durante questo processo. Durante il breve intervallo nel quale si passa alla replica, le connessioni al database sono disabilitate e può verificarsi il rollback di alcune transazioni in-flight. Questa finestra varia, ma in media è inferiore a 4 secondi e in più del 99% dei casi è inferiore a 30 secondi. Se è presente un elevato numero di transazioni in-flight quando le connessioni sono disabilitate, questa finestra potrebbe essere più lunga.
+Background hello, modifica il livello di prestazioni hello di un database consente di creare una replica del database originale hello hello nuovo livello di prestazioni e poi passa connessioni toohello replica. Non si perdono dati durante questo processo. Durante hello breve istante quando si passa sulla replica toohello, le connessioni database toohello sono disattivati, possono essere eseguito il rollback alcune transazioni in corso. Questa finestra varia, ma in media è inferiore a 4 secondi e in più del 99% dei casi è inferiore a 30 secondi. Se sono presenti grandi numeri di transazioni in corso in connessioni momento hello sono disabilitati, questa finestra può essere più lunga.
 
-La durata dell'intero processo di ridimensionamento dipende dalle dimensioni e dal piano tariffario del server prima e dopo la modifica. Ad esempio, la modifica delle unità di calcolo di un server nell'ambito del piano tariffario Standard verrà completata in pochi minuti. Le nuove proprietà del server non vengono applicate finché l'applicazione delle modifiche non è terminata.
+durata Hello del processo di scala intero hello dipende dalla dimensione hello sia piano tariffario del server di hello prima e dopo la modifica di hello. Un server che viene modificata l'unità di calcolo all'interno di hello piano tariffario Standard, ad esempio, deve essere completata entro pochi minuti. Hello nuove proprietà server hello non vengono applicate fino al completamento delle modifiche hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Per altre informazioni sulle unità di calcolo, vedere [Spiegazione delle unità di calcolo](concepts-compute-unit-and-storage.md)
-- Informazioni su come [monitorare e ridimensionare un singolo server PostgreSQL tramite l'interfaccia della riga di comando di Azure](scripts/sample-scale-server-up-or-down.md)
+- Per altre informazioni sulle unità di calcolo, vedere [Descrizione delle unità di calcolo](concepts-compute-unit-and-storage.md)
+- Informazioni su come troppo[monitoraggio e la scala di un singolo server PostgreSQL CLI di Azure](scripts/sample-scale-server-up-or-down.md)

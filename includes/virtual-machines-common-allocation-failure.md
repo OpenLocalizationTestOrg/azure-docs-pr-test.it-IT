@@ -1,71 +1,71 @@
 
-Se il problema di Azure non viene risolto in questo articolo, visitare il [forum di Azure su MSDN e Overflow dello Stack](https://azure.microsoft.com/support/forums/). È possibile pubblicare il problema in questi forum o in @AzureSupport su Twitter. È anche possibile inviare una richiesta di supporto tecnico di Azure selezionando **Ottieni supporto** nel sito del [supporto tecnico di Azure](https://azure.microsoft.com/support/options/).
+Se il problema di Azure non viene risolto in questo articolo, visitare hello [forum di Azure su MSDN e l'Overflow dello Stack](https://azure.microsoft.com/support/forums/). È possibile registrare il problema in questi forum o too@AzureSupport su Twitter. Inoltre, è possibile inviare una richiesta di supporto tecnico di Azure selezionando **ottenere supporto** su hello [supporto tecnico di Azure](https://azure.microsoft.com/support/options/) sito.
 
 ## <a name="general-troubleshooting-steps"></a>Passaggi per la risoluzione dei problemi generali
-### <a name="troubleshoot-common-allocation-failures-in-the-classic-deployment-model"></a>Risolvere i problemi relativi a errori comuni di allocazione nel modello di distribuzione classico
+### <a name="troubleshoot-common-allocation-failures-in-hello-classic-deployment-model"></a>Risolvere i problemi comuni errori di allocazione nel modello di distribuzione classica hello
 Questi passaggi possono facilitare la risoluzione di molti errori di allocazione nelle macchine virtuali:
 
-* Ridimensionare la macchina virtuale con una dimensione diversa della macchina virtuale.<br>
-    Fare clic su **Sfoglia tutto** > **macchine virtuali (classico)** > la macchina virtuale > **impostazioni** > **dimensioni**. Per i passaggi dettagliati, vedere l'articolo relativo al [Ridimensionamento della macchina virtuale](https://msdn.microsoft.com/library/dn168976.aspx).
-* Eliminare tutte le VM dal servizio cloud e ricrearle.<br>
-    Fare clic su **Sfoglia tutto** > **macchine virtuali (classico)** > la macchina virtuale > **eliminare**. Fare quindi clic su **Nuovo** > **Calcolo** > [immagine macchina virtuale].
+* Ridimensionare hello VM tooa diverse dimensioni delle macchine Virtuali.<br>
+    Fare clic su **Esplora tutto** > **Macchine virtuali (versione classica)** > macchina virtuale > **Impostazioni** > **Dimensioni**. Per informazioni dettagliate, vedere [ridimensionare una macchina virtuale hello](https://msdn.microsoft.com/library/dn168976.aspx).
+* Eliminare tutte le macchine virtuali dal servizio cloud hello e ricreare le macchine virtuali.<br>
+    Fare clic su **Esplora tutto** > **Macchine virtuali (versione classica)** > macchina virtuale > **Elimina**. Fare quindi clic su **Nuovo** > **Calcolo** > [immagine macchina virtuale].
 
-### <a name="troubleshoot-common-allocation-failures-in-the-azure-resource-manager-deployment-model"></a>Risolvere i problemi relativi a errori comuni di allocazione nel modello di distribuzione di Gestione risorse di Azure
+### <a name="troubleshoot-common-allocation-failures-in-hello-azure-resource-manager-deployment-model"></a>Risolvere i problemi comuni errori di allocazione nel modello di distribuzione Azure Resource Manager hello
 Questi passaggi possono facilitare la risoluzione di molti errori di allocazione nelle macchine virtuali:
 
-* Arrestare (deallocare) tutte le VM nello stesso set di disponibilità, quindi riavviarle tutte.<br>
-    Per arrestare: fare clic su **gruppi di risorse** > gruppo di risorse > **risorse** > set di disponibilità > **macchine virtuali** > la macchina virtuale >  **Arrestare**.
+* Arresta (dealloca) tutte le macchine virtuali in hello stesso disponibilità impostare, quindi riavviare ognuna di esse.<br>
+    toostop: fare clic su **gruppi di risorse** > gruppo di risorse > **risorse** > set di disponibilità > **macchine virtuali** > la macchina virtuale >  **Arrestare**.
   
-    Dopo l'arresto di tutte le VM, selezionare la prima e fare clic su **Avvia**.
+    Dopo l'arresto di tutte le macchine virtuali, selezionare hello prima macchina virtuale e fare clic su **avviare**.
 
 ## <a name="background-information"></a>Informazioni generali
 ### <a name="how-allocation-works"></a>Come funziona l'allocazione
-I server nei data center di Azure sono partizionati in cluster. In genere, viene eseguita una richiesta di allocazione in più cluster, ma è possibile che determinati vincoli nella richiesta di allocazione impongano alla piattaforma Azure di eseguire la richiesta in un solo cluster. In questo articolo, si fa riferimento a questa operazione con l'espressione "bloccata su un cluster". Il diagramma 1 riportato di seguito illustra il caso di un'allocazione normale tentata in più cluster. Il diagramma 2 illustra il caso di un'allocazione bloccata sul cluster 2 perché è quello che ospita il servizio cloud CS_1 o il set di disponibilità esistente.
+server Hello in Data Center di Azure vengono partizionati in cluster. In genere, viene eseguito un tentativo di una richiesta di allocazione in più cluster, ma è possibile che alcuni vincoli dalla richiesta di allocazione hello forzare la richiesta di hello piattaforma Azure tooattempt hello in un solo cluster. In questo articolo, si farà riferimento toothis come "aggiunto tooa cluster". Il diagramma 1 di viene illustrato il caso di hello di un'allocazione normale che viene eseguito un tentativo di più cluster. Diagramma 2 viene illustrato il caso di hello di un'allocazione che è stato aggiunto tooCluster 2 perché è in cui è ospitato hello set di disponibilità o CS_1 servizio Cloud esistente.
 ![Diagramma di allocazione](./media/virtual-machines-common-allocation-failure/Allocation1.png)
 
 ### <a name="why-allocation-failures-happen"></a>Perché si verificano gli errori di allocazione
-Quando una richiesta di allocazione è bloccata su un cluster, la probabilità di non riuscire a trovare risorse disponibili è più alta, perché il pool di risorse disponibili è più ridotto. Inoltre, se la richiesta di allocazione è bloccata su un cluster, ma il tipo di risorsa richiesto non è supportato da quel cluster, la richiesta non viene eseguita correttamente anche se nel cluster ci sono risorse disponibili. Il diagramma 3 seguente illustra un'allocazione bloccata non riuscita perché nel solo cluster candidato non ci sono risorse disponibili. Il diagramma 4 illustra un'allocazione bloccata non riuscita perché il solo cluster candidato non supporta le dimensioni della VM richieste, anche se nel cluster ci sono risorse disponibili.
+Quando una richiesta di allocazione è bloccata tooa cluster, è una maggiore probabilità di esito positivo toofind liberare le risorse in quanto il pool di risorse disponibili hello è inferiore. Inoltre, se la richiesta di allocazione è bloccata tooa cluster, ma il tipo di hello della risorsa richiesta non è supportato da tale cluster, la richiesta avrà esito negativo anche se il cluster hello è liberare le risorse. Diagramma 3 riportato di seguito viene illustrato case hello in cui un'allocazione aggiunta non riesce perché non dispone di liberare le risorse cluster solo candidato hello. Figura 4 viene illustrata case hello in cui un'allocazione aggiunta non riesce perché non supporta i cluster candidato solo hello hello richiesto dimensioni delle macchine Virtuali, anche se sono presenti cluster hello liberare risorse.
 
 ![Errore di allocazione bloccata](./media/virtual-machines-common-allocation-failure/Allocation2.png)
 
-## <a name="detailed-troubleshoot-steps-specific-allocation-failure-scenarios-in-the-classic-deployment-model"></a>Risolvere i problemi relativi a scenari di errori di allocazione specifici nel modello di distribuzione classico
-Ecco gli scenari di allocazione comuni che causano una richiesta di allocazione da bloccare. Verrà esaminato ogni scenario più avanti in questo articolo.
+## <a name="detailed-troubleshoot-steps-specific-allocation-failure-scenarios-in-hello-classic-deployment-model"></a>Dettagliate risolvere scenari di errore specifici di allocazioni passaggi nel modello di distribuzione classica hello
+Di seguito sono comuni scenari di allocazione che comportano un toobe di richiesta di allocazione bloccato. Verrà esaminato ogni scenario più avanti in questo articolo.
 
-* Ridimensionare una VM o aggiungere VM o istanze dei ruoli a un servizio cloud esistente
+* Ridimensionare una macchina virtuale o aggiungere le macchine virtuali o il servizio cloud esistente di ruolo istanze tooan
 * Riavviare VM arrestate (deallocate) parzialmente
 * Riavviare VM arrestate (deallocate) completamente
 * Distribuzioni di gestione temporanea o di produzione (solo Platform-as-a-Service)
 * Gruppo di affinità (prossimità di VM o servizio)
 * Rete virtuale basata su gruppi di affinità
 
-Quando si riceve un errore di allocazione, verificare se uno degli scenari descritti è pertinente con questo errore. Usare l'errore di allocazione restituito dalla piattaforma Azure per identificare lo scenario corrispondente. Se la richiesta è bloccata, rimuovere alcuni dei vincoli di blocco per aprire la richiesta a più cluster, aumentando quindi la possibilità di eseguire l'allocazione correttamente.
+Quando si riceve un errore di allocazione, vedere se uno degli scenari di hello descritti tooyour errore di applicazione. Utilizzare l'errore di allocazione hello restituito da uno scenario di corrispondente hello piattaforma Azure tooidentify hello. Se la richiesta è bloccata, rimuovere alcuni hello blocco vincoli tooopen i cluster toomore richiesta, aumentando il possibilità di successo di allocazione di hello.
 
-In generale, finché l'errore non indica che le dimensioni della VM richieste non sono supportate, è sempre possibile riprovare in un secondo momento perché nel cluster potrebbero liberarsi risorse sufficienti per soddisfare la richiesta. Se il problema è che la dimensione della VM richiesta non è supportata, provare con una dimensione diversa di VM. In caso contrario, l'unica opzione consiste nel rimuovere il vincolo di blocco.
+In generale, purché hello errore non indica "hello" necessaria manutenzione dimensioni della macchina virtuale non sono supportata", è possibile sempre riprovare in un secondo momento, come risorse sufficienti potrebbero essere stato liberato in hello cluster tooaccommodate la richiesta. Se il problema di hello che hello richiesto dimensioni della macchina virtuale non sono supportata, provare a una dimensione di macchina virtuale diversa. In caso contrario, hello è solo hello tooremove il blocco di vincolo.
 
-Due scenari di errore comuni sono correlati ai gruppi di affinità. In passato, il gruppo di affinità veniva usato per fornire la prossimità alle istanze di VM o servizi o per abilitare la creazione della rete virtuale. Con l'introduzione delle reti virtuali dell'area, i gruppi di affinità non sono più necessari per creare una rete virtuale. Con la riduzione della latenza di rete nell'infrastruttura di Azure, l'indicazione che riguarda l'uso dei gruppi di affinità per la prossimità di VM o servizi è stata modificata.
+Due scenari di errore comuni sono gruppi di tooaffinity correlati. In hello precedente, un gruppo di affinità utilizzato tooprovide prossimità tooVMs/istanze servizio, o sono utilizzati tooenable hello creazione di una rete virtuale. Con l'introduzione di hello di reti virtuali regionali, gruppi di affinità non sono più necessari toocreate una rete virtuale. Con la riduzione della latenza di rete nell'infrastruttura di Azure hello, gruppi di affinità di hello raccomandazione toouse per prossimità/servizio della macchina virtuale è stata modificata.
 
-Il diagramma 5 seguente illustra la tassonomia degli scenari di allocazione (bloccata).
+Diagramma 5 di seguito viene presentato tassonomia hello degli scenari di allocazione hello (bloccato).
 ![Tassonomia di allocazione bloccata](./media/virtual-machines-common-allocation-failure/Allocation3.png)
 
 > [!NOTE]
-> L'errore indicato in ogni scenario di allocazione è in forma breve. Per le stringhe di errore dettagliate, vedere [Ricerca della stringa di errore](#Error string lookup).
+> Errore di Hello elencato in ogni scenario di allocazione è una forma abbreviata. Fare riferimento toohello [ricerca della stringa di errore](#Error string lookup) per le stringhe di errore dettagliato.
 > 
 > 
 
-## <a name="allocation-scenario-resize-a-vm-or-add-vms-or-role-instances-to-an-existing-cloud-service"></a>Scenario di allocazione: ridimensionare una VM o aggiungere altre VM o istanze dei ruoli a un servizio cloud esistente
+## <a name="allocation-scenario-resize-a-vm-or-add-vms-or-role-instances-tooan-existing-cloud-service"></a>Scenario di allocazione: ridimensionare una macchina virtuale o aggiungere istanze del servizio cloud esistente tooan ruolo o macchine virtuali
 **Errore**
 
 Upgrade_VMSizeNotSupported o GeneralError
 
 **Causa del blocco su un cluster**
 
-La richiesta di ridimensionamento di una VM o di aggiunta di una VM o di un'istanza del ruolo a un servizio cloud esistente deve essere eseguita nel cluster originale che ospita il servizio cloud esistente. La creazione di un nuovo servizio cloud consente alla piattaforma Azure di trovare un altro cluster con risorse disponibili o che supporti le dimensioni della VM richieste.
+Richiesta tooresize una macchina virtuale o aggiungere una macchina virtuale o un servizio ruolo di istanza tooan esistente cloud ha toobe tentata al cluster originale hello che ospita il servizio cloud esistente di hello. Consente la creazione di un nuovo servizio cloud hello piattaforma Azure toofind un altro cluster che è liberare le risorse o supporta le dimensioni della macchina virtuale hello richiesto.
 
 **Soluzione alternativa**
 
-Se l'errore è Upgrade_VMSizeNotSupported*, provare con dimensioni della VM diverse. Se l'uso di dimensioni della VM diverse non è possibile, ma è accettabile usare un indirizzo IP virtuale (indirizzo VIP) diverso, creare un nuovo servizio cloud per ospitare la nuova VM e aggiungere il nuovo servizio cloud alla rete virtuale dell'area in cui sono in esecuzione le VM esistenti. Se il servizio cloud esistente non usa una rete virtuale dell'area, è comunque possibile creare una nuova rete virtuale per il nuovo servizio cloud, quindi connettere la [rete virtuale esistente a quella nuova](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/). Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/).
+Se l'errore hello è Upgrade_VMSizeNotSupported *, provare a una dimensione di macchina virtuale diversa. Se l'utilizzo di diverse dimensioni macchina virtuale non è un'opzione, ma se è accettabile toouse un diverso indirizzo IP virtuale (VIP), creare un nuovo toohost servizio cloud hello nuova macchina virtuale e aggiungere hello nuovo cloud toohello internazionali rete virtuale del servizio in cui hello macchine virtuali esistenti sono in esecuzione. Se il servizio cloud esistente non utilizza una rete virtuale regionale, è possibile comunque creare una nuova rete virtuale per il servizio cloud nuovo hello e quindi connettere il [rete virtuale toohello nuova rete virtuale esistente](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/). Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/).
 
-Se l'errore è GeneralError, è probabile che il tipo di risorsa (ad esempio, le dimensioni specifiche della VM) sia supportato dal cluster, che al momento non dispone di risorse disponibili. Analogamente allo scenario riportato sopra, aggiungere la risorsa di calcolo desiderata tramite la creazione di un nuovo servizio cloud (notare che il nuovo servizio cloud deve usare un indirizzo VIP diverso) e usare una rete virtuale dell'area per connettere i servizi cloud.
+Se l'errore hello è GeneralError *, è probabile che il tipo di hello di risorsa (ad esempio una determinata dimensione di macchina virtuale) è supportato dal cluster hello, ma cluster hello privo di liberare le risorse in un momento hello. Toohello simile di sopra di uno scenario, aggiungere risorse di calcolo hello desiderata tramite la creazione di un nuovo servizio cloud (si noti che nuovo servizio cloud di hello è toouse un VIP diverso) e utilizzare tooconnect una rete virtuale regionale i servizi cloud.
 
 ## <a name="allocation-scenario-restart-partially-stopped-deallocated-vms"></a>Scenario di allocazione: riavviare VM arrestate (deallocate) parzialmente
 **Errore**
@@ -74,14 +74,14 @@ GeneralError*
 
 **Causa del blocco su un cluster**
 
-La deallocazione parziale significa che una o più macchine virtuali in un servizio cloud sono state arrestate (deallocate), ma non tutte. Quando si arresta (viene deallocata) una VM, vengono rilasciate le risorse associate. Il riavvio della VM arrestata (deallocata) è quindi una nuova richiesta di allocazione. Riavviare le VM in un servizio cloud parzialmente deallocato equivale ad aggiungere VM a un servizio cloud esistente. La richiesta di allocazione deve essere eseguita nel cluster originale che ospita il servizio cloud esistente. La creazione di un servizio cloud diverso consente alla piattaforma Azure di trovare un altro cluster con risorse disponibili o che supporti le dimensioni della VM richieste.
+La deallocazione parziale significa che una o più macchine virtuali in un servizio cloud sono state arrestate (deallocate), ma non tutte. Quando si arresta (dealloca) una macchina virtuale, hello associata le risorse vengono rilasciate. Il riavvio della VM arrestata (deallocata) è quindi una nuova richiesta di allocazione. Riavvio delle macchine virtuali in un servizio cloud parzialmente deallocata è equivalente tooadding servizio cloud di macchine virtuali tooan esistente. richiesta di allocazione Hello è toobe tentata al cluster originale hello che ospita il servizio cloud esistente di hello. Consente la creazione di un servizio cloud diverso hello piattaforma Azure toofind un altro cluster che è una risorsa gratuita o supporta le dimensioni della macchina virtuale hello richiesto.
 
 **Soluzione alternativa**
 
-Se è accettabile usare un indirizzo VIP diverso, eliminare le VM arrestate (deallocate), mantenendo però i dischi associati, quindi riaggiungere le VM tramite un servizio cloud diverso. Usare una rete virtuale dell'area per connettere i servizi cloud:
+Se è accettabile un diverso indirizzo VIP, hello di eliminazione toouse arrestata (deallocate) le macchine virtuali (ma mantenere hello associato dischi) e aggiunta hello macchine virtuali tramite un servizio cloud diverso. Utilizzare una rete virtuale regionale di tooconnect i servizi cloud:
 
-* Se il servizio cloud esistente usa una rete virtuale dell'area, è sufficiente aggiungere il nuovo servizio cloud alla stessa rete virtuale.
-* Se il servizio cloud esistente non usa una rete virtuale dell'area, creare una nuova rete virtuale per il nuovo servizio cloud, quindi connettere la [rete virtuale esistente a quella nuova](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/). Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/).
+* Se il servizio cloud esistente Usa una rete virtuale regionale, aggiungere semplicemente hello nuovo cloud servizio toohello stessa rete virtuale.
+* Se il servizio cloud esistente non utilizza una rete virtuale regionale, creare una nuova rete virtuale per il nuovo servizio cloud di hello e quindi [connettersi la rete virtuale toohello nuova rete virtuale esistente](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/). Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/).
 
 ## <a name="allocation-scenario-restart-fully-stopped-deallocated-vms"></a>Scenario di allocazione: riavviare VM arrestate (deallocate) completamente
 **Errore**
@@ -90,33 +90,33 @@ GeneralError*
 
 **Causa del blocco su un cluster**
 
-La deallocazione completa significa che sono state arrestate (deallocate) tutte le VM da un servizio cloud. Le richieste di allocazione per il riavvio di queste VM devono essere eseguite nel cluster originale che ospita il servizio cloud. La creazione di un nuovo servizio cloud consente alla piattaforma Azure di trovare un altro cluster con risorse disponibili o che supporti le dimensioni della VM richieste.
+La deallocazione completa significa che sono state arrestate (deallocate) tutte le VM da un servizio cloud. queste macchine virtuali hanno toobe tentata al cluster originale hello che ospita il servizio cloud hello toorestart delle richieste di allocazione Hello. Consente la creazione di un nuovo servizio cloud hello piattaforma Azure toofind un altro cluster che è liberare le risorse o supporta le dimensioni della macchina virtuale hello richiesto.
 
 **Soluzione alternativa**
 
-Se è accettabile usare un indirizzo VIP diverso, eliminare le VM arrestate (deallocate) originali, mantenendo però i dischi associati, quindi eliminare il servizio cloud corrispondente. Le risorse di calcolo associate sono già state rilasciate al momento dell'arresto (deallocazione) delle VM. Creare un nuovo servizio cloud per riaggiungere le VM.
+Se è accettabile toouse un VIP diverso, hello delete originale arrestata (deallocate) le macchine virtuali (ma i dischi associato hello keep) e di eliminare il servizio cloud corrispondente hello (calcolo di hello associato alle risorse già rilasciate quando è stato arrestato (deallocato) Hello macchine virtuali). Creare un nuovo hello tooadd di servizio cloud macchine virtuali nuovamente.
 
 ## <a name="allocation-scenario-stagingproduction-deployments-platform-as-a-service-only"></a>Scenario di allocazione: distribuzioni di gestione temporanea/produzione (solo Platform-as-a-Service)
 **Errore**
 
-New_General * o * New_VMSizeNotSupported
+New_General* o New_VMSizeNotSupported*
 
 **Causa del blocco su un cluster**
 
-Le distribuzione di gestione temporanea e di produzione di un servizio cloud sono ospitate nello stesso cluster. Quando si aggiunge la seconda distribuzione, la richiesta di allocazione corrispondente verrà eseguita nello stesso cluster che ospita la prima distribuzione.
+distribuzione e la distribuzione di produzione hello di un servizio cloud di gestione temporanea Hello è ospitato in hello dello stesso cluster. Quando si aggiunge una seconda distribuzione hello, richiesta di allocazione corrispondente hello verrà tentata in hello dello stesso cluster che ospita hello prima distribuzione.
 
 **Soluzione alternativa**
 
-Eliminare la prima distribuzione e il servizio cloud originale, quindi ridistribuire il servizio cloud. Questa azione potrebbe inserire la prima distribuzione in un cluster con risorse disponibili sufficienti per entrambe le distribuzioni o in un cluster che supporta le dimensioni della VM richieste.
+Eliminare prima distribuzione hello e il servizio cloud originale hello e ridistribuire il servizio di cloud hello. Questa azione potrebbe rimanere prima distribuzione hello in un cluster che dispone di entrambe le distribuzioni toofit sufficiente liberare le risorse o in un cluster che supporta dimensioni di macchina virtuale hello richiesto.
 
 ## <a name="allocation-scenario-affinity-group-vmservice-proximity"></a>Scenario di allocazione: gruppo di affinità (prossimità di VM o servizi)
 **Errore**
 
-New_General * o * New_VMSizeNotSupported
+New_General* o New_VMSizeNotSupported*
 
 **Causa del blocco su un cluster**
 
-Qualsiasi risorsa di calcolo assegnata a un gruppo di affinità è associata a un cluster. Le nuove richieste di risorse di calcolo in quel gruppo di affinità vengono eseguite nello stesso cluster in cui sono ospitate le risorse esistenti. Questo vale indipendentemente dal fatto che le nuove risorse vengano create tramite un servizio cloud nuovo o esistente.
+Qualsiasi risorsa di calcolo è il gruppo di affinità assegnato tooan legati tooone cluster. Nuove richieste di risorse di calcolo in tale gruppo di affinità vengono tentate in hello stesso cluster ospitate risorse esistenti hello. È true se le nuove risorse hello vengono create tramite un nuovo servizio cloud o un servizio cloud esistente.
 
 **Soluzione alternativa**
 
@@ -125,43 +125,43 @@ Se un gruppo di affinità non è necessario, non usare un gruppo di affinità o 
 ## <a name="allocation-scenario-affinity-group-based-virtual-network"></a>Scenario di allocazione: rete virtuale basata su gruppi di affinità
 **Errore**
 
-New_General * o * New_VMSizeNotSupported
+New_General* o New_VMSizeNotSupported*
 
 **Causa del blocco su un cluster**
 
-Prima dell'introduzione delle reti virtuali dell'area, era necessario associare una rete virtuale a un gruppo di affinità. Di conseguenza, le risorse di calcolo inserite in un gruppo di affinità sono soggette agli stessi vincoli descritti nella sezione "Scenario di allocazione: gruppo di affinità (prossimità di VM o servizi)" riportata sopra. Le risorse di calcolo sono legate a un cluster.
+Prima dell'introduzione delle reti virtuali regionali, era necessario tooassociate una rete virtuale con un gruppo di affinità. Di conseguenza, le risorse di calcolo inserite in un gruppo di affinità sono legate da hello stessi vincoli, come descritto in hello "scenario di allocazione: gruppo di affinità (prossimità/servizio della macchina virtuale)" sezione precedente. risorse di calcolo Hello sono legati tooone cluster.
 
 **Soluzione alternativa**
 
-Se il gruppo di affinità non è necessario, creare una nuova rete virtuale dell'area per le nuove risorse aggiunte, quindi [connettere la rete virtuale esistente a quella nuova](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/). Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/).
+Se non è necessario un gruppo di affinità, creare una nuova rete virtuale regionale per hello nuove risorse per aggiungere, quindi [connettersi la rete virtuale toohello nuova rete virtuale esistente](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/). Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/).
 
-In alternativa, è possibile [eseguire la migrazione della rete virtuale basata su gruppi di affinità alla rete virtuale dell'area](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/), quindi aggiungere di nuovo le risorse desiderate.
+In alternativa, è possibile [eseguire la migrazione della rete virtuale regionale rete virtuale basato su gruppo di affinità tooa](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/), quindi aggiungere nuovamente le risorse di hello desiderato.
 
-## <a name="detailed-troubleshooting-steps-specific-allocation-failure-scenarios-in-the-azure-resource-manager-deployment-model"></a>Procedura di risoluzione dei problemi dettagliata relativa a scenari con errori di allocazione nel modello di distribuzione Azure Resource Manager
-Ecco gli scenari di allocazione comuni che causano una richiesta di allocazione da bloccare. Verrà esaminato ogni scenario più avanti in questo articolo.
+## <a name="detailed-troubleshooting-steps-specific-allocation-failure-scenarios-in-hello-azure-resource-manager-deployment-model"></a>Risoluzione dei problemi di scenari di errore specifici di allocazioni di passaggi nel modello di distribuzione Azure Resource Manager hello dettagliata
+Di seguito sono comuni scenari di allocazione che comportano un toobe di richiesta di allocazione bloccato. Verrà esaminato ogni scenario più avanti in questo articolo.
 
-* Ridimensionare una VM o aggiungere VM o istanze dei ruoli a un servizio cloud esistente
+* Ridimensionare una macchina virtuale o aggiungere le macchine virtuali o il servizio cloud esistente di ruolo istanze tooan
 * Riavviare VM arrestate (deallocate) parzialmente
 * Riavviare VM arrestate (deallocate) completamente
 
-Quando si riceve un errore di allocazione, verificare se uno degli scenari descritti è pertinente con questo errore. Usare l'errore di allocazione restituito dalla piattaforma Azure per identificare lo scenario corrispondente. Se la richiesta è bloccata su un cluster esistente, rimuovere alcuni dei vincoli di blocco per aprire la richiesta a più cluster, aumentando quindi la possibilità di eseguire l'allocazione correttamente.
+Quando si riceve un errore di allocazione, vedere se uno degli scenari di hello descritti tooyour errore di applicazione. Utilizzare l'errore di allocazione hello restituito da uno scenario di corrispondente hello piattaforma Azure tooidentify hello. Se la richiesta è di tipo cluster esistente tooan bloccati, rimuovere alcuni hello blocco vincoli tooopen i cluster toomore richiesta, aumentando il possibilità di successo di allocazione di hello.
 
-In generale, finché l'errore non indica che le dimensioni della VM richieste non sono supportate, è sempre possibile riprovare in un secondo momento perché nel cluster potrebbero liberarsi risorse sufficienti per soddisfare la richiesta. Se il problema consiste nel fatto che le dimensioni richieste per la VM non sono supportate, vedere di seguito le soluzioni alternative.
+In generale, purché hello errore non indica "hello" necessaria manutenzione dimensioni della macchina virtuale non sono supportata", è possibile sempre riprovare in un secondo momento, come risorse sufficienti potrebbero essere stato liberato in hello cluster tooaccommodate la richiesta. Se il problema di hello che hello richiesto dimensioni della macchina virtuale non sono supportata, vedere di seguito per soluzioni alternative.
 
-## <a name="allocation-scenario-resize-a-vm-or-add-vms-to-an-existing-availability-set"></a>Scenario di allocazione: ridimensionare una VM o aggiungere VM a un set di disponibilità esistente
+## <a name="allocation-scenario-resize-a-vm-or-add-vms-tooan-existing-availability-set"></a>Scenario di allocazione: ridimensionare una macchina virtuale o aggiungere le macchine virtuali tooan set di disponibilità esistente
 **Errore**
 
-Upgrade_VMSizeNotSupported * o * GeneralError
+Upgrade_VMSizeNotSupported* o GeneralError*
 
 **Causa del blocco su un cluster**
 
-La richiesta di ridimensionamento di una VM o di aggiunta di una VM a un set di disponibilità esistente deve essere eseguita nel cluster originale che ospita il set di disponibilità esistente. La creazione di un nuovo set di disponibilità consente alla piattaforma Azure di trovare un altro cluster con risorse disponibili o che supporti le dimensioni della VM richieste.
+Richiesta tooresize una macchina virtuale o aggiungere tooan una macchina virtuale esistente di set di disponibilità ha toobe tentata al cluster originale hello che ospita il set di disponibilità esistente hello. Creazione di un nuovo set di disponibilità consente hello piattaforma Azure toofind un altro cluster che è liberare le risorse o supporta le dimensioni della macchina virtuale hello richiesto.
 
 **Soluzione alternativa**
 
-Se l'errore è Upgrade_VMSizeNotSupported*, provare con dimensioni della VM diverse. Se non è possibile usare dimensioni della VM diverse, arrestare tutte le VM nel set di disponibilità. In questo modo, è possibile modificare le dimensioni della macchina virtuale che alloca la VM a un cluster che supporta le dimensioni della VM desiderate.
+Se l'errore hello è Upgrade_VMSizeNotSupported *, provare a una dimensione di macchina virtuale diversa. Se l'utilizzo di diverse dimensioni macchina virtuale non è un'opzione, è possibile arrestare tutte le macchine virtuali nel set di disponibilità hello. È possibile quindi lo si desidera modificare le dimensioni di macchina virtuale hello allocherà cluster tooa della macchina virtuale hello che supporta hello hello dimensioni della macchina virtuale.
 
-Se l'errore è GeneralError, è probabile che il tipo di risorsa (ad esempio, le dimensioni specifiche della VM) sia supportato dal cluster, che al momento non dispone di risorse disponibili. Se la VM può far parte di un set di disponibilità diverso, creare una nuova VM in un altro set di disponibilità nella stessa area. La nuova VM può quindi essere aggiunta alla stessa rete virtuale.  
+Se l'errore hello è GeneralError *, è probabile che il tipo di hello di risorsa (ad esempio una determinata dimensione di macchina virtuale) è supportato dal cluster hello, ma cluster hello privo di liberare le risorse in un momento hello. Se hello VM può essere parte di un set di disponibilità diverso, è possibile creare una nuova macchina virtuale in un set di disponibilità diverso (in hello stessa regione). Questa nuova macchina virtuale può essere aggiunti toohello stessa rete virtuale.  
 
 ## <a name="allocation-scenario-restart-partially-stopped-deallocated-vms"></a>Scenario di allocazione: riavviare VM arrestate (deallocate) parzialmente
 **Errore**
@@ -170,11 +170,11 @@ GeneralError*
 
 **Causa del blocco su un cluster**
 
-La deallocazione parziale significa che una o più VM in un set di disponibilità sono state arrestate (deallocate), ma non tutte. Quando si arresta (viene deallocata) una VM, vengono rilasciate le risorse associate. Il riavvio della VM arrestata (deallocata) è quindi una nuova richiesta di allocazione. Riavviare le VM in un set di disponibilità parzialmente deallocato equivale ad aggiungere VM a un set di disponibilità esistente. La richiesta di allocazione deve essere eseguita nel cluster originale che ospita il set di disponibilità esistente.
+La deallocazione parziale significa che una o più VM in un set di disponibilità sono state arrestate (deallocate), ma non tutte. Quando si arresta (dealloca) una macchina virtuale, hello associata le risorse vengono rilasciate. Il riavvio della VM arrestata (deallocata) è quindi una nuova richiesta di allocazione. Riavvio delle macchine virtuali in un set di disponibilità parzialmente deallocata è equivalente tooadding gruppo di disponibilità di macchine virtuali tooan impostato. richiesta di allocazione Hello è toobe tentata al cluster originale hello che ospita il set di disponibilità esistente hello.
 
 **Soluzione alternativa**
 
-Arrestare tutte le VM nel set di disponibilità prima di riavviare la prima. Questo garantisce che venga eseguito un nuovo tentativo di allocazione e che si possa selezionare un nuovo cluster con capacità disponibile.
+Arrestare tutte le macchine virtuali nel set prima di riavviare hello prima di disponibilità di hello. Questo garantisce che venga eseguito un nuovo tentativo di allocazione e che si possa selezionare un nuovo cluster con capacità disponibile.
 
 ## <a name="allocation-scenario-restart-fully-stopped-deallocated"></a>Scenario di allocazione: riavviare in caso di arresto (deallocazione) completo
 **Errore**
@@ -183,26 +183,26 @@ GeneralError*
 
 **Causa del blocco su un cluster**
 
-La deallocazione completa significa che sono state arrestate (deallocate) tutte le VM in un set di disponibilità. La richiesta di allocazione per il riavvio di queste VM viene eseguita in tutti i cluster che supportano le dimensioni desiderate.
+La deallocazione completa significa che sono state arrestate (deallocate) tutte le VM in un set di disponibilità. richiesta di allocazione Hello toorestart queste macchine virtuali saranno destinati a tutti i cluster che supportano hello dimensioni desiderate.
 
 **Soluzione alternativa**
 
-Selezionare una nuova dimensione di VM da allocare. Se non funziona, riprovare in seguito.
+Selezionare un nuovo tooallocate dimensioni macchina virtuale. Se non funziona, riprovare in seguito.
 
 ## <a name="error-string-lookup"></a>Ricerca della stringa di errore
 **New_VMSizeNotSupported***
 
-"Impossibile eseguire il provisioning delle dimensioni della macchina virtuale (o della combinazione di dimensioni delle macchine virtuali) richieste da questa distribuzione, a causa di vincoli della richiesta di distribuzione. Se possibile, provare a rilasciare vincoli quali associazioni a reti virtuali, distribuzione a un servizio ospitato che non include alcun'altra distribuzione e a un gruppo di affinità diverso o senza alcun gruppo di affinità oppure provare a distribuire in un'area diversa".
+"hello VM dimensioni (o combinazione di dimensioni delle macchine Virtuali) richieste da questa distribuzione non è possibile eseguirne il provisioning a causa di vincoli richiesta toodeployment. Se possibile, provare a rilasciare vincoli quali associazioni a reti virtuali, distribuzione del servizio ospitato tooa con alcun'altra distribuzione in essa contenuti e la distribuzione di tooa affinità diverso o gruppo con alcun gruppo di affinità oppure provare a area diversa tooa. "
 
 **New_General***
 
-Allocazione non riuscita. Impossibile soddisfare i vincoli nella richiesta. La nuova distribuzione del servizio richiesta è vincolata a un gruppo di affinità, ha come destinazione una rete virtuale o è presente una distribuzione esistente in questo servizio ospitato. Una di queste condizioni vincola la nuova distribuzione a risorse Azure specifiche. Riprovare più tardi o provare a ridurre le dimensioni della macchina virtuale o il numero di istanze del ruolo. In alternativa, è possibile rimuovere i vincoli sopra indicati o tentare di distribuire in un'area diversa".
+"L'allocazione non riuscita. non è possibile toosatisfy vincoli nella richiesta. nuova distribuzione del servizio richiesto Hello è il gruppo di affinità tooan associati, o faccia riferimento a una rete virtuale è una distribuzione esistente in questo servizio ospitato. Una di queste condizioni vincola hello nuova distribuzione toospecific Azure le risorse. . Riprovare più tardi o provare a ridurre le dimensioni VM hello o numero di istanze del ruolo. In alternativa, se possibile, rimuovere i vincoli sopra hello o provare a distribuire area diversa tooa."
 
 **Upgrade_VMSizeNotSupported***
 
-"Non è possibile eseguire l'aggiornamento della distribuzione. È possibile che la dimensione della macchina virtuale XXX richiesta non sia disponibile nella distribuzione esistente. Riprovare più tardi, provare con una dimensione della macchina virtuale diversa o con un numero minore di istanze del ruolo oppure creare una distribuzione in un servizio ospitato vuoto con un nuovo gruppo di affinità o senza associazione a un gruppo di affinità".
+"Distribuzione hello tooupgrade non è possibile. Hello richiesto XXX dimensioni della macchina virtuale potrebbero non essere disponibile nelle risorse hello che supporta la distribuzione esistente di hello. Riprovare più tardi, provare con una dimensione della macchina virtuale diversa o con un numero minore di istanze del ruolo oppure creare una distribuzione in un servizio ospitato vuoto con un nuovo gruppo di affinità o senza associazione a un gruppo di affinità".
 
 **GeneralError***
 
-"Errore interno del server. Ritentare la richiesta" o "Non è stato possibile produrre un'allocazione per il servizio".
+"server hello verificato un errore interno. Ritentare la richiesta hello." O "Failed tooproduce un'allocazione per il servizio hello".
 

@@ -1,5 +1,5 @@
 ---
-title: Procedure consigliate per la sicurezza IoT | Documentazione Microsoft
+title: procedure ottimali di protezione aaaIoT | Documenti Microsoft
 description: Procedure consigliate per la protezione dell'infrastruttura IoT
 services: 
 suite: iot-suite
@@ -15,71 +15,71 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: yurid
-ms.openlocfilehash: dcab91856bcebb8f3bfab8cc69b63fad487f8ace
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a546c67978a519446ab6c83917a0789675f1b52
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="internet-of-things-security-best-practices"></a>Procedure consigliate per la sicurezza di Internet of Things
-Per proteggere un'infrastruttura Internet of Things (IoT) è richiesta una strategia di sicurezza rigorosa e approfondita. Questa strategia richiede la protezione dei dati nel cloud, dell'integrità dei dati in transito sulla rete internet pubblica e il provisioning sicuro dei dispositivi. Ogni livello crea maggiori garanzie di sicurezza dell'infrastruttura complessiva.
+toosecure un'infrastruttura di Internet delle cose (IoT) richiede una strategia di sicurezza in profondità rigorosa. Tale strategia richiede dati toosecure nel cloud hello, proteggere l'integrità dei dati in transito in hello rete internet pubblica e in modo sicuro il provisioning di dispositivi. Ogni livello si basa maggiori garanzie di sicurezza in hello intera infrastruttura.
 
 ## <a name="secure-an-iot-infrastructure"></a>Proteggere un'infrastruttura IoT
-Questa strategia di sicurezza può essere sviluppata e implementata con la partecipazione attiva dei vari attori coinvolti nella produzione, nello sviluppo e nella distribuzione di dispositivi e infrastrutture IoT. Di seguito è riportata una descrizione dettagliata degli attori.  
+Questa strategia di sicurezza può essere sviluppata e può essere eseguita con la partecipazione attiva di diversi attori di produzione di hello, sviluppo e la distribuzione dell'infrastruttura e i dispositivi IoT. Di seguito è riportata una descrizione dettagliata degli attori.  
 
-* **Produttore/integratore di hardware IoT**: in genere si tratta dei produttori dell'hardware IoT da distribuire, integratori che si occupano dell'assemblaggio di hardware da produttori diversi, oppure di fornitori per la distribuzione IoT prodotta o integrata da altri fornitori.
-* **Sviluppatore di soluzioni IoT**: lo sviluppo di una soluzione IoT viene in genere effettuato da uno sviluppatore di soluzioni. Uno sviluppatore può far parte di un team interno o un integratore di sistemi (SI) specializzato in questa attività. Lo sviluppatore di soluzioni IoT può sviluppare vari componenti della soluzione IoT partendo da zero, integrare vari componenti predefiniti o open source, oppure adottare soluzioni preconfigurate che necessitano di un adattamento minore.
-* **Distributore di soluzioni IoT**: una volta sviluppata, la soluzione IoT deve essere distribuita nell'ambiente. Ciò implica la distribuzione dell'hardware, l'interconnessione dei dispositivi e la distribuzione di soluzioni su dispositivi hardware o nel cloud.
-* **Operatore di soluzioni IoT**: una volta distribuita, la soluzione IoT richiede operazioni, monitoraggio, aggiornamenti e manutenzione a lungo termine. Questa operazione può essere eseguita da un team interno che comprende esperti di tecnologie informatiche, team per le operazioni hardware e team di manutenzione, nonché specialisti di dominio che monitorano il corretto funzionamento dell'intera infrastruttura IoT.
+* **Produttore di hardware IoT/integrator**: in genere, si tratta di produttori di hello dell'hardware IoT da distribuire, integratori di assemblaggio hardware da diversi produttori o fornitori fornendo hardware per una distribuzione di IoT prodotta integrata o da altri fornitori.
+* **Sviluppatore di soluzioni IoT**: sviluppo hello di una soluzione IoT in genere viene eseguito da uno sviluppatore di soluzioni. Uno sviluppatore può far parte di un team interno o un integratore di sistemi (SI) specializzato in questa attività. Hello IoT sviluppatore di soluzioni possa sviluppare vari componenti della soluzione IoT hello da zero, integrare i vari componenti preconfigurati o open source o adottare soluzioni preconfigurate con adattamento secondaria.
+* **Il distributore di soluzione IoT**: IoT dopo una soluzione viene sviluppata, è necessario toobe distribuito nel campo hello. Tale attività implica la distribuzione di hardware, l'interconnessione dei dispositivi e la distribuzione di soluzioni cloud hello o di dispositivi hardware.
+* **Operatore soluzione IoT**: dopo aver distribuito la soluzione IoT hello, richiede operazioni a lungo termine, il monitoraggio, manutenzione e aggiornamenti. Questa operazione può essere eseguita da un team interno che è costituito da esperti di informazioni, operazioni di hardware e i team di manutenzione e gli esperti di dominio che controllano il comportamento corretto dell'infrastruttura generale di IoT hello.
 
-Le sezioni che seguono descrivono le procedure consigliate per ognuno di questi attori per aiutare a sviluppare, distribuire e gestire un'infrastruttura IoT protetta.
+Hello che seguono forniscono le procedure consigliate per ognuno di questi lettori toohelp sviluppano, distribuire e utilizzare un'infrastruttura protetta di IoT.
 
 ## <a name="iot-hardware-manufacturerintegrator"></a>Produttore/integratore di hardware IoT
-Di seguito sono riportate le pratiche ottimali per i produttori di hardware IoT e gli integratori di hardware.
+di seguito Hello sono consigliate hello IoT produttori di hardware e integratori di hardware.
 
-* **Impostare l'hardware sui requisiti minimi**: la progettazione dell'hardware deve includere esclusivamente le funzionalità minime necessarie per il funzionamento. Ad esempio, è possibile includere porte USB solo se necessario al funzionamento del dispositivo. Queste funzionalità aggiuntive espongono il dispositivo a vettori di attacchi indesiderati, che sarebbe opportuno evitare.
-* **Realizzare hardware a prova di manomissione**: meccanismi integrati per il rilevamento di manomissioni fisiche, ad esempio l'apertura del coperchio del dispositivo o la rimozione di una parte del dispositivo. Questi segnali di manomissione possono essere inseriti nel flusso dei dati caricati nel cloud, al fine di segnalare tali eventi agli operatori.
-* **Creare un hardware sicuro**: se il costo del venduto lo consente, creare funzionalità di sicurezza, ad esempio l'archiviazione protetta e crittografata o la funzionalità di avvio basata sul modulo TPM (Trusted Platform Module). Queste funzionalità rendono i dispositivi più sicuri e aiutano a proteggere l'intera infrastruttura IoT.
-* **Implementare aggiornamenti sicuri**: gli aggiornamenti del firmware durante il ciclo di vita del dispositivo non possono essere evitati. La creazione di dispositivi con percorsi protetti per gli aggiornamenti e crittografia protetta delle versioni del firmware consentirà al dispositivo di rimanere protetto durante e dopo gli aggiornamenti.
+* **Ambito i requisiti hardware toominimum**: progettazione hardware hello deve includere funzionalità di hello minime necessarie per l'operazione di hardware hello e nient'altro. Un esempio è porte USB tooinclude solo se è necessario per l'operazione di hello del dispositivo hello. Queste funzionalità aggiuntive aprire il dispositivo hello per vettori di attacco indesiderati che dovrebbero essere evitate.
+* **Rendere hardware manomissione**: compilare in meccanismi toodetect fisico manomissioni, ad esempio l'apertura della copertura dispositivo hello o la rimozione di una parte del dispositivo hello. Questi alterare segnali può essere parte di hello dati flusso caricato toohello nel cloud, che potrebbe avvisi agli operatori di questi eventi.
+* **Creare un hardware sicuro**: se il costo del venduto lo consente, creare funzionalità di sicurezza, ad esempio l'archiviazione protetta e crittografata o la funzionalità di avvio basata sul modulo TPM (Trusted Platform Module). Questi dispositivi assicurarsi di funzionalità più sicure e proteggere hello intera infrastruttura di IoT.
+* **Proteggere gli aggiornamenti**: gli aggiornamenti del Firmware nel corso della durata hello del dispositivo hello sono inevitabili. Compilazione di dispositivi con percorsi protetti per gli aggiornamenti e la garanzia crittografica di versioni del firmware consentirà hello dispositivo toobe protetta durante e dopo ogni aggiornamento.
 
 ## <a name="iot-solution-developer"></a>Sviluppatore di soluzioni IoT
-Di seguito sono riportate le pratiche ottimali per gli sviluppatori di soluzioni IoT:
+esempio Hello è hello procedure consigliate per gli sviluppatori di soluzioni IoT.
 
-* **Applicare una metodologia di sviluppo software protetta**: lo sviluppo di software protetti richiede una riflessione totale riguardo alla sicurezza dall'inizio del progetto fino all'implementazione, al test e alla distribuzione. Le scelte di piattaforme, linguaggi e strumenti è influenzata dalla metodologia. Microsoft Security Development Lifecycle fornisce un approccio dettagliato per la creazione di software protetti.
-* **Scegliere software open source con attenzione**: il software open source consente di sviluppare soluzioni in modo rapido. Quando si sceglie il software open source, valutare il livello di attività della community per ogni componente open source. Una community attiva garantisce il supporto del software e la possibilità di rilevare e risolvere i problemi. Al contrario, un software open source incomprensibile e inattivo non verrebbe supportato e i problemi non verranno probabilmente rilevati.
-* **Eseguire l'integrazione con attenzione**: molti dei problemi di sicurezza del software intervengono al confine tra librerie e API. Le funzionalità non necessarie per la distribuzione in corso potrebbero essere ancora disponibili tramite un livello di API. Per garantire la sicurezza complessiva, assicurarsi di controllare tutte le interfacce dei componenti integrati per rilevare eventuali difetti di protezione.      
+* **Seguire la metodologia di sviluppo software protetto**: sviluppo di software sicuro richiede interamente progettato pensando di sicurezza, dall'inizio di hello del progetto hello implementazione tooits modo di hello, test e distribuzione. opzioni di Hello di piattaforme, i linguaggi e strumenti sono influenzate con questa metodologia. Microsoft Security Development Lifecycle Hello fornisce un approccio graduale toobuilding sicuro del software.
+* **Scegliere software open source con cautela**: software Open source offre l'opportunità tooquickly lo sviluppo di soluzioni. Se si sceglie software open source, prendere in considerazione il livello di attività hello della community di hello per ogni componente open source. Una community attiva garantisce il supporto del software e la possibilità di rilevare e risolvere i problemi. Al contrario, un software open source incomprensibile e inattivo non verrebbe supportato e i problemi non verranno probabilmente rilevati.
+* **Integrazione con cautela**: molti punti deboli di protezione software esistono confine hello di librerie e API. Funzionalità che non possono essere necessari per la distribuzione corrente di hello potrebbe essere ancora disponibili tramite un livello di API. tooensure sicurezza complessiva, assicurarsi che toocheck tutte le interfacce di componenti integrati per problemi di sicurezza.      
 
 ## <a name="iot-solution-deployer"></a>Distributore di soluzioni IoT
-Di seguito sono riportate le pratiche ottimali per i distributori di soluzioni IoT:
+esempio Hello è procedure consigliate per deployer soluzione IoT.
 
-* **Distribuire l'hardware in modo sicuro**: le distribuzioni IoT potrebbero richiedere che l'hardware da distribuire si trovi in posizioni non protette, ad esempio spazi pubblici o posizioni non controllate. In questi casi, assicurarsi che la distribuzione dell'hardware garantisca la massima protezione dalle manomissioni. Se l'hardware dispone di porte USB o di altro tipo, assicurarsi che questi elementi siano protetti. Molti vettori di attacco possono usarle come punto di ingresso.
-* **Proteggere le chiavi di autenticazione**: durante la distribuzione, ogni dispositivo richiede gli ID dei dispositivi e le chiavi di autenticazione associate generate dal servizio cloud. Conservare fisicamente queste chiavi al sicuro anche dopo la distribuzione. Qualsiasi chiave compromessa può essere usata da un dispositivo non autorizzato per passare come dispositivo esistente.
+* **Distribuzione protetta hardware**: le distribuzioni di IoT possono richiedere hardware toobe distribuite nei percorsi non sicuri, ad esempio spazi pubblici o non supervisionato le impostazioni locali. In tali situazioni, verificare che la distribuzione di hardware misura massima consentita da eventuali alterazioni toohello. Se sono disponibili su hardware hello USB o altre porte, assicurarsi che vengono recuperati in modo sicuro. Molti vettori di attacco possono usarle come punto di ingresso.
+* **Proteggere le chiavi di autenticazione**: durante la distribuzione, ogni dispositivo richiede l'ID dispositivo e chiavi di autenticazione generate dal servizio cloud hello associata. Conservare queste chiavi fisicamente sicuro anche dopo la distribuzione di hello. Un tasto qualsiasi compromesso è utilizzabile da un toomasquerade dispositivo dannoso come un dispositivo esistente.
 
 ## <a name="iot-solution-operator"></a>Operatore di soluzioni IoT
-Di seguito sono riportate le pratiche ottimali per gli operatori di soluzioni IoT:
+esempio Hello è hello procedure consigliate per gli operatori di soluzione IoT.
 
-* **Aggiornare il sistema regolarmente**: assicurarsi che tutti i sistemi operativi e i driver dei dispositivi vengano aggiornati alle versioni più recenti. Se si attiva la funzionalità di aggiornamento automatico su Windows 10 (IoT o altri SKU), Microsoft mantiene il sistema aggiornato, garantendo un sistema operativo protetto per i dispositivi IoT. Mantenere aggiornati gli altri sistemi operativi (ad esempio Linux) aiuta a garantirne la protezione anche dagli attacchi dannosi.
-* **Proteggere i sistemi da attività dannose**: se il sistema operativo lo consente, installare le più recenti funzionalità antivirus e anti-malware su ogni sistema operativo del dispositivo. In questo modo è possibile mitigare le minacce più esterne. È possibile proteggere i sistemi operativi più recenti dalle minacce eseguendo i passaggi appropriati.
-* **Effettuare controlli regolari**: controllare la presenza di problemi di sicurezza all'infrastruttura IoT è un fattore chiave durante la risposta agli incidenti di sicurezza. La maggior parte dei sistemi operativi offre la registrazione integrata degli eventi che è opportuno esaminare frequentemente per assicurarsi che non si verifichino violazioni della protezione. Le informazioni di controllo possono essere inviate come flusso dati di telemetria separati al servizio cloud per l'analisi.
-* **Proteggere fisicamente l'infrastruttura IoT**: gli attacchi più dannosi per la sicurezza dell'infrastruttura IoT vengono lanciati tramite l'accesso fisico ai dispositivi. Un'importante procedura di sicurezza è la protezione contro l'uso non autorizzato di porte USB e altri accessi fisici. Un'operazione fondamentale per rilevare eventuali violazioni è la registrazione degli accessi fisici, come l'uso delle porte USB. Anche in questo caso, Windows 10 (IoT e altri SKU) offre la registrazione dettagliata di questi eventi.
-* **Proteggere le credenziali del cloud**: le credenziali per l'autenticazione nel cloud usate per la configurazione e il funzionamento di una distribuzione IoT costituiscono probabilmente il modo più semplice per accedere e compromettere un sistema IoT. Proteggere le credenziali modificando frequentemente la password ed evitare di usarle sui computer pubblici.
+* **Mantenere sistema hello toodate**: assicurarsi che i sistemi operativi dei dispositivi e tutti i driver di dispositivo siano aggiornati toohello di versioni più recenti. Se si attiva aggiornamenti automatici in Windows 10 (IoT o altri SKU), Microsoft la conserva il backup toodate, fornire un sistema operativo protetto per i dispositivi IoT. Mantenere altri sistemi operativi (ad esempio Linux) toodate consente di assicurare che siano protetti anche contro attacchi dannosi.
+* **Proteggersi da attività dannose**: se consentito dal sistema operativo hello, installare funzionalità antivirus e antimalware più recenti hello in ogni sistema operativo del dispositivo. In questo modo è possibile mitigare le minacce più esterne. È possibile proteggere i sistemi operativi più recenti dalle minacce eseguendo i passaggi appropriati.
+* **Controllare spesso**: infrastruttura di controllo IoT per problemi correlati alla sicurezza è chiave quando si risponde a eventi imprevisti toosecurity. La maggior parte dei sistemi operativi forniscono la registrazione di eventi predefiniti che deve essere esaminate spesso toomake assicurarsi di che non violazione di sicurezza. Informazioni di controllo possono essere inviate come servizio cloud toohello flusso dati di telemetria separato in cui può essere analizzato.
+* **Proteggere fisicamente infrastruttura IoT hello**: hello attacchi alla protezione contro IoT infrastruttura vengono avviati con accesso fisico toodevices peggiore. Una misura di sicurezza è tooprotect contro uso dannoso di porte USB e altre accesso fisico. Violazioni uno toouncovering chiave che potrebbero essersi verificati è la registrazione di accesso fisico, ad esempio di utilizzo della porta USB. Anche in questo caso, Windows 10 (IoT e altri SKU) offre la registrazione dettagliata di questi eventi.
+* **Proteggere le credenziali di cloud**: le credenziali di autenticazione Cloud utilizzate per la configurazione e il funzionamento di una distribuzione IoT sono probabilmente accesso toogain modo più semplice di hello e compromettere un sistema IoT. Proteggere le credenziali di hello modificando la password di hello frequentemente ed evitare l'utilizzo di queste credenziali per i computer pubblici.
 
-Le capacità dei vari dispositivi IoT variano. Alcuni dispositivi potrebbero essere computer dotati di sistemi operativi desktop tradizionali, mentre altri dispositivi potrebbero disporre di sistemi operativi molto leggeri. Le migliori pratiche per la protezione descritte in precedenza possono essere applicate a questi dispositivi in modo diverso. Se specificato, è necessario attenersi alle procedure aggiuntive per la sicurezza e la distribuzione fornite dai produttori dei dispositivi.
+Le capacità dei vari dispositivi IoT variano. Alcuni dispositivi potrebbero essere computer dotati di sistemi operativi desktop tradizionali, mentre altri dispositivi potrebbero disporre di sistemi operativi molto leggeri. Hello procedure ottimali di protezione descritti in precedenza potrebbero essere dispositivi toothese applicabili a vari livelli. Se fornito, devono essere seguite sicurezza e distribuzione di procedure consigliate aggiuntive produttori hello di questi dispositivi.
 
-Alcuni dispositivi legacy e limitati potrebbero non essere stati progettati in modo specifico per la distribuzione IoT. Questi dispositivi potrebbero non essere in grado di crittografare i dati, stabilire connessioni a Internet, o fornire un controllo avanzato. In questi casi, l'uso di un gateway moderno e sicuro sul campo può aggregare i dati dai dispositivi legacy al fine di garantire la protezione necessaria per la connessione di questi dispositivi a Internet. I gateway sul campo offrono l'autenticazione protetta, la negoziazione per le sessioni crittografate, la ricezione di comandi dal cloud e molte altre funzionalità di sicurezza.
+Alcuni dispositivi legacy e limitati potrebbero non essere stati progettati in modo specifico per la distribuzione IoT. Questi dispositivi potrebbero non dispongono di dati di hello funzionalità tooencrypt, connettersi hello Internet o fornire il controllo avanzate. In questi casi, un gateway campo moderno e sicuro possibile aggregare i dati dai dispositivi legacy e garantire la sicurezza di hello necessario per la connessione di questi dispositivi su Internet hello. Gateway campo può fornire l'autenticazione protetta, la negoziazione di sessioni crittografate, ricezione di comandi da hello cloud e molte altre funzionalità di sicurezza.
 
 ## <a name="see-also"></a>Vedere anche
-Per altre informazioni sulla protezione della soluzione IoT, vedere:
+toolearn più sulla protezione soluzione IoT, vedere:
 
 * [Architettura della sicurezza IoT][lnk-security-architecture]
 * [Proteggere la distribuzione di IoT][lnk-security-deployment]
 
-È anche possibile esplorare alcune altre funzionalità delle soluzioni preconfigurate di IoT Suite:
+È anche possibile esplorare alcune hello altre caratteristiche e funzionalità di soluzioni di IoT Suite preconfigurato hello:
 
 * [Panoramica della soluzione preconfigurata di manutenzione predittiva][lnk-predictive-overview]
 * [Domande frequenti su Azure IoT Suite][lnk-faq]
 
-Informazioni sulla protezione dell'hub IoT sono disponibili in [Controllare l'accesso all'hub IoT][lnk-devguide-security] nella guida per gli sviluppatori dell'hub IoT.
+È possibile leggere sulla sicurezza di IoT Hub in [tooIoT accesso controllo Hub] [ lnk-devguide-security] nella Guida per sviluppatori di IoT Hub hello.
 
 [lnk-predictive-overview]: iot-suite-predictive-overview.md
 [lnk-faq]: iot-suite-faq.md

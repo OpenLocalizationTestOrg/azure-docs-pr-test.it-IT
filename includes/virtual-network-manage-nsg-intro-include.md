@@ -1,0 +1,2 @@
+Dopo aver creato uno o più rete sicurezza gruppi, è necessario toobe tooretrieve in grado di informazioni sul NSGs, aggiungere e rimuovere le regole, modificare le regole esistenti, associare o dissociare NSGs ed eliminare NSGs. In questo articolo si apprenderà come tooexecute di queste attività. Prima di poter gestire NSGs, è importante tooknow [funzionamento NSGs](../articles/virtual-network/virtual-networks-nsg.md). 
+

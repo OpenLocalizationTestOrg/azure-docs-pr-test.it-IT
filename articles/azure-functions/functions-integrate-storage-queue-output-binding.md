@@ -1,6 +1,6 @@
 ---
-title: Creare una funzione in Azure attivata da messaggi di coda | Microsoft Docs
-description: Usare Funzioni di Azure per creare una funzione senza server che viene richiamata da un messaggio inviato a una coda di archiviazione di Azure.
+title: una funzione in Azure attivato da messaggi in coda aaaCreate | Documenti Microsoft
+description: Utilizzare le funzioni di Azure toocreate una funzione senza che viene richiamata da un messaggio inviato tooan coda di archiviazione di Azure.
 services: azure-functions
 documentationcenter: na
 author: ggailey777
@@ -16,23 +16,23 @@ ms.workload: na
 ms.date: 08/17/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 57c59273a9da55f3e357764c522b444ae2d73cb5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44db90fa80bf77e31bf53dddabd7136de5800b11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-messages-to-an-azure-storage-queue-using-functions"></a>Aggiungere messaggi a una coda di archiviazione di Azure tramite Funzioni
+# <a name="add-messages-tooan-azure-storage-queue-using-functions"></a>Aggiungere una coda di archiviazione di Azure tooan messaggi utilizzando le funzioni
 
-In Funzioni di Azure, i binding di input e di output forniscono una modalità dichiarativa per connettersi a dati di servizio esterni dalla funzione. Questo argomento illustra come aggiornare una funzione esistente mediante l'aggiunta di un binding di output che invia messaggi all'archiviazione code di Azure.  
+Nelle funzioni di Azure, le associazioni di input e outpue forniscono dati di servizio tooexternal tooconnect una modalità dichiarativa dalla funzione. In questo argomento, informazioni su come tooupdate una funzione esistente aggiungendo un output di associazione che invia messaggi tooAzure l'archiviazione delle code.  
 
-![Visualizzare il messaggio nei log.](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
+![Visualizza messaggio hello log.](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
 
 ## <a name="prerequisites"></a>Prerequisiti 
 
 [!INCLUDE [Previous topics](../../includes/functions-quickstart-previous-topics.md)]
 
-* Installare [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
+* Installare hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
 
 ## <a name="add-binding"></a>Aggiungere un binding di output
  
@@ -40,27 +40,27 @@ In Funzioni di Azure, i binding di input e di output forniscono una modalità di
 
 2. Selezionare **Integrazione**, **+ Nuovo output** e quindi scegliere **Archiviazione code di Azure** e **Seleziona**.
     
-    ![Aggiungere un binding di output di Archiviazione code a una funzione nel portale di Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
+    ![Aggiungere una funzione di coda archiviazione output associazione tooa in hello portale di Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
 
-3. Usare le impostazioni specificate nella tabella: 
+3. Utilizza le impostazioni di hello come specificato nella tabella hello: 
 
-    ![Aggiungere un binding di output di Archiviazione code a una funzione nel portale di Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
+    ![Aggiungere una funzione di coda archiviazione output associazione tooa in hello portale di Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
 
     | Impostazione      |  Valore consigliato   | Descrizione                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **Nome coda**   | myqueue-items    | Nome della coda a cui connettersi nell'account di archiviazione. |
-    | **Connessione dell'account di archiviazione** | AzureWebJobStorage | È possibile usare la connessione dell'account di archiviazione già usata dall'app per le funzioni oppure crearne una nuova.  |
-    | **Nome del parametro del messaggio** | outputQueueItem | Nome del parametro di binding di output. | 
+    | **Nome coda**   | myqueue-items    | nome Hello di hello coda tooconnect tooin account di archiviazione. |
+    | **Connessione dell'account di archiviazione** | AzureWebJobStorage | È possibile utilizzare una connessione ad account di archiviazione hello già in uso dalla tua app di funzione o crearne uno nuovo.  |
+    | **Nome del parametro del messaggio** | outputQueueItem | nome Hello del parametro di associazione di output di hello. | 
 
-4. Fare clic su **Salva** per aggiungere il binding.
+4. Fare clic su **salvare** associazione hello tooadd.
  
-Dopo aver definito un binding di output, è necessario ora aggiornare il codice in modo da usare il binding per aggiungere messaggi a una coda.  
+Dopo aver creato un'associazione di output definita, è necessario tooupdate hello codice toouse hello associazione tooadd tooa coda dei messaggi.  
 
-## <a name="update-the-function-code"></a>Aggiornare il codice funzione
+## <a name="update-hello-function-code"></a>Aggiornare il codice di funzione hello
 
-1. Selezionare la funzione per visualizzare il codice funzione nell'editor. 
+1. Selezionare il codice della funzione hello toodisplay funzione nell'editor di hello. 
 
-2. Per una funzione C#, aggiornare la definizione di funzione come illustrato di seguito per aggiungere il parametro di binding di archiviazione **outputQueueItem**. Ignorare questo passaggio per le funzioni JavaScript.
+2. Per una funzione c#, aggiornare la definizione di funzione come segue hello tooadd **outputQueueItem** parametro di associazione di archiviazione. Ignorare questo passaggio per le funzioni JavaScript.
 
     ```cs   
     public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, 
@@ -70,48 +70,48 @@ Dopo aver definito un binding di output, è necessario ora aggiornare il codice 
     }
     ```
 
-3. Aggiungere il codice seguente alla funzione poco prima che venga restituito il metodo. Usare il frammento appropriato per il linguaggio della funzione.
+3. Aggiungere hello dopo la funzione di toohello codice appena prima di avviare hello metodo restituisce. Utilizzare frammento appropriato hello per lingua hello della funzione.
 
     ```javascript
-    context.bindings.outputQueueItem = "Name passed to the function: " + 
+    context.bindings.outputQueueItem = "Name passed toohello function: " + 
                 (req.query.name || req.body.name);
     ```
 
     ```cs
-    outputQueueItem.Add("Name passed to the function: " + name);     
+    outputQueueItem.Add("Name passed toohello function: " + name);     
     ```
 
-4. Selezionare **Salva** per salvare le modifiche.
+4. Selezionare **salvare** toosave modifiche.
 
-Il valore passato al trigger HTTP è incluso in un messaggio aggiunto alla coda.
+il valore di Hello passato trigger HTTP toohello è incluso in una coda toohello aggiunto.
  
-## <a name="test-the-function"></a>Testare la funzione 
+## <a name="test-hello-function"></a>Funzione hello test 
 
-1. Dopo aver salvato le modifiche al codice, selezionare **Esegui**. 
+1. Dopo aver salvati le modifiche al codice hello, selezionare **eseguire**. 
 
-    ![Aggiungere un binding di output di Archiviazione code a una funzione nel portale di Azure.](./media/functions-integrate-storage-queue-output-binding/functions-test-run-function.png)
+    ![Aggiungere una funzione di coda archiviazione output associazione tooa in hello portale di Azure.](./media/functions-integrate-storage-queue-output-binding/functions-test-run-function.png)
 
-2. Controllare i log per assicurarsi che la funzione abbia avuto esito positivo. Quando il binding di output viene usato per la prima volta, nell'account di archiviazione viene creata dal runtime Funzioni una nuova coda denominata **outqueue**.
+2. Controllare toomake registri hello assicurarsi che la funzione hello ha avuto esito positivo. Una nuova coda denominata **outqueue** creati hello funzioni runtime quando l'associazione di output di hello viene innanzitutto utilizzata nell'account di archiviazione.
 
-È possibile quindi connettersi all'account di archiviazione per verificare la nuova coda e il messaggio aggiunto. 
+Successivamente, è possibile connettersi tooyour storage account tooverify hello nuova coda, il messaggio hello che tooit è stato aggiunto. 
 
-## <a name="connect-to-the-queue"></a>Connettersi alla coda
+## <a name="connect-toohello-queue"></a>Connettersi toohello coda
 
-Ignorare i primi tre passaggi se Esplora archivi è già stato installato e connesso all'account di archiviazione.    
+Ignora hello i primi tre passaggi se si dispone già installato soluzioni di archiviazione e averlo connesso tooyour account di archiviazione.    
 
-1. Nella funzione scegliere **Integrazione** e il nuovo binding di output **Archiviazione code di Azure** e quindi espandere **Documentazione**. Copiare sia **Nome account** sia **Chiave account**. Usare queste credenziali per connettersi all'account di archiviazione.
+1. Nella funzione, scegliere **integrazione** e hello nuovo **l'archiviazione delle code di Azure** associazione di output, quindi espandere **documentazione**. Copiare sia **Nome account** sia **Chiave account**. Utilizzare questi account di archiviazione di credenziali tooconnect toohello.
  
-    ![Ottenere le credenziali per la connessione all'account di archiviazione.](./media/functions-integrate-storage-queue-output-binding/function-get-storage-account-credentials.png)
+    ![Ottenere l'account di archiviazione hello le credenziali di connessione.](./media/functions-integrate-storage-queue-output-binding/function-get-storage-account-credentials.png)
 
-2. Eseguire lo strumento [Microsoft Azure Storage Explorer](http://storageexplorer.com/), selezionare l'icona di connessione a sinistra, scegliere **Use a storage account name and key** (Usare il nome e la chiave di un account di archiviazione) e selezionare **Avanti**.
+2. Eseguire hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/) strumento, seleziona hello icona a sinistra di hello della connessione, scegliere **utilizzare un nome account di archiviazione e una chiave**e selezionare **Avanti**.
 
-    ![Eseguire lo strumento di esplorazione dell'account di archiviazione.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-1.png)
+    ![Eseguire lo strumento di esplorazione dell'archiviazione Account hello.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-1.png)
     
-3. Incollare il **Nome account** e la **Chiave dell'account** dal Passaggio 1 nei rispettivi campi corrispondenti, quindi selezionare **Avanti** e infine **Connetti**. 
+3. Hello Incolla **nome Account** e **chiave dell'Account** ottenuto al passaggio 1 in campi corrispondenti, quindi selezionare **Avanti**, e **Connetti**. 
   
-    ![Incollare le credenziali di archiviazione ed eseguire la connessione.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-2.png)
+    ![Incollare le credenziali di archiviazione hello e connettersi.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-2.png)
 
-4. Espandere l'account di archiviazione associato e **Code** e quindi verificare che esista una coda denominata **myqueue-items**. Dovrebbe anche essere presente un messaggio nella coda.  
+4. Espandere il nodo di account di archiviazione collegato hello, **code** e verificare che una coda denominata **myqueue elementi** esiste. Inoltre, si verrà visualizzato un messaggio già in coda hello.  
  
     ![Creare una coda di archiviazione.](./media/functions-integrate-storage-queue-output-binding/function-queue-storage-output-view-queue.png)
  
@@ -122,11 +122,11 @@ Ignorare i primi tre passaggi se Esplora archivi è già stato installato e conn
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-È stato aggiunto un binding di output a una funzione esistente. 
+È stata aggiunta una funzione di output associazione tooan esistente. 
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-Per altre informazioni sul binding all'archiviazione code, vedere [Associazioni della coda dell'archiviazione di Funzioni di Azure](functions-bindings-storage-queue.md). 
+Per ulteriori informazioni sull'associazione tooQueue archiviazione, vedere [associazioni di coda di archiviazione di Azure funzioni](functions-bindings-storage-queue.md). 
 
 
 

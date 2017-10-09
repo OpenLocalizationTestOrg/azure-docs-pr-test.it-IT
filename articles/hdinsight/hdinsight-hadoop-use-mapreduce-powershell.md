@@ -1,6 +1,6 @@
 ---
-title: Usare MapReduce e PowerShell con Hadoop - Azure HDInsight | Microsoft Docs
-description: "Informazioni su come usare PowerShell per eseguire in modalità remota processi MapReduce con Hadoop in HDInsight."
+title: aaaUse MapReduce e PowerShell con Hadoop - HDInsight di Azure | Documenti Microsoft
+description: Informazioni su come toouse tooremotely di PowerShell eseguire i processi MapReduce con Hadoop in HDInsight.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,56 +16,56 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/16/2017
 ms.author: larryfr
-ms.openlocfilehash: c3801573808709f29cb1e563ac803f225a28cafc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 59524f0e8813d4c017f92bccb2e50d4c018acf71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-mapreduce-jobs-with-hadoop-on-hdinsight-using-powershell"></a>Esecuzione di processi MapReduce con Hadoop in HDInsight mediante PowerShell
 
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-Questo documento fornisce un esempio di come usare Azure PowerShell per eseguire un processo MapReduce in un cluster Hadoop in HDInsight.
+Questo documento viene fornito un esempio dell'utilizzo di Azure PowerShell toorun un processo MapReduce in un Hadoop nel cluster HDInsight.
 
 ## <a id="prereq"></a>Prerequisiti
 
 * **Un cluster Azure HDInsight (Hadoop in HDInsight)**
 
   > [!IMPORTANT]
-  > Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * **Workstation con Azure PowerShell**.
 
 ## <a id="powershell"></a>Eseguire un processo MapReduce con Azure PowerShell
 
-Azure PowerShell fornisce *cmdlet* che consentono di eseguire in modalità remota processi MapReduce in HDInsight. Questo risultato si ottiene internamente usando chiamate REST a [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (chiamato in precedenza Templeton) in esecuzione nel cluster HDInsight.
+Azure PowerShell fornisce *cmdlet* che consentono di tooremotely eseguire i processi MapReduce in HDInsight. Internamente, questa operazione viene eseguita tramite le chiamate REST troppo[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (precedentemente denominato Templeton) in esecuzione su hello cluster HDInsight.
 
-Durante l'esecuzione di processi MapReduce in un cluster HDInsight remoto, vengono usati i seguenti cmdlet.
+i cmdlet seguenti Hello vengono utilizzati durante l'esecuzione di processi MapReduce in un cluster HDInsight remoto.
 
-* **Login-AzureRmAccount**: autentica Azure PowerShell nella sottoscrizione di Azure.
+* **Account di accesso AzureRmAccount**: esegue l'autenticazione di Azure PowerShell tooyour sottoscrizione di Azure.
 
-* **New-AzureRmHDInsightMapReduceJobDefinition**: crea una nuova *definizione di processo* usando le informazioni MapReduce specificate.
+* **Nuovo AzureRmHDInsightMapReduceJobDefinition**: crea un nuovo *definizione del processo* utilizzando hello specificato le informazioni di MapReduce.
 
-* **Start-AzureRmHDInsightJob**: invia la definizione del processo a HDInsight, avvia il processo e restituisce un oggetto *job* che può essere usato per verificare lo stato del processo.
+* **Inizio AzureRmHDInsightJob**: invia hello processo definizione tooHDInsight, avvia il processo di hello e restituisce un *processo* oggetto che può essere utilizzato toocheck hello stato del processo di hello.
 
-* **Wait-AzureRmHDInsightJob**: usa l'oggetto job per verificare lo stato del processo. Attende che il processo venga completato o che scada il periodo di attesa previsto.
+* **Attesa AzureRmHDInsightJob**: utilizza hello oggetto toocheck hello stato del processo del processo di hello. È in attesa fino a quando non viene completato il processo di hello o viene superato il tempo di attesa hello.
 
-* **Get-AzureRmHDInsightJobOutput**: viene usato per recuperare l'output del processo.
+* **Get-AzureRmHDInsightJobOutput**: utilizzato l'output di hello tooretrieve del processo di hello.
 
-La seguente procedura illustra come usare questi cmdlet per eseguire un processo nel cluster HDInsight.
+Hello passaggi seguenti viene illustrato come toouse questi toorun cmdlet un processo del cluster HDInsight.
 
-1. Usando un editor, salvare il seguente codice come **mapreducejob.ps1**.
+1. Utilizzando un editor, salvare hello seguente di codice come **mapreducejob.ps1**.
 
     [!code-powershell[main](../../powershell_scripts/hdinsight/use-mapreduce/use-mapreduce.ps1?range=5-69)]
 
-2. Quindi, aprire un nuovo prompt dei comandi di **Azure PowerShell** . Passare al percorso del file **mapreducejob.ps1** , quindi usare il seguente comando per eseguire lo script.
+2. Quindi, aprire un nuovo prompt dei comandi di **Azure PowerShell** . Modificare il percorso toohello directory di hello **mapreducejob.ps1** file, quindi utilizzare lo script di comando toorun hello seguente hello:
 
         .\mapreducejob.ps1
 
-    Quando si esegue lo script viene chiesto il nome del cluster HDInsight e il nome dell'account Admin/HTTPS e la password per il cluster. Potrebbe anche essere richiesta l'autenticazione alla sottoscrizione di Azure.
+    Quando si esegue uno script di hello, richiesto per il nome di hello del cluster HDInsight hello e nome dell'account HTTPS/Admin hello e la password per il cluster hello. Potrebbe essere richiesta tooauthenticate tooyour sottoscrizione di Azure.
 
-3. Al termine del processo, viene visualizzato un output simile al testo seguente:
+3. Al termine del processo di hello, viene visualizzato toohello simili di output il testo seguente:
 
         Cluster         : CLUSTERNAME
         ExitCode        : 0
@@ -77,27 +77,27 @@ La seguente procedura illustra come usare questi cmdlet per eseguire un processo
         SubmissionTime  : 12/5/2014 8:34:09 PM
         JobId           : job_1415949758166_0071
 
-    Questo output indica che il processo è stato completato correttamente.
+    Questo output indica che il processo di hello è stata completata correttamente.
 
     > [!NOTE]
-    > Se **ExitCode** è un valore diverso da 0, vedere [Risoluzione dei problemi](#troubleshooting).
+    > Se hello **ExitCode** è un valore diverso da 0, vedere [risoluzione dei problemi](#troubleshooting).
 
-    Questo esempio consente anche di archiviare i file scaricati in un file **output.txt** nella directory in cui viene eseguito lo script.
+    In questo esempio viene inoltre archiviato hello scaricato i file tooan **txt** file nella directory hello eseguiti script hello da.
 
 ### <a name="view-output"></a>Visualizzare l’output
 
-Per vedere le parole e i numeri generati dal processo, aprire il file **output.txt** in un editor di testo.
+Aprire hello **txt** file in un hello toosee editor di testo parole e conta prodotti dal processo hello.
 
 > [!NOTE]
-> I file di output di un processo MapReduce non sono modificabili. Se pertanto si esegue di nuovo l'esempio, è necessario cambiare il nome del file di output.
+> file di output di Hello di un processo MapReduce non sono modificabili. Pertanto, se si esegue nuovamente questo esempio, è necessario nome hello toochange hello del file di output.
 
 ## <a id="troubleshooting"></a>Risoluzione dei problemi
 
-Se al termine del processo non vengono restituite informazioni, potrebbe essersi verificato un errore durante l'elaborazione. Per visualizzare informazioni relative all'errore per questo processo, aggiungere il seguente comando alla fine del file **mapreducejob.ps1** , salvare il file, quindi eseguirlo nuovamente.
+Se viene restituita alcuna informazione quando hello processo viene completato, potrebbe essersi verificato un errore durante l'elaborazione. informazioni sull'errore tooview per questo processo, aggiungere hello successivo comando toohello hello **mapreducejob.ps1** file, salvarlo e quindi eseguirla nuovamente.
 
 ```powershell
-# Print the output of the WordCount job.
-Write-Host "Display the standard output ..." -ForegroundColor Green
+# Print hello output of hello WordCount job.
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
         -Clustername $clusterName `
         -JobId $wordCountJob.JobId `
@@ -105,11 +105,11 @@ Get-AzureRmHDInsightJobOutput `
         -DisplayOutputType StandardError
 ```
 
-Questo cmdlet restituisce le informazioni scritte in STDERR nel server durante l'esecuzione del processo, che possono essere utili per determinare la causa del problema.
+Questo cmdlet restituisce le informazioni di hello che è stato scritto tooSTDERR nel server di hello quando è stato eseguito il processo di hello e può essere utile determinare perché il processo di hello non è riuscito.
 
 ## <a id="summary"></a>Riepilogo
 
-Come è possibile notare, Azure PowerShell fornisce un modo semplice per eseguire processi MapReduce in un cluster HDInsight, monitorare lo stato del processo e recuperare l'output.
+Come si può notare, Azure PowerShell fornisce toorun un modo semplice i processi MapReduce in un cluster HDInsight, lo stato del processo di monitoraggio hello e output di hello recuperare.
 
 ## <a id="nextsteps"></a>Passaggi successivi
 

@@ -1,6 +1,6 @@
 ---
-title: "Creare report e verificare l'integrità con Azure Service Fabric | Documentazione Microsoft"
-description: "Informazioni su come inviare report di integrità dal codice del servizio e su come verificare l'integrità del servizio usando gli strumenti di monitoraggio dell'integrità forniti da Azure Service Fabric."
+title: "aaaReport e controllo di integrità con Azure Service Fabric | Documenti Microsoft"
+description: "Informazioni su come rapporti di integrità toosend dal codice del servizio e modo fornisce l'integrità hello toocheck del servizio tramite gli strumenti di monitoraggio dell'integrità hello che Azure Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: dekapur
-ms.openlocfilehash: 83981d5bec14c06c509f1a8a4153dc23298f5ce0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bcb838fefe3f2054447e1731d709e455560260e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="report-and-check-service-health"></a>Creare report e verificare l'integrità dei servizi
-Quando si verificano problemi nei servizi, la possibilità di rispondere e correggere interruzioni ed eventi imprevisti dipende dalla capacità di rilevare i problemi in tempi rapidi. Se si segnalano problemi ed errori allo strumento di gestione dell'integrità di Azure Service Fabric dal codice del servizio, è possibile usare gli strumenti standard di monitoraggio dell'integrità forniti da Service Fabric per verificare lo stato di integrità.
+Quando i servizi verificano problemi le interruzioni interventi di correzione tooand toorespond possibilità dipende dai possibilità toodetect hello problemi rapidamente. Se si segnala errori e problemi di gestione di integrità di Azure Service Fabric toohello dal codice del servizio, è possibile utilizzare gli strumenti di Service Fabric fornisce lo stato di integrità hello toocheck di monitoraggio dello stato standard.
 
-È possibile segnalare lo stato di integrità dal servizio in tre modi:
+Esistono tre modi che è possibile segnalare l'integrità dal servizio hello:
 
 * Usare gli oggetti [Partition](https://docs.microsoft.com/dotnet/api/system.fabric.istatefulservicepartition) o [CodePackageActivationContext](https://docs.microsoft.com/dotnet/api/system.fabric.codepackageactivationcontext).  
-  È possibile usare gli oggetti `Partition` e `CodePackageActivationContext` per segnalare lo stato di integrità degli elementi appartenenti al contesto corrente. Il codice in esecuzione come parte di una replica può ad esempio segnalare lo stato di integrità solo sulla replica, sulla partizione a cui appartiene e sull'applicazione di cui fa parte.
+  È possibile utilizzare hello `Partition` e `CodePackageActivationContext` oggetti integrità hello tooreport di elementi che fanno parte del contesto corrente hello. Ad esempio, il codice che viene eseguito come parte di una replica può segnalare l'integrità solo su tale replica, hello partizione a cui appartiene e che fa parte di un'applicazione hello.
 * Usare `FabricClient`.   
-  È possibile usare `FabricClient` per segnalare lo stato di integrità dal codice del servizio se il cluster non è [sicuro](service-fabric-cluster-security.md) o se il servizio è in esecuzione con privilegi di amministratore. La maggior parte degli scenari reali non usa cluster non protetti oppure fornisce privilegi di amministratore. Con `FabricClient`è possibile segnalare lo stato di integrità per qualsiasi entità appartenente al cluster. Idealmente il codice del servizio dovrebbe tuttavia inviare solo report correlati alla propria integrità.
-* Usare le API REST a livello di cluster, applicazione, applicazione distribuita, servizio, pacchetto di servizio, replica o nodo. In questo modo è possibile segnalare l'integrità direttamente da un contenitore.
+  È possibile utilizzare `FabricClient` integrità tooreport dal codice del servizio hello se non è cluster hello [sicura](service-fabric-cluster-security.md) o se il servizio di hello è in esecuzione con privilegi di amministratore. La maggior parte degli scenari reali non usa cluster non protetti oppure fornisce privilegi di amministratore. Con `FabricClient`, è possibile segnalare l'integrità per qualsiasi entità che fa parte del cluster di hello. In teoria, tuttavia, codice del servizio deve solo inviare i report correlati tooits sanitari.
+* Utilizzare API REST di hello cluster hello, applicazione, applicazione distribuita, servizio, pacchetto del servizio, una partizione, replica o livelli dei nodi. Può trattarsi di integrità tooreport utilizzati all'interno di un contenitore.
 
-Questo articolo illustra un esempio in cui viene segnalato lo stato di integrità dal codice del servizio. L'esempio mostra anche come usare gli strumenti forniti da Service Fabric per verificare lo stato di integrità. Questo articolo può essere usato come breve introduzione alle funzionalità di monitoraggio dell'integrità di Service Fabric. Per informazioni più dettagliate, è possibile leggere la serie di articoli di approfondimento sull'integrità accessibili dal collegamento presente alla fine di questo documento.
+Questo articolo viene illustrato un esempio che segnala l'integrità dal codice del servizio hello. esempio Hello Mostra anche come strumenti hello forniti dall'infrastruttura di servizio possono essere utilizzato toocheck hello lo stato di integrità. In questo articolo è previsto toobe integrità toohello di introduzione funzionalità di monitoraggio di Service Fabric. Per informazioni più dettagliate, è possibile leggere una serie di hello di articoli approfonditi su integrità che iniziano con collegamento hello alla fine di hello di questo articolo.
 
 ## <a name="prerequisites"></a>Prerequisiti
-È necessario che siano installati i seguenti elementi:
+È necessario avere installato quanto segue hello:
 
 * Visual Studio 2015 o Visual Studio 2017
 * Service Fabric SDK
 
-## <a name="to-create-a-local-secure-dev-cluster"></a>Per creare un cluster di sviluppo sicuro locale
-* Aprire PowerShell con privilegi di amministratore ed eseguire i comandi seguenti:
+## <a name="toocreate-a-local-secure-dev-cluster"></a>toocreate un cluster locale sviluppo sicuro
+* Aprire PowerShell con privilegi di amministratore ed eseguire hello seguenti comandi:
 
-![Comandi che mostrano come creare un cluster di sviluppo sicuro locale](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-secure-dev-cluster.png)
+![I comandi che mostrano come toocreate un cluster di sviluppo sicuro](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-secure-dev-cluster.png)
 
-## <a name="to-deploy-an-application-and-check-its-health"></a>Per distribuire un'applicazione e verificarne l'integrità
+## <a name="toodeploy-an-application-and-check-its-health"></a>toodeploy un'applicazione e controllare l'integrità
 1. Aprire Visual Studio come amministratore.
-2. Creare un progetto usando il modello **Servizio con stato** .
+2. Creare un progetto utilizzando hello **servizio con stato** modello.
    
     ![Creare un'applicazione di Service Fabric con un servizio con stato](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-stateful-service-application-dialog.png)
-3. Premere **F5** per eseguire l'applicazione in modalità di debug. L'applicazione verrà distribuita nel cluster locale.
-4. Dopo aver eseguito l'applicazione, fare clic con il tasto destro del mouse sull'icona di Local Cluster Manager nell'area di notifica e aprire Service Fabric Explorer selezionando **Gestisci cluster locale** dal menu di scelta rapida.
+3. Premere **F5** toorun un'applicazione hello in modalità di debug. un'applicazione Hello è cluster locale toohello distribuito.
+4. Dopo l'applicazione hello è in esecuzione, fare clic sull'icona di gestione di Cluster locale hello nell'area di notifica hello e selezionare **gestire Cluster locale** da tooopen dal menu di scelta rapida hello Service Fabric Explorer.
    
     ![Apertura di Service Fabric Explorer dall'area di notifica](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/LaunchSFX.png)
-5. L'integrità dell'applicazione sarà simile a quella visualizzata in questa immagine. A questo punto, l'applicazione dovrebbe essere integra e senza errori.
+5. integrità applicazione Hello dovrebbero essere visualizzati come questa immagine. In questo momento, un'applicazione hello deve essere integra senza errori.
    
     ![Applicazione integra in Service Fabric Explorer](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/sfx-healthy-app.png)
-6. Per verificare l'integrità è possibile usare anche PowerShell. È possibile verificare l'integrità di un'applicazione usando ```Get-ServiceFabricApplicationHealth``` e l'integrità di un servizio usando ```Get-ServiceFabricServiceHealth```. Il report sullo stato di integrità per la stessa applicazione in PowerShell è visualizzato in questa immagine.
+6. È inoltre possibile verificare l'integrità di hello tramite PowerShell. È possibile utilizzare ```Get-ServiceFabricApplicationHealth``` toocheck integrità di un'applicazione, si può usare ```Get-ServiceFabricServiceHealth``` toocheck integrità di un servizio. Hello rapporto di stato per hello stessa applicazione in PowerShell è in questa immagine.
    
     ![Applicazione integra in PowerShell](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/ps-healthy-app-report.png)
 
-## <a name="to-add-custom-health-events-to-your-service-code"></a>Per aggiungere eventi di integrità personalizzati al codice del servizio
-I modelli di progetto di Service Fabric in Visual Studio contengono codice di esempio. La procedura seguente illustra come segnalare eventi di integrità personalizzati dal codice del servizio. Questi report vengono automaticamente visualizzati negli strumenti standard per il monitoraggio dell'integrità forniti da Service Fabric, come Service Fabric Explorer, la vista del portale di Azure relativa all'integrità e PowerShell.
+## <a name="tooadd-custom-health-events-tooyour-service-code"></a>codice del servizio tooyour eventi tooadd integrità personalizzato
+modelli di progetto di Service Fabric Hello in Visual Studio contengono codice di esempio. Hello passaggi seguenti viene illustrato come è possibile segnalare gli eventi di stato personalizzato dal codice del servizio. Tali report vengono visualizzate automaticamente in strumenti standard di hello per l'integrità del monitoraggio che fornisce Service Fabric, ad esempio Service Fabric Explorer e visualizzazione dell'integrità del portale di Azure PowerShell.
 
-1. Aprire nuovamente l'applicazione creata in precedenza in Visual Studio o crearne una nuova usando il modello di Visual Studio **Servizio con stato** .
-2. Aprire il file Stateful1.cs e cercare la chiamata `myDictionary.TryGetValueAsync` nel metodo `RunAsync`. Si noterà che questo metodo restituisce un `result` contenente il valore corrente del contatore, poiché la logica principale in questa applicazione è quella di mantenere un conteggio in esecuzione. Nel caso di un'applicazione reale con un errore dovuto alla mancanza di risultati, può essere opportuno contrassegnare l'evento.
-3. Per segnalare un evento di integrità per un errore dovuto alla mancanza di risultati, aggiungere la procedura seguente.
+1. Riaprire l'applicazione hello creata in precedenza in Visual Studio o creare una nuova applicazione con hello **servizio con stato** modello di Visual Studio.
+2. Aprire il file Stateful1.cs hello e trovare hello `myDictionary.TryGetValueAsync` chiamare hello `RunAsync` metodo. È possibile vedere che questo metodo restituisce un `result` che contiene hello valore corrente del contatore hello perché la chiave logica hello in questa applicazione è tookeep in esecuzione di un numero. Se si trattasse di un'applicazione reale e mancanza di hello del risultato rappresentato un errore, è opportuno tooflag quell'evento.
+3. tooreport un evento di integrità quando assenza hello del risultato rappresenta un errore, aggiungere hello alla procedura seguente.
    
-    a. Aggiungere lo spazio dei nomi `System.Fabric.Health` al file Stateful1.cs.
+    a. Aggiungere hello `System.Fabric.Health` Stateful1.cs toohello di spazio dei nomi file.
    
     ```csharp
     using System.Fabric.Health;
     ```
    
-    b. Aggiungere il codice seguente dopo la chiamata di `myDictionary.TryGetValueAsync`
+    b. Aggiungere hello seguente codice dopo hello `myDictionary.TryGetValueAsync` chiamare
    
     ```csharp
     if (!result.HasValue)
@@ -82,9 +82,9 @@ I modelli di progetto di Service Fabric in Visual Studio contengono codice di es
         this.Partition.ReportReplicaHealth(healthInformation);
     }
     ```
-    Viene segnalata l'integrità di una replica, perché la segnalazione viene eseguita da un servizio con stato. Il parametro `HealthInformation` archivia informazioni relative al problema di integrità segnalato.
+    Viene segnalata l'integrità di una replica, perché la segnalazione viene eseguita da un servizio con stato. Hello `HealthInformation` parametro archivia le informazioni hello integrità problema da segnalare.
    
-    Se è stato creato un servizio senza stato, utilizzare il codice seguente.
+    Se è stato creato un servizio senza stato, utilizzare hello seguente di codice
    
     ```csharp
     if (!result.HasValue)
@@ -93,15 +93,15 @@ I modelli di progetto di Service Fabric in Visual Studio contengono codice di es
         this.Partition.ReportInstanceHealth(healthInformation);
     }
     ```
-4. Se il servizio è in esecuzione con privilegi di amministratore o se il cluster non è [sicuro](service-fabric-cluster-security.md), è anche possibile usare `FabricClient` per segnalare lo stato di integrità, come illustrato nella procedura seguente.  
+4. Se il servizio è in esecuzione con privilegi di amministratore o se hello cluster non è [sicura](service-fabric-cluster-security.md), è inoltre possibile utilizzare `FabricClient` integrità tooreport come illustrato nell'hello alla procedura seguente.  
    
-    a. Creare l'istanza di `FabricClient` dopo la dichiarazione `var myDictionary`.
+    a. Creare hello `FabricClient` istanza dopo hello `var myDictionary` dichiarazione.
    
     ```csharp
     var fabricClient = new FabricClient(new FabricClientSettings() { HealthReportSendInterval = TimeSpan.FromSeconds(0) });
     ```
    
-    b. Aggiungere il codice seguente dopo la chiamata di `myDictionary.TryGetValueAsync` .
+    b. Aggiungere hello seguente codice dopo hello `myDictionary.TryGetValueAsync` chiamare.
    
     ```csharp
     if (!result.HasValue)
@@ -113,7 +113,7 @@ I modelli di progetto di Service Fabric in Visual Studio contengono codice di es
         fabricClient.HealthManager.ReportHealth(replicaHealthReport);
     }
     ```
-5. Simulare l'errore e osservare come venga visualizzato negli strumenti di monitoraggio dello stato. Per simulare l'errore, impostare la prima riga come commento nel codice del report di integrità aggiunto in precedenza. Al termine di questa operazione, il codice sarà simile all'esempio seguente.
+5. Di seguito simulare l'errore e per visualizzare in strumenti di monitoraggio integrità hello. Errore di hello toosimulate, commento hello nella prima riga integrità hello reporting codice aggiunto in precedenza. Dopo la prima riga hello è come commento, codice hello avrà un aspetto simile hello di esempio seguente.
    
     ```csharp
     //if(!result.HasValue)
@@ -122,24 +122,24 @@ I modelli di progetto di Service Fabric in Visual Studio contengono codice di es
         this.Partition.ReportReplicaHealth(healthInformation);
     }
     ```
-   Questo codice genera il report di integrità ogni volta che si esegue `RunAsync`. Dopo aver apportato la modifica, premere **F5** per eseguire l'applicazione.
-6. Dopo l'esecuzione dell'applicazione, aprire Service Fabric Explorer per verificare l'integrità dell'applicazione. In questo caso, Service Fabric Explorer indica un problema di integrità dell'applicazione, a causa dell'errore segnalato dal codice aggiunto in precedenza.
+   Questo codice viene generato ogni volta che il rapporto di stato hello `RunAsync` esegue. Dopo aver modificato hello, premere **F5** toorun un'applicazione hello.
+6. Dopo l'applicazione hello è in esecuzione, aprire Service Fabric Explorer toocheck hello integrità hello applicazione. Questa volta, Service Fabric Explorer mostra che l'applicazione hello è integra. Ciò è dovuto errore hello che è stato segnalato dal codice hello che è stato aggiunto in precedenza.
    
     ![Applicazione non integra in Service Fabric Explorer](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/sfx-unhealthy-app.png)
-7. Se si seleziona la replica primaria nella visualizzazione ad albero di Service Fabric Explorer, viene visualizzato anche in questo caso un errore dello **stato di integrità** . In Service Fabric Explorer vengono visualizzati anche i dettagli del report di integrità aggiunti al parametro `HealthInformation` nel codice. È possibile visualizzare gli stessi report di integrità anche in PowerShell e nel portale di Azure.
+7. Se si seleziona la replica primaria hello nella visualizzazione ad albero di hello di Service Fabric Explorer, si noterà che **lo stato di integrità** indica un errore troppo. Service Fabric Explorer consente inoltre di visualizzare i report di integrità hello dettagli che sono stati aggiunti toohello `HealthInformation` parametro hello codice. È possibile visualizzare hello stesso report sull'integrità in PowerShell e hello portale di Azure.
    
     ![Integrità della replica in Service Fabric Explorer](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/replica-health-error-report-sfx.png)
 
-Questo report resta in Health Manager finché non viene sostituito da un altro o finché la replica non viene eliminata. Poiché per questo report di integrità non è stato impostato un valore `TimeToLive` nell'oggetto `HealthInformation`, il report non avrà scadenza.
+Questo report rimane nel gestore integrità hello fino a quando non viene sostituita da un altro report o fino a quando la replica viene eliminata. Poiché non è stato impostato `TimeToLive` per questo rapporto di stato di hello `HealthInformation` oggetto report hello non scade mai.
 
-È consigliabile creare report sull'integrità al livello più dettagliato possibile, che in questo caso corrisponde alla replica. È anche possibile segnalare lo stato di integrità relativo all'oggetto `Partition`.
+È consigliabile che l'integrità deve essere segnalato al livello più granulare hello, ovvero in questo caso è hello replica. È anche possibile segnalare lo stato di integrità relativo all'oggetto `Partition`.
 
 ```csharp
 HealthInformation healthInformation = new HealthInformation("ServiceCode", "StateDictionary", HealthState.Error);
 this.Partition.ReportPartitionHealth(healthInformation);
 ```
 
-Per segnalare lo stato di integrità relativo a `Application`, `DeployedApplication` e `DeployedServicePackage`, usare `CodePackageActivationContext`.
+lo stato su tooreport `Application`, `DeployedApplication`, e `DeployedServicePackage`, utilizzare `CodePackageActivationContext`.
 
 ```csharp
 HealthInformation healthInformation = new HealthInformation("ServiceCode", "StateDictionary", HealthState.Error);

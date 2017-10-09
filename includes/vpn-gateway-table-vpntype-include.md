@@ -6,7 +6,7 @@
 | **Multisito** |Supportato |Non supportato |
 | **Coesistenza tra Da sito a sito ed ExpressRoute** |Supportato |Non supportato |
 | **Da punto a sito** |Supportato |Non supportato |
-| **Classico a Gestione risorse** |Supportato |Non supportato |
+| **TooResource classico Manager** |Supportato |Non supportato |
 
 #### <a name="vpn-type---classic-deployment-model"></a>Tipo VPN - modello di distribuzione classica
 |  | **Dinamico** | **Statico** |
@@ -16,5 +16,5 @@
 | **Multisito** |Supportato |Non supportato |
 | **Coesistenza tra Da sito a sito ed ExpressRoute** |Supportato |Non supportato |
 | **Da punto a sito** |Supportato |Non supportato |
-| **Classico a Gestione risorse** |Supportato |Non supportato |
+| **TooResource classico Manager** |Supportato |Non supportato |
 

@@ -1,6 +1,6 @@
 ---
-title: Usare l'API REST per iniziare a usare Data Lake Store | Documentazione Microsoft
-description: Usare API REST WebHDFS per eseguire operazioni su Archivio Data Lake
+title: aaaUse hello API REST tooget avviato con l'archivio Data Lake | Documenti Microsoft
+description: Utilizzare le API REST WebHDFS tooperform operazioni in archivio Data Lake
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: nitinme
-ms.openlocfilehash: dc2c8f58e0a2faf1b00f4903148328a5141a8637
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 62fce8293dfee730a61f2a3d37fc138ce7c3afdf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-rest-apis"></a>Introduzione ad Archivio Azure Data Lake con API REST
 > [!div class="op_single_selector"]
@@ -33,37 +33,37 @@ ms.lasthandoff: 07/11/2017
 >
 > 
 
-Questo articolo descrive come usare le API REST WebHDFS e le API REST di Archivio Data Lake per eseguire la gestione dell'account e le operazioni del file system su Archivio Azure Data Lake. Archivio Azure Data Lake espone le proprie API REST per operazioni di gestione account. Tuttavia, dal momento che Archivio Data Lake è compatibile con l'ecosistema Hadoop e HDFS, supporta le operazioni del file system tramite le API REST WebHDFS.
+In questo articolo si apprenderà come account toouse WebHDFS REST API e le API REST di Data Lake archivio tooperform gestione nonché operazioni di file System in archivio Azure Data Lake. Archivio Azure Data Lake espone le proprie API REST per operazioni di gestione account. Tuttavia, dal momento che Archivio Data Lake è compatibile con l'ecosistema Hadoop e HDFS, supporta le operazioni del file system tramite le API REST WebHDFS.
 
 > [!NOTE]
-> Per informazioni dettagliate sul supporto delle API REST per Archivio Data Lake, vedere [Informazioni di riferimento sulle API REST di Archivio Azure Data Lake](https://msdn.microsoft.com/library/mt693424.aspx).
+> Per informazioni dettagliate sul supporto di API REST hello per archivio Data Lake, vedere [Azure Data Lake archivio REST API Reference](https://msdn.microsoft.com/library/mt693424.aspx).
 > 
 > 
 
 ## <a name="prerequisites"></a>Prerequisiti
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-* **Creare un'applicazione di Azure Active Directory**. Usare l'applicazione Azure AD per autenticare l'applicazione Data Lake Store con Azure AD. Per l'autenticazione con Azure AD è possibile usare l'**autenticazione dell'utente finale** o l'**autenticazione da servizio a servizio**. Per altre informazioni e istruzioni su come eseguire l'autenticazione, vedere [Autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [Autenticazione da servizio a servizio](data-lake-store-authenticate-using-active-directory.md).
-* [cURL](http://curl.haxx.se/). Questo articolo usa cURL per illustrare come effettuare chiamate API REST con un account Archivio Data Lake.
+* **Creare un'applicazione di Azure Active Directory**. Utilizzare un'applicazione hello Azure AD applicazione tooauthenticate hello archivio Data Lake con Azure AD. Esistono diversi approcci tooauthenticate con Azure AD, che sono **autenticazione dell'utente finale** o **authentication service to service**. Per istruzioni e ulteriori informazioni su come tooauthenticate, vedere [autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [authentication Service to service](data-lake-store-authenticate-using-active-directory.md).
+* [cURL](http://curl.haxx.se/). In questo articolo Usa toodemonstrate cURL come toomake API REST chiama rispetto a un account archivio Data Lake.
 
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>Come si esegue l'autenticazione tramite Azure Active Directory?
-È possibile adottare due approcci per l'autenticazione tramite Azure Active Directory.
+È possibile utilizzare due approcci tooauthenticate, tramite Azure Active Directory.
 
 ### <a name="end-user-authentication-interactive"></a>Autenticazione dell'utente finale (interattiva)
-In questo scenario, l'applicazione richiede all'utente di accedere e tutte le operazioni vengono eseguite nel contesto utente. Eseguire la procedura seguente per l'autenticazione interattiva.
+In questo scenario, l'applicazione hello chiede toolog utente hello in e tutte le operazioni hello vengono eseguite nel contesto di hello dell'utente hello. Eseguire hello alla procedura seguente per l'autenticazione interattiva.
 
-1. Tramite l'applicazione, reindirizzare l'utente all'URL seguente:
+1. Tramite l'applicazione, il reindirizzamento hello utente toohello URL seguente:
    
         https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<APPLICATION-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
    
    > [!NOTE]
-   > \<REDIRECT-URI> deve essere codificato per essere usato in un URL. Per https://localhost, usare quindi `https%3A%2F%2Flocalhost`
+   > \<URI di reindirizzamento > deve toobe codificati per l'uso in un URL. Per https://localhost, usare quindi `https%3A%2F%2Flocalhost`
    > 
    > 
    
-    Per questa esercitazione, è possibile sostituire i valori segnaposto nell'URL precedente e incollare quest'ultimo nella barra degli indirizzi di un web browser. Si verrà reindirizzati per l'autenticazione tramite l'accesso ad Azure. Dopo aver eseguito correttamente l'accesso, la risposta verrà visualizzata nella barra degli indirizzi del browser. La risposta sarà nel formato seguente:
+    A scopo di hello di questa esercitazione, è possibile sostituire i valori segnaposto hello nell'URL hello in precedenza e incollarlo nella barra degli indirizzi del web browser. Sarà reindirizzato tooauthenticate utilizzando l'account di accesso di Azure. Una volta che riesce ad accedere, risposta hello viene visualizzato nella barra degli indirizzi del browser hello. risposta Hello sarà in hello seguente formato:
    
         http://localhost/?code=<AUTHORIZATION-CODE>&session_state=<GUID>
-2. Acquisire il codice di autorizzazione dalla risposta. Per questa esercitazione, è possibile copiare il codice di autorizzazione dalla barra degli indirizzi del web browser e passarla nella richiesta POST all'endpoint di token come illustrato di seguito:
+2. Acquisire il codice di autorizzazione hello dalla risposta hello. Per questa esercitazione, è possibile copiare il codice di autorizzazione hello dalla barra degli indirizzi del browser web hello hello e passarlo in hello POST richiesta toohello endpoint token, come illustrato di seguito:
    
         curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token \
         -F redirect_uri=<REDIRECT-URI> \
@@ -73,13 +73,13 @@ In questo scenario, l'applicazione richiede all'utente di accedere e tutte le op
         -F code=<AUTHORIZATION-CODE>
    
    > [!NOTE]
-   > In questo caso non è necessario codificare \<REDIRECT-URI>.
+   > In questo caso, hello \<URI di reindirizzamento > non devono essere codificati.
    > 
    > 
-3. La risposta è un oggetto JSON che contiene un token di accesso (ad esempio, `"access_token": "<ACCESS_TOKEN>"`) e un token di aggiornamento (ad esempio, `"refresh_token": "<REFRESH_TOKEN>"`). L'applicazione usa il token di accesso quando si accede all'Archivio Azure Data Lake e il token di aggiornamento quando un token di accesso scade per ottenerne un altro.
+3. risposta Hello è un oggetto JSON che contiene un token di accesso (ad esempio, `"access_token": "<ACCESS_TOKEN>"`) e un token di aggiornamento (ad esempio, `"refresh_token": "<REFRESH_TOKEN>"`). L'applicazione utilizza il token di accesso di hello quando si accede a un archivio Azure Data Lake e hello aggiornamento token tooget un altro token di accesso quando scade un token di accesso.
    
         {"token_type":"Bearer","scope":"user_impersonation","expires_in":"3599","expires_on":"1461865782","not_before":    "1461861882","resource":"https://management.core.windows.net/","access_token":"<REDACTED>","refresh_token":"<REDACTED>","id_token":"<REDACTED>"}
-4. Quando il token di accesso scade, è possibile richiederne uno nuovo tramite il token di aggiornamento come illustrato di seguito:
+4. Quando il token di accesso hello scade, è possibile richiedere un nuovo token di accesso usando il token di aggiornamento di hello, come illustrato di seguito:
    
         curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
              -F grant_type=refresh_token \
@@ -90,7 +90,7 @@ In questo scenario, l'applicazione richiede all'utente di accedere e tutte le op
 Per altre informazioni sull'autenticazione utente interattiva, vedere [Flusso di concessione del codice di autorizzazione](https://msdn.microsoft.com/library/azure/dn645542.aspx).
 
 ### <a name="service-to-service-authentication-non-interactive"></a>Autenticazione da servizio a servizio (non interattiva)
-In questo scenario, l'applicazione fornisce le proprie credenziali per eseguire le operazioni. A tale scopo, è necessario inviare una richiesta POST come quella riportata di seguito. 
+In questo scenario, un'applicazione hello hello fornisce operazioni hello tooperform le proprie credenziali. A tale scopo, è necessario inviare una richiesta POST come hello illustrato di seguito. 
 
     curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
       -F grant_type=client_credentials \
@@ -98,20 +98,20 @@ In questo scenario, l'applicazione fornisce le proprie credenziali per eseguire 
       -F client_id=<CLIENT-ID> \
       -F client_secret=<AUTH-KEY>
 
-L'output della richiesta include un token di autorizzazione (indicato da `access-token` nell'output riportato di seguito) che verrà passato successivamente con le chiamate API REST. Salvare questo token di autenticazione in un file di testo, che sarà necessario più avanti in questo articolo.
+output di Hello della richiesta includerà un token di autorizzazione (indicato da `access-token` nell'output di hello riportato di seguito) che verranno successivamente passati con le chiamate API REST. Salvare questo token di autenticazione in un file di testo, che sarà necessario più avanti in questo articolo.
 
     {"token_type":"Bearer","expires_in":"3599","expires_on":"1458245447","not_before":"1458241547","resource":"https://management.core.windows.net/","access_token":"<REDACTED>"}
 
-Questo articolo usa l'approccio **non interattivo** . Per altre informazioni sull'autenticazione non interattiva (chiamate da servizio a servizio), vedere [Chiamate da servizio a servizio tramite le credenziali](https://msdn.microsoft.com/library/azure/dn645543.aspx).
+Questo articolo Usa hello **interattivo** approccio. Per ulteriori informazioni sulle modalità interattiva (chiamate service to service), vedere [tooservice chiamate utilizzando le credenziali del servizio](https://msdn.microsoft.com/library/azure/dn645543.aspx).
 
 ## <a name="create-a-data-lake-store-account"></a>Creare un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST definita [qui](https://msdn.microsoft.com/library/mt694078.aspx).
+Questa operazione è basata su chiamata API REST hello definito [qui](https://msdn.microsoft.com/library/mt694078.aspx).
 
-Usare il comando cURL seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Utilizzare hello cURL comando seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -H "Content-Type: application/json" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview -d@"C:\temp\input.json"
 
-Nel comando sopra sostituire \<`REDACTED`\> con il token di autorizzazione recuperato in precedenza. Il payload della richiesta per questo comando è contenuto nel file **input.json** fornito per il parametro `-d` precedente. Il contenuto del file input.json è simile al seguente:
+In hello in precedenza di comando, sostituire \< `REDACTED` \> con token di autorizzazione hello recuperati in precedenza. payload della richiesta Hello per questo comando è contenuto in hello **input.json** file fornito per hello `-d` parametro precedente. il contenuto di Hello del file input.json hello nella figura seguente hello:
 
     {
     "location": "eastus2",
@@ -122,28 +122,28 @@ Nel comando sopra sostituire \<`REDACTED`\> con il token di autorizzazione recup
     }    
 
 ## <a name="create-folders-in-a-data-lake-store-account"></a>Creare delle cartelle in un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST WebHDFS definita [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Make_a_Directory).
+Questa operazione è basata su chiamata API REST WebHDFS hello definito [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Make_a_Directory).
 
-Usare il comando cURL seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Utilizzare hello cURL comando seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=MKDIRS'
 
-Nel comando sopra sostituire \<`REDACTED`\> con il token di autorizzazione recuperato in precedenza. Questo comando crea una directory denominata **mytempdir** nella cartella radice del proprio account Data Lake Store.
+In hello in precedenza di comando, sostituire \< `REDACTED` \> con token di autorizzazione hello recuperati in precedenza. Questo comando crea una directory denominata **mytempdir** nella cartella radice hello del tuo account archivio Data Lake.
 
-Se l'operazione viene completata correttamente, verrà visualizzata una risposta simile alla seguente:
+Se il completamento dell'operazione hello dovrebbe essere una risposta simile alla seguente:
 
     {"boolean":true}
 
 ## <a name="list-folders-in-a-data-lake-store-account"></a>Elencare le cartelle in un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST WebHDFS definita [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#List_a_Directory).
+Questa operazione è basata su chiamata API REST WebHDFS hello definito [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#List_a_Directory).
 
-Usare il comando cURL seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Utilizzare hello cURL comando seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/?op=LISTSTATUS'
 
-Nel comando sopra sostituire \<`REDACTED`\> con il token di autorizzazione recuperato in precedenza.
+In hello in precedenza di comando, sostituire \< `REDACTED` \> con token di autorizzazione hello recuperati in precedenza.
 
-Se l'operazione viene completata correttamente, verrà visualizzata una risposta simile alla seguente:
+Se il completamento dell'operazione hello dovrebbe essere una risposta simile alla seguente:
 
     {
     "FileStatuses": {
@@ -163,15 +163,15 @@ Se l'operazione viene completata correttamente, verrà visualizzata una risposta
     }
 
 ## <a name="upload-data-into-a-data-lake-store-account"></a>Caricare dati in un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST WebHDFS definita [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Create_and_Write_to_a_File).
+Questa operazione è basata su chiamata API REST WebHDFS hello definito [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Create_and_Write_to_a_File).
 
-Usare il comando cURL seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Utilizzare hello cURL comando seguente. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X PUT -L -T 'C:\temp\list.txt' -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/list.txt?op=CREATE'
 
-Nella sintassi precedente il parametro **-T** indica la posizione del file da caricare.
+In hello sopra sintassi **-T** parametro è il percorso di hello si sta caricando file hello.
 
-L'output è simile al seguente:
+output di Hello è simile toohello seguenti:
    
     HTTP/1.1 307 Temporary Redirect
     ...
@@ -185,18 +185,18 @@ L'output è simile al seguente:
     ...
 
 ## <a name="read-data-from-a-data-lake-store-account"></a>Leggere i dati da un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST WebHDFS definita [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Open_and_Read_a_File).
+Questa operazione è basata su chiamata API REST WebHDFS hello definito [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Open_and_Read_a_File).
 
 La lettura dei dati da un account Archivio Data Lake è un processo in due fasi.
 
-* È prima necessario inviare una richiesta GET all'endpoint `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN`. Verrà restituito un percorso a cui inviare la richiesta GET successiva.
-* È quindi necessario inviare la richiesta GET all'endpoint `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN&read=true`. Verrà visualizzato il contenuto del file.
+* È prima di inviare una richiesta GET endpoint hello `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN`. Verrà restituito una percorso toosubmit hello GET richiesta successiva.
+* È quindi inviare la richiesta di recupero hello endpoint hello `https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN&read=true`. Verrà visualizzato il contenuto di hello del file hello.
 
-Tuttavia, dal momento che non esiste alcuna differenza nei parametri di input tra il primo e il secondo passaggio, è possibile usare il parametro `-L` per inviare la prima richiesta. `-L` combina essenzialmente due richieste in una e fa ripetere a cURL la richiesta nel nuovo percorso. Infine, viene visualizzato l'output di tutte le chiamate di richiesta, come illustrato di seguito. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Tuttavia, poiché non esiste alcuna differenza hello parametri di input tra hello hello e innanzitutto secondo passaggio, è possibile utilizzare hello `-L` parametro toosubmit hello della prima richiesta. `-L`opzione essenzialmente combina due richieste in un e renderà cURL Ripeti richiesta hello nella nuova posizione hello. Infine, hello output di tutte le chiamate richiesta hello viene visualizzato, come illustrato di seguito. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -L GET -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN'
 
-L'output dovrebbe essere simile al seguente:
+Verrà visualizzato un segue toohello simili di output:
 
     HTTP/1.1 307 Temporary Redirect
     ...
@@ -209,13 +209,13 @@ L'output dovrebbe essere simile al seguente:
     Hello, Data Lake Store user!
 
 ## <a name="rename-a-file-in-a-data-lake-store-account"></a>Rinominare un file in un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST WebHDFS definita [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Rename_a_FileDirectory).
+Questa operazione è basata su chiamata API REST WebHDFS hello definito [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Rename_a_FileDirectory).
 
-Per rinominare un file, usare il comando cURL seguente: Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Seguente hello usare cURL comando toorename un file. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=RENAME&destination=/mytempdir/myinputfile1.txt'
 
-L'output dovrebbe essere simile al seguente:
+Verrà visualizzato un segue toohello simili di output:
 
     HTTP/1.1 200 OK
     ...
@@ -223,13 +223,13 @@ L'output dovrebbe essere simile al seguente:
     {"boolean":true}
 
 ## <a name="delete-a-file-from-a-data-lake-store-account"></a>Eliminare un file da un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST WebHDFS definita [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Delete_a_FileDirectory).
+Questa operazione è basata su chiamata API REST WebHDFS hello definito [qui](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Delete_a_FileDirectory).
 
-Utilizzare il comando cURL seguente per eliminare un file. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Seguente hello usare cURL comando toodelete un file. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile1.txt?op=DELETE'
 
-Verrà visualizzato un output simile al seguente:
+Verrà visualizzato un output simile hello seguente:
 
     HTTP/1.1 200 OK
     ...
@@ -237,13 +237,13 @@ Verrà visualizzato un output simile al seguente:
     {"boolean":true}
 
 ## <a name="delete-a-data-lake-store-account"></a>Eliminare un account Archivio Data Lake
-Questa operazione si basa sulla chiamata API REST definita [qui](https://msdn.microsoft.com/library/mt694075.aspx).
+Questa operazione è basata su chiamata API REST hello definito [qui](https://msdn.microsoft.com/library/mt694075.aspx).
 
-Usare il comando cURL seguente per eliminare un account Archivio Data Lake. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
+Seguente hello usare cURL comando toodelete un account archivio Data Lake. Sostituire **\<yourstorename>** con il nome di Data Lake Store.
 
     curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview
 
-Verrà visualizzato un output simile al seguente:
+Verrà visualizzato un output simile hello seguente:
 
     HTTP/1.1 200 OK
     ...

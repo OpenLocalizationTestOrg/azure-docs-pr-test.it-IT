@@ -1,6 +1,6 @@
 ---
-title: Come aggiungere un'origine evento hub IoT a un ambiente Azure Time Series Insights | Documentazione Microsoft
-description: Questa esercitazione illustra come aggiungere un'origine evento connessa a un hub IoT all'ambiente Time Series Insights
+title: aaaHow tooadd un ambiente di Azure ora serie Insights IoT Hub evento origine tooyour | Documenti Microsoft
+description: "Questa esercitazione sono trattati come tooadd un evento di origine che è connesso tooan ambiente ora serie Insights tooyour di IoT Hub"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,59 +15,59 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/19/2017
 ms.author: edett
-ms.openlocfilehash: 72037677fac528ff8174d25b474ca7e70826a7b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c626f9653d1c012360120fa9fc3d211d7d5beb5b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-add-an-iot-hub-event-source"></a>Come aggiungere un'origine evento hub IoT
+# <a name="how-tooadd-an-iot-hub-event-source"></a>Come tooadd un'origine evento IoT Hub
 
-Questa esercitazione illustra come usare il portale di Azure per aggiungere un'origine evento che legge da un hub IoT all'ambiente Time Series Insights.
+Questa esercitazione sono trattati come toouse hello tooadd portale Azure un'origine evento che legge da un ambiente di tempo serie Insights tooyour IoT Hub.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-È stato creato un hub IoT e si stanno scrivendo eventi in esso. Per altre informazioni sugli hub IoT, vedere <https://azure.microsoft.com/services/iot-hub/>
+Sono stati creati un IoT Hub e scrive gli eventi tooit. Per altre informazioni sugli hub IoT, vedere <https://azure.microsoft.com/services/iot-hub/>
 
-> [Gruppi di consumer] Tutte le origini evento Time Series Insights devono avere un proprio gruppo di consumer dedicato che non è condiviso con altri consumer. Se più lettori consumano eventi dello stesso gruppo di consumer, tutti i lettori hanno probabilità di vedere errori. Per altre informazioni, vedere la [Guida per gli sviluppatori dell'hub IoT](../iot-hub/iot-hub-devguide.md).
+> [Gruppi di consumer] Ogni origine di eventi tempo serie Insights deve toohave il proprio gruppo di consumer dedicato che non viene condiviso con qualsiasi altro utente. Se più lettori utilizzano gli eventi da hello nello stesso gruppo di consumer, tutti i visualizzatori sono probabilmente toosee errori. Per informazioni dettagliate, vedere hello [Guida per sviluppatori di IoT Hub](../iot-hub/iot-hub-devguide.md).
 
 ## <a name="choose-an-import-option"></a>Scegliere un'opzione di importazione
 
-Le impostazioni per l'origine evento possono essere inserite manualmente oppure è possibile selezionare un hub IoT dagli hub IoT disponibili.
-Nel selettore **Opzione di importazione** scegliere una delle opzioni seguenti:
+le impostazioni di Hello per origine evento hello possono essere immesse manualmente o un hub IoT può essere selezionato da hello IoT hub tooyou disponibili.
+In hello **opzione di importazione** selettore, scegliere una delle seguenti opzioni hello:
 
 * Specificare le impostazioni dell'hub IoT manualmente
 * Usare un hub IoT delle sottoscrizioni disponibili
 
 ### <a name="select-an-available-iot-hub"></a>Selezionare un hub IoT disponibile
 
-La tabella seguente riporta le singole opzioni della scheda Nuova origine evento con la relativa descrizione quando si seleziona un hub IoT disponibile come origine evento:
+Hello seguente tabella viene descritta ciascuna opzione nella scheda nuova origine evento hello con la relativa descrizione quando si seleziona un IoT Hub disponibile come un'origine evento:
 
 | Nome proprietà | DESCRIZIONE |
 | --- | --- |
-| Nome origine evento | Il nome dell'origine evento. Questo nome deve essere univoco all'interno dell'ambiente Time Series Insights.
-| Sorgente | Scegliere **Hub IoT** per creare un'origine evento hub IoT.
-| ID sottoscrizione | Selezionare la sottoscrizione in cui l'hub IoT è stato creato.
-| Nome dell'hub IoT | Selezionare il nome dell'hub IoT.
-| Nome criterio dell'hub IoT | Selezionare il criterio di accesso condiviso che si può trovare nella scheda Impostazioni hub IoT. Ogni criterio di accesso condiviso ha un nome, autorizzazioni impostate e chiavi di accesso. Il criterio di accesso condiviso per l'origine evento *deve* avere le autorizzazioni per la **connessione al servizio**.
-| Gruppo di consumer dell'hub IoT | Il gruppo di consumer per leggere gli eventi dall'hub IoT. È consigliabile usare un gruppo di consumer dedicato per l'origine evento.
+| Nome origine evento | nome Hello dell'origine evento. Questo nome deve essere univoco all'interno dell'ambiente Time Series Insights.
+| Sorgente | Scegliere **IoT Hub** toocreate un'origine evento IoT Hub.
+| ID sottoscrizione | Selezionare una sottoscrizione di hello in cui è stato creato l'hub IoT.
+| Nome dell'hub IoT | Selezionare il nome di hello di hello IoT Hub.
+| Nome criterio dell'hub IoT | Selezionare i criteri di accesso condiviso hello sono reperibile nella scheda Impostazioni IoT Hub hello. Tutti i criteri di accesso condiviso dispongono di un nome e di autorizzazioni impostati, nonché di chiavi di accesso. Hello condiviso criteri di accesso per l'origine evento *deve* hanno **servizio connettersi** autorizzazioni.
+| Gruppo di consumer dell'hub IoT | Hello gruppo di Consumer tooread eventi di hello IoT Hub. È altamente consigliabile toouse un gruppo di consumer dedicato per l'origine evento.
 
 ### <a name="provide-iot-hub-settings-manually"></a>Specificare le impostazioni dell'hub IoT manualmente
 
-La tabella seguente riporta le singole proprietà della scheda Nuova origine evento con la descrizione quando si immettono le impostazioni manualmente:
+Hello nella tabella seguente illustra ogni proprietà nella scheda nuova origine evento hello con la relativa descrizione quando si immettono le impostazioni manualmente:
 
 | Nome proprietà | DESCRIZIONE |
 | --- | --- |
-| Nome origine evento | Il nome dell'origine evento. Questo nome deve essere univoco all'interno dell'ambiente Time Series Insights.
-| Sorgente | Scegliere **Hub IoT** per creare un'origine evento hub IoT.
-| ID sottoscrizione | La sottoscrizione in cui l'hub IoT è stato creato.
-| Gruppo di risorse | La sottoscrizione in cui l'hub IoT è stato creato.
-| Nome dell'hub IoT | Il nome dell'hub IoT. Quando l'hub IoT è stato creato gli è stato anche assegnato un nome specifico
-| Nome criterio dell'hub IoT | Il criterio di accesso condiviso che può essere creato nella scheda Impostazioni hub IoT. Ogni criterio di accesso condiviso ha un nome, autorizzazioni impostate e chiavi di accesso. Il criterio di accesso condiviso per l'origine evento *deve* avere le autorizzazioni per la **connessione al servizio**.
-| Chiave criteri hub IoT | Chiave di accesso condivisa usata per autenticare l'accesso allo spazio dei nomi del bus di servizio. Digitare la chiave primaria o secondaria qui.
-| Gruppo di consumer dell'hub IoT | Il gruppo di consumer per leggere gli eventi dall'hub IoT. È consigliabile usare un gruppo di consumer dedicato per l'origine evento.
+| Nome origine evento | nome Hello dell'origine evento. Questo nome deve essere univoco all'interno dell'ambiente Time Series Insights.
+| Sorgente | Scegliere **IoT Hub** toocreate un'origine evento IoT Hub.
+| ID sottoscrizione | sottoscrizione di Hello in cui è stato creato l'hub IoT.
+| Gruppo di risorse | sottoscrizione di Hello in cui è stato creato l'hub IoT.
+| Nome dell'hub IoT | nome Hello dell'IoT Hub. Quando l'hub IoT è stato creato gli è stato anche assegnato un nome specifico
+| Nome criterio dell'hub IoT | criteri di accesso condiviso Hello, che possono essere creati nella scheda Impostazioni IoT Hub hello. Tutti i criteri di accesso condiviso dispongono di un nome e di autorizzazioni impostati, nonché di chiavi di accesso. Hello condiviso criteri di accesso per l'origine evento *deve* hanno **servizio connettersi** autorizzazioni.
+| Chiave criteri hub IoT | chiave di accesso condiviso Hello usata tooauthenticate accesso toohello Bus di servizio spazio dei nomi. Tipo hello chiave primaria o secondaria qui.
+| Gruppo di consumer dell'hub IoT | Hello gruppo di Consumer tooread eventi di hello IoT Hub. È altamente consigliabile toouse un gruppo di consumer dedicato per l'origine evento.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-1. Aggiungere i criteri di accesso ai dati nell'ambiente [Definire i criteri di accesso ai dati](time-series-insights-data-access.md)
-1. Accedere all'ambiente nel [portale di Time Series Insights](https://insights.timeseries.azure.com)
+1. Aggiungere un ambiente di tooyour criteri di accesso ai dati [dati definire criteri di accesso](time-series-insights-data-access.md)
+1. L'ambiente in hello accedere [ora serie Insights portale](https://insights.timeseries.azure.com)

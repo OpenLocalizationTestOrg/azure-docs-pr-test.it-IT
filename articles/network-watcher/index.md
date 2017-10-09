@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-description: Informazioni su come usare Network Watcher per monitorare e diagnosticare le condizioni a livello di rete.
-ms.openlocfilehash: 3c390494f5e86eb82a3011b962217798feff5ca2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+description: Informazioni su come toouse Watcher di rete toomonitor e diagnosticare le condizioni a un livello di rete.
+ms.openlocfilehash: 6c5fcdb2e5095eaceb759e45ae3d35875a0c3fc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-network-watcher-documentation"></a>Documentazione su Azure Network Watcher
 
-Informazioni su come usare Network Watcher, un servizio che consente di monitorare e diagnosticare le condizioni al livello di scenario di rete. Le esercitazioni, le informazioni di riferimento sulle API e gli altri documenti illustrano come ottenere dati dettagliati sulla rete di Azure con strumenti come l'acquisizione pacchetti, la topologia e altri.
+Informazioni su come toouse Watcher di rete, un servizio che consente di toomonitor e diagnostica le condizioni di un livello di uno scenario di rete. Esercitazioni, riferimenti ad API e altra documentazione illustrano come troppo guadagno approfondite rete di Azure con gli strumenti come acquisizione di pacchetti, topologia e altro ancora.
 
 <ul class="panelContent cardsFTitle">
     <li>

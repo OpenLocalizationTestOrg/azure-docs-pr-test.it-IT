@@ -1,0 +1,4 @@
+``*.accesscontrol.windows.net``. Usato per il controllo di accesso e la gestione delle identità.<br/><br/>``\*.backup.windowsazure.com``. Usato per il coordinamento e il trasferimento dei dati di replica. <br/><br/> ``\*.blob.core.windows.net``. Utilizzato per l'accesso toohello account di archiviazione che archivia i dati replicati.<br/><br/> ``\*.hypervrecoverymanager.windowsazure.com``. Usato per il coordinamento e le operazioni di gestione della replica.<br/><br/>
+``time.nist.gov`` e ``time.windows.com``. Utilizzare toocheck sincronizzazione dell'ora tra sistema e l'ora globale.
+<br/><br/>
+URL per il cloud di Azure per enti pubblici hello:<br/>- .ugv.hypervrecoverymanager.windowsazure.us<br/>- .ugv.backup.windowsazure.us<br/>- .ugi.hypervrecoverymanager.windowsazure.us<br/>- .ugi.backup.windowsazure.us

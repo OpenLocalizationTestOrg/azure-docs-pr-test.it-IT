@@ -16,5 +16,5 @@
 
 
 > [!WARNING] 
-> L'installazione di software di terze parti in prodotti Red Hat può influenzare i termini di supporto di Red Hat. Vedere l'[articolo della Knowledge base di Red Hat](https://access.redhat.com/articles/1067).
+> Installazione del software di terze parti per i prodotti di Red Hat può influenzare i termini di supporto di Red Hat hello. Vedere hello [articolo della Knowledge base di Red Hat](https://access.redhat.com/articles/1067).
 >

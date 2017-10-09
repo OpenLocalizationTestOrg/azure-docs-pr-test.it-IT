@@ -1,0 +1,2 @@
+Se il problema di Azure non viene risolto in questo articolo, visitare hello forum di Azure in [MSDN e hello Overflow dello Stack](https://azure.microsoft.com/support/forums/). È possibile registrare il problema in questi forum o registrare troppo[ @AzureSupport su Twitter](https://twitter.com/AzureSupport). È anche possibile inviare una richiesta di supporto tecnico di Azure. una richiesta di supporto hello toosubmit [supporto tecnico di Azure](https://azure.microsoft.com/support/options/) selezionare **ottenere supporto**.
+

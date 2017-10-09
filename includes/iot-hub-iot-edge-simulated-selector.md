@@ -2,65 +2,65 @@
 > * [Linux](../articles/iot-hub/iot-hub-linux-iot-edge-simulated-device.md)
 > * [Windows](../articles/iot-hub/iot-hub-windows-iot-edge-simulated-device.md)
 
-La procedura dettagliata dell'[esempio di caricamento nel cloud del dispositivo simulato] illustra come usare [Azure IoT Edge][lnk-sdk] per inviare dati di telemetria da dispositivo a cloud all'hub IoT da dispositivi simulati.
+Questa procedura dettagliata di hello [simulato dispositivo Cloud caricare esempio] illustra come toouse [Azure IoT Edge] [ lnk-sdk] toosend tooIoT di telemetria da dispositivo a cloud Hub da simulata dispositivi.
 
 In questa procedura dettagliata verranno trattati i seguenti argomenti:
 
-* **Architettura**: informazioni sull'architettura relative all'[esempio di caricamento nel cloud del dispositivo simulato].
-* **Compilazione ed esecuzione**: i passaggi richiesti per compilare ed eseguire l'esempio.
+* **Architettura**: architettura informazioni hello [simulato dispositivo Cloud caricare esempio].
+* **Compilare ed eseguire**: esempio di esecuzione hello e toobuild necessari passaggi di hello.
 
 ## <a name="architecture"></a>Architettura
 
-L'[esempio di caricamento nel cloud del dispositivo simulato] mostra come creare un gateway che invia i dati di telemetria da dispositivi simulati a un hub IoT. Un dispositivo potrebbe non essere in grado di connettersi direttamente all'hub IoT perché il dispositivo:
+Hello [simulato dispositivo Cloud caricare esempio] viene illustrato come un gateway che invia dati di telemetria da toocreate simulato hub IoT tooan di dispositivi. Un dispositivo potrebbe non essere in grado di tooconnect direttamente tooIoT Hub perché il dispositivo hello:
 
 * Non usa un protocollo di comunicazione riconosciuto dall'hub IoT.
-* Non riesce a memorizzare l'identità assegnata dall'hub IoT.
+* Non è abbastanza tooremember hello identità assegnato tooit dall'IoT Hub.
 
-Un gateway IoT Edge può risolvere questi problemi nei modi seguenti:
+Un gateway esterno IoT può risolvere questi problemi in hello seguenti modi:
 
-* Il gateway riconosce il protocollo usato dal dispositivo, riceve i dati di telemetria da dispositivo a cloud dal dispositivo e inoltra i messaggi all'hub IoT usando un protocollo riconosciuto dall'hub IoT.
+* gateway Hello riconosce protocollo hello usato dal dispositivo hello, riceve i dati di telemetria da dispositivo a cloud dal dispositivo hello e inoltra tali tooIoT messaggi Hub utilizzando un protocollo riconosciuto dall'hub IoT hello.
 
-* Il gateway esegue il mapping delle identità dell'hub IoT ai dispositivi e funge da proxy quando un dispositivo invia messaggi all'hub IoT.
+* gateway Hello esegue il mapping toodevices identità IoT Hub e funge da proxy quando un dispositivo invia messaggi tooIoT Hub.
 
-Il diagramma seguente illustra i componenti principali dell'esempio, inclusi i moduli di IoT Edge:
+Hello seguente diagramma mostra hello componenti principali dell'esempio hello, tra cui hello moduli IoT Edge:
 
 ![][1]
 
-I moduli non si scambiano direttamente i messaggi, ma li pubblicano in un broker interno che li invia ad altri moduli usando un meccanismo di sottoscrizione. Per altre informazioni, vedere [Get started with Azure IoT Edge][lnk-gw-getstarted] (Introduzione ad Azure IoT Edge).
+i moduli di Hello non passano i messaggi direttamente tooeach altri. i moduli di Hello pubblicano messaggi tooan interno broker che recapita toohello messaggi hello altri moduli utilizzando un meccanismo di sottoscrizione. Per altre informazioni, vedere [Get started with Azure IoT Edge][lnk-gw-getstarted] (Introduzione ad Azure IoT Edge).
 
 ### <a name="protocol-ingestion-module"></a>Modulo di inserimento del protocollo
 
-Questo modulo è il punto di partenza per ricevere i dati dai dispositivi e trasferirli al cloud attraverso il gateway. Nell'esempio il modulo esegue le attività seguenti:
+Questo modulo è hello punto di partenza per la ricezione di dati dai dispositivi, tramite il gateway hello e nel cloud hello. Nell'esempio hello modulo hello:
 
-1. Crea dati di temperatura simulati. Se vengono usati dispositivi fisici, il modulo legge i dati da tali dispositivi fisici.
+1. Crea dati di temperatura simulati. Se si usano dispositivi fisici, modulo hello legge i dati da tali dispositivi fisici.
 1. Crea un messaggio.
-1. Inserisce i dati di temperatura simulati nel contenuto del messaggio.
-1. Aggiunge una proprietà con un indirizzo MAC fittizio al messaggio.
-1. Rende disponibile il messaggio al modulo successivo nella catena.
+1. Inserisce dati di temperatura hello simulato il contenuto del messaggio hello.
+1. Aggiunge una proprietà con un messaggio di toohello indirizzo MAC FALSO.
+1. Rende modulo successivo disponibile toohello di messaggio hello nella catena di hello.
 
-Il modulo denominato **Inserimento del protocollo X** nel diagramma precedente viene chiamato **Dispositivo simulato** nel codice sorgente.
+modulo Hello denominato **inserimento X protocollo** in hello diagramma precedente viene chiamato **dispositivo simulato** nel codice sorgente hello.
 
 ### <a name="mac-lt-gt-iot-hub-id-module"></a>Modulo ID MAC &lt;-&gt; IoT Hub
 
-Questo modulo esegue l'analisi dei messaggi che includono una proprietà dell'indirizzo Mac. Nell'esempio il modulo di inserimento del protocollo aggiunge la proprietà dell'indirizzo MAC. Se il modulo trova questa proprietà, aggiunge un'altra proprietà con una chiave del dispositivo dell'hub IoT al messaggio, quindi rende disponibile il messaggio al modulo successivo nella catena.
+Questo modulo esegue l'analisi dei messaggi che includono una proprietà dell'indirizzo Mac. Nell'esempio hello, modulo di hello del protocollo di inserimento aggiunge proprietà dell'indirizzo MAC hello. Se il modulo hello rileva tale proprietà, viene aggiunta un'altra proprietà con un messaggio di chiave toohello dispositivo IoT Hub. modulo Hello rende quindi modulo successivo disponibile toohello di messaggio hello nella catena di hello.
 
-Lo sviluppatore imposta il mapping tra gli indirizzi MAC e le identità dell'hub IoT per associare i dispositivi simulati alle identità del dispositivo dell'hub IoT. Lo sviluppatore aggiunge manualmente il mapping durante la configurazione del modulo.
+sviluppatore Hello imposta un mapping tra gli indirizzi MAC e IoT Hub identità tooassociate hello simulato i dispositivi con le identità del dispositivo IoT Hub. sviluppatore Hello aggiunge mapping hello manualmente come parte della configurazione del modulo hello.
 
 > [!NOTE]
-> Questo esempio usa un indirizzo MAC come identificatore univoco del dispositivo e lo associa a un'identità dei dispositivi di un hub IoT. Tuttavia, è possibile scrivere un modulo personalizzato che usa un identificatore univoco diverso. Ad esempio, i dispositivi possono avere numeri di serie univoci o i dati di telemetria possono includere un nome univoco del dispositivo incorporato.
+> Questo esempio usa un indirizzo MAC come identificatore univoco del dispositivo e lo associa a un'identità dei dispositivi di un hub IoT. Tuttavia, è possibile scrivere un modulo personalizzato che usa un identificatore univoco diverso. Ad esempio, i dispositivi siano univoci i numeri di serie o dati di telemetria hello possono includere un nome univoco del dispositivo incorporato.
 
 ### <a name="iot-hub-communication-module"></a>Modulo di comunicazione dell'hub IoT
 
-Questo modulo accetta i messaggi con una proprietà chiave dei dispositivi di un hub IoT assegnata dal modulo precedente. Il modulo invia il contenuto del messaggio all'hub IoT usando il protocollo HTTP. HTTP è uno dei tre protocolli riconosciuti dall'hub IoT.
+Questo modulo accetta i messaggi con un IoT Hub proprietà chiave dispositivo assegnato dal modulo precedente hello. modulo Hello Invia messaggio hello tooIoT contenuto Hub mediante hello protocollo HTTP. HTTP è uno dei hello tre protocolli riconosciuti dall'IoT Hub.
 
-Invece di aprire una connessione per ogni dispositivo simulato, questo modulo apre una singola connessione HTTP dal gateway all'hub IoT, quindi esegue il multiplexing delle connessioni da tutti i dispositivi simulati su tale connessione. Questo approccio consente a un singolo gateway di connettersi a molti più dispositivi.
+Anziché aprendo una connessione per ogni dispositivo simulato, questo modulo viene visualizzata una singola connessione HTTP dall'hub IoT toohello di hello gateway. modulo Hello demultiplexing quindi le connessioni da tutti i dispositivi di hello simulato tramite tale connessione. Questo approccio consente tooconnect un singolo gateway molti più dispositivi.
 
 ## <a name="before-you-get-started"></a>Prima di iniziare
 
 Prima di iniziare:
 
-* [Creare un hub IoT][lnk-create-hub] nella sottoscrizione di Azure. Per completare questa procedura, è necessario disporre del nome dell'hub. Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.
-* Aggiungere due dispositivi all'hub IoT e annotare i relativi ID e le chiavi di dispositivo. È possibile usare lo strumento [Esplora dispositivi][lnk-device-explorer] o [iothub-explorer][lnk-iothub-explorer] per aggiungere i dispositivi all'hub IoT creato nel passaggio precedente e recuperarne le chiavi.
+* [Creazione di un hub IoT] [ lnk-create-hub] nella sottoscrizione di Azure, è necessario il nome di hello di toocomplete l'hub in questa procedura dettagliata. Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.
+* Aggiungere due dispositivi tooyour IoT hub e prendere nota dei relativi ID e le chiavi di dispositivo. È possibile utilizzare hello [Esplora dispositivo] [ lnk-device-explorer] o [l'hub IOT Esplora] [ lnk-iothub-explorer] strumento tooadd l'hub IoT toohello di dispositivi creata nel hello precedente passaggio e recuperare le relative chiavi.
 
 ![][2]
 
@@ -69,7 +69,7 @@ Prima di iniziare:
 [2]: media/iot-hub-iot-edge-simulated-selector/image2.png
 
 <!-- Links -->
-[esempio di caricamento nel cloud del dispositivo simulato]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md
+[simulato dispositivo Cloud caricare esempio]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md
 [lnk-sdk]: https://github.com/Azure/iot-edge
 [lnk-gw-getstarted]: ../articles/iot-hub/iot-hub-linux-iot-edge-get-started.md
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

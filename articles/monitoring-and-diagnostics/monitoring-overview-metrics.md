@@ -1,5 +1,5 @@
 ---
-title: Panoramica delle metriche in Microsoft Azure | Microsoft Docs
+title: aaaOverview di metriche in Microsoft Azure | Documenti Microsoft
 description: Panoramica delle metriche e dei casi d'uso in Microsoft Azure
 author: johnkemnetz
 manager: orenr
@@ -14,110 +14,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: johnkem
-ms.openlocfilehash: 3aff83ab2c157a18f4af6200a79bae7e5d6f0ea2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2b97f51e0554dae95a929241ae1f0e25e5c215ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-metrics-in-microsoft-azure"></a>Panoramica delle metriche in Microsoft Azure
-In questo articolo sono descritte le metriche disponibili in Microsoft Azure, i loro vantaggi e come iniziare a usarle.  
+In questo articolo vengono descritte le metriche in Microsoft Azure, le prestazioni e come utilizzarle toostart.  
 
 ## <a name="what-are-metrics"></a>Cosa sono le metriche?
-Il monitoraggio di Azure consente di usare la telemetria per ottenere visibilità sulle prestazioni e sull'integrità dei carichi di lavoro in Azure. Il tipo di dati di telemetria Azure più importante è rappresentato dalle metriche (altrimenti dette contatori delle prestazioni) generate dalla maggior parte delle risorse di Azure. Il monitoraggio di Azure offre alcuni modi per configurare e usare queste metriche per il monitoraggio e la risoluzione dei problemi.
+Monitoraggio di Azure consente tooconsume telemetria toogain visibilità hello prestazioni e l'integrità dei carichi di lavoro in Azure. Hello più importanti dei dati di telemetria di Azure è metriche hello (detto anche i contatori delle prestazioni) generate da Azure più risorse. Monitoraggio di Azure offre diversi modi tooconfigure e utilizzare queste metriche per il monitoraggio e risoluzione dei problemi.
 
 ## <a name="what-can-you-do-with-metrics"></a>A cosa servono le metriche?
-Le metriche sono un'importante fonte di dati di telemetria e consentono di eseguire le attività seguenti:
+Le metriche sono fonte utile di telemetria e consentono di hello toodo seguenti attività:
 
-* **Tenere traccia delle prestazioni** della risorsa (ad esempio, una VM, un sito Web o un'app per la logica) tracciandone le metriche in un grafico del portale da aggiungere a un dashboard.
-* **Ricevere la notifica di un problema** che influisce sulle prestazioni della risorsa quando una metrica supera una determinata soglia.
+* **Tenere traccia delle prestazioni di hello** della risorsa (ad esempio un'app di macchina virtuale, sito Web o logica) per tracciare la metrica in un grafico del portale e blocco dashboard tooa grafico.
+* **Ricevere notifiche di un problema** che impatti hello delle prestazioni della risorsa quando una metrica supera una determinata soglia.
 * **Configurare le azioni automatiche**, ad esempio la scalabilità automatica di una risorsa o la generazione di un runbook quando una metrica supera una determinata soglia.
 * **Eseguire analisi avanzate** o creare report relativi alle tendenze delle prestazioni o di uso della risorsa.
-* **Archiviare** la cronologia relativa alle prestazioni o all'integrità della risorsa a scopi di **conformità/verifica**.
+* **Archivio** hello cronologia delle prestazioni o l'integrità della risorsa **per il controllo o di conformità** scopi.
 
-## <a name="what-are-the-characteristics-of-metrics"></a>Quali sono le caratteristiche delle metriche?
-Le metriche presentano le caratteristiche seguenti:
+## <a name="what-are-hello-characteristics-of-metrics"></a>Quali sono le caratteristiche di hello delle metriche?
+Le metriche sono hello seguenti caratteristiche:
 
-* Tutte le metriche hanno **frequenza di un minuto**. L'utente riceve il valore della metrica generata dalla risorsa ogni minuto, così da ottenere una visibilità quasi in tempo reale sullo stato e sull'integrità della risorsa.
-* Le metriche sono **disponibili immediatamente**. Non è necessario fornire il consenso esplicito o configurare la diagnostica aggiuntiva.
-* Per ogni metrica è possibile accedere alla **cronologia degli ultimi 30 giorni** . È possibile vedere rapidamente le tendenze recenti e mensili riguardo alle prestazioni o all'integrità della risorsa.
+* Tutte le metriche hanno **frequenza di un minuto**. Si riceve un valore della metrica al minuto dalla risorsa, fornendo quasi in tempo reale visibilità nello stato di hello e l'integrità della risorsa.
+* Le metriche sono **disponibili immediatamente**. Non necessario tooopt in oppure configurare ulteriori operazioni di diagnostica.
+* Per ogni metrica è possibile accedere alla **cronologia degli ultimi 30 giorni** . È possibile esaminare rapidamente le tendenze recenti e mensili hello in prestazioni hello o l'integrità della risorsa.
 
 È anche possibile:
 
-* Configurare una **regola di avviso per la metrica che invia una notifica o esegue un'azione automatica** quando la metrica supera la soglia definita. Il ridimensionamento automatico è un'azione speciale automatica che consente di aumentare le istanze di una risorsa per soddisfare le richieste in entrata o i carichi sul sito Web o sulle risorse di calcolo. È possibile configurare una regola di impostazione del ridimensionamento automatico per aumentare o ridurre le istanze in base a una metrica che supera una soglia.
+* Configurare una metrica **avviso regola invia una notifica o accetta azione automatica** quando la metrica hello supera soglia hello che è stata impostata. La scalabilità automatica è un'azione automatica speciale che abilita tooscale le richieste in ingresso di risorse toomeet o carica le risorse di elaborazione di un sito Web. È possibile configurare un'impostazione regola tooscale in o out in base a una metrica oltrepassare la soglia di scalabilità automatica.
 
-* **Reindirizzare** tutte le metriche a Application Insights o a Log Analytics (OMS) per abilitare le analisi istantanee, la funzione di ricerca e gli avvisi personalizzati sui dati delle metriche provenienti dalle risorse. È inoltre possibile trasmettere le metriche a un hub eventi, per poi avere la possibilità di reindirizzarle all'analisi di flusso di Azure o alle app personalizzate per effettuare un'analisi quasi in tempo reale. Impostare il flusso di Hub eventi usando le impostazioni di diagnostica.
+* **Route** tutte le metriche Analitica Log (OMS) o Application Insights tooenable immediata analitica, ricerca e avvisi personalizzati in dati di metrica dalle risorse. È inoltre possibile trasmettere le metriche tooan Hub eventi, consentendo toothen indirizzarle tooAzure flusso Analitica o toocustom App per l'analisi in tempo quasi reale. Impostare il flusso di Hub eventi usando le impostazioni di diagnostica.
 
-* **Archiviare le metriche da conservare** per un lungo periodo o usarle per creare report offline. È possibile reindirizzare le metriche all'archiviazione BLOB di Azure quando si configurano le impostazioni di diagnostica per la risorsa.
+* **Archiviare le metriche toostorage** per la conservazione più lungo o utilizzarli per report offline. È possibile indirizzare il tooAzure di metriche di archiviazione Blob quando si configurano impostazioni strumenti diagnostici per la risorsa.
 
-* Rilevare, accedere e **visualizzare facilmente tutte le metriche** tramite il Portale di Azure quando si seleziona una risorsa e si tracciano le metriche in un grafico.
+* Individuare facilmente, accedere, e **consente di visualizzare tutte le metriche** tramite hello portale di Azure quando si seleziona una risorsa e tracciare hello metriche in un grafico.
 
-* **Usare** le metriche mediante le nuove API REST del Monitoraggio di Azure.
+* **Utilizzare** metriche hello tramite hello nuove API REST monitoraggio di Azure.
 
-* **Eseguire query** sulle metriche usando i cmdlet di PowerShell o l'API REST multi-piattaforma.
+* **Query** metriche utilizzando hello i cmdlet di PowerShell o hello API REST e multipiattaforma.
 
   ![Reindirizzamento delle metriche nel monitoraggio di Azure](./media/monitoring-overview-metrics/Metrics_Overview_v4.png)
 
-## <a name="access-metrics-via-the-portal"></a>Accedere alle metriche tramite il portale
-Di seguito è descritta una procedura rapida per la creazione di un grafico delle metriche tramite il Portale di Azure.
+## <a name="access-metrics-via-hello-portal"></a>Metriche di accesso tramite il portale di hello
+Ecco una rapida procedura dettagliata di come toocreate un grafico utilizzando metrica hello portale di Azure.
 
-### <a name="to-view-metrics-after-creating-a-resource"></a>Per visualizzare le metriche dopo aver creato una risorsa
-1. Aprire il Portale di Azure.
+### <a name="tooview-metrics-after-creating-a-resource"></a>metriche tooview dopo la creazione di una risorsa
+1. Hello aprirlo portale di Azure.
 2. Creare un sito Web per il Servizio app di Azure.
-3. Dopo aver creato un sito Web, accedere al pannello **Panoramica** del sito Web.
-4. È possibile visualizzare nuove metriche come un riquadro **Monitoraggio**. Successivamente è possibile modificare il riquadro e selezionare altre metriche.
+3. Dopo aver creato un sito Web, visitare toohello **Panoramica** pannello del sito Web di hello.
+4. È possibile visualizzare nuove metriche come un riquadro **Monitoraggio**. È quindi possibile modificare il riquadro hello e selezionare altre metriche.
 
    ![Metriche su una risorsa nel monitoraggio di Azure](./media/monitoring-overview-metrics/MetricsOverview1.png)
 
-### <a name="to-access-all-metrics-in-a-single-place"></a>Per accedere a tutte le metriche in un'unica posizione
-1. Aprire il Portale di Azure.
-2. Accedere alla scheda **Monitoraggio** e selezionare l'opzione **Metriche**.
-3. Selezionare la sottoscrizione, il gruppo di risorse e il nome della risorsa dall'elenco a discesa.
-4. Visualizzare l'elenco delle metriche disponibili. Successivamente selezionare la metrica desiderata e tracciarla.
-5. È possibile aggiungerla al dashboard facendo clic sul segnaposto nell'angolo superiore destro.
+### <a name="tooaccess-all-metrics-in-a-single-place"></a>tooaccess tutte le metriche in un'unica posizione
+1. Hello aprirlo portale di Azure.
+2. Passare di nuovo toohello **monitoraggio** scheda e quindi e seleziona hello **metriche** opzione disponibili al suo interno.
+3. Selezionare la sottoscrizione, un gruppo di risorse e un nome hello della risorsa di hello dall'elenco a discesa hello.
+4. Elenco di visualizzazione hello le metriche disponibili. Selezionare quindi metrica hello si è interessati e traccia il.
+5. È possibile aggiungere dashboard toohello facendo hello pin nell'angolo superiore destro di hello.
 
    ![Accedere a tutte le metriche in un'unica posizione nel monitoraggio di Azure](./media/monitoring-overview-metrics/MetricsOverview2.png)
 
 > [!NOTE]
-> È possibile accedere alle metriche a livello di host dalle VM (basate su Azure Resource Manager) e dai set di scalabilità di macchine virtuali senza altre eventuali configurazioni di diagnostica. Queste nuove metriche a livello di host sono disponibili per le istanze di Windows e Linux. Queste metriche non vanno confuse con le metriche a livello di sistema operativo guest a cui si accede quando si attiva la Diagnostica di Azure sulle VM o sui set di scalabilità di macchine virtuali. Per altre informazioni sulla configurazione della Diagnostica, vedere [What is Microsoft Azure Diagnostics](../azure-diagnostics.md) (Che cos'è la Diagnostica di Microsoft Azure?).
+> È possibile accedere alle metriche a livello di host dalle VM (basate su Azure Resource Manager) e dai set di scalabilità di macchine virtuali senza altre eventuali configurazioni di diagnostica. Queste nuove metriche a livello di host sono disponibili per le istanze di Windows e Linux. Queste metriche non sono toobe confusa con hello metriche a livello di sistema operativo Guest che si dispone di accesso toowhen che attivare la diagnostica di Azure nel set di scalabilità di macchine virtuali o le macchine virtuali. toolearn più sulla configurazione di diagnostica, vedere [che cos'è Microsoft Azure Diagnostics](../azure-diagnostics.md).
 >
 >
 
-## <a name="access-metrics-via-the-rest-api"></a>Accedere alle metriche mediante l'API REST
-È possibile accedere alle metriche di Azure tramite le API del Monitoraggio di Azure. Sono due le API che consentono di rilevare le metriche e accedervi:
+## <a name="access-metrics-via-hello-rest-api"></a>Accedere alle metriche tramite hello API REST
+Le metriche di Azure sono accessibili tramite le API di monitoraggio di Azure hello. Sono due le API che consentono di rilevare le metriche e accedervi:
 
-* Usare l'[API REST relativa alle definizione delle metriche del Monitoraggio di Azure](https://msdn.microsoft.com/library/mt743621.aspx) per accedere all'elenco di metriche disponibili per un servizio.
-* Usare l'[API REST delle metriche del Monitoraggio di Azure](https://msdn.microsoft.com/library/mt743622.aspx) per accedere ai dati delle metriche effettive.
+* Hello utilizzare [le definizioni di metrica di monitoraggio di Azure API REST](https://msdn.microsoft.com/library/mt743621.aspx) tooaccess hello elenco delle metriche disponibili per un servizio.
+* Hello utilizzare [API REST di metriche di monitoraggio di Azure](https://msdn.microsoft.com/library/mt743622.aspx) tooaccess hello dati di metrica effettivo.
 
 > [!NOTE]
-> Questo articolo è dedicato alle metriche accessibili tramite la [nuova API per le metriche](https://msdn.microsoft.com/library/dn931930.aspx) per le risorse di Azure. La versione della nuova API per le definizioni delle metriche è 2016-03-01 e la versione dell'API per le metriche è 2016-09-01. È possibile accedere alle metriche e alle definizioni delle metriche legacy con la versione API 2014-04-01.
+> Questo articolo vengono illustrate le metriche di hello tramite hello [nuova API per le metriche](https://msdn.microsoft.com/library/dn931930.aspx) per le risorse di Azure. versione dell'API per definizioni di metrica nuovo hello API Hello è 2016-03-01 e versione di hello per le API di metriche è 01 / 09 / 2016. le metriche e definizioni di metrica legacy hello accessibili con hello API versione 2014-04-01.
 >
 >
 
-Per una procedura ancor più dettagliata con le API REST del Monitoraggio di Azure, vedere [Procedura dettagliata sull'API REST del Monitoraggio di Azure](monitoring-rest-api-walkthrough.md).
+Per una più dettagliata utilizzando hello API REST di monitoraggio di Azure, vedere [procedura dettagliata di API REST di Azure monitoraggio](monitoring-rest-api-walkthrough.md).
 
 ## <a name="export-metrics"></a>Esportare le metriche
-È possibile accedere al pannello **Log di diagnostica** nella scheda **Monitoraggio** e visualizzare le opzioni di esportazione delle metriche. È possibile selezionare le metriche (e i log di diagnostica) da reindirizzare nell'archiviazione BLOB, negli Hub eventi di Azure o in OMS per i casi d'uso descritti in precedenza in questo articolo.
+È possibile passare toohello **le impostazioni di diagnostica** pannello hello **monitoraggio** scheda e visualizzazione opzioni di esportazione hello per le metriche. È possibile selezionare metriche (e i log di diagnostica) toobe indirizzato archiviazione tooBlob, hub eventi tooAzure o tooOMS per casi d'uso che sono stati indicati in precedenza in questo articolo.
 
  ![Opzioni di esportazione per le metriche nel monitoraggio di Azure](./media/monitoring-overview-metrics/MetricsOverview3.png)
 
 È possibile configurare questa opzione tramite i modelli di Resource Manager, [PowerShell](insights-powershell-samples.md), l'[interfaccia della riga di comando di Azure](insights-cli-samples.md) o l'[API REST](https://msdn.microsoft.com/library/dn931943.aspx).
 
 ## <a name="take-action-on-metrics"></a>Eseguire operazioni sulle metriche
-Per ricevere notifiche o eseguire azioni automatizzate su dati delle metriche, è possibile configurare regole di avviso o impostazioni di ridimensionamento automatico.
+le notifiche tooreceive o intraprendere automatizzata azioni sui dati di metrica, è possibile configurare le regole di avviso o impostazioni di scalabilità automatica.
 
 ### <a name="configure-alert-rules"></a>Configurare regole di avviso
-È possibile configurare le regole di avviso sulle metriche. Queste regole di avviso possono verificare se una metrica ha superato una determinata soglia. Possono quindi comunicare tramite e-mail o generare un webhook che può essere usato per eseguire qualsiasi script personalizzato. È anche possibile usare il webhook per configurare le integrazioni dei prodotti di terze parti.
+È possibile configurare le regole di avviso sulle metriche. Queste regole di avviso possono verificare se una metrica ha superato una determinata soglia. Possono quindi ricevere una notifica tramite posta elettronica o attivare un webhook che può essere utilizzati toorun qualsiasi script personalizzato. È possibile utilizzare anche le integrazioni di hello webhook tooconfigure prodotto di terze parti.
 
  ![Metriche e regole di avviso nel monitoraggio di Azure](./media/monitoring-overview-metrics/MetricsOverview4.png)
 
 ### <a name="autoscale-your-azure-resources"></a>Ridimensionare automaticamente le risorse di Azure
-Alcune risorse di Azure supportano l'aumento o la riduzione di più istanze per gestire i carichi di lavoro. Il ridimensionamento automatico si applica ai servizi app (App Web), ai set di scalabilità di macchine virtuali e ai Servizi cloud di Azure. È possibile configurare le regole di ridimensionamento automatico in modo da ridurre o aumentare il numero di istanze quando una data metrica che influisce sul carico di lavoro supera una soglia specificata. Per ulteriori informazioni, vedere [Panoramica della scalabilità automatica](monitoring-overview-autoscale.md).
+Alcune risorse di Azure supportano hello scala o di più istanze toohandle i carichi di lavoro. Scalabilità automatica applica tooApp servizio (app Web), il set di scalabilità di macchine virtuali e servizi Cloud di Azure classico. È possibile configurare tooscale regole di scalabilità automatica o l'estrazione quando una metrica determinata che influisce sul carico di lavoro supera una soglia specificata. Per ulteriori informazioni, vedere [Panoramica della scalabilità automatica](monitoring-overview-autoscale.md).
 
  ![Metriche e ridimensionamento automatico nel Monitoraggio di Azure](./media/monitoring-overview-metrics/MetricsOverview5.png)
 
 ## <a name="learn-about-supported-services-and-metrics"></a>Altre informazioni su metriche e servizi supportati
-Il monitoraggio di Azure è una nuova infrastruttura di metriche. Fornisce supporto per i seguenti servizi di Azure nel Portale di Azure e nella nuova versione dell'API del monitoraggio di Azure:
+Il monitoraggio di Azure è una nuova infrastruttura di metriche. Supporta hello seguenti servizi di Azure in hello Azure portal e hello nuova versione di hello API di monitoraggio di Azure:
 
 * VM (basate su Azure Resource Manager)
 * set di scalabilità di macchine virtuali
@@ -132,13 +132,13 @@ Il monitoraggio di Azure è una nuova infrastruttura di metriche. Fornisce suppo
 * Hub IoT
 * Cache Redis
 * Rete: gateway applicazione
-* Search
+* Ricerca
 
-È possibile visualizzare un elenco dettagliato di tutti i servizi supportati e delle relative metriche in [Metriche del Monitoraggio di Azure: metriche supportate per tipo di risorsa](monitoring-supported-metrics.md).
+È possibile visualizzare un elenco dettagliato di tutti i servizi di hello supportato e le metriche a [metriche di monitoraggio di Azure - metriche supportate per ogni tipo di risorsa](monitoring-supported-metrics.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Fare riferimento ai collegamenti forniti all'interno dell'articolo. In più, è possibile ottenere informazioni su:  
+Vedere i collegamenti toohello in questo articolo. In più, è possibile ottenere informazioni su:  
 
 * [Metriche comuni per il ridimensionamento automatico](insights-autoscale-common-metrics.md)
-* [Come creare regole di avviso](insights-alerts-portal.md)
+* [Come le regole di avviso toocreate](insights-alerts-portal.md)
 * [Analizzare i log di Archiviazione di Azure con Log Analytics](../log-analytics/log-analytics-azure-storage.md)

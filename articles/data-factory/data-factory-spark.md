@@ -1,6 +1,6 @@
 ---
-title: Chiamare i programmi Spark da Azure Data Factory | Microsoft Docs
-description: "È possibile chiamare i programmi Spark da una data factory di Azure usando l'attività MapReduce."
+title: aaaInvoke Spark programmi da Data Factory di Azure | Documenti Microsoft
+description: "Informazioni su come i programmi di Spark tooinvoke da una factory di dati di Azure usando hello attività MapReduce."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: 57894bbdd9208f8c32eb65e29f04e2ae723780ca
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f88943ece7ee3d21dedbd857609f1b2713b62741
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="invoke-spark-programs-from-azure-data-factory-pipelines"></a>Chiamare i programmi Spark dalle pipeline Azure Data Factory
 
@@ -35,75 +35,75 @@ ms.lasthandoff: 08/29/2017
 > * [Attività personalizzata di .NET](data-factory-use-custom-activities.md)
 
 ## <a name="introduction"></a>Introduzione
-L'attività Spark è una delle [attività di trasformazione dei dati](data-factory-data-transformation-activities.md) supportate da Azure Data Factory. Questa attività esegue il programma Spark specificato nel cluster Apache Spark in Azure HDInsight.    
+Attività Spark è uno dei hello [le attività di trasformazione dati](data-factory-data-transformation-activities.md) supportati da Data Factory di Azure. Questa attività esegue hello specificato programma Spark sul cluster Apache Spark in HDInsight di Azure.    
 
 > [!IMPORTANT]
 > - L'attività Spark non supporta i cluster Spark HDInsight che usano Azure Data Lake Store come risorsa di archiviazione primaria.
 > - L'attività Spark supporta solo cluster Spark HDInsight esistenti (personalizzati). Non supporta un servizio collegato HDInsight su richiesta.
 
 ## <a name="walkthrough-create-a-pipeline-with-spark-activity"></a>Procedura dettagliata: creare una pipeline con attività Spark
-Di seguito viene illustrata la procedura usata in generale per creare una pipeline di Data Factory con un'attività Spark.  
+Ecco i passaggi tipici di hello toocreate una pipeline di Data Factory con un'attività di Spark.  
 
 1. Creare una data factory.
-2. Creare un servizio collegato Archiviazione di Azure per collegare l'archiviazione di Azure associata al cluster Spark HDInsight alla data factory.     
-2. Creare un servizio collegato HDInsight di Azure per collegare il cluster Apache Spark in HDInsight di Azure alla data factory.
-3. Creare un set di dati che faccia riferimento al servizio collegato di Archiviazione di Azure. Attualmente, è necessario specificare un set di dati di output per un'attività anche se non viene prodotto alcun output.  
-4. Creare una pipeline con l'attività Spark che faccia riferimento al servizio collegato HDInsight creato al passaggio 2. L'attività è configurata con il set di dati creato nel passaggio precedente come un set di dati di output. Il set di dati di output è ciò su cui si basa la pianificazione (oraria, giornaliera e così via). Pertanto, è necessario specificare il set di dati di output anche se l'attività non ha prodotto alcun output.
+2. Creare un toolink di servizio collegato di archiviazione Azure l'archiviazione di Azure associata con la data factory di toohello cluster HDInsight Spark.     
+2. Creare un toolink di servizio collegato di Azure HDInsight cluster Apache Spark in data factory di Azure HDInsight toohello.
+3. Creare un set di dati che fa riferimento il servizio di archiviazione di Azure collegati toohello. Attualmente, è necessario specificare un set di dati di output per un'attività anche se non viene prodotto alcun output.  
+4. Creare una pipeline con attività Spark che fa riferimento a servizio collegato di HDInsight toohello creato nel #2. attività Hello è configurato con dataset hello creato nel passaggio precedente di hello come un set di dati di output. set di dati output hello è quali unità hello pianificazione (oraria, giornaliera, e così via.). Pertanto, è necessario specificare il set di dati di hello output anche se l'attività hello non produce un output molto.
 
 ### <a name="prerequisites"></a>Prerequisiti
-1. Creare un **account di Archiviazione di Azure generico** seguendo le istruzioni della procedura dettagliata: [Creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account).  
-2. Creare un **cluster Apache Spark in HDInsight di Azure** seguendo le istruzioni riportate nell'esercitazione: [Creare il cluster Apache Spark in HDInsight di Azure](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md). Associare l'account di archiviazione di Azure creato al passaggio 1 con questo cluster.  
-3. Scaricare e leggere il file di script python **test.py**, disponibile all'indirizzo: [https://adftutorialfiles.blob.core.windows.net/sparktutorial/test.py](https://adftutorialfiles.blob.core.windows.net/sparktutorial/test.py).  
-3.  Caricare **test.py** nella cartella **pyFiles** nel contenitore **adfspark** nell'archiviazione BLOB di Azure. Creare la cartella e il contenitore, se non esistono.
+1. Crea un **generico Account di archiviazione di Azure** seguendo le istruzioni riportate in questa procedura dettagliata hello: [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account).  
+2. Crea un **cluster Apache Spark in Azure HDInsight** seguendo le istruzioni riportate nell'esercitazione hello: [cluster creare Apache Spark in Azure HDInsight](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md). Associare l'account di archiviazione di Azure hello creato nel passaggio &#1; con questo cluster.  
+3. Scaricare ed esaminare i file di script python hello **test.py** disponibile all'indirizzo: [https://adftutorialfiles.blob.core.windows.net/sparktutorial/test.py](https://adftutorialfiles.blob.core.windows.net/sparktutorial/test.py).  
+3.  Caricare **test.py** toohello **pyFiles** cartella hello **adfspark** contenitore nell'archiviazione Blob di Azure. Creare un contenitore di hello e cartella hello se non esistono.
 
 ### <a name="create-data-factory"></a>Creare un'istanza di Data Factory
-In questo passaggio iniziale viene creata la data factory.
+Iniziamo con la creazione di data factory di hello in questo passaggio.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Fare clic su **NUOVO** nel menu a sinistra e quindi su **Dati e analisi** e **Data factory**.
-3. Nel pannello **Nuova data factory** immettere **SparkDF** come nome.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Fare clic su **NEW** scegliere dal menu a sinistra, hello **dati + Analitica**, fare clic su **Data Factory**.
+3. In hello **nuova data factory** pannello immettere **SparkDF** per hello Name.
 
    > [!IMPORTANT]
-   > Il nome della data factory di Azure deve essere **univoco a livello globale**. Se viene visualizzato l'errore **Il nome "SparkDF" per la data factory non è disponibile**, cambiare il nome della data factory, ad esempio nomeutenteSparkDFdate, e provare di nuovo a crearla. Per informazioni sulle regole di denominazione per gli elementi di Data Factory, vedere l'argomento [Azure Data Factory - Regole di denominazione](data-factory-naming-rules.md) .   
-4. Selezionare la **sottoscrizione di Azure** in cui creare la data factory.
+   > nome Hello di hello Azure data factory deve essere **univoco globale**. Se viene visualizzato l'errore hello: **"SparkDF" nome della Data factory non è disponibile**. Modificare il nome di hello della data factory di hello (ad esempio, yournameSparkDFdate e provare a creare di nuovo. Per informazioni sulle regole di denominazione per gli elementi di Data factory, vedere l'argomento relativo alle [regole di denominazione di Data factory](data-factory-naming-rules.md) .   
+4. Seleziona hello **sottoscrizione di Azure** in cui si desidera hello data factory toobe creato.
 5. Selezionare un **gruppo di risorse** di Azure esistente o crearne uno nuovo.
-6. Selezionare l'opzione **Aggiungi al dashboard**.  
-6. Fare clic su **Crea** nel pannello **Nuova data factory**.
+6. Selezionare **toodashboard Pin** opzione.  
+6. Fare clic su **crea** su hello **nuova data factory** blade.
 
    > [!IMPORTANT]
-   > Per creare istanze di data factory, è necessario essere membri del ruolo [Collaboratore Data factory](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) a livello di sottoscrizione/gruppo di risorse.
-7. Nel **dashboard** del portale di Azure verrà visualizzata la data factory in fase di creazione:   
-8. Dopo la creazione della data factory, viene visualizzata la pagina corrispondente con elencato il contenuto della data factory. Se non è possibile visualizzare la pagina della data factory, fare clic sul rispettivo riquadro nel dashboard.
+   > le istanze di Data Factory toocreate, è necessario essere un membro di hello [Data Factory collaboratore](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) ruolo a livello di gruppo di risorse di sottoscrizione/hello.
+7. Vedrai data factory di hello viene creato nel hello **dashboard** di hello portale di Azure come indicato di seguito:   
+8. Dopo aver hello data factory è stata creata correttamente, vedrai hello data factory pagina nella quale viene hello contenuto di data factory di hello. Se non è possibile visualizzare pagina factory di hello dati, fare clic su riquadro hello per la data factory di dashboard hello.
 
     ![Pannello Data factory](./media/data-factory-spark/data-factory-blade.png)
 
-### <a name="create-linked-services"></a>Creazione di servizi collegati
-In questo passaggio si creano due servizi collegati, uno per collegare il cluster Spark alla data factory e l'altro per collegare l'archiviazione di Azure alla data factory.  
+### <a name="create-linked-services"></a>Creare servizi collegati
+In questo passaggio, creare due servizi collegati, una toolink la data factory di tooyour cluster Spark e hello altri toolink la data factory tooyour di archiviazione di Azure.  
 
 #### <a name="create-azure-storage-linked-service"></a>Creare il servizio collegato Archiviazione di Azure
-In questo passaggio l'account di archiviazione di Azure viene collegato alla data factory. Un set di dati creato in un passaggio successivo di questa procedura dettagliata si riferisce a questo servizio collegato. Anche il servizio collegato HDInsight definito nel passaggio successivo fa riferimento a questo servizio collegato.  
+In questo passaggio si collega la data factory tooyour account di archiviazione di Azure. Un set di dati create in un passaggio più avanti in questa procedura dettagliata fa riferimento a servizio toothis collegato. servizio collegato di HDInsight definito nel passaggio successivo hello Hello servizio toothis collegato fa riferimento troppo.  
 
-1. Fare clic su **Creare e distribuire** nel pannello **Data Factory** per la data factory interessata. Verrà visualizzato l'editor di Data Factory.
+1. Fare clic su **autore e distribuire** su hello **Data Factory** pannello per il data factory. Dovrebbe essere hello Editor delle Data Factory.
 2. Fare clic su **Nuovo archivio dati** e scegliere **Archiviazione di Azure**.
 
    ![Nuovo archivio dati - Archiviazione di Azure - Menu](./media/data-factory-spark/new-data-store-azure-storage-menu.png)
-3. Nell'editor verrà visualizzato lo **script JSON** per la creazione di un servizio collegato Archiviazione di Azure.
+3. Dovrebbe essere hello **script JSON** per la creazione di una risorsa di archiviazione di Azure il servizio nell'editor di hello collegato.
 
    ![Servizio collegato Archiviazione di Azure](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
-4. Sostituire **account name** e **account key** con il nome e la chiave di accesso dell'account di archiviazione di Azure. Per informazioni su come ottenere la chiave di accesso alle risorse di archiviazione, vedere le informazioni su come visualizzare, copiare e rigenerare le chiavi di accesso alle risorse di archiviazione in [Gestire l'account di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
-5. Per distribuire il servizio collegato, fare clic su **Distribuisci** sulla barra dei comandi. Al termine della distribuzione del servizio collegato, la finestra **Bozza-1** verrà nascosta e nella visualizzazione albero a sinistra verrà visualizzato **AzureStorageLinkedService**.
+4. Sostituire **nome account** e **chiave dell'account** con chiave hello di accesso e sul nome dell'account di archiviazione di Azure. toolearn come accedere a tooget lo spazio di archiviazione della chiave, vedere informazioni come tooview, copiare e rigenerare archiviazione accedere alle chiavi in hello [gestire account di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
+5. toodeploy hello servizio collegato, fare clic su **Distribuisci** hello barra dei comandi. Dopo aver hello servizio collegato viene distribuito correttamente, hello **bozza 1** dovrebbe scomparire una finestra e viene visualizzato **AzureStorageLinkedService** nella visualizzazione ad albero di hello a sinistra di hello.
 
 #### <a name="create-hdinsight-linked-service"></a>Creare un servizio collegato HDInsight
-In questo passaggio si crea un servizio collegato HDInsight di Azure per collegare il cluster Spark HDInsight alla data factory. In questo esempio il cluster HDInsight viene usato per eseguire il programma Spark specificato nell'attività Spark della pipeline.  
+In questo passaggio è creare toolink di servizio collegato di Azure HDInsight la data factory di toohello cluster HDInsight Spark. cluster HDInsight Hello è programma Spark di hello toorun utilizzati specificato nell'attività di Spark hello della pipeline hello in questo esempio.  
 
-1. Fare clic su **... Altro** sulla barra degli strumenti, scegliere **Nuovo calcolo** e quindi fare clic su **Cluster HDInsight**.
+1. Fare clic su **... Ulteriori** sulla barra degli strumenti hello, fare clic su **nuovo calcolo**, quindi fare clic su **cluster HDInsight**.
 
     ![Creare un servizio collegato HDInsight](media/data-factory-spark/new-hdinsight-linked-service.png)
-2. Copiare e incollare il frammento di codice seguente nella finestra **Bozza-1** . Nell'editor JSON editor seguire questa procedura:
-    1. Specificare l'**URI** per il cluster Spark HDInsight. Ad esempio: `https://<sparkclustername>.azurehdinsight.net/`.
-    2. Specificare il nome dell'**utente** che ha accesso al cluster Spark.
-    3. Specificare la **password** per l'utente.
-    4. Specificare il **servizio collegato Archiviazione di Azure** associato al cluster Spark HDInsight. Nell'esempio è: **AzureStorageLinkedService**.
+2. Copiare e incollare hello seguente frammento di codice toohello **bozza 1** finestra. Nell'editor di JSON hello, hello alla procedura seguente:
+    1. Specificare hello **URI** per HDInsight Spark hello del cluster. Ad esempio: `https://<sparkclustername>.azurehdinsight.net/`.
+    2. Specificare il nome di hello di hello **utente** chi ha cluster Spark toohello di accesso.
+    3. Specificare hello **password** per utente.
+    4. Specificare hello **servizio collegato di archiviazione di Azure** associato hello cluster HDInsight Spark. Nell'esempio è: **AzureStorageLinkedService**.
 
     ```json
     {
@@ -124,14 +124,14 @@ In questo passaggio si crea un servizio collegato HDInsight di Azure per collega
     > - L'attività Spark non supporta i cluster Spark HDInsight che usano Azure Data Lake Store come risorsa di archiviazione primaria.
     > - L'attività Spark supporta solo cluster Spark HDInsight esistenti (personalizzati). Non supporta un servizio collegato HDInsight su richiesta.
 
-    Per informazioni dettagliate sul servizio collegato HDInsight, vedere [Servizio collegato HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-linked-service).
-3.  Per distribuire il servizio collegato, fare clic su **Distribuisci** sulla barra dei comandi.  
+    Vedere [servizio collegato di HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) per informazioni dettagliate su hello servizio collegato di HDInsight.
+3.  toodeploy hello servizio collegato, fare clic su **Distribuisci** hello barra dei comandi.  
 
 ### <a name="create-output-dataset"></a>Creare il set di dati di output
-Il set di dati di output è ciò su cui si basa la pianificazione (oraria, giornaliera e così via). Pertanto è necessario specificare il set di dati di output per l'attività Spark nella pipeline, anche se l'attività non produce alcun output. La specifica di un set di dati di input per l'attività è facoltativa.
+set di dati output hello è quali unità hello pianificazione (oraria, giornaliera, e così via.). Pertanto, è necessario specificare un set di dati di output per l'attività di spark hello nella pipeline di hello, anche se l'attività hello effettivamente generato alcun output. Un set di dati di input per l'attività hello è facoltativo.
 
-1. Nell'**editor di Data Factory** fare clic su **... Altro** sulla barra dei comandi e quindi fare clic su **Nuovo set di dati** e selezionare **Archivio BLOB di Azure**.  
-2. Copiare e incollare il frammento di codice seguente nella finestra Bozza-1. Il frammento JSON definisce un set di dati denominato **OutputDataset**. Specificare anche che i risultati devono essere archiviati nel contenitore BLOB denominato **adfspark** e nella cartella denominata **pyFiles/output**. Come accennato in precedenza, questo set di dati è un set di dati fittizio. Il programma Spark in questo esempio non produce alcun output. La sezione **availability** specifica che il set di dati di output viene prodotto su base giornaliera.  
+1. In hello **Editor delle Data Factory**, fare clic su **... Ulteriori** nella barra dei comandi di hello, fare clic su **nuovo set di dati**e selezionare **archiviazione Blob di Azure**.  
+2. Copiare e incollare hello successiva finestra di frammento toohello bozza-1. frammento di codice JSON Hello definisce un set di dati denominato **OutputDataset**. Inoltre, si specifica che i risultati di hello vengono archiviati nel contenitore blob hello chiamato **adfspark** e cartella hello denominata **pyFiles/output**. Come accennato in precedenza, questo set di dati è un set di dati fittizio. programma di Spark Hello in questo esempio non produce alcun output. Hello **disponibilità** sezione specifica di tale set di dati di output di hello viene prodotta ogni giorno.  
 
     ```json
     {
@@ -154,14 +154,14 @@ Il set di dati di output è ciò su cui si basa la pianificazione (oraria, giorn
         }
     }
     ```
-3. Per distribuire il set di dati, fare clic su **Distribuisci** sulla barra dei comandi.
+3. toodeploy hello set di dati, fare clic su **Distribuisci** hello barra dei comandi.
 
 
 ### <a name="create-pipeline"></a>Creare una pipeline
-In questo passaggio viene creata una pipeline con un'**attività HDInsightSpark**. In questo momento la pianificazione è basata sul set di dati di output, quindi è necessario creare un set di dati di output anche se l'attività non genera alcun output. Se l'attività non richiede input, è possibile ignorare la creazione del set di dati di input. Pertanto in questo esempio non viene specificato alcun set di dati di input.
+In questo passaggio viene creata una pipeline con un'**attività HDInsightSpark**. Set di dati di output è attualmente, quali unità hello pianificazione, pertanto è necessario creare un set di dati di output, anche se l'attività hello non genera alcun output. Se l'attività hello non accetta alcun input, è possibile ignorare i set di dati input hello creazione. Pertanto in questo esempio non viene specificato alcun set di dati di input.
 
-1. Nell'**editor di Data Factory** fare clic su **... Altro** sulla barra dei comandi e quindi fare clic su **Nuova pipeline**.
-2. Sostituire lo script nella finestra Bozza-1 con lo script seguente:
+1. In hello **Editor delle Data Factory**, fare clic su **... Ulteriori** hello barra dei comandi e quindi fare clic su **nuova pipeline**.
+2. Sostituire script hello nella finestra di hello bozza-1 con hello lo script seguente:
 
     ```json
     {
@@ -189,68 +189,68 @@ In questo passaggio viene creata una pipeline con un'**attività HDInsightSpark*
         }
     }
     ```
-    Tenere presente quanto segue:
-    - La proprietà **type** è impostata su **HDInsightSpark**.
-    - Il **rootPath** è impostato su **adfspark\\pyFiles**, dove adfspark è il contenitore BLOB di Azure e pyFiles è la cartella di file nel contenitore. In questo esempio, l'archivio BLOB di Azure è quello associato al cluster Spark. È possibile caricare il file in un archivio di Azure diverso. In tal caso, creare un servizio collegato Archiviazione di Azure per collegare l'account di archiviazione alla data factory. Quindi, specificare il nome del servizio collegato come valore per la proprietà **sparkJobLinkedService**. Vedere [Proprietà dell'attività Spark](#spark-activity-properties) per informazioni dettagliate su questa e altre proprietà supportate dall'attività Spark.  
-    - La proprietà **entryFilePath** è impostata su **test.py**, ovvero il file python.
-    - La proprietà **getDebugInfo** è impostata su **Sempre**, a indicare che i file di log vengono sempre generati (con esito positivo o negativo).
+    Si noti hello seguenti punti:
+    - Hello **tipo** impostata troppo**HDInsightSpark**.
+    - Hello **rootPath** è troppo**adfspark\\pyFiles** dove adfspark è il contenitore di Blob di Azure hello e pyFiles è cartella correttamente in tale contenitore. In questo esempio hello archiviazione Blob di Azure è hello uno associato al cluster Spark hello. È possibile caricare tooa file hello archiviazione di Azure diversi. In tal caso, creare un toolink di servizio collegato di archiviazione di Azure che data factory toohello account di archiviazione. Quindi, specificare il nome di hello del servizio hello collegato come valore per hello **sparkJobLinkedService** proprietà. Vedere [le proprietà dell'attività di Spark](#spark-activity-properties) per informazioni dettagliate su questa proprietà e altre proprietà supportate dall'attività Spark hello.  
+    - Hello **entryFilePath** è impostato toohello **test.py**, ossia file python hello.
+    - Hello **getDebugInfo** impostata troppo**sempre**, ovvero i file di log hello vengono sempre generati (esito positivo o negativo).
 
         > [!IMPORTANT]
-        > Non è consigliabile impostare questa proprietà su `Always` in un ambiente di produzione, a meno che non si stia tentando di risolvere un problema.
-    - La sezione **outputs** presenta un set di dati di output. Anche se il programma Spark non genera alcun output, è necessario specificare un set di dati di output. Il set di dati di output è ciò su cui si basa la pianificazione della pipeline (oraria, giornaliera e così via).  
+        > È consigliabile non impostare questa proprietà troppo`Always` in un ambiente di produzione a meno che non si sta risolvendo un problema.
+    - Hello **restituisce** sezione ha un set di dati di output. Anche se il programma di spark hello non genera alcun output, è necessario specificare un set di dati di output. pianificazione di hello unità per set di dati di output Hello per pipeline hello (oraria, giornaliera, e così via.).  
 
-        Per informazioni dettagliate sulle proprietà supportate dall'attività Spark, vedere la sezione [Proprietà dell'attività Spark](#spark-activity-properties).
-3. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire la pipeline.
+        Per informazioni dettagliate sulle proprietà hello è supportata dall'attività Spark, vedere [nascita le proprietà dell'attività](#spark-activity-properties) sezione.
+3. pipeline di hello toodeploy, fare clic su **Distribuisci** hello barra dei comandi.
 
 ### <a name="monitor-pipeline"></a>Monitorare la pipeline
-1. Fare clic su **X** per chiudere i pannelli dell'editor di Data Factory e tornare al pannello Data Factory. Fare clic su **Monitoraggio e gestione** per avviare l'applicazione di monitoraggio in un'altra scheda.
+1. Fare clic su **X** tooclose Editor delle Data Factory pannelli e toonavigate nuovamente home page di toohello Data Factory. Fare clic su **monitoraggio e gestione** hello toolaunch monitoraggio dell'applicazione in un'altra scheda.
 
     ![Riquadro Monitoraggio e gestione](media/data-factory-spark/monitor-and-manage-tile.png)
-2. Modificare il filtro **Ora di inizio** in alto su **2/1/2017** e fare clic su **Applica**.
-3. Verrà visualizzata una sola finestra di attività, in quanto tra l'ora di inizio (2017-02-01) e l'ora di fine (2017-02-02) della pipeline c'è un solo giorno. Verificare che lo stato della sezione dati sia **Pronto**.
+2. Hello modifica **ora di inizio** filtro nella parte superiore di hello troppo**1/2/2017**, fare clic su **applica**.
+3. Verrà visualizzato solo una finestra di attività perché non esiste un solo giorno tra hello (2017-02-01) di inizio e di fine (2017-02-02) della pipeline hello. Verificare che la sezione dati hello viene **pronto** stato.
 
-    ![Monitorare la pipeline](media/data-factory-spark/monitor-and-manage-app.png)    
-4. Selezionare la **finestra attività** per visualizzare i dettagli sull'esecuzione dell'attività. Se si verifica un errore, i dettagli sono visualizzati nel riquadro di destra.
+    ![Pipeline hello monitoraggio](media/data-factory-spark/monitor-and-manage-app.png)    
+4. Seleziona hello **finestra attività** toosee dettagli sull'esecuzione dell'attività hello. Se si verifica un errore, si noterà dettagli nel riquadro di destra hello.
 
-### <a name="verify-the-results"></a>Verificare i risultati
+### <a name="verify-hello-results"></a>Verificare i risultati di hello
 
 1. Avviare **Jupyter Notebook** per il cluster Spark HDInsight accedendo a: https://CLUSTERNAME.azurehdinsight.net/jupyter. È possibile anche avviare il dashboard del cluster per il cluster Spark HDInsight e quindi avviare **Jupyter Notebook**.
-2. Fare clic su **Nuovo** -> **PySpark** per avviare un nuovo notebook.
+2. Fare clic su **New** -> **PySpark** toostart un nuovo blocco appunti.
 
     ![Nuovo notebook Jupyter](media/data-factory-spark/jupyter-new-book.png)
-3. Eseguire il comando seguente copiando e incollando il testo e premendo **MAIUSC + INVIO** alla fine della seconda istruzione.  
+3. Esecuzione hello il seguente comando copia e Incolla di testo hello e premendo **MAIUSC + INVIO** alla fine di hello della seconda istruzione hello.  
 
     ```sql
     %%sql
 
     SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
     ```
-4. Verificare che i dati della tabella hvac siano visibili:  
+4. Confermare la visualizzazione dei dati hello hello impianto tabella:  
 
     ![Risultati della query Jupyter](media/data-factory-spark/jupyter-notebook-results.png)
 
 Per informazioni dettagliate, vedere la sezione [Eseguire una query SQL Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md#run-a-hive-query-using-spark-sql). 
 
 ### <a name="troubleshooting"></a>Risoluzione dei problemi
-Poiché **getDebugInfo** è impostato su **Sempre**, è possibile vedere una sottocartella **log** nella cartella **pyFiles** nel contenitore BLOB di Azure. Il file di log nella cartella di registro offre dettagli aggiuntivi. Tale file è particolarmente utile quando si verifica un errore. In un ambiente di produzione può risultare utile impostarlo su **Errore**.
+Poiché è impostato **getDebugInfo** troppo**sempre**, vedrai un **log** sottocartella hello **pyFiles** cartella nel contenitore del Blob di Azure. file di log Hello nella cartella dei log hello fornisce dettagli aggiuntivi. Tale file è particolarmente utile quando si verifica un errore. In un ambiente di produzione, è opportuno tooset è troppo**errore**.
 
-Per la risoluzione del problema, eseguire i passaggi seguenti:
+Per un'ulteriore risoluzione dei problemi, hello alla procedura seguente:
 
 
-1. Accedere a `https://<CLUSTERNAME>.azurehdinsight.net/yarnui/hn/cluster`.
+1. Passare troppo`https://<CLUSTERNAME>.azurehdinsight.net/yarnui/hn/cluster`.
 
     ![Applicazione interfaccia utente di Yarn](media/data-factory-spark/yarnui-application.png)  
-2. Fare clic su **Log** per uno dei tentativi di esecuzione.
+2. Fare clic su **registri** per uno di hello eseguire tentativi.
 
     ![Pagina Applicazione](media/data-factory-spark/yarn-applications.png)
-3. Nella pagina del log dovrebbero essere visualizzate informazioni aggiuntive sull'errore.
+3. Informazioni aggiuntive sull'errore nella pagina log hello dovrebbe.
 
     ![Errore log](media/data-factory-spark/yarnui-application-error.png)
 
-Le sezioni seguenti contengono informazioni sulle entità di Data Factory e sull'uso del cluster Apache Spark e dell'attività di Spark nella data factory.
+Hello le sezioni seguenti fornisce informazioni sul Data Factory entità toouse Apache Spark cluster e la data factory di attività Spark.
 
 ## <a name="spark-activity-properties"></a>Proprietà dell'attività Spark
-Di seguito è riportata la definizione JSON di esempio di una pipeline con attività Spark:    
+Ecco definizione JSON di esempio hello di una pipeline con attività Spark:    
 
 ```json
 {
@@ -274,7 +274,7 @@ Di seguito è riportata la definizione JSON di esempio di una pipeline con attiv
                     }
                 ],
                 "name": "MySparkActivity",
-                "description": "This activity invokes the Spark program",
+                "description": "This activity invokes hello Spark program",
                 "linkedServiceName": "HDInsightLinkedService"
             }
         ],
@@ -284,39 +284,39 @@ Di seguito è riportata la definizione JSON di esempio di una pipeline con attiv
 }
 ```
 
-La tabella seguente fornisce le descrizioni delle proprietà JSON usate nella definizione JSON:
+Hello tabella seguente vengono descritte le proprietà JSON hello utilizzate nella definizione JSON hello:
 
 | Proprietà | Descrizione | Obbligatorio |
 | -------- | ----------- | -------- |
-| name | Nome dell'attività nella pipeline. | Sì |
-| Descrizione | Testo che descrive l'attività. | No |
-| type | Questa proprietà deve essere impostata su HDInsightSpark. | Sì |
-| linkedServiceName | Riferimento a un servizio collegato HDInsight in cui viene eseguito il programma Spark. | Sì |
-| rootPath | Contenitore BLOB di Azure e cartella che contiene il file Spark. Il nome del file distingue tra maiuscole e minuscole. | Sì |
-| entryFilePath | Percorso relativo alla cartella radice del pacchetto/codice Spark. | Sì |
+| name | Nome dell'attività hello nella pipeline hello. | Sì |
+| description | Testo che descrive le attività di hello esegue. | No |
+| type | Questa proprietà deve essere impostata tooHDInsightSpark. | Sì |
+| linkedServiceName | Nome di hello HDInsight collegato del servizio in cui hello Spark programma in esecuzione. | Sì |
+| rootPath | contenitore di Blob di Azure Hello e della cartella che contiene file Spark hello. nome del file Hello è tra maiuscole e minuscole. | Sì |
+| entryFilePath | Cartella radice di percorso relativo toohello di hello Spark codice o del pacchetto. | Sì |
 | className | Classe principale Java/Spark dell'applicazione | No |
-| arguments | Elenco di argomenti della riga di comando del programma Spark. | No |
-| proxyUser | Account utente da rappresentare per eseguire il programma Spark | No |
-| sparkConfig | Specificare i valori delle proprietà di configurazione di Spark elencati nell'argomento: [Configurazione di SparK: proprietà dell'applicazione](https://spark.apache.org/docs/latest/configuration.html#available-properties). | No |
-| getDebugInfo | Specifica quando i file di log di Spark vengono copiati nell'archiviazione di Azure usata dal cluster HDInsight (o) specificata da sparkJobLinkedService. Valori consentiti: None, Always o Failure. Valore predefinito: None. | No |
-| sparkJobLinkedService | Il servizio collegato di archiviazione di Azure che contiene il file di processo, le dipendenze e i log di Spark.  Se non si specifica un valore per questa proprietà, viene usato lo spazio di archiviazione associato al cluster HDInsight. | No |
+| arguments | Un elenco di programmi di Spark toohello gli argomenti della riga di comando. | No |
+| proxyUser | programma di Hello utente account tooimpersonate tooexecute hello Spark | No |
+| sparkConfig | Specificare i valori per le proprietà di configurazione di Spark elencati nell'argomento hello: [configurazione Spark - proprietà applicazione](https://spark.apache.org/docs/latest/configuration.html#available-properties). | No |
+| getDebugInfo | Specifica quando i file di log Spark hello toohello copiato archiviazione di Azure usati dal cluster HDInsight (o) specificato da sparkJobLinkedService. Valori consentiti: None, Always o Failure. Valore predefinito: None. | No |
+| sparkJobLinkedService | servizio collegato di archiviazione di Azure che contiene i registri, le dipendenze e hello Spark processo file Hello.  Se non si specifica un valore per questa proprietà, viene utilizzata l'archiviazione di hello associato al cluster HDInsight. | No |
 
 ## <a name="folder-structure"></a>Struttura di cartelle
-L'attività Spark non supporta uno script inline come invece fanno le attività Pig e Hive. I processi Spark sono anche più estendibili dei processi Pig/Hive. Per i processi Spark è possibile offrire più dipendenze, ad esempio pacchetti jar (posizionati in CLASSPATH di java), file python (posizionati in PYTHONPATH) e qualsiasi altro file.
+Hello attività Spark non supporta uno script in linea come Pig e Hive attività eseguire. I processi Spark sono anche più estendibili dei processi Pig/Hive. Per i processi di Spark, è possibile fornire più dipendenze, ad esempio file jar di pacchetti (inseriti nel linguaggio hello CLASSPATH), i file di python (posizionati hello PYTHONPATH) e qualsiasi altro file.
 
-Creare la struttura seguente di cartelle nell'archivio BLOB di Azure a cui fa riferimento il servizio collegato HDInsight. Caricare i file dipendenti nelle sottocartelle appropriate all'interno della cartella radice rappresentata da **entryFilePath**. Ad esempio, caricare i file python nella sottocartella pyFiles e i file jar nella sottocartella jars della cartella radice. In fase di esecuzione, il servizio Data Factory prevede la struttura di cartelle seguente nell'archivio BLOB di Azure:     
+Creare hello seguente struttura di cartelle in hello archiviazione Blob di Azure a cui fa riferimento hello servizio collegato di HDInsight. Successivamente, caricare le cartelle di file dipendenti toohello sub appropriato nella cartella radice hello rappresentato da **entryFilePath**. Ad esempio, caricare python file toohello pyFiles sottocartella e file jar toohello JAR sottocartella della cartella radice hello. In fase di esecuzione, il servizio Data Factory prevede hello seguente struttura di cartelle in hello archiviazione Blob di Azure:     
 
 | Path | Descrizione | Obbligatorio | Tipo |
 | ---- | ----------- | -------- | ---- |
-| . | Percorso radice del processo Spark nel servizio collegato di archiviazione  | Sì | Cartella |
-| &lt;definito dall'utente &gt; | Percorso che punta al file di ingresso del processo Spark | Sì | File |
-| ./jars | Tutti i file in questa cartella vengono caricati e inseriti nel classpath java del cluster | No | Cartella |
-| ./pyFiles | Tutti i file in questa cartella vengono caricati e inseriti nel PYTHONPATH del cluster | No | Cartella |
+| . | percorso radice Hello del processo di Spark hello nel servizio di archiviazione collegato hello    | Sì | Cartella |
+| &lt;definito dall'utente &gt; | percorso di Hello che fa riferimento il file voce toohello del processo di Spark hello | Sì | File |
+| ./jars | Tutti i file in questa cartella vengono caricati e inseriti in classpath java hello del cluster hello | No | Cartella |
+| ./pyFiles | Tutti i file in questa cartella vengono caricati e inseriti in hello PYTHONPATH del cluster hello | No | Cartella |
 | ./files | Tutti i file in questa cartella vengono caricati e inseriti nella directory di lavoro executor | No | Cartella |
 | ./archives | Tutti i file in questa cartella sono decompressi | No | Cartella |
-| ./logs | Cartella in cui sono archiviati i log del cluster Spark.| No | Cartella |
+| ./logs | cartella Hello in cui sono archiviati i log da cluster Spark hello.| No | Cartella |
 
-Di seguito è riportato un esempio per una risorsa di archiviazione che contiene due file di processo Spark nell'archivio BLOB di Azure a cui fa riferimento il servizio collegato HDInsight.
+Di seguito è riportato un esempio per una risorsa di archiviazione che contiene due file di processo Spark in hello archiviazione Blob di Azure a cui fa riferimento hello servizio collegato di HDInsight.
 
 ```
 SparkJob1

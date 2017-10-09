@@ -1,24 +1,24 @@
 ## <a name="traffic-manager-profile"></a>Profilo di Gestione traffico
-Gestione traffico e la relativa risorsa endpoint figlio consentono il routing DNS agli endpoint all'interno e all'esterno di Azure. Questa distribuzione del traffico è regolata dai metodi dei criteri di routing. Gestione traffico consente anche il monitoraggio dell'integrità dell'endpoint e la corretta deviazione del traffico in base all'integrità di un endpoint. 
+Gestione traffico e la relativa risorsa endpoint figlio abilitare tooendpoints di routing DNS in Azure e all'esterno di Azure. Questa distribuzione del traffico è regolata dai metodi dei criteri di routing. Gestione traffico consente inoltre di monitorata toobe di integrità di endpoint e traffico deviato in modo appropriato in base hello integrità di un endpoint. 
 
 | Proprietà | Descrizione |
 | --- | --- |
 | **trafficRoutingMethod** |i valori possibili sono *Prestazioni*, *Valore ponderato* e *Priorità* |
-| **dnsConfig** |FQDN per il profilo |
+| **dnsConfig** |Nome di dominio completo per il profilo di hello |
 | **Protocollo** |protocollo di monitoraggio, i valori possibili sono *HTTP* e *HTTPS* |
 | **Porta** |porta di monitoraggio |
 | **Percorso** |percorso di monitoraggio |
 | **Endpoint** |contenitore per le risorse endpoint |
 
 ### <a name="endpoint"></a>Endpoint
-Un endpoint è una risorsa figlio di un profilo di Gestione traffico. Rappresenta un endpoint di servizio o Web al quale viene distribuito il traffico in base ai criteri configurati nella risorsa del profilo di Gestione traffico. 
+Un endpoint è una risorsa figlio di un profilo di Gestione traffico. Rappresenta un servizio o il traffico web endpoint toowhich utente viene distribuito in base ai criteri configurato hello in hello risorsa per il profilo di Traffic Manager. 
 
 | Proprietà | Descrizione |
 | --- | --- |
-| **Tipo** |il tipo di endpoint. I valori possibili sono *Endpoint di Azure*, *Endpoint esterno* e *Endpoint annidato*. |
+| **Tipo** |Hello tipo dell'endpoint di hello, i valori possibili sono *punto finale di Azure*, *Endpoint esterno*, e *Endpoint annidati* |
 | **targetResourceId** |indirizzo IP pubblico di un endpoint di servizio o Web. Può trattarsi di un endpoint di Azure o esterno. |
 | **Peso** |peso dell'endpoint usato nella gestione del traffico. |
-| **Priorità** |priorità dell'endpoint, usata per definire un'azione di failover |
+| **Priorità** |priorità dell'endpoint hello toodefine usato un'azione di failover |
 
 Esempio di Gestione traffico in formato Json: 
 

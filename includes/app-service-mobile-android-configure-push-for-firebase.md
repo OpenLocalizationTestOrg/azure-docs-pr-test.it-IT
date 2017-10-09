@@ -1,10 +1,10 @@
 
-1. Nel [Portale di Azure](https://portal.azure.com/) fare clic su **Browse All** (Esplora tutto)  > **Servizi app** e quindi scegliere il back-end dell'app per dispositivi mobili. In **Impostazioni** fare clic su **App Service Push** (Push servizio app), quindi fare clic sul nome dell'hub di notifica.
-2. Passare a **Google (GCM)**, immettere il valore **Chiave server** ottenuto da Firebase nella procedura precedente, quindi fare clic su **Salva**.
+1. In hello [portale di Azure](https://portal.azure.com/), fare clic su **Esplora tutto** > **servizi App**, quindi scegliere il back-end App per dispositivi mobili. In **Impostazioni** fare clic su **App Service Push** (Push servizio app), quindi fare clic sul nome dell'hub di notifica.
+2. Andare troppo**Google (GCM)**, immettere hello **chiave Server** valore che è stato ottenuto da Firebase nella procedura precedente hello e quindi fare clic su **salvare**.
 
-    ![Impostare la chiave API di GCM nel portale](./media/app-service-mobile-android-configure-push/mobile-push-api-key.png)
+    ![Impostare una chiave API GCM hello nel portale di hello](./media/app-service-mobile-android-configure-push/mobile-push-api-key.png)
 
-Il back-end dell'app per dispositivi mobili è ora configurato per l'uso di Firebase Cloud Messaging. Questo consente di inviare notifiche push all'app in esecuzione su un dispositivo Android usando l'hub di notifica.
+Hello App per dispositivi mobili back-end è ora configurato toouse Firebase Cloud Messaging. In questo modo toosend push notifiche tooyour app in esecuzione in un dispositivo Android, tramite l'hub di notifica hello.
 
 <!-- URLs. -->
 

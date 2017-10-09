@@ -1,74 +1,74 @@
 
 
 
-Un set di disponibilità aiuta a mantenere disponibili le macchine virtuali durante il tempo di inattività, ad esempio durante la manutenzione. L'inserimento di due o più macchine virtuali con configurazione simile in un set di disponibilità crea la ridondanza necessaria a mantenere la disponibilità delle applicazioni o dei servizi eseguiti sulla macchina virtuale. Per informazioni dettagliate sul funzionamento, vedere [Gestire la disponibilità delle macchine virtuali][Manage the availability of virtual machines].
+Un set di disponibilità aiuta a mantenere disponibili le macchine virtuali durante il tempo di inattività, ad esempio durante la manutenzione. Inserimento di due o più macchine virtuali configurate in modo simile in un set di disponibilità crea hello ridondanza necessita toomaintain disponibilità di applicazioni di hello o servizi che esegue la macchina virtuale. Per informazioni dettagliate sul funzionamento, vedere [gestione hello disponibilità delle macchine virtuali][Manage hello availability of virtual machines].
 
-Per assicurare la continua disponibilità e l'esecuzione efficiente dell'applicazione, è buona norma usare sia set di disponibilità sia endpoint con carico bilanciato. Per informazioni dettagliate sugli endpoint con bilanciamento del carico, vedere [Bilanciamento del carico per i servizi di infrastruttura di Azure][Load balancing for Azure infrastructure services].
+È una migliore toouse pratica sia set di disponibilità e bilanciamento del carico endpoint toohelp assicurarsi che l'applicazione sia sempre disponibile e in esecuzione in modo efficiente. Per informazioni dettagliate sugli endpoint con bilanciamento del carico, vedere [Bilanciamento del carico per i servizi di infrastruttura di Azure][Load balancing for Azure infrastructure services].
 
 È possibile aggiungere le macchine virtuali in un set di disponibilità usando una di queste due opzioni:
 
-* [Opzione 1: Creare una macchina virtuale e un set di disponibilità contemporaneamente][Option 1: Create a virtual machine and an availability set at the same time]. Quindi, aggiungere le nuove macchine virtuali al set.
-* [Opzione 2: Aggiungere una macchina virtuale esistente a un set di disponibilità][Option 2: Add an existing virtual machine to an availability set].
+* [Opzione 1: Creare una macchina virtuale e un gruppo di disponibilità in hello stesso tempo][Option 1: Create a virtual machine and an availability set at hello same time]. Quindi, aggiungere nuove macchine virtuali toohello, imposta quando si creano le macchine virtuali.
+* [Opzione 2: Aggiungere un set di disponibilità tooan macchina virtuale esistente][Option 2: Add an existing virtual machine tooan availability set].
 
 > [!NOTE]
-> Nel modello classico, le macchine virtuali che si desidera inserire nello stesso set di disponibilità devono appartenere allo stesso servizio cloud.
+> Nel modello classico hello, macchine virtuali che si desidera tooput nei hello stesso set di disponibilità deve appartenere toohello stesso servizio cloud.
 > 
 > 
 
-## <a id="createset"> </a>Opzione 1: Creare una macchina virtuale e un set di disponibilità contemporaneamente.
-A tale scopo, è possibile usare il portale di Azure o i comandi di Azure PowerShell.
+## <a id="createset"></a>Opzione 1: creare una macchina virtuale e un gruppo di disponibilità in hello stesso tempo
+È possibile utilizzare entrambi hello portale di Azure o Azure PowerShell comandi toodo questo.
 
-Per usare il Portale di Azure:
+hello toouse portale di Azure:
 
-1. Accedere al [portale di Azure](https://portal.azure.com), se questa operazione non è già stata eseguita.
-2. Nel menu Hub fare clic su **+ Nuovo**, quindi su **Macchina virtuale**.
+1. Se non già stato fatto, accedere toohello [portale di Azure](https://portal.azure.com).
+2. Nel menu hub hello, fare clic su **+ nuovo**, quindi fare clic su **macchina virtuale**.
    
     ![Testo immagine alt](./media/virtual-machines-common-classic-configure-availability/ChooseVMImage.png)
-3. Selezionare l'immagine della macchina virtuale del Marketplace che si desidera usare. È possibile scegliere di creare una macchina virtuale Linux o Windows.
-4. Per la macchina virtuale selezionata verificare che il modello di distribuzione sia impostato su **Classico**, quindi fare clic su **Crea**
+3. Selezionare l'immagine di macchina virtuale Marketplace hello desiderato toouse. È possibile scegliere toocreate una macchina virtuale Linux o Windows.
+4. Per hello selezionato macchina virtuale, verificare che il modello di distribuzione hello sia impostato troppo**classico** e quindi fare clic su **crea**
    
     ![Testo immagine alt](./media/virtual-machines-common-classic-configure-availability/ChooseClassicModel.png)
 5. Immettere il nome della macchina virtuale, il nome utente e la password (per computer Windows) o la chiave pubblica SSH (per i computer Linux). 
-6. Scegliere le dimensioni della VM, quindi fare clic su **Seleziona** per continuare.
-7. Scegliere **Configurazione facoltativa > Set di disponibilità**, quindi selezionare il set di disponibilità che si vuole aggiungere alla macchina virtuale.
+6. Scegliere le dimensioni VM hello e quindi fare clic su **selezionare** toocontinue.
+7. Scegliere **configurazione facoltativa > set di disponibilità**e selezionare il set di disponibilità hello desiderato tooadd hello della macchina virtuale.
    
     ![Testo immagine alt](./media/virtual-machines-common-classic-configure-availability/ChooseAvailabilitySet.png) 
 8. Verificare le impostazioni di configurazione. Al termine dell'operazione, scegliere **Crea**.
-9. Mentre Azure crea la macchina virtuale, è possibile tenere traccia dello stato di avanzamento nel menu Hub in **Macchine virtuali** .
+9. Mentre Azure crea la macchina virtuale, è possibile monitorare lo stato di avanzamento hello in **macchine virtuali** nel menu hub hello.
 
-Per usare i comandi di Azure PowerShell per creare una macchina virtuale di Azure e aggiungerla a un set di disponibilità nuovo o esistente, vedere [Use Azure PowerShell to create and preconfigure Windows-based virtual machines](../articles/virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) (Usare Azure PowerShell per creare e preconfigurare macchine virtuali Windows)
+Azure PowerShell toouse comandi toocreate una macchina virtuale di Azure e aggiungerlo tooa set di disponibilità di nuovo o esistente, vedere [toocreate usare Azure PowerShell e preconfigurare macchine virtuali basate su Windows](../articles/virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-## <a id="addmachine"> </a>Opzione 2: Aggiungere una macchina virtuale esistente a un set di disponibilità.
-Nel Portale di Azure è possibile aggiungere le macchine virtuali classiche a un set di disponibilità esistente oppure creare un set nuovo per le macchine. (si noti che le macchine virtuali presenti nello stesso set di disponibilità devono appartenere allo stesso servizio cloud). La procedura è quasi la stessa: con Azure PowerShell è possibile aggiungere la macchina virtuale a un set di disponibilità esistente.
+## <a id="addmachine"></a>Opzione 2: aggiungere un set di disponibilità tooan macchina virtuale esistente
+Nel portale di Azure hello, è possibile aggiungere tooan di macchine virtuali classiche esistenti set di disponibilità esistente o crearne uno nuovo per loro. (Tenere presente che le macchine virtuali hello in hello stesso set di disponibilità deve appartenere toohello stesso servizio cloud.) passaggi di Hello sono quasi hello stesso. Con Azure PowerShell, è possibile aggiungere hello macchina virtuale tooan set di disponibilità esistente.
 
-1. Accedere al [portale di Azure](https://portal.azure.com), se questa operazione non è già stata eseguita.
-2. Fare clic su **Macchine virtuali (classico)**nel menu Hub.
+1. Se non è già stato fatto, accedere toohello [portale di Azure](https://portal.azure.com).
+2. Nel menu Hub hello, fare clic su **macchine virtuali (classico)**.
    
     ![Testo immagine alt](./media/virtual-machines-common-classic-configure-availability/ChooseClassicVM.png)
-3. Nell'elenco delle macchine virtuali selezionare il nome della macchina virtuale che si desidera aggiungere al set.
-4. Scegliere **Set di disponibilità** in **Impostazioni** della macchina virtuale.
+3. Elenco di hello di macchine virtuali, selezionare il nome di hello della macchina virtuale hello che si desidera tooadd toohello set.
+4. Scegliere **set di disponibilità** dalla macchina virtuale hello **impostazioni**.
    
     ![Testo immagine alt](./media/virtual-machines-common-classic-configure-availability/AvailabilitySetSettings.png)
-5. Selezionare il set di disponibilità che si desidera aggiungere alla macchina virtuale. La macchina virtuale deve appartenere allo stesso servizio cloud del set di disponibilità.
+5. Selezionare il set di disponibilità hello desiderato tooadd hello della macchina virtuale. macchina virtuale Hello devono appartenere toohello servizio stesso cloud come set di disponibilità hello.
    
     ![Testo immagine alt](./media/virtual-machines-common-classic-configure-availability/AvailabilitySetPicker.png)
-6. Fare clic su **Save**.
+6. Fare clic su **Salva**.
 
-Per usare i comandi di Azure PowerShell, aprire una sessione di Azure PowerShell con privilegi di amministratore ed attivare il seguente comando. Per i segnaposto, ad esempio &lt;VmCloudServiceName&gt;, sostituire tutti gli elementi all'interno delle virgolette, inclusi i caratteri < e >, con i nomi corretti.
+comandi di Azure PowerShell toouse, aprire una sessione di PowerShell di Azure a livello di amministratore ed eseguire hello comando seguente. Per i segnaposto hello (ad esempio &lt;VmCloudServiceName&gt;), sostituire tutto il contenuto all'interno di virgolette hello, inclusi i caratteri di hello < e >, con hello correggere nomi.
 
     Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Set-AzureAvailabilitySet -AvailabilitySetName "<AvSetName>" | Update-AzureVM
 
 > [!NOTE]
-> Potrebbe essere necessario riavviare la macchina virtuale per completarne l'aggiunta al set di disponibilità.
+> macchina virtuale Hello potrebbe essere riavviato toobe toofinish aggiungerlo toohello set di disponibilità.
 > 
 > 
 
 <!-- LINKS -->
-[Option 1: Create a virtual machine and an availability set at the same time]: #createset
-[Option 2: Add an existing virtual machine to an availability set]: #addmachine
+[Option 1: Create a virtual machine and an availability set at hello same time]: #createset
+[Option 2: Add an existing virtual machine tooan availability set]: #addmachine
 
 [Load balancing for Azure infrastructure services]: ../articles/virtual-machines/virtual-machines-linux-load-balance.md
-[Manage the availability of virtual machines]:../articles/virtual-machines/linux/manage-availability.md
+[Manage hello availability of virtual machines]:../articles/virtual-machines/linux/manage-availability.md
 
 [Create a virtual machine running Windows]: ../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md
 [Virtual Network overview]: ../articles/virtual-network/virtual-networks-overview.md

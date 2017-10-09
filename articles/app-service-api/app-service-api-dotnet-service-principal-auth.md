@@ -1,6 +1,6 @@
 ---
-title: "Autenticazione dell'entità servizio per app per le API nel servizio app di Azure | Documentazione Microsoft"
-description: Informazioni su come proteggere un'app per le API nel servizio app di Azure per scenari da servizio a servizio.
+title: l'autenticazione principale per App per le API in Azure App Service aaaService | Documenti Microsoft
+description: Informazioni su come app tooprotect un'API in Azure App Service per gli scenari servizio-servizio.
 services: app-service\api
 documentationcenter: .net
 author: alexkarcher-msft
@@ -14,143 +14,143 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2016
 ms.author: alkarche
-ms.openlocfilehash: 95653287546bbe358111ed16af0c30a53caff2b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94d9ee11f38293df4a2fd815ef02c59cc6defed4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-principal-authentication-for-api-apps-in-azure-app-service"></a>Autenticazione dell'entità servizio per app per le API nel servizio app di Azure
 ## <a name="overview"></a>Panoramica
-Questo articolo illustra come usare l'autenticazione del servizio app per l'accesso *interno* alle app per le API. In uno scenario interno un'app per le API deve essere utilizzabile solo dal codice dell'applicazione dell'utente. Il modo consigliato per implementare questo scenario nel servizio app consiste nell'usare Azure AD per proteggere l'app per le API chiamata. L'app per le API protetta viene chiamata con un token di connessione ottenuto da Azure AD fornendo le credenziali dell'identità di applicazione (entità servizio). Per alternative all'uso di Azure AD, vedere la sezione **Autenticazione da servizio a servizio** in [Autenticazione e autorizzazione nel servizio app di Azure](../app-service/app-service-authentication-overview.md#service-to-service-authentication).
+Questo articolo viene illustrato come l'autenticazione di servizio App toouse per *interno* accedere alle App tooAPI. Uno scenario interno è in cui si dispone di un'app di API che si desidera toobe utilizzabile solo dal codice dell'applicazione. Hello consigliato tooimplement modo questo scenario nel servizio App è hello tooprotect toouse AD Azure chiamato app per le API. Chiamare app per le API hello protetto con un token di connessione che si ottiene da Azure AD, fornendo le credenziali (entità servizio) di identità dell'applicazione. Per alternative toousing Azure AD, vedere hello **authentication Service to service** sezione di hello [panoramica dell'autenticazione del servizio App di Azure](../app-service/app-service-authentication-overview.md#service-to-service-authentication).
 
 In questo articolo si apprenderà:
 
-* Come usare Azure Active Directory (Azure AD) per proteggere un'app per le API dall'accesso non autenticato.
-* Come utilizzare un'app per le API protetta da un'app per le API, un'app Web o un'app per dispositivi mobili usando le credenziali dell'entità servizio (identità di app) di Azure AD. Per informazioni sull'utilizzo da un'app per la logica, vedere [Uso dell'API personalizzata ospitata nel servizio app con App per la logica](../logic-apps/logic-apps-custom-hosted-api.md).
-* Come verificare che l'app per le API protetta non possa essere chiamata dagli utenti connessi da un browser.
-* Come verificare che l'app per le API protetta possa essere chiamata solo da un'entità servizio di Azure AD specifica.
+* Accesso non autenticato come toouse Azure Active Directory (Azure AD) tooprotect un'API dell'applicazione.
+* Modalità app tooconsume un'API protetta da un'app per le API, app web o app per dispositivi mobili utilizzando le credenziali di identità (identità applicazione) del servizio di Azure AD. Per informazioni su come tooconsume da un'app di logica, vedere [utilizzando l'API personalizzata ospitato nel servizio App con la logica app](../logic-apps/logic-apps-custom-hosted-api.md).
+* Come toomake che tale hello protetto app per le API non può essere chiamato da un browser, gli utenti collegati.
+* Come si toomake che tale hello protetto app per le API possa solo essere chiamato da uno specifico dell'entità servizio di Azure AD.
 
-L'articolo contiene due sezioni:
+Hello articolo sono contenute due sezioni:
 
-* La sezione [Come configurare l'autenticazione dell'entità servizio di Servizio app di Azure](#authconfig) illustra in generale come configurare l'autenticazione per le app per le API e come utilizzare un'app per le API protetta. Questa sezione si applica allo stesso modo a tutti i framework supportati dal servizio app, inclusi .NET, Node.js e Java.
-* A partire dalla sezione [Proseguimento della serie di esercitazioni sulle app per le API .NET](#tutorialstart) , l'esercitazione descrive la configurazione di uno scenario di "accesso interno" per un'applicazione .NET di esempio in esecuzione nel servizio app. 
+* Hello [come tooconfigure servizio di autenticazione principale in Azure App Service](#authconfig) sezione viene illustrato in generale come autenticazione tooconfigure per qualsiasi app per le API e come tooconsume hello protetto app per le API. In questa sezione si applica equamente tooall Framework supportato dal servizio App, inclusi .NET, Node.js e Java.
+* A partire da hello [continuare esercitazioni su Guida introduttiva di .NET hello](#tutorialstart) sezione hello esercitazione viene illustrato uno scenario di "accesso interno" per un'applicazione di esempio .NET in esecuzione nel servizio App di configurazione. 
 
-## <a id="authconfig"></a> Come configurare l'autenticazione dell'entità servizio nel servizio app di Azure
-Questa sezione fornisce istruzioni generali applicabili a tutte le app per le API. Per i passaggi specifici dell'applicazione .NET di esempio, To Do List, vedere [Proseguimento della serie di esercitazioni sulle app per le API .NET](#tutorialstart).
+## <a id="authconfig"></a>Come tooconfigure servizio di autenticazione principale in Azure App Service
+In questa sezione fornisce istruzioni generali valide tooany API app. Per passaggi specifici toohello tooDo applicazione di esempio elenco .NET, andare troppo[continuare serie di esercitazioni di App per le API .NET di hello](#tutorialstart).
 
-1. Nel [portale di Azure](https://portal.azure.com/) passare al pannello **Impostazioni** dell'app per le API da proteggere, individuare la sezione **Funzionalità**, quindi fare clic su **Autenticazione/Autorizzazione**.
+1. In hello [portale di Azure](https://portal.azure.com/), passare toohello **impostazioni** pannello App hello API che si desidera tooprotect e quindi trovare hello **funzionalità** sezione e fare clic su **Autenticazione / autorizzazione**.
    
     ![Autenticazione/Autorizzazione nel portale di Azure](./media/app-service-api-dotnet-user-principal-auth/features.png)
-2. Nel pannello **Autenticazione/Autorizzazione** fare clic su **Sì**.
-3. Nell'elenco a discesa **Azione da eseguire quando la richiesta non è autenticata** selezionare **Accedi con Azure Active Directory**.
+2. In hello **autenticazione / autorizzazione** pannello, fare clic su **su**.
+3. In hello **tootake azione quando la richiesta non è autenticata** elenco a discesa, seleziona **Accedi con Azure Active Directory** .
 4. In **Provider di autenticazione** fare clic su **Azure Active Directory**.
    
     ![Pannello Autenticazione/Autorizzazione nel portale di Azure](./media/app-service-api-dotnet-user-principal-auth/authblade.png)
-5. Configurare il pannello **Impostazioni di Azure Active Directory** per creare una nuova applicazione Azure AD oppure, se disponibile, usare un'applicazione Azure AD esistente.
+5. Configurare hello **impostazioni di Azure Active Directory** pannello toocreate una nuova versione di Azure AD applicazione o utilizzare un'applicazione Azure AD esistente se si dispone già di uno che si desidera toouse.
    
     Gli scenari interni in genere comprendono un'app per le API che chiama un'app per le API. È possibile usare applicazioni Azure AD separate per ogni app per le API o una sola applicazione Azure AD.
    
-    Per istruzioni dettagliate su questo pannello, vedere [Come configurare un'applicazione del servizio app per usare l'account di accesso di Azure Active Directory](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md).
-6. Dopo aver completato le operazioni nel pannello di configurazione del provider di autenticazione, fare clic su **OK**.
-7. Nel pannello **Autenticazione/Autorizzazione** fare clic su **Salva**.
+    Per istruzioni dettagliate su questo pannello, vedere [come tooconfigure l'accesso di Azure Active Directory di servizio App applicazione toouse](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md).
+6. Al pannello di configurazione del provider di autenticazione hello termine, fare clic su **OK**.
+7. In hello **autenticazione / autorizzazione** pannello, fare clic su **salvare**.
    
     ![Fare clic su Salva.](./media/app-service-api-dotnet-service-principal-auth/authsave.png)
 
-Al termine, il servizio app consente solo le richieste dai chiamanti nel tenant di Azure AD configurato. Nell'app per le API protetta non sono necessari codici di autenticazione o di autorizzazione. Il token di connessione viene passato all'app per le API con le attestazioni di uso comune nelle intestazioni HTTP ed è possibile leggere tali informazioni nel codice per convalidare la provenienza delle richieste da un determinato chiamante, ad esempio un'entità servizio.
+Quando questa operazione viene eseguita, servizio App consente solo le richieste dai chiamanti nel tenant di Azure AD hello configurato. In app per le API hello protetto, non è necessario alcun codice di autenticazione o autorizzazione. Hello token di connessione viene passato toohello API app insieme attestazioni comunemente utilizzate nelle intestazioni HTTP, ed è possibile leggere le informazioni nel codice toovalidate che sono richieste da un chiamante specifico, ad esempio un'entità servizio.
 
-Questa funzionalità di autenticazione è la stessa per tutti i linguaggi supportati dal servizio app, inclusi .NET, Node.js e Java. 
+Questa funzionalità di autenticazione funziona hello allo stesso modo per tutte le lingue che il servizio App supporta, tra cui .NET, Node.js e Java. 
 
-#### <a name="how-to-consume-the-protected-api-app"></a>Come utilizzare l'app per le API protetta
-Il chiamante deve fornire un token di connessione di Azure AD con le chiamate API. Per ottenere un token di connessione con le credenziali dell'entità servizio, il chiamante usa Active Directory Authentication Library (ADAL per [.NET](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory), [Node.js](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs) o [Java](https://github.com/AzureAD/azure-activedirectory-library-for-java)). Per ottenere un token, il codice che chiama ADAL fornisce ad ADAL le informazioni seguenti:
+#### <a name="how-tooconsume-hello-protected-api-app"></a>Modalità di protezione delle app per le API tooconsume hello
+chiamante Hello è necessario fornire un token di connessione di Azure AD con le chiamate API. tooget un token di connessione utilizzando le credenziali dell'entità servizio, il chiamante di hello utilizza Active Directory Authentication Library (ADAL per [.NET](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory), [Node.js](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs), o [Java](https://github.com/AzureAD/azure-activedirectory-library-for-java)). tooget un token, codice hello che chiama ADAL fornisce hello tooADAL le seguenti informazioni:
 
-* Nome del tenant di Azure AD.
-* ID client e segreto client (chiave app) dell'app Azure AD associata al chiamante.
-* ID client dell'applicazione Azure AD associata all'app per le API protetta. Se viene usata una sola applicazione Azure AD, è lo stesso ID client del chiamante.
+* nome Hello del tenant di Azure AD.
+* Hello client ID e client segreto (chiave app) di app hello Azure AD associata al chiamante di hello.
+* ID client Hello di applicazione di Azure AD associata hello hello protetto app per le API. (Se viene utilizzata una sola applicazione di Azure AD, questo è hello lo stesso ID client come hello uno per il chiamante di hello.)
 
-Questi valori sono disponibili nelle pagine di Azure AD del [portale di Azure classico](https://manage.windowsazure.com/).
+Questi valori sono disponibili nelle pagine di hello Azure AD di hello [portale di Azure classico](https://manage.windowsazure.com/).
 
-Una volta acquisito il token, il chiamante lo include con le richieste HTTP nell'intestazione dell'autorizzazione.  Il servizio app convalida il token e consente alle richieste di raggiungere l'app per le API protetta.
+Dopo che sono stati acquisiti i token hello, chiamante hello sono incluse le richieste HTTP nell'intestazione di autorizzazione hello.  Servizio App convalida token hello e consente di hello tooreach le richieste di hello protetto app per le API.
 
-#### <a name="how-to-protect-the-api-app-from-access-by-users-in-the-same-tenant"></a>Come proteggere l'app per le API dall'accesso di utenti nello stesso tenant
-I token di connessione per gli utenti nello stesso tenant sono considerati validi per l'app per le API protetta.  Per assicurarsi che una sola entità servizio possa chiamare l'app per le API protetta, aggiungere il codice nell'app per le API protetta per convalidare le attestazioni seguenti dal token:
+#### <a name="how-tooprotect-hello-api-app-from-access-by-users-in-hello-same-tenant"></a>Modalità app hello API tooprotect dall'accesso di utenti in hello stesso tenant
+I token di connessione per gli utenti di hello stesso tenant sono considerati validi per hello protetto app per le API.  Se si desidera tooensure che è possibile chiamare solo un'entità di servizio app API protetta hello, aggiungere il codice in hello protetto hello di toovalidate API app seguendo le attestazioni del token hello:
 
-* `appid` deve essere l'ID client dell'applicazione Azure AD associata al chiamante. 
-* `oid` (`objectidentifier`) deve essere l'ID entità servizio del chiamante. 
+* `appid`deve essere l'ID client hello di un'applicazione hello Azure AD associata al chiamante di hello. 
+* `oid`(`objectidentifier`) deve essere l'ID di entità servizio hello del chiamante hello. 
 
-Il servizio app fornisce anche l'attestazione `objectidentifier` nell'intestazione X-MS-CLIENT-PRINCIPAL-ID.
+Servizio App fornisce anche hello `objectidentifier` attestazione nell'intestazione X-MS-CLIENT--ID entità hello.
 
-### <a name="how-to-protect-the-api-app-from-browser-access"></a>Come proteggere l'app per le API dall'accesso dal browser
-Se non si convalidano le attestazioni nel codice nell'app per le API protetta e si usa un'applicazione Azure AD separata per l'app per le API protetta, verificare che l'URL di risposta dell'applicazione Azure AD non sia lo stesso URL di base dell'app per le API. Se l'URL di risposta punta direttamente all'app per le API protetta, un utente nello stesso tenant di Azure AD potrebbe selezionare l'app per le API, accedere e chiamare l'API.
+### <a name="how-tooprotect-hello-api-app-from-browser-access"></a>Come tooprotect hello app per le API di accesso del browser
+Se si non convalida le attestazioni presenti nel codice di app per le API hello protetti e, se si utilizza un oggetto separato applicazione Azure AD per hello protetto API app, assicurarsi che tale hello URL di risposta dell'applicazione Azure AD è hello non uguali a quelli hello URL di base dell'app per le API. Se hello URL di risposta punta direttamente app per le API toohello protetto, un utente nel tenant di hello stesso Azure Active Directory potrebbe individuare app per le API toohello, accedere e chiamare correttamente hello API.
 
-## <a id="tutorialstart"></a> Proseguimento della serie di esercitazioni su .NET
-Se si sta seguendo la serie di esercitazioni su Node.js o Java per le app per le API, passare alla sezione [Passaggi successivi](#next-steps) . 
+## <a id="tutorialstart"></a>Serie di esercitazioni di hello App per le API .NET di continuare
+Se si segue hello Node.js o Java serie di esercitazioni per App per le API, ignorare toohello [passaggi successivi](#next-steps) sezione. 
 
-Il resto di questo articolo rappresenta la continuazione della serie di esercitazioni sulle app per le API .NET. Queste esercitazioni presuppongono che sia stata completata l'[esercitazione sull'autenticazione utente](app-service-api-dotnet-user-principal-auth.md) e che l'applicazione di esempio sia in esecuzione in Azure con l'autenticazione utente abilitata.
+resto Hello di questo articolo continua serie di esercitazioni di App per le API .NET di hello e si presuppone che siano state completate hello [esercitazione autenticazione utente](app-service-api-dotnet-user-principal-auth.md) e applicazione di esempio hello in esecuzione in Azure con l'autenticazione utente abilitata.
 
 ## <a name="set-up-authentication-in-azure"></a>Configurare l'autenticazione in Azure
-In questa sezione si configura il servizio app in modo che le sole richieste HTTP a cui è consentito raggiungere l'app per le API del livello dati siano quelle con token di connessione di Azure AD validi. 
+In questa sezione Configura servizio App in modo tale hello solo HTTP richiede consente tooreach hello dati livello app per le API sono quelli in cui Azure valido hello i token di connessione Active Directory. 
 
-Nella sezione seguente si configura l'app per le API del livello intermedio in modo che invii le credenziali dell'applicazione ad Azure AD, ottenga un token di connessione e invii il token di connessione all'app per le API del livello dati. Questo processo è illustrato nel diagramma.
+Nella seguente sezione di hello, configurare hello API di livello intermedio app toosend applicazione credenziali tooAzure Active Directory, ottenere un token di connessione e inviare connessione hello toohello token dati livello API app. Questo processo è illustrato nel diagramma di hello.
 
 ![Diagramma di autenticazione del servizio](./media/app-service-api-dotnet-service-principal-auth/appdiagram.png)
 
-Se si verificano problemi mentre si seguono le istruzioni dell'esercitazione, vedere la sezione [Risoluzione dei problemi](#troubleshooting) alla fine dell'esercitazione. 
+Se si verificano problemi durante le direzioni dell'esercitazione di hello seguenti, vedere hello [Troubleshooting](#troubleshooting) sezione alla fine di hello dell'esercitazione hello. 
 
-1. Nel [portale di Azure](https://portal.azure.com/) passare al pannello **Impostazioni** dell'app per le API creata per l'app per le API ToDoListDataAPI (livello dati) e quindi fare clic su **Impostazioni**.
-2. Nel pannello **Impostazioni** individuare la sezione **Funzionalità** e quindi fare clic su **Autenticazione/Autorizzazione**.
+1. In hello [portale di Azure](https://portal.azure.com/), passare toohello **impostazioni** pannello App hello API creato per app di API hello ToDoListDataAPI (livello di dati) e quindi fare clic su **impostazioni**.
+2. In hello **impostazioni** blade, hello trova **funzionalità** sezione e quindi fare clic su **autenticazione / autorizzazione**.
    
     ![Autenticazione/Autorizzazione nel portale di Azure](./media/app-service-api-dotnet-user-principal-auth/features.png)
-3. Nel pannello **Autenticazione/Autorizzazione** fare clic su **Sì**.
-4. Nell'elenco a discesa **Azione da eseguire quando la richiesta non è autenticata** selezionare **Accedi con Azure Active Directory**.
+3. In hello **autenticazione / autorizzazione** pannello, fare clic su **su**.
+4. In hello **tootake azione quando la richiesta non è autenticata** elenco a discesa, seleziona **Accedi con Azure Active Directory**.
    
-    Questa impostazione fa in modo che il servizio app verifichi che solo le richieste autenticate raggiungano l'app per le API. Per le richieste con token di connessione validi, il servizio app passa i token all'app per le API e popola le intestazioni HTTP con attestazioni di uso comune per rendere tali informazioni più facilmente disponibili al codice.
+    Questo è l'impostazione di hello che causa tooensure di servizio App che ha autenticato solo app per le API hello richieste reach. Per le richieste che hanno i token di connessione valida, passa il token hello lungo toohello API app servizio App e popola le intestazioni HTTP con toomake attestazioni diffuse informazioni codice tooyour più facilmente disponibile.
 5. In **Provider di autenticazione** fare clic su **Azure Active Directory**.
    
     ![Pannello Autenticazione/Autorizzazione nel portale di Azure](./media/app-service-api-dotnet-user-principal-auth/authblade.png)
-6. Nel pannello **Impostazioni di Azure Active Directory** fare clic su **Rapida**.
+6. In hello **impostazioni di Azure Active Directory** pannello, fare clic su **Express**.
    
-    Con l'opzione **Rapida** Azure può creare automaticamente un'applicazione AAD nel [tenant](https://msdn.microsoft.com/en-us/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant)di Azure AD. 
+    Con hello **Express** opzione Azure è possibile creare automaticamente un'applicazione AAD in Azure AD [tenant](https://msdn.microsoft.com/en-us/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant). 
    
-    Non è necessario creare un tenant, perché ne esiste già uno per ogni account Azure.
+    Non è necessario toocreate un tenant, perché ogni account di Azure dispone automaticamente di uno.
 7. In **Modalità di gestione** fare clic su **Crea nuova app AD** se questa opzione non è già selezionata.
    
-    Il portale inserisce un valore predefinito nella casella di input **Crea app** . Per impostazione predefinita, all'applicazione Azure AD viene assegnato lo stesso nome dell'app per le API. Se si preferisce, è possibile immettere un nome diverso.
+    portale Hello inserisce hello **creare App** casella di input con un valore predefinito. Per impostazione predefinita, viene denominato hello applicazione AD Azure stesso hello come applicazione hello API. Se si preferisce, è possibile immettere un nome diverso.
    
     ![Impostazioni di Azure AD](./media/app-service-api-dotnet-service-principal-auth/aadsettings.png)
    
-    **Nota**: in alternativa, è possibile usare una sola applicazione Azure AD sia per l'app per le API chiamante che per l'app per le API protetta. Se si sceglie questa alternativa, l'opzione **Crea nuova app AD** non sarà necessaria perché un'applicazione Azure AD è già stata creata prima nell'esercitazione sull'autenticazione utente. Per questa esercitazione si useranno applicazioni Azure AD separate per l'app per le API chiamante e per l'app per le API protetta.
-8. Prendere nota del valore nella casella di input **Crea app**. Più avanti sarà necessario cercare questa applicazione AAD nel portale di Azure classico.
+    **Nota**: in alternativa, è possibile usare un singola AD Azure dell'applicazione per entrambi hello app per chiamare le API e hello protetti app per le API. Se si sceglie tale alternativa, è necessario non hello **Crea nuova App AD** opzione qui perché già stato creato in precedenza nell'esercitazione di autenticazione utente hello un'applicazione Azure AD. Per questa esercitazione, si userà separare applicazioni Azure AD per la chiamata di app per le API e hello hello protetto app per le API.
+8. Prendere nota del valore di hello in hello **creare App** casella di input; verrà cercato questa applicazione AAD nella hello portale di Azure classico in un secondo momento.
 9. Fare clic su **OK**.
-10. Nel pannello **Autenticazione/Autorizzazione** fare clic su **Salva**.
+10. In hello **autenticazione / autorizzazione** pannello, fare clic su **salvare**.
     
     ![Fare clic su Salva.](./media/app-service-api-dotnet-service-principal-auth/saveauth.png)
     
-    Il servizio app crea l'applicazione Azure Active Directory con **URL accesso** e **URL di risposta** impostati automaticamente sull'URL dell'app per le API. Il secondo valore consente agli utenti nel tenant di AAD di accedere all'app per le API.
+    Servizio App viene creata un'applicazione di Azure Active Directory con **Sign-on URL** e **URL di risposta** impostata automaticamente toohello URL dell'app per le API. valore di quest'ultimo Hello consente agli utenti nel toolog tenant AAD in e accesso hello API app.
 
-### <a name="verify-that-the-api-app-is-protected"></a>Verificare che l'app per le API sia protetta
-1. In un browser passare all'URL dell'app per le API. Nel pannello **App per le API** del portale di Azure fare clic sul collegamento in **URL**. 
+### <a name="verify-that-hello-api-app-is-protected"></a>Verificare che app hello API sia protetto
+1. In un browser andare toohello URL dell'app hello API: in hello **app per le API** pannello in hello portale di Azure, fare clic su collegamento hello in **URL**. 
    
-    Si viene reindirizzati a una schermata di accesso, perché alle richieste non autenticate non è consentito raggiungere l'app per le API. 
+    Si è reindirizzato tooa schermata di accesso perché le richieste non autenticate non sono consentite tooreach hello API app. 
    
-    Se il browser passa all'interfaccia utente di Swagger, potrebbe già essere connesso. In tal caso, aprire una finestra di InPrivate o in incognito e andare all'URL dell'interfaccia utente di Swagger.
+    Se il browser passare toohello Swagger dell'interfaccia utente, il browser potrebbe già essere connessi - in questo caso, aprire una finestra InPrivate o Incognito e passare toohello URL Swagger di interfaccia utente.
 2. Accedere con le credenziali di un utente che appartiene al tenant AAD.
    
-   Dopo avere effettuato l'accesso, viene visualizzata una pagina che informa che l'operazione di creazione è riuscita.
+   Quando si accede, hello "completata" pagina viene visualizzata nel browser hello.
 
-## <a name="configure-the-todolistapi-project-to-acquire-and-send-the-azure-ad-token"></a>Configurare il progetto ToDoListAPI per acquisire e inviare il token di Azure AD
-In questa sezione vengono eseguite le attività seguenti:
+## <a name="configure-hello-todolistapi-project-tooacquire-and-send-hello-azure-ad-token"></a>Configurare hello ToDoListAPI progetto tooacquire e inviare il token di Azure AD hello
+In questa sezione hello quanto segue:
 
-* Aggiunta di codice nell'app per le API del livello intermedio che usa le credenziali dell'applicazione Azure AD per acquisire un token e inviarlo con le richieste HTTP all'app per le API del livello dati.
-* Acquisizione delle credenziali necessarie da Azure AD.
-* Immissione delle credenziali nelle impostazioni dell'ambiente di runtime di Servizio app di Azure nell'app per le API del livello intermedio. 
+* Aggiungere codice nell'app di API di livello intermedio hello che utilizza Azure AD applicazione credenziali tooacquire un token e inviare che con HTTP richiede toohello dati livello API app.
+* Ottenere le credenziali di hello che è necessario da Azure AD.
+* Immettere le credenziali di hello in impostazioni di ambiente di runtime di servizio App di Azure nel livello intermedio hello app per le API. 
 
-### <a name="configure-the-todolistapi-project-to-acquire-and-send-the-azure-ad-token"></a>Configurare il progetto ToDoListAPI per acquisire e inviare il token di Azure AD
-Apportare le modifiche seguenti al progetto ToDoListAPI in Visual Studio.
+### <a name="configure-hello-todolistapi-project-tooacquire-and-send-hello-azure-ad-token"></a>Configurare hello ToDoListAPI progetto tooacquire e inviare il token di Azure AD hello
+Rendere hello dopo le modifiche apportate hello ToDoListAPI progetto in Visual Studio.
 
-1. Rimuovere il commento da tutto il codice nel file *ServicePrincipal.cs* .
+1. Rimuovere il commento tutto il codice hello in hello *ServicePrincipal.cs* file.
    
-    Si tratta del codice che usa ADAL per .NET per acquisire il token di connessione di Azure AD.  Usa diversi valori di configurazione che si imposteranno più avanti nell'ambiente di runtime di Azure. Ecco il codice: 
+    Si tratta di codice hello Usa ADAL per i token di connessione .NET tooacquire hello Azure AD.  Usa diversi valori di configurazione che verrà impostata nell'ambiente di runtime Azure hello in un secondo momento. Ecco il codice hello: 
    
         public static class ServicePrincipal
         {
@@ -175,38 +175,38 @@ Apportare le modifiche seguenti al progetto ToDoListAPI in Visual Studio.
             }
         }
    
-    **Nota:** questo codice richiede il pacchetto NuGet ADAL per .NET (Microsoft.IdentityModel.Clients.ActiveDirectory), che è già installato nel progetto. Se si crea questo progetto da zero, sarà necessario installare il pacchetto. Questo pacchetto non viene installato automaticamente dal modello di nuovo progetto dell'app per le API.
-2. In *Controllers/ToDoListController* rimuovere il commento dal codice nel metodo `NewDataAPIClient` che aggiunge il token alle richieste HTTP nell'intestazione dell'autorizzazione.
+    **Nota:** questo codice richiede hello ADAL per il pacchetto NuGet di .NET (ActiveDirectory), che è già installato nel progetto hello. Se si crea il progetto da zero, sarebbe necessario tooinstall questo pacchetto. Questo pacchetto non viene installato automaticamente dal modello nuovo progetto applicazione di hello API.
+2. In *controller/ToDoListController*, rimuovere il commento di codice hello in hello `NewDataAPIClient` metodo che aggiunge le richieste di token tooHTTP hello nell'intestazione di autorizzazione hello.
    
         client.HttpClient.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", ServicePrincipal.GetS2SAccessTokenForProdMSA().AccessToken);
-3. Distribuire il progetto ToDoListAPI. Fare clic con il pulsante destro del mouse sul progetto, quindi selezionare **Pubblica > Pubblica**.
+3. Distribuire il progetto di ToDoListAPI hello. (Fare clic sul progetto hello, quindi fare clic su **pubblica > Pubblica**.)
    
-    Visual Studio distribuisce il progetto e apre una finestra del browser all'URL di base dell'app Web. Viene visualizzata la pagina dell'errore 403, che rappresenta la risposta normale quando si tenta di passare a un URL di base dell'API Web da un browser.
-4. Chiudere il browser.
+    Visual Studio distribuisce il progetto hello e apre l'URL di base dell'app di web toohello browser. Verranno visualizzati una pagina di 403 errore, che è norma per un tentativo di toogo tooa API Web URL di base da un browser.
+4. Browser hello Chiudi.
 
 ### <a name="get-azure-ad-configuration-values"></a>Ottenere i valori di configurazione di Azure AD
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)passare a **Azure Active Directory**.
-2. Nella scheda **Directory** fare clic sul tenant AAD.
-3. Fare clic su **Applicazioni > Applicazioni di proprietà dell'azienda** e quindi fare clic sul segno di spunta.
-4. Nell'elenco delle applicazioni fare clic sul nome di quella creata automaticamente da Azure quando è stata abilitata l'autenticazione per l'app per le API ToDoListDataAPI (livello dati).
-5. Fare clic sulla scheda **Configure** .
-6. Copiare il valore **ID client** e salvarlo in una posizione da cui poterlo recuperare più tardi. 
-7. Nel portale di Azure classico tornare all'elenco **Applicazioni di proprietà dell'azienda** e fare clic sull'applicazione AAD creata per l'app per le API ToDoListAPI di livello intermedio. Si tratta dell'app creata nell'esercitazione precedente, non in quella corrente.
-8. Fare clic sulla scheda **Configure** .
-9. Copiare il valore **ID client** e salvarlo in una posizione da cui poterlo recuperare più tardi.
-10. In **chiavi** selezionare **1 anno** dall'elenco a discesa **Seleziona durata**.
-11. Fare clic su **Save**.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), andare troppo**Azure Active Directory**.
+2. In hello **Directory** scheda, fare clic su tenant di AAD.
+3. Fare clic su **applicazioni > applicazioni proprietà dell'azienda**, quindi fare clic su hello segno di spunta.
+4. Nell'elenco di hello delle applicazioni, fare clic su nome hello di hello Azure creata automaticamente quando è abilitata l'autenticazione per app di API hello ToDoListDataAPI (livello di dati).
+5. Fare clic su hello **configura** scheda.
+6. Hello copia **ID Client** valore e salvare identificabile da ottenere più tardi. 
+7. Nel portale di Azure classico hello tornare indietro elenco toohello di **applicazioni proprietà dell'azienda**, fare clic su un'applicazione AAD hello creato per app ToDoListAPI API di livello intermedio hello (Buongiorno uno creato nell'esercitazione precedente hello, non Hello uno creato in questa esercitazione).
+8. Fare clic su hello **configura** scheda.
+9. Hello copia **ID Client** valore e salvare identificabile da ottenere più tardi.
+10. In **chiavi**selezionare **1 anno** da hello **Seleziona durata** elenco a discesa.
+11. Fare clic su **Salva**.
     
      ![Generare una chiave dell'app](./media/app-service-api-dotnet-service-principal-auth/genkey.png)
-12. Copiare il valore chiave e salvarlo in una posizione da cui poterlo recuperare più tardi.
+12. Copia valore chiave hello e salvarlo identificabile da ottenere più tardi.
     
      ![Copiare una nuova chiave dell'app](./media/app-service-api-dotnet-service-principal-auth/genkeycopy.png)
 
-### <a name="configure-azure-ad-settings-in-the-middle-tier-api-apps-runtime-environment"></a>Configurare le impostazioni di Azure AD nell'ambiente di runtime dell'app per le API del livello intermedio
-1. Passare al [portale di Azure](https://portal.azure.com/)e quindi passare al pannello **App per le API** per l'app per le API che ospita il progetto TodoListAPI (livello intermedio).
+### <a name="configure-azure-ad-settings-in-hello-middle-tier-api-apps-runtime-environment"></a>Configurare le impostazioni di Azure AD nell'ambiente di runtime dell'applicazione di livello intermedio API hello
+1. Passare toohello [portale di Azure](https://portal.azure.com/), quindi passare toohello **App per le API** pannello per l'applicazione hello API che ospita il progetto di TodoListAPI (intermedio) hello.
 2. Fare clic su **Impostazioni > Impostazioni applicazione**.
-3. Nella sezione **Impostazioni app** aggiungere le chiavi e i valori seguenti:
+3. In hello **impostazioni App** sezione, aggiungere chiavi e valori di hello seguenti:
    
    | **Chiave** | ida:Authority |
    | --- | --- |
@@ -215,70 +215,70 @@ Apportare le modifiche seguenti al progetto ToDoListAPI in Visual Studio.
    
    | **Chiave** | ida:ClientId |
    | --- | --- |
-   | **Valore** |ID client dell'applicazione chiamante (livello intermedio - ToDoListAPI) |
+   | **Valore** |ID client dell'hello chiamano l'applicazione (livello intermedio - ToDoListAPI) |
    | **Esempio** |960adec2-b74a-484a-960adec2-b74a-484a |
    
    | **Chiave** | ida:ClientSecret |
    | --- | --- |
-   | **Valore** |Chiave app dell'applicazione chiamante (livello intermedio - ToDoListAPI) |
+   | **Valore** |Chiave dell'app di hello chiamano l'applicazione (livello intermedio - ToDoListAPI) |
    | **Esempio** |e65e8fc9-5f6b-48e8-e65e8fc9-5f6b-48e8 |
    
    | **Chiave** | ida:Resource |
    | --- | --- |
-   | **Valore** |ID client dell'applicazione chiamata (livello dati - ToDoListDataAPI) |
+   | **Valore** |ID client di chiamare l'applicazione hello (livello di dati - ToDoListDataAPI) |
    | **Esempio** |e65e8fc9-5f6b-48e8-e65e8fc9-5f6b-48e8 |
    
-    **Nota**: per `ida:Resource`, assicurarsi di usare l'**ID client** dell'applicazione chiamata e non il relativo **URI ID App**.
+    **Nota**: per `ida:Resource`, assicurarsi di utilizzare una chiamata dell'applicazione hello **ID client** e non il relativo **URI ID App**.
    
-    `ida:ClientId` e `ida:Resource` sono valori diversi per questa esercitazione perché si usano applicazioni Azure AD diverse per il livello intermedio e il livello dati. Se si usa una sola applicazione Azure AD sia per l'app per le API chiamante che per l'app per le API protetta, usare lo stesso valore sia in `ida:ClientId` che in `ida:Resource`.
+    `ida:ClientId`e `ida:Resource` sono diversi valori per questa esercitazione, poiché si utilizza separano applicaations AD Azure di livello intermedio hello e il livello dati. Se si utilizza una singola applicazione di Azure AD per la chiamata di app per le API e hello hello protetto app per le API, si utilizzerebbe hello stesso valore in entrambi `ida:ClientId` e `ida:Resource`.
    
-    Il codice usa ConfigurationManager per ottenere questi valori, che quindi possono essere archiviati nel file Web.config del progetto o nell'ambiente di runtime di Azure. Mentre un'applicazione ASP.NET è in esecuzione nel servizio app di Azure, le impostazioni dell'ambiente eseguono automaticamente l'override delle impostazioni di Web.config. Le impostazioni dell'ambiente in genere rappresentano un [modo più sicuro di archiviare le informazioni riservate rispetto a un file Web.config](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
-4. Fare clic su **Save**.
+    codice Hello Usa ConfigurationManager tooget questi valori, quindi può essere archiviate nel file Web. config del progetto hello o nell'ambiente di runtime Azure hello. Mentre un'applicazione ASP.NET è in esecuzione nel servizio app di Azure, le impostazioni dell'ambiente eseguono automaticamente l'override delle impostazioni di Web.config. Le impostazioni di ambiente sono in genere un [le informazioni riservate più sicure modo toostore rispetto a file Web. config tooa](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
+4. Fare clic su **Salva**.
    
     ![Fare clic su Salva.](./media/app-service-api-dotnet-service-principal-auth/appsettings.png)
 
-### <a name="test-the-application"></a>Test dell'applicazione
-1. In un browser andare all'URL HTTPS dell'app Web front-end AngularJS.
-2. Fare clic sulla scheda **To Do List** e accedere con le credenziali di un utente nel tenant di Azure AD. 
-3. Aggiungere alcune attività per verificare che l'applicazione funzioni.
+### <a name="test-hello-application"></a>Testare l'applicazione hello
+1. In un browser andare toohello URL HTTPS di hello AngularJS front-end web app.
+2. Fare clic su hello **tooDo elenco** scheda e accedere con le credenziali per un utente nel tenant di Azure AD. 
+3. Aggiungere attività elementi tooverify che un'applicazione hello sia in esecuzione.
    
-    ![Pagina To Do List](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
+    ![pagina di elenco tooDo](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
    
-    Se l'applicazione non funziona come previsto, controllare tutte le impostazioni immesse nel portale di Azure. Se si ritiene che tutte le impostazioni siano corrette, vedere la sezione [Risoluzione dei problemi](#troubleshooting) più avanti in questa esercitazione.
+    Se un'applicazione hello non funziona come previsto, verificare le impostazioni di hello che immesso nel portale di Azure hello. Se vengono visualizzate tutte le impostazioni di hello toobe corretto, vedere hello [Troubleshooting](#troubleshooting) sezione più avanti in questa esercitazione.
 
-## <a name="protect-the-api-app-from-browser-access"></a>Proteggere l'app per le API dall'accesso dal browser
-Per questa esercitazione è stata creata un'applicazione Azure AD separata per l'app per le API ToDoListDataAPI (livello dati). Come si è visto, quando il servizio app crea un'applicazione AAD, configura l'applicazione AAD per poter consentire all'utente di passare all'URL dell'app per le API in un browser ed eseguire l'accesso. Ciò significa che anche un utente finale nel tenant di Azure AD può accedere all'API, non solo un'entità servizio. 
+## <a name="protect-hello-api-app-from-browser-access"></a>Proteggere app per le API hello dall'accesso di browser
+Per questa esercitazione è stato creato un apposito applicazione Azure AD per l'applicazione hello API ToDoListDataAPI (livello di dati). Come si è visto, quando il servizio App viene creata un'applicazione di AAD, in modo che consente a URL di un utente toogo toohello app per le API in un browser e accedere in Configura applicazione AAD hello. Pertanto, è possibile che un utente finale nel tenant di Azure AD, non solo un'entità di servizio, tooaccess hello API. 
 
-Se si vuole impedire l'accesso dal browser senza scrivere codice nell'app per le API protetta, è possibile modificare l' **URL di risposta** nell'applicazione AAD in modo che sia diverso dall'URL di base dell'app per le API. 
+Se si desidera l'accesso al browser tooprevent senza scrivere alcun codice in hello protetti app per le API, è possibile modificare hello **URL di risposta** nell'applicazione AAD hello in modo che sia diverso da dell'applicazione hello API URL di base. 
 
 ### <a name="disable-browser-access"></a>Disabilitare l'accesso dal browser
-1. Nella scheda **Configura** del portale classico per l'applicazione AAD creata per TodoListService modificare il valore del campo **URL di risposta** in modo che sia un URL valido, ma non l'URL dell'app per le API.
-2. Fare clic su **Save**.
+1. In un portale classico hello **configura** per un'applicazione AAD hello che è stata creata per hello TodoListService scheda, modificare il valore di hello in hello **URL di risposta** campo in modo che sia un URL valido ma non hello API dell'applicazione URL.
+2. Fare clic su **Salva**.
 
 ### <a name="verify-browser-access-no-longer-works"></a>Verificare che non sia più possibile accedere dal browser
-Prima si è verificato che sia possibile andare all'URL dell'app per le API da un browser accedendo con le credenziali di un singolo utente. In questa sezione si verifica che non sia più possibile. 
+Si è verificato in precedenza che è possibile passare l'URL dell'app toohello API da un browser mediante l'accesso con credenziali di un singolo utente. In questa sezione si verifica che non sia più possibile. 
 
-1. In una nuova finestra del browser passare nuovamente all'URL dell'app per le API.
-2. Eseguire l'accesso quando viene richiesto di farlo.
-3. L'accesso ha esito positivo, ma viene visualizzata una pagina di errore.
+1. In una nuova finestra del browser, passare toohello URL dell'app per le API hello.
+2. Quando l'accesso richiesto toodo così.
+3. Account di accesso ha esito positivo, ma provoca tooan pagina di errore.
    
-    L'app AAD è stata configurata in modo che gli utenti nel tenant AAD non possano accedere all'API da un browser. È tuttavia possibile accedere all'app per le API usando un token per un'entità servizio, che è possibile verificare andando all'URL dell'app Web e aggiungendo altre attività.
+    App AAD hello configurati in modo che gli utenti nel tenant AAD hello non possono accedere e accedere hello API da un browser. È comunque possibile accedere applicazione API hello utilizzando un token dell'entità servizio, è possibile verificare che l'URL dell'app web toohello e l'aggiunta di altre attività da svolgere.
 
-## <a name="restrict-access-to-a-particular-service-principal"></a>Limitare l'accesso a una particolare entità servizio
-Attualmente qualsiasi chiamante possa ottenere un token per un'utente o un'entità servizio nel tenant di Azure AD può chiamare l'app per le API TodoListDataAPI (livello dati). È possibile verificare che l'app per le API del livello dati accetti chiamate solo dall'app per le API TodoListAPI (livello intermedio) e solo da una particolare entità servizio. 
+## <a name="restrict-access-tooa-particular-service-principal"></a>Limitare l'accesso tooa particolare SPN
+Attualmente, qualsiasi chiamante che è possibile ottenere un token per un utente o dell'entità servizio nel tenant di Azure AD può chiamare l'applicazione hello API TodoListDataAPI (livello di dati). È possibile che tale app per le API livello dati hello accetta chiamate da app per le API (intermedio) TodoListAPI hello e solo da un'entità servizio particolare solo toomake. 
 
-Per aggiungere queste restrizioni, aggiungere il codice per convalidare le attestazioni `appid` e `objectidentifier` nelle chiamate in arrivo.
+È possibile aggiungere queste restrizioni aggiungendo hello toovalidate codice `appid` e `objectidentifier` attestazioni su chiamate in ingresso.
 
-Per questa esercitazione, inserire il codice che convalida l'ID app e l'ID entità servizio direttamente nelle azioni del controller.  In alternativa, usare un attributo `Authorize` personalizzato o eseguire la convalida nelle sequenze di avvio (ad esempio, il middleware OWIN). Per un esempio della seconda opzione, vedere [questa applicazione di esempio](https://github.com/mohitsriv/EasyAuthMultiTierSample/blob/master/MyDashDataAPI/Startup.cs). 
+Per questa esercitazione è inserire codice hello che convalida l'ID dell'app e l'ID dell'entità servizio direttamente nelle azioni del controller.  Sono disponibili alternative toouse personalizzato `Authorize` attributo o toodo la convalida nelle sequenze di avvio (ad esempio, il middleware OWIN). Per un esempio di hello quest'ultimo, vedere [questa applicazione di esempio](https://github.com/mohitsriv/EasyAuthMultiTierSample/blob/master/MyDashDataAPI/Startup.cs). 
 
-Apportare le modifiche seguenti al progetto TodoListDataAPI.
+Rendere hello seguente progetto TodoListDataAPI toohello di modifiche.
 
-1. Aprire il file *Controllers/TodoListController.cs* .
-2. Rimuovere il commento dalle righe che impostano `trustedCallerClientId` e `trustedCallerServicePrincipalId`.
+1. Aprire hello *Controllers/TodoListController.cs* file.
+2. Rimuovi commento hello che impostare `trustedCallerClientId` e `trustedCallerServicePrincipalId`.
    
         private static string trustedCallerClientId = ConfigurationManager.AppSettings["todo:TrustedCallerClientId"];
         private static string trustedCallerServicePrincipalId = ConfigurationManager.AppSettings["todo:TrustedCallerServicePrincipalId"];
-3. Rimuovere il commento dal codice nel metodo CheckCallerId, che viene chiamato all'avvio di ogni metodo azione nel controller. 
+3. Rimuovere il commento di codice hello in hello CheckCallerId metodo. Questo metodo viene chiamato all'inizio di hello di ogni metodo di azione nel controller hello. 
    
         private static void CheckCallerId()
         {
@@ -286,27 +286,27 @@ Apportare le modifiche seguenti al progetto TodoListDataAPI.
             string currentCallerServicePrincipalId = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
             if (currentCallerClientId != trustedCallerClientId || currentCallerServicePrincipalId != trustedCallerServicePrincipalId)
             {
-                throw new HttpResponseException(new HttpResponseMessage { StatusCode = HttpStatusCode.Unauthorized, ReasonPhrase = "The appID or service principal ID is not the expected value." });
+                throw new HttpResponseException(new HttpResponseMessage { StatusCode = HttpStatusCode.Unauthorized, ReasonPhrase = "hello appID or service principal ID is not hello expected value." });
             }
         }
-4. Ridistribuire il progetto ToDoListDataAPI nel servizio app di Azure.
-5. Nel browser passare all'URL HTTPS dell'app Web front-end AngularJS e nella home page fare clic sulla scheda **To Do List** .
+4. Ridistribuire hello ToDoListDataAPI progetto tooAzure servizio App.
+5. Nel browser, URL HTTPS dell'app di toohello AngularJS front-end web, scegliere nella home page di hello hello **tooDo elenco** scheda.
    
-    L'applicazione non funziona perché le chiamate al back-end hanno esito negativo. Il nuovo codice sta controllando gli effettivi appid e objectidentifier, ma non ha ancora i valori corretti con cui confrontarli. La console degli strumenti di sviluppo del browser segnala che il server restituisce un errore HTTP 401.
+    un'applicazione Hello non funziona perché toohello nuovamente terminare le chiamate hanno esito negativo. nuovo codice Hello controllo appid effettivo e objectidentifier ma non è ancora hello valori corretti toocheck loro base. browser Hello Console degli strumenti per sviluppatori segnala che il server hello ha restituito un errore HTTP 401.
    
     ![Errore nella console degli strumenti di sviluppo](./media/app-service-api-dotnet-service-principal-auth/webapperror.png)
    
-    Nei passaggi seguenti vengono configurati i valori previsti.
-6. Usando Azure AD PowerShell, ottenere il valore dell'entità servizio per l'applicazione Azure AD creata per il progetto TodoListWebApp.
+    In hello alla procedura seguente verranno configurati i valori previsti hello.
+6. Con Azure AD PowerShell, ottenere il valore di hello del servizio hello principale per l'applicazione Azure Active Directory creata per il progetto TodoListWebApp hello hello.
    
-    a. Per istruzioni su come installare Azure PowerShell e connettersi alla sottoscrizione, vedere [Uso di Azure PowerShell con Azure Resource Manager](../powershell-azure-resource-manager.md).
+    a. Per istruzioni su come tooinstall Azure PowerShell e connettersi tooyour sottoscrizione, vedere [tramite Azure PowerShell con Azure Resource Manager](../powershell-azure-resource-manager.md).
    
-    b. Per ottenere un elenco di entità servizio, eseguire il comando `Login-AzureRmAccount` e quindi il comando `Get-AzureRmADServicePrincipal`.
+    b. tooget un elenco delle entità servizio, eseguire hello `Login-AzureRmAccount` comando e quindi hello `Get-AzureRmADServicePrincipal` comando.
    
-    c. Trovare il valore di objectid per l'entità servizio dell'applicazione TodoListAPI e salvarlo in una posizione da cui poterlo copiare più tardi.
-7. Nel portale di Azure passare al pannello App per le API dell'app per le API in cui è stato distribuito il progetto ToDoListDataAPI.
+    c. Cercare hello objectid hello dell'entità servizio dell'applicazione TodoListAPI hello e salvarlo in una posizione in cui da che è possibile copiare in un secondo momento.
+7. Nel portale di Azure hello, passare toohello API app pannello app hello API che è stato distribuito il progetto ToDoListDataAPI hello per.
 8. Fare clic su **Impostazioni > Impostazioni applicazione**.
-9. Nella sezione **Impostazioni app** aggiungere le chiavi e i valori seguenti:
+9. In hello **impostazioni App** sezione, aggiungere chiavi e valori di hello seguenti:
    
    | **Chiave** | todo:TrustedCallerServicePrincipalId |
    | --- | --- |
@@ -315,37 +315,37 @@ Apportare le modifiche seguenti al progetto TodoListDataAPI.
    
    | **Chiave** | todo:TrustedCallerClientId |
    | --- | --- |
-   | **Valore** |ID client dell'applicazione chiamante, copiato dall'applicazione Azure AD TodoListAPI |
+   | **Valore** |ID client dell'applicazione - copiato dall'applicazione di Azure AD TodoListAPI hello chiamante |
    | **Esempio** |960adec2-b74a-484a-960adec2-b74a-484a |
 10. Fare clic su **Save**.
     
      ![Fare clic su Salva.](./media/app-service-api-dotnet-service-principal-auth/trustedcaller.png)
-11. Nel browser tornare all'URL dell'app Web e nella home page fare clic sulla scheda **To Do List** .
+11. Nel browser, restituire l'URL dell'app web toohello e nella home page di hello fare clic su hello **tooDo elenco** scheda.
     
-     Ora l'applicazione funziona come previsto perché l'ID app chiamante attendibile e l'ID entità servizio hanno i valori previsti.
+     Questa applicazione hello ora funziona come previsto perché i valori previsti hello hello chiamante attendibile app ID e l'ID dell'entità servizio.
     
-     ![Pagina To Do List](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
+     ![pagina di elenco tooDo](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
 
-## <a name="building-the-projects-from-scratch"></a>Compilazione dei progetti da zero
-I due progetti API Web sono stati creati usando il modello di progetto **App per le API di Azure** e sostituendo il controller predefinito Values con un controller ToDoList. Per acquisire i token dell'entità servizio di Azure AD nel progetto ToDoListAPI, è stato installato il pacchetto NuGet [Active Directory Authentication Library (ADAL) per .NET](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) .
+## <a name="building-hello-projects-from-scratch"></a>Compilazione di progetti hello da zero
+progetti API Web Hello due sono stati creati tramite hello **Azure API App** progetto di modello e sostituendo i controller di valori predefinito hello con un controller elenco attività. Per acquisire token dell'entità servizio di Azure AD nel progetto ToDoListAPI hello, hello [Active Directory Authentication Library (ADAL) per .NET](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) il pacchetto NuGet è stato installato.
 
-Per informazioni su come creare un'applicazione a pagina singola AngularJS con un back-end API Web, ad esempio ToDoListAngular, vedere [Hands On Lab: Build a Single Page Application (SPA) with ASP.NET Web API and Angular.js](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs)(Laboratorio pratico: creare un'applicazione a pagina singola con un'API Web e Angular.js). Per informazioni su come aggiungere il codice di autenticazione di Azure AD, vedere [Protezione di app AngularJS a singola pagina con Azure AD](../active-directory/active-directory-devquickstarts-angular.md).
+Per informazioni sulla creazione di un'applicazione a pagina singola AngularJS troppo con un back-end di API Web come ToDoListAngular, vedere [mani nel Lab: creare un'applicazione a pagina singola (SPA) con ASP.NET Web API and Angular.js](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs). Per informazioni su come tooadd il codice di autenticazione di Azure AD, vedere [protezione AngularJS singola pagina le app con Azure AD](../active-directory/active-directory-devquickstarts-angular.md).
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 [!INCLUDE [troubleshooting](../../includes/app-service-api-auth-troubleshooting.md)]
 
-* Assicurarsi di non confondere ToDoListAPI (livello intermedio) e ToDoListDataAPI (livello dati). Ad esempio, in questa esercitazione viene aggiunta l'autenticazione per l'app per le API di livello dati, **ma la chiave dell'app deve provenire dall'applicazione Azure AD creata per l'app per le API di livello intermedio**.
+* Assicurarsi di non confondere ToDoListAPI (livello intermedio) e ToDoListDataAPI (livello dati). Ad esempio, in questa esercitazione è aggiungere app authentication toohello dati livello API **ma chiave dell'applicazione hello deve provenire da applicazione AD Azure creato per l'applicazione di livello intermedio API hello hello**.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Questa è l'ultima esercitazione della serie sulle app per le API. 
+Si tratta di esercitazione di ultima hello in hello serie di App per le API. 
 
-Per altre informazioni su Azure Active Directory, vedere le risorse seguenti.
+Per ulteriori informazioni su Azure Active Directory, vedere hello seguenti risorse.
 
 * [Guida per sviluppatori Azure AD](http://aka.ms/aaddev)
 * [Scenari per Azure AD](http://aka.ms/aadscenarios)
 * [Esempi di Azure AD](http://aka.ms/aadsamples)
   
-    L'esempio [WebApp-WebAPI-OAuth2-AppIdentity-DotNet](http://github.com/AzureADSamples/WebApp-WebAPI-OAuth2-AppIdentity-DotNet) è simile a quanto illustrato in questa esercitazione, ma non usa l'autenticazione del servizio app.
+    Hello [WebApp-WebAPI-OAuth2-AppIdentity-DotNet](http://github.com/AzureADSamples/WebApp-WebAPI-OAuth2-AppIdentity-DotNet) esempio è simile toowhat viene visualizzato in questa esercitazione, ma senza utilizzare l'autenticazione del servizio App.
 
-Per informazioni su altre modalità di distribuzione di progetti Visual Studio in app per le API usando Visual Studio o [automatizzando la distribuzione](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) da un [sistema di controllo del codice sorgente](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control), vedere [Distribuire l'app nel servizio app di Azure](../app-service-web/web-sites-deploy.md).
+Per informazioni su altri modi toodeploy Visual Studio progetti tooAPI App, tramite Visual Studio o [l'automatizzazione della distribuzione](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) da un [sistema di controllo di origine](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control), vedere [come toodeploy un Applicazione di servizio App di Azure](../app-service-web/web-sites-deploy.md).
 

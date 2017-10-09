@@ -1,6 +1,6 @@
 ---
-title: Gestione traffico di Azure - Domande frequenti | Documentazione Microsoft
-description: Questo articolo risponde ad alcune domande frequenti su Gestione traffico
+title: aaaAzure Traffic Manager - domande frequenti | Documenti Microsoft
+description: In questo articolo vengono fornite le risposte toofrequently domande frequenti sulla gestione traffico
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/15/2017
 ms.author: kumud
-ms.openlocfilehash: 44762864e0a5adf568fcd4928b48661196f05b9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5530d03b55bbf49a52002841e281e2cf5819c2b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="traffic-manager-frequently-asked-questions-faq"></a>Domande frequenti (FAQ) su Gestione traffico
 
@@ -26,101 +26,101 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="what-ip-address-does-traffic-manager-use"></a>Quale indirizzo IP viene usato da Gestione traffico?
 
-Come spiegato nella sezione [Modalità di funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), Gestione traffico funziona a livello di DNS. Invia le risposte DNS per indirizzare i client all'endpoint di servizio appropriato. I client si connettono quindi all'endpoint di servizio in modo diretto, senza passare per Gestione traffico.
+Come spiegato in [come funziona la gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), gestione traffico opera a livello DNS hello. Invia le risposte DNS del servizio appropriato toodirect client toohello endpoint. I client quindi connettersi endpoint del servizio toohello direttamente, non tramite Traffic Manager.
 
-Gestione traffico non prevede quindi un endpoint o indirizzo IP per la connessione dei client. Pertanto, se si vuole un indirizzo IP statico, per il servizio, questo deve essere configurato nel servizio, non in Gestione traffico.
+Di conseguenza, gestione traffico non fornisce un endpoint o l'indirizzo IP per i client tooconnect per. Pertanto, se si desidera l'indirizzo IP statico per il servizio, che deve essere configurato nel servizio di hello, non in Traffic Manager.
 
 ### <a name="does-traffic-manager-support-sticky-sessions"></a>Gestione traffico supporta sessioni "permanenti"?
 
-Come spiegato nella sezione [Modalità di funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), Gestione traffico funziona a livello di DNS. Usa le risposte DNS per indirizzare i client all'endpoint di servizio appropriato. I client si connettono all'endpoint di servizio in modo diretto, senza passare per Gestione traffico. Gestione traffico non visualizza quindi il traffico HTTP tra il client e il server.
+Come spiegato in [come funziona la gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), gestione traffico opera a livello DNS hello. Usa endpoint di servizio appropriato toohello DNS risposte toodirect client. I client si connettono endpoint del servizio toohello direttamente, non tramite Traffic Manager. Pertanto, gestione traffico non vedere il traffico HTTP hello tra hello client e server di hello.
 
-Inoltre l'indirizzo IP di origine della query DNS ricevuta da Gestione traffico appartiene al servizio DNS ricorsivo e non al client. Il servizio Gestione traffico non può quindi tracciare client singoli e non può implementare sessioni "permanenti". Questa limitazione è comune a tutti i sistemi di gestione del traffico basati su DNS e non è specifica di Gestione traffico.
+Inoltre, indirizzo IP di origine hello di query DNS hello ricevuti da Gestione traffico appartiene il servizio DNS ricorsivo toohello, non client di hello. Di conseguenza, gestione traffico non contiene modo tootrack singoli client e non può implementare 'sticky' sessioni. Questa limitazione è comune tooall DNS il traffico basato su sistemi di gestione e non è specifico tooTraffic Manager.
 
 ### <a name="why-am-i-seeing-an-http-error-when-using-traffic-manager"></a>Quando si usa Gestione traffico, viene visualizzato un errore HTTP. Perché?
 
-Come spiegato nella sezione [Modalità di funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), Gestione traffico funziona a livello di DNS. Usa le risposte DNS per indirizzare i client all'endpoint di servizio appropriato. I client si connettono quindi all'endpoint di servizio in modo diretto, senza passare per Gestione traffico. Gestione traffico non vede il traffico HTTP tra client e server. Ogni errore HTTP visualizzato proviene quindi dall'applicazione. Per la connessione del client all'applicazione, è necessario che siano stati completati tutti i passaggi di risoluzione DNS. È inclusa qualsiasi interazione di Gestione traffico con il flusso del traffico dell'applicazione.
+Come spiegato in [come funziona la gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), gestione traffico opera a livello DNS hello. Usa endpoint di servizio appropriato toohello DNS risposte toodirect client. I client quindi connettersi endpoint del servizio toohello direttamente, non tramite Traffic Manager. Gestione traffico non vede il traffico HTTP tra client e server. Ogni errore HTTP visualizzato proviene quindi dall'applicazione. Per l'applicazione hello client tooconnect toohello avere completato tutti i passaggi di risoluzione DNS. Che include qualsiasi interazione con gestione traffico per il flusso del traffico dell'applicazione hello.
 
-Eventuali verifiche più approfondite dovranno quindi concentrarsi sull'applicazione.
+Ulteriori indagini pertanto è consigliabile concentrarsi sull'applicazione hello.
 
-L'intestazione host HTTP inviata dal browser del client è l'origine dei problemi più comune. Assicurarsi che l'applicazione sia configurata per accettare l'intestazione host corretta per il nome di dominio in uso. Per gli endpoint che usano il Servizio app di Azure, vedere [Configurazione di un nome di dominio personalizzato per un'app Web nel servizio app di Azure con Gestione traffico](../app-service-web/web-sites-traffic-manager-custom-domain-name.md).
+intestazione host Hello HTTP inviata dal browser del client hello è l'origine più comune di hello dei problemi. Assicurarsi che un'applicazione hello sia l'intestazione host corretto di hello tooaccept configurato per il nome di dominio hello in uso. Per gli endpoint utilizzando hello servizio App di Azure, vedere [configurazione di un nome di dominio personalizzato per un'app web in Azure App Service tramite Traffic Manager](../app-service-web/web-sites-traffic-manager-custom-domain-name.md).
 
-### <a name="what-is-the-performance-impact-of-using-traffic-manager"></a>Qual è l'impatto sulle prestazioni dell'uso di Gestione traffico?
+### <a name="what-is-hello-performance-impact-of-using-traffic-manager"></a>Che cos'è l'impatto sulle prestazioni hello tramite Gestione traffico?
 
-Come spiegato nella sezione [Modalità di funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), Gestione traffico funziona a livello di DNS. Dal momento che i client si connettono direttamente agli endpoint di servizio, dopo che è stata stabilita la connessione non si verifica alcun impatto sulle prestazioni.
+Come spiegato in [come funziona la gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), gestione traffico opera a livello DNS hello. Poiché i client si connettono direttamente gli endpoint del servizio tooyour, non sussiste alcun impatto sulle prestazioni sostenuta quando si utilizza Traffic Manager dopo aver stabilito la connessione di hello.
 
-Poiché Gestione traffico si integra con le applicazioni a livello di DNS, richiede l'inserimento di una ricerca DNS aggiuntiva nella catena di risoluzione DN. L'impatto di Gestione traffico sul tempo di risoluzione DNS è minimo. Gestione traffico usa una rete globale di server dei nomi e reti [Anycast](https://en.wikipedia.org/wiki/Anycast) per garantire che le query DNS vengano sempre indirizzate al server dei nomi più vicino disponibile. Inoltre, la memorizzazione nella cache delle risposte DNS significa che la latenza DNS aggiuntiva associata all'uso di Gestione traffico si applica solo a una frazione di sessioni.
+Poiché Traffic Manager si integra con le applicazioni hello livello DNS, è necessario un toobe di ricerca DNS aggiuntivi inseriti hello catena di risoluzione DNS. impatto di Hello di Traffic Manager nel tempo di risoluzione DNS è minimo. Gestione traffico utilizza una rete globale di server dei nomi e [anycast](https://en.wikipedia.org/wiki/Anycast) rete tooensure DNS query vengono eseguite sempre toohello indirizzato server dei nomi disponibile più vicino. Inoltre, la memorizzazione nella cache delle risposte DNS ovvero hello DNS una latenza aggiuntiva sostenuta tramite Traffic Manager si applica solo tooa frazione di sessioni.
 
-Il metodo Prestazioni instrada il traffico all'endpoint disponibile più vicino. Il risultato della rete è che l'impatto sulle prestazioni complessive associate a questo metodo dovrebbe essere minimo. Un aumento della latenza DNS deve essere compensato da minore latenza di rete all'endpoint.
+Hello prestazioni metodo instrada il traffico endpoint disponibile più vicino toohello. risultato Hello è tale hello impatto sulle prestazioni complessive associata a questo metodo dovrebbe essere minimo. Un aumento della latenza di DNS deve essere con offset inferiore endpoint toohello latenza di rete.
 
 ### <a name="what-application-protocols-can-i-use-with-traffic-manager"></a>Quali protocolli di applicazione possono essere usati con Gestione traffico?
 
-Come spiegato nella sezione [Modalità di funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), Gestione traffico funziona a livello di DNS. Dopo il completamento della ricerca DNS, i client si connettono all'endpoint dell'applicazione direttamente, non tramite Gestione traffico. La connessione può pertanto usare qualsiasi protocollo dell'applicazione. Se come protocollo di monitoraggio si seleziona TCP, i controlli dell'integrità dell'endpoint eseguiti da Gestione traffico non richiedono l'uso dei protocolli dell'applicazione. Se si sceglie di verificare l'integrità usando un protocollo dell'applicazione, l'endpoint deve poter rispondere alle richieste HTTP o HTTPS GET.
+Come spiegato in [come funziona la gestione traffico](../traffic-manager/traffic-manager-overview.md#how-traffic-manager-works), gestione traffico opera a livello DNS hello. Al termine di ricerca DNS hello, i client si connettono endpoint applicazione toohello direttamente, non tramite Traffic Manager. Pertanto, connessione hello è possibile utilizzare qualsiasi protocollo di applicazione. Se si seleziona TCP come hello monitoraggio, gestione traffico del protocollo il monitoraggio dello stato di endpoint può essere eseguito senza utilizzando qualsiasi protocollo di applicazione. Se si sceglie di integrità hello toohave verificata mediante un protocollo di applicazione, è necessario endpoint hello toobe toorespond in grado di tooeither HTTP o HTTPS GET richieste.
 
 ### <a name="can-i-use-traffic-manager-with-a-naked-domain-name"></a>È possibile usare Gestione traffico con un nome di dominio di tipo "naked" (senza www)?
 
-No. Gli standard DNS non consentono la coesistenza tra record CNAME e altri record DNS dello stesso nome. Il vertice o la radice di una zona DNS contiene sempre due record DNS preesistenti: il record SOA e quello del server dei nomi autorevole. Non è quindi possibile creare un record CNAME al vertice della zona senza violare gli standard DNS.
+No. standard DNS Hello non consente di limitare CNAME tooco-esiste con altri record DNS di hello stesso nome. contiene sempre due record DNS esistenti; Hello vertice o radice di una zona DNS Hello record SOA e hello autorevole NS. Ciò significa che un record CNAME non è possibile creare al vertice zona hello senza violare gli standard DNS hello.
 
-Gestione traffico richiede un record CNAME DNS per eseguire il mapping del nome DNS personalizzato. Ad esempio, eseguire il mapping di www.contoso.com al nome DNS del profilo di Gestione traffico contoso.trafficmanager.net. Inoltre, il profilo di Gestione traffico restituisce un secondo record DNS CNAME per indicare l'endpoint a cui il client dovrebbe collegarsi.
+Gestione traffico richiede un nome DNS di DNS CNAME toomap record hello personale. Ad esempio, si esegue il mapping di www.contoso.com toohello Traffic Manager profilo DNS nome contoso.trafficmanager.net. Inoltre, hello profilo di gestione traffico restituisce un secondo tooindicate DNS CNAME quale endpoint hello client deve connettersi.
 
-Per risolvere questo problema, è consigliabile usare un reindirizzamento HTTP per indirizzare il traffico dal nome di dominio naked a un URL differente, che può quindi usare Gestione traffico. Ad esempio, il dominio naked "contoso.com" può reindirizzare gli utenti al dominio "www.contoso.com" CNAME, che punta al nome DNS di Gestione traffico.
+toowork questo problema, è consigliabile utilizzare un traffico di toodirect reindirizzamento HTTP da hello naked URL nome di dominio tooa diversi, che è quindi possibile usare Gestione traffico. Ad esempio, hello naked dominio 'contoso.com' possibile reindirizzare gli utenti toohello CNAME 'www.contoso.com' che punta toohello nome DNS di Traffic Manager.
 
 Il supporto completo per i domini naked in Gestione traffico è riportato nel backlog delle funzionalità. È possibile registrare il supporto per questa funzionalità [votandolo sul sito dei commenti della community](https://feedback.azure.com/forums/217313-networking/suggestions/5485350-support-apex-naked-domains-more-seamlessly).
 
-### <a name="does-traffic-manager-consider-the-client-subnet-address-when-handling-dns-queries"></a>Gestione traffico tiene conto dell'indirizzo della subnet client quando si gestiscono query DNS? 
-No, attualmente Gestione traffico tiene conto solo dell'indirizzo IP di origine della query DNS che riceve, che in genere è l'indirizzo IP del resolver DNS, durante l'esecuzione di ricerche dei metodi di routing Geografico e Prestazioni.  
-In particolare, in [RFC7871 – Client Subnet in DNS Queries](https://tools.ietf.org/html/rfc7871) (RFC7871 – Subnet client nelle query DNS), che indica un [meccanismo di estensione per DNS (EDNS0)](https://tools.ietf.org/html/rfc2671) che può trasferire l'indirizzo della subnet client dai resolver che lo supportano ai server DNS, non è attualmente supportata in Gestione traffico. È possibile registrare il supporto per la richiesta di questa funzionalità sul [sito di commenti e suggerimenti della community](https://feedback.azure.com/forums/217313-networking).
+### <a name="does-traffic-manager-consider-hello-client-subnet-address-when-handling-dns-queries"></a>Gestione traffico considera indirizzo di subnet hello client durante la gestione delle query DNS? 
+No, attualmente gestione traffico considera solo hello indirizzo IP di origine di query DNS hello riceve, che in genere è l'indirizzo IP hello del resolver DNS hello, quando si eseguono ricerche per i metodi di routing geografico e le prestazioni.  
+In particolare, [RFC 7871 – Subnet Client nelle query DNS](https://tools.ietf.org/html/rfc7871) che fornisce un [meccanismo di estensione per il DNS (EDNS0)](https://tools.ietf.org/html/rfc2671) che è possibile passare all'indirizzo di subnet hello client da sistemi di risoluzione che lo supportano, tooDNS server è attualmente non supportato in Traffic Manager. È possibile registrare il supporto per la richiesta di questa funzionalità sul [sito di commenti e suggerimenti della community](https://feedback.azure.com/forums/217313-networking).
 
 
 ### <a name="what-is-dns-ttl-and-how-does-it-impact-my-users"></a>Cos'è la durata TTL del DNS e che impatto ha sugli utenti?
 
-Quando una query DNS viene ricevuta da Gestione traffico, nella risposta viene impostato un valore chiamato Durata (TTL). Questo valore, espresso in secondi, indica ai resolver DNS a valle il tempo di memorizzazione della risposta nella cache. Sebbene ciò non garantisca che i resolver memorizzino il risultato nella cache, la memorizzazione consente loro di rispondere a ogni successiva query usando la cache, invece di inoltrare la query ai server DNS di Gestione traffico. Di seguito è illustrato l'impatto sulle risposte:
-- Una durata TTL maggiore riduce il numero di query che raggiunge i server DNS di Gestione traffico; ciò contribuisce a ridurre i costi per il cliente, poiché il numero di query gestite incide sulla fatturazione.
-- Una durata TTL maggiore può potenzialmente ridurre il tempo necessario per eseguire una ricerca DNS.
-- Una durata TTL maggiore implica anche che i dati possono non riflettere le informazioni di integrità più recenti ottenute da Gestione traffico tramite gli agenti che eseguono il sondaggio.
+Quando una query DNS inserita per gestione traffico, imposta un valore in risposta hello chiamato time-to-live (TTL). Questo valore, la cui unità è espresso in secondi, indica ai resolver tooDNS a valle in quanto tempo toocache questa risposta. Mentre i resolver DNS non sono garantiti toocache questo risultato, la memorizzazione nella cache consente loro toorespond tooany le query successive off cache di hello cercarli tooTraffic i server DNS di gestione. Ciò si verifica nelle risposte hello come indicato di seguito:
+- una durata maggiore riduce il numero di hello di query che accedono hello server DNS di Traffic Manager, che è possibile ridurre il costo di hello per un cliente, poiché il numero di query gestite è un utilizzo fatturabile.
+- una durata superiore possa potenzialmente ridurre hello tempi toodo una ricerca DNS.
+- una durata superiore significa anche che i dati non rifletteranno le informazioni di integrità più recente hello ottenuto tramite i relativi agenti eseguiranno il sondaggio Traffic Manager.
 
-### <a name="how-high-or-low-can-i-set-the-ttl-for-traffic-manager-responses"></a>Come impostare una durata TTL maggiore o minore per le risposte di Gestione traffico?
+### <a name="how-high-or-low-can-i-set-hello-ttl-for-traffic-manager-responses"></a>Modalità di alto o basso è possibile impostare hello durata (TTL) per le risposte di gestione traffico?
 
-A livello di singolo profilo, è possibile impostare una durata TTL del DNS minima di 0 secondi e massima di 2.147.483.647 secondi, ovvero l'intervallo massimo conforme a [RFC-1035](https://www.ietf.org/rfc/rfc1035.txt ). Una durata TTL pari a 0 indica che i resolver DNS a valle non memorizzano nella cache le risposte alle query; tutte le query vengono ricevute dai server DNS di Gestione traffico per essere risolte.
+È possibile impostare, in una per ogni livello di profilo, hello toobe TTL DNS come minimo pari a 0 secondi e a un massimo di 2.147.483.647 secondi (hello intervallo massimo conforme con [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt )). Una durata pari a 0 indica che ai resolver DNS a valle non memorizzati nella cache le risposte alle query e tutte le query sono previsti i server DNS di gestione traffico hello tooreach per la risoluzione.
 
 ## <a name="traffic-manager-geographic-traffic-routing-method"></a>Metodi geografico di routing del traffico di Gestione traffico
 
 ### <a name="what-are-some-use-cases-where-geographic-routing-is-useful"></a>Quali sono alcuni casi di uso in cui il routing geografico è utile? 
-Il tipo di routing Geografico può essere usato in qualsiasi scenario in cui un cliente di Azure abbia bisogno di distinguere gli utenti in base alle aree geografiche. Ad esempio, tramite il metodo di routing del traffico Geografico è possibile offrire agli utenti di una determinata area un'esperienza utente diversa rispetto a quelli di altre aree. Un altro esempio è la necessità di garantire la conformità con requisiti dei dati locali che richiedono di servire gli utenti di una determinata area solo con gli endpoint di tale area.
+Il tipo di routing geografico utilizzabile in qualsiasi scenario in cui un cliente di Azure deve toodistinguish agli utenti in base alle aree geografiche. Ad esempio, Usa metodo di routing del traffico geografica hello, è possibile assegnare agli utenti di aree specifiche un'esperienza utente diverso rispetto a quelle di altre regioni. Un altro esempio è la necessità di garantire la conformità con requisiti dei dati locali che richiedono di servire gli utenti di una determinata area solo con gli endpoint di tale area.
 
-### <a name="what-are-the-regions-that-are-supported-by-traffic-manager-for-geographic-routing"></a>Quali sono le aree supportate da Gestione traffico per il routing geografico? 
-La gerarchia di paese/area geografica utilizzata da Gestione traffico è reperibile [qui](traffic-manager-geographic-regions.md). La pagina viene aggiornata con ogni modifica apportata, ma è possibile recuperare le stesse informazioni anche a livello programmatico usando l'[API REST di Gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/). 
+### <a name="what-are-hello-regions-that-are-supported-by-traffic-manager-for-geographic-routing"></a>Quali sono le aree di hello supportate da Gestione traffico per il routing geografica? 
+gerarchia di paese/area geografica Hello utilizzato da Gestione traffico è reperibile [qui](traffic-manager-geographic-regions.md). Durante questa pagina viene mantenuta aggiornata con tutte le modifiche, è possibile recuperare anche a livello di codice hello stesse informazioni tramite hello [REST API di gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/). 
 
 ### <a name="how-does-traffic-manager-determine-where-a-user-is-querying-from"></a>In che modo Gestione traffico determina da dove un utente sta eseguendo una query? 
-Gestione traffico esamina l'indirizzo IP di origine della query (probabilmente un sistema di risoluzione DNS locale che esegue la query per conto dell'utente) e usa un indirizzo IP interno per eseguire il mapping delle aree al fine di determinare la posizione. Questa mappa viene aggiornata regolarmente per tenere conto delle modifiche di Internet. 
+Gestione traffico esamina hello IP di origine della query hello (è molto probabile che un sistema di risoluzione DNS locale esegue una query hello per conto di utente hello) e utilizza un'interno IP tooregion toodetermine hello posizione della mappa. Questa mappa viene aggiornata a un tooaccount regolarmente per la modifica in hello internet. 
 
-### <a name="is-it-guaranteed-that-traffic-manager-can-correctly-determine-the-exact-geographic-location-of-the-user-in-every-case"></a>È garantito che in ogni caso Gestione traffico determini correttamente l'esatta posizione geografica dell'utente?
-No, Gestione traffico non può garantire che l'area geografica che si deduce dall'indirizzo IP di origine di una query DNS corrisponda sempre alla posizione dell'utente, per i motivi seguenti: 
+### <a name="is-it-guaranteed-that-traffic-manager-can-correctly-determine-hello-exact-geographic-location-of-hello-user-in-every-case"></a>È garantito che Gestione traffico consente di scegliere correttamente hello esatta area geografica dell'utente hello in ogni caso?
+No, gestione traffico non è possibile garantire tale area geografica hello è dedurre dall'indirizzo IP di origine hello di una query DNS corrisponderà sempre il percorso dell'utente toohello scadenza toohello seguenti motivi: 
 
-- In primo luogo, come indicato nella domanda precedente, l'indirizzo IP di origine visualizzato è quello di un resolver DNS che esegue la ricerca per conto dell'utente. La posizione geografica del resolver DNS è un proxy valido per la posizione geografica dell'utente ma può anche essere diversa, a seconda della superficie del servizio resolver DNS e dello specifico servizio resolver DNS che un cliente sceglie di usare. Ad esempio, un cliente che si trova in Malaysia può specificare nelle impostazioni del dispositivo l'uso di un servizio resolver DNS il cui server DNS a Singapore potrebbe essere scelto per gestire le risoluzioni di query per l'utente o il dispositivo specifico. In questo caso, Gestione traffico può visualizzare solo l'indirizzo IP del resolver corrispondente alla località Singapore. Vedere anche le domande frequenti precedenti, disponibili in questa pagina, relative al supporto dell'indirizzo della subnet client.
+- In primo luogo, come descritto nella domanda precedente hello, hello è quello di un sistema di risoluzione DNS eseguendo la ricerca hello per conto di utente hello indirizzo IP di origine. Mentre l'area geografica del sistema di risoluzione DNS hello hello è un proxy valido per area geografica dell'utente hello hello, può anche essere diverso a seconda footprint hello del servizio di sistema di risoluzione DNS hello e hello specifico DNS servizio resolver che ha scelto un cliente toouse. Ad esempio, un cliente che si trova in Malaysia possibile specificare in uso di impostazioni del dispositivo in uso un servizio di sistema di risoluzione DNS potrebbe ottenere i cui server DNS Singapore prelevato toohandle risoluzioni query hello per tale utente o dispositivo. In caso, gestione traffico può visualizzare solo IP del resolver hello indirizzo che corrisponde toohello percorso Singapore. Vedere anche hello precedenti domande frequenti relative a indirizzo subnet del client supportano in questa pagina.
 
-- In secondo luogo, Gestione traffico usa una mappa interna per tradurre l'indirizzo IP nell'area geografica. Anche se questa mappa viene convalidata e aggiornata in modo continuativo per aumentarne la precisione e tenere conto della natura in costante evoluzione di Internet, è comunque possibile che le informazioni contenute non rappresentino esattamente la posizione geografica di tutti gli indirizzi IP.
-
-
-###  <a name="does-an-endpoint-need-to-be-physically-located-in-the-same-region-as-the-one-it-is-configured-with-for-geographic-routing"></a>Un endpoint deve trovarsi fisicamente nella stessa area di quello con cui è configurato per il routing geografico? 
-No, il percorso dell'endpoint non impone alcuna restrizione in merito alle aree a cui può essere mappato. Ad esempio è possibile che tutti gli utenti dell'India siano indirizzati a un endpoint dell'area Stati Uniti centrali di Azure.
-
-### <a name="can-i-assign-geographic-regions-to-endpoints-in-a-profile-that-is-not-configured-to-do-geographic-routing"></a>È possibile assegnare aree geografiche agli endpoint in un profilo che non è configurato per eseguire il routing geografico? 
-
-Sì, se il metodo di routing di un profilo non è Geografico è possibile usare l'[API REST di Gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/) per assegnare aree geografiche agli endpoint del profilo. Nel caso di profili con un tipo di routing non geografico, questa configurazione viene ignorata. Se si cambia un profilo di questo tipo nel tipo a routing geografico in un secondo momento, Gestione traffico userà quei mapping.
+- In secondo luogo, gestione traffico Usa una mappa interna toodo hello conversione degli indirizzi IP toogeographic area. Anche se questa mappa viene convalidata e aggiornata in un tooincrease regolarmente la precisione e l'account per natura dell'evoluzione hello hello internet, ancora hello possibilità è che le informazioni non sono una rappresentazione esatta di area geografica hello di tutti indirizzi IP Hello.
 
 
-### <a name="why-am-i-getting-an-error-when-i-try-to-change-the-routing-method-of-an-existing-profile-to-geographic"></a>Perché si riceve un errore quando si tenta di cambiare il metodo di routing di un profilo esistente in geografico?
+###  <a name="does-an-endpoint-need-toobe-physically-located-in-hello-same-region-as-hello-one-it-is-configured-with-for-geographic-routing"></a>Un toobe necessità di endpoint situati fisicamente in hello stessa area hello uno configurate per il routing geografica? 
+No, il percorso di hello dell'endpoint hello impone senza restrizioni in cui le regioni possono essere mappate tooit. Ad esempio, un endpoint nell'area Stati Uniti centro Azure può avere tutti gli utenti da tooit India indirizzato.
 
-Deve esserci almeno un'area mappata per tutti gli endpoint in un profilo con routing geografico. Per convertire un profilo esistente al tipo di routing geografico è innanzitutto necessario associare aree geografiche a tutti gli endpoint tramite l'[API REST di Gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/) prima di cambiare il tipo di routing in geografico. Se si usa il portale, eliminare innanzitutto gli endpoint, cambiare il metodo di routing del profilo in geografico e quindi aggiungere gli endpoint con i relativi mapping di area geografica. 
+### <a name="can-i-assign-geographic-regions-tooendpoints-in-a-profile-that-is-not-configured-toodo-geographic-routing"></a>È possibile assegnare aree geografiche tooendpoints in un profilo che non è configurato toodo geografica routing? 
+
+Sì, metodo di routing hello di un profilo non è geografico, è possibile utilizzare hello [REST API di gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/) tooassign tooendpoints di aree geografiche in quel profilo. Nel caso di hello di profili di tipo routing non geografici, questa configurazione viene ignorata. Se si modifica tale profilo toogeographic routing tipo in un secondo momento, gestione traffico può utilizzare tali mapping.
+
+
+### <a name="why-am-i-getting-an-error-when-i-try-toochange-hello-routing-method-of-an-existing-profile-toogeographic"></a>Motivo per cui viene visualizzato un errore durante il metodo di routing hello toochange di un tooGeographic profilo esistente?
+
+Tutti gli endpoint hello in un profilo con il routing geografica necessario toohave tooit il mapping di almeno un'area. tooconvert un tipo di routing toogeographic profilo esistente, è necessario innanzitutto tooassociate aree geografiche tooall relativi endpoint utilizzando hello [REST API di gestione traffico di Azure](https://docs.microsoft.com/rest/api/trafficmanager/) prima di modificare hello routing digitare toogeographic. Se tramite portale, eliminare innanzitutto endpoint hello, Modifica metodo di routing di hello profilo toogeographic hello e quindi aggiungere gli endpoint hello insieme ai relativi mapping di area geografica. 
 
 
 ###  <a name="why-is-it-strongly-recommended-that-customers-create-nested-profiles-instead-of-endpoints-under-a-profile-with-geographic-routing-enabled"></a>Perché è decisamente consigliato che i clienti creino profili nidificati anziché endpoint in un profilo con il routing geografico abilitato? 
 
-Un'area può essere assegnata a un solo endpoint all'interno di un profilo se usa il tipo di routing geografico. Se tale endpoint non è un tipo annidato con un profilo figlio collegato, nel caso l'endpoint perdesse l'integrità, Gestione traffico continuerà a inviare traffico a esso in quanto l'alternativa di non inviare alcun traffico non è migliore. Gestione traffico non esegue il failover su un altro endpoint, anche quando l'area assegnata è "padre" dell'area assegnata all'endpoint danneggiato. Ad esempio, se un endpoint che include l'area Spagna perde la sua integrità, non si eseguirà il failover su un altro endpoint con assegnata l'area Europa. Lo scopo di tutto questo è garantire che Gestione traffico rispetti i confini geografici che un cliente ha stabilito nel proprio profilo. Per ottenere il vantaggio del failover su un altro endpoint quando un endpoint perde la sua integrità, è consigliabile assegnare le aree geografiche a profili annidati con più endpoint all'interno invece di singoli endpoint. In questo modo se un endpoint nel profilo figlio annidato non funziona, il traffico può eseguire il failover su un altro endpoint all'interno dello stesso profilo figlio annidato.
+Un'area è possibile assegnare uno tooonly endpoint all'interno di un profilo se relativo utilizzando il tipo di routing geografico. Se tale endpoint non è un tipo annidato con tooit profilo collegato un figlio, se tale endpoint sarà non integro, Traffic Manager continua toosend traffico tooit dall'alternativa hello di invio non che tutto il traffico non è di meglio. Gestione traffico non non failover tooanother endpoint, anche quando regione hello assegnata un "padre" dell'area di hello toohello endpoint che è stato danneggiato (ad esempio, se un endpoint che include l'area Spagna diventa non integro, che verranno tooanother di failover non assegnato endpoint che dispone di hello area Europa assegnato tooit). Questa operazione viene eseguita tooensure che l'installazione di gestione traffico equivalenti hello geografiche che dispone di un cliente nel proprio profilo. tooget hello vantaggio derivante dall'esecuzione del failover endpoint tooanother quando un endpoint diventa non integro, è consigliabile assegnare profili toonested con più endpoint all'interno di esso anziché singoli endpoint che aree geografiche. In questo modo, se un endpoint hello annidato figlio profilo avrà esito negativo, il traffico può failover tooanother endpoint all'interno di hello stesso nidificato profilo figlio.
 
-### <a name="are-there-any-restrictions-on-the-api-version-that-supports-this-routing-type"></a>Ci sono restrizioni sulla versione API che supporta questo tipo di routing?
+### <a name="are-there-any-restrictions-on-hello-api-version-that-supports-this-routing-type"></a>Esistono restrizioni sulla versione di hello API che supporta questo tipo di routing?
 
-Sì, solo l'API versione 2017-03-01 e versioni successive supportano il routing di tipo geografico. Le versioni precedenti dell'API non possono essere usate per creare profili con routing di tipo Geografico o assegnare aree geografiche agli endpoint. Se viene usata una versione precedente dell'API per recuperare i profili da una sottoscrizione di Azure, non vengono restituiti profili con routing di tipo Geografico. Inoltre, quando si usano versioni precedenti dell'API, tutti i profili restituiti che hanno endpoint con un'area geografica assegnata non mostreranno l'area geografica assegnata.
+Sì, solo la versione API 2017-03-01 e supporta più recente hello geografico tipo di routing. Le versioni precedenti di API non possono essere toocreated utilizzati profili di tipo di routing geografico oppure assegnare tooendpoints aree geografiche. Se una versione precedente di API profili tooretrieve utilizzato da una sottoscrizione di Azure, qualsiasi profilo di tipo di routing geografico non viene restituito. Inoltre, quando si usano versioni precedenti dell'API, tutti i profili restituiti che hanno endpoint con un'area geografica assegnata non mostreranno l'area geografica assegnata.
 
 
 
@@ -128,51 +128,51 @@ Sì, solo l'API versione 2017-03-01 e versioni successive supportano il routing 
 
 ### <a name="can-i-use-traffic-manager-with-endpoints-from-multiple-subscriptions"></a>È possibile usare Gestione traffico con endpoint di più sottoscrizioni?
 
-L'uso di endpoint di più sottoscrizioni non è possibile con app Web di Azure. Per le app Web di Azure è necessario che ogni nome di dominio personalizzato usato con app Web venga usato solo all'interno di una singola sottoscrizione. Non è possibile usare app Web da più sottoscrizioni con lo stesso nome di dominio.
+L'uso di endpoint di più sottoscrizioni non è possibile con app Web di Azure. Per le app Web di Azure è necessario che ogni nome di dominio personalizzato usato con app Web venga usato solo all'interno di una singola sottoscrizione. Non è possibile toouse delle App Web più sottoscrizioni con hello stesso nome di dominio.
 
-Per altri tipi di endpoint, è possibile utilizzare Gestione traffico con gli endpoint da più di una sottoscrizione. In Resource Manager è possibile aggiungere endpoint di qualsiasi sottoscrizione a Gestione traffico, purché la persona che configura il profilo di Gestione traffico abbia accesso in lettura all'endpoint. Queste autorizzazioni possono essere concesse tramite il [controllo di accesso in base al ruolo di Azure Resource Manager](../active-directory/role-based-access-control-configure.md).
+Per altri tipi di endpoint, è possibile toouse gestione traffico con gli endpoint da più di una sottoscrizione. In Gestione risorse di qualsiasi sottoscrizione è possibile aggiungere endpoint tooTraffic Manager, purché persona hello configurazione profilo di Traffic Manager hello abbia accesso in lettura toohello endpoint. Queste autorizzazioni possono essere concesse tramite il [controllo di accesso in base al ruolo di Azure Resource Manager](../active-directory/role-based-access-control-configure.md).
 
 
 ### <a name="can-i-use-traffic-manager-with-cloud-service-staging-slots"></a>È possibile usare Gestione traffico con slot di "staging" del servizio cloud?
 
-Sì. Gli slot di "staging" del servizio cloud possono essere configurati come endpoint esterni in Gestione traffico. I controlli di integrità vengono fatturati in base alla tariffa degli endpoint di Azure. Dato che viene usato il tipo di endpoint esterno, le modifiche al servizio sottostante non vengono rilevate automaticamente. Se si usano endpoint esterni, Gestione traffico non è in grado di rilevare l'eventuale arresto o eliminazione del servizio cloud. Di conseguenza, Gestione traffico continua a fatturare i controlli di integrità fino a quando l'endpoint non viene disabilitato o eliminato.
+Sì. Gli slot di "staging" del servizio cloud possono essere configurati come endpoint esterni in Gestione traffico. Controlli di integrità sono comunque addebitato con frequenza di hello gli endpoint di Azure. Poiché il tipo di endpoint esterni hello è in uso, servizio sottostante toohello di modifiche non vengono rilevate automaticamente. Con endpoint esterni, gestione traffico non è possibile rilevare quando hello servizio Cloud viene arrestata o eliminata. Pertanto, hello Traffic Manager continua fatturazione per i controlli di integrità, fino a endpoint hello è disabilitato o eliminato.
 
 ### <a name="does-traffic-manager-support-ipv6-endpoints"></a>Gestione traffico supporta endpoint IPv6?
 
-Attualmente Gestione traffico non fornisce server dei nomi indirizzabili tramite IPv6. Può comunque essere usato da client IPv6 che si connettono a endpoint IPv6. Un client non invia richieste DNS direttamente a Gestione traffico, ma usa un servizio DNS ricorsivo. Un client solo IPv6 invia richieste al servizio DNS ricorsivo tramite IPv6. Il servizio ricorsivo può quindi contattare i server dei nomi di Gestione traffico tramite IPv4.
+Attualmente Gestione traffico non fornisce server dei nomi indirizzabili tramite IPv6. Tuttavia, gestione traffico può comunque essere utilizzato dai client di IPv6 tooIPv6 endpoint di connessione. Non esegue un client DNS richiede direttamente tooTraffic Manager. Client hello utilizza invece un servizio DNS ricorsivo. Un client solo IPv6 invia le richieste di servizio DNS ricorsivo toohello tramite IPv6. Servizio ricorsiva hello deve essere in grado di toocontact server dei nomi Traffic Manager hello utilizzo di IPv4.
 
-Gestione traffico risponde con il nome DNS dell'endpoint. Per supportare un endpoint IPv6, è necessaria la presenza di un record AAAA DNS che punti il nome DNS dell'endpoint all'indirizzo IPv6. I controlli di integrità di Gestione traffico supportano soltanto gli indirizzi IPv4. Il servizio deve esporre un endpoint IPv4 sullo stesso nome DNS.
+Gestione traffico risponde con il nome DNS hello dell'endpoint hello. endpoint toosupport IPv6, un AAAA DNS record puntamento hello endpoint DNS nome toohello IPv6 indirizzo deve esistere. I controlli di integrità di Gestione traffico supportano soltanto gli indirizzi IPv4. servizio Hello deve endpoint tooexpose IPv4 hello stesso nome DNS.
 
-### <a name="can-i-use-traffic-manager-with-more-than-one-web-app-in-the-same-region"></a>È possibile usare Gestione traffico con più app Web nella stessa area?
+### <a name="can-i-use-traffic-manager-with-more-than-one-web-app-in-hello-same-region"></a>È possibile usare Gestione traffico con più App Web in hello stessa regione?
 
-In genere, Gestione traffico viene usato per indirizzare il traffico ad applicazioni distribuite in aree diverse. Tuttavia, può anche essere usato in un'applicazione che abbia più distribuzioni nella stessa area. Gli endpoint di Azure di Gestione traffico non permettono l'aggiunta di più endpoint di app Web della stessa area di Azure allo stesso profilo di Gestione traffico.
+In genere, gestione traffico è toodirect utilizzato traffico tooapplications distribuiti in aree diverse. Tuttavia, può anche essere utilizzato in un'applicazione dispone di più di una distribuzione in hello stessa area. Hello endpoint Azure Traffic Manager non consente più di un endpoint di App Web da hello stessa regione di Azure toobe aggiunto toohello stesso profilo di Traffic Manager.
 
 ##  <a name="traffic-manager-endpoint-monitoring"></a>Monitoraggio degli endpoint di Gestione traffico
 
-### <a name="is-traffic-manager-resilient-to-azure-region-failures"></a>Gestione traffico è resiliente rispetto agli errori di area di Azure?
+### <a name="is-traffic-manager-resilient-tooazure-region-failures"></a>È Gestione traffico resilienti tooAzure errori area?
 
-Gestione traffico è un componente fondamentale del recapito di applicazioni a disponibilità elevata in Azure.
-Per assicurare una disponibilità elevata, Gestione traffico deve garantire un livello estremamente elevato di disponibilità, nonché la resilienza rispetto agli errori di area.
+Gestione traffico è un componente fondamentale di recapito di hello delle applicazioni a disponibilità elevata in Azure.
+toodeliver la disponibilità elevata, gestione traffico deve avere un livello estremamente elevato di disponibilità ed essere resilienti tooregional errore.
 
-Per impostazione predefinita, i componenti di Gestione traffico resistono sono resilienti agli errori di qualsiasi area di Azure a livello globale. Questa resilienza si applica a tutti i componenti di Gestione traffico: server dei nomi DNS, API, livello di archiviazione e servizio di monitoraggio degli endpoint.
+Per impostazione predefinita, i componenti di gestione traffico sono resilienti tooa errore completo di qualsiasi area di Azure. Questa capacità di recupero si applica a componenti di gestione traffico tooall: server dei nomi DNS hello, hello API, il livello di archiviazione hello e servizio di monitoraggio degli endpoint hello.
 
-Nel caso improbabile in cui si verifichi l'interruzione di un'intera area di Azure, Gestione traffico deve continuare a funzionare normalmente. Per le applicazioni distribuite in più aree di Azure Gestione traffico consente di indirizzare il traffico alle istanze disponibili delle applicazioni.
+In caso di guasto di hello di un'interruzione di un'intera regione di Azure, gestione traffico è in genere toofunction toocontinue previsto. Le applicazioni distribuite in più aree di Azure possono basarsi su gestione traffico toodirect istanza disponibile di traffico tooan della propria applicazione.
 
-### <a name="how-does-the-choice-of-resource-group-location-affect-traffic-manager"></a>In che modo la scelta della posizione del gruppo di risorse si ripercuote su Gestione traffico?
+### <a name="how-does-hello-choice-of-resource-group-location-affect-traffic-manager"></a>Influenza di gestione traffico scelta hello del percorso del gruppo di risorse
 
-Gestione traffico è un singolo servizio globale. Non è a livello di area. La scelta della posizione del gruppo di risorse non è rilevante per i profili di Gestione traffico distribuiti in quel gruppo di risorse.
+Gestione traffico è un singolo servizio globale. Non è a livello di area. scelta di Hello del percorso del gruppo di risorse non rende i profili di gestione tooTraffic alcuna differenza distribuiti in tale gruppo di risorse.
 
-Azure Resource Manager richiede che tutti i gruppi di risorse specifichino una posizione che determina il percorso predefinito delle risorse distribuite nel gruppo di risorse in questione. Quando si crea un profilo di Gestione traffico, viene creato in un gruppo di risorse. Tutti i profili di Gestione traffico usano **globale** come posizione, ignorando l'impostazione predefinita del gruppo di risorse.
+Gestione risorse di Azure richiede toospecify gruppi di risorse tutti una posizione, che determina il percorso predefinito hello per le risorse distribuite in tale gruppo di risorse. Quando si crea un profilo di Gestione traffico, viene creato in un gruppo di risorse. Tutti i profili di Traffic Manager utilizzare **globale** come posizione, eseguire l'override hello risorsa gruppo predefinito.
 
-### <a name="how-do-i-determine-the-current-health-of-each-endpoint"></a>Come si determina lo stato di integrità corrente di ogni endpoint?
+### <a name="how-do-i-determine-hello-current-health-of-each-endpoint"></a>Determinazione dello stato corrente di hello di ogni endpoint
 
-Lo stato di monitoraggio corrente di ogni endpoint viene visualizzato nel portale di Azure, insieme al profilo complessivo. Queste informazioni sono anche disponibili con l'[API REST](https://msdn.microsoft.com/library/azure/mt163667.aspx) di Gestione traffico, i [cmdlet PowerShell](https://msdn.microsoft.com/library/mt125941.aspx) e l'[interfaccia della riga di comando multipiattaforma di Azure](../cli-install-nodejs.md).
+Hello monitoraggio dello stato di ogni endpoint corrente, in aggiunta toohello profilo complessivo, viene visualizzato nel hello portale di Azure. Queste informazioni sono anche disponibili tramite hello traffico monitoraggio [API REST](https://msdn.microsoft.com/library/azure/mt163667.aspx), [i cmdlet di PowerShell](https://msdn.microsoft.com/library/mt125941.aspx), e [CLI di Azure multipiattaforma](../cli-install-nodejs.md).
 
-In Azure non vengono visualizzate informazioni cronologiche sull'integrità precedente degli endpoint e non è possibile generare avvisi sulle modifiche dell'integrità degli endpoint.
+Azure non fornisce informazioni cronologiche sull'endpoint ultimi avvisi integrità o hello tooraise possibilità sull'integrità tooendpoint le modifiche.
 
 ### <a name="can-i-monitor-https-endpoints"></a>È possibile monitorare gli endpoint HTTPS?
 
-Sì. Gestione traffico supporta il probing su HTTPS. Definire **HTTPS** come protocollo nella configurazione del monitoraggio.
+Sì. Gestione traffico supporta il probing su HTTPS. Configurare **HTTPS** come protocollo di hello nella configurazione del monitoraggio hello.
 
 Gestione traffico non prevede alcuna convalida di certificati, tra cui:
 
@@ -182,33 +182,33 @@ Gestione traffico non prevede alcuna convalida di certificati, tra cui:
 
 ### <a name="can-i-use-traffic-manager-even-if-my-application-does-not-have-support-for-http-or-https"></a>È possibile usare Gestione traffico anche se l'applicazione non supporta HTTP o HTTPS?
 
-Sì. Specificando TCP come protocollo di monitoraggio, Gestione traffico può avviare una connessione TCP e attendere una risposta dall'endpoint. Se l'endpoint risponde alla richiesta di connessione chiedendo di stabilire la connessione entro il periodo di timeout, l'endpoint viene contrassegnato come integro.
+Sì. È possibile specificare TCP come hello monitoraggio protocollo e gestione traffico è possibile avviare una connessione TCP e attendere una risposta dall'endpoint hello. Se la richiesta di connessione toohello con una connessione di hello tooestablish risposta come endpoint hello, entro il timeout di hello periodo, quindi tale endpoint è contrassegnato come integro.
 
-### <a name="what-specific-responses-are-required-from-the-endpoint-when-using-tcp-monitoring"></a>Quali sono le risposte specifiche richieste dall'endpoint quando si usa il monitoraggio TCP?
+### <a name="what-specific-responses-are-required-from-hello-endpoint-when-using-tcp-monitoring"></a>Le risposte specifiche sono richieste dall'endpoint hello quando si utilizza TCP monitoraggio?
 
-Se si usa il monitoraggio TCP, Gestione traffico avvia un handshake TCP a tre vie, inviando una richiesta SYN all'endpoint sulla porta specificata. Quindi attende la risposta dall'endpoint per il periodo di tempo specificato nelle impostazioni di timeout. Se l'endpoint risponde alla richiesta SYN con una risposta SYN-ACK entro il periodo di timeout specificato nelle impostazioni di monitoraggio, tale endpoint viene considerato integro. Se viene ricevuta la risposta SYN-ACK, Gestione traffico reimposta la connessione inviando in risposta un RST.
+Quando viene utilizzato TCP monitoraggio, Traffic Manager inizia un handshake TCP a tre vie inviando un SYN richiesta tooendpoint in hello porta specificata. Quindi attende per un periodo di tempo (come specificato nelle impostazioni di timeout hello) per una risposta dall'endpoint hello. Se l'endpoint hello risponde toohello SYN richiesta con una risposta SYN ACK entro il periodo di timeout hello specificato nelle impostazioni di monitoraggio hello, quindi tale endpoint viene considerato integro. Se si riceve risposta SYN ACK hello, hello Traffic Manager Reimposta connessione hello rispondendo con un RST.
 
 ### <a name="how-fast-does-traffic-manager-move-my-users-away-from-an-unhealthy-endpoint"></a>Con quale velocità Gestione traffico sposta gli utenti da un endpoint considerato non integro?
 
-Per controllare il comportamento del profilo di Gestione traffico in caso di failover sono disponibili le impostazioni seguenti:
-- È possibile specificare una maggiore frequenza di sondaggio degli endpoint da parte di Gestione traffico impostando l'intervallo di sondaggio su 10 secondi. Ciò assicura che un eventuale endpoint non integro venga rilevato il prima possibile. 
-- È possibile specificare il tempo di attesa prima della scadenza di una richiesta di controllo di integrità. Il valore di timeout minimo è 5 sec.
-- È possibile specificare il numero di errori che può verificarsi prima che l'endpoint sia contrassegnato come non integro. Se il valore specificato è pari a 0, l'endpoint viene contrassegnato come non integro al primo controllo di integrità non riuscito. Usando questo valore minimo, tuttavia, gli endpoint possono risultare esclusi dalla rotazione in caso di problemi temporanei che si verificano al momento dell'esecuzione del sondaggio.
-- È possibile impostare la durata TTL della risposta DNS su un valore pari a 0. In questo modo i resolver DNS non possono memorizzare la risposta nella cache e ogni nuova query ottiene una risposta che include le informazioni sull'integrità più aggiornate disponibili a Gestione traffico.
+Traffic Manager offre più impostazioni che consentono di comportamento del failover toocontrol hello del profilo di gestione traffico come indicato di seguito:
+- è possibile specificare che hello Traffic Manager probe hello endpoint più frequentemente impostando hello intervallo di probe a 10 secondi. Ciò assicura che un eventuale endpoint non integro venga rilevato il prima possibile. 
+- è possibile specificare la durata del timeout toowait prima di una richiesta di controllo di integrità (valore di timeout minimo è 5 sec).
+- è possibile specificare il numero di errori può verificarsi prima che l'endpoint di hello è contrassegnato come danneggiato. Questo valore può essere minimo pari a 0, nella quale endpoint hello case è contrassegnato non integro, non appena si verifica un errore hello controllo di integrità del primo. Tuttavia, utilizzando il valore minimo hello 0 per il numero di hello, che è consentito di errori può causare tooendpoints viene escluso dalla rotazione a causa di errori temporanei tooany che possono verificarsi in fase di hello del sondaggio.
+- è possibile specificare hello time-to-live (TTL) per hello DNS risposta toobe minimo pari a 0. In questo modo è indica che ai resolver DNS non è possibile memorizzare nella cache la risposta hello e ogni nuova query Ottiene una risposta che incorpora informazioni più aggiornate sull'integrità di hello che hello Traffic Manager.
 
-Con queste impostazioni Gestione traffico può segnalare i failover entro 10 secondi dal rilevamento della mancata integrità dell'endpoint ed eseguire una query DNS in base al profilo corrispondente.
+Utilizzando queste impostazioni, gestione traffico può fornire i failover meno di 10 secondi dopo che un endpoint diventa non integro e una query DNS viene effettuata profilo corrispondente hello.
 
 ### <a name="how-can-i-specify-different-monitoring-settings-for-different-endpoints-in-a-profile"></a>Come specificare diverse impostazioni di monitoraggio per i diversi endpoint in un profilo?
 
-Le impostazioni di monitoraggio di Gestione traffico sono configurate a livello di profilo. Se è necessario usare un'impostazione di monitoraggio diversa per un unico endpoint, è consigliabile configurare tale endpoint come [profilo annidato](traffic-manager-nested-profiles.md), con impostazioni di monitoraggio diverse da quelle del profilo padre.
+Le impostazioni di monitoraggio di Gestione traffico sono configurate a livello di profilo. Se è necessario toouse un'impostazione diversa di monitoraggio per un solo endpoint, può essere eseguita con quell'endpoint come un [annidati profilo](traffic-manager-nested-profiles.md) le cui impostazioni di monitoraggio sono diversi dal profilo padre hello.
 
 ### <a name="what-host-header-do-endpoint-health-checks-use"></a>Quali intestazione host viene usata per i controlli di integrità degli endpoint?
 
-Gestione traffico usa le intestazioni host nei controlli di integrità HTTP e HTTPS. L'intestazione host usata da Gestione traffico è il nome dell'endpoint di destinazione configurato nel profilo. Il valore usato nell'intestazione host non può essere specificato separatamente dalla proprietà target.
+Gestione traffico usa le intestazioni host nei controlli di integrità HTTP e HTTPS. intestazione host Hello usato da Gestione traffico è il nome di hello della destinazione di endpoint hello configurate nel profilo hello. Impossibile specificare un valore Hello utilizzato nell'intestazione host hello separatamente dalla proprietà di destinazione hello.
 
-### <a name="what-are-the-ip-addresses-from-which-the-health-checks-originate"></a>Quali sono gli indirizzi IP da cui si originano i controlli di integrità?
+### <a name="what-are-hello-ip-addresses-from-which-hello-health-checks-originate"></a>Quali sono gli indirizzi IP hello da cui hello controlli di integrità provengono?
 
-L'elenco seguente contiene gli indirizzi IP da cui possono provenire i controlli di integrità di Gestione traffico. È possibile usare questo elenco per assicurarsi che le connessioni in ingresso da questi indirizzi IP siano consentite agli endpoint per controllarne lo stato di integrità.
+Hello elenco seguente contiene gli indirizzi IP hello da cui gestione traffico controlli di integrità possono derivare. È possibile utilizzare questo elenco tooensure che le connessioni in ingresso da questi indirizzi IP consentite in hello endpoint toocheck lo stato di integrità.
 
 * 40.68.30.66
 * 40.68.31.178
@@ -235,54 +235,54 @@ L'elenco seguente contiene gli indirizzi IP da cui possono provenire i controlli
 * 104.41.187.209
 * 104.41.190.203
 
-### <a name="how-many-health-checks-to-my-endpoint-can-i-expect-from-traffic-manager"></a>Qual è il numero di controlli di integrità previsto per un endpoint da parte di Gestione traffico?
+### <a name="how-many-health-checks-toomy-endpoint-can-i-expect-from-traffic-manager"></a>Quanti endpoint toomy controlli di integrità è possibile prevedere da Gestione traffico?
 
-Il numero di controlli di integrità eseguiti da Gestione traffico sull'endpoint dipende dagli elementi seguenti:
-- Il valore impostato per l'intervallo di monitoraggio; un intervallo inferiore indica un maggior numero di richieste che raggiungono l'endpoint in un determinato periodo di tempo.
-- Il numero di posizioni da cui hanno origine i controlli di integrità; gli indirizzi IP da cui possono avere origine tali controlli sono elencati nella domanda precedente.
+numero di Hello di integrità di gestione traffico controlli raggiungere l'endpoint dipende dal seguente hello:
+- valore impostato per l'intervallo di monitoraggio hello Hello (indica l'intervallo più piccolo più richieste per l'endpoint di destinazione in un determinato periodo di tempo).
+- numero di Hello di percorsi da cui i controlli di integrità hello provengono (hello gli indirizzi IP da dove è possibile prevedere questi controlli è elencato nella precedente domande frequenti su hello).
 
 ## <a name="traffic-manager-nested-profiles"></a>Profili annidati di Gestione traffico
 
 ### <a name="how-do-i-configure-nested-profiles"></a>Come si configurano i profili nidificati?
 
-I profili annidati di Gestione traffico possono essere configurati usando Azure Resource Manager, le API REST di Azure classico, i cmdlet di Azure PowerShell e i comandi multipiattaforma dell'interfaccia della riga di comando di Azure. Sono inoltre supportati anche tramite il nuovo portale di Azure. Non sono invece supportati nel portale classico.
+Profili di gestione traffico nidificati possono essere configurati tramite Gestione risorse di Azure sia hello e hello classic API REST di Azure, i cmdlet PowerShell di Azure e i comandi CLI di Azure e multipiattaforma. Sono supportate anche tramite il portale di Azure nuova di hello. Non sono supportate nel portale classico hello.
 
 ### <a name="how-many-layers-of-nesting-does-traffic-manger-support"></a>Quanti livelli di nidificazione supporta Gestione traffico?
 
-È possibile nidificare i profili fino a 10 livelli. I "loop" non sono consentiti.
+È possibile nidificare i profili di too10 livelli. I "loop" non sono consentiti.
 
-### <a name="can-i-mix-other-endpoint-types-with-nested-child-profiles-in-the-same-traffic-manager-profile"></a>È possibile combinare altri tipi di endpoint con profili figlio nidificati nello stesso profilo di Gestione traffico?
+### <a name="can-i-mix-other-endpoint-types-with-nested-child-profiles-in-hello-same-traffic-manager-profile"></a>È possibile combinare altri tipi di endpoint con i profili figlio annidati, in hello stesso profilo di gestione traffico?
 
 Sì. Non esistono restrizioni sulla modalità di combinazione di tipi diversi di endpoint all'interno di un profilo.
 
-### <a name="how-does-the-billing-model-apply-for-nested-profiles"></a>Come viene applicato il modello di fatturazione per i profili nidificati?
+### <a name="how-does-hello-billing-model-apply-for-nested-profiles"></a>Come modello di fatturazione hello è applicare per i profili nidificati?
 
 L'uso di profili nidificati non ha alcun impatto negativo sui prezzi.
 
 La fatturazione di Gestione traffico include due componenti: i controlli dell'integrità degli endpoint e milioni di query DNS.
 
-* Controlli dell'integrità degli endpoint: non è previsto alcun addebito per un profilo figlio configurato come endpoint in un profilo padre. Il monitoraggio degli endpoint nel profilo figlio viene fatturato nel modo consueto.
-* Query DNS: ogni query viene conteggiata una sola volta. Una query in un profilo padre che restituisce un endpoint da un profilo figlio viene conteggiata solo per il profilo padre.
+* Controlli dell'integrità degli endpoint: non è previsto alcun addebito per un profilo figlio configurato come endpoint in un profilo padre. Monitoraggio degli endpoint hello nel profilo figlio hello viene fatturato in hello come di consueto.
+* Query DNS: ogni query viene conteggiata una sola volta. Una query su un profilo padre che restituisce un endpoint da un profilo per bambini viene conteggiata a fronte profilo padre di hello solo.
 
-Per informazioni dettagliate, vedere la pagina [Gestione traffico Prezzi](https://azure.microsoft.com/pricing/details/traffic-manager/).
+Per informazioni dettagliate, vedere hello [pagina dei prezzi di Traffic Manager](https://azure.microsoft.com/pricing/details/traffic-manager/).
 
 ### <a name="is-there-a-performance-impact-for-nested-profiles"></a>I profili nidificati influiscono sulle prestazioni?
 
 No. Quando si usano i profili annidati non si verifica alcun impatto sulle prestazioni.
 
-I server dei nomi di Gestione traffico attraversano internamente la gerarchia dei profili durante l'elaborazione di ogni query DNS, in modo che una query DNS inviata a un profilo padre possa ricevere una risposta DNS con un endpoint da un profilo figlio. Viene usato un singolo record CNAME, indipendentemente dal fatto che si usi un profilo singolo o profili annidati. Non è necessario quindi creare un record CNAME per ogni profilo della gerarchia.
+Server dei nomi di gestione traffico Hello attraversare gerarchia profilo hello internamente durante l'elaborazione di ogni query DNS. Un profilo di padre tooa query DNS può ricevere una risposta DNS con un endpoint da un profilo per bambini. Viene usato un singolo record CNAME, indipendentemente dal fatto che si usi un profilo singolo o profili annidati. Non è toocreate non è necessario un record CNAME per ciascun profilo nella gerarchia di hello.
 
-### <a name="how-does-traffic-manager-compute-the-health-of-a-nested-endpoint-in-a-parent-profile"></a>In che modo Gestione traffico calcola l'integrità di un endpoint annidato in un profilo padre?
+### <a name="how-does-traffic-manager-compute-hello-health-of-a-nested-endpoint-in-a-parent-profile"></a>La modalità di calcolo integrità hello di un endpoint di tipo annidato in un profilo padre Traffic Manager
 
-Il profilo padre non esegue i controlli di integrità direttamente sul profilo figlio. L'integrità degli endpoint del profilo figlio viene usata invece per calcolare l'integrità complessiva del profilo figlio. Queste informazioni vengono propagate alla gerarchia del profilo annidato per determinare l'integrità dell'endpoint annidato. Il profilo padre usa quindi questa integrità complessiva per determinare se indirizzare il traffico al profilo figlio.
+profilo padre Hello non esegue controlli di integrità sul figlio hello direttamente. Integrità hello degli endpoint del profilo figlio hello vengono invece utilizzati toocalculate hello integrità complessiva del profilo figlio hello. Queste informazioni viene propagate hello annidato profilo gerarchia toodetermine hello integrità dell'endpoint hello annidato. profilo padre Hello che utilizza questo toodetermine di integrità aggregato sia il traffico hello può essere figlio toohello diretto.
 
-La tabella seguente descrive il comportamento dei controlli dell'integrità di Gestione traffico per un endpoint annidato.
+Hello nella tabella seguente descrive il comportamento di hello di Traffic Manager verifica integrità per un endpoint di tipo annidato.
 
 | Stato di monitoraggio del profilo figlio | Stato di monitoraggio dell'endpoint padre | Note |
 | --- | --- | --- |
-| Disabilitato. Il profilo figlio è stato disabilitato. |Arrestato |Lo stato dell'endpoint padre è Stopped, non Disabled. Lo stato Disabled è usato esclusivamente per indicare che l'utente ha disabilitato l'endpoint nel profilo padre. |
-| Danneggiato. Almeno uno degli endpoint del profilo figlio è nello stato Danneggiato. |Online: il numero di endpoint Online nel profilo figlio è pari almeno al valore di MinChildEndpoints.<BR>CheckingEndpoint: il numero di endpoint Online e CheckingEndpoint nel profilo figlio è pari almeno al valore di MinChildEndpoints.<BR>Danneggiato: negli altri casi. |Il traffico viene indirizzato a un endpoint con stato CheckingEndpoint. Se il valore di MinChildEndpoints è troppo elevato, l'endpoint risulta sempre danneggiato. |
-| Online. Almeno uno degli endpoint del profilo figlio è nello stato Online. Nessun endpoint è nello stato Danneggiato. |Vedere sopra. | |
+| Disabilitato. profilo figlio Hello è stata disabilitata. |Arrestato |stato dell'endpoint padre Hello viene arrestato, non è stato disabilitato. stato Disabled Hello è riservato per indicare di aver disabilitato endpoint hello nel profilo padre hello. |
+| Danneggiato. Almeno uno degli endpoint del profilo figlio è nello stato Danneggiato. |Online: numero di hello di Online endpoint nel profilo figlio hello è almeno hello valore dell'impostazione MinChildEndpoints.<BR>Verifica endpoint: numero di hello di endpoint con stato Online e nel profilo figlio hello è almeno hello valore dell'impostazione MinChildEndpoints.<BR>Danneggiato: negli altri casi. |Il traffico viene indirizzato tooan endpoint con stato verifica endpoint. Se l'impostazione MinChildEndpoints è troppo elevato, endpoint hello è sempre danneggiato. |
+| Online. Almeno uno degli endpoint del profilo figlio è nello stato Online. Nessun endpoint è in stato danneggiato hello. |Vedere sopra. | |
 | CheckingEndpoints. Almeno uno degli endpoint del profilo figlio è nello stato CheckingEndpoint. Nessun endpoint è nello stato Online o Danneggiato. |Come sopra. | |
 | Inattivo. Tutti gli endpoint del profilo figlio sono nello stato Disabilitato o Arrestato oppure si tratta di un profilo senza endpoint. |Arrestato | |
 

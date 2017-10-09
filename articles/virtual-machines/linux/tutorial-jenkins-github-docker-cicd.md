@@ -1,6 +1,6 @@
 ---
-title: Creare una pipeline di sviluppo in Azure con Jenkins | Microsoft Docs
-description: Informazioni su come creare una macchina virtuale di Jenkins in Azure che esegue il pull da GitHub in ogni commit di codice e compila un nuovo contenitore Docker per l'esecuzione dell'app
+title: una pipeline di sviluppo in Azure con Jenkins aaaCreate | Documenti Microsoft
+description: Informazioni su come computer toocreate un Jenkins virtuale in Azure che esegue il pull da GitHub in ciascun codice eseguire il commit e compila una nuovo Docker toorun contenitore dell'app
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,14 +16,14 @@ ms.workload: infrastructure
 ms.date: 05/08/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: d9849b5e061dd7f2ae0744a3522dc2eb1fb37035
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c079e3c9186c9da0a3e51e1823215779c565e0dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-development-infrastructure-on-a-linux-vm-in-azure-with-jenkins-github-and-docker"></a>Come creare un'infrastruttura di sviluppo in una macchina virtuale Linux in Azure con Jenkins, GitHub e Docker
-Per automatizzare le fasi di compilazione e test dello sviluppo di un'applicazione, è possibile usare una pipeline per l'integrazione e la distribuzione continue (CI/CD). In questa esercitazione viene creata una pipeline CI/CD in una macchina virtuale di Azure e viene illustrato come:
+# <a name="how-toocreate-a-development-infrastructure-on-a-linux-vm-in-azure-with-jenkins-github-and-docker"></a>Come toocreate un'infrastruttura di sviluppo in una VM Linux in Azure con Jenkins, GitHub e Docker
+tooautomate hello compilazione e test fase dello sviluppo di applicazioni, è possibile utilizzare un'integrazione continua e la pipeline di distribuzione (CI/CD). In questa esercitazione viene creata una pipeline CI/CD in una macchina virtuale di Azure e viene illustrato come:
 
 > [!div class="checklist"]
 > * Creare una macchina virtuale Jenkins
@@ -36,12 +36,12 @@ Per automatizzare le fasi di compilazione e test dello sviluppo di un'applicazio
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-jenkins-instance"></a>Creare l'istanza di Jenkins
-In un'esercitazione precedente, [How to customize a Linux virtual machine on first boot](tutorial-automate-vm-deployment.md) (Come personalizzare una macchina virtuale Linux al primo avvio), è stato descritto come personalizzare una macchina virtuale al primo avvio con cloud-init. Questa esercitazione usa un file cloud-init per installare Jenkins e Docker in una macchina virtuale. 
+Nell'esercitazione precedente su [come toocustomize una macchina virtuale Linux al primo avvio](tutorial-automate-vm-deployment.md), si è appreso tooautomate personalizzazione con cloud init. Questa esercitazione viene utilizzato un cloud init file tooinstall Jenkins e Docker in una macchina virtuale. 
 
-Nella shell corrente creare un file denominato *cloud-init.txt* e incollare la configurazione seguente. Ad esempio, creare il file in Cloud Shell anziché nel computer locale. Immettere `sensible-editor cloud-init-jenkins.txt` per creare il file e visualizzare un elenco degli editor disponibili. Assicurarsi che l'intero file cloud-init venga copiato correttamente, in particolare la prima riga:
+Nella shell corrente, creare un file denominato *cloud init.txt* e Incolla hello seguente configurazione. Ad esempio, creare file hello in hello Shell Cloud non presenti nel computer locale. Immettere `sensible-editor cloud-init-jenkins.txt` toocreate hello file e visualizzare un elenco degli editor disponibili. Assicurarsi che tale file intero cloud-init hello viene copiato correttamente, soprattutto hello prima riga:
 
 ```yaml
 #cloud-config
@@ -67,13 +67,13 @@ runcmd:
   - service jenkins restart
 ```
 
-Per poter creare una macchina virtuale è prima necessario creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). L'esempio seguente crea un gruppo di risorse denominato *myResourceGroupJenkins* nella posizione *eastus*:
+Per poter creare una macchina virtuale è prima necessario creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroupJenkins* in hello *eastus* percorso:
 
 ```azurecli-interactive 
 az group create --name myResourceGroupJenkins --location eastus
 ```
 
-Creare quindi una macchina virtuale con il comando [az vm create](/cli/azure/vm#create). Usare il parametro `--custom-data` per specificare il file di configurazione di cloud-init. Se il file è stato salvato all'esterno della directory di lavoro corrente, specificare il percorso completo di *cloud-init-jenkins.txt*.
+Creare quindi una macchina virtuale con il comando [az vm create](/cli/azure/vm#create). Hello utilizzare `--custom-data` toopass parametro nel file di configurazione cloud init. Fornire il percorso completo di hello troppo*cloud-init-jenkins.txt* se è stato salvato il file hello all'esterno delle directory di lavoro attuale.
 
 ```azurecli-interactive 
 az vm create --resource-group myResourceGroupJenkins \
@@ -84,9 +84,9 @@ az vm create --resource-group myResourceGroupJenkins \
     --custom-data cloud-init-jenkins.txt
 ```
 
-Per creare e configurare la macchina virtuale sono necessari alcuni minuti.
+Sono necessari alcuni minuti per hello VM toobe creato e configurato.
 
-Per consentire al traffico Web di raggiungere la macchina virtuale, usare [az vm open-port](/cli/azure/vm#open-port) per aprire la porta *8080* per il traffico Jenkins e la porta *1337* per l'app Node.js che viene usata per eseguire un'app di esempio:
+tooallow web tooreach traffico la macchina virtuale, utilizzare [az vm aprire porte](/cli/azure/vm#open-port) tooopen porta *8080* per il traffico di Jenkins e porta *1337* per hello app Node.js toorun usato un'app di esempio:
 
 ```azurecli-interactive 
 az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 8080 --priority 1001
@@ -95,86 +95,86 @@ az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 1337 
 
 
 ## <a name="configure-jenkins"></a>Configurare Jenkins
-Per accedere all'istanza di Jenkins, ottenere l'indirizzo IP pubblico della macchina virtuale:
+tooaccess il Jenkins dell'istanza, ottenere l'indirizzo IP pubblico hello della macchina virtuale:
 
 ```azurecli-interactive 
 az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publicIps] --o tsv
 ```
 
-Per motivi di sicurezza, è necessario immettere la password amministratore iniziale che viene archiviata in un file di testo nella macchina virtuale per avviare l'installazione di Jenkins. Usare l'indirizzo IP pubblico ottenuto nel passaggio precedente per la connessione SSH alla macchina virtuale:
+Per motivi di sicurezza, è necessario tooenter hello iniziale amministratore la password viene archiviata in un file di testo nel hello toostart VM che installare Jenkins. Utilizzare l'indirizzo IP pubblico hello ottenuto nel hello precedente passaggio tooSSH tooyour VM:
 
 ```bash
 ssh azureuser@<publicIps>
 ```
 
-Visualizzare la password `initialAdminPassword` per l'installazione di Jenkins e copiarla:
+Hello vista `initialAdminPassword` per il Jenkins installare e copiarlo:
 
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-Se il file non è ancora disponibile, attendere ancora qualche minuto che cloud-init completi l'installazione di Jenkins e Docker.
+Se il file hello non è ancora disponibile, attendere alcuni minuti per cloud init toocomplete hello Jenkins e installazione di Docker.
 
-Aprire un Web browser e passare a `http://<publicIps>:8080`. Completare la configurazione iniziale di Jenkins come segue:
+Aprire un web browser e andare troppo`http://<publicIps>:8080`. Completare l'installazione di Jenkins iniziale hello come segue:
 
-- Immettere la password *initialAdminPassword* ottenuta dalla macchina virtuale nel passaggio precedente.
-- Fare clic su **Select plugins to install** (Seleziona plug-in da installare).
-- Cercare *GitHub* nella casella di testo nella parte superiore, selezionare il *plug-in GitHub* e quindi fare clic su **Install** (Installa).
-- Per creare un account utente di Jenkins, compilare il modulo secondo le esigenze. Dal punto di vista della sicurezza, è consigliabile creare questo primo utente Jenkins anziché continuare con l'account amministratore predefinito.
+- Immettere hello *initialAdminPassword* ottenuto da hello VM nel passaggio precedente hello.
+- Fare clic su **selezionare tooinstall plug-in**
+- Cercare *GitHub* nella casella di testo hello in alto di hello, selezionare hello *plug-in GitHub*, quindi fare clic su **installare**
+- un account utente di Jenkins, toocreate compilare hello in base alle esigenze. Da una prospettiva di sicurezza, è necessario creare il primo utente di Jenkins anziché continuare come account di amministrazione di hello predefinito.
 - Al termine, fare clic su **Start using Jenkins** (Inizia a usare Jenkins).
 
 
 ## <a name="create-github-webhook"></a>Creare webhook di GitHub
-Per configurare l'integrazione con GitHub, aprire l'[app di esempio Node.js Hello World](https://github.com/Azure-Samples/nodejs-docs-hello-world) dal repository di esempi di Azure. Per creare il fork del repository nel proprio account GitHub, fare clic sul pulsante **Fork** nell'angolo superiore destro.
+integrazione di hello tooconfigure con GitHub, aprire hello [app di esempio HelloWorld Node.js](https://github.com/Azure-Samples/nodejs-docs-hello-world) dal repository di esempi di Azure hello. toofork hello repository tooyour proprietari di account GitHub, fare clic su hello **Fork** pulsante nell'angolo superiore destro di hello.
 
-Creare un webhook all'interno del fork creato:
+Creare un webhook all'interno di divisione hello è stato creato:
 
-- Fare clic su **Settings** (Impostazioni) e quindi selezionare **Integrations & services** (Integrazioni e servizi) sul lato sinistro.
+- Fare clic su **impostazioni**, quindi selezionare **servizi e integrazioni** sul lato sinistro di hello.
 - Fare clic su **Add service** (Aggiungi servizio) e quindi immettere *Jenkins* nella casella del filtro.
 - Selezionare *Jenkins (GitHub plugin)* (Jenkins (plug-in GitHub)).
-- In **Jenkins hook URL** (URL hook Jenkins) immettere `http://<publicIps>:8080/github-webhook/`. Assicurarsi di includere la barra finale (/).
+- Per hello **Jenkins hook URL**, immettere `http://<publicIps>:8080/github-webhook/`. Assicurarsi di includere hello finali /
 - Fare clic su **Add service** (Aggiungi servizio).
 
-![Aggiunta del webhook di GitHub al repository con fork](media/tutorial-jenkins-github-docker-cicd/github_webhook.png)
+![Aggiungi repository di GitHub webhook tooyour duplicata](media/tutorial-jenkins-github-docker-cicd/github_webhook.png)
 
 
 ## <a name="create-jenkins-job"></a>Creare un processo di Jenkins
-Per fare in modo che Jenkins risponda a un evento in GitHub, ad esempio l'esecuzione del commit di codice, creare un processo di Jenkins. 
+toohave Jenkins tooan evento respond in GitHub, ad esempio l'esecuzione del commit di codice, creare un processo di Jenkins. 
 
-Nel sito Web di Jenkins fare clic su **Create new jobs** (Crea nuovi processi) dalla home page:
+Nel sito Web Jenkins, fare clic su **creare nuovi processi** dalla home page di hello:
 
 - Immettere *HelloWorld* come nome del processo. Scegliere **Freestyle project** (Progetto Freestyle) e quindi selezionare **OK**.
-- Nella sezione **General** (Generale) selezionare il progetto **GitHub** e immettere l'URL del repository con fork, ad esempio *https://github.com/iainfoulds/nodejs-docs-hello-world*.
-- Nella sezione **Source code management** (Gestione del codice sorgente) selezionare **Git** e immettere l'URL *.git* del repository con fork, ad esempio *https://github.com/iainfoulds/nodejs-docs-hello-world.git*.
-- Nella sezione **Build Triggers** (Trigger di compilazione) selezionare **GitHub hook trigger for GITScm polling** (Trigger di hook GitHub per polling GITScm).
-- Nella sezione **Build** (Compilazione) scegliere **Add build step** (Aggiungi istruzione di compilazione). Selezionare **Execute shell** (Esegui shell) e quindi immettere `echo "Testing"` nella finestra di comando.
-- Fare clic su **Save** (Salva) nella parte inferiore della finestra dei processi.
+- In hello **generale** selezionare **GitHub** del progetto e immettere l'URL di repository con fork, ad esempio *https://github.com/iainfoulds/nodejs-docs-hello-world*
+- In hello **gestione del codice sorgente** selezionare **Git**, immettere il repository con fork *GIT* URL, ad esempio *https://github.com/iainfoulds/nodejs-docs-hello-world.git*
+- In hello **trigger di compilazione** selezionare **trigger hook GitHub per il polling GITscm**.
+- In hello **compilare** , scegliere **istruzione di compilazione Aggiungi**. Selezionare **eseguire shell**, quindi immettere `echo "Testing"` nella finestra toocommand.
+- Fare clic su **salvare** nella parte inferiore di hello della finestra processi hello.
 
 
 ## <a name="test-github-integration"></a>Testare l'integrazione di GitHub
-Per testare l'integrazione di GitHub con Jenkins, eseguire il commit di una modifica nel fork. 
+hello tootest integrazione GitHub con Jenkins, eseguire il commit di una modifica nel fork. 
 
-Nell'interfaccia utente Web di GitHub selezionare il repository con fork e quindi fare clic sul file **index.js**. Fare clic sull'icona a forma di matita per modificare il file in modo che la riga 6 corrisponda a:
+In GitHub interfaccia utente web, selezionare il repository con fork e quindi fare clic su hello **index.js** file. Fare clic su hello matita icona tooedit questo file in modo che sia di riga 6:
 
 ```nodejs
 response.end("Hello World!");
 ```
 
-Per eseguire il commit delle modifiche, fare clic sul pulsante **Commit changes** (Esegui il commit delle modifiche) nella parte inferiore.
+toocommit le modifiche, fare clic su hello **Commit delle modifiche** pulsante nella parte inferiore di hello.
 
-In Jenkins viene avviata una nuova compilazione nella sezione **Build history** (Cronologia compilazione) nell'angolo inferiore sinistro della pagina del processo. Fare clic sul collegamento del numero di build e selezionare **Console output** (Output console) sul lato sinistro. È possibile visualizzare i passaggi eseguiti in Jenkins mentre viene eseguito il pull del codice da GitHub e l'azione di compilazione genera il messaggio `Testing` nella console. Ogni volta che si esegue un'operazione di commit in GitHub, il webhook contatta Jenkins e attiva una nuova compilazione in questo modo.
+In Jenkins, viene avviata una nuova compilazione hello **compilare cronologia** sezione dell'angolo hello inferiore sinistro della pagina di processo. Fare clic su collegamento numero di build hello e selezionare **output di Console** sulle dimensioni di hello a sinistra. È possibile visualizzare i passaggi di hello Jenkins accetta come il codice viene effettuato il pull da GitHub e hello compilazione azione output messaggio hello `Testing` toohello console. Ogni volta che viene eseguita un'operazione di commit in GitHub, hello webhook raggiunge tooJenkins e attivare una nuova compilazione in questo modo.
 
 
 ## <a name="define-docker-build-image"></a>Definire l'immagine di compilazione di Docker
-Per visualizzare l'app Node.js in esecuzione sulla base dei commit GitHub, è necessario creare un'immagine Docker per l'esecuzione dell'app. L'immagine viene creata da un file Dockerfile che definisce come configurare il contenitore che esegue l'app. 
+app Node.js di hello toosee in base al commit di GitHub, consente di compilare una Docker immagine toorun hello app. immagine di Hello viene creato da un Dockerfile che definisce la modalità tooconfigure hello contenitore che esegue l'applicazione hello. 
 
-Dalla connessione SSH alla macchina virtuale, passare alla directory dell'area di lavoro di Jenkins denominata sulla base del processo creato in un passaggio precedente. In questo esempio è stata denominata *HelloWorld*.
+Dalla connessione SSH hello tooyour macchina virtuale, spostarsi toohello Jenkins dell'area di lavoro denominato dopo il processo di hello creato nel passaggio precedente. In questo esempio è stata denominata *HelloWorld*.
 
 ```bash
 cd /var/lib/jenkins/workspace/HelloWorld
 ```
 
-Creare un file con `sudo sensible-editor Dockerfile` in questa directory dell'area di lavoro e incollare il contenuto seguente: Assicurarsi che l'intero file Docker venga copiato correttamente, in particolare la prima riga:
+Crea un file in questa directory dell'area di lavoro con `sudo sensible-editor Dockerfile` e Incolla hello seguendo contenuto. Verificare che hello che dockerfile intero viene copiato correttamente, soprattutto hello prima riga:
 
 ```yaml
 FROM node:alpine
@@ -187,17 +187,17 @@ RUN npm install
 COPY index.js /var/www/
 ```
 
-Questo file Dockerfile usa l'immagine di base Node.js con Alpine Linux, espone la porta 1337 in cui viene eseguita l'app Hello World, quindi copia i file dell'app e la inizializza.
+Questo Dockerfile utilizza hello Node.js immagine di base con Linux Alpine porta espone 1337 hello World Hello app viene eseguita, quindi copia i file di applicazione hello e la inizializza.
 
 
 ## <a name="create-jenkins-build-rules"></a>Creare regole di compilazione di Jenkins
-In un passaggio precedente è stata creata una regola di compilazione di base di Jenkins che genera un messaggio nella console. Ora è necessario creare l'istruzione di compilazione per usare il file Dockerfile ed eseguire l'app.
+In un passaggio precedente, è creata una regola di compilazione Jenkins base che una console toohello messaggio di output. Consente di creare i Dockerfile di hello compilazione passaggio toouse ed eseguire app hello.
 
-Nell'istanza di Jenkins selezionare il processo creato in un passaggio precedente. Fare clic su **Configure** (Configura) sul lato sinistro e scorrere fino alla sezione **Build** (Compilazione):
+Indietro nell'istanza di Jenkins, selezionare il processo di hello creato nel passaggio precedente. Fare clic su **configura** sul lato sinistro di hello e scorrere verso il basso toohello **compilare** sezione:
 
-- Rimuovere l'istruzione di compilazione `echo "Test"` esistente. Fare clic sulla croce rossa nell'angolo superiore destro della casella dell'istruzione di compilazione esistente.
+- Rimuovere l'istruzione di compilazione `echo "Test"` esistente. Fare clic su rosso incrociato in hello angolo superiore destro della casella passaggio di compilazione esistente hello hello.
 - Fare clic su **Add build step** (Aggiungi istruzione di compilazione) e quindi selezionare **Execute shell** (Esegui shell).
-- Nella casella **Command** (Comando) immettere i comandi Docker seguenti, quindi selezionare **Save** (Salva):
+- In hello **comando** casella, immettere i seguenti comandi di Docker hello, quindi selezionare **salvare**:
 
   ```bash
   docker build --tag helloworld:$BUILD_NUMBER .
@@ -205,29 +205,29 @@ Nell'istanza di Jenkins selezionare il processo creato in un passaggio precedent
   docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
   ```
 
-Le istruzioni di compilazione Docker creano un'immagine contrassegnata con il numero di build Jenkins, in modo da mantenere una cronologia delle immagini. Gli eventuali contenitori esistenti che eseguono l'app vengono arrestati e quindi rimossi. Si avvia quindi un nuovo contenitore usando l'immagine e si esegue l'app Node.js in base agli ultimi commit in GitHub.
+istruzioni di compilazione Docker Hello creare un'immagine e un tag con hello Jenkins numero di build di conservare una cronologia delle immagini. Qualsiasi contenitore esistente in esecuzione app hello vengono arrestate e quindi rimosso. Un nuovo contenitore è stata avviata tramite immagine hello e viene eseguita l'app Node.js in base a commit più recente di hello in GitHub.
 
 
 ## <a name="test-your-pipeline"></a>Testare la pipeline
-Per visualizzare l'intera pipeline in azione, modificare nuovamente il file *index.js* nel repository GitHub con fork e fare clic su **Commit change** (Esegui il commit della modifica). Viene avviato un nuovo processo in Jenkins in base al webhook per GitHub. Potrebbero essere necessari alcuni secondi per creare l'immagine Docker e avviare l'app in un nuovo contenitore.
+pipeline di intero hello toosee in azione, modificare hello *index.js* nuovamente il file nel repository di GitHub con fork e fare clic su **il Commit delle modifiche**. Un nuovo processo viene avviato in Jenkins basati su hello webhook per GitHub. Accetta alcuni secondi immagine di Docker toocreate hello e avviare l'app in un nuovo contenitore.
 
-Se necessario, ottenere nuovamente l'indirizzo IP pubblico della macchina virtuale:
+Se necessario, è possibile ottenere nuovo indirizzo IP pubblico hello della macchina virtuale:
 
 ```azurecli-interactive 
 az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publicIps] --o tsv
 ```
 
-Aprire un Web browser e immettere `http://<publicIps>:1337`. Viene visualizzata l'app Node.js che rispecchia gli ultimi commit nel fork GitHub come illustrato di seguito:
+Aprire un Web browser e immettere `http://<publicIps>:1337`. App Node.js viene visualizzato e riflette commit più recente hello nel fork GitHub come indicato di seguito:
 
 ![Esecuzione dell'app Node.js](media/tutorial-jenkins-github-docker-cicd/running_nodejs_app.png)
 
-Apportare un'altra modifica al file *index.js* in GitHub ed eseguire il commit della modifica. Attendere alcuni secondi per il completamento del processo in Jenkins, quindi aggiornare il Web browser per visualizzare la versione aggiornata dell'app in esecuzione in un nuovo contenitore come segue:
+Creare un'altra modifica toohello *index.js* file modifica hello GitHub e il commit. Attendere alcuni secondi per toocomplete processo hello in Jenkins, quindi aggiornare la versione del web browser toosee hello aggiornata dell'app in esecuzione in un nuovo contenitore, come indicato di seguito:
 
 ![Esecuzione dell'app Node.js dopo un altro commit GitHub](media/tutorial-jenkins-github-docker-cicd/another_running_nodejs_app.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione è stato configurato GitHub per eseguire un processo di compilazione Jenkins in ogni commit di codice e quindi distribuire un contenitore Docker per testare l'app. Si è appreso come:
+In questa esercitazione, è configurato GitHub toorun un processo di compilazione Jenkins in ogni caso di commit di codice e quindi distribuire un tootest contenitore Docker dell'app. Si è appreso come:
 
 > [!div class="checklist"]
 > * Creare una macchina virtuale Jenkins
@@ -237,7 +237,7 @@ In questa esercitazione è stato configurato GitHub per eseguire un processo di 
 > * Creare un'immagine Docker per l'app
 > * Verificare che i commit GitHub compilino una nuova immagine Docker e gli aggiornamenti che eseguono l'app
 
-Passare all'esercitazione successiva per ottenere altre informazioni su come integrare Jenkins con Visual Studio Team Services.
+Spostare toolearn esercitazione successiva toohello ulteriori informazioni su toointegrate Jenkins con Visual Studio Team Services.
 
 > [!div class="nextstepaction"]
 > [Deploy apps with Jenkins and Team Services (Distribuire app con Jenkins e Team Services)](tutorial-build-deploy-jenkins.md)

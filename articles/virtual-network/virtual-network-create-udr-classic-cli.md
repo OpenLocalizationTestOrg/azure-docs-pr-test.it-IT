@@ -1,6 +1,6 @@
 ---
-title: Controllare il routing in una rete virtuale di Azure - Interfaccia della riga di comando - Modello di distribuzione classica | Documentazione Microsoft
-description: Informazioni su come controllare il routing in reti virtuali mediante l'interfaccia della riga di comando di Azure nel modello di distribuzione classica
+title: routing aaaControl classica una rete virtuale di Azure - CLI - | Documenti Microsoft
+description: Informazioni su come toocontrol routing in reti virtuali mediante hello CLI di Azure nel modello di distribuzione classica hello
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: 8fcb98723e7e872c932908e3456dc8680deb0901
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 07dde573f1a605bf280156c261d51e213ede0cdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="control-routing-and-use-virtual-appliances-classic-using-the-azure-cli"></a>Controllare il routing e usare dispositivi virtuali di rete (distribuzione classica) mediante l'interfaccia della riga di comando di Azure
+# <a name="control-routing-and-use-virtual-appliances-classic-using-hello-azure-cli"></a>Routing di controllo e l'utilizzo di dispositivi virtuali (classici) utilizzare hello CLI di Azure
 
 > [!div class="op_single_selector"]
 > * [PowerShell](virtual-network-create-udr-arm-ps.md)
@@ -34,18 +34,18 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-In questo articolo viene illustrato il modello di distribuzione classica. È possibile anche [controllare il routing e usare dispositivi virtuali di rete nel modello di distribuzione di Gestione risorse](virtual-network-create-udr-arm-cli.md).
+Questo articolo descrive il modello di distribuzione classica hello. È anche possibile [controllare il routing e utilizzare i dispositivi di rete nel modello di distribuzione di gestione risorse di hello](virtual-network-create-udr-arm-cli.md).
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-I comandi di esempio dell'interfaccia della riga di comando di Azure riportati di seguito prevedono un ambiente semplice già creato in base allo scenario precedente. Se si desidera eseguire i comandi illustrati in questo documento, creare l'ambiente descritto nella pagina relativa alla [creazione di una rete virtuale (classica) mediante l'interfaccia della riga di comando di Azure](virtual-networks-create-vnet-classic-cli.md).
+Hello esempio CLI di Azure comandi riportati di seguito prevedono un ambiente semplice già creato in base a uno scenario di hello precedente. Se si desidera comandi hello toorun così come sono visualizzati in questo documento, creare nell'ambiente di hello [creare una rete virtuale (classico) mediante Azure CLI hello](virtual-networks-create-vnet-classic-cli.md).
 
 [!INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>Creare la route definita dall'utente per la subnet front-end
-Per creare la tabella di route e la route necessarie per la subnet front-end in base allo scenario precedente, attenersi alla procedura seguente.
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Creare hello UDR per subnet front-end hello
+tabella di route toocreate hello e route necessarie per la subnet front-end hello a seconda dello scenario hello precedente, seguire i passaggi di hello seguenti.
 
-1. Usare il comando seguente per passare alla modalità classica:
+1. Eseguire hello modalità tooclassic tooswitch dei comandi seguenti:
 
     ```azurecli
     azure config mode asm
@@ -55,7 +55,7 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
 
         info:    New mode is asm
 
-2. Eseguire il comando seguente per creare una tabella di route per la subnet front-end:
+2. Eseguire hello successivo comando toocreate una tabella di route per la subnet front-end hello:
 
     ```azurecli
     azure network route-table create -n UDR-FrontEnd -l uswest
@@ -72,9 +72,9 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
    
     Parametri
    
-   * **-l (o --location)**. Area di Azure in cui verrà creato il nuovo gruppo di sicurezza di rete. Per questo scenario, *westus*.
-   * **-n (o --name)**. Nome per il nuovo gruppo di sicurezza di rete. Per questo scenario, *NSG-FrontEnd*.
-3. Eseguire il comando seguente per creare una route nella tabella della route creata in precedenza per inviare tutto il traffico destinato alla subnet back-end (192.168.2.0/24) alla VM **FW1** (192.168.0.4):
+   * **-l (o --location)**. Area di Azure in cui hello nuovo gruppo verrà creato. Per questo scenario, *westus*.
+   * **-n (o --nome)**. Nome per hello nuovo gruppo. Per questo scenario, *NSG-FrontEnd*.
+3. Eseguire hello successivo comando toocreate una route in toosend tabella di route hello tutto il traffico destinato toohello subnet back-end (192.168.2.0/24) toohello **FW1** VM (192.168.0.4):
 
     ```azurecli
     azure network route-table route set -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -t VirtualAppliance -p 192.168.0.4
@@ -89,11 +89,11 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
    
     Parametri
    
-   * **-r (o --route-table-name)**. Nome della tabella di route in cui verrà aggiunta la route. Per questo scenario, *UDR-FrontEnd*.
-   * **-a (o --address-prefix)**. Prefisso di indirizzo della subnet alla quale sono destinati i pacchetti. Per questo scenario, *192.168.2.0/24*.
+   * **-r (o --route-table-name)**. Nome della tabella di routing hello in cui verrà aggiunti route hello. Per questo scenario, *UDR-FrontEnd*.
+   * **-a (o --address-prefix)**. Prefisso dell'indirizzo per subnet hello in cui i pacchetti sono destinati a. Per questo scenario, *192.168.2.0/24*.
    * **-t (o --next-hop-type)**. Tipo di oggetto al quale verrà inviato il traffico. I valori possibili sono *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet* o *None*.
    * **-p (o --next-hop-ip-address**). Indirizzo IP per l'hop successivo. Per questo scenario, *192.168.0.4*.
-4. Eseguire il comando seguente per associare la tabella di route creata con la subnet **FrontEnd**:
+4. Comando che segue hello esecuzione tabella di route hello tooassociate creata con hello **front-end** subnet:
 
     ```azurecli
     azure network vnet subnet route-table add -t TestVNet -n FrontEnd -r UDR-FrontEnd
@@ -102,7 +102,7 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
     Output:
    
         info:    Executing command network vnet subnet route-table add
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         info:    Looking up network configuration
         info:    Looking up network gateway route tables in virtual network "TestVNet" subnet "FrontEnd"
         info:    Associating route table "UDR-FrontEnd" and subnet "FrontEnd"
@@ -114,25 +114,25 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
    
     Parametri
    
-   * **-t (o --vnet-name)**. Nome della rete virtuale in cui si trova la subnet. Per questo scenario, *TestVNet*.
-   * **-n (o --subnet-name**. Nome della subnet in cui verrà aggiunta la tabella di route. Per questo scenario, *FrontEnd*.
+   * **-t (o --vnet-name)**. Nome della rete virtuale in cui si trova subnet hello hello. Per questo scenario, *TestVNet*.
+   * **-n (o --subnet-name**. Verrà aggiunto al nome della tabella di routing hello subnet hello. Per questo scenario, *FrontEnd*.
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>Creare la route definita dall'utente per la subnet back-end
-Per creare la tabella di route e la route necessarie per la subnet back-end in base allo scenario precedente, attenersi alla procedura seguente:
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Creare hello UDR per subnet back-end hello
+tabella di route toocreate hello e route necessarie per la subnet di back-end hello a seconda dello scenario hello, hello completo alla procedura seguente:
 
-1. Eseguire il comando seguente per creare una tabella di route per la subnet back-end:
+1. Eseguire hello successivo comando toocreate una tabella di route per la subnet di back-end hello:
 
     ```azurecli
     azure network route-table create -n UDR-BackEnd -l uswest
     ```
 
-2. Eseguire il comando seguente per creare una route nella tabella della route creata in precedenza per inviare tutto il traffico destinato alla subnet front-end (192.168.1.0/24) alla VM **FW1** (192.168.0.4):
+2. Eseguire hello successivo comando toocreate una route in toosend tabella di route hello tutto il traffico destinato toohello subnet front-end (192.168.1.0/24) toohello **FW1** VM (192.168.0.4):
 
     ```azurecli
     azure network route-table route set -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -t VirtualAppliance -p 192.168.0.4
     ```
 
-3. Eseguire il comando seguente per associare la tabella di route creata in precedenza alla subnet **BackEnd**:
+3. Esecuzione hello seguenti tabella di routing di comandi tooassociate hello con hello **back-end** subnet:
 
     ```azurecli
     azure network vnet subnet route-table add -t TestVNet -n BackEnd -r UDR-BackEnd

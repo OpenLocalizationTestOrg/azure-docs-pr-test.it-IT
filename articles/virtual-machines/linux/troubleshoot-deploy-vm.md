@@ -1,9 +1,9 @@
 ---
-title: distribuzione dei problemi di macchine virtuali in Azure aaaTroubleshoot | Documenti Microsoft
-description: Risolvere i problemi di distribuzione della macchina virtuale Windows in Azure con il modello di distribuzione Resource Manager.
+title: distribuzione di problemi di macchine virtuali Linux in Azure aaaTroubleshoot | Documenti Microsoft
+description: Risolvere i problemi di distribuzione della macchina virtuale Linux in Azure con il modello di distribuzione Resource Manager.
 services: virtual-machines-windows
 documentationcenter: 
-author: genlin
+author: cynthn
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: genli
-ms.openlocfilehash: 30de25827c050cc266761cfc14548bcc64237dac
+ms.openlocfilehash: d1092ca3d9d51af7510b19c8c9a79e6dda588697
 ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-deploying-windows-virtual-machine-issues-in-azure"></a>Risolvere i problemi di distribuzione della macchina virtuale Windows in Azure
+# <a name="troubleshoot-deploying-linux-virtual-machine-issues-in-azure"></a>Risolvere i problemi di distribuzione della macchina virtuale Linux in Azure
 
 problemi relativi alla distribuzione di macchina virtuale (VM) tootroubleshoot in Azure, esaminare hello [problemi principali](#top-issues) per errori e le risoluzioni comuni.
 
 Se è necessario ulteriore assistenza in qualsiasi punto in questo articolo, è possibile contattare hello Azure esperti in [hello forum MSDN di Azure e di Overflow dello Stack](https://azure.microsoft.com/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare toohello [sito del supporto tecnico di Azure](https://azure.microsoft.com/support/options/) e selezionare **ottenere supporto**.
 
 ## <a name="top-issues"></a>Problemi principali
-[!INCLUDE [virtual-machines-windows-troubleshoot-deploy-vm-top](../../../includes/virtual-machines-windows-troubleshoot-deploy-vm-top.md)]
+[!INCLUDE [virtual-machines-linux-troubleshoot-deploy-vm-top](../../../includes/virtual-machines-linux-troubleshoot-deploy-vm-top.md)]
 
 ## <a name="hello-cluster-cannot-support-hello-requested-vm-size"></a>non supporta cluster Hello hello richiesto dimensioni delle macchine Virtuali
 <properties
@@ -54,64 +54,25 @@ productPesIds="1234, 5678"
     - Creare una macchina virtuale in un set di disponibilità diverso (in hello stessa regione).
     - Aggiungere hello nuova VM toohello stessa rete virtuale.
 
-## <a name="how-can-i-use-and-deploy-a-windows-client-image-into-azure"></a>Come si usa e si distribuisce un'immagine client Windows in Azure?
-
-Se si ha di una sottoscrizione appropriata di Visual Studio (in precedenza MSDN) è possibile usare Windows 7, Windows 8 o Windows 10 in Azure per scenari di sviluppo/test. Questo [articolo](client-images.md) contorni hello requisiti per l'esecuzione di client Windows in Azure e utilizzi di hello immagini della raccolta di Azure.
-
-## <a name="how-can-i-deploy-a-virtual-machine-using-hello-hybrid-use-benefit-hub"></a>Come distribuire una macchina virtuale utilizzando hello ibrida utilizzare vantaggio (HUB)?
-
-Esistono un paio di modi toodeploy le macchine virtuali Windows con hello vantaggio di utilizzare ibrida di Azure.
-
-Per una sottoscrizione con un contratto Enterprise Agreement:
-
-•   Distribuire le VM da immagini specifiche di Marketplace preconfigurate con il vantaggio Azure Hybrid Use.
-
-Per il contratto Enterprise Agreement:
-
-•   Caricare una VM personalizzata e distribuirla usando un modello di Resource Manager o Azure PowerShell.
-
-Per ulteriori informazioni, vedere hello seguenti risorse:
-
- - [Panoramica del vantaggio Azure Hybrid Use ](https://azure.microsoft.com/pricing/hybrid-use-benefit/)
-
- - [Domande frequenti scaricabili](http://download.microsoft.com/download/4/2/1/4211AC94-D607-4A45-B472-4B30EDF437DE/Windows_Server_Azure_Hybrid_Use_FAQ_EN_US.pdf)
-
- - [Vantaggio Azure Hybrid Use per Windows Server e Windows Client](hybrid-use-benefit-licensing.md).
-
- - [Come è possibile utilizzare hello vantaggio di utilizzare ibridi in Azure](https://blogs.msdn.microsoft.com/azureedu/2016/04/13/how-can-i-use-the-hybrid-use-benefit-in-azure)
-
 ## <a name="how-do-i-activate-my-monthly-credit-for-visual-studio-enterprise-bizspark"></a>Come attivare il credito mensile per Visual Studio Enterprise (BizSpark)
 
 tooactivate la frequenza mensile del credito, vedere questo [articolo](https://azure.microsoft.com/offers/ms-azr-0064p/).
 
-## <a name="how-tooadd-enterprise-devtest-toomy-enterprise-agreement-ea-tooget-access-toowindow-client-images"></a>Modalità di accesso di immagini client tooWindow tooadd sviluppo/Test Enterprise toomy Enterprise Agreement (EA) tooget.
+## <a name="why-can-i-not-install-hello-gpu-driver-for-an-ubuntu-nv-vm"></a>Motivo per cui è possibile non installare driver della GPU hello per una macchina virtuale NV Ubuntu?
 
-sottoscrizioni di toocreate possibilità Hello basate su hello sviluppo/Test Enterprise offrono i proprietari di tooAccount con restrizioni che sono stati assegnati l'autorizzazione toodo così da un amministratore dell'organizzazione. Ciao proprietario dell'Account vengono create sottoscrizioni tramite hello portale per gli Account Azure e deve quindi aggiungere i sottoscrittori di Visual Studio attivi come coamministratori. In modo da poter gestire e utilizzare le risorse di hello necessarie per lo sviluppo e test. Per altre informazioni, vedere [Sviluppo/test Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/).
+Attualmente, il supporto per GPU Linux è disponibile solo sulle macchine virtuali NC di Azure che eseguono Ubuntu Server 16.04 LTS. Per altre informazioni, vedere [Configurare i driver GPU per le VM serie N che eseguono Linux](n-series-driver-setup.md).
 
-## <a name="my-drivers-are-missing-for-my-windows-n-series-vm"></a>I driver della VM Windows Serie N non sono disponibili
+## <a name="my-drivers-are-missing-for-my-linux-n-series-vm"></a>I driver della VM serie N di Linux non sono disponibili
 
-I driver per le macchine virtuali basate su Windows si trovano [qui](n-series-driver-setup.md).
+I driver per le macchine virtuali basate su Linux si trovano [qui](n-series-driver-setup.md). 
 
 ## <a name="i-cant-find-a-gpu-instance-within-my-n-series-vm"></a>Nella VM Serie N non è disponibile un'istanza GPU
 
-tootake le funzionalità GPU hello di macchine virtuali di Azure serie N che esegue Windows Server 2016 o Windows Server 2012 R2, è necessario installare i driver grafici NVIDIA in ogni macchina virtuale dopo la distribuzione. Le informazioni di configurazione dei driver sono disponibili anche per le [VM Windows](n-series-driver-setup.md) e le [VM Linux](../linux/n-series-driver-setup.md).
-
-## <a name="are-client-images-supported-for-n-series"></a>Le immagini client sono supportate per la Serie N?
-
-Attualmente Azure supporta la Serie N solo sulle VM che eseguono i sistemi operativi Windows Server e Linux.
+tootake le funzionalità GPU hello di macchine virtuali di Azure serie N che esegue Windows Server 2016 o Windows Server 2012 R2, è necessario installare i driver grafici NVIDIA in ogni macchina virtuale dopo la distribuzione. Le informazioni di configurazione dei driver sono disponibili anche per le [VM Windows](../windows/n-series-driver-setup.md) e le [VM Linux](n-series-driver-setup.md).
 
 ## <a name="is-n-series-vms-available-in-my-region"></a>Le VM Serie N sono disponibili nella mia area?
 
 È possibile controllare la disponibilità di hello da hello [i prodotti disponibili dalla tabella region](https://azure.microsoft.com/regions/services), nonché i prezzi [qui](https://azure.microsoft.com/pricing/details/virtual-machines/series/#n-series).
-
-## <a name="what-client-images-can-i-use-and-deploy-in-azure-and-how-tooi-get-them"></a>Le immagini client è possibile utilizzare e distribuire in Azure e come tooI ottenerle?
-
-A condizione di disporre di una sottoscrizione appropriata di Visual Studio (in precedenza MSDN), è possibile usare Windows 7, Windows 8 o Windows 10 in Azure per scenari di sviluppo/test. 
-
-- Sono disponibili immagini di Windows 10 dalla raccolta di Azure hello all'interno di [idonei sviluppo/test offre](client-images.md#eligible-offers). 
-- Visual Studio i server di sottoscrizione all'interno di qualsiasi tipo di offerta è anche possibile [adeguatamente preparare e creare](prepare-for-upload-vhd-image.md) un'immagine a 64 bit di Windows 7, Windows 8 o Windows 10 e quindi [caricare tooAzure](upload-generalized-managed.md). utilizzo di Hello rimane limitato toodev dei test da Visual Studio attivi.
-
-Questo [articolo](client-images.md) contorni hello requisiti per l'esecuzione di client Windows in Azure e l'utilizzo di hello immagini della raccolta di Azure.
 
 ## <a name="i-am-not-able-toosee-vm-size-family-that-i-want-when-resizing-my-vm"></a>Non mi toosee in grado di famiglia di dimensioni della macchina virtuale che si desidera quando si ridimensiona la macchina virtuale.
 
@@ -125,9 +86,13 @@ Quando una macchina virtuale è in esecuzione, è server fisico tooa distribuito
 
 Scegliere una dimensione è supportata in cluster del set di disponibilità hello. È consigliabile quando si crea che un gruppo di disponibilità toochoose hello più grande dimensioni delle macchine Virtuali si ritiene che e che il primo toohello distribuzione che set di disponibilità.
 
+## <a name="what-linux-distributionsversions-are-supported-on-azure"></a>Quali distribuzioni/versioni di Linux sono supportate in Azure?
+
+È possibile trovare l'elenco di hello in Linux nel [Azure-Endorsed distribuzioni](endorsed-distros.md).
+
 ## <a name="can-i-add-an-existing-classic-vm-tooan-availability-set"></a>È possibile aggiungere un set di disponibilità tooan VM classico esistente?
 
-Sì. È possibile aggiungere un classico esistente tooa macchina virtuale nuova o Set di disponibilità esistente. Per ulteriori informazioni vedere [aggiungere un set di disponibilità tooan macchina virtuale esistente](classic/configure-availability.md#addmachine).
+Sì. È possibile aggiungere un classico esistente tooa macchina virtuale nuova o Set di disponibilità esistente. Per ulteriori informazioni vedere [aggiungere un set di disponibilità tooan macchina virtuale esistente](../windows/classic/configure-availability.md#addmachine).
 
 
 ## <a name="next-steps"></a>Passaggi successivi

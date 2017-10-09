@@ -1,6 +1,6 @@
 ---
-title: "Esercitazione sui set di disponibilità per macchine virtuali Linux in Azure | Microsoft Docs"
-description: "Informazioni sui set di disponibilità per macchine virtuali Linux in Azure."
+title: aaaAvailability imposta esercitazione per le macchine virtuali Linux in Azure | Documenti Microsoft
+description: "Informazioni sui set di disponibilità hello per le macchine virtuali Linux in Azure."
 documentationcenter: 
 services: virtual-machines-linux
 author: cynthn
@@ -16,16 +16,16 @@ ms.topic: article
 ms.date: 05/22/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 63fe3f165864f06228604cac56d06cc061ab25f5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2a91e4a6057180035ec51410d9fffccaca343758
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-availability-sets"></a>Come usare i set di disponibilità
+# <a name="how-toouse-availability-sets"></a>Il set di disponibilità di toouse
 
 
-In questa esercitazione si apprenderà come aumentare la disponibilità e l'affidabilità delle soluzioni delle proprie macchine virtuali in Azure tramite una funzionalità denominata set di disponibilità. I set di disponibilità assicurano che le macchine virtuali distribuite in Azure vengano distribuite tra più cluster hardware isolati. Questa operazione assicura che, se si verifica un errore hardware o software all'interno di Azure, solo un sottoinsieme delle macchine virtuali verrà interessato e la soluzione complessiva rimarrà disponibile e operativa dal punto di vista dei clienti che la usano.
+In questa esercitazione si apprenderà come tooincrease hello disponibilità e affidabilità delle soluzioni di macchina virtuale in Azure mediante una funzionalità denominata set di disponibilità. Set di disponibilità garantiscono che hello macchine virtuali di distribuire in Azure vengono distribuite tra più cluster hardware isolato. Questa operazione assicura che se si verifica un errore hardware o software all'interno di Azure, solo un sottoinsieme di macchine virtuali che verrà interessato e che la soluzione complessiva rimangono disponibili e operative dal punto di vista hello dei clienti di utilizzarlo.
 
 In questa esercitazione si apprenderà come:
 
@@ -37,20 +37,20 @@ In questa esercitazione si apprenderà come:
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="availability-set-overview"></a>Informazioni generali sui set di disponibilità
 
-Un set di disponibilità è una funzionalità di raggruppamento logico che è possibile usare in Azure per garantire che le risorse delle macchine virtuali inserite dall'utente siano isolate tra loro quando vengono distribuite all'interno di un data center di Azure. Azure garantisce che le macchine virtuali inserite all'interno di un set di disponibilità vengano eseguite tra più server fisici, rack di calcolo, unità di archiviazione e commutatori di rete. Ciò garantisce che in caso di errore hardware o software in Azure, verrà interessato solo un sottoinsieme delle macchine virtuali e l'applicazione complessiva si manterrà aggiornata e continuerà a essere disponibile per i clienti. L'uso dei set di disponibilità è una funzionalità essenziale da sfruttare quando si desidera creare soluzioni di cloud affidabili.
+Un Set di disponibilità è una raggruppamento logico di funzionalità che è possibile utilizzare in Azure tooensure che le risorse VM hello posizionate all'interno di essa sono isolate tra loro quando vengono distribuiti all'interno di un Data Center Azure. Azure garantisce che le macchine virtuali posizionate all'interno di un Set di disponibilità esegue tra più server fisici hello, calcolo rack, unità di archiviazione e commutatori di rete. Ciò garantisce che nell'evento hello di un errore hardware o software di Azure, solo un subset delle macchine virtuali sarà interessato e in generale l'applicazione rimanere e continuare toobe tooyour disponibili clienti. Utilizzo di set di disponibilità è un tooleverage funzionalità essenziali quando si desidera che le soluzioni di cloud affidabile toobuild.
 
-Si consideri una soluzione tipica basata su macchine virtuali, in cui si dispone di 4 server Web front-end e vengono usate 2 macchine virtuali di back-end che ospitano un database. Con Azure è possibile definire due set di disponibilità prima di distribuire le macchine virtuali: un set di disponibilità per il livello "Web" e un set di disponibilità per il livello "database". Quando si crea una nuova macchina virtuale, è quindi possibile specificare il set di disponibilità come parametro per il comando az vm create. Azure automaticamente garantirà che le macchine virtuali create all'interno del set di disponibilità vengano isolate su più risorse hardware fisiche. Ciò significa che, se l'hardware fisico su cui è in esecuzione una delle macchine virtuali dei server di database o dei server Web presenta un problema, le altre istanze delle macchine virtuali dei server Web e di database rimarranno in esecuzione correttamente perché si trovano su un hardware diverso.
+Si consideri una soluzione tipica basata su macchine virtuali, in cui si dispone di 4 server Web front-end e vengono usate 2 macchine virtuali di back-end che ospitano un database. Con Azure, si toodefine due set di disponibilità prima di distribuire le macchine virtuali: set di disponibilità di uno per il livello di "web" hello e un set di disponibilità per il livello di "database" hello. Quando si crea una nuova macchina virtuale, è possibile specificare la disponibilità di hello imposta come comando di creazione di una macchina virtuale az toohello di parametro e di Azure automaticamente verificare che le macchine virtuali create all'interno di hello disponibile hello set vengono isolati in più risorse hardware fisiche. Ciò significa che se si è verificato un problema hardware fisico hello in esecuzione in uno dei Server Web o macchine virtuali del Server di Database, si conosce tale hello altre istanze del Server Web e macchine virtuali del Database rimarrà in esecuzione correttamente perché sono in un hardware diverso.
 
-Usare sempre i set di disponibilità quando si vuole distribuire soluzioni affidabili basate su macchine virtuali all'interno di Azure.
+Quando si desidera toodeploy affidabile VM soluzioni basate su all'interno di Azure, è necessario utilizzare sempre i set di disponibilità.
 
 
 ## <a name="create-an-availability-set"></a>Creare un set di disponibilità
 
-È possibile creare un set di disponibilità usando il comando [az vm availability-set create](/cli/azure/vm/availability-set#create). In questo esempio sia il numero di domini di aggiornamento che quello di domini di errore viene impostato a *2* per il set di disponibilità denominato *myAvailabilitySet* nel gruppo di risorse *myResourceGroupAvailability*.
+È possibile creare un set di disponibilità usando il comando [az vm availability-set create](/cli/azure/vm/availability-set#create). In questo esempio, è impostato sia il numero di domini di aggiornamento e di errore hello *2* per la disponibilità di hello set denominata *myAvailabilitySet* in hello *myResourceGroupAvailability*gruppo di risorse.
 
 Creare un gruppo di risorse.
 
@@ -67,13 +67,13 @@ az vm availability-set create \
     --platform-update-domain-count 2
 ```
 
-I set di disponibilità consentono di isolare le risorse su "domini di errore" e "domini di aggiornamento". Un **dominio di errore** rappresenta una raccolta isolata di server + rete + risorse di archiviazione. Nell'esempio precedente viene indicato che si desidera distribuire il set di disponibilità su almeno due domini di errore quando vengono distribuite le macchine virtuali. Viene anche indicato che si desidera distribuire il set di disponibilità su due **domini di aggiornamento**.  Due domini di aggiornamento assicurano che, quando Azure esegue gli aggiornamenti software, le risorse delle macchine virtuali siano isolate, impedendo che tutto il software in esecuzione nelle macchine virtuali venga aggiornato contemporaneamente.
+Set di disponibilità consentono tooisolate risorse tra "domini di errore di" e "domini di aggiornamento". Un **dominio di errore** rappresenta una raccolta isolata di server + rete + risorse di archiviazione. Hello sopra riportato, si indica che la disponibilità impostare toobe distribuiti in almeno due domini di errore quando vengono distribuite i macchine virtuali. Viene anche indicato che si desidera distribuire il set di disponibilità su due **domini di aggiornamento**.  Assicurarsi di due domini di aggiornamento quando Azure esegue gli aggiornamenti software sono isolate, impedendo a tutti i software hello in esecuzione sotto la macchina virtuale da cui viene aggiornata in hello le risorse della macchina virtuale contemporaneamente.
 
 ## <a name="configure-virtual-network"></a>Configurare la rete virtuale
-Prima di distribuire alcune macchine virtuali e testare il servizio di bilanciamento, creare le risorse di rete virtuale di supporto. Per altre informazioni sulle reti virtuali, vedere l'esercitazione [Gestire le reti virtuali di Azure](tutorial-virtual-network.md).
+Prima di distribuire alcune macchine virtuali e possibile eseguire il servizio di bilanciamento del test, creare hello che supporta le risorse di rete virtuale. Per ulteriori informazioni sulle reti virtuali, vedere hello [gestire reti virtuali di Azure](tutorial-virtual-network.md) esercitazione.
 
 ### <a name="create-network-resources"></a>Creare risorse di rete
-Creare una rete virtuale con [az network vnet create](/cli/azure/network/vnet#create). L'esempio seguente crea una rete virtuale denominata *myVnet* con una subnet denominata *mySubnet*:
+Creare una rete virtuale con [az network vnet create](/cli/azure/network/vnet#create). esempio Hello crea una rete virtuale denominata *myVnet* con una subnet denominata *mySubnet*:
 
 ```azurecli-interactive 
 az network vnet create \
@@ -81,7 +81,7 @@ az network vnet create \
     --name myVnet \
     --subnet-name mySubnet
 ```
-Le schede di interfaccia di rete virtuale vengono create con [az network nic create](/cli/azure/network/nic#create). L'esempio seguente crea tre schede di interfaccia di rete virtuali, Una scheda di interfaccia di rete virtuale per ogni VM creata per l'app nei passaggi successivi. È possibile creare altre schede di interfaccia di rete virtuale e macchine virtuali in qualsiasi momento e aggiungerle al bilanciamento del carico:
+Le schede di interfaccia di rete virtuale vengono create con [az network nic create](/cli/azure/network/nic#create). Hello esempio crea tre schede di rete virtuale. (Una scheda di rete virtuale per ogni macchina virtuale viene creato per l'app in hello seguendo i passaggi). È possibile creare macchine virtuali e schede di rete virtuali aggiuntive in qualsiasi momento e aggiungerli toohello servizio di bilanciamento del carico:
 
 ```bash
 for i in `seq 1 3`; do
@@ -97,9 +97,9 @@ done
 
 ## <a name="create-vms-inside-an-availability-set"></a>Creare macchine virtuali in un set di disponibilità
 
-Per garantire la corretta distribuzione delle macchine virtuali in tutto l'hardware, le VM devono essere create all'interno del set di disponibilità. Non è possibile aggiungere una macchina virtuale esistente a un set di disponibilità dopo la sua creazione. 
+Macchine virtuali devono essere create all'interno di hello toomake set di disponibilità che vengono distribuite correttamente su hardware hello. È possibile aggiungere un gruppo di disponibilità tooan VM impostato dopo la sua creazione. 
 
-Quando si crea una macchina virtuale usando il comando [az vm create](/cli/azure/vm#create) si specifica il set di disponibilità usando il parametro `--availability-set` per indicare il nome del set di disponibilità.
+Quando si crea una macchina virtuale mediante [creare vm az](/cli/azure/vm#create) specificare hello set di disponibilità usando hello `--availability-set` nome del parametro toospecify hello hello del set di disponibilità.
 
 ```azurecli-interactive 
 for i in `seq 1 2`; do
@@ -116,13 +116,13 @@ for i in `seq 1 2`; do
 done 
 ```
 
-Sono ora disponibili due macchine virtuali all'interno del set di disponibilità appena creato. Poiché sono nello stesso set di disponibilità, Azure assicura che le macchine virtuali e tutte le relative risorse (inclusi i dischi di dati) siano distribuite su un hardware fisico isolato. Questa distribuzione consente di garantire una disponibilità molto maggiore della soluzione complessiva delle macchine virtuali.
+Sono ora disponibili due macchine virtuali all'interno del set di disponibilità appena creato. Poiché sono presenti in hello stesso set di disponibilità, Azure garantisce che le macchine virtuali hello e tutte le risorse (inclusi i dischi di dati) vengono distribuite tra isolato hardware fisico. Questa distribuzione consente di garantire una disponibilità molto maggiore della soluzione complessiva delle macchine virtuali.
 
-Quando si aggiungono macchine virtuali, potrebbe verificarsi che una determinata dimensione di macchina virtuale non sia più disponibile per l'uso all'interno del set di disponibilità. Questo problema può verificarsi se non è più disponibile una capacità sufficiente per aggiungerla, mentre vengono mantenute le regole di isolamento che il set di disponibilità applica. È possibile verificare quali dimensioni di macchina virtuale sono disponibili per l'uso all'interno di un set di disponibilità esistente tramite il parametro `--availability-set list-sizes`.
+Una cosa che potrebbero verificarsi quando si aggiungono macchine virtuali è che una determinata dimensione di macchina virtuale non è più disponibile toouse all'interno del set di disponibilità. Questo problema può verificarsi se non è più sufficiente tooadd capacità mantenendo i set di disponibilità di hello isolamento regole hello applica. È possibile controllare le dimensioni delle macchine Virtuali sono disponibili toouse all'interno di un gruppo di disponibilità impostati utilizzando hello toosee `--availability-set list-sizes` parametro.
 
 ## <a name="check-for-available-vm-sizes"></a>Controllare le dimensioni delle macchine virtuali disponibili 
 
-È possibile aggiungere più macchine virtuali al set di disponibilità in un secondo momento, ma è necessario conoscere le dimensioni delle macchine virtuali disponibili nell'hardware. Usare il comando [az vm availability-set list-sizes](/cli/azure/availability-set#list-sizes) per elencare tutte le dimensioni disponibili nel cluster hardware per il set di disponibilità.
+È possibile aggiungere ulteriori disponibilità toohello di macchine virtuali in un momento successivo, ma è necessario tooknow le dimensioni delle macchine Virtuali sono disponibili su hardware hello. Utilizzare [az set di disponibilità elenco-dimensioni delle macchine virtuali](/cli/azure/availability-set#list-sizes) toolist tutte le dimensioni disponibili hello hardware hello del cluster per il set di disponibilità hello.
 
 ```azurecli-interactive 
 az vm availability-set list-sizes \
@@ -140,7 +140,7 @@ In questa esercitazione si è appreso come:
 > * Creare una macchina virtuale in un set di disponibilità
 > * Controllare le dimensioni delle macchine virtuali disponibili
 
-Passare all'esercitazione successiva per informazioni sui set di scalabilità di macchine virtuali.
+Spostare toohello toolearn esercitazione successiva sui set di scalabilità di macchine virtuali.
 
 > [!div class="nextstepaction"]
 > [Creare un set di scalabilità di macchine virtuali](tutorial-create-vmss.md)

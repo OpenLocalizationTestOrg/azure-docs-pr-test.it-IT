@@ -1,6 +1,6 @@
 ---
-title: Servizio metadati dell'istanza di Azure per Windows | Microsoft Docs
-description: Interfaccia RESTful per ottenere informazioni sugli eventi di calcolo, di rete e di manutenzione previsti di una macchina virtuale Windows.
+title: aaaAzure servizio metadati dell'istanza per Windows | Documenti Microsoft
+description: Interfaccia REST tooget informazioni della macchina virtuale Windows calcolo, rete e gli eventi di manutenzione programmata.
 services: virtual-machines-windows
 documentationcenter: 
 author: harijay
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 08/11/2017
 ms.author: harijay
-ms.openlocfilehash: 55b97b89cb297dc08dc73f6714c5159d4565a97c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a33c26b5e9ed650be639598cdb6895fc19ccb605
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-instance-metadata-service-for-windows-vms"></a>Servizio metadati dell'istanza di Azure per macchine virtuali Windows
 
 
-Il Servizio metadati dell'istanza di Azure fornisce informazioni sull'esecuzione delle istanze di macchine virtuali che possono essere utilizzate per gestire e configurare le macchine virtuali.
+Hello Azure servizio metadati dell'istanza vengono fornite informazioni sull'esecuzione di istanze di macchine virtuali che possono essere utilizzati toomanage e configurare le macchine virtuali.
 Le informazioni includono ad esempio SKU, configurazione di rete ed eventi di manutenzione previsti. Per altre informazioni sul tipo di informazioni disponibili, vedere le [categorie di metadati](#instance-metadata-data-categories).
 
-Il Servizio metadati dell'istanza di Azure è un endpoint REST accessibile a tutte le macchine virtuali IaaS create tramite [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). L'endpoint è disponibile a un indirizzo IP non instradabile noto (`169.254.169.254`) a cui è possibile accedere solo dalla macchina virtuale.
+Servizio metadati dell'istanza di Azure è un Endpoint REST accessibile tooall le macchine virtuali IaaS creati tramite hello [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). endpoint Hello è disponibile all'indirizzo IP non instradabile ben noto (`169.254.169.254`) che sono accessibili solo da hello macchina virtuale.
 
 
 
 > [!IMPORTANT]
-> Questo servizio è **disponibile a livello generale** nelle aree globali di Azure. È in anteprima pubblica per il cloud di Azure Germania, per la Cina e per enti pubblici. Il servizio riceve regolarmente aggiornamenti per esporre nuove informazioni sulle istanze di macchine virtuali. Questa pagina riporta le [categorie di dati](#instance-metadata-data-categories) attualmente disponibili.
+> Questo servizio è **disponibile a livello generale** nelle aree globali di Azure. È in anteprima pubblica per il cloud di Azure Germania, per la Cina e per enti pubblici. Riceve regolarmente gli aggiornamenti tooexpose nuove informazioni sulle istanze di macchine virtuali. Questa pagina riflette hello aggiornata [categorie di dati](#instance-metadata-data-categories) disponibili.
 
 
 
 ## <a name="service-availability"></a>Disponibilità del servizio
-Il servizio è disponibile a livello generale in tutte le aree globali di Azure. È in anteprima pubblica nelle aree Germania, Cina  ed enti pubblici.
+servizio di Hello è disponibile in tutte le aree di Azure globale disponibile a livello generale. servizio Hello è in anteprima pubblica in aree di hello per enti pubblici, Cina o Germania.
 
 Regioni                                        | Disponibilità
 -----------------------------------------------|-----------------------------------------------
@@ -45,26 +45,26 @@ Regioni                                        | Disponibilità
 [Azure per la Cina](https://www.azure.cn/)                                                           | In anteprima
 [Azure Germania](https://azure.microsoft.com/overview/clouds/germany/)                    | In anteprima
 
-Questa tabella viene aggiornata quando il servizio viene reso disponibile in altri cloud di Azure.
+Questa tabella viene aggiornata quando diventa disponibile il servizio hello in altri cloud di Azure.
 
-Per provare il Servizio metadati dell'istanza, creare una macchina virtuale da [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/) o dal [portale di Azure](http://portal.azure.com) nelle aree di cui sopra e seguire gli esempi riportati di seguito.
+tootry out hello servizio metadati dell'istanza, creare una macchina virtuale da [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/) o hello [portale di Azure](http://portal.azure.com) in hello sopra le aree e seguire hello esempi seguenti.
 
 ## <a name="usage"></a>Utilizzo
 
 ### <a name="versioning"></a>Controllo delle versioni
-Il Servizio metadati dell'istanza è con versione. Le versioni sono obbligatorie e la versione corrente è `2017-04-02`.
+Hello servizio metadati dell'istanza viene creata. Le versioni sono obbligatorie e la versione corrente di hello è `2017-04-02`.
 
 > [!NOTE] 
-> Le versioni precedenti di anteprima di eventi pianificati {ultima} sono supportate come versione dell'API. Questo formato non è più supportato e verrà rimosso in futuro.
+> Versioni precedenti di anteprima di eventi pianificati supportati {più recente} come hello. api-version. Questo formato non è più supportato e verrà rimossa in futuro hello.
 
-Quando si aggiungono versioni più recenti, quelle precedenti sono comunque accessibili per la compatibilità, se gli script presentano dipendenze in formati di dati specifici. Si noti però che la versione di anteprima corrente (2017-03-01) potrebbe non essere disponibile quando il servizio è disponibile a livello generale.
+Quando si aggiungono versioni più recenti, quelle precedenti sono comunque accessibili per la compatibilità, se gli script presentano dipendenze in formati di dati specifici. Si noti tuttavia che version(2017-03-01) anteprima corrente hello potrebbe non essere disponibile quando il servizio di hello è disponibile a livello generale.
 
 ### <a name="using-headers"></a>Uso delle intestazioni
-Quando si eseguono query sul Servizio metadati dell'istanza, è necessario specificare l'intestazione `Metadata: true` per garantire che la richiesta non sia stata reindirizzata accidentalmente.
+Quando si eseguono query hello servizio metadati dell'istanza, è necessario specificare l'intestazione di hello `Metadata: true` tooensure hello richiesta non è stata reindirizzata accidentalmente.
 
 ### <a name="retrieving-metadata"></a>Recupero dei metadati
 
-I metadati dell'istanza sono disponibili per l'esecuzione di macchine virtuali create e gestite tramite [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). Accedere a tutte le categorie di dati per un'istanza di macchina virtuale utilizzando la richiesta seguente:
+I metadati dell'istanza sono disponibili per l'esecuzione di macchine virtuali create e gestite tramite [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). Accedere a tutte le categorie di dati per un'istanza di macchina virtuale utilizzando hello seguito richiesta:
 
 ```
 curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017-04-02"
@@ -74,34 +74,34 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017
 > Tutte le query dei metadati dell'istanza fanno distinzione tra maiuscole e minuscole.
 
 ### <a name="data-output"></a>Output dei dati
-Per impostazione predefinita, il Servizio metadati dell'istanza restituisce i dati in formato JSON (`Content-Type: application/json`). Tuttavia, API diverse possono restituire dati in formati diversi se necessario.
-La tabella seguente costituisce un riferimento per gli altri formati di dati che le API possono supportare.
+Per impostazione predefinita, servizio metadati dell'istanza di hello restituisce i dati in formato JSON (`Content-Type: application/json`). Tuttavia, API diverse possono restituire dati in formati diversi se necessario.
+Hello nella tabella seguente è un riferimento di altri formati di dati che potrebbero supportare le API.
 
 API | Formato dati predefinito | Altri formati
 --------|---------------------|--------------
 /instance | json | text
 /scheduledevents | json | Nessuno
 
-Per accedere a un formato di risposta non predefinito, specificare il formato richiesto come parametro di stringa di query nella richiesta. ad esempio:
+tooaccess un formato di risposta non predefinito, specificare il formato richiesto di hello come parametro querystring nella richiesta di hello. ad esempio:
 
 ```
 curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017-04-02&format=text"
 ```
 
 ### <a name="security"></a>Sicurezza
-L'endpoint del Servizio metadati dell'istanza è accessibile solo dall'istanza della macchina virtuale in esecuzione su un indirizzo IP non instradabile. Inoltre, qualsiasi richiesta con intestazione `X-Forwarded-For` viene rifiutata dal servizio.
-È necessario anche che le richieste includano l'intestazione `Metadata: true` per garantire che la richiesta sia stata destinata direttamente e non faccia parte di un reindirizzamento non intenzionale. 
+endpoint di servizio metadati dell'istanza di Hello è accessibile solo dall'interno hello esegue l'istanza di macchina virtuale in un indirizzo IP non è instradabile. Inoltre, qualsiasi richiesta con un `X-Forwarded-For` intestazione viene rifiutata dal servizio hello.
+È inoltre necessario richieste toocontain un `Metadata: true` tooensure intestazione che hello richiesta effettiva è stata direttamente previsto e che non fa parte di reindirizzamento non intenzionale. 
 
-### <a name="error"></a>Tipi di errore
-In caso di elementi dati non trovati o di richiesta non valida, il Servizio metadati dell'istanza restituisce errori HTTP standard. ad esempio:
+### <a name="error"></a>Errore
+Se è presente un elemento di dati non trovato o una richiesta in formato non corretto, hello servizio metadati dell'istanza restituisce errori HTTP standard. ad esempio:
 
 Codice di stato HTTP | Motivo
 ----------------|-------
 200 - OK |
 400 - Richiesta non valida | Intestazione `Metadata: true` mancante
-404 - Non trovato | L'elemento richiesto non esiste 
+404 - Non trovato | esistere Hello quando elemento richiesto 
 405 - Metodo non consentito | Sono supportate solo le richieste `GET` e `POST`
-429 - Numero eccessivo di richieste | L'API supporta attualmente un massimo di 5 query al secondo
+429 - Numero eccessivo di richieste | l'API di Hello attualmente supporta un massimo di 5 query al secondo
 500 - Errore del servizio     | Ripetere l'operazione in un secondo momento
 
 ### <a name="examples"></a>esempi
@@ -120,7 +120,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/network?api-vers
 **Risposta**
 
 > [!NOTE] 
-> La risposta è una stringa JSON. La risposta di esempio che segue è di tipo pretty-print per una migliore leggibilità.
+> risposta Hello è una stringa JSON. Hello risposta di esempio seguente viene stampato per migliorare la leggibilità.
 
 ```
 {
@@ -167,7 +167,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017
 **Risposta**
 
 > [!NOTE] 
-> La risposta è una stringa JSON. La risposta di esempio che segue è di tipo pretty-print per una migliore leggibilità.
+> risposta Hello è una stringa JSON. Hello risposta di esempio seguente viene stampato per migliorare la leggibilità.
 
 ```
 {
@@ -215,13 +215,13 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017
 
 **Richiesta**
 
-I metadati dell'istanza possono essere recuperati in Windows tramite l'utilità PowerShell `curl`: 
+I metadati dell'istanza possono essere recuperati in Windows tramite l'utilità di PowerShell hello `curl`: 
 
 ```
 curl -H @{'Metadata'='true'} http://169.254.169.254/metadata/instance?api-version=2017-04-02 | select -ExpandProperty Content
 ```
 
-Oppure tramite il cmdlet `Invoke-RestMethod`:
+O tramite hello `Invoke-RestMethod` cmdlet:
     
 ```
 Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/metadata/instance?api-version=2017-04-02 -Method get 
@@ -230,7 +230,7 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/meta
 **Risposta**
 
 > [!NOTE] 
-> La risposta è una stringa JSON. La risposta di esempio che segue è di tipo pretty-print per una migliore leggibilità.
+> risposta Hello è una stringa JSON. Hello risposta di esempio seguente viene stampato per migliorare la leggibilità.
 
 ```
 {
@@ -277,26 +277,26 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/meta
 ```
 
 ## <a name="instance-metadata-data-categories"></a>Categorie di dati dei metadati dell'istanza
-Tramite il Servizio metadati dell'istanza sono disponibili le categorie di dati seguenti:
+Hello seguenti categorie di dati sono disponibile tramite hello servizio metadati dell'istanza:
 
 Dati | Descrizione
 -----|------------
-location | Area di Azure in cui la macchina virtuale è in esecuzione
-name | Nome della VM 
-offer | Offre informazioni per l'immagine della macchina virtuale. Questo valore è presente solo per le immagini distribuite dalla raccolta di immagini di Azure.
-publisher | Autore dell'immagine della macchina virtuale
-sku | SKU specifica per l'immagine della macchina virtuale  
-version | Versione dell'immagine della macchina virtuale 
+location | Hello area Azure VM è in esecuzione in
+name | Nome della macchina virtuale hello 
+offer | Offrono informazioni per l'immagine di macchina virtuale hello. Questo valore è presente solo per le immagini distribuite dalla raccolta di immagini di Azure.
+publisher | Server di pubblicazione dell'immagine di macchina virtuale hello
+sku | SKU specifico per l'immagine di macchina virtuale hello  
+version | Versione dell'immagine di macchina virtuale hello 
 osType | Linux o Windows 
-platformUpdateDomain |  [Dominio di aggiornamento](manage-availability.md) in cui è in esecuzione la macchina virtuale
-platformFaultDomain | [Dominio di errore](manage-availability.md) in cui è in esecuzione la macchina virtuale
-vmId | [Identificatore univoco](https://azure.microsoft.com/blog/accessing-and-using-azure-vm-unique-id/) della macchina virtuale
+platformUpdateDomain |  [Dominio di aggiornamento](manage-availability.md) hello macchina virtuale è in esecuzione in
+platformFaultDomain | [Dominio di errore](manage-availability.md) hello macchina virtuale è in esecuzione in
+vmId | [Identificatore univoco](https://azure.microsoft.com/blog/accessing-and-using-azure-vm-unique-id/) per hello VM
 vmSize | [Dimensioni macchina virtuale](sizes.md)
-ipv4/privateIpAddress | Indirizzo IPv4 locale della macchina virtuale 
-ipv4/publicIpAddress | Indirizzo IPv4 pubblico della macchina virtuale
-subnet/address | Indirizzo della subnet della macchina virtuale
+ipv4/privateIpAddress | Indirizzo IPv4 locale di hello VM 
+ipv4/publicIpAddress | Indirizzo IPv4 pubblico di hello VM
+subnet/address | Indirizzo di subnet di hello VM
 subnet/prefix | Prefisso della subnet, ad esempio 24
-ipv6/ipAddress | Indirizzo IPv6 locale della macchina virtuale
+ipv6/ipAddress | Indirizzo IPv6 locale di hello VM
 macAddress | Indirizzo mac della macchina virtuale 
 scheduledevents | Attualmente in anteprima pubblica. Vedere [scheduledevents](scheduled-events.md)
 
@@ -304,7 +304,7 @@ scheduledevents | Attualmente in anteprima pubblica. Vedere [scheduledevents](sc
 
 ### <a name="tracking-vm-running-on-azure"></a>Rilevamento della macchina virtuale in esecuzione in Azure
 
-Come provider di servizi, potrebbe essere necessario tenere traccia del numero di macchine virtuali che eseguono il proprio software o avere agenti che devono verificare l'univocità della macchina virtuale. Per poter ottenere un ID univoco per una macchina virtuale, usare il campo `vmId` dal Servizio metadati dell'istanza.
+Come provider di servizi, potrebbe essere necessario numero hello tootrack delle macchine virtuali in esecuzione il software o gli agenti necessari tootrack l'univocità di hello VM. toobe in grado di tooget un ID univoco per una macchina virtuale, utilizzare hello `vmId` campo servizio metadati dell'istanza.
 
 **Richiesta**
 
@@ -320,8 +320,8 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute/vmId?api
 
 ### <a name="placement-of-containers-data-partitions-based-faultupdate-domain"></a>Posizionamento di contenitori, dominio di aggiornamento/errore basato su partizioni dati 
 
-Per alcuni scenari, il posizionamento di repliche dati diverse è di importanza primaria. Ad esempio per il [posizionamento delle repliche HDFS](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html#Replica_Placement:_The_First_Baby_Steps) o per il posizionamento di contenitori tramite un [orchestrator](https://kubernetes.io/docs/user-guide/node-selection/) è necessario conoscere il `platformFaultDomain` e il `platformUpdateDomain` in cui la macchina virtuale è in esecuzione.
-È possibile eseguire query su questi dati direttamente tramite il Servizio metadati dell'istanza.
+Per alcuni scenari, il posizionamento di repliche dati diverse è di importanza primaria. Ad esempio, [posizionamento delle repliche HDFS](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html#Replica_Placement:_The_First_Baby_Steps) o la selezione host contenitore tramite un [orchestrator](https://kubernetes.io/docs/user-guide/node-selection/) richieda è hello tooknow `platformFaultDomain` e `platformUpdateDomain` hello macchina virtuale è in esecuzione in.
+È possibile ottenere i dati direttamente tramite hello servizio metadati dell'istanza.
 
 **Richiesta**
 
@@ -335,9 +335,9 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute/platform
 0
 ```
 
-### <a name="getting-more-information-about-the-vm-during-support-case"></a>Ottenere altre informazioni sulla macchina virtuale durante la richiesta di assistenza 
+### <a name="getting-more-information-about-hello-vm-during-support-case"></a>Ulteriori informazioni su hello VM durante il caso di supporto 
 
-Come provider di servizi è possibile ricevere una chiamata di supporto per la quale occorre sapere altre informazioni sulla macchina virtuale. Chiedere al cliente di condividere i metadati di calcolo può risultare utile per avere informazioni di base che consentano al personale del supporto tecnico di conoscere il tipo di macchina virtuale in Azure. 
+Come provider di servizi, si potrebbero ottenere una chiamata al supporto in cui si desidera tooknow ulteriori informazioni sulla macchina virtuale hello. Porre hello cliente tooshare hello calcolo metadati possono fornire informazioni di base per hello supporto professionale tooknow su tipo hello della macchina virtuale in Azure. 
 
 **Richiesta**
 
@@ -348,7 +348,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute?api-vers
 **Risposta**
 
 > [!NOTE] 
-> La risposta è una stringa JSON. La risposta di esempio che segue è di tipo pretty-print per una migliore leggibilità.
+> risposta Hello è una stringa JSON. Hello risposta di esempio seguente viene stampato per migliorare la leggibilità.
 
 ```
 {
@@ -368,9 +368,9 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute?api-vers
 }
 ```
 
-### <a name="examples-of-calling-metadata-service-using-different-languages-inside-the-vm"></a>Esempi di chiamate del Servizio metadati con diversi linguaggi all'interno della macchina virtuale 
+### <a name="examples-of-calling-metadata-service-using-different-languages-inside-hello-vm"></a>Esempi di chiamate del servizio di metadati utilizzando diversi linguaggi all'interno di hello VM 
 
-Linguaggio | Esempio 
+Lingua | Esempio 
 ---------|----------------
 Ruby     | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.rb
 Go Lan   | https://github.com/Microsoft/azureimds/blob/master/imdssample.go            
@@ -382,24 +382,24 @@ PowerShell | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.ps1
 Bash       | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.sh
     
 
-## <a name="faq"></a>Domande frequenti
-1. Viene visualizzato l'errore `400 Bad Request, Required metadata header not specified`. Che cosa significa?
-   * Il Servizio metadati dell'istanza richiede che nella richiesta venga passata l'intestazione `Metadata: true`. Il passaggio di questa intestazione nella chiamata REST consente l'accesso al Servizio metadati dell'istanza. 
+## <a name="faq"></a>domande frequenti
+1. Viene visualizzato l'errore hello `400 Bad Request, Required metadata header not specified`. Che cosa significa?
+   * Servizio metadati dell'istanza di Hello richiede intestazione hello `Metadata: true` toobe passato nella richiesta di hello. Il passaggio di questa intestazione nella chiamata REST hello consente accesso toohello servizio metadati dell'istanza. 
 2. Perché non riesco a ottenere le informazioni di calcolo per la macchina virtuale?
-   * Attualmente il Servizio metadati dell'istanza supporta solo le istanze create con Azure Resource Manager. È possibile che in futuro venga aggiunto il supporto per le macchine virtuali del servizio cloud.
+   * Hello servizio metadati dell'istanza supporta attualmente solo le istanze create con Azure Resource Manager. In hello future, si potrebbe aggiungere supporto per le macchine virtuali del servizio Cloud.
 3. Ho creato la mia macchina virtuale tramite Azure Resource Manager tempo fa. Perché non riesco a vedere le informazioni sui metadati di calcolo?
-   * Per tutte le macchine virtuali create dopo settembre 2016, è necessario aggiungere un [Tag](../../azure-resource-manager/resource-group-using-tags.md) per iniziare a essere visualizzare i metadati di calcolo. Per le macchine virtuale precedenti (create prima di settembre 2016), è necessario aggiungere o rimuovere estensioni o dischi di dati dalla macchina virtuale per aggiornare i metadati.
-4. Perché viene visualizzato l'errore `500 Internal Server Error`?
-   * Inviare di nuovo la richiesta basata sul sistema di backoff esponenziale. Se il problema persiste, contattare il supporto di Azure.
+   * Per tutte le macchine virtuali create dopo settembre 2016, aggiungere un [Tag](../../azure-resource-manager/resource-group-using-tags.md) toostart vedere calcolo metadati. Per macchine virtuali meno recenti (Create prima di settembre 2016), aggiungere o rimuovere estensioni o dati dischi toohello VM toorefresh metadati.
+4. Perché viene visualizzato errore hello `500 Internal Server Error`?
+   * Inviare di nuovo la richiesta basata sul sistema di backoff esponenziale. Se il problema di hello persiste, contattare il supporto tecnico di Azure.
 5. Dove posso condividere domande o commenti aggiuntivi?
    * Inviare i propri commenti accedendo alla pagina http://feedback.azure.com.
 7. Il servizio funziona per l'istanza del set di scalabilità di macchine virtuali?
    * Sì, il Servizio metadati è disponibile per le istanze del set di scalabilità. 
-6. Come si ottiene assistenza per il servizio?
-   * Per ottenere assistenza per il servizio, è necessario creare una richiesta di supporto nel portale di Azure per la macchina virtuale per la quale non si riesce a ottenere la risposta dei metadati dopo lunghi tentativi 
+6. Come ottenere supporto per il servizio hello?
+   * supporto tooget per il servizio di hello, creare un problema di supporto nel portale di Azure per la macchina virtuale in cui non si risposta dei metadati in grado di tooget dopo tentativi lunghi hello 
 
    ![Supporto per i metadati dell'istanza](./media/instance-metadata-service/InstanceMetadata-support.png)
     
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Altre informazioni sull'API [Eventi pianificati](scheduled-events.md) **in anteprima pubblica** fornita dal servizio metadati dell'istanza.
+- Altre informazioni su hello [agli eventi pianificati](scheduled-events.md) API **in anteprima pubblica** fornita da servizio metadati dell'istanza di hello.

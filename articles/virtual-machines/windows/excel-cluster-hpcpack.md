@@ -1,5 +1,5 @@
 ---
-title: Cluster HPC Pack per Excel e SOA | Microsoft Docs
+title: aaaHPC Pack del cluster per Excel e SOA | Documenti Microsoft
 description: Introduzione all'esecuzione di carichi di lavoro Excel e SOA su larga scala in un cluster HPC Pack in Azure
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/01/2017
 ms.author: danlep
-ms.openlocfilehash: 63babd94fdab15217cfb0757e4cd6efe458a628d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55b4b2c25fe65d06b75025cc23c3c13b8b764238
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-running-excel-and-soa-workloads-on-an-hpc-pack-cluster-in-azure"></a>Introduzione all'esecuzione di carichi di lavoro Excel e SOA in un cluster HPC Pack in Azure
-Questo articolo illustra come distribuire un cluster Microsoft HPC Pack 2012 R2 nelle macchine virtuali di Azure con un modello di avvio rapido di Azure o uno script di distribuzione di Azure PowerShell. Il cluster usa le immagini VM di Azure Marketplace progettate per l'esecuzione di Microsoft Excel o carichi di lavoro di architettura orientata ai servizi (SOA) con HPC Pack. È possibile usare il cluster per eseguire servizi Excel HPC e SOA da un computer client locale. I servizi Excel HPC includono l'offload di cartelle di lavoro di Excel e funzioni definite dall'utente di Excel o UDF.
+Questo articolo illustra come cluster toodeploy Microsoft HPC Pack 2012 R2 in macchine virtuali di Azure utilizzando un modello di avvio rapido di Azure o, facoltativamente, uno script di distribuzione di Azure PowerShell. cluster Hello utilizza toorun progettate immagini di macchina virtuale di Azure Marketplace Microsoft Excel o i carichi di lavoro di architettura orientata ai servizi (SOA) con HPC Pack. È possibile utilizzare hello toorun di cluster HPC di Excel e di servizi SOA da un computer client locale. servizi di HPC Excel Hello includono offload cartella di lavoro di Excel e funzioni definite dall'utente di Excel o funzioni definite dall'utente.
 
 > [!IMPORTANT] 
 > Questo articolo si basa su funzionalità, modelli e script per HPC Pack 2012 R2. Questo scenario non è attualmente supportato in HPC Pack 2016.
@@ -30,72 +30,72 @@ Questo articolo illustra come distribuire un cluster Microsoft HPC Pack 2012 R2 
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Il seguente diagramma illustra in modo generale il cluster HPC Pack che verrà creato.
+In generale, hello diagramma seguente mostra cluster HPC Pack hello create.
 
 ![Cluster HPC con nodi che eseguono carichi di lavoro di Excel][scenario]
 
 ## <a name="prerequisites"></a>Prerequisiti
-* **Computer client** : per inviare i processi di Excel e SOA di esempio al cluster, è necessario un computer client basato su Windows. Per eseguire lo script di distribuzione del cluster di Azure PowerShell (se si sceglie tale metodo di distribuzione), è necessario anche un computer Windows.
+* **Computer client** -è necessario un cluster di toohello processi basati su Windows client computer toosubmit esempio SOA ed Excel. È necessario anche un hello toorun computer di Windows Azure PowerShell script di distribuzione di cluster (se si sceglie il metodo di distribuzione).
 * **Sottoscrizione di Azure** : se non è disponibile una sottoscrizione di Azure, è possibile creare un [account gratuito](https://azure.microsoft.com/pricing/free-trial/) in pochi minuti.
-* **Quota di core** : potrebbe essere necessario aumentare la quota di core, soprattutto se si distribuiscono più nodi del cluster con dimensioni delle macchine virtuali multicore. Se si utilizza un modello di avvio rapido di Azure, la quota di core in Resource Manager è riferita a ogni area di Azure. In tal caso, potrebbe essere necessario aumentare la quota per una determinata area. Vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../../azure-subscription-service-limits.md). Per aumentare una quota, è possibile [aprire una richiesta di assistenza clienti online](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) senza alcun addebito.
-* **Licenza di Microsoft Office** : se si distribuiscono nodi di calcolo usando un'immagine di VM di HPC Pack 2012 R2 di Marketplace con Microsoft Excel, viene installata una versione di valutazione di Microsoft Excel Professional Plus 2013 di 30 giorni. Scaduto il periodo di valutazione, per continuare a eseguire i carichi di lavoro è necessario attivare Excel con una licenza valida di Microsoft Office. Vedere [Attivazione di Excel](#excel-activation) più avanti in questo articolo. 
+* **Quota di core** -potrebbe essere necessario quota hello tooincrease di core, soprattutto se si distribuiscono più nodi del cluster con dimensioni delle macchine Virtuali multicore. Se si utilizza un modello di avvio rapido di Azure, la quota di core hello in Gestione risorse è per ogni area di Azure. In tal caso, si potrebbe essere necessario quota hello tooincrease in un'area specifica. Vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../../azure-subscription-service-limits.md). una quota, tooincrease [aprire una richiesta di supporto clienti online](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) senza alcun costo.
+* **Licenza di Microsoft Office** : se si distribuiscono nodi di calcolo usando un'immagine di VM di HPC Pack 2012 R2 di Marketplace con Microsoft Excel, viene installata una versione di valutazione di Microsoft Excel Professional Plus 2013 di 30 giorni. Dopo il periodo di valutazione di hello, è necessario tooprovide uno valido Microsoft Office licenza tooactivate Excel toocontinue toorun carichi di lavoro. Vedere [Attivazione di Excel](#excel-activation) più avanti in questo articolo. 
 
 ## <a name="step-1-set-up-an-hpc-pack-cluster-in-azure"></a>Passaggio 1. Configurazione di un cluster HPC Pack in Azure
-Verranno mostrate due possibili configurazioni del cluster HPC Pack 2012 R2: nella prima vengono usati un modello di avvio rapido e il portale di Azure, mentre nella seconda viene usato uno script di distribuzione di Azure PowerShell.
+Vengono illustrati due opzioni tooset di cluster HPC Pack 2012 R2 hello: prima, utilizzando un modello di avvio rapido di Azure e hello portale di Azure quindi, usando uno script di distribuzione di Azure PowerShell.
 
 ### <a name="option-1-use-a-quickstart-template"></a>Opzione 1. Uso di un modello di Guida introduttiva
-Usare un modello di Guida introduttiva di Azure per distribuire con rapidità un cluster HPC Pack nel portale di Azure. Aprendo il modello nel portale, si ottiene un'interfaccia utente semplice in cui è possibile immettere le impostazioni per il cluster. Di seguito sono riportati i passaggi necessari. 
+Utilizzare un tooquickly modello di avvio rapido di Azure di distribuire un cluster HPC Pack nel portale di Azure hello. Quando si apre il modello di hello nel portale di hello, si ottiene un'interfaccia utente semplice in cui è immettere impostazioni hello per il cluster. Ecco i passaggi di hello. 
 
 > [!TIP]
-> È possibile usare un [modello di Azure Marketplace](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn) che crea un cluster simile, specifico per i carichi di lavoro di Excel. La procedura è leggermente diversa da quella che segue.
+> È possibile usare un [modello di Azure Marketplace](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn) che crea un cluster simile, specifico per i carichi di lavoro di Excel. Hello procedura leggermente diversa dal successivo hello.
 > 
 > 
 
-1. Visitare la [pagina del modello per la creazione del cluster HPC su GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster). Se lo si desidera, esaminare le informazioni sul modello e il codice sorgente.
-2. Fare clic su **Distribuisci in Azure** per avviare una distribuzione con il modello nel portale di Azure.
+1. Visitare hello [pagina modello di creazione del Cluster HPC in GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster). Se si desidera, è possibile esaminare informazioni sul modello hello e il codice sorgente hello.
+2. Fare clic su **distribuire tooAzure** toostart una distribuzione con il modello di hello in hello portale di Azure.
    
-   ![Modello di distribuzione in Azure][github]
-3. Nel portale, attenersi alla procedura seguente per immettere i parametri del modello di cluster HPC.
+   ![Distribuire tooAzure modello][github]
+3. Nel portale di hello, seguire questi parametri di hello tooenter passaggi per il modello di cluster HPC hello.
    
-   a. Nella pagina **Parametri** , immettere o modificare i valori dei parametri del modello. (Per visualizzare informazioni della Guida, fare clic sull'icona accanto a ogni impostazione). Nella seguente schermata vengono visualizzati valori di esempio. In questo esempio viene creato un cluster denominato *hpc01* nel dominio *hpc.local*, composto da un nodo head e 2 nodi di calcolo. I nodi di calcolo vengono creati da un'immagine di VM di HPC Pack che include Microsoft Excel.
+   a. In hello **parametri** pagina, immettere o modificare i valori per parametri modello hello. (Fare clic su hello icona Avanti tooeach impostazione per le informazioni della Guida). Nella seguente schermata hello vengono visualizzati i valori di esempio. Questo esempio viene creato un cluster denominato *hpc01* in hello *hpc.local* dominio costituito da un nodo head e 2 nodi di calcolo. nodi di calcolo Hello vengono creati da un'immagine di macchina virtuale di HPC Pack che include Microsoft Excel.
    
    ![Immettere i parametri][parameters-new-portal]
    
    > [!NOTE]
-   > La VM del nodo head viene creata automaticamente dall' [immagine più recente del Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) di HPC Pack 2012 R2 su Windows Server 2012 R2. Attualmente l'immagine è basata su HPC Pack 2012 R2 Update 3.
+   > nodo head di Hello macchina virtuale viene creato automaticamente da hello [più recente immagine del Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) di HPC Pack 2012 R2 in Windows Server 2012 R2. Attualmente l'immagine di hello è basato su HPC Pack 2012 R2 Update 3.
    > 
-   > Le VM del nodo di calcolo vengono create dall'immagine più recente della famiglia di nodi di calcolo selezionata. Selezionare l'opzione **ComputeNodeWithExcel** per l'immagine del nodo di calcolo di HPC Pack più recente che include una versione di valutazione di Microsoft Excel Professional Plus 2013. Per distribuire un cluster per sessioni SOA generiche o per l'offload di UDF di Excel, scegliere l'opzione **ComputeNode** (senza Excel installato).
+   > Macchine virtuali del nodo calcolo vengono create dall'immagine più recente di hello della famiglia di nodo di calcolo hello selezionato. Seleziona hello **ComputeNodeWithExcel** opzione hello più recente HPC Pack calcolo nodo immagine che include una versione di valutazione di Microsoft Excel Professional Plus 2013. toodeploy un cluster per le sessioni SOA generale o per l'offload di UDF di Excel, scegliere hello **ComputeNode** opzione (senza Excel installato).
    > 
    > 
    
-   b. Selezionare la sottoscrizione.
+   b. Scegliere la sottoscrizione hello.
    
-   c. Creare un gruppo di risorse per il cluster, ad esempio *hpc01RG*.
+   c. Creare un gruppo di risorse cluster hello, ad esempio *hpc01RG*.
    
-   d. Scegliere un percorso per il gruppo di risorse, ad esempio gli Stati Uniti centrali.
+   d. Scegliere un percorso per il gruppo di risorse hello, ad esempio Stati Uniti centrali.
    
-   e. Nella pagina **Note legali** esaminare le condizioni. Se si accettano le condizioni, fare clic su **Acquista**. Quindi, dopo aver impostato i valori per il modello, fare clic su **Crea**.
-4. Al termine della distribuzione (in genere richiede circa 30 minuti), esportare il file del certificato del cluster dal nodo head del cluster. Successivamente questo certificato pubblico viene importato nel computer client per fornire l'autenticazione sul lato server per l'associazione HTTP protetta.
+   e. In hello **legali** pagina, esaminare le condizioni di hello. Se si accettano le condizioni, fare clic su **Acquista**. Quindi, dopo aver impostato i valori hello per modello di hello, fare clic su **crea**.
+4. Quando viene completata la distribuzione di hello (in genere richiede circa 30 minuti), esportare file del certificato hello cluster dal nodo head del cluster hello. Successivamente, importare il certificato pubblico hello client tooprovide hello sul lato server dell'autenticazione del computer per l'associazione HTTP protetta.
    
-   a. Nel portale di Azure passare al dashboard, selezionare il nodo head e fare clic su **Connetti** nella parte superiore della pagina per connettersi tramite Desktop remoto.
+   a. Nel portale di Azure hello, andare toohello dashboard nodo head hello selezionare e fare clic su **Connetti** nella parte superiore di hello di hello pagina tooconnect tramite Desktop remoto.
    
-    <!-- ![Connect to the head node][connect] -->
+    <!-- ![Connect toohello head node][connect] -->
    
-   b. Seguire le procedure standard in usare Gestione certificati per esportare il certificato del nodo head (situato in Cert: \LocalMachine\My) senza la chiave privata. In questo esempio esportare *CN = hpc01.eastus.cloudapp.azure.com*.
+   b. Usare le procedure standard in Gestione certificati tooexport hello nodo head certificato (che si trova in Cert: \LocalMachine\My) senza chiave privata hello. In questo esempio esportare *CN = hpc01.eastus.cloudapp.azure.com*.
    
-   ![Esportare il certificato][cert]
+   ![Esportare il certificato di hello][cert]
 
-### <a name="option-2-use-the-hpc-pack-iaas-deployment-script"></a>Opzione 2. Uso dello script di distribuzione di HPC Pack IaaS
-Lo script di distribuzione di HPC Pack IaaS offre un altro modo versatile per distribuire un cluster HPC Pack. Esso crea un cluster nel modello di distribuzione classica, mentre il modello usa il modello di distribuzione di Azure Resource Manager. Lo script è inoltre compatibile con una sottoscrizione nel servizio Azure globale o per la Cina.
+### <a name="option-2-use-hello-hpc-pack-iaas-deployment-script"></a>Opzione 2. Utilizzare script di distribuzione IaaS di HPC Pack hello
+script di distribuzione IaaS di HPC Pack Hello fornisce un altro modo versatile toodeploy un cluster HPC Pack. Viene creato un cluster nel modello di distribuzione classica hello, mentre il modello di hello modello di distribuzione Azure Resource Manager hello. Inoltre, script hello è compatibile con una sottoscrizione in hello Azure globale o il servizio Cina di Azure.
 
 **Ulteriori prerequisiti**
 
 * **Azure PowerShell** - [installare e configurare Azure PowerShell](/powershell/azure/overview) (versione 0.8.10 o versione successiva) nel computer client.
-* **Script di distribuzione di HPC Pack IaaS** : scaricare e decomprimere la versione più recente dello script dal [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). Controllare la versione dello script eseguendolo `New-HPCIaaSCluster.ps1 –Version`. Questo articolo si basa sulla versione dello script 4.5.0 o versione successiva.
+* **Script di distribuzione IaaS di HPC Pack** : scaricare e decomprimere hello versione dello script hello hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). Controllare la versione di hello dello script di hello eseguendo `New-HPCIaaSCluster.ps1 –Version`. In questo articolo si basa sulla versione 4.5.0 o successiva di script hello.
 
-**Creazione del file di configurazione**
+**Creare il file di configurazione di hello**
 
- Lo script di distribuzione di HPC Pack IaaS usa come input un file di configurazione XML che descrive l'infrastruttura del cluster HPC. Per distribuire un cluster costituito da un nodo head e 18 nodi di calcolo creati dall'immagine del nodo di calcolo che include Microsoft Excel, sostituire i valori per il proprio ambiente nel file di configurazione di esempio riportato di seguito. Per altre informazioni sul file di configurazione, vedere il file Manual.rtf nella cartella dello script e l'articolo relativo alla [creazione di un cluster HPC con lo script di distribuzione IaaS di HPC Pack](classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+ script di distribuzione IaaS di HPC Pack Hello viene utilizzato un file di configurazione XML come input che descrive l'infrastruttura di hello del cluster HPC hello. toodeploy creati dall'immagine di nodo di calcolo hello che include Microsoft Excel, i nodi di calcolo di un cluster costituito da un nodo head e 18 sostituire i valori per l'ambiente in hello seguenti il file di configurazione di esempio. Per ulteriori informazioni sul file di configurazione di hello, vedere il file Manual.rtf hello nella cartella script hello e [creare un cluster HPC con lo script di distribuzione IaaS di HPC Pack hello](classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -139,23 +139,23 @@ Lo script di distribuzione di HPC Pack IaaS offre un altro modo versatile per di
 </IaaSClusterConfig>
 ```
 
-**Note sul file di configurazione**
+**Note sul file di configurazione hello**
 
-* Il valore di **VMName** del nodo head **DEVE** essere identico al valore di **ServiceName**. In caso contrario non è possibile eseguire i processi SOA.
-* Assicurarsi di specificare **EnableWebPortal** per consentire la generazione e l'esportazione del certificato del nodo head.
-* Il file specifica lo script PowerShell post-configurazione PostConfig.ps1 eseguito nel nodo head. Lo script di esempio seguente consente di configurare la stringa di connessione dell'archiviazione di Azure, rimuovere il ruolo del nodo di calcolo dal nodo head e portare online tutti i nodi distribuiti. 
+* Hello **VMName** del nodo head hello **deve** essere hello stesso come hello **ServiceName**, o i processi SOA di esito negativo toorun.
+* Assicurarsi di specificare **EnableWebPortal** in modo che hello certificato del nodo head viene generato ed esportato.
+* file Hello specifica uno script di PowerShell di post-configurazione PostConfig.ps1 in esecuzione sul nodo head hello. Hello lo script di esempio seguente configura stringa di connessione di archiviazione di Azure hello, ruolo del nodo calcolo hello viene rimosso dal nodo head di hello e visualizza tutti i nodi in linea quando vengono distribuiti. 
 
 ```
-    # add the HPC Pack powershell cmdlets
+    # add hello HPC Pack powershell cmdlets
         Add-PSSnapin Microsoft.HPC
 
-    # set the Azure storage connection string for the cluster
+    # set hello Azure storage connection string for hello cluster
         Set-HpcClusterProperty -AzureStorageConnectionString 'DefaultEndpointsProtocol=https;AccountName=<yourstorageaccountname>;AccountKey=<yourstorageaccountkey>'
 
-    # remove the compute node role for head node to make sure the Excel workbook won’t run on head node
+    # remove hello compute node role for head node toomake sure hello Excel workbook won’t run on head node
         Get-HpcNode -GroupName HeadNodes | Set-HpcNodeState -State offline | Set-HpcNode -Role BrokerNode
 
-    # total number of nodes in the deployment including the head node and compute nodes, which should match the number specified in the XML configuration file
+    # total number of nodes in hello deployment including hello head node and compute nodes, which should match hello number specified in hello XML configuration file
         $TotalNumOfNodes = 19
 
         $ErrorActionPreference = 'SilentlyContinue'
@@ -173,48 +173,48 @@ Lo script di distribuzione di HPC Pack IaaS offre un altro modo versatile per di
         }
 ```
 
-**Esecuzione dello script**
+**Eseguire script hello**
 
-1. Aprire la console di PowerShell nel computer client come amministratore.
-2. Passare alla cartella dello script (E:\IaaSClusterScript in questo esempio).
+1. Aprire la console di PowerShell hello in computer client hello come amministratore.
+2. Modifica directory toohello cartella di script (E:\IaaSClusterScript in questo esempio).
    
    ```
    cd E:\IaaSClusterScript
    ```
-3. Per distribuire il cluster HPC Pack, eseguire il comando seguente. In questo esempio si presuppone che il file di configurazione si trovi in E:\HPCDemoConfig.xml.
+3. toodeploy hello HPC Pack cluster esegue hello comando seguente. Si presuppone che si trova il file di configurazione hello in E:\HPCDemoConfig.xml.
    
    ```
    .\New-HpcIaaSCluster.ps1 –ConfigFile E:\HPCDemoConfig.xml –AdminUserName MyAdminName
    ```
 
-Per qualche istante viene eseguito lo script di distribuzione di HPC Pack. Con l'esecuzione dello script, il certificato del cluster viene esportato, scaricato e salvato nell'attuale cartella Documenti dell'utente sul computer client. Lo script genera un messaggio simile al seguente. In un passaggio successivo, il certificato viene importato nell'archivio certificati appropriato.    
+script di distribuzione di HPC Pack Hello viene eseguito per un certo tempo. Uno script di hello cosa esegue è tooexport e scaricare il certificato di cluster hello e salvarla nella cartella documenti dell'utente corrente hello hello client computer. script di Hello genera di seguito toohello simile messaggio. In un passaggio seguente, importare certificato hello nell'archivio certificati appropriato hello.    
 
-    You have enabled REST API or web portal on HPC Pack head node. Please import the following certificate in the Trusted Root Certification Authorities certificate store on the computer where you are submitting job or accessing the HPC web portal:
+    You have enabled REST API or web portal on HPC Pack head node. Please import hello following certificate in hello Trusted Root Certification Authorities certificate store on hello computer where you are submitting job or accessing hello HPC web portal:
     C:\Users\hpcuser\Documents\HPCWebComponent_HPCExcelHN004_20150707162011.cer
 
 ## <a name="step-2-offload-excel-workbooks-and-run-udfs-from-an-on-premises-client"></a>Passaggio 2. Offload di cartelle di lavoro di Excel ed esecuzione di funzioni definite dall'utente da un client locale
 ### <a name="excel-activation"></a>Attivazione di Excel
-Quando si usa l'immagine di VM ComputeNodeWithExcel per carichi di lavoro di produzione, per attivare Excel per i nodi di calcolo è necessario disporre di un codice di licenza di Microsoft Office valido. In caso contrario, la versione di valutazione di Excel scade dopo 30 giorni e l'esecuzione delle cartelle di lavoro di Excel restituisce l'errore COMException (0x800AC472). 
+Quando si usa l'immagine VM ComputeNodeWithExcel hello per carichi di lavoro di produzione, è necessario un valido Microsoft Office licenza chiave tooactivate Excel sui nodi di calcolo hello tooprovide. In caso contrario, la versione di valutazione hello di Excel scade dopo 30 giorni e in esecuzione le cartelle di lavoro di Excel avrà esito negativo con hello COMException (0x800AC472). 
 
-Il periodo di prova di Excel può essere riattivato per altri 30 giorni. Per farlo, accedere al nodo head e usare clusrun `%ProgramFiles(x86)%\Microsoft Office\Office15\OSPPREARM.exe` per tutti i nodi di calcolo di Excel tramite Gestione cluster HPC. La riattivazione del periodo di prova può avvenire al massimo due volte. Successivamente occorre fornire un codice di licenza di Office valido.
+È possibile rearm Excel per altri 30 giorni del periodo di valutazione: accedere al nodo head toohello e clusrun `%ProgramFiles(x86)%\Microsoft Office\Office15\OSPPREARM.exe` su Excel tutti i nodi di calcolo di tramite HPC Cluster Manager. La riattivazione del periodo di prova può avvenire al massimo due volte. Successivamente occorre fornire un codice di licenza di Office valido.
 
-Il pacchetto Office Professional Plus 2013 installato nell'immagine VM è un'edizione di volume con un codice Product Key generico per contratti multilicenza. Per attivarla, è possibile usare il Servizio di gestione delle chiavi, l'attivazione basata su Active Directory o il codice ad attivazione multipla. 
+Hello Office Professional Plus 2013 installato nell'immagine di macchina virtuale hello è un'edizione con contratti multilicenza con una chiave (Multilicenza generico). Per attivarla, è possibile usare il Servizio di gestione delle chiavi, l'attivazione basata su Active Directory o il codice ad attivazione multipla. 
 
-    * Per usare KMS/AD-BA, usare un server KMS esistente oppure configurarne uno nuovo con Microsoft Office 2013 Volume License Pack. Se lo si desidera, è possibile configurare il server nel nodo head. Quindi, attivare il codice Product Key host KMS tramite Internet o telefono. Quindi usare clusrun `ospp.vbs` per impostare il server e la porta KMS e attivare Office per tutti nodi di calcolo di Excel. 
+    * toouse AD/KMS-BA, utilizzare un server di gestione delle CHIAVI esistente o configurarne uno nuovo con hello pacchetto licenze Volume di Microsoft Office 2013. (Se si desidera, è possibile configurare il server di hello nel nodo head di hello.) Quindi, attivare hello codice Product key host tramite hello Internet o telefono. Quindi clusrun `ospp.vbs` tooset hello porta e il server di gestione delle CHIAVI e attivare di Office su tutti i nodi di calcolo Excel hello. 
 
-    * Per usare MAK, usare prima clusrun `ospp.vbs` per immettere il codice e quindi attivare tutti i nodi di calcolo di Excel tramite Internet o telefono. 
+    * toouse MAK, clusrun prima `ospp.vbs` tooinput hello chiave e quindi attivare tutti i nodi di calcolo Excel hello tramite hello Internet o telefono. 
 
 > [!NOTE]
-> Con questa immagine di VM non è possibile usare codici Product Key di Office Professional Plus 2013. Se si dispone di codici e supporti di installazione validi per edizioni di Office o Excel diverse dall'edizione multilicenza di Office Professional Plus 2013, è possibile usarli in alternativa. Disinstallare innanzitutto l'edizione multilicenza, quindi installare l'edizione in proprio possesso. Il nodo di calcolo di Excel reinstallato può essere acquisito come immagine di VM personalizzata da usare in una distribuzione su vasta scala.
+> Con questa immagine di VM non è possibile usare codici Product Key di Office Professional Plus 2013. Se si dispone di codici e supporti di installazione validi per edizioni di Office o Excel diverse dall'edizione multilicenza di Office Professional Plus 2013, è possibile usarli in alternativa. Prima disinstallare questa edizione di volume e installare l'edizione hello in uso. Hello reinstallato Excel del nodo di calcolo può essere acquisito in un toouse immagine di macchina virtuale personalizzata in una distribuzione su larga scala.
 > 
 > 
 
 ### <a name="offload-excel-workbooks"></a>Offload di cartelle di lavoro di Excel
-Per eseguire l'offload di una cartella di lavoro di Excel in modo da eseguirla nel cluster HPC Pack in Azure, attenersi alla procedura riportata di seguito. A tale scopo, è necessario disporre di Excel 2010 o 2013 già installato nel computer client.
+Seguire questi toooffload passaggi una cartella di lavoro di Excel in modo che venga eseguito nel cluster HPC Pack hello in Azure. toodo, è necessario disporre di Excel 2010 o 2013 già installato nel computer client hello.
 
-1. Usare una delle opzioni illustrate nel Passaggio 1 per distribuire un cluster HPC Pack con l'immagine del nodo di calcolo di Excel. Ottenere il file del certificato del cluster (con estensione cer) e nome utente e password del cluster.
-2. Nel computer client, importare il certificato del cluster in Cert: \CurrentUser\Root.
-3. Verificare che Excel sia installato. Creare un file Excel.exe.config con i seguenti contenuti nella stessa cartella di Excel.exe del computer client. Così facendo, il componente aggiuntivo di HPC Pack 2012 R2 Excel COM viene caricato correttamente.
+1. Utilizzare una delle opzioni di hello nel passaggio 1 toodeploy un cluster HPC Pack con Excel hello immagine del nodo di calcolo. Ottenere hello cluster certificato (. cer) e nome utente del cluster e la password.
+2. Computer client hello importare certificati cluster hello in Cert: \CurrentUser\Root.
+3. Verificare che Excel sia installato. Creare un file Excel.exe. config con hello seguente contenuto hello stessa cartella Excel.exe nel computer client hello. Questo passaggio garantisce che hello del componente aggiuntivo di HPC Pack 2012 R2 Excel COM viene caricato correttamente.
    
     ```
     <?xml version="1.0"?>
@@ -224,13 +224,13 @@ Per eseguire l'offload di una cartella di lavoro di Excel in modo da eseguirla n
         </startup>
     </configuration>
     ```
-4. Configurare il client per l'invio di processi al cluster di HPC Pack. Per farlo, è possibile scaricare [HPC Pack 2012 R2 Update 3](http://www.microsoft.com/download/details.aspx?id=49922) e installare il client di HPC Pack. In alternativa, scaricare e installare le utilità client [HPC Pack 2012 R2 Update 3](https://www.microsoft.com/download/details.aspx?id=49923) e il file ridistribuibile di Visual C++ 2010 appropriato per il computer in uso ([x64](http://www.microsoft.com/download/details.aspx?id=14632), [x86](https://www.microsoft.com/download/details.aspx?id=5555)).
+4. Configurare il cluster di HPC Pack toohello hello client toosubmit processi. Un'opzione è hello toodownload completo [HPC Pack 2012 R2 Update 3 installazione](http://www.microsoft.com/download/details.aspx?id=49922) e installare il client di HPC Pack hello. In alternativa, scaricare e installare hello [utilità client di HPC Pack 2012 R2 Update 3](https://www.microsoft.com/download/details.aspx?id=49923) e hello appropriato Visual C++ 2010 redistributable per il computer ([x64](http://www.microsoft.com/download/details.aspx?id=14632), [x86](https://www.microsoft.com/download/details.aspx?id=5555)).
 5. In questo esempio viene usata una cartella di lavoro di Excel di esempio denominata ConvertiblePricing_Complete.xlsb. È possibile scaricarlo [qui](https://www.microsoft.com/en-us/download/details.aspx?id=2939).
-6. Copiare la cartella di lavoro di Excel in una cartella di lavoro, ad esempio D:\Excel\Run.
-7. Aprire la cartella di lavoro di Excel. Nella barra multifunzione **Sviluppo** fare clic su **COM Add-Ins** e verificare che il componente aggiuntivo HPC Pack Excel COM venga caricato correttamente.
+6. Copiare hello Excel cartella di lavoro tooa cartella di lavoro, ad esempio D:\Excel\Run.
+7. Aprire una cartella di lavoro di Excel hello. In hello **sviluppare** della barra multifunzione, fare clic su **componenti aggiuntivi COM** e verificare che hello HPC Pack Excel componente aggiuntivo viene caricato correttamente.
    
    ![Componente aggiuntivo Excel per HPC Pack][addin]
-8. Modificare la macro VBA HPCControlMacros in Excel cambiando le righe commentate, come illustrato nello script seguente. Sostituire con i valori appropriati per il proprio ambiente.
+8. Le righe di commento macro VBA modifica hello HPCControlMacros in Excel modificando hello come illustrato nell'hello lo script seguente. Sostituire con i valori appropriati per il proprio ambiente.
    
    ![Macro Excel per HPC Pack][macro]
    
@@ -250,43 +250,43 @@ Per eseguire l'offload di una cartella di lavoro di Excel in modo da eseguirla n
    'HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath
    HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath, UserName:="hpc\azureuser", Password:="<YourPassword>"
    ```
-9. Copiare la cartella di lavoro di Excel in una directory di caricamento, ad esempio D:\Excel\Upload. Questa directory viene specificata nella costante HPC_DependsFiles della macro VBA.
-10. Per eseguire la cartella di lavoro nel cluster di Azure, fare clic sul pulsante **Cluster** nel foglio di lavoro.
+9. Copiare directory upload tooan hello Excel cartella di lavoro, ad esempio D:\Excel\Upload. La directory specificata nella costante HPC_DependsFiles hello nella macro VBA hello.
+10. cartella di lavoro hello toorun in cluster hello in Azure, fare clic su hello **Cluster** pulsante foglio di lavoro hello.
 
 ### <a name="run-excel-udfs"></a>Esecuzione delle funzioni definite dall'utente di Excel
-Per eseguire funzioni definite dall'utente di Excel, seguire i passaggi da 1 a 3 della precedente configurazione del computer client. Per le funzioni UDF di Excel, non è necessario che l'applicazione di Excel sia installata nei nodi di calcolo. Pertanto, quando si creano i nodi di calcolo del cluster, è possibile scegliere un'immagine del nodo di calcolo normale, anziché l'immagine del nodo di calcolo con Excel.
+toorun Excel funzioni definite dall'utente, seguire passaggi precedenti, hello tooset 1-3 backup computer client hello. Per funzioni definite dall'utente di Excel, non è necessaria un'applicazione Excel toohave hello installata sui nodi di calcolo. Pertanto, quando si crea il cluster di nodi di calcolo, è possibile scegliere un'immagine del nodo di calcolo normale anziché hello calcolo immagine del nodo con Excel.
 
 > [!NOTE]
-> Esiste un limite di 34 caratteri nella finestra di dialogo del connettore del cluster di Excel 2010 e 2013. Usare questa finestra di dialogo per specificare il cluster che esegue le funzioni UDF. Se il nome completo del cluster è più lungo, ad esempio hpcexcelhn01.southeastasia.cloudapp.azure.com, lo spazio disponibile nella finestra di dialogo non sarà sufficiente. La soluzione alternativa consiste nell'impostare una variabile a livello di computer, ad esempio *CCP_IAASHN* con il valore del nome di cluster lungo. Dopodiché, immettere *%CCP_IAASHN%* nella finestra di dialogo come nome del nodo head del cluster. 
+> È presente un limite di 34 caratteri in hello Excel 2010 e 2013 cluster connettore finestra di dialogo. Utilizzare questa finestra di dialogo casella toospecify hello cluster che esegue hello funzioni definite dall'utente. Se il nome completo del cluster hello è più lungo (ad esempio, hpcexcelhn01.southeastasia.cloudapp.azure.com), non è possibile inserirlo nella finestra di dialogo hello. Hello soluzione alternativa è tooset una variabile a livello di computer, ad esempio *CCP_IAASHN* con valore hello hello lungo nome di cluster. Quindi, immettere *CCP_IAASHN %* nella finestra di dialogo hello come nome del nodo head del cluster hello. 
 > 
 > 
 
-Dopo aver correttamente distribuito il cluster, continuare con la procedura seguente per eseguire una funzione definita dall'utente di Excel integrata di esempio. Per funzioni definite dall'utente di Excel personalizzate, consultare queste [risorse](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) per compilare librerie XLL e distribuirle sul cluster IaaS.
+Dopo la distribuzione di cluster hello è completata, continuare con hello seguendo i passaggi toorun incorporato esempio UDF di Excel. Per UDF di Excel personalizzati, vedere questi [risorse](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) toobuild hello XLL e distribuirli nei cluster IaaS hello.
 
-1. Aprire una nuova cartella di lavoro di Excel. Nella barra multifunzione **Sviluppo** fare clic su **Componenti aggiuntivi**. Quindi, nella finestra di dialogo fare clic su **Sfoglia**, accedere alla cartella %CCP_HOME%Bin\XLL32 e selezionare il ClusterUDF32.xll di esempio. Se il ClusterUDF32 non esiste nel computer client, copiarlo dalla cartella %CCP_HOME%Bin\XLL32 nel nodo head.
+1. Aprire una nuova cartella di lavoro di Excel. In hello **sviluppare** della barra multifunzione, fare clic su **Add-Ins**. Quindi, nella finestra di dialogo hello, fare clic su **Sfoglia**, passare toohello %CCP_HOME%Bin\XLL32 cartella e selezionare l'esempio hello ClusterUDF32.xll. Se hello ClusterUDF32 non esiste nel computer client hello, copiarlo nella cartella %CCP_HOME%Bin\XLL32 hello nel nodo head hello.
    
-   ![Selezionare la UDF][udf]
-2. Fare clic su **File** > **Opzioni** > **Avanzate**. In **Formule** selezionare **Allow user-defined XLL functions to run a compute cluster** (Consenti l'esecuzione di funzioni XLL definite dall'utente in un cluster di elaborazione). Fare clic su **Opzioni** e immettere il nome completo del cluster in **Nome del nodo head del cluster**. (Come indicato in precedenza la casella di immissione è limitata a 34 caratteri, pertanto un nome di cluster lungo potrebbe non essere adatto. Per i nomi di cluster lunghi, è possibile usare una variabile a livello di computer).
+   ![Selezionare hello funzione definita dall'utente][udf]
+2. Fare clic su **File** > **Opzioni** > **Avanzate**. In **formule**, controllare **consentono di un cluster di calcolo definito dall'utente XLL funzioni toorun**. Quindi fare clic su **opzioni** e immettere il nome completo del cluster hello in **nome nodo head del Cluster**. (Come indicato in precedenza questa casella di input è limitato too34 caratteri, in modo da un nome lungo cluster potrebbe non essere adatto. Per i nomi di cluster lunghi, è possibile usare una variabile a livello di computer).
    
-   ![Configurare la UDF][options]
-3. Per eseguire il calcolo della funzione UDF nel cluster, fare clic sulla cella con valore =XllGetComputerNameC() e premere Invio. La funzione recupera semplicemente il nome del nodo di calcolo in cui viene eseguita la funzione UDF. Per la prima esecuzione, una finestra di dialogo per l'immissione delle credenziali richiede nome utente e password per connettersi al cluster IaaS.
+   ![Configurare hello funzione definita dall'utente][options]
+3. hello toorun calcolo funzione definita dall'utente nel cluster hello, fare clic su una cella con il valore =XllGetComputerNameC() hello e premere INVIO. funzione Hello recupera semplicemente il nome di hello del nodo di calcolo hello in cui hello funzione definita dall'utente in esecuzione. Per eseguire prima di hello, una finestra di dialogo credenziali richiede hello nome utente e password tooconnect toohello cluster IaaS.
    
    ![Eseguire una UDF][run]
    
-   Quando le celle da elaborare sono molte, premere ALT-MAIUSC-CTRL + F9 per eseguire il calcolo su tutte le celle.
+   Quando sono presenti molti toocalculate celle, premere Maiusc-Alt-Ctrl + calcolo di hello toorun F9 su tutte le celle.
 
 ## <a name="step-3-run-a-soa-workload-from-an-on-premises-client"></a>Passaggio 3. Esecuzione di un carico di lavoro SOA da un client locale
-Per eseguire applicazioni SOA generiche nel cluster IaaS di HPC Pack, distribuire innanzitutto il cluster usando uno dei metodi descritti nel Passaggio 1. In questo caso specificare l'immagine di un nodo di calcolo generico, poiché nei nodi di calcolo non è necessario Excel. Attenersi quindi alla procedura seguente:
+applicazioni SOA generali toorun cluster IaaS di HPC Pack hello innanzitutto utilizzare uno dei metodi di hello in cluster di hello toodeploy passaggio 1. Specificare un'immagine di un nodo di calcolo generico in questo caso, poiché non è necessario Excel sui nodi di calcolo hello. Attenersi quindi alla procedura seguente:
 
-1. Dopo avere recuperato il certificato del cluster, importarlo nel computer client, in Cert:\CurrentUser\Root.
-2. Installare l'[SDK di HPC Pack 2012 R2 Update 3](http://www.microsoft.com/download/details.aspx?id=49921) e le [utilità client di HPC Pack 2012 R2 Update 3](https://www.microsoft.com/download/details.aspx?id=49923). Questi strumenti consentono di sviluppare ed eseguire applicazioni client SOA.
-3. Scaricare il [codice di esempio](https://www.microsoft.com/download/details.aspx?id=41633)HelloWorldR2. Aprire HelloWorldR2.sln in Visual Studio 2010 o 2012. Questo esempio non è attualmente compatibile con le versioni più recenti di Visual Studio.
-4. Compilare innanzitutto il progetto EchoService. Dopodiché, distribuire il servizio nel cluster IaaS con le stesse modalità di distribuzione in un cluster locale. Per informazioni dettagliate, vedere il file Readme.doc in HelloWordR2. Modificare e compilare HelloWorldR2 e altri progetti come descritto nella sezione seguente per generare le applicazioni client SOA da eseguire in un cluster IaaS di Azure.
+1. Dopo aver recuperato il certificato di cluster hello, importarlo nel computer client hello in Cert: \CurrentUser\Root.
+2. Installare hello [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) e [utilità client di HPC Pack 2012 R2 Update 3](https://www.microsoft.com/download/details.aspx?id=49923). Questi strumenti consentono di toodevelop ed eseguono applicazioni SOA.
+3. Scaricare hello HelloWorldR2 [codice di esempio](https://www.microsoft.com/download/details.aspx?id=41633). Aprire hello HelloWorldR2.sln in Visual Studio 2010 o 2012. Questo esempio non è attualmente compatibile con le versioni più recenti di Visual Studio.
+4. Prima di compilazione progetto EchoService hello. Quindi, distribuire cluster IaaS di hello servizio toohello in hello stesso modo in cui si distribuiscono tooan locale del cluster. Per informazioni dettagliate, vedere hello Readme in HelloWordR2. Modificare e compilare hello HellWorldR2 e da altri progetti, come descritto nella seguente sezione toogenerate hello SOA applicazioni client eseguite in un cluster IaaS di Azure hello.
 
 ### <a name="use-http-binding-with-azure-storage-queue"></a>Uso dell'associazione Http con coda di archiviazione di Azure
-Per usare l'associazione Http con una coda di archiviazione di Azure, apportare alcune modifiche al codice di esempio.
+associazione Http toouse con una coda di archiviazione di Azure, apportare alcune modifiche toohello codice di esempio.
 
-* Aggiornare il nome del cluster.
+* Aggiornare il nome del cluster hello.
   
     ```
   // Before
@@ -296,13 +296,13 @@ Per usare l'associazione Http con una coda di archiviazione di Azure, apportare 
   or
   const string headnode = "hpc01.cloudapp.net";
   ```
-* Facoltativamente, usare il nome predefinito TransportScheme in SessionStartInfo o impostarlo in modo esplicito su Http.
+* Facoltativamente, utilizzare predefinito hello TransportScheme SessionStartInfo o impostare in modo esplicito tooHttp.
 
 ```
     info.TransportScheme = TransportScheme.Http;
 ```
 
-* Usare l'associazione predefinita per il BrokerClient.
+* Utilizzare l'associazione predefinita per hello BrokerClient.
   
     ```
   // Before
@@ -311,35 +311,35 @@ Per usare l'associazione Http con una coda di archiviazione di Azure, apportare 
   using (BrokerClient<IService1> client = new BrokerClient<IService1>(session))
   ```
   
-    Oppure impostare in modo esplicito usando l'associazione basicHttpBinding.
+    O impostare in modo esplicito utilizzando basicHttpBinding hello.
   
     ```
   BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.TransportWithMessageCredential);
   binding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;    binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
   ```
-* Facoltativamente, impostare il flag UseAzureQueue su true in SessionStartInfo. Se non lo si imposta, verrà impostato in modo predefinito su true quando il nome del cluster dispone di suffissi di dominio di Azure e il TransportScheme è Http.
+* Facoltativamente, impostare hello UseAzureQueue flag tootrue in SessionStartInfo. Se non impostato, verrà impostato tootrue per impostazione predefinita quando il nome del cluster hello suffissi di dominio di Azure e hello TransportScheme è Http.
   
     ```
     info.UseAzureQueue = true;
   ```
 
 ### <a name="use-http-binding-without-azure-storage-queue"></a>Uso dell'associazione Http senza coda di archiviazione di Azure
-Per utilizzare l'associazione Http senza una coda di archiviazione di Azure, in SessionStartInfo impostare in modo esplicito il flag UseAzureQueue su false.
+associazione Http toouse senza una coda di archiviazione di Azure, in modo esplicito set hello UseAzureQueue flag toofalse in hello SessionStartInfo.
 
 ```
     info.UseAzureQueue = false;
 ```
 
 ### <a name="use-nettcp-binding"></a>Uso dell'associazione NetTcp
-Per usare l'associazione NetTcp, la configurazione è simile alla connessione a un cluster locale. È necessario aprire alcuni endpoint nella VM del nodo head. Se ad esempio è stato usato lo script di distribuzione IaaS di HPC Pack per creare il cluster, impostare gli endpoint nel portale di Azure come di seguito descritto.
+toouse NetTcp associazione configurazione hello è cluster locale di simili tooconnecting tooan. È necessario tooopen alcuni endpoint nella macchina virtuale del nodo head hello. Se si utilizza del cluster di hello toocreate hello IaaS di HPC Pack distribuzione script, ad esempio, set di endpoint hello in hello portale di Azure come indicato di seguito.
 
-1. Arrestare la VM.
-2. Aggiungere le porte TCP 9090, 9087, 9091, 9094 rispettivamente per Sessione, Broker, Broker worker e Servizi dati
+1. Arrestare VM hello.
+2. Aggiungere le porte TCP hello 9090, 9087, 9091, 9094 per sessione, hello Broker, rispettivamente di Service Broker worker e servizi di dati,
    
     ![Configurare gli endpoint][endpoint-new-portal]
-3. Avviare la VM.
+3. Avviare hello macchina virtuale.
 
-L'applicazione client SOA non richiede alcuna modifica, ad eccezione della modifica al nome head per il nome completo del cluster IaaS.
+applicazione client SOA Hello è necessario apportare alcuna modifica, ad eccezione di modifica hello head toohello IaaS completa nome cluster.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per altre informazioni sull'esecuzione di carichi di lavoro di Excel con HPC Pack, vedere [queste risorse](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) .

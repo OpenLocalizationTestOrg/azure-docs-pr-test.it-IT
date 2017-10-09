@@ -1,6 +1,6 @@
 ---
-title: Collegare un disco a una macchina virtuale di Azure classica | Documentazione Microsoft
-description: Collegare un disco dati da una macchina virtuale Windows creata con il modello di distribuzione classico e inizializzarla.
+title: aaaAttach tooa un disco macchina virtuale di Azure classico | Documenti Microsoft
+description: Collegare una macchina virtuale di Windows di dati su disco tooa creata con il modello di distribuzione classica hello e inizializzarlo.
 services: virtual-machines-windows, storage
 documentationcenter: 
 author: cynthn
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/21/2017
 ms.author: cynthn
-ms.openlocfilehash: 087d5cda354f6e1780bddd3725859444177abd16
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bfe1b0fa066277d28d3862a18da4b1023cb4452d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="attach-a-data-disk-to-a-windows-virtual-machine-created-with-the-classic-deployment-model"></a>Collegare un disco dati da una macchina virtuale di Windows creata con il modello di distribuzione classico.
+# <a name="attach-a-data-disk-tooa-windows-virtual-machine-created-with-hello-classic-deployment-model"></a>Collegare una macchina virtuale di Windows di dati su disco tooa creata con il modello di distribuzione classica hello
 <!--
 Refernce article:
-    If you want to use the new portal, see [How to attach a data disk to a Windows VM in the Azure portal](../../virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+    If you want toouse hello new portal, see [How tooattach a data disk tooa Windows VM in hello Azure portal](../../virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 -->
 
-Questo articolo illustra come collegare dischi nuovi o esistenti creati con il modello di distribuzione classica a una macchina virtuale Windows usando il portale di Azure.
+In questo articolo viene illustrato come creare i dischi nuovi ed esistenti tooattach con hello Classic distribuzione modello tooa macchina virtuale Windows usando hello portale di Azure.
 
-È possibile anche [collegare un disco dati a una macchina virtuale Linux nel portale di Azure](../../linux/attach-disk-portal.md).
+È anche possibile [collegare un tooa di disco dati VM Linux nel portale di Azure hello](../../linux/attach-disk-portal.md).
 
 Prima di collegare un disco, esaminare i seguenti suggerimenti:
 
-* La dimensione della macchina virtuale controlla il numero di dischi dati che è possibile collegare. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* dimensioni di Hello della macchina virtuale hello controlla il numero di dischi dati è possibile collegare. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-* Per usare l'archiviazione Premium, è necessaria una macchina virtuale della serie DS o GS. È possibile utilizzare dischi dagli account di archiviazione sia Premium che Standard con queste macchine virtuali. L’archiviazione Premium è disponibile solo in determinate aree geografiche. Per ulteriori informazioni, vedere [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../../../storage/common/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* toouse archiviazione Premium, è necessario una macchina virtuale serie DS o GS-series. È possibile utilizzare dischi dagli account di archiviazione sia Premium che Standard con queste macchine virtuali. L’archiviazione Premium è disponibile solo in determinate aree geografiche. Per ulteriori informazioni, vedere [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../../../storage/common/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-* Per un nuovo disco, non è necessario crearlo prima perché Azure lo crea quando lo si collega.
+* Per un nuovo disco, non è necessario toocreate è primo poiché Azure crea momento del collegamento.
 
 È anche possibile [collegare un disco dati usando Powershell](../../virtual-machines-windows-attach-disk-ps.md).
 
 > [!IMPORTANT]
 > Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md).
 
-## <a name="find-the-virtual-machine"></a>Trovare la macchina virtuale
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Selezionare la macchina virtuale dalla risorsa visualizzata nel dashboard.
-3. Nella sezione **Impostazioni** presente nel riquadro sinistro fare clic su **Dischi**.
+## <a name="find-hello-virtual-machine"></a>Trovare la macchina virtuale hello
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Macchina virtuale selezionare hello dalla risorsa hello elencato nel dashboard di hello.
+3. Nel riquadro sinistro di hello in **impostazioni**, fare clic su **dischi**.
 
     ![Aprire le impostazioni del disco](./media/attach-disk/virtualmachinedisks.png)
 
@@ -55,61 +55,61 @@ Continuare seguendo le istruzioni per il collegamento di un [nuovo disco](#optio
 
 ## <a name="option-1-attach-and-initialize-a-new-disk"></a>Opzione 1: Connettere e inizializzare un nuovo disco
 
-1. Nel pannello **Dischi** fare clic su **Collega nuovo**.
-2. Esaminare le impostazioni predefinite, aggiornare se necessario e quindi fare clic su **OK**.
+1. In hello **dischi** pannello, fare clic su **nuovo collegamento**.
+2. Esaminare le impostazioni predefinite di hello, aggiornare, se necessario e quindi fare clic su **OK**.
 
    ![Esaminare le impostazioni del disco](./media/attach-disk/attach-new.png)
 
-3. Dopo che Azure crea il disco e lo collega alla macchina virtuale, il nuovo disco viene elencato nella sezione Impostazioni disco della macchina virtuale in **Dischi dati**.
+3. Dopo che Azure crea un disco hello e lo collega macchina virtuale toohello, nuovo disco hello è elencato nelle impostazioni del disco della macchina virtuale hello in **dischi dati**.
 
 ### <a name="initialize-a-new-data-disk"></a>Inizializzare un nuovo disco dati
 
-1. Connettersi alla macchina virtuale. Per istruzioni, vedere [Come connettersi e accedere a una macchina virtuale di Azure che esegue Windows Server](../../virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-2. Dopo aver eseguito l'accesso alla macchina virtuale, aprire **Server Manager**. Nel riquadro sinistro fare clic su **Servizi file e archiviazione**.
+1. Connessione macchina virtuale toohello. Per istruzioni, vedere [come tooconnect e tooan virtuali di Azure di accesso del computer che eseguono Windows](../../virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+2. Dopo aver effettuato sulla macchina virtuale toohello, aprire **Server Manager**. Nel riquadro sinistro hello selezionare **servizi File e archiviazione**.
 
     ![Avviare Server Manager](../media/attach-disk-portal/fileandstorageservices.png)
 
 3. Selezionare **Dischi**.
-4. La sezione **dischi** contiene un elenco dei dischi. Nella maggior parte dei casi, avrà disco 0, disco 1 e disco 2. Il disco 0 è il disco del sistema operativo, il disco 1 è il disco temporaneo e il disco 2 è il disco dati appena connesso alla macchina virtuale. Il disco dati visualizza la partizione come **Unknown** (Sconosciuta).
+4. Hello **dischi** sezione sono elencati i dischi di hello. Nella maggior parte dei casi, avrà disco 0, disco 1 e disco 2. Disco 0 è il disco di sistema operativo hello, disco 1 è disco temporaneo hello e disco 2 è disco dati hello appena collegati macchina virtuale toohello. elenchi di disco dati Hello hello partizione come **sconosciuto**.
 
- Fare clic con il pulsante destro del mouse sul disco e scegliere **Inizializza**.
+ Fare doppio clic su disco hello e selezionare **inizializzare**.
 
-5. Si riceverà una notifica che tutti i dati verranno cancellati quando viene inizializzato il disco. Fare clic su **Sì** per accettare il messaggio di avviso e inizializzare il disco. Una volta completata l'operazione, la partizione verrà elencata come **GPT**. Fare di nuovo clic con il pulsante destro del mouse sul disco e scegliere **Nuovo volume**.
+5. Si è inviata una notifica che tutti i dati verranno cancellati quando viene inizializzato il disco di hello. Fare clic su **Sì** tooacknowledge hello avviso e inizializzare hello su disco. Al termine dell'operazione, verrà indicata come partizione hello **GPT**. Fare nuovamente doppio clic su disco hello e selezionare **nuovo Volume**.
 
-6. Completare la procedura guidata usando i valori predefiniti. Al termine della procedura guidata, nella sezione **Volumi** verrà visualizzato il nuovo volume. Il disco sarà ora online e pronto per l'archiviazione di dati.
+6. Completare Creazione guidata hello utilizzando i valori predefiniti di hello. Quando viene eseguito la procedura guidata hello, hello **volumi** sezione sono elencati nuovo volume hello. disco Hello è online e pronto toostore dati.
 
     ![Inizializzazione del volume completata](./media/attach-disk/newdiskafterinitialization.png)
 
 ## <a name="option-2-attach-an-existing-disk"></a>Opzione 2: Collegare un disco esistente
-1. Nel pannello **Dischi** fare clic su **Collega esistente**.
+1. In hello **dischi** pannello, fare clic su **collegamento esistente**.
 2. In **Collega un disco esistente** fare clic su **Posizione**.
 
    ![Collegare un disco esistente](./media/attach-disk/attachexistingdisksettings.png)
-3. In **Account di archiviazione**, selezionare l'account e un contenitore che contiene il file con estensione vhd.
+3. In **gli account di archiviazione**, selezionare account hello e contenitore che include i file con estensione vhd hello.
 
    ![Individuare il percorso di un VHD](./media/attach-disk/existdiskstorageaccountandcontainer.png)
 
-4. Selezionare il file con estensione vhd.
-5. In **Collega un disco esistente** il file appena selezionato è elencato in **File VHD**. Fare clic su **OK**.
-6. Dopo che Azure collega il disco alla macchina virtuale, esso viene elencato nella sezione Impostazioni disco della macchina virtuale in **Dischi dei dati**.
+4. Selezionare i file con estensione vhd hello.
+5. In **collegare un disco esistente**, file hello appena selezionata è elencato in **File VHD**. Fare clic su **OK**.
+6. Dopo il collega Azure hello macchina virtuale di toohello disco, viene elencata per le impostazioni del disco della macchina virtuale hello in **dischi dati**.
 
 ## <a name="use-trim-with-standard-storage"></a>Usare TRIM con l'archiviazione Standard
 
-Se si usa l'archiviazione Standard (HDD), è consigliabile abilitare TRIM. TRIM ignora i blocchi inutilizzati nel disco facendo in modo che venga addebitato solo lo spazio di archiviazione usato effettivamente. L'uso di TRIM consente di risparmiare sui costi, inclusi i blocchi inutilizzati risultanti dall'eliminazione di file di grandi dimensioni.
+Se si usa l'archiviazione Standard (HDD), è consigliabile abilitare TRIM. TRIM rimuove i blocchi inutilizzati nel disco hello in modo verrà addebitato solo per l'archiviazione che stiano effettivamente usando. L'uso di TRIM consente di risparmiare sui costi, inclusi i blocchi inutilizzati risultanti dall'eliminazione di file di grandi dimensioni.
 
-Per verificare l'impostazione TRIM, è possibile eseguire questo comando. Aprire un prompt dei comandi nella macchina virtuale Windows e digitare:
+È possibile eseguire questo comando toocheck hello TRIM impostare. Aprire un prompt dei comandi nella macchina virtuale Windows e digitare:
 
 ```
 fsutil behavior query DisableDeleteNotify
 ```
 
-Se il comando restituisce 0, l'impostazione TRIM è abilitata correttamente. Se restituisce 1, eseguire questo comando per abilitare TRIM:
+Se il comando hello restituisce 0, l'ottimizzazione TRIM è abilitato correttamente. Se viene restituito 1, eseguire hello tooenable comando TRIM seguenti:
 ```
 fsutil behavior set DisableDeleteNotify 0
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se l'applicazione deve usare l'unità D: per archiviare i dati, è possibile [modificare la lettera di unità del disco temporaneo di Windows](../../virtual-machines-windows-change-drive-letter.md).
+Se l'applicazione necessita di dati di toostore unità d: hello toouse, è possibile [modificare hello lettera di unità del disco temporaneo di Windows hello](../../virtual-machines-windows-change-drive-letter.md).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../../virtual-machines-linux-about-disks-vhds.md)

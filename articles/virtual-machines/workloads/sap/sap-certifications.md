@@ -1,6 +1,6 @@
 ---
-title: Certificazioni di Microsoft Azure per SAP | Microsoft Docs
-description: Elenco aggiornato delle configurazioni e delle certificazioni SAP attualmente disponibili nella piattaforma Azure.
+title: aaaMicrosoft Azure certificazioni per SAP | Documenti Microsoft
+description: Elenco aggiornato delle configurazioni correnti e certificazioni di SAP in hello piattaforma Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: RicksterCDN
@@ -17,21 +17,21 @@ ms.workload: infrastructure-services
 ms.date: 03/29/2017
 ms.author: rclaus
 ms.custom: 
-ms.openlocfilehash: e4d5c78299903659a18aa9b8d04495e215bcca0d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4001375b465b3abd27335064454b7fe8979f1530
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sap-certifications-and-configurations-running-on-microsoft-azure"></a>Configurazioni e certificazioni SAP in esecuzione su Microsoft Azure
 
-SAP e Microsoft hanno una lunga storia di collaborazione che produce vantaggi per i reciproci clienti. Microsoft aggiorna costantemente la propria piattaforma e invia i dettagli di nuove certificazioni a SAP al fine di garantire la leadership di Microsoft Azure come piattaforma in cui eseguire carichi di lavoro SAP. Le tabelle seguenti illustrano le configurazioni supportate e un elenco sempre crescente di certificazioni. 
+SAP e Microsoft hanno una lunga storia di collaborazione che produce vantaggi per i reciproci clienti. Microsoft aggiorna continuamente la piattaforma e inviare di nuovo tooSAP dettagli di certificazione in ordine tooensure Microsoft Azure è hello migliore piattaforma su cui toorun i carichi di lavoro SAP. Hello nelle tabelle seguenti descrivono il nostro configurazioni supportate e un elenco di certificazioni di crescita. 
 
 ## <a name="sap-hana-certifications"></a>Certificazioni SAP HANA
 
 | Prodotto SAP | Sistema operativo supportato | Offerte Azure |
 | --- | --- | --- |
-| SAP HANA Developer Edition, che include il software HANA Client e i driver SQLODBC, ODBO (solo Windows), ODBC e JDBC, HANA Studio e il database HANA |Red Hat Enterprise Linux, SUSE Linux Enterprise | Famiglia di VM serie D |
+| SAP HANA Developer Edition (compreso il software client di hello HANA costituita da SQLODBC, solo ODBO Windows ODBC driver JDBC, HANA studio e HANA database) |Red Hat Enterprise Linux, SUSE Linux Enterprise | Famiglia di VM serie D |
 | HANA One |Red Hat Enterprise Linux, SUSE Linux Enterprise |DS14_v2 (in seguito alla disponibilità generale) |
 | SAP S/4 HANA |Red Hat Enterprise Linux, SUSE Linux Enterprise |Disponibilità controllata per GS5, SAP HANA in Azure (istanze di grandi dimensioni) |
 | Suite su HANA, OLTP |Red Hat Enterprise Linux, SUSE Linux Enterprise |GS5 per distribuzioni a nodo singolo, per scenari non di produzione, SAP HANA in Azure (istanze di grandi dimensioni) |
@@ -39,11 +39,11 @@ SAP e Microsoft hanno una lunga storia di collaborazione che produce vantaggi pe
 | SAP BW/4 HANA |Red Hat Enterprise Linux, SUSE Linux Enterprise |GS5 per distribuzioni a nodo singolo, SAP HANA in Azure (istanze di grandi dimensioni) |
 
 ## <a name="sap-netweaver-certifications"></a>Certificazioni SAP NetWeaver
-Microsoft Azure è certificato per i seguenti prodotti SAP, con pieno supporto di Microsoft e SAP.
+Microsoft Azure è certificato per i seguenti prodotti SAP, con il supporto completo di Microsoft e SAP hello.
 
 | Prodotto SAP | Sistema operativo guest | RDBMS | Tipi di macchine virtuali |
 | --- | --- | --- | --- |
-| Software SAP Business Suite |Windows, SUSE Linux Enterprise, Red Hat Enterprise Linux, Oracle Linux |SQL Server, Oracle (solo Windows e Oracle Linux), DB2, SAP ASE |Da A5 ad A11, da D11 a D14, da DS11 a DS14, da DS11_v2 a DS15_v2, da GS1 a GS5 |
-| SAP Business All-in-One |Windows, SUSE Linux Enterprise, Red Hat Enterprise Linux |SQL Server, Oracle (solo Windows e Oracle Linux), DB2, SAP ASE |Da A5 ad A11, da D11 a D14, da DS11 a DS14, da DS11_v2 a DS15_v2, da GS1 a GS5 |
-| SAP BusinessObjects BI |Windows |N/D |Da A5 ad A11, da D11 a D14, da DS11 a DS14, da DS11_v2 a DS15_v2, da GS1 a GS5 |
-| SAP NetWeaver |Windows, SUSE Linux Enterprise, Red Hat Enterprise Linux |SQL Server, Oracle (solo Windows e Oracle Linux), DB2, SAP ASE |Da A5 ad A11, da D11 a D14, da DS11 a DS14, da DS11_v2 a DS15_v2, da GS1 a GS5 |
+| Software SAP Business Suite |Windows, SUSE Linux Enterprise, Red Hat Enterprise Linux, Oracle Linux |SQL Server, Oracle (solo Windows e Oracle Linux), DB2, SAP ASE |A5 tooA11, tooD14 D11, DS11 tooDS14, DS11_v2 tooDS15_v2, GS1 tooGS5 |
+| SAP Business All-in-One |Windows, SUSE Linux Enterprise, Red Hat Enterprise Linux |SQL Server, Oracle (solo Windows e Oracle Linux), DB2, SAP ASE |A5 tooA11, tooD14 D11, DS11 tooDS14, DS11_v2 tooDS15_v2, GS1 tooGS5 |
+| SAP BusinessObjects BI |Windows |N/D |A5 tooA11, tooD14 D11, DS11 tooDS14, DS11_v2 tooDS15_v2, GS1 tooGS5 |
+| SAP NetWeaver |Windows, SUSE Linux Enterprise, Red Hat Enterprise Linux |SQL Server, Oracle (solo Windows e Oracle Linux), DB2, SAP ASE |A5 tooA11, tooD14 D11, DS11 tooDS14, DS11_v2 tooDS15_v2, GS1 tooGS5 |

@@ -1,6 +1,6 @@
 ---
-title: Opzioni cluster HPC Pack Windows nel cloud | Microsoft Docs
-description: Informazioni sulle opzioni con Microsoft HPC Pack per creare e gestire un cluster high performance computing (HPC) Windows nel cloud di Azure
+title: opzioni nel cloud hello del cluster HPC Pack aaaWindows | Documenti Microsoft
+description: Informazioni sulle opzioni con Microsoft HPC Pack toocreate e gestire un Windows elaborazione a elevate prestazioni cluster (HPC) in hello cloud di Azure
 services: virtual-machines-windows,cloud-services,batch
 documentationcenter: 
 author: dlepow
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 02/06/2017
 ms.author: danlep
-ms.openlocfilehash: 96a5520d8440af7d8a880c2675a5d4eb4121e9ab
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6158d9dd0cecda38b14f85a2b2080163f18e8cf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="options-with-hpc-pack-to-create-and-manage-a-windows-hpc-cluster-in-azure"></a>Opzioni con HPC Pack per creare e gestire un cluster Windows HPC in Azure
+# <a name="options-with-hpc-pack-toocreate-and-manage-a-windows-hpc-cluster-in-azure"></a>Opzioni con HPC Pack toocreate e gestire un cluster Windows HPC in Azure
 [!INCLUDE [virtual-machines-common-hpcpack-cluster-options](../../../includes/virtual-machines-common-hpcpack-cluster-options.md)]
 
-Questo articolo descrive le opzioni per la creazione di cluster HPC Pack per eseguire carichi di lavoro di Windows. Esistono anche opzioni per la creazione di cluster HPC Pack per eseguire [carichi di lavoro di Linux HPC](../linux/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Questo articolo illustra le opzioni toocreate HPC Pack carichi di lavoro Windows toorun cluster. Sono inoltre disponibili opzioni per la creazione di HPC Pack cluster toorun [carichi di lavoro HPC Linux](../linux/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 
 ## <a name="run-an-hpc-pack-cluster-in-azure-vms"></a>Eseguire un cluster HPC Pack nelle VM di Azure
@@ -45,30 +45,30 @@ Questo articolo descrive le opzioni per la creazione di cluster HPC Pack per ese
 * [Nodo di calcolo HPC Pack con Excel su Windows Server 2012 R2](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2computenodewithexcelonwindowsserver2012r2/)
 
 ### <a name="powershell-deployment-script"></a>Script di distribuzione di PowerShell
-* [Creare un cluster HPC con lo script di distribuzione IaaS di HPC Pack](classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Creare un cluster HPC con hello script di distribuzione IaaS di HPC Pack](classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ### <a name="tutorials"></a>Esercitazioni
 * [Esercitazione: Distribuire un cluster HPC Pack 2016 in Azure](hpcpack-2016-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Esercitazione: Introduzione all’uso di un cluster HPC Pack in Azure per l’esecuzione di carichi di lavoro di Excel e SOA](excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Esercitazione: Introduzione a un cluster HPC Pack in Azure toorun Excel e i carichi di lavoro SOA](excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-### <a name="manual-deployment-with-the-azure-portal"></a>Distribuzione manuale nel portale di Azure
-* [Configurare il nodo head di un cluster HPC Pack in una VM di Azure](hpcpack-cluster-headnode.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### <a name="manual-deployment-with-hello-azure-portal"></a>Distribuzione manuale con hello portale di Azure
+* [Configurare hello nodo head di un cluster HPC Pack in una macchina virtuale di Azure](hpcpack-cluster-headnode.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ### <a name="cluster-management"></a>Gestione dei cluster
 * [Gestire i nodi di calcolo in un cluster HPC Pack in Azure](classic/hpcpack-cluster-node-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 * [Aumentare e ridurre le risorse di calcolo di Azure in un cluster HPC Pack](classic/hpcpack-cluster-node-autogrowshrink.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-* [Inviare i processi a un cluster HPC Pack in Azure](hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Inviare i cluster di HPC Pack tooan processi in Azure](hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Job management in HPC Pack](https://technet.microsoft.com/library/jj899585.aspx)
 * [Gestire un cluster HPC Pack in Azure con Azure Active Directory](hpcpack-cluster-active-directory.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-## <a name="add-worker-role-nodes-to-an-hpc-pack-cluster"></a>Aggiungere nodi di ruolo di lavoro a un cluster HPC Pack
-* [Potenziare le istanze del ruolo di lavoro di Azure con HPC Pack](https://technet.microsoft.com/library/gg481749.aspx)
+## <a name="add-worker-role-nodes-tooan-hpc-pack-cluster"></a>Aggiungere il cluster HPC Pack tooan di lavoro ruolo nodi
+* [Potenziamento tooAzure istanze di lavoro con HPC Pack](https://technet.microsoft.com/library/gg481749.aspx)
 * [Esercitazione: Configurare un cluster ibrido con HPC Pack in Azure](../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)
-* [Aggiungere nodi di "potenziamento" di Azure a un nodo head HPC Pack in Azure](classic/hpcpack-cluster-node-burst.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Aggiungere Azure "potenziamento" nodi tooan HPC Pack nodo head in Azure](classic/hpcpack-cluster-node-burst.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="integrate-with-azure-batch"></a>Integrazione con Azure Batch
-* [Potenziare Azure Batch con HPC Pack](https://technet.microsoft.com/library/mt612877.aspx)
+* [Potenziamento tooAzure Batch con HPC Pack](https://technet.microsoft.com/library/mt612877.aspx)
 
 ## <a name="create-rdma-clusters-for-mpi-workloads"></a>Creare cluster RDMA per carichi di lavoro MPI
-* [Configurare un cluster RDMA di Windows con HPC Pack per eseguire applicazioni MPI](classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Configurare un cluster di Windows RDMA con applicazioni MPI toorun di HPC Pack](classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 

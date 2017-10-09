@@ -1,6 +1,6 @@
 ---
-title: Controllare il routing e le appliance virtuali in Azure PowerShell | Microsoft Docs
-description: Informazioni su come controllare il routing e i dispositivi virtuali usando PowerShell.
+title: Accessori aaaControl di routing e virtuali in Azure - PowerShell | Documenti Microsoft
+description: Informazioni su come Appliance virtuale e routing toocontrol tramite PowerShell.
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: 3ab24f193c74449ae7414b4ea0675c0aae0211f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7b8717529eb2cd8b1d28b8ab9c6e21159d14882
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-user-defined-routes-udr-using-powershell"></a>Creare route definite dall'utente (UDR) usando PowerShell
 
@@ -34,21 +34,21 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 > [!IMPORTANT]
-> Prima di iniziare a usare le risorse di Azure, è importante comprendere che Azure al momento offre due modelli di distribuzione, la distribuzione classica e Azure Resource Manager. È importante comprendere i [modelli e strumenti di distribuzione](../azure-resource-manager/resource-manager-deployment-model.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione relativa a diversi strumenti facendo clic sulle schede nella parte superiore di questo articolo.
+> Prima di lavorare con le risorse di Azure, è importante toounderstand che Azure ha due modelli di distribuzione: Gestione risorse di Azure e classica. È importante comprendere i [modelli e strumenti di distribuzione](../azure-resource-manager/resource-manager-deployment-model.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione di hello per diversi strumenti facendo clic sulle schede hello nella parte superiore di hello di questo articolo.
 >
 
-Questo articolo illustra il modello di distribuzione Gestione risorse. È possibile anche [creare route definite dall'utente nel modello di distribuzione classica](virtual-network-create-udr-classic-ps.md).
+Questo articolo descrive il modello di distribuzione di gestione risorse di hello. È anche possibile [creare UDRs nel modello di distribuzione classica hello](virtual-network-create-udr-classic-ps.md).
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-I comandi di esempio PowerShell riportati di seguito prevedono un ambiente semplice già creato in base allo scenario precedente. Se si desidera eseguire i comandi così come sono visualizzati in questo documento, creare innanzitutto l'ambiente di test distribuendo [questo modello](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), fare clic su **Distribuisci in Azure**, sostituire i valori di parametro predefiniti, se necessario e seguire le istruzioni nel portale.
+esempio Hello PowerShell comandi riportati di seguito prevedono un ambiente semplice già creato in base hello scenario precedente. Se si desidera comandi hello toorun così come sono visualizzati in questo documento, creare innanzitutto ambiente di test di hello distribuendo [questo modello](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), fare clic su **distribuire tooAzure**, sostituire i valori dei parametri predefiniti hello Se necessario e seguire le istruzioni di hello in hello portale.
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>Creare la route definita dall'utente per la subnet front-end
-Per creare la tabella di route e la route necessarie per la subnet front-end in base allo scenario precedente, seguire questa procedura:
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Creare hello UDR per subnet front-end hello
+tabella di route toocreate hello e route necessarie per la subnet front-end hello a seconda dello scenario di hello sopra, hello completo alla procedura seguente:
 
-1. Creare una route usata per inviare tutto il traffico destinato alla subnet front-end (192.168.2.0/24) da instradare al dispositivo virtuale di rete **FW1** (192.168.0.4).
+1. Creare un toosend route utilizzato tutto il traffico destinato toohello subnet back-end (192.168.2.0/24) toobe indirizzato toohello **FW1** appliance virtuale (192.168.0.4).
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToBackEnd `
@@ -56,20 +56,20 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. Creare una tabella di route denominata **UDR-FrontEnd** nell'area **westus** contenente la route.
+2. Creare una tabella di route denominata **UDR-FrontEnd** in hello **westus** area che contiene la route hello.
 
     ```powershell
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-FrontEnd -Route $route
     ```
 
-3. Creare una variabile contenente la rete virtuale in cui si trova la subnet. In questo scenario, la rete virtuale è denominata **TestVNet**.
+3. Creare una variabile che contiene una rete virtuale in cui è subnet hello hello. In questo scenario, hello tra reti virtuali sono denominato **TestVNet**.
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
     ```
 
-4. Associare la tabella di route creata in precedenza alla subnet **FrontEnd** .
+4. Tabella di route associano hello creata in precedenza toohello **front-end** subnet.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd `
@@ -77,10 +77,10 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
     ```
 
     > [!WARNING]
-    > L'output per il comando precedente mostra il contenuto per l'oggetto di configurazione della rete virtuale, che esiste solo nei computer in cui si esegue PowerShell. È necessario eseguire il cmdlet **Set-AzureVirtualNetwork** ,per salvare queste impostazioni in Azure.
+    > output di Hello per comando hello precedente mostra il contenuto di hello per l'oggetto configurazione di rete virtuale di hello che esiste solo nel computer di hello in cui si esegue PowerShell. È necessario hello toorun **Set AzureVirtualNetwork** toosave cmdlet tooAzure queste impostazioni.
     > 
 
-5. Salvare la nuova configurazione di subnet in Azure.
+5. Salvare la nuova configurazione subnet di hello in Azure.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -134,11 +134,11 @@ Per creare la tabella di route e la route necessarie per la subnet front-end in 
                                 ...
                             ]    
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>Creare la route definita dall'utente per la subnet back-end
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Creare hello UDR per subnet back-end hello
 
-Per creare la tabella di route e la route necessarie per la subnet back-end in base allo scenario precedente, seguire questa procedura.
+tabella di route toocreate hello e route necessarie per la subnet di back-end hello a seconda dello scenario hello precedente, seguire i passaggi di hello seguenti.
 
-1. Creare una route usata per inviare tutto il traffico destinato alla subnet front-end (192.168.1.0/24) da instradare al dispositivo virtuale di rete **FW1** (192.168.0.4).
+1. Creare un toosend route utilizzato tutto il traffico destinato toohello subnet front-end (192.168.1.0/24) toobe indirizzato toohello **FW1** appliance virtuale (192.168.0.4).
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToFrontEnd `
@@ -146,21 +146,21 @@ Per creare la tabella di route e la route necessarie per la subnet back-end in b
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. Creare una tabella di route denominata **UDR-BackEnd** nell'area **uswest** contenente la route creata in precedenza.
+2. Creare una tabella di route denominata **back-end di UDR** in hello **uswest** area che contiene la route hello creato in precedenza.
 
     ```
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-BackEnd -Route $route
     ```
 
-3. Associare la tabella di route creata in precedenza alla subnet **BackEnd** .
+3. Tabella di route associano hello creata in precedenza toohello **back-end** subnet.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd `
     -AddressPrefix 192.168.2.0/24 -RouteTable $routeTable
     ```
 
-4. Salvare la nuova configurazione di subnet in Azure.
+4. Salvare la nuova configurazione subnet di hello in Azure.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -214,15 +214,15 @@ Per creare la tabella di route e la route necessarie per la subnet back-end in b
                             ]
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>Abilitare l'inoltro dell'indirizzo IP su FW1
-Per abilitare l'inoltro dell'indirizzo IP nella scheda di interfaccia di rete usata da **FW1**, attenersi alla procedura seguente.
+inoltro dell'indirizzo IP nella scheda di rete utilizzata da hello tooenable **FW1**, attenersi alla procedura hello riportata di seguito.
 
-1. Creare una variabile contenente le impostazioni per la scheda di interfaccia di rete usata da FW1. In questo scenario, la scheda di interfaccia di rete è denominata **NICFW1**.
+1. Creare una variabile che contiene le impostazioni di hello per scheda di rete utilizzata da FW1 hello. In questo scenario, hello NIC denominato **NICFW1**.
 
     ```powershell
     $nicfw1 = Get-AzureRmNetworkInterface -ResourceGroupName TestRG -Name NICFW1
     ```
 
-2. Attivare l'inoltro dell'indirizzo IP e salvare le impostazioni della scheda di interfaccia di rete.
+2. Attivare l'inoltro IP e salvare le impostazioni di hello NIC.
 
     ```powershell
     $nicfw1.EnableIPForwarding = 1

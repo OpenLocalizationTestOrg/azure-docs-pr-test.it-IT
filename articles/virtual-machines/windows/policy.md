@@ -1,6 +1,6 @@
 ---
-title: Applicare la sicurezza con criteri a macchine virtuali Windows in Azure | Documentazione Microsoft
-description: Come applicare criteri a una macchina virtuale Windows di Azure Resource Manager
+title: sicurezza aaaEnforce con i criteri in macchine virtuali di Windows in Azure | Documenti Microsoft
+description: Come tooapply tooan un criterio macchina virtuale di Windows Azure Resource Manager
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: kasing
-ms.openlocfilehash: 246f5958478fd6d9afc9ba990413ab08429bd25d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b31c8a03ecf8eed6a929f97fe4146ea14364404f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="apply-policies-to-windows-vms-with-azure-resource-manager"></a>Applicare criteri alle macchine virtuali Windows con Azure Resource Manager
-Tramite i criteri è possibile imporre diverse convenzioni e regole in tutta l'organizzazione. L'imposizione del comportamento desiderato consente di attenuare i rischi, contribuendo nello stesso tempo al successo dell'organizzazione. Questo articolo illustra come usare i criteri di Azure Resource Manager per definire il comportamento desiderato per le macchine virtuali dell'organizzazione.
+# <a name="apply-policies-toowindows-vms-with-azure-resource-manager"></a>Applicare i criteri tooWindows macchine virtuali con Gestione risorse di Azure
+Con i criteri di un'organizzazione può applicare varie convenzioni e le regole di organizzazione hello. Imposizione del comportamento desiderato hello può ridurre i rischi contribuendo toohello successo dell'organizzazione hello stesso. In questo articolo si descrivono come utilizzare il comportamento di gestione risorse di Azure criteri toodefine hello desiderato per le macchine virtuali dell'organizzazione.
 
-Per un'introduzione ai criteri, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](../../azure-resource-manager/resource-manager-policy.md).
+Per toopolicies un'introduzione, vedere [risorse toomanage criteri di utilizzo e controllare l'accesso](../../azure-resource-manager/resource-manager-policy.md).
 
 ## <a name="permitted-virtual-machines"></a>Macchine virtuali permesse
-Per assicurarsi che le macchine virtuali dell'organizzazione siano compatibili con un'applicazione, è possibile limitare i sistemi operativi consentiti. Nell'esempio di criterio che segue si consente solo la creazione di macchine virtuali Windows Server 2012 R2 Datacenter:
+tooensure che le macchine virtuali per l'organizzazione sono compatibili con un'applicazione, è possibile limitare hello sistemi operativi è consentito. Nel seguente esempio di criterio di hello, si consente solo toobe di macchine virtuali di Windows Server 2012 R2 Datacenter creato:
 
 ```json
 {
@@ -79,7 +79,7 @@ Per assicurarsi che le macchine virtuali dell'organizzazione siano compatibili c
 }
 ```
 
-Per modificare il criterio precedente e consentire qualsiasi immagine Windows Server Datacenter, usare un carattere jolly:
+Utilizzare un hello toomodify con caratteri jolly precedente tooallow criteri qualsiasi immagine di Windows Server Datacenter:
 
 ```json
 {
@@ -88,7 +88,7 @@ Per modificare il criterio precedente e consentire qualsiasi immagine Windows Se
 }
 ```
 
-Per modificare il criterio precedente e consentire qualsiasi immagine Windows Server 2012 R2 Datacenter o versione successiva, usare anyOf:
+Utilizzare anyOf toomodify hello precedente tooallow criteri qualsiasi Data Center di Windows Server 2012 R2 o immagine superiore:
 
 ```json
 {
@@ -109,7 +109,7 @@ Per informazioni sui campi dei criteri, vedere [Alias dei criteri](../../azure-r
 
 ## <a name="managed-disks"></a>Dischi gestiti
 
-Per richiedere l'uso dei dischi gestiti, usare il criterio seguente:
+toorequire hello utilizzo di dischi gestiti, utilizzare hello seguenti criteri:
 
 ```json
 {
@@ -157,9 +157,9 @@ Per richiedere l'uso dei dischi gestiti, usare il criterio seguente:
 
 ## <a name="images-for-virtual-machines"></a>Immagini per macchine virtuali
 
-Per motivi di sicurezza, è possibile richiedere che solo le immagini personalizzate approvate vengano distribuite nell'ambiente in uso. È possibile specificare il gruppo di risorse che contiene le immagini approvate o immagini approvate specifiche.
+Per motivi di sicurezza, è possibile richiedere che solo le immagini personalizzate approvate vengano distribuite nell'ambiente in uso. È possibile specificare gruppo di risorse hello contenente immagini hello approvato o immagini approvate specifico hello.
 
-L'esempio seguente richiede le immagini da un gruppo di risorse approvato:
+Hello di esempio seguente richiede le immagini da un gruppo di risorse approvati:
 
 ```json
 {
@@ -186,7 +186,7 @@ L'esempio seguente richiede le immagini da un gruppo di risorse approvato:
 } 
 ```
 
-L'esempio seguente specifica gli ID immagine approvati:
+Hello esempio seguente specifica immagine hello approvato ID:
 
 ```json
 {
@@ -197,7 +197,7 @@ L'esempio seguente specifica gli ID immagine approvati:
 
 ## <a name="virtual-machine-extensions"></a>Estensioni di macchina virtuale
 
-È possibile che si desideri proibire l'utilizzo di tipi specifici di estensioni. Un'estensione potrebbe non essere ad esempio compatibile con determinate immagini di macchina virtuale personalizzata. L'esempio seguente mostra come bloccare un'estensione specifica. Usa server di pubblicazione e tipo per determinare l'estensione da bloccare.
+È opportuno tooforbid utilizzo di determinati tipi di estensioni. Un'estensione potrebbe non essere ad esempio compatibile con determinate immagini di macchina virtuale personalizzata. Hello seguente esempio viene illustrato come tooblock un'estensione specifica. Usa toodetermine server di pubblicazione e il tipo cui tooblock di estensione.
 
 ```json
 {
@@ -227,7 +227,7 @@ L'esempio seguente specifica gli ID immagine approvati:
 
 ## <a name="azure-hybrid-use-benefit"></a>Vantaggio Azure Hybrid Use
 
-Quando si dispone di una licenza in locale, è possibile risparmiare il costo della licenza sulle macchine virtuali. Se non si dispone di licenza, è consigliabile impedire questa possibilità. I criteri seguenti impediscono l'uso del vantaggio Azure Hybrid Use (AHUB):
+Quando si dispone di una licenza in locale, è possibile salvare l'onere di licenza hello nelle macchine virtuali. Quando non si dispone di licenza di hello, si dovrebbe proibire l'opzione hello. Hello seguente criteri impedisce l'uso del vantaggio di utilizzare Azure ibrida (AHUB):
 
 ```json
 {
@@ -250,6 +250,6 @@ Quando si dispone di una licenza in locale, è possibile risparmiare il costo de
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo aver definito una regola di criterio, come mostrato negli esempi precedenti, è necessario creare la definizione di criterio e assegnarla a un ambito. L'ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. Per assegnare i criteri tramite il portale, vedere [Use Azure portal to assign and manage resource policies](../../azure-resource-manager/resource-manager-policy-portal.md) (Usare il portale di Azure per assegnare e gestire i criteri delle risorse). Per assegnare i criteri tramite l'API REST, PowerShell o l'interfaccia della riga di comando di Azure, vedere [Assegnare e gestire i criteri tramite script](../../azure-resource-manager/resource-manager-policy-create-assign.md).
-* Per un'introduzione ai criteri delle risorse, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](../../azure-resource-manager/resource-manager-policy.md).
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](../../azure-resource-manager/resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* Dopo aver definito una regola dei criteri (come illustrato in hello precedenti esempi), è necessario toocreate definizione dei criteri hello e assegnarlo tooa ambito. Hello ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. criteri tooassign tramite il portale di hello, vedere [tooassign portale utilizzare Azure e gestire i criteri di risorse](../../azure-resource-manager/resource-manager-policy-portal.md). criteri di tooassign tramite l'API REST, PowerShell o l'interfaccia CLI di Azure, vedere [assegnare e gestire i criteri tramite script](../../azure-resource-manager/resource-manager-policy-create-assign.md).
+* Per i criteri di tooresource un'introduzione, vedere [Panoramica criteri delle risorse](../../azure-resource-manager/resource-manager-policy.md).
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](../../azure-resource-manager/resource-manager-subscription-governance.md).

@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi di una VM Windows di Azure classica collegando il disco del sistema operativo a una VM di ripristino | Microsoft Docs
-description: Informazioni su come risolvere i problemi di una VM Windows di Azure classica collegando il disco del sistema operativo in una VM di ripristino
+title: una macchina virtuale classica di Windows Azure tramite il collegamento di ripristino di tooa dischi hello del sistema operativo VM aaaTroubleshoot | Documenti Microsoft
+description: Informazioni su come una macchina virtuale classica di Windows Azure mediante l'aggiunta di tootroubleshoot hello ripristino tooa di dischi del sistema operativo VM
 services: virtual-machines-windows
 documentationCenter: 
 authors: genlin
@@ -13,17 +13,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 07/21/2017
 ms.author: genli
-ms.openlocfilehash: c0174a535c7eae20632ac242e2ae4ea8cc51153e
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: ac5d2d247b89737c8be1bb505cd7c86a0277c58e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-a-windows-classic-vm-by-attaching-the-os-disk-to-a-recovery-vm"></a>Risolvere i problemi di una VM Windows classica collegando il disco del sistema operativo in una VM di ripristino
+# <a name="troubleshoot-a-windows-classic-vm-by-attaching-hello-os-disk-tooa-recovery-vm"></a>Risolvere i problemi relativi a una macchina virtuale classica di Windows tramite il collegamento di ripristino di tooa dischi hello del sistema operativo VM
 
 [!INCLUDE [virtual-machines-classic-recovery-disks-portal](../../../../includes/virtual-machines-classic-recovery-disks-portal.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si sono verificati problemi durante la connessione alla VM, vedere [Risolvere i problemi di connessioni RDP a una macchina virtuale di Azure](../troubleshoot-rdp-connection.md). 
+Se si verificano problemi di connessione tooyour VM, vedere [tooan connessioni RDP risolvere macchina virtuale di Azure](../troubleshoot-rdp-connection.md). 
 
 Per problemi relativi all'accesso alle applicazioni in esecuzione nella VM, vedere [Risolvere i problemi di connettività a un'applicazione in una macchina virtuale Windows](../troubleshoot-app-connection.md).

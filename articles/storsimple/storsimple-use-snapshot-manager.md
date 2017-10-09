@@ -1,6 +1,6 @@
 ---
-title: Interfaccia utente di StorSimple Snapshot Manager | Documentazione Microsoft
-description: Viene descritta l'interfaccia utente di StorSimple Snapshot Manager e viene illustrato come utilizzarla per gestire i processi di backup e il catalogo di backup.
+title: interfaccia utente di gestione Snapshot aaaStorSimple | Documenti Microsoft
+description: Descrive l'interfaccia utente di StorSimple Snapshot Manager hello e illustra come toouse, i processi di backup toomanage e hello del catalogo di backup.
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -15,23 +15,23 @@ ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
 ms.custom: 
-ms.openlocfilehash: b48c507e38eb7cadff56259f617e336e4efe5708
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 865520fdaf1b559714b52b428ad136b084d65c99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-user-interface-to-manage-backup-jobs-and-backup-catalog"></a>Usare l'interfaccia utente di StorSimple Snapshot Manager per gestire i processi di backup e il catalogo di backup
+# <a name="use-storsimple-snapshot-manager-user-interface-toomanage-backup-jobs-and-backup-catalog"></a>Usare Gestione Snapshot StorSimple utente interfaccia toomanage i processi di backup e di catalogo di backup
 
 ## <a name="overview"></a>Panoramica
-StorSimple Snapshot Manager ha un'interfaccia utente intuitiva che è possibile usare per acquisire e gestire i backup. Questa esercitazione fornisce un'introduzione all'interfaccia utente e illustra come usare ogni componente. Per una descrizione dettagliata di StorSimple Snapshot Manager, vedere [Che cos'è StorSimple Snapshot Manager?](storsimple-what-is-snapshot-manager.md)
+Gestione Snapshot StorSimple Hello è un'interfaccia utente intuitiva che è possibile utilizzare tootake e gestire i backup. In questa esercitazione fornisce un'interfaccia utente di introduzione toohello e quindi viene illustrato come toouse componenti hello. Per una descrizione dettagliata di hello gestione Snapshot StorSimple, vedere [che cos'è StorSimple Snapshot Manager?](storsimple-what-is-snapshot-manager.md)
 
 ### <a name="console-description"></a>Descrizione della console
-Per visualizzare l'interfaccia utente, fare clic sull'icona di StorSimple Snapshot Manager sul desktop. Viene visualizzata la finestra della console, come mostrato nella figura seguente.
+utente hello tooview interfaccia, fare clic sull'icona di gestione Snapshot StorSimple hello sul desktop. verrà visualizzata la finestra di console Hello, come illustrato nella seguente figura hello.
 
 ![Riquadri di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_gui_panes.png)
 
-Nella finestra della console sono presenti cinque elementi principali. Fare clic sul collegamento appropriato per una descrizione completa di ciascun elemento.
+finestra di console Hello ha cinque elementi principali. Fare clic sul collegamento appropriato di hello per una descrizione completa di ogni elemento.
 
 * [Barra dei menu](#menu-bar) 
 * [Barra degli strumenti](#tool-bar) 
@@ -39,192 +39,192 @@ Nella finestra della console sono presenti cinque elementi principali. Fare clic
 * [Riquadro Risultati](#results-pane) 
 * [Riquadro Azioni](#actions-pane) 
 
-Inoltre, StorSimple Snapshot Manager supporta [la navigazione da tastiera e una serie di tasti di scelta rapida](#keyboard-navigation-and-shortcuts).
+Inoltre, hello supporta gestione Snapshot StorSimple [tasti di navigazione e un numero di tasti di scelta rapida](#keyboard-navigation-and-shortcuts).
 
 ### <a name="console-accessibility"></a>Accessibilità della console
-L'interfaccia utente di StorSimple Snapshot Manager supporta le funzionalità di accessibilità fornite dal sistema operativo Windows e da Microsoft Management Console (MMC), nonché alcuni tasti di scelta rapida specifici per StorSimple Snapshot Manager. 
+interfaccia utente di StorSimple Snapshot Manager Hello supporta funzionalità di accessibilità di hello fornite dal sistema operativo di Windows hello e hello Microsoft Management Console (MMC), nonché alcuni tasti di scelta rapida specifici di gestione Snapshot StorSimple. 
 
-* Per una descrizione delle funzionalità di accessibilità di Windows, andare a [Tasti di scelta rapida per Windows](https://support.microsoft.com/kb/126449). 
-* Per una descrizione delle funzionalità di accessibilità di MMC, andare a [Accessibilità per MMC 3.0](https://technet.microsoft.com/library/cc766075.aspx)
-* Per una descrizione delle funzionalità di accessibilità di StorSimple Snapshot Manager, andare a [Navigazione da tastiera e tasti di scelta rapida](#keyboard-navigation-and-shortcuts).
+* Per una descrizione delle funzionalità di accessibilità di Windows hello, andare troppo[tasti di scelta rapida per Windows](https://support.microsoft.com/kb/126449). 
+* Per una descrizione delle funzionalità di accessibilità MMC hello, andare troppo[accessibilità per MMC 3.0](https://technet.microsoft.com/library/cc766075.aspx)
+* Per una descrizione delle funzionalità di accessibilità di gestione Snapshot StorSimple hello, andare troppo[tasti di scelta rapida e navigazione](#keyboard-navigation-and-shortcuts).
 
 ## <a name="menu-bar"></a>Barra dei menu
-La barra dei menu nella parte superiore della finestra della console contiene i menu [File](#file-menu), [Azione](#action-menu), [Visualizza](#view-menu), [Preferiti](#favorites-menu), [Finestra](#window-menu) e [Guida](#help-menu).
+barra dei menu nella parte superiore di hello della finestra della console hello Hello contiene [File](#file-menu), [azione](#action-menu), [vista](#view-menu), [Preferiti](#favorites-menu), [finestra ](#window-menu), e [Guida](#help-menu) menu.
 
-Fare clic su qualsiasi elemento nella barra dei menu per visualizzare un elenco di comandi disponibili in tale menu. Nell'esempio seguente viene mostrato il menu **Visualizza** selezionato nella barra dei menu.
+Fare clic su qualsiasi elemento hello menu barra toosee un elenco dei comandi disponibili nel menu. Hello riportato di seguito hello **vista** menu selezionato nella barra dei menu hello.
 
 ![Menu Visualizza selezionato](./media/storsimple-use-snapshot-manager/HCS_SSM_View_menu.png)
 
 ### <a name="file-menu"></a>File menu
-Il menu **File** contiene i comandi standard di Microsoft Management Console (MMC).
+Hello **File** menu contiene i comandi standard di Microsoft Management Console (MMC).
 
 #### <a name="menu-access"></a>Accesso al menu
-Per visualizzare il menu **File**, fare clic su **File** nella barra dei menu. Viene visualizzato il menu seguente.
+hello tooview **File** menu, fare clic su **File** sulla barra dei menu hello. Hello seguenti dal menu visualizzato.
 
 ![Menu File di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_FileMenu.png) 
 
 #### <a name="menu-description"></a>Descrizione del menu
-Nella tabella seguente vengono descritte le voci del menu **File** .
+Hello nella tabella seguente descrive gli elementi visualizzati in hello **File** menu.
 
 | Voce di menu | Descrizione |
 |:--- |:--- |
-| Nuovo |Fare clic su **Nuova** per creare una nuova console basata su StorSimple Snapshot Manager. |
-| Apri |Fare clic su **Apri** per aprire una console esistente. |
-| Salva |Fare clic su **Salva** per salvare la console corrente. |
-| Salva con nome |Fare clic su **Salva con nome** per creare una nuova istanza rinominata della console corrente. Utilizzare l’opzione **Salva con nome** per personalizzare una visualizzazione e salvarla per un successivo recupero. Ad esempio, è possibile creare snap-in di StorSimple Snapshot Manager che indirizzano a specifici server. |
-| Aggiungi/Rimuovi snap-in |Fare clic su **Aggiungi/Rimuovi snap-in** per aggiungere o rimuovere snap-in e organizzare i nodi nel riquadro **Ambito**. Per ulteriori informazioni, andare a [Aggiunta, rimozione e organizzazione di snap-in ed estensioni in MMC 3.0](https://technet.microsoft.com/library/cc722035.aspx). |
-| Opzioni |Fare clic su **Opzioni** per modificare l'icona della console, specificare le modalità di accesso utente e le autorizzazioni o eliminare i file della console per aumentare lo spazio disponibile su disco. |
-| Elenco dei percorsi di file |Fare clic su un percorso nell'elenco numerato per riaprire un file aperto di recente. |
-| Esci |Fare clic su **Esci** per chiudere il menu **File**. |
+| Nuovo |Fare clic su **New** toocreate in base una nuova console di gestione Snapshot StorSimple hello. |
+| Apri |Fare clic su **aprire** tooopen una console esistente. |
+| Salva |Fare clic su **salvare** toosave console corrente di hello. |
+| Salva con nome |Fare clic su **Salva con nome** toocreate una nuova istanza rinominata della console corrente hello. Hello utilizzare **Salva con nome** opzione toocustomize una vista e salvarla per poterla recuperare in seguito. Ad esempio, è possibile creare snap-in di gestione Snapshot StorSimple tale server toospecific punto. |
+| Aggiungi/Rimuovi snap-in |Fare clic su **Aggiungi/Rimuovi Snap-in** tooadd o Rimuovi snap-in e tooorganize nodi hello **ambito** riquadro. Per ulteriori informazioni, visitare troppo[Add, Remove e organizzare Snap-in ed estensioni in MMC 3.0](https://technet.microsoft.com/library/cc722035.aspx). |
+| Opzioni |Fare clic su **opzioni** toochange hello console, specificare la modalità di accesso utente e autorizzazioni oppure eliminare lo spazio disponibile su disco di tooincrease i file di console. |
+| Elenco dei percorsi di file |Fare clic su un percorso nell'elenco di hello numerato tooreopen un file aperto di recente. |
+| Esci |Fare clic su **uscita** tooclose hello **File** menu. |
 
 ### <a name="action-menu"></a>Menu Azione
-Utilizzare il menu **Azione** per selezionare le azioni disponibili. Le voci disponibili dipendono dalla selezione effettuata nel riquadro **Ambito** o **Risultati**.
+Hello utilizzare **azione** tooselect menu Azioni disponibili. Hello elementi disponibili tooyou dipendono dalla selezione di hello apportate hello **ambito** riquadro o **risultati** riquadro.
 
 #### <a name="menu-access"></a>Accesso al menu
-Per visualizzare il menu **Azione** , eseguire una delle operazioni seguenti:
+hello tooview **azione** menu, effettuare una delle seguenti hello:
 
-* Fare clic con il pulsante destro del mouse su una voce nel riquadro **Ambito** o **Risultati**.
-* Selezionare una voce nel riquadro **Ambito** o **Risultati**, quindi fare clic su **Azione** nella barra dei menu. 
+* Fare doppio clic su un elemento in hello **ambito** riquadro o **risultati** riquadro.
+* Selezionare un elemento in hello **ambito** riquadro o **risultati** riquadro e quindi fare clic su **azione** sulla barra dei menu hello. 
 
-Ad esempio, se si seleziona il nodo principale nel riquadro **Ambito**, quindi si fa clic con il pulsante destro del mouse oppure si fa clic su **Azione** nella barra dei menu, viene visualizzato il menu seguente.
+Ad esempio, se si seleziona nodo principale hello in hello **ambito** riquadro e quindi i pulsante destro del mouse oppure fare clic su **azione** sulla barra dei menu hello, hello menu riportato di seguito viene visualizzata.
 
 ![Menu Azione di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_Action_menu.png)
 
-Il riquadro **Azioni** a destra della console contiene lo stesso elenco di azioni del menu **Azione**. Inoltre, il riquadro **Azioni** contiene le opzioni del menu **Visualizza**, che consentono di creare una visualizzazione personalizzata del riquadro **Risultati**.
+Hello **azioni** riquadro (Buongiorno destra della console hello) contiene hello stesso elenco di azioni di hello **azione** menu. Inoltre, hello **azioni** riquadro contiene hello **vista** opzioni di menu, che consentono una visualizzazione personalizzata di hello toocreate **risultati** riquadro.
 
 ![Riquadro Azioni con menu Visualizza aperto](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane_Results.png)
 
 #### <a name="menu-description"></a>Descrizione del menu
-Nella tabella seguente vengono elencate in ordine alfabetico le azioni di StorSimple Snapshot Manager. 
+Hello nella tabella seguente contiene un elenco alfabetico di azioni di gestione Snapshot StorSimple. 
 
-* Nella colonna **Azione** vengono elencate le azioni che è possibile eseguire su nodi e risultati. 
-* Nella colonna **Navigazione** viene illustrato come visualizzare il menu **Azione** appropriato, in modo da poter selezionare l'azione. Alcune azioni vengono visualizzate in più menu **Azione** . Per queste azioni, selezionare un’opzione di **Navigazione** nell'elenco puntato. 
-* Nella colonna **Descrizione** viene descritto come usare ogni azione del menu **Azione** o del riquadro Azioni e viene illustrato il relativo risultato.
+* Hello **azione** colonna elenca le azioni che è possibile eseguire sui nodi e i risultati. 
+* Hello **navigazione** colonna spiega come toodisplay hello appropriato **azione** menu in modo che è possibile selezionare l'azione di hello. Alcune azioni vengono visualizzate in più menu **Azione** . Per eseguire queste azioni, selezionare una **navigazione** opzione dall'elenco puntato hello. 
+* Hello **descrizione** colonna descrive come toouse ciascuna azione hello **azione** menu o il riquadro azioni e viene spiegato cosa accade.
 
 > [!NOTE]
-> Il riquadro **Azioni** e il menu **Azione** contengono opzioni aggiuntive, come **Visualizza**, **Nuova finestra da qui**, **Aggiorna**, **Esporta elenco** e **Guida**. Queste opzioni sono disponibili come parte di MMC e non sono specifiche di StorSimple Snapshot Manager. Nella tabella vengono descritte tali opzioni.
+> Hello **azioni** riquadro e **azione** menu contengono opzioni aggiuntive, ad esempio **vista**, **nuova finestra da qui**,  **Aggiorna**, **Esporta elenco**, e **Guida**. Queste opzioni sono disponibili come parte di hello MMC e non sono specifiche tooStorSimple gestione Snapshot. tabella Hello include descrizioni di queste opzioni.
 > 
 > 
 
 | Azione | Navigazione | Descrizione |
 |:--- |:--- |:--- |
-| Autentica |Fare clic sul nodo **Dispositivi**, quindi fare clic con il pulsante destro del mouse su un dispositivo nel riquadro **Risultati**. |Fare clic su **Autentica** per immettere la password configurata per il dispositivo. |
-| Clone |Espandere **Catalogo backup** e **Snapshot cloud**, fare clic su un backup con data, quindi selezionare un volume nel riquadro **Risultati**. |Fare clic su **Clona** per creare una copia di uno snapshot cloud e archiviarla nella posizione designata. |
-| Configurare un dispositivo |Fare clic con il pulsante destro del mouse sul nodo **Dispositivi** . |Fare clic su **Configura un dispositivo** per configurare uno o più dispositivi per la connessione all'host di Windows. |
-| Crea criterio di backup |Eseguire una di queste operazioni:<ul><li>Fare clic con il pulsante destro del mouse su **Criteri di backup**.</li><li>Fare clic o espandere **Gruppi volumi**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li><li>Fare clic o espandere **Catalogo backup**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li></ul> |Fare clic su **Crea criterio di backup** per configurare un backup pianificato per un gruppo di volumi. |
-| Crea gruppo di volumi |Eseguire una di queste operazioni:<ul><li>Fare clic sul nodo **Volumi**, quindi fare clic con il pulsante destro del mouse su un volume nel riquadro **Risultati**.</li><li>Fare clic con il pulsante destro del mouse sul nodo **Gruppi di volumi** .</li></ul> |Fare clic su **Crea gruppo di volumi** per assegnare i volumi a un gruppo di volumi. |
-| Eliminazione |Fare clic su un nodo o su un risultato; questa voce viene visualizzata in diversi menu **Azione** e riquadri **Azioni**. |Fare clic su **Elimina** per eliminare il nodo o il risultato selezionato. Quando viene visualizzata la finestra di dialogo di conferma, confermare o annullare l'eliminazione. |
-| Dettagli |Fare clic sul nodo **Dispositivi**, quindi fare clic con il pulsante destro del mouse su un dispositivo nel riquadro **Risultati**. |Fare clic su **Dettagli** per visualizzare i dettagli di configurazione per un dispositivo. |
-| Modificare |Fare clic su **Criteri di backup**, quindi fare clic con il pulsante destro del mouse su un criterio nel riquadro **Risultati**. |Fare clic su **Modifica** per modificare la pianificazione del backup per un gruppo di volumi. |
-| Esporta elenco |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **Esporta elenco** per salvare un elenco in un file con valori delimitati da virgole (CSV). È quindi possibile importare questo file in un’applicazione foglio di calcolo per l'analisi. |
-| Guida |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **Guida** per aprire la guida in linea in una finestra separata del browser. |
-| Nuova finestra da qui |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **Nuova finestra da qui** per aprire una nuova finestra di StorSimple Snapshot Manager. |
-| Aggiorna |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **Aggiorna** per aggiornare la finestra di StorSimple Snapshot Manager attualmente visualizzata. |
-| Aggiorna dispositivo |Fare clic sul nodo **Dispositivi**, quindi fare clic con il pulsante destro del mouse su un dispositivo nel riquadro **Risultati**. |Fare clic su **Aggiorna dispositivo** per sincronizzare uno specifico dispositivo connesso con StorSimple Snapshot Manager. |
-| Aggiorna dispositivi |Fare clic con il pulsante destro del mouse sul nodo **Dispositivi** . |Fare clic su **Aggiorna dispositivi** per sincronizzare l'elenco dei dispositivi connessi con StorSimple Snapshot Manager. |
-| Ripetere la scansione dei volumi |Fare clic con il pulsante destro del mouse sul nodo **Volumi** . |Fare clic su **Nuova scansione volumi** per aggiornare l'elenco dei volumi visualizzati nel riquadro **Risultati**. |
-| Ripristino |Espandere **Catalogo backup**, espandere un gruppo di volumi, quindi **Snapshot locali** o **Snapshot cloud** e fare clic con il pulsante destro del mouse su un backup. |Fare clic su **Ripristina** per sostituire i dati del gruppo di volumi corrente con i dati del backup selezionato. |
-| Esegui backup |Eseguire una di queste operazioni:<ul><li>Espandere **Gruppi volumi**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li><li>Espandere **Catalogo backup**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li></ul> |Fare clic su **Esegui backup** per avviare immediatamente un processo di backup. |
-| Visualizza/Nascondi importazioni |Fare clic con il pulsante destro del mouse sul nodo principale nel riquadro **Ambito**, ovvero il nodo **StorSimple Snapshot Manager** negli esempi. |Fare clic su **Visualizza/Nascondi importazioni** per mostrare o nascondere i gruppi di volumi e i backup associati importati dal dashboard del servizio Gestione dispositivi StorSimple. |
+| Autentica |Fare clic su hello **dispositivi** nodo e un dispositivo in hello rapida **risultati** riquadro. |Fare clic su **Authenticate** password hello tooenter configurata per il dispositivo hello. |
+| Clone |Espandere **catalogo di Backup**, espandere **gli snapshot Cloud**, fare clic su un backup con data di validità e quindi selezionare un volume in hello **risultati** riquadro. |Fare clic su **Clone** toocreate una copia di un cloud di snapshot e archiviarlo in una posizione designata. |
+| Configurare un dispositivo |Pulsante destro del mouse hello **dispositivi** nodo. |Fare clic su **configurare un dispositivo** tooconfigure uno o più host di Windows dal toohello tooconnect dispositivi. |
+| Crea criterio di backup |Eseguire una delle seguenti hello:<ul><li>Fare clic con il pulsante destro del mouse su **Criteri di backup**.</li><li>Fare clic o espandere **Gruppi volumi**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li><li>Fare clic o espandere **Catalogo backup**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li></ul> |Fare clic su **Crea criteri di Backup** tooconfigure un backup pianificato per un gruppo di volumi. |
+| Crea gruppo di volumi |Eseguire una delle seguenti hello:<ul><li>Fare clic su hello **volumi** nodo e quindi fare un volume in hello **risultati** riquadro.</li><li>Pulsante destro del mouse hello **gruppi di volumi** nodo.</li></ul> |Fare clic su **Crea gruppo di volumi** gruppo di volumi tooa tooassign volumi. |
+| Elimina |Fare clic su un nodo o su un risultato; questa voce viene visualizzata in diversi menu **Azione** e riquadri **Azioni**. |Fare clic su **eliminare** toodelete hello nodo o un risultato selezionato. Quando viene visualizzata la finestra di dialogo di conferma hello, confermare o annullare l'eliminazione di hello. |
+| Dettagli |Fare clic su hello **dispositivi** nodo e quindi fare un dispositivo in hello **risultati** riquadro. |Fare clic su **dettagli** dettagli di configurazione di hello toosee per un dispositivo. |
+| Modificare |Fare clic su **criteri di Backup**e quindi fare doppio clic su un criterio di hello **risultati** riquadro. |Fare clic su **modifica** pianificazione del backup hello toochange per un gruppo di volumi. |
+| Esporta elenco |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **Esporta elenco** toosave un elenco in un file con valori delimitato da virgole (CSV). È quindi possibile importare questo file in un’applicazione foglio di calcolo per l'analisi. |
+| Guida |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **Guida** tooopen Guida in linea in una finestra distinta del browser. |
+| Nuova finestra da qui |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **nuova finestra da qui** tooopen una nuova finestra di gestione Snapshot StorSimple. |
+| Aggiorna |Fare clic su un nodo o su un risultato. Questa voce viene visualizzata in tutti i menu **Azione** e i riquadri **Azioni**. |Fare clic su **aggiornamento** finestra di gestione Snapshot StorSimple tooupdate hello attualmente visualizzato. |
+| Aggiorna dispositivo |Fare clic su hello **dispositivi** nodo e un dispositivo in hello rapida **risultati** riquadro. |Fare clic su **Aggiorna dispositivo** toosynchronize un dispositivo connesso specifico con StorSimple Snapshot Manager. |
+| Aggiorna dispositivi |Pulsante destro del mouse hello **dispositivi** nodo. |Fare clic su **Aggiorna dispositivi** toosynchronize all'elenco di dispositivi connessi con StorSimple Snapshot Manager. |
+| Ripetere la scansione dei volumi |Pulsante destro del mouse hello **volumi** nodo. |Fare clic su **Ripeti analisi dei volumi** tooupdate hello elenco dei volumi in hello **risultati** riquadro. |
+| Ripristino |Espandere **Catalogo backup**, espandere un gruppo di volumi, quindi **Snapshot locali** o **Snapshot cloud** e fare clic con il pulsante destro del mouse su un backup. |Fare clic su **ripristinare** tooreplace hello corrente volume raggruppare i dati con i dati di backup selezionati hello hello. |
+| Esegui backup |Eseguire una delle seguenti hello:<ul><li>Espandere **Gruppi volumi**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li><li>Espandere **Catalogo backup**, quindi fare clic con il pulsante destro del mouse su un gruppo di volumi.</li></ul> |Fare clic su **Esegui Backup** toostart immediatamente un processo di backup. |
+| Visualizza/Nascondi importazioni |Nodo principale di hello pulsante destro del mouse in hello **ambito** riquadro (hello **gestione Snapshot StorSimple** nodo negli esempi di hello). |Fare clic su **Visualizza/Nascondi importazioni** tooshow o nascondere i gruppi di volumi hello e i backup associati sono stati importati da hello dashboard del servizio di gestione di dispositivi StorSimple. |
 
 ### <a name="view-menu"></a>Menu Visualizza
-Usare il menu **Visualizza** per creare una visualizzazione personalizzata dei contenuti del riquadro **Risultati**. Il menu **Visualizza** contiene le opzioni **Aggiungi/Rimuovi colonne** e **Personalizza**.
+Hello utilizzare **vista** toocreate menu una visualizzazione personalizzata di hello **risultati** contenuto riquadro. Hello **vista** menu contiene **Aggiungi/Rimuovi colonne** e **Personalizza** opzioni.
 
 #### <a name="menu-access"></a>Accesso al menu
-È possibile accedere al menu **Visualizza** nella barra dei menu o nel riquadro **Azioni**.
+È possibile accedere hello **vista** dal menu sulla barra dei menu hello o hello **azioni** riquadro.
 
 ![Menu Visualizza di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_View_menu.png) 
 
 #### <a name="menu-description"></a>Descrizione del menu
-Nella tabella seguente vengono descritte le voci del menu **Visualizza** .
+Hello nella tabella seguente descrive gli elementi visualizzati in hello **vista** menu.
 
 | Voce di menu | Descrizione |
 |:--- |:--- |
-| Aggiungi/Rimuovi colonne |Fare clic su **Aggiungi/Rimuovi colonne** per aggiungere o rimuovere colonne nel riquadro **Risultati**. |
-| Personalizza |Fare clic su **Personalizza** per mostrare o nascondere le voci nella finestra della console di StorSimple Snapshot Manager. |
+| Aggiungi/Rimuovi colonne |Fare clic su **Aggiungi/Rimuovi colonne** tooadd o rimuovere colonne in hello **risultati** riquadro. |
+| Personalizza |Fare clic su **Personalizza** tooshow o nascondere gli elementi nella finestra di console di gestione Snapshot StorSimple hello. |
 
 ### <a name="favorites-menu"></a>Menu Preferiti
-Utilizzare il menu **Preferiti** per aggiungere, rimuovere e organizzare le visualizzazioni della pagina e le attività utilizzate di frequente. 
+Utilizzare hello **Preferiti** tooadd menu, rimuovere e organizzare le visualizzazioni di pagina e le attività di uso frequente. 
 
 #### <a name="menu-access"></a>Accesso al menu
-È possibile accedere al menu **Preferiti** nella barra dei menu.
+È possibile accedere hello **Preferiti** menu sulla barra dei menu hello.
 
 ![Menu Preferiti di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_FavoritesMenu.png)
 
 #### <a name="menu-description"></a>Descrizione del menu
-Nella tabella seguente vengono descritte le voci del menu **Preferiti** .
+Hello nella tabella seguente descrive gli elementi visualizzati in hello **Preferiti** menu.
 
 | Voce di menu | Descrizione |
 |:--- |:--- |
-| Aggiungi a Preferiti |Fare clic su **Aggiungi a Preferiti** per aggiungere la visualizzazione corrente all'elenco dei preferiti. |
-| Organizza Preferiti |Fare clic su **Organizza Preferiti** per organizzare i contenuti della cartella Preferiti. |
+| Aggiungere tooFavorites |Fare clic su **aggiungere tooFavorites** tooadd hello vista tooyour elenco corrente dei Preferiti. |
+| Organizza Preferiti |Fare clic su **Organizza Preferiti** contenuto hello tooorganize della cartella Preferiti. |
 
 ### <a name="window-menu"></a>Menu Finestra
-Usare il menu **Finestra** per aggiungere e ridisporre le finestre della console di StorSimple Snapshot Manager.
+Hello utilizzare **finestra** menu tooadd e ridisporre gestione Snapshot StorSimple finestre della console.
 
 #### <a name="menu-access"></a>Accesso al menu
-È possibile accedere al menu **Finestra** nella barra dei menu.
+È possibile accedere hello **finestra** menu sulla barra dei menu hello.
 
 ![Menu Finestra di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_WindowMenu.png)
 
-L'elenco numerato nella parte inferiore del menu mostra le finestre attualmente aperte. Fare clic su qualsiasi finestra dell'elenco per portarla in primo piano. 
+elenco numerato di Hello nella parte inferiore di hello del menu hello Mostra hello finestre attualmente aperte. Fare clic su qualsiasi finestra nella finestra elenco toobring hello in primo piano hello. 
 
 #### <a name="menu-description"></a>Descrizione del menu
-Nella tabella seguente vengono descritte le voci del menu Finestra.
+Hello nella tabella seguente vengono descritti hello elementi visualizzati nel menu finestra hello.
 
 | Voce di menu | Descrizione |
 |:--- |:--- |
-| Nuova finestra |Fare clic su **Nuova finestra** per aprire una nuova finestra della console (in aggiunta a quella esistente). |
-| Sovrapponi |Fare clic su **Sovrapponi** per visualizzare le finestre della console aperte in uno stile a cascata. |
-| Affianca orizzontalmente |Fare clic su **Affianca orizzontalmente** per visualizzare le finestre della console aperte in un formato riquadro (o griglia). |
-| Disponi icone |Se si dispone di più finestre della console aperte e sparse sul desktop, ridurle a icona, quindi fare clic su **Disponi icone** per disporle in una riga orizzontale nella parte inferiore dello schermo. |
+| Nuova finestra |Fare clic su **nuova finestra** tooopen una nuova finestra della console (in una finestra esistente toohello aggiunta). |
+| Sovrapponi |Fare clic su **Cascade** finestre aperte della console di hello toodisplay in uno stile CSS. |
+| Affianca orizzontalmente |Fare clic su **Affianca orizzontalmente** finestre aperte della console di hello toodisplay sotto forma di riquadro (o griglia). |
+| Disponi icone |Se si dispone di più console di windows aprire e sparpagliate sul desktop, ridurle e quindi fare clic su **Disponi icone** tooarrange multipla in una riga orizzontale nella parte inferiore di hello dello schermo. |
 
 ### <a name="help-menu"></a>Menu Guida
-Usare il menu **Guida** per visualizzare la guida in linea disponibile per StorSimple Snapshot Manager e MMC. È inoltre possibile visualizzare le informazioni sulle versioni software di MMC e StorSimple Snapshot Manager attualmente installate sul sistema. 
+Hello utilizzare **Guida** menu tooview Guida disponibile online per gestione Snapshot StorSimple e hello MMC. È inoltre possibile visualizzare informazioni hello MMC e gestione Snapshot StorSimple versioni del software che sono attualmente installati nel sistema. 
 
-È possibile accedere al menu **Guida** nella barra dei menu. È inoltre possibile accedere agli argomenti della guida di StorSimple Snapshot Manager nel riquadro **Azioni** .
+È possibile accedere hello **Guida** menu sulla barra dei menu hello. È possibile accedere anche gli argomenti della Guida di gestione Snapshot StorSimple da hello **azioni** riquadro.
 
 ![Menu Guida di StorSimple Snapshot Manager](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpMenu.png)
 
 #### <a name="menu-description"></a>Descrizione del menu
-Nella tabella seguente vengono descritte le voci del menu Guida.
+Hello nella tabella seguente descrive gli elementi visualizzati nel menu Guida hello.
 
 | Voce di menu | Descrizione |
 |:--- |:--- |
-| Guida di StorSimple Snapshot Manager |Fare clic su **Guida di StorSimple Snapshot Manager** per aprire la guida di StorSimple Snapshot Manager in una finestra separata. |
-| Argomenti della Guida |Fare clic su **Argomenti della Guida** per aprire la guida in linea di MMC in una finestra separata. |
-| Sito Web TechCenter |Fare clic su **Sito Web TechCenter** per aprire la home page di Microsoft TechNet Tech Center in una finestra separata. |
-| Informazioni su Microsoft Management Console |Fare clic su **informazioni su Microsoft Management Console** per verificare quale versione di Microsoft Management Console è installata sul sistema. |
-| Informazioni su StorSimple Snapshot Manager |Fare clic su **Informazioni su StorSimple Snapshot Manager** per visualizzare quale versione dello snap-in è installata sul sistema. |
+| Guida di StorSimple Snapshot Manager |Fare clic su **Guida StorSimple Snapshot Manager** tooopen della Guida di gestione Snapshot StorSimple in una finestra separata. |
+| Argomenti della Guida |Fare clic su **argomenti della Guida** tooopen Guida di MMC in una finestra separata. |
+| Sito Web TechCenter |Fare clic su **sito Web TechCenter** home page per tooopen hello Microsoft TechNet Tech Center in una finestra separata. |
+| Informazioni su Microsoft Management Console |Fare clic su **informazioni su Microsoft Management Console** toosee quale versione di hello Microsoft Management Console è installato nel sistema. |
+| Informazioni su StorSimple Snapshot Manager |Fare clic su **su StorSimple Snapshot Manager** toosee quale versione di hello snap-in è installata nel sistema. |
 
 ## <a name="tool-bar"></a>Barra degli strumenti
-La barra degli strumenti, posizionata sotto la barra dei menu, contiene le icone della navigazione e delle attività. Ciascuna icona rappresenta una scelta rapida per un'attività specifica.
+barra degli strumenti Hello, che si trova sotto la barra dei menu hello contiene icone di attività e di navigazione. Ogni icona rappresenta un'attività specifica tooa di scelta rapida.
 
 ### <a name="icon-descriptions"></a>Descrizioni delle icone
-Nella tabella seguente vengono descritte le icone della barra degli strumenti. 
+Hello nella tabella seguente sono descritte hello icone visualizzate sulla barra degli strumenti hello. 
 
 | Icona | Descrizione |
 |:--- |:--- |
-| ![Freccia sinistra](./media/storsimple-use-snapshot-manager/HCS_SSM_LeftArrow.png) |Fare clic sull'icona freccia sinistra per tornare alla pagina precedente. |
-| ![Freccia destra](./media/storsimple-use-snapshot-manager/HCS_SSM_RightArrow.png) |Fare clic sulla freccia destra per passare alla pagina successiva (se la freccia è grigia, l'azione non è disponibile). |
-| ![Icona su](./media/storsimple-use-snapshot-manager/HCS_SSM_Up.png) |Fare clic sull'icona su per passare al livello successivo nell'albero della console (il riquadro **Ambito** ). |
-| ![Mostra/Nascondi albero della console](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowConsoleTree.png) |Fare clic sull'icona Mostra/Nascondi albero della console per mostrare o nascondere il riquadro **Ambito** . |
-| ![Esporta elenco](./media/storsimple-use-snapshot-manager/HCS_SSM_ExportListIcon.png) |Fare clic sull'icona Esporta elenco per esportare un elenco in un file CSV specificato. |
-| ![Icona della guida](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpIcon.png) |Fare clic sull'icona Guida per aprire un argomento della guida in linea di MMC. |
-| ![Mostra/Nascondi riquadro Azioni](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowAction.png) |Fare clic sull'icona Mostra/Nascondi riquadro **Azioni** per mostrare o nascondere il riquadro **Azioni**. |
+| ![Freccia sinistra](./media/storsimple-use-snapshot-manager/HCS_SSM_LeftArrow.png) |Fare clic sulla pagina precedente di hello freccia sinistra icona tooreturn toohello. |
+| ![Freccia destra](./media/storsimple-use-snapshot-manager/HCS_SSM_RightArrow.png) |Fare clic sulla pagina successiva di hello freccia destra toogo toohello (se hello freccia è grigia, azione hello è disponibile). |
+| ![Icona su](./media/storsimple-use-snapshot-manager/HCS_SSM_Up.png) |Fare clic su hello backup icona toogo al superiore livello nella struttura della console hello (hello **ambito** riquadro). |
+| ![Mostra/Nascondi albero della console](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowConsoleTree.png) |Fare clic su hello Mostra/Nascondi console albero icona tooshow o nascondere hello **ambito** riquadro. |
+| ![Esporta elenco](./media/storsimple-use-snapshot-manager/HCS_SSM_ExportListIcon.png) |Fare clic su hello esportazione elenco icona tooexport un file CSV tooa elenco specificato. |
+| ![Icona della guida](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpIcon.png) |Fare clic su hello Guida icona tooopen un argomento della Guida MMC in linea. |
+| ![Mostra/Nascondi riquadro Azioni](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowAction.png) |Fare clic su Mostra/Nascondi hello **azioni** hello di tooshow o Nascondi icona riquadro **azioni** riquadro. |
 
 ## <a name="scope-pane"></a>Riquadro Ambito
-**Ambito** è il riquadro più a sinistra nell'interfaccia utente di StorSimple Snapshot Manager. Contiene l’albero della console (o del nodo) ed è il meccanismo di navigazione principale per StorSimple Snapshot Manager. 
+Hello **ambito** hello riquadro all'estrema sinistra in hello UI gestione Snapshot StorSimple. Contiene una struttura ad albero console (o nodo) hello ed è il meccanismo di spostamento principale hello gestione Snapshot StorSimple. 
 
 ### <a name="scope-pane-structure"></a>Struttura del riquadro Ambito
-Il riquadro **Ambito** contiene una serie di oggetti selezionabili (nodi) organizzati in una struttura ad albero. 
+Hello **ambito** riquadro contiene una serie di oggetti selezionabili (nodi) organizzata in una struttura ad albero. 
 
 ![Riquadro Ambito](./media/storsimple-use-snapshot-manager/HCS_SSM_Scope_pane.png) 
 
-* Per espandere o comprimere un nodo, fare clic sull'icona della freccia accanto al nome del nodo.
-* Per visualizzare lo stato o i contenuti di un nodo, fare clic sul nome del nodo. Le informazioni vengono visualizzate nel riquadro **Risultati** . 
+* tooexpand o comprimere un nodo, fare clic su hello freccia icona Avanti toohello nome del nodo.
+* stato di hello tooview o il contenuto di un nodo, fare clic su nome del nodo hello. Hello informazione viene visualizzata nel hello **risultati** riquadro. 
 
-Il riquadro **Ambito** contiene i nodi seguenti: 
+Hello **ambito** riquadro contiene hello seguenti nodi: 
 
 * [Nodo Dispositivi](#devices-node) 
 * [Nodo Volumi](#volumes-node) 
@@ -234,153 +234,153 @@ Il riquadro **Ambito** contiene i nodi seguenti:
 * [Nodo Processi](#jobs-node) 
 
 ### <a name="scope-pane-tasks"></a>Attività riquadro Ambito
-Per completare un'azione su un nodo specifico, è possibile utilizzare il riquadro **Ambito** . Per selezionare un'attività, eseguire una delle operazioni seguenti:
+È possibile utilizzare hello **ambito** riquadro toocomplete un'azione su un nodo specifico. tooselect un'attività, eseguire una delle seguenti hello:
 
-* Fare clic con il pulsante destro del mouse sul nodo, quindi selezionare l'attività dal menu che viene visualizzato.
-* Fare clic sul nodo, quindi fare clic su **Azione** nella barra dei menu. Selezionare l'attività dal menu che viene visualizzato.
-* Fare clic sul nodo, quindi selezionare l'azione nel riquadro **Azioni** .
+* Nodo hello e quindi scegliere attività hello dal menu di scelta rapida hello.
+* Fare clic sul nodo hello e quindi fare clic su **azione** sulla barra dei menu hello. Selezionare l'attività hello dal menu di scelta rapida hello.
+* Fare clic su nodo hello e quindi selezionare hello in hello **azioni** riquadro.
 
-Quando si seleziona un nodo e si utilizza uno di questi metodi per visualizzare un elenco di attività, vengono visualizzate solo le azioni che possono essere eseguite su tale nodo.
+Quando si seleziona un nodo e utilizza uno di questi metodi toosee un elenco di attività, vengono visualizzate solo le azioni che possono essere eseguite su tale nodo.
 
 ### <a name="devices-node"></a>Nodo Dispositivi
-Il nodo **Dispositivi** rappresenta i dispositivi StorSimple e i dispositivi StorSimple virtuali connessi a StorSimple Snapshot Manager. Selezionare questo nodo per connettere e configurare un dispositivo e importare i relativi volumi associati, i gruppi di volumi e le copie di backup esistenti. Più dispositivi possono essere connessi a un singolo host.
+Hello **dispositivi** nodo rappresenta dispositivi StorSimple hello e i dispositivi virtuali StorSimple che sono connessi tooStorSimple gestione Snapshot. Selezionare tooconnect questo nodo e configurare un dispositivo e importare relativi volumi associati, i gruppi di volumi e copie di backup esistenti. Più dispositivi possono essere connesso tooa singolo host.
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Dispositivi**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Dispositivi** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco dei dispositivi configurati, fare clic su **Dispositivi** nel riquadro **Ambito**. L'elenco dei dispositivi e le informazioni su ciascun dispositivo verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**dispositivi**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **dispositivi** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di dispositivi configurati, toosee **dispositivi** in hello **ambito** riquadro. elenco di Hello dei dispositivi, insieme alle informazioni su ogni dispositivo, viene visualizzato nel hello **risultati** riquadro.
 
 ### <a name="volumes-node"></a>Nodo Volumi
-Il nodo **Volumi** rappresenta le unità che corrispondono ai volumi montati dall'host, tra cui quelli individuati tramite iSCSI e quelli individuati tramite un dispositivo. Utilizzare questo nodo per visualizzare l'elenco dei volumi disponibili e assegnare i singoli volumi a gruppi di volumi.
+Hello **volumi** nodo rappresenta le unità hello corrispondenti toohello volumi montati dall'host di hello, inclusi quelli individuati tramite iSCSI e quelli individuati tramite un dispositivo. Utilizzare questo elenco di hello tooview di nodo di volumi disponibili e assegnare volumi singoli gruppi toovolume.
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Volumi**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Volumi** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco dei volumi, fare clic su **Volumi** nel riquadro **Ambito**. L'elenco dei volumi e le informazioni su ciascun volume verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**volumi**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **volumi** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di volumi, toosee **volumi** in hello **ambito** riquadro. viene visualizzato l'elenco di Hello di volumi, insieme alle informazioni su ogni volume, in hello **risultati** riquadro.
 
 ### <a name="volume-groups-node"></a>Nodo Gruppi volumi
-I gruppi di volumi sono noti anche come gruppi di coerenza. Ciascun gruppo di volumi è un pool di volumi relativi all'applicazione che consente di garantire la coerenza con l'applicazione durante le operazioni di backup. Utilizzare il nodo **Gruppi di volumi** per configurare tali gruppi ed eseguire backup interattivi o creare pianificazioni di backup. 
+I gruppi di volumi sono noti anche come gruppi di coerenza. Ogni gruppo di volumi è un pool di volumi correlati alle applicazioni che consente la coerenza delle applicazioni tooensure durante le operazioni di backup. Hello utilizzare **gruppi di volumi** tooconfigure nodo questi gruppi e i backup interattivo tootake o creare pianificazioni di backup. 
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Gruppi di volumi**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Gruppi di volumi** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco dei gruppi di volumi, fare clic su **Gruppi di volumi** nel riquadro **Ambito**. L'elenco dei gruppi di volumi e le informazioni su ciascun gruppi di volumi verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**gruppi di volumi**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **gruppi di volumi** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di gruppi di volumi, toosee **gruppi di volumi** in hello **ambito** riquadro. elenco di Hello di gruppi di volumi, insieme alle informazioni su ogni gruppo di volumi, vengono visualizzati nel hello **risultati** riquadro.
 
 ### <a name="backup-policies-node"></a>Nodo Criteri di backup
-I criteri di backup sono pianificazioni dei processi per snapshot locali e cloud. Utilizzare il nodo **Criteri di backup** per specificare la frequenza di creazione di un backup e il relativo tempo di conservazione. 
+I criteri di backup sono pianificazioni dei processi per snapshot locali e cloud. Hello utilizzare **criteri di Backup** nodo toospecify la frequenza con cui viene creato un backup e per quanto tempo una copia di backup debba essere mantenuti. 
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Criteri di backup**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Criteri di backup** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco dei criteri di backup, fare clic su **Criteri di backup** nel riquadro **Ambito**. L'elenco dei criteri di backup e le informazioni su ciascun criterio verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**criteri di Backup**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **criteri di Backup** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di criteri di backup, toosee **criteri di Backup** in hello **ambito** riquadro. elenco di Hello di criteri di backup, insieme alle informazioni su tutti i criteri, viene visualizzato nel hello **risultati** riquadro.
 
 > [!NOTE]
 > È possibile conservare un massimo di 64 backup.
 
 
 ### <a name="backup-catalog-node"></a>Nodo Catalogo di backup
-Il nodo **Catalogo di backup** contiene gli elenchi dei backup locali in sede e fuori sede dei volumi StorSimple di Azure. Questo nodo è organizzato per gruppo di volumi e il contenitore di ogni gruppo di volumi contiene strutture separate per gli snapshot locali (il nodo **Snapshot locali**) e gli snapshot cloud (il nodo **Snapshot cloud**). Se viene espanso, il contenitore di ciascun gruppo di volumi elenca tutti i backup riusciti che sono stati eseguiti in modo interattivo o da un criterio configurato.
+Hello **catalogo di Backup** nodo contiene elenchi di backup in sede e fuori sede di volumi StorSimple di Azure. Questo nodo viene organizzato per gruppo di volumi e ciascun contenitore gruppo di volumi contiene strutture separate per snapshot locali (hello **Snapshot locale**nodo s) e gli snapshot cloud (hello **gli snapshot Cloud** nodo ). Quando viene espanso, ogni contenitore gruppo di volumi Elenca tutti i backup riusciti hello che sono stati eseguiti in modo interattivo o da un criterio configurato.
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Catalogo di backup**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Catalogo di backup** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco degli snapshot di backup, fare clic su **Catalogo backup** nel riquadro **Ambito**. L'elenco degli snapshot e le informazioni su ciascuno snapshot verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**catalogo di Backup**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **catalogo di Backup** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di snapshot di backup, toosee **catalogo di Backup** in hello **ambito** riquadro. elenco di Hello di snapshot, insieme alle informazioni su ogni snapshot, viene visualizzato nel hello **risultati** riquadro.
 
 ### <a name="local-snapshots-node"></a>Nodo Snapshot locali
-Il nodo **Snapshot locali** elenca gli snapshot locali per un gruppo di volumi specifico. Il nodo si trova sotto **Catalogo backup** nel riquadro **Ambito**. Gli snapshot locali sono copie temporizzate dei dati del volume archiviati sul dispositivo StorSimple di Azure. In genere, questo tipo di backup può essere creato e ripristinato rapidamente. È possibile utilizzare uno snapshot locale come copia di backup locale.
+Hello **gli snapshot locali** nodo sono elencati gli snapshot locali per un gruppo di volumi specifico. nodo Hello si trova sotto hello **catalogo di Backup** nodo hello **ambito** riquadro. Gli snapshot locali sono copie punto nel tempo dei dati di volume archiviati nel dispositivo Azure StorSimple hello. In genere, questo tipo di backup può essere creato e ripristinato rapidamente. È possibile utilizzare uno snapshot locale come copia di backup locale.
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Snapshot locali**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Snapshot locali** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco di snapshot locali, fare clic su **Snapshot locali** nel riquadro **Ambito**. L'elenco degli snapshot e le informazioni su ciascuno snapshot verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**gli snapshot locali**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **gli snapshot locali** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di snapshot locali, toosee **gli snapshot locali** in hello **ambito** riquadro. elenco di Hello di snapshot, insieme alle informazioni su ogni snapshot, viene visualizzato nel hello **risultati** riquadro.
 
 ### <a name="cloud-snapshots-node"></a>Nodo Snapshot cloud
-Il nodo **Snapshot cloud** elenca gli snapshot cloud per un gruppo di volumi specifico. Il nodo si trova sotto **Catalogo backup** nel riquadro **Ambito**. Gli snapshot Cloud sono copie temporizzate di dati del volume archiviati nel cloud. Uno snapshot cloud equivale a uno snapshot replicato su un diverso sistema di archiviazione fuori sede. Gli snapshot cloud sono particolarmente utili negli scenari di ripristino di emergenza.
+Hello **gli snapshot Cloud** nodo sono elencati gli snapshot cloud per un gruppo di volumi specifico. nodo Hello si trova sotto hello **catalogo di Backup** nodo hello **ambito** riquadro. Gli snapshot cloud sono copie punto nel tempo dei dati di volume archiviati nel cloud hello. Uno snapshot cloud equivale tooa snapshot replicato su un sistema di archiviazione fuori sede diversi. Gli snapshot cloud sono particolarmente utili negli scenari di ripristino di emergenza.
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Snapshot cloud**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Snapshot cloud** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco di snapshot cloud, fare clic su **Snapshot cloud** nel riquadro **Ambito**. L'elenco degli snapshot e le informazioni su ciascuno snapshot verranno visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**gli snapshot Cloud**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **gli snapshot Cloud** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* Fare clic su un elenco di snapshot nel cloud, toosee **gli snapshot Cloud** in hello **ambito** riquadro. elenco di Hello di snapshot, insieme alle informazioni su ogni snapshot, viene visualizzato nel hello **risultati** riquadro.
 
 ### <a name="jobs-node"></a>Nodo Processi
-Il nodo **Processi** contiene le informazioni sui processi di backup pianificati, in esecuzione e completati di recente. 
+Hello **processi** nodo contiene informazioni sui processi di backup pianificati, in esecuzione e completati di recente. 
 
-* Per espandere il nodo, fare clic sull'icona della freccia accanto a **Processi**.
-* Per visualizzare un menu di azioni disponibili, fare clic con il pulsante destro del mouse sul nodo **Processi** oppure su uno dei nodi presenti nella visualizzazione espansa.
-* Per visualizzare un elenco dei processi pianificati, espandere il nodo **Processi**, quindi fare clic su **Pianificati**. L’elenco dei processi configurati in precedenza e le informazioni su ciascun processo vengono visualizzati nel riquadro **Risultati** . 
-* Per visualizzare un elenco dei processi completati di recente, espandere il nodo **Processi**, quindi fare clic su **Ultime 24 ore**. L’elenco dei processi completati nelle ultime 24 viene visualizzato nel riquadro **Risultati** . Il riquadro **Risultati** contiene anche le informazioni su ciascun processo completato.
-* Per visualizzare un elenco dei processi attualmente in esecuzione, espandere il nodo **Processi**, quindi fare clic su **In esecuzione**. L’elenco dei processi attualmente in esecuzione e le informazioni su ciascun processo vengono visualizzati nel riquadro **Risultati** .
+* nodo hello tooexpand, fare clic su freccia hello Avanti troppo**processi**.
+* toosee un menu di azioni disponibili, fare doppio clic su hello **processi** nodo o rapida vista tutti i nodi che vengono visualizzati in hello hello ingrandita.
+* toosee un elenco dei processi pianificati, espandere hello **processi** nodo e quindi fare clic su **pianificato**. Hello elenco di processi configurati in precedenza e informazioni su ogni processo viene visualizzato in hello **risultati** riquadro. 
+* un elenco di processi completati di recente, toosee espandere hello **processi** nodo e quindi fare clic su **ultime 24 ore**. Viene visualizzato un elenco di processi completati nelle hello ultime 24 ore in hello **risultati** riquadro. Hello **risultati** riquadro contiene anche informazioni su ogni processo completato.
+* toosee un elenco di processi attualmente in esecuzione, espandere hello **processi** nodo e quindi fare clic su **esecuzione**. viene visualizzato l'elenco di Hello di attualmente in esecuzione processi e informazioni su ogni processo in hello **risultati** riquadro.
 
 ## <a name="results-pane"></a>Riquadro Risultati
-**Risultati** è il riquadro centrale nell’interfaccia grafica di StorSimple Snapshot Manager. Contiene elenchi e informazioni dettagliate sullo stato per il nodo selezionato nel riquadro **Ambito** .
+Hello **risultati** riquadro center hello in hello UI gestione Snapshot StorSimple. Contiene elenchi e informazioni dettagliate sullo stato per il nodo hello selezionato in hello **ambito** riquadro.
 
 ### <a name="example"></a>Esempio
-Per visualizzare l'esempio seguente, fare clic sul nodo **Gruppi di volumi** nel riquadro **Ambito**. Il riquadro **Risultati** contiene un elenco dei gruppi di volumi con informazioni dettagliate su ciascun gruppo.
+hello toosee seguente esempio, fare clic su hello **gruppi di volumi** nodo hello **ambito** riquadro. Hello **risultati** riquadro viene visualizzato un elenco di gruppi di volumi con informazioni dettagliate su ogni gruppo.
 
 ![Riquadro Risultati](./media/storsimple-use-snapshot-manager/HCS_SSM_Results_pane.png) 
 
-È possibile configurare i dettagli mostrati nel riquadro **Risultati**: fare clic con il pulsante destro del mouse su un nodo nel riquadro **Ambito**, fare clic su **Visualizza**, quindi fare clic su **Aggiungi/Rimuovi colonne**.
+È possibile configurare i dettagli di hello mostrati nel hello **risultati** riquadro: fare doppio clic su un nodo in hello **ambito** riquadro, fare clic su **vista**, quindi fare clic su **Aggiungi/Rimuovi Colonne**.
 
 ## <a name="actions-pane"></a>Riquadro Azioni
-**Ambito** è il riquadro destro nell’interfaccia utente di StorSimple Snapshot Manager. Contiene un menu di operazioni che è possibile eseguire sulla visualizzazione, sulla data o sul nodo selezionato nel riquadro **Ambito** o **Risultati**. Il riquadro **Azioni** contiene gli stessi comandi dei menu **Azione** disponibili per le voci nei riquadri **Ambito** e **Risultati**. Per una descrizione di ciascuna azione, vedere la tabella nella sezione relativa al menu **Azione** .
+Hello **azioni** riquadro di destra hello in hello UI gestione Snapshot StorSimple. Contiene un menu di operazioni che è possibile eseguire sul nodo hello, vista o sui dati che si seleziona in hello **ambito** riquadro o **risultati** riquadro. Hello **azioni** riquadro contiene hello stesso comandi come hello **azione** i menu disponibili per gli elementi di hello **ambito** riquadro e **risultati**riquadro. Per una descrizione di ogni azione, vedere la tabella hello in hello **azione** sezione del menu.
 
 ### <a name="examples"></a>esempi
-Per vedere l'esempio seguente, nel riquadro **Ambito**, espandere il nodo **Processi**, quindi fare clic su **Pianificati**. Il riquadro **Azioni** contiene le azioni disponibili per il nodo **Pianificati**.
+hello toosee seguente esempio, in hello **ambito** riquadro espandere hello **processi** nodo e fare clic su **pianificato**. Hello **azioni** riquadro vengono visualizzate le azioni disponibili per hello hello **pianificato** nodo.
 
 ![Esempio processi pianificati nel riquadro Azioni](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane.png) 
 
-Per visualizzare altre opzioni, nel riquadro **Ambito** espandere il nodo **Processi**, fare clic su **Pianificati** e quindi su un processo pianificato nel riquadro **Risultati**. Il riquadro **Azioni** contiene le azioni disponibili per il processo pianificato, come mostrato nell'esempio seguente.
+toosee altre opzioni, in hello **ambito** riquadro espandere hello **processi** nodo, fare clic su **pianificato**, quindi fare clic su un processo pianificato in hello **risultati**riquadro. Hello **azioni** riquadro vengono visualizzate le azioni disponibili per il processo pianificato hello, hello, come illustrato nell'esempio seguente hello.
 
 ![Esempio azioni del processo nel riquadro Azioni](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane_Results.png)
 
 ## <a name="keyboard-navigation-and-shortcuts"></a>Navigazione da tastiera e tasti di scelta rapida
-StorSimple Snapshot Manager abilita le funzionalità di accessibilità del sistema operativo Windows e di Microsoft Management Console (MMC). Include inoltre alcune funzionalità di navigazione da tastiera e i tasti di scelta rapida specifici di StorSimple Snapshot Manager, come descritto nelle sezioni seguenti.
+Gestione Snapshot StorSimple Abilita le funzionalità di accessibilità di hello del sistema operativo di Windows hello e hello Microsoft Management Console (MMC). Include inoltre alcune funzionalità di navigazione da tastiera e tasti di scelta rapida sono specifico toohello gestione Snapshot StorSimple, come descritto in hello le sezioni seguenti.
 
 * [Tasti di navigazione da tastiera](#keyboard-navigation-keys) 
 * [Tasti di scelta rapida della barra dei menu](#menu-bar-shortcut-keys) 
 * [Tasti di scelta rapida del riquadro Ambito](#scope-pane-shortcut-keys) 
 
 ### <a name="keyboard-navigation-keys"></a>Tasti di navigazione da tastiera
-Nella tabella seguente vengono descritti i tasti che è possibile utilizzare per spostarsi nell'interfaccia utente di StorSimple Snapshot Manager. 
+Hello nella tabella seguente vengono descritte hello chiavi che è possibile utilizzare l'interfaccia utente di gestione Snapshot StorSimple hello toonavigate. 
 
 | Tasto di navigazione | Azione |
 |:--- |:--- |
-| Tasto freccia giù |Utilizzare il tasto freccia giù per spostarsi in senso verticale alla voce successiva in un menu o in un riquadro. |
-| Immettere |Premere il tasto INVIO per completare un'azione e procedere al passaggio successivo. Ad esempio, è possibile premere INVIO per selezionare **Avanti**, **OK** o **Crea** e procedere al passaggio successivo in una procedura guidata. |
-| ESC |Premere il tasto ESC per chiudere un menu oppure per annullare e chiudere una pagina. |
-| F1 |Premere il tasto F1 per visualizzare un argomento della guida per la finestra attiva corrente. |
-| F5 |Premere il tasto F5 per aggiornare un nodo. |
-| F6 |Premere F6 per spostarsi dal riquadro **Ambito** al riquadro **Risultati**. |
-| F10 |Premere il tasto F10 per passare alla barra dei menu. |
-| Tasto freccia sinistra |Utilizzare il tasto freccia sinistra per spostarsi in senso orizzontale da un'opzione della barra dei menu a quella precedente. Quando ci si sposta sulla voce precedente nella barra dei menu, viene visualizzato il menu Azione (o Contesto) per la voce precedente. |
-| Tasto freccia destra |Utilizzare il tasto freccia destra per spostarsi in senso orizzontale da un’opzione della barra dei menu a quella successiva. Quando ci si sposta sulla voce successiva nella barra dei menu, viene visualizzato il menu Azione (o Contesto) per la nuova voce. |
-| Tasto TAB |Utilizzare il tasto TAB per spostarsi al riquadro successivo nella console oppure alla selezione o alla casella di testo successiva in una pagina. |
-| Tasto freccia su |Utilizzare il tasto freccia su per spostarsi in senso verticale alla voce precedente in un menu o in un riquadro. |
+| Tasto freccia giù |Utilizzare hello toomove chiave sulla freccia verso il basso in verticale toohello elemento successivo in un menu o un riquadro. |
+| Immettere |Premere hello invio chiave toocomplete un'azione e quindi procedere toohello successivo. Ad esempio, è possibile premere INVIO tooselect **Avanti**, **OK**, o **crea**, quindi andare toohello il passaggio successivo in una procedura guidata. |
+| ESC |Premere hello Esc chiave tooclose un menu o toocancel e chiudere una pagina. |
+| F1 |Premere hello F1 chiave tooview un argomento della Guida per la finestra attualmente attiva di hello. |
+| F5 |Premere hello F5 chiave toorefresh un nodo. |
+| F6 |Premere toomove di chiave F6 hello da hello **ambito** riquadro toohello **risultati** riquadro. |
+| F10 |Premere barra dei menu toohello toogo chiave hello F10. |
+| Tasto freccia sinistra |Utilizzare hello orizzontalmente a sinistra toomove chiave freccia opzione di menu barra opzione toohello precedente. Quando si sposta toohello precedente viene visualizzato il menu elemento hello menu barra, azione hello (o contesto) per l'elemento precedente hello. |
+| Tasto freccia destra |Utilizzare toomove chiave sulla freccia a destra di hello in senso orizzontale da un menu barra toohello opzione. Quando si sposta toohello successivo elemento hello menu barra, azione hello (o contesto) menu nuovo elemento hello. |
+| Tasto TAB |Utilizzare riquadro successivo di hello scheda toomove chiave toohello su hello console o toohello successiva selezione o casella di testo in una pagina. |
+| Tasto freccia su |Utilizzare hello backup toomove chiave freccia verticalmente toohello elemento precedente in un menu o un riquadro. |
 
 ### <a name="menu-bar-shortcut-keys"></a>Tasti di scelta rapida della barra dei menu
-Nella tabella seguente vengono descritte le combinazioni di tasti di scelta rapida per la barra dei menu. Dopo aver aperto i menu premendo i tasti di scelta rapida, è possibile utilizzare i tasti di scelta rapida del menu (i tasti sottolineati nel menu). Per ulteriori informazioni sulla barra dei menu, andare a [Barra dei menu](#menu-bar).
+Hello nella tabella seguente descrive hello tasti di scelta rapida per la barra dei menu hello. Dopo che si premono i tasti di scelta rapida hello e verrà visualizzato il menu di hello, è possibile utilizzare i tasti di scelta rapida (hello tasti sottolineati nel menu hello). Per ulteriori informazioni sulla barra dei menu hello, andare troppo[barra dei Menu](#menu-bar).
 
 | Tasto di scelta rapida | Risultato | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |:--- |:--- |
-| ALT + F |Consente di aprire il menu **File** . |N |Consente di aprire l’istanza di una nuova console. |
-|  |O |Consente di aprire la pagina **Strumenti di amministrazione** . | |
-|  |S |Consente di salvare la console di StorSimple Snapshot Manager. | |
-|  |A |Consente di aprire la pagina **Salva con nome** . | |
-|  |M |Consente di aprire la pagina **Aggiungi/Rimuovi snap-in** . | |
-|  |P |Consente di aprire la pagina **Opzioni** . | |
+| ALT + F |Verrà visualizzata la hello **File** menu. |N |Consente di aprire l’istanza di una nuova console. |
+|  |O |Verrà visualizzata la hello **strumenti di amministrazione** pagina. | |
+|  |S |Salva una console di gestione Snapshot StorSimple hello. | |
+|  |Una  |Verrà visualizzata la hello **Salva con nome** pagina. | |
+|  |M |Verrà visualizzata la hello **Aggiungi/Rimuovi Snap-in** pagina. | |
+|  |P |Verrà visualizzata la hello **opzioni** pagina. | |
 |  |H |Consente di aprire la guida in linea. | |
-| ALT + A |Consente di aprire il menu **Azione** . |I |Consente di attivare e disattivare l'opzione di visualizzazione dell’importazione. |
+| ALT + A |Verrà visualizzata la hello **azione** menu. |I |Attiva e disattiva l'opzione di visualizzazione di importazione hello. |
 |  |W |Consente di aprire una nuova console di StorSimple Snapshot Manager. | |
-|  |F |Consente di aggiornare la console di StorSimple Snapshot Manager. | |
-|  |L |Consente di aprire la pagina **Esporta elenco** . | |
+|  |F |Aggiorna console di gestione Snapshot StorSimple hello. | |
+|  |L |Verrà visualizzata la hello **Esporta elenco** pagina. | |
 |  |H |Consente di aprire la guida in linea. | |
-| ALT + V |Consente di aprire il menu **Visualizza** . |A |Consente di aprire la pagina **Aggiungi/Rimuovi colonne** . |
-|  |U |Consente di aprire la pagina **Personalizza visualizzazione** . | |
-| ALT + O |Consente di aprire il menu **Preferiti** . |A |Consente di aprire la pagina **Aggiungi a Preferiti** . |
-|  |O |Consente di aprire la pagina **Organizza Preferiti** . | |
-| ALT + W |Consente di aprire il menu **Finestra** . |N |Consente di aprire un'altra finestra di StorSimple Snapshot Manager. |
+| ALT + V |Verrà visualizzata la hello **vista** menu. |Una  |Verrà visualizzata la hello **Aggiungi/Rimuovi colonne** pagina. |
+|  |U |Verrà visualizzata la hello **Personalizza visualizzazione** pagina. | |
+| ALT + O |Verrà visualizzata la hello **Preferiti** menu. |Una  |Verrà visualizzata la hello **aggiungere tooFavorites** pagina. |
+|  |O |Verrà visualizzata la hello **Organizza Preferiti** pagina. | |
+| ALT + W |Verrà visualizzata la hello **finestra** menu. |N |Consente di aprire un'altra finestra di StorSimple Snapshot Manager. |
 |  |C |Consente di visualizzare tutte le finestre della console aperte in uno stile a cascata. | |
 |  |T |Consente di visualizzare tutte le finestre della console aperte in motivo di griglia. | |
-|  |I |Consente di disporre le icone su una riga orizzontale nella parte inferiore dello schermo. | |
-| ALT + H |Consente di aprire il menu **Guida** . |H |Consente di aprire la guida in linea. |
-|  |T |Consente di aprire la pagina Web di Microsoft TechNet Tech Center. | |
-|  |A |Consente di aprire la pagina **Informazioni su Microsoft Management Console** . | |
+|  |I |Dispone le icone in una riga orizzontale nella parte inferiore di hello dello schermo. | |
+| ALT + H |Verrà visualizzata la hello **Guida** menu. |H |Consente di aprire la guida in linea. |
+|  |T |Verrà visualizzata la pagina web di Microsoft TechNet Tech Center hello. | |
+|  |Una  |Verrà visualizzata la hello **informazioni su Microsoft Management Console** pagina. | |
 
 ### <a name="scope-pane-shortcut-keys"></a>Tasti di scelta rapida del riquadro Ambito
-Nelle tabelle seguenti vengono illustrate le combinazioni dei tasti di scelta rapida per ciascun nodo nel riquadro **Ambito** . 
+Hello nelle tabelle seguenti viene scelta rapida hello combinazioni di tasti per ogni nodo in hello **ambito** riquadro. 
 
 * [Tasti di scelta rapida del nodo Dispositivi](#devices-node-shortcut-keys)
 * [Tasti di scelta rapida del nodo Volumi](#volumes-node-shortcut-keys)
@@ -392,61 +392,61 @@ Nelle tabelle seguenti vengono illustrate le combinazioni dei tasti di scelta ra
 #### <a name="devices-node-shortcut-keys"></a>Tasti di scelta rapida del nodo Dispositivi
 | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |
-| C |Consente di aprire la pagina **Configura un dispositivo** . |
-| D |Consente di aggiornare l'elenco di dispositivi e i dettagli del dispositivo. |
-| V |Consente di aprire il menu **Visualizza** . |
-| W |Consente di aprire una nuova console di StorSimple Snapshot Manager incentrata sul nodo **Dettagli** . |
-| F |Consente di aggiornare la console di StorSimple Snapshot Manager. |
-| L |Consente di aprire la pagina **Esporta elenco** . |
+| C |Verrà visualizzata la hello **configurare un dispositivo** pagina. |
+| D |Aggiorna elenco hello di dispositivi e i dettagli. |
+| V |Verrà visualizzata la hello **vista** menu. |
+| W |Apre una nuova console di gestione Snapshot StorSimple con stato attivo su hello **dettagli** nodo. |
+| F |Aggiorna console di gestione Snapshot StorSimple hello. |
+| L |Verrà visualizzata la hello **Esporta elenco** pagina. |
 | H |Consente di aprire la guida in linea. |
 
 #### <a name="volumes-node-shortcut-keys"></a>Tasti di scelta rapida del nodo Volumi
 | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |
-| V |Consente di aggiornare l'elenco dei volumi. |
-| V (premere due volte) |Consente di aprire il menu **Visualizza** . |
-| W |Consente di aprire una nuova console di StorSimple Snapshot Manager incentrata sul nodo **Volumi** . |
-| F |Consente di aggiornare la console di StorSimple Snapshot Manager. |
-| L |Consente di aprire la pagina **Esporta elenco** . |
+| V |Elenco di aggiornamenti hello di volumi. |
+| V (premere due volte) |Verrà visualizzata la hello **vista** menu. |
+| W |Apre una nuova console di gestione Snapshot StorSimple con stato attivo su hello **volumi** nodo. |
+| F |Aggiorna console di gestione Snapshot StorSimple hello. |
+| L |Verrà visualizzata la hello **Esporta elenco** pagina. |
 | H |Consente di aprire la guida in linea. |
 
 #### <a name="volume-groups-node-shortcut-keys"></a>Tasti di scelta rapida del nodo Gruppi di volumi
 | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |
-| G |Consente di aprire la pagina **Crea un gruppo di volumi** . |
-| V |Consente di aprire il menu **Visualizza** . |
-| W |Consente di aprire una nuova console di StorSimple Snapshot Manager incentrata sul nodo **Gruppi di volumi** . |
-| F |Consente di aggiornare la console di StorSimple Snapshot Manager. |
-| L |Consente di aprire la pagina **Esporta elenco** . |
+| G |Verrà visualizzata la hello **creare un gruppo di volumi** pagina. |
+| V |Verrà visualizzata la hello **vista** menu. |
+| W |Apre una nuova console di gestione Snapshot StorSimple con stato attivo su hello **gruppi di volumi** nodo. |
+| F |Aggiorna console di gestione Snapshot StorSimple hello. |
+| L |Verrà visualizzata la hello **Esporta elenco** pagina. |
 | H |Consente di aprire la guida in linea. |
 
 #### <a name="backup-policies-node-shortcut-keys"></a>Tasti di scelta rapida del nodo Criteri di backup
 | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |
-| B |Consente di aprire la pagina **Crea un criterio** . |
-| V |Consente di aprire il menu **Visualizza** . |
-| W |Consente di aprire una nuova console di StorSimple Snapshot Manager incentrata sul nodo **Gruppi di volumi** . |
-| F |Consente di aggiornare la console di StorSimple Snapshot Manager. |
-| L |Consente di aprire la pagina **Esporta elenco**. |
+| B |Verrà visualizzata la hello **creare un criterio** pagina. |
+| V |Verrà visualizzata la hello **vista** menu. |
+| W |Apre una nuova console di gestione Snapshot StorSimple con stato attivo su hello **gruppi di volumi** nodo. |
+| F |Aggiorna console di gestione Snapshot StorSimple hello. |
+| L |Verrà visualizzata la hello * * Esporta elenco * * pagina. |
 | H |Consente di aprire la guida in linea. |
 
 #### <a name="backup-catalog-node-shortcut-keys"></a>Tasti di scelta rapida del nodo Catalogo di backup
 | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |
-| W |Consente di aprire una nuova console di StorSimple Snapshot Manager incentrata sul nodo **Gruppi di volumi** . |
-| F |Consente di aggiornare la console di StorSimple Snapshot Manager. |
+| W |Apre una nuova console di gestione Snapshot StorSimple con stato attivo su hello **gruppi di volumi** nodo. |
+| F |Aggiorna console di gestione Snapshot StorSimple hello. |
 | H |Consente di aprire la guida in linea. |
 
 #### <a name="jobs-node-shortcut-keys"></a>Tasti di scelta rapida del nodo Processi
 | Tasti di scelta rapida del menu | Risultato |
 |:--- |:--- |
-| V |Consente di aprire il menu **Visualizza** . |
-| W |Consente di aprire una nuova console di StorSimple Snapshot Manager incentrata sul nodo **Processi** . |
-| F |Consente di aggiornare la console di StorSimple Snapshot Manager. |
-| L |Consente di aprire la pagina **Esporta elenco** . |
+| V |Verrà visualizzata la hello **vista** menu. |
+| W |Apre una nuova console di gestione Snapshot StorSimple con stato attivo su hello **processi** nodo. |
+| F |Aggiorna console di gestione Snapshot StorSimple hello. |
+| L |Verrà visualizzata la hello **Esporta elenco** pagina. |
 | H |Consente di aprire la guida in linea. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come [usare StorSimple Snapshot Manager per amministrare la soluzione di StorSimple](storsimple-snapshot-manager-admin.md).
-* Leggere le informazioni su come [usare StorSimple Snapshot Manager per connettere e gestire i dispositivi](storsimple-snapshot-manager-manage-devices.md).
+* Informazioni su come troppo[usare Gestione Snapshot StorSimple tooadminister la soluzione StorSimple](storsimple-snapshot-manager-admin.md).
+* Informazioni su come troppo[tooconnect StorSimple Snapshot Manager di utilizzare e gestire i dispositivi](storsimple-snapshot-manager-manage-devices.md).
 

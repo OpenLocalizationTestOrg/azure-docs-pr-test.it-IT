@@ -1,6 +1,6 @@
 ---
-title: Pianificazione della migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager | Documentazione Microsoft
-description: Pianificazione della migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager
+title: aaaPlanning per la migrazione delle risorse IaaS da Gestione risorse di tooAzure classico | Documenti Microsoft
+description: Pianificazione della migrazione delle risorse IaaS da Gestione risorse di tooAzure classico
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/01/2017
 ms.author: kasing
-ms.openlocfilehash: db23eba9ff8debd5268cd02bc4f37c4e6501bfac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7574122d951119db4991187945739b190ef14995
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>Pianificazione della migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager
-Anche se Azure Resource Manager offre molte funzionalità straordinarie, è fondamentale pianificare la migrazione in modo che avvenga senza problemi. Dedicare tempo alla pianificazione garantisce che non si verifichino problemi durante l'esecuzione delle attività di migrazione.
+# <a name="planning-for-migration-of-iaas-resources-from-classic-tooazure-resource-manager"></a>Pianificazione della migrazione delle risorse IaaS da Gestione risorse di tooAzure classico
+Gestione risorse di Azure offre numerose funzionalità straordinarie, ma è critico tooplan out il toomake proprio processo di migrazione cose che avvengano in maniera fluida. Dedicare tempo alla pianificazione garantisce che non si verifichino problemi durante l'esecuzione delle attività di migrazione.
 
 > [!NOTE]
-> Alle linee guida seguenti hanno fornito un importante contributo il team Azure Customer Advisory e gli architetti delle soluzioni cloud che lavorano con i clienti per la migrazione di ambienti di grandi dimensioni. È consigliabile controllare questo documento di tanto in tanto perché verrà aggiornato mano a mano che emergeranno nuovi modelli di successo.
+> Hello istruzioni disponibili è stata ampiamente contributo tooby hello Azure Customer Advisory team e architetti di soluzioni di Cloud lavorando con clienti migrazione ambienti di grandi dimensioni. Di conseguenza il documento continuerà tooget aggiornato come emerge nuovi modelli di successo, dal tempo tootime toosee verificare se sono presenti eventuali nuove indicazioni.
 
-Il percorso di migrazione include quattro fasi generali:<br>
+Esistono quattro fasi generali del proprio processo di migrazione hello:<br>
 
 ![Fasi di migrazione](../media/virtual-machines-windows-migration-classic-resource-manager/plan-labtest-migrate-beyond.png)
 
@@ -35,90 +35,90 @@ Il percorso di migrazione include quattro fasi generali:<br>
 
 ### <a name="technical-considerations-and-tradeoffs"></a>Considerazioni tecniche e compromessi
 
-In base alla quantità di requisiti tecnici, alle aree geografiche e alle procedure operative, è necessario considerare quanto segue:
+A seconda dei dimensioni requisiti tecnici aree geografiche e procedure operative, è possibile tooconsider:
 
-1. Perché si vuole usare Azure Resource Manager per l'organizzazione?  Quali sono i motivi aziendali della scelta della migrazione?
-2. Quali sono i motivi tecnici della scelta di Azure Resource Manager?  Quali eventuali servizi aggiuntivi di Azure si desidera sfruttare?
-3. Quale applicazione (o set di macchine virtuali) è inclusa nella migrazione?
-4. Quali scenari sono supportati con l'API di migrazione?  Esaminare le [funzionalità e configurazioni non supportate](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#unsupported-features-and-configurations).
+1. Perché si vuole usare Azure Resource Manager per l'organizzazione?  Quali sono i motivi aziendali hello per la migrazione?
+2. Quali sono i motivi tecnici hello per Gestione risorse di Azure?  Novità (se presente) servizi di Azure aggiuntivi si sarebbe ad esempio tooleverage?
+3. Quale applicazione (o set di macchine virtuali) è incluso nella migrazione hello?
+4. Quali scenari sono supportati con la migrazione di hello API?  Hello revisione [non supportate funzionalità e configurazioni](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#unsupported-features-and-configurations).
 5. I team operativi supporteranno le applicazioni/macchine virtuali sia nel modello di distribuzione classica che in Azure Resource Manager?
-6. Come cambieranno eventualmente i processi di distribuzione, gestione, monitoraggio e report delle VM con Azure Resource Manager?  Gli script di distribuzione devono essere aggiornati?
-7. Come è organizzato il piano delle comunicazioni per informare gli stakeholder ossia gli utenti finali, i proprietari delle applicazioni e i proprietari delle infrastrutture?
-8. A seconda della complessità dell'ambiente, è previsto un periodo di manutenzione in cui l'applicazione non sarà disponibile per gli utenti finali e i proprietari dell'applicazione?  In questo caso, per quanto tempo?
-9. Come è organizzato il piano di formazione per l'addestramento e la conoscenza di Azure Resource Manager per gli stakeholder?
-10. Come è organizzato il piano di gestione del progetto o del programma per la migrazione?
-11. Quali sono le sequenze temporali della migrazione di Azure Resource Manager e gli altri piani d'azione correlati alla tecnologia?  Sono allineati in modo ottimale?
+6. Come cambieranno eventualmente i processi di distribuzione, gestione, monitoraggio e report delle VM con Azure Resource Manager?  Gli script di distribuzione necessario toobe aggiornato?
+7. Che cos'è comunicazioni hello prevede le parti interessate tooalert (gli utenti finali, i proprietari delle applicazioni e proprietari dell'infrastruttura)?
+8. A seconda della complessità hello dell'ambiente di hello, dovrebbe esserci un periodo di manutenzione in cui un'applicazione hello è disponibile tooend utenti e i proprietari di tooapplication?  In questo caso, per quanto tempo?
+9. Che cos'è le parti interessate tooensure piano di formazione hello sono esperti ed esperienza nell'utilizzo di gestione risorse di Azure?
+10. Che cos'è gestione programma hello o piano di gestione di progetto per la migrazione di hello?
+11. Quali sono le sequenze temporali hello per la migrazione di Azure Resource Manager hello e altri relative tecnologie?  Sono allineati in modo ottimale?
 
 ### <a name="patterns-of-success"></a>Modelli di successo
 
-I clienti di successo hanno piani dettagliati in cui le domande precedenti sono discusse, documentate e organizzate.  Assicurarsi che i piani di migrazione vengano dettagliatamente comunicati agli sponsor e agli stakeholder.  Acquisire familiarità con le opzioni di migrazione; è consigliabile leggere i documenti sulla migrazione qui di seguito.
+I clienti di esito positivo disporre dettagliati piani in hello domande precedenti vengono discussi, documentate e governate.  Verificare i piani di migrazione hello siano toosponsors comunicate su vasta scala e le parti interessate.  Acquisire familiarità con le opzioni di migrazione; è consigliabile leggere i documenti sulla migrazione qui di seguito.
 
-* [Overview of platform-supported migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Panoramica sulla migrazione supportata dalla piattaforma per risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager)
-* [Approfondimento tecnico sulla migrazione supportata dalla piattaforma dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Planning for migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Pianificazione della migrazione delle risorse IaaS dal modello di distribuzione classica al modello di distribuzione Azure Resource Manager)
-* [Usare PowerShell per eseguire la migrazione di risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Usare l'interfaccia della riga di comando per eseguire la migrazione di risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](../linux/migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Community tools for assisting with migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Strumenti della community per assistenza alla migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager)
+* [Panoramica della migrazione supportata dalla piattaforma IaaS risorse tooAzure classico Gestione risorse di](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Tecnica di informazioni approfondite su piattaforma supportata la migrazione da Gestione risorse di tooAzure classico](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Pianificazione della migrazione delle risorse IaaS da Gestione risorse di tooAzure classico](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Utilizzare le risorse IaaS toomigrate PowerShell da Gestione risorse di tooAzure classico](migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Utilizzare le risorse IaaS toomigrate CLI da Gestione risorse di tooAzure classico](../linux/migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Strumenti della community per facilitare la migrazione delle risorse IaaS da Gestione risorse di tooAzure classico](migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Rivedere gli errori di migrazione più comuni](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Esaminare le domande frequenti sulla migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Hello revisione più domande frequenti su IaaS la migrazione di risorse da Gestione risorse di tooAzure classico](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-### <a name="pitfalls-to-avoid"></a>Errori da evitare
+### <a name="pitfalls-tooavoid"></a>Risoluzione dei problemi tooavoid
 
-- Errori di pianificazione.  I passaggi tecnici della migrazione sono collaudati e il risultato è prevedibile.
-- Si presuppone che l'API per la migrazione supportata dalla piattaforma terrà in considerazione tutti gli scenari. Leggere la sezione [funzionalità e configurazioni non supportate](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#unsupported-features-and-configurations) per comprendere quali sono gli scenari supportati.
-- Nessuna pianificazione di potenziali interruzioni delle applicazioni per gli utenti finali.  Pianificare un buffer sufficiente per informare adeguatamente gli utenti finali della potenziale non disponibilità delle applicazioni.
+- Errore tooplan.  passaggi per la tecnologia Hello questa migrazione sono rivelati e risultato hello è prevedibile.
+- Presupponendo che hello API migrazione piattaforma supportata verrà tenuto in considerazione tutti gli scenari. Hello lettura [non supportate funzionalità e configurazioni](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#unsupported-features-and-configurations) toounderstand gli scenari supportati.
+- Nessuna pianificazione di potenziali interruzioni delle applicazioni per gli utenti finali.  Pianificare i buffer insufficiente tooadequately avvisa gli utenti finali del tempo applicazione potenzialmente non disponibile.
 
 
 ## <a name="lab-test"></a>Test di laboratorio
 
 **Replicare l'ambiente ed eseguire una migrazione di test**
   > [!NOTE]
-  > La replica esatta dell'ambiente esistente viene eseguita tramite uno strumento creato dalla community che non è ufficialmente supportato dal supporto tecnico Microsoft. È pertanto un passaggio **facoltativo** ma è il modo migliore per individuare i problemi senza modificare gli ambienti di produzione. Se non è possibile usare uno strumento creato dalla community, leggere le raccomandazioni su convalida/preparazione/interruzione di prova qui di seguito.
+  > La replica esatta dell'ambiente esistente viene eseguita tramite uno strumento creato dalla community che non è ufficialmente supportato dal supporto tecnico Microsoft. È pertanto un **facoltativo** passaggio ma è toofind modo migliore di hello problemi senza modificare gli ambienti di produzione. Se uno strumento con il contributo della community non è un'opzione, quindi informazioni su come hello esecuzione Prepare/convalida/interruzione indicazione riportata di seguito.
   >
 
-  L'esecuzione di un test di laboratorio dello scenario esatto ossia calcolo, rete e archiviazione è il modo migliore per garantire una migrazione senza problemi. In modo da garantire:
+  Esecuzione di un lab di testing del proprio scenario esatto (calcolo, rete e archiviazione) è hello migliore modo tooensure una facile migrazione. In modo da garantire:
 
-  - Un laboratorio completamente separato o un ambiente non di produzione esistente su cui eseguire test. È consigliabile un laboratorio totalmente separato che possa essere migrato ripetutamente e modificato in modo distruttivo.  Gli script per raccogliere/idratare i metadati delle sottoscrizioni reali sono elencati di seguito.
-  - È consigliabile creare il laboratorio in una sottoscrizione separata. Il motivo è che il lab verrà ripetutamente rimosso e avere una sottoscrizione separata riduce il rischio di eliminare accidentalmente componenti reali.
+  - Un laboratorio interamente separato o un tootest ambiente non di produzione esistente. È consigliabile un laboratorio totalmente separato che possa essere migrato ripetutamente e modificato in modo distruttivo.  Script toocollect/idrato metadati dalle sottoscrizioni reale hello sono elencati di seguito.
+  - Si tratta di un lab di hello buona toocreate in una sottoscrizione separata. motivo di Hello è che lab hello verrà eliminata ripetutamente verso il basso e di un oggetto separato, sottoscrizione di tipo isolato ridurrà il possibilità hello che un elemento reale verrà accidentalmente eliminato.
 
-  Questa operazione si può fare usando lo strumento AsmMetadataParser. [Per altre informazioni su questo strumento vedere qui](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/AsmToArmMigrationApiToolset)
+  Questo può essere eseguito tramite lo strumento AsmMetadataParser hello. [Per altre informazioni su questo strumento vedere qui](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/AsmToArmMigrationApiToolset)
 
 ### <a name="patterns-of-success"></a>Modelli di successo
 
-Di seguito sono elencati i problemi rilevati in molte migrazioni di grandi dimensioni. Non si tratta di un elenco completo. Per altri dettagli fare riferimento a [funzionalità e configurazioni non supportate](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#unsupported-features-and-configurations).  Questi problemi tecnici potrebbero anche non verificarsi, ma se vengono risolti prima della migrazione, questa sarà più semplice.
+esempio Hello è i problemi individuati in molte delle migrazioni maggiore hello. Si tratta di un elenco completo e si deve fare riferimento toohello [non supportate funzionalità e configurazioni](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#unsupported-features-and-configurations) per ulteriori dettagli.  Questi problemi tecnici potrebbero anche non verificarsi, ma se vengono risolti prima della migrazione, questa sarà più semplice.
 
-- **Eseguire una convalida/preparazione/interruzione di prova** - Questo passaggio è probabilmente quello più importante per garantire una corretta migrazione dal modello di distribuzione classica ad Azure Resource Manager. L'API di migrazione prevede tre passaggi principali: Convalida, Preparazione e Commit. La convalida leggerà lo stato dell'ambiente di distribuzione classica e restituirà come risultato tutti i problemi. Alcuni problemi tuttavia potrebbero non essere rilevati in quanto presenti nello stack di Azure Resource Manager. Il passaggio successivo nel processo di migrazione, la preparazione, consente di rilevare questi problemi. La preparazione sposterà i metadati dal modello di distribuzione classica ad Azure Resource Manager ma non eseguirà il commit dello spostamento e non rimuoverà o modificherà nulla nel modello di distribuzione classica. L'interruzione di prova consiste nel preparare la migrazione e quindi di interrompere la preparazione ossia **non eseguire il commit**. L'obiettivo di convalida/preparazione/interruzione di prova è visualizzare tutti i metadati nello stack Azure Resource Manager, esaminarli (*a livello di codice o nel portale*), verificare che la migrazione avvenga correttamente e risolvere i problemi tecnici.  Inoltre si avrà un'idea della durata della migrazione in modo che sia possibile pianificare di conseguenza i tempi di inattività.  Una convalida/preparazione/interruzione di prova non causa tempi di inattività e pertanto non crea problemi per l'uso delle applicazioni.
-  - Gli elementi seguenti dovranno essere risolti prima della prova, ma un test di interruzione di prova rileverà anche eventuali passaggi di preparazione mancanti. Durante la migrazione al livello enterprise, è stato rilevato che la prova è un modo sicuro e prezioso per semplificare la migrazione.
-  - Nella fase di preparazione il piano di controllo, ossia le operazioni di gestione di Azure, verrà bloccato per tutta la rete virtuale e pertanto non sarà possibile apportare modifiche ai metadati delle macchine virtuali durante la convalida/preparazione/interruzione.  A parte questo, tutte le funzioni delle applicazioni, ad esempio l'uso del desktop remoto, le macchine virtuali e così via, non saranno interessate.  Gli utenti delle VM non sapranno che è in esecuzione la prova.
+- **Eseguire una convalida/preparazione/Abort esecuzione** -questo è probabilmente hello più importante passaggio tooensure classica tooAzure Gestione risorse corretta esecuzione della migrazione. migrazione di Hello API dispone di tre passaggi principali: convalidare, preparazione e Commit. La convalida verrà leggere hello lo stato dell'ambiente classico e restituiscono un risultato di tutti i problemi. Tuttavia, poiché alcuni problemi possono esistere nello stack di Azure Resource Manager hello, convalida non rileverà tutti gli elementi. Hello passaggio successivo nel processo di migrazione preparazione consente di esporre tali problemi. Preparare verrà spostare hello i metadati da classica tooAzure Gestione risorse, ma verrà non commit hello spostamento e non rimuovere o modificare qualsiasi elemento sul lato classica hello. Hello consiste nel preparare la migrazione di hello, quindi l'interruzione (**non eseguire il commit**) preparare la migrazione di hello. obiettivo di Hello di esecuzione convalidare/preparare/abort è toosee tutti i metadati di hello nello stack di gestione risorse di Azure hello, esaminarlo (*a livello di codice o nel portale*), verificare che tutto ciò che viene eseguita la migrazione correttamente e di lavoro tramite problemi tecnici.  Inoltre si avrà un'idea della durata della migrazione in modo che sia possibile pianificare di conseguenza i tempi di inattività.  Convalida/preparare/interruzione di una non provoca alcun tempo di inattività utente; Pertanto, è l'uso di tooapplication non comportano interruzioni del servizio.
+  - elementi Hello seguenti saranno necessario risolvere prima esecuzione hello toobe, ma un test di esecuzione eliminerà anche in modo sicuro i questi passaggi di preparazione se essi vengono persi. Durante la migrazione dell'organizzazione, è stata trovata la preparazione della migrazione tooensure un metodo estremamente utile e sicuro hello toobe di esecuzione.
+  - Preparare quando è in esecuzione, il controllo hello piano (operazioni di gestione di Azure) verrà bloccato per la rete virtuale intero hello, pertanto non è possibile apportare modifiche tooVM metadati durante la convalida/preparare/abort.  A parte questo, tutte le funzioni delle applicazioni, ad esempio l'uso del desktop remoto, le macchine virtuali e così via, non saranno interessate.  Gli utenti delle macchine virtuali di hello non riconoscerà che esecuzione hello è in esecuzione.
 
-- **Circuiti ExpressRoute e VPN**. I gateway ExpressRoute con collegamenti di autorizzazione attualmente non possono essere migrati senza tempi di inattività. Per una soluzione vedere [Eseguire la migrazione di circuiti ExpressRoute e delle reti virtuali associate dalla distribuzione classica al modello di distribuzione Resource Manager](../../expressroute/expressroute-migration-classic-resource-manager.md).
+- **Circuiti ExpressRoute e VPN**. I gateway ExpressRoute con collegamenti di autorizzazione attualmente non possono essere migrati senza tempi di inattività. Per risolvere il problema hello, vedere [ExpressRoute di eseguire la migrazione di circuiti e associate reti virtuali dal modello di distribuzione di gestione risorse toohello classico hello](../../expressroute/expressroute-migration-classic-resource-manager.md).
 
-- **Estensioni VM** - Le estensioni macchina virtuale sono potenzialmente uno degli ostacoli principali della migrazione di macchine virtuali in esecuzione. Pianificare tenendo conto che la correzione delle estensioni VM potrebbe richiedere fino a 1-2 giorni.  È necessario un agente Azure funzionante per segnalare lo stato delle estensioni VM delle VM in esecuzione. Se per una VM in esecuzione viene restituito uno stato non valido, la migrazione si arresta. L'agente stesso non deve essere funzionante per abilitare la migrazione, ma se esistono estensioni nella macchina virtuale, per il progredire della migrazione saranno necessari sia un agente funzionante SIA una connessione Internet in uscita (con DNS).
-  - Se la connettività a un server DNS viene persa durante la migrazione, tutte le estensioni delle VM tranne BGInfo versione 1.\* devono essere rimosse da ogni VM prima della preparazione della migrazione e riaggiunte alla VM dopo la migrazione ad Azure Resource Manager.  **Questo vale solo per le VM in esecuzione.**  Se le macchine virtuali sono arrestate (deallocate), non è necessario rimuovere le estensioni VM.
+- **Le estensioni VM** -estensioni delle macchine virtuali sono potenzialmente uno dei toomigrating gli ostacoli principali hello macchine virtuali in esecuzione. Pianificare tenendo conto che la correzione delle estensioni VM potrebbe richiedere fino a 1-2 giorni.  Un agente di Azure di lavoro stato necessari tooreport indietro estensione della macchina virtuale di macchine virtuali in esecuzione. Se lo stato di hello vengono restituiti come non valido per una macchina virtuale in esecuzione, questo verrà interrotto la migrazione. agente Hello stesso non necessario toobe nella migrazione tooenable funzioni correttamente, ma se esistono estensioni su hello macchina virtuale, quindi entrambe un agente di lavoro e la connettività internet in uscita (con DNS) necessarie per la migrazione toomove in avanti.
+  - Se il server DNS di connettività tooa viene persa durante la migrazione, tutte le estensioni VM tranne BGInfo versione 1. \* necessario toofirst rimossa ogni macchina virtuale prima di preparare la migrazione e successivamente riaggiunto toohello indietro VM dopo la migrazione di gestione risorse di Azure.  **Questo vale solo per le VM in esecuzione.**  Se le macchine virtuali hello viene arrestato deallocata, estensioni di macchina virtuale non è necessario toobe rimosso.
 
   > [!NOTE]
   > Molte estensioni come Diagnostica Azure e il monitoraggio del centro sicurezza si reinstalleranno automaticamente dopo la migrazione, per cui la loro rimozione non è un problema.
 
-  - Assicurarsi inoltre che non ci siano Gruppi di sicurezza di rete che limitano l'accesso Internet in uscita. Questa situazione può verificarsi con alcune configurazioni di Gruppi di sicurezza di rete. Per la migrazione delle estensioni VM ad Azure Resource Manager è necessario l'accesso a Internet in uscita e DNS.
-  - Esistono due versioni dell'estensione BGInfo, denominate 1 e 2.  
+  - Assicurarsi inoltre che non ci siano Gruppi di sicurezza di rete che limitano l'accesso Internet in uscita. Questa situazione può verificarsi con alcune configurazioni di Gruppi di sicurezza di rete. Accesso a internet in uscita (e DNS) è necessaria per le estensioni VM toobe migrati tooAzure Gestione risorse.
+  - Due versioni dell'estensione BGInfo hello esistano e sono denominate versioni 1 e 2.  
 
-      - Se la VM usa l'estensione BGInfo versione 1, è possibile lasciare invariata questa estensione. L'API di migrazione ignora questa estensione. L'estensione BGInfo può essere aggiunta dopo la migrazione.
-      - Se la VM usa l'estensione basata su JSON BGInfo versione 2, la VM è stata creata con il portale di Azure. L'API di migrazione include questa estensione nella migrazione ad Azure Resource Manager, purché l'agente funzioni e abbia accesso a Internet in uscita (e DNS).
+      - Se hello VM utilizza hello estensione versione 1 BGInfo, è possibile lasciare questa estensione è. migrazione di Hello API Ignora questa estensione. è possibile aggiungere l'estensione BGInfo Hello dopo la migrazione.
+      - Se hello VM utilizza hello estensione versione 2 BGInfo basata su JSON, hello VM è stato creato utilizzando hello portale di Azure. migrazione di Hello API include l'estensione in hello migrazione tooAzure gestore di risorse, fornito agente hello funzioni e ha accesso a internet in uscita (e DNS).
 
-  - **Opzione di correzione 1**. Se si prevede che le macchine virtuali non disporranno di accesso a Internet in uscita, di un servizio DNS funzionante e di agenti di Azure funzionanti su di esse, disinstallare tutte le estensioni VM come parte della migrazione prima della preparazione, quindi reinstallarle dopo la migrazione.
-  - **Opzione di correzione 2**. Se le estensioni VM sono un ostacolo troppo grande, un'altra opzione è quella di arrestare/deallocare tutte le macchine virtuali prima della migrazione. Eseguire la migrazione delle VM deallocate, quindi riavviarle in Azure Resource Manager. Il vantaggio è che le estensioni VM verranno migrate. Lo svantaggio è che tutti gli indirizzi IP virtuali pubblici andranno persi con esito potenzialmente negativo e ovviamente le VM si arresteranno causando un impatto maggiore sulle applicazioni in funzione.
-
-    > [!NOTE]
-    > Se per le macchine virtuali che si stanno migrando sono configurati criteri del Centro sicurezza di Azure, i criteri di sicurezza devono essere arrestati prima di rimuovere le estensioni altrimenti l'estensione di monitoraggio della protezione verrà reinstallata automaticamente nella macchina virtuale dopo la sua rimozione.
-
-- **Set di disponibilità**. Per una rete virtuale (vNet) da migrare ad Azure Resource Manager, è necessario che le macchine virtuali contenute nel modello di distribuzione classica, ossia il servizio cloud, siano tutte in un set di disponibilità oppure che nessuna di esse sia in un set di disponibilità. Il servizio cloud con più di un set di disponibilità non è compatibile con Azure Resource Manager e interromperà la migrazione.  Non ci possono essere inoltre alcune macchine virtuali in un set di disponibilità e alcune macchine virtuali non in un set di disponibilità. Per risolvere questo problema, è necessario correggere o ridisporre il servizio cloud.  Pianificare di conseguenza, in quanto questa operazione potrebbe richiedere molto tempo.
-
-- **Distribuzioni del ruolo Web/di lavoro**. I servizi Cloud che contengono ruoli Web e di lavoro non possono migrare ad Azure Resource Manager. I ruoli Web/di lavoro devono essere rimossi dalla rete virtuale prima di avviare la migrazione.  Una soluzione tipica è quella di spostare le istanze del ruolo Web/di lavoro in una rete virtuale classica separata che è collegata anche a un circuito ExpressRoute o di migrare il codice a servizi app PaaS più recenti (questa discussione va oltre l'ambito di questo documento). Nel primo caso di ridistribuzione, creare una nuova rete virtuale classica, spostare/ridistribuire i ruoli Web/di lavoro nella nuova rete virtuale, quindi eliminare le distribuzioni dalla rete virtuale da spostare. Non è necessaria alcuna modifica nel codice. La nuova funzionalità [Peering reti virtuali](../../virtual-network/virtual-network-peering-overview.md) può essere usata per eseguire il peering della rete virtuale classica contenente i ruoli Web/di lavoro e di altre reti virtuali nella stessa area di Azure, ad esempio la rete virtuale che si sta migrando, **dopo il completamento della migrazione della rete virtuale poiché le reti virtuali sottoposte a peering non possono essere migrate**, garantendo le stesse funzionalità senza perdita di prestazioni e senza problemi di larghezza di banda/latenza. Con l'aggiunta del [Peering reti virtuali](../../virtual-network/virtual-network-peering-overview.md) le distribuzioni del ruolo Web/di lavoro ora possono essere facilmente ridotte e non bloccano la migrazione ad Azure Resource Manager.
-
-- **Le quote di Azure Resource Manager** - Le aree di Azure hanno di quote/limiti separati per il modello di distribuzione classica e per Azure Resource Manager. Anche se in uno scenario di migrazione non è usato nuovo hardware in quanto *si stanno scambiando macchine virtuali esistenti dalla distribuzione classica ad Azure Resource Manager*, le quote di Azure Resource Manager devono comunque avere una capacità sufficiente prima di avviare la migrazione. Di seguito sono elencati i principali limiti che causano problemi.  Aprire un ticket di supporto di quota per aumentare i limiti.
+  - **Opzione di correzione 1**. Se si conoscono che le macchine virtuali non avrà internet in uscita, accedere, un servizio DNS funzionante e utilizzano gli agenti di Azure nelle macchine virtuali di hello, quindi disinstallare tutte le estensioni di macchina virtuale come parte della migrazione hello prima di preparare, quindi reinstallare le estensioni VM hello dopo la migrazione.
+  - **Opzione di correzione 2**. Se le estensioni VM sono troppo grandi di un ostacolo, un'altra opzione è tooshutdown/deallocare tutte le macchine virtuali prima della migrazione. Eseguire la migrazione di hello deallocato macchine virtuali, quindi riavviarli su hello lato Azure Resource Manager. Hello vantaggio consiste nel fatto che le estensioni VM verranno eseguita la migrazione. Hello svantaggio è che gli indirizzi IP virtuali pubblici di tutti i andranno persi (potrebbe essere un non-starter,) e ovviamente hello macchine virtuali verrà arrestato causando un molto maggiore impatto sulle applicazioni di lavoro.
 
     > [!NOTE]
-    > Questi limiti devono essere aumentati nella stessa area dell'ambiente di cui eseguire la migrazione.
+    > Se viene configurato un criterio di Centro sicurezza di Azure in esecuzione macchine virtuali viene eseguita la migrazione di hello, i criteri di sicurezza hello devono toobe arrestato prima di rimuovere le estensioni, in caso contrario sicurezza hello estensione monitoraggio verrà reinstallato automaticamente in hello VM dopo la rimozione.
+
+- **Set di disponibilità** : per una rete virtuale (vNet) di toobe tooAzure Gestione risorse di migrazione, hello Classic macchine virtuali di distribuzione (ad esempio il servizio cloud) contenuta deve essere tutti in un set di disponibilità o le macchine virtuali hello tutti non deve essere in qualsiasi set di disponibilità. Presenza di più di un set di disponibilità in servizio cloud hello non è compatibile con Gestione risorse di Azure e verrà interrotta la migrazione.  Non ci possono essere inoltre alcune macchine virtuali in un set di disponibilità e alcune macchine virtuali non in un set di disponibilità. tooresolve, si sarà necessario tooremediate o riassegnare il servizio cloud.  Pianificare di conseguenza, in quanto questa operazione potrebbe richiedere molto tempo.
+
+- **Le distribuzioni di ruoli Web/di lavoro** -servizi Cloud che contiene i ruoli web e di lavoro non è possibile eseguire la migrazione tooAzure Gestione risorse. i ruoli web/di lavoro di Hello, è necessario rimuovere dalla rete virtuale hello prima di poter avviare la migrazione.  Una tipica soluzione è toojust spostamento web/di lavoro ruolo istanze tooa separato classica rete virtuale che è anche un circuito ExpressRoute tooan collegato o toomigrate hello codice toonewer App Services PaaS (questa discussione esula dall'ambito di hello di questo documento). Nel primo hello ridistribuire case, creare una nuova rete virtuale classica, spostamento o ridistribuire hello web/di lavoro ruoli toothat nuova rete virtuale, quindi eliminare le distribuzioni di hello dalla rete virtuale di hello viene spostato. Non è necessaria alcuna modifica nel codice. nuovo Hello [Peering di rete virtuale](../../virtual-network/virtual-network-peering-overview.md) funzionalità può essere utilizzato toopeer hello insieme classico rete virtuale che contiene i ruoli web/di lavoro hello e altre reti virtuali in hello stessa area di Azure, ad esempio da rete virtuale hello eseguire la migrazione (**dopo la migrazione della rete virtuale è completata, poiché il peering reti virtuali non possono essere migrate**), fornendo funzionalità stesso hello con senza perdita di prestazioni e non sanzioni/latenza della larghezza di banda. Data aggiunta hello di [Peering di rete virtuale](../../virtual-network/virtual-network-peering-overview.md), le distribuzioni di ruoli web/di lavoro ora può facilmente essere ridotti e non bloccati hello migrazione tooAzure Gestione risorse.
+
+- **Le quote di Azure Resource Manager** - Le aree di Azure hanno di quote/limiti separati per il modello di distribuzione classica e per Azure Resource Manager. Anche se in uno scenario di migrazione non è utilizzata nuovo hardware *(ci stiamo swapping macchine virtuali esistenti da classica tooAzure Gestione risorse)*, le quote di gestione risorse di Azure è comunque necessario toobe sul posto con una capacità sufficiente prima di Avvia la migrazione. Di seguito sono elencati i limiti di hello principali che abbiamo visto causano problemi.  Aprire un hello di tooraise ticket di supporto quota limita.
+
+    > [!NOTE]
+    > Questi limiti necessario toobe generato in hello stessa area, come la migrazione del toobe ambiente corrente.
     >
 
     - Interfacce di rete
@@ -129,7 +129,7 @@ Di seguito sono elencati i problemi rilevati in molte migrazioni di grandi dimen
     - Gruppi di sicurezza di rete
     - Tabelle di route
 
-    È possibile controllare le quote correnti di Azure Resource Manager usando i comandi seguenti con la versione più recente di Azure PowerShell.
+    È possibile controllare le quote di gestione risorse di Azure corrente utilizzando hello seguendo i comandi con una versione più recente di hello di Azure PowerShell.
 
     **Calcolo** *(memoria centrale, set di disponibilità)*
 
@@ -149,56 +149,56 @@ Di seguito sono elencati i problemi rilevati in molte migrazioni di grandi dimen
     Get-AzureRmStorageUsage
     ```
 
-- **Limitazioni dell'API di Azure Resource Manager** - In presenza di un ambiente sufficientemente grande, ad esempio, > 400 macchine virtuali in una rete virtuale, è possibile che si raggiunga la limitazione di scritture predefinita dell'API (attualmente `1200 writes/hour`) in Azure Resource Manager. Prima di iniziare la migrazione, è necessario generare un ticket di supporto per aumentare questo limite per la sottoscrizione.
+- **Limitazioni dell'API di Azure Resource Manager** - In presenza di un ambiente sufficientemente grande, ad esempio, > 400 macchine virtuali in una rete virtuale), si potrebbe raggiunge hello predefinito API limitazioni per operazioni di scrittura (attualmente `1200 writes/hour`) in Gestione risorse di Azure. Prima di iniziare la migrazione, è necessario generare un tooincrease di ticket di supporto per questo limite per la sottoscrizione.
 
 
-- **Il provisioning ha raggiunto il timeout dello stato della VM**: se qualsiasi VM ha lo stato `provisioning timed out`, questo problema deve essere risolto prima della migrazione. L'unico modo per eseguire questa operazione è con il tempo di inattività mediante il deprovisioning/nuovo provisioning della macchina virtuale: eliminarla, mantenere il disco e ricreare la macchina virtuale.
+- **Provisioning timeout Out stato della macchina virtuale** - se qualsiasi macchina virtuale ha lo stato hello `provisioning timed out`, questo deve toobe risolto pre-migrazione. Hello unico modo toodo equivale con tempi di inattività per deprovisioning o la riconfigurazione hello VM (delete, conservare il disco hello e ricreare hello VM).
 
-- **Stato della macchina virtuale RoleStateUnknown** - Se la migrazione si arresta a causa di un messaggio di errore `role state unknown`, esaminare la macchina virtuale usando il portale e verificare sia in esecuzione. Questo errore in genere scompare da solo (nessuna correzione necessaria) dopo alcuni minuti ed è spesso temporaneo e spesso si verifica durante operazioni `start`, `stop`, `restart` di una macchina virtuale. **Procedura consigliata:** ritentare nuovamente la migrazione dopo alcuni minuti.
+- **Stato della macchina virtuale RoleStateUnknown** - se la migrazione si arresta a causa di tooa `role state unknown` errore del messaggio, esaminare hello VM tramite il portale di hello e assicurarsi che sia in esecuzione. Questo errore in genere scompare da solo (nessuna correzione necessaria) dopo alcuni minuti ed è spesso temporaneo e spesso si verifica durante operazioni `start`, `stop`, `restart` di una macchina virtuale. **Procedura consigliata:** ritentare nuovamente la migrazione dopo alcuni minuti.
 
-- **Cluster di infrastruttura inesistente**: in alcuni casi, alcune VM non possono essere migrate per vari motivi. Uno di questi casi noti è se la VM è stata creata di recente, circa da una settimana, ed è stata indirizzata a un cluster di Azure non ancora configurato per carichi di lavoro di Azure Resource Manager.  Si riceverà un errore `fabric cluster does not exist` e non è possibile eseguire la migrazione della macchina virtuale. Di solito è sufficiente attendere un paio di giorni per risolvere il problema in quanto il cluster verrà abilitato per Azure Resource Manager. Una soluzione immediata è `stop-deallocate` la VM, quindi proseguire con la migrazione e riavviare la VM in Azure Resource Manager dopo la migrazione.
+- **Cluster di infrastruttura inesistente**: in alcuni casi, alcune VM non possono essere migrate per vari motivi. Uno di questi casi noti è se hello VM è stato creato di recente (all'interno di hello ultima settimana o meno) e si sono verificate tooland un cluster di Azure che non è ancora per carichi di lavoro di gestione risorse di Azure.  Si riceverà un messaggio di errore `fabric cluster does not exist` e hello VM non è possibile eseguire la migrazione. In attesa di un paio di giorni verrà risolto in genere questo particolare problema come cluster hello non appena verrà visualizzato Gestione risorse di Azure abilitata. Tuttavia, una soluzione immediata è troppo`stop-deallocate` hello VM, quindi continuare in avanti con la migrazione e avviare hello VM eseguire il backup in Azure Resource Manager dopo la migrazione.
 
-### <a name="pitfalls-to-avoid"></a>Errori da evitare
+### <a name="pitfalls-tooavoid"></a>Risoluzione dei problemi tooavoid
 
-- Non usare scorciatoie e non eseguire le operazioni di convalida/preparazione/interruzione di prova della migrazione.
-- La maggior parte, se non tutti i potenziali problemi, verrà rilevata durante i passaggi di convalida/preparare/interruzione.
+- Non richiedere i tasti di scelta rapida e omettere le migrazioni di hello esecuzione convalidare/preparare/abort.
+- Più, se non tutti, dei problemi potenziali esporrà durante i passaggi di convalida/preparare/abort hello.
 
 ## <a name="migration"></a>Migrazione
 
 ### <a name="technical-considerations-and-tradeoffs"></a>Considerazioni tecniche e compromessi
 
-A questo punto è possibile iniziare perché sono stati affrontati i problemi noti dell'ambiente.
+Si è pronti a questo punto perché ha esaminato hello problemi noti con l'ambiente.
 
-Per le migrazioni reali, considerare quanto segue:
+Per le migrazioni di reale hello, potrebbe essere tooconsider:
 
-1. Pianificare la rete virtuale, la più piccola unità di migrazione, con priorità crescente.  Iniziare con le reti virtuali semplici e proseguire con le reti virtuali più complesse.
+1. Pianificazione e la pianificazione di rete virtuale hello (più piccola unità di migrazione) con l'aumento di priorità.  Hello innanzitutto semplice reti virtuali e lo stato di avanzamento hello più complicato reti virtuali.
 2. La maggior parte dei clienti avrà ambienti non di produzione e di produzione.  Pianificare per ultimo l'ambiente di produzione.
 3. **(FACOLTATIVO)**  Pianificare un tempo di inattività di manutenzione con molto buffer nel caso in cui si verifichino problemi imprevisti.
 4. Comunicare e allinearsi con i team di supporto nel caso in cui si verifichino problemi.
 
 ### <a name="patterns-of-success"></a>Modelli di successo
 
-Le indicazioni tecniche fornite dalla sezione _Test Lab_ devono essere considerate e risolte prima della migrazione reale.  Grazie a test adeguati, la migrazione non è un avvenimento eccezionale.  Per gli ambienti di produzione, potrebbe essere utile disporre di ulteriore supporto, ad esempio un partner Microsoft attendibile o i servizi Microsoft Premier.
+informazioni tecniche da hello Hello _Test Lab_ sezione deve essere considerata e risolti migrazione reale tooa precedente.  Grazie a testing adeguate, la migrazione di hello è effettivamente un esterne.  Per gli ambienti di produzione, potrebbe essere utile toohave ulteriore supporto, ad esempio un partner Microsoft attendibile o servizi Microsoft Premier.
 
-### <a name="pitfalls-to-avoid"></a>Errori da evitare
+### <a name="pitfalls-tooavoid"></a>Risoluzione dei problemi tooavoid
 
-Test incompleti possono causare problemi e ritardare la migrazione.  
+Test non completamente potrebbe causare problemi e ritardo nella migrazione hello.  
 
 ## <a name="beyond-migration"></a>Oltre la migrazione
 
 ### <a name="technical-considerations-and-tradeoffs"></a>Considerazioni tecniche e compromessi
 
-Ora che si è in Azure Resource Manager, ottimizzare la piattaforma.  Leggere la sezione [Panoramica di Gestione risorse di Microsoft Azure](../../azure-resource-manager/resource-group-overview.md) per scoprire i vantaggi aggiuntivi.
+Ora che si è in Gestione risorse di Azure, ottimizzare la piattaforma di hello.  Hello lettura [Panoramica di gestione risorse di Azure](../../azure-resource-manager/resource-group-overview.md) toofind out sui vantaggi aggiuntivi.
 
-Ecco alcuni aspetti da considerare:
+Tooconsider operazioni:
 
-- Unire la migrazione ad altre attività.  La maggior parte dei clienti opta per una finestra di manutenzione dell'applicazione.  In questo caso, si potrebbe usare questo periodo di inattività per abilitare altre funzionalità di Azure Resource Manager come la crittografia e la migrazione a Managed Disks.
-- Riesaminare i motivi tecnici e aziendali della scelta di Azure Resource Manager; abilitare i servizi aggiuntivi disponibili solo in Azure Resource Manager che si applicano all'ambiente.
+- Creazione di bundle migrazione hello con altre attività.  La maggior parte dei clienti opta per una finestra di manutenzione dell'applicazione.  Se in tal caso, potrebbe essere necessario toouse tooenable il tempo di inattività altre funzionalità di gestione risorse di Azure, ad esempio la crittografia e la migrazione tooManaged dischi.
+- Accedere nuovamente hello tecnica e motivi aziendali per Gestione risorse di Azure. abilitare hello servizi aggiuntivi disponibili solo in Gestione risorse di Azure che si applicano tooyour ambiente.
 - Aggiornare l'ambiente con servizi PaaS.
 
 ### <a name="patterns-of-success"></a>Modelli di successo
 
-Decidere quali servizi si desidera abilitare ora in Azure Resource Manager.  Molti clienti ritengono efficace quanto segue per i propri ambienti Azure:
+Essere intenzionale su quali servizi ora si desidera tooenable in Gestione risorse di Azure.  Molti clienti trovare hello seguito interessanti per gli ambienti Azure:
 
 - [controllo degli accessi in base al ruolo](../../azure-resource-manager/resource-group-overview.md#access-control).
 - [Modelli di Azure Resource Manager per una distribuzione più semplice e controllata](../../azure-resource-manager/resource-group-overview.md#template-deployment).
@@ -206,17 +206,17 @@ Decidere quali servizi si desidera abilitare ora in Azure Resource Manager.  Mol
 - [Controllo di attività](../../azure-resource-manager/resource-group-audit.md)
 - [Criteri delle risorse](../../azure-resource-manager/resource-manager-policy.md)
 
-### <a name="pitfalls-to-avoid"></a>Errori da evitare
+### <a name="pitfalls-tooavoid"></a>Risoluzione dei problemi tooavoid
 
-Tenere a mente il motivo per cui è stata eseguita la migrazione dalla distribuzione classica ad Azure Resource Manager.  Quali sono i motivi aziendali originali? Sono stati raggiunti i motivi aziendali?
+Tenere presente perché è stato avviato questo percorso di migrazione classica tooAzure Gestione risorse.  Quali sono state motivi aziendali originale hello? Si sono raggiunti motivazioni hello?
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Overview of platform-supported migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Panoramica sulla migrazione supportata dalla piattaforma per risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager)
-* [Approfondimento tecnico sulla migrazione supportata dalla piattaforma dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Usare PowerShell per eseguire la migrazione di risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Usare l'interfaccia della riga di comando per eseguire la migrazione di risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](../linux/migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Community tools for assisting with migration of IaaS resources from classic to Azure Resource Manager](migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Strumenti della community per assistenza alla migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager)
+* [Panoramica della migrazione supportata dalla piattaforma IaaS risorse tooAzure classico Gestione risorse di](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Tecnica di informazioni approfondite su piattaforma supportata la migrazione da Gestione risorse di tooAzure classico](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Utilizzare le risorse IaaS toomigrate PowerShell da Gestione risorse di tooAzure classico](migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Utilizzare le risorse IaaS toomigrate CLI da Gestione risorse di tooAzure classico](../linux/migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Strumenti della community per facilitare la migrazione delle risorse IaaS da Gestione risorse di tooAzure classico](migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Rivedere gli errori di migrazione più comuni](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [Esaminare le domande frequenti sulla migrazione delle risorse IaaS dal modello di distribuzione classica ad Azure Resource Manager](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Hello revisione più domande frequenti su IaaS la migrazione di risorse da Gestione risorse di tooAzure classico](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)

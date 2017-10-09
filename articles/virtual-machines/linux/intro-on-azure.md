@@ -1,5 +1,5 @@
 ---
-title: Introduzione a Linux in Azure | Microsoft Docs
+title: tooLinux aaaIntroduction in Azure | Documenti Microsoft
 description: Informazioni sull'uso delle macchine virtuali Linux in Azure.
 services: virtual-machines-linux
 documentationcenter: python
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: szark
-ms.openlocfilehash: 7bd0c5549a2e1f592681760d5ef464b9570ca4ab
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a931447ee23ce7000174ca314c3e10abc6b8e74
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-linux-on-azure"></a>Introduzione a Linux in Azure
-In questo argomento viene fornita una panoramica relativa ad alcuni aspetti dell'uso di macchine virtuali Linux nel cloud di Azure. Se si usa un'immagine presente nella raccolta, la distribuzione di una macchina virtuale Linux è un processo estremamente semplice.
+# <a name="introduction-toolinux-on-azure"></a>Introduzione tooLinux in Azure
+In questo argomento viene fornita una panoramica di alcuni aspetti dell'utilizzo di macchine virtuali Linux in hello cloud di Azure. La distribuzione di una macchina virtuale Linux è un processo semplice utilizzo di un'immagine dalla raccolta hello.
 
 ## <a name="authentication-usernames-passwords-and-ssh-keys"></a>Autenticazione: nomi utente, password e chiavi SSH
-Quando si crea una macchina virtuale Linux usando il portale di Azure, viene chiesto di specificare un nome utente e una password o una chiave pubblica SSH. La scelta del nome utente per la distribuzione di una macchina virtuale Linux in Azure è soggetta a un vincolo: i nomi degli account di sistema (UID <100) già presenti nella macchina virtuale, ad esempio l'account 'root', non sono consentiti.
+Quando si crea una macchina virtuale di Linux mediante hello portale di Azure, viene chiesto tooprovide un nome utente e password o una chiave pubblica SSH. scelta di un nome utente per la distribuzione di una macchina virtuale di Linux in Azure Hello è soggetto toohello seguenti vincoli: i nomi degli account di sistema (UID < 100) è già presente in hello macchina virtuale non sono consentiti, 'radice', ad esempio.
 
 * Vedere [Creare una macchina virtuale che esegue Linux](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* Vedere [Come usare SSH con Linux in Azure](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* Vedere [come tooUse SSH con Linux in Azure](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="obtaining-superuser-privileges-using-sudo"></a>Ottenere privilegi utente avanzato tramite `sudo`
-L'account utente specificato durante la distribuzione di istanze di macchine virtuali in Azure è un account con privilegi. Tale account viene configurato dall'agente Linux di Azure con la capacità di elevare i privilegi al ruolo di utente ROOT (account utente con privilegi avanzati) tramite l'utilità `sudo` . Dopo aver eseguito l'accesso usando questo account utente, sarà possibile eseguire comandi come utente ROOT usando la sintassi del comando:
+account utente di Hello specificato durante la distribuzione di istanza di macchina virtuale in Azure è un account con privilegi. Questo account viene configurato per l'utilizzo di hello hello agente Linux di Azure toobe tooelevate in grado di privilegi tooroot (account utente avanzato) `sudo` utilità. Una volta effettuato l'accesso usando questo account utente, sarà in grado di toorun comandi come radice utilizzando la sintassi del comando hello:
 
     # sudo <COMMAND>
 
@@ -40,51 +40,51 @@ Facoltativamente, è possibile ottenere una shell di root usando **sudo -s**.
 * Vedere [Uso di privilegi root sulle macchine virtuali Linux in Azure](use-root-privileges.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="firewall-configuration"></a>Configurazione del firewall
-In Azure è disponibile un filtro dei pacchetti in ingresso che limita la connettività alle porte specificate nel portale di Azure. Per impostazione predefinita, l'unica porta consentita è SSH. È possibile aprire l'accesso a porte aggiuntive nella macchina virtuale Linux mediante la configurazione di endpoint nel portale di Azure:
+Azure offre un filtro di pacchetti in ingresso che limita la connettività tooports specificato nel portale di Azure hello. Per impostazione predefinita, hello consentita è solo la porta SSH. È possibile aprire le porte di accesso tooadditional sulla macchina virtuale Linux tramite la configurazione di endpoint in hello portale di Azure:
 
-* Vedere [Come configurare gli endpoint in una macchina virtuale](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* Vedere: [come configurare gli endpoint di tooSet tooa macchina virtuale](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-Le immagini Linux disponibili nella Raccolta di Azure non abilitano il firewall *iptables* per impostazione predefinita. Se necessario, è possibile configurare il firewall per implementare funzionalità di filtro.
+le immagini Linux Hello in hello raccolta Azure non abilitare hello *iptables* firewall per impostazione predefinita. Se lo si desidera, può essere configurata firewall hello tooprovide altre opzioni di filtro.
 
 ## <a name="hostname-changes"></a>Modifica del nome host
-Quando si distribuisce un'istanza di un'immagine Linux è necessario specificare un nome host per la macchina virtuale. Quando la macchina virtuale è in esecuzione, il nome host viene pubblicato nei server DNS della piattaforma, in modo che più macchine virtuali connesse tra loro possano eseguire ricerche di indirizzi IP usando i nomi host.
+Durante la distribuzione iniziale di un'istanza di un'immagine Linux, verrà richiesto tooprovide un nome host per macchina virtuale hello. Dopo l'esecuzione della macchina virtuale hello, questo nome host è server DNS di piattaforma toohello pubblicato in modo che più macchine virtuali connesse tooeach altri possono eseguire ricerche di indirizzi IP utilizzando i nomi host.
 
-Se, dopo la distribuzione di una macchina virtuale, si vuole modificarne il nome host, usare il comando
+Se dopo la distribuzione di una macchina virtuale, si desidera apportare modifiche di nome host, utilizzare il comando hello
 
     # sudo hostname <newname>
 
-L'agente Linux di Azure include funzionalità per il rilevamento automatico delle modifiche del nome host, la configurazione della macchina virtuale per il salvataggio permanente della modifica e la pubblicazione della modifica nei server DNS della piattaforma.
+Hello agente Linux di Azure include funzionalità tooautomatically rilevare questa modifica del nome e configurare hello macchina virtuale toopersist questa modifica e pubblicare i server DNS piattaforma toohello questa modifica in modo appropriato.
 
 * [Guida dell'utente dell'agente Linux di Azure](../windows/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="cloud-init"></a>cloud-init
 Le immagini **Ubuntu** e **CoreOS** usano cloud-init in Azure, che offre capacità aggiuntive per il bootstrap di una macchina virtuale.
 
-* [Come inserire dati personalizzati](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Come tooInject dati personalizzati](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 * [Dati personalizzati e cloud-init in Microsoft Azure](https://azure.microsoft.com/blog/2014/04/21/custom-data-and-cloud-init-on-windows-azure/)
 * [Creare partizioni di scambio di Azure con cloud-init](https://wiki.ubuntu.com/AzureSwapPartitions)
-* [Come usare CoreOS in Azure](https://coreos.com/os/docs/latest/booting-on-azure.html)
+* [Come tooUse CoreOS in Azure](https://coreos.com/os/docs/latest/booting-on-azure.html)
 
 ## <a name="virtual-machine-image-capture"></a>Acquisizione di immagini di macchine virtuali
-Azure offre la possibilità di acquisire lo stato di una macchina virtuale esistente in un'immagine che potrà essere usata in un secondo momento per distribuire altre istanze di macchine virtuali. L'agente Linux di Azure può essere usato per ripristinare lo stato precedente di alcune personalizzazioni effettuate durante il processo di provisioning. Per acquisire una macchina virtuale come immagine, eseguire la procedura seguente:
+Azure offre stato di hello possibilità toocapture hello di una macchina virtuale esistente in un'immagine che può successivamente essere istanze di macchina virtuale aggiuntiva toodeploy utilizzato. Hello agente Linux di Azure può essere utilizzato toorollback alcune hello personalizzazione che è stata eseguita durante il processo di provisioning hello. È possibile eseguire operazioni di hello seguenti toocapture una macchina virtuale come un'immagine:
 
-1. Eseguire **waagent -deprovision** per annullare la personalizzazione del provisioning. Facoltativamente, eseguire **waagent -deprovision+user** per eliminare l'account utente specificato durante il provisioning e tutti i relativi dati.
-2. Arrestare/Spegnere la macchina virtuale.
-3. Fare clic su **Acquisisci** nel portale di Azure oppure usare gli strumenti di PowerShell o dell'interfaccia della riga di comando per acquisire la macchina virtuale come immagine.
+1. Eseguire **waagent-deprovision** tooundo il provisioning di personalizzazione. O **waagent-deprovision + user** toooptionally eliminare account utente di hello specificato durante il provisioning e tutti i dati associati.
+2. Shut down/spegnimento della macchina virtuale hello.
+3. Fare clic su **acquisire** hello Azure hello portale o usare PowerShell o CLI strumenti macchina virtuale di hello toocapture come immagine.
    
-   * Vedere: [Come acquisire una macchina virtuale Linux da usare come modello](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+   * Vedere: [come tooCapture tooUse una macchina virtuale Linux come modello](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## <a name="attaching-disks"></a>Collegamento di dischi
-Ogni macchina virtuale ha un *disco risorse* temporaneo locale collegato. Poiché è possibile che i dati su un disco risorse non vengano mantenuti tra un riavvio e l'altro, questo tipo di disco viene spesso usato da applicazioni e processi in esecuzione nella macchina virtuale per l'archiviazione **temporanea** di dati. È anche usato per archiviare file di paging o di scambio per il sistema operativo.
+Ogni macchina virtuale ha un *disco risorse* temporaneo locale collegato. Perché i dati su un disco di risorsa non siano durevoli dopo il riavvio, viene spesso utilizzato dalle applicazioni e processi in esecuzione nella macchina virtuale hello per temporaneo e **temporaneo** archiviazione dei dati. È inoltre usato toostore hello scambio file di paging o per sistema operativo hello.
 
-In Linux il disco risorse è in genere gestito dall'agente Linux di Azure e viene montato automaticamente in **/mnt/resource** (o **/mnt** nelle immagini Ubuntu).
+In genere gestito da hello agente Linux di Azure e montato automaticamente troppo su Linux, il disco di risorsa hello**/mnt/Retention/ risorse** (o **/mnt** sulle immagini Ubuntu).
 
 > [!NOTE]
-> Si noti che il disco risorse è un disco **temporaneo** e potrebbe essere eliminato e riformattato al riavvio della macchina virtuale.
+> Si noti il disco di risorsa hello è un **temporaneo** disco e potrebbero essere eliminate e riformattati quando hello VM è stato riavviato.
 > 
 > 
 
-In Linux il kernel potrebbe assegnare al disco dati il nome `/dev/sdc`. In questo caso gli utenti dovranno suddividere in partizioni, formattare e montare tale risorsa. Questa procedura è illustrata in dettaglio nell'esercitazione [Come collegare un disco dati a una macchina virtuale](../windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+In Linux potrebbe essere denominata disco dati hello dal kernel hello come `/dev/sdc`, e gli utenti dovranno toopartition, formattare e montare tale risorsa. Questo argomento viene trattato dettagliate nell'esercitazione hello: [come tooAttach tooa un disco dati macchina virtuale](../windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 
 * **Vedere anche:** [Configurare RAID software in Linux](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) & [Configurare LVM su una macchina virtuale Linux in Azure](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 

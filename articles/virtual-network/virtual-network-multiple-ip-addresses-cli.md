@@ -1,6 +1,6 @@
 ---
-title: "Creare una VM con più indirizzi IP usando l'interfaccia della riga di comando di Azure 2.0 | Microsoft Docs"
-description: "Informazioni su come assegnare più indirizzi IP a una macchina virtuale usando l'interfaccia della riga di comando di Azure 2.0 | Resource Manager."
+title: "aaaVM con più indirizzi IP mediante Azure CLI 2.0 hello | Documenti Microsoft"
+description: "Informazioni su come tooassign più gli indirizzi IP tooa macchina virtuale utilizzando hello Azure CLI 2.0 | Gestore delle risorse."
 services: virtual-network
 documentationcenter: na
 author: anavinahar
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/17/2016
 ms.author: annahar
-ms.openlocfilehash: 0e9b2ef89ca39a7988a7b2573496a605dfc604b4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15efd853cc7c31bacb64ed052dabedd3fe4d3079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-multiple-ip-addresses-to-virtual-machines-using-the-azure-cli-20"></a>Assegnare più indirizzi IP alle macchine virtuali usando l'interfaccia della riga di comando di Azure 2.0
+# <a name="assign-multiple-ip-addresses-toovirtual-machines-using-hello-azure-cli-20"></a>Assegnare più indirizzi IP macchine toovirtual utilizzando hello Azure CLI 2.0
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-intro.md](../../includes/virtual-network-multiple-ip-addresses-intro.md)]
 
-Questo articolo spiega come creare una macchina virtuale (VM) tramite il modello di distribuzione Azure Resource Manager usando l'interfaccia della riga di comando di Azure 2.0. Non è possibile a assegnare più indirizzi IP alle risorse create tramite il modello di distribuzione classica. Per altre informazioni sui modelli di distribuzione di Azure, leggere l'articolo [Understand Azure deployment models](../resource-manager-deployment-model.md) (Informazioni sui modelli di distribuzione di Azure).
+In questo articolo viene illustrato come una macchina virtuale (VM) tramite il modello di distribuzione Azure Resource Manager hello utilizzando toocreate hello CLI di Azure 2.0. Impossibile assegnare più indirizzi IP tooresources creato tramite il modello di distribuzione classica hello. ulteriori informazioni sui modelli di distribuzione di Azure, leggere hello toolearn [comprendere i modelli di distribuzione](../resource-manager-deployment-model.md) articolo.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name = "create"></a>Creare una macchina virtuale con più indirizzi IP
 
-È possibile completare questa attività usando l'interfaccia della riga di comando di Azure 2.0 (questo articolo) o l'[interfaccia della riga di comando di Azure 1.0](virtual-network-multiple-ip-addresses-cli-nodejs.md). Sostituire i valori in base alle esigenze specifiche dell'ambiente. La procedura seguente illustra come creare una macchina virtuale di esempio con più indirizzi IP, come descritto nello scenario. Modificare i valori delle variabili e i tipi di indirizzi IP come richiesto per l'implementazione. 
+È possibile completare questa attività usando hello Azure CLI 2.0 (in questo articolo) o hello [CLI di Azure 1.0](virtual-network-multiple-ip-addresses-cli-nodejs.md). Modificare i valori hello, come appropriato, per l'ambiente. passaggi di Hello che seguono viene illustrato come toocreate un esempio di macchina virtuale con più IP risolve, come descritto nello scenario di hello. Modificare i valori delle variabili e i tipi di indirizzi IP come richiesto per l'implementazione. 
 
-1. Installare l'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2), se non è già stata installata.
-2. Creare una coppia di chiavi SSH pubblica e privata per le VM Linux completando i passaggi descritti in [Creare una coppia di chiavi SSH pubblica e privata per le VM Linux](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
-3. Da una shell dei comandi accedere con il comando `az login` e selezionare la sottoscrizione in uso.
-4. Creare la VM eseguendo lo script seguente in un computer Linux o Mac. Lo script crea un gruppo di risorse, una rete virtuale (VNet), una scheda di interfaccia di rete con tre configurazioni IP e una VM con due schede di interfaccia di rete collegate. Le risorse di schede di interfaccia di rete, indirizzo IP pubblico, rete virtuale e VM devono essere tutte presenti nella stessa località e nella stessa sottoscrizione. Lo script seguente esamina un caso in cui tutte le risorse sono incluse nello stesso gruppo di risorse, anche se questo non è un requisito.
+1. Installare hello [CLI di Azure 2.0](/cli/azure/install-az-cli2) se non ne è già installata.
+2. Creare una coppia chiave SSH pubblica e privata per le macchine virtuali Linux completando i passaggi hello hello [creare una coppia chiave SSH pubblica e privata per le macchine virtuali Linux](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
+3. Da una shell dei comandi, accedere con il comando hello `az login` selezionare hello sottoscrizione in uso.
+4. Creare VM hello eseguendo script hello che segue in un computer Linux o Mac. script Hello crea un gruppo di risorse, una rete virtuale (VNet), una scheda di rete con tre configurazioni IP e una macchina virtuale con tooit di hello due schede di rete associate. Hello scheda di rete, indirizzo IP pubblico, rete virtuale e risorse macchina virtuale devono esistere in hello stesso percorso e sottoscrizione. Anche se le risorse di hello non hanno tooexist in hello stesso gruppo di risorse, in hello avviene script seguente.
 
 ```bash
     
@@ -46,10 +46,10 @@ RgName="myResourceGroup"
 Location="westcentralus"
 az group create --name $RgName --location $Location
     
-# Create a public IP address resource with a static IP address using the `--allocation-method Static` option. If you
-# do not specify this option, the address is allocated dynamically. The address is assigned to the resource from a pool
-# of IP adresses unique to each Azure region. Download and view the file from
-# https://www.microsoft.com/en-us/download/details.aspx?id=41653 that lists the ranges for each region.
+# Create a public IP address resource with a static IP address using hello `--allocation-method Static` option. If you
+# do not specify this option, hello address is allocated dynamically. hello address is assigned toohello resource from a pool
+# of IP adresses unique tooeach Azure region. Download and view hello file from
+# https://www.microsoft.com/en-us/download/details.aspx?id=41653 that lists hello ranges for each region.
 
 PipName="myPublicIP"
 
@@ -78,8 +78,8 @@ az network vnet create \
 --subnet-name $VnetSubnetName \
 --subnet-prefix $VnetSubnetPrefix
 
-# Create a network interface connected to the subnet and associate the public IP address to it. Azure will create the
-# first IP configuration with a static private IP address and will associate the public IP address resource to it.
+# Create a network interface connected toohello subnet and associate hello public IP address tooit. Azure will create the
+# first IP configuration with a static private IP address and will associate hello public IP address resource tooit.
 
 NicName="MyNic1"
 az network nic create \
@@ -91,7 +91,7 @@ az network nic create \
 --vnet-name $VnetName \
 --public-ip-address $PipName
     
-# Create a second public IP address, a second IP configuration, and associate it to the NIC. This configuration has a
+# Create a second public IP address, a second IP configuration, and associate it toohello NIC. This configuration has a
 # static public IP address and a static private IP address.
 
 az network public-ip create \
@@ -108,7 +108,7 @@ az network nic ip-config create \
 --private-ip-address 10.0.0.5 \
 --public-ip-name myPublicIP2
 
-# Create a third IP configuration, and associate it to the NIC. This configuration has  static private IP address and   # no public IP address.
+# Create a third IP configuration, and associate it toohello NIC. This configuration has  static private IP address and # no public IP address.
 
 azure network nic ip-config create \
 --resource-group $RgName \
@@ -116,30 +116,30 @@ azure network nic ip-config create \
 --private-ip-address 10.0.0.6 \
 --name IPConfig-3
 
-# Note: Though this article assigns all IP configurations to a single NIC, you can also assign multiple IP configurations
-# to any NIC in a VM. To learn how to create a VM with multiple NICs, read the Create a VM with multiple NICs 
+# Note: Though this article assigns all IP configurations tooa single NIC, you can also assign multiple IP configurations
+# tooany NIC in a VM. toolearn how toocreate a VM with multiple NICs, read hello Create a VM with multiple NICs 
 # article: https://docs.microsoft.com/azure/virtual-network/virtual-network-deploy-multinic-arm-cli.
 
-# Create a VM and attach the NIC.
+# Create a VM and attach hello NIC.
 
 VmName="myVm"
 
-# Replace the value for the following **VmSize** variable with a value from the
-# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes rticle. The script fails if the VM size
-# is not supported in the location you select. Run the `azure vm sizes --location estcentralus` command to get a full list
+# Replace hello value for hello following **VmSize** variable with a value from the
+# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes rticle. hello script fails if hello VM size
+# is not supported in hello location you select. Run hello `azure vm sizes --location estcentralus` command tooget a full list
 # of VMs in US West Central, for example.
 
 VmSize="Standard_DS1"
 
-# Replace the value for the OsImage variable value with a value for *urn* from the utput returned by entering the
+# Replace hello value for hello OsImage variable value with a value for *urn* from hello utput returned by entering the
 # `az vm image list` command.
 
 OsImage="credativ:Debian:8:latest"
 
 Username="adminuser"
 
-# Replace the following value with the path to your public key file. If you're creating a Windows VM, remove the following
-# line and you'll be prompted for the password you want to configure for the VM.
+# Replace hello following value with hello path tooyour public key file. If you're creating a Windows VM, remove hello following
+# line and you'll be prompted for hello password you want tooconfigure for hello VM.
 
 SshKeyValue="~/.ssh/id_rsa.pub"
 
@@ -154,28 +154,28 @@ az vm create \
 --ssh-key-value $SshKeyValue
 ```
 
-Oltre a creare una VM con una scheda di interfaccia di rete con 3 configurazioni IP, lo script crea:
+Una macchina virtuale con una scheda NIC con 3 configurazioni IP toocreating, script hello crea inoltre:
 
-- Un unico disco gestito Premium per impostazione predefinita, ma sono disponibili altre opzioni per il tipo di disco che è possibile creare. Leggere [Creare una VM Linux usando l'interfaccia della riga di comando di Azure 2.0](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) per informazioni dettagliate.
-- Una rete virtuale con una subnet e due indirizzi IP pubblici. In alternativa, è possibile usare le risorse *esistenti* di rete virtuale, subnet, scheda di interfaccia di rete o indirizzo IP pubblico. Per informazioni su come usare le risorse di rete esistenti anziché creare risorse aggiuntive, immettere `az vm create -h`.
+- Un unico premio gestito disco per impostazione predefinita, ma sono disponibili altre opzioni per il tipo di disco hello che è possibile creare. Hello lettura [creare una VM Linux di Azure 2.0 CLI hello](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) articolo per informazioni dettagliate.
+- Una rete virtuale con una subnet e due indirizzi IP pubblici. In alternativa, è possibile usare le risorse *esistenti* di rete virtuale, subnet, scheda di interfaccia di rete o indirizzo IP pubblico. toolearn come toouse esistente alle risorse di rete anziché la creazione di altre risorse, immettere `az vm create -h`.
 
-Per gli indirizzi IP pubblici è prevista una tariffa nominale. Per altre informazioni sui prezzi degli indirizzi IP, vedere la pagina [Prezzi per gli indirizzi IP](https://azure.microsoft.com/pricing/details/ip-addresses) . È previsto un limite per il numero di indirizzi IP pubblici che possono essere usati in una sottoscrizione. Per altre informazioni sui limiti, vedere l'articolo [Limiti di Azure](../azure-subscription-service-limits.md#networking-limits).
+Per gli indirizzi IP pubblici è prevista una tariffa nominale. ulteriori informazioni su IP indirizzo sui prezzi, toolearn leggere hello [dei prezzi di indirizzo IP](https://azure.microsoft.com/pricing/details/ip-addresses) pagina. È un toohello limita il numero di indirizzi IP pubblici che può essere usato in una sottoscrizione. informazioni sui limiti di hello, leggere hello toolearn [Azure limita](../azure-subscription-service-limits.md#networking-limits) articolo.
 
-Dopo avere creato la VM, immettere il comando `az network nic show --name MyNic1 --resource-group myResourceGroup` per visualizzare la configurazione della scheda di interfaccia di rete. Immettere `az network nic ip-config list --nic-name MyNic1 --resource-group myResourceGroup --output table` per visualizzare un elenco di configurazioni IP associate alla scheda di interfaccia di rete.
+Dopo la creazione di VM hello immettere hello `az network nic show --name MyNic1 --resource-group myResourceGroup` configurazione NIC hello tooview del comando. Immettere hello `az network nic ip-config list --nic-name MyNic1 --resource-group myResourceGroup --output table` tooview un elenco di configurazioni IP hello associata toohello scheda di rete.
 
-Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale seguendo la procedura per il proprio sistema operativo riportata nella sezione [Aggiungere indirizzi IP a una macchina virtuale](#os-config) di questo articolo.
+Toohello macchina virtuale del sistema operativo di indirizzi IP privati di Aggiungi hello completando i passaggi di hello del sistema operativo in hello [aggiungere indirizzi del sistema operativo VM tooa](#os-config) sezione di questo articolo.
 
-## <a name="add"></a>Aggiungere indirizzi IP a una macchina virtuale
+## <a name="add"></a>Aggiungere tooa di indirizzi IP VM
 
-È possibile aggiungere indirizzi IP privati e pubblici a una scheda di interfaccia di rete esistente completando la procedura seguente. Gli esempi si basano sullo [scenario](#Scenario) descritto in questo articolo.
+È possibile aggiungere ulteriori pubbliche e private IP indirizzi tooan esistente NIC completando i passaggi di hello che seguono. esempi di Hello si basano su hello [scenario](#Scenario) descritto in questo articolo.
 
-1. Aprire una shell dei comandi e completare i passaggi rimanenti in questa sezione all'interno di una singola sessione. Se l'interfaccia della riga di comando di Azure non è installata e configurata, completare la procedura riportata nell'articolo [Installazione dell'interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2?toc=%2fazure%2fvirtual-network%2ftoc.json) e accedere all'account Azure con il comando `az-login`.
+1. Aprire una shell dei comandi e completa hello rimanenti passaggi in questa sezione all'interno di una singola sessione. Se si dispone già di Azure CLI installato e configurato, hello completato i passaggi in hello [CLI di Azure 2.0 installazione](/cli/azure/install-az-cli2?toc=%2fazure%2fvirtual-network%2ftoc.json) tooyour articolo e account di accesso account Azure con hello `az-login` comando.
 
-2. Completare i passaggi in una delle sezioni seguenti, a seconda delle esigenze:
+2. Completare i passaggi di hello in uno di hello le sezioni, in base ai requisiti seguenti:
 
     **Aggiungere un indirizzo IP privato**
     
-    Per aggiungere un indirizzo IP privato a una scheda di interfaccia di rete, è necessario creare una configurazione IP usando il comando seguente. L'indirizzo IP statico deve essere un indirizzo non usato per la subnet.
+    tooadd un tooa di indirizzo IP privato NIC, è necessario creare una configurazione IP hello comando che segue. indirizzo IP statico Hello deve essere un indirizzo per subnet hello inutilizzato.
 
     ```bash
     az network nic ip-config create \
@@ -189,13 +189,13 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
 
     **Aggiungere un indirizzo IP pubblico**
     
-    L'indirizzo IP pubblico viene aggiunto associandolo a una nuova configurazione IP o a una configurazione IP esistente. Completare i passaggi in una delle sezioni che seguono, a seconda del caso.
+    Viene aggiunto un indirizzo IP pubblico associandolo tooeither una nuova configurazione IP o una configurazione IP esistente. Completare i passaggi di hello nelle sezioni che seguono, hello necessari.
 
-    Per gli indirizzi IP pubblici è prevista una tariffa nominale. Per altre informazioni sui prezzi degli indirizzi IP, vedere la pagina [Prezzi per gli indirizzi IP](https://azure.microsoft.com/pricing/details/ip-addresses) . È previsto un limite per il numero di indirizzi IP pubblici che possono essere usati in una sottoscrizione. Per altre informazioni sui limiti, vedere l'articolo [Limiti di Azure](../azure-subscription-service-limits.md#networking-limits).
+    Per gli indirizzi IP pubblici è prevista una tariffa nominale. ulteriori informazioni su IP indirizzo sui prezzi, toolearn leggere hello [dei prezzi di indirizzo IP](https://azure.microsoft.com/pricing/details/ip-addresses) pagina. È un toohello limita il numero di indirizzi IP pubblici che può essere usato in una sottoscrizione. informazioni sui limiti di hello, leggere hello toolearn [Azure limita](../azure-subscription-service-limits.md#networking-limits) articolo.
 
-    - **Associare la risorsa a una nuova configurazione IP**
+    - **Associare hello risorsa tooa nuova configurazione IP**
     
-        Ogni volta che si aggiunge un indirizzo IP pubblico a una nuova configurazione IP, è necessario aggiungere anche un indirizzo IP privato, perché tutte le configurazioni IP devono avere un indirizzo IP privato. È possibile aggiungere una risorsa indirizzo IP pubblico esistente o crearne una nuova. Per crearne una nuova, usare il comando seguente:
+        Ogni volta che si aggiunge un indirizzo IP pubblico a una nuova configurazione IP, è necessario aggiungere anche un indirizzo IP privato, perché tutte le configurazioni IP devono avere un indirizzo IP privato. È possibile aggiungere una risorsa indirizzo IP pubblico esistente o crearne una nuova. toocreate uno nuovo, immettere hello comando seguente:
     
         ```bash
         az network public-ip create \
@@ -205,7 +205,7 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
         --dns-name mypublicdns3
         ```
 
-        Per creare una nuova configurazione IP con un indirizzo IP privato statico e la risorsa indirizzo IP pubblico *myPublicIP3* associata, immettere il comando seguente:
+        una nuova configurazione IP con un indirizzo IP privato statico e hello associata toocreate *myPublicIP3* indirizzo IP pubblico risorsa degli indirizzi, immettere hello comando seguente:
 
         ```bash
         az network nic ip-config create \
@@ -216,7 +216,7 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
         --public-ip-address myPublicIP3
         ```
 
-    - **Associare la risorsa a una configurazione IP esistente** una risorsa di indirizzi IP pubblica può essere associata solo a una configurazione IP che non ha ancora associata. È possibile stabilire se una configurazione IP dispone di un indirizzo IP pubblico associato immettendo il comando seguente:
+    - **Configurazione IP esistente di hello associare risorse tooan** una risorsa di indirizzo IP pubblica può essere solo la configurazione IP tooan associato che non ha ancora associata. È possibile determinare se una configurazione IP è un indirizzo IP pubblico associato immettendo hello comando seguente:
 
         ```bash
         az network nic ip-config list \
@@ -233,7 +233,7 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
             IPConfig-2  /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP2
             IPConfig-3
 
-        Poiché l'output della colonna **PublicIpAddressId** per *IpConfig-3* è vuoto, nessuna risorsa di indirizzo IP pubblico è attualmente associata. È possibile aggiungere una risorsa indirizzo IP pubblico esistente a IpConfig-3 o immettere il comando seguente per crearne una:
+        Poiché hello **PublicIpAddressId** colonna per *IpConfig 3* è vuoto in hello output, alcuna risorsa di indirizzo IP pubblica non è tooit attualmente associato. È possibile aggiungere un esistente pubblica IP indirizzo risorsa tooIpConfig-3 o immettere hello toocreate comando uno di seguito:
 
         ```bash
         az network public-ip create \
@@ -244,7 +244,7 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
         --allocation-method Static
         ```
     
-        Immettere il comando seguente per associare la risorsa indirizzo IP pubblico alla configurazione IP esistente denominata *IPConfig-3*:
+        Immettere hello comando risorsa toohello configurazione IP esistente denominato di indirizzo IP pubblico di tooassociate hello seguente *IPConfig 3*:
     
         ```bash
         az network nic ip-config update \
@@ -254,7 +254,7 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
         --public-ip myPublicIP3
         ```
 
-3. Visualizzare gli ID di risorse indirizzo IP privato e indirizzo IP pubblico assegnati alla scheda di interfaccia di rete immettendo il comando seguente:
+3. Gli indirizzi IP privati di visualizzazione hello e hello pubblica di indirizzi IP assegnati toohello NIC immettendo hello comando seguente ID di risorsa:
 
     ```bash
     az network nic ip-config list \
@@ -272,6 +272,6 @@ Aggiungere gli indirizzi IP privati al sistema operativo della macchina virtuale
         IPConfig-3  10.0.0.6            Static                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP3
     
 
-4. Aggiungere al sistema operativo della macchina virtuale gli indirizzi IP privati aggiunti alla scheda di interfaccia di rete seguendo le istruzioni disponibili nella sezione [Aggiungere indirizzi IP a una macchina virtuale](#os-config) di questo articolo. Non aggiungere gli indirizzi IP pubblici al sistema operativo.
+4. Aggiungere indirizzi IP privati hello è stato aggiunto il sistema operativo VM di toohello NIC toohello seguendo le istruzioni hello hello [aggiungere indirizzi del sistema operativo VM tooa](#os-config) sezione di questo articolo. Non aggiungere hello pubblica IP indirizzi toohello del sistema operativo.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]

@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure Data Factory - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare Data Factory per configurare pipeline di dati automatizzate da e verso origini locali e cloud per spostare ed elaborare i dati per l'analisi.
+title: aaaAzure dati Factory documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse Data Factory tooset dei dati automatizzati pipeline tooand locale e cloud origini in ordine toomove ed elaborare i dati per l'analisi.
 services: data-factory
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bf280db3ab7f9a4b3742dafcdbb0fb7c79cc963c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b785093780a5eb5c23924a9c3c3f5d8675f0f96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory-documentation"></a>Documentazione di Azure Data Factory
 
-Informazioni su come usare Data Factory, un servizio di integrazione dei dati nel cloud, per creare servizi di archiviazione, spostamento ed elaborazione in pipeline di dati automatizzate. Esercitazioni e altri documenti mostrano come configurare e gestire le pipeline di dati, oltre a spostare e trasformare i dati per l'analisi.
+Informazioni su come toouse Data Factory, un servizio di integrazione dati cloud, toocompose archiviazione dei dati, lo spostamento e l'elaborazione dei servizi in pipeline automatica dei dati. Altra documentazione ed esercitazioni illustrano come tooset configurare e gestire le pipeline di dati, nonché spostare e trasformare i dati per l'analisi.
 
 <ul class="panelContent cardsFTitle">
    <li>

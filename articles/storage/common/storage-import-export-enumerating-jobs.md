@@ -1,6 +1,6 @@
 ---
-title: Elencare tutti i processi di Importazione/Esportazione di Azure | Documentazione Microsoft
-description: Informazioni su come elencare tutti i processi del servizio Importazione/Esportazione di Azure in una sottoscrizione.
+title: aaaList tutti i processi di importazione/esportazione di Azure | MicrosoftDocs
+description: Informazioni su come toolist tutti del servizio di importazione/esportazione di Azure hello i processi in una sottoscrizione.
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 1977bfc0e516088310f45ecdd960287eeed2c2d8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0e12bf3dc3f2084a1987ac362cf8d1041059543c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enumerating-jobs-in-the-azure-importexport-service"></a><span data-ttu-id="e33b1-103">Enumerazione dei processi nel servizio Importazione/Esportazione di Azure</span><span class="sxs-lookup"><span data-stu-id="e33b1-103">Enumerating jobs in the Azure Import/Export service</span></span>
-<span data-ttu-id="e33b1-104">Per enumerare tutti i processi in una sottoscrizione, chiamare l'operazione [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List).</span><span class="sxs-lookup"><span data-stu-id="e33b1-104">To enumerate all jobs in a subscription, call the [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List) operation.</span></span> <span data-ttu-id="e33b1-105">`List Jobs` restituisce un elenco dei processi nonché gli attributi seguenti:</span><span class="sxs-lookup"><span data-stu-id="e33b1-105">`List Jobs` returns a list of jobs as well as the following attributes:</span></span>
+# <a name="enumerating-jobs-in-hello-azure-importexport-service"></a><span data-ttu-id="b6881-103">Enumerazione di processi in hello servizio importazione/esportazione di Azure</span><span class="sxs-lookup"><span data-stu-id="b6881-103">Enumerating jobs in hello Azure Import/Export service</span></span>
+<span data-ttu-id="b6881-104">tooenumerate tutti i processi in una sottoscrizione, chiamata hello [elencare i processi](/rest/api/storageimportexport/jobs#Jobs_List) operazione.</span><span class="sxs-lookup"><span data-stu-id="b6881-104">tooenumerate all jobs in a subscription, call hello [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List) operation.</span></span> <span data-ttu-id="b6881-105">`List Jobs`Restituisce un elenco di processi, nonché hello gli attributi seguenti:</span><span class="sxs-lookup"><span data-stu-id="b6881-105">`List Jobs` returns a list of jobs as well as hello following attributes:</span></span>
 
--   <span data-ttu-id="e33b1-106">Tipo di processo (importazione o esportazione)</span><span class="sxs-lookup"><span data-stu-id="e33b1-106">The type of job (Import or Export)</span></span>
+-   <span data-ttu-id="b6881-106">tipo di Hello del processo (importazione o esportazione)</span><span class="sxs-lookup"><span data-stu-id="b6881-106">hello type of job (Import or Export)</span></span>
 
--   <span data-ttu-id="e33b1-107">Stato corrente del processo</span><span class="sxs-lookup"><span data-stu-id="e33b1-107">The current job state</span></span>
+-   <span data-ttu-id="b6881-107">stato corrente del processo Hello</span><span class="sxs-lookup"><span data-stu-id="b6881-107">hello current job state</span></span>
 
--   <span data-ttu-id="e33b1-108">Account di archiviazione associato al processo</span><span class="sxs-lookup"><span data-stu-id="e33b1-108">The job's associated storage account</span></span>
+-   <span data-ttu-id="b6881-108">account di archiviazione associato del processo di Hello</span><span class="sxs-lookup"><span data-stu-id="b6881-108">hello job's associated storage account</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="e33b1-109">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="e33b1-109">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b6881-109">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b6881-109">Next steps</span></span>
 
-* [<span data-ttu-id="e33b1-110">Uso dell'API REST del servizio Importazione/Esportazione</span><span class="sxs-lookup"><span data-stu-id="e33b1-110">Using the Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)
+* [<span data-ttu-id="b6881-110">Tramite l'API REST del servizio importazione/esportazione hello</span><span class="sxs-lookup"><span data-stu-id="b6881-110">Using hello Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)

@@ -1,16 +1,16 @@
 
-<span data-ttu-id="1bfa8-101">**Objective-C**:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-101">**Objective-C**:</span></span>
+<span data-ttu-id="e7843-101">**Objective-C**:</span><span class="sxs-lookup"><span data-stu-id="e7843-101">**Objective-C**:</span></span>
 
-1. <span data-ttu-id="1bfa8-102">In **QSAppDelegate.m** importare iOS SDK e **QSTodoService.h**:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-102">In **QSAppDelegate.m**, import the iOS SDK and **QSTodoService.h**:</span></span>
+1. <span data-ttu-id="e7843-102">In **QSAppDelegate.m**, importare hello iOS SDK e **QSTodoService.h**:</span><span class="sxs-lookup"><span data-stu-id="e7843-102">In **QSAppDelegate.m**, import hello iOS SDK and **QSTodoService.h**:</span></span>
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. <span data-ttu-id="1bfa8-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m** inserire le righe seguenti prima di `return YES;`:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, insert the following lines right before `return YES;`:</span></span>
+2. <span data-ttu-id="e7843-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, immediatamente prima di righe seguente hello insert `return YES;`:</span><span class="sxs-lookup"><span data-stu-id="e7843-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, insert hello following lines right before `return YES;`:</span></span>
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. <span data-ttu-id="1bfa8-104">In **QSAppDelegate.m**aggiungere i metodi del gestore seguenti.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-104">In **QSAppDelegate.m**, add the following handler methods.</span></span> <span data-ttu-id="1bfa8-105">L'app è ora aggiornata per il supporto delle notifiche push.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-105">Your app is now updated to support push notifications.</span></span> 
+3. <span data-ttu-id="e7843-104">In **QSAppDelegate.m**, aggiungere hello seguendo i metodi del gestore.</span><span class="sxs-lookup"><span data-stu-id="e7843-104">In **QSAppDelegate.m**, add hello following handler methods.</span></span> <span data-ttu-id="e7843-105">L'app è notifiche push toosupport aggiornato.</span><span class="sxs-lookup"><span data-stu-id="e7843-105">Your app is now updated toosupport push notifications.</span></span> 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -26,13 +26,13 @@
             }];
         }
    
-        // Handle any failure to register
+        // Handle any failure tooregister
         - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:
         (NSError *)error {
-            NSLog(@"Failed to register for remote notifications: %@", error);
+            NSLog(@"Failed tooregister for remote notifications: %@", error);
         }
    
-        // Use userInfo in the payload to display an alert.
+        // Use userInfo in hello payload toodisplay an alert.
         - (void)application:(UIApplication *)application
               didReceiveRemoteNotification:(NSDictionary *)userInfo {
             NSLog(@"%@", userInfo);
@@ -77,17 +77,17 @@
    
         }
 
-<span data-ttu-id="1bfa8-106">**Swift**:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-106">**Swift**:</span></span>
+<span data-ttu-id="e7843-106">**Swift**:</span><span class="sxs-lookup"><span data-stu-id="e7843-106">**Swift**:</span></span>
 
-1. <span data-ttu-id="1bfa8-107">Aggiungere il file **ClientManager.swift** con i seguenti contenuti.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-107">Add file **ClientManager.swift** with the following contents.</span></span> <span data-ttu-id="1bfa8-108">Sostituire *%AppUrl%* con l'URL del back-end di app per dispositivi mobili di Azure.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-108">Replace *%AppUrl%* with the URL of the Azure Mobile App backend.</span></span>
+1. <span data-ttu-id="e7843-107">Aggiungere file **ClientManager.swift** con hello seguente contenuto.</span><span class="sxs-lookup"><span data-stu-id="e7843-107">Add file **ClientManager.swift** with hello following contents.</span></span> <span data-ttu-id="e7843-108">Sostituire *AppUrl %* con URL hello di back-end di hello App per dispositivi mobili di Azure.</span><span class="sxs-lookup"><span data-stu-id="e7843-108">Replace *%AppUrl%* with hello URL of hello Azure Mobile App backend.</span></span>
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. <span data-ttu-id="1bfa8-109">In **ToDoTableViewController.swift** sostituire la riga `let client` che inizializza un `MSClient` con la riga seguente:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-109">In **ToDoTableViewController.swift**, replace the `let client` line that initializes an `MSClient` with this line:</span></span>
+2. <span data-ttu-id="e7843-109">In **ToDoTableViewController.swift**, sostituire hello `let client` riga che inizializza un `MSClient` con la riga seguente:</span><span class="sxs-lookup"><span data-stu-id="e7843-109">In **ToDoTableViewController.swift**, replace hello `let client` line that initializes an `MSClient` with this line:</span></span>
    
         let client = ClientManager.sharedClient
-3. <span data-ttu-id="1bfa8-110">In **AppDelegate.swift** sostituire il corpo di `func application` come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-110">In **AppDelegate.swift**, replace the body of `func application` as follows:</span></span>
+3. <span data-ttu-id="e7843-110">In **Appdelegate**, sostituire il corpo di hello di `func application` come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="e7843-110">In **AppDelegate.swift**, replace hello body of `func application` as follows:</span></span>
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. <span data-ttu-id="1bfa8-111">In **AppDelegate.swift**, aggiungere i metodi del gestore seguenti.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-111">In **AppDelegate.swift**, add the following handler methods.</span></span> <span data-ttu-id="1bfa8-112">L'app è ora aggiornata per il supporto delle notifiche push.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-112">Your app is now updated to support push notifications.</span></span>
+4. <span data-ttu-id="e7843-111">In **Appdelegate**, aggiungere hello seguendo i metodi del gestore.</span><span class="sxs-lookup"><span data-stu-id="e7843-111">In **AppDelegate.swift**, add hello following handler methods.</span></span> <span data-ttu-id="e7843-112">L'app è notifiche push toosupport aggiornato.</span><span class="sxs-lookup"><span data-stu-id="e7843-112">Your app is now updated toosupport push notifications.</span></span>
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -108,7 +108,7 @@
    
         func application(application: UIApplication,
            didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-            print("Failed to register for remote notifications: ", error.description)
+            print("Failed tooregister for remote notifications: ", error.description)
         }
    
         func application(application: UIApplication,
@@ -119,11 +119,11 @@
             let apsNotification = userInfo["aps"] as? NSDictionary
             let apsString       = apsNotification?["alert"] as? String
    
-            let alert = UIAlertController(title: "Alert", message: apsString, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Default) { _ in
+            let alert = UIAlertController(title: aaa"Alert", message: apsString, preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: aaa"OK", style: .Default) { _ in
                 print("OK")
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
+            let cancelAction = UIAlertAction(title: aaa"Cancel", style: .Default) { _ in
                 print("Cancel")
             }
    

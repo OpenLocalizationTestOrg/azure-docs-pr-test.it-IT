@@ -1,0 +1,4 @@
+> [!TIP]
+>
+> <span data-ttu-id="81bb3-101">Se si intende toouse hello HTTP o associazioni WebHook, pianificare l'esaurimento delle porte tooavoid che può essere causato dall'errata creazione di istanze di `HttpClient`.</span><span class="sxs-lookup"><span data-stu-id="81bb3-101">If you plan toouse hello HTTP or WebHook bindings, plan tooavoid port exhaustion that can be caused by improper instantiation of `HttpClient`.</span></span> <span data-ttu-id="81bb3-102">Per ulteriori informazioni, vedere l'articolo di hello [antipattern errata creazione dell'istanza](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/).</span><span class="sxs-lookup"><span data-stu-id="81bb3-102">For more information, review hello article [Improper Instantiation antipattern](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/).</span></span>
+>

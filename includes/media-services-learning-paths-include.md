@@ -1,0 +1,4 @@
+<span data-ttu-id="7d698-101">I percorsi di apprendimento di Servizi multimediali di Azure sono disponibili qui:</span><span class="sxs-lookup"><span data-stu-id="7d698-101">You can view Azure Media Services learning paths here:</span></span>
+
+* [<span data-ttu-id="7d698-102">Flusso di lavoro di streaming live di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="7d698-102">Media Services Live Streaming Workflow</span></span>](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-live/)
+* [<span data-ttu-id="7d698-103">Flusso di lavoro di streaming su richiesta di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="7d698-103">Media Services on Demand Streaming Workflow</span></span>](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)

@@ -1,0 +1,10 @@
+1. <span data-ttu-id="e0dc8-101">Hello Open Android SDK Manager facendo clic sull'icona di hello sulla barra degli strumenti hello di Android Studio o facendo clic su **strumenti** > **Android** > **SDK Manager**menu hello.</span><span class="sxs-lookup"><span data-stu-id="e0dc8-101">Open hello Android SDK Manager by clicking hello icon on hello toolbar of Android Studio, or by clicking **Tools** > **Android** > **SDK Manager** on hello menu.</span></span> <span data-ttu-id="e0dc8-102">Fare clic su hello **avviare autonomo SDK Manager** collegamento.</span><span class="sxs-lookup"><span data-stu-id="e0dc8-102">Click hello **Launch Standalone SDK Manager** link.</span></span>
+2. <span data-ttu-id="e0dc8-103">Individuare la versione di destinazione hello di hello Android SDK utilizzato nel progetto e aprirlo.</span><span class="sxs-lookup"><span data-stu-id="e0dc8-103">Locate hello target version of hello Android SDK that is used in your project, and open it.</span></span> <span data-ttu-id="e0dc8-104">Se **Google API** non è già installato, selezionarlo e premere **Install packages...** (Installa pacchetti...).</span><span class="sxs-lookup"><span data-stu-id="e0dc8-104">If **Google APIs** is not already installed, then select it and click **Install packages...**.</span></span>
+3. <span data-ttu-id="e0dc8-105">In Android Studio scegliere **File** > **Struttura progetto**.</span><span class="sxs-lookup"><span data-stu-id="e0dc8-105">In Android Studio, choose **File** > **Project Structure**.</span></span> <span data-ttu-id="e0dc8-106">Premere **Notifiche**, selezionare **Google Cloud Messaging** e quindi premere **OK**.</span><span class="sxs-lookup"><span data-stu-id="e0dc8-106">Select **Notifications**, select **Google Cloud Messaging**, and then click **OK**.</span></span>
+
+<!--
+3. Open **AndroidManifest.xml** and add this tag toohello *application* tag.
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+-->

@@ -1,0 +1,38 @@
+<span data-ttu-id="6b1c1-101">Accedi tooenable sull'applicazione, sarà necessario toocreate sign-in criteri.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-101">tooenable sign-in on your application, you will need toocreate a sign-in policy.</span></span> <span data-ttu-id="6b1c1-102">Questo criterio descrive esperienze hello consumer passa attraverso durante l'accesso e verrà visualizzato il contenuto di hello di token che l'applicazione hello accessi ha esito positivo.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-102">This policy describes hello experiences that consumers will go through during sign-in and hello contents of tokens that hello application will receive on successful sign-ins.</span></span>
+
+[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
+
+<span data-ttu-id="6b1c1-103">Nella sezione criteri hello delle impostazioni selezionare **iscrizione o accesso criteri** e fare clic su **+ Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-103">In hello policies section of settings, select **Sign-up or sign-in policies** and click **+ Add**.</span></span>
+
+![Selezionare i criteri di iscrizione o di accesso e fare clic sul pulsante Aggiungi](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-policy.png)
+
+<span data-ttu-id="6b1c1-105">Immettere un criterio **nome** per tooreference l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-105">Enter a policy **Name** for your application tooreference.</span></span> <span data-ttu-id="6b1c1-106">Ad esempio, immettere `SiUpIn`.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-106">For example, enter `SiUpIn`.</span></span>
+
+<span data-ttu-id="6b1c1-107">Selezionare **Provider di identità** e quindi selezionare **Iscrizione posta elettronica**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-107">Select **Identity providers** and check **Email signup**.</span></span> <span data-ttu-id="6b1c1-108">Facoltativamente, è anche possibile selezionare i provider di identità tramite social network, se già configurati.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-108">Optionally, you can also select social identity providers, if already configured.</span></span> <span data-ttu-id="6b1c1-109">Fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-109">Click **OK**.</span></span>
+
+![Selezionare l'iscrizione di posta elettronica come provider di identità e fare clic sul pulsante OK hello](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-identity-providers.png)
+
+<span data-ttu-id="6b1c1-111">Selezionare **Attributi di iscrizione**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-111">Select **Sign-up attributes**.</span></span> <span data-ttu-id="6b1c1-112">Scegliere gli attributi desiderati toocollect consumer hello durante l'iscrizione.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-112">Choose attributes you want toocollect from hello consumer during sign-up.</span></span> <span data-ttu-id="6b1c1-113">Selezionare ad esempio **Paese/area geografica**, **Nome visualizzato** e **Codice postale**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-113">For example, check **Country/Region**, **Display Name**, and **Postal Code**.</span></span> <span data-ttu-id="6b1c1-114">Fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-114">Click **OK**.</span></span>
+
+![Selezionare alcuni attributi e fare clic sul pulsante OK hello](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-sign-up-attributes.png)
+
+<span data-ttu-id="6b1c1-116">Selezionare **Attestazioni dell'applicazione**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-116">Select **Application claims**.</span></span> <span data-ttu-id="6b1c1-117">Scegliere le attestazioni da includere nel token di autorizzazione hello inviati applicazione back-tooyour dopo un'esperienza di iscrizione o accesso ha esito positivo.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-117">Choose claims you want returned in hello authorization tokens sent back tooyour application after a successful sign-up or sign-in experience.</span></span> <span data-ttu-id="6b1c1-118">Selezionare ad esempio **Nome visualizzato**, **Provider di identità**, **Codice postale**, **Nuovo utente** e **ID oggetto dell'utente**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-118">For example, select **Display Name**, **Identity Provider**, **Postal Code**, **User is new** and **User's Object ID**.</span></span>
+
+![Selezionare alcune attestazioni dell'applicazione e fare clic sul pulsante OK](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-application-claims.png)
+
+<span data-ttu-id="6b1c1-120">Fare clic su **crea** criteri hello tooadd.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-120">Click **Create** tooadd hello policy.</span></span> <span data-ttu-id="6b1c1-121">criteri di Hello sono elencato come **B2C_1_SiUpIn**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-121">hello policy is listed as **B2C_1_SiUpIn**.</span></span> <span data-ttu-id="6b1c1-122">Hello **B2C_1_** prefisso viene aggiunto toohello nome.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-122">hello **B2C_1_** prefix is appended toohello name.</span></span>
+
+<span data-ttu-id="6b1c1-123">Aprire criteri hello selezionando **B2C_1_SiUpIn**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-123">Open hello policy by selecting **B2C_1_SiUpIn**.</span></span> <span data-ttu-id="6b1c1-124">Verificare le impostazioni di hello specificate nella tabella hello, quindi fare clic su **Esegui**.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-124">Verify hello settings specified in hello table then click **Run now**.</span></span>
+
+![Selezionare un criterio ed eseguirlo](media/active-directory-b2c-create-sign-in-sign-up-policy/run-b2c-signup-signin-policy.png)
+
+| <span data-ttu-id="6b1c1-126">Impostazione</span><span class="sxs-lookup"><span data-stu-id="6b1c1-126">Setting</span></span>      | <span data-ttu-id="6b1c1-127">Valore</span><span class="sxs-lookup"><span data-stu-id="6b1c1-127">Value</span></span>  |
+| ------------ | ------ |
+| <span data-ttu-id="6b1c1-128">**Applicazioni**</span><span class="sxs-lookup"><span data-stu-id="6b1c1-128">**Applications**</span></span> | <span data-ttu-id="6b1c1-129">App Contoso B2C</span><span class="sxs-lookup"><span data-stu-id="6b1c1-129">Contoso B2C app</span></span> |
+| <span data-ttu-id="6b1c1-130">**Selezionare l'URL di risposta**</span><span class="sxs-lookup"><span data-stu-id="6b1c1-130">**Select reply url**</span></span> | `https://localhost:44316/` |
+
+<span data-ttu-id="6b1c1-131">Verrà visualizzata una nuova scheda del browser, ed è possibile verificare l'esperienza di iscrizione o accesso consumer hello come configurato.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-131">A new browser tab opens, and you can verify hello sign-up or sign-in consumer experience as configured.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="6b1c1-132">Occupi tooa minuto per la creazione dei criteri e aggiorna tootake effetto.</span><span class="sxs-lookup"><span data-stu-id="6b1c1-132">It takes up tooa minute for policy creation and updates tootake effect.</span></span>
+>

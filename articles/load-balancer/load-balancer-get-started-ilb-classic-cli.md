@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico interno - Interfaccia della riga di comando di Azure (versione classica) | Documentazione Microsoft
-description: "Informazioni su come creare un servizio di bilanciamento del carico interno usando l’interfaccia della riga di comando di Azure nel modello di distribuzione classica"
+title: un uso interno aaaCreate bilanciamento del carico - CLI di Azure classico | Documenti Microsoft
+description: Informazioni su come un servizio di bilanciamento carico interno utilizzando toocreate hello CLI di Azure nel modello di distribuzione classica hello
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,70 +15,70 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: d24b95f75b5ffd1116b07cf9f8bac33767a9c835
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef29dfda5f7a75a411bbabe8b688a31c6bf81113
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-using-the-azure-cli"></a><span data-ttu-id="32552-103">Introduzione alla creazione di un servizio di bilanciamento del carico interno (classico) tramite l’interfaccia di riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="32552-103">Get started creating an internal load balancer (classic) using the Azure CLI</span></span>
+# <a name="get-started-creating-an-internal-load-balancer-classic-using-hello-azure-cli"></a><span data-ttu-id="68c03-103">Introduzione alla creazione di un bilanciamento del carico interno (classico) utilizzando hello CLI di Azure</span><span class="sxs-lookup"><span data-stu-id="68c03-103">Get started creating an internal load balancer (classic) using hello Azure CLI</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="32552-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="32552-104">PowerShell</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
-> * [<span data-ttu-id="32552-105">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="32552-105">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
-> * [<span data-ttu-id="32552-106">Servizi cloud</span><span class="sxs-lookup"><span data-stu-id="32552-106">Cloud services</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
+> * [<span data-ttu-id="68c03-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="68c03-104">PowerShell</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
+> * [<span data-ttu-id="68c03-105">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="68c03-105">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
+> * [<span data-ttu-id="68c03-106">Servizi cloud</span><span class="sxs-lookup"><span data-stu-id="68c03-106">Cloud services</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
 
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="32552-107">Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="32552-107">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="32552-108">Questo articolo illustra l'uso del modello di distribuzione classica.</span><span class="sxs-lookup"><span data-stu-id="32552-108">This article covers using the classic deployment model.</span></span> <span data-ttu-id="32552-109">Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.</span><span class="sxs-lookup"><span data-stu-id="32552-109">Microsoft recommends that most new deployments use the Resource Manager model.</span></span> <span data-ttu-id="32552-110">Informazioni su come [eseguire questa procedura con il modello di Resource Manager](load-balancer-get-started-ilb-arm-cli.md).</span><span class="sxs-lookup"><span data-stu-id="32552-110">Learn how to [perform these steps using the Resource Manager model](load-balancer-get-started-ilb-arm-cli.md).</span></span>
+> <span data-ttu-id="68c03-107">Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="68c03-107">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="68c03-108">In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello.</span><span class="sxs-lookup"><span data-stu-id="68c03-108">This article covers using hello classic deployment model.</span></span> <span data-ttu-id="68c03-109">Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.</span><span class="sxs-lookup"><span data-stu-id="68c03-109">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span> <span data-ttu-id="68c03-110">Informazioni su come troppo[eseguire questi passaggi tramite il modello di gestione risorse di hello](load-balancer-get-started-ilb-arm-cli.md).</span><span class="sxs-lookup"><span data-stu-id="68c03-110">Learn how too[perform these steps using hello Resource Manager model](load-balancer-get-started-ilb-arm-cli.md).</span></span>
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="to-create-an-internal-load-balancer-set-for-virtual-machines"></a><span data-ttu-id="32552-111">Per creare un set con servizio di bilanciamento del carico interno per le macchine virtuali</span><span class="sxs-lookup"><span data-stu-id="32552-111">To create an internal load balancer set for virtual machines</span></span>
+## <a name="toocreate-an-internal-load-balancer-set-for-virtual-machines"></a><span data-ttu-id="68c03-111">toocreate un bilanciamento del carico interno è impostato per le macchine virtuali</span><span class="sxs-lookup"><span data-stu-id="68c03-111">toocreate an internal load balancer set for virtual machines</span></span>
 
-<span data-ttu-id="32552-112">Per creare un set con servizio di bilanciamento del carico e i server che invieranno il traffico a esso, è necessario eseguire le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="32552-112">To create an internal load balancer set and the servers that will send their traffic to it, you must do the following:</span></span>
+<span data-ttu-id="68c03-112">toocreate un bilanciamento del carico interno impostato e hello server che invierà i tooit di traffico, è necessario eseguire il seguente hello:</span><span class="sxs-lookup"><span data-stu-id="68c03-112">toocreate an internal load balancer set and hello servers that will send their traffic tooit, you must do hello following:</span></span>
 
-1. <span data-ttu-id="32552-113">Creare un'istanza della funzionalità di bilanciamento del carico interno che sarà l'endpoint del traffico in ingresso da configurare con carico bilanciato tra i server di un set con carico bilanciato.</span><span class="sxs-lookup"><span data-stu-id="32552-113">Create an instance of Internal Load Balancing that will be the endpoint of incoming traffic to be load balanced across the servers of a load-balanced set.</span></span>
-2. <span data-ttu-id="32552-114">Aggiungere gli endpoint corrispondenti alle macchine virtuali che riceveranno il traffico in ingresso.</span><span class="sxs-lookup"><span data-stu-id="32552-114">Add endpoints corresponding to the virtual machines that will be receiving the incoming traffic.</span></span>
-3. <span data-ttu-id="32552-115">Configurare i server che invieranno il traffico con carico bilanciato all'indirizzo IP virtuale (indirizzo VIP) dell'istanza del bilanciamento del carico interno.</span><span class="sxs-lookup"><span data-stu-id="32552-115">Configure the servers that will be sending the traffic to be load balanced to send their traffic to the virtual IP (VIP) address of the Internal Load Balancing instance.</span></span>
+1. <span data-ttu-id="68c03-113">Creare un'istanza interna il bilanciamento del carico che fungerà da endpoint hello in arrivo traffico toobe con bilanciato del carico tra i server hello di un set con carico bilanciato.</span><span class="sxs-lookup"><span data-stu-id="68c03-113">Create an instance of Internal Load Balancing that will be hello endpoint of incoming traffic toobe load balanced across hello servers of a load-balanced set.</span></span>
+2. <span data-ttu-id="68c03-114">Aggiungere gli endpoint corrispondenti toohello le macchine virtuali che riceveranno il traffico in ingresso hello.</span><span class="sxs-lookup"><span data-stu-id="68c03-114">Add endpoints corresponding toohello virtual machines that will be receiving hello incoming traffic.</span></span>
+3. <span data-ttu-id="68c03-115">Configurare i server hello che invieranno hello traffico toobe con bilanciamento del carico toosend loro traffico toohello indirizzo IP virtuale (VIP) dell'istanza di hello interno il bilanciamento del carico.</span><span class="sxs-lookup"><span data-stu-id="68c03-115">Configure hello servers that will be sending hello traffic toobe load balanced toosend their traffic toohello virtual IP (VIP) address of hello Internal Load Balancing instance.</span></span>
 
-## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a><span data-ttu-id="32552-116">Procedura dettagliata sulla creazione di un servizio di bilanciamento del carico interno tramite CLI</span><span class="sxs-lookup"><span data-stu-id="32552-116">Step by step creating an internal load balancer using CLI</span></span>
+## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a><span data-ttu-id="68c03-116">Procedura dettagliata sulla creazione di un servizio di bilanciamento del carico interno tramite CLI</span><span class="sxs-lookup"><span data-stu-id="68c03-116">Step by step creating an internal load balancer using CLI</span></span>
 
-<span data-ttu-id="32552-117">In questa guida viene illustrato come creare un servizio di bilanciamento del carico interno in base allo scenario precedente.</span><span class="sxs-lookup"><span data-stu-id="32552-117">This guide shows how to create an internal load balancer based on the scenario above.</span></span>
+<span data-ttu-id="68c03-117">Questa guida viene spiegato come toocreate un bilanciamento del carico interno in base a hello scenario precedente.</span><span class="sxs-lookup"><span data-stu-id="68c03-117">This guide shows how toocreate an internal load balancer based on hello scenario above.</span></span>
 
-1. <span data-ttu-id="32552-118">Se l'interfaccia della riga di comando di Azure non è mai stata usata, vedere [Installare e configurare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md) e seguire le istruzioni fino al punto in cui si selezionano l'account e la sottoscrizione di Azure.</span><span class="sxs-lookup"><span data-stu-id="32552-118">If you have never used Azure CLI, see [Install and Configure the Azure CLI](../cli-install-nodejs.md) and follow the instructions up to the point where you select your Azure account and subscription.</span></span>
-2. <span data-ttu-id="32552-119">Eseguire il comando **azure config mode** per passare alla modalità classica, come illustrato di seguito.</span><span class="sxs-lookup"><span data-stu-id="32552-119">Run the **azure config mode** command to switch to classic mode, as shown below.</span></span>
+1. <span data-ttu-id="68c03-118">Se non si è mai usato CLI di Azure, vedere [installare e configurare hello Azure CLI](../cli-install-nodejs.md) e seguire le istruzioni di hello toohello un punto in cui si seleziona l'account di Azure e la sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="68c03-118">If you have never used Azure CLI, see [Install and Configure hello Azure CLI](../cli-install-nodejs.md) and follow hello instructions up toohello point where you select your Azure account and subscription.</span></span>
+2. <span data-ttu-id="68c03-119">Eseguire hello **modalità di configurazione azure** comando tooswitch tooclassic modalità come illustrato di seguito.</span><span class="sxs-lookup"><span data-stu-id="68c03-119">Run hello **azure config mode** command tooswitch tooclassic mode, as shown below.</span></span>
 
     ```azurecli
     azure config mode asm
     ```
 
-    <span data-ttu-id="32552-120">Output previsto:</span><span class="sxs-lookup"><span data-stu-id="32552-120">Expected output:</span></span>
+    <span data-ttu-id="68c03-120">Output previsto:</span><span class="sxs-lookup"><span data-stu-id="68c03-120">Expected output:</span></span>
 
         info:    New mode is asm
 
-## <a name="create-endpoint-and-load-balancer-set"></a><span data-ttu-id="32552-121">Creazione dell’endpoint e del set del servizio di bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="32552-121">Create endpoint and load balancer set</span></span>
+## <a name="create-endpoint-and-load-balancer-set"></a><span data-ttu-id="68c03-121">Creazione dell’endpoint e del set del servizio di bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="68c03-121">Create endpoint and load balancer set</span></span>
 
-<span data-ttu-id="32552-122">Lo scenario presuppone le macchine virtuali "DB1" e "DB2" in un servizio cloud denominato "mytestcloud".</span><span class="sxs-lookup"><span data-stu-id="32552-122">The scenario assumes the virtual machines "DB1" and "DB2" in a cloud service called "mytestcloud".</span></span> <span data-ttu-id="32552-123">Entrambe le macchine virtuali utilizzano una rete virtuale denominata "my testvnet" con subnet "subnet-1".</span><span class="sxs-lookup"><span data-stu-id="32552-123">Both virtual machines are using a virtual network called my "testvnet" with subnet "subnet-1".</span></span>
+<span data-ttu-id="68c03-122">scenario di Hello presuppone hello macchine "DB1" e "DB2" in un servizio cloud denominato "mytestcloud".</span><span class="sxs-lookup"><span data-stu-id="68c03-122">hello scenario assumes hello virtual machines "DB1" and "DB2" in a cloud service called "mytestcloud".</span></span> <span data-ttu-id="68c03-123">Entrambe le macchine virtuali utilizzano una rete virtuale denominata "my testvnet" con subnet "subnet-1".</span><span class="sxs-lookup"><span data-stu-id="68c03-123">Both virtual machines are using a virtual network called my "testvnet" with subnet "subnet-1".</span></span>
 
-<span data-ttu-id="32552-124">In questa guida verrà creato un set del servizio di bilanciamento del carico interno utilizzando la porta 1433 come porta privata e la porta 1433 come porta locale.</span><span class="sxs-lookup"><span data-stu-id="32552-124">This guide will create an internal load balancer set using port 1433 as private port and 1433 as local port.</span></span>
+<span data-ttu-id="68c03-124">In questa guida verrà creato un set del servizio di bilanciamento del carico interno utilizzando la porta 1433 come porta privata e la porta 1433 come porta locale.</span><span class="sxs-lookup"><span data-stu-id="68c03-124">This guide will create an internal load balancer set using port 1433 as private port and 1433 as local port.</span></span>
 
-<span data-ttu-id="32552-125">Si tratta di uno scenario comune in cui si dispone di macchine virtuali di SQL nel back-end che utilizzano un servizio di bilanciamento del carico interno per garantire che i server di database non siano esposti direttamente tramite un indirizzo IP pubblico.</span><span class="sxs-lookup"><span data-stu-id="32552-125">This is a common scenario where you have SQL virtual machines on the back end using an internal load balancer to guarantee the database servers won't be exposed directly using a public IP address.</span></span>
+<span data-ttu-id="68c03-125">Si tratta di uno scenario comune in cui si dispone di macchine virtuali SQL hello back-end utilizzando che un server di database hello tooguarantee bilanciamento di carico interno non verrà esposto direttamente tramite un indirizzo IP pubblico.</span><span class="sxs-lookup"><span data-stu-id="68c03-125">This is a common scenario where you have SQL virtual machines on hello back end using an internal load balancer tooguarantee hello database servers won't be exposed directly using a public IP address.</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="32552-126">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="32552-126">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="68c03-126">Passaggio 1</span><span class="sxs-lookup"><span data-stu-id="68c03-126">Step 1</span></span>
 
-<span data-ttu-id="32552-127">Creare un set di bilanciamento del carico interno utilizzando `azure network service internal-load-balancer add`.</span><span class="sxs-lookup"><span data-stu-id="32552-127">Create an internal load balancer set using `azure network service internal-load-balancer add`.</span></span>
+<span data-ttu-id="68c03-127">Creare un set di bilanciamento del carico interno utilizzando `azure network service internal-load-balancer add`.</span><span class="sxs-lookup"><span data-stu-id="68c03-127">Create an internal load balancer set using `azure network service internal-load-balancer add`.</span></span>
 
 ```azurecli
 azure service internal-load-balancer add --serviceName mytestcloud --internalLBName ilbset --subnet-name subnet-1 --static-virtualnetwork-ipaddress 192.168.2.7
 ```
 
-<span data-ttu-id="32552-128">Per ulteriori informazioni, vedere `azure service internal-load-balancer --help` .</span><span class="sxs-lookup"><span data-stu-id="32552-128">Check out `azure service internal-load-balancer --help` for more information.</span></span>
+<span data-ttu-id="68c03-128">Per ulteriori informazioni, vedere `azure service internal-load-balancer --help` .</span><span class="sxs-lookup"><span data-stu-id="68c03-128">Check out `azure service internal-load-balancer --help` for more information.</span></span>
 
-<span data-ttu-id="32552-129">È possibile controllare le proprietà del servizio di bilanciamento del carico interno utilizzando il comando `azure service internal-load-balancer list` *nome del servizio cloud*.</span><span class="sxs-lookup"><span data-stu-id="32552-129">You can check the internal load balancer properties using the command `azure service internal-load-balancer list` *cloud service name*.</span></span>
+<span data-ttu-id="68c03-129">È possibile controllare le proprietà del servizio di bilanciamento di carico interno hello comando hello `azure service internal-load-balancer list` *nome del servizio cloud*.</span><span class="sxs-lookup"><span data-stu-id="68c03-129">You can check hello internal load balancer properties using hello command `azure service internal-load-balancer list` *cloud service name*.</span></span>
 
-<span data-ttu-id="32552-130">Qui di seguito un esempio di output:</span><span class="sxs-lookup"><span data-stu-id="32552-130">Here follows an example of the output:</span></span>
+<span data-ttu-id="68c03-130">Di seguito segue un esempio di output di hello:</span><span class="sxs-lookup"><span data-stu-id="68c03-130">Here follows an example of hello output:</span></span>
 
     azure service internal-load-balancer list my-testcloud
     info:    Executing command service internal-load-balancer list
@@ -89,23 +89,23 @@ azure service internal-load-balancer add --serviceName mytestcloud --internalLBN
     info:    service internal-load-balancer list command OK
 
 
-### <a name="step-2"></a><span data-ttu-id="32552-131">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="32552-131">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="68c03-131">Passaggio 2</span><span class="sxs-lookup"><span data-stu-id="68c03-131">Step 2</span></span>
 
-<span data-ttu-id="32552-132">Configurare il set di bilanciamento del carico interno quando si aggiunge il primo endpoint.</span><span class="sxs-lookup"><span data-stu-id="32552-132">You configure the internal load balancer set when you add the first endpoint.</span></span> <span data-ttu-id="32552-133">Associare l'endpoint, la macchina virtuale e la porta probe per il set di bilanciamento del carico interno in questo passaggio.</span><span class="sxs-lookup"><span data-stu-id="32552-133">You will associate the endpoint, virtual machine and probe port to the internal load balancer set in this step.</span></span>
+<span data-ttu-id="68c03-132">Configurare un bilanciamento del carico interno hello impostata quando si aggiungono endpoint prima di hello.</span><span class="sxs-lookup"><span data-stu-id="68c03-132">You configure hello internal load balancer set when you add hello first endpoint.</span></span> <span data-ttu-id="68c03-133">Associare hello endpoint, macchina virtuale e un probe porta toohello bilanciamento del carico interno impostato in questo passaggio.</span><span class="sxs-lookup"><span data-stu-id="68c03-133">You will associate hello endpoint, virtual machine and probe port toohello internal load balancer set in this step.</span></span>
 
 ```azurecli
 azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 1433 --probe-protocol tcp --probe-interval 300 --probe-timeout 600 --internal-load-balancer-name ilbset
 ```
 
-### <a name="step-3"></a><span data-ttu-id="32552-134">Passaggio 3</span><span class="sxs-lookup"><span data-stu-id="32552-134">Step 3</span></span>
+### <a name="step-3"></a><span data-ttu-id="68c03-134">Passaggio 3</span><span class="sxs-lookup"><span data-stu-id="68c03-134">Step 3</span></span>
 
-<span data-ttu-id="32552-135">Verificare la configurazione del servizio di bilanciamento del carico utilizzando `azure vm show` *nome macchina virtuale*</span><span class="sxs-lookup"><span data-stu-id="32552-135">Verify the load balancer configuration using `azure vm show` *virtual machine name*</span></span>
+<span data-ttu-id="68c03-135">Verificare tramite configurazione del servizio di bilanciamento carico di hello `azure vm show` *nome della macchina virtuale*</span><span class="sxs-lookup"><span data-stu-id="68c03-135">Verify hello load balancer configuration using `azure vm show` *virtual machine name*</span></span>
 
 ```azurecli
 azure vm show DB1
 ```
 
-<span data-ttu-id="32552-136">L'output sarà:</span><span class="sxs-lookup"><span data-stu-id="32552-136">The output will be:</span></span>
+<span data-ttu-id="68c03-136">output di Hello sarà:</span><span class="sxs-lookup"><span data-stu-id="68c03-136">hello output will be:</span></span>
 
     azure vm show DB1
     info:    Executing command vm show
@@ -154,28 +154,28 @@ azure vm show DB1
     data:    Network Endpoints 2 loadBalancerName "ilbset"
     info:    vm show command OK
 
-## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a><span data-ttu-id="32552-137">Creare un endpoint di desktop remoto per una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="32552-137">Create a remote desktop endpoint for a virtual machine</span></span>
+## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a><span data-ttu-id="68c03-137">Creare un endpoint di desktop remoto per una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="68c03-137">Create a remote desktop endpoint for a virtual machine</span></span>
 
-<span data-ttu-id="32552-138">È possibile creare un endpoint di desktop remoto per inoltrare il traffico di rete da una porta pubblica a una porta locale per una macchina virtuale specifica utilizzando `azure vm endpoint create`.</span><span class="sxs-lookup"><span data-stu-id="32552-138">You can create a remote desktop endpoint to forward network traffic from a public port to a local port for a specific virtual machine using `azure vm endpoint create`.</span></span>
+<span data-ttu-id="68c03-138">È possibile creare un traffico di rete tooforward endpoint desktop remoto da una porta locale tooa di porta pubblica per l'utilizzo di una macchina virtuale specifica `azure vm endpoint create`.</span><span class="sxs-lookup"><span data-stu-id="68c03-138">You can create a remote desktop endpoint tooforward network traffic from a public port tooa local port for a specific virtual machine using `azure vm endpoint create`.</span></span>
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
 ```
 
-## <a name="remove-virtual-machine-from-load-balancer"></a><span data-ttu-id="32552-139">Rimuovere la macchina virtuale dal servizio di bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="32552-139">Remove virtual machine from load balancer</span></span>
+## <a name="remove-virtual-machine-from-load-balancer"></a><span data-ttu-id="68c03-139">Rimuovere la macchina virtuale dal servizio di bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="68c03-139">Remove virtual machine from load balancer</span></span>
 
-<span data-ttu-id="32552-140">È possibile rimuovere una macchina virtuale da un set di bilanciamento del carico interno impostato eliminando l'endpoint associato.</span><span class="sxs-lookup"><span data-stu-id="32552-140">You can remove a virtual machine from an internal load balancer set by deleting the associated endpoint.</span></span> <span data-ttu-id="32552-141">Una volta rimosso l'endpoint, la macchina virtuale non appartiene più al set del servizio di bilanciamento del carico.</span><span class="sxs-lookup"><span data-stu-id="32552-141">Once the endpoint is removed, the virtual machine won't belong to the load balancer set anymore.</span></span>
+<span data-ttu-id="68c03-140">È possibile rimuovere una macchina virtuale da un bilanciamento del carico interno impostato tramite l'eliminazione di endpoint hello associata.</span><span class="sxs-lookup"><span data-stu-id="68c03-140">You can remove a virtual machine from an internal load balancer set by deleting hello associated endpoint.</span></span> <span data-ttu-id="68c03-141">Dopo la rimozione di endpoint hello, macchina virtuale hello non appartengono a bilanciamento del carico toohello imposta più.</span><span class="sxs-lookup"><span data-stu-id="68c03-141">Once hello endpoint is removed, hello virtual machine won't belong toohello load balancer set anymore.</span></span>
 
-<span data-ttu-id="32552-142">Utilizzando l'esempio precedente, è possibile rimuovere l'endpoint creato per la macchina virtuale "DB1" dal servizio di bilanciamento del carico interno "ilbset" utilizzando il comando `azure vm endpoint delete`.</span><span class="sxs-lookup"><span data-stu-id="32552-142">Using the example above, you can remove the endpoint created for virtual machine "DB1" from internal load balancer "ilbset" by using the command `azure vm endpoint delete`.</span></span>
+<span data-ttu-id="68c03-142">Utilizzando l'esempio hello precedente, è possibile rimuovere endpoint hello creato per la macchina virtuale "DB1" dal servizio di bilanciamento del carico interno "ilbset" utilizzando il comando hello `azure vm endpoint delete`.</span><span class="sxs-lookup"><span data-stu-id="68c03-142">Using hello example above, you can remove hello endpoint created for virtual machine "DB1" from internal load balancer "ilbset" by using hello command `azure vm endpoint delete`.</span></span>
 
 ```azurecli
 azure vm endpoint delete DB1 tcp-1433-1433
 ```
 
-<span data-ttu-id="32552-143">Per ulteriori informazioni, vedere `azure vm endpoint --help` .</span><span class="sxs-lookup"><span data-stu-id="32552-143">Check out `azure vm endpoint --help` for more information.</span></span>
+<span data-ttu-id="68c03-143">Per ulteriori informazioni, vedere `azure vm endpoint --help` .</span><span class="sxs-lookup"><span data-stu-id="68c03-143">Check out `azure vm endpoint --help` for more information.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="32552-144">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="32552-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="68c03-144">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="68c03-144">Next steps</span></span>
 
-[<span data-ttu-id="32552-145">Configurare una modalità di distribuzione del servizio di bilanciamento del carico utilizzando l’affinità dell’IP di origine</span><span class="sxs-lookup"><span data-stu-id="32552-145">Configure a load balancer distribution mode using source IP affinity</span></span>](load-balancer-distribution-mode.md)
+[<span data-ttu-id="68c03-145">Configurare una modalità di distribuzione del servizio di bilanciamento del carico utilizzando l’affinità dell’IP di origine</span><span class="sxs-lookup"><span data-stu-id="68c03-145">Configure a load balancer distribution mode using source IP affinity</span></span>](load-balancer-distribution-mode.md)
 
-[<span data-ttu-id="32552-146">Configurare le impostazioni del timeout di inattività TCP per il bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="32552-146">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)
+[<span data-ttu-id="68c03-146">Configurare le impostazioni del timeout di inattività TCP per il bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="68c03-146">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)

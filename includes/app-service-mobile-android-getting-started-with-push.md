@@ -1,5 +1,5 @@
-1. <span data-ttu-id="1ca4d-101">Nel progetto di **app** aprire il file `AndroidManifest.xml`.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-101">In your **app** project, open the file `AndroidManifest.xml`.</span></span> <span data-ttu-id="1ca4d-102">Nel codice per i due passaggi successivi sostituire *`**my_app_package**`* con il nome del pacchetto dell'app per il progetto.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-102">In the code in the next two steps, replace *`**my_app_package**`* with the name of the app package for your project.</span></span> <span data-ttu-id="1ca4d-103">Si tratta del valore dell'`package`attributo del `manifest` tag.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-103">This is the value of the `package` attribute of the `manifest` tag.</span></span>
-2. <span data-ttu-id="1ca4d-104">Aggiungere le nuove autorizzazioni seguenti dopo l'elemento `uses-permission` esistente:</span><span class="sxs-lookup"><span data-stu-id="1ca4d-104">Add the following new permissions after the existing `uses-permission` element:</span></span>
+1. <span data-ttu-id="fea68-101">Nel **app** progetto, il file aperto hello `AndroidManifest.xml`.</span><span class="sxs-lookup"><span data-stu-id="fea68-101">In your **app** project, open hello file `AndroidManifest.xml`.</span></span> <span data-ttu-id="fea68-102">Nel codice hello in hello due passaggi successivi, sostituire  *`**my_app_package**`*  con nome hello del pacchetto dell'applicazione hello per il progetto.</span><span class="sxs-lookup"><span data-stu-id="fea68-102">In hello code in hello next two steps, replace *`**my_app_package**`* with hello name of hello app package for your project.</span></span> <span data-ttu-id="fea68-103">Questo è il valore di hello di hello `package` attributo di hello `manifest` tag.</span><span class="sxs-lookup"><span data-stu-id="fea68-103">This is hello value of hello `package` attribute of hello `manifest` tag.</span></span>
+2. <span data-ttu-id="fea68-104">Aggiungere queste autorizzazioni di nuovo dopo hello esistente hello `uses-permission` elemento:</span><span class="sxs-lookup"><span data-stu-id="fea68-104">Add hello following new permissions after hello existing `uses-permission` element:</span></span>
 
         <permission android:name="**my_app_package**.permission.C2D_MESSAGE"
             android:protectionLevel="signature" />
@@ -7,7 +7,7 @@
         <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
         <uses-permission android:name="android.permission.GET_ACCOUNTS" />
         <uses-permission android:name="android.permission.WAKE_LOCK" />
-3. <span data-ttu-id="1ca4d-105">Aggiungere il codice seguente dopo il tag di apertura `application` :</span><span class="sxs-lookup"><span data-stu-id="1ca4d-105">Add the following code after the `application` opening tag:</span></span>
+3. <span data-ttu-id="fea68-105">Aggiungere hello seguente codice dopo hello `application` tag di apertura:</span><span class="sxs-lookup"><span data-stu-id="fea68-105">Add hello following code after hello `application` opening tag:</span></span>
 
         <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
                                          android:permission="com.google.android.c2dm.permission.SEND">
@@ -16,24 +16,24 @@
                 <category android:name="**my_app_package**" />
             </intent-filter>
         </receiver>
-4. <span data-ttu-id="1ca4d-106">Aprire il file *ToDoActivity.java*, quindi aggiungere l'istruzione import seguente:</span><span class="sxs-lookup"><span data-stu-id="1ca4d-106">Open the file *ToDoActivity.java*, and add the following import statement:</span></span>
+4. <span data-ttu-id="fea68-106">File aperti hello *ToDoActivity.java*e aggiungere hello successiva istruzione di importazione:</span><span class="sxs-lookup"><span data-stu-id="fea68-106">Open hello file *ToDoActivity.java*, and add hello following import statement:</span></span>
 
         import com.microsoft.windowsazure.notifications.NotificationsManager;
-5. <span data-ttu-id="1ca4d-107">Aggiungere la variabile privata seguente alla classe.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-107">Add the following private variable to the class.</span></span> <span data-ttu-id="1ca4d-108">Sostituire *`<PROJECT_NUMBER>`* con il numero di progetto assegnato da Google all'app nella procedura precedente.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-108">Replace *`<PROJECT_NUMBER>`* with the project number assigned by Google to your app in the preceding procedure.</span></span>
+5. <span data-ttu-id="fea68-107">Aggiungere hello seguente classe toohello variabile privata.</span><span class="sxs-lookup"><span data-stu-id="fea68-107">Add hello following private variable toohello class.</span></span> <span data-ttu-id="fea68-108">Sostituire  *`<PROJECT_NUMBER>`*  con numero di progetto hello assegnato da Google tooyour app nella precedente procedura hello.</span><span class="sxs-lookup"><span data-stu-id="fea68-108">Replace *`<PROJECT_NUMBER>`* with hello project number assigned by Google tooyour app in hello preceding procedure.</span></span>
 
         public static final String SENDER_ID = "<PROJECT_NUMBER>";
-6. <span data-ttu-id="1ca4d-109">Modificare la definizione di *MobileServiceClient* da **private** a **public static**, in modo che sia simile alla seguente:</span><span class="sxs-lookup"><span data-stu-id="1ca4d-109">Change the definition of *MobileServiceClient* from **private** to **public static**, so it now looks like this:</span></span>
+6. <span data-ttu-id="fea68-109">Modificare la definizione di hello di *MobileServiceClient* da **privata** troppo**statici pubblici**, pertanto ora simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="fea68-109">Change hello definition of *MobileServiceClient* from **private** too**public static**, so it now looks like this:</span></span>
 
         public static MobileServiceClient mClient;
-7. <span data-ttu-id="1ca4d-110">Aggiungere una nuova classe per gestire le notifiche.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-110">Add a new class to handle notifications.</span></span> <span data-ttu-id="1ca4d-111">In Esplora progetti aprire i nodi **src** > **main** > **java** e fare clic con il pulsante destro del mouse sul nodo del nome del pacchetto.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-111">In Project Explorer, open the **src** > **main** > **java** nodes, and right-click the package name node.</span></span> <span data-ttu-id="1ca4d-112">Fare clic su **Nuovo** e quindi su **Java Class** (Classe Java).</span><span class="sxs-lookup"><span data-stu-id="1ca4d-112">Click **New**, and then click **Java Class**.</span></span>
-8. <span data-ttu-id="1ca4d-113">In **Nome** digitare `MyHandler`, quindi fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-113">In **Name**, type `MyHandler`, and then click **OK**.</span></span>
+7. <span data-ttu-id="fea68-110">Aggiungere un nuovo notifiche toohandle classe.</span><span class="sxs-lookup"><span data-stu-id="fea68-110">Add a new class toohandle notifications.</span></span> <span data-ttu-id="fea68-111">In Esplora progetti, aprire hello **src** > **principale** > **java** nodi e nodo nome pacchetto hello del pulsante destro del mouse.</span><span class="sxs-lookup"><span data-stu-id="fea68-111">In Project Explorer, open hello **src** > **main** > **java** nodes, and right-click hello package name node.</span></span> <span data-ttu-id="fea68-112">Fare clic su **Nuovo** e quindi su **Java Class** (Classe Java).</span><span class="sxs-lookup"><span data-stu-id="fea68-112">Click **New**, and then click **Java Class**.</span></span>
+8. <span data-ttu-id="fea68-113">In **Nome** digitare `MyHandler`, quindi fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="fea68-113">In **Name**, type `MyHandler`, and then click **OK**.</span></span>
 
     ![](./media/app-service-mobile-android-configure-push/android-studio-create-class.png)
 
-9. <span data-ttu-id="1ca4d-114">Nel file MyHandler sostituire la dichiarazione di classe con:</span><span class="sxs-lookup"><span data-stu-id="1ca4d-114">In the MyHandler file, replace the class declaration with:</span></span>
+9. <span data-ttu-id="fea68-114">Nel file MyHandler hello, sostituire la dichiarazione di classe hello con:</span><span class="sxs-lookup"><span data-stu-id="fea68-114">In hello MyHandler file, replace hello class declaration with:</span></span>
 
         public class MyHandler extends NotificationsHandler {
-10. <span data-ttu-id="1ca4d-115">Aggiungere le istruzioni import seguenti per la classe `MyHandler` :</span><span class="sxs-lookup"><span data-stu-id="1ca4d-115">Add the following import statements for the `MyHandler` class:</span></span>
+10. <span data-ttu-id="fea68-115">Aggiungere hello seguendo le istruzioni di importazione per hello `MyHandler` classe:</span><span class="sxs-lookup"><span data-stu-id="fea68-115">Add hello following import statements for hello `MyHandler` class:</span></span>
 
         import com.microsoft.windowsazure.notifications.NotificationsHandler;
         import android.app.NotificationManager;
@@ -43,10 +43,10 @@
         import android.os.AsyncTask;
         import android.os.Bundle;
         import android.support.v4.app.NotificationCompat;
-11. <span data-ttu-id="1ca4d-116">Aggiungere quindi questo membro alla classe `MyHandler` :</span><span class="sxs-lookup"><span data-stu-id="1ca4d-116">Next add this member to the `MyHandler` class:</span></span>
+11. <span data-ttu-id="fea68-116">Aggiungere questo toohello membro `MyHandler` classe:</span><span class="sxs-lookup"><span data-stu-id="fea68-116">Next add this member toohello `MyHandler` class:</span></span>
 
         public static final int NOTIFICATION_ID = 1;
-12. <span data-ttu-id="1ca4d-117">Nella classe `MyHandler` aggiungere il codice seguente per eseguire l'override del metodo **onRegistered** che registra il dispositivo nell'hub di notifica del servizio mobile.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-117">In the `MyHandler` class, add the following code to override the **onRegistered** method, which registers your device with the mobile service notification hub.</span></span>
+12. <span data-ttu-id="fea68-117">In hello `MyHandler` classe, aggiungere i seguenti hello toooverride codice hello **onRegistered** (metodo), che registra il dispositivo con hub di notifica di hello servizio mobile.</span><span class="sxs-lookup"><span data-stu-id="fea68-117">In hello `MyHandler` class, add hello following code toooverride hello **onRegistered** method, which registers your device with hello mobile service notification hub.</span></span>
 
         @Override
         public void onRegistered(Context context,  final String gcmRegistrationId) {
@@ -65,8 +65,8 @@
                    return null;              
                }
            }.execute();
-       <span data-ttu-id="1ca4d-118">}</span><span class="sxs-lookup"><span data-stu-id="1ca4d-118">}</span></span>
-13. <span data-ttu-id="1ca4d-119">Nella classe `MyHandler` aggiungere il codice seguente per eseguire l'override del metodo **onReceive** , che determina la visualizzazione della notifica al momento della ricezione.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-119">In the `MyHandler` class, add the following code to override the **onReceive** method, which causes the notification to display when it is received.</span></span>
+       <span data-ttu-id="fea68-118">}</span><span class="sxs-lookup"><span data-stu-id="fea68-118">}</span></span>
+13. <span data-ttu-id="fea68-119">In hello `MyHandler` classe, aggiungere i seguenti hello toooverride codice hello **onReceive** metodo che causa hello notifica toodisplay quando viene ricevuto.</span><span class="sxs-lookup"><span data-stu-id="fea68-119">In hello `MyHandler` class, add hello following code toooverride hello **onReceive** method, which causes hello notification toodisplay when it is received.</span></span>
 
         @Override
         public void onReceive(Context context, Bundle bundle) {
@@ -88,9 +88,9 @@
                NotificationManager notificationManager = (NotificationManager)
                        context.getSystemService(Context.NOTIFICATION_SERVICE);
                notificationManager.notify(NOTIFICATION_ID, notification);
-       <span data-ttu-id="1ca4d-120">}</span><span class="sxs-lookup"><span data-stu-id="1ca4d-120">}</span></span>
-14. <span data-ttu-id="1ca4d-121">Nel file TodoActivity.java, aggiornare il metodo **onCreate** della classe *ToDoActivity* per registrare la classe del gestore di notifica.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-121">Back in the TodoActivity.java file, update the **onCreate** method of the *ToDoActivity* class to register the notification handler class.</span></span> <span data-ttu-id="1ca4d-122">Assicurarsi di aggiungere il codice dopo la creazione di un'istanza di *MobileServiceClient* .</span><span class="sxs-lookup"><span data-stu-id="1ca4d-122">Make sure to add this code after the *MobileServiceClient* is instantiated.</span></span>
+       <span data-ttu-id="fea68-120">}</span><span class="sxs-lookup"><span data-stu-id="fea68-120">}</span></span>
+14. <span data-ttu-id="fea68-121">Nel file TodoActivity.java hello, aggiornare hello **onCreate** metodo hello *ToDoActivity* classe classe del gestore tooregister hello notifica.</span><span class="sxs-lookup"><span data-stu-id="fea68-121">Back in hello TodoActivity.java file, update hello **onCreate** method of hello *ToDoActivity* class tooregister hello notification handler class.</span></span> <span data-ttu-id="fea68-122">Eseguire questo codice che tooadd hello *MobileServiceClient* viene creata un'istanza.</span><span class="sxs-lookup"><span data-stu-id="fea68-122">Make sure tooadd this code after hello *MobileServiceClient* is instantiated.</span></span>
 
         NotificationsManager.handleNotifications(this, SENDER_ID, MyHandler.class);
 
-    <span data-ttu-id="1ca4d-123">L'app è ora aggiornata per il supporto delle notifiche push.</span><span class="sxs-lookup"><span data-stu-id="1ca4d-123">Your app is now updated to support push notifications.</span></span>
+    <span data-ttu-id="fea68-123">L'app è notifiche push toosupport aggiornato.</span><span class="sxs-lookup"><span data-stu-id="fea68-123">Your app is now updated toosupport push notifications.</span></span>

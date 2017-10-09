@@ -1,0 +1,11 @@
+<span data-ttu-id="70867-101">funzionalità di App per dispositivi mobili Hello di servizio App di Azure Usa [gli hub di notifica di Azure] toosend inserisce, in modo da un hub di notifica verranno configurati per l'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="70867-101">hello Mobile Apps feature of Azure App Service uses [Azure Notification Hubs] toosend pushes, so you will be configuring a notification hub for your mobile app.</span></span>
+
+1. <span data-ttu-id="70867-102">In hello [portale di Azure], andare troppo**servizi App**, quindi scegliere il back-end app.</span><span class="sxs-lookup"><span data-stu-id="70867-102">In hello [Azure portal], go too**App Services**, and then click your app back end.</span></span> <span data-ttu-id="70867-103">In **Impostazioni** fare clic su **Push**.</span><span class="sxs-lookup"><span data-stu-id="70867-103">Under **Settings**, click **Push**.</span></span>
+2. <span data-ttu-id="70867-104">Fare clic su **Connetti** tooadd un'app di toohello risorsa hub notifica.</span><span class="sxs-lookup"><span data-stu-id="70867-104">Click **Connect** tooadd a notification hub resource toohello app.</span></span> <span data-ttu-id="70867-105">È possibile creare un hub o connettersi tooan uno esistente.</span><span class="sxs-lookup"><span data-stu-id="70867-105">You can either create a hub or connect tooan existing one.</span></span>
+
+    ![](./media/app-service-mobile-create-notification-hub/configure-hub-flow.png)
+
+<span data-ttu-id="70867-106">A questo punto è che un progetto back-end di App per dispositivi mobili tooyour di hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="70867-106">Now you have connected a notification hub tooyour Mobile Apps back-end project.</span></span> <span data-ttu-id="70867-107">In seguito si configurerà questo toopush toodevices (PNS) di sistema di notifica hub tooconnect tooa piattaforma notifica.</span><span class="sxs-lookup"><span data-stu-id="70867-107">Later you will configure this notification hub tooconnect tooa platform notification system (PNS) toopush toodevices.</span></span>
+
+[portale di Azure]: https://portal.azure.com/
+[gli hub di notifica di Azure]: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-push-notification-overview/

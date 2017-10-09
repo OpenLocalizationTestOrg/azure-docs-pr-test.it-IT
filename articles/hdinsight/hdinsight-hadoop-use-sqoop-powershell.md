@@ -1,6 +1,6 @@
 ---
-title: Eseguire processi Sqoop usando PowerShell e Azure HDInsight | Documentazione Microsoft
-description: Informazioni su come usare Azure PowerShell da una workstation per eseguire importazioni ed esportazioni con Sqoop tra un cluster Hadoop e un database SQL di Azure.
+title: i processi di Sqoop aaaRun tramite PowerShell e Azure HDInsight | Documenti Microsoft
+description: Informazioni su come toouse Azure PowerShell da un toorun workstation Sqoop importare ed esportare tra un cluster Hadoop e un database SQL di Azure.
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,32 +16,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 956f4ac7c39e2936a2a6b5e5108dbe302446270c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8313bbd109e968aeab540bbcefefe84ebd64c87e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-sqoop-jobs-using-azure-powershell-for-hadoop-in-hdinsight"></a><span data-ttu-id="60b8e-103">Eseguire processi Sqoop con Azure PowerShell per Hadoop in HDInsight</span><span class="sxs-lookup"><span data-stu-id="60b8e-103">Run Sqoop jobs using Azure PowerShell for Hadoop in HDInsight</span></span>
+# <a name="run-sqoop-jobs-using-azure-powershell-for-hadoop-in-hdinsight"></a><span data-ttu-id="a3094-103">Eseguire processi Sqoop con Azure PowerShell per Hadoop in HDInsight</span><span class="sxs-lookup"><span data-stu-id="a3094-103">Run Sqoop jobs using Azure PowerShell for Hadoop in HDInsight</span></span>
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-<span data-ttu-id="60b8e-104">Informazioni su come usare Azure PowerShell per eseguire processi Sqoop in HDInsight per importazioni ed esportazioni tra un cluster HDInsight e un database SQL di Azure o un database SQL Server.</span><span class="sxs-lookup"><span data-stu-id="60b8e-104">Learn how to use Azure PowerShell to run Sqoop jobs in HDInsight to import and export between HDInsight cluster and Azure SQL database or SQL Server database.</span></span>
+<span data-ttu-id="a3094-104">Informazioni su come i processi di toouse Azure PowerShell toorun Sqoop in HDInsight tooimport ed esportare tra cluster HDInsight e database SQL di Azure o database di SQL Server.</span><span class="sxs-lookup"><span data-stu-id="a3094-104">Learn how toouse Azure PowerShell toorun Sqoop jobs in HDInsight tooimport and export between HDInsight cluster and Azure SQL database or SQL Server database.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="60b8e-105">La procedura illustrata in questo articolo può essere usata con un cluster HDInsight basato su Windows o su Linux, ma funziona solo se eseguita da un client Windows.</span><span class="sxs-lookup"><span data-stu-id="60b8e-105">The steps in this article can be used with either a Windows-based or Linux-based HDInsight cluster; however, these steps will only work from a Windows client.</span></span> <span data-ttu-id="60b8e-106">Per altri metodi di invio di un processo, fare clic sul selettore di schede all'inizio dell'articolo.</span><span class="sxs-lookup"><span data-stu-id="60b8e-106">For other job submission methods, click the tab selector on the top of the article.</span></span>
+> <span data-ttu-id="a3094-105">passaggi di Hello in questo articolo possono essere utilizzati con entrambi un cluster HDInsight basati su Linux o Windows. Tuttavia, questa procedura funziona solo da un client di Windows.</span><span class="sxs-lookup"><span data-stu-id="a3094-105">hello steps in this article can be used with either a Windows-based or Linux-based HDInsight cluster; however, these steps will only work from a Windows client.</span></span> <span data-ttu-id="a3094-106">Per altri metodi di invio del processo, fare clic sul selettore di hello scheda nella parte superiore di hello dell'articolo hello.</span><span class="sxs-lookup"><span data-stu-id="a3094-106">For other job submission methods, click hello tab selector on hello top of hello article.</span></span>
 > 
 > 
 
-### <a name="prerequisites"></a><span data-ttu-id="60b8e-107">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="60b8e-107">Prerequisites</span></span>
-<span data-ttu-id="60b8e-108">Prima di iniziare questa esercitazione, è necessario disporre di quanto segue:</span><span class="sxs-lookup"><span data-stu-id="60b8e-108">Before you begin this tutorial, you must have the following:</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="a3094-107">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="a3094-107">Prerequisites</span></span>
+<span data-ttu-id="a3094-108">Prima di iniziare questa esercitazione, è necessario disporre delle seguenti hello:</span><span class="sxs-lookup"><span data-stu-id="a3094-108">Before you begin this tutorial, you must have hello following:</span></span>
 
-* <span data-ttu-id="60b8e-109">**Workstation con Azure PowerShell**.</span><span class="sxs-lookup"><span data-stu-id="60b8e-109">**A workstation with Azure PowerShell**.</span></span>
+* <span data-ttu-id="a3094-109">**Workstation con Azure PowerShell**.</span><span class="sxs-lookup"><span data-stu-id="a3094-109">**A workstation with Azure PowerShell**.</span></span>
   
     [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
-* <span data-ttu-id="60b8e-110">**Un cluster Hadoop in HDInsight**.</span><span class="sxs-lookup"><span data-stu-id="60b8e-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="60b8e-111">Vedere le informazioni su come [creare un cluster e un database SQL](hdinsight-use-sqoop.md#create-cluster-and-sql-database).</span><span class="sxs-lookup"><span data-stu-id="60b8e-111">See [Create cluster and SQL database](hdinsight-use-sqoop.md#create-cluster-and-sql-database).</span></span>
+* <span data-ttu-id="a3094-110">**Un cluster Hadoop in HDInsight**.</span><span class="sxs-lookup"><span data-stu-id="a3094-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="a3094-111">Vedere le informazioni su come [creare un cluster e un database SQL](hdinsight-use-sqoop.md#create-cluster-and-sql-database).</span><span class="sxs-lookup"><span data-stu-id="a3094-111">See [Create cluster and SQL database](hdinsight-use-sqoop.md#create-cluster-and-sql-database).</span></span>
 
-## <a name="run-sqoop-using-powershell"></a><span data-ttu-id="60b8e-112">Eseguire Sqoop tramite PowerShell</span><span class="sxs-lookup"><span data-stu-id="60b8e-112">Run Sqoop using PowerShell</span></span>
-<span data-ttu-id="60b8e-113">Lo script di PowerShell seguente pre-elabora il file di origine e lo esporta in un database SQL di Azure:</span><span class="sxs-lookup"><span data-stu-id="60b8e-113">The following PowerShell script pre-processes the source file, and exports it to an Azure SQL database:</span></span>
+## <a name="run-sqoop-using-powershell"></a><span data-ttu-id="a3094-112">Eseguire Sqoop tramite PowerShell</span><span class="sxs-lookup"><span data-stu-id="a3094-112">Run Sqoop using PowerShell</span></span>
+<span data-ttu-id="a3094-113">lo script di PowerShell seguente Hello pre-elabora file di origine hello e li Esporta in un database SQL di Azure tooan:</span><span class="sxs-lookup"><span data-stu-id="a3094-113">hello following PowerShell script pre-processes hello source file, and exports it tooan Azure SQL database:</span></span>
 
     $resourceGroupName = "<AzureResourceGroupName>"
     $hdinsightClusterName = "<HDInsightClusterName>"
@@ -58,51 +58,51 @@ ms.lasthandoff: 07/11/2017
     $sqlDatabaseLogin = "sqluser"
     $sqlDatabasePassword = "<Password>"
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
 
-    #region - pre-process the source file
+    #region - pre-process hello source file
 
-    Write-Host "`nPreprocessing the source file ..." -ForegroundColor Green
+    Write-Host "`nPreprocessing hello source file ..." -ForegroundColor Green
 
     # This procedure creates a new file with $destBlobName
     $sourceBlobName = "example/data/sample.log"
     $destBlobName = "tutorials/usesqoop/data/sample.log"
 
-    # Define the connection string
+    # Define hello connection string
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                     -ResourceGroupName $resourceGroupName `
                                     -Name $defaultStorageAccountName)[0].Value
     $storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$defaultStorageAccountName;AccountKey=$defaultStorageAccountKey"
 
-    # Create block blob objects referencing the source and destination blob.
+    # Create block blob objects referencing hello source and destination blob.
     $storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $defaultStorageAccountName
     $storageContainer = ($storageAccount |Get-AzureStorageContainer -Name $defaultBlobContainerName).CloudBlobContainer
     $sourceBlob = $storageContainer.GetBlockBlobReference($sourceBlobName)
     $destBlob = $storageContainer.GetBlockBlobReference($destBlobName)
 
-    # Define a MemoryStream and a StreamReader for reading from the source file
+    # Define a MemoryStream and a StreamReader for reading from hello source file
     $stream = New-Object System.IO.MemoryStream
     $stream = $sourceBlob.OpenRead()
     $sReader = New-Object System.IO.StreamReader($stream)
 
-    # Define a MemoryStream and a StreamWriter for writing into the destination file
+    # Define a MemoryStream and a StreamWriter for writing into hello destination file
     $memStream = New-Object System.IO.MemoryStream
     $writeStream = New-Object System.IO.StreamWriter $memStream
 
-    # Pre-process the source blob
+    # Pre-process hello source blob
     $exString = "java.lang.Exception:"
     while(-Not $sReader.EndOfStream){
         $line = $sReader.ReadLine()
         $split = $line.Split(" ")
 
-        # remove the "java.lang.Exception" from the first element of the array
+        # remove hello "java.lang.Exception" from hello first element of hello array
         # for example: java.lang.Exception: 2012-02-03 19:11:02 SampleClass8 [WARN] problem finding id 153454612
         if ($split[0] -eq $exString){
-            #create a new ArrayList to remove $split[0]
+            #create a new ArrayList tooremove $split[0]
             $newArray = [System.Collections.ArrayList] $split
             $newArray.Remove($exString)
 
@@ -111,23 +111,23 @@ ms.lasthandoff: 07/11/2017
             $line = $newArray -join(" ")
         }
 
-        # remove the lines that has less than 7 elements
+        # remove hello lines that has less than 7 elements
         if ($split.count -ge 7){
             write-host $line
             $writeStream.WriteLine($line)
         }
     }
 
-    # Write to the destination blob
+    # Write toohello destination blob
     $writeStream.Flush()
     $memStream.Seek(0, "Begin")
     $destBlob.UploadFromStream($memStream)
 
     #endregion
 
-    #region - export the log file from the cluster to the SQL database
+    #region - export hello log file from hello cluster toohello SQL database
 
-    Write-Host "Exporting the log file ..." -ForegroundColor Green
+    Write-Host "Exporting hello log file ..." -ForegroundColor Green
 
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
@@ -165,15 +165,15 @@ ms.lasthandoff: 07/11/2017
     Get-AzureRmHDInsightJobOutput -ResourceGroupName $resourceGroupName -ClusterName $hdinsightClusterName -DefaultStorageAccountName $defaultStorageAccountName -DefaultStorageAccountKey $defaultStorageAccountKey -DefaultContainer $defaultBlobContainerName -HttpCredential $httpCredential -JobId $sqoopJob.JobId -DisplayOutputType StandardOutput
     #endregion
 
-## <a name="limitations"></a><span data-ttu-id="60b8e-114">Limitazioni</span><span class="sxs-lookup"><span data-stu-id="60b8e-114">Limitations</span></span>
-* <span data-ttu-id="60b8e-115">Esportazione di massa: con HDInsight basato su Linux, attualmente il connettore Sqoop, usato per esportare dati in Microsoft SQL Server o nel database SQL di Azure, non supporta inserimenti di massa.</span><span class="sxs-lookup"><span data-stu-id="60b8e-115">Bulk export - With Linux-based HDInsight, the Sqoop connector used to export data to Microsoft SQL Server or Azure SQL Database does not currently support bulk inserts.</span></span>
-* <span data-ttu-id="60b8e-116">Invio in batch: con HDInsight basato su Linux, quando si usa il comando `-batch` durante gli inserimenti, Sqoop esegue più inserimenti invece di suddividere in batch le operazioni di inserimento.</span><span class="sxs-lookup"><span data-stu-id="60b8e-116">Batching - With Linux-based HDInsight, When using the `-batch` switch when performing inserts, Sqoop will perform multiple inserts instead of batching the insert operations.</span></span>
+## <a name="limitations"></a><span data-ttu-id="a3094-114">Limitazioni</span><span class="sxs-lookup"><span data-stu-id="a3094-114">Limitations</span></span>
+* <span data-ttu-id="a3094-115">Eseguire l'esportazione bulk - HDInsight basati su Linux con, hello Sqoop connettore utilizzato tooexport dati tooMicrosoft SQL Server o Database SQL di Azure attualmente non supporta inserimenti bulk.</span><span class="sxs-lookup"><span data-stu-id="a3094-115">Bulk export - With Linux-based HDInsight, hello Sqoop connector used tooexport data tooMicrosoft SQL Server or Azure SQL Database does not currently support bulk inserts.</span></span>
+* <span data-ttu-id="a3094-116">Divisione in batch - con HDInsight basati su Linux, quando si utilizza hello `-batch` passare quando l'esecuzione di inserimenti, Sqoop eseguirà più inserimenti anziché l'invio in batch le operazioni di inserimento hello.</span><span class="sxs-lookup"><span data-stu-id="a3094-116">Batching - With Linux-based HDInsight, When using hello `-batch` switch when performing inserts, Sqoop will perform multiple inserts instead of batching hello insert operations.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="60b8e-117">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="60b8e-117">Next steps</span></span>
-<span data-ttu-id="60b8e-118">In questa esercitazione si è appreso come usare Sqoop.</span><span class="sxs-lookup"><span data-stu-id="60b8e-118">Now you have learned how to use Sqoop.</span></span> <span data-ttu-id="60b8e-119">Per altre informazioni, vedere:</span><span class="sxs-lookup"><span data-stu-id="60b8e-119">To learn more, see:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a3094-117">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a3094-117">Next steps</span></span>
+<span data-ttu-id="a3094-118">Ora si è appreso come toouse Sqoop.</span><span class="sxs-lookup"><span data-stu-id="a3094-118">Now you have learned how toouse Sqoop.</span></span> <span data-ttu-id="a3094-119">toolearn informazioni, vedere:</span><span class="sxs-lookup"><span data-stu-id="a3094-119">toolearn more, see:</span></span>
 
-* <span data-ttu-id="60b8e-120">[Usare Oozie con HDInsight](hdinsight-use-oozie.md): usare un'azione di Sqoop nel flusso di lavoro di Oozie.</span><span class="sxs-lookup"><span data-stu-id="60b8e-120">[Use Oozie with HDInsight](hdinsight-use-oozie.md): Use Sqoop action in an Oozie workflow.</span></span>
-* <span data-ttu-id="60b8e-121">[Analizzare i dati sui ritardi dei voli usando HDInsight](hdinsight-analyze-flight-delay-data.md): usare Hive nell'analisi dei dati sui ritardi dei voli e quindi usare Sqoop per esportare dati nel database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="60b8e-121">[Analyze flight delay data using HDInsight](hdinsight-analyze-flight-delay-data.md): Use Hive to analyze flight delay data, and then use Sqoop to export data to an Azure SQL database.</span></span>
-* <span data-ttu-id="60b8e-122">[Caricare i dati in HDInsight](hdinsight-upload-data.md): per altri metodi per il caricamento di file in HDInsight o nell'archiviazione BLOB di Azure.</span><span class="sxs-lookup"><span data-stu-id="60b8e-122">[Upload data to HDInsight](hdinsight-upload-data.md): Find other methods for uploading data to HDInsight/Azure Blob storage.</span></span>
+* <span data-ttu-id="a3094-120">[Usare Oozie con HDInsight](hdinsight-use-oozie.md): usare un'azione di Sqoop nel flusso di lavoro di Oozie.</span><span class="sxs-lookup"><span data-stu-id="a3094-120">[Use Oozie with HDInsight](hdinsight-use-oozie.md): Use Sqoop action in an Oozie workflow.</span></span>
+* <span data-ttu-id="a3094-121">[Analizzare i dati di ritardo volo tramite HDInsight](hdinsight-analyze-flight-delay-data.md): utilizzare Hive volo tooanalyze ritardare dati e quindi utilizzare il database SQL di Azure tooan di Sqoop tooexport dati.</span><span class="sxs-lookup"><span data-stu-id="a3094-121">[Analyze flight delay data using HDInsight](hdinsight-analyze-flight-delay-data.md): Use Hive tooanalyze flight delay data, and then use Sqoop tooexport data tooan Azure SQL database.</span></span>
+* <span data-ttu-id="a3094-122">[Caricare dati tooHDInsight](hdinsight-upload-data.md): trovare altri metodi per il caricamento di archiviazione Blob di dati tooHDInsight/Azure.</span><span class="sxs-lookup"><span data-stu-id="a3094-122">[Upload data tooHDInsight](hdinsight-upload-data.md): Find other methods for uploading data tooHDInsight/Azure Blob storage.</span></span>
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html

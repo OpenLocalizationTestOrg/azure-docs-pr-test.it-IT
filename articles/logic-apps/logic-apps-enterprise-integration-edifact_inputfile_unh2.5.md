@@ -1,5 +1,5 @@
 ---
-title: La decodifica edifact delle app per la logica B2B risolve UNH2.5 - App per la logica di Azure | Microsoft Docs
+title: aaaLogic B2B App edifact decodificare risolvere UNH 2.5 - App Azure per la logica | Documenti Microsoft
 description: La decodifica edifact delle app per la logica di Azure B2B risolve UNH2.5
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 62ad8183cc6e9f56255b2729a04ee7710d00a21a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d85242d0f828fa52cdc9689938f3ba1e51b1183
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-handle-edifact-documents-having-unh25-segment"></a><span data-ttu-id="964fb-103">Come gestire documenti EDIFACT con un segmento UNH2.5</span><span class="sxs-lookup"><span data-stu-id="964fb-103">How to handle EDIFACT documents having UNH2.5 segment</span></span>
-<span data-ttu-id="964fb-104">Quando nel documento EDIFACT è presente un segmento UNH 2.5, viene usato per la ricerca dello schema.</span><span class="sxs-lookup"><span data-stu-id="964fb-104">When UNH2.5 is present in the EDIFACT document, it is being used for schema lookup.</span></span> 
+# <a name="how-toohandle-edifact-documents-having-unh25-segment"></a><span data-ttu-id="998a6-103">Come i documenti con UNH 2.5 toohandle EDIFACT segmento</span><span class="sxs-lookup"><span data-stu-id="998a6-103">How toohandle EDIFACT documents having UNH2.5 segment</span></span>
+<span data-ttu-id="998a6-104">Se UNH 2.5 è presente nel documento EDIFACT hello, utilizzato per la ricerca dello schema.</span><span class="sxs-lookup"><span data-stu-id="998a6-104">When UNH2.5 is present in hello EDIFACT document, it is being used for schema lookup.</span></span> 
 
-<span data-ttu-id="964fb-105">Esempio: il campo UNH è **EAN008** nel messaggio EDIFACT</span><span class="sxs-lookup"><span data-stu-id="964fb-105">Example: The UNH field is **EAN008** in the EDIFACT message</span></span>  
-<span data-ttu-id="964fb-106">UNH+SSDD1+ORDERS:D:03B:UN:**EAN008**'</span><span class="sxs-lookup"><span data-stu-id="964fb-106">UNH+SSDD1+ORDERS:D:03B:UN:**EAN008**'</span></span>  
+<span data-ttu-id="998a6-105">Esempio: campo UNH hello è **EAN008** nel messaggio EDIFACT hello</span><span class="sxs-lookup"><span data-stu-id="998a6-105">Example: hello UNH field is **EAN008** in hello EDIFACT message</span></span>  
+<span data-ttu-id="998a6-106">UNH+SSDD1+ORDERS:D:03B:UN:**EAN008**'</span><span class="sxs-lookup"><span data-stu-id="998a6-106">UNH+SSDD1+ORDERS:D:03B:UN:**EAN008**'</span></span>  
 
-<span data-ttu-id="964fb-107">Procedura da seguire per gestire il messaggio</span><span class="sxs-lookup"><span data-stu-id="964fb-107">Steps to follow to handle the message</span></span> 
-1. <span data-ttu-id="964fb-108">Aggiornare lo schema</span><span class="sxs-lookup"><span data-stu-id="964fb-108">Update the schema</span></span>
-2. <span data-ttu-id="964fb-109">Controllare le impostazioni del contratto</span><span class="sxs-lookup"><span data-stu-id="964fb-109">Check the agreement settings</span></span>  
+<span data-ttu-id="998a6-107">Messaggio hello toohandle toofollow di passaggi</span><span class="sxs-lookup"><span data-stu-id="998a6-107">Steps toofollow toohandle hello message</span></span> 
+1. <span data-ttu-id="998a6-108">Aggiornare lo schema di hello</span><span class="sxs-lookup"><span data-stu-id="998a6-108">Update hello schema</span></span>
+2. <span data-ttu-id="998a6-109">Controllare le impostazioni dell'accordo hello</span><span class="sxs-lookup"><span data-stu-id="998a6-109">Check hello agreement settings</span></span>  
 
-## <a name="update-the-schema"></a><span data-ttu-id="964fb-110">Aggiornare lo schema</span><span class="sxs-lookup"><span data-stu-id="964fb-110">Update the schema</span></span>
-<span data-ttu-id="964fb-111">Per elaborare il messaggio, è necessario distribuire uno schema con il nome del nodo radice UNH 2.5.</span><span class="sxs-lookup"><span data-stu-id="964fb-111">To process the message, you need to deploy a schema with the UNH2.5 root node name.</span></span>  <span data-ttu-id="964fb-112">Il nome radice dello schema ad esempio sarebbe **EFACT_D03B_ORDERS_EAN008**</span><span class="sxs-lookup"><span data-stu-id="964fb-112">For given an example, the schema root name would be **EFACT_D03B_ORDERS_EAN008**</span></span>  
+## <a name="update-hello-schema"></a><span data-ttu-id="998a6-110">Aggiornare lo schema di hello</span><span class="sxs-lookup"><span data-stu-id="998a6-110">Update hello schema</span></span>
+<span data-ttu-id="998a6-111">messaggio hello tooprocess, è necessario toodeploy uno schema con nome del nodo radice hello UNH 2.5.</span><span class="sxs-lookup"><span data-stu-id="998a6-111">tooprocess hello message, you need toodeploy a schema with hello UNH2.5 root node name.</span></span>  <span data-ttu-id="998a6-112">Per un esempio, nome radice dello schema di hello sarebbe **EFACT_D03B_ORDERS_EAN008**</span><span class="sxs-lookup"><span data-stu-id="998a6-112">For given an example, hello schema root name would be **EFACT_D03B_ORDERS_EAN008**</span></span>  
 
-<span data-ttu-id="964fb-113">Per ogni D03B_ORDERS con un diverso segmento UNH2.5, è necessario distribuire uno schema individuale.</span><span class="sxs-lookup"><span data-stu-id="964fb-113">For each D03B_ORDERS with a different UNH2.5 segment, you would have to deploy an individual schema.</span></span>  
+<span data-ttu-id="998a6-113">Per ogni D03B_ORDERS con un altro segmento UNH 2.5, sarebbe necessario toodeploy un singolo schema.</span><span class="sxs-lookup"><span data-stu-id="998a6-113">For each D03B_ORDERS with a different UNH2.5 segment, you would have toodeploy an individual schema.</span></span>  
 
-## <a name="add-schema-to-the-edifact-agreement"></a><span data-ttu-id="964fb-114">Aggiungere lo schema al contratto EDIFACT</span><span class="sxs-lookup"><span data-stu-id="964fb-114">Add schema to the EDIFACT agreement</span></span>
-### <a name="edifact-decode"></a><span data-ttu-id="964fb-115">Decodifica EDIFACT</span><span class="sxs-lookup"><span data-stu-id="964fb-115">EDIFACT Decode</span></span>
-<span data-ttu-id="964fb-116">Per decodificare il messaggio in arrivo, configurare lo schema nelle impostazioni di ricezione del contratto EDIFACT</span><span class="sxs-lookup"><span data-stu-id="964fb-116">To Decode the incoming message, configure the schema in the EDIFACT agreement receive settings</span></span>
-1. <span data-ttu-id="964fb-117">Aggiungere lo schema all'account di integrazione</span><span class="sxs-lookup"><span data-stu-id="964fb-117">Add the schema to the integration account</span></span>    
-2. <span data-ttu-id="964fb-118">Configurare lo schema nelle impostazioni di ricezione del contratto EDIFACT.</span><span class="sxs-lookup"><span data-stu-id="964fb-118">Configure the schema in the EDIFACT agreement receive settings.</span></span> 
-3. <span data-ttu-id="964fb-119">Selezionare il contratto EDIFACT e fare clic su **Modifica come JSON**.</span><span class="sxs-lookup"><span data-stu-id="964fb-119">Select EDIFACT agreement and click **Edit as JSON**.</span></span>  <span data-ttu-id="964fb-120">Aggiungere il valore UNH2.5 nel contratto di ricezione **schemaReferences**
-![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image1.png)</span><span class="sxs-lookup"><span data-stu-id="964fb-120">Add UNH2.5 value in the Receive Agreement **schemaReferences**
+## <a name="add-schema-toohello-edifact-agreement"></a><span data-ttu-id="998a6-114">Aggiungere un contratto EDIFACT toohello dello schema</span><span class="sxs-lookup"><span data-stu-id="998a6-114">Add schema toohello EDIFACT agreement</span></span>
+### <a name="edifact-decode"></a><span data-ttu-id="998a6-115">Decodifica EDIFACT</span><span class="sxs-lookup"><span data-stu-id="998a6-115">EDIFACT Decode</span></span>
+<span data-ttu-id="998a6-116">tooDecode hello messaggio in arrivo, configurare schema hello in hello EDIFACT contratto impostazioni di ricezione</span><span class="sxs-lookup"><span data-stu-id="998a6-116">tooDecode hello incoming message, configure hello schema in hello EDIFACT agreement receive settings</span></span>
+1. <span data-ttu-id="998a6-117">Aggiungere account di integrazione di hello schema toohello</span><span class="sxs-lookup"><span data-stu-id="998a6-117">Add hello schema toohello integration account</span></span>    
+2. <span data-ttu-id="998a6-118">Configurare schema hello in hello EDIFACT contratto impostazioni di ricezione.</span><span class="sxs-lookup"><span data-stu-id="998a6-118">Configure hello schema in hello EDIFACT agreement receive settings.</span></span> 
+3. <span data-ttu-id="998a6-119">Selezionare il contratto EDIFACT e fare clic su **Modifica come JSON**.</span><span class="sxs-lookup"><span data-stu-id="998a6-119">Select EDIFACT agreement and click **Edit as JSON**.</span></span>  <span data-ttu-id="998a6-120">Aggiungere il valore di UNH 2.5 nel contratto di ricezione hello **schemaReferences**
+![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image1.png)</span><span class="sxs-lookup"><span data-stu-id="998a6-120">Add UNH2.5 value in hello Receive Agreement **schemaReferences**
 ![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image1.png)</span></span>
 
-### <a name="edifact-encode"></a><span data-ttu-id="964fb-121">Codifica EDIFACT</span><span class="sxs-lookup"><span data-stu-id="964fb-121">EDIFACT Encode</span></span>
-<span data-ttu-id="964fb-122">Per codificare il messaggio in arrivo, configurare lo schema nelle impostazioni di invio del contratto EDIFACT</span><span class="sxs-lookup"><span data-stu-id="964fb-122">To Encode the incoming message, configure the schema in the EDIFACT agreement send settings</span></span>
-1. <span data-ttu-id="964fb-123">Aggiungere lo schema all'account di integrazione</span><span class="sxs-lookup"><span data-stu-id="964fb-123">Add the schema to the integration account</span></span>    
-2. <span data-ttu-id="964fb-124">Configurare lo schema nelle impostazioni di invio del contratto EDIFACT.</span><span class="sxs-lookup"><span data-stu-id="964fb-124">Configure the schema in the EDIFACT agreement send settings.</span></span> 
-3. <span data-ttu-id="964fb-125">Selezionare il contratto EDIFACT e fare clic su **Modifica come JSON**.</span><span class="sxs-lookup"><span data-stu-id="964fb-125">Select EDIFACT agreement and click **Edit as JSON**.</span></span>  <span data-ttu-id="964fb-126">Aggiungere il valore UNH2.5 nel contratto di invio **schemaReferences**
-![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image2.png)</span><span class="sxs-lookup"><span data-stu-id="964fb-126">Add UNH2.5 value in the Send Agreement **schemaReferences**
+### <a name="edifact-encode"></a><span data-ttu-id="998a6-121">Codifica EDIFACT</span><span class="sxs-lookup"><span data-stu-id="998a6-121">EDIFACT Encode</span></span>
+<span data-ttu-id="998a6-122">tooEncode hello messaggio in arrivo, configurare impostazioni di invio contratto EDIFACT hello schema hello</span><span class="sxs-lookup"><span data-stu-id="998a6-122">tooEncode hello incoming message, configure hello schema in hello EDIFACT agreement send settings</span></span>
+1. <span data-ttu-id="998a6-123">Aggiungere account di integrazione di hello schema toohello</span><span class="sxs-lookup"><span data-stu-id="998a6-123">Add hello schema toohello integration account</span></span>    
+2. <span data-ttu-id="998a6-124">Configurare schema hello in impostazioni di invio contratto EDIFACT hello.</span><span class="sxs-lookup"><span data-stu-id="998a6-124">Configure hello schema in hello EDIFACT agreement send settings.</span></span> 
+3. <span data-ttu-id="998a6-125">Selezionare il contratto EDIFACT e fare clic su **Modifica come JSON**.</span><span class="sxs-lookup"><span data-stu-id="998a6-125">Select EDIFACT agreement and click **Edit as JSON**.</span></span>  <span data-ttu-id="998a6-126">Aggiungere il valore di UNH 2.5 in hello Invia contratto **schemaReferences**
+![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image2.png)</span><span class="sxs-lookup"><span data-stu-id="998a6-126">Add UNH2.5 value in hello Send Agreement **schemaReferences**
 ![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image2.png)</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="964fb-127">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="964fb-127">Next Steps</span></span>
-* [<span data-ttu-id="964fb-128">Altre informazioni sui contratti degli account di integrazione</span><span class="sxs-lookup"><span data-stu-id="964fb-128">Learn more about integration account agreements</span></span>](../logic-apps/logic-apps-enterprise-integration-agreements.md "Informazioni sui contratti di Enterprise Integration")  
+## <a name="next-steps"></a><span data-ttu-id="998a6-127">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="998a6-127">Next Steps</span></span>
+* [<span data-ttu-id="998a6-128">Altre informazioni sui contratti degli account di integrazione</span><span class="sxs-lookup"><span data-stu-id="998a6-128">Learn more about integration account agreements</span></span>](../logic-apps/logic-apps-enterprise-integration-agreements.md "Informazioni sui contratti di Enterprise Integration")  

@@ -1,0 +1,46 @@
+## <a name="prepare-your-raspberry-pi"></a><span data-ttu-id="cf8ef-101">Preparare Raspberry Pi</span><span class="sxs-lookup"><span data-stu-id="cf8ef-101">Prepare your Raspberry Pi</span></span>
+
+### <a name="install-raspbian"></a><span data-ttu-id="cf8ef-102">Installare Raspbian</span><span class="sxs-lookup"><span data-stu-id="cf8ef-102">Install Raspbian</span></span>
+
+<span data-ttu-id="cf8ef-103">Se si tratta di hello prima volta che si utilizza l'installazione guidata piattaforma Raspberry, è necessario del sistema operativo Raspbian hello tooinstall utilizzando NOOBS nella scheda SD hello inclusa nel kit di hello.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-103">If this is hello first time you are using your Raspberry Pi, you need tooinstall hello Raspbian operating system using NOOBS on hello SD card included in hello kit.</span></span> <span data-ttu-id="cf8ef-104">Hello [Raspberry Pi Software Guida] [ lnk-install-raspbian] viene descritto come un sistema operativo nelle Pi Raspberry tooinstall.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-104">hello [Raspberry Pi Software Guide][lnk-install-raspbian] describes how tooinstall an operating system on your Raspberry Pi.</span></span> <span data-ttu-id="cf8ef-105">In questa esercitazione si presuppone che è stato installato hello Raspbian del sistema operativo del Pi Raspberry.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-105">This tutorial assumes you have installed hello Raspbian operating system on your Raspberry Pi.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="cf8ef-106">scheda SD Hello inclusa nella hello [Microsoft Azure IoT Starter Kit per 3 Pi Raspberry] [ lnk-starter-kits] NOOBS installato esiste già.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-106">hello SD card included in hello [Microsoft Azure IoT Starter Kit for Raspberry Pi 3][lnk-starter-kits] already has NOOBS installed.</span></span> <span data-ttu-id="cf8ef-107">È possibile avviare hello Pi Raspberry da questa scheda e scegliere tooinstall hello Raspbian OS.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-107">You can boot hello Raspberry Pi from this card and choose tooinstall hello Raspbian OS.</span></span>
+
+<span data-ttu-id="cf8ef-108">l'installazione di toocomplete hello hardware, è necessario:</span><span class="sxs-lookup"><span data-stu-id="cf8ef-108">toocomplete hello hardware setup, you need to:</span></span>
+
+- <span data-ttu-id="cf8ef-109">Collegare l'alimentazione elettrica toohello Raspberry Pi inclusa nel kit di hello.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-109">Connect your Raspberry Pi toohello power supply included in hello kit.</span></span>
+- <span data-ttu-id="cf8ef-110">Connettere la rete di tooyour Raspberry Pi tramite cavo Ethernet hello incluso con il kit.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-110">Connect your Raspberry Pi tooyour network using hello Ethernet cable included in your kit.</span></span> <span data-ttu-id="cf8ef-111">In alternativa, è possibile configurare la [connettività wireless][lnk-pi-wireless] per Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-111">Alternatively, you can set up [Wireless Connectivity][lnk-pi-wireless] for your Raspberry Pi.</span></span>
+
+<span data-ttu-id="cf8ef-112">È stata completata l'installazione dell'hardware del pi greco Raspberry hello.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-112">You have now completed hello hardware setup of your Raspberry Pi.</span></span>
+
+### <a name="sign-in-and-access-hello-terminal"></a><span data-ttu-id="cf8ef-113">Accesso e terminal hello</span><span class="sxs-lookup"><span data-stu-id="cf8ef-113">Sign in and access hello terminal</span></span>
+
+<span data-ttu-id="cf8ef-114">Sono presenti due opzioni tooaccess un ambiente terminal le Pi Raspberry:</span><span class="sxs-lookup"><span data-stu-id="cf8ef-114">You have two options tooaccess a terminal environment on your Raspberry Pi:</span></span>
+
+- <span data-ttu-id="cf8ef-115">Se si dispone di una tastiera e monitorare connesso tooyour Raspberry Pi, è possibile utilizzare hello GUI Raspbian tooaccess una finestra terminale.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-115">If you have a keyboard and monitor connected tooyour Raspberry Pi, you can use hello Raspbian GUI tooaccess a terminal window.</span></span>
+
+- <span data-ttu-id="cf8ef-116">Riga di comando hello accesso con le pi greco Raspberry tramite SSH nel computer desktop.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-116">Access hello command line on your Raspberry Pi using SSH from your desktop machine.</span></span>
+
+#### <a name="use-a-terminal-window-in-hello-gui"></a><span data-ttu-id="cf8ef-117">Utilizzare una finestra terminal in hello GUI</span><span class="sxs-lookup"><span data-stu-id="cf8ef-117">Use a terminal Window in hello GUI</span></span>
+
+<span data-ttu-id="cf8ef-118">le credenziali predefinite Hello per Raspbian sono username **pi** e la password **raspberry**.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-118">hello default credentials for Raspbian are username **pi** and password **raspberry**.</span></span> <span data-ttu-id="cf8ef-119">Nella barra delle applicazioni hello in hello GUI, è possibile avviare hello **Terminal** utilità utilizzando l'icona di hello simile a un monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-119">In hello task bar in hello GUI, you can launch hello **Terminal** utility using hello icon that looks like a monitor.</span></span>
+
+#### <a name="sign-in-with-ssh"></a><span data-ttu-id="cf8ef-120">Accedere con SSH</span><span class="sxs-lookup"><span data-stu-id="cf8ef-120">Sign in with SSH</span></span>
+
+<span data-ttu-id="cf8ef-121">È possibile utilizzare SSH per l'accesso da riga di comando tooyour Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-121">You can use SSH for command-line access tooyour Raspberry Pi.</span></span> <span data-ttu-id="cf8ef-122">articolo Hello [SSH (Secure Shell)] [ lnk-pi-ssh] viene descritto come tooconfigure SSH sul pi greco Raspberry e come tooconnect da [Windows] [ lnk-ssh-windows] o [Linux e Mac OS][lnk-ssh-linux].</span><span class="sxs-lookup"><span data-stu-id="cf8ef-122">hello article [SSH (Secure Shell)][lnk-pi-ssh] describes how tooconfigure SSH on your Raspberry Pi, and how tooconnect from [Windows][lnk-ssh-windows] or [Linux & Mac OS][lnk-ssh-linux].</span></span>
+
+<span data-ttu-id="cf8ef-123">Accedere con il nome utente **pi** e la password **raspberry**.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-123">Sign in with username **pi** and password **raspberry**.</span></span>
+
+#### <a name="optional-share-a-folder-on-your-raspberry-pi"></a><span data-ttu-id="cf8ef-124">Facoltativo: condividere una cartella in Raspberry Pi</span><span class="sxs-lookup"><span data-stu-id="cf8ef-124">Optional: Share a folder on your Raspberry Pi</span></span>
+
+<span data-ttu-id="cf8ef-125">Facoltativamente, è opportuno tooshare una cartella con il pi greco Raspberry con l'ambiente desktop.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-125">Optionally, you may want tooshare a folder on your Raspberry Pi with your desktop environment.</span></span> <span data-ttu-id="cf8ef-126">Condivisione di una cartella consente di toouse editor di testo preferito di desktop (ad esempio [codice di Visual Studio](https://code.visualstudio.com/) o [testo Sublime](http://www.sublimetext.com/)) file tooedit le Pi Raspberry anziché `nano` o `vi`.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-126">Sharing a folder enables you toouse your preferred desktop text editor (such as [Visual Studio Code](https://code.visualstudio.com/) or [Sublime Text](http://www.sublimetext.com/)) tooedit files on your Raspberry Pi instead of using `nano` or `vi`.</span></span>
+
+<span data-ttu-id="cf8ef-127">tooshare una cartella con Windows, configurare un server Samba su hello Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-127">tooshare a folder with Windows, configure a Samba server on hello Raspberry Pi.</span></span> <span data-ttu-id="cf8ef-128">In alternativa, utilizzare hello incorporato [SFTP](https://www.raspberrypi.org/documentation/remote-access/) server con un client SFTP sul desktop.</span><span class="sxs-lookup"><span data-stu-id="cf8ef-128">Alternatively, use hello built-in [SFTP](https://www.raspberrypi.org/documentation/remote-access/) server with an SFTP client on your desktop.</span></span>
+
+[lnk-install-raspbian]: https://www.raspberrypi.org/learning/software-guide/quickstart/
+[lnk-pi-wireless]: https://www.raspberrypi.org/documentation/configuration/wireless/README.md
+[lnk-pi-ssh]: https://www.raspberrypi.org/documentation/remote-access/ssh/README.md
+[lnk-ssh-windows]: https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md
+[lnk-ssh-linux]: https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md
+[lnk-starter-kits]: https://azure.microsoft.com/develop/iot/starter-kits/

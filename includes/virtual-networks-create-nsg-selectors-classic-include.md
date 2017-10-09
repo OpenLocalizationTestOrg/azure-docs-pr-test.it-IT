@@ -1,0 +1,7 @@
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="e2e89-101">Portale</span><span class="sxs-lookup"><span data-stu-id="e2e89-101">Portal</span></span>](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+> * [<span data-ttu-id="e2e89-102">PowerShell</span><span class="sxs-lookup"><span data-stu-id="e2e89-102">PowerShell</span></span>](../articles/virtual-network/virtual-networks-create-nsg-arm-ps.md)
+> * [<span data-ttu-id="e2e89-103">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="e2e89-103">Azure CLI</span></span>](../articles/virtual-network/virtual-networks-create-nsg-arm-cli.md)
+> * [<span data-ttu-id="e2e89-104">Modello ARM</span><span class="sxs-lookup"><span data-stu-id="e2e89-104">ARM template</span></span>](../articles/virtual-network/virtual-networks-create-nsg-arm-template.md)
+> * <span data-ttu-id="e2e89-105">[PowerShell (Classic)](../articles/virtual-network/virtual-networks-create-nsg-classic-ps.md) (PowerShell (classico))</span><span class="sxs-lookup"><span data-stu-id="e2e89-105">[PowerShell (Classic)](../articles/virtual-network/virtual-networks-create-nsg-classic-ps.md)</span></span>
+> * [<span data-ttu-id="e2e89-106">Interfaccia della riga di comando di Azure (versione classica)</span><span class="sxs-lookup"><span data-stu-id="e2e89-106">Azure CLI (Classic)</span></span>](../articles/virtual-network/virtual-networks-create-nsg-classic-cli.md)

@@ -1,16 +1,16 @@
-<span data-ttu-id="194f9-101">Usare l'interfaccia della riga di comando di Azure per ottenere l'URL della distribuzione remota per l'app per le API.</span><span class="sxs-lookup"><span data-stu-id="194f9-101">Use the Azure CLI to get the remote deployment URL for your API App.</span></span> <span data-ttu-id="194f9-102">Nel comando seguente sostituire *\<nome_app>* con il nome dell'app Web.</span><span class="sxs-lookup"><span data-stu-id="194f9-102">In the following command, replace *\<app_name>* with your web app's name.</span></span>
+<span data-ttu-id="557d3-101">Utilizzare l'URL di distribuzione remota hello di tooget di hello CLI di Azure per App per le API.</span><span class="sxs-lookup"><span data-stu-id="557d3-101">Use hello Azure CLI tooget hello remote deployment URL for your API App.</span></span> <span data-ttu-id="557d3-102">In hello seguente comando, sostituire  *\<nome_app >* con il nome dell'applicazione web.</span><span class="sxs-lookup"><span data-stu-id="557d3-102">In hello following command, replace *\<app_name>* with your web app's name.</span></span>
 
 ```azurecli-interactive
 az webapp deployment source config-local-git --name <app_name> --resource-group myResourceGroup --query url --output tsv
 ```
 
-<span data-ttu-id="194f9-103">Configurare la distribuzione Git locale per consentire il push nel computer remoto.</span><span class="sxs-lookup"><span data-stu-id="194f9-103">Configure your local Git deployment to be able to push to the remote.</span></span>
+<span data-ttu-id="557d3-103">Configurare il locale Git distribuzione toobe toopush in grado di toohello remoto.</span><span class="sxs-lookup"><span data-stu-id="557d3-103">Configure your local Git deployment toobe able toopush toohello remote.</span></span>
 
 ```bash
 git remote add azure <URI from previous step>
 ```
 
-<span data-ttu-id="194f9-104">Effettuare il push all'istanza remota di Azure per distribuire l'app.</span><span class="sxs-lookup"><span data-stu-id="194f9-104">Push to the Azure remote to deploy your app.</span></span> <span data-ttu-id="194f9-105">Verrà richiesta la password creata in precedenza quando è stato creato l'utente della distribuzione.</span><span class="sxs-lookup"><span data-stu-id="194f9-105">You are prompted for the password you created earlier when you created the deployment user.</span></span> <span data-ttu-id="194f9-106">Assicurarsi di immettere la password creata in un passaggio precedente della guida introduttiva, anziché quella usata per accedere al portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="194f9-106">Make sure that you enter the password you created in earlier in the quickstart, and not the password you use to log in to the Azure portal.</span></span>
+<span data-ttu-id="557d3-104">Effettuare il push dell'app toohello toodeploy remoto di Azure.</span><span class="sxs-lookup"><span data-stu-id="557d3-104">Push toohello Azure remote toodeploy your app.</span></span> <span data-ttu-id="557d3-105">Viene chiesto di immettere la password di hello creato in precedenza al momento della creazione utente distribuzione hello.</span><span class="sxs-lookup"><span data-stu-id="557d3-105">You are prompted for hello password you created earlier when you created hello deployment user.</span></span> <span data-ttu-id="557d3-106">Verificare che l'immissione di password hello creata precedenza in avvio rapido di hello e non la password di hello utilizzati toolog in toohello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="557d3-106">Make sure that you enter hello password you created in earlier in hello quickstart, and not hello password you use toolog in toohello Azure portal.</span></span>
 
 ```bash
 git push azure master

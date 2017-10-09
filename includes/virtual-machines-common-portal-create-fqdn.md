@@ -1,14 +1,14 @@
 
-1. <span data-ttu-id="6c2d2-101">Selezionare la macchina virtuale nel portale.</span><span class="sxs-lookup"><span data-stu-id="6c2d2-101">Select your VM in the portal.</span></span> <span data-ttu-id="6c2d2-102">*Nome DNS* è attualmente vuoto.</span><span class="sxs-lookup"><span data-stu-id="6c2d2-102">The *DNS name* is currently blank.</span></span> <span data-ttu-id="6c2d2-103">Selezionare **Indirizzo IP pubblico**:</span><span class="sxs-lookup"><span data-stu-id="6c2d2-103">Select **Public IP address**:</span></span>
+1. <span data-ttu-id="fdcba-101">Selezionare la macchina virtuale nel portale di hello.</span><span class="sxs-lookup"><span data-stu-id="fdcba-101">Select your VM in hello portal.</span></span> <span data-ttu-id="fdcba-102">Hello *nome DNS* è attualmente vuoto.</span><span class="sxs-lookup"><span data-stu-id="fdcba-102">hello *DNS name* is currently blank.</span></span> <span data-ttu-id="fdcba-103">Selezionare **Indirizzo IP pubblico**:</span><span class="sxs-lookup"><span data-stu-id="fdcba-103">Select **Public IP address**:</span></span>
    
-   ![Fare clic sulla risorsa IP pubblico nel portale](./media/virtual-machines-common-portal-create-fqdn/locatePublicIP.PNG)
+   ![Fare clic sulla risorsa indirizzo IP pubblico nel portale di hello](./media/virtual-machines-common-portal-create-fqdn/locatePublicIP.PNG)
 
-2. <span data-ttu-id="6c2d2-105">Immettere il nome DNS e fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="6c2d2-105">Enter the desired DNS name and then select **Save**.</span></span>
+2. <span data-ttu-id="fdcba-105">Immettere il nome DNS hello desiderato e quindi selezionare **salvare**.</span><span class="sxs-lookup"><span data-stu-id="fdcba-105">Enter hello desired DNS name and then select **Save**.</span></span>
    
    ![Immettere l'etichetta del nome DNS per la risorsa IP pubblica](./media/virtual-machines-common-portal-create-fqdn/dnsNameLabel.PNG)
  
 
-3. <span data-ttu-id="6c2d2-107">Per tornare al pannello di panoramica della VM, chiudere il pannello *Indirizzo IP pubblico*.</span><span class="sxs-lookup"><span data-stu-id="6c2d2-107">To return to the VM overview blade, close the *Public IP address* blade.</span></span> <span data-ttu-id="6c2d2-108">Verificare che il *nome DNS* ora sia visualizzato.</span><span class="sxs-lookup"><span data-stu-id="6c2d2-108">Verify that the *DNS name* is now shown.</span></span>
+3. <span data-ttu-id="fdcba-107">pannello della panoramica VM toohello tooreturn, chiude hello *indirizzo IP pubblico* blade.</span><span class="sxs-lookup"><span data-stu-id="fdcba-107">tooreturn toohello VM overview blade, close hello *Public IP address* blade.</span></span> <span data-ttu-id="fdcba-108">Verificare che hello *nome DNS* è ora visualizzata.</span><span class="sxs-lookup"><span data-stu-id="fdcba-108">Verify that hello *DNS name* is now shown.</span></span>
    
    ![Verificare che sia impostata la nuova etichetta DNS](./media/virtual-machines-common-portal-create-fqdn/fqdnCreated.PNG)
 

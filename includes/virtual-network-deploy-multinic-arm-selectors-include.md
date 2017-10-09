@@ -1,0 +1,7 @@
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="5877e-101">PowerShell</span><span class="sxs-lookup"><span data-stu-id="5877e-101">PowerShell</span></span>](../articles/virtual-network/virtual-network-deploy-multinic-arm-ps.md)
+> * [<span data-ttu-id="5877e-102">Interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="5877e-102">Azure CLI 2.0</span></span>](../articles/virtual-network/virtual-network-deploy-multinic-arm-cli.md)
+> * [<span data-ttu-id="5877e-103">Interfaccia della riga di comando di Azure 1.0</span><span class="sxs-lookup"><span data-stu-id="5877e-103">Azure CLI 1.0</span></span>](../articles/virtual-network/virtual-network-deploy-multinic-cli-nodejs.md)
+> * [<span data-ttu-id="5877e-104">Modello</span><span class="sxs-lookup"><span data-stu-id="5877e-104">Template</span></span>](../articles/virtual-network/virtual-network-deploy-multinic-arm-template.md)
+> * [<span data-ttu-id="5877e-105">PowerShell (classico)</span><span class="sxs-lookup"><span data-stu-id="5877e-105">PowerShell (Classic)</span></span>](../articles/virtual-network/virtual-network-deploy-multinic-classic-ps.md)
+> * [<span data-ttu-id="5877e-106">Interfaccia della riga di comando di Azure 1.0 (classico)</span><span class="sxs-lookup"><span data-stu-id="5877e-106">Azure CLI 1.0 (Classic)</span></span>](../articles/virtual-network/virtual-network-deploy-multinic-classic-cli.md)

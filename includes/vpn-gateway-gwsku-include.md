@@ -1,0 +1,39 @@
+<span data-ttu-id="e2c36-101">Quando si crea un gateway di rete virtuale, è necessario gateway hello toospecify SKU che si desidera toouse.</span><span class="sxs-lookup"><span data-stu-id="e2c36-101">When you create a virtual network gateway, you need toospecify hello gateway SKU that you want toouse.</span></span> <span data-ttu-id="e2c36-102">Selezionare gli SKU di hello che soddisfano i requisiti in base ai tipi di hello di carichi di lavoro, le velocità effettive, funzionalità e i contratti di servizio.</span><span class="sxs-lookup"><span data-stu-id="e2c36-102">Select hello SKUs that satisfy your requirements based on hello types of workloads, throughputs, features, and SLAs.</span></span>
+
+[!INCLUDE [classic SKU](./vpn-gateway-classic-sku-support-include.md)]
+
+[!INCLUDE [Aggregated throughput by SKU](./vpn-gateway-table-gwtype-aggtput-include.md)]
+
+###  <span data-ttu-id="e2c36-103"><a name="workloads"></a>Carichi di lavoro di produzione *e* di sviluppo e test</span><span class="sxs-lookup"><span data-stu-id="e2c36-103"><a name="workloads"></a>Production *vs.* Dev-Test Workloads</span></span>
+
+<span data-ttu-id="e2c36-104">A causa delle differenze toohello nei contratti di servizio e i set di funzionalità, è consigliabile hello seguenti SKU per la produzione *e* dev-test:</span><span class="sxs-lookup"><span data-stu-id="e2c36-104">Due toohello differences in SLAs and feature sets, we recommend hello following SKUs for production *vs.* dev-test:</span></span>
+
+| <span data-ttu-id="e2c36-105">**Carico di lavoro**</span><span class="sxs-lookup"><span data-stu-id="e2c36-105">**Workload**</span></span>                       | <span data-ttu-id="e2c36-106">**SKU**</span><span class="sxs-lookup"><span data-stu-id="e2c36-106">**SKUs**</span></span>               |
+| ---                                | ---                    |
+| <span data-ttu-id="e2c36-107">**Carichi di lavoro critici, di produzione**</span><span class="sxs-lookup"><span data-stu-id="e2c36-107">**Production, critical workloads**</span></span> | <span data-ttu-id="e2c36-108">VpnGw1, VpnGw2, VpnGw3</span><span class="sxs-lookup"><span data-stu-id="e2c36-108">VpnGw1, VpnGw2, VpnGw3</span></span> |
+| <span data-ttu-id="e2c36-109">**Sviluppo e test o modello di verifica**</span><span class="sxs-lookup"><span data-stu-id="e2c36-109">**Dev-test or proof of concept**</span></span>   | <span data-ttu-id="e2c36-110">Basic</span><span class="sxs-lookup"><span data-stu-id="e2c36-110">Basic</span></span>                  |
+|                                    |                        |
+
+<span data-ttu-id="e2c36-111">Se si utilizza hello precedente SKU, indicazioni di SKU hello produzione sono Standard e ad alte prestazioni SKU.</span><span class="sxs-lookup"><span data-stu-id="e2c36-111">If you are using hello old SKUs, hello production SKU recommendations are Standard and HighPerformance SKUs.</span></span> <span data-ttu-id="e2c36-112">Per informazioni su hello precedente SKU, vedere [SKU di Gateway (SKU legacy)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).</span><span class="sxs-lookup"><span data-stu-id="e2c36-112">For information on hello old SKUs, see [Gateway SKUs (legacy SKUs)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).</span></span>
+
+###  <span data-ttu-id="e2c36-113"><a name="feature"></a>Set di funzionalità degli SKU del gateway</span><span class="sxs-lookup"><span data-stu-id="e2c36-113"><a name="feature"></a>Gateway SKU feature sets</span></span>
+
+<span data-ttu-id="e2c36-114">Hello nuovo gateway SKU semplificata hello set di funzionalità offerte nei gateway hello:</span><span class="sxs-lookup"><span data-stu-id="e2c36-114">hello new gateway SKUs streamline hello feature sets offered on hello gateways:</span></span>
+
+| <span data-ttu-id="e2c36-115">**SKU**</span><span class="sxs-lookup"><span data-stu-id="e2c36-115">**SKU**</span></span>| <span data-ttu-id="e2c36-116">**Funzionalità**</span><span class="sxs-lookup"><span data-stu-id="e2c36-116">**Features**</span></span>|
+| ---    | ---         |
+|<span data-ttu-id="e2c36-117">**Basic**</span><span class="sxs-lookup"><span data-stu-id="e2c36-117">**Basic**</span></span>   | <span data-ttu-id="e2c36-118">**VPN basata su route**: 10 tunnel con P2S</span><span class="sxs-lookup"><span data-stu-id="e2c36-118">**Route-based VPN**: 10 tunnels with P2S</span></span><br><br><span data-ttu-id="e2c36-119">**VPN basata su criteri (IKEv1)**: 1 tunnel, nessuna connessione P2S</span><span class="sxs-lookup"><span data-stu-id="e2c36-119">**Policy-based VPN**: (IKEv1): 1 tunnel; no P2S</span></span>|
+| <span data-ttu-id="e2c36-120">**VpnGw1, VpnGw2 e VpnGw3**</span><span class="sxs-lookup"><span data-stu-id="e2c36-120">**VpnGw1, VpnGw2, and VpnGw3**</span></span> | <span data-ttu-id="e2c36-121">**Le VPN basate su route**: dei tunnel too30 (*), P2S, BGP, criteri IPsec/IKE attivo-attivo, personalizzati, coesistenza ExpressRoute/VPN</span><span class="sxs-lookup"><span data-stu-id="e2c36-121">**Route-based VPN**: up too30 tunnels (*), P2S, BGP, active-active, custom IPsec/IKE policy, ExpressRoute/VPN co-existence</span></span> |
+|        |             |
+
+<span data-ttu-id="e2c36-122">(*) È possibile configurare tooconnect "PolicyBasedTrafficSelectors" una route dispositivi basati su VPN gateway (VpnGw1, VpnGw2, VpnGw3) toomultiple locale basata su criteri firewall.</span><span class="sxs-lookup"><span data-stu-id="e2c36-122">(*) You can configure "PolicyBasedTrafficSelectors" tooconnect a route-based VPN gateway (VpnGw1, VpnGw2, VpnGw3) toomultiple on-premises policy-based firewall devices.</span></span> <span data-ttu-id="e2c36-123">Fare riferimento troppo[toomultiple gateway VPN di connessione locale basata su criteri di dispositivi VPN con PowerShell](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) per informazioni dettagliate.</span><span class="sxs-lookup"><span data-stu-id="e2c36-123">Refer too[Connect VPN gateways toomultiple on-premises policy-based VPN devices using PowerShell](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) for details.</span></span>
+
+###  <span data-ttu-id="e2c36-124"><a name="resize"></a>Ridimensionamento degli SKU di gateway</span><span class="sxs-lookup"><span data-stu-id="e2c36-124"><a name="resize"></a>Resizing gateway SKUs</span></span>
+
+1. <span data-ttu-id="e2c36-125">È possibile eseguire il ridimensionamento tra gli SKU VpnGw1, VpnGw2 e VpnGw3.</span><span class="sxs-lookup"><span data-stu-id="e2c36-125">You can resize between VpnGw1, VpnGw2, and VpnGw3 SKUs.</span></span>
+2. <span data-ttu-id="e2c36-126">Quando si lavora con gateway precedente hello SKU, è possibile ridimensionare tra Basic, Standard e ad alte prestazioni SKU.</span><span class="sxs-lookup"><span data-stu-id="e2c36-126">When working with hello old gateway SKUs, you can resize between Basic, Standard, and HighPerformance SKUs.</span></span>
+2. <span data-ttu-id="e2c36-127">Si **Impossibile** ridimensionamento da toohello SKU Basic/Standard/ad alte prestazioni nuovo VpnGw2/VpnGw1/VpnGw3 SKU.</span><span class="sxs-lookup"><span data-stu-id="e2c36-127">You **cannot** resize from Basic/Standard/HighPerformance SKUs toohello new VpnGw1/VpnGw2/VpnGw3 SKUs.</span></span> <span data-ttu-id="e2c36-128">In alternativa, è necessario [migrare](#migrate) toohello SKU di nuovo.</span><span class="sxs-lookup"><span data-stu-id="e2c36-128">You must, instead, [migrate](#migrate) toohello new SKUs.</span></span>
+
+###  <span data-ttu-id="e2c36-129"><a name="migrate"></a>La migrazione dal vecchio SKU toohello nuovo SKU</span><span class="sxs-lookup"><span data-stu-id="e2c36-129"><a name="migrate"></a>Migrating from old SKUs toohello new SKUs</span></span>
+
+[!INCLUDE [Migrate SKU](./vpn-gateway-migrate-legacy-sku-include.md)]

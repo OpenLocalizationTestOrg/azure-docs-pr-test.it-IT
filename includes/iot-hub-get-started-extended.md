@@ -1,0 +1,26 @@
+## <a name="extended-iot-scenarios"></a><span data-ttu-id="57996-101">Scenari IoT estesi</span><span class="sxs-lookup"><span data-stu-id="57996-101">Extended IoT scenarios</span></span>
+
+<span data-ttu-id="57996-102">Usare altri servizi e strumenti di Azure.</span><span class="sxs-lookup"><span data-stu-id="57996-102">Use other Azure services and tools.</span></span> <span data-ttu-id="57996-103">Quando si è connessi i tooIoT dispositivo Hub, è possibile esplorare altri scenari che utilizzano altri servizi e gli strumenti di Azure:</span><span class="sxs-lookup"><span data-stu-id="57996-103">When you have connected your device tooIoT Hub, you can explore additional scenarios that use other Azure tools and services:</span></span>
+
+| <span data-ttu-id="57996-104">Scenario</span><span class="sxs-lookup"><span data-stu-id="57996-104">Scenario</span></span>                                                   | <span data-ttu-id="57996-105">Servizio o strumento di Azure</span><span class="sxs-lookup"><span data-stu-id="57996-105">Azure service or tool</span></span>              |
+|----------------------------------------------------------- |------------------------------------|
+| <span data-ttu-id="57996-106">[Gestire i messaggi dell'hub IoT][Mg_IoT_Hub_Msg]</span><span class="sxs-lookup"><span data-stu-id="57996-106">[Manage IoT Hub messages][Mg_IoT_Hub_Msg]</span></span>                  | <span data-ttu-id="57996-107">strumento iothub-explorer</span><span class="sxs-lookup"><span data-stu-id="57996-107">iothub-explorer tool</span></span>               |
+| <span data-ttu-id="57996-108">[Gestire un dispositivo IoT][Mg_IoT_Dv]</span><span class="sxs-lookup"><span data-stu-id="57996-108">[Manage your IoT device][Mg_IoT_Dv]</span></span>                        | <span data-ttu-id="57996-109">strumento iothub-explorer</span><span class="sxs-lookup"><span data-stu-id="57996-109">iothub-explorer tool</span></span>               |
+| <span data-ttu-id="57996-110">[Salvare l'IoT Hub archiviazione tooAzure messaggi][Sv_IoT_Msg_Stor]</span><span class="sxs-lookup"><span data-stu-id="57996-110">[Save IoT Hub messages tooAzure storage][Sv_IoT_Msg_Stor]</span></span>  | <span data-ttu-id="57996-111">Archiviazione tabelle di Azure</span><span class="sxs-lookup"><span data-stu-id="57996-111">Azure table storage</span></span>                |
+| <span data-ttu-id="57996-112">[Visualizzare i dati dei sensori][Vis_Data]</span><span class="sxs-lookup"><span data-stu-id="57996-112">[Visualize sensor data][Vis_Data]</span></span>                          | <span data-ttu-id="57996-113">Microsoft Power BI, App Web di Azure</span><span class="sxs-lookup"><span data-stu-id="57996-113">Microsoft Power BI, Azure Web Apps</span></span> |
+| <span data-ttu-id="57996-114">[Previsioni meteorologiche con i dati dei sensori][Weather_Forecast]</span><span class="sxs-lookup"><span data-stu-id="57996-114">[Forecast weather with sensor data][Weather_Forecast]</span></span>      | <span data-ttu-id="57996-115">Azure Machine Learning</span><span class="sxs-lookup"><span data-stu-id="57996-115">Azure Machine Learning</span></span>             |
+| <span data-ttu-id="57996-116">[Rilevamento e risposta automatica alle anomalie][Anomaly_Detect]</span><span class="sxs-lookup"><span data-stu-id="57996-116">[Automatic anomaly detection and reaction][Anomaly_Detect]</span></span> | <span data-ttu-id="57996-117">App per la logica di Azure</span><span class="sxs-lookup"><span data-stu-id="57996-117">Azure Logic Apps</span></span>                   |
+
+## <a name="next-steps"></a><span data-ttu-id="57996-118">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="57996-118">Next steps</span></span>
+
+<span data-ttu-id="57996-119">Dopo aver completato queste esercitazioni, è possibile esplorare ulteriormente le funzionalità di hello dell'IoT Hub in hello [Guida per sviluppatori][lnk-dev-guide].</span><span class="sxs-lookup"><span data-stu-id="57996-119">When you have completed these tutorials, you can further explore hello capabilities of IoT Hub in hello [Developer guide][lnk-dev-guide].</span></span> <span data-ttu-id="57996-120">È possibile trovare ulteriori esercitazioni in hello [procedura] [ lnk-how-to] sezione.</span><span class="sxs-lookup"><span data-stu-id="57996-120">You can find additional tutorials in hello [How To][lnk-how-to] section.</span></span>
+
+
+[Mg_IoT_Hub_Msg]: ../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md
+[Mg_IoT_Dv]: ../articles/iot-hub/iot-hub-device-management-iothub-explorer.md
+[Sv_IoT_Msg_Stor]: ../articles/iot-hub/iot-hub-store-data-in-azure-table-storage.md
+[Vis_Data]: ../articles/iot-hub/iot-hub-live-data-visualization-in-power-bi.md
+[Weather_Forecast]: ../articles/iot-hub/iot-hub-weather-forecast-machine-learning.md
+[Anomaly_Detect]: ../articles/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md
+[lnk-dev-guide]: ../articles/iot-hub/iot-hub-devguide.md
+[lnk-how-to]: ../articles/iot-hub/iot-hub-how-to.md

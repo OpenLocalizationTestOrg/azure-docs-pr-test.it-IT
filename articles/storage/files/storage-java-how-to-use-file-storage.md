@@ -1,6 +1,6 @@
 ---
-title: Eseguire lo sviluppo per Archiviazione file di Azure con Java | Microsoft Docs
-description: Informazioni su come sviluppare applicazioni e servizi Java che usano Archiviazione file di Azure per archiviare i dati dei file.
+title: aaaDevelop per l'archiviazione di File di Azure con Java | Documenti Microsoft
+description: Informazioni su come applicazioni Java toodevelop e servizi che usano File di Azure storage toostore dati dei file.
 services: storage
 documentationcenter: java
 author: robinsh
@@ -14,45 +14,45 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 05/27/2017
 ms.author: robinsh
-ms.openlocfilehash: ce38944b9d5e663505c5808864ba61a5e2284f3b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: be71a946604da8af0130f101f2eb6135c5e08abd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="develop-for-azure-file-storage-with-java"></a><span data-ttu-id="a6c8f-103">Eseguire lo sviluppo per Archiviazione file di Azure con Java</span><span class="sxs-lookup"><span data-stu-id="a6c8f-103">Develop for Azure File storage with Java</span></span>
+# <a name="develop-for-azure-file-storage-with-java"></a><span data-ttu-id="f63db-103">Eseguire lo sviluppo per Archiviazione file di Azure con Java</span><span class="sxs-lookup"><span data-stu-id="f63db-103">Develop for Azure File storage with Java</span></span>
 [!INCLUDE [storage-selector-file-include](../../../includes/storage-selector-file-include.md)]
 
 [!INCLUDE [storage-check-out-samples-java](../../../includes/storage-check-out-samples-java.md)]
 
-## <a name="about-this-tutorial"></a><span data-ttu-id="a6c8f-104">Informazioni sull'esercitazione</span><span class="sxs-lookup"><span data-stu-id="a6c8f-104">About this tutorial</span></span>
-<span data-ttu-id="a6c8f-105">Questa esercitazione illustra le nozioni di base per l'uso di Java per sviluppare applicazioni o servizi che usano Archiviazione file di Azure per archiviare i dati dei file.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-105">This tutorial will demonstrate the basics of using Java to develop applications or services that use Azure File storage to store file data.</span></span> <span data-ttu-id="a6c8f-106">In questa esercitazione verrà creata una semplice applicazione console e verrà mostrato come eseguire le azioni di base con Java e Archiviazione file di Azure:</span><span class="sxs-lookup"><span data-stu-id="a6c8f-106">In this tutorial, we will create a simple console application and show how to perform basic actions with Java and Azure File storage:</span></span>
+## <a name="about-this-tutorial"></a><span data-ttu-id="f63db-104">Informazioni sull'esercitazione</span><span class="sxs-lookup"><span data-stu-id="f63db-104">About this tutorial</span></span>
+<span data-ttu-id="f63db-105">In questa esercitazione verrà illustrato l'utilizzo di Java toodevelop applicazioni o servizi che utilizzano i File di Azure storage toostore file dati di base di hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-105">This tutorial will demonstrate hello basics of using Java toodevelop applications or services that use Azure File storage toostore file data.</span></span> <span data-ttu-id="f63db-106">In questa esercitazione verrà creata una semplice applicazione console e Mostra come tooperform azioni di base con l'archiviazione di Java e i File di Azure:</span><span class="sxs-lookup"><span data-stu-id="f63db-106">In this tutorial, we will create a simple console application and show how tooperform basic actions with Java and Azure File storage:</span></span>
 
-* <span data-ttu-id="a6c8f-107">Creare ed eliminare condivisioni file di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-107">Create and delete Azure File shares</span></span>
-* <span data-ttu-id="a6c8f-108">Creare ed eliminare directory</span><span class="sxs-lookup"><span data-stu-id="a6c8f-108">Create and delete directories</span></span>
-* <span data-ttu-id="a6c8f-109">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-109">Enumerate files and directories in an Azure File share</span></span>
-* <span data-ttu-id="a6c8f-110">Caricare, scaricare ed eliminare un file</span><span class="sxs-lookup"><span data-stu-id="a6c8f-110">Upload, download, and delete a file</span></span>
+* <span data-ttu-id="f63db-107">Creare ed eliminare condivisioni file di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-107">Create and delete Azure File shares</span></span>
+* <span data-ttu-id="f63db-108">Creare ed eliminare directory</span><span class="sxs-lookup"><span data-stu-id="f63db-108">Create and delete directories</span></span>
+* <span data-ttu-id="f63db-109">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-109">Enumerate files and directories in an Azure File share</span></span>
+* <span data-ttu-id="f63db-110">Caricare, scaricare ed eliminare un file</span><span class="sxs-lookup"><span data-stu-id="f63db-110">Upload, download, and delete a file</span></span>
 
 > [!Note]  
-> <span data-ttu-id="a6c8f-111">Poiché Archiviazione file di Azure è accessibile tramite SMB, è possibile scrivere semplici applicazioni che accedono alla condivisione file di Azure usando le classi standard I/O di Java.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-111">Because Azure File storage may be accessed over SMB, it is possible to write simple applications that access the Azure File share using the standard Java I/O classes.</span></span> <span data-ttu-id="a6c8f-112">Questo articolo descrive come scrivere applicazioni che usano Azure Storage Java SDK, che usa l'[API REST di archiviazione file Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) per comunicare con Archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-112">This article will describe how to write applications that use the Azure Storage Java SDK, which uses the [Azure File storage REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) to talk to Azure File storage.</span></span>
+> <span data-ttu-id="f63db-111">Poiché la memorizzazione dei File di Azure sono accessibili tramite SMB, è possibile toowrite semplici applicazioni che accedono a hello Azure condivisione File che utilizza le classi dei / o Java standard hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-111">Because Azure File storage may be accessed over SMB, it is possible toowrite simple applications that access hello Azure File share using hello standard Java I/O classes.</span></span> <span data-ttu-id="f63db-112">In questo articolo descrive come le applicazioni che usano toowrite hello Java Azure Storage SDK, che usa hello [API REST di archiviazione di File di Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure archiviazione File.</span><span class="sxs-lookup"><span data-stu-id="f63db-112">This article will describe how toowrite applications that use hello Azure Storage Java SDK, which uses hello [Azure File storage REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure File storage.</span></span>
 
-## <a name="create-a-java-application"></a><span data-ttu-id="a6c8f-113">Creare un'applicazione Java</span><span class="sxs-lookup"><span data-stu-id="a6c8f-113">Create a Java application</span></span>
-<span data-ttu-id="a6c8f-114">Per compilare gli esempi, saranno necessari il Java Development Kit (JDK) e [Azure Storage SDK per Java][].</span><span class="sxs-lookup"><span data-stu-id="a6c8f-114">To build the samples, you will need the Java Development Kit (JDK) and the [Azure Storage SDK for Java][].</span></span> <span data-ttu-id="a6c8f-115">È inoltre necessario aver creato un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-115">You should also have created an Azure storage account.</span></span>
+## <a name="create-a-java-application"></a><span data-ttu-id="f63db-113">Creare un'applicazione Java</span><span class="sxs-lookup"><span data-stu-id="f63db-113">Create a Java application</span></span>
+<span data-ttu-id="f63db-114">esempi di hello toobuild, sarà necessario hello Java Development Kit (JDK) e [] [Azure Storage SDK per Java] hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-114">toobuild hello samples, you will need hello Java Development Kit (JDK) and hello [Azure Storage SDK for Java][].</span></span> <span data-ttu-id="f63db-115">È inoltre necessario aver creato un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="f63db-115">You should also have created an Azure storage account.</span></span>
 
-## <a name="setup-your-application-to-use-azure-file-storage"></a><span data-ttu-id="a6c8f-116">Configurare l'applicazione per usare Archiviazione file di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-116">Setup your application to use Azure File storage</span></span>
-<span data-ttu-id="a6c8f-117">Per utilizzare le API di archiviazione di Azure, aggiungere le seguenti istruzioni all'inizio del file Java da cui si desidera accedere al servizio di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-117">To use the Azure storage APIs, add the following statement to the top of the Java file where you intend to access the storage service from.</span></span>
+## <a name="setup-your-application-toouse-azure-file-storage"></a><span data-ttu-id="f63db-116">Configurare l'archiviazione di File di Azure di toouse applicazione</span><span class="sxs-lookup"><span data-stu-id="f63db-116">Setup your application toouse Azure File storage</span></span>
+<span data-ttu-id="f63db-117">hello toouse API di archiviazione di Azure aggiungere hello file Java hello in cui si intende il servizio di archiviazione hello tooaccess dalla cima toohello istruzione seguente.</span><span class="sxs-lookup"><span data-stu-id="f63db-117">toouse hello Azure storage APIs, add hello following statement toohello top of hello Java file where you intend tooaccess hello storage service from.</span></span>
 
 ```java
-// Include the following imports to use blob APIs.
+// Include hello following imports toouse blob APIs.
 import com.microsoft.azure.storage.*;
 import com.microsoft.azure.storage.file.*;
 ```
 
-## <a name="setup-an-azure-storage-connection-string"></a><span data-ttu-id="a6c8f-118">Configurare una stringa di connessione di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-118">Setup an Azure storage connection string</span></span>
-<span data-ttu-id="a6c8f-119">Per usare Archiviazione file di Azure, è necessario connettersi all'account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-119">To use Azure File storage, you need to connect to your Azure storage account.</span></span> <span data-ttu-id="a6c8f-120">Il primo passaggio consisterà nel configurare una stringa di connessione che verrà utilizzata per connettersi all'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-120">The first step would be to configure a connection string which we'll use to connect to your storage account.</span></span> <span data-ttu-id="a6c8f-121">È importante definire una variabile statica a tale scopo.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-121">Let's define a static variable to do that.</span></span>
+## <a name="setup-an-azure-storage-connection-string"></a><span data-ttu-id="f63db-118">Configurare una stringa di connessione di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-118">Setup an Azure storage connection string</span></span>
+<span data-ttu-id="f63db-119">toouse archiviazione di File di Azure, è necessario tooconnect tooyour account di archiviazione Azure.</span><span class="sxs-lookup"><span data-stu-id="f63db-119">toouse Azure File storage, you need tooconnect tooyour Azure storage account.</span></span> <span data-ttu-id="f63db-120">Hello primo passaggio potrebbe essere una stringa di connessione che verrà usato tooconfigure tooconnect tooyour account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="f63db-120">hello first step would be tooconfigure a connection string which we'll use tooconnect tooyour storage account.</span></span> <span data-ttu-id="f63db-121">È pertanto possibile definire un toodo variabile statica che.</span><span class="sxs-lookup"><span data-stu-id="f63db-121">Let's define a static variable toodo that.</span></span>
 
 ```java
-// Configure the connection-string with your values
+// Configure hello connection-string with your values
 public static final String storageConnectionString =
     "DefaultEndpointsProtocol=http;" +
     "AccountName=your_storage_account_name;" +
@@ -60,40 +60,40 @@ public static final String storageConnectionString =
 ```
 
 > [!NOTE]
-> <span data-ttu-id="a6c8f-122">Sostituire your_storage_account_name e your_storage_account_key con i valori effettivi dell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-122">Replace your_storage_account_name and your_storage_account_key with the actual values for your storage account.</span></span>
+> <span data-ttu-id="f63db-122">Sostituire your_storage_account_name e your_storage_account_key con i valori effettivi hello dell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="f63db-122">Replace your_storage_account_name and your_storage_account_key with hello actual values for your storage account.</span></span>
 > 
 > 
 
-## <a name="connecting-to-an-azure-storage-account"></a><span data-ttu-id="a6c8f-123">Connessione a un account di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-123">Connecting to an Azure storage account</span></span>
-<span data-ttu-id="a6c8f-124">Per connettersi all'account di archiviazione, è necessario usare l'oggetto **CloudStorageAccount**, passando una stringa di connessione al relativo metodo **parse**.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-124">To connect to your storage account, you need to use the **CloudStorageAccount** object, passing a connection string to its **parse** method.</span></span>
+## <a name="connecting-tooan-azure-storage-account"></a><span data-ttu-id="f63db-123">Connessione tooan account di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-123">Connecting tooan Azure storage account</span></span>
+<span data-ttu-id="f63db-124">account di archiviazione tooyour tooconnect, è necessario hello toouse **CloudStorageAccount** oggetto, passando un tooits di stringa di connessione **analizzare** metodo.</span><span class="sxs-lookup"><span data-stu-id="f63db-124">tooconnect tooyour storage account, you need toouse hello **CloudStorageAccount** object, passing a connection string tooits **parse** method.</span></span>
 
 ```java
-// Use the CloudStorageAccount object to connect to your storage account
+// Use hello CloudStorageAccount object tooconnect tooyour storage account
 try {
     CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
 } catch (InvalidKeyException invalidKey) {
-    // Handle the exception
+    // Handle hello exception
 }
 ```
 
-<span data-ttu-id="a6c8f-125">**CloudStorageAccount.parse** genera un'eccezione InvalidKeyException, sarà quindi necessario inserirlo in un blocco Try-Catch.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-125">**CloudStorageAccount.parse** throws an InvalidKeyException so you'll need to put it inside a try/catch block.</span></span>
+<span data-ttu-id="f63db-125">**CloudStorageAccount.parse** genera un'InvalidKeyException pertanto sarà necessario tooput è all'interno di un blocco try/catch bloccare.</span><span class="sxs-lookup"><span data-stu-id="f63db-125">**CloudStorageAccount.parse** throws an InvalidKeyException so you'll need tooput it inside a try/catch block.</span></span>
 
-## <a name="create-an-azure-file-share"></a><span data-ttu-id="a6c8f-126">Creare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-126">Create an Azure File share</span></span>
-<span data-ttu-id="a6c8f-127">Tutti i file e directory in Archiviazione file di Azure si trovano in un contenitore denominato **Share**.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-127">All files and directories in Azure File storage reside in a container called a **Share**.</span></span> <span data-ttu-id="a6c8f-128">L'account di archiviazione può disporre di tante condivisioni quante sono consentite dalla capacità dell'account.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-128">Your storage account can have as much shares as your account capacity allows.</span></span> <span data-ttu-id="a6c8f-129">Per ottenere accesso a una condivisione e ai suoi contenuti, è necessario usare un client per Archiviazione file di Azure.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-129">To obtain access to a share and its contents, you need to use a Azure File storage client.</span></span>
+## <a name="create-an-azure-file-share"></a><span data-ttu-id="f63db-126">Creare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-126">Create an Azure File share</span></span>
+<span data-ttu-id="f63db-127">Tutti i file e directory in Archiviazione file di Azure si trovano in un contenitore denominato **Share**.</span><span class="sxs-lookup"><span data-stu-id="f63db-127">All files and directories in Azure File storage reside in a container called a **Share**.</span></span> <span data-ttu-id="f63db-128">L'account di archiviazione può disporre di tante condivisioni quante sono consentite dalla capacità dell'account.</span><span class="sxs-lookup"><span data-stu-id="f63db-128">Your storage account can have as much shares as your account capacity allows.</span></span> <span data-ttu-id="f63db-129">condivisione di tooa tooobtain accesso e il relativo contenuto, è necessario toouse un client di archiviazione di File di Azure.</span><span class="sxs-lookup"><span data-stu-id="f63db-129">tooobtain access tooa share and its contents, you need toouse a Azure File storage client.</span></span>
 
 ```java
-// Create the Azure File storage client.
+// Create hello Azure File storage client.
 CloudFileClient fileClient = storageAccount.createCloudFileClient();
 ```
 
-<span data-ttu-id="a6c8f-130">Tale client consente di ottenere un riferimento a una condivisione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-130">Using the Azure File storage client, you can then obtain a reference to a share.</span></span>
+<span data-ttu-id="f63db-130">Client di archiviazione Azure File hello è quindi possibile ottenere una condivisione di tooa di riferimento.</span><span class="sxs-lookup"><span data-stu-id="f63db-130">Using hello Azure File storage client, you can then obtain a reference tooa share.</span></span>
 
 ```java
-// Get a reference to the file share
+// Get a reference toohello file share
 CloudFileShare share = fileClient.getShareReference("sampleshare");
 ```
 
-<span data-ttu-id="a6c8f-131">Per creare effettivamente la condivisione, utilizzare il metodo **createIfNotExists** dell'oggetto CloudFileShare.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-131">To actually create the share, use the **createIfNotExists** method of the CloudFileShare object.</span></span>
+<span data-ttu-id="f63db-131">tooactually creare hello condivisione, utilizzare hello **createIfNotExists** metodo dell'oggetto CloudFileShare hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-131">tooactually create hello share, use hello **createIfNotExists** method of hello CloudFileShare object.</span></span>
 
 ```java
 if (share.createIfNotExists()) {
@@ -101,10 +101,10 @@ if (share.createIfNotExists()) {
 }
 ```
 
-<span data-ttu-id="a6c8f-132">A questo punto, **share** contiene un riferimento a una condivisione denominata **sampleshare**.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-132">At this point, **share** holds a reference to a share named **sampleshare**.</span></span>
+<span data-ttu-id="f63db-132">A questo punto, **condividere** contiene una condivisione di tooa di riferimento denominata **sampleshare**.</span><span class="sxs-lookup"><span data-stu-id="f63db-132">At this point, **share** holds a reference tooa share named **sampleshare**.</span></span>
 
-## <a name="delete-an-azure-file-share"></a><span data-ttu-id="a6c8f-133">Eliminare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-133">Delete an Azure File share</span></span>
-<span data-ttu-id="a6c8f-134">L'eliminazione di una condivisione viene eseguita chiamando il metodo **deleteIfExists** in un oggetto CloudFileShare.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-134">Deleting a share is done by calling the **deleteIfExists** method on a CloudFileShare object.</span></span> <span data-ttu-id="a6c8f-135">Ecco il codice di esempio che esegue tale operazione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-135">Here's sample code that does that.</span></span>
+## <a name="delete-an-azure-file-share"></a><span data-ttu-id="f63db-133">Eliminare una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-133">Delete an Azure File share</span></span>
+<span data-ttu-id="f63db-134">Eliminazione di una condivisione di viene eseguita dal chiamante hello **deleteIfExists** metodo su un oggetto CloudFileShare.</span><span class="sxs-lookup"><span data-stu-id="f63db-134">Deleting a share is done by calling hello **deleteIfExists** method on a CloudFileShare object.</span></span> <span data-ttu-id="f63db-135">Ecco il codice di esempio che esegue tale operazione.</span><span class="sxs-lookup"><span data-stu-id="f63db-135">Here's sample code that does that.</span></span>
 
 ```java
 try
@@ -112,10 +112,10 @@ try
     // Retrieve storage account from connection-string.
     CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the file client.
+    // Create hello file client.
    CloudFileClient fileClient = storageAccount.createCloudFileClient();
 
-   // Get a reference to the file share
+   // Get a reference toohello file share
    CloudFileShare share = fileClient.getShareReference("sampleshare");
 
    if (share.deleteIfExists()) {
@@ -126,14 +126,14 @@ try
 }
 ```
 
-## <a name="create-a-directory"></a><span data-ttu-id="a6c8f-136">Creare una directory</span><span class="sxs-lookup"><span data-stu-id="a6c8f-136">Create a directory</span></span>
-<span data-ttu-id="a6c8f-137">È inoltre possibile organizzare l'archiviazione inserendo i file all'interno di sottodirectory anziché inserirli tutti nella directory radice.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-137">You can also organize storage by putting files inside sub-directories instead of having all of them in the root directory.</span></span> <span data-ttu-id="a6c8f-138">Archiviazione file di Azure consente di creare tutte le directory consentite dall'account.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-138">Azure File storage allows you to create as much directories as your account will allow.</span></span> <span data-ttu-id="a6c8f-139">Il codice riportato di seguito creerà una sottodirectory denominata **sampledir** nella directory radice.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-139">The code below will create a sub-directory named **sampledir** under the root directory.</span></span>
+## <a name="create-a-directory"></a><span data-ttu-id="f63db-136">Creare una directory</span><span class="sxs-lookup"><span data-stu-id="f63db-136">Create a directory</span></span>
+<span data-ttu-id="f63db-137">È anche possibile organizzare archiviazione inserendo i file all'interno di sottodirectory, anziché tutti gli elementi nella directory radice hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-137">You can also organize storage by putting files inside sub-directories instead of having all of them in hello root directory.</span></span> <span data-ttu-id="f63db-138">Archiviazione di File di Azure consente toocreate come consentire più directory come l'account.</span><span class="sxs-lookup"><span data-stu-id="f63db-138">Azure File storage allows you toocreate as much directories as your account will allow.</span></span> <span data-ttu-id="f63db-139">codice Hello seguente verrà creata una sottodirectory denominata **sampledir** nella directory radice hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-139">hello code below will create a sub-directory named **sampledir** under hello root directory.</span></span>
 
 ```java
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 CloudFileDirectory rootDir = share.getRootDirectoryReference();
 
-//Get a reference to the sampledir directory
+//Get a reference toohello sampledir directory
 CloudFileDirectory sampleDir = rootDir.getDirectoryReference("sampledir");
 
 if (sampleDir.createIfNotExists()) {
@@ -143,27 +143,27 @@ if (sampleDir.createIfNotExists()) {
 }
 ```
 
-## <a name="delete-a-directory"></a><span data-ttu-id="a6c8f-140">Eliminare una directory</span><span class="sxs-lookup"><span data-stu-id="a6c8f-140">Delete a directory</span></span>
-<span data-ttu-id="a6c8f-141">Eliminare una directory è un'attività piuttosto semplice, anche se occorre tenere presente che non è possibile eliminare una directory che contiene ancora file o altre directory.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-141">Deleting a directory is a fairly simple task, although it should be noted that you cannot delete a directory that still contains files or other directories.</span></span>
+## <a name="delete-a-directory"></a><span data-ttu-id="f63db-140">Eliminare una directory</span><span class="sxs-lookup"><span data-stu-id="f63db-140">Delete a directory</span></span>
+<span data-ttu-id="f63db-141">Eliminare una directory è un'attività piuttosto semplice, anche se occorre tenere presente che non è possibile eliminare una directory che contiene ancora file o altre directory.</span><span class="sxs-lookup"><span data-stu-id="f63db-141">Deleting a directory is a fairly simple task, although it should be noted that you cannot delete a directory that still contains files or other directories.</span></span>
 
 ```java
-// Get a reference to the root directory for the share.
+// Get a reference toohello root directory for hello share.
 CloudFileDirectory rootDir = share.getRootDirectoryReference();
 
-// Get a reference to the directory you want to delete
+// Get a reference toohello directory you want toodelete
 CloudFileDirectory containerDir = rootDir.getDirectoryReference("sampledir");
 
-// Delete the directory
+// Delete hello directory
 if ( containerDir.deleteIfExists() ) {
     System.out.println("Directory deleted");
 }
 ```
 
-## <a name="enumerate-files-and-directories-in-an-azure-file-share"></a><span data-ttu-id="a6c8f-142">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-142">Enumerate files and directories in an Azure File share</span></span>
-<span data-ttu-id="a6c8f-143">Ottenere un elenco di file e directory all'interno di una condivisione è facile chiamando **listFilesAndDirectories** in un riferimento CloudFileDirectory.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-143">Obtaining a list of files and directories within a share is easily done by calling **listFilesAndDirectories** on a CloudFileDirectory reference.</span></span> <span data-ttu-id="a6c8f-144">Il metodo restituisce un elenco di oggetti ListFileItem che è possibile scorrere.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-144">The method returns a list of ListFileItem objects which you can iterate on.</span></span> <span data-ttu-id="a6c8f-145">Ad esempio, il seguente codice elencherà i file e le directory all'interno della directory radice.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-145">As an example, the following code will list files and directories inside the root directory.</span></span>
+## <a name="enumerate-files-and-directories-in-an-azure-file-share"></a><span data-ttu-id="f63db-142">Enumerare file e directory in una condivisione file di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-142">Enumerate files and directories in an Azure File share</span></span>
+<span data-ttu-id="f63db-143">Ottenere un elenco di file e directory all'interno di una condivisione è facile chiamando **listFilesAndDirectories** in un riferimento CloudFileDirectory.</span><span class="sxs-lookup"><span data-stu-id="f63db-143">Obtaining a list of files and directories within a share is easily done by calling **listFilesAndDirectories** on a CloudFileDirectory reference.</span></span> <span data-ttu-id="f63db-144">metodo Hello restituisce un elenco di oggetti ListFileItem in cui è possibile eseguire l'iterazione.</span><span class="sxs-lookup"><span data-stu-id="f63db-144">hello method returns a list of ListFileItem objects which you can iterate on.</span></span> <span data-ttu-id="f63db-145">Ad esempio, hello codice riportato di seguito consente di visualizzare file e directory all'interno della directory radice hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-145">As an example, hello following code will list files and directories inside hello root directory.</span></span>
 
 ```java
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 CloudFileDirectory rootDir = share.getRootDirectoryReference();
 
 for ( ListFileItem fileItem : rootDir.listFilesAndDirectories() ) {
@@ -171,51 +171,51 @@ for ( ListFileItem fileItem : rootDir.listFilesAndDirectories() ) {
 }
 ```
 
-## <a name="upload-a-file"></a><span data-ttu-id="a6c8f-146">Caricare un file</span><span class="sxs-lookup"><span data-stu-id="a6c8f-146">Upload a file</span></span>
-<span data-ttu-id="a6c8f-147">Una condivisione file di Azure contiene almeno una directory radice in cui possono risiedere i file.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-147">An Azure File share contains at the very least, a root directory where files can reside.</span></span> <span data-ttu-id="a6c8f-148">In questa sezione verrà illustrato come caricare un file dall'archiviazione locale nella directory radice di una condivisione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-148">In this section, you'll learn how to upload a file from local storage onto the root directory of a share.</span></span>
+## <a name="upload-a-file"></a><span data-ttu-id="f63db-146">Caricare un file</span><span class="sxs-lookup"><span data-stu-id="f63db-146">Upload a file</span></span>
+<span data-ttu-id="f63db-147">Condivisione contiene in hello molto almeno un File di Azure, una directory radice in cui i file possono trovarsi.</span><span class="sxs-lookup"><span data-stu-id="f63db-147">An Azure File share contains at hello very least, a root directory where files can reside.</span></span> <span data-ttu-id="f63db-148">In questa sezione si apprenderà come tooupload un file dall'archiviazione locale su hello radice della directory di una condivisione.</span><span class="sxs-lookup"><span data-stu-id="f63db-148">In this section, you'll learn how tooupload a file from local storage onto hello root directory of a share.</span></span>
 
-<span data-ttu-id="a6c8f-149">Il primo passaggio del caricamento di un file consiste nell'ottenere un riferimento alla directory in cui risiederà.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-149">The first step in uploading a file is to obtain a reference to the directory where it should reside.</span></span> <span data-ttu-id="a6c8f-150">È possibile eseguire questa operazione chiamando il metodo **getRootDirectoryReference** dell'oggetto condivisione.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-150">You do this by calling the **getRootDirectoryReference** method of the share object.</span></span>
+<span data-ttu-id="f63db-149">Hello caricando un file è innanzitutto tooobtain una directory toohello di riferimento in cui risiede.</span><span class="sxs-lookup"><span data-stu-id="f63db-149">hello first step in uploading a file is tooobtain a reference toohello directory where it should reside.</span></span> <span data-ttu-id="f63db-150">A tale scopo, chiamata hello **getRootDirectoryReference** metodo dell'oggetto condivisione hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-150">You do this by calling hello **getRootDirectoryReference** method of hello share object.</span></span>
 
 ```java
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 CloudFileDirectory rootDir = share.getRootDirectoryReference();
 ```
 
-<span data-ttu-id="a6c8f-151">Ora che si dispone di un riferimento alla directory radice della condivisione, è possibile caricarvi un file mediante il codice seguente.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-151">Now that you have a reference to the root directory of the share, you can upload a file onto it using the following code.</span></span>
+<span data-ttu-id="f63db-151">Dopo aver creato una directory radice toohello di riferimento della condivisione di hello, è possibile caricare un file nel seguente codice hello.</span><span class="sxs-lookup"><span data-stu-id="f63db-151">Now that you have a reference toohello root directory of hello share, you can upload a file onto it using hello following code.</span></span>
 
 ```java
-        // Define the path to a local file.
+        // Define hello path tooa local file.
         final String filePath = "C:\\temp\\Readme.txt";
     
         CloudFile cloudFile = rootDir.getFileReference("Readme.txt");
         cloudFile.uploadFromFile(filePath);
 ```
 
-## <a name="download-a-file"></a><span data-ttu-id="a6c8f-152">Scaricare un file</span><span class="sxs-lookup"><span data-stu-id="a6c8f-152">Download a file</span></span>
-<span data-ttu-id="a6c8f-153">Una delle operazioni più frequenti che verranno eseguite in Archiviazione file di Azure consiste nello scaricare i file.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-153">One of the more frequent operations you will perform against Azure File storage is to download files.</span></span> <span data-ttu-id="a6c8f-154">Nell'esempio seguente, il codice scarica SampleFile.txt e ne visualizza il contenuto.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-154">In the following example, the code downloads SampleFile.txt and displays its contents.</span></span>
+## <a name="download-a-file"></a><span data-ttu-id="f63db-152">Scaricare un file</span><span class="sxs-lookup"><span data-stu-id="f63db-152">Download a file</span></span>
+<span data-ttu-id="f63db-153">Uno dei più frequente di operazioni eseguite nel servizio di archiviazione Azure File hello è file toodownload.</span><span class="sxs-lookup"><span data-stu-id="f63db-153">One of hello more frequent operations you will perform against Azure File storage is toodownload files.</span></span> <span data-ttu-id="f63db-154">Nell'esempio seguente di hello, codice hello Scarica samplefile. txt e visualizzarne il contenuto.</span><span class="sxs-lookup"><span data-stu-id="f63db-154">In hello following example, hello code downloads SampleFile.txt and displays its contents.</span></span>
 
 ```java
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 CloudFileDirectory rootDir = share.getRootDirectoryReference();
 
-//Get a reference to the directory that contains the file
+//Get a reference toohello directory that contains hello file
 CloudFileDirectory sampleDir = rootDir.getDirectoryReference("sampledir");
 
-//Get a reference to the file you want to download
+//Get a reference toohello file you want toodownload
 CloudFile file = sampleDir.getFileReference("SampleFile.txt");
 
-//Write the contents of the file to the console.
+//Write hello contents of hello file toohello console.
 System.out.println(file.downloadText());
 ```
 
-## <a name="delete-a-file"></a><span data-ttu-id="a6c8f-155">Eliminare un file</span><span class="sxs-lookup"><span data-stu-id="a6c8f-155">Delete a file</span></span>
-<span data-ttu-id="a6c8f-156">Un'altra operazione comune è l'eliminazione dei file.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-156">Another common Azure File storage operation is file deletion.</span></span> <span data-ttu-id="a6c8f-157">Il codice seguente elimina un file denominato SampleFile.txt memorizzato all'interno di una directory denominata **sampledir**.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-157">The following code deletes a file named SampleFile.txt stored inside a directory named **sampledir**.</span></span>
+## <a name="delete-a-file"></a><span data-ttu-id="f63db-155">Eliminare un file</span><span class="sxs-lookup"><span data-stu-id="f63db-155">Delete a file</span></span>
+<span data-ttu-id="f63db-156">Un'altra operazione comunemente eseguita nell'archiviazione file di Azure è l'eliminazione dei file.</span><span class="sxs-lookup"><span data-stu-id="f63db-156">Another common Azure File storage operation is file deletion.</span></span> <span data-ttu-id="f63db-157">il codice seguente Hello Elimina un file denominato samplefile. txt archiviati all'interno di una directory denominata **sampledir**.</span><span class="sxs-lookup"><span data-stu-id="f63db-157">hello following code deletes a file named SampleFile.txt stored inside a directory named **sampledir**.</span></span>
 
 ```java
-// Get a reference to the root directory for the share.
+// Get a reference toohello root directory for hello share.
 CloudFileDirectory rootDir = share.getRootDirectoryReference();
 
-// Get a reference to the directory where the file to be deleted is in
+// Get a reference toohello directory where hello file toobe deleted is in
 CloudFileDirectory containerDir = rootDir.getDirectoryReference("sampledir");
 
 String filename = "SampleFile.txt"
@@ -227,15 +227,15 @@ if ( file.deleteIfExists() ) {
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="a6c8f-158">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a6c8f-158">Next steps</span></span>
-<span data-ttu-id="a6c8f-159">Per ulteriori informazioni su altre API di archiviazione di Azure, seguire i collegamenti seguenti.</span><span class="sxs-lookup"><span data-stu-id="a6c8f-159">If you would like to learn more about other Azure storage APIs, follow these links.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f63db-158">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f63db-158">Next steps</span></span>
+<span data-ttu-id="f63db-159">Se si desidera toolearn ulteriori informazioni sulle altre API di archiviazione Azure, vedere i collegamenti seguenti.</span><span class="sxs-lookup"><span data-stu-id="f63db-159">If you would like toolearn more about other Azure storage APIs, follow these links.</span></span>
 
-* <span data-ttu-id="a6c8f-160">[Azure for Java developers](/java/azure) (Azure per sviluppatori Java)</span><span class="sxs-lookup"><span data-stu-id="a6c8f-160">[Azure for Java developers](/java/azure)/)</span></span>
-* [<span data-ttu-id="a6c8f-161">Azure Storage SDK per Java</span><span class="sxs-lookup"><span data-stu-id="a6c8f-161">Azure Storage SDK for Java</span></span>](https://github.com/azure/azure-storage-java)
-* [<span data-ttu-id="a6c8f-162">Azure Storage SDK per Android</span><span class="sxs-lookup"><span data-stu-id="a6c8f-162">Azure Storage SDK for Android</span></span>](https://github.com/azure/azure-storage-android)
-* [<span data-ttu-id="a6c8f-163">Riferimento all'SDK del client di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-163">Azure Storage Client SDK Reference</span></span>](http://dl.windowsazure.com/storage/javadoc/)
-* [<span data-ttu-id="a6c8f-164">API REST dei servizi di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-164">Azure Storage Services REST API</span></span>](https://msdn.microsoft.com/library/azure/dd179355.aspx)
-* [<span data-ttu-id="a6c8f-165">Blog del team di Archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="a6c8f-165">Azure Storage Team Blog</span></span>](http://blogs.msdn.com/b/windowsazurestorage/)
-* <span data-ttu-id="a6c8f-166">[Trasferire dati con l'utilità della riga di comando AzCopy](../common/storage-use-azcopy.md* [Troubleshooting Azure File storage problems - Windows](storage-troubleshoot-windows-file-connection-problems.md)
-)</span><span class="sxs-lookup"><span data-stu-id="a6c8f-166">[Transfer data with the AzCopy Command-Line Utility](../common/storage-use-azcopy.md* [Troubleshooting Azure File storage problems - Windows](storage-troubleshoot-windows-file-connection-problems.md)
+* <span data-ttu-id="f63db-160">[Azure for Java developers](/java/azure) (Azure per sviluppatori Java)</span><span class="sxs-lookup"><span data-stu-id="f63db-160">[Azure for Java developers](/java/azure)/)</span></span>
+* [<span data-ttu-id="f63db-161">Azure Storage SDK per Java</span><span class="sxs-lookup"><span data-stu-id="f63db-161">Azure Storage SDK for Java</span></span>](https://github.com/azure/azure-storage-java)
+* [<span data-ttu-id="f63db-162">Azure Storage SDK per Android</span><span class="sxs-lookup"><span data-stu-id="f63db-162">Azure Storage SDK for Android</span></span>](https://github.com/azure/azure-storage-android)
+* [<span data-ttu-id="f63db-163">Riferimento all'SDK del client di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-163">Azure Storage Client SDK Reference</span></span>](http://dl.windowsazure.com/storage/javadoc/)
+* [<span data-ttu-id="f63db-164">API REST dei servizi di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-164">Azure Storage Services REST API</span></span>](https://msdn.microsoft.com/library/azure/dd179355.aspx)
+* [<span data-ttu-id="f63db-165">Blog del team di Archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="f63db-165">Azure Storage Team Blog</span></span>](http://blogs.msdn.com/b/windowsazurestorage/)
+* <span data-ttu-id="f63db-166">[Trasferimento dati con l'utilità della riga di comando di AzCopy hello](../common/storage-use-azcopy.md* [Troubleshooting Azure File storage problems - Windows](storage-troubleshoot-windows-file-connection-problems.md)
+)</span><span class="sxs-lookup"><span data-stu-id="f63db-166">[Transfer data with hello AzCopy Command-Line Utility](../common/storage-use-azcopy.md* [Troubleshooting Azure File storage problems - Windows](storage-troubleshoot-windows-file-connection-problems.md)
 )</span></span>

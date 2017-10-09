@@ -1,0 +1,2 @@
+> [!IMPORTANT]
+> <span data-ttu-id="268aa-101">Prima di lavorare con le risorse di Azure, acquisire familiarità con i modelli di distribuzione hello: [Resource Manager e classica](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="268aa-101">Before you work with Azure resources, get familiar with hello deployment models: [Resource Manager, and classic](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span></span>

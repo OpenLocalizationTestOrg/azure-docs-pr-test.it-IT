@@ -1,0 +1,10 @@
+
+| <span data-ttu-id="e9ca6-101">Opzioni di calcolo</span><span class="sxs-lookup"><span data-stu-id="e9ca6-101">Compute Options</span></span> | <span data-ttu-id="e9ca6-102">Audience</span><span class="sxs-lookup"><span data-stu-id="e9ca6-102">Audience</span></span> |
+| --- | --- |
+| <span data-ttu-id="e9ca6-103">[Servizio app][lnk_app]</span><span class="sxs-lookup"><span data-stu-id="e9ca6-103">[App Service][lnk_app]</span></span> |<span data-ttu-id="e9ca6-104">App per dispositivi mobili, app per le API, app per la logica e app Web scalabili per qualsiasi dispositivo</span><span class="sxs-lookup"><span data-stu-id="e9ca6-104">Scalable Web Apps, Mobile Apps, API Apps, and Logic Apps for any device</span></span> |
+| <span data-ttu-id="e9ca6-105">[Servizi cloud][lnk_cloud]</span><span class="sxs-lookup"><span data-stu-id="e9ca6-105">[Cloud Services][lnk_cloud]</span></span> |<span data-ttu-id="e9ca6-106">App cloud a livelli a disponibilità elevata, scalabili con maggiore controllo dei hello del sistema operativo</span><span class="sxs-lookup"><span data-stu-id="e9ca6-106">Highly available, scalable n-tier cloud apps with more control of hello OS</span></span> |
+| <span data-ttu-id="e9ca6-107">[Macchine virtuali][lnk_vm]</span><span class="sxs-lookup"><span data-stu-id="e9ca6-107">[Virtual Machines][lnk_vm]</span></span> |<span data-ttu-id="e9ca6-108">Personalizzate di Windows e le macchine virtuali Linux con il controllo completo di hello del sistema operativo</span><span class="sxs-lookup"><span data-stu-id="e9ca6-108">Customized Windows and Linux VMs with complete control of hello OS</span></span> |
+
+[lnk_app]: ../articles/app-service-web/app-service-web-overview.md
+[lnk_vm]:../articles/virtual-machines/windows/overview.md
+[lnk_cloud]: ../articles/cloud-services/cloud-services-choose-me.md

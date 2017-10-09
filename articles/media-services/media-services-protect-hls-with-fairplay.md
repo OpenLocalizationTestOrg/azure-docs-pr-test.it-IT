@@ -1,6 +1,6 @@
 ---
-title: Proteggere il contenuto HLS con Microsoft PlayReady o con Apple FairPlay | Documentazione Microsoft
-description: Questo argomento offre una panoramica su come usare Servizi multimediali di Azure per crittografare dinamicamente il contenuto HTTP Live Streaming (HLS) con Apple FairPlay. Viene anche illustrato come usare il servizio di distribuzione delle licenze di Servizi multimediali per distribuire le licenze FairPlay ai client.
+title: aaaProtect del contenuto HLS con Microsoft PlayReady o Apple FairPlay - Azure | Documenti Microsoft
+description: Questo argomento viene fornita una panoramica e illustra come crittografare i contenuti FairPlay Apple HTTP Live Streaming (HLS) toouse toodynamically di servizi multimediali di Azure. Viene inoltre illustrato come toouse hello servizi multimediali di licenza del servizio di recapito toodeliver tooclients licenze FairPlay.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,152 +14,152 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 895d6307b1cef74e195cc2ffd8dbef4196e97b1f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 91ca451e3e7bf0da1d74dac4c99180f08f39e4ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="protect-your-hls-content-with-apple-fairplay-or-microsoft-playready"></a><span data-ttu-id="b5c11-104">Proteggere il contenuto HLS con Apple FairPlay o Microsoft PlayReady</span><span class="sxs-lookup"><span data-stu-id="b5c11-104">Protect your HLS content with Apple FairPlay or Microsoft PlayReady</span></span>
-<span data-ttu-id="b5c11-105">Servizi multimediali di Azure consente di crittografare dinamicamente il contenuto di HTTP Live Streaming (HLS) usando i formati seguenti:</span><span class="sxs-lookup"><span data-stu-id="b5c11-105">Azure Media Services enables you to dynamically encrypt your HTTP Live Streaming (HLS) content by using the following formats:</span></span>  
+# <a name="protect-your-hls-content-with-apple-fairplay-or-microsoft-playready"></a><span data-ttu-id="6db13-104">Proteggere il contenuto HLS con Apple FairPlay o Microsoft PlayReady</span><span class="sxs-lookup"><span data-stu-id="6db13-104">Protect your HLS content with Apple FairPlay or Microsoft PlayReady</span></span>
+<span data-ttu-id="6db13-105">Azure consente di servizi multimediali è toodynamically crittografare il contenuto HTTP Live Streaming (HLS) tramite hello seguenti formati:</span><span class="sxs-lookup"><span data-stu-id="6db13-105">Azure Media Services enables you toodynamically encrypt your HTTP Live Streaming (HLS) content by using hello following formats:</span></span>  
 
-* <span data-ttu-id="b5c11-106">**Chiave envelope non crittografata AES-128**</span><span class="sxs-lookup"><span data-stu-id="b5c11-106">**AES-128 envelope clear key**</span></span>
+* <span data-ttu-id="6db13-106">**Chiave envelope non crittografata AES-128**</span><span class="sxs-lookup"><span data-stu-id="6db13-106">**AES-128 envelope clear key**</span></span>
 
-    <span data-ttu-id="b5c11-107">L'intero blocco viene crittografato usando la modalità **AES-128 CBC**.</span><span class="sxs-lookup"><span data-stu-id="b5c11-107">The entire chunk is encrypted by using the **AES-128 CBC** mode.</span></span> <span data-ttu-id="b5c11-108">La decrittografia del flusso è supportata dai lettori iOS e OSX in modo nativo.</span><span class="sxs-lookup"><span data-stu-id="b5c11-108">The decryption of the stream is supported by iOS and OS X player natively.</span></span> <span data-ttu-id="b5c11-109">Per altre informazioni, vedere [Uso della crittografia dinamica AES-128 e del servizio di distribuzione delle chiavi](media-services-protect-with-aes128.md).</span><span class="sxs-lookup"><span data-stu-id="b5c11-109">For more information, see [Using AES-128 dynamic encryption and key delivery service](media-services-protect-with-aes128.md).</span></span>
-* <span data-ttu-id="b5c11-110">**Apple FairPlay**</span><span class="sxs-lookup"><span data-stu-id="b5c11-110">**Apple FairPlay**</span></span>
+    <span data-ttu-id="6db13-107">Hello intero blocco verrà crittografato tramite hello **CBC AES-128** modalità.</span><span class="sxs-lookup"><span data-stu-id="6db13-107">hello entire chunk is encrypted by using hello **AES-128 CBC** mode.</span></span> <span data-ttu-id="6db13-108">decrittografia di Hello del flusso di hello è supportata da iOS e Windows Media player OS X in modo nativo.</span><span class="sxs-lookup"><span data-stu-id="6db13-108">hello decryption of hello stream is supported by iOS and OS X player natively.</span></span> <span data-ttu-id="6db13-109">Per altre informazioni, vedere [Uso della crittografia dinamica AES-128 e del servizio di distribuzione delle chiavi](media-services-protect-with-aes128.md).</span><span class="sxs-lookup"><span data-stu-id="6db13-109">For more information, see [Using AES-128 dynamic encryption and key delivery service](media-services-protect-with-aes128.md).</span></span>
+* <span data-ttu-id="6db13-110">**Apple FairPlay**</span><span class="sxs-lookup"><span data-stu-id="6db13-110">**Apple FairPlay**</span></span>
 
-    <span data-ttu-id="b5c11-111">I singoli campioni audio e video vengono crittografati con la modalità **AES-128 CBC**.</span><span class="sxs-lookup"><span data-stu-id="b5c11-111">The individual video and audio samples are encrypted by using the **AES-128 CBC** mode.</span></span> <span data-ttu-id="b5c11-112">**FairPlay Streaming** (FPS) è integrato nei sistemi operativi dei dispositivi, con supporto nativo per iOS e Apple TV.</span><span class="sxs-lookup"><span data-stu-id="b5c11-112">**FairPlay Streaming** (FPS) is integrated into the device operating systems, with native support on iOS and Apple TV.</span></span> <span data-ttu-id="b5c11-113">Safari su OS X abilita FPS con il supporto dell'interfaccia EME (Encrypted Media Extensions).</span><span class="sxs-lookup"><span data-stu-id="b5c11-113">Safari on OS X enables FPS by using the Encrypted Media Extensions (EME) interface support.</span></span>
-* <span data-ttu-id="b5c11-114">**Microsoft PlayReady**</span><span class="sxs-lookup"><span data-stu-id="b5c11-114">**Microsoft PlayReady**</span></span>
+    <span data-ttu-id="6db13-111">Hello singolo video e audio esempi vengono crittografati tramite hello **CBC AES-128** modalità.</span><span class="sxs-lookup"><span data-stu-id="6db13-111">hello individual video and audio samples are encrypted by using hello **AES-128 CBC** mode.</span></span> <span data-ttu-id="6db13-112">**Streaming FairPlay** (FPS) è integrato nei sistemi operativi per dispositivi hello, con il supporto nativo in iOS e Apple TV.</span><span class="sxs-lookup"><span data-stu-id="6db13-112">**FairPlay Streaming** (FPS) is integrated into hello device operating systems, with native support on iOS and Apple TV.</span></span> <span data-ttu-id="6db13-113">Safari su OS X consente FPS usando il supporto di interfaccia di hello crittografati supporti le estensioni (EME).</span><span class="sxs-lookup"><span data-stu-id="6db13-113">Safari on OS X enables FPS by using hello Encrypted Media Extensions (EME) interface support.</span></span>
+* <span data-ttu-id="6db13-114">**Microsoft PlayReady**</span><span class="sxs-lookup"><span data-stu-id="6db13-114">**Microsoft PlayReady**</span></span>
 
-<span data-ttu-id="b5c11-115">L'immagine seguente illustra il flusso di lavoro della **crittografia dinamica HLS + FairPlay o PlayReady**.</span><span class="sxs-lookup"><span data-stu-id="b5c11-115">The following image shows the **HLS + FairPlay or PlayReady dynamic encryption** workflow.</span></span>
+<span data-ttu-id="6db13-115">Hello immagine seguente viene illustrato hello **HLS + FairPlay o PlayReady crittografia dinamica** flusso di lavoro.</span><span class="sxs-lookup"><span data-stu-id="6db13-115">hello following image shows hello **HLS + FairPlay or PlayReady dynamic encryption** workflow.</span></span>
 
 ![Diagramma del flusso di lavoro della crittografia dinamica](./media/media-services-content-protection-overview/media-services-content-protection-with-fairplay.png)
 
-<span data-ttu-id="b5c11-117">Questo argomento illustra come usare Servizi multimediali per crittografare dinamicamente il contenuto HLS con Apple FairPlay.</span><span class="sxs-lookup"><span data-stu-id="b5c11-117">This topic demonstrates how to use Media Services to dynamically encrypt your HLS content with Apple FairPlay.</span></span> <span data-ttu-id="b5c11-118">Viene anche illustrato come usare il servizio di distribuzione delle licenze di Servizi multimediali per distribuire le licenze FairPlay ai client.</span><span class="sxs-lookup"><span data-stu-id="b5c11-118">It also shows how to use the Media Services license delivery service to deliver FairPlay licenses to clients.</span></span>
+<span data-ttu-id="6db13-117">In questo argomento viene illustrato come crittografare il contenuto HLS con Apple FairPlay i toouse toodynamically di servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="6db13-117">This topic demonstrates how toouse Media Services toodynamically encrypt your HLS content with Apple FairPlay.</span></span> <span data-ttu-id="6db13-118">Viene inoltre illustrato come toouse hello servizi multimediali di licenza del servizio di recapito toodeliver tooclients licenze FairPlay.</span><span class="sxs-lookup"><span data-stu-id="6db13-118">It also shows how toouse hello Media Services license delivery service toodeliver FairPlay licenses tooclients.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b5c11-119">Se si vuole crittografare anche il contenuto HLS con PlayReady, è necessario creare una chiave di contenuto comune e associarla all'asset.</span><span class="sxs-lookup"><span data-stu-id="b5c11-119">If you also want to encrypt your HLS content with PlayReady, you need to create a common content key and associate it with your asset.</span></span> <span data-ttu-id="b5c11-120">È anche necessario configurare i criteri di autorizzazione della chiave simmetrica, come descritto in [Uso della crittografia comune dinamica PlayReady](media-services-protect-with-drm.md).</span><span class="sxs-lookup"><span data-stu-id="b5c11-120">You also need to configure the content key’s authorization policy, as described in [Using PlayReady dynamic common encryption](media-services-protect-with-drm.md).</span></span>
+> <span data-ttu-id="6db13-119">Se si desidera tooencrypt il contenuto HLS contenuto con PlayReady, è necessario toocreate una chiave simmetrica comune e associarlo all'asset.</span><span class="sxs-lookup"><span data-stu-id="6db13-119">If you also want tooencrypt your HLS content with PlayReady, you need toocreate a common content key and associate it with your asset.</span></span> <span data-ttu-id="6db13-120">È inoltre necessario criteri di autorizzazione tooconfigure hello della chiave simmetrica, come descritto in [PlayReady usando la crittografia dinamica comune](media-services-protect-with-drm.md).</span><span class="sxs-lookup"><span data-stu-id="6db13-120">You also need tooconfigure hello content key’s authorization policy, as described in [Using PlayReady dynamic common encryption](media-services-protect-with-drm.md).</span></span>
 >
 >
 
-## <a name="requirements-and-considerations"></a><span data-ttu-id="b5c11-121">Problemi e considerazioni</span><span class="sxs-lookup"><span data-stu-id="b5c11-121">Requirements and considerations</span></span>
+## <a name="requirements-and-considerations"></a><span data-ttu-id="6db13-121">Problemi e considerazioni</span><span class="sxs-lookup"><span data-stu-id="6db13-121">Requirements and considerations</span></span>
 
-<span data-ttu-id="b5c11-122">Se si usa Servizi multimediali per distribuire contenuto HLS crittografato con FairPlay e per distribuire licenze FairPlay, è necessario:</span><span class="sxs-lookup"><span data-stu-id="b5c11-122">The following are required when using Media Services to deliver HLS encrypted with FairPlay, and to deliver FairPlay licenses:</span></span>
+<span data-ttu-id="6db13-122">di seguito Hello sono necessarie quando si usa servizi multimediali toodeliver che HLS crittografato con FairPlay e licenze FairPlay toodeliver:</span><span class="sxs-lookup"><span data-stu-id="6db13-122">hello following are required when using Media Services toodeliver HLS encrypted with FairPlay, and toodeliver FairPlay licenses:</span></span>
 
-  * <span data-ttu-id="b5c11-123">Un account Azure.</span><span class="sxs-lookup"><span data-stu-id="b5c11-123">An Azure account.</span></span> <span data-ttu-id="b5c11-124">Per informazioni dettagliate, vedere la pagina relativa alla [versione di prova gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).</span><span class="sxs-lookup"><span data-stu-id="b5c11-124">For details, see [Azure free trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).</span></span>
-  * <span data-ttu-id="b5c11-125">Account di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="b5c11-125">A Media Services account.</span></span> <span data-ttu-id="b5c11-126">Per crearne uno, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).</span><span class="sxs-lookup"><span data-stu-id="b5c11-126">To create one, see [Create an Azure Media Services account using the Azure portal](media-services-portal-create-account.md).</span></span>
-  * <span data-ttu-id="b5c11-127">Eseguire l'iscrizione all' [Apple Development Program](https://developer.apple.com/).</span><span class="sxs-lookup"><span data-stu-id="b5c11-127">Sign up with [Apple Development Program](https://developer.apple.com/).</span></span>
-  * <span data-ttu-id="b5c11-128">Apple richiede che il proprietario del contenuto ottenga il [pacchetto di distribuzione](https://developer.apple.com/contact/fps/).</span><span class="sxs-lookup"><span data-stu-id="b5c11-128">Apple requires the content owner to obtain the [deployment package](https://developer.apple.com/contact/fps/).</span></span> <span data-ttu-id="b5c11-129">Indicare che è già stato implementato il modulo KSM (Key Security Module) con Servizi multimediali e che si sta richiedendo il pacchetto FPS finale.</span><span class="sxs-lookup"><span data-stu-id="b5c11-129">State that you already implemented Key Security Module (KSM) with Media Services, and that you are requesting the final FPS package.</span></span> <span data-ttu-id="b5c11-130">Il pacchetto FPS finale contiene istruzioni per generare la certificazione e ottenere la chiave privata dell'applicazione,</span><span class="sxs-lookup"><span data-stu-id="b5c11-130">There are instructions in the final FPS package to generate certification and obtain the Application Secret Key (ASK).</span></span> <span data-ttu-id="b5c11-131">che verrà usata per configurare FairPlay.</span><span class="sxs-lookup"><span data-stu-id="b5c11-131">You use ASK to configure FairPlay.</span></span>
-  * <span data-ttu-id="b5c11-132">Azure Media Services .NET SDK versione **3.6.0** o successiva.</span><span class="sxs-lookup"><span data-stu-id="b5c11-132">Azure Media Services .NET SDK version **3.6.0** or later.</span></span>
+  * <span data-ttu-id="6db13-123">Un account Azure.</span><span class="sxs-lookup"><span data-stu-id="6db13-123">An Azure account.</span></span> <span data-ttu-id="6db13-124">Per informazioni dettagliate, vedere la pagina relativa alla [versione di prova gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).</span><span class="sxs-lookup"><span data-stu-id="6db13-124">For details, see [Azure free trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).</span></span>
+  * <span data-ttu-id="6db13-125">Account di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="6db13-125">A Media Services account.</span></span> <span data-ttu-id="6db13-126">toocreate uno, vedere [creare un account di servizi multimediali di Azure tramite il portale di Azure hello](media-services-portal-create-account.md).</span><span class="sxs-lookup"><span data-stu-id="6db13-126">toocreate one, see [Create an Azure Media Services account using hello Azure portal](media-services-portal-create-account.md).</span></span>
+  * <span data-ttu-id="6db13-127">Eseguire l'iscrizione all' [Apple Development Program](https://developer.apple.com/).</span><span class="sxs-lookup"><span data-stu-id="6db13-127">Sign up with [Apple Development Program](https://developer.apple.com/).</span></span>
+  * <span data-ttu-id="6db13-128">Apple richiede hello tooobtain proprietario del contenuto di hello [pacchetto di distribuzione](https://developer.apple.com/contact/fps/).</span><span class="sxs-lookup"><span data-stu-id="6db13-128">Apple requires hello content owner tooobtain hello [deployment package](https://developer.apple.com/contact/fps/).</span></span> <span data-ttu-id="6db13-129">Stato che già stata implementata chiave protezione modulo (KSM) con servizi multimediali e che si sta richiedendo pacchetto FPS finale hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-129">State that you already implemented Key Security Module (KSM) with Media Services, and that you are requesting hello final FPS package.</span></span> <span data-ttu-id="6db13-130">Sono disponibili istruzioni hello FPS finale pacchetto certificazione toogenerate e ottenere hello chiave segreto applicazione (ricerca).</span><span class="sxs-lookup"><span data-stu-id="6db13-130">There are instructions in hello final FPS package toogenerate certification and obtain hello Application Secret Key (ASK).</span></span> <span data-ttu-id="6db13-131">Consente di chiedere tooconfigure FairPlay.</span><span class="sxs-lookup"><span data-stu-id="6db13-131">You use ASK tooconfigure FairPlay.</span></span>
+  * <span data-ttu-id="6db13-132">Azure Media Services .NET SDK versione **3.6.0** o successiva.</span><span class="sxs-lookup"><span data-stu-id="6db13-132">Azure Media Services .NET SDK version **3.6.0** or later.</span></span>
 
-<span data-ttu-id="b5c11-133">È necessario impostare quanto segue in aggiunta alla distribuzione delle chiavi di Servizi multimediali:</span><span class="sxs-lookup"><span data-stu-id="b5c11-133">The following things must be set on Media Services key delivery side:</span></span>
+<span data-ttu-id="6db13-133">sul lato di distribuzione delle chiavi di servizi multimediali, è necessario impostare Hello seguenti operazioni:</span><span class="sxs-lookup"><span data-stu-id="6db13-133">hello following things must be set on Media Services key delivery side:</span></span>
 
-  * <span data-ttu-id="b5c11-134">**App Cert (AC)**: file con estensione pfx contenente la chiave privata.</span><span class="sxs-lookup"><span data-stu-id="b5c11-134">**App Cert (AC)**: This is a .pfx file that contains the private key.</span></span> <span data-ttu-id="b5c11-135">Creare il file e crittografarlo con una password.</span><span class="sxs-lookup"><span data-stu-id="b5c11-135">You create this file and encrypt it with a password.</span></span>
+  * <span data-ttu-id="6db13-134">**App del certificato (CA)**: si tratta di un file con estensione pfx che contiene la chiave privata di hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-134">**App Cert (AC)**: This is a .pfx file that contains hello private key.</span></span> <span data-ttu-id="6db13-135">Creare il file e crittografarlo con una password.</span><span class="sxs-lookup"><span data-stu-id="6db13-135">You create this file and encrypt it with a password.</span></span>
 
-       <span data-ttu-id="b5c11-136">Quando si configurano i criteri di distribuzione delle chiavi, è necessario specificare la password e il file pfx in formato Base64.</span><span class="sxs-lookup"><span data-stu-id="b5c11-136">When you configure a key delivery policy, you must provide that password and the .pfx file in Base64 format.</span></span>
+       <span data-ttu-id="6db13-136">Quando si configura un criterio di distribuzione delle chiavi, è necessario fornire il file con estensione pfx hello e password in formato base 64.</span><span class="sxs-lookup"><span data-stu-id="6db13-136">When you configure a key delivery policy, you must provide that password and hello .pfx file in Base64 format.</span></span>
 
-      <span data-ttu-id="b5c11-137">La procedura seguente descrive come generare un file di certificato pfx per FairPlay:</span><span class="sxs-lookup"><span data-stu-id="b5c11-137">The following steps describe how to generate a .pfx certificate file for FairPlay:</span></span>
+      <span data-ttu-id="6db13-137">Hello alla procedura seguente viene descritto come file di toogenerate un certificato PFX per FairPlay:</span><span class="sxs-lookup"><span data-stu-id="6db13-137">hello following steps describe how toogenerate a .pfx certificate file for FairPlay:</span></span>
 
-    1. <span data-ttu-id="b5c11-138">Installare OpenSSL da https://slproweb.com/products/Win32OpenSSL.html.</span><span class="sxs-lookup"><span data-stu-id="b5c11-138">Install OpenSSL from https://slproweb.com/products/Win32OpenSSL.html.</span></span>
+    1. <span data-ttu-id="6db13-138">Installare OpenSSL da https://slproweb.com/products/Win32OpenSSL.html.</span><span class="sxs-lookup"><span data-stu-id="6db13-138">Install OpenSSL from https://slproweb.com/products/Win32OpenSSL.html.</span></span>
 
-        <span data-ttu-id="b5c11-139">Passare alla cartella contenente il certificato FairPlay e altri file forniti da Apple.</span><span class="sxs-lookup"><span data-stu-id="b5c11-139">Go to the folder where the FairPlay certificate and other files delivered by Apple are.</span></span>
-    2. <span data-ttu-id="b5c11-140">Eseguire il comando seguente dalla riga di comando.</span><span class="sxs-lookup"><span data-stu-id="b5c11-140">Run the following command from the command line.</span></span> <span data-ttu-id="b5c11-141">Il comando converte il file con estensione cer in un file con estensione pem.</span><span class="sxs-lookup"><span data-stu-id="b5c11-141">This converts the .cer file to a .pem file.</span></span>
+        <span data-ttu-id="6db13-139">Passare toohello cartella in cui il certificato di FairPlay hello e altri file recapitati da Apple.</span><span class="sxs-lookup"><span data-stu-id="6db13-139">Go toohello folder where hello FairPlay certificate and other files delivered by Apple are.</span></span>
+    2. <span data-ttu-id="6db13-140">Eseguire hello comando seguente dalla riga di comando hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-140">Run hello following command from hello command line.</span></span> <span data-ttu-id="6db13-141">Consente di convertire il file con estensione PEM tooa di hello. cer file.</span><span class="sxs-lookup"><span data-stu-id="6db13-141">This converts hello .cer file tooa .pem file.</span></span>
 
-        <span data-ttu-id="b5c11-142">"C:\OpenSSL-Win32\bin\openssl.exe" x509 -inform der -in fairplay.cer -out fairplay-out.pem</span><span class="sxs-lookup"><span data-stu-id="b5c11-142">"C:\OpenSSL-Win32\bin\openssl.exe" x509 -inform der -in fairplay.cer -out fairplay-out.pem</span></span>
-    3. <span data-ttu-id="b5c11-143">Eseguire il comando seguente dalla riga di comando.</span><span class="sxs-lookup"><span data-stu-id="b5c11-143">Run the following command from the command line.</span></span> <span data-ttu-id="b5c11-144">Questo comando converte il file con estensione pem in un file con estensione pfx con la chiave privata.</span><span class="sxs-lookup"><span data-stu-id="b5c11-144">This converts the .pem file to a .pfx file with the private key.</span></span> <span data-ttu-id="b5c11-145">La password per il file con estensione pfx viene quindi richiesta da OpenSSL.</span><span class="sxs-lookup"><span data-stu-id="b5c11-145">The password for the .pfx file is then asked by OpenSSL.</span></span>
+        <span data-ttu-id="6db13-142">"C:\OpenSSL-Win32\bin\openssl.exe" x509 -inform der -in fairplay.cer -out fairplay-out.pem</span><span class="sxs-lookup"><span data-stu-id="6db13-142">"C:\OpenSSL-Win32\bin\openssl.exe" x509 -inform der -in fairplay.cer -out fairplay-out.pem</span></span>
+    3. <span data-ttu-id="6db13-143">Eseguire hello comando seguente dalla riga di comando hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-143">Run hello following command from hello command line.</span></span> <span data-ttu-id="6db13-144">Consente di convertire file con estensione pfx tooa file con estensione PEM hello con la chiave privata di hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-144">This converts hello .pem file tooa .pfx file with hello private key.</span></span> <span data-ttu-id="6db13-145">password Hello per file con estensione pfx hello viene quindi richiesto da OpenSSL.</span><span class="sxs-lookup"><span data-stu-id="6db13-145">hello password for hello .pfx file is then asked by OpenSSL.</span></span>
 
-        <span data-ttu-id="b5c11-146">"C:\OpenSSL-Win32\bin\openssl.exe" pkcs12 -export -out fairplay-out.pfx -inkey privatekey.pem -in fairplay-out.pem -passin file:privatekey-pem-pass.txt</span><span class="sxs-lookup"><span data-stu-id="b5c11-146">"C:\OpenSSL-Win32\bin\openssl.exe" pkcs12 -export -out fairplay-out.pfx -inkey privatekey.pem -in fairplay-out.pem -passin file:privatekey-pem-pass.txt</span></span>
-  * <span data-ttu-id="b5c11-147">**App Cert password**: password del cliente per creare il file con estensione pfx.</span><span class="sxs-lookup"><span data-stu-id="b5c11-147">**App Cert password**: The password for creating the .pfx file.</span></span>
-  * <span data-ttu-id="b5c11-148">**App Cert password ID**: è necessario caricare la password con una procedura simile a quella usata per caricare le altre chiavi di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="b5c11-148">**App Cert password ID**: You must upload the password, similar to how they upload other Media Services keys.</span></span> <span data-ttu-id="b5c11-149">Usare il valore di enumerazione **ContentKeyType.FairPlayPfxPassword** per ottenere l'ID di Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="b5c11-149">Use the **ContentKeyType.FairPlayPfxPassword** enum value to get the Media Services ID.</span></span> <span data-ttu-id="b5c11-150">Questo valore è necessario nell'opzione dei criteri di distribuzione delle chiavi.</span><span class="sxs-lookup"><span data-stu-id="b5c11-150">This is what they need to use inside the key delivery policy option.</span></span>
-  * <span data-ttu-id="b5c11-151">**iv**: valore casuale di 16 byte</span><span class="sxs-lookup"><span data-stu-id="b5c11-151">**iv**: This is a random value of 16 bytes.</span></span> <span data-ttu-id="b5c11-152">che deve corrispondere al valore iv nei criteri di distribuzione dell'asset.</span><span class="sxs-lookup"><span data-stu-id="b5c11-152">It must match the iv in the asset delivery policy.</span></span> <span data-ttu-id="b5c11-153">Si genera l'iv e lo inserisce sia nei criteri di distribuzione dell'asset che nell'opzione dei criteri di distribuzione delle chiavi.</span><span class="sxs-lookup"><span data-stu-id="b5c11-153">You generate the iv, and put it in both places: the asset delivery policy and the key delivery policy option.</span></span>
-  * <span data-ttu-id="b5c11-154">**ASK**: chiave ricevuta quando si genera la certificazione usando il portale Apple Developer.</span><span class="sxs-lookup"><span data-stu-id="b5c11-154">**ASK**: This key is received when you generate the certification by using the Apple Developer portal.</span></span> <span data-ttu-id="b5c11-155">Ogni team di sviluppo riceve una chiave ASK univoca.</span><span class="sxs-lookup"><span data-stu-id="b5c11-155">Each development team will receive a unique ASK.</span></span> <span data-ttu-id="b5c11-156">Salvare una copia della chiave ASK e archiviarla in un luogo sicuro.</span><span class="sxs-lookup"><span data-stu-id="b5c11-156">Save a copy of the ASK, and store it in a safe place.</span></span> <span data-ttu-id="b5c11-157">Successivamente sarà necessario configurare la chiave ASK come FairPlayAsk in Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="b5c11-157">You will need to configure ASK as FairPlayAsk to Media Services later.</span></span>
-  * <span data-ttu-id="b5c11-158">**ID ASK**: ID ottenuto quando si carica la chiave privata dell'applicazione in Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="b5c11-158">**ASK ID**: This ID is obtained when you upload ASK into Media Services.</span></span> <span data-ttu-id="b5c11-159">È necessario caricare la chiave privata dell'applicazione usando il valore di enumerazione **ContentKeyType.FairPlayASk**.</span><span class="sxs-lookup"><span data-stu-id="b5c11-159">You must upload ASK by using the **ContentKeyType.FairPlayAsk** enum value.</span></span> <span data-ttu-id="b5c11-160">Verrà restituito l'ID di Servizi multimediali che dovrà essere usato per impostare l'opzione dei criteri di distribuzione delle chiavi.</span><span class="sxs-lookup"><span data-stu-id="b5c11-160">As the result, the Media Services ID is returned, and this is what should be used when setting the key delivery policy option.</span></span>
+        <span data-ttu-id="6db13-146">"C:\OpenSSL-Win32\bin\openssl.exe" pkcs12 -export -out fairplay-out.pfx -inkey privatekey.pem -in fairplay-out.pem -passin file:privatekey-pem-pass.txt</span><span class="sxs-lookup"><span data-stu-id="6db13-146">"C:\OpenSSL-Win32\bin\openssl.exe" pkcs12 -export -out fairplay-out.pfx -inkey privatekey.pem -in fairplay-out.pem -passin file:privatekey-pem-pass.txt</span></span>
+  * <span data-ttu-id="6db13-147">**La password del certificato app**: password hello per la creazione di file con estensione pfx hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-147">**App Cert password**: hello password for creating hello .pfx file.</span></span>
+  * <span data-ttu-id="6db13-148">**ID della password di App Cert**: È necessario caricare password hello, toohow simile caricamento altre chiavi di servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="6db13-148">**App Cert password ID**: You must upload hello password, similar toohow they upload other Media Services keys.</span></span> <span data-ttu-id="6db13-149">Hello utilizzare **ContentKeyType.FairPlayPfxPassword** hello tooget valore di enumerazione ID servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="6db13-149">Use hello **ContentKeyType.FairPlayPfxPassword** enum value tooget hello Media Services ID.</span></span> <span data-ttu-id="6db13-150">Questo è ciò che richiedono toouse all'interno di opzione del criterio hello distribuzione delle chiavi.</span><span class="sxs-lookup"><span data-stu-id="6db13-150">This is what they need toouse inside hello key delivery policy option.</span></span>
+  * <span data-ttu-id="6db13-151">**iv**: valore casuale di 16 byte</span><span class="sxs-lookup"><span data-stu-id="6db13-151">**iv**: This is a random value of 16 bytes.</span></span> <span data-ttu-id="6db13-152">Deve corrispondere hello iv in Criteri di distribuzione di asset hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-152">It must match hello iv in hello asset delivery policy.</span></span> <span data-ttu-id="6db13-153">Generare hello iv e inserirlo in entrambe le posizioni: criteri di distribuzione di asset hello e l'opzione criteri di distribuzione delle chiavi hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-153">You generate hello iv, and put it in both places: hello asset delivery policy and hello key delivery policy option.</span></span>
+  * <span data-ttu-id="6db13-154">**CHIEDERE**: questa chiave viene ricevuta quando si genera certificazione hello tramite hello Apple Developer portal.</span><span class="sxs-lookup"><span data-stu-id="6db13-154">**ASK**: This key is received when you generate hello certification by using hello Apple Developer portal.</span></span> <span data-ttu-id="6db13-155">Ogni team di sviluppo riceve una chiave ASK univoca.</span><span class="sxs-lookup"><span data-stu-id="6db13-155">Each development team will receive a unique ASK.</span></span> <span data-ttu-id="6db13-156">Salvare una copia di hello chiedere e archiviarlo in un luogo sicuro.</span><span class="sxs-lookup"><span data-stu-id="6db13-156">Save a copy of hello ASK, and store it in a safe place.</span></span> <span data-ttu-id="6db13-157">È necessario chiedere tooconfigure come FairPlayAsk tooMedia servizi in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="6db13-157">You will need tooconfigure ASK as FairPlayAsk tooMedia Services later.</span></span>
+  * <span data-ttu-id="6db13-158">**ID ASK**: ID ottenuto quando si carica la chiave privata dell'applicazione in Servizi multimediali.</span><span class="sxs-lookup"><span data-stu-id="6db13-158">**ASK ID**: This ID is obtained when you upload ASK into Media Services.</span></span> <span data-ttu-id="6db13-159">È necessario caricare chiedere utilizzando hello **ContentKeyType.FairPlayAsk** valore enum.</span><span class="sxs-lookup"><span data-stu-id="6db13-159">You must upload ASK by using hello **ContentKeyType.FairPlayAsk** enum value.</span></span> <span data-ttu-id="6db13-160">Di conseguenza hello, viene restituito l'ID di servizi multimediali hello e questo è ciò che deve essere utilizzato quando l'impostazione di opzione di criteri di distribuzione delle chiavi hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-160">As hello result, hello Media Services ID is returned, and this is what should be used when setting hello key delivery policy option.</span></span>
 
-<span data-ttu-id="b5c11-161">Sul lato client FPS è necessario impostare quanto segue:</span><span class="sxs-lookup"><span data-stu-id="b5c11-161">The following things must be set by the FPS client side:</span></span>
+<span data-ttu-id="6db13-161">Hello operazioni indicate di seguito devono essere impostate dal lato client FPS hello:</span><span class="sxs-lookup"><span data-stu-id="6db13-161">hello following things must be set by hello FPS client side:</span></span>
 
-  * <span data-ttu-id="b5c11-162">**App Cert (AC)**: file con estensione cer/der contenente la chiave pubblica usata dal sistema operativo per crittografare alcuni payload.</span><span class="sxs-lookup"><span data-stu-id="b5c11-162">**App Cert (AC)**: This is a .cer/.der file that contains the public key, which the operating system uses to encrypt some payload.</span></span> <span data-ttu-id="b5c11-163">È necessario che Servizi multimediali lo riconosca perché è richiesto dal lettore.</span><span class="sxs-lookup"><span data-stu-id="b5c11-163">Media Services needs to know about it because it is required by the player.</span></span> <span data-ttu-id="b5c11-164">Il servizio di distribuzione delle chiavi lo decrittografa usando la chiave privata corrispondente.</span><span class="sxs-lookup"><span data-stu-id="b5c11-164">The key delivery service decrypts it using the corresponding private key.</span></span>
+  * <span data-ttu-id="6db13-162">**App del certificato (CA)**: si tratta di un file.cer/.der contenente hello chiave pubblica, il sistema operativo hello utilizza tooencrypt alcuni payload.</span><span class="sxs-lookup"><span data-stu-id="6db13-162">**App Cert (AC)**: This is a .cer/.der file that contains hello public key, which hello operating system uses tooencrypt some payload.</span></span> <span data-ttu-id="6db13-163">Servizi multimediali deve tooknow su di esso perché è richiesto da Windows Media player hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-163">Media Services needs tooknow about it because it is required by hello player.</span></span> <span data-ttu-id="6db13-164">il servizio di distribuzione delle chiavi Hello decrittografa usando la chiave privata corrispondente di hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-164">hello key delivery service decrypts it using hello corresponding private key.</span></span>
 
-<span data-ttu-id="b5c11-165">Per riprodurre un flusso crittografato FairPlay, ottenere prima una chiave privata dell'applicazione reale, quindi generare un certificato reale.</span><span class="sxs-lookup"><span data-stu-id="b5c11-165">To play back a FairPlay encrypted stream, get a real ASK first, and then generate a real certificate.</span></span> <span data-ttu-id="b5c11-166">Questo processo crea tutte le 3 parti:</span><span class="sxs-lookup"><span data-stu-id="b5c11-166">That process creates all three parts:</span></span>
+<span data-ttu-id="6db13-165">tooplay un flusso crittografato FairPlay, ottenere una reale chiedere prima e quindi generare un certificato reale.</span><span class="sxs-lookup"><span data-stu-id="6db13-165">tooplay back a FairPlay encrypted stream, get a real ASK first, and then generate a real certificate.</span></span> <span data-ttu-id="6db13-166">Questo processo crea tutte le 3 parti:</span><span class="sxs-lookup"><span data-stu-id="6db13-166">That process creates all three parts:</span></span>
 
-  * <span data-ttu-id="b5c11-167">file con estensione der</span><span class="sxs-lookup"><span data-stu-id="b5c11-167">.der file</span></span>
-  * <span data-ttu-id="b5c11-168">file con estensione pfx</span><span class="sxs-lookup"><span data-stu-id="b5c11-168">.pfx file</span></span>
-  * <span data-ttu-id="b5c11-169">password per il file pfx</span><span class="sxs-lookup"><span data-stu-id="b5c11-169">password for the .pfx</span></span>
+  * <span data-ttu-id="6db13-167">file con estensione der</span><span class="sxs-lookup"><span data-stu-id="6db13-167">.der file</span></span>
+  * <span data-ttu-id="6db13-168">file con estensione pfx</span><span class="sxs-lookup"><span data-stu-id="6db13-168">.pfx file</span></span>
+  * <span data-ttu-id="6db13-169">password per PFX hello</span><span class="sxs-lookup"><span data-stu-id="6db13-169">password for hello .pfx</span></span>
 
-<span data-ttu-id="b5c11-170">I client seguenti supportano il formato HLS con la crittografia **AES-128 CBC**: Safari in OS X, Apple TV e iOS.</span><span class="sxs-lookup"><span data-stu-id="b5c11-170">The following clients support HLS with **AES-128 CBC** encryption: Safari on OS X, Apple TV, iOS.</span></span>
+<span data-ttu-id="6db13-170">i seguenti client Hello supporta contenuto HLS con **CBC AES-128** crittografia: Safari su OS X, Apple TV, iOS.</span><span class="sxs-lookup"><span data-stu-id="6db13-170">hello following clients support HLS with **AES-128 CBC** encryption: Safari on OS X, Apple TV, iOS.</span></span>
 
-## <a name="configure-fairplay-dynamic-encryption-and-license-delivery-services"></a><span data-ttu-id="b5c11-171">Configurare la crittografia dinamica FairPlay e i servizi di distribuzione delle licenze</span><span class="sxs-lookup"><span data-stu-id="b5c11-171">Configure FairPlay dynamic encryption and license delivery services</span></span>
-<span data-ttu-id="b5c11-172">Di seguito sono indicati i passaggi generali per la protezione degli asset con FairPlay usando il servizio di distribuzione delle licenze di Servizi multimediali e la crittografia dinamica.</span><span class="sxs-lookup"><span data-stu-id="b5c11-172">The following are general steps for protecting your assets with FairPlay by using the Media Services license delivery service, and also by using dynamic encryption.</span></span>
+## <a name="configure-fairplay-dynamic-encryption-and-license-delivery-services"></a><span data-ttu-id="6db13-171">Configurare la crittografia dinamica FairPlay e i servizi di distribuzione delle licenze</span><span class="sxs-lookup"><span data-stu-id="6db13-171">Configure FairPlay dynamic encryption and license delivery services</span></span>
+<span data-ttu-id="6db13-172">di seguito Hello sono passaggi generali per proteggere gli asset con FairPlay utilizzando hello licenza recapito servizi multimediali e usando la crittografia dinamica.</span><span class="sxs-lookup"><span data-stu-id="6db13-172">hello following are general steps for protecting your assets with FairPlay by using hello Media Services license delivery service, and also by using dynamic encryption.</span></span>
 
-1. <span data-ttu-id="b5c11-173">Creare un asset e caricare file al suo interno.</span><span class="sxs-lookup"><span data-stu-id="b5c11-173">Create an asset, and upload files into the asset.</span></span>
-2. <span data-ttu-id="b5c11-174">Codificare l'asset contenente il file nel set MP4 con velocità in bit adattiva.</span><span class="sxs-lookup"><span data-stu-id="b5c11-174">Encode the asset that contains the file to the adaptive bitrate MP4 set.</span></span>
-3. <span data-ttu-id="b5c11-175">Creare una chiave simmetrica e associarla all'asset codificato.</span><span class="sxs-lookup"><span data-stu-id="b5c11-175">Create a content key, and associate it with the encoded asset.</span></span>  
-4. <span data-ttu-id="b5c11-176">Configurare i criteri di autorizzazione della chiave simmetrica.</span><span class="sxs-lookup"><span data-stu-id="b5c11-176">Configure the content key’s authorization policy.</span></span> <span data-ttu-id="b5c11-177">Specificare quanto segue:</span><span class="sxs-lookup"><span data-stu-id="b5c11-177">Specify the following:</span></span>
+1. <span data-ttu-id="6db13-173">Creare un asset e caricare i file nell'asset hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-173">Create an asset, and upload files into hello asset.</span></span>
+2. <span data-ttu-id="6db13-174">Codificare asset hello contenente hello file toohello velocità in bit adattiva che set MP4.</span><span class="sxs-lookup"><span data-stu-id="6db13-174">Encode hello asset that contains hello file toohello adaptive bitrate MP4 set.</span></span>
+3. <span data-ttu-id="6db13-175">Creare una chiave simmetrica e associarlo all'asset codificato hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-175">Create a content key, and associate it with hello encoded asset.</span></span>  
+4. <span data-ttu-id="6db13-176">Configurare criteri di autorizzazione della chiave simmetrica hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-176">Configure hello content key’s authorization policy.</span></span> <span data-ttu-id="6db13-177">Specificare hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="6db13-177">Specify hello following:</span></span>
 
-   * <span data-ttu-id="b5c11-178">metodo di distribuzione, in questo caso FairPlay,</span><span class="sxs-lookup"><span data-stu-id="b5c11-178">The delivery method (in this case, FairPlay).</span></span>
-   * <span data-ttu-id="b5c11-179">configurazione delle opzioni dei criteri FairPlay.</span><span class="sxs-lookup"><span data-stu-id="b5c11-179">FairPlay policy options configuration.</span></span> <span data-ttu-id="b5c11-180">Per informazioni dettagliate sulla configurazione di FairPlay, vedere il metodo **ConfigureFairPlayPolicyOptions()** nell'esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="b5c11-180">For details on how to configure FairPlay, see the **ConfigureFairPlayPolicyOptions()** method in the sample below.</span></span>
-
-     > [!NOTE]
-     > <span data-ttu-id="b5c11-181">In genere è opportuno configurare le opzioni dei criteri FairPlay una sola volta, dato che sarà presente un solo set di certificazione e chiave privata dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="b5c11-181">Usually, you would want to configure FairPlay policy options only once, because you will only have one set of a certification and an ASK.</span></span>
-     >
-     >
-   * <span data-ttu-id="b5c11-182">Restrizioni aperte o token.</span><span class="sxs-lookup"><span data-stu-id="b5c11-182">Restrictions (open or token).</span></span>
-   * <span data-ttu-id="b5c11-183">Informazioni specifiche per il tipo di distribuzione delle chiavi che definiscono la modalità di distribuzione della chiave al client.</span><span class="sxs-lookup"><span data-stu-id="b5c11-183">Information specific to the key delivery type that defines how the key is delivered to the client.</span></span>
-5. <span data-ttu-id="b5c11-184">Configurare i criteri di distribuzione dell'asset.</span><span class="sxs-lookup"><span data-stu-id="b5c11-184">Configure the asset delivery policy.</span></span> <span data-ttu-id="b5c11-185">La configurazione dei criteri di distribuzione include:</span><span class="sxs-lookup"><span data-stu-id="b5c11-185">The delivery policy configuration includes:</span></span>
-
-   * <span data-ttu-id="b5c11-186">Il protocollo di recapito (HLS).</span><span class="sxs-lookup"><span data-stu-id="b5c11-186">The delivery protocol (HLS).</span></span>
-   * <span data-ttu-id="b5c11-187">Il tipo di crittografia dinamica (crittografia CBC comune).</span><span class="sxs-lookup"><span data-stu-id="b5c11-187">The type of dynamic encryption (common CBC encryption).</span></span>
-   * <span data-ttu-id="b5c11-188">L'URL di acquisizione delle licenze.</span><span class="sxs-lookup"><span data-stu-id="b5c11-188">The license acquisition URL.</span></span>
+   * <span data-ttu-id="6db13-178">metodo di recapito Hello (in questo caso, FairPlay).</span><span class="sxs-lookup"><span data-stu-id="6db13-178">hello delivery method (in this case, FairPlay).</span></span>
+   * <span data-ttu-id="6db13-179">configurazione delle opzioni dei criteri FairPlay.</span><span class="sxs-lookup"><span data-stu-id="6db13-179">FairPlay policy options configuration.</span></span> <span data-ttu-id="6db13-180">Per informazioni dettagliate su come tooconfigure FairPlay, vedere hello **ConfigureFairPlayPolicyOptions()** metodo esempio hello riportato di seguito.</span><span class="sxs-lookup"><span data-stu-id="6db13-180">For details on how tooconfigure FairPlay, see hello **ConfigureFairPlayPolicyOptions()** method in hello sample below.</span></span>
 
      > [!NOTE]
-     > <span data-ttu-id="b5c11-189">Per distribuire un flusso crittografato con FairPlay e un altro sistema Digital Rights Management (DRM), è necessario configurare criteri di distribuzione separati:</span><span class="sxs-lookup"><span data-stu-id="b5c11-189">If you want to deliver a stream that is encrypted with FairPlay and another Digital Rights Management (DRM) system, you have to configure separate delivery policies:</span></span>
-     >
-     > * <span data-ttu-id="b5c11-190">Una norma IAssetDeliveryPolicy per configurare Dynamic Adaptive Streaming over HTTP (DASH) con Common Encryption (CENC) (PlayReady e Widevine) e Smooth con PlayReady</span><span class="sxs-lookup"><span data-stu-id="b5c11-190">One IAssetDeliveryPolicy to configure Dynamic Adaptive Streaming over HTTP (DASH) with Common Encryption (CENC) (PlayReady + Widevine), and Smooth with PlayReady</span></span>
-     > * <span data-ttu-id="b5c11-191">Un altro criterio IAssetDeliveryPolicy per configurare FairPlay per HLS</span><span class="sxs-lookup"><span data-stu-id="b5c11-191">Another IAssetDeliveryPolicy to configure FairPlay for HLS</span></span>
+     > <span data-ttu-id="6db13-181">In genere, è opportuno tooconfigure FairPlay criteri opzioni una sola volta, poiché è solo un set di un certificato e una ricerca.</span><span class="sxs-lookup"><span data-stu-id="6db13-181">Usually, you would want tooconfigure FairPlay policy options only once, because you will only have one set of a certification and an ASK.</span></span>
      >
      >
-6. <span data-ttu-id="b5c11-192">Creare un localizzatore OnDemand per ottenere un URL di streaming.</span><span class="sxs-lookup"><span data-stu-id="b5c11-192">Create an OnDemand locator to get a streaming URL.</span></span>
+   * <span data-ttu-id="6db13-182">Restrizioni aperte o token.</span><span class="sxs-lookup"><span data-stu-id="6db13-182">Restrictions (open or token).</span></span>
+   * <span data-ttu-id="6db13-183">Tipo distribuzione delle chiavi specifico toohello informazioni che definisce come chiave hello viene recapitato toohello client.</span><span class="sxs-lookup"><span data-stu-id="6db13-183">Information specific toohello key delivery type that defines how hello key is delivered toohello client.</span></span>
+5. <span data-ttu-id="6db13-184">Configurare i criteri di distribuzione di asset hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-184">Configure hello asset delivery policy.</span></span> <span data-ttu-id="6db13-185">configurazione dei criteri di recapito Hello include:</span><span class="sxs-lookup"><span data-stu-id="6db13-185">hello delivery policy configuration includes:</span></span>
 
-## <a name="use-fairplay-key-delivery-by-player-apps"></a><span data-ttu-id="b5c11-193">Usare la distribuzione delle chiavi FairPlay con applicazioni lettore</span><span class="sxs-lookup"><span data-stu-id="b5c11-193">Use FairPlay key delivery by player apps</span></span>
-<span data-ttu-id="b5c11-194">È possibile sviluppare applicazioni lettore usando l'SDK per iOS.</span><span class="sxs-lookup"><span data-stu-id="b5c11-194">You can develop player apps by using the iOS SDK.</span></span> <span data-ttu-id="b5c11-195">Per riprodurre contenuto FairPlay, è necessario implementare il protocollo di scambio delle licenze.</span><span class="sxs-lookup"><span data-stu-id="b5c11-195">To be able to play FairPlay content, you have to implement the license exchange protocol.</span></span> <span data-ttu-id="b5c11-196">Questo protocollo non è specificato da Apple.</span><span class="sxs-lookup"><span data-stu-id="b5c11-196">This protocol is not specified by Apple.</span></span> <span data-ttu-id="b5c11-197">Spetta a ogni app scegliere come inviare le richieste di distribuzione delle chiavi.</span><span class="sxs-lookup"><span data-stu-id="b5c11-197">It is up to each app how to send key delivery requests.</span></span> <span data-ttu-id="b5c11-198">Il servizio di distribuzione delle chiavi FairPlay di Servizi multimediali prevede che SPC venga indicato in un messaggio codificato come www-form-url nel formato seguente:</span><span class="sxs-lookup"><span data-stu-id="b5c11-198">The Media Services FairPlay key delivery service expects the SPC to come as a www-form-url encoded post message, in the following form:</span></span>
+   * <span data-ttu-id="6db13-186">protocollo di recapito Hello (HLS).</span><span class="sxs-lookup"><span data-stu-id="6db13-186">hello delivery protocol (HLS).</span></span>
+   * <span data-ttu-id="6db13-187">tipo di Hello di crittografia dinamica (crittografia CBC comune).</span><span class="sxs-lookup"><span data-stu-id="6db13-187">hello type of dynamic encryption (common CBC encryption).</span></span>
+   * <span data-ttu-id="6db13-188">URL di acquisizione della licenza Hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-188">hello license acquisition URL.</span></span>
+
+     > [!NOTE]
+     > <span data-ttu-id="6db13-189">Se si desidera toodeliver un flusso che viene crittografato con FairPlay e un altro sistema di Digital Rights Management (DRM), si dispone di criteri di recapito di tooconfigure:</span><span class="sxs-lookup"><span data-stu-id="6db13-189">If you want toodeliver a stream that is encrypted with FairPlay and another Digital Rights Management (DRM) system, you have tooconfigure separate delivery policies:</span></span>
+     >
+     > * <span data-ttu-id="6db13-190">Un tooconfigure IAssetDeliveryPolicy lo Streaming adattivo dinamica su HTTP (trattino) con CENC (Common Encryption) (PlayReady + Widevine) e Smooth Streaming con PlayReady</span><span class="sxs-lookup"><span data-stu-id="6db13-190">One IAssetDeliveryPolicy tooconfigure Dynamic Adaptive Streaming over HTTP (DASH) with Common Encryption (CENC) (PlayReady + Widevine), and Smooth with PlayReady</span></span>
+     > * <span data-ttu-id="6db13-191">Un altro IAssetDeliveryPolicy tooconfigure FairPlay per HLS</span><span class="sxs-lookup"><span data-stu-id="6db13-191">Another IAssetDeliveryPolicy tooconfigure FairPlay for HLS</span></span>
+     >
+     >
+6. <span data-ttu-id="6db13-192">Creare un tooget localizzatore OnDemand un URL di streaming.</span><span class="sxs-lookup"><span data-stu-id="6db13-192">Create an OnDemand locator tooget a streaming URL.</span></span>
+
+## <a name="use-fairplay-key-delivery-by-player-apps"></a><span data-ttu-id="6db13-193">Usare la distribuzione delle chiavi FairPlay con applicazioni lettore</span><span class="sxs-lookup"><span data-stu-id="6db13-193">Use FairPlay key delivery by player apps</span></span>
+<span data-ttu-id="6db13-194">È possibile sviluppare applicazioni di Windows Media player utilizzando hello iOS SDK.</span><span class="sxs-lookup"><span data-stu-id="6db13-194">You can develop player apps by using hello iOS SDK.</span></span> <span data-ttu-id="6db13-195">toobe tooplay in grado di FairPlay contenuto, è necessario protocollo di scambio tooimplement hello licenza.</span><span class="sxs-lookup"><span data-stu-id="6db13-195">toobe able tooplay FairPlay content, you have tooimplement hello license exchange protocol.</span></span> <span data-ttu-id="6db13-196">Questo protocollo non è specificato da Apple.</span><span class="sxs-lookup"><span data-stu-id="6db13-196">This protocol is not specified by Apple.</span></span> <span data-ttu-id="6db13-197">È la distribuzione delle chiavi toosend richiede backup tooeach app.</span><span class="sxs-lookup"><span data-stu-id="6db13-197">It is up tooeach app how toosend key delivery requests.</span></span> <span data-ttu-id="6db13-198">Hello del servizio di distribuzione delle chiavi di Media Services FairPlay hello SPC toocome previsto è un messaggio post codificati www-form-url hello seguente formato:</span><span class="sxs-lookup"><span data-stu-id="6db13-198">hello Media Services FairPlay key delivery service expects hello SPC toocome as a www-form-url encoded post message, in hello following form:</span></span>
 
     spc=<Base64 encoded SPC>
 
 > [!NOTE]
-> <span data-ttu-id="b5c11-199">Per impostazione predefinita, Azure Media Player non supporta la riproduzione FairPlay.</span><span class="sxs-lookup"><span data-stu-id="b5c11-199">Azure Media Player doesn’t support FairPlay playback out of the box.</span></span> <span data-ttu-id="b5c11-200">Per poter eseguire la riproduzione FairPlay in MAC OS X, ottenere il lettore di esempio dall'account per sviluppatori di Apple.</span><span class="sxs-lookup"><span data-stu-id="b5c11-200">To get FairPlay playback on MAC OS X, obtain the sample player from the Apple developer account.</span></span>
+> <span data-ttu-id="6db13-199">Azure Media Player non supporta la riproduzione di FairPlay predefinito hello.</span><span class="sxs-lookup"><span data-stu-id="6db13-199">Azure Media Player doesn’t support FairPlay playback out of hello box.</span></span> <span data-ttu-id="6db13-200">riproduzione di FairPlay tooget su MAC OS X, ottenere il lettore di esempio hello da hello account per sviluppatori di Apple.</span><span class="sxs-lookup"><span data-stu-id="6db13-200">tooget FairPlay playback on MAC OS X, obtain hello sample player from hello Apple developer account.</span></span>
 >
 >
 
-## <a name="streaming-urls"></a><span data-ttu-id="b5c11-201">URL di streaming</span><span class="sxs-lookup"><span data-stu-id="b5c11-201">Streaming URLs</span></span>
-<span data-ttu-id="b5c11-202">Se l'asset è stato crittografato con più soluzioni DRM, è necessario usare un tag di crittografia nell'URL di streaming (format='m3u8-aapl', encryption='xxx').</span><span class="sxs-lookup"><span data-stu-id="b5c11-202">If your asset was encrypted with more than one DRM, you should use an encryption tag in the streaming URL: (format='m3u8-aapl', encryption='xxx').</span></span>
+## <a name="streaming-urls"></a><span data-ttu-id="6db13-201">URL di streaming</span><span class="sxs-lookup"><span data-stu-id="6db13-201">Streaming URLs</span></span>
+<span data-ttu-id="6db13-202">Se l'asset è stata crittografata con più DRM, è necessario utilizzare un tag di crittografia nell'URL di streaming hello: (formato = 'm3u8-aapl', crittografia = 'xxx').</span><span class="sxs-lookup"><span data-stu-id="6db13-202">If your asset was encrypted with more than one DRM, you should use an encryption tag in hello streaming URL: (format='m3u8-aapl', encryption='xxx').</span></span>
 
-<span data-ttu-id="b5c11-203">Si applicano le considerazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="b5c11-203">The following considerations apply:</span></span>
+<span data-ttu-id="6db13-203">si applica Hello seguenti considerazioni:</span><span class="sxs-lookup"><span data-stu-id="6db13-203">hello following considerations apply:</span></span>
 
-* <span data-ttu-id="b5c11-204">Può essere specificato solo un tipo di crittografia oppure nessuno.</span><span class="sxs-lookup"><span data-stu-id="b5c11-204">Only zero or one encryption type can be specified.</span></span>
-* <span data-ttu-id="b5c11-205">Il tipo di crittografia non deve essere specificato nell'URL se all'asset è stata applicata una sola crittografia.</span><span class="sxs-lookup"><span data-stu-id="b5c11-205">The encryption type doesn't have to be specified in the URL if only one encryption was applied to the asset.</span></span>
-* <span data-ttu-id="b5c11-206">Il tipo di crittografia non fa distinzione tra maiuscole e minuscole.</span><span class="sxs-lookup"><span data-stu-id="b5c11-206">The encryption type is case insensitive.</span></span>
-* <span data-ttu-id="b5c11-207">Possono essere specificati i seguenti tipi di crittografia:</span><span class="sxs-lookup"><span data-stu-id="b5c11-207">The following encryption types can be specified:</span></span>  
-  * <span data-ttu-id="b5c11-208">**cenc**: crittografia comune (PlayReady o Widevine)</span><span class="sxs-lookup"><span data-stu-id="b5c11-208">**cenc**:  Common encryption (PlayReady or Widevine)</span></span>
-  * <span data-ttu-id="b5c11-209">**cbcs-aapl**: FairPlay</span><span class="sxs-lookup"><span data-stu-id="b5c11-209">**cbcs-aapl**: FairPlay</span></span>
-  * <span data-ttu-id="b5c11-210">**cbc**: crittografia busta AES</span><span class="sxs-lookup"><span data-stu-id="b5c11-210">**cbc**: AES envelope encryption</span></span>
+* <span data-ttu-id="6db13-204">Può essere specificato solo un tipo di crittografia oppure nessuno.</span><span class="sxs-lookup"><span data-stu-id="6db13-204">Only zero or one encryption type can be specified.</span></span>
+* <span data-ttu-id="6db13-205">tipo di crittografia Hello privo di toobe specificata nell'URL di hello se solo uno di crittografia è stata applicata toohello asset.</span><span class="sxs-lookup"><span data-stu-id="6db13-205">hello encryption type doesn't have toobe specified in hello URL if only one encryption was applied toohello asset.</span></span>
+* <span data-ttu-id="6db13-206">tipo di crittografia Hello viene fatta distinzione tra maiuscole e minuscole.</span><span class="sxs-lookup"><span data-stu-id="6db13-206">hello encryption type is case insensitive.</span></span>
+* <span data-ttu-id="6db13-207">è possibile specificare i seguenti tipi di crittografia Hello:</span><span class="sxs-lookup"><span data-stu-id="6db13-207">hello following encryption types can be specified:</span></span>  
+  * <span data-ttu-id="6db13-208">**cenc**: crittografia comune (PlayReady o Widevine)</span><span class="sxs-lookup"><span data-stu-id="6db13-208">**cenc**:  Common encryption (PlayReady or Widevine)</span></span>
+  * <span data-ttu-id="6db13-209">**cbcs-aapl**: FairPlay</span><span class="sxs-lookup"><span data-stu-id="6db13-209">**cbcs-aapl**: FairPlay</span></span>
+  * <span data-ttu-id="6db13-210">**cbc**: crittografia busta AES</span><span class="sxs-lookup"><span data-stu-id="6db13-210">**cbc**: AES envelope encryption</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="b5c11-211">Creare e configurare un progetto di Visual Studio</span><span class="sxs-lookup"><span data-stu-id="b5c11-211">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="6db13-211">Creare e configurare un progetto di Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6db13-211">Create and configure a Visual Studio project</span></span>
 
-1. <span data-ttu-id="b5c11-212">Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="b5c11-212">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
-2. <span data-ttu-id="b5c11-213">Aggiungere gli elementi seguenti alla sezione **appSettings** definita nel file app.config:</span><span class="sxs-lookup"><span data-stu-id="b5c11-213">Add the following elements to **appSettings** defined in your app.config file:</span></span>
+1. <span data-ttu-id="6db13-212">Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="6db13-212">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+2. <span data-ttu-id="6db13-213">Aggiungere i seguenti elementi troppo hello**appSettings** definiti nel file app. config:</span><span class="sxs-lookup"><span data-stu-id="6db13-213">Add hello following elements too**appSettings** defined in your app.config file:</span></span>
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
-## <a name="example"></a><span data-ttu-id="b5c11-214">Esempio</span><span class="sxs-lookup"><span data-stu-id="b5c11-214">Example</span></span>
+## <a name="example"></a><span data-ttu-id="6db13-214">Esempio</span><span class="sxs-lookup"><span data-stu-id="6db13-214">Example</span></span>
 
-<span data-ttu-id="b5c11-215">L'esempio seguente illustra la funzionalità che consente di usare Servizi multimediali per distribuire contenuto crittografato con FairPlay.</span><span class="sxs-lookup"><span data-stu-id="b5c11-215">The following sample demonstrates the ability to use Media Services to deliver your content encrypted with FairPlay.</span></span> <span data-ttu-id="b5c11-216">Questa funzionalità è stata introdotta in Azure Media Services SDK for .NET, versione 3.6.0.</span><span class="sxs-lookup"><span data-stu-id="b5c11-216">This functionality was introduced in the Azure Media Services SDK for .NET version 3.6.0.</span></span> 
+<span data-ttu-id="6db13-215">Hello seguente esempio viene illustrato hello possibilità toouse toodeliver di servizi multimediali del contenuto crittografato con FairPlay.</span><span class="sxs-lookup"><span data-stu-id="6db13-215">hello following sample demonstrates hello ability toouse Media Services toodeliver your content encrypted with FairPlay.</span></span> <span data-ttu-id="6db13-216">Questa funzionalità è stata introdotta in hello Azure Media Services SDK per .NET versione 3.6.0.</span><span class="sxs-lookup"><span data-stu-id="6db13-216">This functionality was introduced in hello Azure Media Services SDK for .NET version 3.6.0.</span></span> 
 
-<span data-ttu-id="b5c11-217">Sovrascrivere il codice nel file Program.cs con il codice riportato in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="b5c11-217">Overwrite the code in your Program.cs file with the code shown in this section.</span></span>
+<span data-ttu-id="6db13-217">Sovrascrivere il codice hello nel file Program.cs con il codice di hello illustrato in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="6db13-217">Overwrite hello code in your Program.cs file with hello code shown in this section.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="b5c11-218">È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="b5c11-218">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="b5c11-219">Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento).</span><span class="sxs-lookup"><span data-stu-id="b5c11-219">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="b5c11-220">Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.</span><span class="sxs-lookup"><span data-stu-id="b5c11-220">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+><span data-ttu-id="6db13-218">È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="6db13-218">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="6db13-219">È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri).</span><span class="sxs-lookup"><span data-stu-id="6db13-219">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="6db13-220">Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.</span><span class="sxs-lookup"><span data-stu-id="6db13-220">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
-<span data-ttu-id="b5c11-221">Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui si trovano i file di input.</span><span class="sxs-lookup"><span data-stu-id="b5c11-221">Make sure to update variables to point to folders where your input files are located.</span></span>
+<span data-ttu-id="6db13-221">Rendere le variabili tooupdate che toopoint toofolders in cui si trovano i file di input.</span><span class="sxs-lookup"><span data-stu-id="6db13-221">Make sure tooupdate variables toopoint toofolders where your input files are located.</span></span>
 
     using System;
     using System.Collections.Generic;
@@ -178,7 +178,7 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -215,7 +215,7 @@ ms.lasthandoff: 08/29/2017
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonCBCTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("FairPlay License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.FairPlay));
             Console.WriteLine();
 
@@ -238,13 +238,13 @@ ms.lasthandoff: 08/29/2017
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
@@ -312,7 +312,7 @@ ms.lasthandoff: 08/29/2017
                         "ContentKey",
                         ContentKeyType.CommonEncryptionCbcs);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -352,7 +352,7 @@ ms.lasthandoff: 08/29/2017
 
             contentKeyAuthorizationPolicy.Options.Add(FairPlayPolicy);
 
-            // Associate the content key authorization policy with the content key.
+            // Associate hello content key authorization policy with hello content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -388,7 +388,7 @@ ms.lasthandoff: 08/29/2017
 
             contentKeyAuthorizationPolicy.Options.Add(FairPlayPolicy);
 
-            // Associate the content key authorization policy with the content key
+            // Associate hello content key authorization policy with hello content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -397,20 +397,20 @@ ms.lasthandoff: 08/29/2017
 
         private static string ConfigureFairPlayPolicyOptions()
         {
-            // For testing you can provide all zeroes for ASK bytes together with the cert from Apple FPS SDK.
-            // However, for production you must use a real ASK from Apple bound to a real prod certificate.
+            // For testing you can provide all zeroes for ASK bytes together with hello cert from Apple FPS SDK.
+            // However, for production you must use a real ASK from Apple bound tooa real prod certificate.
             byte[] askBytes = Guid.NewGuid().ToByteArray();
             var askId = Guid.NewGuid();
-            // Key delivery retrieves askKey by askId and uses this key to generate the response.
+            // Key delivery retrieves askKey by askId and uses this key toogenerate hello response.
             IContentKey askKey = _context.ContentKeys.Create(
                         askId,
                         askBytes,
                         "askKey",
                         ContentKeyType.FairPlayASk);
 
-            //Customer password for creating the .pfx file.
-            string pfxPassword = "<customer password for creating the .pfx file>";
-            // Key delivery retrieves pfxPasswordKey by pfxPasswordId and uses this key to generate the response.
+            //Customer password for creating hello .pfx file.
+            string pfxPassword = "<customer password for creating hello .pfx file>";
+            // Key delivery retrieves pfxPasswordKey by pfxPasswordId and uses this key toogenerate hello response.
             var pfxPasswordId = Guid.NewGuid();
             byte[] pfxPasswordBytes = System.Text.Encoding.UTF8.GetBytes(pfxPassword);
             IContentKey pfxPasswordKey = _context.ContentKeys.Create(
@@ -419,11 +419,11 @@ ms.lasthandoff: 08/29/2017
                         "pfxPasswordKey",
                         ContentKeyType.FairPlayPfxPassword);
 
-            // iv - 16 bytes random value, must match the iv in the asset delivery policy.
+            // iv - 16 bytes random value, must match hello iv in hello asset delivery policy.
             byte[] iv = Guid.NewGuid().ToByteArray();
 
-            //Specify the .pfx file created by the customer.
-            var appCert = new X509Certificate2("path to the .pfx file created by the customer", pfxPassword, X509KeyStorageFlags.Exportable);
+            //Specify hello .pfx file created by hello customer.
+            var appCert = new X509Certificate2("path toohello .pfx file created by hello customer", pfxPassword, X509KeyStorageFlags.Exportable);
 
             string FairPlayConfiguration =
             Microsoft.WindowsAzure.MediaServices.Client.FairPlay.FairPlayConfiguration.CreateSerializedFairPlayOptionConfiguration(
@@ -457,12 +457,12 @@ ms.lasthandoff: 08/29/2017
 
             FairPlayConfiguration configFP = JsonConvert.DeserializeObject<FairPlayConfiguration>(kdOption.KeyDeliveryConfiguration);
 
-            // Get the FairPlay license service URL.
+            // Get hello FairPlay license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.FairPlay);
 
-            // The reason the below code replaces "https://" with "skd://" is because
-            // in the IOS player sample code which you obtained in Apple developer account,
-            // the player only recognizes a Key URL that starts with skd://.
+            // hello reason hello below code replaces "https://" with "skd://" is because
+            // in hello IOS player sample code which you obtained in Apple developer account,
+            // hello player only recognizes a Key URL that starts with skd://.
             // However, if you are using a customized player,
             // you can choose whatever protocol you want.
             // For example, "https".
@@ -480,22 +480,22 @@ ms.lasthandoff: 08/29/2017
             AssetDeliveryProtocol.HLS,
             assetDeliveryPolicyConfiguration);
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
 
         /// <summary>
-        /// Gets the streaming origin locator.
+        /// Gets hello streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset.
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -506,12 +506,12 @@ ms.lasthandoff: 08/29/2017
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin.
+            // Create a locator toohello streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file.
+            // Create a URL toohello manifest file.
             return originLocator.Path + assetFile.Name;
         }
 
@@ -539,8 +539,8 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="next-steps-media-services-learning-paths"></a><span data-ttu-id="b5c11-222">Passaggi successivi: Percorsi di apprendimento di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="b5c11-222">Next steps: Media Services learning paths</span></span>
+## <a name="next-steps-media-services-learning-paths"></a><span data-ttu-id="6db13-222">Passaggi successivi: Percorsi di apprendimento di Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="6db13-222">Next steps: Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="b5c11-223">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="b5c11-223">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="6db13-223">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="6db13-223">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]

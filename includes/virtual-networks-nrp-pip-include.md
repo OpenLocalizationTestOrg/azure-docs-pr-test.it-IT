@@ -1,0 +1,41 @@
+## <a name="public-ip-address"></a><span data-ttu-id="fa263-101">Indirizzo IP pubblico</span><span class="sxs-lookup"><span data-stu-id="fa263-101">Public IP address</span></span>
+<span data-ttu-id="fa263-102">Una risorsa di indirizzo IP pubblico fornisce un indirizzo IP pubblico con connessione a internet riservato o dinamico.</span><span class="sxs-lookup"><span data-stu-id="fa263-102">A public IP address resource provides either a reserved or dynamic Internet facing IP address.</span></span> <span data-ttu-id="fa263-103">Sebbene sia possibile creare un indirizzo IP pubblico come oggetto autonomo, è necessario tooassociate è tooanother oggetto tooactually utilizzare indirizzo hello.</span><span class="sxs-lookup"><span data-stu-id="fa263-103">Although you can create a public IP address as a stand alone object, you need tooassociate it tooanother object tooactually use hello address.</span></span> <span data-ttu-id="fa263-104">È possibile associare un bilanciamento del carico tooa indirizzo IP pubblico, gateway applicazione o una scheda di rete tooprovide Internet accedere toothose alle risorse.</span><span class="sxs-lookup"><span data-stu-id="fa263-104">You can associate a public IP address tooa load balancer, application  gateway, or a NIC tooprovide Internet access toothose resources.</span></span>  
+
+| <span data-ttu-id="fa263-105">Proprietà</span><span class="sxs-lookup"><span data-stu-id="fa263-105">Property</span></span> | <span data-ttu-id="fa263-106">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fa263-106">Description</span></span> | <span data-ttu-id="fa263-107">Valori di esempio</span><span class="sxs-lookup"><span data-stu-id="fa263-107">Sample values</span></span> |
+| --- | --- | --- |
+| <span data-ttu-id="fa263-108">**publicIPAllocationMethod**</span><span class="sxs-lookup"><span data-stu-id="fa263-108">**publicIPAllocationMethod**</span></span> |<span data-ttu-id="fa263-109">Definisce se l'indirizzo IP hello è *statico* o *dinamica*.</span><span class="sxs-lookup"><span data-stu-id="fa263-109">Defines if hello IP address is *static* or *dynamic*.</span></span> |<span data-ttu-id="fa263-110">statico, dinamico</span><span class="sxs-lookup"><span data-stu-id="fa263-110">static, dynamic</span></span> |
+| <span data-ttu-id="fa263-111">**idleTimeoutInMinutes**</span><span class="sxs-lookup"><span data-stu-id="fa263-111">**idleTimeoutInMinutes**</span></span> |<span data-ttu-id="fa263-112">Definisce hello timeout di inattività, con un valore predefinito di 4 minuti.</span><span class="sxs-lookup"><span data-stu-id="fa263-112">Defines hello idle time out, with a default value of 4 minutes.</span></span> <span data-ttu-id="fa263-113">Se non più pacchetti per una determinata sessione viene ricevuto entro questo intervallo, hello sessione terminata.</span><span class="sxs-lookup"><span data-stu-id="fa263-113">If no more packets for a given session is received within this time, hello session is terminated.</span></span> |<span data-ttu-id="fa263-114">qualsiasi valore compreso tra 4 e 30.</span><span class="sxs-lookup"><span data-stu-id="fa263-114">any value between 4 and 30</span></span> |
+| <span data-ttu-id="fa263-115">**ipAddress**</span><span class="sxs-lookup"><span data-stu-id="fa263-115">**ipAddress**</span></span> |<span data-ttu-id="fa263-116">Indirizzo IP assegnato tooobject.</span><span class="sxs-lookup"><span data-stu-id="fa263-116">IP address assigned tooobject.</span></span> <span data-ttu-id="fa263-117">La proprietà è di sola lettura.</span><span class="sxs-lookup"><span data-stu-id="fa263-117">This is a read-only property.</span></span> |<span data-ttu-id="fa263-118">104.42.233.77</span><span class="sxs-lookup"><span data-stu-id="fa263-118">104.42.233.77</span></span> |
+
+### <a name="dns-settings"></a><span data-ttu-id="fa263-119">Impostazioni DNS</span><span class="sxs-lookup"><span data-stu-id="fa263-119">DNS settings</span></span>
+<span data-ttu-id="fa263-120">Gli indirizzi IP pubblici dispongono di un oggetto figlio denominato **dnsSettings** contenente hello le proprietà seguenti:</span><span class="sxs-lookup"><span data-stu-id="fa263-120">Public IP addresses have a child object named **dnsSettings** containing hello following properties:</span></span>
+
+| <span data-ttu-id="fa263-121">Proprietà</span><span class="sxs-lookup"><span data-stu-id="fa263-121">Property</span></span> | <span data-ttu-id="fa263-122">Descrizione</span><span class="sxs-lookup"><span data-stu-id="fa263-122">Description</span></span> | <span data-ttu-id="fa263-123">Valori di esempio</span><span class="sxs-lookup"><span data-stu-id="fa263-123">Sample values</span></span> |
+| --- | --- | --- |
+| <span data-ttu-id="fa263-124">**domainNameLabel**</span><span class="sxs-lookup"><span data-stu-id="fa263-124">**domainNameLabel**</span></span> |<span data-ttu-id="fa263-125">Host denominato utilizzato per la risoluzione dei nomi.</span><span class="sxs-lookup"><span data-stu-id="fa263-125">Host named used for name resolution.</span></span> |<span data-ttu-id="fa263-126">www, ftp, vm1</span><span class="sxs-lookup"><span data-stu-id="fa263-126">www, ftp, vm1</span></span> |
+| <span data-ttu-id="fa263-127">**fqdn**</span><span class="sxs-lookup"><span data-stu-id="fa263-127">**fqdn**</span></span> |<span data-ttu-id="fa263-128">Nome completo per l'IP pubblico hello.</span><span class="sxs-lookup"><span data-stu-id="fa263-128">Fully qualified name for hello public IP.</span></span> |<span data-ttu-id="fa263-129">www.westus.cloudapp.azure.com</span><span class="sxs-lookup"><span data-stu-id="fa263-129">www.westus.cloudapp.azure.com</span></span> |
+| <span data-ttu-id="fa263-130">**reverseFqdn**</span><span class="sxs-lookup"><span data-stu-id="fa263-130">**reverseFqdn**</span></span> |<span data-ttu-id="fa263-131">Nome di dominio completo che consente di risolvere l'indirizzo IP toohello e viene registrato in DNS come un record PTR.</span><span class="sxs-lookup"><span data-stu-id="fa263-131">Fully qualified domain name that resolves toohello IP address and is registered in DNS as a PTR record.</span></span> |<span data-ttu-id="fa263-132">www.contoso.com</span><span class="sxs-lookup"><span data-stu-id="fa263-132">www.contoso.com.</span></span> |
+
+<span data-ttu-id="fa263-133">Indirizzo IP pubblico di esempio in formato JSON:</span><span class="sxs-lookup"><span data-stu-id="fa263-133">Sample public IP address in JSON format:</span></span>
+
+    {
+       "name": "PIP01",
+       "location": "North US",
+       "tags": { "key": "value" },
+       "properties": {
+          "publicIPAllocationMethod": "Static",
+          "idleTimeoutInMinutes": 4,
+          "ipAddress": "104.42.233.77",
+          "dnsSettings": {
+             "domainNameLabel": "mylabel",
+             "fqdn": "mylabel.westus.cloudapp.azure.com",
+             "reverseFqdn": "contoso.com."
+          }
+       }
+    } 
+
+### <a name="additional-resources"></a><span data-ttu-id="fa263-134">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="fa263-134">Additional resources</span></span>
+* <span data-ttu-id="fa263-135">Ottenere ulteriori informazioni sugli [indirizzi IP pubblici](../articles/virtual-network/virtual-networks-reserved-public-ip.md).</span><span class="sxs-lookup"><span data-stu-id="fa263-135">Get more information about [public IP addresses](../articles/virtual-network/virtual-networks-reserved-public-ip.md).</span></span>
+* <span data-ttu-id="fa263-136">Informazioni sugli [indirizzi IP pubblici a livello di istanza](../articles/virtual-network/virtual-networks-instance-level-public-ip.md).</span><span class="sxs-lookup"><span data-stu-id="fa263-136">Learn about [instance level public IP addresses](../articles/virtual-network/virtual-networks-instance-level-public-ip.md).</span></span>
+* <span data-ttu-id="fa263-137">Hello lettura [la documentazione di riferimento API REST](https://msdn.microsoft.com/library/azure/mt163638.aspx) per indirizzo IP pubblico indirizzi.</span><span class="sxs-lookup"><span data-stu-id="fa263-137">Read hello [REST API reference documentation](https://msdn.microsoft.com/library/azure/mt163638.aspx) for public IP addresses.</span></span>
+

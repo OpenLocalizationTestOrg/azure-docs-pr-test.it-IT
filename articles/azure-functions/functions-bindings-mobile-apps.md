@@ -1,6 +1,6 @@
 ---
-title: Associazioni di app per dispositivi mobili in Funzioni di Azure | Documentazione Microsoft
-description: Informazioni su come usare le associazioni di app per dispositivi mobili in Funzioni di Azure
+title: associazioni di App per dispositivi mobili funzioni aaaAzure | Documenti Microsoft
+description: Comprendere come le associazioni di App mobili di Azure toouse nelle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,67 +16,67 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/31/2016
 ms.author: glenga
-ms.openlocfilehash: c5e1c02984f9773b263c0bee7685c7d5ff62e658
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3679a5d5c66705b32e422ec17e3a1e6d6ac063c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-mobile-apps-bindings"></a><span data-ttu-id="b929e-104">Associazioni di app per dispositivi mobili in Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="b929e-104">Azure Functions Mobile Apps bindings</span></span>
+# <a name="azure-functions-mobile-apps-bindings"></a><span data-ttu-id="a8dc2-104">Associazioni di app per dispositivi mobili in Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="a8dc2-104">Azure Functions Mobile Apps bindings</span></span>
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-<span data-ttu-id="b929e-105">Questo articolo illustra come configurare e scrivere il codice delle [associazioni di App per dispositivi mobili di Azure](../app-service-mobile/app-service-mobile-value-prop.md) in Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="b929e-105">This article explains how to configure and code [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) bindings in Azure Functions.</span></span> <span data-ttu-id="b929e-106">Funzioni di Azure supporta le associazioni di input e output per App per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-106">Azure Functions supports input and output bindings for Mobile Apps.</span></span>
+<span data-ttu-id="a8dc2-105">Questo articolo viene illustrato come tooconfigure e codice [App mobili di Azure](../app-service-mobile/app-service-mobile-value-prop.md) associazioni nelle funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-105">This article explains how tooconfigure and code [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) bindings in Azure Functions.</span></span> <span data-ttu-id="a8dc2-106">Funzioni di Azure supporta le associazioni di input e output per App per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-106">Azure Functions supports input and output bindings for Mobile Apps.</span></span>
 
-<span data-ttu-id="b929e-107">Le associazioni di input e output per App per dispositivi mobili consentono di [leggere e scrivere tabelle di dati](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) nella propria app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-107">The Mobile Apps input and output bindings let you [read from and write to data tables](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) in your mobile app.</span></span>
+<span data-ttu-id="a8dc2-107">Hello App per dispositivi mobili di input e output associazioni consentono di [leggere e scrivere nelle tabelle toodata](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) in app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-107">hello Mobile Apps input and output bindings let you [read from and write toodata tables](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) in your mobile app.</span></span>
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
-## <a name="mobile-apps-input-binding"></a><span data-ttu-id="b929e-108">Associazione di input di App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="b929e-108">Mobile Apps input binding</span></span>
-<span data-ttu-id="b929e-109">L'associazione di input di App per dispositivi mobili carica un record da un endpoint tabella per dispositivi mobili e lo passa alla propria funzione.</span><span class="sxs-lookup"><span data-stu-id="b929e-109">The Mobile Apps input binding loads a record from a mobile table endpoint and passes it into your function.</span></span> <span data-ttu-id="b929e-110">Nelle funzioni C# e F# eventuali modifiche apportate al record vengono automaticamente inviate alla tabella se la funzione termina correttamente.</span><span class="sxs-lookup"><span data-stu-id="b929e-110">In a C# and F# functions, any changes made to the record are automatically sent back to the table when the function exits successfully.</span></span>
+## <a name="mobile-apps-input-binding"></a><span data-ttu-id="a8dc2-108">Associazione di input di App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="a8dc2-108">Mobile Apps input binding</span></span>
+<span data-ttu-id="a8dc2-109">associazione di input di App per dispositivi mobili Hello carica un record da un endpoint di tabella per dispositivi mobili e lo passa la funzione.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-109">hello Mobile Apps input binding loads a record from a mobile table endpoint and passes it into your function.</span></span> <span data-ttu-id="a8dc2-110">In c# e F # funzioni, qualsiasi record di toohello le modifiche apportate vengono inviati automaticamente toohello indietro tabella quando si esce dalla funzione hello correttamente.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-110">In a C# and F# functions, any changes made toohello record are automatically sent back toohello table when hello function exits successfully.</span></span>
 
-<span data-ttu-id="b929e-111">L'input di App per dispositivi mobili in una funzione usa l'oggetto JSON seguente nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="b929e-111">The Mobile Apps input to a function uses the following JSON object in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="a8dc2-111">App per dispositivi mobili Hello input tooa funzione Usa hello seguente oggetto JSON nella hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="a8dc2-111">hello Mobile Apps input tooa function uses hello following JSON object in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
     "name": "<Name of input parameter in function signature>",
     "type": "mobileTable",
     "tableName": "<Name of your mobile app's data table>",
-    "id" : "<Id of the record to retrieve - see below>",
+    "id" : "<Id of hello record tooretrieve - see below>",
     "connection": "<Name of app setting that has your mobile app's URL - see below>",
     "apiKey": "<Name of app setting that has your mobile app's API key - see below>",
     "direction": "in"
 }
 ```
 
-<span data-ttu-id="b929e-112">Tenere presente quanto segue:</span><span class="sxs-lookup"><span data-stu-id="b929e-112">Note the following:</span></span>
+<span data-ttu-id="a8dc2-112">Si noti hello segue:</span><span class="sxs-lookup"><span data-stu-id="a8dc2-112">Note hello following:</span></span>
 
-* <span data-ttu-id="b929e-113">`id` può essere statico oppure può essere basato sul trigger che richiama la funzione.</span><span class="sxs-lookup"><span data-stu-id="b929e-113">`id` can be static, or it can be based on the trigger that invokes the function.</span></span> <span data-ttu-id="b929e-114">Se ad esempio si usa un [trigger della coda]() per la propria funzione, `"id": "{queueTrigger}"` userà il valore di stringa del messaggio della coda come ID del record da recuperare.</span><span class="sxs-lookup"><span data-stu-id="b929e-114">For example, if you use a [queue trigger]() for your function, then `"id": "{queueTrigger}"` uses the string value of the queue message as the record ID to retrieve.</span></span>
-* <span data-ttu-id="b929e-115">`connection` deve contenere il nome di un'impostazione dell'app per le funzioni, in cui è contenuto l'URL dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-115">`connection` should contain the name of an app setting in your function app, which in turn contains the URL of your mobile app.</span></span> <span data-ttu-id="b929e-116">La funzione usa questo URL per creare le operazioni REST da eseguire sull'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-116">The function uses this URL to construct the required REST operations against your mobile app.</span></span> <span data-ttu-id="b929e-117">A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga l'URL dell'app per dispositivi mobili (simile a `http://<appname>.azurewebsites.net`) e quindi specificare il nome dell'impostazione dell'app nella proprietà `connection` dell'associazione di input.</span><span class="sxs-lookup"><span data-stu-id="b929e-117">You [create an app setting in your function app]() that contains your mobile app's URL (which looks like `http://<appname>.azurewebsites.net`), then specify the name of the app setting in the `connection` property in your input binding.</span></span> 
-* <span data-ttu-id="b929e-118">È necessario specificare `apiKey` se si [implementa una chiave API nel back-end dell'app per dispositivi mobili Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key) o se si [implementa una chiave API nel back-end dell'app per dispositivi mobili .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span><span class="sxs-lookup"><span data-stu-id="b929e-118">You need to specify `apiKey` if you [implement an API key in your Node.js mobile app backend](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), or [implement an API key in your .NET mobile app backend](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span></span> <span data-ttu-id="b929e-119">A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga la chiave API e quindi aggiungere la proprietà `apiKey` nell'associazione di input con il nome dell'impostazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="b929e-119">To do this, you [create an app setting in your function app]() that contains the API key, then add the `apiKey` property in your input binding with the name of the app setting.</span></span> 
+* <span data-ttu-id="a8dc2-113">`id`può essere statico o può essere basato su trigger hello che richiama la funzione hello.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-113">`id` can be static, or it can be based on hello trigger that invokes hello function.</span></span> <span data-ttu-id="a8dc2-114">Ad esempio, se si utilizza un [trigger coda]() per la funzione, quindi `"id": "{queueTrigger}"` utilizza hello il valore di stringa di messaggio della coda hello come hello tooretrieve ID record.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-114">For example, if you use a [queue trigger]() for your function, then `"id": "{queueTrigger}"` uses hello string value of hello queue message as hello record ID tooretrieve.</span></span>
+* <span data-ttu-id="a8dc2-115">`connection`deve contenere il nome di hello di un'impostazione di app nell'app (funzione), che a sua volta contiene hello URL dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-115">`connection` should contain hello name of an app setting in your function app, which in turn contains hello URL of your mobile app.</span></span> <span data-ttu-id="a8dc2-116">funzione Hello utilizza questa operazioni REST di URL tooconstruct hello necessario su app mobile.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-116">hello function uses this URL tooconstruct hello required REST operations against your mobile app.</span></span> <span data-ttu-id="a8dc2-117">Si [creare un'impostazione dell'app nell'app funzione]() che contiene l'URL dell'app mobile (che è simile `http://<appname>.azurewebsites.net`), quindi specificare il nome di hello di impostazione dell'app hello in hello `connection` proprietà l'associazione di input.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-117">You [create an app setting in your function app]() that contains your mobile app's URL (which looks like `http://<appname>.azurewebsites.net`), then specify hello name of hello app setting in hello `connection` property in your input binding.</span></span> 
+* <span data-ttu-id="a8dc2-118">È necessario toospecify `apiKey` se si [implementare una chiave API nel back-end dell'app mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), o [implementare una chiave API nel back-end dell'app mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span><span class="sxs-lookup"><span data-stu-id="a8dc2-118">You need toospecify `apiKey` if you [implement an API key in your Node.js mobile app backend](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), or [implement an API key in your .NET mobile app backend](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span></span> <span data-ttu-id="a8dc2-119">toodo, si [creare un'impostazione dell'app nell'app funzione]() che contiene la chiave API hello, quindi aggiungere hello `apiKey` proprietà l'associazione di input con il nome di hello dell'impostazione di app hello.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-119">toodo this, you [create an app setting in your function app]() that contains hello API key, then add hello `apiKey` property in your input binding with hello name of hello app setting.</span></span> 
   
   > [!IMPORTANT]
-  > <span data-ttu-id="b929e-120">Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-120">This API key must not be shared with your mobile app clients.</span></span> <span data-ttu-id="b929e-121">Può essere distribuita in modo sicuro solo ai client sul lato servizio, come Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="b929e-121">It should only be distributed securely to service-side clients, like Azure Functions.</span></span> 
+  > <span data-ttu-id="a8dc2-120">Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-120">This API key must not be shared with your mobile app clients.</span></span> <span data-ttu-id="a8dc2-121">Deve solo essere distribuiti i client di lato tooservice in modo sicuro, come le funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-121">It should only be distributed securely tooservice-side clients, like Azure Functions.</span></span> 
   > 
   > [!NOTE]
-  > <span data-ttu-id="b929e-122">Funzioni di Azure archivia le informazioni di connessione e le chiavi API come impostazioni dell'app in modo che non vengano controllate nel repository di controllo del codice sorgente.</span><span class="sxs-lookup"><span data-stu-id="b929e-122">Azure Functions stores your connection information and API keys as app settings so that they are not checked into your source control repository.</span></span> <span data-ttu-id="b929e-123">In questo modo viene garantita la protezione delle informazioni riservate.</span><span class="sxs-lookup"><span data-stu-id="b929e-123">This safeguards your sensitive information.</span></span>
+  > <span data-ttu-id="a8dc2-122">Funzioni di Azure archivia le informazioni di connessione e le chiavi API come impostazioni dell'app in modo che non vengano controllate nel repository di controllo del codice sorgente.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-122">Azure Functions stores your connection information and API keys as app settings so that they are not checked into your source control repository.</span></span> <span data-ttu-id="a8dc2-123">In questo modo viene garantita la protezione delle informazioni riservate.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-123">This safeguards your sensitive information.</span></span>
   > 
   > 
 
 <a name="inputusage"></a>
 
-## <a name="input-usage"></a><span data-ttu-id="b929e-124">Uso dell'input</span><span class="sxs-lookup"><span data-stu-id="b929e-124">Input usage</span></span>
-<span data-ttu-id="b929e-125">In questa sezione viene illustrato come usare l'associazione di input di App per dispositivi mobili nel codice di funzione.</span><span class="sxs-lookup"><span data-stu-id="b929e-125">This section shows you how to use your Mobile Apps input binding in your function code.</span></span> 
+## <a name="input-usage"></a><span data-ttu-id="a8dc2-124">Uso dell'input</span><span class="sxs-lookup"><span data-stu-id="a8dc2-124">Input usage</span></span>
+<span data-ttu-id="a8dc2-125">In questa sezione viene illustrato come toouse App Mobile di input di associazione nel codice di funzione.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-125">This section shows you how toouse your Mobile Apps input binding in your function code.</span></span> 
 
-<span data-ttu-id="b929e-126">Se il record corrispondente alla tabella e all'ID di record specificati viene trovato, il record viene passato al parametro denominato [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) (in Node.js viene passato all'oggetto `context.bindings.<name>`).</span><span class="sxs-lookup"><span data-stu-id="b929e-126">When the record with the specified table and record ID is found, it is passed into the named [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) parameter (or, in Node.js, it is passed into the `context.bindings.<name>` object).</span></span> <span data-ttu-id="b929e-127">Se il record non viene trovato, il parametro è `null`.</span><span class="sxs-lookup"><span data-stu-id="b929e-127">When the record is not found, the parameter is `null`.</span></span> 
+<span data-ttu-id="a8dc2-126">Quando il record di hello con hello specificato ID di tabella e il record è disponibile, viene passato a hello denominato [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) parametro (o, in Node.js, viene passato a hello `context.bindings.<name>` oggetto).</span><span class="sxs-lookup"><span data-stu-id="a8dc2-126">When hello record with hello specified table and record ID is found, it is passed into hello named [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) parameter (or, in Node.js, it is passed into hello `context.bindings.<name>` object).</span></span> <span data-ttu-id="a8dc2-127">Quando i record di hello non viene trovato, il parametro hello è `null`.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-127">When hello record is not found, hello parameter is `null`.</span></span> 
 
-<span data-ttu-id="b929e-128">Nelle funzioni C# e F# eventuali modifiche apportate al record di input (parametro di input) vengono automaticamente inviate alla tabella di App per dispositivi mobili quando la funzione termina correttamente.</span><span class="sxs-lookup"><span data-stu-id="b929e-128">In C# and F# functions, any changes you make to the input record (input parameter) is automatically sent back to the Mobile Apps table when the function exits successfully.</span></span> <span data-ttu-id="b929e-129">Nelle funzioni Node.js si accede al record di input usando `context.bindings.<name>`.</span><span class="sxs-lookup"><span data-stu-id="b929e-129">In Node.js functions, use `context.bindings.<name>` to access the input record.</span></span> <span data-ttu-id="b929e-130">In Node.js, inoltre, non è possibile modificare i record.</span><span class="sxs-lookup"><span data-stu-id="b929e-130">You cannot modify a record in Node.js.</span></span>
+<span data-ttu-id="a8dc2-128">Nelle funzioni di c# e F #, tutte le modifiche apportate ai record di input toohello (parametro di input) viene inviato automaticamente toohello back-tabella di App per dispositivi mobili quando si esce dalla funzione hello correttamente.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-128">In C# and F# functions, any changes you make toohello input record (input parameter) is automatically sent back toohello Mobile Apps table when hello function exits successfully.</span></span> <span data-ttu-id="a8dc2-129">Nelle funzioni di Node.js, utilizzare `context.bindings.<name>` tooaccess hello record di input.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-129">In Node.js functions, use `context.bindings.<name>` tooaccess hello input record.</span></span> <span data-ttu-id="a8dc2-130">In Node.js, inoltre, non è possibile modificare i record.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-130">You cannot modify a record in Node.js.</span></span>
 
 <a name="inputsample"></a>
 
-## <a name="input-sample"></a><span data-ttu-id="b929e-131">Esempio di input</span><span class="sxs-lookup"><span data-stu-id="b929e-131">Input sample</span></span>
-<span data-ttu-id="b929e-132">Si supponga di avere il seguente function.json, che recupera un record della tabella di App per dispositivi mobili tramite l'ID del messaggio di attivazione della coda:</span><span class="sxs-lookup"><span data-stu-id="b929e-132">Suppose you have the following function.json, that retrieves a Mobile App table record with the id of the queue trigger message:</span></span>
+## <a name="input-sample"></a><span data-ttu-id="a8dc2-131">Esempio di input</span><span class="sxs-lookup"><span data-stu-id="a8dc2-131">Input sample</span></span>
+<span data-ttu-id="a8dc2-132">Si supponga di avere seguito function.json hello, che consente di recuperare un record della tabella con id messaggio di attivazione coda hello hello App per dispositivi mobili:</span><span class="sxs-lookup"><span data-stu-id="a8dc2-132">Suppose you have hello following function.json, that retrieves a Mobile App table record with hello id of hello queue trigger message:</span></span>
 
 ```json
 {
@@ -102,14 +102,14 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="b929e-133">Vedere l'esempio specifico del linguaggio che usa il record di input dall'associazione.</span><span class="sxs-lookup"><span data-stu-id="b929e-133">See the language-specific sample that uses the input record from the binding.</span></span> <span data-ttu-id="b929e-134">Gli esempi in C# e F# modificano anche la proprietà `text` del record.</span><span class="sxs-lookup"><span data-stu-id="b929e-134">The C# and F# samples also modify the record's `text` property.</span></span>
+<span data-ttu-id="a8dc2-133">Vedere l'esempio specifico del linguaggio hello che utilizza i record di input hello dall'associazione hello.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-133">See hello language-specific sample that uses hello input record from hello binding.</span></span> <span data-ttu-id="a8dc2-134">esempi di c# e F # Hello inoltre modifichino record di hello `text` proprietà.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-134">hello C# and F# samples also modify hello record's `text` property.</span></span>
 
-* [<span data-ttu-id="b929e-135">C#</span><span class="sxs-lookup"><span data-stu-id="b929e-135">C#</span></span>](#inputcsharp)
-* [<span data-ttu-id="b929e-136">Node.js</span><span class="sxs-lookup"><span data-stu-id="b929e-136">Node.js</span></span>](#inputnodejs)
+* [<span data-ttu-id="a8dc2-135">C#</span><span class="sxs-lookup"><span data-stu-id="a8dc2-135">C#</span></span>](#inputcsharp)
+* [<span data-ttu-id="a8dc2-136">Node.js</span><span class="sxs-lookup"><span data-stu-id="a8dc2-136">Node.js</span></span>](#inputnodejs)
 
 <a name="inputcsharp"></a>
 
-### <a name="input-sample-in-c"></a><span data-ttu-id="b929e-137">Esempio di input in C#</span><span class="sxs-lookup"><span data-stu-id="b929e-137">Input sample in C#</span></span> #
+### <a name="input-sample-in-c"></a><span data-ttu-id="a8dc2-137">Esempio di input in C#</span><span class="sxs-lookup"><span data-stu-id="a8dc2-137">Input sample in C#</span></span> #
 
 ```cs
 #r "Newtonsoft.Json"    
@@ -138,7 +138,7 @@ let Run(myQueueItem: string, record: JObject) =
 
 <a name="inputnodejs"></a>
 
-### <a name="input-sample-in-nodejs"></a><span data-ttu-id="b929e-138">Esempio di input in Node.js</span><span class="sxs-lookup"><span data-stu-id="b929e-138">Input sample in Node.js</span></span>
+### <a name="input-sample-in-nodejs"></a><span data-ttu-id="a8dc2-138">Esempio di input in Node.js</span><span class="sxs-lookup"><span data-stu-id="a8dc2-138">Input sample in Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myQueueItem) {    
@@ -149,10 +149,10 @@ module.exports = function (context, myQueueItem) {
 
 <a name="output"></a>
 
-## <a name="mobile-apps-output-binding"></a><span data-ttu-id="b929e-139">Associazione di output di App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="b929e-139">Mobile Apps output binding</span></span>
-<span data-ttu-id="b929e-140">L'associazione di output di App per dispositivi mobili consente di scrivere un nuovo record in un endpoint tabella di App per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-140">Use the Mobile Apps output binding to write a new record to a Mobile Apps table endpoint.</span></span>  
+## <a name="mobile-apps-output-binding"></a><span data-ttu-id="a8dc2-139">Associazione di output di App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="a8dc2-139">Mobile Apps output binding</span></span>
+<span data-ttu-id="a8dc2-140">Utilizzare hello App per dispositivi mobili output associazione toowrite un nuovo endpoint di tabella tooa record App per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-140">Use hello Mobile Apps output binding toowrite a new record tooa Mobile Apps table endpoint.</span></span>  
 
-<span data-ttu-id="b929e-141">L'output di App per dispositivi mobili per una funzione usa l'oggetto JSON seguente nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="b929e-141">The Mobile Apps output for a function uses the following JSON object in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="a8dc2-141">App per dispositivi mobili di output per una funzione utilizza hello seguente oggetto JSON nella hello Hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="a8dc2-141">hello Mobile Apps output for a function uses hello following JSON object in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -165,30 +165,30 @@ module.exports = function (context, myQueueItem) {
 }
 ```
 
-<span data-ttu-id="b929e-142">Tenere presente quanto segue:</span><span class="sxs-lookup"><span data-stu-id="b929e-142">Note the following:</span></span>
+<span data-ttu-id="a8dc2-142">Si noti hello segue:</span><span class="sxs-lookup"><span data-stu-id="a8dc2-142">Note hello following:</span></span>
 
-* <span data-ttu-id="b929e-143">`connection` deve contenere il nome di un'impostazione dell'app per le funzioni, in cui è contenuto l'URL dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-143">`connection` should contain the name of an app setting in your function app, which in turn contains the URL of your mobile app.</span></span> <span data-ttu-id="b929e-144">La funzione usa questo URL per creare le operazioni REST da eseguire sull'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-144">The function uses this URL to construct the required REST operations against your mobile app.</span></span> <span data-ttu-id="b929e-145">A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga l'URL dell'app per dispositivi mobili (simile a `http://<appname>.azurewebsites.net`) e quindi specificare il nome dell'impostazione dell'app nella proprietà `connection` dell'associazione di input.</span><span class="sxs-lookup"><span data-stu-id="b929e-145">You [create an app setting in your function app]() that contains your mobile app's URL (which looks like `http://<appname>.azurewebsites.net`), then specify the name of the app setting in the `connection` property in your input binding.</span></span> 
-* <span data-ttu-id="b929e-146">È necessario specificare `apiKey` se si [implementa una chiave API nel back-end dell'app per dispositivi mobili Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key) o se si [implementa una chiave API nel back-end dell'app per dispositivi mobili .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span><span class="sxs-lookup"><span data-stu-id="b929e-146">You need to specify `apiKey` if you [implement an API key in your Node.js mobile app backend](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), or [implement an API key in your .NET mobile app backend](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span></span> <span data-ttu-id="b929e-147">A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga la chiave API e quindi aggiungere la proprietà `apiKey` nell'associazione di input con il nome dell'impostazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="b929e-147">To do this, you [create an app setting in your function app]() that contains the API key, then add the `apiKey` property in your input binding with the name of the app setting.</span></span> 
+* <span data-ttu-id="a8dc2-143">`connection`deve contenere il nome di hello di un'impostazione di app nell'app (funzione), che a sua volta contiene hello URL dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-143">`connection` should contain hello name of an app setting in your function app, which in turn contains hello URL of your mobile app.</span></span> <span data-ttu-id="a8dc2-144">funzione Hello utilizza questa operazioni REST di URL tooconstruct hello necessario su app mobile.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-144">hello function uses this URL tooconstruct hello required REST operations against your mobile app.</span></span> <span data-ttu-id="a8dc2-145">Si [creare un'impostazione dell'app nell'app funzione]() che contiene l'URL dell'app mobile (che è simile `http://<appname>.azurewebsites.net`), quindi specificare il nome di hello di impostazione dell'app hello in hello `connection` proprietà l'associazione di input.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-145">You [create an app setting in your function app]() that contains your mobile app's URL (which looks like `http://<appname>.azurewebsites.net`), then specify hello name of hello app setting in hello `connection` property in your input binding.</span></span> 
+* <span data-ttu-id="a8dc2-146">È necessario toospecify `apiKey` se si [implementare una chiave API nel back-end dell'app mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), o [implementare una chiave API nel back-end dell'app mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span><span class="sxs-lookup"><span data-stu-id="a8dc2-146">You need toospecify `apiKey` if you [implement an API key in your Node.js mobile app backend](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), or [implement an API key in your .NET mobile app backend](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key).</span></span> <span data-ttu-id="a8dc2-147">toodo, si [creare un'impostazione dell'app nell'app funzione]() che contiene la chiave API hello, quindi aggiungere hello `apiKey` proprietà l'associazione di input con il nome di hello dell'impostazione di app hello.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-147">toodo this, you [create an app setting in your function app]() that contains hello API key, then add hello `apiKey` property in your input binding with hello name of hello app setting.</span></span> 
   
   > [!IMPORTANT]
-  > <span data-ttu-id="b929e-148">Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="b929e-148">This API key must not be shared with your mobile app clients.</span></span> <span data-ttu-id="b929e-149">Può essere distribuita in modo sicuro solo ai client sul lato servizio, come Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="b929e-149">It should only be distributed securely to service-side clients, like Azure Functions.</span></span> 
+  > <span data-ttu-id="a8dc2-148">Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-148">This API key must not be shared with your mobile app clients.</span></span> <span data-ttu-id="a8dc2-149">Deve solo essere distribuiti i client di lato tooservice in modo sicuro, come le funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-149">It should only be distributed securely tooservice-side clients, like Azure Functions.</span></span> 
   > 
   > [!NOTE]
-  > <span data-ttu-id="b929e-150">Funzioni di Azure archivia le informazioni di connessione e le chiavi API come impostazioni dell'app in modo che non vengano controllate nel repository di controllo del codice sorgente.</span><span class="sxs-lookup"><span data-stu-id="b929e-150">Azure Functions stores your connection information and API keys as app settings so that they are not checked into your source control repository.</span></span> <span data-ttu-id="b929e-151">In questo modo viene garantita la protezione delle informazioni riservate.</span><span class="sxs-lookup"><span data-stu-id="b929e-151">This safeguards your sensitive information.</span></span>
+  > <span data-ttu-id="a8dc2-150">Funzioni di Azure archivia le informazioni di connessione e le chiavi API come impostazioni dell'app in modo che non vengano controllate nel repository di controllo del codice sorgente.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-150">Azure Functions stores your connection information and API keys as app settings so that they are not checked into your source control repository.</span></span> <span data-ttu-id="a8dc2-151">In questo modo viene garantita la protezione delle informazioni riservate.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-151">This safeguards your sensitive information.</span></span>
   > 
   > 
 
 <a name="outputusage"></a>
 
-## <a name="output-usage"></a><span data-ttu-id="b929e-152">Uso dell'output</span><span class="sxs-lookup"><span data-stu-id="b929e-152">Output usage</span></span>
-<span data-ttu-id="b929e-153">In questa sezione viene illustrato come usare l'associazione di output di App per dispositivi mobili nel codice di funzione.</span><span class="sxs-lookup"><span data-stu-id="b929e-153">This section shows you how to use your Mobile Apps output binding in your function code.</span></span> 
+## <a name="output-usage"></a><span data-ttu-id="a8dc2-152">Uso dell'output</span><span class="sxs-lookup"><span data-stu-id="a8dc2-152">Output usage</span></span>
+<span data-ttu-id="a8dc2-153">In questa sezione viene illustrato come toouse App Mobile di output di associazione nel codice di funzione.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-153">This section shows you how toouse your Mobile Apps output binding in your function code.</span></span> 
 
-<span data-ttu-id="b929e-154">Nelle funzioni C# è necessario usare un parametro di output denominato di tipo `out object` per accedere al record di output.</span><span class="sxs-lookup"><span data-stu-id="b929e-154">In C# functions, use a named output parameter of type `out object` to access the output record.</span></span> <span data-ttu-id="b929e-155">Nelle funzioni Node.js si accede al record di output usando `context.bindings.<name>`.</span><span class="sxs-lookup"><span data-stu-id="b929e-155">In Node.js functions, use `context.bindings.<name>` to access the output record.</span></span>
+<span data-ttu-id="a8dc2-154">In c# le funzioni, usare un parametro di output con nome di tipo `out object` hello tooaccess record di output.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-154">In C# functions, use a named output parameter of type `out object` tooaccess hello output record.</span></span> <span data-ttu-id="a8dc2-155">Nelle funzioni di Node.js, utilizzare `context.bindings.<name>` hello tooaccess record di output.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-155">In Node.js functions, use `context.bindings.<name>` tooaccess hello output record.</span></span>
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a><span data-ttu-id="b929e-156">Esempio di output</span><span class="sxs-lookup"><span data-stu-id="b929e-156">Output sample</span></span>
-<span data-ttu-id="b929e-157">Si supponga di avere il seguente function.json, che definisce un trigger della coda e un output di App per dispositivi mobili:</span><span class="sxs-lookup"><span data-stu-id="b929e-157">Suppose you have the following function.json, that defines a queue trigger and a Mobile Apps output:</span></span>
+## <a name="output-sample"></a><span data-ttu-id="a8dc2-156">Esempio di output</span><span class="sxs-lookup"><span data-stu-id="a8dc2-156">Output sample</span></span>
+<span data-ttu-id="a8dc2-157">Si supponga di avere seguito function.json hello, che definisce un trigger di coda e un output di App per dispositivi mobili:</span><span class="sxs-lookup"><span data-stu-id="a8dc2-157">Suppose you have hello following function.json, that defines a queue trigger and a Mobile Apps output:</span></span>
 
 ```json
 {
@@ -213,14 +213,14 @@ module.exports = function (context, myQueueItem) {
 }
 ```
 
-<span data-ttu-id="b929e-158">Vedere l'esempio specifico del linguaggio che crea un record nell'endpoint tabella di App per dispositivi mobili con il contenuto del messaggio della coda.</span><span class="sxs-lookup"><span data-stu-id="b929e-158">See the language-specific sample that creates a record in the Mobile Apps table endpoint with the content of the queue message.</span></span>
+<span data-ttu-id="a8dc2-158">Vedere l'esempio specifico del linguaggio hello che crea un record nell'endpoint di tabella hello App per dispositivi mobili con contenuto hello di messaggio della coda hello.</span><span class="sxs-lookup"><span data-stu-id="a8dc2-158">See hello language-specific sample that creates a record in hello Mobile Apps table endpoint with hello content of hello queue message.</span></span>
 
-* [<span data-ttu-id="b929e-159">C#</span><span class="sxs-lookup"><span data-stu-id="b929e-159">C#</span></span>](#outcsharp)
-* [<span data-ttu-id="b929e-160">Node.js</span><span class="sxs-lookup"><span data-stu-id="b929e-160">Node.js</span></span>](#outnodejs)
+* [<span data-ttu-id="a8dc2-159">C#</span><span class="sxs-lookup"><span data-stu-id="a8dc2-159">C#</span></span>](#outcsharp)
+* [<span data-ttu-id="a8dc2-160">Node.js</span><span class="sxs-lookup"><span data-stu-id="a8dc2-160">Node.js</span></span>](#outnodejs)
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a><span data-ttu-id="b929e-161">Esempio di output in C#</span><span class="sxs-lookup"><span data-stu-id="b929e-161">Output sample in C#</span></span> #
+### <a name="output-sample-in-c"></a><span data-ttu-id="a8dc2-161">Esempio di output in C#</span><span class="sxs-lookup"><span data-stu-id="a8dc2-161">Output sample in C#</span></span> #
 
 ```cs
 public static void Run(string myQueueItem, out object record)
@@ -240,7 +240,7 @@ public static void Run(string myQueueItem, out object record)
 -->
 <a name="outnodejs"></a>
 
-### <a name="output-sample-in-nodejs"></a><span data-ttu-id="b929e-162">Esempio di output in Node.js</span><span class="sxs-lookup"><span data-stu-id="b929e-162">Output sample in Node.js</span></span>
+### <a name="output-sample-in-nodejs"></a><span data-ttu-id="a8dc2-162">Esempio di output in Node.js</span><span class="sxs-lookup"><span data-stu-id="a8dc2-162">Output sample in Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myQueueItem) {
@@ -253,6 +253,6 @@ module.exports = function (context, myQueueItem) {
 };
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="b929e-163">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b929e-163">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a8dc2-163">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a8dc2-163">Next steps</span></span>
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 

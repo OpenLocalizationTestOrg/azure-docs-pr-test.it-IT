@@ -1,6 +1,6 @@
 ---
-title: Inviare eventi a Hub eventi di Azure usando .NET Standard | Microsoft Docs
-description: Guida introduttiva all'invio di eventi a Hub eventi in .NET Standard
+title: aaaSend eventi tooAzure hub di eventi tramite .NET Standard | Documenti Microsoft
+description: Iniziare l'invio di tooEvent hub eventi in .NET Standard
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: 8af9d70965c1c9ad8c49b7d2bb04244fc207058d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: caa9747a8a72aa8e7aea1348a116f6e4b406460e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-sending-messages-to-azure-event-hubs-in-net-standard"></a><span data-ttu-id="239fb-103">Guida introduttiva all'invio di messaggi a Hub eventi di Azure in .NET Standard</span><span class="sxs-lookup"><span data-stu-id="239fb-103">Get started sending messages to Azure Event Hubs in .NET Standard</span></span>
+# <a name="get-started-sending-messages-tooazure-event-hubs-in-net-standard"></a><span data-ttu-id="a5159-103">Iniziare l'invio di messaggi tooAzure hub di eventi in .NET Standard</span><span class="sxs-lookup"><span data-stu-id="a5159-103">Get started sending messages tooAzure Event Hubs in .NET Standard</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="239fb-104">Questo esempio è disponibile in [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender).</span><span class="sxs-lookup"><span data-stu-id="239fb-104">This sample is available on [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender).</span></span>
+> <span data-ttu-id="a5159-104">Questo esempio è disponibile in [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender).</span><span class="sxs-lookup"><span data-stu-id="a5159-104">This sample is available on [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender).</span></span>
 
-<span data-ttu-id="239fb-105">Questa esercitazione illustra come scrivere un'applicazione console .NET Core che invii un set di messaggi a un hub eventi.</span><span class="sxs-lookup"><span data-stu-id="239fb-105">This tutorial shows how to write a .NET Core console application that sends a set of messages to an event hub.</span></span> <span data-ttu-id="239fb-106">È possibile eseguire la soluzione [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) così com'è, sostituendo le stringhe `EhConnectionString` e `EhEntityPath` con i valori dell'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="239fb-106">You can run the [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) solution as-is, replacing the `EhConnectionString` and `EhEntityPath` strings with your event hub values.</span></span> <span data-ttu-id="239fb-107">In alternativa, è possibile seguire la procedura illustrata in questa esercitazione per creare una soluzione propria.</span><span class="sxs-lookup"><span data-stu-id="239fb-107">Or you can follow the steps in this tutorial to create your own.</span></span>
+<span data-ttu-id="a5159-105">Questa esercitazione viene illustrato come toowrite un'applicazione console .NET Core che invia una serie di messaggi tooan hub di eventi.</span><span class="sxs-lookup"><span data-stu-id="a5159-105">This tutorial shows how toowrite a .NET Core console application that sends a set of messages tooan event hub.</span></span> <span data-ttu-id="a5159-106">È possibile eseguire hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) soluzione come-la sostituzione, hello `EhConnectionString` e `EhEntityPath` stringhe con i valori di hub di eventi.</span><span class="sxs-lookup"><span data-stu-id="a5159-106">You can run hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) solution as-is, replacing hello `EhConnectionString` and `EhEntityPath` strings with your event hub values.</span></span> <span data-ttu-id="a5159-107">Oppure è possibile seguire hello i passaggi in questa esercitazione toocreate personalizzati.</span><span class="sxs-lookup"><span data-stu-id="a5159-107">Or you can follow hello steps in this tutorial toocreate your own.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="239fb-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="239fb-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a5159-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="a5159-108">Prerequisites</span></span>
 
-* <span data-ttu-id="239fb-109">[Microsoft Visual Studio 2015 o 2017](http://www.visualstudio.com).</span><span class="sxs-lookup"><span data-stu-id="239fb-109">[Microsoft Visual Studio 2015 or 2017](http://www.visualstudio.com).</span></span> <span data-ttu-id="239fb-110">Gli esempi inclusi nell'esercitazione usano Visual Studio 2017, ma è supportato anche Visual Studio 2015.</span><span class="sxs-lookup"><span data-stu-id="239fb-110">The examples in this tutorial use Visual Studio 2017, but Visual Studio 2015 is also supported.</span></span>
-* <span data-ttu-id="239fb-111">[Strumenti di Visual Studio 2015 o 2017 per .NET Core](http://www.microsoft.com/net/core).</span><span class="sxs-lookup"><span data-stu-id="239fb-111">[.NET Core Visual Studio 2015 or 2017 tools](http://www.microsoft.com/net/core).</span></span>
-* <span data-ttu-id="239fb-112">Una sottoscrizione di Azure.</span><span class="sxs-lookup"><span data-stu-id="239fb-112">An Azure subscription.</span></span>
-* <span data-ttu-id="239fb-113">Uno spazio dei nomi dell'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="239fb-113">An event hub namespace.</span></span>
+* <span data-ttu-id="a5159-109">[Microsoft Visual Studio 2015 o 2017](http://www.visualstudio.com).</span><span class="sxs-lookup"><span data-stu-id="a5159-109">[Microsoft Visual Studio 2015 or 2017](http://www.visualstudio.com).</span></span> <span data-ttu-id="a5159-110">esempi di Hello in questa esercitazione usare Visual Studio 2017, ma Visual Studio 2015 è anche supportato.</span><span class="sxs-lookup"><span data-stu-id="a5159-110">hello examples in this tutorial use Visual Studio 2017, but Visual Studio 2015 is also supported.</span></span>
+* <span data-ttu-id="a5159-111">[Strumenti di Visual Studio 2015 o 2017 per .NET Core](http://www.microsoft.com/net/core).</span><span class="sxs-lookup"><span data-stu-id="a5159-111">[.NET Core Visual Studio 2015 or 2017 tools](http://www.microsoft.com/net/core).</span></span>
+* <span data-ttu-id="a5159-112">Una sottoscrizione di Azure.</span><span class="sxs-lookup"><span data-stu-id="a5159-112">An Azure subscription.</span></span>
+* <span data-ttu-id="a5159-113">Uno spazio dei nomi dell'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="a5159-113">An event hub namespace.</span></span>
 
-<span data-ttu-id="239fb-114">Per inviare messaggi a un hub eventi, viene scritta un'applicazione console C# in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="239fb-114">To send messages to an event hub, we will use Visual Studio to write a C# console application.</span></span>
+<span data-ttu-id="a5159-114">hub di eventi tooan messaggi toosend, verrà utilizzato Visual Studio toowrite un'applicazione console c#.</span><span class="sxs-lookup"><span data-stu-id="a5159-114">toosend messages tooan event hub, we will use Visual Studio toowrite a C# console application.</span></span>
 
-## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a><span data-ttu-id="239fb-115">Creare uno spazio dei nomi di Hub eventi e un hub eventi</span><span class="sxs-lookup"><span data-stu-id="239fb-115">Create an Event Hubs namespace and an event hub</span></span>
+## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a><span data-ttu-id="a5159-115">Creare uno spazio dei nomi di Hub eventi e un hub eventi</span><span class="sxs-lookup"><span data-stu-id="a5159-115">Create an Event Hubs namespace and an event hub</span></span>
 
-<span data-ttu-id="239fb-116">Il primo passaggio consiste nell'usare il [portale di Azure](https://portal.azure.com) per creare uno spazio dei nomi per il tipo Hub eventi e ottenere le credenziali di gestione richieste dall'applicazione per comunicare con l'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="239fb-116">The first step is to use the [Azure portal](https://portal.azure.com) to create a namespace for the event hub type, and obtain the management credentials that your application needs to communicate with the event hub.</span></span> <span data-ttu-id="239fb-117">Per creare uno spazio dei nomi e un hub eventi, seguire la procedura descritta in [questo articolo](event-hubs-create.md) e procedere con i passaggi seguenti.</span><span class="sxs-lookup"><span data-stu-id="239fb-117">To create a namespace and an event hub, follow the procedure in [this article](event-hubs-create.md), and then proceed with the following steps.</span></span>
+<span data-ttu-id="a5159-116">primo passaggio Hello è hello toouse [portale di Azure](https://portal.azure.com) toocreate uno spazio dei nomi per il tipo di hub eventi hello e ottenere le credenziali di gestione che l'applicazione deve toocommunicate con hub eventi hello di hello.</span><span class="sxs-lookup"><span data-stu-id="a5159-116">hello first step is toouse hello [Azure portal](https://portal.azure.com) toocreate a namespace for hello event hub type, and obtain hello management credentials that your application needs toocommunicate with hello event hub.</span></span> <span data-ttu-id="a5159-117">toocreate uno spazio dei nomi e un hub di eventi, attenersi alla procedura hello in [questo articolo](event-hubs-create.md)e quindi procedere con hello alla procedura seguente.</span><span class="sxs-lookup"><span data-stu-id="a5159-117">toocreate a namespace and an event hub, follow hello procedure in [this article](event-hubs-create.md), and then proceed with hello following steps.</span></span>
 
-## <a name="create-a-console-application"></a><span data-ttu-id="239fb-118">Creare un'applicazione console</span><span class="sxs-lookup"><span data-stu-id="239fb-118">Create a console application</span></span>
+## <a name="create-a-console-application"></a><span data-ttu-id="a5159-118">Creare un'applicazione console</span><span class="sxs-lookup"><span data-stu-id="a5159-118">Create a console application</span></span>
 
-<span data-ttu-id="239fb-119">Avviare Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="239fb-119">Start Visual Studio.</span></span> <span data-ttu-id="239fb-120">Scegliere **Nuovo** dal menu **File** e quindi fare clic su **Progetto**.</span><span class="sxs-lookup"><span data-stu-id="239fb-120">From the **File** menu, click **New**, and then click **Project**.</span></span> <span data-ttu-id="239fb-121">Creare un'applicazione console di .NET Core.</span><span class="sxs-lookup"><span data-stu-id="239fb-121">Create a .NET Core console application.</span></span>
+<span data-ttu-id="a5159-119">Avviare Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="a5159-119">Start Visual Studio.</span></span> <span data-ttu-id="a5159-120">Da hello **File** menu, fare clic su **New**, quindi fare clic su **progetto**.</span><span class="sxs-lookup"><span data-stu-id="a5159-120">From hello **File** menu, click **New**, and then click **Project**.</span></span> <span data-ttu-id="a5159-121">Creare un'applicazione console di .NET Core.</span><span class="sxs-lookup"><span data-stu-id="a5159-121">Create a .NET Core console application.</span></span>
 
 ![Nuovo progetto][1]
 
-## <a name="add-the-event-hubs-nuget-package"></a><span data-ttu-id="239fb-123">Aggiungere il pacchetto NuGet di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="239fb-123">Add the Event Hubs NuGet package</span></span>
+## <a name="add-hello-event-hubs-nuget-package"></a><span data-ttu-id="a5159-123">Aggiungere il pacchetto NuGet di hub eventi hello</span><span class="sxs-lookup"><span data-stu-id="a5159-123">Add hello Event Hubs NuGet package</span></span>
 
-<span data-ttu-id="239fb-124">Aggiungere il pacchetto NuGet della raccolta .NET standard [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) al progetto eseguendo i passaggi descritti di seguito:</span><span class="sxs-lookup"><span data-stu-id="239fb-124">Add the [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET Standard library NuGet package to your project by following these steps:</span></span> 
+<span data-ttu-id="a5159-124">Aggiungere hello [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET Standard NuGet pacchetto tooyour progetto di libreria attenendosi alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="a5159-124">Add hello [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET Standard library NuGet package tooyour project by following these steps:</span></span> 
 
-1. <span data-ttu-id="239fb-125">Fare clic con il pulsante destro del mouse sul progetto appena creato e scegliere **Gestisci pacchetti NuGet**.</span><span class="sxs-lookup"><span data-stu-id="239fb-125">Right-click the newly created project and select **Manage NuGet Packages**.</span></span>
-2. <span data-ttu-id="239fb-126">Fare clic sulla scheda **Sfoglia**, quindi cercare "Microsoft.Azure.EventHubs" e selezionare il pacchetto **Microsoft.Azure.EventHubs**.</span><span class="sxs-lookup"><span data-stu-id="239fb-126">Click the **Browse** tab, then search for "Microsoft.Azure.EventHubs" and select the **Microsoft.Azure.EventHubs** package.</span></span> <span data-ttu-id="239fb-127">Fare clic su **Installa** per completare l'installazione, quindi chiudere questa finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="239fb-127">Click **Install** to complete the installation, then close this dialog box.</span></span>
+1. <span data-ttu-id="a5159-125">Fare clic sul progetto hello appena creato e selezionare **Gestisci pacchetti NuGet**.</span><span class="sxs-lookup"><span data-stu-id="a5159-125">Right-click hello newly created project and select **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="a5159-126">Fare clic su hello **Sfoglia** scheda, quindi cercare "Microsoft.Azure.EventHubs" e seleziona hello **Microsoft.Azure.EventHubs** pacchetto.</span><span class="sxs-lookup"><span data-stu-id="a5159-126">Click hello **Browse** tab, then search for "Microsoft.Azure.EventHubs" and select hello **Microsoft.Azure.EventHubs** package.</span></span> <span data-ttu-id="a5159-127">Fare clic su **installare** toocomplete hello installazione, quindi chiudere questa finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="a5159-127">Click **Install** toocomplete hello installation, then close this dialog box.</span></span>
 
-## <a name="write-some-code-to-send-messages-to-the-event-hub"></a><span data-ttu-id="239fb-128">Scrivere il codice per inviare messaggi all'hub eventi</span><span class="sxs-lookup"><span data-stu-id="239fb-128">Write some code to send messages to the event hub</span></span>
+## <a name="write-some-code-toosend-messages-toohello-event-hub"></a><span data-ttu-id="a5159-128">Scrivere alcuni hub di eventi di codice toosend messaggi toohello</span><span class="sxs-lookup"><span data-stu-id="a5159-128">Write some code toosend messages toohello event hub</span></span>
 
-1. <span data-ttu-id="239fb-129">Aggiungere le istruzioni `using` seguenti all'inizio del file Program.cs.</span><span class="sxs-lookup"><span data-stu-id="239fb-129">Add the following `using` statements to the top of the Program.cs file.</span></span>
+1. <span data-ttu-id="a5159-129">Aggiungere il seguente hello `using` top toohello istruzioni del file Program.cs hello.</span><span class="sxs-lookup"><span data-stu-id="a5159-129">Add hello following `using` statements toohello top of hello Program.cs file.</span></span>
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -63,7 +63,7 @@ ms.lasthandoff: 07/11/2017
     using System.Threading.Tasks;
     ```
 
-2. <span data-ttu-id="239fb-130">Aggiungere le costanti per la classe `Program` per la stringa di connessione e il percorso dell'entità di Hub eventi (nome dell'hub eventi singolo).</span><span class="sxs-lookup"><span data-stu-id="239fb-130">Add constants to the `Program` class for the Event Hubs connection string and entity path (individual event hub name).</span></span> <span data-ttu-id="239fb-131">Sostituire i segnaposto tra parentesi con i valori specifici ottenuti durante la creazione dell'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="239fb-131">Replace the placeholders in brackets with the proper values that were obtained when creating the event hub.</span></span>
+2. <span data-ttu-id="a5159-130">Aggiungere le costanti toohello `Program` classe per hello hub eventi connessione entità e stringa di percorso (nome dell'hub eventi singoli).</span><span class="sxs-lookup"><span data-stu-id="a5159-130">Add constants toohello `Program` class for hello Event Hubs connection string and entity path (individual event hub name).</span></span> <span data-ttu-id="a5159-131">Sostituire i segnaposto hello tra parentesi quadre con i valori appropriati hello ottenute durante la creazione di hub eventi hello.</span><span class="sxs-lookup"><span data-stu-id="a5159-131">Replace hello placeholders in brackets with hello proper values that were obtained when creating hello event hub.</span></span>
 
     ```csharp
     private static EventHubClient eventHubClient;
@@ -71,14 +71,14 @@ ms.lasthandoff: 07/11/2017
     private const string EhEntityPath = "{Event Hub path/name}";
     ```
 
-3. <span data-ttu-id="239fb-132">Aggiungere alla classe `Program` un nuovo metodo denominato `MainAsync` come da esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="239fb-132">Add a new method named `MainAsync` to the `Program` class, as follows:</span></span>
+3. <span data-ttu-id="a5159-132">Aggiungere un nuovo metodo denominato `MainAsync` toohello `Program` classe, come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="a5159-132">Add a new method named `MainAsync` toohello `Program` class, as follows:</span></span>
 
     ```csharp
     private static async Task MainAsync(string[] args)
     {
-        // Creates an EventHubsConnectionStringBuilder object from the connection string, and sets the EntityPath.
-        // Typically, the connection string should have the entity path in it, but for the sake of this simple scenario
-        // we are using the connection string from the namespace.
+        // Creates an EventHubsConnectionStringBuilder object from hello connection string, and sets hello EntityPath.
+        // Typically, hello connection string should have hello entity path in it, but for hello sake of this simple scenario
+        // we are using hello connection string from hello namespace.
         var connectionStringBuilder = new EventHubsConnectionStringBuilder(EhConnectionString)
         {
             EntityPath = EhEntityPath
@@ -90,15 +90,15 @@ ms.lasthandoff: 07/11/2017
 
         await eventHubClient.CloseAsync();
 
-        Console.WriteLine("Press ENTER to exit.");
+        Console.WriteLine("Press ENTER tooexit.");
         Console.ReadLine();
     }
     ```
 
-4. <span data-ttu-id="239fb-133">Aggiungere alla classe `Program` un nuovo metodo denominato `SendMessagesToEventHub` come da esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="239fb-133">Add a new method named `SendMessagesToEventHub` to the `Program` class, as follows:</span></span>
+4. <span data-ttu-id="a5159-133">Aggiungere un nuovo metodo denominato `SendMessagesToEventHub` toohello `Program` classe, come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="a5159-133">Add a new method named `SendMessagesToEventHub` toohello `Program` class, as follows:</span></span>
 
     ```csharp
-    // Creates an event hub client and sends 100 messages to the event hub.
+    // Creates an event hub client and sends 100 messages toohello event hub.
     private static async Task SendMessagesToEventHub(int numMessagesToSend)
     {
         for (var i = 0; i < numMessagesToSend; i++)
@@ -121,13 +121,13 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-5. <span data-ttu-id="239fb-134">Aggiungere il codice seguente al metodo `Main` nella classe `Program`.</span><span class="sxs-lookup"><span data-stu-id="239fb-134">Add the following code to the `Main` method in the `Program` class.</span></span>
+5. <span data-ttu-id="a5159-134">Aggiungere i seguenti toohello codice hello `Main` metodo hello `Program` classe.</span><span class="sxs-lookup"><span data-stu-id="a5159-134">Add hello following code toohello `Main` method in hello `Program` class.</span></span>
 
     ```csharp
     MainAsync(args).GetAwaiter().GetResult();
     ```
 
-   <span data-ttu-id="239fb-135">Ecco l'aspetto che avrà il file Program.cs.</span><span class="sxs-lookup"><span data-stu-id="239fb-135">Here is what your Program.cs should look like.</span></span>
+   <span data-ttu-id="a5159-135">Ecco l'aspetto che avrà il file Program.cs.</span><span class="sxs-lookup"><span data-stu-id="a5159-135">Here is what your Program.cs should look like.</span></span>
 
     ```csharp
     namespace SampleSender
@@ -150,9 +150,9 @@ ms.lasthandoff: 07/11/2017
 
             private static async Task MainAsync(string[] args)
             {
-                // Creates an EventHubsConnectionStringBuilder object from the connection string, and sets the EntityPath.
-                // Typically, the connection string should have the entity path in it, but for the sake of this simple scenario
-                // we are using the connection string from the namespace.
+                // Creates an EventHubsConnectionStringBuilder object from hello connection string, and sets hello EntityPath.
+                // Typically, hello connection string should have hello entity path in it, but for hello sake of this simple scenario
+                // we are using hello connection string from hello namespace.
                 var connectionStringBuilder = new EventHubsConnectionStringBuilder(EhConnectionString)
                 {
                     EntityPath = EhEntityPath
@@ -164,11 +164,11 @@ ms.lasthandoff: 07/11/2017
 
                 await eventHubClient.CloseAsync();
 
-                Console.WriteLine("Press ENTER to exit.");
+                Console.WriteLine("Press ENTER tooexit.");
                 Console.ReadLine();
             }
 
-            // Creates an event hub client and sends 100 messages to the event hub.
+            // Creates an event hub client and sends 100 messages toohello event hub.
             private static async Task SendMessagesToEventHub(int numMessagesToSend)
             {
                 for (var i = 0; i < numMessagesToSend; i++)
@@ -193,16 +193,16 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-6. <span data-ttu-id="239fb-136">Eseguire il programma e assicurarsi che non siano presenti errori.</span><span class="sxs-lookup"><span data-stu-id="239fb-136">Run the program, and ensure that there are no errors.</span></span>
+6. <span data-ttu-id="a5159-136">Eseguire il programma hello e assicurarsi che non siano presenti errori.</span><span class="sxs-lookup"><span data-stu-id="a5159-136">Run hello program, and ensure that there are no errors.</span></span>
 
-<span data-ttu-id="239fb-137">Congratulazioni.</span><span class="sxs-lookup"><span data-stu-id="239fb-137">Congratulations!</span></span> <span data-ttu-id="239fb-138">Sono stati inviati messaggi a un hub eventi.</span><span class="sxs-lookup"><span data-stu-id="239fb-138">You have now sent messages to an event hub.</span></span>
+<span data-ttu-id="a5159-137">Congratulazioni.</span><span class="sxs-lookup"><span data-stu-id="a5159-137">Congratulations!</span></span> <span data-ttu-id="a5159-138">Hub di eventi tooan messaggi inviati a questo punto.</span><span class="sxs-lookup"><span data-stu-id="a5159-138">You have now sent messages tooan event hub.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="239fb-139">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="239fb-139">Next steps</span></span>
-<span data-ttu-id="239fb-140">Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:</span><span class="sxs-lookup"><span data-stu-id="239fb-140">You can learn more about Event Hubs by visiting the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a5159-139">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a5159-139">Next steps</span></span>
+<span data-ttu-id="a5159-140">Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:</span><span class="sxs-lookup"><span data-stu-id="a5159-140">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* <span data-ttu-id="239fb-141">[Receive events from Event Hubs](event-hubs-dotnet-standard-getstarted-receive-eph.md) (Ricezione di eventi dall'Hub eventi)</span><span class="sxs-lookup"><span data-stu-id="239fb-141">[Receive events from Event Hubs](event-hubs-dotnet-standard-getstarted-receive-eph.md)</span></span>
-* [<span data-ttu-id="239fb-142">Panoramica di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="239fb-142">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
-* [<span data-ttu-id="239fb-143">Creare un hub eventi</span><span class="sxs-lookup"><span data-stu-id="239fb-143">Create an event hub</span></span>](event-hubs-create.md)
-* [<span data-ttu-id="239fb-144">Domande frequenti su Hub eventi</span><span class="sxs-lookup"><span data-stu-id="239fb-144">Event Hubs FAQ</span></span>](event-hubs-faq.md)
+* <span data-ttu-id="a5159-141">[Receive events from Event Hubs](event-hubs-dotnet-standard-getstarted-receive-eph.md) (Ricezione di eventi dall'Hub eventi)</span><span class="sxs-lookup"><span data-stu-id="a5159-141">[Receive events from Event Hubs](event-hubs-dotnet-standard-getstarted-receive-eph.md)</span></span>
+* [<span data-ttu-id="a5159-142">Panoramica di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="a5159-142">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
+* [<span data-ttu-id="a5159-143">Creare un hub eventi</span><span class="sxs-lookup"><span data-stu-id="a5159-143">Create an event hub</span></span>](event-hubs-create.md)
+* [<span data-ttu-id="a5159-144">Domande frequenti su Hub eventi</span><span class="sxs-lookup"><span data-stu-id="a5159-144">Event Hubs FAQ</span></span>](event-hubs-faq.md)
 
 [1]: ./media/event-hubs-dotnet-standard-getstarted-send/netcore.png

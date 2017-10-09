@@ -1,0 +1,10 @@
+
+
+1. <span data-ttu-id="9eb25-101">Accedi toohello [console Firebase](https://firebase.google.com/console/).</span><span class="sxs-lookup"><span data-stu-id="9eb25-101">Sign in toohello [Firebase console](https://firebase.google.com/console/).</span></span> <span data-ttu-id="9eb25-102">Creare un nuovo progetto Firebase se non è già disponibile.</span><span class="sxs-lookup"><span data-stu-id="9eb25-102">Create a new Firebase project if you don't already have one.</span></span>
+2. <span data-ttu-id="9eb25-103">Dopo aver creato il progetto, fare clic su **Firebase aggiungere app per Android tooyour** e seguire le istruzioni di hello fornite.</span><span class="sxs-lookup"><span data-stu-id="9eb25-103">After your project is created, click **Add Firebase tooyour Android app** and follow hello instructions provided.</span></span>
+
+    ![](./media/notification-hubs-enable-firebase-cloud-messaging/notification-hubs-add-firebase-to-android-app.png)
+3. <span data-ttu-id="9eb25-104">Nella console di Firebase hello, fare clic su ruota dentata hello per il progetto e quindi fare clic su **impostazioni progetto**.</span><span class="sxs-lookup"><span data-stu-id="9eb25-104">In hello Firebase console, click hello cog for your project and then click **Project Settings**.</span></span>
+
+    ![](./media/notification-hubs-enable-firebase-cloud-messaging/notification-hubs-firebase-console-project-settings.png)
+4. <span data-ttu-id="9eb25-105">Fare clic su hello **Cloud Messaging** scheda Impostazioni di progetto e copia hello valore hello **chiave Server** e **ID mittente**.</span><span class="sxs-lookup"><span data-stu-id="9eb25-105">Click hello **Cloud Messaging** tab in your project settings, and copy hello value of hello **Server key** and **Sender ID**.</span></span> <span data-ttu-id="9eb25-106">I valori saranno utilizzati successive tooconfigure hello notifica hub criteri di accesso e il gestore di notifica nell'app hello.</span><span class="sxs-lookup"><span data-stu-id="9eb25-106">These values will be used later tooconfigure hello notification hub access policy, and your notification handler in hello app.</span></span>

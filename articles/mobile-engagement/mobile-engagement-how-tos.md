@@ -1,5 +1,5 @@
 ---
-title: Interfaccia utente di Azure Mobile Engagement - Procedure di Reach
+title: aaaAzure interfaccia utente di Engagement Mobile - raggiungere procedura
 description: Panoramica dell'interfaccia utente di Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
@@ -14,233 +14,233 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 33a0a9d0c399cb7f0a791c4c16dde2e2d62364ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b6dafd09d894214d4c386f5c6f157a77671606f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-started-using-and-managing-pushes-to-reach-out-to-your-end-users"></a><span data-ttu-id="ec45e-103">Come iniziare a usare e gestire le notifiche push per raggiungere gli utenti finali</span><span class="sxs-lookup"><span data-stu-id="ec45e-103">How to get started using and managing pushes to reach out to your end users</span></span>
-<span data-ttu-id="ec45e-104">Dopo l'integrazione completa dell'SDK nell'app, è possibile iniziare a usare la sezione Reach dell'interfaccia utente per inviare notifiche push agli utenti dell'app.</span><span class="sxs-lookup"><span data-stu-id="ec45e-104">Once the SDK is fully integrated into your app, you can get started using the the Reach section of the UI to Push notifications to the users of your app.</span></span>  
+# <a name="how-tooget-started-using-and-managing-pushes-tooreach-out-tooyour-end-users"></a><span data-ttu-id="d5f0d-103">Come tooget all'utilizzo e gestione inserisce tooreach gli utenti finali tooyour</span><span class="sxs-lookup"><span data-stu-id="d5f0d-103">How tooget started using and managing pushes tooreach out tooyour end users</span></span>
+<span data-ttu-id="d5f0d-104">Una volta hello SDK è completamente integrato nell'app, è possibile iniziare utilizzando hello hello Reach sezione utenti hello UI tooPush notifiche toohello dell'app.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-104">Once hello SDK is fully integrated into your app, you can get started using hello hello Reach section of hello UI tooPush notifications toohello users of your app.</span></span>  
 
-## <a name="do-your-first-push-notification-campaign"></a><span data-ttu-id="ec45e-105">Creare la prima campagna di notifica push</span><span class="sxs-lookup"><span data-stu-id="ec45e-105">Do Your First Push Notification Campaign</span></span>
-* <span data-ttu-id="ec45e-106">Verificare che Reach sia integrato nell'app con l'SDK.</span><span class="sxs-lookup"><span data-stu-id="ec45e-106">Confirm that your Reach is integrated into your app with the SDK.</span></span> 
-* <span data-ttu-id="ec45e-107">Selezionare l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="ec45e-107">Select your application</span></span>
+## <a name="do-your-first-push-notification-campaign"></a><span data-ttu-id="d5f0d-105">Creare la prima campagna di notifica push</span><span class="sxs-lookup"><span data-stu-id="d5f0d-105">Do Your First Push Notification Campaign</span></span>
+* <span data-ttu-id="d5f0d-106">Verificare che la copertura è integrato nell'app con hello SDK.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-106">Confirm that your Reach is integrated into your app with hello SDK.</span></span> 
+* <span data-ttu-id="d5f0d-107">Selezionare l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-107">Select your application</span></span>
 
 ![First1][1]
 
-* <span data-ttu-id="ec45e-109">Andare alla sezione "Reach" e fare clic su "Nuovo annuncio".</span><span class="sxs-lookup"><span data-stu-id="ec45e-109">Go to the "Reach" Section and Click "New announcement"</span></span>
+* <span data-ttu-id="d5f0d-109">Visitare la sezione "Copertura" e fare clic su "nuovo annuncio" toohello</span><span class="sxs-lookup"><span data-stu-id="d5f0d-109">Go toohello "Reach" Section and Click "New announcement"</span></span>
 
 ![First2][2]
 
-* <span data-ttu-id="ec45e-111">Creare una nuova campagna e assegnarle un nome.</span><span class="sxs-lookup"><span data-stu-id="ec45e-111">Create a new campaign and name it</span></span>
+* <span data-ttu-id="d5f0d-111">Creare una nuova campagna e assegnarle un nome.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-111">Create a new campaign and name it</span></span>
   
 ![First3][3]
 
-* <span data-ttu-id="ec45e-113">Selezionare la modalità di recapito della notifica, ad esempio Solo in-app.</span><span class="sxs-lookup"><span data-stu-id="ec45e-113">Select how the notification should be delivered, as In-app only</span></span>
+* <span data-ttu-id="d5f0d-113">Selezionare la modalità cui deve essere recapitata notifica hello, come In-app solo</span><span class="sxs-lookup"><span data-stu-id="d5f0d-113">Select how hello notification should be delivered, as In-app only</span></span>
 
 ![First4][4]
 
-* <span data-ttu-id="ec45e-115">Creare il messaggio di cui si desidera effettuare il push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-115">Create the message you want to push</span></span>
+* <span data-ttu-id="d5f0d-115">Creare il messaggio hello da toopush</span><span class="sxs-lookup"><span data-stu-id="d5f0d-115">Create hello message you want toopush</span></span>
 
 ![First5][5]
 
-* <span data-ttu-id="ec45e-117">È possibile scrivere un titolo nella notifica (facoltativo).</span><span class="sxs-lookup"><span data-stu-id="ec45e-117">You may write a title on the notification (Optional).</span></span>
-* <span data-ttu-id="ec45e-118">Scrivere il contenuto del messaggio push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-118">Write push message content.</span></span>
-* <span data-ttu-id="ec45e-119">È possibile caricare un'immagine.</span><span class="sxs-lookup"><span data-stu-id="ec45e-119">You can upload an image.</span></span> <span data-ttu-id="ec45e-120">Tenere presente che le dimensioni del file non possono superare i 32.768 byte.</span><span class="sxs-lookup"><span data-stu-id="ec45e-120">Be aware that the size of the file cannot exceed 32,768 bytes.</span></span>
-* <span data-ttu-id="ec45e-121">È anche possibile selezionare altre opzioni, ma, per l'obiettivo di questa esercitazione, se ne parlerà in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="ec45e-121">You also have the ability to select further options, but for the focus of this tutorial, we will see that later.</span></span>
-* <span data-ttu-id="ec45e-122">Selezionare il tipo di contenuto Solo notifica.</span><span class="sxs-lookup"><span data-stu-id="ec45e-122">Select the content type as Notification only</span></span>
+* <span data-ttu-id="d5f0d-117">È possibile scrivere un titolo per la notifica di hello (facoltativo).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-117">You may write a title on hello notification (Optional).</span></span>
+* <span data-ttu-id="d5f0d-118">Scrivere il contenuto del messaggio push.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-118">Write push message content.</span></span>
+* <span data-ttu-id="d5f0d-119">È possibile caricare un'immagine.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-119">You can upload an image.</span></span> <span data-ttu-id="d5f0d-120">Tenere presente che le dimensioni di hello del file hello non possono superare corrispondono a 32.768 byte.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-120">Be aware that hello size of hello file cannot exceed 32,768 bytes.</span></span>
+* <span data-ttu-id="d5f0d-121">È inoltre hello possibilità tooselect di ulteriori opzioni, ma lo stato attivo hello di questa esercitazione, si potrà notare che in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-121">You also have hello ability tooselect further options, but for hello focus of this tutorial, we will see that later.</span></span>
+* <span data-ttu-id="d5f0d-122">Selezionare solo il tipo di contenuto hello come notifica</span><span class="sxs-lookup"><span data-stu-id="d5f0d-122">Select hello content type as Notification only</span></span>
 
 ![First6][6]
 
-* <span data-ttu-id="ec45e-124">Creare la campagna push che verrà visualizzata nell'elenco di campagne.</span><span class="sxs-lookup"><span data-stu-id="ec45e-124">Create your push campaign and it will appear in your campaign list.</span></span>
+* <span data-ttu-id="d5f0d-124">Creare la campagna push che verrà visualizzata nell'elenco di campagne.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-124">Create your push campaign and it will appear in your campaign list.</span></span>
 
 ![First7][7]
 
-## <a name="test-your-push-notification-campaign"></a><span data-ttu-id="ec45e-126">Testare la campagna di notifica push</span><span class="sxs-lookup"><span data-stu-id="ec45e-126">Test Your Push Notification Campaign</span></span>
+## <a name="test-your-push-notification-campaign"></a><span data-ttu-id="d5f0d-126">Testare la campagna di notifica push</span><span class="sxs-lookup"><span data-stu-id="d5f0d-126">Test Your Push Notification Campaign</span></span>
 ![Test1][8]
 
-* <span data-ttu-id="ec45e-128">Registrare il dispositivo.</span><span class="sxs-lookup"><span data-stu-id="ec45e-128">Register your device.</span></span>
-* <span data-ttu-id="ec45e-129">Fare clic sulla casella di controllo del dispositivo di cui si vuole effettuare il push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-129">Click on the checkbox of the device you want to push.</span></span>
-* <span data-ttu-id="ec45e-130">Fare clic sul pulsante "Test" per inviare il push al dispositivo.</span><span class="sxs-lookup"><span data-stu-id="ec45e-130">Click on the "Test" button to send the push to the device.</span></span>
+* <span data-ttu-id="d5f0d-128">Registrare il dispositivo.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-128">Register your device.</span></span>
+* <span data-ttu-id="d5f0d-129">Fare clic sulla casella di controllo di hello del dispositivo hello desiderato toopush.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-129">Click on hello checkbox of hello device you want toopush.</span></span>
+* <span data-ttu-id="d5f0d-130">Fare clic su hello "Test" toosend hello push toohello dispositivo.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-130">Click on hello "Test" button toosend hello push toohello device.</span></span>
 
 ![Test2][9]
 
-* <span data-ttu-id="ec45e-132">Attivare la campagna.</span><span class="sxs-lookup"><span data-stu-id="ec45e-132">Activate the campaign</span></span>
+* <span data-ttu-id="d5f0d-132">Attivare la campagna hello</span><span class="sxs-lookup"><span data-stu-id="d5f0d-132">Activate hello campaign</span></span>
 
 ![Test3][10]
 
-* <span data-ttu-id="ec45e-134">Ora che la campagna è stata creata, è sufficiente attivarla per effettuare il push della notifica agli utenti.</span><span class="sxs-lookup"><span data-stu-id="ec45e-134">Now that you have created your campaign you just need to activate it for the notification to be pushed to your users.</span></span>
+* <span data-ttu-id="d5f0d-134">Dopo avere creato la campagna è sufficiente tooactivate per hello notifica toobe inserito tooyour utenti.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-134">Now that you have created your campaign you just need tooactivate it for hello notification toobe pushed tooyour users.</span></span>
 
-## <a name="send-personalized-pushes"></a><span data-ttu-id="ec45e-135">Inviare push personalizzati</span><span class="sxs-lookup"><span data-stu-id="ec45e-135">Send Personalized Pushes</span></span>
-* <span data-ttu-id="ec45e-136">Questo esempio crea un push in cui viene immesso un codice di sconto personalizzato nella notifica push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-136">This example creates a push where a custom rebate code is entered into the push notification.</span></span>
+## <a name="send-personalized-pushes"></a><span data-ttu-id="d5f0d-135">Inviare push personalizzati</span><span class="sxs-lookup"><span data-stu-id="d5f0d-135">Send Personalized Pushes</span></span>
+* <span data-ttu-id="d5f0d-136">Questo esempio viene creato un push in cui un codice di sconto personalizzato viene inserito notifica push di hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-136">This example creates a push where a custom rebate code is entered into hello push notification.</span></span>
 
 ![Personalize1][11]
 
-<span data-ttu-id="ec45e-138">La personalizzazione viene ottenuta sostituendo un marcatore da un tag app info, quindi sarà necessario assicurarsi che prima siano stati definiti i valori app-info appropriati per l'utente.</span><span class="sxs-lookup"><span data-stu-id="ec45e-138">Personalization works by replacing a marker by from an app info tag so, you'll have to make sure the user has the proper app-info defined first.</span></span> <span data-ttu-id="ec45e-139">In questo esempio, per gli utenti di destinazione verrà definito un tag app info denominato rebate_code.</span><span class="sxs-lookup"><span data-stu-id="ec45e-139">In this example the targeted users will have an app info tag named rebate_code defined.</span></span>
-<span data-ttu-id="ec45e-140">Come si può vedere sopra, il contenuto della notifica push include il marker ${rebate_code} che indicherà che deve essere sostituito dal contenuto effettivo del tag app info.</span><span class="sxs-lookup"><span data-stu-id="ec45e-140">As you see above the push notification content includes the marker ${rebate_code} which will indicate that it is to be replaced by the actual content of the app info tag.</span></span>
+<span data-ttu-id="d5f0d-138">Personalizzazione works sostituendo un marcatore da un tag di informazioni di app, pertanto, è necessario toomake hello utente che disponga hello corretto app-info definito per primo.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-138">Personalization works by replacing a marker by from an app info tag so, you'll have toomake sure hello user has hello proper app-info defined first.</span></span> <span data-ttu-id="d5f0d-139">In hello in questo esempio, gli utenti di destinazione avrà un tag di info app denominato rebate_code definito.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-139">In this example hello targeted users will have an app info tag named rebate_code defined.</span></span>
+<span data-ttu-id="d5f0d-140">Contenuto di notifica push di hello include hello marcatore ${rebate_code} che indica che è sostituito dal contenuto effettivo di hello del tag di hello app info toobe visualizzati sopra.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-140">As you see above hello push notification content includes hello marker ${rebate_code} which will indicate that it is toobe replaced by hello actual content of hello app info tag.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="ec45e-141">se il tag app info non è definito per l'utente, l'utente non riceverà il push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-141">If the app info tag is not defined for the user, the user will not receive the push.</span></span>
+> <span data-ttu-id="d5f0d-141">Se il tag di hello app info non è definito per l'utente hello, utente hello non riceverà push hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-141">If hello app info tag is not defined for hello user, hello user will not receive hello push.</span></span>
 
-* <span data-ttu-id="ec45e-142">Risultato</span><span class="sxs-lookup"><span data-stu-id="ec45e-142">Result</span></span>
+* <span data-ttu-id="d5f0d-142">Risultato</span><span class="sxs-lookup"><span data-stu-id="d5f0d-142">Result</span></span>
 
 ![Personalize2][12]
 
-### <a name="you-can-further-personalize-the-text-your-notification"></a><span data-ttu-id="ec45e-144">È possibile personalizzare ulteriormente il testo della notifica</span><span class="sxs-lookup"><span data-stu-id="ec45e-144">You can further personalize the text your notification</span></span>
+### <a name="you-can-further-personalize-hello-text-your-notification"></a><span data-ttu-id="d5f0d-144">È possibile personalizzare ulteriormente testo hello la notifica</span><span class="sxs-lookup"><span data-stu-id="d5f0d-144">You can further personalize hello text your notification</span></span>
 ![Personalize3][13]
 
-* <span data-ttu-id="ec45e-146">Includendo il titolo della notifica</span><span class="sxs-lookup"><span data-stu-id="ec45e-146">Including the title of the notification,</span></span>
-* <span data-ttu-id="ec45e-147">e il contenuto del messaggio.</span><span class="sxs-lookup"><span data-stu-id="ec45e-147">And the content of the message.</span></span>
-* <span data-ttu-id="ec45e-148">Scegliere il tipo di annuncio (visualizzazione testo o Web)</span><span class="sxs-lookup"><span data-stu-id="ec45e-148">Choose the type of announcement (Text view or Web view)</span></span>
+* <span data-ttu-id="d5f0d-146">Inclusi titolo hello della notifica di hello,</span><span class="sxs-lookup"><span data-stu-id="d5f0d-146">Including hello title of hello notification,</span></span>
+* <span data-ttu-id="d5f0d-147">E il contenuto del messaggio hello hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-147">And hello content of hello message.</span></span>
+* <span data-ttu-id="d5f0d-148">Scegliere il tipo di hello di annuncio (visualizzazione di testo o Web)</span><span class="sxs-lookup"><span data-stu-id="d5f0d-148">Choose hello type of announcement (Text view or Web view)</span></span>
 
 ![Personalize4][14]
 
-### <a name="the-body-of-an-announcement-may-also-be-personalized-with"></a><span data-ttu-id="ec45e-150">Il corpo di un annuncio può anche essere personalizzato con:</span><span class="sxs-lookup"><span data-stu-id="ec45e-150">The body of an announcement may also be personalized with:</span></span>
-* <span data-ttu-id="ec45e-151">L'URL di azione, nel caso in cui si voglia personalizzare la pagina di destinazione</span><span class="sxs-lookup"><span data-stu-id="ec45e-151">The action URL, should you want to customize the landing page</span></span>
-* <span data-ttu-id="ec45e-152">Il titolo</span><span class="sxs-lookup"><span data-stu-id="ec45e-152">The title,</span></span>
-* <span data-ttu-id="ec45e-153">Il corpo del messaggio</span><span class="sxs-lookup"><span data-stu-id="ec45e-153">The body of the message.</span></span>
+### <a name="hello-body-of-an-announcement-may-also-be-personalized-with"></a><span data-ttu-id="d5f0d-150">corpo Hello di un annuncio può inoltre essere personalizzato con:</span><span class="sxs-lookup"><span data-stu-id="d5f0d-150">hello body of an announcement may also be personalized with:</span></span>
+* <span data-ttu-id="d5f0d-151">URL di azione Hello, se si vuole hello toocustomize pagina di destinazione</span><span class="sxs-lookup"><span data-stu-id="d5f0d-151">hello action URL, should you want toocustomize hello landing page</span></span>
+* <span data-ttu-id="d5f0d-152">titolo Hello,</span><span class="sxs-lookup"><span data-stu-id="d5f0d-152">hello title,</span></span>
+* <span data-ttu-id="d5f0d-153">corpo Hello del messaggio hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-153">hello body of hello message.</span></span>
 
-## <a name="differentiate-your-push-notification-in-or-out-of-app"></a><span data-ttu-id="ec45e-154">Differenziare la notifica push (all'interno o all'esterno dell'app)</span><span class="sxs-lookup"><span data-stu-id="ec45e-154">Differentiate Your Push Notification (in or out of app)</span></span>
-* <span data-ttu-id="ec45e-155">Scegliere il tipo di notifica di cui si effettuerà il push, selezionare l'applicazione, andare alla sezione "Reach", selezionare o creare una campagna push e andare alla sezione "Notifica".</span><span class="sxs-lookup"><span data-stu-id="ec45e-155">Choose the type of notification you will push, select your application, go to the "Reach" section, select or create a push campaign and go to the "Notification" section.</span></span>
-* <span data-ttu-id="ec45e-156">Fare clic su "modalità di recapito" desiderata.</span><span class="sxs-lookup"><span data-stu-id="ec45e-156">Click on the "delivery mode" you want.</span></span>
-* <span data-ttu-id="ec45e-157">Fare clic sulla casella di controllo "Limita attività" per inviare la notifica solo quando vengono eseguite attività specifiche (schermate).</span><span class="sxs-lookup"><span data-stu-id="ec45e-157">Click on the "Restrict Activities" checkbox when you want the notification occurs on specific activities (screens).</span></span>
+## <a name="differentiate-your-push-notification-in-or-out-of-app"></a><span data-ttu-id="d5f0d-154">Differenziare la notifica push (all'interno o all'esterno dell'app)</span><span class="sxs-lookup"><span data-stu-id="d5f0d-154">Differentiate Your Push Notification (in or out of app)</span></span>
+* <span data-ttu-id="d5f0d-155">Scegliere il tipo di hello di notifica si verrà push, selezionare l'applicazione, passare toohello "Copertura" sezione, selezionare o creare una campagna push e passare toohello "Notifica" sezione.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-155">Choose hello type of notification you will push, select your application, go toohello "Reach" section, select or create a push campaign and go toohello "Notification" section.</span></span>
+* <span data-ttu-id="d5f0d-156">Fare clic su "modalità di consegna" hello desiderato.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-156">Click on hello "delivery mode" you want.</span></span>
+* <span data-ttu-id="d5f0d-157">Fare clic sulla casella di controllo "Limitare l'attività" hello notifica si verifica su specifiche attività (schermate) hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-157">Click on hello "Restrict Activities" checkbox when you want hello notification occurs on specific activities (screens).</span></span>
 
 ![Differentiate1][15]
 
-### <a name="out-of-app-only-delivery-mode"></a><span data-ttu-id="ec45e-159">Modalità di recapito "Solo all'esterno dell'app"</span><span class="sxs-lookup"><span data-stu-id="ec45e-159">"Out of App Only" delivery mode</span></span>
+### <a name="out-of-app-only-delivery-mode"></a><span data-ttu-id="d5f0d-159">Modalità di recapito "Solo all'esterno dell'app"</span><span class="sxs-lookup"><span data-stu-id="d5f0d-159">"Out of App Only" delivery mode</span></span>
 ![Differentiate2][16]
 
-<span data-ttu-id="ec45e-161">La modalità di recapito "Solo all'esterno dell'app" fornisce la notifica push quando l'applicazione è chiusa.</span><span class="sxs-lookup"><span data-stu-id="ec45e-161">"Out of App Only" delivery mode provides push notification when the application is closed.</span></span> <span data-ttu-id="ec45e-162">Questa è la notifica push standard.</span><span class="sxs-lookup"><span data-stu-id="ec45e-162">This is the standard push notification.</span></span>
-<span data-ttu-id="ec45e-163">Quando si seleziona "Solo all'esterno dell'app", è necessario aver già fornito i certificati dalla piattaforma su cui si basa l'applicazione (servizio APN o GCM).</span><span class="sxs-lookup"><span data-stu-id="ec45e-163">When you select "out of app only" ,you must have already provided the certificates from the platform that your application is building on (APNS or GCM).</span></span>
+<span data-ttu-id="d5f0d-161">"All'esterno dell'App solo" modalità di recapito notifica push quando un'applicazione hello viene chiuso.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-161">"Out of App Only" delivery mode provides push notification when hello application is closed.</span></span> <span data-ttu-id="d5f0d-162">Si tratta di notifica push standard hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-162">This is hello standard push notification.</span></span>
+<span data-ttu-id="d5f0d-163">Quando si seleziona "da solo app", è necessario avere già fornito certificati hello dalla piattaforma hello che l'applicazione si basa sul (APN o GCM).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-163">When you select "out of app only" ,you must have already provided hello certificates from hello platform that your application is building on (APNS or GCM).</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="ec45e-164">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="ec45e-164">See also</span></span>
-* <span data-ttu-id="ec45e-165">[Apple Push Notification Service - Certificati](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging - Certificato](http://developer.android.com/google/gcm/index.html)</span><span class="sxs-lookup"><span data-stu-id="ec45e-165">[Apple Push Notification Service – Certificates](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – Certificate](http://developer.android.com/google/gcm/index.html)</span></span> 
+### <a name="see-also"></a><span data-ttu-id="d5f0d-164">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="d5f0d-164">See also</span></span>
+* <span data-ttu-id="d5f0d-165">[Apple Push Notification Service - Certificati](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging - Certificato](http://developer.android.com/google/gcm/index.html)</span><span class="sxs-lookup"><span data-stu-id="d5f0d-165">[Apple Push Notification Service – Certificates](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – Certificate](http://developer.android.com/google/gcm/index.html)</span></span> 
 
-### <a name="in-app-only-delivery-mode"></a><span data-ttu-id="ec45e-166">Modalità di recapito "Solo in-app"</span><span class="sxs-lookup"><span data-stu-id="ec45e-166">"in-App Only" delivery mode</span></span>
+### <a name="in-app-only-delivery-mode"></a><span data-ttu-id="d5f0d-166">Modalità di recapito "Solo in-app"</span><span class="sxs-lookup"><span data-stu-id="d5f0d-166">"in-App Only" delivery mode</span></span>
 ![Differentiate3][17]
 
-<span data-ttu-id="ec45e-168">La modalità di recapito "Solo in-app" fornisce la notifica push quando l'applicazione è in esecuzione.</span><span class="sxs-lookup"><span data-stu-id="ec45e-168">"In-App Only" delivery mode provides push notification when the application is running.</span></span>
-<span data-ttu-id="ec45e-169">Per questa notifica, non è necessario passare attraverso il servizio APN e il sistema GCM.</span><span class="sxs-lookup"><span data-stu-id="ec45e-169">For this notification, you do not need to go through the APNS and GCM system.</span></span>
-<span data-ttu-id="ec45e-170">È possibile usare il sistema di recapito in-app per raggiungere gli utenti finali.</span><span class="sxs-lookup"><span data-stu-id="ec45e-170">You can use the in-app delivery system to reach your end-users.</span></span>
-<span data-ttu-id="ec45e-171">È possibile personalizzare completamente la notifica e decidere in quale attività (schermata) visualizzare la notifica.</span><span class="sxs-lookup"><span data-stu-id="ec45e-171">You can fully customize the notification and decide in which activity (screen) the notification will appear.</span></span>
+<span data-ttu-id="d5f0d-168">Modalità di consegna "In-App solo" notifica push durante l'esecuzione di un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-168">"In-App Only" delivery mode provides push notification when hello application is running.</span></span>
+<span data-ttu-id="d5f0d-169">Per questa notifica, non è necessario toogo tramite hello APNS e sistema GCM.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-169">For this notification, you do not need toogo through hello APNS and GCM system.</span></span>
+<span data-ttu-id="d5f0d-170">È possibile utilizzare tooreach di sistema di recapito nell'applicazione hello agli utenti finali.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-170">You can use hello in-app delivery system tooreach your end-users.</span></span>
+<span data-ttu-id="d5f0d-171">Completamente, è possibile personalizzare la notifica hello e decidere in quali attività (schermata) verrà visualizzata la notifica hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-171">You can fully customize hello notification and decide in which activity (screen) hello notification will appear.</span></span>
 
-### <a name="anytime-delivery-mode"></a><span data-ttu-id="ec45e-172">Modalità di recapito "Sempre"</span><span class="sxs-lookup"><span data-stu-id="ec45e-172">"Anytime" delivery mode</span></span>
-<span data-ttu-id="ec45e-173">È possibile scegliere la modalità di recapito "Sempre", che consente di raggiungere l'utente finale indipendentemente dal fatto che l'applicazione sia in esecuzione o meno.</span><span class="sxs-lookup"><span data-stu-id="ec45e-173">You can choose an "Anytime" delivery mode, ensures you to reach your end-user whether the application is running or not.</span></span>
-<span data-ttu-id="ec45e-174">Quando si seleziona "Sempre", è necessario aver già fornito i certificati dalla piattaforma su cui si basa l'applicazione (servizio APN o GCM).</span><span class="sxs-lookup"><span data-stu-id="ec45e-174">When you select "Anytime" , you must have already provided the certificates from the platform that your application is building upon (APNS or GCM).</span></span> 
+### <a name="anytime-delivery-mode"></a><span data-ttu-id="d5f0d-172">Modalità di recapito "Sempre"</span><span class="sxs-lookup"><span data-stu-id="d5f0d-172">"Anytime" delivery mode</span></span>
+<span data-ttu-id="d5f0d-173">È possibile scegliere una modalità di consegna "In qualsiasi momento", si assicura tooreach hello se l'utente finale dell'applicazione è in esecuzione o non.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-173">You can choose an "Anytime" delivery mode, ensures you tooreach your end-user whether hello application is running or not.</span></span>
+<span data-ttu-id="d5f0d-174">Quando si seleziona "In qualsiasi momento", è necessario avere già fornito certificati hello dalla piattaforma hello che l'applicazione è basandosi su (APN o GCM).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-174">When you select "Anytime" , you must have already provided hello certificates from hello platform that your application is building upon (APNS or GCM).</span></span> 
 
-## <a name="schedule-a-push-campaign"></a><span data-ttu-id="ec45e-175">Pianificare una campagna push</span><span class="sxs-lookup"><span data-stu-id="ec45e-175">Schedule a Push Campaign</span></span>
-### <a name="plan-to-start-a-campaign"></a><span data-ttu-id="ec45e-176">Pianificare l'inizio di una campagna</span><span class="sxs-lookup"><span data-stu-id="ec45e-176">Plan to Start a campaign</span></span>
+## <a name="schedule-a-push-campaign"></a><span data-ttu-id="d5f0d-175">Pianificare una campagna push</span><span class="sxs-lookup"><span data-stu-id="d5f0d-175">Schedule a Push Campaign</span></span>
+### <a name="plan-toostart-a-campaign"></a><span data-ttu-id="d5f0d-176">Pianificare una campagna tooStart</span><span class="sxs-lookup"><span data-stu-id="d5f0d-176">Plan tooStart a campaign</span></span>
 ![Shedule1][18]
 
-<span data-ttu-id="ec45e-178">È il 21 marzo e si vuole diffondere un annuncio alla mezzanotte del 22 marzo.</span><span class="sxs-lookup"><span data-stu-id="ec45e-178">It is the 21st of March and you have an announcement to make and planed for the 22nd of March at midnight.</span></span> <span data-ttu-id="ec45e-179">Non è necessario essere davanti all'interfaccia per effettuare un push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-179">You don’t have to stay in front of the interface to do a push!</span></span> <span data-ttu-id="ec45e-180">È possibile pianificare in anticipo il minuto esatto in cui le notifiche verranno inviate.</span><span class="sxs-lookup"><span data-stu-id="ec45e-180">You can plan in advance the exact minute notifications will be sent.</span></span>
+<span data-ttu-id="d5f0d-178">È hello 21 di marzo e si dispone di un annuncio toomake e le per hello 22 di marzo a mezzanotte.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-178">It is hello 21st of March and you have an announcement toomake and planed for hello 22nd of March at midnight.</span></span> <span data-ttu-id="d5f0d-179">Non è toostay davanti hello interfaccia toodo di push.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-179">You don’t have toostay in front of hello interface toodo a push!</span></span> <span data-ttu-id="d5f0d-180">È possibile pianificare in anticipo hello esatta minuto le notifiche verranno inviate.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-180">You can plan in advance hello exact minute notifications will be sent.</span></span>
 
-* <span data-ttu-id="ec45e-181">Deselezionare la casella di controllo "Nessuna" e selezionare un'ora di inizio</span><span class="sxs-lookup"><span data-stu-id="ec45e-181">Un-check the "None" checkbox and select a start time</span></span> 
-* <span data-ttu-id="ec45e-182">Scegliere la data e ora in cui avviare la campagna push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-182">Choose the date and the time you want to start the push campaign.</span></span>
+* <span data-ttu-id="d5f0d-181">Deselezionare hello "None" casella di controllo e selezionare un'ora di inizio</span><span class="sxs-lookup"><span data-stu-id="d5f0d-181">Un-check hello "None" checkbox and select a start time</span></span> 
+* <span data-ttu-id="d5f0d-182">Scegliere hello data e ora di hello che toostart hello push campagna.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-182">Choose hello date and hello time you want toostart hello push campaign.</span></span>
 
-### <a name="plan-to-end-a-campaign"></a><span data-ttu-id="ec45e-183">Pianificare la fine di una campagna</span><span class="sxs-lookup"><span data-stu-id="ec45e-183">Plan to end a campaign</span></span>
+### <a name="plan-tooend-a-campaign"></a><span data-ttu-id="d5f0d-183">Pianificare una campagna tooend</span><span class="sxs-lookup"><span data-stu-id="d5f0d-183">Plan tooend a campaign</span></span>
 ![Shedule2][19]
 
-<span data-ttu-id="ec45e-185">Si vuole interrompere la campagna il 25 marzo alle 15, ma si sa che non si sarà presenti per poterlo fare.</span><span class="sxs-lookup"><span data-stu-id="ec45e-185">You want your campaign to stop on the 25th of March at 3.00 pm but you know you won't be there to do it.</span></span>
-<span data-ttu-id="ec45e-186">Non è necessario essere davanti all'interfaccia per effettuare un push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-186">You don’t have to stay in front of the interface to push!</span></span> <span data-ttu-id="ec45e-187">È possibile pianificare in anticipo il minuto esatto in cui la campagna verrà interrotta.</span><span class="sxs-lookup"><span data-stu-id="ec45e-187">You can plan in advance the exact minute your campaign will stop.</span></span>
+<span data-ttu-id="d5f0d-185">Si desidera toostop la campagna su hello 25 di marzo 3 PM 00 ma si conosce, non sarà presente toodo è.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-185">You want your campaign toostop on hello 25th of March at 3.00 pm but you know you won't be there toodo it.</span></span>
+<span data-ttu-id="d5f0d-186">Non è toostay davanti toopush interfaccia hello!</span><span class="sxs-lookup"><span data-stu-id="d5f0d-186">You don’t have toostay in front of hello interface toopush!</span></span> <span data-ttu-id="d5f0d-187">È possibile pianificare in anticipo hello esatta minuto che la campagna verrà interrotta.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-187">You can plan in advance hello exact minute your campaign will stop.</span></span>
 
-* <span data-ttu-id="ec45e-188">Fare clic sulla casella di controllo "Nessuna" e selezionare un'ora di fine</span><span class="sxs-lookup"><span data-stu-id="ec45e-188">Click on the "None" checkbox or select a end time</span></span>
-* <span data-ttu-id="ec45e-189">Scegliere la data e ora in cui terminare la campagna push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-189">Choose the date and the time you want to finish the push campaign.</span></span>
+* <span data-ttu-id="d5f0d-188">Fare clic su hello "None" casella di controllo o selezionare un'ora di fine</span><span class="sxs-lookup"><span data-stu-id="d5f0d-188">Click on hello "None" checkbox or select a end time</span></span>
+* <span data-ttu-id="d5f0d-189">Scegliere hello data e ora di hello che toofinish hello push campagna.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-189">Choose hello date and hello time you want toofinish hello push campaign.</span></span>
 
-### <a name="end-a-campaign-manually"></a><span data-ttu-id="ec45e-190">Terminare manualmente una campagna</span><span class="sxs-lookup"><span data-stu-id="ec45e-190">End a campaign manually</span></span>
+### <a name="end-a-campaign-manually"></a><span data-ttu-id="d5f0d-190">Terminare manualmente una campagna</span><span class="sxs-lookup"><span data-stu-id="d5f0d-190">End a campaign manually</span></span>
 ![Shedule3][20]
 
-<span data-ttu-id="ec45e-192">Per impostazione predefinita, le caselle di controllo "Nessuna" sono selezionate.</span><span class="sxs-lookup"><span data-stu-id="ec45e-192">By default, the "None" check-boxes are selected.</span></span>
-<span data-ttu-id="ec45e-193">La campagna inizierà al momento dell'attivazione nella sezione Reach e terminerà quando verrà interrotta in questa stessa sezione.</span><span class="sxs-lookup"><span data-stu-id="ec45e-193">This means that the campaign will start as soon as you activate it in the reach section and will end when you will stop it on the reach section.</span></span>
+<span data-ttu-id="d5f0d-192">Per impostazione predefinita, hello "None" vengono selezionate le caselle di controllo.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-192">By default, hello "None" check-boxes are selected.</span></span>
+<span data-ttu-id="d5f0d-193">Ciò significa che campagna hello verrà avviata appena si attivarlo in hello raggiungere sezione e fine durante l'esecuzione si arresterà in hello raggiungerà sezione.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-193">This means that hello campaign will start as soon as you activate it in hello reach section and will end when you will stop it on hello reach section.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ec45e-194">Le campagne create senza una data di fine memorizzano la notifica push nel dispositivo e consentono di visualizzare al successivo avvio dell'app, anche se la campagna è stata interrotta manualmente.</span><span class="sxs-lookup"><span data-stu-id="ec45e-194">Campaigns created without an end date store the push locally on the device and show it the next time the app is opened even if the campaign is manually ended.</span></span>
+> <span data-ttu-id="d5f0d-194">Le campagne create senza una data di fine archiviano hello push localmente nel dispositivo hello e visualizzarlo hello successiva apertura app hello anche se la campagna hello manualmente viene terminata.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-194">Campaigns created without an end date store hello push locally on hello device and show it hello next time hello app is opened even if hello campaign is manually ended.</span></span>
 
-## <a name="enhance-a-push-notification-with-a-text-view"></a><span data-ttu-id="ec45e-195">Migliorare una notifica push con una visualizzazione testo</span><span class="sxs-lookup"><span data-stu-id="ec45e-195">Enhance a Push Notification with a Text View</span></span>
-### <a name="what-is-a-text-view"></a><span data-ttu-id="ec45e-196">Cos'è una visualizzazione testo?</span><span class="sxs-lookup"><span data-stu-id="ec45e-196">What is a Text View?</span></span>
+## <a name="enhance-a-push-notification-with-a-text-view"></a><span data-ttu-id="d5f0d-195">Migliorare una notifica push con una visualizzazione testo</span><span class="sxs-lookup"><span data-stu-id="d5f0d-195">Enhance a Push Notification with a Text View</span></span>
+### <a name="what-is-a-text-view"></a><span data-ttu-id="d5f0d-196">Cos'è una visualizzazione testo?</span><span class="sxs-lookup"><span data-stu-id="d5f0d-196">What is a Text View?</span></span>
 ![TextView1][21]
 
-<span data-ttu-id="ec45e-198">Una visualizzazione testo è un popup con contenuto testuale.</span><span class="sxs-lookup"><span data-stu-id="ec45e-198">A text view is a pop-up with text content.</span></span> <span data-ttu-id="ec45e-199">Questo popup viene visualizzato quando l'utente finale fa clic sulla notifica push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-199">This pop-up appears after the end-user has clicked on the push notification.</span></span>
-<span data-ttu-id="ec45e-200">Una visualizzazione testo consente di presentare più contenuto all'utente finale.</span><span class="sxs-lookup"><span data-stu-id="ec45e-200">A text view allows you to present more content to your end-user.</span></span> <span data-ttu-id="ec45e-201">È anche un'opportunità per presentare una chiamata a un'azione, ad esempio il passaggio a una pagina dell'app, il reindirizzamento a un archivio, l'apertura di una pagina Web, l'invio di un messaggio di posta elettronica, l'avvio di una ricerca basata sulla posizione geografica e così via.</span><span class="sxs-lookup"><span data-stu-id="ec45e-201">This is also the opportunity to present a call to action such as jumping to a page of your app, redirecting to a Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
+<span data-ttu-id="d5f0d-198">Una visualizzazione testo è un popup con contenuto testuale.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-198">A text view is a pop-up with text content.</span></span> <span data-ttu-id="d5f0d-199">Questo popup viene visualizzato quando l'utente finale di hello ha fatto clic su notifica push di hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-199">This pop-up appears after hello end-user has clicked on hello push notification.</span></span>
+<span data-ttu-id="d5f0d-200">Una visualizzazione di testo consente toopresent più contenuto tooyour per l'utente finale.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-200">A text view allows you toopresent more content tooyour end-user.</span></span> <span data-ttu-id="d5f0d-201">Si tratta di hello opportunità toopresent tooaction una chiamata, ad esempio del passaggio tooa pagina dell'app, il reindirizzamento tooa archivio, aprire una pagina web, l'invio messaggio di posta elettronica, avviare una ricerca geografica localizzate e così via...</span><span class="sxs-lookup"><span data-stu-id="d5f0d-201">This is also hello opportunity toopresent a call tooaction such as jumping tooa page of your app, redirecting tooa Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
 
-### <a name="example-text-view"></a><span data-ttu-id="ec45e-202">Esempio: visualizzazione testo</span><span class="sxs-lookup"><span data-stu-id="ec45e-202">Example: Text View</span></span>
-* <span data-ttu-id="ec45e-203">Creare la campagna di notifica push nella sezione "Reach" e assegnare un nome alla campagna.</span><span class="sxs-lookup"><span data-stu-id="ec45e-203">Create your Push notification campaign in the "Reach" section and give your campaign a name</span></span>
+### <a name="example-text-view"></a><span data-ttu-id="d5f0d-202">Esempio: visualizzazione testo</span><span class="sxs-lookup"><span data-stu-id="d5f0d-202">Example: Text View</span></span>
+* <span data-ttu-id="d5f0d-203">Creare una campagna di notifica Push nella sezione "Raggiungere" hello e assegnare un nome di una campagna</span><span class="sxs-lookup"><span data-stu-id="d5f0d-203">Create your Push notification campaign in hello "Reach" section and give your campaign a name</span></span>
 
 ![TextView2][22]
 
-* <span data-ttu-id="ec45e-205">Scrivere il messaggio che verrà visualizzato nella notifica.</span><span class="sxs-lookup"><span data-stu-id="ec45e-205">Write the message that will appear on the notification.</span></span>
-* <span data-ttu-id="ec45e-206">Selezionare "testo" come tipo di contenuto per l'annuncio.</span><span class="sxs-lookup"><span data-stu-id="ec45e-206">Select the Announcement Content Type of “text”</span></span>
+* <span data-ttu-id="d5f0d-205">Scrivere un messaggio hello che verrà visualizzato per la notifica di hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-205">Write hello message that will appear on hello notification.</span></span>
+* <span data-ttu-id="d5f0d-206">Selezionare tipo di contenuto di annuncio di "testo" hello</span><span class="sxs-lookup"><span data-stu-id="d5f0d-206">Select hello Announcement Content Type of “text”</span></span>
 
 ![TextView3][23]
 
 > [!NOTE]
-> <span data-ttu-id="ec45e-208">Quando si effettua il push di una visualizzazione testo, prima viene sempre visualizzata una notifica.</span><span class="sxs-lookup"><span data-stu-id="ec45e-208">When you push a text view, it always comes with a notification first.</span></span> 
+> <span data-ttu-id="d5f0d-208">Quando si effettua il push di una visualizzazione testo, prima viene sempre visualizzata una notifica.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-208">When you push a text view, it always comes with a notification first.</span></span> 
 
-* <span data-ttu-id="ec45e-209">Definire il testo. Dopo aver selezionato il contenuto dell'annuncio di testo, apparirà la sottosezione che consente di definire il testo da visualizzare.</span><span class="sxs-lookup"><span data-stu-id="ec45e-209">Define the text (After having selected the text announcement content, the sub-section will appear, allowing you to define the text you want to be displayed.)</span></span>
+* <span data-ttu-id="d5f0d-209">Definire il testo hello (dopo la selezione di contenuto di annuncio hello testo, verrà visualizzato sottosezione hello, consentendo toodefine hello testo toobe visualizzato.)</span><span class="sxs-lookup"><span data-stu-id="d5f0d-209">Define hello text (After having selected hello text announcement content, hello sub-section will appear, allowing you toodefine hello text you want toobe displayed.)</span></span>
 
 ![TextView4][24]
 
-* <span data-ttu-id="ec45e-211">Scrivere il titolo che verrà visualizzato nella parte superiore del messaggio.</span><span class="sxs-lookup"><span data-stu-id="ec45e-211">Write the title that will appear at the top of the message.</span></span>
-* <span data-ttu-id="ec45e-212">Scrivere il contenuto principale della visualizzazione testo.</span><span class="sxs-lookup"><span data-stu-id="ec45e-212">Write the main content of the text view.</span></span>
-* <span data-ttu-id="ec45e-213">Scrivere il contenuto che verrà visualizzato sul pulsante di azione. Un pulsante di azione consente all'applicazione di eseguire un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione, il reindirizzamento a un archivio di app o a qualsiasi tipo di origine sia possibile fornire.</span><span class="sxs-lookup"><span data-stu-id="ec45e-213">Write the content that will appear on the action button (an action button enables the application to make a specific action such as opening a page of the application, redirecting to an App store or any kind of sources you can provide).</span></span>
-* <span data-ttu-id="ec45e-214">Scrivere il contenuto che verrà visualizzato sul pulsante di uscita. Facendo clic sul pulsante di uscita, la visualizzazione testo scompare.</span><span class="sxs-lookup"><span data-stu-id="ec45e-214">Write the content that will appear on the exit button (by clicking on the exit button, the text view will disappear.)</span></span>
-* <span data-ttu-id="ec45e-215">Creare la campagna di notifica push che verrà visualizzata nell'elenco di campagne.</span><span class="sxs-lookup"><span data-stu-id="ec45e-215">Create your push notification campaign and it will appear on the campaign list.</span></span>
+* <span data-ttu-id="d5f0d-211">Scrivere hello titolo che verrà visualizzato all'inizio di hello del messaggio hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-211">Write hello title that will appear at hello top of hello message.</span></span>
+* <span data-ttu-id="d5f0d-212">Scrivere il contenuto principale hello della visualizzazione di testo hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-212">Write hello main content of hello text view.</span></span>
+* <span data-ttu-id="d5f0d-213">Scrivere il contenuto di hello che verrà visualizzato sul pulsante di azione hello (un pulsante di azione consente toomake applicazione hello un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione hello, reindirizzamento tooan App store o qualsiasi tipo di origini, che è possibile fornire).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-213">Write hello content that will appear on hello action button (an action button enables hello application toomake a specific action such as opening a page of hello application, redirecting tooan App store or any kind of sources you can provide).</span></span>
+* <span data-ttu-id="d5f0d-214">Contenuto di hello scrittura che verrà visualizzato nel pulsante di uscita hello (facendo clic sul pulsante di uscita hello, visualizzazione del testo hello scomparirà.)</span><span class="sxs-lookup"><span data-stu-id="d5f0d-214">Write hello content that will appear on hello exit button (by clicking on hello exit button, hello text view will disappear.)</span></span>
+* <span data-ttu-id="d5f0d-215">Creare una campagna di notifica push e verrà visualizzato nell'elenco di hello campagna.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-215">Create your push notification campaign and it will appear on hello campaign list.</span></span>
 
 ![TextView5][25]
 
-* <span data-ttu-id="ec45e-217">Attivare la campagna di notifica push per inviare la visualizzazione testo agli utenti.</span><span class="sxs-lookup"><span data-stu-id="ec45e-217">Activate your push notification campaign to send the text view to your users.</span></span>
+* <span data-ttu-id="d5f0d-217">Attivare i push notifica della campagna toosend hello testo visualizzare tooyour gli utenti.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-217">Activate your push notification campaign toosend hello text view tooyour users.</span></span>
 
 ![TextView6][26]
 
-* <span data-ttu-id="ec45e-219">Risultato</span><span class="sxs-lookup"><span data-stu-id="ec45e-219">Result</span></span>
+* <span data-ttu-id="d5f0d-219">Risultato</span><span class="sxs-lookup"><span data-stu-id="d5f0d-219">Result</span></span>
 
 ![TextView7][27]
 
-* <span data-ttu-id="ec45e-221">L'utente riceve la notifica e fa clic su di essa.</span><span class="sxs-lookup"><span data-stu-id="ec45e-221">The user receives the notification and click on it.</span></span>
-* <span data-ttu-id="ec45e-222">La visualizzazione testo appare come un popup con cui l'utente può interagire.</span><span class="sxs-lookup"><span data-stu-id="ec45e-222">The text view appears as a pop-up allowing the user to interact with it.</span></span>
+* <span data-ttu-id="d5f0d-221">Hello utente riceve una notifica di hello e fare clic su di esso.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-221">hello user receives hello notification and click on it.</span></span>
+* <span data-ttu-id="d5f0d-222">visualizzazione del testo Hello viene visualizzato come un toointeract utente hello consentendo a comparsa con esso.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-222">hello text view appears as a pop-up allowing hello user toointeract with it.</span></span>
 
-## <a name="enhance-a-push-notification-with-a-web-view"></a><span data-ttu-id="ec45e-223">Migliorare una notifica push con una visualizzazione Web</span><span class="sxs-lookup"><span data-stu-id="ec45e-223">Enhance a Push Notification with a Web View</span></span>
-### <a name="what-is-a-web-view"></a><span data-ttu-id="ec45e-224">Cos'è una visualizzazione Web?</span><span class="sxs-lookup"><span data-stu-id="ec45e-224">What is a Web View?</span></span>
+## <a name="enhance-a-push-notification-with-a-web-view"></a><span data-ttu-id="d5f0d-223">Migliorare una notifica push con una visualizzazione Web</span><span class="sxs-lookup"><span data-stu-id="d5f0d-223">Enhance a Push Notification with a Web View</span></span>
+### <a name="what-is-a-web-view"></a><span data-ttu-id="d5f0d-224">Cos'è una visualizzazione Web?</span><span class="sxs-lookup"><span data-stu-id="d5f0d-224">What is a Web View?</span></span>
 ![WebView1][28]
 
-<span data-ttu-id="ec45e-226">Una visualizzazione Web è un popup con contenuto Web.</span><span class="sxs-lookup"><span data-stu-id="ec45e-226">A web view is a pop-up with web content.</span></span> <span data-ttu-id="ec45e-227">Questo popup viene visualizzato quando l'utente finale fa clic sulla notifica push.</span><span class="sxs-lookup"><span data-stu-id="ec45e-227">This pop-up appears when the end-user has clicked on the push notification.</span></span>
-<span data-ttu-id="ec45e-228">Una visualizzazione Web consente una maggiore interazione con l'utente finale.</span><span class="sxs-lookup"><span data-stu-id="ec45e-228">A web view allows you to have more interaction with the end-user.</span></span>
-<span data-ttu-id="ec45e-229">È anche un'opportunità per presentare una chiamata a un'azione, ad esempio il reindirizzamento a un archivio di app, l'apertura di una pagina Web, l'invio di un messaggio di posta elettronica, l'avvio di una ricerca basata sulla posizione geografica e così via.</span><span class="sxs-lookup"><span data-stu-id="ec45e-229">This is also the opportunity to present a call to action such as redirection to App Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
+<span data-ttu-id="d5f0d-226">Una visualizzazione Web è un popup con contenuto Web.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-226">A web view is a pop-up with web content.</span></span> <span data-ttu-id="d5f0d-227">Questo popup viene visualizzato quando l'utente finale di hello ha fatto clic su notifica push di hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-227">This pop-up appears when hello end-user has clicked on hello push notification.</span></span>
+<span data-ttu-id="d5f0d-228">Una visualizzazione web consente toohave ulteriori interazione dell'utente finale di hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-228">A web view allows you toohave more interaction with hello end-user.</span></span>
+<span data-ttu-id="d5f0d-229">Si tratta di hello opportunità toopresent tooaction una chiamata ad esempio il reindirizzamento tooApp archivio, aprire una pagina web, l'invio messaggio di posta elettronica, avviare una ricerca geografica localizzate e così via...</span><span class="sxs-lookup"><span data-stu-id="d5f0d-229">This is also hello opportunity toopresent a call tooaction such as redirection tooApp Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
 
-### <a name="example-web-view"></a><span data-ttu-id="ec45e-230">Esempio: visualizzazione Web</span><span class="sxs-lookup"><span data-stu-id="ec45e-230">Example: Web View</span></span>
-* <span data-ttu-id="ec45e-231">Creare la campagna push nella sezione "Reach" e assegnare un nome alla campagna.</span><span class="sxs-lookup"><span data-stu-id="ec45e-231">Create your Push campaign in the "Reach" section and give your campaign a name.</span></span>
+### <a name="example-web-view"></a><span data-ttu-id="d5f0d-230">Esempio: visualizzazione Web</span><span class="sxs-lookup"><span data-stu-id="d5f0d-230">Example: Web View</span></span>
+* <span data-ttu-id="d5f0d-231">Creare la campagna Push nella sezione "Raggiungere" hello e assegnare un nome di una campagna.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-231">Create your Push campaign in hello "Reach" section and give your campaign a name.</span></span>
 
 ![WebView2][29]
 
-* <span data-ttu-id="ec45e-233">Scrivere il messaggio che verrà visualizzato nella notifica.</span><span class="sxs-lookup"><span data-stu-id="ec45e-233">Write the message that will appear on the notification.</span></span>
-* <span data-ttu-id="ec45e-234">Selezionare "Web" come tipo di contenuto per l'annuncio.</span><span class="sxs-lookup"><span data-stu-id="ec45e-234">Select the Announcement Content Type as “web”</span></span>
+* <span data-ttu-id="d5f0d-233">Scrivere un messaggio hello che verrà visualizzato per la notifica di hello.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-233">Write hello message that will appear on hello notification.</span></span>
+* <span data-ttu-id="d5f0d-234">Selezionare il tipo di contenuto annuncio hello come "web".</span><span class="sxs-lookup"><span data-stu-id="d5f0d-234">Select hello Announcement Content Type as “web”</span></span>
 
 ![WebView3][30]
 
-### <a name="about-announcement-types"></a><span data-ttu-id="ec45e-236">Informazioni sui tipi di annuncio:</span><span class="sxs-lookup"><span data-stu-id="ec45e-236">About Announcement types:</span></span>
-* <span data-ttu-id="ec45e-237">Solo notifica: una semplice notifica standard.</span><span class="sxs-lookup"><span data-stu-id="ec45e-237">Notification only: It is a simple standard notification.</span></span> <span data-ttu-id="ec45e-238">Vale a dire che se un utente fa clic, non apparirà alcuna ulteriore visualizzazione, ma si verificherà semplicemente l'azione associata.</span><span class="sxs-lookup"><span data-stu-id="ec45e-238">Meaning that if a user clicks on it, no additional view will appear, but only the action associated to it will occur.</span></span>
-* <span data-ttu-id="ec45e-239">Annuncio di testo: una notifica che invita l'utente a esaminare una visualizzazione testo.</span><span class="sxs-lookup"><span data-stu-id="ec45e-239">Text announcement: It is a notification that engages the user to have a look at a text view.</span></span>
-* <span data-ttu-id="ec45e-240">Annuncio Web: una notifica che invita l'utente a esaminare una visualizzazione Web.</span><span class="sxs-lookup"><span data-stu-id="ec45e-240">Web announcement: It is a notification that engages the user to have a look at a web view.</span></span>
-  <span data-ttu-id="ec45e-241">Selezionare il contenuto "Annuncio Web".</span><span class="sxs-lookup"><span data-stu-id="ec45e-241">Select the "Web announcement" content.</span></span>
+### <a name="about-announcement-types"></a><span data-ttu-id="d5f0d-236">Informazioni sui tipi di annuncio:</span><span class="sxs-lookup"><span data-stu-id="d5f0d-236">About Announcement types:</span></span>
+* <span data-ttu-id="d5f0d-237">Solo notifica: una semplice notifica standard.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-237">Notification only: It is a simple standard notification.</span></span> <span data-ttu-id="d5f0d-238">Vale a dire che se un utente fa clic su di esso, non verranno visualizzato visualizzazioni aggiuntive, ma solo l'azione di hello associata tooit si verificherà.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-238">Meaning that if a user clicks on it, no additional view will appear, but only hello action associated tooit will occur.</span></span>
+* <span data-ttu-id="d5f0d-239">Annuncio di testo: si tratta di una notifica che coinvolge hello utente toohave un'occhiata a una visualizzazione di testo.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-239">Text announcement: It is a notification that engages hello user toohave a look at a text view.</span></span>
+* <span data-ttu-id="d5f0d-240">Annuncio Web: si tratta di una notifica che coinvolge hello utente toohave un'occhiata a una visualizzazione web.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-240">Web announcement: It is a notification that engages hello user toohave a look at a web view.</span></span>
+  <span data-ttu-id="d5f0d-241">Selezionare hello contenuto "Annuncio Web".</span><span class="sxs-lookup"><span data-stu-id="d5f0d-241">Select hello "Web announcement" content.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ec45e-242">quando si effettua il push di una visualizzazione Web, prima viene sempre visualizzata una notifica.</span><span class="sxs-lookup"><span data-stu-id="ec45e-242">When you push a web view, it always comes with a notification first.</span></span>
+> <span data-ttu-id="d5f0d-242">quando si effettua il push di una visualizzazione Web, prima viene sempre visualizzata una notifica.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-242">When you push a web view, it always comes with a notification first.</span></span>
 
-* <span data-ttu-id="ec45e-243">Definire il contenuto Web. Dopo aver selezionato il contenuto dell'annuncio Web, apparirà la sottosezione che consente di definire il contenuto della visualizzazione Web da visualizzare.</span><span class="sxs-lookup"><span data-stu-id="ec45e-243">Define the web content (After having selected the web announcement content, the subsection will appear, allowing you to define the web view content you want to be displayed.)</span></span>
+* <span data-ttu-id="d5f0d-243">Definire il contenuto web hello (dopo avere selezionato il contenuto web annuncio hello, verrà visualizzata la sottosezione hello, consentendo toodefine hello web Visualizza il contenuto visualizzato toobe.)</span><span class="sxs-lookup"><span data-stu-id="d5f0d-243">Define hello web content (After having selected hello web announcement content, hello subsection will appear, allowing you toodefine hello web view content you want toobe displayed.)</span></span>
 
 ![WebView4][31]
 
-* <span data-ttu-id="ec45e-245">Scrivere il titolo che verrà visualizzato nella parte superiore del messaggio (facoltativo).</span><span class="sxs-lookup"><span data-stu-id="ec45e-245">Write the title that will appear at the top of the message (optional).</span></span>
-* <span data-ttu-id="ec45e-246">Scrivere qui il codice HTML.</span><span class="sxs-lookup"><span data-stu-id="ec45e-246">Write your HTML code here.</span></span>
-* <span data-ttu-id="ec45e-247">Fare clic sul pulsante della modalità di modifica dell'origine per passare da un'edizione all'altra e verificarne l'aspetto.</span><span class="sxs-lookup"><span data-stu-id="ec45e-247">Click on the source editing mode button to switch edition and see how it looks like.</span></span>
-* <span data-ttu-id="ec45e-248">Scrivere il contenuto che verrà visualizzato sul pulsante di azione. Un pulsante di azione consente all'applicazione di eseguire un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione, il reindirizzamento a un archivio o a qualsiasi tipo di origine sia possibile fornire.</span><span class="sxs-lookup"><span data-stu-id="ec45e-248">Write the content that will appear on the action button (an action button enables the application to make a specific action such as opening a page of the application, redirecting to a Store or any kind of sources you can provide).</span></span>
-* <span data-ttu-id="ec45e-249">Scrivere il contenuto che verrà visualizzato sul pulsante di uscita. Facendo clic sul pulsante di uscita, la visualizzazione Web scompare.</span><span class="sxs-lookup"><span data-stu-id="ec45e-249">Write the content that will appear on the exit button (by clicking on the exit button, the web view will disappear).</span></span>
-* <span data-ttu-id="ec45e-250">Risultato</span><span class="sxs-lookup"><span data-stu-id="ec45e-250">Result</span></span>
+* <span data-ttu-id="d5f0d-245">Scrivere hello titolo che verrà visualizzato all'inizio di hello del messaggio hello (facoltativo).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-245">Write hello title that will appear at hello top of hello message (optional).</span></span>
+* <span data-ttu-id="d5f0d-246">Scrivere qui il codice HTML.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-246">Write your HTML code here.</span></span>
+* <span data-ttu-id="d5f0d-247">Fare clic su origine hello edition tooswitch pulsante di modalità di modifica e verificarne l'aspetto simile.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-247">Click on hello source editing mode button tooswitch edition and see how it looks like.</span></span>
+* <span data-ttu-id="d5f0d-248">Scrivere il contenuto di hello che verrà visualizzato sul pulsante di azione hello (un pulsante di azione consente toomake applicazione hello un'azione specifica, ad esempio l'apertura di una pagina dell'applicazione hello, reindirizzamento tooa archivio o qualsiasi tipo di origini, che è possibile fornire).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-248">Write hello content that will appear on hello action button (an action button enables hello application toomake a specific action such as opening a page of hello application, redirecting tooa Store or any kind of sources you can provide).</span></span>
+* <span data-ttu-id="d5f0d-249">Contenuto di hello scrittura che verrà visualizzato nel pulsante di uscita hello (facendo clic sul pulsante di uscita hello, visualizzazione web hello scompare).</span><span class="sxs-lookup"><span data-stu-id="d5f0d-249">Write hello content that will appear on hello exit button (by clicking on hello exit button, hello web view will disappear).</span></span>
+* <span data-ttu-id="d5f0d-250">Risultato</span><span class="sxs-lookup"><span data-stu-id="d5f0d-250">Result</span></span>
 
 ![WebView5][32]
 
-* <span data-ttu-id="ec45e-252">L'utente riceve la notifica e fa clic su di essa.</span><span class="sxs-lookup"><span data-stu-id="ec45e-252">The user receive the notification and click on it.</span></span>
-* <span data-ttu-id="ec45e-253">La visualizzazione testo appare come un popup con cui l'utente può interagire.</span><span class="sxs-lookup"><span data-stu-id="ec45e-253">The text view appears as a pop-up allowing the user to interact with it.</span></span>
+* <span data-ttu-id="d5f0d-252">utente Hello ricevere una notifica di hello e fare clic su di esso.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-252">hello user receive hello notification and click on it.</span></span>
+* <span data-ttu-id="d5f0d-253">visualizzazione del testo Hello viene visualizzato come un toointeract utente hello consentendo a comparsa con esso.</span><span class="sxs-lookup"><span data-stu-id="d5f0d-253">hello text view appears as a pop-up allowing hello user toointeract with it.</span></span>
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-how-tos/First1.png

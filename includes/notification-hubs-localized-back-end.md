@@ -2,7 +2,7 @@
 
 
 
-<span data-ttu-id="f2cb6-101">Quando si inviano notifiche modello, è necessario solo fornire un set di proprietà. In questo caso verrà inviato il set di proprietà contenente la versione localizzata delle notizie correnti, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="f2cb6-101">When you send template notifications you only need to provide a set of properties, in our case we will send the set of properties containing the localized version of the current news, for instance:</span></span>
+<span data-ttu-id="fa2f0-101">Quando si inviano notifiche di modello che è necessario solo un set di proprietà tooprovide, in questo caso Microsoft invierà set hello di proprietà contenenti versione localizzata di hello delle news corrente hello, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="fa2f0-101">When you send template notifications you only need tooprovide a set of properties, in our case we will send hello set of properties containing hello localized version of hello current news, for instance:</span></span>
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@
     }
 
 
-<span data-ttu-id="f2cb6-102">In questa sezione viene illustrato come inviare notifiche tramite un’app console</span><span class="sxs-lookup"><span data-stu-id="f2cb6-102">This section shows how to send notifications using a console app</span></span>
+<span data-ttu-id="fa2f0-102">Questa sezione viene illustrato come le notifiche di toosend tramite un'applicazione console</span><span class="sxs-lookup"><span data-stu-id="fa2f0-102">This section shows how toosend notifications using a console app</span></span>
 
-<span data-ttu-id="f2cb6-103">Il codice incluso trasmette le notifiche sia Windows Store che a dispositivi iOS, poiché il back-end è in grado di trasmettere a qualsiasi dispositivo supportato.</span><span class="sxs-lookup"><span data-stu-id="f2cb6-103">The included code broadcasts to both Windows Store and iOS devices, since the backend can broadcast to any of the supported devices.</span></span>
+<span data-ttu-id="fa2f0-103">Hello incluso codice trasmissioni tooboth Windows Store e i dispositivi iOS, poiché back-end hello possibile trasmettere tooany dei dispositivi hello è supportato.</span><span class="sxs-lookup"><span data-stu-id="fa2f0-103">hello included code broadcasts tooboth Windows Store and iOS devices, since hello backend can broadcast tooany of hello supported devices.</span></span>
 
-### <a name="to-send-notifications-using-a-c-console-app"></a><span data-ttu-id="f2cb6-104">Per inviare notifiche tramite un'app console C#</span><span class="sxs-lookup"><span data-stu-id="f2cb6-104">To send notifications using a C# console app</span></span>
-<span data-ttu-id="f2cb6-105">Modificare il metodo `SendTemplateNotificationAsync` nell'app console creata in precedenza con il codice seguente.</span><span class="sxs-lookup"><span data-stu-id="f2cb6-105">Modify the `SendTemplateNotificationAsync` method in the console app you previously created with the following code.</span></span> <span data-ttu-id="f2cb6-106">Si noti come in questo caso non sia necessario inviare più notifiche per impostazioni locali e piattaforme diverse.</span><span class="sxs-lookup"><span data-stu-id="f2cb6-106">Notice how in this case there is no need to send multiple notifications for different locales and platforms.</span></span>
+### <a name="toosend-notifications-using-a-c-console-app"></a><span data-ttu-id="fa2f0-104">notifiche di toosend tramite un'applicazione console c#</span><span class="sxs-lookup"><span data-stu-id="fa2f0-104">toosend notifications using a C# console app</span></span>
+<span data-ttu-id="fa2f0-105">Modificare hello `SendTemplateNotificationAsync` metodo nell'applicazione console hello creato in precedenza con hello seguente codice.</span><span class="sxs-lookup"><span data-stu-id="fa2f0-105">Modify hello `SendTemplateNotificationAsync` method in hello console app you previously created with hello following code.</span></span> <span data-ttu-id="fa2f0-106">Si noti come in questo caso esiste alcuna necessità toosend più notifiche per piattaforme e impostazioni locali diverse.</span><span class="sxs-lookup"><span data-stu-id="fa2f0-106">Notice how in this case there is no need toosend multiple notifications for different locales and platforms.</span></span>
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending the notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
+            // Sending hello notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@
         }
 
 
-<span data-ttu-id="f2cb6-107">Si noti che questa semplice chiamata distribuirà la notizia localizzata a **tutti** i dispositivi, indipendentemente dalla piattaforma, in quanto l'Hub di notifica crea il payload nativo corretto e lo distribuisce a tutti i dispositivi che hanno sottoscritto un tag specifico.</span><span class="sxs-lookup"><span data-stu-id="f2cb6-107">Note that this simple call will deliver the localized piece of news to **all** your devices, irrespective of the platform, as your Notification Hub builds and delivers the correct native payload to all the devices subscribed to a specific tag.</span></span>
+<span data-ttu-id="fa2f0-107">Si noti che questa chiamata semplice recapiterà troppo dato localizzata hello notizie**tutti** dei dispositivi, indipendentemente dalla piattaforma hello, come l'Hub di notifica si basa e recapita hello corretto i dispositivi di payload native tooall hello sottoscritto tooa tag specifico.</span><span class="sxs-lookup"><span data-stu-id="fa2f0-107">Note that this simple call will deliver hello localized piece of news too**all** your devices, irrespective of hello platform, as your Notification Hub builds and delivers hello correct native payload tooall hello devices subscribed tooa specific tag.</span></span>
 
-### <a name="sending-the-notification-with-mobile-services"></a><span data-ttu-id="f2cb6-108">Invio della notifica con Servizi mobili</span><span class="sxs-lookup"><span data-stu-id="f2cb6-108">Sending the notification with Mobile Services</span></span>
-<span data-ttu-id="f2cb6-109">Nell'utilità di pianificazione di Servizi mobili, è possibile utilizzare lo script seguente:</span><span class="sxs-lookup"><span data-stu-id="f2cb6-109">In your Mobile Service scheduler, you can use the following script:</span></span>
+### <a name="sending-hello-notification-with-mobile-services"></a><span data-ttu-id="fa2f0-108">Invia notifica hello con i servizi mobili</span><span class="sxs-lookup"><span data-stu-id="fa2f0-108">Sending hello notification with Mobile Services</span></span>
+<span data-ttu-id="fa2f0-109">Nell'utilità di pianificazione del servizio Mobile, è possibile utilizzare hello lo script seguente:</span><span class="sxs-lookup"><span data-stu-id="fa2f0-109">In your Mobile Service scheduler, you can use hello following script:</span></span>
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

@@ -1,5 +1,5 @@
 ---
-title: Servizio di rilevamento anomalie di Azure Machine Learning (deprecato) | Documentazione Microsoft
+title: Servizio di rilevamento anomalie di Azure Machine Learning AAA(deprecated) | Documenti Microsoft
 description: "Il servizio di rilevamento anomalie (deprecato) è un esempio compilato con Microsoft Azure Machine Learning che rileva le anomalie nei dati delle serie temporali con valori numerici distanziati in modo uniforme nel tempo."
 services: machine-learning
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.date: 01/18/2017
 ms.author: alok
 ROBOTS: NOINDEX
 redirect_url: machine-learning-apps-anomaly-detection-api
-redirect_document_id: TRUE
-ms.openlocfilehash: 6f3b3329fbbca33d44a055ee7d9c2508a7e1fceb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: c8c41426b669223844b3aefa2f9e23b42469d687
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="machine-learning-anomaly-detection-service-deprecated"></a><span data-ttu-id="89d6f-103">Servizio di rilevamento anomalie di Machine Learning (deprecato)</span><span class="sxs-lookup"><span data-stu-id="89d6f-103">Machine Learning Anomaly Detection Service (deprecated)</span></span>
+# <a name="machine-learning-anomaly-detection-service-deprecated"></a><span data-ttu-id="a2339-103">Servizio di rilevamento anomalie di Machine Learning (deprecato)</span><span class="sxs-lookup"><span data-stu-id="a2339-103">Machine Learning Anomaly Detection Service (deprecated)</span></span>

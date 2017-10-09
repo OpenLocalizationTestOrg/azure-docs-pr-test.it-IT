@@ -1,6 +1,6 @@
 ---
-title: Selezionare immagini di macchine virtuali Linux con l'interfaccia della riga di comando di Azure | Microsoft Docs
-description: Informazioni su come usare l'interfaccia della riga di comando di Azure per determinare il server di pubblicazione, l'offerta, la SKU e la versione delle immagini di macchine virtuali del Marketplace.
+title: le immagini VM Linux di aaaSelect con hello CLI di Azure | Documenti Microsoft
+description: Informazioni su come toouse hello toodetermine hello editore CLI di Azure, offerta, SKU e la versione per le immagini VM Marketplace.
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -16,41 +16,41 @@ ms.workload: infrastructure
 ms.date: 08/24/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e0c27a7ee9e9a7ab1a3b004e070fa556b56a36a5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0b115b8654bc156b5bfadba53a6b002a105acb68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-find-linux-vm-images-in-the-azure-marketplace-with-the-azure-cli"></a><span data-ttu-id="3ad38-103">Come trovare immagini di macchine virtuali Linux in Azure Marketplace con l'interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="3ad38-103">How to find Linux VM images in the Azure Marketplace with the Azure CLI</span></span>
-<span data-ttu-id="3ad38-104">Questo argomento descrive come usare l'interfaccia della riga di comando di Azure 2.0 per trovare immagini di VM (Virtual Machine, macchina virtuale) in Azure Marketplace.</span><span class="sxs-lookup"><span data-stu-id="3ad38-104">This topic describes how to use the Azure CLI 2.0 to find VM images in the Azure Marketplace.</span></span> <span data-ttu-id="3ad38-105">Usare queste informazioni per specificare un'immagine del Marketplace quando si crea una VM Linux.</span><span class="sxs-lookup"><span data-stu-id="3ad38-105">Use this information to specify a Marketplace image when you create a Linux VM.</span></span>
+# <a name="how-toofind-linux-vm-images-in-hello-azure-marketplace-with-hello-azure-cli"></a><span data-ttu-id="06ea4-103">La modalità di immagini toofind VM Linux in hello Azure Marketplace con hello CLI di Azure</span><span class="sxs-lookup"><span data-stu-id="06ea4-103">How toofind Linux VM images in hello Azure Marketplace with hello Azure CLI</span></span>
+<span data-ttu-id="06ea4-104">In questo argomento viene descritto come toouse hello immagini di macchina virtuale di Azure 2.0 CLI toofind in hello Azure Marketplace.</span><span class="sxs-lookup"><span data-stu-id="06ea4-104">This topic describes how toouse hello Azure CLI 2.0 toofind VM images in hello Azure Marketplace.</span></span> <span data-ttu-id="06ea4-105">Utilizzare questa toospecify informazioni un'immagine del Marketplace per creare una VM Linux.</span><span class="sxs-lookup"><span data-stu-id="06ea4-105">Use this information toospecify a Marketplace image when you create a Linux VM.</span></span>
 
-<span data-ttu-id="3ad38-106">Assicurarsi di avere installato la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e di avere effettuato l'accesso a un account di Azure (`az login`).</span><span class="sxs-lookup"><span data-stu-id="3ad38-106">Make sure that you installed the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and are logged in to an Azure account (`az login`).</span></span>
+<span data-ttu-id="06ea4-106">Verificare che più recente installato hello [CLI di Azure 2.0](/cli/azure/install-az-cli2) e vengono registrati in tooan account Azure (`az login`).</span><span class="sxs-lookup"><span data-stu-id="06ea4-106">Make sure that you installed hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and are logged in tooan Azure account (`az login`).</span></span>
 
-## <a name="terminology"></a><span data-ttu-id="3ad38-107">Terminologia</span><span class="sxs-lookup"><span data-stu-id="3ad38-107">Terminology</span></span>
+## <a name="terminology"></a><span data-ttu-id="06ea4-107">Terminologia</span><span class="sxs-lookup"><span data-stu-id="06ea4-107">Terminology</span></span>
 
-<span data-ttu-id="3ad38-108">Le immagini in Marketplace vengono identificate nell'interfaccia della riga di comando e altri strumenti di Azure in base a una gerarchia:</span><span class="sxs-lookup"><span data-stu-id="3ad38-108">Marketplace images are identified in the CLI and other Azure tools according to a hierarchy:</span></span>
+<span data-ttu-id="06ea4-108">Le immagini di Marketplace vengono identificate in hello CLI e altri strumenti di Azure in base tooa gerarchia:</span><span class="sxs-lookup"><span data-stu-id="06ea4-108">Marketplace images are identified in hello CLI and other Azure tools according tooa hierarchy:</span></span>
 
-* <span data-ttu-id="3ad38-109">**Server di pubblicazione**: un'organizzazione che ha creato l'immagine.</span><span class="sxs-lookup"><span data-stu-id="3ad38-109">**Publisher** - The organization that created the image.</span></span> <span data-ttu-id="3ad38-110">Esempio: Canonical</span><span class="sxs-lookup"><span data-stu-id="3ad38-110">Example: Canonical</span></span>
-* <span data-ttu-id="3ad38-111">**Offerta**: un gruppo di immagini correlate create da un server di pubblicazione.</span><span class="sxs-lookup"><span data-stu-id="3ad38-111">**Offer** - A group of related images created by a publisher.</span></span> <span data-ttu-id="3ad38-112">Esempio: server Ubuntu</span><span class="sxs-lookup"><span data-stu-id="3ad38-112">Example: Ubuntu Server</span></span>
-* <span data-ttu-id="3ad38-113">**SKU**: un'istanza di un'offerta, ad esempio una versione principale di una distribuzione.</span><span class="sxs-lookup"><span data-stu-id="3ad38-113">**SKU** - An instance of an offer, such as a major release of a distribution.</span></span> <span data-ttu-id="3ad38-114">Esempio: 16.04-LTS</span><span class="sxs-lookup"><span data-stu-id="3ad38-114">Example: 16.04-LTS</span></span>
-* <span data-ttu-id="3ad38-115">**Versione**: il numero di versione di un'immagine SKU.</span><span class="sxs-lookup"><span data-stu-id="3ad38-115">**Version** - The version number of an image SKU.</span></span> <span data-ttu-id="3ad38-116">Quando si specifica l'immagine, è possibile sostituire il numero di versione con "latest", che seleziona la versione più recente della distribuzione.</span><span class="sxs-lookup"><span data-stu-id="3ad38-116">When specifying the image, you can replace the version number with "latest", which selects the latest version of the distribution.</span></span>
+* <span data-ttu-id="06ea4-109">**Server di pubblicazione** -hello organizzazione che ha creato l'immagine di hello.</span><span class="sxs-lookup"><span data-stu-id="06ea4-109">**Publisher** - hello organization that created hello image.</span></span> <span data-ttu-id="06ea4-110">Esempio: Canonical</span><span class="sxs-lookup"><span data-stu-id="06ea4-110">Example: Canonical</span></span>
+* <span data-ttu-id="06ea4-111">**Offerta**: un gruppo di immagini correlate create da un server di pubblicazione.</span><span class="sxs-lookup"><span data-stu-id="06ea4-111">**Offer** - A group of related images created by a publisher.</span></span> <span data-ttu-id="06ea4-112">Esempio: server Ubuntu</span><span class="sxs-lookup"><span data-stu-id="06ea4-112">Example: Ubuntu Server</span></span>
+* <span data-ttu-id="06ea4-113">**SKU**: un'istanza di un'offerta, ad esempio una versione principale di una distribuzione.</span><span class="sxs-lookup"><span data-stu-id="06ea4-113">**SKU** - An instance of an offer, such as a major release of a distribution.</span></span> <span data-ttu-id="06ea4-114">Esempio: 16.04-LTS</span><span class="sxs-lookup"><span data-stu-id="06ea4-114">Example: 16.04-LTS</span></span>
+* <span data-ttu-id="06ea4-115">**Versione** -numero di versione di un'immagine SKU hello.</span><span class="sxs-lookup"><span data-stu-id="06ea4-115">**Version** - hello version number of an image SKU.</span></span> <span data-ttu-id="06ea4-116">Quando si specifica l'immagine di hello, è possibile sostituire il numero di versione hello con "più recente", che consente di selezionare più recente della distribuzione hello hello.</span><span class="sxs-lookup"><span data-stu-id="06ea4-116">When specifying hello image, you can replace hello version number with "latest", which selects hello latest version of hello distribution.</span></span>
 
-<span data-ttu-id="3ad38-117">Per specificare un'immagine in Marketplace, si usa in genere l'immagine *URN*.</span><span class="sxs-lookup"><span data-stu-id="3ad38-117">To specify a Marketplace image, you typically use the image *URN*.</span></span> <span data-ttu-id="3ad38-118">L'URN combina tali valori, separati dal carattere due punti (:): *Server di pubblicazione*:*Offerta*:*SKU*:*Versione*.</span><span class="sxs-lookup"><span data-stu-id="3ad38-118">The URN combines these values, separated by the colon (:) character: *Publisher*:*Offer*:*Sku*:*Version*.</span></span> 
+<span data-ttu-id="06ea4-117">toospecify un'immagine del Marketplace, è in genere utilizzare hello immagine *URN*.</span><span class="sxs-lookup"><span data-stu-id="06ea4-117">toospecify a Marketplace image, you typically use hello image *URN*.</span></span> <span data-ttu-id="06ea4-118">Hello URN combina tali valori, separati dal carattere due punti (:) hello: *Publisher*:*offrono*:*Sku*:*versione*.</span><span class="sxs-lookup"><span data-stu-id="06ea4-118">hello URN combines these values, separated by hello colon (:) character: *Publisher*:*Offer*:*Sku*:*Version*.</span></span> 
 
 
-## <a name="list-popular-images"></a><span data-ttu-id="3ad38-119">Elencare immagini popolari</span><span class="sxs-lookup"><span data-stu-id="3ad38-119">List popular images</span></span>
+## <a name="list-popular-images"></a><span data-ttu-id="06ea4-119">Elencare immagini popolari</span><span class="sxs-lookup"><span data-stu-id="06ea4-119">List popular images</span></span>
 
-<span data-ttu-id="3ad38-120">Eseguire il comando [az vm image list](/cli/azure/vm/image#list), senza l'opzione `--all`, per visualizzare un elenco di immagini di VM popolari in Azure Marketplace.</span><span class="sxs-lookup"><span data-stu-id="3ad38-120">Run the [az vm image list](/cli/azure/vm/image#list) command, without the `--all` option, to see a list of popular VM images in the Azure Marketplace.</span></span> <span data-ttu-id="3ad38-121">Ad esempio, eseguire il comando seguente per visualizzare un elenco memorizzato nella cache di immagini popolari in formato tabella:</span><span class="sxs-lookup"><span data-stu-id="3ad38-121">For example, run the following command to display a cached list of popular images in table format:</span></span>
+<span data-ttu-id="06ea4-120">Eseguire hello [elenco di immagini di macchina virtuale az](/cli/azure/vm/image#list) comando, senza hello `--all` opzione, toosee immagini di un elenco di VM diffusi in hello Azure Marketplace.</span><span class="sxs-lookup"><span data-stu-id="06ea4-120">Run hello [az vm image list](/cli/azure/vm/image#list) command, without hello `--all` option, toosee a list of popular VM images in hello Azure Marketplace.</span></span> <span data-ttu-id="06ea4-121">Ad esempio, eseguire hello successivo comando toodisplay un elenco memorizzati nella cache delle immagini diffusi in formato tabella:</span><span class="sxs-lookup"><span data-stu-id="06ea4-121">For example, run hello following command toodisplay a cached list of popular images in table format:</span></span>
 
 ```azurecli
 az vm image list --output table
 ```
 
-<span data-ttu-id="3ad38-122">L'output include l'URN (il valore nella colonna *Urn*), che consente di specificare l'immagine.</span><span class="sxs-lookup"><span data-stu-id="3ad38-122">The output includes the URN (the value in the *Urn* column), which you use to specify the image.</span></span> <span data-ttu-id="3ad38-123">Se si vuole creare una VM con tali immagini popolari in Marketplace, è possibile specificare in alternativa l'alias URN, ad esempio *UbuntuLTS*.</span><span class="sxs-lookup"><span data-stu-id="3ad38-123">When creating a VM with one of these popular Marketplace images, you can alternatively specify the URN alias, such as *UbuntuLTS*.</span></span>
+<span data-ttu-id="06ea4-122">output di Hello include hello URN (hello valore hello *Urn* colonna), che si utilizza toospecify hello immagine.</span><span class="sxs-lookup"><span data-stu-id="06ea4-122">hello output includes hello URN (hello value in hello *Urn* column), which you use toospecify hello image.</span></span> <span data-ttu-id="06ea4-123">Quando si crea una macchina virtuale con una di queste immagini comune di Marketplace, è possibile specificare alias di hello URN, ad esempio *UbuntuLTS*.</span><span class="sxs-lookup"><span data-stu-id="06ea4-123">When creating a VM with one of these popular Marketplace images, you can alternatively specify hello URN alias, such as *UbuntuLTS*.</span></span>
 
 ```
-You are viewing an offline list of images, use --all to retrieve an up-to-date list
+You are viewing an offline list of images, use --all tooretrieve an up-to-date list
 Offer          Publisher               Sku                 Urn                                                             UrnAlias             Version
 -------------  ----------------------  ------------------  --------------------------------------------------------------  -------------------  ---------
 CentOS         OpenLogic               7.3                 OpenLogic:CentOS:7.3:latest                                     CentOS               latest
@@ -63,18 +63,18 @@ UbuntuServer   Canonical               16.04-LTS           Canonical:UbuntuServe
 ...
 ```
 
-## <a name="find-specific-images"></a><span data-ttu-id="3ad38-124">Trovare immagini specifiche</span><span class="sxs-lookup"><span data-stu-id="3ad38-124">Find specific images</span></span>
+## <a name="find-specific-images"></a><span data-ttu-id="06ea4-124">Trovare immagini specifiche</span><span class="sxs-lookup"><span data-stu-id="06ea4-124">Find specific images</span></span>
 
-<span data-ttu-id="3ad38-125">Per trovare un'immagine di VM specifica in Marketplace, usare il comando `az vm image list` con l'opzione `--all`.</span><span class="sxs-lookup"><span data-stu-id="3ad38-125">To find a specific VM image in the Marketplace, use the `az vm image list` command with the `--all` option.</span></span> <span data-ttu-id="3ad38-126">Questa versione del comando richiede del tempo per essere completata e può restituire un output lungo, pertanto l'elenco si filtra in genere in base a `--publisher` o a un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="3ad38-126">This version of the command takes some time to complete and can return lengthy output, so you usually filter the list by `--publisher` or another parameter.</span></span> 
+<span data-ttu-id="06ea4-125">un'immagine di macchina virtuale specifica nel Marketplace, hello toofind utilizzare hello `az vm image list` con hello `--all` opzione.</span><span class="sxs-lookup"><span data-stu-id="06ea4-125">toofind a specific VM image in hello Marketplace, use hello `az vm image list` command with hello `--all` option.</span></span> <span data-ttu-id="06ea4-126">Questa versione di hello comando accetta alcuni toocomplete tempo e può restituire un output lungo, pertanto è in genere filtrare elenco hello da `--publisher` o un altro parametro.</span><span class="sxs-lookup"><span data-stu-id="06ea4-126">This version of hello command takes some time toocomplete and can return lengthy output, so you usually filter hello list by `--publisher` or another parameter.</span></span> 
 
-<span data-ttu-id="3ad38-127">Ad esempio, il comando che segue visualizza tutte le offerte Debian. Tenere presente che senza l'opzione `--all`, la ricerca viene eseguita solo nella cache locale delle immagini comuni:</span><span class="sxs-lookup"><span data-stu-id="3ad38-127">For example, the following command displays all Debian offers (remember that without the `--all` switch, it only searches the local cache of common images):</span></span>
+<span data-ttu-id="06ea4-127">Ad esempio, hello comando seguente visualizza tutte le offerte Debian (tenere presente che senza hello `--all` passare, viene cercato solo cache locale di hello delle immagini comune):</span><span class="sxs-lookup"><span data-stu-id="06ea4-127">For example, hello following command displays all Debian offers (remember that without hello `--all` switch, it only searches hello local cache of common images):</span></span>
 
 ```azurecli
 az vm image list --offer Debian --all --output table 
 
 ```
 
-<span data-ttu-id="3ad38-128">Output parziale:</span><span class="sxs-lookup"><span data-stu-id="3ad38-128">Partial output:</span></span> 
+<span data-ttu-id="06ea4-128">Output parziale:</span><span class="sxs-lookup"><span data-stu-id="06ea4-128">Partial output:</span></span> 
 ```
 Offer    Publisher    Sku                Urn                                              Version
 -------  -----------  -----------------  -----------------------------------------------  --------------
@@ -102,17 +102,17 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201708040        
 ...
 ```
 
-<span data-ttu-id="3ad38-129">Applicare filtri simili con le opzioni `--location`, `--publisher` e `--sku`.</span><span class="sxs-lookup"><span data-stu-id="3ad38-129">Apply similar filters with the `--location`, `--publisher`, and `--sku` options.</span></span> <span data-ttu-id="3ad38-130">È anche possibile cercare corrispondenze parziali in base a un filtro, ad esempio cercare `--offer Deb` per trovare tutte le immagini Debian.</span><span class="sxs-lookup"><span data-stu-id="3ad38-130">You can even perform partial matches on a filter, such as searching for `--offer Deb` to find all Debian images.</span></span>
+<span data-ttu-id="06ea4-129">Applicare filtri simile con hello `--location`, `--publisher`, e `--sku` opzioni.</span><span class="sxs-lookup"><span data-stu-id="06ea4-129">Apply similar filters with hello `--location`, `--publisher`, and `--sku` options.</span></span> <span data-ttu-id="06ea4-130">È anche possibile eseguire le corrispondenze parziali su un filtro, ad esempio la ricerca di `--offer Deb` toofind tutte le immagini Debian.</span><span class="sxs-lookup"><span data-stu-id="06ea4-130">You can even perform partial matches on a filter, such as searching for `--offer Deb` toofind all Debian images.</span></span>
 
-<span data-ttu-id="3ad38-131">Se non si indica una posizione specifica con l'opzione `--location`, per impostazione predefinita vengono restituiti i valori relativi a `westus`.</span><span class="sxs-lookup"><span data-stu-id="3ad38-131">If you don't specify a particular location with the `--location` option, the values for `westus` are returned by default.</span></span> <span data-ttu-id="3ad38-132">Per impostare un percorso predefinito diverso eseguire `az configure --defaults location=<location>`.</span><span class="sxs-lookup"><span data-stu-id="3ad38-132">(Set a different default location by running `az configure --defaults location=<location>`.)</span></span>
+<span data-ttu-id="06ea4-131">Se non si specifica una determinata posizione con hello `--location` , hello i valori delle opzioni per `westus` vengono restituiti per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="06ea4-131">If you don't specify a particular location with hello `--location` option, hello values for `westus` are returned by default.</span></span> <span data-ttu-id="06ea4-132">Per impostare un percorso predefinito diverso eseguire `az configure --defaults location=<location>`.</span><span class="sxs-lookup"><span data-stu-id="06ea4-132">(Set a different default location by running `az configure --defaults location=<location>`.)</span></span>
 
-<span data-ttu-id="3ad38-133">Ad esempio, il comando seguente elenca elencati tutti gli SKU di Debian 8 in `westeurope`:</span><span class="sxs-lookup"><span data-stu-id="3ad38-133">For example, the following command lists all Debian 8 SKUs in `westeurope`:</span></span>
+<span data-ttu-id="06ea4-133">Ad esempio, hello comando seguente vengono elencati tutti gli SKU di 8 Debian in `westeurope`:</span><span class="sxs-lookup"><span data-stu-id="06ea4-133">For example, hello following command lists all Debian 8 SKUs in `westeurope`:</span></span>
 
 ```azurecli
 az vm image list --location westeurope --offer Deb --publisher credativ --sku 8 --all --output table
 ```
 
-<span data-ttu-id="3ad38-134">Output parziale:</span><span class="sxs-lookup"><span data-stu-id="3ad38-134">Partial output:</span></span>
+<span data-ttu-id="06ea4-134">Output parziale:</span><span class="sxs-lookup"><span data-stu-id="06ea4-134">Partial output:</span></span>
 
 ```
 Offer    Publisher    Sku                Urn                                              Version
@@ -133,21 +133,21 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201706210        
 ...
 ```
 
-## <a name="navigate-the-images"></a><span data-ttu-id="3ad38-135">Esplorare le immagini</span><span class="sxs-lookup"><span data-stu-id="3ad38-135">Navigate the images</span></span> 
-<span data-ttu-id="3ad38-136">Un altro modo per trovare un'immagine in una posizione è l'esecuzione in sequenza dei comandi [az vm image list-publishers](/cli/azure/vm/image#list-publishers), [az vm image list-offers](/cli/azure/vm/image#list-offers) e [az vm image list-skus](/cli/azure/vm/image#list-skus) .</span><span class="sxs-lookup"><span data-stu-id="3ad38-136">Another way to find an image in a location is to run the [az vm image list-publishers](/cli/azure/vm/image#list-publishers), [az vm image list-offers](/cli/azure/vm/image#list-offers), and [az vm image list-skus](/cli/azure/vm/image#list-skus) commands in sequence.</span></span> <span data-ttu-id="3ad38-137">Con questi comandi si determinano questi valori:</span><span class="sxs-lookup"><span data-stu-id="3ad38-137">With these commands, you determine these values:</span></span>
+## <a name="navigate-hello-images"></a><span data-ttu-id="06ea4-135">Passare immagini hello</span><span class="sxs-lookup"><span data-stu-id="06ea4-135">Navigate hello images</span></span> 
+<span data-ttu-id="06ea4-136">Un altro modo toofind un'immagine in un percorso è hello toorun [az vm immagine elenco-server di pubblicazione](/cli/azure/vm/image#list-publishers), [az vm immagine elenco-offerte](/cli/azure/vm/image#list-offers), e [Elenca le immagini vm az-SKU](/cli/azure/vm/image#list-skus) comandi in sequenza.</span><span class="sxs-lookup"><span data-stu-id="06ea4-136">Another way toofind an image in a location is toorun hello [az vm image list-publishers](/cli/azure/vm/image#list-publishers), [az vm image list-offers](/cli/azure/vm/image#list-offers), and [az vm image list-skus](/cli/azure/vm/image#list-skus) commands in sequence.</span></span> <span data-ttu-id="06ea4-137">Con questi comandi si determinano questi valori:</span><span class="sxs-lookup"><span data-stu-id="06ea4-137">With these commands, you determine these values:</span></span>
 
-1. <span data-ttu-id="3ad38-138">Elencando gli editori di immagini.</span><span class="sxs-lookup"><span data-stu-id="3ad38-138">List the image publishers.</span></span>
-2. <span data-ttu-id="3ad38-139">Elencando le offerte di un determinato editore.</span><span class="sxs-lookup"><span data-stu-id="3ad38-139">For a given publisher, list their offers.</span></span>
-3. <span data-ttu-id="3ad38-140">Elencando le SKU di una determinata offerta.</span><span class="sxs-lookup"><span data-stu-id="3ad38-140">For a given offer, list their SKUs.</span></span>
+1. <span data-ttu-id="06ea4-138">Elenco hello immagine server di pubblicazione.</span><span class="sxs-lookup"><span data-stu-id="06ea4-138">List hello image publishers.</span></span>
+2. <span data-ttu-id="06ea4-139">Elencando le offerte di un determinato editore.</span><span class="sxs-lookup"><span data-stu-id="06ea4-139">For a given publisher, list their offers.</span></span>
+3. <span data-ttu-id="06ea4-140">Elencando le SKU di una determinata offerta.</span><span class="sxs-lookup"><span data-stu-id="06ea4-140">For a given offer, list their SKUs.</span></span>
 
 
-<span data-ttu-id="3ad38-141">Ad esempio, il comando seguente elenca i server di pubblicazione di immagini nella posizione Stati Uniti occidentali (westus):</span><span class="sxs-lookup"><span data-stu-id="3ad38-141">For example, the following command lists the image publishers in the West US location:</span></span>
+<span data-ttu-id="06ea4-141">Ad esempio, hello comando riportato di seguito sono elencati il server di pubblicazione di hello immagine nella posizione di Stati Uniti occidentali hello:</span><span class="sxs-lookup"><span data-stu-id="06ea4-141">For example, hello following command lists hello image publishers in hello West US location:</span></span>
 
 ```azurecli
 az vm image list-publishers --location westus --output table
 ```
 
-<span data-ttu-id="3ad38-142">Output parziale:</span><span class="sxs-lookup"><span data-stu-id="3ad38-142">Partial output:</span></span>
+<span data-ttu-id="06ea4-142">Output parziale:</span><span class="sxs-lookup"><span data-stu-id="06ea4-142">Partial output:</span></span>
 
 ```
 Location    Name
@@ -166,13 +166,13 @@ westus      activeeon
 westus      adatao
 ...
 ```
-<span data-ttu-id="3ad38-143">Usare queste informazioni per individuare le offerte di un server di pubblicazione specifico.</span><span class="sxs-lookup"><span data-stu-id="3ad38-143">Use this information to find offers from a specific publisher.</span></span> <span data-ttu-id="3ad38-144">Ad esempio, se Canonical è un server di pubblicazione di immagini nella posizione Stati Uniti occidentali, è possibile trovare le relative offerte eseguendo `azure vm image list-offers`.</span><span class="sxs-lookup"><span data-stu-id="3ad38-144">For example, if Canonical is an image publisher in the West US location, find their offers by running `azure vm image list-offers`.</span></span> <span data-ttu-id="3ad38-145">Passare la posizione e il server di pubblicazione come nell'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="3ad38-145">Pass the location and the publisher as in the following example:</span></span>
+<span data-ttu-id="06ea4-143">Utilizzare che questa toofind informazioni sono disponibili da un editore specifico.</span><span class="sxs-lookup"><span data-stu-id="06ea4-143">Use this information toofind offers from a specific publisher.</span></span> <span data-ttu-id="06ea4-144">Ad esempio, se Canonical è un server di pubblicazione di immagine nel percorso di Stati Uniti occidentali hello, trovare le proprie offerte eseguendo `azure vm image list-offers`.</span><span class="sxs-lookup"><span data-stu-id="06ea4-144">For example, if Canonical is an image publisher in hello West US location, find their offers by running `azure vm image list-offers`.</span></span> <span data-ttu-id="06ea4-145">Passare il percorso di hello e server di pubblicazione hello come hello di esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="06ea4-145">Pass hello location and hello publisher as in hello following example:</span></span>
 
 ```azurecli
 az vm image list-offers --location westus --publisher Canonical --output table
 ```
 
-<span data-ttu-id="3ad38-146">Output:</span><span class="sxs-lookup"><span data-stu-id="3ad38-146">Output:</span></span>
+<span data-ttu-id="06ea4-146">Output:</span><span class="sxs-lookup"><span data-stu-id="06ea4-146">Output:</span></span>
 
 ```
 Location    Name
@@ -185,13 +185,13 @@ westus      Ubuntu_Core
 westus      Ubuntu_Snappy_Core
 westus      Ubuntu_Snappy_Core_Docker
 ```
-<span data-ttu-id="3ad38-147">Come si può vedere, nell'area degli Stati Uniti occidentali Canonical pubblica l'offerta **UbuntuServer** in Azure.</span><span class="sxs-lookup"><span data-stu-id="3ad38-147">You see that in the West US region, Canonical publishes the **UbuntuServer** offer on Azure.</span></span> <span data-ttu-id="3ad38-148">Ma quali sono le SKU?</span><span class="sxs-lookup"><span data-stu-id="3ad38-148">But what SKUs?</span></span> <span data-ttu-id="3ad38-149">Per ottenere questi valori, eseguire `azure vm image list-skus` e impostare il percorso, il server di pubblicazione e l'offerta individuati:</span><span class="sxs-lookup"><span data-stu-id="3ad38-149">To get those values, run `azure vm image list-skus` and set the location, publisher, and offer that you have discovered:</span></span>
+<span data-ttu-id="06ea4-147">Viene visualizzato nell'area Stati Uniti occidentali hello, Canonical pubblica hello **UbuntuServer** offrono in Azure.</span><span class="sxs-lookup"><span data-stu-id="06ea4-147">You see that in hello West US region, Canonical publishes hello **UbuntuServer** offer on Azure.</span></span> <span data-ttu-id="06ea4-148">Ma quali SKU? esecuzione di tali valori, tooget `azure vm image list-skus` e impostare il percorso di hello, server di pubblicazione e offerta che vengono individuati:</span><span class="sxs-lookup"><span data-stu-id="06ea4-148">But what SKUs? tooget those values, run `azure vm image list-skus` and set hello location, publisher, and offer that you have discovered:</span></span>
 
 ```azurecli
 az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
 ```
 
-<span data-ttu-id="3ad38-150">Output:</span><span class="sxs-lookup"><span data-stu-id="3ad38-150">Output:</span></span>
+<span data-ttu-id="06ea4-149">Output:</span><span class="sxs-lookup"><span data-stu-id="06ea4-149">Output:</span></span>
 
 ```
 Location    Name
@@ -219,13 +219,13 @@ westus      17.04-DAILY
 westus      17.10-DAILY
 ```
 
-<span data-ttu-id="3ad38-151">Usare infine il comando `az vm image list` per trovare una versione specifica della SKU voluta, ad esempio, **16.04-LTS**:</span><span class="sxs-lookup"><span data-stu-id="3ad38-151">Finally, use the `az vm image list` command to find a specific version of the SKU you want, for example, **16.04-LTS**:</span></span>
+<span data-ttu-id="06ea4-150">Infine, utilizzare hello `az vm image list` toofind comando una specifica versione di hello SKU di cui si desidera, ad esempio, **16.04 LTS**:</span><span class="sxs-lookup"><span data-stu-id="06ea4-150">Finally, use hello `az vm image list` command toofind a specific version of hello SKU you want, for example, **16.04-LTS**:</span></span>
 
 ```azurecli
 az vm image list --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --all --output table
 ```
 
-<span data-ttu-id="3ad38-152">Output:</span><span class="sxs-lookup"><span data-stu-id="3ad38-152">Output:</span></span>
+<span data-ttu-id="06ea4-151">Output:</span><span class="sxs-lookup"><span data-stu-id="06ea4-151">Output:</span></span>
 
 ```
 Offer         Publisher    Sku        Urn                                               Version
@@ -256,5 +256,5 @@ UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201
 UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201708110  16.04.201708110
 UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201708151  16.04.201708151
 ```
-## <a name="next-steps"></a><span data-ttu-id="3ad38-153">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3ad38-153">Next steps</span></span>
-<span data-ttu-id="3ad38-154">A questo punto è possibile scegliere con precisione l'immagine da usare prendendo nota del valore URN.</span><span class="sxs-lookup"><span data-stu-id="3ad38-154">Now you can choose precisely the image you want to use by taking note of the URN value.</span></span> <span data-ttu-id="3ad38-155">Passare questo valore con il parametro `--image` quando si crea una macchina virtuale con il [az vm create](/cli/azure/vm#create).</span><span class="sxs-lookup"><span data-stu-id="3ad38-155">Pass this value with the `--image` parameter when you create a VM with the [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="3ad38-156">Facoltativamente, è possibile sostituire il numero di versione nell'URN con "latest",</span><span class="sxs-lookup"><span data-stu-id="3ad38-156">Remember that you can optionally replace the version number in the URN with "latest".</span></span> <span data-ttu-id="3ad38-157">che rappresenta sempre la versione più recente della distribuzione.</span><span class="sxs-lookup"><span data-stu-id="3ad38-157">This version is always the latest version of the distribution.</span></span> <span data-ttu-id="3ad38-158">Per creare rapidamente una macchina virtuale usando le informazioni relative all'URN, vedere [Creare e gestire VM Linux con l'interfaccia della riga di comando di Azure](tutorial-manage-vm.md).</span><span class="sxs-lookup"><span data-stu-id="3ad38-158">To create a virtual machine quickly by using the URN information, see [Create and Manage Linux VMs with the Azure CLI](tutorial-manage-vm.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="06ea4-152">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="06ea4-152">Next steps</span></span>
+<span data-ttu-id="06ea4-153">Ora è possibile scegliere l'immagine di hello precisamente toouse si vuole, prendere nota del valore URN hello.</span><span class="sxs-lookup"><span data-stu-id="06ea4-153">Now you can choose precisely hello image you want toouse by taking note of hello URN value.</span></span> <span data-ttu-id="06ea4-154">Passare questo valore con hello `--image` parametro quando si crea una macchina virtuale con hello [creare vm az](/cli/azure/vm#create) comando.</span><span class="sxs-lookup"><span data-stu-id="06ea4-154">Pass this value with hello `--image` parameter when you create a VM with hello [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="06ea4-155">Tenere presente che è possibile facoltativamente sostituire il numero di versione hello in hello URN "più recente".</span><span class="sxs-lookup"><span data-stu-id="06ea4-155">Remember that you can optionally replace hello version number in hello URN with "latest".</span></span> <span data-ttu-id="06ea4-156">Questa versione è sempre più recente della distribuzione hello hello.</span><span class="sxs-lookup"><span data-stu-id="06ea4-156">This version is always hello latest version of hello distribution.</span></span> <span data-ttu-id="06ea4-157">toocreate una macchina virtuale rapidamente usando le informazioni di URN hello, vedere [creare e gestire le macchine virtuali Linux con hello Azure CLI](tutorial-manage-vm.md).</span><span class="sxs-lookup"><span data-stu-id="06ea4-157">toocreate a virtual machine quickly by using hello URN information, see [Create and Manage Linux VMs with hello Azure CLI](tutorial-manage-vm.md).</span></span>

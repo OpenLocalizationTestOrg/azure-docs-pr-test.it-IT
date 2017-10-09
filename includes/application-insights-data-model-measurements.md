@@ -1,0 +1,17 @@
+<span data-ttu-id="2a5dc-101">Raccolta di misure personalizzate.</span><span class="sxs-lookup"><span data-stu-id="2a5dc-101">Collection of custom measurements.</span></span> <span data-ttu-id="2a5dc-102">Utilizzare questo tooreport raccolta denominata misura associata a elemento di dati di telemetria hello.</span><span class="sxs-lookup"><span data-stu-id="2a5dc-102">Use this collection tooreport named measurement associated with hello telemetry item.</span></span> <span data-ttu-id="2a5dc-103">Casi d'uso tipici sono i seguenti:</span><span class="sxs-lookup"><span data-stu-id="2a5dc-103">Typical use cases are:</span></span>
+- <span data-ttu-id="2a5dc-104">dimensione Hello del payload di dati di telemetria</span><span class="sxs-lookup"><span data-stu-id="2a5dc-104">hello size of Dependency Telemetry payload</span></span>
+- <span data-ttu-id="2a5dc-105">numero di Hello di elementi della coda elaborati da richiedere dati di telemetria</span><span class="sxs-lookup"><span data-stu-id="2a5dc-105">hello number of queue items processed by Request Telemetry</span></span>
+- <span data-ttu-id="2a5dc-106">tempo cliente ha toocomplete hello passaggio Completamento passaggio guidata dati di telemetria di eventi.</span><span class="sxs-lookup"><span data-stu-id="2a5dc-106">time that customer took toocomplete hello step in wizard step completion Event Telemetry.</span></span>
+
+<span data-ttu-id="2a5dc-107">È possibile eseguire query sulle [misure personalizzate](https://analytics.applicationinsights.io/demo?q=H4sIAAAAAAAAA2WLOw6DMAyGd07hZoLeoRPqyMaGGAL8aiPhGCV2kKoeHsHK%2Bj1myyr8LoiaqfrT%2FkUCzRft4LMl8OUeL3LuLLIx%2BxR%2BIF8%2BtcoiNq2o78vgWuFthQaJ1AeGGxt6UlBwKxa1qQ6EpLhAfQAAAA%3D%3D&timespan=PT24H) in Analisi applicazione:</span><span class="sxs-lookup"><span data-stu-id="2a5dc-107">You can query [custom measurements](https://analytics.applicationinsights.io/demo?q=H4sIAAAAAAAAA2WLOw6DMAyGd07hZoLeoRPqyMaGGAL8aiPhGCV2kKoeHsHK%2Bj1myyr8LoiaqfrT%2FkUCzRft4LMl8OUeL3LuLLIx%2BxR%2BIF8%2BtcoiNq2o78vgWuFthQaJ1AeGGxt6UlBwKxa1qQ6EpLhAfQAAAA%3D%3D&timespan=PT24H) in Application Analytics:</span></span>
+
+```
+customEvents
+| where customMeasurements != ""
+| summarize avg(todouble(customMeasurements["Completion Time"]) * itemCount)
+```
+
+ > [!NOTE]
+ > <span data-ttu-id="2a5dc-108">Misure personalizzate sono associate con elemento di dati di telemetria hello che appartengono.</span><span class="sxs-lookup"><span data-stu-id="2a5dc-108">Custom measurements are associated with hello telemetry item they belong to.</span></span> <span data-ttu-id="2a5dc-109">Oggetto toosampling con elemento di dati di telemetria hello contenente tali misure sono.</span><span class="sxs-lookup"><span data-stu-id="2a5dc-109">They are subject toosampling with hello telemetry item containing those measurements.</span></span> <span data-ttu-id="2a5dc-110">una misura con un valore indipendente dagli altri tipi di dati di telemetria, utilizzare tootrack [telemetria metrica](../articles/application-insights/app-insights-api-custom-events-metrics.md).</span><span class="sxs-lookup"><span data-stu-id="2a5dc-110">tootrack a measurement that has a value independent from other telemetry types, use [Metric telemetry](../articles/application-insights/app-insights-api-custom-events-metrics.md).</span></span>
+
+<span data-ttu-id="2a5dc-111">Lunghezza massima della chiave: 150</span><span class="sxs-lookup"><span data-stu-id="2a5dc-111">Max key length: 150</span></span>

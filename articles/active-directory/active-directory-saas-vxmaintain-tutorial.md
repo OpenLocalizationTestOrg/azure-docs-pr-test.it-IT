@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Eseguire l''integrazione di Azure Active Directory con vxMaintain | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e vxMaintain.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e vxMaintain.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,192 +13,192 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: ad87534af448356b8cc80d8ddd278bfb8a9165e7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 937ea276d898986fc5a953c96fddabdc8940309f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-integrate-azure-active-directory-with-vxmaintain"></a><span data-ttu-id="ea3b5-103">Esercitazione: Eseguire l'integrazione di Azure Active Directory con vxMaintain</span><span class="sxs-lookup"><span data-stu-id="ea3b5-103">Tutorial: Integrate Azure Active Directory with vxMaintain</span></span>
+# <a name="tutorial-integrate-azure-active-directory-with-vxmaintain"></a><span data-ttu-id="8b465-103">Esercitazione: Eseguire l'integrazione di Azure Active Directory con vxMaintain</span><span class="sxs-lookup"><span data-stu-id="8b465-103">Tutorial: Integrate Azure Active Directory with vxMaintain</span></span>
 
-<span data-ttu-id="ea3b5-104">Questa esercitazione descrive come integrare vxMaintain con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-104">In this tutorial, you learn how to integrate vxMaintain with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="8b465-104">In questa esercitazione, è illustrato come vxMaintain toointegrate con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="8b465-104">In this tutorial, you learn how toointegrate vxMaintain with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="ea3b5-105">Questa integrazione offre diversi vantaggi importanti.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-105">This integration provides several important benefits.</span></span> <span data-ttu-id="ea3b5-106">È possibile:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-106">You can:</span></span>
+<span data-ttu-id="8b465-105">Questa integrazione offre diversi vantaggi importanti.</span><span class="sxs-lookup"><span data-stu-id="8b465-105">This integration provides several important benefits.</span></span> <span data-ttu-id="8b465-106">È possibile:</span><span class="sxs-lookup"><span data-stu-id="8b465-106">You can:</span></span>
 
-- <span data-ttu-id="ea3b5-107">È possibile controllare in Azure AD chi può accedere a vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-107">Control in Azure AD who has access to vxMaintain.</span></span>
-- <span data-ttu-id="ea3b5-108">È possibile abilitare gli utenti per l'accesso automatico a vxMaintain (Single Sign-On) con gli account Azure AD personali.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-108">Enable your users to automatically sign in to vxMaintain with single sign-on (SSO) by using their Azure AD accounts.</span></span>
-- <span data-ttu-id="ea3b5-109">È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-109">Manage your accounts in one central location: the Azure portal.</span></span>
+- <span data-ttu-id="8b465-107">Controllo di Azure AD che dispone dell'accesso toovxMaintain.</span><span class="sxs-lookup"><span data-stu-id="8b465-107">Control in Azure AD who has access toovxMaintain.</span></span>
+- <span data-ttu-id="8b465-108">Abilitare l'accesso agli utenti tooautomatically toovxMaintain con single sign-on (SSO) utilizzando gli account di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8b465-108">Enable your users tooautomatically sign in toovxMaintain with single sign-on (SSO) by using their Azure AD accounts.</span></span>
+- <span data-ttu-id="8b465-109">Gestire gli account in un'unica posizione centrale: hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="8b465-109">Manage your accounts in one central location: hello Azure portal.</span></span>
 
-<span data-ttu-id="ea3b5-110">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-110">To learn more about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="8b465-110">toolearn più sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="8b465-110">toolearn more about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="ea3b5-111">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="ea3b5-111">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8b465-111">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="8b465-111">Prerequisites</span></span>
 
-<span data-ttu-id="ea3b5-112">Per configurare l'integrazione di Azure AD con vxMaintain, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-112">To configure Azure AD integration with vxMaintain, you need the following items:</span></span>
+<span data-ttu-id="8b465-112">integrazione di Azure AD con vxMaintain tooconfigure, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="8b465-112">tooconfigure Azure AD integration with vxMaintain, you need hello following items:</span></span>
 
-- <span data-ttu-id="ea3b5-113">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-113">An Azure AD subscription</span></span>
-- <span data-ttu-id="ea3b5-114">Sottoscrizione di vxMaintain abilitata per l'accesso SSO</span><span class="sxs-lookup"><span data-stu-id="ea3b5-114">A vxMaintain SSO-enabled subscription</span></span>
+- <span data-ttu-id="8b465-113">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8b465-113">An Azure AD subscription</span></span>
+- <span data-ttu-id="8b465-114">Sottoscrizione di vxMaintain abilitata per l'accesso SSO</span><span class="sxs-lookup"><span data-stu-id="8b465-114">A vxMaintain SSO-enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ea3b5-115">Per testare i passaggi di questa esercitazione non è consigliabile usare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-115">When you test the steps in this tutorial, we recommend that you do not use a production environment.</span></span>
+> <span data-ttu-id="8b465-115">Quando si testano passaggi hello in questa esercitazione, è consigliabile non utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="8b465-115">When you test hello steps in this tutorial, we recommend that you do not use a production environment.</span></span>
 
-<span data-ttu-id="ea3b5-116">A questo scopo, seguire queste indicazioni:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-116">To test the steps in this tutorial, follow these recommendations:</span></span>
+<span data-ttu-id="8b465-116">passaggi di hello tootest in questa esercitazione, seguire queste indicazioni:</span><span class="sxs-lookup"><span data-stu-id="8b465-116">tootest hello steps in this tutorial, follow these recommendations:</span></span>
 
-- <span data-ttu-id="ea3b5-117">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-117">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="ea3b5-118">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-118">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="8b465-117">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="8b465-117">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="8b465-118">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="8b465-118">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="ea3b5-119">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="ea3b5-119">Scenario description</span></span>
-<span data-ttu-id="ea3b5-120">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-120">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> 
+## <a name="scenario-description"></a><span data-ttu-id="8b465-119">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="8b465-119">Scenario description</span></span>
+<span data-ttu-id="8b465-120">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="8b465-120">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> 
 
-<span data-ttu-id="ea3b5-121">Lo scenario descritto in questa esercitazione prevede le due procedure di base seguenti:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-121">The scenario that this tutorial outlines consists of two main building blocks:</span></span>
+<span data-ttu-id="8b465-121">scenario di Hello cui sono illustrati in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="8b465-121">hello scenario that this tutorial outlines consists of two main building blocks:</span></span>
 
-* <span data-ttu-id="ea3b5-122">Aggiunta di vxMaintain dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="ea3b5-122">Adding vxMaintain from the gallery</span></span>
-* <span data-ttu-id="ea3b5-123">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ea3b5-123">Configuring and testing Azure AD single sign-on</span></span>
+* <span data-ttu-id="8b465-122">Aggiunta di vxMaintain dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="8b465-122">Adding vxMaintain from hello gallery</span></span>
+* <span data-ttu-id="8b465-123">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b465-123">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="add-vxmaintain-from-the-gallery"></a><span data-ttu-id="ea3b5-124">Aggiungere vxMaintain dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="ea3b5-124">Add vxMaintain from the gallery</span></span>
-<span data-ttu-id="ea3b5-125">Per configurare l'integrazione di vxMaintain in Azure AD, è necessario aggiungere vxMaintain dalla raccolta all'elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-125">To configure the integration of vxMaintain with Azure AD, you need to add vxMaintain from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="add-vxmaintain-from-hello-gallery"></a><span data-ttu-id="8b465-124">Aggiungere vxMaintain dalla raccolta di hello</span><span class="sxs-lookup"><span data-stu-id="8b465-124">Add vxMaintain from hello gallery</span></span>
+<span data-ttu-id="8b465-125">integrazione di hello tooconfigure di vxMaintain con Azure AD, è necessario vxMaintain tooadd dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="8b465-125">tooconfigure hello integration of vxMaintain with Azure AD, you need tooadd vxMaintain from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="ea3b5-126">Per aggiungere vxMaintain dalla raccolta, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-126">To add vxMaintain from the gallery, do the following:</span></span>
+<span data-ttu-id="8b465-126">vxMaintain tooadd dalla raccolta di hello, hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="8b465-126">tooadd vxMaintain from hello gallery, do hello following:</span></span>
 
-1. <span data-ttu-id="ea3b5-127">Nel [portale di Azure](https://portal.azure.com) fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-127">In the [Azure portal](https://portal.azure.com), in the left pane, select the **Azure Active Directory** button.</span></span> 
+1. <span data-ttu-id="8b465-127">In hello [portale di Azure](https://portal.azure.com), nel riquadro sinistro di hello, selezionare hello **Azure Active Directory** pulsante.</span><span class="sxs-lookup"><span data-stu-id="8b465-127">In hello [Azure portal](https://portal.azure.com), in hello left pane, select hello **Azure Active Directory** button.</span></span> 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. <span data-ttu-id="ea3b5-129">Selezionare **Applicazioni aziendali** > **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-129">Select **Enterprise applications** > **All applications**.</span></span>
+2. <span data-ttu-id="8b465-129">Selezionare **Applicazioni aziendali** > **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="8b465-129">Select **Enterprise applications** > **All applications**.</span></span>
 
-    ![Riquadro "Applicazioni aziendali"][2]
+    ![riquadro "Applicazioni aziendali" Hello][2]
     
-3. <span data-ttu-id="ea3b5-131">Per aggiungere un'applicazione, fare clic su **Nuova applicazione** nella finestra di dialogo **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-131">To add an application, in the **All applications** dialog box, select **New application**.</span></span>
+3. <span data-ttu-id="8b465-131">un'applicazione, in hello tooadd **tutte le applicazioni** nella finestra di dialogo **nuova applicazione**.</span><span class="sxs-lookup"><span data-stu-id="8b465-131">tooadd an application, in hello **All applications** dialog box, select **New application**.</span></span>
 
-    ![Pulsante "Nuova applicazione"][3]
+    !["Nuova applicazione" Hello pulsante][3]
 
-4. <span data-ttu-id="ea3b5-133">Nella casella di ricerca digitare **vxMaintain**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-133">In the search box, type **vxMaintain**.</span></span>
+4. <span data-ttu-id="8b465-133">Nella casella di ricerca hello, digitare **vxMaintain**.</span><span class="sxs-lookup"><span data-stu-id="8b465-133">In hello search box, type **vxMaintain**.</span></span>
 
-    ![Elenco a discesa "Modalità Single Sign-On"](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_search.png)
+    ![elenco a discesa "Modalità Single Sign-on" Hello](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_search.png)
 
-5. <span data-ttu-id="ea3b5-135">Nell'elenco risultati, selezionare **vxMaintain** e quindi fare clic su **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-135">In the results list, select **vxMaintain**, and then select **Add**.</span></span>
+5. <span data-ttu-id="8b465-135">Selezionare dall'elenco risultati hello **vxMaintain**, quindi selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="8b465-135">In hello results list, select **vxMaintain**, and then select **Add**.</span></span>
 
-    ![Collegamento di vxMaintain](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_addfromgallery.png)
+    ![collegamento vxMaintain Hello](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_addfromgallery.png)
 
-##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="ea3b5-137">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ea3b5-137">Configure and test Azure AD single sign-on</span></span>
-<span data-ttu-id="ea3b5-138">In questa sezione viene configurato e testato l'accesso SSO di Azure AD con vxMaintain usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="ea3b5-138">In this section, you configure and test Azure AD SSO by using vxMaintain, based on a test user called "Britta Simon."</span></span>
+##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="8b465-137">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b465-137">Configure and test Azure AD single sign-on</span></span>
+<span data-ttu-id="8b465-138">In questa sezione viene configurato e testato l'accesso SSO di Azure AD con vxMaintain usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="8b465-138">In this section, you configure and test Azure AD SSO by using vxMaintain, based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="ea3b5-139">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di vxMaintain corrispondente a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-139">For SSO to work, Azure AD needs to know the vxMaintain counterpart to the Azure AD user.</span></span> <span data-ttu-id="ea3b5-140">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-140">That is, you must establish a link relationship between the Azure AD user and the corresponding vxMaintain user.</span></span>
+<span data-ttu-id="8b465-139">Per toowork SSO, Azure AD deve utente di Azure AD toohello vxMaintain controparte tooknow hello.</span><span class="sxs-lookup"><span data-stu-id="8b465-139">For SSO toowork, Azure AD needs tooknow hello vxMaintain counterpart toohello Azure AD user.</span></span> <span data-ttu-id="8b465-140">Ovvero, è necessario stabilire una relazione di collegamento tra utenti di Azure AD hello e utente vxMaintain corrispondente hello.</span><span class="sxs-lookup"><span data-stu-id="8b465-140">That is, you must establish a link relationship between hello Azure AD user and hello corresponding vxMaintain user.</span></span>
 
-<span data-ttu-id="ea3b5-141">Per stabilire la relazione di collegamento, in vxMaintain assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-141">To establish the link relationship, assign the vxMaintain **user name** value as the Azure AD **Username** value.</span></span>
+<span data-ttu-id="8b465-141">relazione di collegamento hello tooestablish, assegnare hello vxMaintain **nome utente** valore come hello Azure AD **Username** valore.</span><span class="sxs-lookup"><span data-stu-id="8b465-141">tooestablish hello link relationship, assign hello vxMaintain **user name** value as hello Azure AD **Username** value.</span></span>
 
-<span data-ttu-id="ea3b5-142">Per configurare e testare l'accesso SSO di Azure AD con vxMaintain, è necessario completare le procedure di base seguenti.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-142">To configure and test Azure AD SSO by using vxMaintain, complete the following building blocks.</span></span>
+<span data-ttu-id="8b465-142">tooconfigure e SSO AD Azure tramite vxMaintain, hello completo seguenti blocchi predefiniti di test.</span><span class="sxs-lookup"><span data-stu-id="8b465-142">tooconfigure and test Azure AD SSO by using vxMaintain, complete hello following building blocks.</span></span>
 
-### <a name="configure-azure-ad-sso"></a><span data-ttu-id="ea3b5-143">Configurare l'accesso SSO di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ea3b5-143">Configure Azure AD SSO</span></span>
+### <a name="configure-azure-ad-sso"></a><span data-ttu-id="8b465-143">Configurare l'accesso SSO di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b465-143">Configure Azure AD SSO</span></span>
 
-<span data-ttu-id="ea3b5-144">In questa sezione è possibile abilitare l'accesso SSO di Azure AD nel portale di Azure e configurare l'accesso SSO nell'applicazione vxMaintain seguendo questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-144">In this section, you can both enable Azure AD SSO in the Azure portal and configure SSO in your vxMaintain application by doing the following:</span></span>
+<span data-ttu-id="8b465-144">In questa sezione, è possibile abilitare SSO AD Azure nel portale di Azure hello e configurare SSO nell'applicazione vxMaintain eseguendo hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="8b465-144">In this section, you can both enable Azure AD SSO in hello Azure portal and configure SSO in your vxMaintain application by doing hello following:</span></span>
 
-1. <span data-ttu-id="ea3b5-145">Nella pagina di integrazione dell'applicazione **vxMaintain** del portale di Azure fare clic su **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-145">In the Azure portal, on the **vxMaintain** application integration page, select **Single sign-on**.</span></span>
+1. <span data-ttu-id="8b465-145">Nel portale di Azure su hello hello **vxMaintain** pagina di integrazione dell'applicazione, seleziona **Single sign-on**.</span><span class="sxs-lookup"><span data-stu-id="8b465-145">In hello Azure portal, on hello **vxMaintain** application integration page, select **Single sign-on**.</span></span>
 
-    ![Comando "Single Sign-On"][4]
+    ![comando "Single sign-on" Hello][4]
 
-2. <span data-ttu-id="ea3b5-147">Nell'elenco a discesa **Modalità Single Sign-On** selezionare **Accesso basato su SAML** per abilitare l'accesso SSO.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-147">To enable SSO, in the **Single Sign-on Mode** drop-down list, select **SAML-based Sign-on**.</span></span>
+2. <span data-ttu-id="8b465-147">tooenable SSO, in hello **modalità Single Sign-on** elenco a discesa, seleziona **basato su SAML Sign-on**.</span><span class="sxs-lookup"><span data-stu-id="8b465-147">tooenable SSO, in hello **Single Sign-on Mode** drop-down list, select **SAML-based Sign-on**.</span></span>
  
-    ![Comando "Accesso basato su SAML"](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_samlbase.png)
+    ![comando "SAML-Sign-on basato su" Hello](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_samlbase.png)
 
-3. <span data-ttu-id="ea3b5-149">In **URL e dominio vxMaintain** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-149">Under **vxMaintain Domain and URLs**, do the following:</span></span>
+3. <span data-ttu-id="8b465-149">In **vxMaintain dominio e gli URL**, hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="8b465-149">Under **vxMaintain Domain and URLs**, do hello following:</span></span>
 
-    ![Sezione URL e dominio vxMaintain](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_url.png)
+    ![Hello vxMaintain sezione URL e di dominio](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_url.png)
 
-    <span data-ttu-id="ea3b5-151">a.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-151">a.</span></span> <span data-ttu-id="ea3b5-152">Nella casella **Identificatore** digitare un URL con la sintassi seguente: `https://<company name>.verisae.com`</span><span class="sxs-lookup"><span data-stu-id="ea3b5-152">In the **Identifier** box, type a URL that has the following syntax: `https://<company name>.verisae.com`</span></span>
+    <span data-ttu-id="8b465-151">a.</span><span class="sxs-lookup"><span data-stu-id="8b465-151">a.</span></span> <span data-ttu-id="8b465-152">In hello **identificatore** casella, digitare un URL che ha hello la seguente sintassi:`https://<company name>.verisae.com`</span><span class="sxs-lookup"><span data-stu-id="8b465-152">In hello **Identifier** box, type a URL that has hello following syntax: `https://<company name>.verisae.com`</span></span>
 
-    <span data-ttu-id="ea3b5-153">b.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-153">b.</span></span> <span data-ttu-id="ea3b5-154">Nella casella **URL di risposta** digitare un URL con la sintassi seguente: `https://<company name>.verisae.com/DataNett/action/ssoConsume/mobile?_log=true`</span><span class="sxs-lookup"><span data-stu-id="ea3b5-154">In the **Reply URL** box, type a URL that has the following syntax: `https://<company name>.verisae.com/DataNett/action/ssoConsume/mobile?_log=true`</span></span>
+    <span data-ttu-id="8b465-153">b.</span><span class="sxs-lookup"><span data-stu-id="8b465-153">b.</span></span> <span data-ttu-id="8b465-154">In hello **URL di risposta** casella, digitare un URL che ha hello la seguente sintassi:`https://<company name>.verisae.com/DataNett/action/ssoConsume/mobile?_log=true`</span><span class="sxs-lookup"><span data-stu-id="8b465-154">In hello **Reply URL** box, type a URL that has hello following syntax: `https://<company name>.verisae.com/DataNett/action/ssoConsume/mobile?_log=true`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="ea3b5-155">I valori precedenti non sono valori reali.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-155">The preceding values are not real.</span></span> <span data-ttu-id="ea3b5-156">Aggiornarli con l'identificatore e l'URL di risposta effettivi.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-156">Update them with the actual identifier and reply URL.</span></span> <span data-ttu-id="ea3b5-157">Per ottenere questi valori, contattare il [team di supporto di vxMaintain](http://www.verisae.com/contact-us).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-157">To obtain the values, contact the [vxMaintain support team](http://www.verisae.com/contact-us).</span></span>
+    > <span data-ttu-id="8b465-155">Hello valori precedenti non sono reali.</span><span class="sxs-lookup"><span data-stu-id="8b465-155">hello preceding values are not real.</span></span> <span data-ttu-id="8b465-156">Aggiornarli con identificatore effettivo hello e URL di risposta.</span><span class="sxs-lookup"><span data-stu-id="8b465-156">Update them with hello actual identifier and reply URL.</span></span> <span data-ttu-id="8b465-157">i valori hello tooobtain, hello contatto [team di supporto vxMaintain](http://www.verisae.com/contact-us).</span><span class="sxs-lookup"><span data-stu-id="8b465-157">tooobtain hello values, contact hello [vxMaintain support team](http://www.verisae.com/contact-us).</span></span>
  
-4. <span data-ttu-id="ea3b5-158">In **Certificato di firma SAML** selezionare **XML metadati** e quindi salvare il file di metadati nel computer.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-158">Under **SAML Signing Certificate**, select **Metadata XML**, and then save the metadata file to your computer.</span></span>
+4. <span data-ttu-id="8b465-158">In **certificato di firma SAML**selezionare **Metadata XML**e quindi salvare computer tooyour file dei metadati di hello.</span><span class="sxs-lookup"><span data-stu-id="8b465-158">Under **SAML Signing Certificate**, select **Metadata XML**, and then save hello metadata file tooyour computer.</span></span>
 
-    ![Sezione "Certificato di firma SAML"](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_certificate.png) 
+    ![la sezione "Certificato di firma SAML" Hello](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_certificate.png) 
 
-5. <span data-ttu-id="ea3b5-160">Selezionare **Salva**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-160">Select **Save**.</span></span>
+5. <span data-ttu-id="8b465-160">Selezionare **Salva**.</span><span class="sxs-lookup"><span data-stu-id="8b465-160">Select **Save**.</span></span>
 
-    ![Pulsante Salva](./media/active-directory-saas-vxmaintain-tutorial/tutorial_general_400.png)
+    ![pulsante Salva Hello](./media/active-directory-saas-vxmaintain-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="ea3b5-162">Per configurare l'accesso SSO di **vxMaintain**, inviare il file **XML metadati** scaricato al [team di supporto di vxMaintain](http://www.verisae.com/contact-us).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-162">To configure **vxMaintain** SSO, send the downloaded **Metadata XML** file to the [vxMaintain support team](http://www.verisae.com/contact-us).</span></span>
+6. <span data-ttu-id="8b465-162">tooconfigure **vxMaintain** SSO, hello trasmissione scaricato **Metadata XML** file toohello [team di supporto vxMaintain](http://www.verisae.com/contact-us).</span><span class="sxs-lookup"><span data-stu-id="8b465-162">tooconfigure **vxMaintain** SSO, send hello downloaded **Metadata XML** file toohello [vxMaintain support team](http://www.verisae.com/contact-us).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="ea3b5-163">Durante la configurazione dell'app, nel [portale di Azure](https://portal.azure.com) è disponibile un riepilogo delle istruzioni precedenti.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-163">As you set up the app, you can read a concise version of the preceding instructions in the [Azure portal](https://portal.azure.com).</span></span> <span data-ttu-id="ea3b5-164">Dopo aver aggiunto l'app dalla sezione **Active Directory** > **Applicazioni aziendali**, selezionare la scheda **Single Sign-On** e accedere alla documentazione incorporata dalla sezione **Configurazione**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-164">After you add the app from the **Active Directory** > **Enterprise Applications** section, select the **Single Sign-On** tab, and then access the embedded documentation from the **Configuration** section.</span></span> 
+> <span data-ttu-id="8b465-163">Per la configurazione di app hello, è possibile leggere una versione di hello precedenti istruzioni in hello concisa [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="8b465-163">As you set up hello app, you can read a concise version of hello preceding instructions in hello [Azure portal](https://portal.azure.com).</span></span> <span data-ttu-id="8b465-164">Dopo aver aggiunto l'applicazione hello da hello **Active Directory** > **applicazioni aziendali** sezione, seleziona hello **Single Sign-On** e quindi hello accesso documentazione fornita dal hello incorporato **configurazione** sezione.</span><span class="sxs-lookup"><span data-stu-id="8b465-164">After you add hello app from hello **Active Directory** > **Enterprise Applications** section, select hello **Single Sign-On** tab, and then access hello embedded documentation from hello **Configuration** section.</span></span> 
 >
-><span data-ttu-id="ea3b5-165">Per altre informazioni sulla funzionalità di documentazione incorporata vedere [Gestione dell'accesso Single Sign-On per le app aziendali](https://go.microsoft.com/fwlink/?linkid=845985).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-165">To learn more about the embedded documentation feature, see [Managing single sign-on for enterprise apps](https://go.microsoft.com/fwlink/?linkid=845985).</span></span>
+><span data-ttu-id="8b465-165">toolearn più feature hello documentazione incorporati, vedere [gestione di single sign-on per le app aziendali](https://go.microsoft.com/fwlink/?linkid=845985).</span><span class="sxs-lookup"><span data-stu-id="8b465-165">toolearn more about hello embedded documentation feature, see [Managing single sign-on for enterprise apps](https://go.microsoft.com/fwlink/?linkid=845985).</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="ea3b5-166">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ea3b5-166">Create an Azure AD test user</span></span>
-<span data-ttu-id="ea3b5-167">In questa sezione si crea un utente di test Britta Simon nel portale di Azure seguendo questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-167">In this section, you create test user Britta Simon in the Azure portal by doing the following:</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="8b465-166">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b465-166">Create an Azure AD test user</span></span>
+<span data-ttu-id="8b465-167">In questa sezione è creare utente test Britta Simon nel portale di Azure hello eseguendo hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="8b465-167">In this section, you create test user Britta Simon in hello Azure portal by doing hello following:</span></span>
 
-![Utente di test di Azure AD][100]
+![utente test hello Azure AD][100]
 
-1. <span data-ttu-id="ea3b5-169">Nel **portale di Azure** fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-169">In the **Azure portal**, in the left pane, select the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="8b465-169">In hello **portale di Azure**, nel riquadro sinistro di hello, selezionare hello **Azure Active Directory** pulsante.</span><span class="sxs-lookup"><span data-stu-id="8b465-169">In hello **Azure portal**, in hello left pane, select hello **Azure Active Directory** button.</span></span>
 
-    ![Pulsante "Azure Active Directory"](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_01.png) 
+    ![pulsante "Azure Active Directory" Hello](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="ea3b5-171">Per visualizzare un elenco di utenti, passare a **Utenti e gruppi** > **Tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-171">To display a list of users, go to **Users and groups** > **All users**.</span></span>
+2. <span data-ttu-id="8b465-171">toodisplay un elenco di utenti, andare troppo**utenti e gruppi** > **tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="8b465-171">toodisplay a list of users, go too**Users and groups** > **All users**.</span></span>
     
-    <span data-ttu-id="ea3b5-172">![Collegamento "Tutti gli utenti"](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_02.png)</span><span class="sxs-lookup"><span data-stu-id="ea3b5-172">![The "All users" link](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_02.png)</span></span>  
-    <span data-ttu-id="ea3b5-173">Verrà visualizzata la finestra di dialogo **Tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-173">The **All users** dialog box opens.</span></span> 
+    <span data-ttu-id="8b465-172">![collegano Hello "Tutti gli utenti"](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_02.png)</span><span class="sxs-lookup"><span data-stu-id="8b465-172">![hello "All users" link](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_02.png)</span></span>  
+    <span data-ttu-id="8b465-173">Hello **tutti gli utenti** verrà visualizzata la finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="8b465-173">hello **All users** dialog box opens.</span></span> 
 
-3. <span data-ttu-id="ea3b5-174">Per aprire la finestra di dialogo **Utente**, fare clic su **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-174">To open the **User** dialog box, select **Add**.</span></span>
+3. <span data-ttu-id="8b465-174">hello tooopen **utente** nella finestra di dialogo **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="8b465-174">tooopen hello **User** dialog box, select **Add**.</span></span>
  
-    ![Pulsante Aggiungi](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_03.png) 
+    ![pulsante Aggiungi Hello](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="ea3b5-176">Nella finestra di dialogo **Utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-176">In the **User** dialog box, do the following:</span></span>
+4. <span data-ttu-id="8b465-176">In hello **utente** finestra di dialogo casella, hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="8b465-176">In hello **User** dialog box, do hello following:</span></span>
  
-    ![Finestra di dialogo Utente](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_04.png) 
+    ![finestra di dialogo utente Hello](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="ea3b5-178">a.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-178">a.</span></span> <span data-ttu-id="ea3b5-179">Nella casella **Nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-179">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="8b465-178">a.</span><span class="sxs-lookup"><span data-stu-id="8b465-178">a.</span></span> <span data-ttu-id="8b465-179">In hello **nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="8b465-179">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="ea3b5-180">b.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-180">b.</span></span> <span data-ttu-id="ea3b5-181">Nella casella **Nome utente** digitare l'indirizzo e-mail dell'utente di test Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-181">In the **User name** box, type the email address of test user Britta Simon.</span></span>
+    <span data-ttu-id="8b465-180">b.</span><span class="sxs-lookup"><span data-stu-id="8b465-180">b.</span></span> <span data-ttu-id="8b465-181">In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente di prova Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="8b465-181">In hello **User name** box, type hello email address of test user Britta Simon.</span></span>
 
-    <span data-ttu-id="ea3b5-182">c.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-182">c.</span></span> <span data-ttu-id="ea3b5-183">Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore generato nella casella **Password**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-183">Select the **Show Password** check box, and then note the value that was generated in the **Password** box.</span></span>
+    <span data-ttu-id="8b465-182">c.</span><span class="sxs-lookup"><span data-stu-id="8b465-182">c.</span></span> <span data-ttu-id="8b465-183">Seleziona hello **Show Password** casella di controllo, quindi valore hello si noti che è stato generato in hello **Password** casella.</span><span class="sxs-lookup"><span data-stu-id="8b465-183">Select hello **Show Password** check box, and then note hello value that was generated in hello **Password** box.</span></span>
 
-    <span data-ttu-id="ea3b5-184">d.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-184">d.</span></span> <span data-ttu-id="ea3b5-185">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-185">Select **Create**.</span></span>
+    <span data-ttu-id="8b465-184">d.</span><span class="sxs-lookup"><span data-stu-id="8b465-184">d.</span></span> <span data-ttu-id="8b465-185">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="8b465-185">Select **Create**.</span></span>
  
-### <a name="create-a-vxmaintain-test-user"></a><span data-ttu-id="ea3b5-186">Creare un utente di test di vxMaintain</span><span class="sxs-lookup"><span data-stu-id="ea3b5-186">Create a vxMaintain test user</span></span>
+### <a name="create-a-vxmaintain-test-user"></a><span data-ttu-id="8b465-186">Creare un utente di test di vxMaintain</span><span class="sxs-lookup"><span data-stu-id="8b465-186">Create a vxMaintain test user</span></span>
 
-<span data-ttu-id="ea3b5-187">In questa sezione viene creato un utente di test di nome Britta Simon in vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-187">In this section, you create test user Britta Simon in vxMaintain.</span></span> <span data-ttu-id="ea3b5-188">Collaborare con il [team di supporto di vxMaintain](http://www.verisae.com/contact-us) per aggiungere gli utenti alla piattaforma vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-188">To add users in the vxMaintain platform, work with the [vxMaintain support team](http://www.verisae.com/contact-us).</span></span> <span data-ttu-id="ea3b5-189">Prima di usare l'accesso SSO, creare e attivare gli utenti.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-189">Before you use SSO, create and activate the users.</span></span>
+<span data-ttu-id="8b465-187">In questa sezione viene creato un utente di test di nome Britta Simon in vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="8b465-187">In this section, you create test user Britta Simon in vxMaintain.</span></span> <span data-ttu-id="8b465-188">gli utenti tooadd nella piattaforma vxMaintain hello, utilizzare il [team di supporto vxMaintain](http://www.verisae.com/contact-us).</span><span class="sxs-lookup"><span data-stu-id="8b465-188">tooadd users in hello vxMaintain platform, work with the [vxMaintain support team](http://www.verisae.com/contact-us).</span></span> <span data-ttu-id="8b465-189">Prima di utilizzare SSO, creare e attivare gli utenti di hello.</span><span class="sxs-lookup"><span data-stu-id="8b465-189">Before you use SSO, create and activate hello users.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="ea3b5-190">Assegnare l'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ea3b5-190">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="8b465-190">Assegnare l'utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b465-190">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="ea3b5-191">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-191">In this section, you enable test user Britta Simon to use Azure SSO by granting access to vxMaintain.</span></span> <span data-ttu-id="ea3b5-192">A tale scopo, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ea3b5-192">To do so, do the following:</span></span>
+<span data-ttu-id="8b465-191">In questa sezione per abilitare l'utente test Britta Simon toouse SSO di Azure concessione dell'accesso toovxMaintain.</span><span class="sxs-lookup"><span data-stu-id="8b465-191">In this section, you enable test user Britta Simon toouse Azure SSO by granting access toovxMaintain.</span></span> <span data-ttu-id="8b465-192">toodo in tal caso, hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="8b465-192">toodo so, do hello following:</span></span>
 
-![Utente di test nell'elenco Nome visualizzato][200] 
+![Utente test nell'elenco nome visualizzato hello][200] 
 
-1. <span data-ttu-id="ea3b5-194">Nella visualizzazione **Applicazioni** del portale di Azure passare a visualizzazione **Directory** > **Applicazioni aziendali** > **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-194">In the Azure portal **Applications** view, go to **Directory** view > **Enterprise applications** > **All applications**.</span></span>
+1. <span data-ttu-id="8b465-194">Nel portale di Azure hello **applicazioni** visualizzare, andare troppo**Directory** Vista > **applicazioni aziendali** > **tutteleapplicazioni**.</span><span class="sxs-lookup"><span data-stu-id="8b465-194">In hello Azure portal **Applications** view, go too**Directory** view > **Enterprise applications** > **All applications**.</span></span>
 
-    ![Collegamento "Tutte le applicazioni"][201] 
+    ![collegano Hello "Tutte le applicazioni"][201] 
 
-2. <span data-ttu-id="ea3b5-196">Nell'elenco **Applicazioni** selezionare **vxMaintain**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-196">In the **Applications** list, select **vxMaintain**.</span></span>
+2. <span data-ttu-id="8b465-196">In hello **applicazioni** elenco, selezionare **vxMaintain**.</span><span class="sxs-lookup"><span data-stu-id="8b465-196">In hello **Applications** list, select **vxMaintain**.</span></span>
 
-    ![Collegamento di vxMaintain](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_app.png) 
+    ![collegamento vxMaintain Hello](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_app.png) 
 
-3. <span data-ttu-id="ea3b5-198">Nel riquadro sinistro fare clic su **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-198">In the left pane, select **Users and groups**.</span></span>
+3. <span data-ttu-id="8b465-198">Nel riquadro sinistro hello selezionare **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="8b465-198">In hello left pane, select **Users and groups**.</span></span>
 
-    ![Collegamento "Utenti e gruppi"][202] 
+    ![collegamento di "Utenti e gruppi" Hello][202] 
 
-4. <span data-ttu-id="ea3b5-200">Fare clic su **Aggiungi** e quindi nel riquadro **Aggiungi assegnazione** selezionare **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-200">Select **Add** and then, in the **Add Assignment** pane, select **Users and groups**.</span></span>
+4. <span data-ttu-id="8b465-200">Selezionare **Aggiungi** e quindi nel hello **Aggiungi** riquadro, selezionare **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="8b465-200">Select **Add** and then, in hello **Add Assignment** pane, select **Users and groups**.</span></span>
 
-    ![Collegamento "Utenti e gruppi"][203]
+    ![collegamento di "Utenti e gruppi" Hello][203]
 
-5. <span data-ttu-id="ea3b5-202">Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco **Utenti** e quindi fare clic su **Seleziona**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-202">In the **Users and groups** dialog box, in the **Users** list, select **Britta Simon**, and then select the **Select** button.</span></span>
+5. <span data-ttu-id="8b465-202">In hello **utenti e gruppi** della finestra di dialogo hello **utenti** elenco, selezionare **Britta Simon**, quindi selezionare hello **selezionare** pulsante.</span><span class="sxs-lookup"><span data-stu-id="8b465-202">In hello **Users and groups** dialog box, in hello **Users** list, select **Britta Simon**, and then select hello **Select** button.</span></span>
 
-7. <span data-ttu-id="ea3b5-203">Nella finestra di dialogo **Aggiungi assegnazione** selezionare **Assegna**.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-203">In the **Add Assignment** dialog box, select **Assign**.</span></span>
+7. <span data-ttu-id="8b465-203">In hello **Aggiungi** nella finestra di dialogo **assegnare**.</span><span class="sxs-lookup"><span data-stu-id="8b465-203">In hello **Add Assignment** dialog box, select **Assign**.</span></span>
     
-### <a name="test-your-azure-ad-single-sign-on"></a><span data-ttu-id="ea3b5-204">Testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ea3b5-204">Test your Azure AD single sign-on</span></span>
+### <a name="test-your-azure-ad-single-sign-on"></a><span data-ttu-id="8b465-204">Testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b465-204">Test your Azure AD single sign-on</span></span>
 
-<span data-ttu-id="ea3b5-205">In questa sezione viene testata la configurazione dell'accesso SSO di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-205">In this section, you test your Azure AD SSO configuration by using the Access Panel.</span></span>
+<span data-ttu-id="8b465-205">In questa sezione verificare la configurazione di SSO AD Azure tramite hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="8b465-205">In this section, you test your Azure AD SSO configuration by using hello Access Panel.</span></span>
 
-<span data-ttu-id="ea3b5-206">Quando si fa clic sul riquadro **vxMaintain** nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione vxMaintain.</span><span class="sxs-lookup"><span data-stu-id="ea3b5-206">Selecting the **vxMaintain** tile in the Access Panel should sign you in to your vxMaintain application automatically.</span></span>
+<span data-ttu-id="8b465-206">Se si seleziona hello **vxMaintain** riquadro nel Pannello di accesso hello deve eseguire l'accesso tooyour vxMaintain applicazione automaticamente.</span><span class="sxs-lookup"><span data-stu-id="8b465-206">Selecting hello **vxMaintain** tile in hello Access Panel should sign you in tooyour vxMaintain application automatically.</span></span>
 
-<span data-ttu-id="ea3b5-207">Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="ea3b5-207">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="8b465-207">Per ulteriori informazioni sul pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="8b465-207">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="ea3b5-208">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="ea3b5-208">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8b465-208">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="8b465-208">Next steps</span></span>
 
-* [<span data-ttu-id="ea3b5-209">Elenco di esercitazioni sull'integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ea3b5-209">List of tutorials on integrating SaaS apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="ea3b5-210">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ea3b5-210">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="8b465-209">Elenco di esercitazioni sull'integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8b465-209">List of tutorials on integrating SaaS apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="8b465-210">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8b465-210">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

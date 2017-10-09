@@ -1,6 +1,6 @@
 ---
-title: Panoramica del routing di contenuti basato su URL | Documentazione Microsoft
-description: Questa pagina fornisce una panoramica del routing di contenuti basato su URL del gateway applicazione, della configurazione UrlPathMap e della regola PathBasedRouting.
+title: Panoramica del routing del contenuto basato su aaaURL | Documenti Microsoft
+description: Questa pagina viene fornita una panoramica del routing di hello applicazione Gateway URL basato sul contenuto, UrlPathMap configurazione e della regola PathBasedRouting.
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/09/2017
 ms.author: gwallace
-ms.openlocfilehash: 75c3279d2d02cb3c6e949d191c88a1eb18b58a27
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5094b42625baffeb395beace68db0d269e46080c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="url-path-based-routing-overview"></a><span data-ttu-id="bbbe4-103">Panoramica del routing basato su percorso URL</span><span class="sxs-lookup"><span data-stu-id="bbbe4-103">URL Path Based Routing overview</span></span>
+# <a name="url-path-based-routing-overview"></a><span data-ttu-id="fa7be-103">Panoramica del routing basato su percorso URL</span><span class="sxs-lookup"><span data-stu-id="fa7be-103">URL Path Based Routing overview</span></span>
 
-<span data-ttu-id="bbbe4-104">Il routing basato su percorso URL consente di instradare il traffico a pool di server back-end in base ai percorsi URL della richiesta.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-104">URL Path Based Routing allows you to route traffic to back-end server pools based on URL Paths of the request.</span></span> 
+<span data-ttu-id="fa7be-104">Routing basato su URL percorso consente di tooroute traffico tooback fine pool di server in base ai percorsi URL della richiesta di hello.</span><span class="sxs-lookup"><span data-stu-id="fa7be-104">URL Path Based Routing allows you tooroute traffic tooback-end server pools based on URL Paths of hello request.</span></span> 
 
-<span data-ttu-id="bbbe4-105">Uno degli scenari è l'instradamento delle richieste di tipi di contenuto diversi a pool di server back-end diversi.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-105">One of the scenarios is to route requests for different content types to different backend server pools.</span></span>
+<span data-ttu-id="fa7be-105">Uno degli scenari di hello è tooroute richieste per i pool di server back-end toodifferent diversi tipi di contenuto.</span><span class="sxs-lookup"><span data-stu-id="fa7be-105">One of hello scenarios is tooroute requests for different content types toodifferent backend server pools.</span></span>
 
-<span data-ttu-id="bbbe4-106">Nell'esempio seguente, il gateway applicazione soddisfa le richieste di traffico per contoso.com dai tre pool di server back-end, ad esempio VideoServerPool, ImageServerPool e DefaultServerPool.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-106">In the following example, Application Gateway is serving traffic for contoso.com from three back-end server pools for example: VideoServerPool, ImageServerPool, and DefaultServerPool.</span></span>
+<span data-ttu-id="fa7be-106">Nell'esempio seguente di hello, Gateway applicazione gestisce il traffico per contoso.com dai tre pool di server back-end, ad esempio: VideoServerPool ImageServerPool e DefaultServerPool.</span><span class="sxs-lookup"><span data-stu-id="fa7be-106">In hello following example, Application Gateway is serving traffic for contoso.com from three back-end server pools for example: VideoServerPool, ImageServerPool, and DefaultServerPool.</span></span>
 
 ![imageURLroute](./media/application-gateway-url-route-overview/figure1.png)
 
-<span data-ttu-id="bbbe4-108">Le richieste per http://contoso.com/video* vengono instradate a VideoServerPool, mentre quelle per http://contoso.com/images* vengono instradate a ImageServerPool.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-108">Requests for http://contoso.com/video* are routed to VideoServerPool, and http://contoso.com/images* are routed to ImageServerPool.</span></span> <span data-ttu-id="bbbe4-109">In caso di mancata corrispondenza dei percorsi, viene selezionato DefaultServerPool.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-109">DefaultServerPool is selected if none of the path patterns match.</span></span>
+<span data-ttu-id="fa7be-108">Le richieste per http://contoso.com/video * tooVideoServerPool indirizzato e http://contoso.com/images * tooImageServerPool indirizzato.</span><span class="sxs-lookup"><span data-stu-id="fa7be-108">Requests for http://contoso.com/video* are routed tooVideoServerPool, and http://contoso.com/images* are routed tooImageServerPool.</span></span> <span data-ttu-id="fa7be-109">DefaultServerPool è selezionata se nessuno dei modelli di percorso hello corrisponde.</span><span class="sxs-lookup"><span data-stu-id="fa7be-109">DefaultServerPool is selected if none of hello path patterns match.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="bbbe4-110">Le regole vengono elaborate nell'ordine in cui sono elencate nel portale.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-110">Rules are processed in the order they are listed in the portal.</span></span> <span data-ttu-id="bbbe4-111">È consigliabile configurare i listener multisito prima di configurare un listener di base.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-111">It is highly recommended to configure multi-site listeners first prior to configuring a basic listener.</span></span>  <span data-ttu-id="bbbe4-112">In questo modo il traffico viene indirizzato al back-end appropriato.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-112">This ensures that traffic gets routed to the right back end.</span></span> <span data-ttu-id="bbbe4-113">Se un listener di base viene elencato per primo e corrisponde a una richiesta in ingresso, sarà tale listener a elaborarla.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-113">If a basic listener is listed first and matches an incoming request, it gets processed by that listener.</span></span>
+> <span data-ttu-id="fa7be-110">Le regole vengono elaborate in ordine di hello che sono elencati nel portale di hello.</span><span class="sxs-lookup"><span data-stu-id="fa7be-110">Rules are processed in hello order they are listed in hello portal.</span></span> <span data-ttu-id="fa7be-111">È tooconfiguring precedente prima tooconfigure consigliata multisito listener un listener di base.</span><span class="sxs-lookup"><span data-stu-id="fa7be-111">It is highly recommended tooconfigure multi-site listeners first prior tooconfiguring a basic listener.</span></span>  <span data-ttu-id="fa7be-112">In questo modo di terminare tale traffico Ottiene indirizzato toohello nuovo.</span><span class="sxs-lookup"><span data-stu-id="fa7be-112">This ensures that traffic gets routed toohello right back end.</span></span> <span data-ttu-id="fa7be-113">Se un listener di base viene elencato per primo e corrisponde a una richiesta in ingresso, sarà tale listener a elaborarla.</span><span class="sxs-lookup"><span data-stu-id="fa7be-113">If a basic listener is listed first and matches an incoming request, it gets processed by that listener.</span></span>
 
-## <a name="urlpathmap-configuration-element"></a><span data-ttu-id="bbbe4-114">Elemento di configurazione UrlPathMap</span><span class="sxs-lookup"><span data-stu-id="bbbe4-114">UrlPathMap configuration element</span></span>
+## <a name="urlpathmap-configuration-element"></a><span data-ttu-id="fa7be-114">Elemento di configurazione UrlPathMap</span><span class="sxs-lookup"><span data-stu-id="fa7be-114">UrlPathMap configuration element</span></span>
 
-<span data-ttu-id="bbbe4-115">L'elemento UrlPathMap consente di specificare modelli di percorso dei mapping dei pool di server back-end.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-115">The urlPathMap element is used to specify Path patterns to back-end server pool mappings.</span></span> <span data-ttu-id="bbbe4-116">L'esempio di codice seguente è il frammento dell'elemento urlPathMap del file modello.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-116">The following code example is the snippet of urlPathMap element from template file.</span></span>
+<span data-ttu-id="fa7be-115">elemento urlPathMap Hello è mapping dei pool di server utilizzati toospecify percorso modelli tooback-end.</span><span class="sxs-lookup"><span data-stu-id="fa7be-115">hello urlPathMap element is used toospecify Path patterns tooback-end server pool mappings.</span></span> <span data-ttu-id="fa7be-116">Hello esempio di codice seguente è hello frammento dell'elemento urlPathMap dal file di modello.</span><span class="sxs-lookup"><span data-stu-id="fa7be-116">hello following code example is hello snippet of urlPathMap element from template file.</span></span>
 
 ```json
 "urlPathMaps": [{
@@ -69,14 +69,14 @@ ms.lasthandoff: 08/18/2017
 ```
 
 > [!NOTE]
-> <span data-ttu-id="bbbe4-117">PathPattern: questa impostazione è un elenco dei modelli di percorso usati per la corrispondenza.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-117">PathPattern: This setting is a list of path patterns to match.</span></span> <span data-ttu-id="bbbe4-118">Ognuno deve iniziare con una barra / e l'unica posizione in cui è consentito il carattere "*" è alla fine dopo "/".</span><span class="sxs-lookup"><span data-stu-id="bbbe4-118">Each must start with / and the only place a "*" is allowed is at the end following a "/."</span></span> <span data-ttu-id="bbbe4-119">La stringa inviata al selettore di percorsi non include alcun testo dopo il primo carattere "?" o "#" e questi caratteri non sono consentiti qui.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-119">The string fed to the path matcher does not include any text after the first? or #, and those chars are not allowed here.</span></span>
+> <span data-ttu-id="fa7be-117">PathPattern: Questa impostazione è un elenco di toomatch modelli percorso.</span><span class="sxs-lookup"><span data-stu-id="fa7be-117">PathPattern: This setting is a list of path patterns toomatch.</span></span> <span data-ttu-id="fa7be-118">Ogni deve iniziare con / e hello solo un "*" è consentita in hello fine successiva un "/".</span><span class="sxs-lookup"><span data-stu-id="fa7be-118">Each must start with / and hello only place a "*" is allowed is at hello end following a "/."</span></span> <span data-ttu-id="fa7be-119">stringa Hello inserito toohello matcher di percorso non include alcun testo dopo hello prima? o # e tali caratteri non consentiti.</span><span class="sxs-lookup"><span data-stu-id="fa7be-119">hello string fed toohello path matcher does not include any text after hello first? or #, and those chars are not allowed here.</span></span>
 
-<span data-ttu-id="bbbe4-120">Per altre informazioni, vedere un [modello di Azure Resource Manager che usa il routing basato su URL](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing) .</span><span class="sxs-lookup"><span data-stu-id="bbbe4-120">You can check out a [Resource Manager template using URL-based routing](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing) for more information.</span></span>
+<span data-ttu-id="fa7be-120">Per altre informazioni, vedere un [modello di Azure Resource Manager che usa il routing basato su URL](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing) .</span><span class="sxs-lookup"><span data-stu-id="fa7be-120">You can check out a [Resource Manager template using URL-based routing](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing) for more information.</span></span>
 
-## <a name="pathbasedrouting-rule"></a><span data-ttu-id="bbbe4-121">Regola PathBasedRouting</span><span class="sxs-lookup"><span data-stu-id="bbbe4-121">PathBasedRouting rule</span></span>
+## <a name="pathbasedrouting-rule"></a><span data-ttu-id="fa7be-121">Regola PathBasedRouting</span><span class="sxs-lookup"><span data-stu-id="fa7be-121">PathBasedRouting rule</span></span>
 
-<span data-ttu-id="bbbe4-122">RequestRoutingRule di tipo PathBasedRouting consente di associare un listener a un urlPathMap.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-122">RequestRoutingRule of type PathBasedRouting is used to bind a listener to a urlPathMap.</span></span> <span data-ttu-id="bbbe4-123">Tutte le richieste ricevute per il listener vengono instradate in base ai criteri specificati in urlPathMap.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-123">All requests that are received for this listener are routed based on policy specified in urlPathMap.</span></span>
-<span data-ttu-id="bbbe4-124">Frammento della regola PathBasedRouting:</span><span class="sxs-lookup"><span data-stu-id="bbbe4-124">Snippet of PathBasedRouting rule:</span></span>
+<span data-ttu-id="fa7be-122">RequestRoutingRule di tipo PathBasedRouting è usato toobind urlPathMap di tooa un listener.</span><span class="sxs-lookup"><span data-stu-id="fa7be-122">RequestRoutingRule of type PathBasedRouting is used toobind a listener tooa urlPathMap.</span></span> <span data-ttu-id="fa7be-123">Tutte le richieste ricevute per il listener vengono instradate in base ai criteri specificati in urlPathMap.</span><span class="sxs-lookup"><span data-stu-id="fa7be-123">All requests that are received for this listener are routed based on policy specified in urlPathMap.</span></span>
+<span data-ttu-id="fa7be-124">Frammento della regola PathBasedRouting:</span><span class="sxs-lookup"><span data-stu-id="fa7be-124">Snippet of PathBasedRouting rule:</span></span>
 
 ```json
 "requestRoutingRules": [
@@ -98,6 +98,6 @@ ms.lasthandoff: 08/18/2017
 ]
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="bbbe4-125">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="bbbe4-125">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="fa7be-125">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="fa7be-125">Next steps</span></span>
 
-<span data-ttu-id="bbbe4-126">Dopo aver acquisito familiarità con il routing di contenuti basato su URL, passare a [Create a Path-based rule for an application gateway by using the portal](application-gateway-create-url-route-portal.md) (Creare una regola basata sul percorso per un gateway applicazione usando il portale) per la creazione di un gateway applicazione con regole di routing basate su URL.</span><span class="sxs-lookup"><span data-stu-id="bbbe4-126">After learning about URL-based content routing, go to [create an application gateway using URL-based routing](application-gateway-create-url-route-portal.md) to create an application gateway with URL routing rules.</span></span>
+<span data-ttu-id="fa7be-126">Dopo avere imparare routing contenuto basato su URL, andare troppo[creare un gateway applicazione utilizzando il routing basato su URL](application-gateway-create-url-route-portal.md) toocreate un gateway applicazione con le regole di routing di URL.</span><span class="sxs-lookup"><span data-stu-id="fa7be-126">After learning about URL-based content routing, go too[create an application gateway using URL-based routing](application-gateway-create-url-route-portal.md) toocreate an application gateway with URL routing rules.</span></span>

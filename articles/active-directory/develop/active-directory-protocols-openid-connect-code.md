@@ -1,6 +1,6 @@
 ---
-title: Informazioni sul flusso del codice di autenticazione OpenID Connect in Azure AD | Documentazione Microsoft
-description: Questo articolo descrive come usare messaggi HTTP per autorizzare l'accesso ad applicazioni Web e API Web nel proprio tenant con Azure Active Directory e OpenID Connect.
+title: hello aaaUnderstand OpenID Connect del flusso di codice di autenticazione in Azure AD | Documenti Microsoft
+description: In questo articolo viene descritto come accedere a toouse HTTP messaggi tooauthorize tooweb applicazioni e API web nel tenant di utilizzo di Azure Active Directory e OpenID Connect.
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 1bb944997caa0c43354e82bf9b1a70e3e104a476
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fafd8ab906ee576c584fec2ef1e9de83ddb1f6e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Autorizzare l'accesso ad applicazioni Web con OpenID Connect e Azure Active Directory
-[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) è un semplice livello di gestione delle identità basato sul protocollo OAuth 2.0. OAuth 2.0 definisce i meccanismi per ottenere e usare **token di accesso** per accedere a risorse protette, ma non definisce metodi standard per fornire informazioni relative all'identità. OpenID Connect implementa l'autenticazione come estensione del processo di autorizzazione di OAuth 2.0. Fornisce informazioni sull'utente finale sotto forma di un `id_token` che verifica l'identità dell'utente e fornisce informazioni di base sul profilo dell'utente.
+# Autorizzare l'accesso tooweb applicazioni tramite OpenID Connect e Azure Active Directory
+[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) è un livello identità semplice basato su protocollo hello OAuth 2.0. OAuth 2.0 definisce tooobtain meccanismi e utilizzare **i token di accesso** tooaccess risorse protette, ma non definiscono le informazioni di identità tooprovide metodi standard. OpenID Connect implementa l'autenticazione come un toohello di estensione per il processo di autorizzazione OAuth 2.0. Fornisce informazioni sull'utente finale di hello sotto forma di hello di un `id_token` che verifica hello identità dell'utente hello e vengono fornite informazioni di base del profilo utente hello.
 
 È consigliabile usare OpenID Connect se si compila un'applicazione Web ospitata su un server e accessibile da browser.
 
@@ -30,18 +30,18 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [active-directory-protocols-getting-started](../../../includes/active-directory-protocols-getting-started.md)] 
 
 ## Flusso di autenticazione con OpenID Connect
-Il flusso di accesso di base include i passaggi seguenti: ognuno di essi è descritto in dettaglio di seguito.
+Hello più elementare di flusso di accesso contiene hello alla procedura seguente: ognuno di essi è descritto in dettaglio di seguito.
 
 ![Flusso di autenticazione di OpenID Connect](media/active-directory-protocols-openid-connect-code/active-directory-oauth-code-flow-web-app.png)
 
 ## Documento di metadati OpenID Connect
 
-OpenID Connect descrive un documento di metadati che contiene la maggior parte delle informazioni necessarie perché un'applicazione esegua l'accesso. Il documento include informazioni come gli URL da usare e il percorso delle chiavi di firma pubbliche del servizio. Il documento di metadati OpenID Connect è reperibile all'indirizzo:
+OpenID Connect viene descritto un documento di metadati che contiene la maggior parte delle informazioni di hello necessarie per un'app tooperform Accedi. Questo include informazioni quali toouse URL hello e il percorso di hello delle chiavi di firma pubbliche del servizio hello. documento di metadati di OpenID Connect Hello è reperibile in:
 
 ```
 https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration
 ```
-I metadati sono un semplice documento JavaScript Object Notation (JSON). Per un esempio, vedere il frammento di codice seguente. Il contenuto del frammento di codice è descritto dettagliatamente nelle [specifiche di OpenID Connect](https://openid.net).
+metadati Hello sono un semplice documento JavaScript Object Notation (JSON). Vedere hello seguente frammento di codice per un esempio. Hello contenuto del frammento di codice è descritte dettagliatamente in hello [OpenID Connect specifica](https://openid.net).
 
 ```
 {
@@ -58,12 +58,12 @@ I metadati sono un semplice documento JavaScript Object Notation (JSON). Per un 
 }
 ```
 
-## Inviare la richiesta di accesso
-Quando l'applicazione Web deve autenticare l'utente, deve indirizzarlo all'endpoint `/authorize` . Questa richiesta è simile a quella della prima parte di [Flusso del codice di autorizzazione di OAuth 2.0](active-directory-protocols-oauth-code.md), con alcune importanti differenze:
+## Inviare una richiesta di accesso hello
+Quando l'utente hello tooauthenticate necessarie all'applicazione web, è necessario indicare hello utente toohello `/authorize` endpoint. Questa richiesta è simile toohello prima frazione di hello [del flusso di codice di autorizzazione OAuth 2.0](active-directory-protocols-oauth-code.md), con alcune differenze importanti:
 
-* La richiesta deve includere l'ambito `openid` nel parametro `scope`.
-* Il parametro `response_type` deve includere `id_token`.
-* La richiesta deve includere il parametro `nonce` .
+* richiesta di Hello deve includere l'ambito di hello `openid` in hello `scope` parametro.
+* Hello `response_type` parametro deve includere `id_token`.
+* richiesta di Hello deve includere hello `nonce` parametro.
 
 Una richiesta di esempio si presenta quindi come segue:
 
@@ -82,21 +82,21 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 | Parametro |  | Descrizione |
 | --- | --- | --- |
-| tenant |Obbligatoria |Il valore `{tenant}` del percorso della richiesta può essere usato per controllare chi può accedere all'applicazione.  I valori consentiti sono gli identificatori dei tenant, ad esempio `8eaef023-2b34-4da1-9baa-8bc8c9d6a490`, `contoso.onmicrosoft.com` o `common` per i token indipendenti dai tenant |
-| client_id |Obbligatoria |ID applicazione assegnato all'app quando è stata registrata in Azure AD. ed è reperibile nel portale di Azure. Fare clic su **Azure Active Directory**, su **Registrazioni per l'app**, scegliere l'applicazione e individuarne applicazione nella pagina dell'applicazione. |
+| tenant |Obbligatoria |Hello `{tenant}` valore nel percorso di hello della richiesta di hello può essere utilizzato toocontrol che possono accedere a un'applicazione hello.  Hello i valori consentiti sono identificatori di tenant, ad esempio, `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` o `contoso.onmicrosoft.com` o `common` per i token indipendente dal tenant |
+| client_id |Obbligatoria |Id applicazione assegnato tooyour app Hello quando è stato registrato con Azure AD. È possibile trovare questo nel portale di Azure hello. Fare clic su **Azure Active Directory**, fare clic su **registrazioni di App**, scegliere un'applicazione hello e individuare hello Id applicazione nella pagina applicazione hello. |
 | response_type |Obbligatoria |Deve includere `id_token` per l'accesso a OpenID Connect.  Può anche includere altri parametri response_type, ad esempio `code`. |
-| scope |Obbligatoria |Elenco di ambiti separati da spazi.  Per OpenID Connect, deve includere l'ambito `openid`che esegue la conversione all'autorizzazione per l'accesso nell'interfaccia utente di consenso.  È anche possibile includere in questa richiesta altri ambiti per richiedere il consenso. |
-| nonce |Obbligatoria |Valore incluso nella richiesta, generata dall'app, che verrà incluso nel `id_token` risultante come attestazione.  L'app può verificare questo valore per ridurre gli attacchi di riproduzione del token.  Il valore è in genere un GUID o una stringa univoca casuale che consente di identificare l'origine della richiesta. |
-| redirect_uri |consigliato |URI di reindirizzamento dell'app dove le risposte di autenticazione possono essere inviate e ricevute dall'app.  Deve corrispondere esattamente a uno degli URI di reindirizzamento registrati nel portale, ad eccezione del fatto che deve essere codificato come URL. |
-| response_mode |Consigliato |Specifica il metodo che deve essere usato per inviare un codice di autorizzazione all'app.  I valori supportati sono `form_post` per *POST modulo HTTP* o `fragment` per *frammento URL*.  Per le applicazioni Web è consigliabile usare `response_mode=form_post` per assicurare il trasferimento più sicuro dei token nell'applicazione. |
-| state |consigliato |Valore incluso nella richiesta che viene restituito nella risposta del token.  Può trattarsi di una stringa di qualsiasi contenuto.  Per [evitare gli attacchi di richiesta intersito falsa](http://tools.ietf.org/html/rfc6749#section-10.12), viene in genere usato un valore univoco generato casualmente.  Lo stato viene inoltre usato per codificare le informazioni sullo stato dell'utente nell'app prima dell'esecuzione della richiesta di autenticazione, ad esempio la pagina o la vista in cui si trovava. |
-| prompt |Facoltativa |Indica il tipo di interazione obbligatoria dell'utente.  Attualmente gli unici valori validi sono "login", "none" e "consent".  `prompt=login` forza l'utente a immettere le sue credenziali alla richiesta, negando l'accesso Single Sign-On.  `prompt=none` è l'opposto: garantisce che all'utente non venga presentata alcuna richiesta interattiva.  Se la richiesta non può essere completata automaticamente tramite Single-Sign-On, l'endpoint restituisce un errore.  `prompt=consent` attiva la finestra di dialogo di consenso di OAuth dopo l'accesso dell'utente, che chiede all'utente di concedere le autorizzazioni all'app. |
-| login_hint |Facoltativa |Consente di pre-compilare il campo nome utente/indirizzo di posta elettronica dell'utente nella pagina di accesso, se già si conosce il nome utente.  Le app usano spesso questo parametro durante la riautenticazione, dopo aver estratto il nome utente da un accesso precedente tramite l'attestazione `preferred_username`. |
+| scope |Obbligatoria |Elenco di ambiti separati da spazi.  Per OpenID Connect, deve includere ambito hello `openid`, che converte l'autorizzazione "Accesso" toohello nell'interfaccia utente di consenso hello.  È anche possibile includere in questa richiesta altri ambiti per richiedere il consenso. |
+| nonce |Obbligatoria |Un valore incluso nella richiesta di hello, generato da app hello, che è incluso in hello risultante `id_token` come attestazione.  app Hello consente di verificare che gli attacchi di riproduzione token di toomitigate questo valore.  il valore di Hello è in genere una stringa casuale e univoco o il GUID che può essere utilizzato tooidentify hello origine della richiesta di hello. |
+| redirect_uri |consigliato |redirect_uri Hello dell'app, in cui le risposte di autenticazione possono essere inviate e ricevute dall'app.  Deve corrispondere esattamente uno dei redirect_uris hello che è stato registrato nel portale di hello, ad eccezione del fatto che deve essere codificato in url. |
+| response_mode |consigliato |Specifica il metodo hello che deve essere utilizzati toosend hello risultante authorization_code tooyour indietro app.  I valori supportati sono `form_post` per *POST modulo HTTP* o `fragment` per *frammento URL*.  Per le applicazioni web, è consigliabile utilizzare `response_mode=form_post` tooensure hello trasferimento più sicuro dell'applicazione tooyour token. |
+| state |consigliato |Un valore incluso nella richiesta di hello restituito nella risposta token hello.  Può trattarsi di una stringa di qualsiasi contenuto.  Per [evitare gli attacchi di richiesta intersito falsa](http://tools.ietf.org/html/rfc6749#section-10.12), viene in genere usato un valore univoco generato casualmente.  stato Hello è anche tooencode utilizzati informazioni sullo stato dell'utente hello in app hello prima dell'esecuzione della richiesta di autenticazione hello, ad esempio pagina hello o fossero nella vista. |
+| prompt |Facoltativa |Indica il tipo di hello di interazione utente richiesta.  Attualmente, hello solo i valori validi sono 'login', 'none', 'di consenso e di.  `prompt=login`forza hello utente tooenter le proprie credenziali per tale richiesta, la negazione single sign-in.  `prompt=none`hello opposto: assicura che l'utente hello non è presentato con qualsiasi interattivo prompt alcun tipo.  Se la richiesta hello può essere completata automaticamente tramite single-sign-on, l'endpoint di hello restituisce un errore.  `prompt=consent`Attiva hello OAuth di dialogo di consenso dopo il segno di utente hello, che richiede autorizzazioni toohello app di hello utente toogrant. |
+| login_hint |Facoltativa |Può essere utilizzato toopre riempimento hello nome utente/posta elettronica campo indirizzo hello-pagina di accesso per utente hello, se si conosce il nome utente anticipatamente.  Spesso le app di usare questo parametro durante la riautenticazione, con già estratto il nome utente hello da una precedente Accedi utilizzando hello `preferred_username` attestazione. |
 
-A questo punto viene chiesto all'utente di immettere le credenziali e completare l'autenticazione.
+A questo punto, utente hello è richiesto tooenter le credenziali e autenticazione hello completo.
 
 ### Risposta di esempio
-Una risposta di esempio dopo l'autenticazione dell'utente può avere un aspetto simile al seguente:
+Una risposta di esempio, dopo hello utente è autenticato, potrebbe essere simile al seguente:
 
 ```
 POST /myapp/ HTTP/1.1
@@ -106,13 +106,13 @@ Content-Type: application/x-www-form-urlencoded
 id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&state=12345
 ```
 
-| Parametro | Descrizione |
+| . | Descrizione |
 | --- | --- |
-| id_token |`id_token` richiesto dall'app. È possibile usare `id_token` per verificare l'identità dell'utente e avviare una sessione con l'utente. |
-| state |Valore incluso nella richiesta che viene restituito nella risposta del token. Per [evitare gli attacchi di richiesta intersito falsa](http://tools.ietf.org/html/rfc6749#section-10.12), viene in genere usato un valore univoco generato casualmente.  Lo stato viene inoltre usato per codificare le informazioni sullo stato dell'utente nell'app prima dell'esecuzione della richiesta di autenticazione, ad esempio la pagina o la vista in cui si trovava. |
+| id_token |Hello `id_token` app hello richiesto. È possibile utilizzare hello `id_token` tooverify hello identità dell'utente e iniziare una sessione utente hello. |
+| state |Un valore incluso nella richiesta di hello che viene inoltre restituito in risposta token hello. Per [evitare gli attacchi di richiesta intersito falsa](http://tools.ietf.org/html/rfc6749#section-10.12), viene in genere usato un valore univoco generato casualmente.  stato Hello è anche tooencode utilizzati informazioni sullo stato dell'utente hello in app hello prima dell'esecuzione della richiesta di autenticazione hello, ad esempio pagina hello o fossero nella vista. |
 
 ### Risposta di errore
-Le risposte di errore possono essere inviate anche a `redirect_uri` , in modo che l'app possa gestirle adeguatamente:
+Le risposte di errore è inoltre possibile inviare toohello `redirect_uri` in modo da gestire in modo appropriato le app hello:
 
 ```
 POST /myapp/ HTTP/1.1
@@ -122,41 +122,41 @@ Content-Type: application/x-www-form-urlencoded
 error=access_denied&error_description=the+user+canceled+the+authentication
 ```
 
-| Parametro | Descrizione |
+| . | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che può essere usata per classificare i tipi di errori che si verificano e correggerli. |
-| error_description |Messaggio di errore specifico che consente a uno sviluppatore di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che può essere utilizzati tooclassify tipi di errori che si verificano e può essere utilizzati tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che consente a uno sviluppatore di identificare causa radice di hello di un errore di autenticazione. |
 
 #### Codici per gli errori dell'endpoint di autorizzazione
-La tabella seguente descrive i diversi codici errore che possono essere restituiti nel parametro `error` della risposta di errore.
+Hello nella tabella seguente vengono descritti hello vari codici di errore che possono essere restituiti in hello `error` parametro di risposta di errore hello.
 
 | Codice di errore | Descrizione | Azione client |
 | --- | --- | --- |
-| invalid_request |Errore del protocollo, ad esempio un parametro obbligatorio mancante. |Correggere e inviare di nuovo la richiesta. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
-| unauthorized_client |All'applicazione client non è consentito richiedere un codice di autorizzazione. |Si verifica in genere quando l'applicazione client non è registrata in Azure AD o non è stata aggiunta al tenant di Azure AD dell'utente. L'applicazione può chiedere all'utente di installare l'applicazione e di aggiungerla ad Azure AD. |
-| access_denied |Consenso negato dal proprietario della risorsa |L'applicazione client può notificare all'utente che non può proseguire a meno che l'utente non acconsenta. |
-| unsupported_response_type |Il server di autorizzazione non supporta il tipo di risposta nella richiesta. |Correggere e inviare di nuovo la richiesta. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
-| server_error |Errore imprevisto rilevato dal server. |ripetere la richiesta. Questi errori possono dipendere da condizioni temporanee. L'applicazione client può comunicare all'utente che la risposta è stata ritardata a causa di un errore temporaneo. |
-| temporarily_unavailable |Il server è temporaneamente troppo occupato per gestire la richiesta. |ripetere la richiesta. L'applicazione client può comunicare all'utente che la risposta è stata ritardata a causa di una condizione temporanea. |
-| invalid_resource |La risorsa di destinazione non è valida perché non esiste, Azure AD non riesce a trovarla o non è attualmente configurata. |Indica che la risorsa, se presente, non è stata configurata nel tenant. L'applicazione può chiedere all'utente di installare l'applicazione e di aggiungerla ad Azure AD. |
+| invalid_request |Errore del protocollo, ad esempio un parametro obbligatorio mancante. |Correggere e inviare di nuovo la richiesta hello. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
+| unauthorized_client |Hello applicazione client non è consentito toorequest un codice di autorizzazione. |Ciò si verifica quando un'applicazione hello client non è registrata in Azure AD o non è stato aggiunto il tenant di Azure AD dell'utente toohello. un'applicazione Hello può richiedere utente hello istruzioni per l'installazione di un'applicazione hello e aggiungerlo tooAzure Active Directory. |
+| access_denied |Consenso negato dal proprietario della risorsa |un'applicazione Hello client può inviare una notifica utente hello che è possibile continuare a meno che non hello utente autorizza l'accesso. |
+| unsupported_response_type |server di autorizzazione Hello non supporta il tipo di risposta hello nella richiesta di hello. |Correggere e inviare di nuovo la richiesta hello. Si tratta di un errore di sviluppo rilevato in genere durante il test iniziale. |
+| server_error |Hello rilevato un errore imprevisto. |Ripetere la richiesta hello. Questi errori possono dipendere da condizioni temporanee. un'applicazione Hello client potrebbe spiegare toohello utente che la risposta è in ritardo a causa di errori temporanei tooa. |
+| temporarily_unavailable |server Hello è temporaneamente richiesta hello toohandle troppo occupato. |Ripetere la richiesta hello. un'applicazione Hello client potrebbe spiegare toohello utente che la risposta è in ritardo a causa di condizione temporanea tooa. |
+| invalid_resource |risorsa di destinazione Hello è valido perché non esiste, Azure AD non riesce a trovarla o non sia configurato correttamente. |Indica la risorsa hello, se presente, non è stata configurata nel tenant di hello. un'applicazione Hello può richiedere utente hello istruzioni per l'installazione di un'applicazione hello e aggiungerlo tooAzure Active Directory. |
 
-## Convalidare il token ID
-La semplice ricezione di un `id_token` non è sufficiente per autenticare l'utente. È necessario convalidare la firma e verificare le attestazioni in `id_token` in base ai requisiti dell'app. L'endpoint di Azure AD usa i token Web JSON (JWT) e la crittografia a chiave pubblica per firmare i token e verificarne la validità.
+## Convalidare hello id_token
+Solo la ricezione di un `id_token` non è sufficiente tooauthenticate hello utente; è necessario convalidare hello firma e verifica delle richieste di hello in hello `id_token` per i requisiti dell'applicazione. endpoint di Azure AD Hello utilizza i token Web JSON (Jwt) e i token di crittografia a chiave pubblica toosign e verificare che siano validi.
 
-È possibile scegliere di convalidare `id_token` nel codice client, ma una procedura comune consiste nell'inviare `id_token` a un server back-end dove verrà eseguita la convalida. Dopo aver convalidato la firma di `id_token`, è necessario verificare alcune attestazioni.
+È possibile scegliere hello toovalidate `id_token` nel codice client, ma una pratica comune è hello toosend `id_token` server back-end tooa ed eseguire la convalida di hello non esiste. Dopo aver verificato la firma hello di hello `id_token`, esistono alcuni attestazioni si è tooverify obbligatorio.
 
-È inoltre consigliabile convalidare attestazioni aggiuntive in base allo scenario. Alcune convalide comuni includono:
+È inoltre possibile toovalidate attestazioni aggiuntive a seconda dello scenario. Alcune convalide comuni includono:
 
-* Garantire che l'utente o l'organizzazione dispongano dell'iscrizione all'app.
-* Garantire che l'utente disponga di autorizzazioni/privilegi adeguati.
+* Garantire hello utente o l'organizzazione ha effettuato l'iscrizione per app hello.
+* Verifica utente hello dispone di autorizzazione diritti
 * Garantire che sia stato applicato un determinato livello di autenticazione, ad esempio l'autenticazione a più fattori.
 
-Dopo aver completato la convalida di `id_token`, è possibile avviare una sessione con l'utente e usare le attestazioni in `id_token` per ottenere informazioni sull'utente nell'app. Queste informazioni possono essere usate per la visualizzazione, i record, le autorizzazioni e così via. Per altre informazioni sui tipi di token e sulle attestazioni, vedere [Token e tipi di attestazioni supportati](active-directory-token-and-claims.md).
+Dopo aver verificato hello `id_token`, è possibile avviare una sessione utente hello e usare le attestazioni di hello in hello `id_token` tooobtain informazioni utente hello nell'app. Queste informazioni possono essere usate per la visualizzazione, i record, le autorizzazioni e così via. Per altre informazioni sui tipi di token hello e attestazioni, vedere [supportati Token e tipi di attestazione](active-directory-token-and-claims.md).
 
 ## Inviare una richiesta di disconnessione
-Durante la disconnessione di un utente dall’applicazione, non basta cancellare i cookie dell’applicazione o terminare la sessione con l’utente.  È anche necessario reindirizzare l'utente a `end_session_endpoint` per la disconnessione.  In caso contrario l'utente potrà autenticarsi nuovamente all'app senza immettere le credenziali grazie alla presenza di una sessione Single Sign-On valida con l'endpoint di Azure AD.
+Quando si desidera utente hello toosign all'esterno dell'app hello, è insufficiente tooclear i cookie dell'applicazione o in caso contrario terminare la sessione di hello con utente hello.  È inoltre necessario reindirizzare hello utente toohello `end_session_endpoint` per disconnessione.  Se non si toodo così, utente hello sarà in grado di tooreauthenticate tooyour app senza dover immettere nuovamente le proprie credenziali perché avranno una single sign-on sessione valido con l'endpoint di Azure AD hello.
 
-È sufficiente reindirizzare l'utente all' `end_session_endpoint` riportato nel documento dei metadati di OpenID:
+È possibile reindirizzare semplicemente hello utente toohello `end_session_endpoint` elencati nel documento di metadati di OpenID Connect hello:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/logout?
@@ -164,23 +164,23 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 
 ```
 
-| Parametro |  | Descrizione |
+| . |  | Descrizione |
 | --- | --- | --- |
-| post_logout_redirect_uri |consigliato |URL di destinazione al quale l'utente deve essere reindirizzato dopo la disconnessione.  Se omesso, all'utente viene visualizzato un messaggio generico. |
+| post_logout_redirect_uri |consigliato |URL Hello hello utente deve essere reindirizzato tooafter di disconnessione ha esito positivo.  Se viene omesso, l'utente hello viene visualizzato un messaggio generico. |
 
 ## Single Sign-Out
-Quando si reindirizza l'utente all'`end_session_endpoint`, Azure AD cancella la sessione dell'utente dal browser. L'utente può tuttavia essere ancora connesso ad altre applicazioni che usano Azure AD per l'autenticazione. Per consentire che tutte le applicazioni eseguano la disconnessione dell'utente simultaneamente, Azure AD invia una richiesta HTTP GET all'oggetto `LogoutUrl` registrato di tutte le applicazioni a cui l'utente è attualmente connesso. Le applicazioni devono rispondere a questa richiesta cancellando qualsiasi sessione che identifica l'utente e restituendo una risposta `200`.  Se si vuole supportare l'accesso Single Sign-Out nell'applicazione, è necessario implementare questo tipo di oggetto `LogoutUrl` nel codice dell'applicazione.  È possibile impostare `LogoutUrl` nel portale di Azure:
+Quando si reindirizza hello utente toohello `end_session_endpoint`, Azure AD Cancella hello sessione utente da browser hello. Tuttavia, hello utente può comunque essere connesso tooother applicazioni che usano Azure AD per l'autenticazione. tooenable toosign tali applicazioni hello utente contemporaneamente, Azure AD invia un toohello di richiesta HTTP GET registrato `LogoutUrl` di tutte le applicazioni hello utente hello è attualmente connesso al. Applicazioni devono rispondere toothis richiesta deselezionando qualsiasi sessione che identifica l'utente hello e restituendo un `200` risposta.  Se si desidera toosupport l'accesso single sign out nell'applicazione, è necessario implementare ad un `LogoutUrl` nel codice dell'applicazione.  È possibile impostare hello `LogoutUrl` da hello portale di Azure:
 
-1. Passare al [portale di Azure](https://portal.azure.com).
-2. Fare clic sull'account nell'angolo superiore destro della pagina per scegliere l'istanza di Active Directory.
-3. Nel pannello di navigazione a sinistra scegliere **Azure Active Directory**, quindi scegliere **Registrazioni per l'app** e selezionare l'applicazione desiderata.
-4. Fare clic su **Proprietà** e individuare la casella di testo **URL disconnessione**. 
+1. Passare toohello [portale Azure](https://portal.azure.com).
+2. Scegliere il servizio Active Directory facendo clic sul proprio account nel hello angolo superiore destro della pagina hello.
+3. Dal Pannello di navigazione a sinistra di hello, scegliere **Azure Active Directory**, quindi scegliere **registrazioni di App** e selezionare l'applicazione.
+4. Fare clic su **proprietà** e trovare hello **Logout URL** casella di testo. 
 
 ## Acquisizione dei token
-Molte app Web non solo eseguono l'accesso dell'utente, ma accedono anche a un servizio Web per conto dell'utente tramite OAuth. Questo scenario combina OpenID Connect per l'autenticazione dell'utente e la contemporanea acquisizione di un `authorization_code` che può essere usato per ottenere `access_tokens` con il flusso del codice di autorizzazione di OAuth.
+Molte applicazioni web devono toonot solo accesso hello utente, ma anche accedere a un servizio web per conto di tale utente tramite OAuth. Questo scenario consente di combinare OpenID Connect per l'autenticazione utente durante l'acquisizione contemporaneamente un `authorization_code` che può essere utilizzato tooget `access_tokens` utilizzando hello flusso di codice di autorizzazione OAuth.
 
 ## Ottenere i token di accesso
-Per acquisire i token di accesso, è necessario modificare la richiesta di accesso precedente:
+i token di accesso tooacquire, è necessario toomodify hello richiesta di accesso precedente:
 
 ```
 // Line breaks for legibility only
@@ -196,7 +196,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e        // Your registered Applica
 &nonce=678910                                         // Any value, provided by your app
 ```
 
-Includendo gli ambiti di autorizzazione nella richiesta e usando `response_type=code+id_token`, l'endpoint `authorize` verificherà che l'utente abbia dato il consenso per le autorizzazioni indicate nel parametro di query `scope` e restituirà all'app un codice di autorizzazione da scambiare con un token di accesso.
+Inclusi gli ambiti di autorizzazione nella richiesta di hello e utilizzando `response_type=code+id_token`, hello `authorize` endpoint assicura che l'utente hello ha acconsentito autorizzazioni toohello indicate nella hello `scope` parametro di query e restituire un codice di autorizzazione di app tooexchange per un token di accesso.
 
 ### Risposta con esito positivo
 Una risposta con esito positivo che usa `response_mode=form_post` ha un aspetto simile al seguente:
@@ -211,12 +211,12 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&code=AwABAA
 
 | Parametro | Descrizione |
 | --- | --- |
-| id_token |`id_token` richiesto dall'app. È possibile usare `id_token` per verificare l'identità dell'utente e avviare una sessione con l'utente. |
-| code |Codice di autorizzazione richiesto dall'app. L'app può usare il codice di autorizzazione per richiedere un token di accesso per la risorsa di destinazione. I codici di autorizzazione hanno una durata breve e in genere scadono dopo circa 10 minuti. |
-| state |Se un parametro di stato è incluso nella richiesta, lo stesso valore viene visualizzato nella risposta. L'app deve verificare che i valori dello stato nella richiesta e nella risposta siano identici. |
+| id_token |Hello `id_token` app hello richiesto. È possibile utilizzare hello `id_token` tooverify hello identità dell'utente e iniziare una sessione utente hello. |
+| code |authorization_code Hello che hello app richiesto. app Hello è possibile utilizzare toorequest codice di autorizzazione hello un token di accesso per la risorsa di destinazione hello. I codici di autorizzazione hanno una durata breve e in genere scadono dopo circa 10 minuti. |
+| state |Se un parametro di stato è incluso nella richiesta di hello, hello stesso valore verrà visualizzato nella risposta hello. Hello app deve verificare che i valori dello stato hello hello richiesta e risposta sono identici. |
 
 ### Risposta di errore
-Le risposte di errore possono essere inviate anche a `redirect_uri` , in modo che l'app possa gestirle adeguatamente:
+Le risposte di errore è inoltre possibile inviare toohello `redirect_uri` in modo da gestire in modo appropriato le app hello:
 
 ```
 POST /myapp/ HTTP/1.1
@@ -226,11 +226,11 @@ Content-Type: application/x-www-form-urlencoded
 error=access_denied&error_description=the+user+canceled+the+authentication
 ```
 
-| Parametro | Descrizione |
+| . | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che può essere usata per classificare i tipi di errori che si verificano e correggerli. |
-| error_description |Messaggio di errore specifico che consente a uno sviluppatore di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che può essere utilizzati tooclassify tipi di errori che si verificano e può essere utilizzati tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che consente a uno sviluppatore di identificare causa radice di hello di un errore di autenticazione. |
 
-Per una descrizione dei possibili codici di errore e l'azione consigliata per il client, vedere [Codici per gli errori dell'endpoint di autorizzazione](#error-codes-for-authorization-endpoint-errors).
+Per una descrizione di hello possibili codici di errore e la loro azione consigliata client, vedere [codici di errore per gli errori di endpoint di autorizzazione](#error-codes-for-authorization-endpoint-errors).
 
-Una volta ottenuti un `code` e un `id_token` di autorizzazione, è possibile far accedere l'utente e ottenere i token di accesso per suo conto.  Per far accedere l'utente è necessario convalidare l' `id_token` esattamente come descritto sopra. Per ottenere i token di accesso, è possibile seguire i passaggi descritti nella sezione "Usare un codice di autorizzazione per richiedere un token di accesso" della nostra [documentazione del protocollo OAuth](active-directory-protocols-oauth-code.md).
+Una volta un'autorizzazione `code` e `id_token`, è possibile eseguire l'accesso utente hello e ottenere i token di accesso per loro conto.  toosign hello utente, è necessario convalidare hello `id_token` esattamente come descritto in precedenza. i token di accesso tooget, è possibile seguire i passaggi di hello descritti nella sezione "Utilizzare toorequest codice di autorizzazione hello un token di accesso" hello del nostro [documentazione relativa al protocollo OAuth](active-directory-protocols-oauth-code.md).

@@ -1,5 +1,5 @@
 ---
-title: Indicazione delle impostazioni DNS in un file cscfg | Documentazione Microsoft
+title: le impostazioni DNS in un file di configurazione del servizio aaaSpecifying | Documenti Microsoft
 description: Specificare le impostazioni DNS personalizzate utilizzando il file di configurazione del servizio per la rete virtuale
 services: virtual-network
 documentationcenter: na
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/24/2016
 ms.author: jdial
-ms.openlocfilehash: 0fba2ea06827aff29a7a092933edb8120d668b29
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f192e33566dd8e669da04e6378a0c8e4b0b35ecc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="specifying-dns-settings-in-a-service-configuration-file"></a>Specifica le impostazioni DNS in un File di configurazione del servizio
 ## <a name="dns-elements"></a>Elemento DNS
-Un file di configurazione del servizio può contenere un elemento DnsServers con un elenco di indirizzi IPv4 per i server Domain Name System (DNS) che verrà utilizzato dal servizio. Le impostazioni nel file di configurazione del servizio hanno la precedenza sulle impostazioni nel file di configurazione di rete. Per altre informazioni, vedere [Schema di configurazione dei servizi di Azure (con estensione .cscfg)](https://msdn.microsoft.com/library/azure/ee758710.aspx).
+Un file di configurazione del servizio può contenere un elemento DnsServers con un elenco di indirizzi IPv4 per i server di sistema DNS (Domain Name) hello che verrà utilizzato dal servizio hello. Le impostazioni nel file di configurazione del servizio hello hanno la precedenza rispetto alle impostazioni nel file di configurazione di rete hello. Per altre informazioni, vedere [Schema di configurazione dei servizi di Azure (con estensione .cscfg)](https://msdn.microsoft.com/library/azure/ee758710.aspx).
 
 **Elemento NetworkConfiguration**
 
@@ -33,7 +33,7 @@ Un file di configurazione del servizio può contenere un elemento DnsServers con
       </DnsServers>
 
 > [!WARNING]
-> L'attributo **name** nell'elemento **DnsServer** viene usato solo come nome di riferimento. Non rappresenta il nome host per il server DNS. Ogni valore dell’attributo **DnsServer** deve essere univoco nell'intera sottoscrizione Microsoft Azure
+> Hello **nome** attributo hello **DnsServer** elemento viene usato solo come un nome di riferimento. Che rappresenta il nome host hello per il server DNS hello. Ogni **DnsServer** intera sottoscrizione di Microsoft Azure hello valore dell'attributo deve essere univoco.
 > 
 > 
 
@@ -44,5 +44,5 @@ Un file di configurazione del servizio può contenere un elemento DnsServers con
 
 [Configurare una rete virtuale usando un file di configurazione di rete](http://go.microsoft.com/fwlink/?LinkId=248094)
 
-[Informazioni sulle impostazioni della rete virtuale nel portale di gestione](http://go.microsoft.com/fwlink/?LinkId=248092)
+[Informazioni sulle impostazioni di rete virtuale nel portale di gestione di hello](http://go.microsoft.com/fwlink/?LinkId=248092)
 

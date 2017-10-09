@@ -1,6 +1,6 @@
 ---
-title: Uso degli script di Windows PowerShell per la pubblicazione in ambienti di sviluppo e test | Documentazione Microsoft
-description: Informazioni su come utilizzare gli script di Windows PowerShell da Visual Studio per pubblicare allo sviluppo e gli ambienti di prova.
+title: aaaUsing tooDev tooPublish script di Windows PowerShell e gli ambienti di Test | Documenti Microsoft
+description: Informazioni su come Windows PowerShell toouse gli script da ambienti di test e di toodevelopment toopublish Visual Studio.
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: d4c39eb7a8bc97a980061872ba0f32f375e6976f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 491a058f96255576afa74f6156f20ae9559bb9f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-windows-powershell-scripts-to-publish-to-dev-and-test-environments"></a>Uso degli script di Windows PowerShell per la pubblicazione in ambienti di sviluppo e test
-Quando si crea un'applicazione web in Visual Studio, è possibile generare uno script Windows PowerShell che può essere utilizzato in un secondo momento per automatizzare la pubblicazione del sito Web in Azure come un'applicazione Web nel servizio App Azure o una macchina virtuale. È possibile modificare ed estendere lo script di Windows PowerShell nell'editor di Visual Studio in base alle proprie esigenze o integrare lo script di compilazione esistente, il test e la pubblicazione di script.
+# <a name="using-windows-powershell-scripts-toopublish-toodev-and-test-environments"></a>Utilizzo di Windows PowerShell consente di generare script toopublish toodev e test ambienti
+Quando si crea un'applicazione web in Visual Studio, è possibile generare uno script di Windows PowerShell che è possibile usare la pubblicazione di hello tooautomate successive di tooAzure il sito Web come un'App Web nel servizio App di Azure o di una macchina virtuale. È possibile modificare ed estendere i requisiti di script di Windows PowerShell hello in toosuit editor di Visual Studio hello oppure integrarlo script hello compilazione esistente, test e script di pubblicazione.
 
-Utilizzando questi script, è possibile eseguire il provisioning (noto anche come ambienti di sviluppo e test) di versioni personalizzate del sito per un utilizzo temporaneo. Ad esempio, si potrebbe impostare una particolare versione del sito Web in una macchina virtuale di Azure o in una slot di gestione temporanea in un sito Web per eseguire un gruppo di test, riprodurre un bug, testare una correzione di bug, una versione di valutazione di una modifica proposta o configurare un ambiente personalizzato per una dimostrazione o una presentazione. Dopo aver creato uno script che pubblica il progetto, è possibile ricreare ambienti identici eseguendo nuovamente lo script in base alle esigenze o eseguire lo script con la build dell'applicazione web per creare un ambiente di test personalizzato.
+Utilizzando questi script, è possibile eseguire il provisioning (noto anche come ambienti di sviluppo e test) di versioni personalizzate del sito per un utilizzo temporaneo. Ad esempio, è possibile configurare una particolare versione del sito Web in una macchina virtuale di Azure o hello slot toorun un sito Web di gestione temporanea un gruppo di test, riprodurre un bug, testare una correzione di bug, valutare una modifica proposta o configurare un ambiente personalizzato per una demo o una presentazione. Dopo aver creato uno script che pubblica il progetto, è possibile ricreare ambienti identici eseguendo nuovamente script hello, in base alle esigenze o eseguire script hello con build del toocreate di applicazione web un ambiente di test personalizzato.
 
 ## <a name="what-you-need"></a>Elementi necessari
 * Azure SDK 2.3 o versioni successive Per altre informazioni vedere [Scaricare Visual Studio](http://go.microsoft.com/fwlink/?LinkID=624384).
 
-Non è necessario Azure SDK per generare script per i progetti web. Questa funzionalità è per i progetti web, non per i ruoli web nei servizi cloud.
+Gli script hello toogenerate di hello Azure SDK non è necessario per i progetti web. Questa funzionalità è per i progetti web, non per i ruoli web nei servizi cloud.
 
-* Azure PowerShell 0.7.4 o versione successiva Per altre informazioni, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview) .
+* Azure PowerShell 0.7.4 o versione successiva Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview) per ulteriori informazioni.
 * [Windows PowerShell 3.0](http://go.microsoft.com/?linkid=9811175) o versione successiva.
 
 ## <a name="additional-tools"></a>Strumenti aggiuntivi
 Sono disponibili altri strumenti e risorse per l'utilizzo di PowerShell in Visual Studio per lo sviluppo in Azure. Vedere [PowerShell Tools per Visual Studio](http://go.microsoft.com/fwlink/?LinkId=404012).
 
-## <a name="generating-the-publish-scripts"></a>Come generare script di pubblicazione
-È possibile generare gli script di pubblicazione per una macchina virtuale che ospita il sito Web quando si crea un nuovo progetto seguendo [queste istruzioni](virtual-machines/windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). È possibile anche [generare script di pubblicazione per le app Web del Servizio app di Azure](app-service-web/app-service-web-get-started-dotnet.md).
+## <a name="generating-hello-publish-scripts"></a>Hello di generazione script di pubblicazione
+È possibile generare hello script di pubblicazione per una macchina virtuale che ospita il sito Web quando si crea un nuovo progetto seguendo [queste istruzioni](virtual-machines/windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). È possibile anche [generare script di pubblicazione per le app Web del Servizio app di Azure](app-service-web/app-service-web-get-started-dotnet.md).
 
 ## <a name="scripts-that-visual-studio-generates"></a>Script generati da Visual Studio
-Visual Studio genera una cartella a livello di soluzione denominata **PublishScripts** che contiene due file di Windows PowerShell, uno script di pubblicazione per la macchina virtuale o sito Web e un modulo che contiene funzioni che è possibile utilizzare negli script. Visual Studio genera inoltre un file in formato JSON che specifica i dettagli del progetto in distribuzione.
+Visual Studio genera una cartella a livello di soluzione denominata **PublishScripts** che contiene due file di Windows PowerShell, uno script di pubblicazione per la macchina virtuale o del sito Web e un modulo che contiene funzioni che è possibile utilizzare in hello script. Visual Studio genera anche un file in formato JSON hello che specifica i dettagli di hello del progetto hello che si sta distribuendo.
 
 ### <a name="windows-powershell-publish-script"></a>Pubblicazione di script da parte di Windows PowerShell
-Lo script di pubblicazione contiene specifici passaggi di pubblicazione per la distribuzione in una macchina virtuale o in un sito Web. Visual Studio fornisce la colorazione della sintassi per lo sviluppo di Windows PowerShell . La Guida per le funzioni è disponibile, ed è possibile modificare liberamente le funzioni nello script per adattarle ai propri requisiti.
+script di pubblicazione Hello contiene specifico pubblicare i passaggi per la distribuzione del sito Web tooa o una macchina virtuale. Visual Studio fornisce la colorazione della sintassi per lo sviluppo di Windows PowerShell . La Guida per le funzioni hello è disponibile ed è possibile modificare liberamente le funzioni hello in hello script toosuit propri requisiti.
 
 ### <a name="windows-powershell-module"></a>Modulo di Windows PowerShell
-Il modulo Windows PowerShell generato da Visual Studio contiene funzioni che utilizzano lo script di pubblicazione. Queste sono le funzioni di Azure PowerShell e non possono essere modificate. Per altre informazioni, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview) .
+Hello modulo generato da Visual Studio contiene le funzioni hello di Windows PowerShell Usa script di pubblicazione. Queste sono funzioni di Azure PowerShell e non sono previsti toobe modificato. Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview) per ulteriori informazioni.
 
 ### <a name="json-configuration-file"></a>File di configurazione JSON.
-Il file JSON viene creato nella cartella **Configurazioni** e contiene dati di configurazione che consentono di specificare esattamente quali risorse distribuire in Azure. Il nome del file generato da Visual Studio è project-name-WAWS-dev. json se è stato creato un sito Web, o project name-VM-dev.json se è stata creata una macchina virtuale. Di seguito è riportato un esempio di un file di configurazione JSON generato quando si crea un sito Web. La maggior parte dei valori è facilmente comprensibile. Il nome del sito Web viene generato da Azure, pertanto potrebbe non corrispondere al nome del progetto.
+file JSON di Hello viene creato in hello **configurazioni** cartella e contiene i dati di configurazione che specifica esattamente quali tooAzure toodeploy risorse. nome di Hello del file hello generato da Visual Studio è progetto-nome-WAWS-DEV se è stato creato un sito Web o progetto nome-VM-DEV se è stata creata una macchina virtuale. Di seguito è riportato un esempio di un file di configurazione JSON generato quando si crea un sito Web. La maggior parte dei valori hello sono di chiara interpretazione. nome del sito Web Hello viene generato da Azure, pertanto potrebbe non corrispondere al nome del progetto.
 
 ```json
 {
@@ -72,7 +72,7 @@ Il file JSON viene creato nella cartella **Configurazioni** e contiene dati di c
     }
 }
 ```
-Quando si crea una macchina virtuale, il file di configurazione JSON è simile al seguente. Si noti che viene creato un servizio cloud come contenitore per la macchina virtuale. La macchina virtuale contiene i consueti endpoint per l'accesso web tramite HTTP e HTTPS, come pure gli endpoint per distribuzione Web, che consente di pubblicare nel sito Web dal computer locale, Desktop remoto e Windows PowerShell.
+Quando si crea una macchina virtuale, il file di configurazione JSON hello ricerca simili toohello seguente. Si noti che viene creato un servizio cloud come contenitore per la macchina virtuale hello. macchina virtuale Hello contiene i consueti endpoint di hello per l'accesso al web tramite HTTP e HTTPS, oltre agli endpoint per distribuzione Web, che consente di pubblicare toohello sito Web dal computer locale, Desktop remoto e Windows PowerShell.
 
 ```json
 {
@@ -138,28 +138,28 @@ Quando si crea una macchina virtuale, il file di configurazione JSON è simile a
 }
 ```
 
-È possibile modificare la configurazione JSON per modificare l'operazione eseguita quando si eseguono gli script di pubblicazione. Le sezioni `cloudService` e `virtualMachine` sono necessarie, ma è possibile eliminare la sezione `databases` se non è necessario. Le proprietà che sono vuote nel file di configurazione predefinito generato da Visual Studio sono facoltative; quelle che dispongono di valori nel file di configurazione predefinite sono necessarie.
+È possibile modificare hello JSON configurazione toochange cosa accade quando si esegue hello script di pubblicazione. Hello `cloudService` e `virtualMachine` le sezioni sono obbligatorie, ma è possibile eliminare hello `databases` sezione se non è necessario. proprietà Hello vuota nel file di configurazione predefinita di hello generato da Visual Studio sono facoltative. che hanno valori nel file di configurazione predefinito hello sono obbligatori.
 
-Se si dispone di un sito Web che dispone di più ambienti di distribuzione (noti come slot) anziché di un unico sito di produzione in Azure, è possibile includere il nome dello slot nel nome del sito Web nel file di configurazione JSON. Ad esempio, se si dispone di un sito Web denominato **mysite** e uno slot denominato **test**, l'URI è mysite test.cloudapp.net, ma il nome corretto da usare nel file di configurazione è mysite(test). È possibile eseguire questo solo se il sito Web e gli slot sono già presenti nella sottoscrizione. Se non sono presenti, creare il sito Web eseguendo lo script senza specificare lo slot, quindi creare lo slot nel [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885)e successivamente eseguire lo script con il nome del sito Web modificato. Per altre informazioni sugli slot di distribuzione per le app Web, vedere [Configurare ambienti di gestione temporanea per le app Web del Servizio app di Azure](app-service-web/web-sites-staged-publishing.md).
+Se si dispone di un sito Web che dispone di più ambienti di distribuzione (noti come slot) anziché un unico sito di produzione in Azure, è possibile includere nome dello slot hello in nome hello del sito Web di hello nel file di configurazione JSON hello. Ad esempio, se si dispone di un sito Web denominato **mysite** e uno slot denominato **test** quindi hello URI è mysite test.cloudapp.net, ma hello nome corretto toouse nel file di configurazione hello è MySite (test) . È possibile farlo solo se gli slot e il sito Web di hello esistano già nella sottoscrizione. In caso contrario, Crea sito Web di hello eseguendo script hello senza specificare slot hello, quindi creare uno slot hello hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885), e successivamente eseguire script hello con il nome del sito Web modificato hello. Per altre informazioni sugli slot di distribuzione per le app Web, vedere [Configurare ambienti di gestione temporanea per le app Web del Servizio app di Azure](app-service-web/web-sites-staged-publishing.md).
 
-## <a name="how-to-run-the-publish-scripts"></a>Come eseguire gli script di pubblicazione
-Se non è stato eseguito prima uno script Windows PowerShell, è innanzitutto necessario impostare i criteri di esecuzione per consentire l'esecuzione di script. Questa è una funzionalità di sicurezza per impedire agli utenti di eseguire script di Windows PowerShell se sono vulnerabili a malware o virus che comportano l'esecuzione di script.
+## <a name="how-toorun-hello-publish-scripts"></a>Come toorun hello pubblica script
+Se non è stato eseguito uno script di Windows PowerShell prima di, è innanzitutto necessario impostare hello esecuzione criteri tooenable script toorun. Si tratta di un utenti tooprevent funzionalità di protezione dall'esecuzione di script di Windows PowerShell se sono vulnerabili toomalware o virus che comportano l'esecuzione di script.
 
-### <a name="run-the-script"></a>Esecuzione dello script
-1. Creare il pacchetto di distribuzione Web per il progetto. Un pacchetto di distribuzione Web è un archivio compresso (con estensione zip) che contiene i file che si desidera copiare in una macchina virtuale o il sito Web. È possibile creare pacchetti di distribuzione Web in Visual Studio per qualsiasi applicazione web.
+### <a name="run-hello-script"></a>Eseguire script hello
+1. Creare pacchetto di distribuzione Web hello per il progetto. Un pacchetto di distribuzione Web è un archivio compresso (file con estensione zip) che contengono i file che si desidera sito Web tooyour toocopy o macchina virtuale. È possibile creare pacchetti di distribuzione Web in Visual Studio per qualsiasi applicazione web.
 
 ![Creare pacchetto di distribuzione web](./media/vs-azure-tools-publishing-using-powershell-scripts/IC767885.png)
 
-Per ulteriori informazioni, vedere [Procedura: Creare un pacchetto di distribuzione Web in Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx). È anche possibile automatizzare la creazione del pacchetto di distribuzione Web, come descritto nella sezione **Personalizzazione ed estensione degli script di pubblicazione** più avanti in questo argomento.
+Per ulteriori informazioni, vedere [Procedura: Creare un pacchetto di distribuzione Web in Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx). È inoltre possibile automatizzare la creazione di hello del pacchetto di distribuzione Web, come descritto nella sezione hello **personalizzazione ed estensione hello pubblica script** più avanti in questo argomento.
 
-1. In **Esplora soluzioni** aprire il menu di scelta rapida per lo script e quindi scegliere **Apri con PowerShell ISE**.
-2. Se questa è la prima volta che sono stati eseguiti gli script di Windows PowerShell su questo computer, aprire una finestra del prompt dei comandi con privilegi di amministratore e digitare il comando seguente:
+1. In **Esplora**, aprire il menu di scelta hello per script hello e quindi scegliere **aprire con PowerShell ISE**.
+2. Se si tratta di hello prima volta che si eseguono script di Windows PowerShell nel computer, aprire una finestra del prompt dei comandi con privilegi di amministratore e hello tipo comando seguente:
 
     ```powershell
     Set-ExecutionPolicy RemoteSigned
     ```
 
-3. Accedere ad Azure usando il comando seguente.
+3. Accedi tooAzure utilizzando hello comando seguente.
 
     ```powershell
     Add-AzureAccount
@@ -167,15 +167,15 @@ Per ulteriori informazioni, vedere [Procedura: Creare un pacchetto di distribuzi
 
     Quando richiesto, fornire nome utente e password.
 
-    Si noti che quando si automatizza lo script, questo metodo per fornire credenziali di Azure non funzionerà. Al contrario, utilizzare il file. publishsettings per fornire le credenziali. Una sola volta, si usa il comando **Get-AzurePublishSettingsFile** per scaricare il file da Azure e quindi **Import-AzurePublishSettingsFile** per importare il file. Per istruzioni dettagliate, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+    Si noti che quando si automatizza script hello, questo metodo per fornire le credenziali di Azure non funzionerà. In alternativa, è necessario utilizzare le credenziali tooprovide di file con estensione publishsettings hello. Una volta, è sufficiente usare il comando hello **Get-AzurePublishSettingsFile** hello toodownload file da Azure e successivamente usare **Import-AzurePublishSettingsFile** file hello tooimport. Per istruzioni dettagliate, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
-4. (Facoltativo) Se si vuole creare risorse con Azure, ad esempio la macchina virtuale, il database e il sito Web senza pubblicare l'applicazione Web, usare il comando **Publish-WebApplication.ps1** con l'argomento **-Configuration** impostato sul file di configurazione JSON. Questa riga di comando utilizza il file di configurazione JSON per determinare le risorse da creare. Poiché utilizza le impostazioni predefinite per gli altri argomenti della riga di comando, crea le risorse, ma non pubblica l'applicazione web. L’opzione Verbose  fornisce ulteriori informazioni sulle attività in corso.
+4. (Facoltativo) Se si desidera toocreate Azure le risorse, ad esempio hello virtual machine, database e del sito Web senza pubblicare l'applicazione web, utilizzare hello **Publish-WebApplication.ps1** con hello **-configurazione** argomento impostato toohello file di configurazione JSON. Questo comando Usa hello JSON configurazione file toodetermine toocreate le risorse. Poiché utilizza le impostazioni predefinite di hello per gli altri argomenti della riga di comando, crea risorse hello, ma non di pubblicare l'applicazione web. Hello-opzione /verbose offre ulteriori informazioni su ciò che accade.
 
     ```powershell
     Publish-WebApplication.ps1 -Verbose –Configuration C:\Path\WebProject-WAWS-dev.json
     ```
 
-5. Utilizzare il comando **Pubblica WebApplication.ps1** come indicato in uno dei seguenti esempi per richiamare lo script e pubblicare l'applicazione web. Se è necessario eseguire l'override delle impostazioni predefinite per gli altri argomenti, ad esempio il nome della sottoscrizione, pubblicare il nome del pacchetto, le credenziali di macchina virtuale o le credenziali del server database, è possibile specificare tali parametri. Utilizzare l’opzione **– Verbose** per visualizzare ulteriori informazioni sullo stato di avanzamento del processo di pubblicazione.
+5. Hello utilizzare **Publish-WebApplication.ps1** comando come illustrato in uno degli esempi tooinvoke hello script seguente hello e pubblicare l'applicazione web. Se è necessario toooverride le impostazioni predefinite di hello per le hello altri argomenti, ad esempio nome della sottoscrizione hello, nome del pacchetto, le credenziali di macchina virtuale o le credenziali del server database di pubblicazione, è possibile specificare tali parametri. Hello utilizzare **-Verbose** opzione toosee ulteriori informazioni sullo stato di avanzamento hello di hello processo di pubblicazione.
 
     ```powershell
     Publish-WebApplication.ps1 –Configuration C:\Path\WebProject-WAWS-dev-json `
@@ -185,7 +185,7 @@ Per ulteriori informazioni, vedere [Procedura: Creare un pacchetto di distribuzi
     -Verbose
     ```
 
-    Se si crea una macchina virtuale, il comando è simile al seguente. In questo esempio viene inoltre illustrato come specificare le credenziali per più database. Per le macchine virtuali create da questi script, il certificato SSL non è da un'autorità radice attendibile. Pertanto, è necessario utilizzare l’opzione **-AllowUntrusted** .
+    Se si crea una macchina virtuale, il comando di hello è simile al seguente hello. Questo esempio mostra anche come hello toospecify le credenziali per più database. Per le macchine virtuali hello create da questi script, certificati SSL hello non da un'autorità radice attendibile. È pertanto necessario hello toouse **-AllowUntrusted** opzione.
 
     ```powershell
     Publish-WebApplication.ps1 `
@@ -198,15 +198,15 @@ Per ulteriori informazioni, vedere [Procedura: Creare un pacchetto di distribuzi
     -Verbose
     ```
 
-    Lo script può creare database, ma non crea server di database. Se si desidera creare un server di database, è possibile utilizzare la funzione **New-AzureSqlDatabaseServer** nel modulo di Azure.
+    Hello script può creare database, ma non crea server di database. Se si desidera toocreate un server di database, è possibile utilizzare hello **New-AzureSqlDatabaseServer** funzione nel modulo Azure hello.
 
-## <a name="customizing-and-extending-the-publish-scripts"></a>Personalizzazione ed estensione degli script di pubblicazione
-È possibile personalizzare lo script di pubblicazione e i file di configurazione JSON. Le funzioni nel modulo Windows PowerShell **AzureWebAppPublishModule.psm1** non possono essere modificati. Se si desidera specificare un database diverso o modificare alcune delle proprietà della macchina virtuale, modificare il file di configurazione JSON. Se si desidera estendere le funzionalità dello script per automatizzare la compilazione e il test del progetto, è possibile implementare stub di funzioni in **Pubblica WebApplication.ps1**.
+## <a name="customizing-and-extending-hello-publish-scripts"></a>Personalizzazione ed estensione hello pubblica script
+È possibile personalizzare hello pubblicare script e file di configurazione JSON. Hello funzioni nel modulo di Windows PowerShell hello **AzureWebAppPublishModule.psm1** non sono previsti toobe modificato. Se si appena desidera toospecify un database diverso o modificare alcune delle proprietà hello della macchina virtuale hello, modificare il file di configurazione JSON hello. Se si vuole la funzionalità di hello tooextend di hello script tooautomate compilazione e test del progetto, è possibile implementare stub di funzioni in **Publish-WebApplication.ps1**.
 
-Per automatizzare la compilazione del progetto, aggiungere il codice che chiama MSBuild `New-WebDeployPackage` come illustrato nell'esempio di codice. Il percorso del comando MSBuild è diverso a seconda della versione di Visual Studio installata. Per ottenere il percorso corretto, è possibile utilizzare la funzione **Get-msbuildcmd come**, come illustrato nell'esempio seguente.
+tooautomate compilazione del progetto, aggiungere il codice che chiama MSBuild troppo`New-WebDeployPackage` come illustrato nell'esempio di codice. Hello percorso toohello comando MSBuild è diversa a seconda della versione di hello di Visual Studio è installato. percorso corretto hello tooget, è possibile utilizzare la funzione hello **Get-MSBuildCmd**, come illustrato in questo esempio.
 
-### <a name="to-automate-building-your-project"></a>Per automatizzare la compilazione del progetto
-1. Aggiungere il parametro `$ProjectFile` nella sezione param globale.
+### <a name="tooautomate-building-your-project"></a>compilazione del progetto tooautomate
+1. Aggiungere hello `$ProjectFile` parametro nella sezione parametri globali hello.
 
     ```powershell
     [Parameter(Mandatory = $false)]
@@ -215,7 +215,7 @@ Per automatizzare la compilazione del progetto, aggiungere il codice che chiama 
     $ProjectFile,
     ```
 
-2. Copiare la funzione `Get-MSBuildCmd` nel file di script.
+2. Copy (funzione) hello `Get-MSBuildCmd` nel file di script.
 
     ```powershell
     function Get-MSBuildCmd
@@ -236,15 +236,15 @@ Per automatizzare la compilazione del progetto, aggiungere il codice che chiama 
     }
     ```
 
-3. Sostituire `New-WebDeployPackage` con il seguente codice e sostituire i segnaposto per la costruzione di riga `$msbuildCmd`. Questo codice è per Visual Studio 2015. Se si usa Visual Studio 2013, modificare la proprietà **VisualStudioVersion** al di sotto di `12.0`.
+3. Sostituire `New-WebDeployPackage` con hello seguente di codice e sostituire il segnaposto hello nella costruzione di riga hello `$msbuildCmd`. Questo codice è per Visual Studio 2015. Se si utilizza Visual Studio 2013, modificare hello **VisualStudioVersion** proprietà seguente troppo`12.0`.
 
     ```powershell
     function New-WebDeployPackage
     {
-        #Write a function to build and package your web application
+        #Write a function toobuild and package your web application
     ```
 
-    Per compilare l'applicazione Web, usare MsBuild.exe. Per informazioni, vedere il riferimento della riga di comando di MSBuild all'indirizzo: [http://go.microsoft.com/fwlink/?LinkId=391339](http://go.microsoft.com/fwlink/?LinkId=391339)
+    toobuild l'applicazione web, usare MsBuild.exe. Per informazioni, vedere il riferimento della riga di comando di MSBuild all'indirizzo: [http://go.microsoft.com/fwlink/?LinkId=391339](http://go.microsoft.com/fwlink/?LinkId=391339)
 
     ```powershell
     Write-VerboseWithTime 'Build-WebDeployPackage: Start'
@@ -254,7 +254,7 @@ Per automatizzare la compilazione del progetto, aggiungere il codice che chiama 
     Write-VerboseWithTime ('Build-WebDeployPackage: ' + $msbuildCmd)
     ```
 
-### <a name="start-execution-of-the-build-command"></a>Avviare l'esecuzione del comando di compilazione
+### <a name="start-execution-of-hello-build-command"></a>Avvia l'esecuzione del comando di compilazione hello
 
 ```powershell
 $job = Start-Process cmd.exe -ArgumentList('/C "' + $msbuildCmd + '"') -WindowStyle Normal -Wait -PassThru
@@ -263,13 +263,13 @@ if ($job.ExitCode -ne 0) {
     throw('MsBuild exited with an error. ExitCode:' + $job.ExitCode)
 }
 
-#Obtain the project name
+#Obtain hello project name
 $projectName = (Get-Item $ProjectFile).BaseName
 
-#Construct the path to web deploy zip package
+#Construct hello path tooweb deploy zip package
 $DeployPackageDir =  '.\MSBuildOutputPath\_PublishedWebsites\{0}_Package\{0}.zip' -f $projectName
 
-#Get the full path for the web deploy zip package. This is required for MSDeploy to work
+#Get hello full path for hello web deploy zip package. This is required for MSDeploy toowork
 $WebDeployPackage = Resolve-Path –LiteralPath $DeployPackageDir
 
 Write-VerboseWithTime 'Build-WebDeployPackage: End'
@@ -278,7 +278,7 @@ return $WebDeployPackage
 }
 ```
 
-1. Chiamare la funzione `New-WebDeployPackage` prima di questa riga: `$Config = Read-ConfigFile $Configuration` per le applicazioni web o `$Config = Read-ConfigFile $Configuration -HasWebDeployPackage:([Bool]$WebDeployPackage)` per le macchine virtuali.
+1. Chiamare hello `New-WebDeployPackage` funzione prima di questa riga: `$Config = Read-ConfigFile $Configuration` per le app web o `$Config = Read-ConfigFile $Configuration -HasWebDeployPackage:([Bool]$WebDeployPackage)` per le macchine virtuali.
 
     ```powershell
     if($ProjectFile)
@@ -287,7 +287,7 @@ return $WebDeployPackage
     }
     ```
 
-2. Richiamare uno script personalizzato dalla riga di comando mediante il passaggio dell’argomento `$Project`, come nella seguente riga di comando di esempio.
+2. Richiamare hello personalizzato script dalla riga di comando utilizzando il passaggio hello `$Project` argomento, come hello seguente riga di comando di esempio.
 
     ```powershell
     .\Publish-WebApplicationVM.ps1 -Configuration .\Configurations\WebApplication5-VM-dev.json `
@@ -297,49 +297,49 @@ return $WebDeployPackage
     -Verbose
     ```
 
-    Per automatizzare il test dell'applicazione, aggiungere codice al `Test-WebApplication`. Assicurarsi di rimuovere il commento dalle righe in **Pubblica WebApplication.ps1** dove queste funzioni vengono chiamate. Se non si fornisce un'implementazione, è possibile compilare manualmente il progetto con Visual Studio e quindi eseguire lo script per pubblicare in Azure.
+    tooautomate il test dell'applicazione, aggiungere il codice troppo`Test-WebApplication`. Essere toouncomment che righe hello **Publish-WebApplication.ps1** in cui queste funzioni vengono chiamate. Se non si fornisce un'implementazione, è possibile creare manualmente il progetto con Visual Studio, di pubblicare script toopublish tooAzure hello esecuzione.
 
 ## <a name="publishing-function-summary"></a>Riepilogo della funzione di pubblicazione
-Per visualizzare la Guida per le funzioni è possibile utilizzare il prompt dei comandi Windows PowerShell, utilizzare il comando `Get-Help function-name`. Nella Guida sono inclusi esempi e informazioni sui parametri. Lo stesso testo della Guida in linea è presente anche nei file di origine script **AzureWebAppPublishModule.psm1** e **Publish-WebApplication.ps1**. Lo script e la Guida si trovano nella lingua di Visual Studio.
+tooget della Guida per le funzioni che è possibile usare al prompt dei comandi di Windows PowerShell hello, utilizzare il comando di hello `Get-Help function-name`. Guida di Hello sono inclusi esempi e informazioni sui parametri. stesso testo della Guida è disponibile anche nei file di origine script hello, Hello **AzureWebAppPublishModule.psm1** e **Publish-WebApplication.ps1**. Guida in linea e script hello è localizzati nella lingua di Visual Studio.
 
 **AzureWebAppPublishModule**
 
 | Nome della funzione | Description |
 | --- | --- |
 | Aggiungere AzureSQLDatabase |Creare un nuovo database SQL Azure. |
-| Aggiungere AzureSQLDatabases |Crea database SQL di Azure da valori nel file di configurazione JSON generato da Visual Studio. |
-| Aggiungere-AzureVM |Crea una macchina virtuale di Azure e restituisce l'URL della macchina virtuale distribuita. La funzione imposta i prerequisiti e quindi chiama la funzione **New-AzureVM** (modulo di Azure) per creare una nuova macchina virtuale. |
-| Aggiungere AzureVMEndpoints |Aggiunge nuovi endpoint di input a una macchina virtuale e restituisce la macchina virtuale con il nuovo endpoint. |
-| Aggiungere AzureVMStorage |Crea un nuovo account di archiviazione di Azure nella sottoscrizione corrente. Il nome dell'account inizia con "devtest" seguito da una stringa alfanumerica univoca. La funzione restituisce il nome del nuovo account di archiviazione. È necessario specificare un percorso o un gruppo di affinità per il nuovo account di archiviazione. |
-| Aggiungere-AzureWebsite |Crea un sito Web con nome e percorso specificati. Questa funzione chiama la funzione **New-AzureWebsite** nel modulo di Azure. Se la sottoscrizione non include già un sito Web con il nome specificato, questa funzione crea il sito Web e restituisce un oggetto sito Web. In caso contrario, restituirà `$null`. |
-| Backup-Sottoscrizione |Salva la sottoscrizione di Azure corrente nella variabile`$Script:originalSubscription` nell'ambito dello script. Questa funzione salva nell'ambito dello script la sottoscrizione di Azure corrente, ottenuta da `Get-AzureSubscription -Current`, e il relativo account di archiviazione nonché la sottoscrizione modificata da questo script, memorizzato nella variabile `$UserSpecifiedSubscription`, e il relativo account di archiviazione. Salvando i valori, è possibile usare una funzione, ad esempio `Restore-Subscription`, per ripristinare allo stato corrente la sottoscrizione e l'account di archiviazione corrente originale se è stato modificato lo stato corrente. |
-| Trovare-AzureVM |Ottiene la macchina virtuale di Azure specificata. |
-| Formato DevTestMessageWithTime |Antepone la data e l’ora a un messaggio. Questa funzione è progettata per i messaggi scritti ai flussi di errore e dettagliati. |
-| Get-AzureSQLDatabaseConnectionString |Assembla una stringa di connessione per connettersi a un database SQL Azure. |
-| Get-AzureVMStorage |Restituisce il nome del primo account di archiviazione con il modello di nome "devtest*", senza distinzione maiuscole/minuscole, nel percorso o nel gruppo di affinità specificato. Se l'account di archiviazione "devtest*" non corrisponde alla posizione o al gruppo di affinità, la funzione lo ignora. È necessario specificare un percorso o un gruppo di affinità. |
-| Get-MSDeployCmd |Restituisce un comando per eseguire lo strumento MsDeploy.exe. |
-| Nuovo AzureVMEnvironment |Trova o crea una macchina virtuale nella sottoscrizione che corrisponde ai valori nel file di configurazione JSON. |
-| Pubblicare-WebPackage |Utilizza MsDeploy.exe e un file Zip del pacchetto di pubblicazione web per distribuire le risorse a un sito Web. Questa funzione non genera alcun output. Se la chiamata a MSDeploy.exe non riesce, la funzione genera un'eccezione. Per ottenere un output più dettagliato, utilizzare l’opzione **-Verbose** . |
-| Pubblicar-WebPackageToVM |Verifica i valori di parametro e chiama quindi la funzione **Publish-WebPackage** . |
-| Leggere-configFile |Convalida il file di configurazione JSON e restituisce una tabella hash di valori selezionati. |
-| Ripristina-Subscription |Reimposta la sottoscrizione corrente a quella originale. |
-| Test-AzureModule |Restituisce `$true` se la versione del modulo Azure installata è 0.7.4 o successiva. Restituisce `$false` Se il modulo non è installato o è una versione precedente. Questa funzione non ha parametri. |
-| Test-AzureModuleVersion |Restituisce `$true` se la versione del modulo Azure è 0.7.4 o successiva. Restituisce `$false` Se il modulo non è installato o è una versione precedente. Questa funzione non ha parametri. |
-| Test-HttpsUrl |Converte l'URL di input in un oggetto System. Uri. Restituisce `$True` se l'URL è assoluto e il relativo schema è https. Restituisce `$false` se l'URL è relativo, lo schema non è HTTPS o la stringa di input non può essere convertita in un URL. |
-| Test- Member |Restituisce `$true` se una proprietà o metodo è un membro dell'oggetto. In caso contrario, restituisce `$false`. |
-| Scrivere-ErrorWithTime |Scrive un messaggio di errore prefisso con l'ora corrente. Questa funzione chiama la funzione **Format-DevTestMessageWithTime** per anteporre il tempo prima della scrittura del messaggio per il flusso di errore. |
-| Scrivere-HostWithTime |Scrive un messaggio nel programma host (**Write-Host**) prestabilito con l'ora corrente. L'effetto della scrittura nel programma host varia. La maggior parte dei programmi che ospitano Windows PowerShell scrive questi messaggi nell'output standard. |
-| Scrivere-VerboseWithTime |Scrive un messaggio dettagliato con l'ora corrente. Poiché chiama **Write-Verbose**, il messaggio viene visualizzato solo quando lo script viene eseguito con il parametro **Verbose** o quando la preferenza **VerbosePreference** è impostata su **Continua**. |
+| Aggiungere AzureSQLDatabases |Crea database SQL di Azure dai valori hello nel file di configurazione JSON hello generato da Visual Studio. |
+| Aggiungere-AzureVM |Crea una macchina virtuale di Azure e restituisce il che URL hello di hello distribuito macchina virtuale. Hello funzione imposta i prerequisiti di hello e quindi hello chiamate **New-AzureVM** funzione toocreate (modulo Azure) una nuova macchina virtuale. |
+| Aggiungere AzureVMEndpoints |Aggiunge una nuova macchina virtuale di tooa gli endpoint di input e restituisce hello di macchina virtuale con nuovo endpoint hello. |
+| Aggiungere AzureVMStorage |Crea un nuovo account di archiviazione di Azure nella sottoscrizione corrente hello. nome Hello dell'account di hello inizia con "devtest" seguito da una stringa alfanumerica univoca. funzione Hello restituisce il nome di hello del nuovo account di archiviazione hello. È necessario specificare un percorso o un gruppo di affinità per il nuovo account di archiviazione hello. |
+| Aggiungere-AzureWebsite |Crea un sito Web con percorso e il nome specificato hello. Questa funzione chiama hello **New-AzureWebsite** funzione nel modulo Azure hello. Se la sottoscrizione hello non include già un sito Web con nome specificato hello, questa funzione Crea sito Web di hello e restituisce un oggetto sito Web. In caso contrario, restituirà `$null`. |
+| Backup-Sottoscrizione |Consente di risparmiare hello sottoscrizione Azure corrente nella hello `$Script:originalSubscription` variabile nell'ambito dello script. Questa funzione Salva la sottoscrizione di Azure corrente di hello (ottenuta da `Get-AzureSubscription -Current`) e il relativo account di archiviazione, nonché hello sottoscrizione viene modificato da questo script (archiviata nella variabile hello `$UserSpecifiedSubscription`) e il relativo account di archiviazione, nell'ambito dello script. Salvando i valori hello, è possibile utilizzare una funzione, ad esempio `Restore-Subscription`, toorestore hello corrente sottoscrizione e l'archiviazione account toocurrent stato originale se è stato modificato lo stato corrente di hello. |
+| Trovare-AzureVM |Ottiene hello specificato macchina virtuale di Azure. |
+| Formato DevTestMessageWithTime |Antepone data e ora tooa messaggio. Questa funzione è progettata per i messaggi scritti toohello flussi di errore e dettagliato. |
+| Get-AzureSQLDatabaseConnectionString |Assembla un database SQL di Azure di tooan tooconnect di stringa di connessione. |
+| Get-AzureVMStorage |Nome dell'account di archiviazione prima di hello con modello di nome hello di hello restituisce "devtest*" (tra maiuscole e minuscole) nel gruppo di affinità o percorso specificato hello. Se hello "devtest*" account di archiviazione non corrisponde al percorso di hello o un gruppo di affinità, viene ignorato dalla funzione hello. È necessario specificare un percorso o un gruppo di affinità. |
+| Get-MSDeployCmd |Restituisce uno strumento di comando toorun hello MsDeploy.exe. |
+| Nuovo AzureVMEnvironment |Trova o crea una macchina virtuale nella sottoscrizione di hello che corrispondono ai valori nel file di configurazione JSON hello hello. |
+| Pubblicare-WebPackage |Usa MsDeploy.exe e un sito web di pubblicazione del pacchetto. Sito Web tooa di ZIP file toodeploy risorse. Questa funzione non genera alcun output. Se hello chiamata tooMSDeploy.exe non riesce, la funzione hello genera un'eccezione. tooget più dettagliati di output, utilizzare hello **-Verbose** opzione. |
+| Pubblicar-WebPackageToVM |Verificare i valori di parametro hello e quindi chiama hello **Publish-WebPackage** (funzione). |
+| Leggere-configFile |Convalida il file di configurazione JSON hello e restituisce una tabella hash di valori selezionati. |
+| Ripristina-Subscription |Reimposta hello sottoscrizione toohello originale abbonamento. |
+| Test-AzureModule |Restituisce `$true` se hello installato la versione del modulo Azure è 0.7.4 o successiva. Restituisce `$false` se il modulo di hello non è installato o è una versione precedente. Questa funzione non ha parametri. |
+| Test-AzureModuleVersion |Restituisce `$true` se hello versione di hello modulo Azure è 0.7.4 o successiva. Restituisce `$false` se il modulo di hello non è installato o è una versione precedente. Questa funzione non ha parametri. |
+| Test-HttpsUrl |Converte l'oggetto System. Uri tooa hello input URL. Restituisce `$True` se hello URL è assoluto e relativo schema è https. Restituisce `$false` se hello URL è relativo, lo schema non è HTTPS o stringa di input hello non può essere convertito tooa URL. |
+| Test- Member |Restituisce `$true` se una proprietà o metodo è un membro dell'oggetto hello. In caso contrario, restituisce `$false`. |
+| Scrivere-ErrorWithTime |Scrive un messaggio di errore preceduto hello ora corrente. Questa funzione chiama hello **Format-DevTestMessageWithTime** ora hello tooprepend di funzione prima di scrivere il flusso di errore toohello messaggio hello. |
+| Scrivere-HostWithTime |Scrive un programma host di messaggio toohello (**Write-Host**) preceduti hello ora corrente. Hello effetto della scrittura del programma host toohello varia. La maggior parte dei programmi che ospitano Windows PowerShell di scrittura questi messaggi toostandard output. |
+| Scrivere-VerboseWithTime |Scrive un messaggio dettagliato preceduto hello ora corrente. Poiché chiama **Write-Verbose**, il messaggio hello viene visualizzato solo quando viene eseguito uno script hello con hello **Verbose** parametro o quando hello **VerbosePreference** preferenza è impostare troppo**continua**. |
 
 **Pubblicare-WebApplication**
 
 | Nome della funzione | Description |
 | --- | --- |
 | Nuovo-AzureWebApplicationEnvironment |Crea risorse di Azure, ad esempio una macchina virtuale o un sito Web. |
-| Nuovo-WebDeployPackage |Questa funzione non è implementata. È possibile aggiungere comandi in questa funzione per compilare il progetto. |
-| Pubblicare-AzureWebApplication |Pubblicare un'applicazione Web in Azure |
+| Nuovo-WebDeployPackage |Questa funzione non è implementata. È possibile aggiungere comandi in toobuild questa funzione al progetto. |
+| Pubblicare-AzureWebApplication |Pubblica un tooAzure di applicazione web. |
 | Pubblicare-WebApplication |Crea e distribuisce le app Web, le macchine virtuali, i database SQL e gli account di archiviazione per un progetto web Visual Studio. |
-| Test-WebApplication |Questa funzione non è implementata. È possibile aggiungere comandi in questa funzione per testare l’applicazione. |
+| Test-WebApplication |Questa funzione non è implementata. È possibile aggiungere comandi in questo tootest funzione dell'applicazione. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulla creazione di script PowerShell, leggere [Scripting con Windows PowerShell](https://technet.microsoft.com/library/bb978526.aspx) e vedere gli altri script di Azure PowerShell nello [Script Center](https://azure.microsoft.com/documentation/scripts/).
+Ulteriori informazioni sulla creazione di script PowerShell leggendo [Scripting con Windows PowerShell](https://technet.microsoft.com/library/bb978526.aspx) e vedere altri script di PowerShell di Azure in hello [Script Center](https://azure.microsoft.com/documentation/scripts/).

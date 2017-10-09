@@ -1,6 +1,6 @@
 ---
-title: "Gruppi di disponibilità di SQL Server: Macchine virtuali di Azure: esercitazione | Microsoft Docs"
-description: "Questa esercitazione illustra come creare un gruppo di disponibilità SQL Server AlwaysOn in Macchine virtuali di Azure."
+title: "Gruppi di disponibilità Server - macchine virtuali di Azure - esercitazione aaaSQL | Documenti Microsoft"
+description: "Questa esercitazione viene illustrato come toocreate un SQL Server gruppo di disponibilità AlwaysOn in macchine virtuali di Azure."
 services: virtual-machines
 documentationCenter: na
 authors: MikeRayMSFT
@@ -16,27 +16,27 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/09/2017
 ms.author: mikeray
-ms.openlocfilehash: 228ca9ca5fddc493d27bfd6a40df5ee7306d6aa9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 65b4210b0f851828a32a02053b03e4b8d469ba4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-always-on-availability-group-in-azure-vm-manually"></a>Configurare manualmente un gruppo di disponibilità AlwaysOn in VM di Azure
 
-Questa esercitazione illustra come creare un gruppo di disponibilità SQL Server AlwaysOn in Macchine virtuali di Azure. L'esercitazione completa crea un gruppo di disponibilità con una replica di database in due istanze di SQL Server.
+Questa esercitazione viene illustrato come toocreate un SQL Server gruppo di disponibilità AlwaysOn in macchine virtuali di Azure. esercitazione completa Hello crea un gruppo di disponibilità con una replica di database in due computer SQL Server.
 
-**Tempo stimato**: per completare l'esercitazione, sono necessari circa 30 minuti dopo avere soddisfatto i prerequisiti.
+**Tempo stimato**: accetta toocomplete circa 30 minuti, una volta soddisfatti i prerequisiti di hello.
 
-Il diagramma illustra le operazioni di compilazione nell'esercitazione.
+diagramma di Hello illustra ciò che si compila in esercitazione hello.
 
 ![Gruppo di disponibilità](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/00-EndstateSampleNoELB.png)
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Nell'esercitazione si presuppone una conoscenza di base dei gruppi di disponibilità di SQL Server AlwaysOn. Se sono necessarie altre informazioni, vedere [Panoramica di Gruppi di disponibilità AlwaysOn (SQL Server)](http://msdn.microsoft.com/library/ff877884.aspx).
+esercitazione Hello presuppone di che avere una conoscenza di base di SQL Server di gruppi di disponibilità AlwaysOn. Se sono necessarie altre informazioni, vedere [Panoramica di Gruppi di disponibilità AlwaysOn (SQL Server)](http://msdn.microsoft.com/library/ff877884.aspx).
 
-La tabella seguente elenca i prerequisiti da completare prima di iniziare l'esercitazione:
+Hello nella tabella seguente elenca i prerequisiti di hello che è necessario toocomplete prima di iniziare questa esercitazione:
 
 |  |Requisito |Descrizione |
 |----- |----- |----- |
@@ -49,77 +49,77 @@ La tabella seguente elenca i prerequisiti da completare prima di iniziare l'eser
 |![Square](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/square.png)|Account di dominio dell'installazione | - Amministratore locale in ogni istanza di SQL Server <br/> - Membro del ruolo predefinito del server sysadmin di SQL Server per ogni istanza di SQL Server  |
 
 
-Prima di iniziare l'esercitazione, è necessario [completare i prerequisiti per la creazione di gruppi di disponibilità AlwaysOn in Macchine virtuali di Azure](virtual-machines-windows-portal-sql-availability-group-prereq.md). Se questi prerequisiti sono già stati completati, è possibile passare a [Creare il cluster](#CreateCluster).
+Prima di iniziare l'esercitazione hello, è necessario troppo[completare i prerequisiti per la creazione di gruppi di disponibilità AlwaysOn in macchine virtuali di Azure](virtual-machines-windows-portal-sql-availability-group-prereq.md). Se questi prerequisiti sono già completati, è possibile passare troppo[crea Cluster](#CreateCluster).
 
 
-<!--**Procedure**: *This is the first “step”. Make titles H2’s and short and clear – H2’s appear in the right pane on the web page and are important for navigation.*-->
+<!--**Procedure**: *This is hello first “step”. Make titles H2’s and short and clear – H2’s appear in hello right pane on hello web page and are important for navigation.*-->
 
 <a name="CreateCluster"></a>
-##Creare il cluster
+##Creare il cluster hello
 
-Dopo avere completato i prerequisiti, il primo passaggio prevede la creazione di un cluster di failover Windows Server con due istanze di SQL Server e un server di controllo.  
+Dopo aver hello vengono soddisfatti i prerequisiti, hello primo passaggio consiste toocreate un Cluster di Failover di Windows Server che include due SQL Server e un server di controllo.  
 
-1. Stabilire una connessione RDP alla prima istanza di SQL Server usando un account di dominio che sia amministratore in entrambe le istanze di SQL Server e nel server di controllo.
+1. RDP toohello prima di SQL Server utilizzando un account di dominio che un amministratore del server SQL sia il server di controllo di hello.
 
    >[!TIP]
-   >Se si è seguito il [documento sui prerequisiti](virtual-machines-windows-portal-sql-availability-group-prereq.md), è stato creato un account denominato **CORP\Install**. Usare questo account.
+   >Se si sono seguite hello [documento prerequisiti](virtual-machines-windows-portal-sql-availability-group-prereq.md), è stato creato un account denominato **CORP\Install**. Usare questo account.
 
-2. Nel dashboard **Server Manager** selezionare **Strumenti** e quindi fare clic su **Gestione cluster di failover**.
-3. Nel riquadro sinistro fare clic con il pulsante destro del mouse su **Gestione cluster di failover** e quindi scegliere **Crea cluster**.
+2. In hello **Server Manager** dashboard, selezionare **strumenti**, quindi fare clic su **gestione Cluster di Failover**.
+3. Nel riquadro di sinistra hello, fare doppio clic su **gestione Cluster di Failover**, quindi fare clic su **creare un Cluster**.
    ![Creare un cluster](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/40-createcluster.png)
-4. Nella Creazione guidata Cluster creare un cluster a un nodo procedendo nelle pagine con le impostazioni della tabella seguente:
+4. In Creazione guidata Cluster hello, creare un cluster a un nodo avanzando pagine hello con le impostazioni di hello in hello nella tabella seguente:
 
    | Page | Impostazioni |
    | --- | --- |
    | Prima di iniziare |Valori predefiniti |
-   | Selezione dei server |Digitare il nome della prima istanza di SQL Server in **Immettere il nome del server** e fare clic su **Aggiungi**. |
-   | Avviso di convalida |Selezionare **No. Non è necessario il supporto di Microsoft per il cluster e pertanto non desidero eseguire i test di convalida. Facendo clic su Avanti, si proseguirà con la creazione del cluster**. |
-   | Punto di accesso per l'amministrazione del cluster |Digitare un nome di cluster, ad esempio **SQLAGCluster1**, in **Nome cluster**.|
-   | Conferma |Usare le impostazioni predefinite a meno a meno che non si usino spazi di archiviazione. Vedere la nota che segue questa tabella. |
+   | Selezione dei server |Prima di SQL Server nome in hello di tipo **immettere il nome del server** e fare clic su **Aggiungi**. |
+   | Avviso di convalida |Selezionare **Nr I non è necessario supporto da Microsoft per questo cluster e pertanto non si desidera che la convalida di hello toorun test. Quando fa clic su Avanti, continuare con la creazione di cluster hello**. |
+   | Punto di accesso per hello amministrazione Cluster |Digitare un nome di cluster, ad esempio **SQLAGCluster1**, in **Nome cluster**.|
+   | Conferma |Usare le impostazioni predefinite a meno a meno che non si usino spazi di archiviazione. Vedere la nota di hello segue questa tabella. |
 
-### <a name="set-the-cluster-ip-address"></a>Impostare l'indirizzo IP del cluster
+### <a name="set-hello-cluster-ip-address"></a>Impostare l'indirizzo IP del cluster hello
 
-1. In **Gestione cluster di failover** scorrere verso il basso fino a **Risorse principali del cluster** ed espandere i dettagli del cluster. Lo stato visualizzato di entrambe le risorse **Nome** e **Indirizzo IP** deve essere **Operazione non riuscita**. La risorsa indirizzo IP non può essere portata online perché al cluster è assegnato lo stesso indirizzo IP del computer, quindi si tratta di un indirizzo duplicato.
+1. In **gestione Cluster di Failover**, scorrere verso il basso troppo**risorse principali del Cluster** ed espandere i dettagli del cluster hello. Dovrebbe essere entrambi hello **nome** hello e **indirizzo IP** risorse hello **Failed** stato. Hello risorsa indirizzo IP non può essere portata online perché il cluster di hello è assegnato hello stesso indirizzo IP come macchina hello stessa, pertanto è un indirizzo duplicato.
 
-2. Fare clic con il pulsante destro del mouse sulla risorsa **Indirizzo IP** non riuscita, quindi scegliere **Proprietà**.
+2. Hello pulsante destro del mouse non è stato possibile **indirizzo IP** risorsa e quindi fare clic su **proprietà**.
 
    ![Proprietà del cluster](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/42_IPProperties.png)
 
-3. Selezionare **Indirizzo IP statico** e nella casella di testo Indirizzo specificare un indirizzo disponibile dalla subnet in cui si trova l'istanza di SQL Server. Fare quindi clic su **OK**.
-4. Nella sezione **Risorse principali del cluster** fare clic con il pulsante destro del mouse sul nome del cluster e scegliere **Porta online**. Attendere finché entrambe le risorse non sono online Quando la risorsa del nome cluster torna online, il server del controller di dominio viene aggiornato con un nuovo account del computer Active Directory. Usare l'account Active Directory per eseguire il servizio del cluster del gruppo di disponibilità in un secondo momento.
+3. Selezionare **indirizzo IP statico** e specificare un indirizzo disponibile dalla subnet in cui SQL Server hello è nella casella di testo indirizzo hello. Fare quindi clic su **OK**.
+4. In hello **risorse principali del Cluster** sezione, fare doppio clic su nome cluster e fare clic su **in linea**. Attendere finché entrambe le risorse non sono online Quando risorsa del nome cluster hello torna online, il server di controller di dominio hello viene aggiornato con un nuovo account computer di Active Directory. Utilizzare questo hello toorun di AD account servizio di gruppo di disponibilità in cluster in un secondo momento.
 
-### <a name="addNode"></a>Aggiungere l'altra istanza di SQL Server al cluster
+### <a name="addNode"></a>Aggiungere hello altri toocluster di SQL Server
 
-Aggiungere l'altra istanza di SQL Server al cluster.
+Aggiungere altri cluster di SQL Server toohello hello.
 
-1. Nell'albero del browser fare clic con il pulsante destro del mouse sul cluster e scegliere **Aggiungi nodo**.
+1. Nell'albero di browser hello, fare doppio clic su cluster hello e fare clic su **aggiunta del nodo**.
 
-    ![Aggiungere un nodo al cluster](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/44-addnode.png)
+    ![Aggiungere toohello nodo Cluster](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/44-addnode.png)
 
-1. In **Aggiunta guidata nodi** fare clic su **Avanti**. Nella pagina **Seleziona server** aggiungere la seconda istanza di SQL Server. Digitare il nome del server in **Immettere il nome del server** e quindi fare clic su **Aggiungi**. Al termine dell'operazione, scegliere **Avanti**.
+1. In hello **Aggiunta guidata nodi**, fare clic su **Avanti**. In hello **selezione dei server** pagina, aggiungere hello secondo computer SQL Server. Nome del server di tipo hello in **immettere il nome del server** e quindi fare clic su **Aggiungi**. Al termine dell'operazione, scegliere **Avanti**.
 
-1. Nella pagina **Avviso di convalida** fare clic su **No**. In uno scenario di produzione è necessario eseguire i test di convalida. Quindi fare clic su **Next**.
+1. In hello **avviso di convalida** pagina, fare clic su **n** (in uno scenario di produzione è necessario eseguire il test di convalida hello). Quindi fare clic su **Next**.
 
-8. Nella pagina **Conferma**, se si usa la funzionalità Spazi di archiviazione, deselezionare la casella di controllo **Aggiungi tutte le risorse di archiviazione idonee al cluster**.
+8. In hello **conferma** pagina se si utilizza spazi di archiviazione, con l'etichetta casella di controllo crittografato hello **aggiungere tutte le risorse di archiviazione idonee toohello cluster.**
 
    ![Confermare l'aggiunta del nodo](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/46-addnodeconfirmation.png)
 
     >[!WARNING]
-   >Se si usa Spazi di archiviazione e non si deseleziona **Aggiungi tutte le risorse di archiviazione idonee al cluster**, Windows rende non visibili i dischi virtuali durante il processo di clustering. Di conseguenza, tali dischi non vengono visualizzati in Gestione disco o in Esplora risorse fino a quando gli spazi di archiviazione non vengono rimossi dal cluster e ricollegati usando PowerShell. Spazi di archiviazione consente di raggruppare più dischi in pool di archiviazione. Per altre informazioni, vedere [Spazi di archiviazione](https://technet.microsoft.com/library/hh831739).
+   >Se si utilizza spazi di archiviazione e non si deseleziona **aggiungere tutte le risorse di archiviazione idonee toohello cluster**, Windows consente di scollegare i dischi virtuali hello durante il processo di clustering hello. Di conseguenza, essi non vengono visualizzati in Gestione disco o Esplora fino a quando non vengono rimossi gli spazi di archiviazione di hello dal cluster hello e ricollegati tramite PowerShell. Spazi di archiviazione consente di raggruppare più dischi nel pool di toostorage. Per altre informazioni, vedere [Spazi di archiviazione](https://technet.microsoft.com/library/hh831739).
 
 1. Fare clic su **Avanti**.
 
-1. Fare clic su **Fine**.
+1. Fare clic su **Finish**.
 
-   A questo punto, Gestione cluster di failover visualizza il cluster con un nuovo nodo elencato nel contenitore **Nodi**.
+   Gestione Cluster di failover mostra che il cluster dispone di un nuovo nodo ed elencato in hello **nodi** contenitore.
 
-10. Disconnettersi dalla sessione desktop remoto.
+10. Disconnettersi dalla sessione desktop remoto hello.
 
 ### <a name="add-a-cluster-quorum-file-share"></a>Aggiungere una condivisione file di quorum del cluster
 
-In questo esempio il cluster Windows usa una condivisione file per creare un quorum del cluster. Questa esercitazione usa un quorum Maggioranza dei nodi e delle condivisioni file. Per altre informazioni, vedere [Informazioni sulle configurazioni quorum in un cluster di failover](http://technet.microsoft.com/library/cc731739.aspx).
+In questo esempio il cluster di Windows hello Usa un toocreate di condivisione di un quorum di cluster di file. Questa esercitazione usa un quorum Maggioranza dei nodi e delle condivisioni file. Per altre informazioni, vedere [Informazioni sulle configurazioni quorum in un cluster di failover](http://technet.microsoft.com/library/cc731739.aspx).
 
-1. Connettersi al server membro di controllo della condivisione file con una sessione Desktop remoto.
+1. Connettere i server membro di controllo della condivisione file toohello con una sessione desktop remoto.
 
 1. In **Server Manager** fare clic su **Strumenti**. Aprire **Gestione computer**.
 
@@ -129,17 +129,17 @@ In questo esempio il cluster Windows usa una condivisione file per creare un quo
 
    ![Nuova condivisione](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/48-newshare.png)
 
-   Usare **Creazione guidata cartella condivisa** per creare una condivisione.
+   Utilizzare **creare una cartella condivisa** toocreate una condivisione.
 
-1. In **Percorso cartella** fare clic su **Sfoglia** e individuare o creare un percorso per la cartella condivisa. Fare clic su **Avanti**.
+1. In **percorso della cartella**, fare clic su **Sfoglia** e individuare o creare un percorso per la cartella condivisa di hello. Fare clic su **Avanti**.
 
-1. In **Nome, descrizione e impostazioni** verificare il nome e il percorso della condivisione. Fare clic su **Avanti**.
+1. In **nome, descrizione e le impostazioni** verificare il nome di condivisione hello e il percorso. Fare clic su **Avanti**.
 
 1. In **Autorizzazioni cartella condivisa** impostare **Personalizza autorizzazioni**. Fare clic su **Personalizza**.
 
 1. In **Personalizza autorizzazioni** fare clic su **Aggiungi**.
 
-1. Verificare che l'account usato per creare il cluster abbia il controllo completo.
+1. Verificare che il cluster di hello hello toocreate account utilizzato dispone del controllo completo.
 
    ![Nuova condivisione](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/50-filesharepermissions.png)
 
@@ -147,83 +147,83 @@ In questo esempio il cluster Windows usa una condivisione file per creare un quo
 
 1. In **Autorizzazioni cartella condivisa** fare clic su **Fine**. Fare di nuovo clic su **Fine**.  
 
-1. Disconnettersi dal server
+1. Disconnettersi da server hello
 
 ### <a name="configure-cluster-quorum"></a>Configurare il quorum del cluster
 
-Impostare ora il quorum del cluster.
+Quindi, impostare quorum del cluster hello.
 
-1. Connettersi al primo nodo del cluster con Desktop remoto.
+1. Connettere toohello primo nodo del cluster con desktop remoto.
 
-1. In **Gestione cluster di failover** fare clic con il pulsante destro del mouse sul cluster, scegliere **Altre azioni** e fare clic su **Configura impostazioni quorum del cluster**.
+1. In **gestione Cluster di Failover**, fare doppio clic su cluster hello, scegliere troppo**altre azioni**, fare clic su **Configura impostazioni Quorum del Cluster...** .
 
    ![Nuova condivisione](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/52-configurequorum.png)
 
 1. In **Configurazione guidata quorum del cluster** fare clic su **Avanti**.
 
-1. In **Selezione opzione configurazione quorum** scegliere **Seleziona il quorum di controllo** e fare clic su **Avanti**.
+1. In **selezione opzione configurazione Quorum**, scegliere **selezione quorum di controllo hello**, fare clic su **Avanti**.
 
 1. In **Selezione quorum di controllo** fare clic su **Configura condivisione file di controllo**.
 
    >[!TIP]
    >Windows Server 2016 supporta un cloud di controllo. Se si sceglie questo tipo di controllo, non è necessario un controllo di condivisione file. Per altre informazioni, vedere [Distribuire un cloud di controllo per un cluster di failover](http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness). Questa esercitazione usa un controllo di condivisione file, supportato dai sistemi operativi precedenti.
 
-1. In **Configurazione condivisione file di controllo** digitare il percorso per la condivisione creata. Fare clic su **Avanti**.
+1. In **configurazione Witness di condivisione File**, percorso hello del tipo per la condivisione di hello creata. Fare clic su **Avanti**.
 
-1. Verificare le impostazioni in **Conferma**. Fare clic su **Avanti**.
+1. Verificare le impostazioni di hello in **conferma**. Fare clic su **Avanti**.
 
-1. Fare clic su **Fine**.
+1. Fare clic su **Finish**.
 
-Le risorse principali del cluster vengono configurate con un controllo di condivisione file.
+risorse principali del cluster Hello vengono configurate con una condivisione file di controllo.
 
 ## <a name="enable-availability-groups"></a>Abilitare i gruppi di disponibilità
 
-Abilitare ora la funzionalità **Gruppi di disponibilità AlwaysOn**. Eseguire questi passaggi in entrambe le istanze di SQL Server.
+Successivamente, abilitare hello **gruppi di disponibilità AlwaysOn** funzionalità. Eseguire questi passaggi in entrambe le istanze di SQL Server.
 
-1. Dalla schermata **Start** avviare **Gestione configurazione SQL Server**.
-2. Nella struttura del browser fare clic su **Servizi di SQL Server**, fare clic con il pulsante destro del mouse sul servizio **SQL Server (MSSQLSERVER)**, quindi scegliere **Proprietà**.
-3. Fare clic sulla scheda **Disponibilità elevata AlwaysOn**, selezionare **Abilita gruppi di disponibilità AlwaysOn**, come segue:
+1. Da hello **avviare** schermata, avviare **Gestione configurazione SQL Server**.
+2. Nella struttura di browser hello, fare clic su **servizi di SQL Server**, quindi fare doppio clic su hello **SQL Server (MSSQLSERVER)** del servizio e fare clic su **proprietà**.
+3. Fare clic su hello **disponibilità elevata AlwaysOn** tab, quindi selezionare **Abilita gruppi di disponibilità AlwaysOn**, come segue:
 
     ![Abilitare Gruppi di disponibilità AlwaysOn in Azure](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/54-enableAlwaysOn.png)
 
-4. Fare clic su **Apply**. Fare clic su **OK** nella finestra di dialogo popup.
+4. Fare clic su **Apply**. Fare clic su **OK** nella finestra di dialogo popup hello.
 
-5. Riavviare il servizio SQL Server.
+5. Riavviare il servizio di SQL Server hello.
 
-Ripetere questi passaggi per l'altra istanza di SQL Server.
+Ripetere questi passaggi in hello altro SQL Server.
 
 <!-----------------
-## <a name="endpoint-firewall"></a>Open firewall for the database mirroring endpoint
+## <a name="endpoint-firewall"></a>Open firewall for hello database mirroring endpoint
 
-Each instance of SQL Server that participates in an Availability Group requires a database mirroring endpoint. This endpoint is a TCP port for the instance of SQL Server that is used to synchronize the database replicas in the Availability Groups on that instance.
+Each instance of SQL Server that participates in an Availability Group requires a database mirroring endpoint. This endpoint is a TCP port for hello instance of SQL Server that is used toosynchronize hello database replicas in hello Availability Groups on that instance.
 
-On both SQL Servers, open the firewall for the TCP port for the database mirroring endpoint.
+On both SQL Servers, open hello firewall for hello TCP port for hello database mirroring endpoint.
 
-1. On the first SQL Server **Start** screen, launch **Windows Firewall with Advanced Security**.
-2. In the left pane, select **Inbound Rules**. On the right pane, click **New Rule**.
+1. On hello first SQL Server **Start** screen, launch **Windows Firewall with Advanced Security**.
+2. In hello left pane, select **Inbound Rules**. On hello right pane, click **New Rule**.
 3. For **Rule Type**, choose **Port**.
-1. For the port, specify TCP and choose an unused TCP port number. For example, type *5022* and click **Next**.
+1. For hello port, specify TCP and choose an unused TCP port number. For example, type *5022* and click **Next**.
 
    >[!NOTE]
    >For this example, we're using TCP port 5022. You can use any available port.
 
-5. In the **Action** page, keep **Allow the connection** selected and click **Next**.
-6. In the **Profile** page, accept the default settings and click **Next**.
-7. In the **Name** page, specify a rule name, such as **Default Instance Mirroring Endpoint** in the **Name** text box, then click **Finish**.
+5. In hello **Action** page, keep **Allow hello connection** selected and click **Next**.
+6. In hello **Profile** page, accept hello default settings and click **Next**.
+7. In hello **Name** page, specify a rule name, such as **Default Instance Mirroring Endpoint** in hello **Name** text box, then click **Finish**.
 
-Repeat these steps on the second SQL Server.
+Repeat these steps on hello second SQL Server.
 -------------------------->
 
-## <a name="create-a-database-on-the-first-sql-server"></a>Creare un database nella prima istanza di SQL Server
+## <a name="create-a-database-on-hello-first-sql-server"></a>Creare un database in hello prima di SQL Server
 
-1. Avviare il file RDP nella prima istanza di SQL Server con un account di dominio che sia membro del ruolo predefinito del server sysadmin.
-1. Aprire SQL Server Management Studio e connettersi alla prima istanza di SQL Server.
+1. Avvio hello RDP file toohello prima di SQL Server con un dominio dell'account che è un membro del ruolo sysadmin ruolo del server.
+1. Aprire SQL Server Management Studio e connettersi toohello prima di SQL Server.
 7. In **Esplora oggetti** fare clic con il pulsante destro del mouse su **Database** e scegliere **Nuovo database**.
 8. In **Nome database** digitare **MyDB1**, quindi fare clic su **OK**.
 
 ### <a name="backupshare"></a> Creare una condivisione di backup
 
-1. In **Server Manager** nella prima istanza di SQL Server fare clic su **Strumenti**. Aprire **Gestione computer**.
+1. In hello prima di SQL Server in **Server Manager**, fare clic su **strumenti**. Aprire **Gestione computer**.
 
 1. Fare clic su **Cartelle condivise**.
 
@@ -231,17 +231,17 @@ Repeat these steps on the second SQL Server.
 
    ![Nuova condivisione](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/48-newshare.png)
 
-   Usare **Creazione guidata cartella condivisa** per creare una condivisione.
+   Utilizzare **creare una cartella condivisa** toocreate una condivisione.
 
-1. In **Percorso cartella** fare clic su **Sfoglia** e individuare o creare un percorso per la cartella condivisa del backup del database. Fare clic su **Avanti**.
+1. In **percorso della cartella**, fare clic su **Sfoglia** e individuare o creare un percorso della cartella condivisa backup database hello. Fare clic su **Avanti**.
 
-1. In **Nome, descrizione e impostazioni** verificare il nome e il percorso della condivisione. Fare clic su **Avanti**.
+1. In **nome, descrizione e le impostazioni** verificare il nome di condivisione hello e il percorso. Fare clic su **Avanti**.
 
 1. In **Autorizzazioni cartella condivisa** impostare **Personalizza autorizzazioni**. Fare clic su **Personalizza**.
 
 1. In **Personalizza autorizzazioni** fare clic su **Aggiungi**.
 
-1. Verificare che gli account del servizio SQL Server e SQL Server Agent per entrambi i server abbiano il controllo completo.
+1. Assicurarsi di disporre di un account di servizio di SQL Server e SQL Server Agent hello per entrambi i server di controllo completo.
 
    ![Nuova condivisione](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/68-backupsharepermission.png)
 
@@ -249,194 +249,194 @@ Repeat these steps on the second SQL Server.
 
 1. In **Autorizzazioni cartella condivisa** fare clic su **Fine**. Fare di nuovo clic su **Fine**.  
 
-### <a name="take-a-full-backup-of-the-database"></a>Eseguire un backup completo del database
+### <a name="take-a-full-backup-of-hello-database"></a>Eseguire un backup del database hello completo
 
-È necessario eseguire il backup del nuovo database per inizializzare la catena di log. Il nuovo database non può essere incluso in un gruppo di disponibilità se non se ne esegue un backup.
+È necessario tooback backup hello nuova database tooinitialize hello catena di log. Se non si adotta un backup del database nuovo hello, non può essere inclusa in un gruppo di disponibilità.
 
-1. In **Esplora oggetti** fare clic con il pulsante destro del mouse sul database, scegliere **Attività** e fare clic su **Backup**.
+1. In **Esplora oggetti**, fare doppio clic su database hello, scegliere troppo**attività...** , fare clic su **backup**.
 
-1. Fare clic su **OK** per eseguire un backup completo nel percorso di backup predefinito.
+1. Fare clic su **OK** tootake un percorso di backup predefinito toohello backup completo.
 
-## <a name="create-the-availability-group"></a>Creare il gruppo di disponibilità.
-A questo punto, è possibile procedere con la configurazione di un gruppo di disponibilità seguendo questa procedura:
+## <a name="create-hello-availability-group"></a>Creare il gruppo di disponibilità hello
+Si è ora pronto tooconfigure un gruppo di disponibilità utilizzando hello seguendo i passaggi:
 
-* Creare un database nella prima istanza di SQL Server.
-* Eseguire sia un backup completo, sia un backup del log delle transazioni del database.
-* Ripristinare i backup completi e del log nella seconda istanza di SQL Server con l'opzione **NORECOVERY**.
-* Creare il gruppo di disponibilità (**AG1**) con commit sincrono, failover automatico e repliche secondarie leggibili.
+* Creare un database in hello prima di SQL Server.
+* Eseguire un backup completo e un backup del log delle transazioni del database hello
+* Hello ripristino completo e toohello backup log secondo SQL Server con hello **NORECOVERY** opzione
+* Creare il gruppo di disponibilità hello (**AG1**) con commit sincrono, il failover automatico e repliche secondarie leggibili
 
-### <a name="create-the-availability-group"></a>Creare il gruppo di disponibilità:
+### <a name="create-hello-availability-group"></a>Creare il gruppo di disponibilità hello:
 
-1. Nella sessione Desktop remoto per la prima istanza di SQL Server. In **Esplora oggetti** in SSMS fare clic con il pulsante destro del mouse su **Disponibilità elevata AlwaysOn**, quindi scegliere **Creazione guidata Gruppo di disponibilità**.
+1. Nella sessione desktop remoto toohello prima di SQL Server. In **Esplora oggetti** in SSMS fare clic con il pulsante destro del mouse su **Disponibilità elevata AlwaysOn**, quindi scegliere **Creazione guidata Gruppo di disponibilità**.
 
     ![Avviare la creazione guidata nuovo gruppo di disponibilità](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/56-newagwiz.png)
 
-2. Nella pagina **Introduzione** fare clic su **Avanti**. Nella pagina **Specifica nome del gruppo di disponibilità** digitare un nome per il gruppo di disponibilità, ad esempio **AG1**, in **Nome gruppo di disponibilità**. Fare clic su **Avanti**.
+2. In hello **Introduzione** pagina, fare clic su **Avanti**. In hello **Specifica nome del gruppo di disponibilità** , digitare un nome per hello gruppo di disponibilità, ad esempio **AG1**nella **nome gruppo di disponibilità**. Fare clic su **Avanti**.
 
     ![Creazione guidata nuovo gruppo di disponibilità: specificare il nome di gruppo di disponibilità](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/58-newagname.png)
 
-3. Nella pagina **Seleziona database** selezionare il database e fare clic su **Avanti**.
+3. In hello **Seleziona database** pagina, selezionare il database e fare clic su **Avanti**.
 
    >[!NOTE]
-   >Il database soddisfa i prerequisiti per un gruppo di disponibilità perché è stato eseguito almeno un backup completo sulla replica primaria usata.
+   >database Hello soddisfi i prerequisiti di hello per un gruppo di disponibilità perché non si è effettuato almeno un backup completo sulla replica primaria prevista hello.
 
    ![Creazione guidata nuovo gruppo di disponibilità: selezionare i database](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/60-newagselectdatabase.png)
-4. Nella pagina **Specifica repliche** fare clic su **Aggiungi replica**.
+4. In hello **specifica repliche** pagina, fare clic su **Aggiungi Replica**.
 
    ![Creazione guidata nuovo gruppo di disponibilità: specificare le repliche](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/62-newagaddreplica.png)
-5. Viene visualizzata la finestra di dialogo **Connetti al server** . Digitare il nome del secondo server in **Nome server**. Fare clic su **Connect**.
+5. Hello **connettersi tooServer** visualizzata la finestra di. Nome del secondo server di hello in hello di tipo **nome Server**. Fare clic su **Connetti**.
 
-   Nella pagina **Specifica repliche** verrà ora visualizzato il secondo server elencato in **Repliche di disponibilità**. Configurare le repliche come segue.
+   In hello **specifica repliche** pagina, dovrebbe essere secondo server hello elencati in **le repliche di disponibilità**. Configurare le repliche di hello come indicato di seguito.
 
    ![Creazione guidata nuovo gruppo di disponibilità: specificare le repliche (complete)](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/64-newagreplica.png)
 
-6. Fare clic su **Endpoint** per visualizzare l'endpoint di mirroring del database per questo gruppo di disponibilità. Usare la stessa porta usata quando si è impostata la [regola del firewall per gli endpoint del mirroring del database ](virtual-machines-windows-portal-sql-availability-group-prereq.md#endpoint-firewall).
+6. Fare clic su **endpoint** toosee hello endpoint del mirroring per questo gruppo di disponibilità. Hello utilizzare stessa porta utilizzata quando si imposta hello [regola del firewall per endpoint di mirroring del database](virtual-machines-windows-portal-sql-availability-group-prereq.md#endpoint-firewall).
 
     ![Creazione guidata nuovo gruppo di disponibilità: selezionare la sincronizzazione dati iniziale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/66-endpoint.png)
 
-8. Nella pagina **Seleziona sincronizzazione dei dati iniziale** selezionare **Completa** e specificare un percorso di rete condiviso. Per il percorso, usare la [condivisione di backup creata](#backupshare). Nell'esempio era **\\\\\<Prima istanza di SQL Server\>\Backup\**. Fare clic su **Avanti**.
+8. In hello **seleziona sincronizzazione dati iniziale** selezionare **completo** e specificare un percorso di rete condivisa. Per il percorso di hello, utilizzare hello [condivisione di backup creato](#backupshare). Nell'esempio hello è **\\\\\<prima di SQL Server\>\Backup\**. Fare clic su **Avanti**.
 
    >[!NOTE]
-   >La sincronizzazione completa acquisisce un backup completo del database nella prima istanza di SQL Server e lo ripristina nella seconda istanza. Per i database di grandi dimensioni, la sincronizzazione completa non è consigliabile perché può richiedere diverso tempo. È possibile ridurre manualmente il tempo necessario acquisendo un backup del database e ripristinandolo con `NO RECOVERY`. Se il database è già stato ripristinato con `NO RECOVERY` nella seconda istanza di SQL Server prima di configurare il gruppo di disponibilità, scegliere **Solo join**. Per acquisire il backup dopo la configurazione del gruppo di disponibilità, scegliere **Ignora sincronizzazione dei dati iniziale**.
+   >Sincronizzazione completa richiede un backup completo del database hello in prima istanza di SQL Server del hello e ripristinarlo toohello seconda istanza. Per i database di grandi dimensioni, la sincronizzazione completa non è consigliabile perché può richiedere diverso tempo. Per ridurre questo momento, eseguire un backup del database hello manualmente e il ripristino con `NO RECOVERY`. Se il database di hello è già ripristinato con `NO RECOVERY` su hello secondo SQL Server prima di configurare il gruppo di disponibilità hello, scegliere **solo Join**. Se si desidera backup hello tootake dopo aver configurato il gruppo di disponibilità hello, scegliere **Ignora sincronizzazione dati iniziale**.
 
     ![Creazione guidata nuovo gruppo di disponibilità: selezionare la sincronizzazione dati iniziale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/70-datasynchronization.png)
 
-9. Nella pagina **Convalida** fare clic su **Avanti**. La pagina dovrebbe essere simile all'immagine seguente:
+9. In hello **convalida** pagina, fare clic su **Avanti**. Questa pagina dovrebbe essere simile toohello seguente immagine:
 
     ![Creazione guidata nuovo gruppo di disponibilità: convalida](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/72-validation.png)
 
     >[!NOTE]
-    >È presente un avviso per la configurazione del listener perché non è stato configurato un listener del gruppo di disponibilità. È possibile ignorare questo avviso perché nelle macchine virtuali di Azure si crea il listener dopo la creazione del servizio di bilanciamento del carico di Azure.
+    >Si verifica un avviso per la configurazione del listener hello poiché non è stato configurato un listener del gruppo di disponibilità. È possibile ignorare questo avviso perché in macchine virtuali di Azure crea listener hello dopo la creazione di bilanciamento del carico Azure hello.
 
-10. Nella pagina **Riepilogo** fare clic su **Fine**, quindi attendere il completamento della configurazione del nuovo gruppo di disponibilità tramite la procedura guidata. Per visualizzare lo stato dettagliato è possibile fare clic su **Altri dettagli** nella pagina **Stato**. Al termine della procedura guidata, controllare la pagina **Risultati** per verificare che il gruppo di disponibilità sia stato creato correttamente.
+10. In hello **riepilogo** pagina, fare clic su **fine**, quindi attendere la procedura guidata hello Configura hello nuovo gruppo di disponibilità. In hello **lo stato di avanzamento** pagina, è possibile fare clic su **ulteriori dettagli** tooview hello dettagliate lo stato di avanzamento. La procedura guidata hello termine, controllare hello **risultati** tooverify pagina che hello gruppo di disponibilità è stato creato correttamente.
 
      ![Creazione guidata nuovo gruppo di disponibilità: risultati](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/74-results.png)
-11. Fare clic su **Chiudi** per uscire dalla procedura guidata.
+11. Fare clic su **Chiudi** guidata hello tooexit.
 
-### <a name="check-the-availability-group"></a>Controllare il gruppo di disponibilità
+### <a name="check-hello-availability-group"></a>Hello controllo gruppo di disponibilità
 
-1. In **Esplora oggetti** espandere **Disponibilità elevata AlwaysOn**, quindi espandere **Gruppi di disponibilità**. A questo punto viene visualizzato il nuovo gruppo di disponibilità in questo contenitore. Fare clic con il pulsante destro del mouse sul gruppo di disponibilità e scegliere **Mostra dashboard**.
+1. In **Esplora oggetti** espandere **Disponibilità elevata AlwaysOn**, quindi espandere **Gruppi di disponibilità**. Dovrebbe essere hello nuovo gruppo di disponibilità in questo contenitore. Fare doppio clic su hello gruppo di disponibilità e fare clic su **Mostra Dashboard**.
 
    ![Mostrare dashboard gruppo di disponibilità](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/76-showdashboard.png)
 
-   L'aspetto del **Dashboard AlwaysOn** dovrebbe essere simile a questo.
+   Il **AlwaysOn Dashboard** dovrebbe essere simile toothis.
 
    ![Dashboard gruppo di disponibilità](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/78-agdashboard.png)
 
-   È possibile visualizzare le repliche, la modalità di failover di ciascuna replica e lo stato di sincronizzazione.
+   È possibile visualizzare le repliche hello, la modalità di failover di ogni stato di sincronizzazione di replica e hello hello.
 
-2. In **Gestione cluster di failover** fare clic sul cluster. Selezionare **Ruoli**. Il nome del gruppo di disponibilità usato è un ruolo nel cluster. Tale gruppo di disponibilità non ha un indirizzo IP per le connessioni client, perché non è stato configurato un listener. Il listener verrà configurato dopo avere creato un servizio di bilanciamento del carico di Azure.
+2. In **Gestione cluster di failover** fare clic sul cluster. Selezionare **Ruoli**. Nome gruppo di disponibilità Hello utilizzato è un ruolo nel cluster hello. Tale gruppo di disponibilità non ha un indirizzo IP per le connessioni client, perché non è stato configurato un listener. Dopo aver creato un servizio di bilanciamento del carico di Azure, sarà necessario configurare il listener hello.
 
    ![Gruppo di disponibilità in Gestione cluster di failover](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/80-clustermanager.png)
 
    > [!WARNING]
-   > Non provare a eseguire il failover del gruppo di disponibilità da Gestione cluster di failover. È consigliabile eseguire tutte le operazioni di failover nel **Dashboard AlwaysOn** in SSMS. Per altre informazioni, vedere [Restrictions on Using The Failover Cluster Manager with Availability Groups](https://msdn.microsoft.com/library/ff929171.aspx) (Limitazioni sull'uso di Gestione cluster di failover con i gruppi di disponibilità).
+   > Non tentare toofail su hello gruppo di disponibilità da hello gestione Cluster di Failover. È consigliabile eseguire tutte le operazioni di failover nel **Dashboard AlwaysOn** in SSMS. Per ulteriori informazioni, vedere [le restrizioni sull'utilizzo hello gestione Cluster di Failover con gruppi di disponibilità](https://msdn.microsoft.com/library/ff929171.aspx).
     >
 
-A questo punto, è presente un gruppo di disponibilità con repliche in due istanze di SQL Server. È possibile spostare il gruppo di disponibilità tra le istanze. Non è ancora possibile connettersi al gruppo di disponibilità perché non si ha un listener. Nelle macchine virtuali di Azure il listener richiede un servizio di bilanciamento del carico. Il passaggio successivo consiste nel creare il servizio di bilanciamento del carico in Azure.
+A questo punto, è presente un gruppo di disponibilità con repliche in due istanze di SQL Server. È possibile spostare hello gruppo di disponibilità tra istanze. Non si dispone di un listener non è possibile connettersi ancora toohello gruppo di disponibilità. In macchine virtuali di Azure, il listener hello richiede un bilanciamento del carico. passaggio successivo Hello è bilanciamento del carico di hello toocreate in Azure.
 
 <a name="configure-internal-load-balancer"></a>
 
 ## <a name="create-an-azure-load-balancer"></a>Creare un servizio di bilanciamento del carico di Azure
 
-Nelle macchine virtuali di Azure un gruppo di disponibilità SQL Server richiede un servizio di bilanciamento del carico. Il servizio di bilanciamento del carico contiene l'indirizzo IP per il listener del gruppo di disponibilità. Questa sezione è un riepilogo della creazione del servizio di bilanciamento del carico nel portale di Azure.
+Nelle macchine virtuali di Azure un gruppo di disponibilità SQL Server richiede un servizio di bilanciamento del carico. servizio di bilanciamento del carico Hello contiene l'indirizzo IP hello per listener del gruppo di disponibilità di hello. Questa sezione vengono riepilogati come hello toocreate bilanciamento del carico in hello portale di Azure.
 
-1. Nel portale di Azure andare al gruppo di risorse in cui si trovano le istanze di SQL Server e fare clic su **+ Aggiungi**.
-2. Cercare **Servizio di bilanciamento del carico**. Scegliere il servizio di bilanciamento del carico pubblicato da Microsoft.
+1. Nel portale di Azure hello, passare toohello gruppo di risorse in cui i computer SQL Server e fare clic su **+ Aggiungi**.
+2. Cercare **Servizio di bilanciamento del carico**. Scegliere di bilanciamento del carico hello pubblicato da Microsoft.
 
    ![Gruppo di disponibilità in Gestione cluster di failover](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/82-azureloadbalancer.png)
 
 1.  Fare clic su **Crea**.
-3. Configurare i parametri seguenti per il servizio di bilanciamento del carico.
+3. Configurare i seguenti parametri di bilanciamento del carico hello hello.
 
    | Impostazione | Campo |
    | --- | --- |
-   | **Nome** |Usare un nome in formato testo per il servizio di bilanciamento del carico, ad esempio **sqlLB**. |
+   | **Nome** |Utilizzare un nome di bilanciamento del carico hello, ad esempio **sqlLB**. |
    | **Tipo** |Interno |
-   | **Rete virtuale** |Usare il nome della rete virtuale di Azure. |
-   | **Subnet** |Usare il nome della subnet in cui si trova la macchina virtuale.  |
+   | **Rete virtuale** |Utilizzare il nome di hello di hello rete virtuale di Azure. |
+   | **Subnet** |Utilizza il nome di hello di subnet hello hello macchina virtuale è in.  |
    | **Assegnazione indirizzi IP** |Static |
    | **Indirizzo IP** |Usare un indirizzo disponibile nella subnet. |
-   | **Sottoscrizione** |Usare la stessa sottoscrizione della macchina virtuale. |
-   | **Posizione** |Usare la stessa posizione della macchina virtuale. |
+   | **Sottoscrizione** |Utilizzare hello stessa sottoscrizione come macchina virtuale hello. |
+   | **Posizione** |Utilizzare hello stesso percorso come macchina virtuale hello. |
 
-   Il pannello del portale di Azure dovrebbe essere simile al seguente:
+   portale di Azure-blade Hello dovrebbe essere simile al seguente:
 
    ![Crea servizio di bilanciamento del carico](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/84-createloadbalancer.png)
 
-1. Al termine, fare clic su **Crea** per creare il servizio di bilanciamento del carico.
+1. Fare clic su **crea**, servizio di bilanciamento del carico toocreate hello.
 
-Per configurare il servizio di bilanciamento del carico, è necessario creare un pool back-end e un probe e impostare le regole di bilanciamento del carico. Eseguire queste operazioni nel portale di Azure.
+servizio di bilanciamento del carico hello tooconfigure occorre toocreate un pool back-end, un probe e regole di bilanciamento del carico di set hello. Eseguire le operazioni seguenti nel portale di Azure hello.
 
 ### <a name="add-backend-pool"></a>Aggiungere un pool back-end
 
-1. Nel portale di Azure andare al gruppo di disponibilità. Potrebbe essere necessario aggiornare la visualizzazione per vedere il servizio di bilanciamento del carico appena creato.
+1. Nel portale di Azure hello, passare tooyour gruppo di disponibilità. Potrebbe essere necessario bilanciamento del carico di toorefresh hello vista toosee hello appena creato.
 
    ![Trovare il servizio di bilanciamento del carico nel gruppo di risorse](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/86-findloadbalancer.png)
 
-1. Fare clic sul servizio di bilanciamento del carico, quindi su **Pool back-end** e infine su **+Aggiungi**. Impostare il pool back-end come segue:
+1. Fare clic su servizio di bilanciamento del carico hello, fare clic su **pool back-end**, fare clic su **+ Aggiungi**. Impostare il pool di back-end hello come segue:
 
    | Impostazione | Descrizione | Esempio
    | --- | --- |---
    | **Nome** | Digitare un nome in formato testo | SQLLBBE
    | **Associato a** | Selezionare dall'elenco | Set di disponibilità
-   | **Set di disponibilità** | Usare un nome del set di disponibilità in cui si trovano le VM di SQL Server | sqlAvailabilitySet |
-   | **Macchine virtuali** |I nomi delle due VM di SQL Server | sqlserver-0, sqlserver-1
+   | **Set di disponibilità** | Utilizzare un nome del gruppo di disponibilità hello che si trovano le macchine virtuali di SQL Server in | sqlAvailabilitySet |
+   | **Macchine virtuali** |Hello due nomi di macchina virtuale di Azure SQL Server | sqlserver-0, sqlserver-1
 
-1. Digitare il nome per il pool back-end.
+1. Digitare il nome di hello per pool back-end hello.
 
 1. Fare clic su **+ Aggiungi una macchina virtuale**.
 
-1. Per il set di disponibilità, scegliere quello in cui si trovano le istanze di SQL Server.
+1. Per i set di disponibilità hello, scegliere disponibilità hello impostare tale hello presenti istanze di SQL Server.
 
-1. Per le macchine virtuali, includere entrambe le istanze di SQL Server. Non includere il server di controllo della condivisione file.
+1. Per le macchine virtuali, inclusi sia di hello istanze di SQL Server. Non includere server di controllo di condivisione file hello.
 
-1. Fare clic su **OK** per creare il pool back-end.
+1. Fare clic su **OK** pool back-end di toocreate hello.
 
-### <a name="set-the-probe"></a>Impostare il probe
+### <a name="set-hello-probe"></a>Set hello probe
 
-1. Fare clic sul servizio di bilanciamento del carico, quindi su **Probe integrità** e infine su **+Aggiungi**.
+1. Fare clic su servizio di bilanciamento del carico hello, fare clic su **probe di integrità**, fare clic su **+ Aggiungi**.
 
-1. Impostare il probe di integrità nel modo seguente:
+1. Impostare i probe di integrità hello come segue:
 
    | Impostazione | Descrizione | Esempio
    | --- | --- |---
    | **Nome** | Text | SQLAlwaysOnEndPointProbe |
    | **Protocollo** | Scegliere TCP | TCP |
    | **Porta** | Qualsiasi porta non usata | 59999 |
-   | **Interval**  | Intervallo di tempo tra i tentativi del probe, in secondi |5 |
-   | **Soglia non integra** | Numero di errori consecutivi del probe che devono verificarsi per considerare non integra una macchina virtuale  | 2 |
+   | **Interval**  | Hello tempo tra probe tentativi espresso in secondi |5 |
+   | **Soglia non integra** | numero di errori di probe consecutivi che devono verificarsi per una macchina virtuale di toobe considerato non integro Hello  | 2 |
 
-1. Fare clic su **OK** per impostare il probe di integrità.
+1. Fare clic su **OK** tooset probe di integrità hello.
 
-### <a name="set-the-load-balancing-rules"></a>Impostare le regole di bilanciamento del carico
+### <a name="set-hello-load-balancing-rules"></a>Impostare regole di bilanciamento del carico di hello
 
-1. Fare clic sul servizio di bilanciamento del carico, quindi su **Regole di bilanciamento del carico** e infine su **+Aggiungi**.
+1. Fare clic su servizio di bilanciamento del carico hello, fare clic su **regole di bilanciamento del carico**, fare clic su **+ Aggiungi**.
 
-1. Impostare le regole di bilanciamento del carico come segue.
+1. Impostare hello bilanciamento del carico regole come indicato di seguito.
    | Impostazione | Descrizione | Esempio
    | --- | --- |---
    | **Nome** | Text | SQLAlwaysOnEndPointListener |
-   | **Indirizzo IP front-end IP** | Scegliere un indirizzo |Usare l'indirizzo creato quando si è creato il servizio di bilanciamento del carico. |
+   | **Indirizzo IP front-end IP** | Scegliere un indirizzo |Usa indirizzo hello creato al momento della creazione del bilanciamento del carico hello. |
    | **Protocollo** | Scegliere TCP |TCP |
-   | **Porta** | Usare la porta per l'istanza di SQL Server | 1433 |
+   | **Porta** | Utilizzare la porta hello hello istanza di SQL Server | 1433 |
    | **Porta back-end** | Questo campo non viene usato quando l'indirizzo IP mobile è impostato per Direct Server Return | 1433 |
-   | **Probe** |Il nome specificato per il probe | SQLAlwaysOnEndPointProbe |
+   | **Probe** |nome Hello specificato per il probe hello | SQLAlwaysOnEndPointProbe |
    | **Persistenza della sessione** | Elenco a discesa | **Nessuno** |
-   | **Timeout di inattività** | Minuti in cui tenere aperta una connessione TCP | 4 |
+   | **Timeout di inattività** | Minuti tookeep aprire una connessione TCP | 4 |
    | **IP mobile (Direct Server Return)** | |Enabled |
 
    > [!WARNING]
    > Direct Server Return viene impostato durante la creazione. Non può essere modificato.
 
-1. Fare clic su **OK** per impostare le regole di bilanciamento del carico.
+1. Fare clic su **OK** tooset hello bilanciamento del carico regole.
 
-## <a name="configure-listener"></a> Configurare il listener
+## <a name="configure-listener"></a>Configurare il listener hello
 
-A questo punto, è necessario configurare il listener del gruppo di disponibilità nel cluster di failover.
+Hello Avanti cosa toodo è tooconfigure un listener del gruppo di disponibilità nel cluster di failover hello.
 
 > [!NOTE]
-> Questa esercitazione illustra come creare un singolo listener, con un indirizzo IP del servizio di bilanciamento del carico interno. Per creare uno o più listener usando uno o più indirizzi IP, vedere [Create availability group listener and load balancer | Azure](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Creare un servizio di bilanciamento del carico e un listener per il gruppo di disponibilità | Azure).
+> Questa esercitazione viene illustrato come un listener single - con un IP ILB toocreate indirizzo. toocreate uno o più listener utilizzando uno o più indirizzi IP, vedere [listener Crea gruppo di disponibilità e bilanciamento del carico | Azure](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 >
 >
 
@@ -444,59 +444,59 @@ A questo punto, è necessario configurare il listener del gruppo di disponibilit
 
 ## <a name="set-listener-port"></a>Impostare la porta del listener
 
-In SQL Server Management Studio impostare la porta del listener.
+In SQL Server Management Studio, impostare la porta di attesa hello.
 
-1. Avviare SQL Server Management Studio e connettersi alla replica primaria.
+1. Avviare SQL Server Management Studio e connettersi toohello la replica primaria.
 
-1. Passare a **Disponibilità elevata AlwaysOn** | **Gruppi di disponibilità** | **Listener gruppo di disponibilità**.
+1. Passare troppo**disponibilità elevata AlwaysOn** | **gruppi di disponibilità** | **listener del gruppo di disponibilità**.
 
-1. Viene visualizzato il nome del listener creato in Gestione Cluster di Failover. Fare clic con il pulsante destro del mouse sul nome del listener e quindi su **Proprietà**.
+1. Viene visualizzato il nome del listener hello creati in Gestione Cluster di Failover. Il nome del listener hello destro e fare clic su **proprietà**.
 
-1. Nella casella **Porta** specificare il numero di porta per il listener del gruppo di disponibilità usando il valore di $EndpointPort usato in precedenza (l'impostazione predefinita era 1433), quindi fare clic su **OK**.
+1. In hello **porta** , specificare il numero di porta hello del listener del gruppo di disponibilità hello utilizzando hello $EndpointPort utilizzato in precedenza (1433 è predefinito hello), quindi fare clic su **OK**.
 
 Ora si ha un gruppo di disponibilità di SQL Server nelle macchine virtuali di Azure in esecuzione in modalità Resource Manager.
 
-## <a name="test-connection-to-listener"></a>Testare la connessione al listener
+## <a name="test-connection-toolistener"></a>Test connessione toolistener
 
-Per testare la connessione:
+connessione hello tootest:
 
-1. Usare RDP per connettersi a un'istanza di SQL Server che si trova nella stessa rete virtuale, ma non è proprietaria della replica. È possibile usare l'altra istanza di SQL Server nel cluster.
+1. RDP tooa SQL Server in hello stesso virtuale di rete, ma non non replica hello personalizzati. È possibile utilizzare altri Server SQL cluster hello hello.
 
-1. Usare l'utilità **sqlcmd** per testare la connessione. Lo script seguente, ad esempio, stabilisce una connessione **sqlcmd** alla replica primaria tramite il listener con l'autenticazione di Windows:
+1. Utilizzare **sqlcmd** connessione hello tootest di utilità. Ad esempio, lo script seguente hello stabilisce un **sqlcmd** replica primaria toohello di connessione tramite il listener hello con l'autenticazione di Windows:
 
     ```
     sqlcmd -S <listenerName> -E
     ```
 
-    Se il listener usa una porta diversa da quella predefinita (1433), specificare la porta nella stringa di connessione. Il seguente comando sqlcmd, ad esempio, si connette a un listener nella porta 1435:
+    Se il listener di hello utilizza una porta diversa da hello predefinita (1433) di porta, specificare la porta hello nella stringa di connessione hello. Ad esempio, hello comando sqlcmd riportato di seguito si connette tooa listener a porta 1435:
 
     ```
     sqlcmd -S <listenerName>,1435 -E
     ```
 
-La connessione SQLCMD si connette automaticamente a qualsiasi istanza di SQL Server ospiti la replica primaria.
+connessione SQLCMD Hello si connette automaticamente toowhichever istanza di SQL Server ospitata hello la replica primaria.
 
 > [!TIP]
-> Verificare che la porta specificata sia aperta nel firewall di entrambe le istanze di SQL Server. Per entrambi i server è necessaria una regola in ingresso per la porta TCP usata. Per altre informazioni, vedere [Aggiungere o modificare una regola del firewall](http://technet.microsoft.com/library/cc753558.aspx).
+> Assicurarsi che sia aperta nel firewall hello di entrambi i server SQL porta hello specificata. Entrambi i server richiedono una regola in ingresso per hello la porta TCP in uso. Per altre informazioni, vedere [Aggiungere o modificare una regola del firewall](http://technet.microsoft.com/library/cc753558.aspx).
 >
 >
 
 
 
-<!--**Notes**: *Notes provide just-in-time info: A Note is “by the way” info, an Important is info users need to complete a task, Tip is for shortcuts. Don’t overdo*.-->
+<!--**Notes**: *Notes provide just-in-time info: A Note is “by hello way” info, an Important is info users need toocomplete a task, Tip is for shortcuts. Don’t overdo*.-->
 
 
-<!--**Procedures**: *This is the second “step." They often include substeps. Again, use a short title that tells users what they’ll do*. *("Configure a new web project.")*-->
+<!--**Procedures**: *This is hello second “step." They often include substeps. Again, use a short title that tells users what they’ll do*. *("Configure a new web project.")*-->
 
-<!--**UI**: *Note the format for documenting the UI: bold for UI elements and arrow keys for sequence. (Ex. Click **File > New > Project**.)*-->
+<!--**UI**: *Note hello format for documenting hello UI: bold for UI elements and arrow keys for sequence. (Ex. Click **File > New > Project**.)*-->
 
-<!--**Screenshot**: *Screenshots really help users. But don’t include too many since they’re difficult to maintain. Highlight areas you are referring to in red.*-->
+<!--**Screenshot**: *Screenshots really help users. But don’t include too many since they’re difficult toomaintain. Highlight areas you are referring tooin red.*-->
 
-<!--**No. of steps**: *Make sure the number of steps within a procedure is 10 or fewer. Seven steps is ideal. Break up long procedure logically.*-->
+<!--**No. of steps**: *Make sure hello number of steps within a procedure is 10 or fewer. Seven steps is ideal. Break up long procedure logically.*-->
 
 
-<!--**Next steps**: *Reiterate what users have done, and give them interesting and useful next steps so they want to go on.*-->
+<!--**Next steps**: *Reiterate what users have done, and give them interesting and useful next steps so they want toogo on.*-->
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Add an IP address to a load balancer for a second availability group](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md#Add-IP) (Aggiungere un indirizzo IP a un servizio di bilanciamento del carico per un secondo gruppo di disponibilità).
+- [Aggiungere un bilanciamento del carico IP indirizzo tooa per un gruppo di disponibilità secondo](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md#Add-IP).

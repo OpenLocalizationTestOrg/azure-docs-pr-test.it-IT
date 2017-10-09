@@ -1,6 +1,6 @@
 ---
-title: Modificare i prefissi degli indirizzi IP per il gateway di rete locale e l'indirizzo IP del Gateway VPN | Azure| Interfaccia della riga di comando | Microsoft Docs
-description: Questo articolo illustra in modo dettagliato come modificare i prefissi degli indirizzi IP per il gateway di rete locale usando l'interfaccia della riga di comando di Azure.
+title: Modificare i prefissi di indirizzo IP gateway hello rete locale e l'indirizzo IP del Gateway VPN di hello | Azure | CLI | Documenti Microsoft
+description: In questo articolo illustra la modifica di prefissi di indirizzi IP per il gateway di rete locale tramite hello CLI di Azure.
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: cherylmc
-ms.openlocfilehash: 7db1ad970ebb93d46d5a861f9a9b27bf121531a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4b8bbf3e9d3d42ac2d12f87360fa0a4134c57a21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="modify-local-network-gateway-settings-using-the-azure-cli"></a>Modificare le impostazioni del gateway di rete locale usando l'interfaccia della riga di comando di Azure
+# <a name="modify-local-network-gateway-settings-using-hello-azure-cli"></a>Modificare le impostazioni di gateway di rete locale utilizzando hello CLI di Azure
 
-In alcuni casi le impostazioni per il prefisso indirizzo o l'indirizzo IP gateway del gateway di rete locale subiscono modifiche. Questo articolo illustra come modificare le impostazioni del gateway di rete locale. È anche possibile modificare queste impostazioni con un altro metodo selezionando un'opzione diversa nell'elenco seguente:
+In alcuni casi modificare le impostazioni di hello per il prefisso dell'indirizzo di gateway di rete locale o un indirizzo IP del Gateway. In questo articolo illustra come toomodify le impostazioni del gateway di rete locale. È inoltre possibile modificare queste impostazioni utilizzando un metodo diverso selezionando un'opzione diversa da hello seguente elenco:
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](vpn-gateway-modify-local-network-gateway-portal.md)
@@ -34,7 +34,7 @@ In alcuni casi le impostazioni per il prefisso indirizzo o l'indirizzo IP gatewa
 
 ## <a name="before"></a>Prima di iniziare
 
-Installare la versione più recente dei comandi dell'interfaccia della riga di comando (2.0 o successiva). Per informazioni sull'installazione dei comandi dell'interfaccia della riga di comando, vedere [Install Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) (Installare l'interfaccia della riga di comando di Azure 2.0).
+Installare hello versione i comandi CLI hello (2.0 o versione successivo). Per informazioni sull'installazione di comandi CLI hello, vedere [installare Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
 [!INCLUDE [CLI-login](../../includes/vpn-gateway-cli-login-include.md)]
 
@@ -42,7 +42,7 @@ Installare la versione più recente dei comandi dell'interfaccia della riga di c
 
 [!INCLUDE [modify-prefix](../../includes/vpn-gateway-modify-ip-prefix-cli-include.md)]
 
-## <a name="gwip"></a>Modificare l'indirizzo IP del gateway
+## <a name="gwip"></a>Modificare l'indirizzo IP del gateway hello
 
 [!INCLUDE [modify-gateway-IP](../../includes/vpn-gateway-modify-lng-gateway-ip-cli-include.md)]
 

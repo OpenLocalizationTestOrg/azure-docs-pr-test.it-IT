@@ -15,46 +15,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: yushwang
-ms.openlocfilehash: b00a3fe7ba4b12c2e9c486188c292cd6fafb60a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a9d13ae6b319e2efa8965dc2955c9b89ac3fd12b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-bgp-on-azure-vpn-gateways-using-powershell"></a>Come configurare BGP sui gateway VPN di Azure tramite PowerShell
-Questo articolo illustra i passaggi per abilitare BGP in una connessione VPN da sito a sito (S2S) cross-premise e in una connessione da rete virtuale a rete virtuale usando il modello di distribuzione Resource Manager e PowerShell.
+# <a name="how-tooconfigure-bgp-on-azure-vpn-gateways-using-powershell"></a>Come tooconfigure BGP nel gateway VPN di Azure tramite PowerShell
+In questo articolo illustra hello passaggi tooenable BGP su una connessione VPN da sito a sito (S2S) di cross-premise e una connessione di rete virtuale a con modello di distribuzione di gestione risorse di hello e PowerShell.
 
 ## <a name="about-bgp"></a>Informazioni su BGP
-BGP è il protocollo di routing standard comunemente usato in Internet per lo scambio di informazioni di routing e raggiungibilità tra due o più reti. BGP consente ai gateway VPN di Azure e ai dispositivi VPN locali, detti peer BGP o router adiacenti, lo scambio di "route" che indicano a entrambi i gateway la disponibilità e la raggiungibilità di tali prefissi per il passaggio attraverso i gateway o i router coinvolti. BGP può anche abilitare il routing di transito tra più reti propagando a tutti gli altri peer BGP le route che un gateway BGP apprende da un peer BGP.
+BGP è hello protocollo di routing standard comunemente utilizzato nelle hello Internet tooexchange routing e raggiungibilità informazioni tra due o più reti. Protocollo BGP consente gateway VPN di Azure hello e i dispositivi VPN locale, denominati i peer BGP o elementi adiacenti, tooexchange "Invia" che informa sulla disponibilità hello entrambi i gateway e raggiungibilità per tali prefissi toogo tramite gateway hello o router coinvolti. BGP inoltre è possibile abilitare il routing di transito tra più reti mediante propagazione di route, un gateway BGP apprende da uno tooall peer BGP altri peer BGP.
 
-Vedere [Panoramica di BGP con i gateway VPN di Azure](vpn-gateway-bgp-overview.md) per altre informazioni sui vantaggi di BGP e per conoscere i requisiti tecnici e le considerazioni sull'uso di BGP.
+Vedere [Panoramica del protocollo BGP con gateway VPN di Azure](vpn-gateway-bgp-overview.md) per ulteriori informazioni sui vantaggi di BGP e toounderstand hello requisiti tecnici e le considerazioni di usando BGP.
 
 ## <a name="getting-started-with-bgp-on-azure-vpn-gateways"></a>Introduzione a BGP nei gateway VPN di Azure
 
-L'articolo illustra la procedura per eseguire le attività seguenti:
+In questo articolo illustra hello toodo di passaggi hello seguenti attività:
 
 * [Parte 1: Abilitare BGP nel gateway VPN di Azure](#enablebgp)
 * [Parte 2: Stabilire una connessione cross-premise con BGP](#crossprembgp)
 * [Parte 3: Stabilire una connessione da rete virtuale a rete virtuale con BGP](#v2vbgp)
 
-Ogni parte delle istruzioni costituisce un blocco predefinito di base per abilitare BGP nella connettività di rete. Se si completano tutte e tre le parti, si crea la topologia illustrata nel diagramma seguente:
+Ogni parte di istruzioni hello costituisce un blocco predefinito di base per abilitare BGP nella connettività di rete. Se si completano tutte le tre parti, come illustrato nel seguente diagramma hello è compilare topologia hello:
 
 ![Topologia BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crosspremv2v.png)
 
-È possibile combinare le parti per creare una rete di transito a più hop più complessa per soddisfare le proprie esigenze.
+È possibile combinare parti insieme toobuild una rete di transito più complessi, multi-hop, che soddisfa le proprie esigenze.
 
-## <a name ="enablebgp"></a>Parte 1: Configurare BGP nel gateway VPN di Azure
-La procedura di configurazione configura i parametri BGP nel gateway VPN di Azure come illustrato nel diagramma seguente:
+## <a name ="enablebgp"></a>Parte 1 - configurare BGP sui hello Gateway VPN di Azure
+passaggi di configurazione Hello impostare hello i parametri BGP del gateway VPN di Azure hello come illustrato nel seguente diagramma hello:
 
 ![Gateway BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-gateway.png)
 
 ### <a name="before-you-begin"></a>Prima di iniziare
 * Verificare di possedere una sottoscrizione di Azure. Se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) oppure iscriversi per ottenere un [account gratuito](https://azure.microsoft.com/pricing/free-trial/).
-* Installare i cmdlet di PowerShell per Azure Resource Manager. Per altre informazioni sull'installazione dei cmdlet di PowerShell, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview). 
+* Installare i cmdlet di PowerShell di gestione risorse di Azure hello. Per ulteriori informazioni sull'installazione dei cmdlet di PowerShell hello, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview). 
 
 ### <a name="step-1---create-and-configure-vnet1"></a>Passaggio 1: Creare e configurare VNet1
 #### <a name="1-declare-your-variables"></a>1. Dichiarare le variabili
-Per questo esercizio, si inizierà dichiarando le variabili. L'esempio seguente dichiara le variabili usando i valori per questo esercizio. Assicurarsi di sostituire i valori con quelli reali durante la configurazione per la produzione. Queste variabili possono essere usate se si esegue la procedura per acquisire familiarità con questo tipo di configurazione. Modificare le variabili, quindi copiarle e incollarle nella console di PowerShell.
+Per questo esercizio, si inizierà dichiarando le variabili. Hello seguente dichiara variabili hello utilizzando valori hello per questo esercizio. Essere certi tooreplace hello i valori con valori personalizzati durante la configurazione per la produzione. Se si eseguono tramite hello passaggi toobecome familiarità con questo tipo di configurazione, è possibile utilizzare queste variabili. Modificare le variabili di hello e quindi copiare e incollare nella console di PowerShell.
 
 ```powershell
 $Sub1 = "Replace_With_Your_Subcription_Name"
@@ -78,10 +78,10 @@ $Connection12 = "VNet1toVNet2"
 $Connection15 = "VNet1toSite5"
 ```
 
-#### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a>2. Connettersi alla sottoscrizione e creare un nuovo gruppo di risorse
-Per usare i cmdlet di Resource Manager assicurarsi di passare alla modalità PowerShell. Per altre informazioni, vedere [Uso di Windows PowerShell con Gestione risorse](../powershell-azure-resource-manager.md).
+#### <a name="2-connect-tooyour-subscription-and-create-a-new-resource-group"></a>2. Connettere tooyour sottoscrizione e creare un nuovo gruppo di risorse
+hello toouse cmdlet di gestione risorse, accertarsi di passare in modalità tooPowerShell. Per altre informazioni, vedere [Uso di Windows PowerShell con Gestione risorse](../powershell-azure-resource-manager.md).
 
-Aprire la console di PowerShell e connettersi al proprio account. Per connettersi, usare l'esempio seguente:
+Aprire la console di PowerShell e tooyour account di connessione. Utilizzare hello toohelp esempio che ci si connette seguenti:
 
 ```powershell
 Login-AzureRmAccount
@@ -90,7 +90,7 @@ New-AzureRmResourceGroup -Name $RG1 -Location $Location1
 ```
 
 #### <a name="3-create-testvnet1"></a>3. Creare TestVNet1
-L'esempio seguente mostra come creare una rete virtuale denominata TestVNet1 e tre subnet, denominate rispettivamente GatewaySubnet, FrontEnd e Backend. Quando si sostituiscono i valori, è importante che la subnet gateway venga denominata sempre esattamente GatewaySubnet. Se si assegnano altri nomi, la creazione del gateway ha esito negativo.
+Hello esempio seguente crea una rete virtuale denominata TestVNet1 e tre subnet, uno GatewaySubnet chiamato, un front-end denominato e un back-end denominato. Quando si sostituiscono i valori, è importante che la subnet gateway venga denominata sempre esattamente GatewaySubnet. Se si assegnano altri nomi, la creazione del gateway ha esito negativo.
 
 ```powershell
 $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1 $besub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName1 -AddressPrefix $BESubPrefix1
@@ -99,9 +99,9 @@ $gwsub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName1 -AddressPrefix
 New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
 ```
 
-### <a name="step-2---create-the-vpn-gateway-for-testvnet1-with-bgp-parameters"></a>Passaggio 2: Creare il gateway VPN per TestVNet1 con i parametri BGP
-#### <a name="1-create-the-ip-and-subnet-configurations"></a>1. Creare le configurazioni IP e subnet
-Richiedere un indirizzo IP pubblico da allocare per il gateway che verrà creato per la rete virtuale. Verranno create anche le configurazioni necessarie per subnet e IP.
+### <a name="step-2---create-hello-vpn-gateway-for-testvnet1-with-bgp-parameters"></a>Passaggio 2: creare hello Gateway VPN per TestVNet1 con i parametri BGP
+#### <a name="1-create-hello-ip-and-subnet-configurations"></a>1. Creare hello configurazioni IP e subnet
+Pubblica IP indirizzo toobe toohello allocato gateway che si creerà per la rete virtuale della richiesta. Verrà anche definire le configurazioni IP e subnet di hello necessario.
 
 ```powershell
 $gwpip1 = New-AzureRmPublicIpAddress -Name $GWIPName1 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
@@ -111,22 +111,22 @@ $subnet1 = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualN
 $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 -Subnet $subnet1 -PublicIpAddress $gwpip1
 ```
 
-#### <a name="2-create-the-vpn-gateway-with-the-as-number"></a>2. Creare il gateway VPN con il numero AS
-Creare il gateway di rete virtuale per TestVNet1. Per impostare il parametro ASN (AS Number, numero AS) per TestVNet1BGP, sono necessari un gateway VPN basato su route e il parametro aggiuntivo, -Asn. Se non si imposta il parametro ASN, a questo viene assegnato il valore 65515. La creazione di un gateway può richiedere un po' di tempo (30 minuti o più).
+#### <a name="2-create-hello-vpn-gateway-with-hello-as-number"></a>2. Creare il gateway VPN di hello con hello sotto forma di numero
+Creare il gateway di rete virtuale hello per TestVNet1. BGP richiede un basato su Route gateway VPN e parametro aggiunta hello - Asn, tooset hello ASN (numero AS) per TestVNet1. Se non si imposta il parametro ASN hello, ASN 65515 è assegnato. Creazione di un gateway può richiedere un po' di tempo (30 minuti o più toocomplete).
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gwipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance -Asn $VNet1ASN
 ```
 
-#### <a name="3-obtain-the-azure-bgp-peer-ip-address"></a>3. Ottenere l'indirizzo IP del peer BGP di Azure
-Dopo la creazione del gateway, è necessario ottenere l'indirizzo IP del peer BGP per il gateway VPN di Azure. Questo indirizzo è necessario per configurare il gateway VPN di Azure come peer BGP per i dispositivi VPN locali.
+#### <a name="3-obtain-hello-azure-bgp-peer-ip-address"></a>3. Ottenere l'indirizzo IP del Peer BGP Azure hello
+Una volta creato il gateway di hello, è necessario tooobtain hello IP Peer BGP indirizzo hello Gateway VPN di Azure. Questo indirizzo è hello tooconfigure necessari Gateway VPN di Azure come Peer BGP per i dispositivi VPN locali.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
 $vnet1gw.BgpSettingsText
 ```
 
-L'ultimo comando visualizza le configurazioni BGP corrispondenti nel gateway VPN di Azure, ad esempio:
+ultimo comando Hello Mostra le configurazioni di BGP corrispondenti hello in hello Gateway VPN di Azure. Per esempio:
 
 ```powershell
 $vnet1gw.BgpSettingsText
@@ -137,21 +137,21 @@ $vnet1gw.BgpSettingsText
 }
 ```
 
-Una volta creato il gateway, è possibile usarlo per stabilire una connessione cross-premise o una connessione da rete virtuale a rete virtuale con BGP. Le sezioni seguenti illustrano i passaggi per il completamento dell'esercizio.
+Una volta creato il gateway di hello, è possibile utilizzare questo gateway tooestablish cross-premise o da rete connessione con BGP. Hello nelle sezioni seguenti vengono esaminati hello passaggi toocomplete hello esercizio.
 
 ## <a name ="crossprembbgp"></a>Parte 2: Stabilire una connessione cross-premise con BGP
 
-Per stabilire una connessione cross-premise, è necessario creare un gateway di rete locale per rappresentare il dispositivo VPN locale e una connessione per connettere il gateway VPN al gateway di rete locale. Anche se sono disponibili articoli che descrivono questi passaggi in dettaglio, questo articolo contiene le proprietà aggiuntive necessarie per specificare i parametri di configurazione di BGP.
+tooestablish una connessione cross-premise, è necessario toocreate toorepresent un Gateway di rete locale del dispositivo VPN locale e il gateway VPN hello tooconnect connessione con il gateway di rete locale hello. Sebbene esistano articoli che analizzano questi passaggi, in questo articolo contiene parametri di configurazione BGP necessarie toospecify hello hello proprietà aggiuntive.
 
 ![BGP per la connessione cross-premise](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crossprem.png)
 
 Prima di procedere, verificare di avere completato la [Parte 1](#enablebgp) di questo esercizio.
 
-### <a name="step-1---create-and-configure-the-local-network-gateway"></a>Passaggio 1: Creare e configurare il gateway di rete locale
+### <a name="step-1---create-and-configure-hello-local-network-gateway"></a>Passaggio 1: creare e configurare il gateway di rete locale hello
 
 #### <a name="1-declare-your-variables"></a>1. Dichiarare le variabili
 
-Questo esercizio continua a creare la configurazione illustrata nel diagramma. Sostituire i valori con quelli desiderati per la propria configurazione.
+Questo esercizio continua configurazione hello toobuild illustrato nel diagramma hello. Essere tooreplace che i valori hello con hello quelli che si desidera toouse per la configurazione.
 
 ```powershell
 $RG5 = "TestBGPRG5"
@@ -163,17 +163,17 @@ $LNGASN5 = 65050
 $BGPPeerIP5 = "10.52.255.254"
 ```
 
-È necessario tenere presenti due aspetti relativi ai parametri del gateway di rete:
+Un paio di aspetti toonote relativi parametri di gateway di rete locale hello:
 
-* Il gateway di rete locale può essere nella stessa località e nello stesso gruppo di risorse del gateway VPN oppure in altri. In questo esempio sono in gruppi di risorse diversi in località diverse.
-* Il prefisso minimo che è necessario dichiarare per il gateway di rete locale è l'indirizzo host dell'indirizzo IP del peer BGP nel dispositivo VPN. In questo caso, è un prefisso /32 di "10.52.255.254/32".
-* Si ricordi che è necessario usare ASN BGP diversi nelle reti locali e nella rete virtuale di Azure. Se sono gli stessi, è necessario modificare l'ASN della rete virtuale se il dispositivo VPN locale usa già l'ASN per il peering con altri vicini BGP.
+* gateway di rete locale Hello può essere nella stessa hello o un percorso diverso e risorse gruppo come hello gateway VPN. In questo esempio sono in gruppi di risorse diversi in località diverse.
+* prefisso di minimo Hello toodeclare è necessario per il gateway di rete locale hello è indirizzo host hello dell'indirizzo IP Peer BGP sul dispositivo VPN. In questo caso, è un prefisso /32 di "10.52.255.254/32".
+* Si ricordi che è necessario usare ASN BGP diversi nelle reti locali e nella rete virtuale di Azure. Se si sono hello stesso, è necessario toochange l'ASN VNet se il dispositivo VPN locale utilizza già hello toopeer ASN con altri router adiacenti BGP.
 
-Prima di proseguire, verificare di essere ancora connessi alla sottoscrizione 1.
+Prima di continuare, verificare che si è ancora connesso tooSubscription 1.
 
-#### <a name="2-create-the-local-network-gateway-for-site5"></a>2. Creare il gateway di rete locale per Site5
+#### <a name="2-create-hello-local-network-gateway-for-site5"></a>2. Creare il gateway di rete locale hello per Site5
 
-Assicurarsi di creare il gruppo di risorse se non è stato creato, prima di creare il gateway di rete locale. Si notino i due parametri aggiuntivi per il gateway di rete locale: Asn e BgpPeerAddress.
+Se non viene creato, prima di creare il gateway di rete locale hello, essere gruppo di risorse che toocreate hello. Si notino hello due parametri aggiuntivi per il gateway di rete locale hello: Asn e BgpPeerAddress.
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG5 -Location $Location5
@@ -181,55 +181,55 @@ New-AzureRmResourceGroup -Name $RG5 -Location $Location5
 New-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP5 -AddressPrefix $LNGPrefix50 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP5
 ```
 
-### <a name="step-2---connect-the-vnet-gateway-and-local-network-gateway"></a>Passaggio 2: Connettere il gateway di rete virtuale e il gateway di rete locale
+### <a name="step-2---connect-hello-vnet-gateway-and-local-network-gateway"></a>Passaggio 2: connettere il gateway di rete virtuale hello e gateway di rete locale
 
-#### <a name="1-get-the-two-gateways"></a>1. Ottenere i due gateway
+#### <a name="1-get-hello-two-gateways"></a>1. Ottenere hello due gateway
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
 $lng5gw  = Get-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5
 ```
 
-#### <a name="2-create-the-testvnet1-to-site5-connection"></a>2. Creare la connessione da TestVNet1 a Site5
+#### <a name="2-create-hello-testvnet1-toosite5-connection"></a>2. Creare hello TestVNet1 tooSite5 connessione
 
-In questo passaggio viene creata la connessione da TestVNet1 a Site5. È necessario specificare "-EnableBgp $True" per abilitare BGP per questa connessione. Come illustrato in precedenza, è possibile avere connessioni sia BGP che non BGP per lo stesso gateway VPN di Azure. A meno che BGP non venga abilitato nella proprietà della connessione, Azure non abiliterà BGP per questa connessione nemmeno se i parametri BGP sono già configurati in entrambi i gateway.
+In questo passaggio si crea connessione di hello da TestVNet1 tooSite5. È necessario specificare "-EnableBGP $True" tooenable BGP per questa connessione. Come illustrato in precedenza, è possibile toohave le connessioni BGP sia non BGP per hello stesso Gateway VPN di Azure. A meno che il protocollo BGP è abilitato nella proprietà di connessione hello, Azure non abilitare il protocollo BGP per questa connessione anche se i parametri BGP sono già configurati su entrambi i gateway.
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
 ```
 
-L'esempio seguente elenca i parametri da immettere nella sezione della configurazione BGP nel dispositivo VPN locale per questo esercizio:
+Hello esempio seguente vengono elencati i parametri di hello che immesso nella sezione di configurazione BGP hello sul dispositivo VPN locale per questo esercizio:
 
 ```
 
 - Site5 ASN            : 65050
 - Site5 BGP IP         : 10.52.255.254
-- Prefixes to announce : (for example) 10.51.0.0/16 and 10.52.0.0/16
+- Prefixes tooannounce : (for example) 10.51.0.0/16 and 10.52.0.0/16
 - Azure VNet ASN       : 65010
 - Azure VNet BGP IP    : 10.12.255.30
-- Static route         : Add a route for 10.12.255.30/32, with nexthop being the VPN tunnel interface on your device
-- eBGP Multihop        : Ensure the "multihop" option for eBGP is enabled on your device if needed
+- Static route         : Add a route for 10.12.255.30/32, with nexthop being hello VPN tunnel interface on your device
+- eBGP Multihop        : Ensure hello "multihop" option for eBGP is enabled on your device if needed
 ```
 
-La connessione viene stabilita in pochi minuti e la sessione di peering BGP viene avviata non appena stabilita la connessione IPsec.
+Hello connessione dopo alcuni minuti e hello BGP peering sessione inizia dopo aver stabilito la connessione IPsec hello.
 
 ## <a name ="v2vbgp"></a>Parte 3: Stabilire una connessione da rete virtuale a rete virtuale con BGP
 
-Questa sezione aggiunge una connessione da rete virtuale a rete virtuale con BGP, come illustrato nel diagramma seguente:
+In questa sezione consente di aggiungere una connessione di rete virtuale a con il protocollo BGP, come illustrato nel seguente diagramma hello:
 
 ![BGP per la connessione da rete virtuale a rete virtuale](./media/vpn-gateway-bgp-resource-manager-ps/bgp-vnet2vnet.png)
 
-Le istruzioni seguenti sono la prosecuzione dei passaggi precedenti. È necessario completare la [Parte I](#enablebgp) per creare e configurare TestVNet1 e il gateway VPN con BGP. 
+Hello attenendosi alle istruzioni continua nei passaggi precedenti hello. È necessario completare [parte I](#enablebgp) toocreate e configurare TestVNet1 e hello Gateway VPN con il protocollo BGP. 
 
-### <a name="step-1---create-testvnet2-and-the-vpn-gateway"></a>Passaggio 1: Creare TestVNet2 e il gateway VPN
+### <a name="step-1---create-testvnet2-and-hello-vpn-gateway"></a>Passaggio 1: creare TestVNet2 e hello gateway VPN
 
-È importante verificare che lo spazio di indirizzi IP della nuova rete virtuale, TestVNet2, non si sovrapponga ad altri di intervalli di rete virtuale.
+È importante toomake assicurarsi che lo spazio di indirizzi IP hello di hello nuova rete virtuale, TestVNet2, non si sovrapponga ad altri intervalli di rete virtuale.
 
-In questo esempio le reti virtuali appartengono alla stessa sottoscrizione. È possibile configurare connessioni da rete virtuale a rete virtuale tra sottoscrizioni diverse. Per altre informazioni, vedere [Configurare una connessione tra reti virtuali](vpn-gateway-vnet-vnet-rm-ps.md). Assicurarsi di aggiungere "-EnableBgp $True" quando si creano le connessioni per abilitare BGP.
+In questo esempio, le reti virtuali hello appartengono toohello stessa sottoscrizione. È possibile configurare connessioni da rete virtuale a rete virtuale tra sottoscrizioni diverse. Per altre informazioni, vedere [Configurare una connessione tra reti virtuali](vpn-gateway-vnet-vnet-rm-ps.md). Assicurarsi di aggiungere hello "-EnableBgp $True" quando la creazione di hello tooenable connessioni BGP.
 
 #### <a name="1-declare-your-variables"></a>1. Dichiarare le variabili
 
-Sostituire i valori con quelli desiderati per la propria configurazione.
+Essere tooreplace che i valori hello con hello quelli che si desidera toouse per la configurazione.
 
 ```powershell
 $RG2 = "TestBGPRG2"
@@ -252,7 +252,7 @@ $Connection21 = "VNet2toVNet1"
 $Connection12 = "VNet1toVNet2"
 ```
 
-#### <a name="2-create-testvnet2-in-the-new-resource-group"></a>2. Creare TestVNet2 nel nuovo gruppo di risorse
+#### <a name="2-create-testvnet2-in-hello-new-resource-group"></a>2. Creare il nuovo gruppo di risorse hello TestVNet2
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG2 -Location $Location2
@@ -264,9 +264,9 @@ $gwsub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName2 -AddressPrefix
 New-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2 -Location $Location2 -AddressPrefix $VNetPrefix21,$VNetPrefix22 -Subnet $fesub2,$besub2,$gwsub2
 ```
 
-#### <a name="3-create-the-vpn-gateway-for-testvnet2-with-bgp-parameters"></a>3. Creare il gateway VPN per TestVNet2 con i parametri BGP
+#### <a name="3-create-hello-vpn-gateway-for-testvnet2-with-bgp-parameters"></a>3. Creare il gateway VPN di hello per TestVNet2 con i parametri BGP
 
-Richiedere un indirizzo IP pubblico da allocare al gateway che verrà creato per la rete virtuale e definire le configurazioni necessarie per subnet e IP.
+Richiedere un pubblico indirizzo toobe toohello allocato gateway IP verrà creato per la rete virtuale e definire le configurazioni IP e subnet di hello necessario.
 
 ```powershell
 $gwpip2    = New-AzureRmPublicIpAddress -Name $GWIPName2 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
@@ -276,19 +276,19 @@ $subnet2   = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -Virtua
 $gwipconf2 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName2 -Subnet $subnet2 -PublicIpAddress $gwpip2
 ```
 
-Creare il gateway VPN con il numero AS. È necessario eseguire l'override dell'ASN predefinito nei gateway VPN di Azure. Gli ASN per le reti virtuali connesse devono essere diversi per abilitare BGP e il routing di transito.
+Creare il gateway VPN di hello con hello come numero. È necessario eseguire l'override di predefinito hello ASN nel gateway VPN di Azure. Hello ASN per hello connessi a reti virtuali devono essere diversi tooenable BGP e il routing di transito.
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gwipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard -Asn $VNet2ASN
 ```
 
-### <a name="step-2---connect-the-testvnet1-and-testvnet2-gateways"></a>Passaggio 2: Connettere i gateway TestVNet1 e TestVNet2
+### <a name="step-2---connect-hello-testvnet1-and-testvnet2-gateways"></a>Passaggio 2: connettere i gateway TestVNet1 e TestVNet2 hello
 
-In questo esempio entrambi i gateway sono nella stessa sottoscrizione. È possibile completare questo passaggio nella stessa sessione di PowerShell.
+In questo esempio, entrambi i gateway sono in hello stessa sottoscrizione. È possibile completare questo passaggio in hello stessa sessione di PowerShell.
 
 #### <a name="1-get-both-gateways"></a>1. Ottenere entrambi i gateway
 
-Eseguire l'accesso e connettersi alla Sottoscrizione 1.
+Assicurarsi di accedere e connettersi tooSubscription 1.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
@@ -297,7 +297,7 @@ $vnet2gw = Get-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $R
 
 #### <a name="2-create-both-connections"></a>2. Creare entrambe le connessioni
 
-In questo passaggio vengono create le connessioni rispettivamente da TestVNet1 a TestVNet2 e da TestVNet2 a TestVNet1.
+In questo passaggio si creare connessione hello da TestVNet1 tooTestVNet2 e connessione hello da TestVNet2 tooTestVNet1.
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
@@ -306,16 +306,16 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupNam
 ```
 
 > [!IMPORTANT]
-> Assicurarsi di abilitare BGP per ENTRAMBE le connessioni.
+> Impossibile verificare tooenable BGP per entrambe le connessioni.
 > 
 > 
 
-Dopo il completamento di questi passaggi, la connessione viene stabilita entro pochi minuti. Non appena completata la connessione da rete virtuale a rete virtuale, la sessione di peering BGP è attiva.
+Dopo aver completato questi passaggi, hello connessione dopo alcuni minuti. Dopo aver eseguito la connessione di rete virtuale a hello, sessione di peering BGP Hello è attivo.
 
-Se sono state completate tutte e tre le parti di questo esercizio, è stata stabilita la topologia di rete seguente:
+Se è stato completato tutte le tre parti di questo esercizio, è stato stabilito hello topologia di rete seguenti:
 
 ![BGP per la connessione da rete virtuale a rete virtuale](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crosspremv2v.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver completato la connessione, è possibile aggiungere macchine virtuali alle reti virtuali. Per i passaggi, vedere [Creare la prima macchina virtuale](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) .
+Una volta completata la connessione, è possibile aggiungere macchine virtuali tooyour le reti virtuali. Per i passaggi, vedere [Creare la prima macchina virtuale](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) .

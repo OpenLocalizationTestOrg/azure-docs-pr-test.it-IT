@@ -1,6 +1,6 @@
 ---
-title: "Configurare i listener dei gruppi di disponibilità AlwaysOn - Microsoft Azure | Microsoft Docs"
-description: "Configurare i listener dei gruppi di disponibilità nel modello di Azure Resource Manager usando un servizio di bilanciamento del carico interno con uno o più indirizzi IP."
+title: "aaaConfigure sempre sul listener – Microsoft Azure | Documenti Microsoft"
+description: "Configurare i listener del gruppo di disponibilità nel modello di gestione risorse di Azure hello, utilizzando un servizio di bilanciamento del carico interno con uno o più indirizzi IP."
 services: virtual-machines
 documentationcenter: na
 author: MikeRayMSFT
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/22/2017
 ms.author: mikeray
-ms.openlocfilehash: 74fa1e4c9cfa608a9a385f3dd82a0599fbcc421c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 81edfe2c2ea536d8dcec466f36fccf8bc0e02c2d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-one-or-more-always-on-availability-group-listeners---resource-manager"></a>Configurare uno o più listener di gruppi di disponibilità AlwaysOn - Resource Manager
 Questo argomento illustra come:
 
 * Creare un servizio di bilanciamento del carico interno per gruppi di disponibilità di SQL Server usando i cmdlet PowerShell.
-* Aggiungere altri indirizzi IP a un servizio di bilanciamento del carico per più di un gruppo di disponibilità. 
+* Aggiungere ulteriore IP indirizzi tooa bilanciamento del carico per più di un gruppo di disponibilità. 
 
-Un listener del gruppo di disponibilità è un nome di rete virtuale al quale si connettono i client per l'accesso ai database. Nelle macchine virtuali di Azure, un servizio di bilanciamento del carico contiene l'indirizzo IP del listener. Il servizio di bilanciamento del carico indirizza il traffico all'istanza di SQL Server in ascolto nella porta probe. In genere, un gruppo di disponibilità usa un servizio di bilanciamento del carico interno. Un servizio di bilanciamento del carico interno di Azure può ospitare uno o più indirizzi IP. Ogni indirizzo IP usa una porta probe specifica. Questo documento illustra come usare PowerShell per creare un servizio di bilanciamento del carico o aggiungere indirizzi IP a un servizio di bilanciamento del carico esistente per i gruppi di disponibilità di SQL Server. 
+Un listener del gruppo di disponibilità è un nome di rete virtuale che i client si connettono toofor accesso al database. Nelle macchine virtuali di Azure, un bilanciamento del carico contiene l'indirizzo IP hello per listener hello. le route del servizio di bilanciamento carico di Hello traffico toohello istanza di SQL Server che è in ascolto sulla porta probe hello. In genere, un gruppo di disponibilità usa un servizio di bilanciamento del carico interno. Un servizio di bilanciamento del carico interno di Azure può ospitare uno o più indirizzi IP. Ogni indirizzo IP usa una porta probe specifica. Questo documento illustra come toouse PowerShell toocreate un bilanciamento del carico, o aggiungere gli indirizzi IP tooan bilanciamento del carico esistente per gruppi di disponibilità di SQL Server. 
 
-La possibilità di assegnare più indirizzi IP a un servizio di bilanciamento del carico interno è una novità di Azure ed è disponibile solo nel modello di Resource Manager. Per completare questa attività, è necessario un gruppo di disponibilità di SQL Server distribuito su macchine virtuali di Azure nel modello di Resource Manager. Entrambe le macchine virtuali di SQL Server devono appartenere allo stesso set di disponibilità. È possibile usare il [modello Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) per creare automaticamente il gruppo di disponibilità in Azure Resource Manager. Questo modello crea automaticamente il gruppo di disponibilità, che include il servizio di bilanciamento del carico interno. Se si preferisce, è possibile [configurare manualmente un gruppo di disponibilità AlwaysOn](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md).
+Hello possibilità tooassign bilanciamento del carico interno tooan gli indirizzi IP più tooAzure nuovo ed è disponibile nel modello di gestione risorse. toocomplete questa attività, è necessario toohave distribuito un gruppo di disponibilità di SQL Server in macchine virtuali nel modello di gestione risorse di Azure. Entrambe le macchine virtuali di SQL Server deve appartenere toohello stesso set di disponibilità. È possibile utilizzare hello [modello Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) tooautomatically creare il gruppo di disponibilità di hello in Gestione risorse di Azure. Questo modello crea automaticamente il gruppo di disponibilità hello, tra cui bilanciamento del carico interno hello. Se si preferisce, è possibile [configurare manualmente un gruppo di disponibilità AlwaysOn](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md).
 
 Per questo argomento è necessario che i gruppi di disponibilità siano già configurati.  
 
@@ -39,16 +39,16 @@ Gli argomenti correlati includono:
 
 [!INCLUDE [Start your PowerShell session](../../../../includes/sql-vm-powershell.md)]
 
-## <a name="configure-the-windows-firewall"></a>Configurare Windows Firewall
-Configurare Windows Firewall per consentire l'accesso a SQL Server. Le regole del firewall consentono le connessioni TCP alle porte usate dall'istanza di SQL Server e al probe di listener. Per informazioni dettagliate, vedere [Configurazione di Windows Firewall per l'accesso al Motore di database](http://msdn.microsoft.com/library/ms175043.aspx#Anchor_1). Creare una regola in entrata per la porta SQL Server e per la porta probe.
+## <a name="configure-hello-windows-firewall"></a>Configurare Windows Firewall hello
+Configurare l'accesso a SQL Server tooallow hello Windows Firewall. regole del firewall Hello consentono di utilizzano le porte TCP connessioni toohello dall'istanza di SQL Server hello e un probe di listener hello. Per informazioni dettagliate, vedere [Configurazione di Windows Firewall per l'accesso al Motore di database](http://msdn.microsoft.com/library/ms175043.aspx#Anchor_1). Creare una regola in entrata per hello porta SQL Server e per la porta probe hello.
 
 ## <a name="example-script-create-an-internal-load-balancer-with-powershell"></a>Script di esempio: creare un servizio di bilanciamento del carico interno con PowerShell
 > [!NOTE]
-> Se il gruppo di disponibilità è stato creato con il [modello Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md), il bilanciamento del carico interno è già stato creato. 
+> Se è stato creato il gruppo di disponibilità con hello [modello Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md), bilanciamento del carico interno hello è già stato creato. 
 > 
 > 
 
-Il seguente script di PowerShell crea un servizio di bilanciamento del carico interno, configura le regole di bilanciamento del carico e imposta un indirizzo IP per il bilanciamento del carico. Per eseguire lo script, aprire Windows PowerShell ISE e copiare lo script nel riquadro Script. Usare `Login-AzureRMAccount` per l'accesso a PowerShell. Se si dispone di più sottoscrizioni di Azure, usare `Select-AzureRmSubscription ` per impostare la sottoscrizione. 
+Hello script PowerShell seguente crea un servizio di bilanciamento del carico interno, configura le regole di bilanciamento del carico di hello e imposta un indirizzo IP di bilanciamento del carico hello. script di hello toorun, aprire Windows PowerShell ISE e incollare script hello nel riquadro di Script hello. Utilizzare `Login-AzureRMAccount` toolog in tooPowerShell. Se si dispone di più sottoscrizioni di Azure, utilizzare `Select-AzureRmSubscription ` sottoscrizione hello tooset. 
 
 ```powershell
 # Login-AzureRmAccount
@@ -65,11 +65,11 @@ $ILBIP = "<n.n.n.n>"                         # IP address
 [int]$ListenerPort = "<nnnn>"                # AG listener port
 [int]$ProbePort = "<nnnn>"                   # Probe port
 
-$LBProbeName ="ILBPROBE_$ListenerPort"       # The Load balancer Probe Object Name              
-$LBConfigRuleName = "ILBCR_$ListenerPort"    # The Load Balancer Rule Object Name
+$LBProbeName ="ILBPROBE_$ListenerPort"       # hello Load balancer Probe Object Name              
+$LBConfigRuleName = "ILBCR_$ListenerPort"    # hello Load Balancer Rule Object Name
 
-$FrontEndConfigurationName = "FE_SQLAGILB_1" # Object name for the front-end configuration 
-$BackEndConfigurationName ="BE_SQLAGILB_1"   # Object name for the back-end configuration
+$FrontEndConfigurationName = "FE_SQLAGILB_1" # Object name for hello front-end configuration 
+$BackEndConfigurationName ="BE_SQLAGILB_1"   # Object name for hello back-end configuration
 
 $VNet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName 
 
@@ -98,10 +98,10 @@ foreach($VMName in $VMNames)
     }
 ```
 
-## <a name="Add-IP"></a> Script di esempio: aggiungere un indirizzo IP a un servizio di bilanciamento del carico esistente con PowerShell
-Per usare più di un gruppo di disponibilità, aggiungere un altro indirizzo IP al bilanciamento del carico. Ogni indirizzo IP richiede la sua regola di bilanciamento, la sua porta probe e la sua porta front-end.
+## <a name="Add-IP"></a>Script di esempio: aggiungere un IP indirizzo tooan esistente bilanciamento del carico con PowerShell
+toouse più di un gruppo di disponibilità, è possibile aggiungere un bilanciamento del carico toohello indirizzi IP aggiuntivo. Ogni indirizzo IP richiede la sua regola di bilanciamento, la sua porta probe e la sua porta front-end.
 
-La porta front-end è quella usata dalle applicazioni per connettersi all'istanza di SQL Server. Gli indirizzi IP per i diversi gruppi di disponibilità possono usare la stessa porta front-end.
+porta front-end di Hello è porta hello utilizzati dalle applicazioni tooconnect toohello istanza di SQL Server. Gli indirizzi IP per possono utilizzare gruppi di disponibilità diverso hello stessa porta front-end.
 
 > [!NOTE]
 > Per i gruppi di disponibilità di SQL Server, ogni indirizzo IP richiede una porta probe specifica. Ad esempio, se un indirizzo IP su un servizio di bilanciamento del carico usa la porta probe 59999, nessun altro indirizzo IP in tale servizio di bilanciamento del carico può usare la porta probe 59999.
@@ -109,7 +109,7 @@ La porta front-end è quella usata dalle applicazioni per connettersi all'istanz
 * Per informazioni sui limiti del servizio di bilanciamento del carico, vedere **IP front-end privato per ogni servizio di bilanciamento del carico** in [Limiti relativi alle reti - Azure Resource Manager](../../../azure-subscription-service-limits.md#azure-resource-manager-virtual-networking-limits).
 * Per informazioni sui limiti dei gruppi di disponibilità, vedere [Restrizioni (gruppi di disponibilità)](http://msdn.microsoft.com/library/ff878487.aspx#RestrictionsAG).
 
-Lo script seguente aggiunge un nuovo indirizzo IP a un servizio di bilanciamento del carico esistente. Il servizio di bilanciamento del carico interno usa la porta del listener per la porta front-end di bilanciamento del carico. Questa porta può essere la porta su cui SQL Server è in ascolto. Per le istanze predefinite di SQL Server, la porta è la numero 1433. La regola di bilanciamento del carico per un gruppo di disponibilità richiede un indirizzo IP mobile (Direct Server Return), quindi la porta back-end corrisponde alla porta front-end. Aggiornare le variabili per l'ambiente. 
+Hello script seguente aggiunge un nuovo IP indirizzo tooan bilanciamento del carico esistente. Hello ILB utilizza la porta di listener hello per le porte front-end di bilanciamento del carico di hello. È possibile porta hello che SQL Server è in ascolto su questa porta. Per le istanze predefinite di SQL Server, porta hello è 1433. regola per un gruppo di disponibilità di bilanciamento del carico di Hello richiede un indirizzo IP mobile (direct server restituito) è la porta back-end hello hello stesso come porta front-end hello. Aggiornare le variabili di hello per l'ambiente. 
 
 ```powershell
 # Login-AzureRmAccount
@@ -150,56 +150,56 @@ $BEConfig = Get-AzureRmLoadBalancerBackendAddressPoolConfig -Name $ILB.BackendAd
 $ILB | Add-AzureRmLoadBalancerRuleConfig -Name $LBConfigRuleName -FrontendIpConfiguration $FEConfig  -BackendAddressPool $BEConfig -Probe $SQLHealthProbe -Protocol tcp -FrontendPort  $ListenerPort -BackendPort $ListenerPort -LoadDistribution Default -EnableFloatingIP | Set-AzureRmLoadBalancer   
 ```
 
-## <a name="configure-the-listener"></a>Configurare il listener
+## <a name="configure-hello-listener"></a>Configurare il listener hello
 
 [!INCLUDE [ag-listener-configure](../../../../includes/virtual-machines-ag-listener-configure.md)]
 
-## <a name="set-the-listener-port-in-sql-server-management-studio"></a>Impostare la porta del listener in SQL Server Management Studio
+## <a name="set-hello-listener-port-in-sql-server-management-studio"></a>Impostare la porta di attesa hello in SQL Server Management Studio
 
-1. Avviare SQL Server Management Studio e connettersi alla replica primaria.
+1. Avviare SQL Server Management Studio e connettersi toohello la replica primaria.
 
-1. Passare a **Disponibilità elevata AlwaysOn** | **Gruppi di disponibilità** | **Listener gruppo di disponibilità**. 
+1. Passare troppo**disponibilità elevata AlwaysOn** | **gruppi di disponibilità** | **listener del gruppo di disponibilità**. 
 
-1. Viene visualizzato il nome del listener creato in Gestione Cluster di Failover. Fare clic con il pulsante destro del mouse sul nome del listener e quindi su **Proprietà**.
+1. Viene visualizzato il nome del listener hello creati in Gestione Cluster di Failover. Il nome del listener hello destro e fare clic su **proprietà**.
 
-1. Nella casella **Porta** specificare il numero di porta per il listener del gruppo di disponibilità usando il valore di $EndpointPort usato in precedenza (l'impostazione predefinita era 1433), quindi fare clic su **OK**.
+1. In hello **porta** , specificare il numero di porta hello del listener del gruppo di disponibilità hello utilizzando hello $EndpointPort utilizzato in precedenza (1433 è predefinito hello), quindi fare clic su **OK**.
 
-## <a name="test-the-connection-to-the-listener"></a>Testare la connessione al listener
+## <a name="test-hello-connection-toohello-listener"></a>Listener toohello connessione hello di test
 
-Per testare la connessione:
+connessione hello tootest:
 
-1. Usare RDP per connettersi a un'istanza di SQL Server che si trova nella stessa rete virtuale, ma non è proprietaria della replica. Può trattarsi dell'altra istanza di SQL Server nel cluster.
+1. RDP tooa SQL Server in hello stesso virtuale di rete, ma non non replica hello personalizzati. Questo può essere hello altro Server SQL cluster hello.
 
-1. Usare l'utilità **sqlcmd** per testare la connessione. Lo script seguente, ad esempio, stabilisce una connessione **sqlcmd** alla replica primaria tramite il listener con l'autenticazione di Windows:
+1. Utilizzare **sqlcmd** connessione hello tootest di utilità. Ad esempio, lo script seguente hello stabilisce un **sqlcmd** replica primaria toohello di connessione tramite il listener hello con l'autenticazione di Windows:
    
     ```
     sqlmd -S <listenerName> -E
     ```
    
-    Se il listener usa una porta diversa da quella predefinita (1433), specificare la porta nella stringa di connessione. Il seguente comando sqlcmd, ad esempio, si connette a un listener nella porta 1435: 
+    Se il listener di hello utilizza una porta diversa da hello predefinita (1433) di porta, specificare la porta hello nella stringa di connessione hello. Ad esempio, hello comando sqlcmd riportato di seguito si connette tooa listener a porta 1435: 
    
     ```
     sqlcmd -S <listenerName>,1435 -E
     ```
 
-La connessione SQLCMD si connette automaticamente a qualsiasi istanza di SQL Server ospiti la replica primaria. 
+connessione SQLCMD Hello si connette automaticamente toowhichever istanza di SQL Server ospitata hello la replica primaria. 
 
 > [!NOTE]
-> Verificare che la porta specificata sia aperta nel firewall di entrambe le istanze di SQL Server. Per entrambi i server è necessaria una regola in ingresso per la porta TCP usata. Per altre informazioni, vedere [Aggiungere o modificare una regola del firewall](http://technet.microsoft.com/library/cc753558.aspx) . 
+> Assicurarsi che sia aperta nel firewall hello di entrambi i server SQL porta hello specificata. Entrambi i server richiedono una regola in ingresso per hello la porta TCP in uso. Per altre informazioni, vedere [Aggiungere o modificare una regola del firewall](http://technet.microsoft.com/library/cc753558.aspx) . 
 > 
 > 
 
 ## <a name="guidelines-and-limitations"></a>Linee guida e limitazioni
-Tenere presente le linee guida seguenti per il listener del gruppo di disponibilità in Azure con il servizio di bilanciamento del carico interno:
+Si noti hello indicazioni sul listener del gruppo di disponibilità in Azure tramite il bilanciamento del carico interno:
 
-* Con un servizio di bilanciamento del carico interno è possibile accedere al listener solo dalla stessa rete virtuale.
+* Con un servizio di bilanciamento del carico interno, si accedere solo ai listener hello all'interno di hello stessa rete virtuale.
 
 
 ## <a name="for-more-information"></a>Per altre informazioni
 Per altre informazioni, vedere [Configurare manualmente i gruppi di disponibilità AlwaysOn nelle VM di Azure](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md).
 
 ## <a name="powershell-cmdlets"></a>Cmdlet PowerShell
-Usare i seguenti cmdlet PowerShell per creare un servizio di bilanciamento del carico interno per le macchine virtuali di Azure.
+Utilizzare hello seguendo i cmdlet di PowerShell toocreate un bilanciamento del carico interno per macchine virtuali di Azure.
 
 * [New-AzureRmLoadBalancer](http://msdn.microsoft.com/library/mt619450.aspx) crea un bilanciamento del carico. 
 * [New-AzureRMLoadBalancerFrontendIpConfig](http://msdn.microsoft.com/library/mt603510.aspx) crea una configurazione IP per un bilanciamento del carico. 

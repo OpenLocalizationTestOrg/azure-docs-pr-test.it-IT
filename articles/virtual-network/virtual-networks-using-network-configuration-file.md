@@ -1,6 +1,6 @@
 ---
-title: Configurare una rete virtuale di Azure (classica) usando un file di configurazione di rete | Microsoft Docs
-description: Informazioni su come creare e modificare le reti virtuali (classiche) esportando, modificando e importando un file di configurazione di rete.
+title: una rete virtuale di Azure (versione classica) - file di configurazione di rete aaaConfigure | Documenti Microsoft
+description: Informazioni su come toocreate e modificare le reti virtuali (classico) per l'esportazione, la modifica e l'importazione di un file di configurazione di rete.
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,28 +16,28 @@ ms.workload: infrastructure-services
 ms.date: 06/23/2017
 ms.author: jdial
 ms.custom: 
-ms.openlocfilehash: f1e3ae26b6525f2235a6b0d53546b334dc027b94
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 009108d4315b4b7146d3f1cf2436ee211d2d89ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-virtual-network-classic-using-a-network-configuration-file"></a>Configurare una rete virtuale (classica) usando un file di configurazione di rete
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Questo articolo illustra l'uso del modello di distribuzione classica. È consigliabile usare il modello di distribuzione di Resource Manager per le distribuzioni più recenti.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano modello di distribuzione di gestione risorse di hello più nuove distribuzioni.
 
-È possibile creare e configurare una rete virtuale (classica) con un file di configurazione di rete usando l'interfaccia della riga di comando di Azure 1.0 o Azure PowerShell. Non è possibile creare o modificare una rete virtuale mediante il modello di distribuzione di Azure Resource Manager usando un file di configurazione di rete. Non è possibile usare il portale di Azure per creare o modificare una rete virtuale (classica) con un file di configurazione di rete, ma è possibile usare il portale di Azure per creare una rete virtuale (classica) senza usare un file di configurazione di rete.
+È possibile creare e configurare una rete virtuale (versione classica) con un file di configurazione di rete mediante hello Azure interfaccia della riga di comando (CLI) 1.0 o Azure PowerShell. È possibile creare o modificare una rete virtuale e modello di distribuzione Azure Resource Manager hello usando un file di configurazione di rete. Impossibile utilizzare hello toocreate portale Azure o modificare una rete virtuale (classico) usando un file di configurazione di rete, ma è possibile utilizzare hello toocreate portale Azure una rete virtuale (classica), senza utilizzare un file di configurazione di rete.
 
-La creazione e la configurazione di una rete virtuale (classica) con un file di configurazione di rete prevede l'esportazione, la modifica e l'importazione del file.
+Creazione e configurazione di una rete virtuale (versione classica) con un file di configurazione di rete richiede l'esportazione, la modifica e l'importazione di file hello.
 
 ## <a name="export"></a>Esportare un file di configurazione di rete
 
-È possibile usare PowerShell o l'interfaccia della riga di comando di Azure per esportare un file di configurazione di rete. PowerShell esporta un file XML, mentre l'interfaccia della riga di comando di Azure esporta un file json.
+È possibile utilizzare PowerShell o hello tooexport CLI di Azure un file di configurazione di rete. PowerShell consente di esportare un file XML, mentre hello CLI di Azure consente di esportare un file json.
 
 ### <a name="powershell"></a>PowerShell
  
-1. [Installare Azure PowerShell e accedere ad Azure](/powershell/azure/install-azure-ps?toc=%2fazure%2fvirtual-network%2ftoc.json).
-2. Modificare la directory (e verificare che sia presente) e il nome file nel comando seguente nel modo desiderato, quindi eseguire il comando per esportare il file di configurazione di rete:
+1. [Installare Azure PowerShell e accedere tooAzure](/powershell/azure/install-azure-ps?toc=%2fazure%2fvirtual-network%2ftoc.json).
+2. Cambiare directory hello (e verificare sia presente) e nome file nella hello seguendo comando come desiderato, quindi esecuzione hello comando tooexport hello rete file di configurazione:
 
     ```powershell
     Get-AzureVNetConfig -ExportToFile c:\azure\networkconfig.xml
@@ -45,10 +45,10 @@ La creazione e la configurazione di una rete virtuale (classica) con un file di 
 
 ### <a name="azure-cli-10"></a>Interfaccia della riga di comando di Azure 1.0
 
-1. [Installare l'interfaccia della riga di comando di Azure 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Completare i passaggi rimanenti dal prompt dei comandi dell'interfaccia della riga di comando di Azure 1.0.
-2. Accedere ad Azure immettendo il comando `azure login`.
-3. Verificare di essere in modalità asm immettendo il comando `azure config mode asm`.
-4. Modificare la directory (e verificare che sia presente) e il nome file nel comando seguente nel modo desiderato, quindi eseguire il comando per esportare il file di configurazione di rete:
+1. [Installare hello Azure CLI 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Completare hello rimanenti passaggi da un prompt dei comandi CLI di Azure 1.0.
+2. Accedere tooAzure immettendo hello `azure login` comando.
+3. Verificare che si è in modalità asm immettendo hello `azure config mode asm` comando.
+4. Cambiare directory hello (e verificare sia presente) e nome file nella hello seguendo comando come desiderato, quindi esecuzione hello comando tooexport hello rete file di configurazione:
     
     ```azurecli
     azure network export c:\azure\networkconfig.json
@@ -56,17 +56,17 @@ La creazione e la configurazione di una rete virtuale (classica) con un file di 
 
 ## <a name="create-or-modify-a-network-configuration-file"></a>Creare o modificare un file di configurazione di rete
 
-Un file di configurazione di rete è un file XML (quando si usa PowerShell) o un file json (quando si usa l'interfaccia della riga di comando di Azure). Il file può essere modificato in qualsiasi editor di testo o editor XML/json. L'articolo relativo alle [impostazioni dello schema del file di configurazione di rete](https://msdn.microsoft.com/library/azure/jj157100.aspx) include i dettagli di tutte le impostazioni. Per una spiegazione aggiuntiva delle impostazioni, vedere [View virtual networks and settings](virtual-network-manage-network.md#view-vnet) (Visualizzare le reti virtuali e le impostazioni). Le modifiche che vengono apportate al file:
+Un file di configurazione di rete è un file XML (quando si usa PowerShell) o un file json (quando si usa hello CLI di Azure). È possibile modificare il file hello in qualsiasi editor di testo, o XML/json. Hello [impostazioni dello schema di file di configurazione di rete](https://msdn.microsoft.com/library/azure/jj157100.aspx) articolo include informazioni dettagliate per tutte le impostazioni. Per una spiegazione aggiuntiva delle impostazioni di hello, vedere [visualizzare le reti virtuali e le impostazioni](virtual-network-manage-network.md#view-vnet). Hello modifiche apportate toohello file:
 
-- Devono essere conformi allo schema altrimenti l'importazione del file di configurazione di rete non riuscirà.
-- Sovrascrivono le impostazioni di rete esistenti per la sottoscrizione, pertanto è necessario prestare attenzione alle modifiche che si apportano. Fare riferimento, ad esempio, ai file di configurazione di rete di esempio che seguono. Si supponga che il file di origine contenga due istanze di **VirtualNetworkSite** e che lo si modifichi come illustrato negli esempi. Quando si importa il file, Azure elimina la rete virtuale per l'istanza **VirtualNetworkSite** che è stata rimossa nel file. Questo scenario semplificato presuppone che non vi siano risorse nella rete virtuale, perché se fossero presenti, non sarebbe possibile eliminare la rete virtuale e l'importazione avrebbe esito negativo.
+- Deve essere conforme con schema hello o rete hello l'importazione avrà esito negativo file di configurazione.
+- Sovrascrivono le impostazioni di rete esistenti per la sottoscrizione, pertanto è necessario prestare attenzione alle modifiche che si apportano. Ad esempio, fare riferimento a file di configurazione con i rete esempio hello che seguono. Ad esempio il file originale di hello contiene due **VirtualNetworkSite** istanze e si modifica, come illustrato negli esempi di hello. Quando si importa il file hello, Azure consente di eliminare la rete virtuale di hello per hello **VirtualNetworkSite** istanza è stata rimossa nel file hello. Questo scenario semplificato presuppone alcuna risorsa sono state nella rete virtuale hello, come se fossero presenti, non è stato possibile eliminare la rete virtuale hello e importazione hello avrà esito negativo.
 
 > [!IMPORTANT]
-> Azure considera una subnet con un elemento distribuito come **in uso**. Quando una subnet è in uso, non può essere modificata. Prima di modificare le informazioni sulla subnet in un file di configurazione di rete, spostare tutti gli elementi distribuiti nella subnet in una subnet diversa che non deve essere modificata. Vedere [Spostare una VM o un'istanza del ruolo in un'altra subnet](virtual-networks-move-vm-role-to-subnet.md).
+> Azure considera una subnet è distribuito tooit come **in uso**. Quando una subnet è in uso, non può essere modificata. Prima di modificare le informazioni sulla subnet in un file di configurazione di rete, spostare tutto ciò che è stato distribuito toohello subnet tooa subnet che non venga modificata. Vedere [spostare una Subnet diversa di tooa macchina virtuale o istanza del ruolo](virtual-networks-move-vm-role-to-subnet.md) per informazioni dettagliate.
 
 ### <a name="example-xml-for-use-with-powershell"></a>XML di esempio da usare con PowerShell
 
-L'esempio di file di configurazione di rete seguente illustra come creare una rete virtuale denominata *myVirtualNetwork* con uno spazio di indirizzi di *10.0.0.0/16* nell'area di Azure *Stati Uniti Orientali*. La rete virtuale contiene una subnet denominata *mySubnet* con un prefisso di indirizzo *10.0.0.0/24*.
+Hello seguente file di configurazione di rete di esempio viene creata una rete virtuale denominata *myVirtualNetwork* con uno spazio di indirizzi *10.0.0.0/16* in hello *Stati Uniti orientali* Azure area. rete virtuale Hello contiene una subnet denominata *mySubnet* con un prefisso dell'indirizzo *10.0.0.0/24*.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,11 +89,11 @@ L'esempio di file di configurazione di rete seguente illustra come creare una re
 </NetworkConfiguration>
 ```
 
-Se il file di configurazione di rete esportato non include alcun contenuto, è possibile copiare il codice XML dell'esempio precedente e incollarlo in un nuovo file.
+Se file di configurazione di rete hello esportato non contiene alcun contenuto, è possibile copiare hello XML nell'esempio precedente hello e incollarlo in un nuovo file.
 
-### <a name="example-json-for-use-with-the-azure-cli-10"></a>JSON di esempio da usare con l'interfaccia della riga di comando di Azure 1.0
+### <a name="example-json-for-use-with-hello-azure-cli-10"></a>Esempio JSON per l'utilizzo con hello Azure CLI 1.0
 
-L'esempio di file di configurazione di rete seguente illustra come creare una rete virtuale denominata *myVirtualNetwork* con uno spazio di indirizzi di *10.0.0.0/16* nell'area di Azure *Stati Uniti Orientali*. La rete virtuale contiene una subnet denominata *mySubnet* con un prefisso di indirizzo *10.0.0.0/24*.
+Hello seguente file di configurazione di rete di esempio viene creata una rete virtuale denominata *myVirtualNetwork* con uno spazio di indirizzi *10.0.0.0/16* in hello *Stati Uniti orientali* Azure area. rete virtuale Hello contiene una subnet denominata *mySubnet* con un prefisso dell'indirizzo *10.0.0.0/24*.
 
 ```json
 {
@@ -116,16 +116,16 @@ L'esempio di file di configurazione di rete seguente illustra come creare una re
 }
 ```
 
-Se il file di configurazione di rete esportato non include alcun contenuto, è possibile copiare il codice json dell'esempio precedente e incollarlo in un nuovo file.
+Se file di configurazione di rete hello esportato non contiene alcun contenuto, è possibile copiare hello json nell'esempio precedente hello e incollarlo in un nuovo file.
 
 ## <a name="import"></a>Importare un file di configurazione di rete
 
-È possibile usare PowerShell o l'interfaccia della riga di comando di Azure per importare un file di configurazione di rete. PowerShell importa un file XML, mentre l'interfaccia della riga di comando di Azure importa un file json. Se l'importazione non riesce, verificare che il file sia conforme allo [schema di configurazione di rete](https://msdn.microsoft.com/library/azure/jj157100.aspx). 
+È possibile utilizzare PowerShell o hello tooimport CLI di Azure un file di configurazione di rete. PowerShell Importa un file XML, mentre hello Azure CLI Importa un file json. Se hello importazione non riesce, verificare il file hello è conforme con hello [dello schema di configurazione di rete](https://msdn.microsoft.com/library/azure/jj157100.aspx). 
 
 ### <a name="powershell"></a>PowerShell
  
-1. [Installare Azure PowerShell e accedere ad Azure](/powershell/azure/install-azure-ps?toc=%2fazure%2fvirtual-network%2ftoc.json).
-2. Modificare la directory e il nome file nel comando seguente in base alle esigenze, quindi eseguire il comando per importare il file di configurazione di rete:
+1. [Installare Azure PowerShell e accedere tooAzure](/powershell/azure/install-azure-ps?toc=%2fazure%2fvirtual-network%2ftoc.json).
+2. Cambiare directory hello e il nome in hello seguente comando in base alle esigenze, quindi eseguire il file di configurazione rete hello comando tooimport hello:
  
     ```powershell
     Set-AzureVNetConfig  -ConfigurationPath c:\azure\networkconfig.xml
@@ -133,10 +133,10 @@ Se il file di configurazione di rete esportato non include alcun contenuto, è p
 
 ### <a name="azure-cli-10"></a>Interfaccia della riga di comando di Azure 1.0
 
-1. [Installare l'interfaccia della riga di comando di Azure 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Completare i passaggi rimanenti dal prompt dei comandi dell'interfaccia della riga di comando di Azure 1.0.
-2. Accedere ad Azure immettendo il comando `azure login`.
-3. Verificare di essere in modalità asm immettendo il comando `azure config mode asm`.
-4. Modificare la directory e il nome file nel comando seguente in base alle esigenze, quindi eseguire il comando per importare il file di configurazione di rete:
+1. [Installare hello Azure CLI 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-network%2ftoc.json). Completare hello rimanenti passaggi da un prompt dei comandi CLI di Azure 1.0.
+2. Accedere tooAzure immettendo hello `azure login` comando.
+3. Verificare che si è in modalità asm immettendo hello `azure config mode asm` comando.
+4. Cambiare directory hello e il nome in hello seguente comando in base alle esigenze, quindi eseguire il file di configurazione rete hello comando tooimport hello:
 
     ```azurecli
     azure network import c:\azure\networkconfig.json

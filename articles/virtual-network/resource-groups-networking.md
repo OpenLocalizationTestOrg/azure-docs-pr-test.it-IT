@@ -1,6 +1,6 @@
 ---
-title: Panoramica di Provider di risorse di rete | Documentazione Microsoft
-description: Introduzione al nuovo Provider di risorse di rete in Gestione risorse di Azure
+title: Cenni preliminari sul Provider di risorse aaaNetwork | Documenti Microsoft
+description: Informazioni su hello nuovo Provider di risorse di rete in Gestione risorse di Azure
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: 2428c707ddeed281fddd1e57bc5574603f0b9b1c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 81b8f51fe8ee180d8f7885c6e04eb953904d7be5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="network-resource-provider"></a>Provider di risorse di rete
-Un fattore essenziale per il successo di un'azienda è la possibilità di creare e gestire applicazioni presenti in rete su larga scala in modo agile, flessibile, sicuro e ripetibile. Azure Resource Manager consente di creare tali applicazioni come unica raccolta di risorse nei gruppi di risorse. Tali risorse vengono gestite tramite diversi provider in Resource Manager.
+Un'esigenza supplementare in successo aziendale attuali, è hello toobuild possibilità e gestire applicazioni di rete su larga scala in un modo agile, flessibile, sicuro e ripetibile. Gestione risorse di Azure consente si toocreate tali applicazioni, come un unico insieme di risorse in gruppi di risorse. Tali risorse vengono gestite tramite diversi provider in Resource Manager.
 
-Gestione risorse di Azure si basa su diversi provider di risorse per fornire l'accesso alle risorse. Sono disponibili tre provider di risorse principali: Rete, Archiviazione e Calcolo. In questo documento vengono illustrate le caratteristiche e i vantaggi del Provider di risorse di rete, tra cui:
+Gestione risorse di Azure si basa su diversi provider tooprovide accesso tooyour di risorse. Sono disponibili tre provider di risorse principali: Rete, Archiviazione e Calcolo. Questo documento vengono illustrate le caratteristiche di hello e i vantaggi di hello Provider di risorse di rete, tra cui:
 
-* **Metadati** : le informazioni alle risorse possono essere aggiunte usando i tag. Questi tag possono essere usati per tenere traccia dell'utilizzo delle risorse tra le sottoscrizioni e i gruppi di risorse.
-* **Maggior controllo della rete** : le risorse di rete sono a regime di controllo libero ed è possibile controllarle in modo più granulare. Questo consente una maggiore flessibilità nella gestione delle risorse di rete.
+* **Metadati** : è possibile aggiungere informazioni tooresources tramite tag. Questi tag possono essere utilizzato tootrack l'utilizzo delle risorse tra le sottoscrizioni e i gruppi di risorse.
+* **Maggior controllo della rete** : le risorse di rete sono a regime di controllo libero ed è possibile controllarle in modo più granulare. Ciò significa che si dispone di maggiore flessibilità nella gestione delle risorse di rete hello.
 * **Configurazione più veloce** : grazie al regime di controllo libero, è possibile creare e orchestrare in parallelo le risorse di rete. Il tempo di configurazione viene ridotto drasticamente.
-* **Controllo degli accessi in base al ruolo** : questa funzionalità fornisce ruoli predefiniti con uno specifico ambito di sicurezza, oltre a consentire la creazione di ruoli personalizzati per una gestione sicura.
-* **Gestione e distribuzione più semplice** : la distribuzione e la gestione delle applicazioni è più semplice perché è possibile creare un intero stack di applicazioni sotto forma di un'unica raccolta di risorse in un gruppo di risorse. Inoltre, la distribuzione risulta più rapida perché è possibile eseguirla semplicemente fornendo un payload JSON del modello.
-* **Personalizzazione rapida** : è possibile usare modelli con stile dichiarativo per abilitare la personalizzazione ripetibile e rapida delle distribuzioni.
-* **Personalizzazione ripetibile** : è possibile usare modelli con stile dichiarativo per abilitare la personalizzazione ripetibile e rapida delle distribuzioni.
-* **Interfacce di gestione** - è possibile gestire le risorse usando una delle seguenti interfacce:
+* **Controllo di accesso basato su ruoli** -RBAC fornisce i ruoli predefiniti, con ambito di protezione specifiche, nella creazione di hello tooallowing aggiunta di ruoli personalizzati per la gestione della protezione.
+* **Gestione più semplice e distribuzione** -è più facile toodeploy e gestire applicazioni, poiché è possibile creare uno stack di tutta l'applicazione come un unico insieme di risorse in un gruppo di risorse. E toodeploy più veloce, poiché è possibile distribuire fornendo semplicemente un payload JSON del modello.
+* **Personalizzazione rapida** -è possibile utilizzare modelli di uno stile dichiarativo tooenable ripetibili e rapida la personalizzazione delle distribuzioni.
+* **Personalizzazione REPEATABLE** -è possibile utilizzare modelli di uno stile dichiarativo tooenable ripetibili e rapida la personalizzazione delle distribuzioni.
+* **Le interfacce di gestione** -è possibile utilizzare una delle seguenti interfacce toomanage hello delle risorse:
   * API basata su REST
   * PowerShell
   * .NET SDK
@@ -49,15 +49,15 @@ Di seguito è riportata una visualizzazione concettuale di una distribuzione di 
 
 ![Modello di risorsa di rete](./media/resource-groups-networking/Figure2.png)
 
-Ogni risorsa prevede un set comune di proprietà e il proprio set di proprietà. Ecco le proprietà comuni:
+Ogni risorsa prevede un set comune di proprietà e il proprio set di proprietà. proprietà comuni Hello sono:
 
 | Proprietà | Descrizione | Valori di esempio |
 | --- | --- | --- |
 | **nome** |Nome univoco per le risorse. Ogni tipo di risorsa dispone delle proprie restrizioni di denominazione. |PIP01, VM01, NIC01 |
-| **Località** |Area di Azure in cui sarà creata la VM. |westus, eastus |
+| **location** |Area di Azure in cui hello risiede risorsa |westus, eastus |
 | **id** |Identificazione univoca basata su URI |/subscriptions/<subGUID>/resourceGroups/TestRG/providers/Microsoft.Network/publicIPAddresses/TestPIP |
 
-È possibile controllare le proprietà delle singole risorse nelle sezioni seguenti.
+È possibile verificare le singole proprietà hello di risorse disponibili nelle sezioni hello riportato di seguito.
 
 [!INCLUDE [virtual-networks-nrp-pip-include](../../includes/virtual-networks-nrp-pip-include.md)]
 
@@ -85,26 +85,26 @@ Ogni risorsa prevede un set comune di proprietà e il proprio set di proprietà.
 ### <a name="rest-api"></a>API REST
 Come accennato in precedenza, le risorse di rete possono essere gestite tramite un'ampia gamma di interfacce, tra cui API REST,.NET SDK, Node.JS SDK, Java SDK, PowerShell, l'interfaccia della riga di comando, il portale di Azure e i modelli.
 
-L'API REST è conforme alla specifica del protocollo HTTP 1.1. La struttura generale degli URI dell'API viene presentata di seguito:
+API Rest di Hello conforme toohello specifica del protocollo HTTP 1.1. struttura URI generale Hello di hello API viene presentata di seguito:
 
     https://management.azure.com/subscriptions/{subscription-id}/providers/{resource-provider-namespace}/locations/{region-location}/register?api-version={api-version}
 
-E i parametri tra parentesi graffe rappresentano gli elementi seguenti:
+Hello parametri e parentesi graffe rappresentano hello seguenti elementi:
 
 * **subscription-id** : ID sottoscrizione di Azure.
-* **resource-provider-namespace** : spazio dei nomi per il provider usato. Il valore per il provider di risorse di rete è *Microsoft.Network*.
-* **region-name** : nome dell'area di Azure
+* **Resource-provider-namespace** -spazio dei nomi per i provider di hello in uso. il valore di Hello per provider di risorse di rete hello è *Network*.
+* **nome dell'area** -nome dell'area di Azure hello
 
-Quando si effettuano chiamate all'API REST sono supportati i seguenti metodi HTTP:
+metodi HTTP seguenti Hello sono supportati quando si apportano toohello chiamate API REST:
 
-* **PUT** : usato per creare una risorsa di un determinato tipo, modificare una proprietà della risorsa o modificare un'associazione tra le risorse.
-* **GET** : usato per recuperare le informazioni per una risorsa con provisioning.
-* **DELETE** : usato per eliminare una risorsa esistente.
+* **INSERIRE** : utilizzato toocreate una risorsa di un determinato tipo, modificare una proprietà della risorsa o modificare un'associazione tra le risorse.
+* **OTTENERE** -usare tooretrieve informazioni per una risorsa di provisioning.
+* **ELIMINARE** -utilizzato toodelete una risorsa esistente.
 
-Richiesta e risposta sono conformi a un formato di payload JSON. Per altre informazioni, vedere [API di gestione delle risorse di Azure](https://msdn.microsoft.com/library/azure/dn948464.aspx).
+Richiesta di hello e di risposta conforme tooa formato di payload JSON. Per altre informazioni, vedere [API di gestione delle risorse di Azure](https://msdn.microsoft.com/library/azure/dn948464.aspx).
 
 ### <a name="resource-manager-template-language"></a>Linguaggio del modello di Resource Manager
-Oltre a gestire le risorse in modo imperativo (tramite API o SDK), è anche possibile usare uno stile di programmazione dichiarativo per compilare e gestire le risorse di rete tramite il linguaggio del modello di Resource Manager.
+Nelle risorse di toomanaging aggiunta in modo imperativo (tramite le API o il SDK), è inoltre possibile utilizzare un toobuild di stile di programmazione dichiarativa e gestire le risorse di rete tramite hello linguaggio del modello di gestione risorse.
 
 Di seguito viene fornita una rappresentazione di un modello:
 
@@ -117,7 +117,7 @@ Di seguito viene fornita una rappresentazione di un modello:
       "outputs": { <output-of-template> }    
     }
 
-Il modello è principalmente una descrizione JSON delle risorse e dei valori dell'istanza inseriti tramite i parametri. L'esempio seguente può essere usato per creare una rete virtuale con due subnet.
+modello di Hello è principalmente una descrizione JSON delle risorse di hello e i valori delle istanze hello inseriti tramite i parametri. esempio Hello seguente può essere utilizzato toocreate una rete virtuale con 2 subnet.
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/VNET.json",
@@ -205,7 +205,7 @@ Il modello è principalmente una descrizione JSON delle risorse e dei valori del
         ]
     }
 
-Quando si usa un modello è possibile specificare manualmente i valori dei parametri oppure usare un file dei parametri. L'esempio seguente mostra un possibile set di valori dei parametri da usare con il modello precedente:
+È possibile hello fornendo i valori dei parametri hello manualmente quando si utilizza un modello oppure è possibile utilizzare un file di parametri. esempio Hello seguente mostra un possibile insieme di toobe di valori di parametro utilizzato con il modello di hello precedente:
 
     {
       "location": {
@@ -232,28 +232,28 @@ Quando si usa un modello è possibile specificare manualmente i valori dei param
     }
 
 
-I principali vantaggi associati all'uso dei modelli sono:
+vantaggi principali di Hello dell'utilizzo di modelli sono:
 
-* È possibile compilare un'infrastruttura complessa in un gruppo di risorse con uno stile dichiarativo. L'orchestrazione per la creazione delle risorse, inclusa la gestione delle dipendenze, viene gestita da Resource Manager.
-* È possibile creare l'infrastruttura in modo ripetibile in diverse aree e all'interno di una sola area modificando semplicemente i parametri.
-* Lo stile dichiarativo consente tempi più brevi per la compilazione dei modelli e la distribuzione dell'infrastruttura.
+* È possibile compilare un'infrastruttura complessa in un gruppo di risorse con uno stile dichiarativo. Hello orchestrazione di creazione di risorse di hello, incluse la gestione delle dipendenze, viene gestita dal gestore delle risorse.
+* infrastruttura Hello può essere creata in modo ripetibile in diverse aree geografiche e all'interno di un'area semplicemente modificando i parametri.
+* uno stile dichiarativo Hello lead tooshorter lead time di compilazione di modelli hello e il rollout infrastruttura hello.
 
 Per i modelli di esempio, vedere i [modelli della guida introduttiva di Azure](https://github.com/Azure/azure-quickstart-templates).
 
-Per altre informazioni sul linguaggio del modello di Resource Manager, vedere [Azure Resource Manager Template Language](../azure-resource-manager/resource-group-authoring-templates.md) (Linguaggio del modello di Azure Resource Manager).
+Per ulteriori informazioni su hello linguaggio del modello di gestione risorse, vedere [linguaggio del modello di gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md).
 
-Il modello di esempio precedente usa la rete virtuale e le risorse della subnet. È possibile usare altre risorse di rete, come indicato di seguito:
+modello di esempio Hello precedente Usa la rete virtuale hello e le risorse subnet. È possibile usare altre risorse di rete, come indicato di seguito:
 
 ### <a name="using-a-template"></a>Uso di un modello
-È possibile distribuire servizi ad Azure da un modello tramite PowerShell, l'interfaccia della riga di comando di Azure oppure tramite clic per la distribuzione da GitHub. Per distribuire servizi da un modello in GitHub, eseguire i passaggi seguenti:
+È possibile distribuire servizi tooAzure da un modello usando PowerShell, AzureCLI, oppure eseguendo un toodeploy fare clic su da GitHub. servizi toodeploy da un modello in GitHub, eseguire hello alla procedura seguente:
 
-1. Aprire il file template3 da GitHub. Come esempio, aprire [Rete virtuale con due subnet](https://github.com/Azure/azure-quickstart-templates/tree/master/101-virtual-network).
-2. Fare clic su **Distribuisci in Azure**, quindi accedere al portale di Azure con le proprie credenziali.
-3. Verificare il modello e quindi fare clic su **Salva**.
-4. Fare clic su **Modifica parametri** e selezionare una località, ad esempio *West US*, per la rete virtuale e le subnet.
-5. Se necessario, modificare i parametri **ADDRESSPREFIX** e **SUBNETPREFIX** e quindi fare clic su **OK**.
-6. Fare clic su **Seleziona un gruppo di risorse** e quindi fare clic sul gruppo di risorse a cui si desidera aggiungere la rete virtuale e le subnet. In alternativa, è possibile creare un nuovo gruppo di risorse facendo clic su **Crea nuovo**.
-7. Fare clic su **Crea**. Si noti il riquadro che visualizza la **distribuzione del modello di provisioning**. Dopo aver eseguito la distribuzione, viene visualizzata una schermata simile alla seguente.
+1. Aprire il file di template3 hello da GitHub. Come esempio, aprire [Rete virtuale con due subnet](https://github.com/Azure/azure-quickstart-templates/tree/master/101-virtual-network).
+2. Fare clic su **distribuire tooAzure**e quindi accedere a toohello portale di Azure con le credenziali.
+3. Verificare il modello di hello e quindi fare clic su **salvare**.
+4. Fare clic su **modificare parametri** e selezionare un percorso, ad esempio *Stati Uniti occidentali*, per la rete virtuale hello e le subnet.
+5. Se necessario, modificare hello **ADDRESSPREFIX** e **SUBNETPREFIX** parametri e quindi fare clic su **OK**.
+6. Fare clic su **selezionare un gruppo di risorse** e quindi fare clic sul gruppo di risorse hello da rete virtuale hello tooadd e subnet ai. In alternativa, è possibile creare un nuovo gruppo di risorse facendo clic su **Crea nuovo**.
+7. Fare clic su **Crea**. Si noti hello riquadro visualizzazione **distribuzione del modello di Provisioning**. Una volta hello distribuzione viene eseguita, si noterà tooone simile a schermata riportata di seguito.
 
 ![Distribuzione del modello di esempio](./media/resource-groups-networking/Figure6.png)
 

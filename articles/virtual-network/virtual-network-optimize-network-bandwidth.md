@@ -1,6 +1,6 @@
 ---
-title: "Ottimizzare la velocità effettiva di rete della macchina virtuale | Documentazione Microsoft"
-description: "Informazioni su come ottimizzare la velocità effettiva di rete della macchina virtuale di Azure."
+title: "velocità effettiva della rete VM aaaOptimize | Documenti Microsoft"
+description: "Informazioni su come macchina virtuale di Azure toooptimize rete velocità effettiva."
 services: virtual-network
 documentationcenter: na
 author: steveesp
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/24/2017
 ms.author: steveesp
-ms.openlocfilehash: 914747983d4d974810836be66d6c6af343f58b60
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a5cff2d0ab6e3553c3f90d99629521a431477de0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimize-network-throughput-for-azure-virtual-machines"></a>Ottimizzare la velocità effettiva di rete per le macchine virtuali di Azure
 
-Le macchine virtuali di Azure hanno impostazioni di rete predefinite che possono essere ottimizzate ulteriormente per una migliore velocità effettiva di rete. Questo articolo illustra come ottimizzare la velocità effettiva di rete per macchine virtuali Windows e Linux di Microsoft Azure, incluse le distribuzioni principali, ad esempio Ubuntu, CentOS e Red Hat.
+Le macchine virtuali di Azure hanno impostazioni di rete predefinite che possono essere ottimizzate ulteriormente per una migliore velocità effettiva di rete. In questo articolo viene descritto come toooptimize velocità effettiva di rete per Microsoft Windows Azure e le macchine virtuali Linux, incluse le distribuzioni principali quali Ubuntu, CentOS e Red Hat.
 
 ## <a name="windows-vm"></a>Macchina virtuale Windows
 
-Se la macchina virtuale di Windows è supportata da una [Rete accelerata](virtual-network-create-vm-accelerated-networking.md), abilitare tale funzionalità costituisce la configurazione ottimale per la velocità effettiva. Per tutte le altre macchine virtuali di Windows, tramite Receive-Side Scaling (RSS) esse possono raggiungere una velocità effettiva massima superiore rispetto a una VM senza RSS. È possibile disabilitare RSS per impostazione predefinita in una macchina virtuale Windows. Completare la procedura seguente per determinare se RSS è abilitato e abilitarlo se è disabilitato.
+Se la macchina virtuale di Windows è supportata con [Accelerated rete](virtual-network-create-vm-accelerated-networking.md), abilitare tale funzionalità sarebbe una configurazione ottimale di hello per la velocità effettiva. Per tutte le altre macchine virtuali di Windows, tramite Receive-Side Scaling (RSS) esse possono raggiungere una velocità effettiva massima superiore rispetto a una VM senza RSS. È possibile disabilitare RSS per impostazione predefinita in una macchina virtuale Windows. Completare i seguenti passaggi toodetermine se è abilitato RSS hello e tooenable se è disabilitato.
 
-1. Immettere il comando `Get-NetAdapterRss` di PowerShell per verificare se RSS è abilitato per una scheda di rete. Nell'output di esempio seguente restituito da `Get-NetAdapterRss` RSS non è abilitato.
+1. Immettere hello `Get-NetAdapterRss` toosee comando di PowerShell se RSS è abilitato per una scheda di rete. In hello seguente esempio di output restituito da hello `Get-NetAdapterRss`, non è abilitato RSS.
 
     ```powershell
     Name                    : Ethernet
     InterfaceDescription    : Microsoft Hyper-V Network Adapter
     Enabled              : False
     ```
-2. Immettere il comando seguente per abilitare RSS:
+2. Immettere hello tooenable comando RSS seguente:
 
     ```powershell
     Get-NetAdapter | % {Enable-NetAdapterRss -Name $_.Name}
     ```
-    Il comando precedente non restituisce alcun output. Il comando ha modificato le impostazioni della scheda di interfaccia di rete, provocando la perdita di connettività temporanea per circa un minuto. Durante la perdita di connettività viene visualizzata una finestra di dialogo di riconnessione. La connettività viene in genere ripristinata dopo il terzo tentativo.
-3. Verificare che RSS sia abilitato nella macchina virtuale immettendo di nuovo il comando `Get-NetAdapterRss`. Se l'esito è positivo, viene restituito l'output di esempio seguente:
+    comando precedente Hello non possiede un output. comando Hello modificato le impostazioni di interfaccia di rete, causando la perdita di connettività temporaneo per circa un minuto. Durante la perdita di connettività hello viene visualizzata una finestra di dialogo riconnessione in corso. Connettività in genere viene ripristinata dopo il tentativo di terzo hello.
+3. Confermare che RSS è abilitato nella VM hello immettendo hello `Get-NetAdapterRss` nuovo il comando. Se ha esito positivo, viene restituito hello output di esempio riportato di seguito:
 
     ```powershell
     Name                    :Ethernet
@@ -51,18 +51,18 @@ Se la macchina virtuale di Windows è supportata da una [Rete accelerata](virtua
 
 ## <a name="linux-vm"></a>VM Linux
 
-RSS è sempre abilitato per impostazione predefinita nella macchina virtuale Linux di Azure. I kernel Linux rilasciati a partire da gennaio 2017 includono opzioni di ottimizzazione di rete che consentono a una macchina virtuale Linux di ottenere una velocità effettiva di rete superiore.
+RSS è sempre abilitato per impostazione predefinita nella macchina virtuale Linux di Azure. Il kernel Linux rilasciato a partire da gennaio January 2017 include nuove opzioni di ottimizzazione di rete che consentono una VM Linux tooachieve maggiore velocità effettiva della rete.
 
 ### <a name="ubuntu"></a>Ubuntu
 
-Per ottenere l'ottimizzazione, aggiornare prima di tutto la versione supportata più recente, a partire da giugno 2017, ovvero:
+Ottimizzazione di hello tooget ordine, prima di aggiornare toohello supportata più recente versione, a partire da giugno 2017, ovvero:
 ```json
 "Publisher": "Canonical",
 "Offer": "UbuntuServer",
 "Sku": "16.04-LTS",
 "Version": "latest"
 ```
-Al termine dell'aggiornamento, immettere i comandi seguenti per ottenere il kernel più recente:
+Al termine dell'aggiornamento di hello, immettere hello kernel più recente di comandi tooget hello seguenti:
 
 ```bash
 apt-get -f install
@@ -77,12 +77,12 @@ Comando facoltativo:
 `apt-get -y dist-upgrade`
 #### <a name="ubuntu-azure-preview-kernel"></a>Kernel Ubuntu Azure (anteprima)
 > [!WARNING]
-> È possibile che il kernel Azure Linux (anteprima) non abbia lo stesso livello di disponibilità e affidabilità delle immagini e dei kernel del Marketplace disponibili a livello generale. La funzionalità non è supportata, potrebbe avere funzioni vincolate e potrebbe non essere affidabile come il kernel predefinito. Non usare questo kernel per carichi di lavoro di produzione.
+> Questa versione di anteprima Linux Azure potrebbe non disporre kernel hello dello stesso livello di disponibilità e affidabilità come immagini Marketplace e directcompute che sono in genere il rilascio di disponibilità. funzionalità di Hello non è supportato, può avere vincolato funzionalità e potrebbe non essere affidabili kernel predefinito hello. Non usare questo kernel per carichi di lavoro di produzione.
 
-È possibile ottenere prestazioni significative per la velocità effettiva installando il kernel Azure Linux proposto. Per provare a usare il kernel, aggiungere questa riga a /etc/apt/sources.list
+Installando hello proposto kernel Linux di Azure, è possibile ottenere prestazioni di velocità effettiva significativo. tootry questo kernel, aggiungere questo too/etc/apt/sources.list riga
 
 ```bash
-#add this to the end of /etc/apt/sources.list (requires elevation)
+#add this toohello end of /etc/apt/sources.list (requires elevation)
 deb http://archive.ubuntu.com/ubuntu/ xenial-proposed restricted main multiverse universe
 ```
 
@@ -95,15 +95,15 @@ reboot
 
 ### <a name="centos"></a>CentOS
 
-Per ottenere l'ottimizzazione, eseguire prima di tutto l'aggiornamento alla versione supportata più recente, a partire da luglio 2017, ovvero:
+Ottimizzazione di hello tooget ordine, prima di aggiornare toohello supportata più recente versione, a partire da luglio 2017, ovvero:
 ```json
 "Publisher": "OpenLogic",
 "Offer": "CentOS",
 "Sku": "7.3",
 "Version": "latest"
 ```
-Al termine dell'aggiornamento, installare la versione più recente di Linux Integration Services (LIS).
-L'ottimizzazione della velocità effettiva è disponibile in LIS a partire dalla versione 4.2.2-2. Immettere i comandi seguenti per installare LIS:
+Al termine dell'aggiornamento di hello, installare hello più recente Linux Integration Services (LIS).
+ottimizzazione della velocità effettiva di Hello è LIS, a partire da 4.2.2-2. Immettere i seguenti comandi tooinstall LIS hello:
 
 ```bash
 sudo yum update
@@ -113,15 +113,15 @@ sudo yum install microsoft-hyper-v
 
 ### <a name="red-hat"></a>Red Hat
 
-Per ottenere l'ottimizzazione, eseguire prima di tutto l'aggiornamento alla versione supportata più recente, a partire da luglio 2017, ovvero:
+Ottimizzazione di hello tooget ordine, prima di aggiornare toohello supportata più recente versione, a partire da luglio 2017, ovvero:
 ```json
 "Publisher": "RedHat"
 "Offer": "RHEL"
 "Sku": "7.3"
 "Version": "7.3.2017071923"
 ```
-Al termine dell'aggiornamento, installare la versione più recente di Linux Integration Services (LIS).
-L'ottimizzazione della velocità effettiva è disponibile in LIS a partire dalla versione 4.2. Immettere i comandi seguenti per scaricare e installare LIS:
+Al termine dell'aggiornamento di hello, installare hello più recente Linux Integration Services (LIS).
+ottimizzazione della velocità effettiva di Hello è LIS, a partire da 4.2. Immettere hello toodownload i comandi seguenti e installarli:
 
 ```bash
 mkdir lis4.2.2-2
@@ -132,8 +132,8 @@ cd LISISO
 install.sh #or upgrade.sh if prior LIS was previously installed
 ```
 
-Per altre informazioni su Linux Integration Services versione 4.2 per Hyper-V, vedere la [pagina di download](https://www.microsoft.com/download/details.aspx?id=55106).
+Altre informazioni su Linux Integration Services versione 4.2 per Hyper-V visualizzando hello [pagina di download](https://www.microsoft.com/download/details.aspx?id=55106).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo avere ottimizzato la VM, verificare il risultato con [Test della larghezza di banda/velocità effettiva della VM di Azure](virtual-network-bandwidth-testing.md) per lo scenario.
+* Ora che hello VM è ottimizzato, vedere il risultato di hello con [della larghezza di banda/test della velocità effettiva macchina virtuale di Azure](virtual-network-bandwidth-testing.md) per lo scenario.
 * Altre informazioni sono disponibili nell'articolo [Domande frequenti sulla rete virtuale di Azure](virtual-networks-faq.md).

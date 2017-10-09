@@ -1,5 +1,5 @@
 ---
-title: Ottimizzazione del codice di Azure in Visual Studio | Documentazione Microsoft
+title: code di Azure in Visual Studio aaaOptimizing | Documenti Microsoft
 description: "Informazioni su come il codice di Azure come strumento di ottimizzazione in Visual Studio consente di rendere il codice più affidabile e migliorare le prestazioni."
 services: visual-studio-online
 documentationcenter: na
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: 8f145502a856798d6e69ac11f324c72fa23f938e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7df932def9dc16c93de29fc6a77c8fc121fda338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimizing-your-azure-code"></a>Ottimizzare il codice Azure
-Quando si programmano app che utilizzano Microsoft Azure, esistono alcune procedure consigliate da seguire per evitare problemi con la scalabilità di app, il comportamento e le prestazioni in un ambiente cloud. Microsoft fornisce uno strumento di analisi del codice di Azure che riconosce molti di questi problemi comunemente riscontrati e aiuta a risolverli. È possibile scaricare lo strumento in Visual Studio tramite NuGet.
+Quando si programmano App che usano Microsoft Azure, esistono alcune procedure consigliate da seguire toohelp evitare problemi di scalabilità, comportamento e le prestazioni in un ambiente cloud. Microsoft fornisce uno strumento di analisi del codice di Azure che riconosce molti di questi problemi comunemente riscontrati e aiuta a risolverli. È possibile scaricare lo strumento hello in Visual Studio tramite NuGet.
 
 ## <a name="azure-code-analysis-rules"></a>Regole di analisi codice di Azure
-Lo strumento di analisi del codice di Azure utilizza le regole seguenti per contrassegnare automaticamente il codice di Azure quando rileva i problemi noti che influiscono sulle prestazioni. I problemi rilevati vengono visualizzati come avvisi o errori del compilatore. Correzioni del codice o suggerimenti per risolvere l'avviso o l’errore vengono spesso forniti tramite un'icona a forma di lampadina.
+strumento di analisi del codice di Azure Hello utilizza hello seguendo regole tooautomatically flag del codice di Azure quando rileva i problemi noti che influiscono sulle prestazioni. I problemi rilevati vengono visualizzati come avvisi o errori del compilatore. Codice avviso hello tooresolve correzioni o suggerimenti o errore vengono spesso forniti tramite un'icona lampadina.
 
 ## <a name="avoid-using-default-in-process-session-state-mode"></a>Evitare di utilizzare la modalità stato sessione (in-process) predefinita
 ### <a name="id"></a>ID
 AP0000
 
 ### <a name="description"></a>Descrizione
-Se si utilizza la modalità di stato sessione (in-process) predefinita per le applicazioni cloud, è possibile perdere lo stato della sessione.
+Se si Usa modalità stato sessione (in-process) predefinita di hello per le applicazioni cloud, è possibile perdere lo stato della sessione.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Per impostazione predefinita, la modalità stato sessione specificata nel file Web. config è in corso. Inoltre, se nessuna voce è specificata nel file di configurazione, la modalità di stato della sessione è predefinita per in-process. La modalità in-process memorizza lo stato della sessione sul server web. Quando un'istanza viene riavviata o una nuova istanza viene utilizzata per il bilanciamento del carico o il supporto di failover, non viene salvato lo stato della sessione archiviato in memoria sul server web. Questa situazione impedisce che l'applicazione sia scalabile nel cloud.
+Per impostazione predefinita, modalità di stato sessione hello specificata nel file Web. config hello è in-process. Inoltre, se non vengono specificate voci nel file di configurazione di hello, hello modalità stato sessione predefinita tooin-process. modalità in-process Hello archivia lo stato della sessione in memoria nel server web hello. Quando un'istanza viene riavviata o una nuova istanza viene utilizzata per il bilanciamento del carico o il supporto di failover, non viene salvato lo stato della sessione hello archiviato in memoria nel server web hello. Questa situazione impedisce l'applicazione hello essere scalabile nel cloud hello.
 
-Lo stato della sessione ASP.NET supporta diverse opzioni di archiviazione per i dati dello stato sessione: InProc, StateServer, SQLServer, personalizzato e Off. È consigliabile utilizzare la modalità personalizzata per ospitare i dati in un archivio esterno dello stato della sessione, ad esempio [Provider di stato della sessione di Azure per Redis](http://go.microsoft.com/fwlink/?LinkId=401521).
+Lo stato della sessione ASP.NET supporta diverse opzioni di archiviazione per i dati dello stato sessione: InProc, StateServer, SQLServer, personalizzato e Off. Si consiglia di utilizzare dati toohost in modalità personalizzata in un archivio di stato sessione esterno, ad esempio [provider di stato della sessione di Azure per Redis](http://go.microsoft.com/fwlink/?LinkId=401521).
 
 ### <a name="solution"></a>Soluzione
-Una soluzione consigliata consiste nell'archiviare lo stato della sessione in un servizio cache gestito. Informazioni su come utilizzare [il provider di stato della sessione di Azure per Redis](http://go.microsoft.com/fwlink/?LinkId=401521) per archiviare lo stato della sessione. È anche possibile archiviare lo stato della sessione in altre posizioni per garantire che l'applicazione sia scalabile nel cloud. Per ulteriori informazioni sulle soluzioni alternative, leggere [Modalità dello stato di sessione](https://msdn.microsoft.com/library/ms178586).
+Una soluzione consigliata è toostore lo stato della sessione in un servizio cache gestita. Informazioni su come toouse [provider di stato della sessione di Azure per Redis](http://go.microsoft.com/fwlink/?LinkId=401521) toostore lo stato della sessione. È possibile inoltre archivio sessione indicare in altre posizioni di tooensure che l'applicazione sia scalabile nel cloud hello. altre informazioni sulle soluzioni alternative, vedere toolearn [modalità stato sessione](https://msdn.microsoft.com/library/ms178586).
 
 ## <a name="run-method-should-not-be-async"></a>L’esecuzione del metodo non deve essere asincrona
 ### <a name="id"></a>ID
 AP1000
 
 ### <a name="description"></a>Descrizione
-Creare metodi asincroni, ad esempio [await](https://msdn.microsoft.com/library/hh156528.aspx), fuori dal metodo [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) e quindi chiamare i metodi asincroni da [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx). La dichiarazione del metodo [[Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx)](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) come asincrona fa sì che il ruolo di lavoro immetta un ciclo di riavvio.
+Creare metodi asincroni (ad esempio [await](https://msdn.microsoft.com/library/hh156528.aspx)) di fuori di hello [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) (metodo) e quindi chiamare i metodi di async hello da [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx). Dichiarazione di hello [ [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) ](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) il metodo asincrono comporta lavoro hello ruolo tooenter un ciclo di riavvio.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-La chiamata di metodi asincroni all'interno del metodo [Run()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) fa sì che il runtime del servizio cloud ricicli il ruolo di lavoro. Quando viene avviato un ruolo di lavoro, l'esecuzione del programma ha luogo all'interno del metodo [Run()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx). Chiudere il metodo [Run()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) fa sì che il ruolo di lavoro venga riavviato. Quando il runtime di ruolo di lavoro raggiunge il metodo asincrono, invia tutte le operazioni dopo il metodo asincrono e poi ritorna  In questo modo, il ruolo di lavoro esce dal metodo [[[[Run()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx)](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx)](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx)](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) e si riavvia. Nell'iterazione successiva dell'esecuzione, il ruolo di lavoro raggiunge nuovamente il metodo asincrono e viene riavviato, causando nuovamente il riciclo anche del ruolo di lavoro.
+La chiamata di metodi asincroni all'interno di hello [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) metodo causa hello runtime toorecycle hello lavoro ruolo del servizio cloud. Quando viene avviato un ruolo di lavoro, l'intera esecuzione del programma ha luogo all'interno di hello [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) metodo. In fase di chiusura hello [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) metodo fa sì che il lavoro hello toorestart ruolo. Quando runtime ruolo di lavoro hello raggiunge metodo async hello, invia tutte le operazioni dopo il metodo asincrono hello e lo restituisce. Questo comporta lavoro hello tooexit ruolo dallo hello [ [ [ [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) ](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) ](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) ](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) (metodo) e riavviare. Durante l'iterazione successiva di hello di esecuzione, il ruolo di lavoro hello raggiunge nuovamente metodo async hello e viene riavviato, causando lavoro hello nuovamente anche toorecycle ruolo.
 
 ### <a name="solution"></a>Soluzione
-Posizionare tutte le operazioni asincrone fuori dal metodo [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) . Quindi, chiamare il metodo asincrono refactoring dall'interno del metodo [[Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx)](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) , ad esempio RunAsync().wait. Lo strumento di analisi del codice di Azure può aiutare a risolvere il problema.
+Posizionare tutte le operazioni asincrone di fuori di hello [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) metodo. Quindi, chiamare il metodo asincrono hello sottoposta a refactoring all'interno di hello [ [Run ()](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) ](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) metodo, ad esempio .wait di RunAsync (). strumento di analisi del codice di Azure Hello può aiutare a risolvere il problema.
 
-Il seguente frammento di codice dimostra la correzione del codice per questo problema:
+Hello seguente frammento di codice mostra correzione del codice hello per questo problema:
 
 ```
 public override void Run()
@@ -98,10 +98,10 @@ Uso della firma di accesso condiviso per l’autenticazione. Il servizio di cont
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Per una sicurezza ottimale, Azure Active Directory consiste nella sostituzione dell’autenticazione ACS con l'autenticazione SAS. Vedere [Azure Active Directory è il futuro di ACS](http://blogs.technet.com/b/ad/archive/2013/06/22/azure-active-directory-is-the-future-of-acs.aspx) per informazioni sul piano di transizione.
+Per una sicurezza ottimale, Azure Active Directory consiste nella sostituzione dell’autenticazione ACS con l'autenticazione SAS. Vedere [Azure Active Directory è hello futuro di ACS](http://blogs.technet.com/b/ad/archive/2013/06/22/azure-active-directory-is-the-future-of-acs.aspx) per informazioni sul piano di transizione hello.
 
 ### <a name="solution"></a>Soluzione
-Utilizzare l'autenticazione SAS nelle app. Nell'esempio seguente viene illustrato come utilizzare un token SAS esistente per accedere a uno spazio dei nomi o a un’entità del bus di servizio.
+Utilizzare l'autenticazione SAS nelle app. Hello di esempio seguente viene illustrato come toouse un tooaccess token SAS esistente un servizio del bus di spazio dei nomi o entità.
 
 ```
 MessagingFactory listenMF = MessagingFactory.Create(endpoints, new StaticSASTokenProvider(subscriptionToken));
@@ -109,55 +109,55 @@ SubscriptionClient sc = listenMF.CreateSubscriptionClient(topicPath, subscriptio
 BrokeredMessage receivedMessage = sc.Receive();
 ```
 
-Per altre informazioni, vedere gli argomenti seguenti.
+Hello seguenti argomenti per ulteriori informazioni, vedere.
 
 * Per una panoramica, vedere [autenticazione della firma di accesso condiviso con il bus di servizio](https://msdn.microsoft.com/library/dn170477.aspx)
-* [Come usare l'autenticazione della firma di accesso condiviso con il bus di servizio](https://msdn.microsoft.com/library/dn205161.aspx)
+* [Come toouse autenticazione della firma di accesso condiviso con il Bus di servizio](https://msdn.microsoft.com/library/dn205161.aspx)
 * Per un progetto di esempio, vedere l'articolo relativo all' [autenticazione tramite firma di accesso condiviso con le sottoscrizioni del bus di servizio](http://code.msdn.microsoft.com/windowsazure/Using-Shared-Access-e605b37c)
 
-## <a name="consider-using-onmessage-method-to-avoid-receive-loop"></a>È consigliabile utilizzare il metodo OnMessage per evitare il "ciclo di ricezione"
+## <a name="consider-using-onmessage-method-tooavoid-receive-loop"></a>È consigliabile utilizzare tooavoid metodo OnMessage "ciclo di ricezione"
 ### <a name="id"></a>ID
 AP2002
 
 ### <a name="description"></a>Descrizione
-Per evitare di entrare in un "ciclo di ricezione" la chiamata al metodo **OnMessage** è una soluzione ottimale, poi chiamare il metodo **Receive**. Tuttavia, se è necessario utilizzare il metodo **Ricezione** e si specifica un tempo di attesa del server non predefinito, assicurarsi che il tempo di attesa del server sia più di un minuto.
+tooavoid verso un "ciclo di ricezione," hello chiamante **OnMessage** metodo è una soluzione migliore per la ricezione di messaggi rispetto a chiamata hello **ricezione** metodo. Tuttavia, se è necessario utilizzare hello **ricezione** (metodo) e specificare un tempo di attesa del server non predefinito, assicurarsi che il tempo di attesa hello sia più di un minuto.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Quando si chiama **OnMessage**, il client avvia un message pump interno che esegue costantemente il polling della coda o della sottoscrizione. Questo pump del messaggio contiene un ciclo infinito che emette una chiamata per ricevere messaggi. Se la chiamata scade, genera una nuova chiamata. L'intervallo di timeout è determinato dal valore della proprietà [OperationTimeout](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout.aspx) del [MessagingFactory](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.messagingfactory.aspx) che viene usato.
+Quando si chiama **OnMessage**, client hello avvia un message pump interno che esegue il polling costantemente hello coda o sottoscrizione. Il message pump di contiene un ciclo infinito che effettua una chiamata tooreceive messaggi. Se il timeout della chiamata di hello, genera una nuova chiamata. intervallo di timeout Hello è determinata dal valore hello di hello [OperationTimeout](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout.aspx) proprietà di hello [MessagingFactory](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.messagingfactory.aspx)che viene utilizzato.
 
-Il vantaggio dell'uso di **OnMessage** rispetto a **Receive** è che gli utenti non devono eseguire manualmente il polling dei messaggi, gestire le eccezioni, elaborare più messaggi in parallelo e completare i messaggi.
+Hello vantaggio dell'utilizzo di **OnMessage** confrontati troppo**ricezione** è che gli utenti non hanno toomanually eseguire il polling per i messaggi, gestione delle eccezioni, elaborare più messaggi in parallelo e completare hello messaggi.
 
-Se si chiama la **Ricezione** senza utilizzare il valore predefinito, assicurarsi che il valore *ServerWaitTime* sia superiore a un minuto. L'impostazione di *ServerWaitTime* a più di un minuto impedisce al server di scadere prima che il messaggio venga ricevuto completamente.
+Se si chiama **ricezione** senza utilizzare il valore predefinito, essere hello che *ServerWaitTime* valore è superiore a un minuto. Impostazione *ServerWaitTime* toomore di un minuto impedisce server hello scadere prima completa ricezione del messaggio hello.
 
 ### <a name="solution"></a>Soluzione
-Vedere gli esempi di codice seguenti per gli utilizzi consigliati. Per altre informazioni, vedere [metodo QueueClient.OnMessage (Microsoft.ServiceBus.Messaging)](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.onmessage.aspx) e [metodo QueueClient.Receive (Microsoft.ServiceBus.Messaging)](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.receive.aspx).
+Vedere hello seguono esempi di codice per gli utilizzi consigliati. Per altre informazioni, vedere [metodo QueueClient.OnMessage (Microsoft.ServiceBus.Messaging)](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.onmessage.aspx) e [metodo QueueClient.Receive (Microsoft.ServiceBus.Messaging)](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.receive.aspx).
 
-Per migliorare le prestazioni dell'infrastruttura di messaggistica di Azure, vedere il modello di progettazione [Nozioni di base di messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx).
+prestazioni hello tooimprove di hello infrastruttura di messaggistica di Azure, vedere il modello di progettazione di hello [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx).
 
-Il seguente è un esempio dell'utilizzo di **OnMessage** per ricevere i messaggi.
+Hello seguito è riportato un esempio di utilizzo **OnMessage** tooreceive messaggi.
 
 ```
 void ReceiveMessages()
 {
     // Initialize message pump options.
     OnMessageOptions options = new OnMessageOptions();
-    options.AutoComplete = true; // Indicates if the message-pump should call complete on messages after the callback has completed processing.
-    options.MaxConcurrentCalls = 1; // Indicates the maximum number of concurrent calls to the callback the pump should initiate.
-    options.ExceptionReceived += LogErrors; // Enables you to get notified of any errors encountered by the message pump.
+    options.AutoComplete = true; // Indicates if hello message-pump should call complete on messages after hello callback has completed processing.
+    options.MaxConcurrentCalls = 1; // Indicates hello maximum number of concurrent calls toohello callback hello pump should initiate.
+    options.ExceptionReceived += LogErrors; // Enables you tooget notified of any errors encountered by hello message pump.
 
     // Start receiving messages.
     QueueClient client = QueueClient.Create("myQueue");
-    client.OnMessage((receivedMessage) => // Initiates the message pump and callback is invoked for each message that is recieved, calling close on the client will stop the pump.
+    client.OnMessage((receivedMessage) => // Initiates hello message pump and callback is invoked for each message that is recieved, calling close on hello client will stop hello pump.
     {
-        // Process the message.
+        // Process hello message.
     }, options);
-    Console.WriteLine("Press any key to exit.");
+    Console.WriteLine("Press any key tooexit.");
     Console.ReadKey();
 ```
 
-Il seguente è un esempio dell'utilizzo di **Ricezione** con il tempo di attesa predefinito del server.
+Hello seguito è riportato un esempio di utilizzo **ricezione** con server predefinito hello tempo di attesa.
 
 ```
 string connectionString =  
@@ -190,7 +190,7 @@ while (true)
    }
 ```
 
-Il seguente è un esempio dell'utilizzo di **Ricezione** con il tempo di attesa non predefinito del server.
+Hello seguito è riportato un esempio di utilizzo **ricezione** tempo di attesa con un server non predefinito.
 
 ```
 while (true)  
@@ -223,17 +223,17 @@ while (true)
 AP2003
 
 ### <a name="description"></a>Descrizione
-Utilizzare i metodi asincroni del Bus di servizio per migliorare le prestazioni con la messaggistica negoziata.
+Utilizzare prestazioni tooimprove metodi di Service Bus asincrono con la messaggistica negoziata.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-L’utilizzo di metodi asincroni consente la concorrenza del programma di applicazione perché l'esecuzione di ogni chiamata non blocca il thread principale. Quando si utilizzano i metodi di messaggistica del Bus di servizio, l’esecuzione di un'operazione (inviare, ricevere, eliminare, ecc) richiede tempo. Questa volta include l'elaborazione dell'operazione dal servizio Bus di servizio oltre alla latenza della richiesta e risposta. Per aumentare il numero di operazioni per volta, è necessario eseguire le operazioni contemporaneamente. Per altre informazioni, consultare le [Procedure consigliate per il miglioramento delle prestazioni tramite la messaggistica negoziata del bus di servizio](https://msdn.microsoft.com/library/azure/hh528527.aspx).
+Utilizzare i metodi asincroni consente concorrenza delle applicazioni perché l'esecuzione di ogni chiamata non blocca il thread principale di hello. Quando si utilizzano i metodi di messaggistica del Bus di servizio, l’esecuzione di un'operazione (inviare, ricevere, eliminare, ecc) richiede tempo. Questo tempo include l'elaborazione di hello dell'operazione hello dal servizio Bus di servizio hello latenza toohello aggiunta di hello richiesta e risposta di hello. numero di hello tooincrease di operazioni per volta, le operazioni vengano eseguite simultaneamente. Per ulteriori informazioni, vedere troppo[procedure consigliate per prestazioni miglioramenti tramite servizio di messaggistica negoziata del Bus](https://msdn.microsoft.com/library/azure/hh528527.aspx).
 
 ### <a name="solution"></a>Soluzione
-Vedere [QueueClient class (Microsoft.ServiceBus.Messaging)](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.aspx) per ricevere informazioni su come utilizzare il metodo asincrono consigliato.
+Vedere [classe QueueClient (Microsoft.ServiceBus.Messaging)](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.aspx) per informazioni su come toouse hello consigliato metodo asincrono.
 
-Per migliorare le prestazioni dell'infrastruttura di messaggistica di Azure, vedere il modello di progettazione [Nozioni di base di messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx).
+prestazioni hello tooimprove di hello infrastruttura di messaggistica di Azure, vedere il modello di progettazione di hello [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx).
 
 ## <a name="consider-partitioning-service-bus-queues-and-topics"></a>Prendere in considerazione il partizionamento delle code e degli argomenti del bus di servizio.
 ### <a name="id"></a>ID
@@ -245,10 +245,10 @@ Esegue il partizionamento delle code e degli argomenti del bus di servizio per o
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Il partizionamento delle code e degli argomenti del bus di servizio permette di aumentare la disponibilità dei servizi e la velocità effettiva delle prestazioni, perché la velocità effettiva complessiva di una coda o di un argomento partizionato non è più limitata dalle prestazioni di un singolo broker messaggi o archivio di messaggistica. Una interruzione temporanea di un archivio di messaggistica non influisce sulla disponibilità di code e argomenti partizionati. Per ulteriori informazioni, vedere [Partizionamento delle entità di messaggistica](https://msdn.microsoft.com/library/azure/dn520246.aspx).
+Partizionamento di code e argomenti Service Bus aumenta la disponibilità di velocità effettiva e il servizio delle prestazioni perché hello velocità effettiva complessiva di una coda o argomento partizionato non è più limitata dalle prestazioni hello di un singolo broker messaggi o archivio di messaggistica. Una interruzione temporanea di un archivio di messaggistica non influisce sulla disponibilità di code e argomenti partizionati. Per ulteriori informazioni, vedere [Partizionamento delle entità di messaggistica](https://msdn.microsoft.com/library/azure/dn520246.aspx).
 
 ### <a name="solution"></a>Soluzione
-Il seguente frammento di codice mostra come suddividere le entità di messaggistica.
+Hello seguente frammento di codice viene illustrato come toopartition entità di messaggistica.
 
 ```
 // Create partitioned topic.
@@ -258,33 +258,33 @@ td.EnablePartitioning = true;
 ns.CreateTopic(td);
 ```
 
-Per altre informazioni, vedere il blog di Microsoft Azure [Partitioned Service Bus Queues and Topics](https://azure.microsoft.com/blog/2013/10/29/partitioned-service-bus-queues-and-topics/) (Code e argomenti partizionati del bus di servizio) e l'esempio [Microsoft Azure Service Bus Partitioned Queue](https://code.msdn.microsoft.com/windowsazure/Service-Bus-Partitioned-7dfd3f1f) (Coda partizionata del bus di servizio di Microsoft Azure).
+Per ulteriori informazioni, vedere [argomenti e code del Bus di servizio partizionati | Blog di Microsoft Azure](https://azure.microsoft.com/blog/2013/10/29/partitioned-service-bus-queues-and-topics/) ed estrarre hello [coda partizionata di Microsoft Azure Service Bus](https://code.msdn.microsoft.com/windowsazure/Service-Bus-Partitioned-7dfd3f1f) esempio.
 
 ## <a name="do-not-set-sharedaccessstarttime"></a>Non impostare SharedAccessStartTime
 ### <a name="id"></a>ID
 AP3001
 
 ### <a name="description"></a>Descrizione
-È consigliabile evitare l'utilizzo di SharedAccessStartTimeset all'ora corrente per avviare immediatamente il criterio di accesso condiviso. È sufficiente impostare questa proprietà se si desidera avviare i criteri di accesso condivisi in un secondo momento.
+Evitare di usare SharedAccessStartTimeset toohello corrente avvio tooimmediately hello criterio di accesso condiviso. È necessario solo tooset questa proprietà se si desidera criteri di accesso condiviso di toostart hello in un secondo momento.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-La sincronizzazione dell'orologio comporta una differenza oraria lieve tra i Data Center. Ad esempio, si pensa logicamente che impostando l'ora di inizio di un archivio criteri SAS come l'ora corrente utilizzando Now o un metodo simile si farà sì che i criteri SAS abbiano effetto immediato. Tuttavia, le differenze lievi di tempo tra i Data Center possono provocare problemi con questo poiché alcuni tempi del datacenter potrebbero essere leggermente oltre l'ora di inizio, mentre altri la precedono. Di conseguenza, i criteri di firma di accesso condiviso possono scadere rapidamente (o persino immediatamente) se la durata di criteri è troppo breve.
+La sincronizzazione dell'orologio comporta una differenza oraria lieve tra i Data Center. Ad esempio, si potrebbe pensare ora di inizio hello di impostazione di un criterio di archiviazione SAS perché hello ora corrente usando Now o un metodo simile causerà l'effetto di hello SAS criteri tootake immediatamente. Tuttavia, le differenze di orario hello tra Data Center possono causare problemi con questo, a poiché alcuni Data Center potrebbero essere leggermente successiva all'ora di inizio di hello, mentre altri in anticipo. Di conseguenza, hello criterio SAS può scadere velocemente (o anche immediatamente) se durata criteri hello impostata è troppo breve.
 
-Per ulteriori informazioni sull'utilizzo di firma di accesso condiviso sull'archiviazione di Azure, vedere [Introduzione della tabella SAS (Shared Access Signature) della coda SAS coda del BLOB SAS - Blog del Team Microsoft Azure Storage - Home page - sito blog di MSDN](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx).
+Per ulteriori informazioni sull'uso di firma di accesso condiviso in archiviazione di Azure, vedere [introduzione tabella firma di accesso condiviso (firma di accesso condiviso) SAS coda aggiornamento tooBlob SAS - Blog del Team Microsoft Azure Storage - del sito e Home - blog MSDN](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx).
 
 ### <a name="solution"></a>Soluzione
-Rimuovere l'istruzione che imposta l'ora di inizio del criterio di accesso condiviso. Lo strumento di analisi del codice di Azure fornisce una correzione per questo problema. Per ulteriori informazioni sulla gestione della protezione, vedere il modello di progettazione [Modello passepartout](https://msdn.microsoft.com/library/dn568102.aspx).
+Rimuovere l'istruzione hello che imposta l'ora di inizio hello dei criteri di accesso condiviso hello. strumento di analisi del codice di Azure Hello viene fornita una correzione per questo problema. Per ulteriori informazioni sulla gestione della sicurezza, vedere il modello di struttura hello [passepartout](https://msdn.microsoft.com/library/dn568102.aspx).
 
-Il seguente frammento di codice dimostra la correzione del codice per questo problema.
+Hello frammento di codice seguente viene illustrato correzione del codice hello per questo problema.
 
 ```
-// The shared access policy provides  
-// read/write access to the container for 10 hours.
+// hello shared access policy provides  
+// read/write access toohello container for 10 hours.
 blobPermissions.SharedAccessPolicies.Add("mypolicy", new SharedAccessBlobPolicy()
 {
-   // To ensure SAS is valid immediately, don’t set start time.
+   // tooensure SAS is valid immediately, don’t set start time.
    // This way, you can avoid failures caused by small clock differences.
    SharedAccessExpiryTime = DateTime.UtcNow.AddHours(10),
    Permissions = SharedAccessBlobPermissions.Write |
@@ -297,26 +297,26 @@ blobPermissions.SharedAccessPolicies.Add("mypolicy", new SharedAccessBlobPolicy(
 AP3002
 
 ### <a name="description"></a>Descrizione
-Può esistere una differenza di circa cinque minuti negli orologi tra i Data Center in posizioni diverse a causa di una condizione nota come "sfasamento." Per evitare che il token del criterio SAS scada prima del previsto, impostare l'ora di scadenza a più di cinque minuti.
+Possono esistere fino a cinque minuti una differenza di orologi tra i Data Center in posizioni diverse, a causa di tooa condizione è nota come "sfasamento." token del criterio SAS hello tooprevent di scadenza precedente alla data di impostare hello scadenza ora toobe più di cinque minuti.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-I dataenter in diverse località del mondo sono sincronizzati da un segnale di orologio. Poiché occorre tempo affinché il segnale dell’orologio viaggi in località diverse, può esistere una varianza di tempo tra i datacenter in località geografiche diverse anche se apparentemente tutto ciò viene sincronizzato. Questa differenza di tempo può influenzare l’inizio del tempo dell'accesso condiviso e dell’intervallo di scadenza dei criteri. Per verificare che il criterio di accesso condiviso diventi effettivo immediatamente, pertanto, non specificare l'ora di inizio. Inoltre, assicurarsi che l'ora di scadenza sia maggiore di 5 minuti per evitare una scadenza anticipata.
+Data Center in posizioni diverse in tutto il mondo hello sincronizzare un segnale di clock. Poiché il tempo per i percorsi toodifferent tootravel segnale di clock, può esserci uno sfasamento di orario tra i Data Center in località geografiche diverse Sebbene tutto sia sincronizzato. Questa differenza temporale può avere implicazioni di accesso condiviso criteri inizio ora e scadenza intervallo hello. Pertanto, tooensure criterio di accesso condiviso diventa effettiva immediatamente, non specificare l'ora di inizio hello. Assicurarsi, inoltre, ora di scadenza hello è superiore al timeout anticipato tooprevent di 5 minuti.
 
-Per ulteriori informazioni sull'utilizzo di firma di accesso condiviso sull'archiviazione di Azure, vedere [Introduzione della tabella SAS (Shared Access Signature) della coda SAS coda del BLOB SAS - Blog del Team Microsoft Azure Storage - Home page - sito blog di MSDN](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx).
+Per ulteriori informazioni sull'uso della firma di accesso condiviso in archiviazione di Azure, vedere [introduzione tabella firma di accesso condiviso (firma di accesso condiviso) SAS coda aggiornamento tooBlob SAS - Blog del Team Microsoft Azure Storage - del sito e Home - blog MSDN](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx).
 
 ### <a name="solution"></a>Soluzione
-Per ulteriori informazioni sulla gestione della protezione, vedere il modello di progettazione [Modello passepartout](https://msdn.microsoft.com/library/dn568102.aspx).
+Per ulteriori informazioni sulla gestione della sicurezza, vedere il modello di progettazione di hello [passepartout](https://msdn.microsoft.com/library/dn568102.aspx).
 
-Di seguito è riportato un esempio di ora di inizio dei criteri di accesso condiviso non specificata.
+Hello Ecco un esempio non viene specificata un'ora di inizio dei criteri di accesso condiviso.
 
 ```
-// The shared access policy provides  
-// read/write access to the container for 10 hours.
+// hello shared access policy provides  
+// read/write access toohello container for 10 hours.
 blobPermissions.SharedAccessPolicies.Add("mypolicy", new SharedAccessBlobPolicy()
 {
-   // To ensure SAS is valid immediately, don’t set start time.
+   // tooensure SAS is valid immediately, don’t set start time.
    // This way, you can avoid failures caused by small clock differences.
    SharedAccessExpiryTime = DateTime.UtcNow.AddHours(10),
    Permissions = SharedAccessBlobPermissions.Write |
@@ -324,14 +324,14 @@ blobPermissions.SharedAccessPolicies.Add("mypolicy", new SharedAccessBlobPolicy(
 });
 ```
 
-Di seguito è riportato un esempio di un'ora di inizio dei criteri di accesso condiviso specificata, con un periodo di scadenza dei criteri maggiore di cinque minuti.
+Hello Ecco un esempio di specificare un'ora di inizio dei criteri di accesso condiviso con una scadenza del criterio maggiore di cinque minuti.
 
 ```
-// The shared access policy provides  
-// read/write access to the container for 10 hours.
+// hello shared access policy provides  
+// read/write access toohello container for 10 hours.
 blobPermissions.SharedAccessPolicies.Add("mypolicy", new SharedAccessBlobPolicy()
 {
-   // To ensure SAS is valid immediately, don’t set start time.
+   // tooensure SAS is valid immediately, don’t set start time.
    // This way, you can avoid failures caused by small clock differences.
   SharedAccessStartTime = new DateTime(2014,1,20),   
  SharedAccessExpiryTime = new DateTime(2014, 1, 21),
@@ -347,19 +347,19 @@ Per ulteriori informazioni, [Creare e usare una firma di accesso condiviso](http
 AP4000
 
 ### <a name="description"></a>Descrizione
-Usando la classe [ConfigurationManager](https://msdn.microsoft.com/library/system.configuration.configurationmanager\(v=vs.110\).aspx) per progetti, come il sito Web di Azure e i servizi mobili di Azure, non si verificano problemi di runtime. Come procedura consigliata, tuttavia, è consigliabile usare Cloud [ConfigurationManager](https://msdn.microsoft.com/library/system.configuration.configurationmanager\(v=vs.110\).aspx) come modo unificato di gestione delle configurazioni per tutte le applicazioni Cloud di Azure.
+Utilizzo di hello [ConfigurationManager](https://msdn.microsoft.com/library/system.configuration.configurationmanager\(v=vs.110\).aspx) classe per i progetti, ad esempio sito Web di Azure e servizi mobili di Azure non genera problemi di runtime. Come procedura consigliata, tuttavia, è toouse una buona idea Cloud[ConfigurationManager](https://msdn.microsoft.com/library/system.configuration.configurationmanager\(v=vs.110\).aspx) come una modalità unificata di gestione delle configurazioni per tutte le applicazioni Cloud di Azure.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-CloudConfigurationManager legge il file di configurazione appropriato per l'ambiente dell'applicazione.
+CloudConfigurationManager legge l'ambiente dell'applicazione hello configurazione file toohello appropriato.
 
 [CloudConfigurationManager](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.aspx)
 
 ### <a name="solution"></a>Soluzione
-Effettuare il refactoring del codice per utilizzare il [CloudConfigurationManager classe](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.aspx). Una correzione del codice per questo problema viene fornita dallo strumento di analisi del codice di Azure.
+Effettuare il refactoring del hello toouse codice [CloudConfigurationManager classe](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.aspx). Una correzione del codice per questo problema viene fornita dallo strumento di analisi del codice di Azure hello.
 
-Il seguente frammento di codice dimostra la correzione del codice per questo problema. Replace
+Hello frammento di codice seguente viene illustrato correzione del codice hello per questo problema. Replace
 
 `var settings = ConfigurationManager.AppSettings["mySettings"];`
 
@@ -367,7 +367,7 @@ con
 
 `var settings = CloudConfigurationManager.GetSetting("mySettings");`
 
-Di seguito è riportato un esempio di come archiviare l'impostazione di configurazione in un file app. config o Web. config. Aggiungere le impostazioni per la sezione appSettings del file di configurazione. Di seguito è il file Web. config per l'esempio di codice precedente.
+Di seguito è riportato un esempio di come toostore hello impostazione di configurazione in un file app. config o Web. config. Aggiungere una sezione appSettings di hello impostazioni toohello hello del file di configurazione. di seguito Hello è Web. config per il precedente esempio di codice hello hello.
 
 ```
 <appSettings>
@@ -384,19 +384,19 @@ Di seguito è riportato un esempio di come archiviare l'impostazione di configur
 AP4001
 
 ### <a name="description"></a>Descrizione
-Se si utilizzano stringhe di connessione hardcoded ed è necessario aggiornarle in un secondo momento, sarà necessario apportare modifiche al codice sorgente e ricompilare l'applicazione. Tuttavia, se si archiviano le stringhe di connessione in un file di configurazione, è possibile cambiarle successivamente semplicemente aggiornando il file di configurazione.
+Se si utilizzano stringhe di connessione hardcoded ed è necessario tooupdate loro in un secondo momento, si sarà toomake modifiche tooyour del codice sorgente e ricompilare l'applicazione hello. Tuttavia, se si archiviano le stringhe di connessione in un file di configurazione, è possibile modificarle successivamente semplicemente aggiornando il file di configurazione di hello.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Impostare come hardcoded le stringhe di connessione è sconsigliato perché presenta problemi quando è necessario modificare rapidamente le stringhe di connessione. Inoltre, se il progetto deve essere controllato nel codice sorgente, le stringhe di connessione hardcoded presentano una vulnerabilità di protezione poiché le stringhe possono essere visualizzate nel codice sorgente.
+Impostare come hardcoded le stringhe di connessione è sconsigliata perché si verificano problemi quando le stringhe di connessione è necessario modificare rapidamente toobe. Inoltre, se il progetto hello deve toobe selezionato nel controllo toosource, le stringhe di connessione hardcoded introducono vulnerabilità della sicurezza perché hello stringhe possono essere visualizzate nel codice sorgente hello.
 
 ### <a name="solution"></a>Soluzione
-Archiviare le stringhe di connessione nel file di configurazione o negli ambienti di Azure.
+Archiviare le stringhe di connessione nel file di configurazione hello o ambienti di Azure.
 
-* Per le applicazioni autonome utilizzare la config. dell’app per archiviare le impostazioni della stringa di connessione.
-* Per le applicazioni web ospitate in IIS, utilizzare config. web per archiviare le stringhe di connessione.
-* Per le applicazioni ASP.NET vNext utilizzare configuration.json per archiviare le stringhe di connessione.
+* Per le applicazioni autonome, utilizzare le impostazioni della stringa di connessione toostore app. config.
+* Per le applicazioni web ospitate in IIS, utilizzare le stringhe di connessione toostore Web. config.
+* Per le applicazioni vNext ASP.NET, utilizzare le stringhe di connessione toostore configuration.json.
 
 Per informazioni sull'uso di file di configurazione, ad esempio web.config o app. config, vedere [Linee guida configurazione di ASP.NET Web](https://msdn.microsoft.com/library/vstudio/ff400235\(v=vs.100\).aspx). Per informazioni su come funzionano le variabili di ambiente di Azure, vedere [Azure Web Sites: How Application Strings and Connection Strings Work](https://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/) (Siti Web di Microsoft Azure sul funzionamento delle stringhe di applicazione e di connessione). Per informazioni sull'archiviazione della stringa di connessione nel codice sorgente, vedere [evitare di inserire informazioni riservate come le stringhe di connessione nei file archiviati nel repository del codice sorgente](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control).
 
@@ -405,23 +405,23 @@ Per informazioni sull'uso di file di configurazione, ad esempio web.config o app
 AP5000
 
 ### <a name="description"></a>Descrizione
-Anziché configurare le impostazioni di diagnostica nel codice, ad esempio tramite l'API di programmazione della diagnostica di Microsoft.WindowsAzure, è necessario configurare le impostazioni di diagnostica nel file diagnostics wadcfg. (O, diagnostics.wadcfgx se si utilizza Azure SDK 2.5). In questo modo è possibile modificare le impostazioni di diagnostica senza dover ricompilare il codice.
+Anziché configurare le impostazioni di diagnostica nel codice, ad esempio tramite hello Microsoft.WindowsAzure.Diagnostics API di programmazione, è necessario configurare le impostazioni di diagnostica nel file Diagnostics wadcfg hello. (O, diagnostics.wadcfgx se si utilizza Azure SDK 2.5). In questo modo, è possibile modificare le impostazioni di diagnostica senza toorecompile il codice.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Prima di Azure SDK 2.5 (che utilizza diagnostica Microsoft Azure 1.3), la diagnostica di Azure (WAD) può essere configurata utilizzando diversi metodi: aggiunta del BLOB di configurazione nel servizio di archiviazione, utilizzando il codice imperativo, la configurazione dichiarativa o la configurazione predefinita. Tuttavia, il modo migliore per configurare la diagnostica consiste nell'utilizzare un file di configurazione XML (wadcfg o diagnositcs.wadcfgx per SDK 2.5 e versioni successive) nel progetto di applicazione. In questo approccio, il file diagnostics wadcfg definisce completamente la configurazione e può essere aggiornato e ridistribuito a suo piacimento. Combinare l'uso del file di configurazione wadcfg con i metodi a livello di codice di impostazione delle configurazioni tramite le classi [Diagnosticmonitorconfiguration](https://msdn.microsoft.com/library/microsoft.windowsazure.diagnostics.diagnosticmonitor.aspx) o [RoleInstanceDiagnosticManager](https://msdn.microsoft.com/library/microsoft.windowsazure.diagnostics.management.roleinstancediagnosticmanager.aspx) può generare confusione. Vedere [Avviare o modificare la configurazione della diagnostica di Azure](https://msdn.microsoft.com/library/azure/hh411537.aspx) per ulteriori informazioni.
+Prima di Azure SDK 2.5 (che usa diagnostica di Azure 1.3), la diagnostica di Azure (WAD) è stato possibile configurare utilizzando diversi metodi: aggiungendola toohello blob di configurazione nella risorsa di archiviazione usando codice imperativo, una configurazione dichiarativa o default hello configurazione. Tuttavia, hello preferito modo tooconfigure diagnostica è un file di configurazione XML (Diagnostics. wadcfg o wadcfgx per SDK 2.5 e versioni successive) nel progetto di applicazione hello toouse. In questo approccio, il file Diagnostics wadcfg hello completamente definisce la configurazione di hello e possono essere aggiornate e ridistribuito come desiderato. Combinazione utilizzare hello del file di configurazione Diagnostics. wadcfg hello con hello metodi a livello di codice di impostazione delle configurazioni tramite hello [DiagnosticMonitor](https://msdn.microsoft.com/library/microsoft.windowsazure.diagnostics.diagnosticmonitor.aspx)o [RoleInstanceDiagnosticManager](https://msdn.microsoft.com/library/microsoft.windowsazure.diagnostics.management.roleinstancediagnosticmanager.aspx) classi possono causare tooconfusion. Vedere [Avviare o modificare la configurazione della diagnostica di Azure](https://msdn.microsoft.com/library/azure/hh411537.aspx) per ulteriori informazioni.
 
-A partire da 1.3 WAD (incluso in Azure SDK 2.5), non è più possibile utilizzare il codice per configurare la diagnostica. Di conseguenza, è possibile specificare solo la configurazione quando si applica o si aggiorna l'estensione di diagnostica.
+A partire da 1.3 WAD (incluso in Azure SDK 2.5), non è più diagnostica tooconfigure del codice toouse possibili. Di conseguenza, è possibile specificare solo configurazione hello quando l'applicazione o l'aggiornamento dell'estensione diagnostica hello.
 
 ### <a name="solution"></a>Soluzione
-Utilizzare la finestra di progettazione di configurazione di diagnostica per spostare le impostazioni di diagnostica per il file di configurazione di diagnostica (diagnositcs.wadcfg o diagnositcs.wadcfgx per SDK 2.5 e versioni successive). È inoltre consigliabile installare [Azure SDK 2.5](http://go.microsoft.com/fwlink/?LinkId=513188) e utilizzare la funzionalità di diagnostica più recente.
+Utilizzare hello diagnostica toomove Progettazione impostazioni strumenti diagnostici toohello diagnostica configurazione file di configurazione (wadcfg o wadcfgx per SDK 2.5 e versioni successive). È inoltre consigliabile installare [Azure SDK 2.5](http://go.microsoft.com/fwlink/?LinkId=513188) e utilizzo funzionalità di diagnostica più recenti hello.
 
-1. Dal menu di scelta rapida per il ruolo desiderato scegliere Proprietà, quindi selezionare la scheda Configurazione.
-2. Nella sezione **Diagnostica** verificare che la casella di controllo **Abilita diagnostica** sia selezionata.
-3. Scegliere il pulsante **Configura** .
+1. Nel menu di scelta rapida hello ruolo hello che si desidera tooconfigure, scegliere Proprietà e quindi scegliere la scheda di configurazione hello.
+2. In hello **diagnostica** sezione, assicurarsi che tale hello **Abilita diagnostica** casella di controllo è selezionata.
+3. Scegliere hello **configura** pulsante.
 
-   ![Accesso all'opzione Abilita diagnostica](./media/vs-azure-tools-optimizing-azure-code-in-visual-studio/IC796660.png)
+   ![Accesso opzione Abilita diagnostica hello](./media/vs-azure-tools-optimizing-azure-code-in-visual-studio/IC796660.png)
 
    Vedere [Configurazione della diagnostica per i servizi cloud e le macchine virtuali di Azure](vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md) .per ulteriori informazioni.
 
@@ -430,22 +430,22 @@ Utilizzare la finestra di progettazione di configurazione di diagnostica per spo
 AP6000
 
 ### <a name="description"></a>Descrizione
-Per conservare memoria, evitare di dichiarare gli oggetti DbContext come static
+memoria toosave, evitare di dichiarare gli oggetti DBContext come statici.
 
 Condividere le idee e i suggerimenti nei [Commenti e suggerimenti dell'analisi del codice di Azure](http://go.microsoft.com/fwlink/?LinkId=403771).
 
 ### <a name="reason"></a>Motivo
-Gli oggetti DBContext contengono i risultati della query da ogni chiamata. Gli oggetti DBContext statici non vengono eliminati fino a quando non viene scaricato il dominio dell'applicazione. Pertanto, un oggetto DBContext statico può utilizzare grandi quantità di memoria.
+Gli oggetti DBContext contengono hello risultati della query da ogni chiamata. Gli oggetti DBContext statici non vengono eliminati fino a quando non viene scaricato il dominio di applicazione hello. Pertanto, un oggetto DBContext statico può utilizzare grandi quantità di memoria.
 
 ### <a name="solution"></a>Soluzione
 Dichiarare DBContext come una variabile locale o un campo di istanza non statico, utilizzarlo per un'attività e poi eliminarlo dopo l'uso.
 
-Il seguente esempio di classe controller MVC illustra come utilizzare l'oggetto DBContext.
+Hello classe controller MVC di esempio seguente viene illustrato come toouse hello oggetto DBContext.
 
 ```
 public class BlogsController : Controller
     {
-        //BloggingContext is a subclass to DbContext        
+        //BloggingContext is a subclass tooDbContext        
         private BloggingContext db = new BloggingContext();
         // GET: Blogs
         public ActionResult Index()
@@ -465,4 +465,4 @@ public class BlogsController : Controller
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sull'ottimizzazione e la risoluzione dei problemi delle app Azure, vedere [Risoluzione dei problemi di un'app Web nel servizio app di Azure tramite Visual Studio](app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md).
+toolearn più sull'ottimizzazione e risoluzione dei problemi di App di Azure, vedere [risolvere i problemi relativi a un'app web nel servizio App di Azure con Visual Studio](app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md).

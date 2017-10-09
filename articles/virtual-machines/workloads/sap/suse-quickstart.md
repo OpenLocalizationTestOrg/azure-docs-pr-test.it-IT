@@ -1,5 +1,5 @@
 ---
-title: Test di SAP NetWeaver nelle VM SUSE Linux di Microsoft Azure | Documentazione Microsoft
+title: SAP NetWeaver in macchine virtuali di Microsoft Azure SUSE Linux aaaTesting | Documenti Microsoft
 description: Test di SAP NetWeaver nelle VM SUSE Linux di Microsoft Azure
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,25 +16,25 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/14/2017
 ms.author: hermannd
-ms.openlocfilehash: 118b56376eace80788a20625497849181ad2e253
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0e3faab05417a1a15541e2b79aa7eddacda44611
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="running-sap-netweaver-on-microsoft-azure-suse-linux-vms"></a>Esecuzione di SAP NetWeaver nelle VM SUSE Linux di Microsoft Azure
-Questo articolo descrive vari aspetti da considerare quando si esegue SAP NetWeaver in macchine virtuali (VM) SUSE Linux di Microsoft Azure. A partire dal 19 maggio 2016 SAP NetWeaver è ufficialmente supportato nelle macchine virtuali SUSE Linux in Azure. Tutti i dettagli riguardanti le versioni di Linux, le versioni del kernel SAP e così via, sono reperibili nella nota 1928533 di SAP "SAP Applications on Azure: Supported Products and Azure VM types" (Applicazioni SAP in Azure: prodotti supportati e i tipi di VM di Azure).
+Questo articolo descrive i vari aspetti tooconsider quando si esegue SAP NetWeaver in macchine virtuali di Microsoft Azure SUSE Linux (VM). A partire dal 19 maggio 2016 SAP NetWeaver è ufficialmente supportato nelle macchine virtuali SUSE Linux in Azure. Tutti i dettagli riguardanti le versioni di Linux, le versioni del kernel SAP e così via, sono reperibili nella nota 1928533 di SAP "SAP Applications on Azure: Supported Products and Azure VM types" (Applicazioni SAP in Azure: prodotti supportati e i tipi di VM di Azure).
 Altra documentazione su SAP nelle VM Linux è disponibili qui: [Uso di SAP in macchine virtuali (VM) Linux](get-started.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Le informazioni seguenti sono utili per evitare alcuni errori potenziali.
+Hello le seguenti informazioni consentono di evitare alcuni problemi potenziali.
 
 ## <a name="suse-images-on-azure-for-running-sap"></a>Immagini SUSE in Azure per l'esecuzione di SAP
-Per l'esecuzione di SAP NetWeaver in Azure, usare solo SUSE Linux Enterprise Server SLES 12 (SPx). Vedere anche la nota 1928533 di SAP. Una speciale immagine SUSE è disponibile in Azure Marketplace: "SLES 11 SP3 for SAP CAL", tuttavia non è da considerarsi per l'utilizzo generale. Non usare questa immagine, perché è riservata alla soluzione [SAP Cloud Appliance Library](https://cal.sap.com/).  
+Per l'esecuzione di SAP NetWeaver in Azure, usare solo SUSE Linux Enterprise Server SLES 12 (SPx). Vedere anche la nota 1928533 di SAP. È un'immagine SUSE speciale in hello Azure Marketplace ("SLES 11 SP3 per SAP CAL"), ma questo non è per uso generale. Non utilizzare questa immagine perché è riservato per hello [SAP Cloud accessorio libreria](https://cal.sap.com/) soluzione.  
 
-È consigliabile usare Azure Resource Manager per tutti i nuovi test e installazioni da condurre in Azure. Per cercare immagini e versioni di SUSE SLES mediante Azure PowerShell o l'interfaccia della riga di comando di Azure, usare i comandi seguenti. L'output può quindi essere usato, ad esempio, per definire l'immagine del sistema operativo in un modello JSON per la distribuzione di una nuova VM SUSE Linux.
+È consigliabile usare Azure Resource Manager per tutti i nuovi test e installazioni da condurre in Azure. toolook per immagini SUSE SLES e versioni tramite Azure PowerShell o hello Azure interfaccia della riga di comando (CLI), hello di utilizzare i comandi seguenti. È quindi possibile utilizzare output di hello, ad esempio, toodefine hello immagine di sistema operativo un modello JSON per la distribuzione di una nuova macchina virtuale di SUSE Linux.
 I comandi di PowerShell seguenti sono validi per Azure PowerShell versione 1.0.1 e successive.
 
-Sebbene sia comunque possibile usare le immagini SLES standard per le installazione SAP, è consigliabile impiegare le nuove SLES per immagini SAP ora disponibili nella raccolta immagini di Azure. Altre informazioni su queste immagini sono reperibili nella [pagina del marketplace di Azure]( https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SUSE.SLES-SAP ) corrispondente o nella [pagina Web delle FAQ di SUSE su SLES per SAP]( https://www.suse.com/products/sles-for-sap/frequently-asked-questions/ ).
+Sebbene sia comunque possibile toouse hello standard SLES immagini per le installazioni di SAP, è consigliabile utilizzare toomake di hello SLES nuove per le immagini SAP che sono disponibili ora su hello Azure dell'immagine della raccolta. Ulteriori informazioni su queste immagini possono trovarsi in hello corrispondente [pagina Azure Marketplace]( https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SUSE.SLES-SAP ) o hello [pagina web di domande frequenti su SUSE su SLES per SAP]( https://www.suse.com/products/sles-for-sap/frequently-asked-questions/ ).
 
 
 * Cercare i server di pubblicazione esistenti tra cui SUSE:
@@ -67,50 +67,50 @@ Sebbene sia comunque possibile usare le immagini SLES standard per le installazi
    ```
 
 ## <a name="installing-walinuxagent-in-a-suse-vm"></a>Installazione di WALinuxAgent in una VM SUSE
-L'agente denominato WALinuxAgent fa parte delle immagini SLES in Azure Marketplace. Per informazioni sull'installazione manuale, ad esempio durante il caricamento di un disco rigido virtuale (VHD) del sistema operativo SLES da locale, vedere:
+agente di Hello chiamato WALinuxAgent fa parte di immagini SLES hello in hello Azure Marketplace. Per informazioni sull'installazione manuale, ad esempio durante il caricamento di un disco rigido virtuale (VHD) del sistema operativo SLES da locale, vedere:
 
 * [OpenSUSE](http://software.opensuse.org/package/WALinuxAgent)
 * [Azzurro](../../linux/endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [SUSE](https://www.suse.com/communities/blog/suse-linux-enterprise-server-configuration-for-windows-azure/)
 
 ## <a name="sap-enhanced-monitoring"></a>"Enhanced monitoring" di SAP
-Il "Enhanced monitoring" di SAP è un prerequisito obbligatorio per l'esecuzione di SAP in Azure. Consultare i dettagli nella nota 2191498 di SAP "SAP on Linux with Azure: Enhanced Monitoring" (SAP su Linux con Azure: Enhanced Monitoring).
+SAP "monitoraggio avanzato" è un toorun prerequisito obbligatorio SAP in Azure. Consultare i dettagli nella nota 2191498 di SAP "SAP on Linux with Azure: Enhanced Monitoring" (SAP su Linux con Azure: Enhanced Monitoring).
 
-## <a name="attaching-azure-data-disks-to-an-azure-linux-vm"></a>Collegamento di dischi di dati di Azure a una VM Linux di Azure
-Non montare mai dischi dati di Azure in una VM Linux di Azure tramite l'ID dispositivo. Usare invece l'identificatore univoco universale (UUID). Prestare attenzione quando si usano, ad esempio, strumenti grafici per il montaggio di dischi dati di Azure. Eseguire una doppia verifica delle voci in /etc/fstab.
+## <a name="attaching-azure-data-disks-tooan-azure-linux-vm"></a>Collegamento di dischi di dati di Azure tooan VM Linux di Azure
+È non consigliabile montare mai tooan dischi dati di Azure VM Linux di Azure utilizzando l'ID del dispositivo hello. Utilizzare invece l'identificatore univoco universale hello (UUID). Prestare attenzione quando si utilizzano dischi di dati di Azure toomount strumenti grafici, ad esempio. Verificare le voci di hello in /etc/fstab..
 
-Il problema dell'ID dispositivo è che potrebbe cambiare e quindi la VM di Azure potrebbe bloccarsi nel processo di avvio. Per attenuare il problema, è possibile aggiungere il parametro nofail in /etc/fstab. È tuttavia necessario prestare attenzione a nofail, perché è possibile che le applicazioni usino il punto di montaggio come in precedenza, con il rischio di scrivere nel file system radice, nel caso in cui un disco dati di Azure esterno non venga montato durante l'avvio.
+problema di Hello con ID dispositivo hello è che è possibile modificare e quindi hello macchina virtuale di Azure potrebbe bloccarsi hello procedura di avvio. problema di hello toomitigate, è possibile aggiungere il parametro nofail hello in /etc/fstab.. Ma, prestare attenzione con nofail perché le applicazioni potrebbero utilizzare punto di montaggio hello come prima e potrebbero scrivere nel file system di hello radice nel caso in cui non è stato montato un disco dati esterni di Azure durante l'avvio di hello.
 
-L'unica eccezione relativa al montaggio tramite UUID riguarda il collegamento di un disco del sistema operativo per la risoluzione dei problemi, come descritto nella sezione seguente.
+Hello unica eccezione toomounting tramite UUID si connette un disco del sistema operativo per la risoluzione dei problemi, come descritto nella seguente sezione hello.
 
 ## <a name="troubleshooting-a-suse-vm-that-isnt-accessible-anymore"></a>Risoluzione dei problemi di una VM SUSE non più accessibile
-In alcune situazioni è possibile che una VM SUSE in Azure si blocchi durante il processo di avvio, ad esempio in caso di errori correlati al montaggio dei dischi. Si può verificare il problema usando la funzionalità di diagnostica di avvio per le macchine virtuali di Azure v2 nel portale di Azure. Per altre informazioni, vedere l'articolo relativo alla [diagnostica di avvio](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/).
+Potrebbero esistere situazioni in cui una VM SUSE in Azure si blocca nel processo di avvio hello (ad esempio, con un errore correlato al montaggio dei dischi). È possibile verificare il problema tramite funzionalità di diagnostica di avvio hello per le macchine virtuali di Azure v2 in hello portale di Azure. Per altre informazioni, vedere l'articolo relativo alla [diagnostica di avvio](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/).
 
-Un modo per risolvere il problema consiste nel collegare il disco del sistema operativo dalla VM danneggiata a un'altra VM SUSE in Azure, quindi apportare le modifiche appropriate, ad esempio modificando /etc/fstab o rimuovendo le regole udev di rete, come descritto nella sezione successiva.
+Problema di hello toosolve unidirezionale è disco del sistema operativo di hello tooattach da hello danneggiato VM tooanother SUSE VM in Azure. Quindi, apportare modifiche quali la modifica di /etc/fstab. o la rimozione di regole udev di rete, come descritto nella sezione successiva hello.
 
-Occorre fare una considerazione importante. La distribuzione di più VM SUSE dalla stessa immagine di Azure Marketplace, ad esempio SLES 11 SP4, causa il montaggio del disco del sistema operativo sempre con lo stesso UUID. L'uso dell'UUID per collegare un disco del sistema operativo da una VM diversa, distribuita con la stessa immagine di Azure Marketplace, genera di conseguenza due UUID identici. Questo causa problemi e può significare che la VM di cui è necessario risolvere i problemi venga in effetti avviata dal disco del sistema operativo collegato e danneggiato, invece che da quello originale.
+Non vi è un aspetto importante tooconsider. Distribuzione di più macchine virtuali SUSE dalla stessa immagine di Azure Marketplace (ad esempio, SP4 11 SLES) provoca hello hello del sistema operativo tooalways disco montato mediante hello lo stesso UUID. Pertanto, l'utilizzo hello UUID tooattach un disco del sistema operativo da una macchina virtuale diverso che è stata distribuita tramite hello stessa immagine di Azure Marketplace comporterà due UUID identici. Questo causa problemi e potrebbe significare che hello VM per la risoluzione dei problemi in realtà si avvierà da hello collegato e danneggiato disco del sistema operativo anziché hello originale.
 
-Per evitare questo problema, è possibile procedere in due modi:
+Esistono due modi tooavoid questo:
 
-* Usare un'immagine di Azure Marketplace diversa per la risoluzione dei problemi della VM, ad esempio SLES 11 SPx invece di SLES 12.
-* Non collegare il disco del sistema operativo danneggiato da un'altra VM tramite l'UUID, ma usare un altro metodo.
+* Utilizzare un'immagine diversa di Azure Marketplace per hello risoluzione dei problemi di macchina virtuale (ad esempio, SLES 11 SPx anziché SLES 12).
+* Non collegare disco del sistema operativo hello danneggiato da un'altra macchina virtuale utilizzando l'UUID: utilizzare un altro.
 
-## <a name="uploading-a-suse-vm-from-on-premises-to-azure"></a>Caricamento di una VM SUSE da locale ad Azure
-Per una descrizione della procedura da seguire per caricare una VM SUSE da locale in Azure, vedere l'articolo [Preparare una macchina virtuale SLES o openSUSE per Azure](../../linux/suse-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+## <a name="uploading-a-suse-vm-from-on-premises-tooazure"></a>Caricamento di una VM SUSE da tooAzure locale
+Per una descrizione di tooupload passaggi hello una VM SUSE da tooAzure locale, vedere [preparare una macchina virtuale SLES o openSUSE per Azure](../../linux/suse-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Se si vuole caricare una VM senza il passaggio di deprovisioning finale, ad esempio per mantenere un'installazione SAP esistente e il nome host, verificare gli elementi seguenti:
+Se si desidera tooupload una macchina virtuale senza effettuarne il deprovisioning hello passaggio alla fine di hello (ad esempio, tookeep un'installazione esistente di SAP, nonché il nome host hello), controllare hello seguenti elementi:
 
-* Assicurarsi che il disco del sistema operativo sia installato tramite UUID e non con l'ID dispositivo. Passare all'UUID soltanto in /etc/fstab non è sufficiente per il disco del sistema operativo. Non dimenticare di adattare anche il caricatore di avvio tramite YaST o modificando /boot/grub/menu.lst.
-* Se si usa il formato VHDX per il disco del sistema operativo SUSE e questo viene convertito in VHD per il caricamento in Azure, è molto probabile che il dispositivo di rete cambi da eth0 a eth1. Per evitare problemi durante l'avvio in Azure in un secondo momento, ripristinare eth0 come descritto nell'articolo relativo alla [correzione di eth0 in SLES 11 clonati in VMware](https://dartron.wordpress.com/2013/09/27/fixing-eth1-in-cloned-sles-11-vmware/).
+* Verificare che tale disco hello del sistema operativo è montato usando un ID dispositivo UUID e non hello. Modifica tooUUID just-in /etc/fstab. non è sufficiente per il disco del sistema operativo hello. Inoltre, non dimenticare caricatore di avvio hello tooadapt mediante YaST o modificando /boot/grub/menu.lst.
+* Se si utilizza il formato di file VHDX hello per disco del sistema operativo SUSE hello e convertirlo tooVHD per il caricamento tooAzure, è molto probabile che il dispositivo di rete hello passerà da ' eth0 tooeth1. tooavoid problemi quando si esegue l'avvio in Azure in un secondo momento, modificare tooeth0 indietro, come descritto in [correzione eth0 in clonato SLES 11 VMware](https://dartron.wordpress.com/2013/09/27/fixing-eth1-in-cloned-sles-11-vmware/).
 
-Oltre a quanto descritto nell'articolo, è consigliabile rimuovere:
+Inoltre toowhat descritto nell'articolo hello, è consigliabile rimuovere questa:
 
    /lib/udev/rules.d/75-persistent-net-generator.rules
 
-È anche possibile installare l'agente Linux di Azure (waagent) per prevenire potenziali problemi, purché non siano presenti più schede di interfaccia di rete.
+È anche possibile installare hello agente Linux di Azure (waagent) toohelp evitare potenziali problemi, fino a quando non sono presenti più schede di rete.
 
 ## <a name="deploying-a-suse-vm-on-azure"></a>Distribuzione di una VM SUSE in Azure
-Creare le nuove VM SUSE tramite file modello JSON nel nuovo modello di Azure Resource Manager. Dopo aver creato il file modello JSON, è possibile distribuire la VM usando il comando dell'interfaccia della riga di comando seguente come alternativa a PowerShell:
+È necessario creare nuove macchine virtuali SUSE utilizzando file di modello JSON nel nuovo modello di gestione risorse di Azure hello. Dopo aver creato il file di modello di hello JSON, è possibile distribuire hello VM utilizzando il comando CLI come un'alternativa tooPowerShell seguente hello:
 
    ```
    azure group deployment create "<deployment name>" -g "<resource group name>" --template-file "<../../filename.json>"
@@ -118,35 +118,35 @@ Creare le nuove VM SUSE tramite file modello JSON nel nuovo modello di Azure Res
    ```
 Per altre informazioni sui file modello JSON, vedere [Creazione di modelli di Azure Resource Manager](../../../resource-group-authoring-templates.md) e [Modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/).
 
-Per altri dettagli relativi all'interfaccia della riga di comando e ad Azure Resource Manager, vedere [Uso dell'interfaccia della riga di comando di Azure per Mac, Linux e Windows con Azure Resource Manager](../../../xplat-cli-azure-resource-manager.md).
+Per ulteriori informazioni su CLI e Gestione risorse di Azure, vedere [hello utilizzare CLI di Azure per Mac, Linux e Windows con Gestione risorse di Azure](../../../xplat-cli-azure-resource-manager.md).
 
 ## <a name="sap-license-and-hardware-key"></a>Licenza SAP e chiave hardware
-Per la certificazione SAP-Azure ufficiale è stato introdotto un nuovo meccanismo per il calcolo della chiave hardware SAP usata per la licenza SAP. A tale scopo, era necessario adattare il kernel SAP. Le versioni precedenti del kernel SAP per Linux non comprendono tale modifica del codice. Di conseguenza, in determinate situazioni, ad esempio nel ridimensionamento di VM di Azure, la chiave hardware SAP cambia e la relativa licenza potrebbe non essere più valida. Questo problema è stato risolto nell'ultima versione dei kernel Linux di SAP. Per i dettagli vedere la nota 1928533 di SAP.
+Per la certificazione SAP Azure ufficiale di hello, un nuovo meccanismo è stato introdotto toocalculate hello SAP hardware chiave utilizzata per licenza SAP hello. kernel SAP Hello era toobe adattato toomake utilizzo di questo oggetto. Le versioni precedenti del kernel SAP per Linux non comprendono tale modifica del codice. Pertanto, in alcuni casi (ad esempio, macchina virtuale di Azure ridimensionamento), modificare la chiave di hello SAP hardware e licenze SAP hello è non essere più validi. Questo viene risolto nel kernel Linux SAP più recente di hello. Per i dettagli vedere la nota 1928533 di SAP.
 
 ## <a name="suse-sapconf-package--tuned-adm"></a>Pacchetto sapconf di SUSE e strumento tuned-adm
-SUSE offre un pacchetto denominato "sapconf" che gestisce un set di impostazioni specifiche di SAP. Per altre informazioni sulle funzionalità del pacchetto e su come installarlo e usarlo, vedere l'articolo relativo all'[uso di sapconf per preparare SUSE Linux Enterprise Server per l'esecuzione di sistemi SAP](https://www.suse.com/communities/blog/using-sapconf-to-prepare-suse-linux-enterprise-server-to-run-sap-systems/) e l'articolo di [informazioni su sapconf o come preparare un SUSE Linux Enterprise Server per l'esecuzione di sistemi SAP](http://scn.sap.com/community/linux/blog/2014/03/31/what-is-sapconf-or-how-to-prepare-a-suse-linux-enterprise-server-for-running-sap-systems).
+SUSE offre un pacchetto denominato "sapconf" che gestisce un set di impostazioni specifiche di SAP. Per ulteriori dettagli su quale questo pacchetto non e come tooinstall e usarlo, vedere [utilizzando sapconf tooprepare un sistemi SAP di SUSE Linux Enterprise Server toorun](https://www.suse.com/communities/blog/using-sapconf-to-prepare-suse-linux-enterprise-server-to-run-sap-systems/) e [novità sapconf o come tooprepare un SUSE Linux Enterprise Server per l'esecuzione di sistemi SAP? ](http://scn.sap.com/community/linux/blog/2014/03/31/what-is-sapconf-or-how-to-prepare-a-suse-linux-enterprise-server-for-running-sap-systems).
 
-È anche disponibile un nuovo strumento che sostituisce sapconf: tuned-adm. Per altre informazioni su questo strumento fare clic sui due collegamenti seguenti.
+Hello frattempo prevede un nuovo strumento che sostituisce sapconf - ottimizzare-adm. Una possibile trovare altre informazioni su questo strumento seguenti hello due collegamenti seguenti.
 
 La documentazione SLES sull'uso di tuned-adm profile sap-hana è reperibile [qui](https://www.suse.com/documentation/sles-for-sap-12/book_s4s/data/sec_s4s_configure_sapconf.html) 
 
 Informazioni su come ottimizzare i sistemi per i carichi di lavoro SAP con lo strumento tuned-adm è reperibile [qui](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/book_s4s/book_s4s.pdf) , nel capitolo 6.2
 
 ## <a name="nfs-share-in-distributed-sap-installations"></a>Condivisione NFS in installazioni SAP distribuite
-Se è disponibile un'installazione distribuita in cui si vuole, ad esempio, installare il database e i server applicazioni SAP in VM separate, è possibile condividere la directory /sapmnt tramite il file system di rete (NFS). In caso di problemi con la procedura di installazione dopo la creazione della condivisione NFS per /sapmnt, verificare di avere impostato "no_root_squash" per tale condivisione.
+Se si dispone di un'installazione distribuita, ad esempio, in cui si desidera tooinstall hello database e i server applicazioni SAP in macchine virtuali separate: hello è possibile condividere directory /sapmnt hello tramite File System NFS (Network). Se si verificano problemi con i passaggi di installazione hello dopo la creazione di condivisioni NFS per /sapmnt hello, controllare toosee se "no_root_squash" è impostato per la condivisione di hello.
 
 ## <a name="logical-volumes"></a>Volumi logici
-In passato, se era necessario un volume logico di grandi dimensioni su più dischi dati di Azure, ad esempio per il database SAP, era consigliabile usare mdadm dal momento che lvm non era completamente convalidato su Azure. Per informazioni su come configurare RAID Linux in Azure tramite mdadm, vedere [Configurare RAID software in Linux](../../linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Nel frattempo, dall'inizio di maggio 2016, anche lvm è completamente supportato in Azure e può essere usato come alternativa a mdadm. Per altre informazioni su lvm in Azure vedere [Configurare LVM in una VM Linux in Azure](../../linux/configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Nelle ultime hello se è necessaria una grande volume logico su più dischi dati di Azure (ad esempio, per i database SAP hello), è consigliabile toouse mdadm come lvm non è stato completamente convalidato ancora in Azure. toolearn tooset backup RAID Linux in Azure utilizzando mdadm, vedere [configurare software RAID su Linux](../../linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). In hello frattempo al momento di inizio di maggio 2016 anche lvm è completamente supportato in Azure e può essere utilizzato come un toomdadm alternativo. Per altre informazioni su lvm in Azure vedere [Configurare LVM in una VM Linux in Azure](../../linux/configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="azure-suse-repository"></a>Repository SUSE di Azure
-In caso di problemi di accesso al repository SUSE standard di Azure, è disponibile un semplice comando per reimpostarlo. Questo problema può verificarsi se si crea un'immagine privata del sistema operativo in un'area di Azure e quindi si copia l'immagine in un'altra area in cui si vogliono distribuire nuove VM basate su tale immagine. È sufficiente eseguire il comando seguente nella VM:
+Se si dispone di un problema con accesso toohello standard SUSE Azure del repository, è possibile utilizzare un comando semplice di tooreset è. Questa situazione può verificarsi se si crea un'immagine del sistema operativo privata in un'area di Azure e quindi copia hello tooa diversa area dell'immagine in cui si desidera toodeploy nuove macchine virtuali basate su questa immagine del sistema operativo privata. Eseguire semplicemente hello comando all'interno di hello VM seguente:
 
    ```
    service guestregister restart
    ```
 
 ## <a name="gnome-desktop"></a>Gnome Desktop
-Se si vuole usare l'ambiente desktop Gnome per l'installazione di un sistema dimostrativo SAP completo all'interno di una singola VM, inclusi GUI SAP, browser e console di gestione di SAP, usare questo suggerimento per l'installazione nelle immagini SLES di Azure:
+Se si desidera toouse hello Gnome desktop tooinstall sistema SAP demo completo all'interno di una singola macchina virtuale, tra cui un'interfaccia utente grafica di SAP, browser e console di gestione di SAP, utilizzare tooinstall questo suggerimento su più immagini di Azure SLES hello:
 
    Per SLES 11:
 
@@ -160,6 +160,6 @@ Se si vuole usare l'ambiente desktop Gnome per l'installazione di un sistema dim
    zypper in -t pattern gnome-basic
    ```
 
-## <a name="sap-support-for-oracle-on-linux-in-the-cloud"></a>Supporto SAP per Oracle su Linux nel cloud
-Non esiste alcuna limitazione di supporto da parte di Oracle su Linux in ambienti virtualizzati. Anche se non è un argomento specifico di Azure, è importante conoscerlo. SAP non supporta Oracle su SUSE o Red Hat in un cloud pubblico come Azure. Per discutere di questo argomento, contattare Oracle direttamente.
+## <a name="sap-support-for-oracle-on-linux-in-hello-cloud"></a>Supporto di SAP per Oracle in Linux nel cloud hello
+Non esiste alcuna limitazione di supporto da parte di Oracle su Linux in ambienti virtualizzati. Anche se non si tratta di un argomento specifici di Azure, è importante toounderstand. SAP non supporta Oracle su SUSE o Red Hat in un cloud pubblico come Azure. toodiscuss in questo argomento, contattare direttamente Oracle.
 

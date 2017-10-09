@@ -1,6 +1,6 @@
 ---
-title: Configurare un progetto di servizio cloud di Azure con Visual Studio | Documentazione Microsoft
-description: Informazioni su come configurare un progetto di servizio cloud di Azure in Visuali Studio, in base ai requisiti specifici per il progetto.
+title: un progetto di servizio cloud di Azure con Visual Studio aaaConfigure | Documenti Microsoft
+description: Informazioni di progetto di servizio in Visual Studio, a seconda dei requisiti per il progetto cloud tooconfigure di Azure.
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/06/2017
 ms.author: kraigb
-ms.openlocfilehash: 799715093bd1a8c8e77e6cdb7168670dc263dfa5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40eb5eedd6ea23bf03c8707431799be28beae701
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-an-azure-cloud-service-project-with-visual-studio"></a>Configurare un progetto di servizio cloud di Azure con Visual Studio
-È possibile configurare un progetto di servizio cloud di Azure, in base ai requisiti specifici per il progetto. È possibile impostare proprietà per il progetto per le categorie seguenti:
+È possibile configurare un progetto di servizio cloud di Azure, in base ai requisiti specifici per il progetto. È possibile impostare proprietà per il progetto di hello per hello seguenti categorie:
 
-- **Pubblicare un servizio cloud in Azure** - È possibile impostare una proprietà per verificare che un servizio cloud esistente distribuito in Azure non venga eliminato inavvertitamente.
-- **Eseguire un servizio cloud o eseguirne il debug nel computer locale** - È possibile selezionare una configurazione del servizio da usare e indicare se si vuole avviare l'emulatore di archiviazione di Azure.
-- **Convalidare un pacchetto del servizio cloud quando viene creato** - È possibile decidere di trattare tutti gli avvisi come errori in modo da assicurarsi che il pacchetto del servizio cloud venga distribuito senza problemi. 
+- **Pubblicare un tooAzure servizio cloud** -è possibile impostare una proprietà toomake assicurarsi che un servizio distribuito tooAzure di esistente cloud non è stato eliminato accidentalmente.
+- **Eseguire o eseguire il debug di un servizio cloud nel computer locale hello** -è possibile selezionare un toouse di configurazione del servizio e indicare se si desidera toostart hello emulatore di archiviazione Azure.
+- **Convalidare un pacchetto del servizio cloud al momento della creazione** -è possibile decidere tootreat gli avvisi come errori, in modo che è possibile verificare il pacchetto del servizio cloud hello distribuisce senza problemi. 
 
-## <a name="steps-to-configure-an-azure-cloud-service-project"></a>Procedura per configurare un progetto di servizio cloud di Azure
+## <a name="steps-tooconfigure-an-azure-cloud-service-project"></a>Passaggi tooconfigure un progetto di servizio cloud di Azure
 1. Aprire o creare un progetto di servizio cloud in Visual Studio
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto e scegliere **Proprietà** dal menu di scelta rapida.
+1. In **Esplora**, fare clic sul progetto hello e selezionare il menu di scelta rapida hello **proprietà**.
    
-1. Nella pagina delle proprietà del progetto, selezionare la scheda **Sviluppo**.
+1. Nella pagina delle proprietà del progetto hello, selezionare hello **sviluppo** scheda.
 
     ![Menu Proprietà del progetto](./media/vs-azure-tools-configuring-an-azure-project/solution-explorer-project-properties-menu.png)
 
-1. Impostare **Chiedi conferma prima di eliminare una distribuzione esistente** su **True**. Questa impostazione aiuta a evitare l'eliminazione involontaria di una distribuzione esistente in Azure.
+1. Impostare **Chiedi conferma prima di eliminare una distribuzione esistente** troppo**True**. Questa impostazione consente di tooensure non è stato eliminato accidentalmente una distribuzione esistente in Azure
 
-1. Per indicare la **Configurazione del servizio** da usare durante l'esecuzione o il debug del servizio cloud in locale, nell'elenco Configurazione servizio scegliere la configurazione del servizio. Per altre informazioni su come modificare una configurazione del servizio per un ruolo, vedere [Procedura: Configurare i ruoli di un servizio cloud di Azure con Visual Studio](./vs-azure-tools-configure-roles-for-cloud-service.md).
+1. Seleziona hello desiderato **configurazione del servizio** tooindicate la configurazione di servizio desiderato toouse quando si esegue o eseguire il debug del servizio cloud localmente. Per ulteriori informazioni su come toomodify una configurazione del servizio per un ruolo, vedere [come tooconfigure hello ruoli per un Azure cloud del servizio con Visual Studio](./vs-azure-tools-configure-roles-for-cloud-service.md).
 
-1. Per avviare l'emulatore di archiviazione di Azure durante l'esecuzione o il debug del servizio cloud in locale, in **Avvia l'emulatore di archiviazione di Microsoft Azure** scegliere **True**.
+1. Impostare **emulatore di archiviazione Azure avvia** troppo**True** toostart hello emulatore di archiviazione Azure quando si esegue o eseguire il debug del servizio cloud localmente.
 
-1. Per assicurarsi che non sia possibile pubblicare se sono presenti errori di convalida del pacchetto, in **Considera gli avvisi come errori** scegliere **True**.
+1. Impostare **considerarli come errori** troppo**True** toomake che non è possibile pubblicare se sono presenti errori di convalida del pacchetto.
 
-1. Per assicurarsi che il ruolo Web usi la stessa porta a ogni avvio in locale in IIS Express, in **Usa le porte del progetto Web** scegliere **True**.
+1. Impostare **utilizzare porte del progetto web** troppo**True** toomake assicurarsi che il ruolo web Usa hello stessa porta ogni volta che viene avviato in locale in IIS Express.
 
-1. Dalla barra degli strumenti di Visual Studio selezionare **Salva**.
+1. Barra degli strumenti di Visual Studio hello, selezionare **salvare**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - [Configurare un progetto di servizio cloud di Azure tramite più configurazioni del servizio](vs-azure-tools-multiple-services-project-configurations.md)

@@ -1,5 +1,5 @@
 ---
-title: Rallentamento delle prestazioni dell'app Web nel servizio app | Documentazione Microsoft
+title: prestazioni dell'applicazione web aaaSlow nel servizio App | Documenti Microsoft
 description: Questo articolo fornisce informazioni utili per la risoluzione dei rallentamenti delle prestazioni delle app Web nel Servizio app di Azure.
 services: app-service\web
 documentationcenter: 
@@ -16,19 +16,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2016
 ms.author: cephalin
-ms.openlocfilehash: 1cfe7ec37ad8b24a8bd9ab2bf67e95675a57b675
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3e56b99b48db0e7baae1fac797a7fcb9eff74c9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-slow-web-app-performance-issues-in-azure-app-service"></a>Risoluzione dei problemi di rallentamento delle prestazioni delle app Web nel Servizio app di Azure
 Questo articolo fornisce informazioni utili per la risoluzione dei rallentamenti delle prestazioni delle app Web nel [Servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-Se in qualsiasi punto dell'articolo sono necessarie altre informazioni, è possibile contattare gli esperti di Azure nei [forum MSDN e overflow dello stack relativi ad Azure](https://azure.microsoft.com/support/forums/). In alternativa, è anche possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare al [sito di supporto per Azure](https://azure.microsoft.com/support/options/) e fare clic su **Ottenere supporto**.
+Se è necessario ulteriore assistenza in qualsiasi punto in questo articolo, è possibile contattare hello Azure esperti in [hello MSDN di Azure e forum di Overflow dello Stack di hello](https://azure.microsoft.com/support/forums/). In alternativa, è anche possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare toohello [sito del supporto tecnico di Azure](https://azure.microsoft.com/support/options/) e fare clic su **supporto**.
 
 ## <a name="symptom"></a>Sintomo
-Quando si esplora l'app Web, le pagine vengono caricate lentamente e a volte si verifica il timeout.
+Quando si passa hello web app, hello pagine carico lenta e talvolta timeout.
 
 ## <a name="cause"></a>Causa
 Spesso la causa dell'errore deriva da problemi a livello dell'applicazione, ad esempio:
@@ -36,14 +36,14 @@ Spesso la causa dell'errore deriva da problemi a livello dell'applicazione, ad e
 * le richieste di rete impiegano troppo tempo
 * il codice dell'applicazione o le query di database non sono efficienti
 * utilizzo elevato di memoria/CPU da parte dell'applicazione
-* arresto anomalo dell'applicazione a causa di un'eccezione
+* applicazione di un arresto anomalo a causa di eccezioni tooan
 
 ## <a name="troubleshooting-steps"></a>Passaggi per la risoluzione dei problemi
 La risoluzione dei problemi prevede tre attività distinte, in ordine sequenziale:
 
 1. [Osservare e monitorare il comportamento dell'applicazione](#observe)
 2. [Raccogliere i dati](#collect)
-3. [Attenuare il problema](#mitigate)
+3. [Limitare i problemi di hello](#mitigate)
 
 [app Web del servizio app](/services/app-service/web/) vengono presentate diverse opzioni per ogni passaggio.
 
@@ -51,12 +51,12 @@ La risoluzione dei problemi prevede tre attività distinte, in ordine sequenzial
 
 ### <a name="1-observe-and-monitor-application-behavior"></a>1. Osservare e monitorare il comportamento dell'applicazione
 #### <a name="track-service-health"></a>Tenere traccia dell'integrità del servizio
-Microsoft Azure pubblica un annuncio ogni volta che si verifica un'interruzione del servizio o una riduzione delle prestazioni. È possibile verificare l'integrità del servizio nel [portale di Azure](https://portal.azure.com/). Per altre informazioni, vedere [Tenere traccia dell’integrità del servizio](../monitoring-and-diagnostics/insights-service-health.md).
+Microsoft Azure pubblica un annuncio ogni volta che si verifica un'interruzione del servizio o una riduzione delle prestazioni. È possibile tenere traccia dello stato di hello del servizio hello in hello [portale di Azure](https://portal.azure.com/). Per altre informazioni, vedere [Tenere traccia dell’integrità del servizio](../monitoring-and-diagnostics/insights-service-health.md).
 
 #### <a name="monitor-your-web-app"></a>Monitorare l'app Web
-Questa opzione consente di trovare eventuali problemi nell'applicazione. Nel pannello dell'app Web fare clic sul riquadro **Richieste ed errori** . Il pannello **Metrica** mostra tutte le metriche che si possono aggiungere.
+Questa opzione consente toofind out dell'applicazione in caso di eventuali problemi. Nel pannello dell'app web, fare clic su hello **richieste ed errori** riquadro. Hello **metrica** pannello Mostra tutte le metriche di hello è possibile aggiungere.
 
-Le metriche più comunemente monitorate per le app Web sono
+Sono riportate alcune delle metriche hello che potrebbe essere toomonitor per l'app web
 
 * Working set della memoria medio
 * Tempo di risposta medio
@@ -72,117 +72,117 @@ Per altre informazioni, vedere:
 * [Ricevere notifiche di avviso](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)
 
 #### <a name="monitor-web-endpoint-status"></a>Monitorare lo stato degli endpoint
-Se si esegue l'app Web nel piano tariffario **Standard**, App Web consente di monitorare due endpoint da tre aree geografiche.
+Se si esegue l'app web in hello **Standard** livello di prezzo, le applicazioni Web consente di monitorare due endpoint da tre posizioni geografiche.
 
-Il monitoraggio degli endpoint configura i test Web da posizioni distribuite a livello geografico che testano il tempo di risposta e di attività degli URL Web. Il test esegue un'operazione HTTP GET sull'URL Web per determinare il tempo di risposta e di attività da ogni posizione. Ogni posizione configurata esegue un testo ogni cinque minuti.
+Il monitoraggio degli endpoint configura i test Web da posizioni distribuite a livello geografico che testano il tempo di risposta e di attività degli URL Web. test di Hello esegue un'operazione HTTP GET nel tempo di risposta hello toodetermine URL web hello e tempi di attività da ogni posizione. Ogni posizione configurata esegue un testo ogni cinque minuti.
 
-Il tempo di attività viene monitorato mediante codici di risposta HTTP e il tempo di risposta è misurato in millisecondi. Un test di monitoraggio ha esito negativo se il codice della risposta HTTP è maggiore di o uguale a 400 o se la risposta richiede più di 30 secondi. Un endpoint è considerato disponibile se il test di monitoraggio ha esito positivo da tutte le posizioni specificate.
+Il tempo di attività viene monitorato mediante codici di risposta HTTP e il tempo di risposta è misurato in millisecondi. Un test di monitoraggio non riesce se hello codice di risposta HTTP è maggiore o uguale too400 o se la risposta hello richiede più di 30 secondi. Un endpoint è considerato disponibile se il test di monitoraggio hanno esito positivo da tutte hello specificati percorsi.
 
-Per configurarlo, vedere [Eseguire il monitoraggio delle app nel servizio app di Azure](web-sites-monitor.md).
+tooset, configurarlo, vedere [monitorare le App in Azure App Service](web-sites-monitor.md).
 
 Per altre informazioni sul monitoraggio degli endpoint, vedere anche il video che illustra come [mantenere attivi i siti Web di Azure e monitorare gli endpoint con Stefan Schackow](https://channel9.msdn.com/Shows/Azure-Friday/Keeping-Azure-Web-Sites-up-plus-Endpoint-Monitoring-with-Stefan-Schackow) .
 
 #### <a name="application-performance-monitoring-using-extensions"></a>Monitoraggio delle prestazioni dell'applicazione usando le estensioni
 È anche possibile monitorare le prestazioni dell'applicazione usando le *estensioni del sito*.
 
-Ogni app Web del servizio app fornisce un endpoint di gestione estensibile che consente di usare un set avanzato di strumenti distribuiti come estensioni del sito. Le estensioni includono: 
+Ogni applicazione di servizio App web fornisce un punto finale di gestione estensibile che consente di toouse un potente set di strumenti distribuito come estensioni del sito. Le estensioni includono: 
 
 - Editor di codice sorgente come [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs.aspx). 
-- Strumenti di gestione per risorse connesse come un database MySQL connesso a un'app Web.
+- Gli strumenti di gestione per le risorse collegate ad esempio un database MySQL connesso tooa web app.
 
-[Azure Application Insights](/services/application-insights/) e [New Relic](/marketplace/partners/newrelic/newrelic/) sono due delle estensioni disponibili di monitoraggio delle prestazioni. Per utilizzare New Relic, è necessario installare un agente in fase di esecuzione. Per usare Azure Application Insights, è necessario ricompilare il codice con un SDK ed è anche possibile installare un'estensione che consente l'accesso a dati aggiuntivi. SDK consente di scrivere il codice per monitorare l'utilizzo e prestazioni dell'applicazione in modo più dettagliato.
+[Azure Application Insights](/services/application-insights/) e [New Relic](/marketplace/partners/newrelic/newrelic/) sono due hello di monitoraggio delle prestazioni per le estensioni del sito disponibili. toouse New Relic, si installa un agente in fase di esecuzione. toouse Azure Application Insights, si ricompila il codice con un SDK ed è inoltre possibile installare un'estensione che consente di accedere ai dati tooadditional. Hello SDK consente di scrivere codice toomonitor hello utilizzo e prestazioni dell'app in modo più dettagliato.
 
-Per usare Application Insights, vedere [Monitorare le prestazioni di applicazioni Web](../application-insights/app-insights-web-monitor-performance.md).
+toouse Application Insights, vedere [monitorare le prestazioni in applicazioni web](../application-insights/app-insights-web-monitor-performance.md).
 
-Per usare New Relic, vedere [Gestione delle prestazioni delle applicazioni con New Relic in Siti Web di Azure](../store-new-relic-cloud-services-dotnet-application-performance-management.md).
+vedere toouse New Relic, [nuova gestione delle prestazioni delle applicazioni Relic in Azure](../store-new-relic-cloud-services-dotnet-application-performance-management.md).
 
 <a name="collect" />
 
 ### <a name="2-collect-data"></a>2. Raccogliere i dati
-L'ambiente App Web offre funzionalità diagnostiche per la registrazione di informazioni sia dal server Web sia dall'applicazione Web, separate in diagnostica del server Web e diagnostica delle applicazioni.
+ambiente di App Web Hello offre funzionalità di diagnostica per la registrazione delle informazioni dal server web hello e un'applicazione web hello. informazioni di Hello viene separate in diagnostica del server web e application diagnostics.
 
 #### <a name="enable-web-server-diagnostics"></a>Abilitare la diagnostica del server Web
-È possibile abilitare o disabilitare i seguenti tipi di log:
+È possibile abilitare o disabilitare i seguenti tipi di registri hello:
 
-* **Registrazione degli errori dettagliata**: consente di registrare informazioni dettagliate sugli errori relativi ai codici di stato HTTP che indicano un'operazione non riuscita (codice di stato 400 o superiore), incluse eventualmente le informazioni che aiutano a determinare il motivo per cui il server ha restituito il codice di errore.
-* **Traccia delle richieste non riuscita** : consente di registrare informazioni dettagliate sulle richieste non riuscite, inclusa una traccia dei componenti IIS utilizzati per elaborare la richieste e il tempo impiegato in ciascun componente. Ciò può essere utile se si sta provando a migliorare le prestazioni delle app Web o a isolare la causa di un errore HTTP specifico.
-* **Registrazione del server Web** : consente di registrare informazioni sulle transazioni HTTP tramite il formato di file di log esteso W3C. Ciò è utile nel determinare le metriche generali dell'app Web, ad esempio il numero delle richieste gestite oppure quante di esse provengono da uno specifico indirizzo IP.
+* **Registrazione degli errori dettagliata**: consente di registrare informazioni dettagliate sugli errori relativi ai codici di stato HTTP che indicano un'operazione non riuscita (codice di stato 400 o superiore), Può contenere informazioni utili per determinare perché i server di hello ha restituito il codice di errore hello.
+* **Non è stato possibile traccia richiesta** -informazioni dettagliate sulle richieste non riuscite, tra cui una traccia di hello IIS componenti utilizzati tooprocess hello richiesta e tempo hello in ogni componente. Può essere utile se si siano tentando di prestazioni dell'applicazione web tooimprove o isolare la causa un errore HTTP specifico.
+* **Registrazione del Server Web** -informazioni sulle transazioni HTTP formato di file registro esteso W3C hello. Ciò è utile durante la determinazione delle metriche di app web globale, ad esempio il numero di hello di richieste gestite o il numero di richieste provengono da un indirizzo IP specifico.
 
 #### <a name="enable-application-diagnostics"></a>Abilitare la diagnostica delle applicazioni
-Esistono diverse opzioni per raccogliere dati sulle prestazioni dell'applicazione da App Web, profilare l'applicazione in tempo reale da Visual Studio oppure modificare il codice dell'applicazione per registrare altre informazioni e tracce. È possibile scegliere le opzioni in base al livello di accesso consentito all'applicazione e ai dati osservati tramite gli strumenti di monitoraggio.
+Esistono diverse opzioni toocollect applicazione dati sulle prestazioni da app Web, profilare l'applicazione in tempo reale da Visual Studio o modificare il toolog codice applicazione ulteriori informazioni e le tracce. È possibile scegliere le opzioni di hello basate sul livello di accesso toohello applicazione e osservate da hello gli strumenti di monitoraggio.
 
 ##### <a name="use-application-insights-profiler"></a>Usare Application Insights Profiler
-È possibile abilitare Application Insights Profiler per avviare l'acquisizione di tracce dettagliate delle prestazioni. È possibile accedere alle tracce acquisite fino a cinque giorni prima, quando occorre analizzare i problemi che si sono verificati in passato. È possibile scegliere questa opzione, a condizione che sia disponibile l'accesso alla risorsa Application Insights dell'app Web nel portale di Azure.
+È possibile abilitare toostart Application Insights Profiler hello acquisire tracce di prestazioni dettagliati. È possibile accedere tracce acquisite backup toofive giorni quando è necessario tooinvestigate problemi si sono verificati nelle ultime hello. È possibile scegliere questa opzione, purché si disponga di risorsa di Application Insights dell'app web toohello di accesso nel portale di Azure.
 
-Application Insights Profiler offre statistiche sui tempi di risposta per ogni chiamata Web e tracce che indicano la riga del codice che ha causato risposte lente. In alcuni casi l'app del servizio app è lenta perché una parte del codice non scritta in modo efficiente. È possibile ad esempio che siano presenti un codice sequenziale che può essere eseguito in parallelo e conflitti di blocco di database non previsti. La rimozione di questi colli di bottiglia nel codice migliora le prestazioni dell'app. Questi colli di bottiglia tuttavia risultano difficili da rilevare se non vengono configurati tracce e log elaborati. Le tracce raccolte da Application Insights Profiler sono utili per identificare le righe di codice che rallentano l'applicazione e consentono di risolvere questa problematica per le app del servizio app.
+Application Insights Profiler fornisce statistiche sui tempi di risposta per ogni chiamata web e le tracce che indica la riga del codice ha causato una risposta lenta hello. In alcuni casi hello app del servizio App è lento perché determinato codice non scritto in un efficiente modo. È possibile ad esempio che siano presenti un codice sequenziale che può essere eseguito in parallelo e conflitti di blocco di database non previsti. Rimozione di questi colli di bottiglia nel codice hello aumenta le prestazioni dell'applicazione hello, ma sono toodetect disco senza configurare il log e le tracce elaborate. le tracce di Hello raccolte dal Profiler di Application Insights consente di identificare hello le righe di codice che rallenta l'applicazione hello e risolvere questo problema per le applicazioni di servizio App.
 
  Per altre informazioni, vedere [Profilatura delle app Web di Azure attive con Application Insights](../application-insights/app-insights-profiler.md).
 
 ##### <a name="use-remote-profiling"></a>Usare la profilatura remota
-Nel servizio app di Azure è possibile profilare in modalità remota app Web, app per le API e processi Web. Scegliere questa opzione se si ha accesso alla risorsa app Web e si sa come riprodurre il problema o se si conosce l'intervallo di tempo esatto in cui si verifica il problema di prestazioni.
+Nel servizio app di Azure è possibile profilare in modalità remota app Web, app per le API e processi Web. Scegliere questa opzione se si dispone di accesso toohello web app risorsa e si sa come tooreproduce hello problema o se si conosce esattamente hello problema di prestazioni hello intervallo di tempo si verifica.
 
-La profilatura remota è utile se l'utilizzo della CPU da parte del processo è elevato e l'esecuzione del processo è più lenta del previsto o se la latenza delle richieste HTTP è superiore al normale. In questi casi è possibile profilare il processo in modalità remota e ottenere campioni di stack di chiamate della CPU per analizzare l'attività del processo e i percorsi critici del codice.
+Profilatura remota è utile se l'utilizzo della CPU del processo di hello hello è elevato e il processo è in esecuzione più lenta del previsto o latenza hello di richieste HTTP sono superiori al normale, in modalità remota è possibile profilare il processo e ottenere hello CPU campionamento chiamata stack tooanalyze attività processo Hello e frequente percorsi del codice.
 
 Per altre informazioni, vedere [Remote Profiling support in Azure App Service](https://azure.microsoft.com/blog/remote-profiling-support-in-azure-app-service) (Supporto della profilatura remota in Servizio app di Azure).
 
 ##### <a name="set-up-diagnostic-traces-manually"></a>Configurare manualmente le tracce di diagnostica
-Se si ha accesso al codice sorgente dell'applicazione Web, la diagnostica delle applicazioni consente di acquisire le informazioni prodotte da un'applicazione Web. Le applicazioni ASP.NET possono usare la classe `System.Diagnostics.Trace` per registrare le informazioni nel log di diagnostica applicazioni. È tuttavia necessario modificare il codice o ridistribuire l'applicazione. Questo metodo è consigliato se l'app è in esecuzione in un ambiente di testing.
+Se si dispone di codice sorgente dell'applicazione web accesso toohello, Application diagnostics consente informazioni toocapture prodotte da un'applicazione web. Applicazioni ASP.NET possono usare hello `System.Diagnostics.Trace` classe toolog informazioni toohello application diagnostics log. Tuttavia, è necessario toochange codice hello e ridistribuire l'applicazione. Questo metodo è consigliato se l'app è in esecuzione in un ambiente di testing.
 
-Per istruzioni dettagliate su come configurare l'applicazione per la registrazione, vedere [Abilitare la registrazione diagnostica per le app Web nel servizio app di Azure](web-sites-enable-diagnostic-log.md).
+Per istruzioni dettagliate su come tooconfigure l'applicazione per la registrazione, vedere [abilitare la registrazione diagnostica per le app web in Azure App Service](web-sites-enable-diagnostic-log.md).
 
-#### <a name="use-the-azure-app-service-support-portal"></a>Usare il portale di supporto del Servizio app di Azure
-Il servizio app Web consente di risolvere i problemi relativi all'app Web grazie ai dati disponibili nei log HTTP, nei log eventi, nei dump dei processi e così via. È possibile accedere a tutte queste informazioni tramite il portale di supporto disponibile all'indirizzo **http://&lt;nome app>.scm.azurewebsites.net/Support**
+#### <a name="use-hello-azure-app-service-support-portal"></a>Utilizzare il portale di supporto del hello Azure App Service
+App Web fornisce hello possibilità tootroubleshoot problemi correlati tooyour web app esaminando HTTP log, i registri eventi, i dump del processo e altro. È possibile accedere a tutte queste informazioni tramite il portale di supporto disponibile all'indirizzo **http://&lt;nome app>.scm.azurewebsites.net/Support**
 
-Il portale di supporto del servizio app di Azure contiene tre schede separate per supportare i tre passaggi di uno scenario di risoluzione dei problemi comune:
+portale di supporto di Azure App Service Hello fornisce con tre schede separate toosupport hello tre passaggi di uno scenario di risoluzione dei problemi più comune:
 
 1. Osservare il comportamento corrente
-2. Eseguire l'analisi tramite la raccolta di informazioni di diagnostica e l'esecuzione di analizzatori predefiniti
+2. Analizzare la raccolta di informazioni di diagnostica ed eseguendo hello analizzatori incorporati
 3. Attenuare il problema
 
-Nel momento in cui si riscontra il problema, fare clic su **Analizza** > **Diagnostica** > **Esegui diagnosi adesso** per creare una sessione di diagnostica in cui vengono raccolti log HTTP, log del visualizzatore eventi, dump della memoria, log degli errori PHP e report sui processi PHP.
+Se il problema di hello è in corso al momento, fare clic su **Analizza** > **diagnostica** > **diagnosticare ora** toocreate una sessione di diagnostica, che consente di raccogliere log HTTP, i registri del Visualizzatore eventi, dump della memoria, i log degli errori PHP e report processo PHP.
 
-Una volta raccolti i dati, il portale di supporto esegue un'analisi dei dati e genera un report HTML.
+Una volta raccolti i dati di hello, il portale di supporto hello viene eseguita un'analisi sui dati hello e fornisce un report HTML.
 
-Per impostazione predefinita, i dati verranno archiviati nella cartella D:\home\data\DaaS, da cui sarà possibile scaricarli.
+Nel caso in cui si desiderano i dati di hello toodownload, per impostazione predefinita, potrebbe essere archiviato nella cartella D:\home\data\DaaS hello.
 
-Per altre informazioni sul portale di supporto di Servizio app di Azure, vedere [New Updates to Support Site Extension for Azure Websites](https://azure.microsoft.com/blog/new-updates-to-support-site-extension-for-azure-websites) (Nuovi aggiornamenti all'estensione del sito di supporto per Siti Web di Azure).
+Per ulteriori informazioni sul portale di supporto di hello Azure App Service, vedere [tooSupport nuovi aggiornamenti estensione del sito per siti Web di Azure](https://azure.microsoft.com/blog/new-updates-to-support-site-extension-for-azure-websites).
 
-#### <a name="use-the-kudu-debug-console"></a>Usare la console di debug Kudu
-Il servizio App Web include una console di debug che è possibile usare per il debug, l'esplorazione e il caricamento di file, nonché endpoint JSON per ottenere informazioni sull'ambiente in uso. Questa console è chiamata *console Kudu* o *dashboard SCM* dell'app Web.
+#### <a name="use-hello-kudu-debug-console"></a>Utilizzare hello Kudu Console di Debug
+Il servizio App Web include una console di debug che è possibile usare per il debug, l'esplorazione e il caricamento di file, nonché endpoint JSON per ottenere informazioni sull'ambiente in uso. Questa console è chiamata hello *Kudu Console* o hello *Dashboard SCM* per l'app web.
 
-È possibile accedere a questo dashboard selezionando il collegamento **https://&lt;nome app>.scm.azurewebsites.net/**.
+È possibile accedere a questo dashboard per passare toohello collegamento **https://&lt;nome dell'app >.scm.azurewebsites.net/**.
 
-Elementi forniti dalla console Kudu:
+Sono riportate alcune delle operazioni hello Kudu offre:
 
 * impostazioni di ambiente per l'applicazione
 * log in streaming
 * dump di diagnostica
 * console di debug in cui è possibile eseguire cmdlet di PowerShell e comandi DOS di base.
 
-Inoltre, nel caso in cui l'applicazione generi eccezioni first-chance, è possibile usare Kudu e l'utilità della riga di comando Procdump dello strumento SysInternals per creare dump della memoria. I dump della memoria sono snapshot del processo e semplificano la risoluzione di problemi più complessi riscontrati nell'app Web.
+Un'altra caratteristica utile di Kudu è che, nel caso in cui l'applicazione è la generazione di eccezioni first-chance, è possibile utilizzare Kudu e dump della memoria di hello SysInternals strumento Procdump toocreate. Le immagini della memoria sono snapshot dei processo hello e spesso consentono di risolvere i problemi più complessi con l'app web.
 
 Per altre informazioni sulle funzionalità disponibili in Kudu, vedere il post di blog relativo agli [strumenti di Azure Websites Team Services che è opportuno conoscere](https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/).
 
 <a name="mitigate" />
 
-### <a name="3-mitigate-the-issue"></a>3. Attenuare il problema
-#### <a name="scale-the-web-app"></a>Ridimensionare l'app Web
-Nel servizio app di Azure, per ottimizzare le prestazioni e la velocità effettiva è possibile modificare la scalabilità in cui è in esecuzione l'applicazione. Ridimensionare un'app Web di Azure implica due azioni correlate: passare a un piano tariffario superiore e configurare determinate impostazioni una volta adottato il nuovo piano.
+### <a name="3-mitigate-hello-issue"></a>3. Limitare i problemi di hello
+#### <a name="scale-hello-web-app"></a>Scala hello web app
+In Azure App Service, per migliorare le prestazioni e velocità effettiva, è possibile modificare la scala hello in corrispondenza del quale si esegue l'applicazione. La scalabilità verticale un'app web prevede due azioni correlate: modifica il maggiore livello di prezzo e la configurazione di determinate impostazioni dopo avere impostato toohello maggiore livello di prezzo tooa di piano di servizio App.
 
 Per altre informazioni sul ridimensionamento, vedere [Ridimensionare un'app Web nel servizio app di Azure](web-sites-scale.md).
 
-È anche possibile scegliere di eseguire l'applicazione in più di un'istanza. La scalabilità orizzontale non consente solo di ottenere una maggiore capacità di elaborazione, ma anche di usufruire di un certo livello di tolleranza di errore. Se il processo si arresta in un'istanza, le altre istanze continuano a gestire le richieste.
+Inoltre, è possibile scegliere toorun l'applicazione in più di un'istanza. La scalabilità orizzontale non consente solo di ottenere una maggiore capacità di elaborazione, ma anche di usufruire di un certo livello di tolleranza di errore. Se si arresta il processo di hello in un'istanza, hello altre istanze continuano tooserve richieste.
 
-È possibile impostare il ridimensionamento manuale o automatico.
+È possibile impostare hello scalabilità toobe manuale o automatico.
 
 #### <a name="use-autoheal"></a>Usare la funzionalità AutoHeal
-La funzionalità AutoHeal consente di riciclare il processo di lavoro per l'app in base alle impostazioni specificate, ad esempio modifiche di configurazione, richieste, limiti basati sulla memoria o il tempo necessario per l'esecuzione di una richiesta. Nella maggior parte dei casi, riciclare il processo costituisce il modo più veloce per risolvere un problema. Anche se è possibile riavviare l'app Web direttamente dall'interno del portale di Azure, la funzionalità AutoHeal esegue questa operazione automaticamente. È sufficiente aggiungere alcuni trigger nel file web.config radice per l'app Web. Queste impostazioni funzionano allo stesso modo anche per le app non .NET.
+AutoHeal Ricicla il processo di lavoro hello per l'app in base alle impostazioni selezionate (ad esempio, è necessario tooexecute una richiesta di modifiche alla configurazione, le richieste, basata sulla memoria limiti o il tempo di hello). La maggior parte dei casi hello Ricicla i processi di hello sono toorecover modo più veloce di hello da un problema. Anche se è sempre possibile riavviare un'app web hello da direttamente in hello portale di Azure, AutoHeal si adatta automaticamente per l'utente. È sufficiente toodo aggiungere alcuni trigger in Web. config radice hello per le app web. Queste impostazioni funzionerà in hello stesso modo, anche se l'applicazione non è un'app .net.
 
 Per altre informazioni, vedere il post di blog relativo alla [correzione automatica di Siti Web di Azure](https://azure.microsoft.com/blog/auto-healing-windows-azure-web-sites/).
 
-#### <a name="restart-the-web-app"></a>Riavviare l'app Web
-Il riavvio è spesso il modo più semplice per risolvere problemi occasionali. Nel pannello dell'app Web del [portale di Azure](https://portal.azure.com/) sono disponibili le opzioni per arrestare o riavviare l'app.
+#### <a name="restart-hello-web-app"></a>Riavviare l'app web hello
+Il riavvio è spesso toorecover modo più semplice di hello da problemi occasionali. In hello [portale di Azure](https://portal.azure.com/), nel pannello dell'app web, si dispone di hello opzioni toostop o riavviare l'app.
 
- ![riavviare l'app Web per risolvere i problemi di prestazioni](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
+ ![riavviare i problemi di prestazioni toosolve app web](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
 
 È anche possibile gestire l'app Web usando Azure PowerShell. Per altre informazioni, vedere [Uso di Azure PowerShell con Gestione risorse di Azure](../powershell-azure-resource-manager.md).

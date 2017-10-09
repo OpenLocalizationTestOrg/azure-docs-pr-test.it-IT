@@ -1,6 +1,6 @@
 ---
-title: Eseguire il provisioning di un'app Web che usa un database SQL
-description: Usare un modello di Gestione risorse di Azure per distribuire un'app Web che include un database SQL.
+title: aaaProvision un'app web che utilizza un Database SQL
+description: Utilizzare un toodeploy di modello un'app web che include un Database SQL di Azure Resource Manager.
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: cc34f684f8c50e95a62cb7b04fd2ddce5deb68d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 189c0122d201e88f15013bf241d66652ef23df4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-a-web-app-with-a-sql-database"></a>Eseguire il provisioning di un'app Web con un database SQL
-In questo argomento si apprenderà come creare un modello di Gestione risorse di Azure che consente di distribuire un'app Web e un database SQL. Verrà illustrato come definire le risorse da distribuire e i parametri specificati quando viene eseguita la distribuzione. È possibile usare questo modello per le proprie distribuzioni o personalizzarlo in base alle esigenze.
+In questo argomento si apprenderà come toocreate un modello di gestione risorse di Azure che consente di distribuire un'app web e il Database SQL. Si apprenderà come toodefine quali risorse vengono distribuite come toodefine parametri e che vengono specificati quando è eseguita la distribuzione di hello. È possibile utilizzare questo modello per la propria distribuzioni o personalizzarlo toomeet esigenze.
 
 Per altre informazioni sulla creazione dei modelli, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md).
 
 Per altre informazioni sulla distribuzione di app, vedere [Distribuire un'applicazione complessa in modo prevedibile in Azure](app-service-deploy-complex-application-predictably.md).
 
-Per il modello completo, vedere [Modello di app Web con database SQL](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).
+Per il modello di hello completo, vedere [modello App Web con Database SQL](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -41,29 +41,29 @@ In questo modello, verrà distribuito quanto segue:
 * Regole di avviso
 * Informazioni sull'app
 
-Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:
+toorun hello automaticamente la distribuzione, fare clic su hello seguente pulsante:
 
-[![Distribuzione in Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
+[![Distribuire tooAzure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
 
-## <a name="parameters-to-specify"></a>Parametri da specificare
+## <a name="parameters-toospecify"></a>I parametri toospecify
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="administratorlogin"></a>administratorLogin
-Il nome dell'account da usare per l'amministratore del server di database.
+Hello toouse nome account dell'amministratore di server di database hello.
 
     "administratorLogin": {
       "type": "string"
     }
 
 ### <a name="administratorloginpassword"></a>administratorLoginPassword
-La password da usare per l'amministratore del server di database.
+Hello toouse password dell'amministratore di server di database hello.
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
 ### <a name="databasename"></a>databaseName
-Il nome del nuovo database da creare.
+nome Hello di hello nuovo database toocreate.
 
     "databaseName": {
       "type": "string",
@@ -71,7 +71,7 @@ Il nome del nuovo database da creare.
     }
 
 ### <a name="collation"></a>collation
-Le regole di confronto del database da usare per controllare l'uso corretto dei caratteri.
+toouse di regole di confronto database Hello per hello che controllano corretto utilizzo di caratteri.
 
     "collation": {
       "type": "string",
@@ -79,7 +79,7 @@ Le regole di confronto del database da usare per controllare l'uso corretto dei 
     }
 
 ### <a name="edition"></a>edition
-Il tipo di database da creare.
+tipo di Hello di toocreate di database.
 
     "edition": {
       "type": "string",
@@ -90,12 +90,12 @@ Il tipo di database da creare.
         "Premium"
       ],
       "metadata": {
-        "description": "The type of database to create."
+        "description": "hello type of database toocreate."
       }
     }
 
 ### <a name="maxsizebytes"></a>maxSizeBytes
-Dimensione massima, in byte, per il database.
+dimensione massima Hello, in byte, per il database di hello.
 
     "maxSizeBytes": {
       "type": "string",
@@ -103,7 +103,7 @@ Dimensione massima, in byte, per il database.
     }
 
 ### <a name="requestedserviceobjectivename"></a>requestedServiceObjectiveName
-Il nome corrispondente al livello di prestazioni per l'edizione. 
+Hello nome corrispondente toohello livello di prestazioni per l'edizione. 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -118,12 +118,12 @@ Il nome corrispondente al livello di prestazioni per l'edizione.
         "P3"
       ],
       "metadata": {
-        "description": "Describes the performance level for Edition"
+        "description": "Describes hello performance level for Edition"
       }
     }
 
 ## <a name="variables-for-names"></a>Variabili per i nomi
-Questo modello include le variabili che costituiscono i nomi usati nel modello. Per generare un nome dall'ID gruppo di risorse, i valori delle variabili usano la funzione **uniqueString** .
+Questo modello include variabili di costruire nomi utilizzati nel modello di hello. i valori delle variabili Hello utilizzano hello **uniqueString** funzione toogenerate un nome da id gruppo di risorse hello.
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -132,9 +132,9 @@ Questo modello include le variabili che costituiscono i nomi usati nel modello. 
     },
 
 
-## <a name="resources-to-deploy"></a>Risorse da distribuire
+## <a name="resources-toodeploy"></a>Risorse toodeploy
 ### <a name="sql-server-and-database"></a>Database e server SQL
-Crea un nuovo database e server SQL. Il nome del server viene specificato nel parametro **serverName** e il percorso nel parametro **serverLocation**. Quando si crea il nuovo server, è necessario fornire un nome di accesso e una password per l'amministratore del server di database. 
+Crea un nuovo database e server SQL. nome Hello del server hello è specificato in hello **serverName** parametro e hello posizione specificata in hello **serverLocation** parametro. Quando si crea il nuovo server di hello, è necessario fornire un nome di accesso e una password per l'amministratore del server database hello. 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -373,7 +373,7 @@ Crea un nuovo database e server SQL. Il nome del server viene specificato nel pa
       },
       "properties": {
         "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
-        "description": "[concat('The average CPU is high across all the instances of ', variables('hostingPlanName'))]",
+        "description": "[concat('hello average CPU is high across all hello instances of ', variables('hostingPlanName'))]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -407,7 +407,7 @@ Crea un nuovo database e server SQL. Il nome del server viene specificato nel pa
       },
       "properties": {
         "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
-        "description": "[concat('The HTTP queue for the instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
+        "description": "[concat('hello HTTP queue for hello instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -446,7 +446,7 @@ Crea un nuovo database e server SQL. Il nome del server viene specificato nel pa
       }
     }
 
-## <a name="commands-to-run-deployment"></a>Comandi per eseguire la distribuzione
+## <a name="commands-toorun-deployment"></a>Comandi toorun distribuzione
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -462,6 +462,6 @@ Crea un nuovo database e server SQL. Il nome del server viene specificato nel pa
     az resource deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE]
-> Per il contenuto del file JSON dei parametri, vedere [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json).
+> Per il contenuto del file JSON di hello parametri, vedere [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json).
 >
 >

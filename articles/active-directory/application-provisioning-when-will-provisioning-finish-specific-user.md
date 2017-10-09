@@ -1,6 +1,6 @@
 ---
-title: "Identificare se un utente specifico è in grado di accedere a un'applicazione | Microsoft Docs"
-description: "Come identificare se un utente fondamentale è in grado di accedere a un'applicazione configurata per il provisioning utenti con Azure AD"
+title: aaaFind out quando un utente specifico saranno in grado di tooaccess un'applicazione | Documenti Microsoft
+description: Come toofind out quando un utente di estremamente importante essere in grado di tooaccess un'applicazione sono stati configurati per il provisioning utente con Azure AD
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: fcefb31904cfb77022db0358e9feee6a0479db81
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bb9520499dcc8bbbe6fae05c5238c8852815ea0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-when-a-specific-user-will-be-able-to-access-an-application"></a>Identificare se un utente specifico è in grado di accedere a un'applicazione
+# <a name="find-out-when-a-specific-user-will-be-able-tooaccess-an-application"></a>Sapere quando un utente specifico sarà in grado di tooaccess un'applicazione
 Quando si usa il provisioning utenti automatico con un'applicazione, Azure AD esegue automaticamente il provisioning e aggiorna gli account utente in un'app in base ad alcuni elementi, ad esempio l'[assegnazione di utenti e gruppi](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal), a intervalli regolari pianificati, in genere ogni 10 minuti.
 
 ## <a name="how-long-does-it-take"></a>Quanto tempo occorre?
 
-Il tempo necessario per eseguire il provisioning di un utente varia essenzialmente a seconda che sia stata eseguita o meno una sincronizzazione iniziale "completa".
+Hello tempo richiesto per toobe un determinato utente provisioning dipende principalmente dal è già stata eseguita o meno una sincronizzazione iniziale "full".
 
-La prima sincronizzazione tra Azure AD e un'app può richiedere da 20 minuti a diverse ore, a seconda delle dimensioni della directory di Azure AD e del numero di utenti inclusi nell'ambito del provisioning. 
+Hello prima sincronizzazione tra Azure AD e un'app può richiedere ore tooseveral 20 minuti, a seconda delle dimensioni di hello di hello Azure Active directory e il numero di hello degli utenti in ambito per il provisioning. 
 
-Le sincronizzazioni successive a quella iniziale risultano più veloci (entro 10 minuti), poiché il servizio di provisioning archivia i limiti che rappresentano lo stato di entrambi i sistemi dopo la sincronizzazione iniziale, migliorando le prestazioni delle sincronizzazioni successive.
+Le sincronizzazioni successive dopo la sincronizzazione iniziale di hello risultare più veloce (ad esempio all'interno di 10 minuti), come hello provisioning servizio archivia le soglie che rappresentano lo stato di hello di entrambi i sistemi dopo la sincronizzazione iniziale hello, migliorando le prestazioni di sincronizzazioni successive.
 
-## <a name="how-to-check-the-status-of-a-user"></a>Come controllare lo stato di un utente
+## <a name="how-toocheck-hello-status-of-a-user"></a>Come toocheck hello lo stato di un utente
 
-Per visualizzare lo stato di provisioning per un utente selezionato, vedere i log di controllo in Azure AD.
+stato di provisioning hello toosee per un utente selezionato, consultare hello i log di controllo di Azure AD.
 
-I log di controllo di provisioning sono accessibili nella scheda **Azure Active Directory &gt; App aziendali &gt; \[Nome applicazione\] &gt; Log di controllo** del Portale di Azure. Filtrare i log nella categoria **Provisioning account** per visualizzare solo gli eventi di provisioning per l'app specifica. È possibile cercare gli utenti in base all'ID di abbinamento configurato nel mapping degli attributi. 
+Hello provisioning i log di controllo sono accessibili nel portale di Azure in hello hello **Azure Active Directory &gt; le app aziendali &gt; \[nome applicazione\] &gt; log di controllo**scheda. Hello filtro accede hello **Provisioning Account** tooonly categoria vedere hello provisioning gli eventi per tale applicazione. È possibile cercare utenti basati su hello "corrispondenti all'ID" che è stato configurato per tali mapping degli attributi di hello. 
 
-Ad esempio, se è stato configurato il nome dell'entità utente o l'indirizzo di posta elettronica come attributo di abbinamento sul lato Azure AD e l'utente non sottoposto a provisioning presenta un valore "audrey@contoso.com", cercare "audrey@contoso.com" nei log di controllo ed esaminare le voci restituite.
+Ad esempio, se è stato configurato hello "nome dell'entità utente" o "indirizzo di posta elettronica" come hello corrispondenti all'attributo sul lato di hello Azure AD, e non da il provisioning degli utenti hello ha un valore di "audrey@contoso.com", quindi di log di controllo di hello ricerca per"audrey@contoso.com" e quindi esaminare le voci restituite.
 
-I log di controllo di provisioning registrano tutte le operazioni eseguite dal servizio di provisioning, ad esempio:
+Hello provisioning controllo Registra record tutti hello le operazioni eseguite da hello provisioning del servizio, tra cui:
 
 * Esecuzione in Azure AD di query sugli utenti assegnati che rientrano nell'ambito del provisioning
-* Esecuzione nell'app di destinazione di query sull'esistenza di tali utenti
-* Confronto degli oggetti utente tra i sistemi
-* Aggiunta, aggiornamento o disabilitazione dell'account utente nel sistema di destinazione in base al confronto
+* Applicazione di destinazione hello esistenza hello di tali utenti l'esecuzione di query
+* Confronto di oggetti utente hello tra sistema hello
+* Aggiunta, aggiornamento o la disattivazione di account utente di hello nel sistema di destinazione hello in base a confronto hello
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)''
+[Automatizzare Provisioning e Deprovisioning tooSaaS applicazioni con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)'

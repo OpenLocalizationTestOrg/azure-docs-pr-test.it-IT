@@ -1,6 +1,6 @@
 ---
-title: Come utilizzare iOS SDK per App Mobile di Azure
-description: Come utilizzare iOS SDK per App Mobile di Azure
+title: aaaHow tooUse iOS SDK per App mobili di Azure
+description: Come tooUse iOS SDK per App mobili di Azure
 services: app-service\mobile
 documentationcenter: ios
 author: ysxu
@@ -14,31 +14,31 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: yuaxu
-ms.openlocfilehash: 65817208e1b26fb5f9eb56d164f48b44d57dce56
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa299ab3f152bad12d821832fa9fb5495d1fa296
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-ios-client-library-for-azure-mobile-apps"></a>Come usare la libreria client iOS per le app mobili di Azure
+# <a name="how-toouse-ios-client-library-for-azure-mobile-apps"></a>Come tooUse iOS libreria Client per App mobili di Azure
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-Questa guida descrive come eseguire scenari comuni usando il più recente [SDK per iOS per le app per dispositivi mobili di Azure][1]. Se si ha familiarità con le App per dispositivi mobili di Azure, completare innanzitutto [Azure Mobile App Quick Start] per creare un back-end, creare una tabella e scaricare un progetto Xcode iOS preesistente. In questa Guida, l'attenzione è posta sul lato client iOS SDK. Per altre informazioni sull'SDK sul lato server per il back-end, vedere le procedure per l'SDK del server.
+Questa guida illustra tooperform scenari comuni di utilizzo più recenti hello [iOS App mobili di Azure SDK][1]. Nel caso di nuove app per dispositivi mobili tooAzure, completare innanzitutto [avvio rapido di Azure Mobile app] toocreate un back-end, creare una tabella e scaricare un progetto Xcode iOS preesistente. In questa Guida, l'attenzione su hello del client iOS SDK. toolearn ulteriori informazioni sugli hello SDK lato server per hello di back-end, vedere hello Server SDK oggetti.
 
 ## <a name="reference-documentation"></a>Documentazione di riferimento
-La documentazione di riferimento per il client SDK per iOS è disponibile qui: [Riferimento al Client iOS di App per dispositivi mobili di Azure][2].
+Hello documentazione di riferimento per i client iOS hello SDK è disponibile in: [iOS App mobili di Azure Client riferimento][2].
 
 ## <a name="supported-platforms"></a>Piattaforme supportate
-L'SDK di iOS supporta progetti Objective-C, Swift 2.2 e Swift 2.3 per le versioni iOS 8.0 o successive.
+Hello iOS SDK supporta progetti Objective-C, progetti Swift 2.2 e 2.3 Swift progetti per iOS versione 8.0 o versioni successive.
 
-L'autenticazione "flusso server" usa una visualizzazione Web per l'interfaccia utente presentata.  Se il dispositivo non è in grado di presentare un'interfaccia utente con visualizzazione Web, è necessario un altro metodo di autenticazione non incluso nell'ambito del prodotto.  
+l'autenticazione "server-flusso" Hello utilizza WebView per hello presentata l'interfaccia utente.  Se hello dispositivo non è in grado di toopresent una UI WebView, sarà necessario un altro metodo di autenticazione che è di fuori ambito hello del prodotto hello.  
 Questo SDK non è quindi adatto per i dispositivi di tipo controllo o con restrizioni simili.
 
 ## <a name="Setup"></a>Installazione e prerequisiti
-In questa guida si presuppone che siano stati creati un backend e una tabella. In questa guida si presuppone che la tabella abbia lo stesso schema delle tabelle presenti in tali esercitazioni. In questa guida si presuppone inoltre che nel codice, si faccia riferimento a `MicrosoftAzureMobile.framework` e si importi `MicrosoftAzureMobile/MicrosoftAzureMobile.h`.
+In questa guida si presuppone che siano stati creati un backend e una tabella. Questa guida presuppone che la tabella hello con lo stesso schema come tabelle hello in tali esercitazioni. In questa guida si presuppone inoltre che nel codice, si faccia riferimento a `MicrosoftAzureMobile.framework` e si importi `MicrosoftAzureMobile/MicrosoftAzureMobile.h`.
 
 ## <a name="create-client"></a>Procedura: creare Client
-Per accedere a un back-end di applicazioni per dispositivi mobili di Azure nel progetto, creare un `MSClient`. Sostituire `AppUrl` con l'URL dell'app. È possibile lasciare `gatewayURLString` e `applicationKey` vuoti. Se si configura un gateway per l'autenticazione, popolare `gatewayURLString` con l'URL del gateway.
+tooaccess un back-end di App mobili di Azure nel progetto, creare un `MSClient`. Sostituire `AppUrl` con URL app hello. È possibile lasciare `gatewayURLString` e `applicationKey` vuoti. Se si configura un gateway per l'autenticazione, popolare `gatewayURLString` con hello gateway URL.
 
 **Objective-C**:
 
@@ -54,7 +54,7 @@ let client = MSClient(applicationURLString: "AppUrl")
 
 
 ## <a name="table-reference"></a>Procedura: Creare un riferimento alla tabella
-Per l'accesso o l'aggiornamento dei dati, creare un riferimento alla tabella di back-end. Sostituire `TodoItem` con il nome della tabella
+tooaccess o l'aggiornamento dati, creare una tabella di riferimento toohello back-end. Sostituire `TodoItem` con nome hello della tabella
 
 **Objective-C**:
 
@@ -70,7 +70,7 @@ let table = client.tableWithName("TodoItem")
 
 
 ## <a name="querying"></a>Procedura: Eseguire query sui dati
-Per creare una query di database, eseguire una query sull'oggetto `MSTable` . La query seguente ottiene tutti gli elementi in `TodoItem` e registra il testo di ciascun elemento.
+toocreate una query sul database, hello query `MSTable` oggetto. Hello query seguente vengono ottenuti tutti gli elementi di hello in `TodoItem` e registri di hello testo di ogni elemento.
 
 **Objective-C**:
 
@@ -101,16 +101,16 @@ table.readWithCompletion { (result, error) in
 ```
 
 ## <a name="filtering"></a>Procedura: Filtrare i dati restituiti
-Per filtrare i risultati sono disponibili numerose opzioni.
+risultati toofilter, sono disponibili numerose opzioni disponibili.
 
-Per filtrare tramite un predicato, usare `NSPredicate` e `readWithPredicate`. I filtri seguenti hanno restituito i dati per trovare solo gli elementi Todo incompleti.
+toofilter utilizzando un predicato, utilizzare un `NSPredicate` e `readWithPredicate`. esempio Hello Filtra elementi di dati restituiti toofind solo incompleti Todo.
 
 **Objective-C**:
 
 ```
 // Create a predicate that finds items where complete is false
 NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
-// Query the TodoItem table
+// Query hello TodoItem table
 [table readWithPredicate:predicate completion:^(MSQueryResult *result, NSError *error) {
         if(error) {
                 NSLog(@"ERROR %@", error);
@@ -127,7 +127,7 @@ NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
 ```
 // Create a predicate that finds items where complete is false
 let predicate =  NSPredicate(format: "complete == NO")
-// Query the TodoItem table
+// Query hello TodoItem table
 table.readWithPredicate(predicate) { (result, error) in
     if let err = error {
         print("ERROR ", err)
@@ -140,7 +140,7 @@ table.readWithPredicate(predicate) { (result, error) in
 ```
 
 ## <a name="query-object"></a>Procedura: Usare MSQuery
-Per eseguire una query complessa che includa l'ordinamento e il paging, creare un oggetto `MSQuery` , direttamente o tramite un predicato:
+creare una query complessa, incluso l'ordinamento e paging, tooperform un `MSQuery` dell'oggetto, direttamente o tramite un predicato:
 
 **Objective-C**:
 
@@ -159,16 +159,16 @@ let query = table.queryWithPredicate(NSPredicate(format: "complete == NO"))
 `MSQuery` consente di controllare diversi comportamenti di query.
 
 * Specificare l'ordine dei risultati
-* Limitare i campi da restituire
-* Limitare il numero di record da restituire
+* Limite quali campi tooreturn
+* Limitare il numero di record tooreturn
 * Specificare il conteggio totale nella risposta
 * Specificare i parametri della stringa di query personalizzata nella richiesta
 * Applicare funzioni aggiuntive
 
-Eseguire una query `MSQuery` chiamando `readWithCompletion` sull'oggetto.
+Eseguire un `MSQuery` query chiamando `readWithCompletion` sull'oggetto hello.
 
 ## <a name="sorting"></a>Procedura: Ordinare i dati con MSQuery
-Per ordinare i risultati, verrà ora esaminato un esempio. Per ordinare il campo "text" in ordine crescente, quindi "complete" in ordine decrescente, richiamare `MSQuery` nel modo seguente:
+risultati toosort, esaminiamo un esempio. richiamare toosort dal testo' campo' crescente e decrescente 'completato', `MSQuery` come illustrato di seguito:
 
 **Objective-C**:
 
@@ -204,7 +204,7 @@ query.readWithCompletion { (result, error) in
 
 
 ## <a name="selecting"></a><a name="parameters"></a>Procedura: Limitare i campi ed espandere i parametri di query di tipo stringa con MSQuery
-Per limitare i campi da restituire in una query, specificare i nomi dei campi nella proprietà **selectFields** . Questo esempio restituisce solo i campi text e completed:
+toolimit toobe di campi restituiti in una query, specificare nomi hello di campi di hello in hello **selectFields** proprietà. Questo esempio viene restituito solo il testo hello e campi completati:
 
 **Objective-C**:
 
@@ -218,7 +218,7 @@ query.selectFields = @[@"text", @"complete"];
 query.selectFields = ["text", "complete"]
 ```
 
-Per includere parametri di query di tipo stringa aggiuntivi nella richiesta server, poiché ad esempio sono usati da uno script sul lato server personalizzato, è possibile popolare `query.parameters` come segue:
+parametri di stringa di query aggiuntive tooinclude in server hello richiedono (ad esempio, perché li utilizza uno script sul lato server personalizzato), popolare `query.parameters` come illustrato di seguito:
 
 **Objective-C**:
 
@@ -236,17 +236,17 @@ query.parameters = ["myKey1": "value1", "myKey2": "value2"]
 ```
 
 ## <a name="paging"></a>Procedura: Configurare la dimensione di pagina
-Con App per dispositivi mobili di Azure la dimensione di pagina controlla il numero di record che vengono estratti contemporaneamente dalle tabelle di back-end. Una chiamata per eseguire il `pull` dei dati eseguirà il batch sui dati, in base alla dimensione di pagina, fino a quando non ci sono più record da estrarre.
+Con App mobili di Azure, i controlli di dimensioni pagina hello hello numero di record che vengono estratti in un momento dalle tabelle di hello back-end. Mediante una chiamata troppo`pull` dati vengono quindi batch dei dati, in base alle dimensioni di questa pagina, fino a quando non esistono alcun ulteriori toopull record.
 
-È possibile configurare la dimensione di pagina mediante **MSPullSettings** come illustrato di seguito. La dimensione di pagina predefinita è 50 e l'esempio seguente la cambia in 3.
+È possibile tooconfigure una dimensione di pagina utilizzando **MSPullSettings** come illustrato di seguito. dimensioni di pagina predefinite Hello sono 50 ed esempio hello seguente modifica too3.
 
-È possibile configurare una dimensione di pagina diversa per finalità di prestazioni. Se si dispone di un numero elevato di record di dati di piccole dimensioni, una dimensione di pagina elevata riduce il numero di round trip al server.
+È possibile configurare una dimensione di pagina diversa per finalità di prestazioni. Se si dispone di un numero elevato di record di dati di piccole dimensioni, dimensioni pagina elevata riducono il numero di hello di andata e ritorno di server.
 
-Questa impostazione controlla la dimensione di pagina solo sul lato client. Se il client richiede una pagina più grande di quella supportata dal back-end di App per dispositivi mobili, la dimensione di pagina è limitata al massimo valore che il back-end può supportare.
+Questa impostazione controlla solo hello dimensione di paging sul lato client hello. Se hello client richiede una dimensione di pagina maggiore rispetto a supportato dal back-end App per dispositivi mobili hello, dimensioni della pagina hello limitate a back-end hello massimo hello è toosupport configurato.
 
-Questa impostazione è inoltre il *numero* dei record dei dati, e non la *dimensione in byte*.
+Questa impostazione è anche hello *numero* dei record di dati non hello *dimensioni in byte*.
 
-Se si aumenta la dimensione di pagina del client, è necessario aumentare anche la dimensione di pagina sul server. Per la procedura da eseguire, vedere ["Procedura: Modificare le dimensioni di pagina delle tabelle"](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Se si aumentano le dimensioni di pagina client hello, è anche necessario aumentare la dimensione di pagina hello sul server hello. Vedere ["procedura: ridimensionare la paginazione tabella hello"](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) per hello passaggi toodo questo.
 
 **Objective-C**:
 
@@ -273,11 +273,11 @@ table.pullWithQuery(query, queryId:nil, settings: pullSettings) { (error) in
 ```
 
 ## <a name="inserting"></a>Procedura: Inserire dati
-Per inserire una nuova riga di tabella, creare un elemento `NSDictionary` e richiamare `table insert`. Se [Schema dinamico] è abilitato, il back-end per dispositivi mobili del Servizio app di Azure genera automaticamente nuove colonne in base a `NSDictionary`.
+creare una nuova riga di tabella, tooinsert un `NSDictionary` e richiamare `table insert`. Se [lo Schema dinamico] è abilitata, back-end per dispositivi mobili di Azure App Service hello generate automaticamente nuove colonne in base a hello `NSDictionary`.
 
-Se non viene specificato il valore `id` , il back-end genera automaticamente un nuovo ID univoco. Specificare il proprio `id` per usare indirizzi e-mail, nomi utente o valori personalizzati come ID. La specifica del proprio ID può semplificare l'esecuzione di join e la logica dei database aziendali.
+Se `id` non viene fornito, back-end hello genera automaticamente un nuovo ID univoco. Fornire una propria `id` toouse indirizzi di posta elettronica, i nomi utente, valori personalizzati come ID. La specifica del proprio ID può semplificare l'esecuzione di join e la logica dei database aziendali.
 
-`result` contiene il nuovo elemento inserito. A seconda della logica del server, può includere dati aggiuntivi o modificati rispetto a quelli passati al server.
+Hello `result` contiene hello nuovo elemento è stato inserito. A seconda della logica di server, i dati modificati rispetto toowhat è stato passato toohello server o potrebbe disporre di ulteriori.
 
 **Objective-C**:
 
@@ -306,7 +306,7 @@ table.insert(newItem) { (result, error) in
 ```
 
 ## <a name="modifying"></a>Procedura: Modificare dati
-Per aggiornare una riga esistente, modificare un elemento e chiamare `update`:
+tooupdate una riga esistente, modificare un elemento e chiamare `update`:
 
 **Objective-C**:
 
@@ -337,7 +337,7 @@ if let newItem = oldItem.mutableCopy() as? NSMutableDictionary {
 }
 ```
 
-In alternativa, fornire l'ID di riga e il campo aggiornato:
+In alternativa, fornire l'ID di riga hello e campo hello aggiornato:
 
 **Objective-C**:
 
@@ -363,10 +363,10 @@ table.update(["id": "custom-id", "text": "my EDITED item"]) { (result, error) in
 }
 ```
 
-Per le operazioni di aggiornamento è necessario che sia impostato almeno l'attributo `id` .
+Come minimo, hello `id` attributo deve essere impostato quando si eseguono aggiornamenti.
 
 ## <a name="deleting"></a>Procedura: Eliminare dati
-Per eliminare un elemento, richiamare `delete` con l'elemento:
+toodelete un elemento, richiamare `delete` con elemento hello:
 
 **Objective-C**:
 
@@ -418,12 +418,12 @@ table.deleteWithId("37BBF396-11F0-4B39-85C8-B319C729AF6D") { (itemId, error) in
 }
 ```
 
-Per le operazioni di eliminazione, è necessario che sia impostato almeno l'attributo `id` .
+Come minimo, hello `id` attributo deve essere impostato quando si elimina apportato.
 
 ## <a name="customapi"></a>Procedura: Chiamare un'API personalizzata
-Con un'API personalizzata è possibile esporre qualsiasi funzionalità di back-end. Non occorre eseguire il mapping a un'operazione su tabella. In questo modo, non solo si ottiene maggiore controllo sulla messaggistica, ma è anche possibile leggere o impostare le intestazioni e modificare il formato del corpo della risposta. Per informazioni su come creare un'API personalizzata nel back-end, leggere [API personalizzate](app-service-mobile-node-backend-how-to-use-server-sdk.md#work-easy-apis)
+Con un'API personalizzata è possibile esporre qualsiasi funzionalità di back-end. Non ha toomap tooa operazione di tabella. Non solo si ottengono maggiore controllo sulla messaggistica, è anche possibile lettura/set di intestazioni e cambiare formato del corpo della risposta hello. modalità di lettura toocreate un'API personalizzata nel back-end hello, toolearn [API personalizzate](app-service-mobile-node-backend-how-to-use-server-sdk.md#work-easy-apis)
 
-Per chiamare un'API personalizzata, chiamare `MSClient.invokeAPI`. Il contenuto della richiesta e della risposta è in formato JSON. Per utilizzare altri tipi di supporto, [usare l'altro overload di `invokeAPI`][5].  Per eseguire una richiesta `GET` invece di una richiesta `POST`, impostare il parametro `HTTPMethod` su `"GET"` e il parametro `body` su `nil` (dal momento che le richieste GET non hanno corpi dei messaggi). Se l'API personalizzata supporta altri verbi HTTP, modificare `HTTPMethod` in modo appropriato.
+chiamare un'API personalizzata, toocall `MSClient.invokeAPI`. richiesta di Hello e risposta contenuto vengono considerati come JSON. toouse altri tipi di supporti, [hello di utilizzare altri overload di `invokeAPI` ] [ 5].  toomake un `GET` richiesta invece di un `POST` richiesta, il parametro set `HTTPMethod` troppo`"GET"` e parametro `body` troppo`nil` (dal momento che le richieste GET non dispone dei corpi dei messaggi.) Se l'API personalizzata supporta altri verbi HTTP, modificare `HTTPMethod` in modo appropriato.
 
 **Objective-C**:
 
@@ -460,8 +460,8 @@ client.invokeAPI("sendEmail",
         }
 ```
 
-## <a name="templates"></a>Procedura: registrare modelli push per inviare notifiche multipiattaforma
-Per registrare i modelli, passare modelli con il metodo **client.push registerDeviceToken** nell'app client.
+## <a name="templates"></a>Procedura: registrazione delle notifiche multipiattaforma toosend push modelli
+modelli tooregister, passare modelli con il **client.push registerDeviceToken** metodo nell'applicazione client.
 
 **Objective-C**:
 
@@ -483,7 +483,7 @@ Per registrare i modelli, passare modelli con il metodo **client.push registerDe
     })
 ```
 
-I modelli sono di tipo NSDictionary e possono contenere più modelli nel formato seguente:
+I modelli sono di tipo NSDictionary e possono contenere più modelli di hello seguente formato:
 
 **Objective-C**:
 
@@ -497,12 +497,12 @@ NSDictionary *iOSTemplate = @{ @"templateName": @{ @"body": @{ @"aps": @{ @"aler
 let iOSTemplate = ["templateName": ["body": ["aps": ["alert": "$(message)"]]]]
 ```
 
-Tutti i tag vengono rimossi dalla richiesta per motivi di sicurezza.  Per aggiungere tag alle istallazione o ai modelli all'interno delle istallazioni, vedere [Usare l'SDK del server back-end .NET per App per dispositivi mobili di Azure][4].  Per inviare notifiche tramite questi modelli registrati, usare le [API di Hub di notifica][3].
+Tutti i tag vengono rimossi dalla richiesta di hello per la sicurezza.  i tag tooadd tooinstallations o modelli all'interno di installazioni, vedere [funziona con server di back-end .NET hello SDK per App mobili di Azure][4].  funzionamento delle notifiche toosend utilizzando questi modelli, registrati con [API degli hub di notifica][3].
 
 ## <a name="errors"></a>Procedura: Gestire gli errori
-Quando viene eseguita una chiamata a un back-end per dispositivi mobili del Servizio app di Azure, il blocco di completamento contiene un parametro `NSError` . Quando si verifica un errore, il parametro sarà diverso da Nil. In questo caso, è necessario verificare il parametro nel codice e gestire l'errore nel modo appropriato, come dimostrato nei frammenti di codice precedenti.
+Quando si chiama un back-end mobile di servizio App di Azure, il blocco di completamento hello contiene un `NSError` parametro. Quando si verifica un errore, il parametro sarà diverso da Nil. Nel codice, si deve controllare questo parametro e gestire l'errore hello secondo le esigenze, come dimostrato nel precedente frammenti di codice hello.
 
-Il file [`<WindowsAzureMobileServices/MSError.h>`][6] definisce le costanti `MSErrorResponseKey`, `MSErrorRequestKey` e `MSErrorServerItemKey`. Per ottenere più dati relativi all'errore:
+file Hello [ `<WindowsAzureMobileServices/MSError.h>` ] [ 6] definisce le costanti hello `MSErrorResponseKey`, `MSErrorRequestKey`, e `MSErrorServerItemKey`. tooget toohello errore relativo a più dati:
 
 **Objective-C**:
 
@@ -516,7 +516,7 @@ NSDictionary *serverItem = [error.userInfo objectForKey:MSErrorServerItemKey];
 let serverItem = error.userInfo[MSErrorServerItemKey]
 ```
 
-Il file definisce anche le costanti per ogni codice di errore:
+Inoltre, il file hello definisce le costanti per ogni codice di errore:
 
 **Objective-C**:
 
@@ -530,26 +530,26 @@ if (error.code == MSErrorPreconditionFailed) {
 if (error.code == MSErrorPreconditionFailed) {
 ```
 
-## <a name="adal"></a>Procedura: Autenticare gli utenti con Active Directory Authentication Library
-È possibile usare Active Directory Authentication Library (ADAL) per far accedere gli utenti all'applicazione tramite Azure Active Directory. È preferibile usare l'autenticazione del flusso client tramite un SDK del provider di identità anziché il metodo `loginWithProvider:completion:` .  L'autenticazione del flusso client garantisce un'esperienza utente più naturale e consente una maggiore personalizzazione.
+## <a name="adal"></a>Procedura: autenticare gli utenti con Active Directory Authentication Library hello
+È possibile utilizzare gli utenti toosign di Active Directory Authentication Library (ADAL) hello in un'applicazione tramite Azure Active Directory. L'autenticazione di flusso client utilizzando un provider di identità SDK è preferibile toousing hello `loginWithProvider:completion:` metodo.  L'autenticazione del flusso client garantisce un'esperienza utente più naturale e consente una maggiore personalizzazione.
 
-1. Configurare il back-end dell'app per dispositivi mobili per l'accesso ad Azure Active Directory seguendo l'esercitazione [Come configurare un'applicazione del servizio app per usare l'account di accesso di Azure Active Directory][7]. Assicurarsi di completare il passaggio facoltativo di registrazione di un'applicazione client nativa. Per iOS è consigliabile che l'URI di reindirizzamento sia nel formato `<app-scheme>://<bundle-id>`. Per altre informazioni, vedere [Guida introduttiva di ADAL iOS][8].
-2. Installare ADAL usando Cocoapods. Modificare il podfile includendo la definizione seguente e sostituendo **YOUR-PROJECT** con il nome del progetto Xcode:
+1. Configurare il back-end dell'app mobile per l'accesso AAD hello seguente [come tooconfigure App del servizio per l'account di accesso Active Directory] [ 7] esercitazione. Verificare che passaggio facoltativo in hello toocomplete di registrazione di un'applicazione client nativa. Per iOS, è consigliabile che hello URI di reindirizzamento del modulo hello `<app-scheme>://<bundle-id>`. Per ulteriori informazioni, vedere hello [delle Guide rapide iOS ADAL][8].
+2. Installare ADAL usando Cocoapods. Modificare il hello tooinclude Podfile seguente definizione, la sostituzione **del progetto** con nome hello del progetto Xcode:
 
         source 'https://github.com/CocoaPods/Specs.git'
         link_with ['YOUR-PROJECT']
         xcodeproj 'YOUR-PROJECT'
 
-   e il Pod:
+   e hello Pod:
 
         pod 'ADALiOS'
-3. Nel terminale eseguire `pod install` dalla directory contenente il progetto e quindi aprire l'area di lavoro di Xcode generata (non il progetto).
-4. Aggiungere il codice seguente all'applicazione, in base al linguaggio usato. In ogni esempio eseguire queste sostituzioni:
+3. Utilizzando hello Terminal, eseguire `pod install` dalla directory hello contenente il progetto e quindi aprire l'area di lavoro Xcode hello generato (non il progetto hello).
+4. Aggiungere hello applicazione tooyour di codice seguente, in base toohello lingua in uso. In ogni esempio eseguire queste sostituzioni:
 
-   * Sostituire **INSERT-AUTHORITY-HERE** con il nome del tenant in cui è stato eseguito il provisioning dell'applicazione. Il formato deve essere https://login.microsoftonline.com/contoso.onmicrosoft.com. È possibile copiare questo valore dalla scheda Dominio di Azure Active Directory nel [portale di Azure classico].
-   * Sostituire **INSERT-RESOURCE-ID-HERE** con l'ID client per il back-end dell'app per dispositivi mobili. L'ID client è disponibile nella scheda **Avanzate** in **Impostazioni di Azure Active Directory** nel portale.
-   * Sostituire **INSERT-CLIENT-ID-HERE** con l'ID client copiato dall'applicazione client nativa.
-   * Sostituire **INSERT-REDIRECT-URI-HERE** con l'endpoint */.auth/login/done* del sito, usando lo schema HTTPS. Questo valore deve essere simile a *https://contoso.azurewebsites.net/.auth/login/done*.
+   * Sostituire **INSERT-autorità-qui** con nome hello del tenant di hello in cui è stato eseguito il provisioning dell'applicazione. Il formato deve essere https://login.microsoftonline.com/contoso.onmicrosoft.com. Questo valore può essere copiato da scheda dominio hello in Azure Active Directory in hello [portale di Azure classico].
+   * Sostituire **INSERT-RESOURCE-ID-qui** con hello client ID per il back-end dell'app per dispositivi mobili. È possibile ottenere l'ID client da hello **avanzate** scheda **impostazioni di Azure Active Directory** nel portale di hello.
+   * Sostituire **INSERT-CLIENT-ID-qui** con ID client hello copiato dall'applicazione client nativa hello.
+   * Sostituire **INSERT-REDIRECT-URI-qui** con il sito */.auth/login/done* endpoint, utilizzando lo schema HTTPS hello. Questo valore dovrebbe essere simile troppo*https://contoso.azurewebsites.net/.auth/login/done*.
 
 **Objective-C**:
 
@@ -588,7 +588,7 @@ if (error.code == MSErrorPreconditionFailed) {
 
 **Swift**:
 
-    // add the following imports to your bridging header:
+    // add hello following imports tooyour bridging header:
     //        #import <ADALiOS/ADAuthenticationContext.h>
     //        #import <ADALiOS/ADAuthenticationSettings.h>
 
@@ -612,14 +612,14 @@ if (error.code == MSErrorPreconditionFailed) {
             }
     }
 
-## <a name="facebook-sdk"></a>Procedura: Autenticare gli utenti con Facebook SDK for iOS
-È possibile usare Facebook SDK for iOS per consentire l'accesso degli utenti all'applicazione tramite Facebook.  È preferibile usare l'autenticazione del flusso client all'uso del metodo `loginWithProvider:completion:` .  L'autenticazione del flusso client garantisce un'esperienza utente più naturale e consente una maggiore personalizzazione.
+## <a name="facebook-sdk"></a>Procedura: autenticare gli utenti con hello SDK Facebook per iOS
+È possibile utilizzare hello SDK Facebook per gli utenti di iOS toosign nell'applicazione con Facebook.  Mediante l'autenticazione di flusso un client è preferibile toousing hello `loginWithProvider:completion:` metodo.  l'autenticazione del client del flusso di Hello fornisce un'idea dell'esperienza utente più nativa e consente di personalizzare ulteriormente.
 
-1. Configurare il back-end dell'app per dispositivi mobili per l'accesso con l'account Facebook seguendo l'esercitazione [Come configurare un'applicazione del servizio App per usare l'account di accesso di Facebook][9].
-2. Installare Facebook SDK for iOS secondo le indicazioni della documentazione [Facebook SDK for iOS - Getting Started][10] (Facebook SDK for iOS: guida introduttiva). Anziché creare un'app, è possibile aggiungere la piattaforma iOS alla procedura di registrazione esistente.
-3. La documentazione di Facebook include codice Objective-C nel delegato dell'app. Se si usa **Swift**, è possibile utilizzare le seguenti traduzioni per AppDelegate.swift:
+1. Configurare il back-end dell'app mobile per l'accesso Facebook seguendo il [come tooconfigure App del servizio per l'account di accesso Facebook] [ 9] esercitazione.
+2. Installare hello SDK Facebook per iOS da hello seguente [SDK Facebook per iOS - Introduzione] [ 10] documentazione. Anziché creare un'app, è possibile aggiungere una registrazione esistente tooyour piattaforma iOS hello.
+3. Documentazione di Facebook include codice Objective-C in hello App delegato. Se si utilizza **Swift**, è possibile utilizzare hello seguendo le traduzioni per appdelegate. SWIFT:
 
-        // Add the following import to your bridging header:
+        // Add hello following import tooyour bridging header:
         //        #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
         func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
@@ -633,8 +633,8 @@ if (error.code == MSErrorPreconditionFailed) {
             // Add any custom logic here.
             return handled
         }
-4. Oltre ad aggiungere `FBSDKCoreKit.framework` al progetto, aggiungere nello stesso modo anche un riferimento a `FBSDKLoginKit.framework`.
-5. Aggiungere il codice seguente all'applicazione, in base al linguaggio usato.
+4. In aggiunta tooadding `FBSDKCoreKit.framework` tooyour del progetto, aggiungere anche un riferimento troppo`FBSDKLoginKit.framework` in hello allo stesso modo.
+5. Aggiungere hello applicazione tooyour di codice seguente, in base toohello lingua in uso.
 
 **Objective-C**:
 
@@ -664,7 +664,7 @@ if (error.code == MSErrorPreconditionFailed) {
 
 **Swift**:
 
-    // Add the following imports to your bridging header:
+    // Add hello following imports tooyour bridging header:
     //        #import <FBSDKLoginKit/FBSDKLoginKit.h>
     //        #import <FBSDKCoreKit/FBSDKAccessToken.h>
 
@@ -685,17 +685,17 @@ if (error.code == MSErrorPreconditionFailed) {
     }
 
 ## <a name="twitter-fabric"></a>Procedura: Autenticare gli utenti con Twitter Fabric for iOS
-È possibile usare Fabric for iOS per consentire l'accesso degli utenti all'applicazione tramite Twitter. L'autenticazione del flusso client è preferibile all'uso del metodo `loginWithProvider:completion:` , perché garantisce un'esperienza utente più naturale e consente una maggiore personalizzazione.
+È possibile utilizzare l'infrastruttura per gli utenti di iOS toosign nell'applicazione in uso tramite Twitter. L'autenticazione del client del flusso è preferibile toousing hello `loginWithProvider:completion:` del metodo, fornisce un'idea dell'esperienza utente più nativa e consente un'ulteriore personalizzazione.
 
-1. Configurare il back-end dell'app per dispositivi mobili per l'accesso con l'account Twitter seguendo l'esercitazione [Come configurare un'applicazione del servizio app per usare l'account di accesso di Twitter](app-service-mobile-how-to-configure-twitter-authentication.md) .
-2. Aggiungere Fabric al progetto seguendo le indicazioni della documentazione [Fabric for iOS - Getting Started] (Fabric for iOS: guida introduttiva) e configurando TwitterKit.
+1. Configurare il back-end dell'app mobile per l'accesso Twitter seguente hello [come tooconfigure App del servizio per l'account di accesso Twitter](app-service-mobile-how-to-configure-twitter-authentication.md) esercitazione.
+2. Per aggiungere il progetto di tooyour dell'infrastruttura di hello seguente [dell'infrastruttura per iOS - Introduzione] documentazione e l'impostazione TwitterKit.
 
    > [!NOTE]
-   > Per impostazione predefinita, Fabric crea automaticamente un'applicazione Twitter. È possibile evitare di creare un'applicazione registrando la chiave utente e il segreto utente creati in precedenza tramite i frammenti di codice seguenti.    In alternativa, è possibile sostituire i valori relativi alla chiave utente e al segreto utente forniti al servizio app con i valori visualizzati nel [dashboard di Fabric]. Se si sceglie questa opzione, assicurarsi di impostare l'URL di callback su un valore segnaposto, ad esempio `https://<yoursitename>.azurewebsites.net/.auth/login/twitter/callback`.
+   > Per impostazione predefinita, Fabric crea automaticamente un'applicazione Twitter. È possibile evitare la creazione di un'applicazione registrando hello chiave Consumer e segreto del cliente è stato creato in precedenza mediante hello frammenti di codice seguente.    In alternativa, è possibile sostituire la chiave Consumer hello e vedere la sezione valori segreto del cliente di fornire i valori da tooApp servizio con hello in hello [Dashboard infrastruttura]. Se si sceglie questa opzione, essere certi tooset hello callback URL tooa valore segnaposto, ad esempio `https://<yoursitename>.azurewebsites.net/.auth/login/twitter/callback`.
    >
    >
 
-    Se si sceglie di usare i segreti creati in precedenza, aggiungere il codice seguente al delegato dell'app:
+    Se si sceglie toouse segreti hello creato in precedenza, è possibile aggiungere hello tooyour codice delegato App seguenti:
 
     **Objective-C**:
 
@@ -721,7 +721,7 @@ if (error.code == MSErrorPreconditionFailed) {
             // Add any custom logic here.
             return true
         }
-3. Aggiungere il codice seguente all'applicazione, in base al linguaggio usato.
+3. Aggiungere hello applicazione tooyour di codice seguente, in base toohello lingua in uso.
 
 **Objective-C**:
 
@@ -758,12 +758,12 @@ if (error.code == MSErrorPreconditionFailed) {
         }
     }
 
-## <a name="google-sdk"></a>Procedura: Autenticare gli utenti con Google Sign-In SDK for iOS
-È possibile usare Google Sign-In SDK for iOS per consentire l'accesso degli utenti all'applicazione tramite un account Google.  Google ha annunciato recentemente modifiche ai criteri di sicurezza di OAuth.  Queste modifiche apportate ai criteri richiederanno l'uso di Google SDK in futuro.
+## <a name="google-sdk"></a>Procedura: autenticare gli utenti con hello Google Accedi SDK per iOS
+È possibile utilizzare hello Google Accedi SDK per gli utenti di iOS toosign nell'applicazione utilizzando un account di Google.  Google ha recentemente annunciato modifiche tootheir OAuth i criteri di sicurezza.  Modifiche apportate ai criteri richiederà utilizzare hello del SDK di Google in hello future.
 
-1. Configurare il back-end dell'app per dispositivi mobili per l'accesso con l'account Google seguendo l'esercitazione [Come configurare un'applicazione del servizio app per usare l'account di accesso di Google](app-service-mobile-how-to-configure-google-authentication.md) .
-2. Installare Google SDK for iOS seguendo le istruzioni nel documento [Start integrating Google Sign-In into your iOS app](https://developers.google.com/identity/sign-in/ios/start-integrating) (Iniziare a integrare l'accesso di Google nell'app iOS). È possibile ignorare la sezione relativa all'autenticazione con un server di back-end.
-3. Aggiungere quanto segue al metodo `signIn:didSignInForUser:withError:` di delegato, a seconda del linguaggio usato.
+1. Configurare il back-end dell'app mobile per l'accesso Google hello seguente [come tooconfigure App del servizio per l'account di accesso Google](app-service-mobile-how-to-configure-google-authentication.md) esercitazione.
+2. Installare hello Google SDK per iOS da hello seguente [Sign-In Google per iOS - avviare l'integrazione di](https://developers.google.com/identity/sign-in/ios/start-integrating) documentazione. È possibile ignorare una sezione "Eseguire l'autenticazione con un Server back-end" hello.
+3. Aggiungere hello seguenti del delegato tooyour `signIn:didSignInForUser:withError:` (metodo), in base toohello lingua in uso.
 
 **Objective-C**:
 
@@ -783,7 +783,7 @@ if (error.code == MSErrorPreconditionFailed) {
             // ...
         }
 
-1. Aggiungere anche il codice seguente a `application:didFinishLaunchingWithOptions:` nel delegato dell'app, sostituendo "SERVER_CLIENT_ID" con lo stesso ID usato per configurare il servizio app nel passaggio 1.
+1. Assicurarsi di aggiungere anche hello seguente troppo`application:didFinishLaunchingWithOptions:` nell'app, delegato, sostituendo "SERVER_CLIENT_ID" con hello ID che è stato utilizzato tooconfigure servizio App nel passaggio 1.
 
 **Objective-C**:
 
@@ -794,7 +794,7 @@ if (error.code == MSErrorPreconditionFailed) {
         GIDSignIn.sharedInstance().serverClientID = "SERVER_CLIENT_ID"
 
 
-1. Aggiungere il codice seguente all'applicazione in una classe UIViewController che implementi il protocollo `GIDSignInUIDelegate` , in base al linguaggio usato.  L'utente viene disconnesso prima di accedere nuovamente e anche se non è necessario immettere le credenziali una seconda volta, verrà visualizzata una finestra di dialogo di consenso.  Chiamare questo metodo solo quando il token della sessione è scaduto.
+1. Aggiungere hello seguito codice tooyour applicazione in un UIViewController che implementa hello `GIDSignInUIDelegate` protocollo, in base toohello lingua in uso.  È stato disconnesso prima da firmare nuovamente e anche se non è necessario tooenter le credenziali di nuovo, viene visualizzato una finestra di dialogo di consenso.  Chiamare questo metodo solo quando il token di sessione hello è scaduto.
 
    **Objective-C**:
 
@@ -821,14 +821,14 @@ if (error.code == MSErrorPreconditionFailed) {
 [What is Mobile Services]: #what-is
 [Concepts]: #concepts
 [Setup and Prerequisites]: #Setup
-[How to: Create the Mobile Services client]: #create-client
+[How to: Create hello Mobile Services client]: #create-client
 [How to: Create a table reference]: #table-reference
 [How to: Query data from a mobile service]: #querying
 [Filter returned data]: #filtering
 [Sort returned data]: #sorting
 [Return data in pages]: #paging
 [Select specific columns]: #selecting
-[How to: Bind data to the user interface]: #binding
+[How to: Bind data toohello user interface]: #binding
 [How to: Insert data into a mobile service]: #inserting
 [How to: Modify data in a mobile service]: #modifying
 [How to: Authenticate users]: #authentication
@@ -836,7 +836,7 @@ if (error.code == MSErrorPreconditionFailed) {
 [How to: Upload images and large files]: #blobs
 [How to: Handle errors]: #errors
 [How to: Design unit tests]: #unit-testing
-[How to: Customize the client]: #customizing
+[How to: Customize hello client]: #customizing
 [Customize request headers]: #custom-headers
 [Customize data type serialization]: #custom-serialization
 [Next Steps]: #next-steps
@@ -845,9 +845,9 @@ if (error.code == MSErrorPreconditionFailed) {
 <!-- Images. -->
 
 <!-- URLs. -->
-[Azure Mobile App Quick Start]: app-service-mobile-ios-get-started.md
+[avvio rapido di Azure Mobile app]: app-service-mobile-ios-get-started.md
 
-[Add Mobile Services to Existing App]: /develop/mobile/tutorials/get-started-data
+[Add Mobile Services tooExisting App]: /develop/mobile/tutorials/get-started-data
 [Get started with Mobile Services]: /develop/mobile/tutorials/get-started-ios
 [Validate and modify data in Mobile Services by using server scripts]: /develop/mobile/tutorials/validate-modify-and-augment-data-ios
 [Mobile Services SDK]: https://go.microsoft.com/fwLink/p/?LinkID=266533
@@ -858,17 +858,17 @@ if (error.code == MSErrorPreconditionFailed) {
 [Live Connect SDK]: http://go.microsoft.com/fwlink/p/?LinkId=301960
 [Permissions]: http://msdn.microsoft.com/library/windowsazure/jj193161.aspx
 [Service-side Authorization]: mobile-services-javascript-backend-service-side-authorization.md
-[Use scripts to authorize users]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
-[Schema dinamico]: http://go.microsoft.com/fwlink/p/?LinkId=296271
+[Use scripts tooauthorize users]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
+[lo Schema dinamico]: http://go.microsoft.com/fwlink/p/?LinkId=296271
 [How to: access custom parameters]: /develop/mobile/how-to-guides/work-with-server-scripts#access-headers
 [Create a table]: http://msdn.microsoft.com/library/windowsazure/jj193162.aspx
 [NSDictionary object]: http://go.microsoft.com/fwlink/p/?LinkId=301965
 [ASCII control codes C0 and C1]: http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set
-[CLI to manage Mobile Services tables]: /cli/azure/get-started-with-az-cli2
+[CLI toomanage Mobile Services tables]: /cli/azure/get-started-with-az-cli2
 [Conflict-Handler]: mobile-services-ios-handling-conflicts-offline-data.md#add-conflict-handling
 
-[dashboard di Fabric]: https://www.fabric.io/home
-[Fabric for iOS - Getting Started]: https://docs.fabric.io/ios/fabric/getting-started.html
+[Dashboard infrastruttura]: https://www.fabric.io/home
+[dell'infrastruttura per iOS - Introduzione]: https://docs.fabric.io/ios/fabric/getting-started.html
 [1]: https://github.com/Azure/azure-mobile-apps-ios-client/blob/master/README.md#ios-client-sdk
 [2]: http://azure.github.io/azure-mobile-apps-ios-client/
 [3]: https://msdn.microsoft.com/library/azure/dn495101.aspx

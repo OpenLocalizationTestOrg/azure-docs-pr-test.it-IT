@@ -1,6 +1,6 @@
 ---
-title: Modificare i contenuti della pagina nel portale per sviluppatori in Gestione API di Azure | Microsoft Docs
-description: Informazioni su come modificare i contenuti di una pagina nel portale per sviluppatori in Gestione API di Azure.
+title: contenuto della pagina aaaModify nel portale per sviluppatori hello in Gestione API di Azure | Documenti Microsoft
+description: Informazioni su come contenuto della pagina tooedit nel portale per sviluppatori hello in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: antonba
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/09/2017
 ms.author: antonba
-ms.openlocfilehash: 708c803c36c182ed90e04731b12d4ade00ae7ffb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fd5a854e900d9512518643e593b1b59a0952621f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="modify-the-content-and-layout-of-pages-on-the-developer-portal-in-azure-api-management"></a>Modificare il contenuto e il layout delle pagine nel portale per sviluppatori in Gestione API di Azure
-Per personalizzare il portale per sviluppatori in Gestione API di Azure ci sono tre modalità principali:
+# <a name="modify-hello-content-and-layout-of-pages-on-hello-developer-portal-in-azure-api-management"></a>Modificare il contenuto di hello e layout delle pagine del portale per sviluppatori hello in Gestione API di Azure
+In Gestione API di Azure sono disponibili tre modi principali toocustomize hello portale:
 
-* [Modificare il contenuto di pagine statiche e gli elementi di layout di pagina][modify-content-layout] (descritto in questa guida)
-* [Aggiornare gli stili usati per gli elementi della pagina nel portale per sviluppatori][customize-styles]
-* [Modificare i modelli usati per le pagine generate dal portale][portal-templates] (ad esempio documenti API, prodotti, autenticazione utente e così via)
+* [Modificare il contenuto di hello di pagine statiche e gli elementi di layout di pagina] [ modify-content-layout] (descritto in questa Guida)
+* [Aggiornare gli stili di hello in portale per sviluppatori hello vengono utilizzati per gli elementi di pagina][customize-styles]
+* [Modificare modelli di hello utilizzati per le pagine generate dal portale hello] [ portal-templates] (ad esempio documenti di API, prodotti, l'autenticazione utente e così via)
 
-## <a name="page-structure"> </a>Struttura delle pagine del portale per sviluppatori
+## <a name="page-structure"></a>Struttura delle pagine del portale per sviluppatori
 
-Il portale per sviluppatori è basato su un sistema di gestione dei contenuti. Il layout delle pagine viene creato in base al set di elementi di pagine di piccole dimensioni noto come widget:
+portale per sviluppatori Hello è basato su un sistema di gestione dei contenuti. layout di Hello di ogni pagina si basa sul set di elementi di piccole dimensioni pagina widget:
 
 ![Struttura della pagina del portale per sviluppatori][api-management-customization-widget-structure]
 
 Tutti i widget sono modificabili. 
-* I contenuti principali specifici per ogni singola pagina si trovano nel widget "Contenuto". La modifica di una pagina comporta la modifica del contenuto di questo widget.
-* Tutti gli elementi di layout della pagina sono contenuti negli altri widget. Le modifiche apportate a questi widget verranno applicate a tutte le pagine. Si farà riferimento a questi con il termine "widget di layout".
+* pagina singoli Hello core contenuto tooeach specifico si trovano nel widget "Contenuto" hello. Modifica di una pagina, significa che la modifica hello contenuto di questo widget.
+* Tutti gli elementi di layout di pagina sono contenuti con i widget di hello rimanenti. Le modifiche apportate widget toothese applicherà tooall pagine. Saranno tooas cui "widget layout".
 
-Nella modifica quotidiana di una pagina in genere viene modificato solo il widget Contenuto che avrà un contenuto diverso per ogni pagina.
+Nella pagina quotidiane solo una modifica in genere modifica i widget contenuto hello che conterrà un contenuto diverso per ogni pagina.
 
-## <a name="modify-layout-widget"> </a>Modifica dei contenuti di un widget di layout
+## <a name="modify-layout-widget"></a>Modifica hello contenuto di un widget di layout
 
-È possibile modificare il contenuto nel portale per sviluppatori tramite il portale di pubblicazione, accessibile tramite il Portale di Azure. Per accedervi, fare clic su **Publisher portal** (Portale di pubblicazione) nella barra degli strumenti del servizio dell'istanza di Gestione API.
+Viene modificato il contenuto all'interno di portale per sviluppatori hello tramite portale di pubblicazione hello accessibile dal portale di Azure hello. tooreach, fare clic su **portale di pubblicazione** dalla barra degli strumenti del servizio hello dell'istanza di gestione API.
 
 ![Portale di pubblicazione][api-management-management-console]
 
-Per modificare i contenuti del widget, fare clic su **Widget** dal menu **Portale per sviluppatori** a sinistra. In questo esempio verranno modificati i contenuti del widget Intestazione. Selezionare il widget **Intestazione** dall'elenco.
+Fare clic su contenuto hello tooedit di tale widget, **widget** da hello **portale per sviluppatori** menu di sinistra hello. Per questo esempio consente di modificare il contenuto di hello del widget intestazione hello. Seleziona hello **intestazione** widget dall'elenco di hello.
 
 ![Widget Intestazione][api-management-widgets-header]
 
-I contenuti dell'intestazione sono modificabili dal campo **Corpo** . Modificare il testo come desiderato e quindi fare clic su **Salva** nella parte inferiore della pagina.
+contenuto di Hello dell'intestazione hello può essere modificata da in hello **corpo** campo. Modificare il testo hello come desiderato e quindi fare clic su **salvare** nella parte inferiore di hello della pagina hello.
 
-A questo punto, la nuova intestazione dovrebbe essere visualizzata in ogni pagina del portale per sviluppatori.
+Ora è necessario che la nuova intestazione hello in grado di toosee in ogni pagina portale per sviluppatori hello.
 
-> Per aprire il **portale per sviluppatori** dal portale di pubblicazione, fare clic sull'opzione corrispondente sulla barra superiore.
+> portale per sviluppatori di hello tooopen mentre nel portale di pubblicazione hello, fare clic su **portale per sviluppatori** nella barra superiore hello.
 > 
 > 
 
-## <a name="edit-page-contents"> </a>Modificare i contenuti di una pagina
+## <a name="edit-page-contents"></a>Modificare hello contenuto di una pagina
 
-Per visualizzare l'elenco di tutte le pagine di contenuto esistenti, nel portale di pubblicazione scegliere **Contenuto** dal menu **Portale per sviluppatori**.
+elenco di hello toosee di tutte le pagine di contenuto esistente, fare clic su **contenuto** da hello **portale per sviluppatori** menu nel portale di pubblicazione hello.
 
 ![Gestione del contenuto][api-management-customization-manage-content]
 
-Fare clic nella pagina di **benvenuto** per modificare gli elementi visualizzati nella home page del portale per sviluppatori. Apportare le modifiche desiderate, visualizzarle in anteprima, se necessario, e quindi fare clic su **Pubblica** per renderle visibili a tutti.
+Fare clic su hello **iniziale** pagina tooedit contenuto hello home page del portale per sviluppatori hello. Apportare modifiche hello desidera visualizzare in anteprima, se necessario e quindi fare clic su **pubblica** toomake li tooeveryone visibile.
 
-> Per la home page viene usato un layout speciale che consente di visualizzare un banner nella parte superiore. Questo banner non è modificabile dalla sezione **Contenuto** . Per modificare il banner, scegliere **Widget** dal menu **Portale per sviluppatori**, selezionare **Home page** dall'elenco a discesa **Current Layer** (Livello corrente) e quindi aprire l'elemento **Banner** nella sezione **Featured section** (In primo piano). I contenuti di questo banner sono modificabili come quelli di ogni altra pagina.
+> home page di Hello utilizza un layout speciale che ne consenta toodisplay un'intestazione nella parte superiore di hello. Questa intestazione non è modificabile dall'hello **contenuto** sezione. tooedit questo avvio, fare clic su **widget** da hello **portale per sviluppatori** dal menu **Home page** da hello **livello corrente** elenco a discesa elenco e quindi aprire hello **Banner** voce hello **in primo piano sezione**. il contenuto di Hello di questo widget è modificabile come qualsiasi altra pagina.
 > 
 > 
 
-## <a name="next-steps"> </a>Passaggi successivi
-* [Aggiornare gli stili usati per gli elementi della pagina nel portale per sviluppatori][customize-styles]
-* [Modificare i modelli usati per le pagine generate dal portale][portal-templates] (ad esempio documenti API, prodotti, autenticazione utente e così via)
+## <a name="next-steps"></a>Passaggi successivi
+* [Aggiornare gli stili di hello in portale per sviluppatori hello vengono utilizzati per gli elementi di pagina][customize-styles]
+* [Modificare modelli di hello utilizzati per le pagine generate dal portale hello] [ portal-templates] (ad esempio documenti di API, prodotti, l'autenticazione utente e così via)
 
 [Structure of developer portal pages]: #page-structure
-[Modifying the contents of a layout widget]: #modify-layout-widget
-[Edit the contents of a page]: #edit-page-contents
+[Modifying hello contents of a layout widget]: #modify-layout-widget
+[Edit hello contents of a page]: #edit-page-contents
 [Next steps]: #next-steps
 
 [modify-content-layout]: api-management-modify-content-layout.md

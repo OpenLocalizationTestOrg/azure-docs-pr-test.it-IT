@@ -1,6 +1,6 @@
 ---
-title: Proteggere un cluster in esecuzione in Windows usando la protezione di Windows | Microsoft Docs
-description: Informazioni su come configurare la sicurezza da nodo a nodo e da client a nodo in un cluster autonomo in esecuzione in Windows usando la protezione di Windows.
+title: aaaSecure un cluster in esecuzione su Windows tramite la sicurezza di Windows | Documenti Microsoft
+description: Informazioni su come tooconfigure nodi a e nodo client per la sicurezza autonoma cluster in esecuzione in Windows tramite la sicurezza di Windows.
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/24/2017
 ms.author: dekapur
-ms.openlocfilehash: e093a631b0cf81195981a8e3d345504ebce02723
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44f3011eb630357f342052a48d6c852b17dccec4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-a-standalone-cluster-on-windows-by-using-windows-security"></a>Proteggere un cluster autonomo in Windows usando la protezione di Windows
-Per impedire l'accesso non autorizzato a un cluster di Service Fabric, è necessario proteggere il cluster. La sicurezza è importante soprattutto quando il cluster esegue carichi di lavoro di produzione. Questo articolo descrive come configurare la sicurezza da nodo a nodo e da client a nodo usando la protezione di Windows nel file *ClusterConfig.JSON*.  Il processo corrisponde al passaggio di configurazione della sicurezza in [Creare un cluster autonomo in esecuzione su Windows Server](service-fabric-cluster-creation-for-windows-server.md). Per altre informazioni sull'uso della protezione di Windows in Service Fabric, vedere [Scenari di sicurezza del cluster](service-fabric-cluster-security.md).
+cluster di Service Fabric tooa accesso non autorizzato di tooprevent, è necessario proteggere il cluster hello. Protezione è particolarmente importante quando il cluster hello esegue i carichi di lavoro. Questo articolo viene descritto come protezione tooconfigure di nodo a nodo e al nodo client utilizzando la sicurezza di Windows hello *Clusterconfig* file.  processo Hello corrisponde toohello configurare il passaggio di sicurezza di [creare un cluster autonoma in esecuzione su Windows](service-fabric-cluster-creation-for-windows-server.md). Per altre informazioni sull'uso della protezione di Windows in Service Fabric, vedere [Scenari di sicurezza del cluster](service-fabric-cluster-security.md).
 
 > [!NOTE]
-> È opportuno considerare con attenzione la selezione della sicurezza da nodo a nodo, perché non esiste un aggiornamento del cluster da una scelta di sicurezza a un'altra. Per modificare la selezione della sicurezza, è necessario ricompilare il cluster completo.
+> Poiché non esiste alcun aggiornamento del cluster da una protezione scelta tooanother occorre considerare attentamente selezione hello di sicurezza di nodo per nodo. selezione di sicurezza hello toochange, si dispone di toorebuild hello completo cluster.
 >
 >
 
 ## <a name="configure-windows-security-using-gmsa"></a>Configurare la funzionalità di sicurezza di Windows usando l'approccio account del servizio gestito del gruppo  
-Il file di configurazione di esempio *ClusterConfig.gMSA.Windows.MultiMachine.JSON* scaricato con il pacchetto del cluster autonomo [Microsoft.Azure.ServiceFabric.WindowsServer<version>.zip](http://go.microsoft.com/fwlink/?LinkId=730690) contiene un modello per la configurazione della sicurezza di Windows usando l'approccio [account del servizio gestito del gruppo](https://technet.microsoft.com/library/hh831782.aspx).  
+esempio Hello *ClusterConfig.gMSA.Windows.MultiMachine.JSON* scaricare file di configurazione con hello [Microsoft.Azure.ServiceFabric.WindowsServer.<version>. zip](http://go.microsoft.com/fwlink/?LinkId=730690) autonomo pacchetto del cluster contiene un modello per la configurazione di sicurezza di Windows utilizzando [gruppo Account del servizio gestito (gMSA)](https://technet.microsoft.com/library/hh831782.aspx):  
 
 ```  
 "security": {  
@@ -48,19 +48,19 @@ Il file di configurazione di esempio *ClusterConfig.gMSA.Windows.MultiMachine.JS
   
 | **Impostazioni di configurazione** | **Descrizione** |  
 | --- | --- |  
-| WindowsIdentities |Contiene le identità del client e del cluster. |  
+| WindowsIdentities |Contiene le identità di hello del client e del cluster. |  
 | ClustergMSAIdentity |Configura la sicurezza da nodo a nodo. Account del servizio gestito del gruppo. |  
 | ClusterSPN |SPN di dominio completo per l'account del servizio gestito del gruppo|  
 | ClientIdentities |Configura la sicurezza da client a nodo. Matrice di account utente del client. |  
-| Identità |Identità del client, un utente del dominio. |  
-| IsAdmin |True indica che l'utente del dominio ha un accesso client come amministratore, mentre false indica un accesso client come utente. |  
+| Identità |identità del client Hello, un utente di dominio. |  
+| IsAdmin |True specifica il che utente di dominio hello dispone di accesso client come amministratore, false per l'accesso client utente. |  
   
-La [protezione da nodo a nodo](service-fabric-cluster-security.md#node-to-node-security) viene configurata impostando **ClustergMSAIdentity** quando l'infrastruttura di servizi deve essere eseguita nell'account del servizio gestito del gruppo. Per creare relazioni di trust tra i nodi, è necessario che si riconoscano. Questa operazione può essere eseguita in due modi diversi: specificare l'account del servizio gestito del gruppo che include tutti i nodi del cluster oppure specificare il gruppo del computer di dominio che include tutti i nodi del cluster. È consigliabile usare l'approccio degli [account del servizio gestiti del gruppo](https://technet.microsoft.com/library/hh831782.aspx) , in particolare per i cluster più grandi (più di 10 nodi) o per i cluster soggetti a probabile crescita o riduzione.  
-Non richiede inoltre la creazione di un gruppo di dominio per cui agli amministratori del cluster siano stati concessi i diritti di accesso per aggiungere e rimuovere membri. Questi account si rivelano utili anche nella gestione automatica delle password. Per altre informazioni, vedere [Introduzione gli account del servizio gestiti del gruppo](http://technet.microsoft.com/library/jj128431.aspx).  
+[Sicurezza del nodo toonode](service-fabric-cluster-security.md#node-to-node-security) configurato impostando **ClustergMSAIdentity** quando service fabric deve toorun in gMSA. In ordine toobuild le relazioni di trust tra i nodi, è necessario essere informati del loro. Questa operazione può essere eseguita in due modi diversi: specificare hello gruppo Account del servizio gestito che include tutti i nodi nel cluster hello o gruppo di computer di dominio hello che include tutti i nodi nel cluster hello. È consigliabile utilizzare hello [gruppo Account del servizio gestito (gMSA)](https://technet.microsoft.com/library/hh831782.aspx) approccio, in particolare per i cluster di grandi dimensioni (oltre 10 nodi) o per i cluster sono probabilmente toogrow o riduzione.  
+Questo approccio non richiede hello creazione di un gruppo di dominio per il quale gli amministratori di cluster sono state concesse tooadd diritti di accesso e rimuovere membri. Questi account si rivelano utili anche nella gestione automatica delle password. Per altre informazioni, vedere [Introduzione gli account del servizio gestiti del gruppo](http://technet.microsoft.com/library/jj128431.aspx).  
  
-[Sicurezza da client a nodo](service-fabric-cluster-security.md#client-to-node-security) è un'impostazione configurata tramite **ClientIdentities**. Per stabilire un trust tra un client e il cluster, è necessario configurare il cluster in modo che riconosca quali identità dei client può considerare attendibili. Questa operazione può essere eseguita in due modi diversi: specificare se la connessione è consentita agli utenti dei gruppo di dominio o agli utenti dei nodi di dominio. Infrastruttura di servizi supporta due tipi di controllo di accesso diversi per i client connessi a un cluster di Infrastruttura di servizi: amministratore e utente. La funzionalità di controllo di accesso consente all'amministratore del cluster di limitare l'accesso a determinati tipi di operazioni del cluster per diversi gruppi di utenti, rendendo il cluster più sicuro.  Gli amministratori hanno accesso completo alle funzionalità di gestione, incluse funzionalità di lettura/scrittura. Gli utenti, per impostazione predefinita, hanno solo l'accesso in lettura alle funzionalità di gestione, ad esempio funzionalità di query, e la possibilità di risolvere applicazioni e servizi. Per altre informazioni sul controllo degli accessi, vedere [Controllo degli accessi in base al ruolo per i client di Service Fabric](service-fabric-cluster-security-roles.md).  
+[Sicurezza di client toonode](service-fabric-cluster-security.md#client-to-node-security) viene configurato usando **ClientIdentities**. In ordine tooestablish trust tra un client e hello di cluster, è necessario configurare hello cluster tooknow quali identità del client che è attendibile. Questa operazione può essere eseguita in due modi diversi: specificare gli utenti al gruppo di dominio hello che possono connettersi o specificare hello agli utenti di nodo di dominio in grado di connettersi. Service Fabric supporta due tipi di controllo di accesso diversi per i client che sono connessi tooa cluster di Service Fabric: amministratore e utente. Controllo di accesso offre possibilità hello hello tipi cluster amministratore toolimit accesso toocertain delle operazioni di cluster per diversi gruppi di utenti, di rendere più sicuro cluster hello.  Gli amministratori hanno capacità di toomanagement accesso completo (incluse le funzionalità di lettura/scrittura). Gli utenti, per impostazione predefinita, dispongono solo dell'accesso in lettura toomanagement funzionalità (ad esempio, funzionalità di query), hello possibilità tooresolve applicazioni e servizi e. Per altre informazioni sul controllo degli accessi, vedere [Controllo degli accessi in base al ruolo per i client di Service Fabric](service-fabric-cluster-security-roles.md).  
  
-La sezione **security** dell'esempio seguente configura la sicurezza di Windows usando un account del servizio gestiti del gruppo e specifica che i computer nell'account del servizio gestiti del gruppo *ServiceFabric.clusterA.contoso.com* fanno parte del cluster e che a *CONTOSO\usera* è consentito l'accesso client come amministratore:  
+Hello seguente esempio **sicurezza** sezione Configura la sicurezza di Windows utilizzando l'account e specifica che hello macchine *ServiceFabric.clusterA.contoso.com* gMSA fanno parte del cluster hello e che *CONTOSO\usera* dispone di accesso client di amministrazione:  
   
 ```  
 "security": {  
@@ -76,7 +76,7 @@ La sezione **security** dell'esempio seguente configura la sicurezza di Windows 
 ```  
   
 ## <a name="configure-windows-security-using-a-machine-group"></a>Configurare la funzionalità di sicurezza di Windows usando un gruppo di computer  
-Il file di configurazione di esempio *ClusterConfig.Windows.MultiMachine.JSON* scaricato con il pacchetto del cluster autonomo [Microsoft.Azure.ServiceFabric.WindowsServer<version>.zip](http://go.microsoft.com/fwlink/?LinkId=730690) contiene un modello per la configurazione della sicurezza di Windows.  La sicurezza di Windows viene configurata nella sezione **Proprietà** : 
+esempio Hello *ClusterConfig.Windows.MultiMachine.JSON* scaricare file di configurazione con hello [Microsoft.Azure.ServiceFabric.WindowsServer.<version>. zip](http://go.microsoft.com/fwlink/?LinkId=730690) autonomo pacchetto del cluster contiene un modello per la configurazione di sicurezza di Windows.  Sicurezza di Windows è configurata in hello **proprietà** sezione: 
 
 ```
 "security": {
@@ -94,24 +94,24 @@ Il file di configurazione di esempio *ClusterConfig.Windows.MultiMachine.JSON* s
 
 | **Impostazione di configurazione** | **Descrizione** |
 | --- | --- |
-| ClusterCredentialType |**ClusterCredentialType** è impostato su *Windows* se ClusterIdentity specifica il nome di un gruppo di computer Active Directory. |  
-| ServerCredentialType |Impostare su *Windows* per abilitare la protezione di Windows per i client.<br /><br />Questa impostazione indica che i client del cluster e il cluster stesso sono in esecuzione in un dominio di Active Directory. |  
-| WindowsIdentities |Contiene le identità del client e del cluster. |  
-| ClusterIdentity |Usare il nome di un gruppo di computer, dominio\gruppo di computer, per configurare la sicurezza da nodo a nodo. |  
+| ClusterCredentialType |**ClusterCredentialType** è troppo*Windows* se ClusterIdentity specifica un nome gruppo di computer Active Directory. |  
+| ServerCredentialType |Impostare troppo*Windows* tooenable la sicurezza di Windows per i client.<br /><br />Ciò indica che i client hello di hello e cluster hello stesso siano in esecuzione all'interno di un dominio Active Directory. |  
+| WindowsIdentities |Contiene le identità di hello del client e del cluster. |  
+| ClusterIdentity |Utilizzare un nome del gruppo di computer, domain\machinegroup, protezione da nodo a nodo tooconfigure. |  
 | ClientIdentities |Configura la sicurezza da client a nodo. Matrice di account utente del client. |  
-| Identità |Aggiungere l'utente del dominio, dominio\nome utente, per l'identità del client. |  
-| IsAdmin |Impostare su true per indicare che l'utente del dominio ha un accesso client come amministratore oppure su false per indicare un accesso client come utente. |  
+| Identità |Aggiungere l'utente di dominio hello, DOMINIO\nome utente, per l'identità del client hello. |  
+| IsAdmin |Set tootrue toospecify che hello utente di dominio dispone di accesso client come amministratore o false per l'accesso client utente. |  
 
-La [Protezione da nodo a nodo](service-fabric-cluster-security.md#node-to-node-security) viene configurata con **ClusterIdentity** se si vuole usare un gruppo di computer all'interno di un dominio di Active Directory. Per altre informazioni, vedere l'articolo su come [Creare un gruppo di computer in Active Directory](https://msdn.microsoft.com/library/aa545347(v=cs.70).aspx).
+[Sicurezza del nodo toonode](service-fabric-cluster-security.md#node-to-node-security) viene configurato tramite l'impostazione **ClusterIdentity** se si desidera toouse un gruppo di computer all'interno di un dominio Active Directory. Per altre informazioni, vedere l'articolo su come [Creare un gruppo di computer in Active Directory](https://msdn.microsoft.com/library/aa545347(v=cs.70).aspx).
 
-La [sicurezza da client a nodo](service-fabric-cluster-security.md#client-to-node-security) viene configurata usando **ClientIdentities**. Per stabilire una relazione di trust tra un client e il cluster, è necessario configurare il cluster in modo che riconosca le identità dei client che il cluster può considerare attendibili. È possibile stabilire una relazione di trust in due modi diversi:
+La [sicurezza da client a nodo](service-fabric-cluster-security.md#client-to-node-security) viene configurata usando **ClientIdentities**. tooestablish attendibilità tra un client e hello cluster, è necessario configurare hello cluster tooknow hello client identità hello cluster è attendibile. È possibile stabilire una relazione di trust in due modi diversi:
 
-- Specificare gli utenti del gruppo di dominio che possono connettersi.
-- Specificare gli utenti del nodo del dominio che possono connettersi.
+- Specificare gli utenti al gruppo di dominio hello in grado di connettersi.
+- Specificare gli utenti al nodo di dominio hello in grado di connettersi.
 
-Infrastruttura di servizi supporta due tipi di controllo di accesso diversi per i client connessi a un cluster di Infrastruttura di servizi: amministratore e utente. La funzionalità di controllo di accesso consente all'amministratore del cluster di limitare l'accesso a determinati tipi di operazioni del cluster per diversi gruppi di utenti, rendendo il cluster più sicuro.  Gli amministratori hanno accesso completo alle funzionalità di gestione, incluse funzionalità di lettura/scrittura. Gli utenti, per impostazione predefinita, hanno solo l'accesso in lettura alle funzionalità di gestione, ad esempio funzionalità di query, e la possibilità di risolvere applicazioni e servizi.  
+Service Fabric supporta due tipi di controllo di accesso diversi per i client che sono connessi tooa cluster di Service Fabric: amministratore e utente. Controllo degli accessi consente hello cluster amministratore toolimit accesso toocertain i tipi di operazioni di cluster per diversi gruppi di utenti, che rende più sicura cluster hello.  Gli amministratori hanno capacità di toomanagement accesso completo (incluse le funzionalità di lettura/scrittura). Gli utenti, per impostazione predefinita, dispongono solo dell'accesso in lettura toomanagement funzionalità (ad esempio, funzionalità di query), hello possibilità tooresolve applicazioni e servizi e.  
 
-La sezione **security** dell'esempio seguente configura la protezione di Windows, specifica che i computer in *ServiceFabric/clusterA.contoso.com* fanno parte del cluster e specifica che a *CONTOSO\usera* è consentito l'accesso client come amministratore:
+Hello seguente esempio **sicurezza** sezione Configura la sicurezza di Windows, specifica che hello macchine *ServiceFabric/clusterA.contoso.com* fanno parte del cluster hello e specifica che  *CONTOSO\usera* dispone di accesso client di amministrazione:
 
 ```
 "security": {
@@ -128,13 +128,13 @@ La sezione **security** dell'esempio seguente configura la protezione di Windows
 ```
 
 > [!NOTE]
-> Service Fabric non devono essere distribuito in un controller di dominio. Verificare che ClusterConfig.json non includa l'indirizzo IP del controller di dominio quando si usa un gruppo di computer o un account del servizio gestito del gruppo.
+> Service Fabric non devono essere distribuito in un controller di dominio. Assicurarsi che Clusterconfig non include l'indirizzo IP hello hello del controller di dominio quando si utilizza un gruppo di computer o gruppo Account del servizio gestito (gMSA).
 >
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo la configurazione della sicurezza di Windows nel file *ClusterConfig.JSON* , riprendere il processo di creazione del cluster in [Create a standalone cluster running on Windows](service-fabric-cluster-creation-for-windows-server.md)(Creare un cluster autonomo in esecuzione in Windows).
+Dopo aver configurato la sicurezza di Windows in hello *Clusterconfig* file, riprendere il processo di creazione di cluster hello in [creare un cluster autonoma in esecuzione su Windows](service-fabric-cluster-creation-for-windows-server.md).
 
 Per altre informazioni sulla sicurezza da nodo a nodo e da client a nodo e sul controllo degli accessi in base al ruolo, vedere [Scenari di sicurezza del cluster](service-fabric-cluster-security.md).
 
-Per alcuni esempi di connessione tramite PowerShell o FabricClient, vedere [Connettersi a un cluster sicuro](service-fabric-connect-to-secure-cluster.md).
+Vedere [Connetti tooa sicura cluster](service-fabric-connect-to-secure-cluster.md) per esempi di connessione tramite PowerShell o FabricClient.

@@ -1,6 +1,6 @@
 ---
-title: Panoramica del routing di contenuti basato su URL | Documentazione Microsoft
-description: Questa pagina fornisce una panoramica del routing di contenuti basato su URL del gateway applicazione, della configurazione UrlPathMap e della regola PathBasedRouting.
+title: Panoramica del routing del contenuto basato su aaaURL | Documenti Microsoft
+description: Questa pagina viene fornita una panoramica del routing di hello applicazione Gateway URL basato sul contenuto, UrlPathMap configurazione e della regola PathBasedRouting.
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/09/2017
 ms.author: gwallace
-ms.openlocfilehash: 75c3279d2d02cb3c6e949d191c88a1eb18b58a27
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5094b42625baffeb395beace68db0d269e46080c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="url-path-based-routing-overview"></a>Panoramica del routing basato su percorso URL
 
-Il routing basato su percorso URL consente di instradare il traffico a pool di server back-end in base ai percorsi URL della richiesta. 
+Routing basato su URL percorso consente di tooroute traffico tooback fine pool di server in base ai percorsi URL della richiesta di hello. 
 
-Uno degli scenari è l'instradamento delle richieste di tipi di contenuto diversi a pool di server back-end diversi.
+Uno degli scenari di hello è tooroute richieste per i pool di server back-end toodifferent diversi tipi di contenuto.
 
-Nell'esempio seguente, il gateway applicazione soddisfa le richieste di traffico per contoso.com dai tre pool di server back-end, ad esempio VideoServerPool, ImageServerPool e DefaultServerPool.
+Nell'esempio seguente di hello, Gateway applicazione gestisce il traffico per contoso.com dai tre pool di server back-end, ad esempio: VideoServerPool ImageServerPool e DefaultServerPool.
 
 ![imageURLroute](./media/application-gateway-url-route-overview/figure1.png)
 
-Le richieste per http://contoso.com/video* vengono instradate a VideoServerPool, mentre quelle per http://contoso.com/images* vengono instradate a ImageServerPool. In caso di mancata corrispondenza dei percorsi, viene selezionato DefaultServerPool.
+Le richieste per http://contoso.com/video * tooVideoServerPool indirizzato e http://contoso.com/images * tooImageServerPool indirizzato. DefaultServerPool è selezionata se nessuno dei modelli di percorso hello corrisponde.
 
 > [!IMPORTANT]
-> Le regole vengono elaborate nell'ordine in cui sono elencate nel portale. È consigliabile configurare i listener multisito prima di configurare un listener di base.  In questo modo il traffico viene indirizzato al back-end appropriato. Se un listener di base viene elencato per primo e corrisponde a una richiesta in ingresso, sarà tale listener a elaborarla.
+> Le regole vengono elaborate in ordine di hello che sono elencati nel portale di hello. È tooconfiguring precedente prima tooconfigure consigliata multisito listener un listener di base.  In questo modo di terminare tale traffico Ottiene indirizzato toohello nuovo. Se un listener di base viene elencato per primo e corrisponde a una richiesta in ingresso, sarà tale listener a elaborarla.
 
 ## <a name="urlpathmap-configuration-element"></a>Elemento di configurazione UrlPathMap
 
-L'elemento UrlPathMap consente di specificare modelli di percorso dei mapping dei pool di server back-end. L'esempio di codice seguente è il frammento dell'elemento urlPathMap del file modello.
+elemento urlPathMap Hello è mapping dei pool di server utilizzati toospecify percorso modelli tooback-end. Hello esempio di codice seguente è hello frammento dell'elemento urlPathMap dal file di modello.
 
 ```json
 "urlPathMaps": [{
@@ -69,13 +69,13 @@ L'elemento UrlPathMap consente di specificare modelli di percorso dei mapping de
 ```
 
 > [!NOTE]
-> PathPattern: questa impostazione è un elenco dei modelli di percorso usati per la corrispondenza. Ognuno deve iniziare con una barra / e l'unica posizione in cui è consentito il carattere "*" è alla fine dopo "/". La stringa inviata al selettore di percorsi non include alcun testo dopo il primo carattere "?" o "#" e questi caratteri non sono consentiti qui.
+> PathPattern: Questa impostazione è un elenco di toomatch modelli percorso. Ogni deve iniziare con / e hello solo un "*" è consentita in hello fine successiva un "/". stringa Hello inserito toohello matcher di percorso non include alcun testo dopo hello prima? o # e tali caratteri non consentiti.
 
 Per altre informazioni, vedere un [modello di Azure Resource Manager che usa il routing basato su URL](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing) .
 
 ## <a name="pathbasedrouting-rule"></a>Regola PathBasedRouting
 
-RequestRoutingRule di tipo PathBasedRouting consente di associare un listener a un urlPathMap. Tutte le richieste ricevute per il listener vengono instradate in base ai criteri specificati in urlPathMap.
+RequestRoutingRule di tipo PathBasedRouting è usato toobind urlPathMap di tooa un listener. Tutte le richieste ricevute per il listener vengono instradate in base ai criteri specificati in urlPathMap.
 Frammento della regola PathBasedRouting:
 
 ```json
@@ -100,4 +100,4 @@ Frammento della regola PathBasedRouting:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver acquisito familiarità con il routing di contenuti basato su URL, passare a [Create a Path-based rule for an application gateway by using the portal](application-gateway-create-url-route-portal.md) (Creare una regola basata sul percorso per un gateway applicazione usando il portale) per la creazione di un gateway applicazione con regole di routing basate su URL.
+Dopo avere imparare routing contenuto basato su URL, andare troppo[creare un gateway applicazione utilizzando il routing basato su URL](application-gateway-create-url-route-portal.md) toocreate un gateway applicazione con le regole di routing di URL.

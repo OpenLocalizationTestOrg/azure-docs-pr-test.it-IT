@@ -1,5 +1,5 @@
 ---
-title: Configurare un nome di dominio personalizzato per un'app Web nel servizio app di Azure che usa Gestione traffico per il bilanciamento del carico.
+title: aaaConfigure un nome di dominio personalizzato per un'app web in Azure App Service che Usa gestione traffico per il bilanciamento del carico.
 description: Usare un nome di dominio personalizzato per un'app Web nel servizio app di Azure che usa Gestione traffico per il bilanciamento del carico.
 services: app-service\web
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: cephalin
-ms.openlocfilehash: 5f099201d9018a6f8577cb3daf127d09560fb94b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfde5fc6b445b30b10e03dcb03e8d072130d9377
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-a-custom-domain-name-for-a-web-app-in-azure-app-service-using-traffic-manager"></a>Configurazione di un nome di dominio personalizzato per un'app Web nel servizio app di Azure con Gestione traffico
 [!INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
@@ -45,25 +45,25 @@ Questo articolo fornisce istruzioni generiche sull'uso di un nome di dominio per
 
 ## <a name="add-a-dns-record-for-your-custom-domain"></a>Aggiunta di un record DNS per il dominio personalizzato
 > [!NOTE]
-> Se si è acquistato un dominio tramite App Web del servizio app di Azure, ignorare i passaggi seguenti e fare riferimento all'ultimo passaggio dell'articolo [Acquistare un dominio per app Web](custom-dns-web-site-buydomains-web-app.md) .
+> Se si hanno acquistato dominio tramite l'App Web di servizio App di Azure quindi passare alla procedura seguente fanno riferimento toohello passaggio finale della [acquistare dominio per le app Web](custom-dns-web-site-buydomains-web-app.md) articolo.
 > 
 > 
 
-Per associare il dominio personalizzato a un'app Web nel servizio app di Azure, è necessario aggiungere nella tabella DNS una nuova voce per il dominio personalizzato usando gli strumenti forniti dal registrar da cui è stato acquistato il nome di dominio. Per individuare e utilizzare gli strumenti DNS, attenersi alla procedura seguente.
+tooassociate il dominio personalizzato con un'app web nel servizio App di Azure, è necessario aggiungere una nuova voce nella tabella di hello DNS per il dominio personalizzato tramite gli strumenti forniti da hello registrar che è stato acquistato il nome del dominio. Utilizzare i seguenti passaggi toolocate hello e utilizzare gli strumenti per DNS hello.
 
-1. Accedere all'account presso il registrar e cercare la pagina in cui gestire i record DNS. Individuare collegamenti o aree del sito denominate **Domain Name**, **DNS** o **Name Server Management**. Un collegamento a questa pagina è spesso disponibile nelle informazioni dell'account, cercando una voce simile a **My domains**.
-2. Dopo aver trovato la pagina di gestione del nome di dominio, cercare un collegamento che consenta di modificare i record DNS. Questo collegamento può essere denominato **Zone file** o **DNS Records** oppure figurare come collegamento di configurazione in **Advanced**.
+1. Eseguire l'accesso account tooyour presso un registrar di dominio e cercare una pagina di gestione dei record DNS. Cercare i collegamenti o aree del sito hello etichettata come **nome di dominio**, **DNS**, o **denomina Gestione Server**. Spesso un collegamento toothis pagina sono disponibili da visualizzare le informazioni sull'account e quindi cercando, ad esempio un collegamento **My domains**.
+2. Dopo aver trovato la pagina di gestione hello del nome di dominio, cercare un collegamento che consente i record DNS di tooedit hello. Questo collegamento può essere denominato **Zone file** o **DNS Records** oppure figurare come collegamento di configurazione in **Advanced**.
    
-   * La pagina conterrà molto probabilmente alcuni record già creati, ad esempio una voce per associare '**@**' o '\*' a una pagina di registrazione semplice. Può anche contenere record per sottodomini comuni, ad esempio **www**.
-   * Nella pagina saranno presenti voci per record **CNAME**oppure verrà visualizzato un elenco a discesa per selezionare il tipo di record. È anche possibile che siano presenti voci per altri record, ad esempio **record A** e **record MX**. In alcuni casi, i record CNAME avranno una denominazione diversa, come ad esempio nel caso dei record **Alias**.
-   * La pagina conterrà inoltre campi che consentono di eseguire il **mapping** da un **nome host** o da un **nome di dominio** a un altro nome di dominio.
-3. Anche se le specifiche di ogni registrar possono variare, in genere viene eseguito il mapping *dal* nome di dominio personalizzato, ad esempio **contoso.com**, *al* nome di dominio di Gestione traffico (**contoso.trafficmanager.net**) usato per l'app Web.
+   * pagina Hello più probabile che abbiano già creato, ad esempio un'associazione di voce di alcuni record '**@**'o'\*' con una pagina 'parcheggio dominio'. Può anche contenere record per sottodomini comuni, ad esempio **www**.
+   * pagina Hello verrà menzionato **record CNAME**, o fornire un elenco a discesa tooselect un tipo di record. È anche possibile che siano presenti voci per altri record, ad esempio **record A** e **record MX**. In alcuni casi, i record CNAME avranno una denominazione diversa, come ad esempio nel caso dei record **Alias**.
+   * pagina Hello disporrà di campi che consentono di troppo**mappa** da un **nome Host** o **nome di dominio** tooanother nome di dominio.
+3. Mentre specifiche hello di ogni registrar variano, in genere si esegue il mapping *da* nome di dominio personalizzato (ad esempio **contoso.com**,) *a* nome di dominio di Traffic Manager hello (**contoso.trafficmanager.net**) che viene utilizzato per l'app web.
    
    > [!NOTE]
-   > In alternativa, se un record è già in uso ed è necessario associare le app in modalità preemptive, è possibile creare un altro record CNAME. Ad esempio, per associare **www.contoso.com** all'app Web in modalità preemptive, creare un record CNAME da **awverify.www** a **contoso.trafficmanager.net**. Aggiungere quindi "www.contoso.com" all'app Web senza modificare il record CNAME "www". Per altre informazioni, vedere [Creare record DNS per un'app Web in un dominio personalizzato][CREATEDNS].
+   > In alternativa, se un record è già in uso ed è necessario toopreemptively associare tooit l'App, è possibile creare un record CNAME aggiuntivo. Ad esempio, l'associazione toopreemptively **www.contoso.com** tooyour app web, creare un record CNAME da **awverify.www** troppo**contoso.trafficmanager.net**. È quindi possibile aggiungere tooyour "www.contoso.com" App Web senza modificare i record CNAME di hello "www". Per altre informazioni, vedere [Creare record DNS per un'app Web in un dominio personalizzato][CREATEDNS].
    > 
    > 
-4. Dopo aver completato l'aggiunta o la modifica di record DNS presso il registrar, salvare le modifiche.
+4. Una volta completata l'aggiunta o la modifica di record DNS nel registrar, salvare le modifiche di hello.
 
 <a name="enabledomain"></a>
 
@@ -71,7 +71,7 @@ Per associare il dominio personalizzato a un'app Web nel servizio app di Azure, 
 [!INCLUDE [modes](../../includes/custom-dns-web-site-enable-on-traffic-manager.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni, vedere il [Centro per sviluppatori di Node.js](/develop/nodejs/).
+Per ulteriori informazioni, vedere hello [Centro per sviluppatori di Node.js](/develop/nodejs/).
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

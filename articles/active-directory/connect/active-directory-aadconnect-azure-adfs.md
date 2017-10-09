@@ -1,7 +1,7 @@
 ---
-title: Active Directory Federation Services in Azure | Documentazione Microsoft
-description: "Questo documento illustra come distribuire AD FS in Azure per ottenere una disponibilità elevata."
-keywords: distribuire AD FS in azure, distribuire azure adfs, azure adfs, azure ad fs, distribuire adfs, distribuire ad fs, adfs in azure, distribuire adfs in azure, distribuire AD FS in azure, adfs azure, introduzione ad AD FS, Azure, AD FS in Azure, iaas, ADFS, trasferire adfs in azure
+title: Directory Federation Services in Azure aaaActive | Documenti Microsoft
+description: "In questo documento si apprenderà come toodeploy AD ADFS in Azure ad alta disponibilità."
+keywords: Distribuire ADFS in azure, distribuire adfs di azure, azure adfs, ADFS di azure, la distribuzione di adfs, distribuzione di ADFS, adfs in azure, distribuire adfs in azure, distribuire ADFS in azure, azure ad FS, introduzione tooAD ADFS, Azure, ADFS in Azure iaas, ADFS, spostare tooazure adfs
 services: active-directory
 documentationcenter: 
 author: anandyadavmsft
@@ -16,103 +16,103 @@ ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: anandy; billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ddd29a1230286de8999175498ee793f3b3ea24e2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2c39271f7569b9ce395dce2f53f5ba5a4897b132
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploying-active-directory-federation-services-in-azure"></a>Distribuzione di Active Directory Federation Services in Azure
-AD FS offre funzionalità di federazione delle identità e Single Sign-On (SSO) Web protette e semplificate. La federazione con Azure AD o O365 consente agli utenti di eseguire l'autenticazione con credenziali locali e accedere a tutte le risorse nel cloud. Di conseguenza, diventa importante la presenza di un'infrastruttura AD FS a disponibilità elevata per garantire l'accesso alle risorse sia in locale sia nel cloud. La distribuzione di AD FS in Azure consente di raggiungere facilmente la disponibilità elevata necessaria.
+AD FS offre funzionalità di federazione delle identità e Single Sign-On (SSO) Web protette e semplificate. Federazione con Azure AD o Office 365 consente agli utenti tooauthenticate locale utilizzando le credenziali e accedere a tutte le risorse nel cloud. Di conseguenza, diventa importante toohave una disponibilità elevata ADFS infrastruttura tooensure accedere tooresources sia in locale e nel cloud hello. Distribuzione di ADFS in Azure consente di ottenere la disponibilità elevata hello obbligatoria con un impegno minimo.
 Distribuire AD FS in Azure offre diverse vantaggi. Di seguito ne sono elencati alcuni.
 
-* **Disponibilità elevata** : gli avanzati set di disponibilità di Azure assicurano un'infrastruttura a disponibilità elevata.
-* **Scalabilità semplificata**: se sono necessarie più prestazioni, è possibile eseguire facilmente la migrazione a computer più potenti con pochi clic in Azure.
-* **Ridondanza tra diverse aree geografiche** : la ridondanza geografica di Azure assicura la disponibilità elevata dell'infrastruttura a livello globale.
-* **Facilità di gestione** : le opzioni di gestione estremamente semplificate del portale di Azure consentono di gestire l'infrastruttura con la massima facilità. 
+* **Disponibilità elevata** -con la potenza di hello Azure set di disponibilità, assicurarsi di un'infrastruttura a disponibilità elevata.
+* **Facile tooScale** – necessarie prestazioni più elevate? Eseguire facilmente la migrazione di macchine potente toomore da pochi clic in Azure
+* **Ridondanza geografica tra** : con Azure geografica ridondanza, si può essere certi che l'infrastruttura sia a disponibilità elevata, tutto il mondo hello
+* **Facile tooManage** – con opzioni di gestione semplificata elevata nel portale di Azure, la gestione dell'infrastruttura è molto semplice e senza problemi 
 
 ## <a name="design-principles"></a>Principi di progettazione
 ![Progettazione della distribuzione](./media/active-directory-aadconnect-azure-adfs/deployment.png)
 
-Il diagramma riportato sopra illustra la topologia di base consigliata come punto di partenza per la distribuzione di un'infrastruttura AD FS in Azure. Di seguito sono elencati i principi alla base dei vari componenti della topologia.
+diagramma di Hello sopra riportato mostra hello consigliato toostart topologia di base distribuzione dell'infrastruttura di ADFS in Azure. principi di Hello dietro hello vari componenti della topologia hello sono elencati di seguito:
 
-* **Controller di dominio/server AD FS**: se il numero di utenti è inferiore a 1.000, è sufficiente installare il ruolo AD FS nei controller di dominio. Se si vuole evitare qualsiasi impatto sulle prestazioni dei controller di dominio o sono presenti più di 1.000 utenti, distribuire AD FS su server separati.
-* **Server WAP** : è necessario per distribuire server proxy applicazione Web in modo che gli utenti possano raggiungere AD FS anche quando si trovano all'esterno della rete aziendale.
-* **Rete perimetrale**: i server proxy applicazione Web verranno inseriti nella rete perimetrale e tra la rete perimetrale e la subnet interna sarà consentito SOLO l'accesso TCP/443.
-* **Servizi di bilanciamento del carico**: per garantire la disponibilità elevata dei server proxy applicazione Web e AD FS è consigliabile usare un servizio di bilanciamento del carico interno per i server AD FS e Azure Load Balancer per i server proxy applicazione Web.
-* **Set di disponibilità**: per implementare la ridondanza nella distribuzione di AD FS, è consigliabile raggruppare due o più macchine virtuali in un set disponibilità per carichi di lavoro simili. Questa configurazione assicura che durante un evento di manutenzione pianificata o non pianificata sia disponibile almeno una macchina virtuale.
-* **Account di archiviazione**: è consigliabile avere due account di archiviazione. Un singolo account di archiviazione può determinare un singolo punto di guasto e causare l'indisponibilità della distribuzione nell'improbabile scenario in cui l'account di archiviazione diventi inattivo. Con due account di archiviazione è possibile associare un account di archiviazione per ogni linea di guasto.
-* **Separazione delle reti**: i server proxy applicazione Web verranno distribuiti in una rete perimetrale separata. È possibile dividere una rete virtuale in due subnet e quindi distribuire i server proxy applicazione Web in una subnet isolata. È sufficiente configurare le impostazioni dei gruppi di sicurezza di rete per ogni subnet e consentire solo la comunicazione necessaria tra le due subnet. Altri dettagli sono riportati di seguito per i singoli scenari di distribuzione.
+* **Controller di dominio/server AD FS**: se il numero di utenti è inferiore a 1.000, è sufficiente installare il ruolo AD FS nei controller di dominio. Se non si desidera che qualsiasi impatto sulle prestazioni nei controller di dominio hello o se sono presenti più di 1.000 utenti, quindi distribuire ADFS in server separati.
+* **Server WAP** : è necessario toodeploy Server Proxy applicazione Web, in modo che gli utenti possono raggiungere hello ADFS quando non sono nella rete aziendale hello anche.
+* **Rete Perimetrale**: Server Proxy applicazione Web hello verranno inseriti nella rete Perimetrale hello e non è consentito l'accesso solo TCP/443 tra hello DMZ e subnet interna hello.
+* **Bilanciamento del carico**: tooensure un'elevata disponibilità dei server ADFS e Proxy applicazione Web, si consiglia di utilizzare un servizio di bilanciamento del carico interno per i server ADFS e bilanciamento del carico di Azure per i server Proxy applicazione Web.
+* **Set di disponibilità**: distribuzione di ADFS tooprovide ridondanza tooyour Active Directory, si consiglia di raggruppare due o più macchine virtuali in un Set di disponibilità per carichi di lavoro simili. Questa configurazione assicura che durante un evento di manutenzione pianificata o non pianificata sia disponibile almeno una macchina virtuale.
+* **Gli account di archiviazione**: è consigliabile toohave due account di archiviazione. Con un singolo account di archiviazione può causare toocreation di un singolo punto di errore e può causare hello distribuzione toobecome disponibile in uno scenario improbabile in cui account di archiviazione hello diventa inattivo. Con due account di archiviazione è possibile associare un account di archiviazione per ogni linea di guasto.
+* **Separazione delle reti**: i server proxy applicazione Web verranno distribuiti in una rete perimetrale separata. È possibile suddividere una rete virtuale in due subnet e quindi distribuire il server Proxy applicazione Web hello in una subnet isolato. È possibile semplicemente configurare hello le impostazioni gruppo di sicurezza di rete per ogni subnet e consentire solo necessaria comunicazione tra due subnet hello. Altri dettagli sono riportati di seguito per i singoli scenari di distribuzione.
 
-## <a name="steps-to-deploy-ad-fs-in-azure"></a>Passaggi per la distribuzione di AD FS in Azure
-I passaggi indicati in questa sezione offrono una guida per distribuire l'infrastruttura AD FS illustrata di seguito in Azure.
+## <a name="steps-toodeploy-ad-fs-in-azure"></a>Passaggi toodeploy ADFS in Azure
+i passaggi di Hello indicati in questa sezione struttura hello Guida toodeploy hello seguente rappresentate infrastruttura ADFS in Azure.
 
-### <a name="1-deploying-the-network"></a>1. Distribuire la rete
-Come indicato in precedenza, è possibile creare due subnet in una singola rete virtuale oppure creare due reti virtuali completamente diverse. Questo articolo è incentrato sulla distribuzione di una singola rete virtuale e sulla relativa divisione in due subnet. È attualmente un approccio più semplice perché due reti virtuali separate richiederebbero un gateway da rete virtuale a rete virtuale per le comunicazioni.
+### <a name="1-deploying-hello-network"></a>1. Distribuzione di rete hello
+Come indicato in precedenza, è possibile creare due subnet in una singola rete virtuale oppure creare due reti virtuali completamente diverse. Questo articolo è incentrato sulla distribuzione di una singola rete virtuale e sulla relativa divisione in due subnet. Questo è un approccio più semplice, come un gateway di rete virtuale tooVNet richiederebbe due reti virtuali separate per le comunicazioni.
 
 **1.1 Creare una rete virtuale**
 
 ![Creare una rete virtuale](./media/active-directory-aadconnect-azure-adfs/deploynetwork1.png)
 
-Nel portale di Azure selezionare la rete virtuale. È possibile distribuire immediatamente la rete virtuale e una subnet con un solo clic. Viene definita anche la subnet INT, che è pronta per l'aggiunta di VM.
-Il passaggio successivo consiste nell’aggiungere un’altra subnet (denominata “rete perimetrale”) alla rete. Per creare la subnet DMZ, è sufficiente:
+In hello portale di Azure, selezionare rete virtuale ed è possibile distribuire la rete virtuale hello e una subnet immediatamente con un solo clic. Subnet INT è definita ed è ora pronto per le macchine virtuali toobe aggiunto.
+passaggio successivo Hello è tooadd un'altra subnet toohello la rete, ad esempio hello DMZ subnet. toocreate hello subnet di rete Perimetrale, è sufficiente
 
-* Selezionare la rete appena creata
-* Nelle proprietà selezionare Subnet
-* Nel pannello Subnet fare clic sul pulsante di aggiunta
-* Specificare il nome della subnet e le informazioni relative allo spazio indirizzi per creare la subnet
+* Selezionare la rete hello appena creato.
+* Nelle proprietà hello selezionare subnet
+* Nella fare clic su Pannello di subnet hello in hello pulsante Aggiungi
+* Fornire hello subnet nome e indirizzo spazio informazioni toocreate hello subnet
 
 ![Subnet](./media/active-directory-aadconnect-azure-adfs/deploynetwork2.png)
 
 ![Subnet DMZ](./media/active-directory-aadconnect-azure-adfs/deploynetwork3.png)
 
-**1.2. Creare i gruppi di sicurezza di rete**
+**1.2. La creazione di gruppi di sicurezza di rete hello**
 
-Un gruppo di sicurezza di rete (NSG) contiene un elenco di regole dell'elenco di controllo di accesso (ACL) che consentono o rifiutano il traffico di rete alle istanze di VM in una rete virtuale. I gruppi di sicurezza di rete possono essere associati a subnet o singole istanze VM in una subnet. Quando un gruppo di sicurezza di rete viene associato a una subnet, le regole ACL si applicano a tutte le istanze di VM in tale subnet.
-Ai fini di questa guida, verranno creati due gruppi di sicurezza di rete, uno per una rete interna e uno per una rete perimetrale, denominati rispettivamente NSG_INT e NSG_DMZ.
+Un rete gruppo di sicurezza () contiene un elenco di regole di elenco di controllo di accesso (ACL) che consentono o negano il traffico di rete tooyour istanze di macchina virtuale in una rete virtuale. I gruppi di sicurezza di rete possono essere associati a subnet o singole istanze VM in una subnet. Quando un gruppo è associata a una subnet, regole ACL hello si applicano le istanze VM hello tooall nella subnet.
+A scopo di hello di questa Guida, si creerà due NSGs: uno per una rete interna e una rete Perimetrale. denominati rispettivamente NSG_INT e NSG_DMZ.
 
 ![Creare un gruppo di sicurezza di rete](./media/active-directory-aadconnect-azure-adfs/creatensg1.png)
 
-Al termine della creazione del gruppo di sicurezza di rete, esisteranno 0 regole in ingresso e 0 in uscita. Dopo che i ruoli nei rispettivi server sono installati e funzionanti, è possibile definire le regole in ingresso e in uscita in base al livello di sicurezza desiderato.
+Dopo aver hello che gruppo viene creato, saranno presenti regole in uscita in ingresso e 0, 0. Dopo aver installato e funzionante ruoli hello nei rispettivi server di hello, quindi hello regole in entrata e in uscita possono essere reso secondo livello toohello desiderato di sicurezza.
 
 ![Inizializzare il gruppo di sicurezza di rete](./media/active-directory-aadconnect-azure-adfs/nsgint1.png)
 
-azione dei gruppi di sicurezza di rete, associare NSG\_INT alla subnet INT e NSG\_DMZ alla subnet della rete perimetrale. Di seguito è riportato uno screenshot di esempio:
+Dopo aver creato hello NSGs, associare subnet NSG_INT INT e NSG_DMZ con subnet rete Perimetrale. Di seguito è riportato uno screenshot di esempio:
 
 ![Configurazione dei gruppi di sicurezza di rete](./media/active-directory-aadconnect-azure-adfs/nsgconfigure1.png)
 
-* Fare clic su Subnet per aprire il pannello delle subnet
-* Selezionare la subnet da associare al gruppo di sicurezza di rete 
+* Fare clic su Pannello di hello tooopen subnet per subnet
+* Selezionare hello subnet tooassociate con hello NSG 
 
-Al termine della configurazione, il pannello Subnet avrà l'aspetto seguente:
+Dopo la configurazione, il pannello hello per le subnet dovrebbe essere simile di sotto:
 
 ![Subnet dopo la configurazione dei gruppi di sicurezza di rete](./media/active-directory-aadconnect-azure-adfs/nsgconfigure2.png)
 
-**1.3. Creare una connessione all'ambiente locale**
+**1.3. Creare una connessione locale tooon**
 
-Per distribuire il controller di dominio in Azure sarà necessaria una connessione all'ambiente locale. Azure offre varie opzioni di connettività per connettere l'infrastruttura locale all'infrastruttura di Azure.
+È necessario un connessione tooon sedi in ordine toodeploy hello controller di dominio (DC) in azure. Azure offre vari tooconnect opzioni di connettività del tooyour infrastruttura on-premise infrastruttura di Azure.
 
 * Da punto a sito
 * Da sito a sito di rete virtuale
 * ExpressRoute
 
-È consigliabile usare ExpressRoute. ExpressRoute consente di creare connessioni private tra i data center di Azure e l'infrastruttura disponibile localmente o in un ambiente con percorso condiviso. Le connessioni ExpressRoute non sfruttano la rete Internet pubblica. Queste connessioni offrono maggiore affidabilità, velocità più elevate, latenze minori e sicurezza superiore rispetto alle tipiche connessioni tramite Internet.
-Nonostante sia consigliabile usare ExpressRoute, si può scegliere qualsiasi metodo di connessione sia più adatto per l'organizzazione. Per altre informazioni su ExpressRoute e sulle varie opzioni di connettività con ExpressRoute, vedere [Panoramica tecnica relativa a ExpressRoute](https://aka.ms/Azure/ExpressRoute).
+È consigliabile toouse ExpressRoute. ExpressRoute consente di creare connessioni private tra i data center di Azure e l'infrastruttura disponibile localmente o in un ambiente con percorso condiviso. Le connessioni ExpressRoute non sfruttano hello rete Internet pubblica. Offrono ulteriori affidabilità, velocità più elevate, minori latenze e una maggiore sicurezza rispetto alle connessioni tramite hello Internet.
+Sebbene sia consigliabile toouse ExpressRoute, è possibile scegliere qualsiasi metodo di connessione più adatto per l'organizzazione. informazioni su ExpressRoute e hello toolearn varie opzioni di connettività con ExpressRoute, leggere [Panoramica tecnica su ExpressRoute](https://aka.ms/Azure/ExpressRoute).
 
 ### <a name="2-create-storage-accounts"></a>2. Creare gli account di archiviazione
-Per mantenere una disponibilità elevata e non dipendere da un singolo account di archiviazione, è possibile creare due account di archiviazione. Dividere i computer di ogni set di disponibilità in due gruppi e assegnare quindi a ogni gruppo un account di archiviazione separato.
+La disponibilità elevata di ordine toomaintain ed evitare una dipendenza da un singolo account di archiviazione, è possibile creare due account di archiviazione. Dividere macchine hello in ogni set di disponibilità in due gruppi e quindi assegnare ogni gruppo di un account di archiviazione separata.
 
 ![Creare gli account di archiviazione](./media/active-directory-aadconnect-azure-adfs/storageaccount1.png)
 
 ### <a name="3-create-availability-sets"></a>3. Creare set di disponibilità
-Per ogni ruolo (controller di dominio/AD FS e WAP), creare set di disponibilità contenenti almeno 2 computer ognuno. Sarà così possibile ottenere una disponibilità più elevata per ogni ruolo. Durante la creazione dei set di disponibilità, è essenziale stabilire quanto segue.
+Per ogni ruolo (controller di dominio/AD FS e WAP), creare set di disponibilità che conterrà 2 macchine ogni a hello minimo. Sarà così possibile ottenere una disponibilità più elevata per ogni ruolo. Mentre il set di disponibilità di hello creazione, è essenziale toodecide successivo hello:
 
-* **Domini di errore**: le macchine virtuali nello stesso dominio di errore condividono la stessa alimentazione e lo stesso commutatore di rete fisico. È consigliabile usare almeno 2 domini di errore. Ai fini di questa distribuzione può essere mantenuto il valore predefinito di 3.
-* **Domini di aggiornamento**: i computer appartenenti allo stesso dominio di aggiornamento vengono riavviati insieme nel corso di un aggiornamento. È opportuno avere almeno 2 domini di aggiornamento. Ai fini di questa distribuzione può essere mantenuto il valore predefinito di 5.
+* **Domini di errore**: hello di macchine virtuali nella stessa condivisione di dominio di errore hello stessa alimentazione e switch di rete fisica. È consigliabile usare almeno 2 domini di errore. valore predefinito di Hello è 3 e che è possibile lasciarla invariata per hello scopo della distribuzione
+* **Domini di aggiornamento**: macchine appartenenti toohello nello stesso dominio di aggiornamento vengono riavviate insieme durante un aggiornamento. Si desidera toohave minimo 2 di domini di aggiornamento. valore predefinito di Hello è 5 ed è possibile lasciarla invariata per hello scopo della distribuzione
 
 ![Set di disponibilità](./media/active-directory-aadconnect-azure-adfs/availabilityset1.png)
 
-Creare i set di disponibilità seguenti
+Creare set di disponibilità seguenti hello
 
 | Set di disponibilità | Ruolo | Domini di errore | Domini di aggiornamento |
 |:---:|:---:|:---:|:--- |
@@ -120,7 +120,7 @@ Creare i set di disponibilità seguenti
 | contosowapset |WAP |3 |5 |
 
 ### <a name="4-deploy-virtual-machines"></a>4. Distribuire le macchine virtuali
-Il passaggio successivo consiste nel distribuire le macchine virtuali che ospiteranno i diversi ruoli nell'infrastruttura. In ogni set di disponibilità è consigliato un minimo di due computer. Creare quattro macchine virtuali per la distribuzione di base.
+passaggio successivo Hello è toodeploy le macchine virtuali che ospiteranno hello ruoli diversi all'interno dell'infrastruttura. In ogni set di disponibilità è consigliato un minimo di due computer. Creare quattro macchine virtuali per la distribuzione di base hello.
 
 | Machine | Ruolo | Subnet | Set di disponibilità | Account di archiviazione | Indirizzo IP |
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -129,116 +129,116 @@ Il passaggio successivo consiste nel distribuire le macchine virtuali che ospite
 | contosowap1 |WAP |Rete perimetrale |contosowapset |contososac1 |Static |
 | contosowap2 |WAP |Rete perimetrale |contosowapset |contososac2 |Static |
 
-Come è possibile osservare, non sono stati specificati gruppi di sicurezza di rete. Ciò è dovuto al fatto che Azure consente di usare un gruppo di sicurezza di rete a livello di subnet. È quindi possibile controllare il traffico di rete dei computer con il singolo gruppo di sicurezza di rete associato alla subnet o alla scheda di interfaccia di rete. Per altre informazioni, vedere [Che cos'è un gruppo di sicurezza di rete](https://aka.ms/Azure/NSG).
-Se si gestisce il DNS, è consigliabile usare un indirizzo IP statico. È possibile usare il DNS di Azure e nei record DNS per il dominio fare invece riferimento ai nuovi computer con i relativi FQDN di Azure.
-Al termine della distribuzione, il riquadro relativo alle macchine virtuali avrà l'aspetto seguente:
+Come è possibile osservare, non sono stati specificati gruppi di sicurezza di rete. In questo modo azure consente di utilizzare gruppo a livello di subnet hello. Quindi, è possibile controllare il traffico di rete di computer utilizzando hello che NSG singoli associato non subnet hello oppure oggetto NIC hello. Per altre informazioni, vedere [Che cos'è un gruppo di sicurezza di rete](https://aka.ms/Azure/NSG).
+Indirizzo IP statico è consigliato se si sta gestendo hello DNS. È possibile usare DNS di Azure e invece hello i record DNS per il dominio, fare riferimento toohello nuove macchine da loro FQDN di Azure.
+Il riquadro di macchina virtuale dovrebbe essere simile di sotto, dopo aver completata la distribuzione di hello:
 
 ![Macchine virtuali distribuite](./media/active-directory-aadconnect-azure-adfs/virtualmachinesdeployed_noadfs.png)
 
-### <a name="5-configuring-the-domain-controller--ad-fs-servers"></a>5. Configurare controller di dominio e server AD FS
- Per autenticare qualsiasi richiesta in ingresso, AD FS dovrà contattare il controller di dominio. Per evitare il costoso trasferimento da Azure al controller di dominio locale per l'autenticazione, è consigliabile distribuire una replica del controller di dominio in Azure. Per ottenere una disponibilità elevata, è consigliabile creare un set di disponibilità con almeno 2 controller di dominio.
+### <a name="5-configuring-hello-domain-controller--ad-fs-servers"></a>5. Configurazione dei controller di dominio hello / server AD FS
+ In ordine tooauthenticate qualsiasi richiesta in ingresso, ADFS sarà necessario controller di dominio toocontact hello. toosave hello costose di andata e ritorno da controller di dominio di Azure tooon locale per l'autenticazione, è consigliabile toodeploy una replica del controller di dominio hello in Azure. In ordine tooattain a disponibilità elevata è consigliabile toocreate un gruppo di disponibilità di almeno 2 controller di dominio.
 
 | Controller di dominio | Ruolo | Account di archiviazione |
 |:---:|:---:|:---:|
 | contosodc1 |Replica |contososac1 |
 | contosodc2 |Replica |contososac2 |
 
-* Innalzare i due server al livello di controller di dominio di replica con DNS
-* Configurare i server AD FS installando il ruolo AD FS con Server Manager
+* Promuovere i due server hello come controller di dominio di replica con DNS
+* Configurare i server di hello ADFS installando il ruolo di hello AD FS con server manager di hello.
 
 ### <a name="6-deploying-internal-load-balancer-ilb"></a>6. Distribuire il servizio di bilanciamento del carico interno
-**6.1. Creare il servizio di bilanciamento del carico interno**
+**6.1. Creare hello bilanciamento del carico interno**
 
-Per distribuire un servizio di bilanciamento del carico interno, selezionare Servizi di bilanciamento del carico nel portale di Azure e fare clic su Aggiungi (+).
+toodeploy un bilanciamento del carico interno, selezionare i bilanciamenti del carico in hello portale di Azure e fare clic su Aggiungi (+).
 
 > [!NOTE]
-> Se nel menu non viene visualizzato **Servizi di bilanciamento del carico** fare clic su **Esplora** in basso a sinistra nel portale e scorrere fino a visualizzare **l'opzione**.  Fare quindi clic sulla stella gialla per aggiungere la voce al menu. Selezionare l'icona di nuovo servizio di bilanciamento del carico per aprire il pannello e iniziare la relativa configurazione.
+> Se non viene visualizzato **bilanciamenti del carico** nel menu, fare clic su **Sfoglia** in hello inferiore sinistro del portale hello e scorrere fino a visualizzare **bilanciamenti del carico**.  Quindi fare clic su tooadd stella gialla hello è tooyour menu. A questo punto selezionare hello nuova icona tooopen hello pannello toobegin configurazione di bilanciamento carico di bilanciamento del carico hello.
 > 
 > 
 
 ![Visualizzazione di Servizi di bilanciamento del carico](./media/active-directory-aadconnect-azure-adfs/browseloadbalancer.png)
 
-* **Nome**: assegnare qualsiasi nome idoneo al servizio di bilanciamento del carico
-* **Schema**: poiché il servizio di bilanciamento del carico verrà inserito a monte dei server AD FS e verrà usato SOLO per le connessioni della rete interna, selezionare "Interno"
-* **Rete virtuale**: scegliere la rete virtuale in cui viene distribuito AD FS
-* **Subnet**: scegliere la subnet interna
+* **Nome**: assegnare bilanciamento del carico di toohello qualsiasi nome appropriato
+* **Schema**: poiché il bilanciamento del carico verrà inserito davanti al server hello AD FS e per le connessioni di rete interna solo, selezionare "Interno"
+* **Rete virtuale**: scegliere hello rete virtuale in cui si intende distribuire ADFS
+* **Subnet**: scegliere una subnet interna di hello qui
 * **Assegnazione di indirizzi IP**: statici
 
 ![Servizio di bilanciamento del carico interno](./media/active-directory-aadconnect-azure-adfs/ilbdeployment1.png)
 
-Dopo che si è fatto clic su Crea, il servizio di bilanciamento del carico interno viene distribuito e dovrebbe essere visualizzato nell'elenco dei servizi di bilanciamento del carico:
+Dopo aver fatto clic creare hello bilanciamento del carico interno viene distribuito, verrà visualizzato nell'elenco di hello di servizi di bilanciamento del carico:
 
 ![Servizi di bilanciamento del carico dopo la distribuzione del servizio di bilanciamento del carico interno](./media/active-directory-aadconnect-azure-adfs/ilbdeployment2.png)
 
-Il passaggio successivo consiste nel configurare il pool back-end e il probe del back-end.
+Passaggio successivo è tooconfigure pool back-end hello e un probe di hello back-end.
 
 **6.2. Configurare il pool back-end del servizio di bilanciamento del carico interno**
 
-Selezionare il servizio di bilanciamento del carico interno appena creato nel pannello Servizi di bilanciamento del carico. Verrà aperto il pannello delle impostazioni. 
+Seleziona hello appena creato ILB nel Pannello di hello bilanciamenti del carico. Verrà aperto il pannello di impostazioni hello. 
 
-1. Selezionare i pool back-end nel pannello delle impostazioni
-2. Nel pannello Aggiungi pool back-end fare clic su Aggiungi una macchina virtuale
+1. Selezionare il pool back-end dal pannello impostazioni hello
+2. In hello aggiungere riquadro pool back-end, fare clic sulla macchina virtuale
 3. Verrà visualizzato un pannello in cui è possibile scegliere un set di disponibilità
-4. Scegliere il set di disponibilità AD FS
+4. Scegliere il set di disponibilità hello AD FS
 
 ![Configurare il pool back-end del servizio di bilanciamento del carico interno](./media/active-directory-aadconnect-azure-adfs/ilbdeployment3.png)
 
 **6.3. Configurare il probe**
 
-Nel pannello Impostazioni del servizio di bilanciamento del carico interno selezionare Probe.
+Nel pannello impostazioni di bilanciamento del carico interno hello selezionare probe.
 
 1. Fare clic su Aggiungi
-2. Specificare i dettagli del probe a. **Nome**: nome del probe b. **Protocollo**: TCP c. **Porta**: 443 (HTTPS) d. **Intervallo**: 5 (valore predefinito). È l'intervallo con cui il servizio di bilanciamento del carico interno eseguirà il probe dei computer del pool back-end e. **Soglia di non integrità**: 2 (valore predefinito). È la soglia di errori di probe consecutivi in seguito ai quali il servizio di bilanciamento del carico interno dichiarerà che un computer del pool back-end non risponde e interromperà l'invio di traffico a tale computer.
+2. Specificare i dettagli del probe a. **Nome**: nome del probe b. **Protocollo**: TCP c. **Porta**: 443 (HTTPS) d. **Intervallo**: 5 (valore predefinito): si tratta di intervallo hello in corrispondenza del quale verrà probe macchine hello in pool back-end hello e di bilanciamento del carico interno. **Limite di soglia non integra**: 2 (predefinito val ue): si tratta di hello soglia degli errori di probe consecutivi dopo cui bilanciamento del carico interno verrà dichiarato una macchina in hello back-end del pool non risponde e interrompere l'invio del traffico tooit.
 
 ![Configurare il probe del servizio di bilanciamento del carico interno](./media/active-directory-aadconnect-azure-adfs/ilbdeployment4.png)
 
 **6.4. Creare le regole di bilanciamento del carico**
 
-Per bilanciare efficacemente il traffico, il servizio di bilanciamento del carico interno dovrà essere configurato con regole di bilanciamento del carico. Per creare una regola di bilanciamento del carico: 
+Ordine tooeffectively saldo hello del traffico, hello bilanciamento del carico interno deve essere configurato con regole di bilanciamento del carico. In ordine toocreate una regola di bilanciamento del carico, 
 
-1. Selezionare Regole di bilanciamento del carico nel pannello Impostazioni del servizio di bilanciamento del carico interno
-2. Fare clic su Aggiungi nel pannello Regole di bilanciamento del carico
-3. Nel pannello Aggiungi regola di bilanciamento del carico a. **Nome**: specificare un nome per la regola b. **Protocollo**: selezionare TCP c. **Porta**: 443 d. **Porta back-end**: 443 e. **Pool back-end**: selezionare il pool creato in precedenza per il cluster AD FS f. **Probe**: selezionare il probe creato in precedenza per i server AD FS
+1. Selezionare una regola dal pannello impostazioni hello di hello ILB di bilanciamento del carico
+2. Fare clic su Aggiungi nel hello pannello regole di bilanciamento del carico
+3. In hello Aggiungi pannello regola bilanciamento di carico una. **Nome**: specificare un nome per la regola hello b. **Protocollo**: selezionare TCP c. **Porta**: 443 d. **Porta back-end**: 443 e. **Pool back-end**: selezionare il pool di hello creato per AD FS hello cluster f precedenti. **Probe**: probe hello selezionare creato in precedenza per i server ADFS
 
 ![Configurare le regole di bilanciamento del servizio di bilanciamento del carico interno](./media/active-directory-aadconnect-azure-adfs/ilbdeployment5.png)
 
 **6.5. Aggiornare il DNS con il servizio di bilanciamento del carico interno**
 
-Passare al server DNS e creare un CNAME per il servizio di bilanciamento del carico interno. Il CNAME dovrà essere creato per il servizio federativo con indirizzo IP che punta all'indirizzo IP del servizio di bilanciamento del carico interno. Se l'indirizzo DIP del servizio di bilanciamento del carico interno è 10.3.0.8 e il servizio federativo installato è fs.contoso.com, ad esempio, creare un CNAME per fs.contoso.com che punta a 10.3.0.8.
-In questo modo, tutta la comunicazione relativa a fs.contoso.com raggiungerà il servizio di bilanciamento del carico interno e verrà indirizzata correttamente.
+Passare i server DNS tooyour e creare un record CNAME per hello bilanciamento del carico interno. Hello CNAME deve essere per servizio federativo hello con indirizzo IP hello verso toohello l'indirizzo IP del bilanciamento del carico interno hello. Ad esempio se hello indirizzo DIP di bilanciamento del carico interno è 10.3.0.8 e il servizio federativo hello installato è fs.contoso.com, quindi creare un record CNAME per fs.contoso.com verso too10.3.0.8.
+Ciò garantisce che tutte le comunicazioni relative fs.contoso.com finire in hello bilanciamento del carico interno e sono indirizzati in modo appropriato.
 
-### <a name="7-configuring-the-web-application-proxy-server"></a>7. Configurare il server proxy applicazione Web
-**7.1. Configurare i server proxy applicazione Web per raggiungere i server AD FS**
+### <a name="7-configuring-hello-web-application-proxy-server"></a>7. Configurazione dei server Proxy applicazione Web hello
+**7.1. Configurazione dei server di hello Proxy applicazione Web Server tooreach AD FS**
 
-Affinché i server proxy applicazione Web possano raggiungere i server AD FS controllati dal servizio di bilanciamento del carico interno, creare un record per il servizio di bilanciamento del carico interno in %systemroot%\system32\drivers\etc\hosts. Si noti che il nome distinto dovrà essere il nome del servizio federativo, ad esempio fs.contoso.com, e la voce dell'indirizzo IP dovrà essere quella dell'indirizzo IP del servizio di bilanciamento del carico interno (10.3.0.8 nell'esempio).
+In ordine tooensure che i server Proxy applicazione Web sono server di hello ADFS in grado di tooreach dietro hello ILB, creare un record in hello %systemroot%\system32\drivers\etc\hosts per hello bilanciamento del carico interno. Si noti che il nome distinto (DN) hello devono essere nome del servizio federativo hello, ad esempio fs.contoso.com. E voce hello dell'indirizzo IP deve essere quello di indirizzo IP del ILB hello (10.3.0.8 come esempio hello).
 
-**7.2. Installare il ruolo Proxy applicazione Web**
+**7.2. Installare il ruolo di Proxy applicazione Web hello**
 
-Dopo aver verificato che i server proxy applicazione Web possano raggiungere i server AD FS controllati dal servizio di bilanciamento del carico interno, è possibile installare i server proxy applicazione Web. I server proxy applicazione Web non vengono aggiunti al dominio. Installare i ruoli Proxy applicazione Web nei due server proxy applicazione Web selezionando il ruolo Accesso remoto. Server Manager consentirà di completare l'installazione di WAP.
-Per altre informazioni sulla distribuzione di WAP, vedere [Installare e configurare il server del proxy dell'applicazione Web](https://technet.microsoft.com/library/dn383662.aspx).
+Dopo avere verificato che i server Proxy applicazione Web sono server di hello ADFS in grado di tooreach dietro bilanciamento del carico interno, è possibile installare successivamente il server di Proxy applicazione Web hello. Server Proxy applicazione Web non essere toohello aggiunti a un dominio. Installare ruoli del Proxy applicazione Web hello in due server Proxy applicazione Web di hello selezionando il ruolo di accesso remoto hello. gestione di server Hello consentirà di installazione di toocomplete hello WAP.
+Per ulteriori informazioni su come leggere toodeploy WAP, [installare e configurare i Server Proxy applicazione Web hello](https://technet.microsoft.com/library/dn383662.aspx).
 
-### <a name="8--deploying-the-internet-facing-public-load-balancer"></a>8.  Distribuire il servizio di bilanciamento del carico con connessione Internet (pubblico)
+### <a name="8--deploying-hello-internet-facing-public-load-balancer"></a>8.  Distribuzione di hello bilanciamento del carico Internet affiancate (pubblico)
 **8.1.  Creare il servizio di bilanciamento del carico con connessione Internet (pubblico)**
 
-Nel portale di Azure selezionare Servizi di bilanciamento del carico e quindi fare clic su Aggiungi. Nel pannello Crea servizio di bilanciamento del carico immettere le informazioni seguenti.
+Nel portale di Azure hello, selezionare servizi di bilanciamento del carico e quindi fare clic su Aggiungi. Nel pannello del servizio di bilanciamento carico di hello crea, immettere le seguenti informazioni hello
 
-1. **Nome**: nome del servizio di bilanciamento del carico
+1. **Nome**: nome del servizio di bilanciamento del carico hello
 2. **Schema**: Pubblico. Questa opzione indica ad Azure che il servizio di bilanciamento del carico dovrà avere un indirizzo pubblico.
 3. **Indirizzo IP**: creare un nuovo indirizzo IP (dinamico)
 
 ![Servizio di bilanciamento del carico con connessione Internet](./media/active-directory-aadconnect-azure-adfs/elbdeployment1.png)
 
-Al termine della distribuzione, il servizio di bilanciamento del carico verrà visualizzato nell'elenco Servizi di bilanciamento del carico.
+Dopo la distribuzione, bilanciamento del carico hello verrà visualizzato nell'elenco di sistemi di bilanciamento carico di hello.
 
 ![Elenco dei servizi di bilanciamento del carico](./media/active-directory-aadconnect-azure-adfs/elbdeployment2.png)
 
-**8.2. Assegnare un'etichetta DNS all'IP pubblico**
+**8.2. Assegnare un indirizzo IP pubblico di toohello in etichetta DNS**
 
-Fare clic sulla voce del servizio di bilanciamento del carico appena creato nel pannello Servizi di bilanciamento del carico per visualizzare il pannello per la configurazione. Per configurare l'etichetta DNS per l'IP pubblico, seguire questa procedura:
+Fare clic sulla voce di servizio di bilanciamento carico di hello appena creato nella hello toobring pannello bilanciamento di carico pannello hello per la configurazione di. Seguire sotto l'etichetta DNS hello tooconfigure passaggi per l'IP pubblico hello:
 
-1. Fare clic sull'indirizzo IP pubblico. Verrà aperto il pannello per l'IP pubblico e le relative impostazioni
+1. Fare clic sull'indirizzo IP pubblico hello. Verrà aperto il pannello hello per indirizzo IP pubblico hello e le relative impostazioni
 2. Fare clic su Configurazione
-3. Specificare un'etichetta DNS, che diventerà l'etichetta DNS pubblica accessibile da qualsiasi posizione, ad esempio contosofs.westus.cloudapp.azure.com. È possibile aggiungere una voce nel DNS esterno per il servizio federativo (come fs.contoso.com) che verrà risolta nell'etichetta DNS del servizio di bilanciamento del carico esterno (contosofs.westus.cloudapp.azure.com).
+3. Specificare un'etichetta DNS, Che diventerà etichetta DNS pubblico hello che è possibile accedere da qualsiasi posizione, ad esempio contosofs.westus.cloudapp.azure.com. È possibile aggiungere una voce in hello DNS esterno per il servizio federativo hello (ad esempio fs.contoso.com) che risolve l'etichetta di hello esterna DNS toohello bilanciamento del carico (contosofs.westus.cloudapp.azure.com).
 
 ![Configurare il servizio di bilanciamento del carico con connessione Internet](./media/active-directory-aadconnect-azure-adfs/elbdeployment3.png) 
 
@@ -246,42 +246,42 @@ Fare clic sulla voce del servizio di bilanciamento del carico appena creato nel 
 
 **8.3. Configurare il pool back-end per il servizio di bilanciamento del carico con connessione Internet (pubblico)** 
 
-Seguire la stessa procedura indicata per la creazione del servizio di bilanciamento del carico interno per configurare il pool back-end per il servizio di bilanciamento del carico con connessione Internet (pubblico) come set di disponibilità per i server WAP, ad esempio contosowapset.
+Seguire hello stessi passaggi come servizio di bilanciamento del carico interno hello Creazione pool back-end di hello tooconfigure per Internet affiancate (pubblico) bilanciamento del carico come disponibilità hello impostare per i server WAP di hello. ad esempio contosowapset.
 
 ![Configurare il pool back-end del servizio di bilanciamento del carico con connessione Internet](./media/active-directory-aadconnect-azure-adfs/elbdeployment5.png)
 
 **8.4. Configurare il probe**
 
-Seguire la stessa procedura impiegata durante la configurazione del servizio di bilanciamento del carico interno per configurare il probe per il pool back-end dei server WAP.
+Seguire hello stessi passaggi come configurazione hello carico interno tooconfigure hello probe di bilanciamento per il pool di back-end hello del server WAP.
 
 ![Configurare il probe del servizio di bilanciamento del carico con connessione Internet](./media/active-directory-aadconnect-azure-adfs/elbdeployment6.png)
 
 **8.5. Creare regole di bilanciamento del carico**
 
-Seguire la stessa procedura indicata per il servizio di bilanciamento del carico interno per configurare la regola di bilanciamento del carico per la porta TCP 443.
+Attenersi alla stessa procedura come esempio di bilanciamento del carico di bilanciamento del carico interno tooconfigure hello regola per TCP 443 hello.
 
 ![Configurare le regole di bilanciamento del servizio di bilanciamento del carico con connessione Internet](./media/active-directory-aadconnect-azure-adfs/elbdeployment7.png)
 
-### <a name="9-securing-the-network"></a>9. Proteggere la rete
-**9.1. Proteggere la subnet interna**
+### <a name="9-securing-hello-network"></a>9. La protezione di rete hello
+**9.1. Protezione di subnet interna hello**
 
-In generale, per proteggere efficacemente la subnet interna sono necessarie le regole seguenti, nell'ordine indicato di seguito.
+In generale, è necessario hello seguendo regole tooefficiently secure subnet interna (in ordine di hello come indicato di seguito)
 
 | Regola | Descrizione | Flusso |
 |:--- |:--- |:---:|
-| AllowHTTPSFromDMZ |Consente la comunicazione HTTPS dalla rete perimetrale |In ingresso |
-| DenyInternetOutbound |Nessun accesso a Internet |In uscita |
+| AllowHTTPSFromDMZ |Consentire le comunicazioni HTTPS hello dalla rete Perimetrale |In ingresso |
+| DenyInternetOutbound |Nessun toointernet di accesso |In uscita |
 
 ![Regole di accesso interno (in ingresso)](./media/active-directory-aadconnect-azure-adfs/nsg_int.png)
 
 [commento]: <> (![regole di accesso interno (in ingresso)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [commento]: <> (![regole di accesso interno (in uscita)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
 
-**9.2. Proteggere la subnet perimetrale**
+**9.2. Protezione di subnet di rete Perimetrale hello**
 
 | Regola | Descrizione | Flusso |
 |:--- |:--- |:---:|
-| AllowHTTPSFromInternet |Consente il traffico HTTPS da Internet alla rete perimetrale |In ingresso |
-| DenyInternetOutbound |Tutto il traffico non HTTPS verso Internet viene bloccato |In uscita |
+| AllowHTTPSFromInternet |Consenti HTTPS da internet toohello rete Perimetrale |In ingresso |
+| DenyInternetOutbound |Un valore diverso da toointernet HTTPS è bloccato |In uscita |
 
 ![Regole di accesso esterno (in ingresso)](./media/active-directory-aadconnect-azure-adfs/nsg_dmz.png)
 
@@ -292,13 +292,13 @@ In generale, per proteggere efficacemente la subnet interna sono necessarie le r
 > 
 > 
 
-### <a name="10-test-the-ad-fs-sign-in"></a>10. Testare l'accesso ad AD FS
-Il modo più semplice per testare AD FS consiste nell'usare la pagina IdpInitiatedSignon.aspx. A tale scopo, è necessario abilitare IdpInitiatedSignOn nelle proprietà di AD FS. Per verificare l'installazione di AD FS, seguire questa procedura.
+### <a name="10-test-hello-ad-fs-sign-in"></a>10. Hello AD FS sign-in di test
+Hello più semplice è tootest che ADFS è la pagina IdpInitiatedSignon.aspx hello. In ordine toobe in grado di toodo che, è necessario tooenable hello IdpInitiatedSignOn sulle proprietà hello AD FS. Eseguire operazioni di hello seguenti tooverify il programma di installazione di ADFS
 
-1. Eseguire con PowerShell il cmdlet di seguito nel server AD FS per impostare l'abilitazione:
+1. Esecuzione hello di sotto di cmdlet nel server di hello AD FS, tramite PowerShell, tooset è tooenabled.
    Set-AdfsProperties -EnableIdPInitiatedSignonPage $true 
 2. Da qualsiasi computer esterno accedere a https://adfs.thecloudadvocate.com/adfs/ls/IdpInitiatedSignon.aspx  
-3. La pagina di AD FS dovrebbe essere visualizzata come segue:
+3. Verrà visualizzata la pagina hello ADFS come il seguente:
 
 ![Pagina di accesso di test](./media/active-directory-aadconnect-azure-adfs/test1.png)
 
@@ -307,39 +307,39 @@ Dopo l'accesso, verrà visualizzato un messaggio di completamento dell'operazion
 ![Completamento test](./media/active-directory-aadconnect-azure-adfs/test2.png)
 
 ## <a name="template-for-deploying-ad-fs-in-azure"></a>Modello per la distribuzione di AD FS in Azure
-Il modello consente di distribuire una configurazione a 6 computer, 2 per ogni controller di dominio, AD FS e WAP.
+modello Hello consente di distribuire una configurazione 6 macchina, 2 per i controller di dominio, AD FS e WAP.
 
 [Modello di distribuzione di AD FS in Azure](https://github.com/paulomarquesc/adfs-6vms-regular-template-based)
 
-Durante la distribuzione di questo modello, è possibile usare una rete virtuale esistente o crearne una nuova. I diversi parametri disponibili per personalizzare la distribuzione sono elencati di seguito insieme alla descrizione dell'uso del parametro nel processo di distribuzione. 
+Durante la distribuzione di questo modello, è possibile usare una rete virtuale esistente o crearne una nuova. Hello vari parametri disponibili per la personalizzazione della distribuzione hello sono elencati di seguito con descrizione hello dell'utilizzo del parametro hello hello processo di distribuzione. 
 
-| Parametro | Description |
+| . | Description |
 |:--- |:--- |
-| Percorso |L'area in cui distribuire le risorse, ad esempio Stati Uniti orientali. |
-| StorageAccountType |Il tipo di account di archiviazione creato |
+| Percorso |Hello area toodeploy hello risorse in, ad esempio Stati Uniti orientali. |
+| StorageAccountType |tipo di Hello di hello Account di archiviazione creato |
 | VirtualNetworkUsage |Indica se verrà creata una nuova rete virtuale o ne verrà usata una esistente |
-| VirtualNetworkName |Il nome della rete virtuale da creare, obbligatorio sia in caso di uso di una rete esistente che con una rete nuova |
-| VirtualNetworkResourceGroupName |Specifica il nome del gruppo di risorse in cui risiede la rete virtuale esistente. Quando si usa una rete virtuale esistente, questo diventa un parametro obbligatorio per consentire alla distribuzione di trovare l'ID della rete virtuale esistente |
-| VirtualNetworkAddressRange |L'intervallo di indirizzi della nuova rete virtuale, obbligatorio in caso di creazione di una nuova rete virtuale |
-| InternalSubnetName |Il nome della subnet interna, obbligatorio sia in caso di uso di una rete virtuale esistente che con una rete virtuale nuova |
-| InternalSubnetAddressRange |L'intervallo di indirizzi della subnet interna, che contiene controller di dominio e server AD FS, obbligatorio in caso di creazione di una nuova rete virtuale. |
-| DMZSubnetAddressRange |L'intervallo di indirizzi della subnet della rete perimetrale, che contiene server proxy dell'applicazione Windows, obbligatorio in caso di creazione di una nuova rete virtuale. |
-| DMZSubnetName |Il nome della subnet interna, obbligatorio sia in caso di uso di una rete virtuale esistente che con una rete virtuale nuova. |
-| ADDC01NICIPAddress |L'indirizzo IP interno del primo controller di dominio; verrà assegnato in modo statico al controller di dominio e deve essere un indirizzo IP valido nella subnet interna |
-| ADDC02NICIPAddress |L'indirizzo IP interno del secondo controller di dominio; verrà assegnato in modo statico al controller di dominio e deve essere un indirizzo IP valido nella subnet interna |
-| ADFS01NICIPAddress |L'indirizzo IP interno del primo server AD FS; verrà assegnato in modo statico al server AD FS e deve essere un indirizzo IP valido nella subnet interna |
-| ADFS02NICIPAddress |L'indirizzo IP interno del secondo server AD FS; verrà assegnato in modo statico al server AD FS e deve essere un indirizzo IP valido nella subnet interna |
-| WAP01NICIPAddress |L'indirizzo IP interno del primo server WAP; verrà assegnato in modo statico al server WAP e deve essere un indirizzo IP valido nella subnet della rete perimetrale |
-| WAP02NICIPAddress |L'indirizzo IP interno del secondo server WAP; verrà assegnato in modo statico al server WAP e deve essere un indirizzo IP valido nella subnet della rete perimetrale |
-| ADFSLoadBalancerPrivateIPAddress |L'indirizzo IP interno del servizio di bilanciamento del carico AD FS; verrà assegnato in modo statico al servizio di bilanciamento del carico e deve essere un indirizzo IP valido nella subnet interna |
+| VirtualNetworkName |nome Hello di hello tooCreate di rete virtuale, obbligatorio all'utilizzo della rete virtuale nuova o esistente |
+| VirtualNetworkResourceGroupName |Specifica il nome di hello hello del gruppo di risorse in cui risiede la rete virtuale esistente di hello. Quando si utilizza una rete virtuale esistente, questa diventa un parametro obbligatorio per consentire la distribuzione di hello trovare hello ID di rete virtuale esistente hello |
+| VirtualNetworkAddressRange |intervallo di indirizzi di hello Hello nuova rete virtuale, obbligatorio se la creazione di una nuova rete virtuale |
+| InternalSubnetName |nome Hello di subnet interna hello, obbligatoria in entrambe le opzioni di utilizzo della rete virtuale (nuove o esistente) |
+| InternalSubnetAddressRange |intervallo di indirizzi Hello di subnet interna hello, che contiene hello i controller di dominio e ad FS server, obbligatorio se la creazione di una nuova rete virtuale. |
+| DMZSubnetAddressRange |intervallo di indirizzi Hello della subnet di rete perimetrale hello, che contiene hello Windows application server proxy, obbligatorio se la creazione di una nuova rete virtuale. |
+| DMZSubnetName |nome Hello di subnet interna hello, obbligatoria in entrambe le opzioni di utilizzo della rete virtuale (nuove o esistente). |
+| ADDC01NICIPAddress |indirizzo IP interno Hello di hello primo Controller di dominio, questo indirizzo IP verrà assegnato in modo statico toohello controller di dominio e deve essere un indirizzo ip valido all'interno di subnet interna hello |
+| ADDC02NICIPAddress |indirizzo IP interno Hello di hello secondo Controller di dominio, questo indirizzo IP verrà assegnato in modo statico toohello controller di dominio e deve essere un indirizzo ip valido all'interno di subnet interna hello |
+| ADFS01NICIPAddress |indirizzo IP interno Hello del server ADFS prima hello, questo indirizzo IP verrà assegnato in modo statico server ADFS toohello e deve essere un indirizzo ip valido all'interno di subnet interna hello |
+| ADFS02NICIPAddress |indirizzo IP interno Hello del server ADFS secondo hello, questo indirizzo IP verrà assegnato in modo statico server ADFS toohello e deve essere un indirizzo ip valido all'interno di subnet interna hello |
+| WAP01NICIPAddress |indirizzo IP interno Hello del primo server WAP di hello, questo indirizzo IP verrà assegnato in modo statico server WAP toohello e deve essere un indirizzo ip valido all'interno di subnet di rete Perimetrale hello |
+| WAP02NICIPAddress |indirizzo IP interno Hello del secondo server WAP di hello, questo indirizzo IP verrà assegnato in modo statico server WAP toohello e deve essere un indirizzo ip valido all'interno di subnet di rete Perimetrale hello |
+| ADFSLoadBalancerPrivateIPAddress |bilanciamento del carico indirizzo IP interno Hello di hello ADFS, questo indirizzo IP verrà assegnato in modo statico toohello servizio di bilanciamento del carico e deve essere un indirizzo ip valido all'interno di subnet interna hello |
 | ADDCVMNamePrefix |Il prefisso del nome della macchina virtuale per i controller di dominio |
 | ADFSVMNamePrefix |Il prefisso del nome della macchina virtuale per i server AD FS |
 | WAPVMNamePrefix |Il prefisso del nome della macchina virtuale per i server WAP |
-| ADDCVMSize |Le dimensioni della VM dei controller di dominio |
-| ADFSVMSize |Le dimensioni della VM dei server AD FS |
-| WAPVMSize |Le dimensioni della VM dei server WAP |
-| AdminUserName |Il nome dell'amministratore locale delle macchine virtuali |
-| AdminPassword |La password dell'account dell'amministratore locale delle macchine virtuali |
+| ADDCVMSize |dimensioni delle macchine virtuali Hello di hello i controller di dominio |
+| ADFSVMSize |dimensioni delle macchine virtuali Hello del server ADFS hello |
+| WAPVMSize |dimensioni delle macchine virtuali Hello del server WAP hello |
+| AdminUserName |nome Hello di hello amministratore locale di macchine virtuali hello |
+| AdminPassword |password account amministratore locale hello delle macchine virtuali hello Hello |
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 * [Set di disponibilità](https://aka.ms/Azure/Availability) 

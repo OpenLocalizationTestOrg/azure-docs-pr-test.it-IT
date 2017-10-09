@@ -1,6 +1,6 @@
 ---
-title: Errore nella pagina di un'applicazione dopo l'accesso | Microsoft Docs
-description: Come risolvere i problemi di accesso ad Azure AD quando l'applicazione stessa genera un errore
+title: aaaError nella pagina di un'applicazione dopo l'accesso | Documenti Microsoft
+description: Come tooresolve problemi con Azure AD accesso quando un'applicazione hello stesso genera un errore
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: a8cd93256f79ece268ec3411dfbdf590f4b24447
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 317b6f8e6417520ead80ae4e26c591ba6b134683
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="error-on-an-applications-page-after-signing-in"></a>Errore nella pagina di un'applicazione dopo l'accesso
 
-In questo scenario l'utente ha eseguito l'accesso ad Azure AD, ma l'applicazione visualizza un errore che non consente all'utente di completare correttamente il flusso di accesso. In questo scenario l'applicazione non accetta la risposta di Azure AD.
+In questo scenario, Azure AD ha eseguito l'accesso utente hello in, ma un'applicazione hello viene visualizzato un errore non consentire hello utente toosuccessfully fine hello sign in flusso. In questo scenario, un'applicazione hello non accetta il problema di risposta hello da Azure AD.
 
-Ci sono diversi motivi per cui l'applicazione non ha accettato la risposta di Azure AD. Se l'errore nell'applicazione non è sufficientemente chiaro per capire cosa manca nella risposta, procedere come segue:
+Esistono alcune delle possibili cause per cui un'applicazione hello rifiutata risposta hello da Azure AD. Se l'errore hello in un'applicazione hello non è sufficientemente chiaro tooknow cosa manca in risposta hello, quindi:
 
--   Se l'applicazione è la raccolta di Azure AD, verificare di aver seguito tutti i passaggi nell'articolo [Come eseguire il debug di single sign-on basato su SAML per applicazioni in Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging).
+-   Se un'applicazione hello raccolta hello Azure AD, verificare di aver seguito tutti i passaggi nell'articolo hello hello [come toodebug basato su SAML single sign-on tooapplications in Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging).
 
--   Usare uno strumento come [Fiddler](http://www.telerik.com/fiddler) per acquisire la richiesta SAML, la risposta SAML e il token SAML.
+-   Utilizzare uno strumento come [Fiddler](http://www.telerik.com/fiddler) toocapture SAML richiesta, risposta SAML e token SAML.
 
--   Condividere la risposta SAML con il fornitore dell'applicazione per capire cosa manca.
+-   Condividere risposta SAML hello con hello applicazione fornitore tooknow cosa manca.
 
-## <a name="missing-attributes-in-the-saml-response"></a>Attributi mancanti nella risposta SAML
+## <a name="missing-attributes-in-hello-saml-response"></a>Attributi mancanti hello risposta SAML
 
-Per aggiungere un attributo nella configurazione di Azure AD da inviare nella risposta di Azure AD, seguire questa procedura:
+un attributo in toobe di configurazione di Azure AD hello inviato in risposta hello Azure AD, tooadd procedura hello riportata di seguito:
 
-1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-   * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+   * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare l'applicazione per cui si vuole configurare l'accesso Single Sign-On.
+6.  Selezionare l'applicazione hello tooconfigure single sign-on.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  Fare clic su **Visualizza e modifica tutti gli altri attributi utente** nella sezione **Attributi utente** per modificare gli attributi da inviare all'applicazione nel token SAML quando l'utente esegue l'accesso.
+8.  Fare clic su **visualizzare e modificare gli attributi di tutti gli altri utenti in** hello **gli attributi utente** hello tooedit sezione attributi applicazione toohello toobe inviati nel token SAML hello quando l'utente accede.
 
-   Per aggiungere un attributo:
+   un attributo tooadd:
 
-   * Fare clic su **Aggiungi attributo**. Immettere il **Nome** e selezionare il **Valore** nell'elenco a discesa.
+   * Fare clic su **Aggiungi attributo**. Immettere hello **nome** hello selezionare hello e **valore** dall'elenco a discesa hello.
 
-   * Fare clic su **Salva**. Il nuovo attributo verrà visualizzato nella tabella.
+   * Fare clic su **Salva**. Vedrai hello nuovo attributo tabella hello.
 
-9.  Salvare la configurazione.
+9.  Salvare la configurazione di hello.
 
-Al successivo accesso dell'utente all'applicazione, Azure AD invia il nuovo attributo nella risposta SAML.
+Successivo accesso dell'applicazione toohello, hello utente Azure AD inviare nuovo attributo hello hello risposta SAML.
 
-## <a name="the-application-expects-a-different-user-identifier-value-or-format"></a>L'applicazione prevede un formato o un valore dell'ID utente diverso
+## <a name="hello-application-expects-a-different-user-identifier-value-or-format"></a>un'applicazione Hello prevede un formato o un valore di identificatore utente diverso
 
-L'accesso all'applicazione non riesce perché nella risposta SAML mancano attributi come i ruoli o perché l'applicazione prevede un formato diverso per l'attributo EntityID.
+Hello Accedi toohello applicazione non riesce perché hello risposta SAML mancano gli attributi, ad esempio i ruoli o un'applicazione hello è previsto un formato diverso per l'attributo EntityID hello.
 
-## <a name="add-an-attribute-in-the-azure-ad-application-configuration"></a>Aggiungere un attributo nella configurazione dell'applicazione Azure AD:
+## <a name="add-an-attribute-in-hello-azure-ad-application-configuration"></a>Aggiungere un attributo nella configurazione dell'applicazione hello Azure AD:
 
-Per modificare il valore dell'ID utente, seguire questa procedura:
+hello toochange valore identificatore utente, effettuare i passaggi di hello seguenti:
 
-1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-   * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+   * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare l'applicazione per cui si vuole configurare l'accesso Single Sign-On.
+6.  Selezionare l'applicazione hello tooconfigure single sign-on.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  In **Attributi utente** selezionare l'identificatore univoco per gli utenti nel menu a discesa **Identificatore utente**.
+8.  In hello **gli attributi utente**, selezionare hello identificatore univoco per gli utenti in hello **identificatore utente** elenco a discesa.
 
 ## <a name="change-entityid-user-identifier-format"></a>Modificare il formato di EntityID (ID utente)
 
-Se l'applicazione prevede un altro formato per l'attributo EntityID, non sarà possibile selezionare il formato di EntityID (ID utente) che Azure AD invia all'applicazione nella risposta dopo l'autenticazione utente.
+Se un'applicazione hello prevede che un altro formato per l'attributo EntityID hello. Quindi, non sarà formato EntityID (ID utente) di hello tooselect in grado di Azure AD invia toohello applicazione in risposta hello dopo l'autenticazione utente.
 
-Azure AD seleziona il formato per l'attributo NameID (ID utente) in base al valore selezionato o al formato richiesto dall'applicazione nell'oggetto AuthRequest SAML. Per altre informazioni, vedere la sezione NameIDPolicy dell'articolo [Protocollo SAML per Single Sign-On](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest).
+Azure AD selezionare hello formato attributo NameID hello (ID utente) in base al valore di hello selezionato o per hello formato richiesto da un'applicazione hello in hello AuthRequest SAML. Per ulteriori informazioni visitare articolo hello [protocollo Single Sign-On SAML](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) in hello sezione NameIDPolicy.
 
-## <a name="the-application-expects-a-different-signature-method-for-the-saml-response"></a>L'applicazione prevede un metodo di firma diverso per la risposta SAML
+## <a name="hello-application-expects-a-different-signature-method-for-hello-saml-response"></a>un'applicazione Hello prevede un metodo di firma diversa per la risposta SAML hello
 
-Per modificare le parti del token SAML con firma digitale di Azure Active Directory. Attenersi ai passaggi indicati di seguito:
+toochange quali parti del token SAML hello sono firmate digitalmente da Azure Active Directory. Attenersi alla procedura hello riportata di seguito:
 
-1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-  * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+  * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare l'applicazione per cui si vuole configurare l'accesso Single Sign-On.
+6.  Selezionare l'applicazione hello tooconfigure single sign-on.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  Fare clic su **Mostra impostazioni avanzate per la firma di certificati** nella sezione **Certificato di firma SAML**.
+8.  Fare clic su **Mostra impostazioni di firma certificato avanzate** in hello **certificato di firma SAML** sezione.
 
-9.  Selezionare un valore appropriato per **Opzione di firma** in base a quanto previsto dall'applicazione:
+9.  Seleziona hello appropriato **opzione firma** previsto dall'applicazione hello:
 
   * Firma risposta SAML
 
@@ -125,35 +125,35 @@ Per modificare le parti del token SAML con firma digitale di Azure Active Direct
 
   * Firma asserzione SAML
 
-Al successivo accesso dell'utente all'applicazione, Azure AD firma la parte della risposta SAML selezionata.
+Successivo accesso dell'applicazione toohello, hello utente l'accesso di Azure AD hello parte della risposta SAML hello selezionato.
 
-## <a name="the-application-expects-the-signing-algorithm-to-be-sha-1"></a>L'applicazione prevede che l'algoritmo di firma sia SHA-1
+## <a name="hello-application-expects-hello-signing-algorithm-toobe-sha-1"></a>un'applicazione Hello prevede hello firma toobe algoritmo SHA-1
 
-Per impostazione predefinita, Azure AD firma il token SAML usando l'algoritmo più sicuro. Non è consigliabile modificare l'algoritmo di firma scegliendo SHA-1, a meno che non sia richiesto dall'applicazione.
+Per impostazione predefinita, Azure AD firma token SAML hello utilizzando hello la maggior parte delle algoritmo di sicurezza. Si consiglia di non modificare hello sign algoritmo tooSHA-1 se non richiesto da un'applicazione hello.
 
-Per modificare l'algoritmo di firma, seguire questa procedura:
+toochange hello algoritmo di firma, attenersi alla procedura hello riportata di seguito:
 
-1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-   * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+   * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare l'applicazione per cui si vuole configurare l'accesso Single Sign-On.
+6.  Selezionare l'applicazione hello tooconfigure single sign-on.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  Fare clic su **Mostra impostazioni avanzate per la firma di certificati** nella sezione **Certificato di firma SAML**.
+8.  Fare clic su **Mostra impostazioni di firma certificato avanzate** in hello **certificato di firma SAML** sezione.
 
-9.  Selezionare SHA-1 in **Algoritmo di firma**.
+9.  Selezionare SHA-1, hello **algoritmo di firma**.
 
-Al successivo accesso dell'utente all'applicazione, Azure AD firma il token SAML usando l'algoritmo SHA-1.
+Successivo hello utente esegue l'accesso nell'applicazione toohello, accesso di Azure AD hello token SAML con l'algoritmo SHA-1.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Come eseguire il debug di single sign-on basato su SAML per applicazioni in Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging)
+[Come toodebug basato su SAML single sign-on tooapplications in Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging)

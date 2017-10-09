@@ -1,6 +1,6 @@
 ---
-title: Criteri di memorizzazione nella cache in Gestione API di Azure | Microsoft Docs
-description: Informazioni sui criteri di memorizzazione nella cache disponibili per l'uso in Gestione API di Azure.
+title: criteri di memorizzazione nella cache gestione API aaaAzure | Documenti Microsoft
+description: Informazioni sui criteri disponibili per l'utilizzo in Gestione API di Azure di memorizzazione nella cache di hello.
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 2a8f012e7e223ef5c1683c8a6c5ecf2f3e96bed8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bd6b0721945609b28dbf6e7ef0631979c08c8c65
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-caching-policies"></a>Criteri di memorizzazione nella cache in Gestione API
-Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+In questo argomento fornisce un riferimento per i seguenti criteri di gestione API hello. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="CachingPolicies"></a> Criteri di memorizzazione nella cache  
   
@@ -29,26 +29,26 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
     -   [Recupera dalla cache](api-management-caching-policies.md#GetFromCache): esegue una ricerca nella cache e restituisce risposte valide memorizzate nella cache, se disponibili.  
   
-    -   [Archivia nella cache](api-management-caching-policies.md#StoreToCache): memorizza nella cache le risposte in base alla configurazione del controllo cache specificata.  
+    -   [Archiviare toocache](api-management-caching-policies.md#StoreToCache) - risposte memorizza nella cache in base di configurazione del controllo toohello della cache specificata.  
   
 -   Criteri di memorizzazione dei valori nella cache  
   
     -   [Recupera valore dalla cache](#GetFromCacheByKey) : recupera un elemento memorizzato nella cache per chiave.  
   
-    -   [Archivia valore nella cache](#StoreToCacheByKey) : archivia un elemento nella cache per chiave.  
+    -   [Valore di memorizzare nella cache](#StoreToCacheByKey) -archiviare un elemento nella cache di hello dalla chiave.  
   
-    -   [Rimuovi valore dalla cache](#RemoveCacheByKey) : rimuove un elemento dalla cache in base alla chiave.  
+    -   [Rimuovi valore dalla cache](#RemoveCacheByKey) -rimuovere un elemento nella cache di hello dalla chiave.  
   
 ##  <a name="GetFromCache"></a> Recupera dalla cache  
- Usare il criterio `cache-lookup` per eseguire una ricerca nella cache e restituire una risposta valida memorizzata nella cache, se disponibile. Questo criterio può essere applicato nei casi in cui il contenuto della risposta rimane statico in un periodo di tempo. La memorizzazione delle risposte nella cache riduce la larghezza di banda e i requisiti di elaborazione imposti sul server Web back-end e riduce la latenza percepita dagli utenti delle API.  
+ Hello utilizzare `cache-lookup` tooperform cache dei criteri di cercare e restituire una risposta memorizzata nella cache valida, se disponibile. Questo criterio può essere applicato nei casi in cui il contenuto della risposta rimane statico in un periodo di tempo. Risposta di memorizzazione nella cache riduce la larghezza di banda e requisiti di elaborazione imposto a hello back-end web server e diminuisce la latenza percepita dagli utenti delle API.  
   
 > [!NOTE]
->  Questo criterio deve essere associato a un criterio [Archivia nella cache](api-management-caching-policies.md#StoreToCache) corrispondente.  
+>  Questo criterio deve avere una corrispondente [toocache archivio](api-management-caching-policies.md#StoreToCache) criteri.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
 ```xml  
-<cache-lookup vary-by-developer="true | false" vary-by-developer-groups="true | false" downstream-caching-type="none | private | public" must-revalidate="true | false" allow-private-response-caching="@(expression to evaluate)">  
+<cache-lookup vary-by-developer="true | false" vary-by-developer-groups="true | false" downstream-caching-type="none | private | public" must-revalidate="true | false" allow-private-response-caching="@(expression tooevaluate)">  
   <vary-by-header>Accept</vary-by-header>  
   <!-- should be present in most cases -->  
   <vary-by-header>Accept-Charset</vary-by-header>  
@@ -82,18 +82,18 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 ```  
   
 #### <a name="example-using-policy-expressions"></a>Esempio con espressioni di criteri  
- Questo esempio mostra come per configurare la durata della memorizzazione nella cache di Gestione API corrispondente alla memorizzazione delle risposte nella cache del serivzio back-end, come specificato dalla direttiva `Cache-Control` del servizio in questione. Per una dimostrazione relativa alla configurazione e all'uso di questi criteri, vedere l' [episodio 177 di Cloud Cover su altre funzionalità di Gestione API con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e passare direttamente al minuto 25:25.  
+ Questo esempio viene illustrato come risposta di gestione API tootooconfigure la memorizzazione nella cache di durata che corrispondenze hello la memorizzazione nella cache di risposta del servizio back-end hello come specificato da hello backup del servizio `Cache-Control` direttiva. Per una dimostrazione della configurazione e l'utilizzo di questo criterio, vedere [Cloud coprire episodio 177: più API le funzionalità di gestione con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e far avanzare rapidamente too25:25.  
   
 ```xml  
-<!-- The following cache policy snippets demonstrate how to control API Management reponse cache duration with Cache-Control headers sent by the backend service. -->  
+<!-- hello following cache policy snippets demonstrate how toocontrol API Management reponse cache duration with Cache-Control headers sent by hello backend service. -->  
   
-<!-- Copy this snippet into the inbound section -->  
+<!-- Copy this snippet into hello inbound section -->  
 <cache-lookup vary-by-developer="false" vary-by-developer-groups="false" downstream-caching-type="public" must-revalidate="true" >  
   <vary-by-header>Accept</vary-by-header>  
   <vary-by-header>Accept-Charset</vary-by-header>  
 </cache-lookup>  
   
-<!-- Copy this snippet into the outbound section. Note that cache duration is set to the max-age value provided in the Cache-Control header received from the backend service or to the deafult value of 5 min if none is found  -->  
+<!-- Copy this snippet into hello outbound section. Note that cache duration is set toohello max-age value provided in hello Cache-Control header received from hello backend service or toohello deafult value of 5 min if none is found  -->  
 <cache-store duration="@{  
     var header = context.Response.Headers.GetValueOrDefault("Cache-Control","");  
     var maxAge = Regex.Match(header, @"max-age=(?<maxAge>\d+)").Groups["maxAge"]?.Value;  
@@ -116,21 +116,21 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|allow-private-response-caching|Se impostato su `true`, consente la memorizzazione nella cache delle richieste contenenti un'intestazione di autorizzazione.|No|false|  
-|downstream-caching-type|Questo attributo deve essere impostato su uno dei valori seguenti.<br /><br /> -   none - Non è consentita la memorizzazione nella cache downstream.<br />-   private - È consentita la memorizzazione nella cache downstream privata.<br />-   public - È consentita la memorizzazione nella cache downstream privata e condivisa.|No|nessuno|  
-|must-revalidate|Quando è abilitata la memorizzazione nella cache downstream, questo attributo attiva o disattiva la direttiva di controllo di memorizzazione della cache `must-revalidate` nelle risposte del gateway.|No|true|  
-|vary-by-developer|Impostare su `true` per memorizzare le risposte nella cache per ogni chiave sviluppatore.|No|false|  
-|vary-by-developer-groups|Impostare su `true` per memorizzare le risposte nella cache per ogni ruolo utente.|No|false|  
+|allow-private-response-caching|Quando impostato troppo`true`, consente la memorizzazione nella cache le richieste che contengono un'intestazione di autorizzazione.|No|false|  
+|downstream-caching-type|Questo attributo deve essere impostato tooone dei seguenti valori hello.<br /><br /> -   none - Non è consentita la memorizzazione nella cache downstream.<br />-   private - È consentita la memorizzazione nella cache downstream privata.<br />-   public - È consentita la memorizzazione nella cache downstream privata e condivisa.|No|nessuno|  
+|must-revalidate|Quando è abilitata la memorizzazione nella cache downstream questo attributo attiva o disattiva hello `must-revalidate` direttiva di controllo della cache nelle risposte di gateway.|No|true|  
+|vary-by-developer|Impostare troppo`true` toocache le risposte per ogni chiave sviluppatore.|No|false|  
+|vary-by-developer-groups|Impostare troppo`true` risposte toocache al ruolo utente.|No|false|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:** in ingresso  
+-   **Sezioni del criterio:** inbound  
   
 -   **Ambiti del criterio:** API, operazione, prodotto  
   
-##  <a name="StoreToCache"></a> Archivia nella cache  
- Il criterio `cache-store` memorizza nella cache le risposte in base alle impostazioni specificate per la cache. Questo criterio può essere applicato nei casi in cui il contenuto della risposta rimane statico in un periodo di tempo. La memorizzazione delle risposte nella cache riduce la larghezza di banda e i requisiti di elaborazione imposti sul server Web back-end e riduce la latenza percepita dagli utenti delle API.  
+##  <a name="StoreToCache"></a>Archivio toocache  
+ Hello `cache-store` risposte memorizza nella cache dei criteri in base toohello specificato le impostazioni della cache. Questo criterio può essere applicato nei casi in cui il contenuto della risposta rimane statico in un periodo di tempo. Risposta di memorizzazione nella cache riduce la larghezza di banda e requisiti di elaborazione imposto a hello back-end web server e diminuisce la latenza percepita dagli utenti delle API.  
   
 > [!NOTE]
 >  Questo criterio deve essere associato a un criterio [Recupera dalla cache](api-management-caching-policies.md#GetFromCache) corrispondente.  
@@ -161,18 +161,18 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 ```  
   
 #### <a name="example-using-policy-expressions"></a>Esempio con espressioni di criteri  
- Questo esempio mostra come per configurare la durata della memorizzazione nella cache di Gestione API corrispondente alla memorizzazione delle risposte nella cache del serivzio back-end, come specificato dalla direttiva `Cache-Control` del servizio in questione. Per una dimostrazione relativa alla configurazione e all'uso di questi criteri, vedere l' [episodio 177 di Cloud Cover su altre funzionalità di Gestione API con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e passare direttamente al minuto 25:25.  
+ Questo esempio viene illustrato come risposta di gestione API tootooconfigure la memorizzazione nella cache di durata che corrispondenze hello la memorizzazione nella cache di risposta del servizio back-end hello come specificato da hello backup del servizio `Cache-Control` direttiva. Per una dimostrazione della configurazione e l'utilizzo di questo criterio, vedere [Cloud coprire episodio 177: più API le funzionalità di gestione con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e far avanzare rapidamente too25:25.  
   
 ```xml  
-<!-- The following cache policy snippets demonstrate how to control API Management reponse cache duration with Cache-Control headers sent by the backend service. -->  
+<!-- hello following cache policy snippets demonstrate how toocontrol API Management reponse cache duration with Cache-Control headers sent by hello backend service. -->  
   
-<!-- Copy this snippet into the inbound section -->  
+<!-- Copy this snippet into hello inbound section -->  
 <cache-lookup vary-by-developer="false" vary-by-developer-groups="false" downstream-caching-type="public" must-revalidate="true" >  
   <vary-by-header>Accept</vary-by-header>  
   <vary-by-header>Accept-Charset</vary-by-header>  
 </cache-lookup>  
   
-<!-- Copy this snippet into the outbound section. Note that cache duration is set to the max-age value provided in the Cache-Control header received from the backend service or to the deafult value of 5 min if none is found  -->  
+<!-- Copy this snippet into hello outbound section. Note that cache duration is set toohello max-age value provided in hello Cache-Control header received from hello backend service or toohello deafult value of 5 min if none is found  -->  
 <cache-store duration="@{  
     var header = context.Response.Headers.GetValueOrDefault("Cache-Control","");  
     var maxAge = Regex.Match(header, @"max-age=(?<maxAge>\d+)").Groups["maxAge"]?.Value;  
@@ -193,17 +193,17 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|duration|Durata (TTL, Time-To-Live) delle voci memorizzate nella cache, in secondi.|Sì|N/D|  
+|duration|Time-to-live di hello memorizzati nella cache di voci, espresso in secondi.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere utilizzato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) di criteri seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** in uscita  
   
 -   **Ambiti del criterio:** API, operazione, prodotto  
   
 ##  <a name="GetFromCacheByKey"></a> Recupera valore dalla cache  
- Usare il criterio `cache-lookup-value` per eseguire la ricerca nella cache in base alla chiave e restituiscono un valore memorizzato nella cache. La chiave può avere un valore di stringa arbitrario e viene indicata in genere usando un'espressione di criteri.  
+ Hello utilizzare `cache-lookup-value` tooperform criteri nella cache di ricerca dalla chiave e restituire un valore memorizzato nella cache. chiave di Hello può avere un valore stringa arbitrario e viene in genere fornito con un'espressione di criteri.  
   
 > [!NOTE]
 >  Questo criterio deve essere associato a un criterio [Archivia valore nella cache](#StoreToCacheByKey) corrispondente.  
@@ -212,7 +212,7 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 ```xml  
 <cache-lookup-value key="cache key value"   
-    default-value="value to use if cache lookup resulted in a miss"   
+    default-value="value toouse if cache lookup resulted in a miss"   
     variable-name="name of a variable looked up value is assigned to" />  
 ```  
   
@@ -236,19 +236,19 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|default-value|Un valore che verrà assegnato alla variabile se la ricerca della chiave nella cache non produce risultati. Se questo attributo viene omesso, viene assegnato `null`.|No|`null`|  
-|key|Valore della chiave della cache da usare nella ricerca.|Sì|N/D|  
-|variable-name|Nome della [variabile di contesto](api-management-policy-expressions.md#ContextVariables) a cui verrà assegnato il valore cercato, se la ricerca ha esito positivo. Se la ricerca non produce risultati, alla variabile sarà assegnato il valore dell'attributo `default-value` o `null`, se l'attributo `default-value` è omesso.|Sì|N/D|  
+|default-value|Un valore che verrà assegnato toohello variabile se ricerca chiave nella cache di hello ha prodotto un mancato riscontro. Se questo attributo viene omesso, viene assegnato `null`.|No|`null`|  
+|key|Valore della chiave toouse nella ricerca hello la cache.|Sì|N/D|  
+|variable-name|Nome di hello [variabile di contesto](api-management-policy-expressions.md#ContextVariables) hello cercato valore verrà assegnato a, se la ricerca ha esito positivo. Se i risultati di ricerca in un mancato riscontro, variabile hello verrà assegnato il valore di hello di hello `default-value` attributo o `null`, se hello `default-value` attributo viene omesso.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** global, API, operation, product  
   
 ##  <a name="StoreToCacheByKey"></a> Archivia valore nella cache  
- `cache-store-value` esegue l'archiviazione nella cache in base alla chiave. La chiave può avere un valore di stringa arbitrario e viene indicata in genere usando un'espressione di criteri.  
+ Hello `cache-store-value` esegue l'archiviazione cache dalla chiave. chiave di Hello può avere un valore stringa arbitrario e viene in genere fornito con un'espressione di criteri.  
   
 > [!NOTE]
 >  Questo criterio deve essere associato a un criterio [Recupera valore dalla cache](#GetFromCacheByKey) corrispondente.  
@@ -256,7 +256,7 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
 ```xml  
-<cache-store-value key="cache key value" value="value to cache" duration="seconds" />  
+<cache-store-value key="cache key value" value="value toocache" duration="seconds" />  
 ```  
   
 ### <a name="example"></a>Esempio  
@@ -279,19 +279,19 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|duration|Il valore verrà memorizzato nella cache per il valore di durata specificato, espresso in secondi.|Sì|N/D|  
-|key|La chiave della cache in cui verrà archiviato il valore.|Sì|N/D|  
-|value|Il valore da memorizzare nella cache.|Sì|N/D|  
+|duration|Valore verrà memorizzato nella cache di hello fornito il valore di durata, espresso in secondi.|Sì|N/D|  
+|key|Il valore di chiave hello cache verrà archiviato in.|Sì|N/D|  
+|value|Hello toobe di valore memorizzato nella cache.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** global, API, operation, product  
   
 ###  <a name="RemoveCacheByKey"></a> Rimuovi valore dalla cache  
- `cache-remove-value` elimina un elemento memorizzato nella cache identificato in base alla chiave. La chiave può avere un valore di stringa arbitrario e viene indicata in genere usando un'espressione di criteri.  
+ Hello `cache-remove-value` Elimina un elemento memorizzato nella cache identificato in base alla chiave. chiave di Hello può avere un valore stringa arbitrario e viene in genere fornito con un'espressione di criteri.  
   
 #### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -319,10 +319,10 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|key|La chiave del valore memorizzato in precedenza nella cache da rimuovere dalla cache.|Sì|N/D|  
+|key|chiave di Hello di hello memorizzata nella cache toobe valore rimosso dalla cache di hello.|Sì|N/D|  
   
 #### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) .  
   
 -   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   

@@ -1,6 +1,6 @@
 ---
-title: Clonazione di app Web con il portale di Azure
-description: Come clonare le app Web in nuove app Web con il portale di Azure.
+title: aaaWeb la clonazione di App tramite il portale di Azure
+description: Informazioni su come tooclone il toonew App Web App Web tramite il portale di Azure.
 services: app-service\web
 documentationcenter: 
 author: ahmedelnably
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2016
 ms.author: aelnably
-ms.openlocfilehash: 9ebfa91c7972ab3c264032ead8376c23c1197a4b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 605c4879f34d568e9981c34109f9496731c9ed18
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-app-cloning-using-azure-portal"></a>Clonazione di app del servizio app di Azure con il portale di Azure
-La funzionalità di clonazione nelle [app Web del servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) consente facilmente di clonare app Web esistenti in un'app appena creata in un'area diversa o nella stessa area. In questo modo i clienti possono distribuire una quantità di app in aree geografiche diverse rapidamente e con facilità.
+la funzionalità di clonazione Hello [App Web di servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) consente di eseguire facilmente la clonazione app web esistente App tooa appena creato in un'area diversa o in hello stessa area. In questo modo i clienti toodeploy un numero di App in aree geografiche diverse in modo semplice e rapido.
 
-La clonazione di app è attualmente supportata solo per i piani di servizio app Premium. La nuova funzionalità usa le stesse limitazioni della funzionalità di backup di App Web. Vedere [Eseguire il backup di un'app Web nel servizio app di Azure](web-sites-backup.md).
+La clonazione di app è attualmente supportata solo per i piani di servizio app Premium. Usa funzionalità nuova Hello hello stesso limitazioni delle funzionalità di Backup di applicazioni Web, vedere [eseguire il backup di un'app web in Azure App Service](web-sites-backup.md).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="cloning-an-existing-app"></a>Clonazione di un'app esistente
-L'app Web deve essere in esecuzione in modalità **Premium** per poter creare un clone per l'app Web.
+app web Hello deve essere eseguita in hello **Premium** modalità affinché si toocreate un duplicato per l'app web hello.
 
-1. Nel [portale di Azure](https://portal.azure.com/), aprire il pannello dell'app Web.
-2. Fare clic su **Strumenti**. Quindi, nel pannello **Strumenti** selezionare **Clona app**.
+1. In hello [portale Azure](https://portal.azure.com/), aprire il pannello dell'app web.
+2. Fare clic su **Strumenti**. Quindi, nel hello **strumenti** pannello, fare clic su **Clone App**.
    
     ![][1]
    
    > [!NOTE]
-   > Se l'app Web non è già in modalità **Standard** , si riceverà un messaggio che indica le modalità supportate per la clonazione dell'app. A questo punto è possibile selezionare **Aggiorna**.
+   > Se hello web app non è già in hello **Premium** modalità, si riceverà un messaggio che indica la modalità di hello è supportato per la clonazione di app. A questo punto, si dispone di hello opzione tooselect **aggiornamento**.
    > 
    > 
-3. Nel pannello **Clona app** specificare un nome per la nuova app Web, il gruppo di risorse e il piano di servizio app. Inoltre, l'utente sarà in grado di scegliere se clonare un numero di impostazioni dell'app Web di origine o meno.
+3. In hello **Clone App** pannello consente di specificare un nome di hello nuova app web, gruppo di risorse e piano di servizio App. Anche hello utente sarà in grado di toochoose se tooclone una serie di impostazioni app web di origine o non.
    
     ![][2]
-4. Dopo aver selezionato **Crea** , la piattaforma inizierà a creare un clone per l'app Web di origine.
+4. Dopo aver fatto clic **creare** piattaforma hello inizierà a funzionare per la creazione di un clone di hello app web di origine.
 
-## <a name="cloning-an-existing-app-to-an-app-service-environment"></a>Clonazione di un'app esistente in un ambiente del servizio App
-Nel pannello **Clona app** il cliente ha la possibilità di selezionare un pool di app in un ambiente del servizio app esistente.
+## <a name="cloning-an-existing-app-tooan-app-service-environment"></a>La clonazione di un tooan App esistenti di ambiente del servizio App
+In hello **Clone App** cliente hello pannello avrà hello opzione toochoose un pool di applicazioni in un ambiente di servizio App esistente.
 
 ## <a name="current-restrictions"></a>Restrizioni attuali
-Questa funzionalità è attualmente in anteprima e sono allo studio nuove funzionalità che saranno aggiunte con il tempo. L'elenco seguente include le restrizioni note riguardanti l'attuale supporto per la clonazione di app nel portale di Azure:
+Questa funzionalità è attualmente in anteprima, Microsoft è impegnata tooadd nuove funzionalità nel tempo, hello seguente elenco sono hello restrizioni note sul supporto corrente hello di clonazione app nel portale di Azure:
 
 * Le impostazioni di Gestione traffico di Azure non vengono clonate.
 * Le impostazioni di ridimensionamento automatico non vengono clonate.
 * Le impostazioni di pianificazione del backup non vengono clonate.
 * Le impostazioni della rete virtuale non vengono clonate.
-* Le informazioni sull'app non vengono configurate automaticamente nell'app Web di destinazione.
+* App Insights non automaticamente impostate nell'applicazione web di destinazione hello
 * Le impostazioni di Easy Auth non vengono clonate.
 * L'estensione Kudu non viene clonata.
 * Le regole TiP non vengono clonate.
@@ -63,9 +63,9 @@ Questa funzionalità è attualmente in anteprima e sono allo studio nuove funzio
 ### <a name="references"></a>Riferimenti
 * [Clonazione di app Web con PowerShell](app-service-web-app-cloning.md)
 * [Eseguire il backup di un'app Web nel servizio app di Azure](web-sites-backup.md)
-* [Come creare un ambiente del servizio app](app-service-web-how-to-create-an-app-service-environment.md)
+* [Come tooCreate un ambiente del servizio App](app-service-web-how-to-create-an-app-service-environment.md)
 * [Creare un'app Web in un ambiente del servizio app](app-service-web-how-to-create-a-web-app-in-an-ase.md)
-* [Introduzione all'ambiente del servizio app](app-service-app-service-environment-intro.md)
+* [Introduzione tooApp ambiente del servizio](app-service-app-service-environment-intro.md)
 
 <!--Image references-->
 [1]: ./media/app-service-web-app-cloning-portal/CloningBlade.png

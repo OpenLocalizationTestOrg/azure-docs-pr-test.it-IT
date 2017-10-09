@@ -1,6 +1,6 @@
 ---
-title: Trigger e associazioni del bus di servizio di Azure di Funzioni di Azure | Microsoft Docs
-description: Informazioni su come usare trigger e associazioni del bus di servizio di Azure in Funzioni di Azure.
+title: Funzioni di Service Bus aaaAzure trigger e le associazioni | Documenti Microsoft
+description: Comprendere come toouse Service Bus di Azure attiva e le associazioni in funzioni di Azure.
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/01/2017
 ms.author: glenga
-ms.openlocfilehash: b3ee306cd37ebf88dc9369ccc2dc6c670557fd5a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dff9e89bd3840b8c11f91cae41e13502afc7aa60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-service-bus-bindings"></a>Associazioni del bus di servizio di Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo illustra come configurare e operare con il codice per associazioni del bus di servizio di Azure in Funzioni di Azure. 
+Questo articolo viene illustrato come tooconfigure e di lavoro con le associazioni di Azure Service Bus in funzioni di Azure. 
 
 Funzioni di Azure supporta il trigger e le associazioni di output per le code e gli argomenti del bus di servizio.
 
@@ -34,18 +34,18 @@ Funzioni di Azure supporta il trigger e le associazioni di output per le code e 
 <a name="trigger"></a>
 
 ## <a name="service-bus-trigger"></a>Trigger di bus di servizio
-Usare il trigger di bus di servizio per rispondere a messaggi da una coda o da un argomento del bus di servizio. 
+Utilizzare hello Bus di servizio trigger toorespond toomessages da una coda del Bus di servizio o un argomento. 
 
-I trigger della coda e dell'argomento del bus di servizio sono definiti dagli oggetti JSON seguenti nella matrice `bindings` di function.json:
+Hello Bus di servizio della coda e argomento sono definiti trigger da hello seguendo gli oggetti JSON in hello `bindings` matrice function.json:
 
 * trigger della *coda*:
 
     ```json
     {
         "name" : "<Name of input parameter in function signature>",
-        "queueName" : "<Name of the queue>",
+        "queueName" : "<Name of hello queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
@@ -56,48 +56,48 @@ I trigger della coda e dell'argomento del bus di servizio sono definiti dagli og
     ```json
     {
         "name" : "<Name of input parameter in function signature>",
-        "topicName" : "<Name of the topic>",
-        "subscriptionName" : "<Name of the subscription>",
+        "topicName" : "<Name of hello topic>",
+        "subscriptionName" : "<Name of hello subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
     ```
 
-Tenere presente quanto segue:
+Si noti hello segue:
 
-* Per `connection`, [creare un'impostazione nell'app per le funzioni](functions-how-to-use-azure-function-app-settings.md) che contenga la stringa di connessione allo spazio dei nomi del bus di servizio, quindi specificare il nome dell'impostazione dell'app nella proprietà `connection` del trigger. Ottenere la stringa di connessione seguendo i passaggi illustrati in [Ottenere le credenziali di gestione](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
-  La stringa di connessione deve essere relativa a uno spazio dei nomi del bus di servizio e non limitata a una coda o un argomento specifico.
-  Se si lascia `connection` vuoto, il trigger presuppone che una stringa di connessione del bus di servizio predefinito sia specificata nell'impostazione dell'app denominata `AzureWebJobsServiceBus`.
-* Per `accessRights`, i valori disponibili sono `manage` e `listen`. Il valore predefinito è `manage`, che indica che `connection` dispone dell'autorizzazione **Gestisci**. Se si usa una stringa di connessione che non dispone dell'autorizzazione **Gestisci**, impostare `accessRights` su `listen`. In caso contrario, il runtime di Funzioni potrebbe non riuscire a eseguire operazioni che richiedono diritti di gestione.
+* Per `connection`, [creare un'impostazione dell'app nell'app funzione](functions-how-to-use-azure-function-app-settings.md) che include spazio dei nomi Service Bus tooyour hello connessione stringa, quindi specificare il nome di hello di impostazione dell'app hello in hello `connection` proprietà del trigger. Stringa di connessione hello è ottenere seguendo i passaggi di hello mostrati al [ottenere le credenziali di gestione di hello](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
+  stringa di connessione Hello deve essere per lo spazio dei nomi Service Bus, coda specifica tooa non limitato o argomento.
+  Se si lascia `connection` vuoto, il trigger hello presuppone che una stringa di connessione del Bus di servizio predefinito è specificata in un'app impostazione denominata `AzureWebJobsServiceBus`.
+* Per `accessRights`, i valori disponibili sono `manage` e `listen`. valore predefinito di Hello è `manage`, che indica che hello `connection` è hello **Gestisci** autorizzazione. Se si usa una stringa di connessione che non dispone di hello **Gestisci** set di autorizzazioni, `accessRights` troppo`listen`. In caso contrario, le funzioni hello runtime potrebbe non riuscire durante le operazioni di toodo che richiedono i diritti di gestione.
 
 ## <a name="trigger-behavior"></a>Comportamento di trigger
-* **Single threading**: per impostazione predefinita il runtime di Funzioni elabora più messaggi contemporaneamente. Per impostare il runtime in modo che elabori un solo messaggio della coda o dell'argomento alla volta, impostare `serviceBus.maxConcurrentCalls` su 1 in *host.json*. 
+* **Il threading singolo** : per impostazione predefinita, i processi del runtime di funzioni hello più messaggi contemporaneamente. toodirect hello runtime tooprocess un solo argomento o coda messaggio alla volta, impostare `serviceBus.maxConcurrentCalls` too1 in *host.json*. 
   Per informazioni su *host.json*, vedere la [Struttura di cartelle](functions-reference.md#folder-structure) e [host.json](https://github .com/Azure/azure-webjobs-sdk-script/wiki/host.json).
 * **Gestione dei messaggi non elaborabili**: il bus di servizio esegue la gestione dei messaggi non elaborabili in modo autonomo, non controllabile o modificabile nella configurazione o nel codice di Funzioni di Azure. 
-* **Comportamento di PeekLock**: il runtime di Funzioni riceve un messaggio in modalità [`PeekLock` ](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) e chiama `Complete` sul messaggio se la funzione viene completata correttamente oppure `Abandon` se la funzione ha esito negativo. 
-  Se il tempo di esecuzione della funzione supera il timeout di `PeekLock` , il blocco viene rinnovato automaticamente.
+* **Comportamento di PeekLock** -hello funzioni runtime riceve un messaggio in [ `PeekLock` modalità](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) e chiama `Complete` messaggio hello se la funzione hello viene completata correttamente o chiamate `Abandon` se hello funzione ha esito negativo. 
+  Se la funzione hello viene eseguito più di hello `PeekLock` timeout blocco hello viene rinnovato automaticamente.
 
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>Uso dei trigger
-Questa sezione illustra come usare il trigger del bus di servizio nel codice di funzione. 
+In questa sezione viene illustrato come toouse attivare il Bus di servizio nel codice di funzione. 
 
-In C# ed F# il messaggio di trigger di bus di servizio può essere deserializzato in uno qualsiasi dei seguenti tipi:
+In c# e F #, hello Bus di servizio trigger può essere deserializzato tooany di hello seguenti tipi di input:
 
 * `string`: utile per i messaggi di stringa
 * `byte[]`: utile per i dati binari
 * Qualsiasi [oggetto](https://msdn.microsoft.com/library/system.object.aspx): utile per i dati serializzati con JSON.
-  Se si dichiara un tipo di input personalizzato, ad esempio `CustomType`, Funzioni di Azure tenta di deserializzare i dati JSON nel tipo specificato.
-* `BrokeredMessage`: visualizza il messaggio deserializzato con il metodo [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx).
+  Se si dichiara un tipo di input personalizzato, ad esempio `CustomType`, le funzioni di Azure tenta i dati JSON hello toodeserialize nel tipo specificato.
+* `BrokeredMessage`-consente hello deserializzato messaggio hello [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) metodo.
 
-In Node. js, il messaggio di trigger di bus di servizio viene passato alla funzione come stringa o come oggetto JSON.
+In Node.js, messaggio di attivazione di Service Bus hello viene passato nella funzione hello sotto forma di stringa o oggetto JSON.
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>Esempio di trigger
-Si supponga di disporre del file function.json seguente:
+Si supponga di avere hello function.json seguenti:
 
 ```json
 {
@@ -114,7 +114,7 @@ Si supponga di disporre del file function.json seguente:
 }
 ```
 
-Vedere l'esempio specifico per la lingua che elabora un messaggio di coda del bus di servizio.
+Vedere l'esempio specifico del linguaggio hello che elabora un messaggio nella coda Service Bus.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)
@@ -154,16 +154,16 @@ module.exports = function(context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="service-bus-output-binding"></a>Associazione di output di bus di servizio
-Gli output della coda e dell'argomento del bus di servizio per una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:
+output di coda e argomento Bus di servizio per una funzione Hello utilizzare hello seguendo gli oggetti JSON in hello `bindings` matrice function.json:
 
 * output di *coda*:
 
     ```json
     {
         "name" : "<Name of output parameter in function signature>",
-        "queueName" : "<Name of the queue>",
+        "queueName" : "<Name of hello queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
@@ -173,41 +173,41 @@ Gli output della coda e dell'argomento del bus di servizio per una funzione usa 
     ```json
     {
         "name" : "<Name of output parameter in function signature>",
-        "topicName" : "<Name of the topic>",
-        "subscriptionName" : "<Name of the subscription>",
+        "topicName" : "<Name of hello topic>",
+        "subscriptionName" : "<Name of hello subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
     ```
 
-Tenere presente quanto segue:
+Si noti hello segue:
 
-* Per `connection`, [creare un'impostazione nell'app per le funzioni](functions-how-to-use-azure-function-app-settings.md) che contenga la stringa di connessione allo spazio dei nomi del bus di servizio, quindi specificare il nome dell'impostazione dell'app nella proprietà `connection` dell'associazione di output. Ottenere la stringa di connessione seguendo i passaggi illustrati in [Ottenere le credenziali di gestione](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
-  La stringa di connessione deve essere relativa a uno spazio dei nomi del bus di servizio e non limitata a una coda o un argomento specifico.
-  Se si lascia `connection` vuoto, l'associazione di output presuppone che una stringa di connessione del bus di servizio predefinito sia specificata nell'impostazione dell'app denominata `AzureWebJobsServiceBus`.
-* Per `accessRights`, i valori disponibili sono `manage` e `listen`. Il valore predefinito è `manage`, che indica che `connection` dispone dell'autorizzazione **Gestisci**. Se si usa una stringa di connessione che non dispone dell'autorizzazione **Gestisci**, impostare `accessRights` su `listen`. In caso contrario, il runtime di Funzioni potrebbe non riuscire a eseguire operazioni che richiedono diritti di gestione.
+* Per `connection`, [creare un'impostazione dell'app nell'app funzione](functions-how-to-use-azure-function-app-settings.md) che include spazio dei nomi Service Bus tooyour hello connessione stringa, quindi specificare il nome di hello di impostazione dell'app hello in hello `connection` proprietà nell'output associazione. Stringa di connessione hello è ottenere seguendo i passaggi di hello mostrati al [ottenere le credenziali di gestione di hello](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
+  stringa di connessione Hello deve essere per lo spazio dei nomi Service Bus, coda specifica tooa non limitato o argomento.
+  Se si lascia `connection` vuoto, hello associazione di output si presuppone che una stringa di connessione del Bus di servizio predefinito è specificata in un'app impostazione denominata `AzureWebJobsServiceBus`.
+* Per `accessRights`, i valori disponibili sono `manage` e `listen`. valore predefinito di Hello è `manage`, che indica che hello `connection` è hello **Gestisci** autorizzazione. Se si usa una stringa di connessione che non dispone di hello **Gestisci** set di autorizzazioni, `accessRights` troppo`listen`. In caso contrario, le funzioni hello runtime potrebbe non riuscire durante le operazioni di toodo che richiedono i diritti di gestione.
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Uso dell'output
-In C# e F#, Funzioni di Azure può creare un messaggio di coda del bus di servizio da uno qualsiasi dei tipi seguenti:
+In c# e F #, le funzioni di Azure è possibile creare un messaggio nella coda Service Bus da uno qualsiasi dei seguenti tipi di hello:
 
 * Qualsiasi [oggetto](https://msdn.microsoft.com/library/system.object.aspx): la definizione dei parametri è simile a `out T paramName` (C#).
-  Funzioni deserializza l'oggetto in un messaggio JSON. Se il valore di output è null quando la funzione viene chiusa, Funzioni crea il messaggio con un oggetto null.
-* `string`: la definizione dei parametri è simile a `out string paraName` (C#). Se il valore del parametro è diverso da null quando termina la funzione, Funzioni crea un messaggio.
-* `byte[]`: la definizione dei parametri è simile a `out byte[] paraName` (C#). Se il valore del parametro è diverso da null quando termina la funzione, Funzioni crea un messaggio.
-* `BrokeredMessage`: la definizione dei parametri è simile a `out BrokeredMessage paraName` (C#). Se il valore del parametro è diverso da null quando termina la funzione, Funzioni crea un messaggio.
+  Funzioni deserializza l'oggetto hello in un messaggio JSON. Se il valore di output di hello è null quando si esce dalla funzione hello, funzioni Crea messaggio hello con un oggetto null.
+* `string`: la definizione dei parametri è simile a `out string paraName` (C#). Se il valore di parametro hello è non null quando si esce dalla funzione hello, funzioni di crea un messaggio.
+* `byte[]`: la definizione dei parametri è simile a `out byte[] paraName` (C#). Se il valore di parametro hello è non null quando si esce dalla funzione hello, funzioni di crea un messaggio.
+* `BrokeredMessage`: la definizione dei parametri è simile a `out BrokeredMessage paraName` (C#). Se il valore di parametro hello è non null quando si esce dalla funzione hello, funzioni di crea un messaggio.
 
-Per la creazione di più messaggi in una funzione C# è possibile usare `ICollector<T>` o `IAsyncCollector<T>`. Quando si chiama il metodo `Add` viene creato un messaggio.
+Per la creazione di più messaggi in una funzione C# è possibile usare `ICollector<T>` o `IAsyncCollector<T>`. Viene creato un messaggio quando si chiama hello `Add` metodo.
 
-In Node. js, è possibile assegnare una stringa, una matrice di byte o un oggetto Javascript (deserializzato in JSON) a `context.binding.<paramName>`.
+In Node.js, è possibile assegnare una stringa, una matrice di byte o un oggetto Javascript (deserializzato in JSON) troppo`context.binding.<paramName>`.
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Esempio di output
-Si supponga di avere il seguente function.json, che definisce un output della coda di bus di servizio:
+Si supponga di avere seguito function.json hello, che definisce un output di coda del Bus di servizio:
 
 ```json
 {
@@ -231,7 +231,7 @@ Si supponga di avere il seguente function.json, che definisce un output della co
 }
 ```
 
-Vedere l'esempio specifico per la lingua che invia un messaggio alla coda del bus di servizio.
+Vedere l'esempio specifico del linguaggio hello che invia la coda di messaggi toohello service bus.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -250,7 +250,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log, out string outputSbQu
 }
 ```
 
-Oppure per creare più messaggi:
+In alternativa, toocreate più messaggi:
 
 ```cs
 public static void Run(TimerInfo myTimer, TraceWriter log, ICollector<string> outputSbQueue)
@@ -286,7 +286,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-Oppure per creare più messaggi:
+In alternativa, toocreate più messaggi:
 
 ```javascript
 module.exports = function (context, myTimer) {

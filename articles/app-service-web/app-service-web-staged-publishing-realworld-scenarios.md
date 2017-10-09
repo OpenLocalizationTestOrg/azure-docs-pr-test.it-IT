@@ -1,6 +1,6 @@
 ---
-title: Usare efficacemente gli ambienti DevOps per l'App Web | Microsoft Docs
-description: "Informazioni su come usare gli slot di distribuzione per configurare e gestire più ambienti di sviluppo per l'applicazione"
+title: aaaUse DevOps ambienti in modo efficace per l'app web | Documenti Microsoft
+description: "Informazioni su come toouse gli slot di distribuzione tooset backup e gestire più ambienti di sviluppo dell'applicazione"
 services: app-service\web
 documentationcenter: 
 author: sunbuild
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 10/24/2016
 ms.author: sumuth
-ms.openlocfilehash: 25248411659f6c7b2e386e310428c365c44ea2e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61a552e735a4ad9769b661d7c988744074ba2962
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-devops-environments-effectively-for-your-web-apps"></a>Usare efficacemente gli ambienti DevOps per le app Web
-Questo articolo illustra come configurare e gestire le distribuzioni di applicazioni Web per più versioni dell'applicazione, ad esempio sviluppo, gestione temporanea, controllo qualità e produzione. Ogni versione dell'applicazione può essere considerata come un ambiente di sviluppo per lo scopo specifico del processo di distribuzione. Ad esempio, gli sviluppatori possono usare l'ambiente di controllo di qualità per testare la qualità dell'applicazione prima di effettuare il push delle modifiche in produzione.
-La presenza di più ambienti di sviluppo può creare difficoltà, perché prevede il tracciamento del codice, la gestione delle risorse (calcolo, App Web, database, cache e così via) e la distribuzione del codice in diversi ambienti.
+In questo articolo illustra come tooset configurare e gestire le distribuzioni di applicazioni web quando sono più versioni dell'applicazione in ambienti diversi, ad esempio sviluppo, gestione temporanea, qualità (QA) e produzione. Ogni versione dell'applicazione può essere considerato come un ambiente di sviluppo per scopo specifico di hello del processo di distribuzione. Ad esempio, gli sviluppatori possono utilizzare hello QA ambiente tootest hello di qualità del applicazione hello prima che essi push tooproduction modifiche hello.
+Più ambienti di sviluppo possono essere difficile perché è necessario utilizzare codice tootrack, gestire le risorse (calcolo, app web, database, cache, e così via) e distribuire codice tutti gli ambienti.
 
 ## <a name="set-up-a-non-production-environment-stage-dev-qa"></a>Configurare un ambiente non di produzione (gestione temporanea, sviluppo, controllo qualità)
-Quando l'App Web è operativa, il passaggio successivo prevede la creazione di un ambiente non di produzione. Per usare gli slot di distribuzione, assicurarsi che sia in esecuzione la modalità Standard o Premium del piano di servizio app di Azure. Gli slot di distribuzione sono App Web live con i propri nomi host. È possibile scambiare il contenuto dell'app Web e gli elementi delle configurazioni tra i due slot di distribuzione, incluso lo slot di produzione. Quando si distribuisce l'applicazione in uno slot di distribuzione, si ottengono i vantaggi seguenti:
+Dopo un'app web di produzione sia in esecuzione, hello è toocreate un ambiente non di produzione. toouse gli slot di distribuzione, assicurarsi che siano in esecuzione in modalità di piano Standard o Premium di Azure App Service hello. Gli slot di distribuzione sono App Web live con i propri nomi host. Elementi di contenuto e la configurazione di app Web possono essere scambiati tra i due slot di distribuzione, compreso hello slot di produzione. Quando si distribuisce lo slot di distribuzione tooa l'applicazione, si ottiene hello seguenti vantaggi:
 
-- È possibile convalidare le modifiche alle App Web in uno slot di distribuzione di gestione temporanea prima di scambiare l'app con lo slot di produzione.
-- Quando si esegue la distribuzione preliminare di un'App Web in uno slot e poi la si implementa in un ambiente di produzione, tutte le istanze dello slot vengano effettivamente eseguite prima di passare alla fase di produzione. Questo processo consente di evitare i tempi di inattività al momento della distribuzione dell'App Web. Il reindirizzamento del traffico è lineare e nessuna richiesta viene eliminata in seguito alle operazioni di scambio. Per automatizzare l'intero flusso di lavoro, configurare lo [scambio automatico](web-sites-staged-publishing.md#configure-auto-swap) quando non è necessaria la convalida preliminare.
-- Dopo uno scambio, lo slot con l'App Web gestita temporaneamente include l'App Web di produzione precedente. Se le modifiche applicate nello slot di produzione non sono quelle previste, è possibile ripetere immediatamente lo scambio per recuperare l'ultima App Web con i dati corretti.
+- È possibile convalidare le modifiche tooa web app in uno slot di distribuzione di gestione temporanea prima che lo scambio di hello app con lo slot di produzione hello.
+- Quando si distribuisce uno slot di tooa app web prima e si scambia nell'ambiente di produzione, tutte le istanze di slot hello sono riscaldate prima viene scambiato nell'ambiente di produzione. Questo processo consente di evitare i tempi di inattività al momento della distribuzione dell'App Web. Hello reindirizzamento del traffico è seamless e nessuna richiesta viene eliminata a causa di operazioni tooswap. tooautomate l'intero flusso di lavoro, configurare [scambio automatico](web-sites-staged-publishing.md#configure-auto-swap) quando non è necessario lo pre-scambio di convalida.
+- Dopo uno scambio, slot hello con app web hello inserita in precedenza ora ha hello precedente dell'applicazione web di produzione. Se le modifiche di hello scambiate nello slot di produzione hello non corrisponda a quello desiderato, è possibile eseguire hello stesso scambio immediatamente tooget il "ultima" back app web.
 
-Per configurare uno slot di distribuzione di staging, vedere [Configurare gli ambienti di staging per le app Web nel Servizio app di Azure](web-sites-staged-publishing.md). Ogni ambiente deve includere un proprio set di risorse. Ad esempio, se l'App Web usa un database, allora sia l'App Web di gestione temporanea che quella di produzione devono usare database diversi. Aggiungere le risorse dell'ambiente di sviluppo di gestione temporanea, ad esempio il database, l'archiviazione o la cache, per impostare l'ambiente di sviluppo di gestione temporanea.
+tooset di uno slot di distribuzione di gestione temporanea, vedere [configurare ambienti per le app web in Azure App Service di gestione temporanea](web-sites-staged-publishing.md). Ogni ambiente deve includere un proprio set di risorse. Ad esempio, se l'App Web usa un database, allora sia l'App Web di gestione temporanea che quella di produzione devono usare database diversi. Aggiungere risorse gestione temporanea dell'ambiente di sviluppo, ad esempio database, l'archiviazione o cache tooset l'ambiente di sviluppo di gestione temporanea.
 
 ## <a name="examples-of-using-multiple-development-environments"></a>Esempi di utilizzo di più ambienti di sviluppo
-Qualsiasi progetto deve seguire la gestione del codice sorgente con almeno due ambienti: sviluppo e produzione. Se si usano sistemi di gestione dei contenuti (CMS), framework di applicazione e così via, l'applicazione potrebbe non supportare questo scenario senza personalizzazione. Questa eventualità è vera per alcuni dei framework più diffusi di cui si parla nelle sezioni successive. Quando si usano framework o CMS, possono sorgere gli interrogativi seguenti:
+Qualsiasi progetto deve seguire la gestione del codice sorgente con almeno due ambienti: sviluppo e produzione. Se si utilizzano sistemi di gestione dei contenuti (CMSs), il framework applicazione e così via, un'applicazione hello potrebbe non supportare questo scenario senza personalizzazione. Questa eventualità è true per alcuni popolari Framework hello che vengono discussi in hello le sezioni seguenti. Un numero elevato di domande toomind sono disponibili quando si lavora con CMS/Framework, ad esempio:
 
-- Come si suddivide il contenuto in ambienti diversi?
+- Come si suddividerà il contenuto di hello out in ambienti diversi?
 - Quali file è possibile modificare senza influire sugli aggiornamenti di versione del framework?
 - Come si gestiscono le configurazioni per ambiente?
-- Come si gestiscono gli aggiornamenti delle versioni per i moduli, i plug-in e il framework di base?
+- Come si gestiscono gli aggiornamenti di versione per i moduli plug-in e il framework di base hello?
 
-Esistono diversi modi per configurare più ambienti per il progetto. Negli esempi seguenti viene illustrato un metodo per ogni applicazione.
+Esistono molti modi tooset più ambienti per il progetto. Hello esempi seguenti viene illustrato un metodo per ogni applicazione.
 
 ### <a name="wordpress"></a>WordPress
-Questa sezione descrive come configurare un flusso di lavoro di distribuzione usando gli slot per WordPress. Come la maggior parte delle soluzioni CMS, WordPress non supporta l'uso di più ambienti di sviluppo senza personalizzazione. La funzionalità App Web del servizio app di Azure offre alcune funzionalità che semplificano l'archiviazione delle impostazioni di configurazione all'esterno del codice.
+In questa sezione si apprenderà come tooset un flusso di lavoro di distribuzione tramite gli slot per WordPress. Come la maggior parte delle soluzioni CMS, WordPress non supporta l'uso di più ambienti di sviluppo senza personalizzazione. funzionalità di App Web Hello di servizio App di Azure presenta alcune funzionalità che rendono facilmente toostore le impostazioni di configurazione all'esterno del codice.
 
-1. Prima di creare uno slot di gestione temporanea, configurare il codice dell'applicazione in modo che supporti più ambienti. Per supportare più ambienti in WordPress, è necessario modificare `wp-config.php` nell'App Web di sviluppo locale e aggiungere il codice seguente all'inizio del file. Con questo processo, l'applicazione selezionerà la configurazione corretta in base all'ambiente selezionato.
+1. Prima di creare uno slot di gestione temporanea, impostare il toosupport codice dell'applicazione più ambienti. toosupport più ambienti in WordPress, è necessario tooedit `wp-config.php` in sviluppo locale app web e aggiungere hello seguente codice all'inizio di hello del file hello. Questo processo consentirà di configurazione dell'applicazione toopick hello corretto in base a ambiente selezionato hello.
 
     ```
     // Support multiple environments
-    // set the config file based on current environment
+    // set hello config file based on current environment
     if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false) {
     // local development
      $config_file = 'config/wp-config.local.php';
@@ -61,18 +61,18 @@ Questa sezione descrive come configurare un flusso di lavoro di distribuzione us
     }
     $path = dirname(__FILE__). '/';
     if (file_exists($path. $config_file)) {
-    // include the config file if it exists, otherwise WP is going to fail
+    // include hello config file if it exists, otherwise WP is going toofail
     require_once $path. $config_file;
     ```
 
-2. Nella directory radice dell'App Web creare una cartella denominata `config` e aggiungere i file `wp-config.azure.php` e `wp-config.local.php`, che rappresentano rispettivamente l'ambiente Azure e l'ambiente locale.
+2. Creare una cartella nella radice di app web chiamato `config`e aggiungere hello `wp-config.azure.php` e `wp-config.local.php` file, che rappresentano rispettivamente l'ambiente locale e l'ambiente Azure.
 
-3. Copiare quanto segue in `wp-config.local.php`:
+3. Copiare l'esempio hello in `wp-config.local.php`:
 
     ```
     <?php
     // MySQL settings
-    /** The name of the database for WordPress */
+    /** hello name of hello database for WordPress */
 
     define('DB_NAME', 'yourdatabasename');
 
@@ -86,7 +86,7 @@ Questa sezione descrive come configurare un flusso di lavoro di distribuzione us
     define('DB_HOST', 'localhost');
     /**
      * For developers: WordPress debugging mode.
-     * * Change this to true to enable the display of notices during development.
+     * * Change this tootrue tooenable hello display of notices during development.
      * It is strongly recommended that plugin and theme developers use WP_DEBUG
      * in their development environments.
      */
@@ -111,14 +111,14 @@ Questa sezione descrive come configurare un flusso di lavoro di distribuzione us
     $table_prefix = 'wp_';
     ```
 
-    Impostando le chiavi di sicurezza come illustrato nel codice precedente è possibile impedire eventuali attacchi all'App Web, quindi è necessario usare valori univoci. Per generare la stringa per le chiavi di sicurezza indicate nel codice, [accedere al generatore automatico](https://api.wordpress.org/secret-key/1.1/salt) e creare nuove coppie chiave-valore.
+    Impostazione delle chiavi di sicurezza hello, come illustrato nel codice precedente hello, è possibile rendere la tua app web tooprevent da viene violata, pertanto utilizzare valori univoci. Se è necessario stringa hello toogenerate per le chiavi di sicurezza indicate nel codice hello, è possibile [generatore automatico passare toohello](https://api.wordpress.org/secret-key/1.1/salt) toocreate nuove coppie chiave/valore.
 
-4. Copiare il codice seguente in `wp-config.azure.php`:
+4. Copia hello seguente codice nel `wp-config.azure.php`:
 
     ```    
     <?php
     // MySQL settings
-    /** The name of the database for WordPress */
+    /** hello name of hello database for WordPress */
 
     define('DB_NAME', getenv('DB_NAME'));
 
@@ -134,12 +134,12 @@ Questa sezione descrive come configurare un flusso di lavoro di distribuzione us
     /**
     * For developers: WordPress debugging mode.
     *
-    * Change this to true to enable the display of notices during development.
+    * Change this tootrue tooenable hello display of notices during development.
     * It is strongly recommended that plugin and theme developers use WP_DEBUG
     * in their development environments.
-    * Turn on debug logging to investigate issues without displaying to end user. For WP_DEBUG_LOG to
+    * Turn on debug logging tooinvestigate issues without displaying tooend user. For WP_DEBUG_LOG to
     * do anything, WP_DEBUG must be enabled (true). WP_DEBUG_DISPLAY should be used in conjunction
-    * with WP_DEBUG_LOG so that errors are not displayed on the page */
+    * with WP_DEBUG_LOG so that errors are not displayed on hello page */
 
     */
     define('WP_DEBUG', getenv('WP_DEBUG'));
@@ -147,7 +147,7 @@ Questa sezione descrive come configurare un flusso di lavoro di distribuzione us
     define('WP_DEBUG_DISPLAY',false);
 
     //Security key settings
-    /** If you need to generate the string for security keys mentioned above, you can go the automatic generator to create new keys/values: https://api.wordpress.org/secret-key/1.1/salt **/
+    /** If you need toogenerate hello string for security keys mentioned above, you can go hello automatic generator toocreate new keys/values: https://api.wordpress.org/secret-key/1.1/salt **/
     define('AUTH_KEY',getenv('DB_AUTH_KEY'));
     define('SECURE_AUTH_KEY', getenv('DB_SECURE_AUTH_KEY'));
     define('LOGGED_IN_KEY', getenv('DB_LOGGED_IN_KEY'));
@@ -167,9 +167,9 @@ Questa sezione descrive come configurare un flusso di lavoro di distribuzione us
     ```
 
 #### <a name="use-relative-paths"></a>Usare percorsi relativi
-Infine è necessario configurare i percorsi relativi nell'app WordPress. WordPress archivia le informazioni relative all'URL nel database. Questo tipo di archiviazione rende più difficile il trasferimento dei contenuti da un ambiente all'altro. È necessario aggiornare il database ogni volta che si spostano contenuti da ambiente locale ad ambiente di gestione temporanea o da ambiente di gestione temporanea ad ambiente di produzione. Per ridurre i rischi associati alla distribuzione del database ogni volta che si esegue la distribuzione da un ambiente a un altro, usare il [plug-in per i collegamenti relativi alla radice](https://wordpress.org/plugins/root-relative-urls/), che può essere installato usando il dashboard di amministrazione di WordPress.
+Uno tooconfigure cosa ultima nell'app WordPress hello è percorsi relativi. WordPress archivia le informazioni sull'URL nel database di hello. Questa risorsa di archiviazione rende più difficile spostando il contenuto di un ambiente tooanother. È necessario il database di hello tooupdate ogni volta che si spostano da toostage locale o in ambienti tooproduction fase. rischio hello tooreduce dei problemi che possono essere causati con la distribuzione di un database ogni volta che si effettua distribuzione da un ambiente tooanother, utilizzare hello [relativo radice collega plug-in](https://wordpress.org/plugins/root-relative-urls/), che è possibile installare tramite hello WordPress amministratore dashboard.
 
-Aggiungere le voci seguenti al file `wp-config.php` prima del commento `That's all, stop editing!`:
+Aggiungere hello seguenti voci tooyour `wp-config.php` file prima di hello `That's all, stop editing!` commento:
 
 ```
 
@@ -179,30 +179,30 @@ Aggiungere le voci seguenti al file `wp-config.php` prima del commento `That's a
     define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
 ```
 
-Attivare il plug-in dal menu `Plugins` nel dashboard di amministrazione di WordPress. Salvare le impostazioni relative al collegamento permanente per l'app WordPress.
+Attivare i plug-in di hello tramite hello `Plugins` menu nel dashboard di amministrazione di WordPress. Salvare le impostazioni relative al collegamento permanente per l'app WordPress.
 
-#### <a name="the-final-wp-configphp-file"></a>Il file `wp-config.php` finale
-Gli eventuali aggiornamenti principali di WordPress non avranno effetto sui file `wp-config.php`, `wp-config.azure.php` e `wp-config.local.php`. Di seguito è riportata la versione finale del file `wp-config.php`:
+#### <a name="hello-final-wp-configphp-file"></a>Hello finale `wp-config.php` file
+Gli eventuali aggiornamenti principali di WordPress non avranno effetto sui file `wp-config.php`, `wp-config.azure.php` e `wp-config.local.php`. Di seguito è una versione finale di hello `wp-config.php` file:
 
 ```
 <?php
 /**
- * The base configurations of the WordPress.
+ * hello base configurations of hello WordPress.
  *
- * This file has the following configurations: MySQL settings, Table Prefix,
+ * This file has hello following configurations: MySQL settings, Table Prefix,
  * Secret Keys, and ABSPATH. You can find more information by visiting
  *
- * Codex page. You can get the MySQL settings from your web host.
+ * Codex page. You can get hello MySQL settings from your web host.
  *
- * This file is used by the wp-config.php creation script during the
- * installation. You don't have to use the web web app, you can just copy this file
- * to "wp-config.php" and fill in the values.
+ * This file is used by hello wp-config.php creation script during the
+ * installation. You don't have toouse hello web web app, you can just copy this file
+ * too"wp-config.php" and fill in hello values.
  *
  * @package WordPress
  */
 
 // Support multiple environments
-// set the config file based on current environment
+// set hello config file based on current environment
 if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false) { // local development
   $config_file = 'config/wp-config.local.php';
 }
@@ -213,14 +213,14 @@ elseif ((strpos(getenv('WP_ENV'),'stage') !== false) ||(strpos(getenv('WP_ENV'),
 
 $path = dirname(__FILE__). '/';
 if (file_exists($path. $config_file)) {
-  // include the config file if it exists, otherwise WP is going to fail
+  // include hello config file if it exists, otherwise WP is going toofail
   require_once $path. $config_file;
 }
 
-/** Database Charset to use in creating database tables. */
+/** Database Charset toouse in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
-/** The Database Collate type. Don't change this if in doubt. */
+/** hello Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
 
@@ -231,7 +231,7 @@ define('WP_SITEURL', 'http://'. $_SERVER['HTTP_HOST']);
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', $_SERVER['HTTP_HOST']);
 
-/** Absolute path to the WordPress directory. */
+/** Absolute path toohello WordPress directory. */
 if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__). '/');
 
@@ -240,21 +240,21 @@ require_once(ABSPATH. 'wp-settings.php');
 ```
 
 #### <a name="set-up-a-staging-environment"></a>Configurare un ambiente di staging
-1. Se l'App Web WordPress è già in esecuzione nella sottoscrizione di Azure, accedere al [Portale di Azure](http://portal.azure.com) e passare all'App Web WordPress. Se non si dispone di un'App Web WordPress, è possibile crearne una da Azure Marketplace. Per altre informazioni, vedere [Creare un'App Web WordPress nel servizio app di Azure](web-sites-php-web-site-gallery.md).
-Fare clic su **Impostazioni** > **Slot di distribuzione** > **Aggiungi** per creare uno slot di distribuzione con il nome *stage*. Uno slot di distribuzione è un'altra applicazione Web che condivide le stesse risorse dell'App Web primaria creata in precedenza.
+1. Se si dispone già di un'app web WordPress in esecuzione nella sottoscrizione di Azure, effettuare l'accesso toohello [portale di Azure](http://portal.azure.com), quindi andare tooyour WordPress web app. Se non si dispone di un'app web WordPress, è possibile crearne uno da hello Azure Marketplace. vedere, più toolearn [creare un'app web WordPress in Azure App Service](web-sites-php-web-site-gallery.md).
+Fare clic su **impostazioni** > **gli slot di distribuzione** > **Aggiungi** toocreate uno slot di distribuzione con nome hello *fase*. Uno slot di distribuzione è un'altra applicazione web che condivisioni hello stesse risorse di app web primario hello creato in precedenza.
 
     ![Creare lo slot di distribuzione "stage"](./media/app-service-web-staged-publishing-realworld-scenarios/1setupstage.png)
 
-2. Aggiungere un altro database MySQL, `wordpress-stage-db`, al gruppo di risorse `wordpressapp-group`.
+2. Aggiungere un altro database MySQL, ad esempio `wordpress-stage-db`, gruppo di risorse tooyour `wordpressapp-group`.
 
-    ![Aggiungere il database MySQL al gruppo di risorse](./media/app-service-web-staged-publishing-realworld-scenarios/2addmysql.png)
+    ![Aggiungi gruppo tooresource di database MySQL](./media/app-service-web-staged-publishing-realworld-scenarios/2addmysql.png)
 
-3. Aggiornare le stringhe di connessione per lo slot di distribuzione di gestione temporanea affinché scelgano il nuovo database, `wordpress-stage-db`. L'App Web di produzione `wordpressprodapp` e l'App Web di gestione temporanea `wordpressprodapp-stage` devono scegliere database diversi.
+3. Aggiornare le stringhe di connessione hello per fase distribuzione slot toopoint toohello nuovo database, `wordpress-stage-db`. L'app web di produzione, `wordpressprodapp`e app web di gestione temporanea `wordpressprodapp-stage`, deve punto toodifferent database.
 
 #### <a name="configure-environment-specific-app-settings"></a>Configurare impostazioni app specifiche dell'ambiente
-Gli sviluppatori possono archiviare le coppie di stringhe chiave-valore in Azure come parte delle informazioni di configurazione associate a un'App Web, denominate **Impostazioni app**. In fase di esecuzione, le App Web recuperano automaticamente questi valori e li rendono disponibili al codice in esecuzione nell'App Web. Dal punto di vista della sicurezza, si tratta di un vantaggio significativo, perché le informazioni sensibili, ad esempio le stringhe di connessione di database e le relative password, non vengono mai visualizzate come testo normale in un file come `wp-config.php`.
+Gli sviluppatori possono memorizzare coppie chiave/valore della stringa in Azure come parte delle informazioni di configurazione hello, chiamate **impostazioni App**, che è associata a un'app web. In fase di esecuzione, le applicazioni web automaticamente recuperano questi valori e rendono disponibili toocode che è in esecuzione in un'applicazione web. Dal punto di vista della sicurezza, si tratta di un vantaggio significativo, perché le informazioni sensibili, ad esempio le stringhe di connessione di database e le relative password, non vengono mai visualizzate come testo normale in un file come `wp-config.php`.
 
-Questo processo, spiegato nei paragrafi seguenti, è utile perché include le modifiche sia ai file che ai database per l'app WordPress:
+Questo processo è illustrato in hello dopo i paragrafi, è utile perché include sia le modifiche di file e database per app di WordPress hello:
 
 * Aggiornamento della versione di WordPress
 * Aggiungere, modificare o aggiornare i plug-in
@@ -268,99 +268,99 @@ Configurare le impostazioni app per:
 
 ![Impostazioni app per l'app Web WordPress](./media/app-service-web-staged-publishing-realworld-scenarios/3configure.png)
 
-Assicurarsi di aver aggiunto le impostazioni app seguenti per l'App Web di produzione e lo slot di gestione temporanea. Si noti che l'App Web di produzione e quella di gestione temporanea usano database diversi.
+Assicurarsi di aggiungere hello seguendo le impostazioni dell'app per slot di produzione web app e fase. Si noti che dell'applicazione web di produzione hello e app web di gestione temporanea database diversi.
 
-1. Deselezionare la casella di controllo **Impostazione slot** per tutti i parametri delle impostazioni, ad eccezione di WP_ENV. Grazie a questo processo, la configurazione per l'App Web, il contenuto del file e il database verrà scambiata. Se la casella di controllo **Impostazione slot** è selezionata, le impostazioni app dell'App Web e la configurazione delle stringhe di connessione *non* verranno spostate da un ambiente all'altro durante un'operazione di **scambio**. Eventuali modifiche al database non interrompono l'App Web di produzione.
+1. Crittografato hello **impostazione Slot** casella di controllo per tutti i parametri di impostazioni di hello tranne WP_ENV. Questo processo verrà scambiato configurazione hello per le app web, contenuto del file e database. Se **impostazione Slot** è selezionata, le impostazioni dell'app dell'app web hello e configurazione della stringa di connessione verrà *non* spostare tutti gli ambienti, quando si esegue un **scambiare** operazione. Eventuali modifiche al database non interrompono l'App Web di produzione.
 
-2. Distribuire l'App Web dell'ambiente di sviluppo locale nell'App Web e nel database dell'area di gestione temporanea usando WebMatrix o altri strumenti, ad esempio FTP, Git o PhpMyAdmin.
+2. Distribuire hello sviluppo locale ambiente web app toohello fase web app e il database con gli strumenti di propria scelta, ad esempio FTP, Git o PhpMyAdmin o WebMatrix.
 
     ![Finestra di dialogo di pubblicazione di WebMatrix per l'app Web WordPress](./media/app-service-web-staged-publishing-realworld-scenarios/4wmpublish.png)
 
-3. Esplorare e testare l'app Web di staging. Si consideri uno scenario in cui è necessario aggiornare il tema dell'app Web. Ecco l'app Web di staging.
+3. Esplorare e testare l'app Web di staging. Prendendo in considerazione uno scenario in cui il tema hello dell'app web hello toobe aggiornato, ecco hello app web di gestione temporanea.
 
     ![Esplorare l'app Web di staging prima dello scambio degli slot](./media/app-service-web-staged-publishing-realworld-scenarios/5wpstage.png)
 
-4. Se tutto sembra corretto, fare clic sul pulsante **Scambia** nell'App Web di gestione temporanea per spostare il contenuto all'ambiente di produzione. In questo caso l'App Web e il database vengono scambiati da un ambiente all'altro nel corso di ogni operazione di **scambio**.
+4. Se si verificano problemi, fare clic su hello **scambiare** pulsante la gestione temporanea toomove app web nell'ambiente di produzione toohello contenuto. In questo caso, scambiare hello web app e database hello in ambienti durante ogni **scambio** operazione.
 
     ![Anteprima modifiche dello scambio per WordPress](./media/app-service-web-staged-publishing-realworld-scenarios/6swaps1.png)
 
     > [!NOTE]
-    > Se invece è presente uno scenario in cui è solo necessario effettuare il push dei file (senza aggiornamenti del database), selezionare **Impostazione slot** per tutte le *impostazioni app* e le *impostazioni delle stringhe di connessione* relative al database nel pannello **Impostazioni app Web** del Portale di Azure prima di procedere con lo **scambio**. In questo caso le impostazioni DB_NAME, DB_HOST, DB_PASSWORD, DB_USER e la stringa di connessione predefinita non verranno visualizzate nell'anteprima modifiche quando si esegue un'operazione di **scambio**. In questa fase, al termine dell'operazione di **scambio** l'App Web WordPress conterrà solo i file aggiornati.
+    > Se lo scenario richiede file di push tooonly (non gli aggiornamenti del database), quindi controllare **impostazione Slot** per hello tutti correlati al database *impostazioni app* e *impostazionistringhediconnessione*in hello **impostazioni App Web** pannello all'interno di hello portale di Azure prima di eseguire hello **scambiare**. In questo caso le impostazioni DB_NAME, DB_HOST, DB_PASSWORD, DB_USER e la stringa di connessione predefinita non verranno visualizzate nell'anteprima modifiche quando si esegue un'operazione di **scambio**. In questo momento, quando si completa hello **scambiare** operazione, verrà hanno hello app web WordPress hello Aggiorna solo i file.
     >
     >
 
-    Ecco l'App Web WordPress di produzione prima dell'operazione di **scambio**.
+    Prima di eseguire un **scambiare**, ecco hello produzione WordPress web app.
     ![App Web di produzione prima dello scambio degli slot](./media/app-service-web-staged-publishing-realworld-scenarios/7bfswap.png)
 
-    Dopo l'operazione di **scambio**, il tema è stato aggiornato nell'App Web di produzione.
+    Dopo aver hello **scambiare** tema hello operazione è stata aggiornata in un'applicazione web di produzione.
 
     ![App Web di produzione dopo lo scambio degli slot](./media/app-service-web-staged-publishing-realworld-scenarios/8afswap.png)
 
-5. Quando è necessario eseguire il rollback, è possibile accedere alle **impostazioni dell'App** Web di produzione e fare clic su pulsante **Scambia** per eseguire lo scambio dell'App Web e del database dallo slot di produzione a quello di gestione temporanea. È importante ricordare che se un'operazione di **scambio** include modifiche del database, alla ridistribuzione successiva nell'App Web di gestione temporanea sarà necessario distribuire le modifiche del database nel database corrente per l'App Web di gestione temporanea, che può essere un database di produzione o di gestione temporanea precedente.
+5. Quando è necessario tooroll nuovamente, è possibile passare web di produzione toohello **impostazioni App**, fare clic su hello **scambiare** pulsante tooswap hello web app e il database dallo slot di produzione toostaging. Tenere presente che se le modifiche del database sono incluse in un **scambiare** l'operazione, quindi hello successivo si distribuisce l'app web di gestione temporanea tooyour toodeploy hello modifiche toohello corrente il database è necessario per l'app web di gestione temporanea. database corrente Hello potrebbe essere database di produzione precedente hello o hello fase.
 
 #### <a name="summary"></a>Riepilogo
 Di seguito è illustrato un processo generalizzato per qualsiasi applicazione con un database:
 
-1. Installare l'applicazione nell'ambiente locale.
+1. Installare un'applicazione hello in ambiente locale.
 2. Includere le configurazioni specifiche dell'ambiente (locale e App Web di Azure).
 3. Configurare l'ambiente di produzione e di gestione temporanea per le App Web.
-4. Se è già presente un'applicazione di produzione in esecuzione in Azure, sincronizzare il contenuto di produzione (file/codice e database) con l'ambiente locale e di gestione temporanea.
+4. Se si dispone di un'applicazione di produzione già in esecuzione in Azure, la sincronizzazione del contenuto (file/codice e database) di gestione temporanea e toolocal gli ambienti di produzione.
 5. Sviluppare l'applicazione nell'ambiente locale.
-6. Impostare l'App Web di produzione nella modalità di manutenzione o di blocco e sincronizzare il contenuto del database dall'ambiente di produzione agli ambienti di gestione temporanea e di sviluppo.
-7. Eseguire la distribuzione nell'ambiente di gestione temporanea e procedere al test.
-8. Eseguire la distribuzione nell'ambiente di produzione.
+6. Inserire l'app web di produzione in modalità blocco o di manutenzione e la sincronizzazione del contenuto del database da ambienti di produzione toostaging e sviluppo.
+7. Distribuire toohello ambiente e test di gestione temporanea.
+8. Distribuire l'ambiente tooproduction.
 9. Ripetere i passaggi da 4 a 6.
 
 ### <a name="umbraco"></a>Umbraco
-In questa sezione verrà illustrato il modo in cui Umbraco CMS usa un modulo personalizzato per la distribuzione in più ambienti DevOps. Questo esempio illustra un approccio diverso alla gestione di più ambienti di sviluppo.
+In questa sezione si apprenderà come hello Umbraco CMS Usa toodeploy un modulo personalizzato in diversi ambienti DevOps. In questo esempio fornisce un approccio diverso di toomanaging più ambienti di sviluppo.
 
-[Umbraco CMS](http://umbraco.com/) è una soluzione .NET CMS diffusa che viene usata da molti sviluppatori. Offre il modulo [Courier2](http://umbraco.com/products/more-add-ons/courier-2) per la distribuzione dall'ambiente di sviluppo a quello di gestione temporanea a quello di produzione. Per creare facilmente un ambiente di sviluppo locale per un'App Web Umbraco CMS è possibile usare Visual Studio o WebMatrix.
+[Umbraco CMS](http://umbraco.com/) è una soluzione .NET CMS diffusa che viene usata da molti sviluppatori. Fornisce hello [Courier2](http://umbraco.com/products/more-add-ons/courier-2) toodeploy modulo da ambienti di sviluppo toostaging tooproduction. Per creare facilmente un ambiente di sviluppo locale per un'App Web Umbraco CMS è possibile usare Visual Studio o WebMatrix.
 
 - [Creare un'App Web Umbraco con Visual Studio](https://our.umbraco.org/documentation/Installation/install-umbraco-with-nuget)
 - [Creare un'App Web Umbraco con WebMatrix](http://umbraco.tv/videos/umbraco-v7/implementor/fundamentals/installation/creating-umbraco-site-from-webmatrix-web-gallery/)
 
-È necessario ricordare sempre di rimuovere la cartella `install` nell'applicazione e di non caricarla mai nelle App Web di gestione temporanea o di produzione. In questa esercitazione viene usato WebMatrix.
+È sempre necessario hello tooremove `install` cartella dell'applicazione e non caricarlo mai le app web toostage o di produzione. In questa esercitazione viene usato WebMatrix.
 
 #### <a name="set-up-a-staging-environment"></a>Configurare un ambiente di staging
-1. Creare uno slot di distribuzione come indicato in precedenza per un'App Web Umbraco CMS, presupponendo esista già un'App Web Umbraco CMS operativa. In caso contrario, è possibile crearne una dal Marketplace.
-2. Aggiornare la stringa di connessione per lo slot di distribuzione di gestione temporanea perché scelga il nuovo database, **umbraco-stage-db**. L'App Web di produzione (umbraositecms-1) e l'App Web di gestione temporanea (umbracositecms-1-stage) *devono* scegliere database diversi.
+1. Creare uno slot di distribuzione, come indicato in precedenza per hello Umbraco CMS web app, presupponendo che si dispone già di un'app web Umbraco CMS e in esecuzione. In caso contrario, è possibile crearne uno da hello Marketplace.
+2. Aggiornare la stringa di connessione hello per le nuove toohello fase distribuzione slot toopoint **umbraco-fase-db** database. L'app web di produzione (umbraositecms-1) e l'app web di gestione temporanea (umbracositecms-1-fase) *deve* punto toodifferent database.
 
     ![Aggiornare la stringa di connessione per l'app Web di staging con il nuovo database di staging](./media/app-service-web-staged-publishing-realworld-scenarios/9umbconnstr.png)
 
-3. Fare clic su **Get Publish settings** (Ottieni impostazioni di pubblicazione) per lo slot di distribuzione di **gestione temporanea**. Con questo processo verrà scaricato un file di impostazioni di pubblicazione in cui sono archiviate tutte le informazioni richieste da Visual Studio o WebMatrix per pubblicare l'applicazione dall'App Web di sviluppo locale all'App Web di Azure.
+3. Fare clic su **impostazioni di pubblicazione ottenere** per lo slot di distribuzione hello **fase**. Questo processo verrà scaricato un file di impostazioni di pubblicazione che archivia tutte le informazioni di hello che Visual Studio o WebMatrix richiede toopublish l'applicazione da un'app web di Azure toohello di hello sviluppo locale web app.
 
-    ![Ottenere le impostazioni di pubblicazione per l'app Web di staging](./media/app-service-web-staged-publishing-realworld-scenarios/10getpsetting.png)
-4. Aprire l'App Web di sviluppo locale in WebMatrix o Visual Studio. In questa esercitazione viene usato WebMatrix. È innanzitutto necessario importare il file di impostazioni di pubblicazione per l'App Web di gestione temporanea.
+    ![Ottenere l'impostazione di hello app web di gestione temporanea di pubblicazione](./media/app-service-web-staged-publishing-realworld-scenarios/10getpsetting.png)
+4. Aprire l'App Web di sviluppo locale in WebMatrix o Visual Studio. In questa esercitazione viene usato WebMatrix. È innanzitutto necessario tooimport hello pubblicare file di impostazioni per l'app web di gestione temporanea.
 
     ![Importare le impostazioni di pubblicazione per Umbraco tramite WebMatrix](./media/app-service-web-staged-publishing-realworld-scenarios/11import.png)
 
-5. Esaminare le modifiche nella finestra di dialogo e distribuire l'App Web locale nell'App Web di Azure, *umbracositecms-1-stage*. Quando si distribuiscono i file direttamente nell'App Web di gestione temporanea è necessario omettere i file nella cartella `~/app_data/TEMP/`, perché verranno rigenerati al primo avvio dell'App Web di gestione temporanea. Omettere il file `~/app_data/umbraco.config` perché verrà rigenerato anch'esso.
+5. Rivedere le modifiche apportate nella finestra di dialogo hello e distribuire l'app web di Azure tooyour app web locale, *umbracositecms-1-fase*. Quando si distribuiscono file direttamente l'app web di gestione temporanea tooyour, si verranno omettere i file in hello `~/app_data/TEMP/` cartella poiché questi file verranno rigenerati quando app web di hello fase viene avviato. È necessario omettere anche hello `~/app_data/umbraco.config` file, verrà rigenerato.
 
     ![Rivedere le modifiche da pubblicare in WebMatrix](./media/app-service-web-staged-publishing-realworld-scenarios/12umbpublish.png)
 
-6. Dopo aver pubblicato l'App Web locale Umbraco nell'App Web di gestione temporanea, esplorarla ed eseguire alcuni test per rilevare eventuali problemi.
+6. Dopo aver pubblicato correttamente hello Umbraco web locale app toohello staging app web, selezionare l'app web di gestione temporanea tooyour ed eseguire alcuni test toorule gli eventuali problemi.
 
-#### <a name="set-up-the-courier2-deployment-module"></a>Configurare il modulo di distribuzione Courier2
-Con il modulo [Courier2](http://umbraco.com/products/more-add-ons/courier-2) è possibile semplicemente fare doppio clic per effettuare il push di contenuti, fogli di stile e moduli di sviluppo da un'App Web di gestione temporaea a un'App Web di produzione. Questo processo riduce il rischio di interrompere l'App Web di produzione quando si distribuisce un aggiornamento.
-Acquistare una licenza per Courier2 per il dominio `*.azurewebsites.net` e il dominio personalizzato (ad esempio http://abc.com). Dopo aver acquistato la licenza, posizionare la licenza scaricata (file .LIC) nella cartella `bin`.
+#### <a name="set-up-hello-courier2-deployment-module"></a>Impostare il modulo di distribuzione Courier2 hello
+Con hello [Courier2](http://umbraco.com/products/more-add-ons/courier-2) modulo, è possibile semplicemente fare doppio clic toopush contenuto, fogli di stile e lo sviluppo moduli da un'app di web di gestione temporanea di web app tooa produzione. Questo processo riduce il rischio di hello di danneggiare l'app web di produzione quando si distribuisce un aggiornamento.
+Acquistare una licenza per Courier2 per hello `*.azurewebsites.net` dominio e il dominio personalizzato (ad esempio http://abc.com). Dopo aver acquistato una licenza di hello, sul posto hello scaricato licenza (. File GCI) in hello `bin` cartella.
 
 ![Salvare il file di licenza nella cartella bin](./media/app-service-web-staged-publishing-realworld-scenarios/13droplic.png)
 
-1. [Scaricare il pacchetto di Courier2](https://our.umbraco.org/projects/umbraco-pro/umbraco-courier-2/). Accedere all'App Web di gestione temporanea, ad esempio http://umbracocms-site-stage.azurewebsites.net/umbraco, fare clic sul menu **Sviluppatore**, quindi fare clic su **Pacchetti** > **Install local package** (Installa pacchetto locale).
+1. [Scaricare il pacchetto di hello Courier2](https://our.umbraco.org/projects/umbraco-pro/umbraco-courier-2/). Accedi tooyour fase web app, ad esempio http://umbracocms-site-stage.azurewebsites.net/umbraco, fare clic su hello **Developer** menu e quindi fare clic su **pacchetti** > **installare pacchetto locale**.
 
     ![Programma di installazione del pacchetto Umbraco](./media/app-service-web-staged-publishing-realworld-scenarios/14umbpkg.png)
 
-2. Caricare il pacchetto Courier2 usando il programma di installazione.
+2. Caricare il pacchetto di hello Courier2 tramite installazione guidata di hello.
 
     ![Caricare il pacchetto per il modulo Courier](./media/app-service-web-staged-publishing-realworld-scenarios/15umbloadpkg.png)
 
-3. Per configurare il pacchetto, è necessario aggiornare il file courier.config nella cartella **Config** dell'App Web.
+3. pacchetto di hello tooconfigure, è necessario tooupdate hello courier.config file hello **Config** cartella dell'app web.
 
     ```xml
     <!-- Repository connection settings -->
-     <!-- For each site, a custom repository must be configured, so Courier knows how to connect and authenticate-->
+     <!-- For each site, a custom repository must be configured, so Courier knows how tooconnect and authenticate-->
      <repositories>
-        <!-- If a custom Umbraco Membership provider is used, specify login & password + set the passwordEncoding to clear: -->
+        <!-- If a custom Umbraco Membership provider is used, specify login & password + set hello passwordEncoding tooclear: -->
         <repository name="production web app" alias="stage" type="CourierWebserviceRepositoryProvider" visible="true">
           <url>http://umbracositecms-1.azurewebsites.net</url>
           <user>0</user>
@@ -371,18 +371,18 @@ Acquistare una licenza per Courier2 per il dominio `*.azurewebsites.net` e il do
      </repositories>
      ```
 
-4. In `<repositories>`immettere l’URL del sito di produzione e le informazioni dell’utente.
-    Se si usa il provider di appartenenze Umbraco predefinito, aggiungere l'ID per l'utente Administration nella sezione &lt;user&gt;.
-    Se si usa un provider di appartenenze Umbraco personalizzato, usare `<login>`,`<password>` nel modulo Courier2 per connettersi al sito di produzione.
-    Per altre informazioni, [consultare la documentazione relativa al modulo Courier2](http://umbraco.com/help-and-support/customer-area/courier-2-support-and-download/developer-documentation).
+4. In `<repositories>`, immettere hello produzione sito URL e le informazioni utente.
+    Se si utilizza provider di appartenenze Umbraco hello predefinito, quindi aggiungere hello ID utente di amministrazione di hello in hello &lt;utente&gt; sezione.
+    Se si utilizza un provider di appartenenze personalizzato Umbraco, utilizzare `<login>`,`<password>` nel sito di produzione toohello tooconnect hello Courier2 modulo.
+    Per ulteriori dettagli, [, vedere la documentazione di hello per il modulo hello Courier2](http://umbraco.com/help-and-support/customer-area/courier-2-support-and-download/developer-documentation).
 
-5. Analogamente, installare il modulo Courier2 nel sito di produzione e configurarlo affinché scelga l'App Web di gestione temporanea nel relativo file courier.config, come illustrato di seguito.
+5. Analogamente, installare il modulo di Courier2 hello nel sito di produzione e configurarlo toopoint toohello fase web app nel relativo file courier.config corrispondente, come illustrato di seguito.
 
     ```xml
      <!-- Repository connection settings -->
-     <!-- For each site, a custom repository must be configured, so Courier knows how to connect and authenticate-->
+     <!-- For each site, a custom repository must be configured, so Courier knows how tooconnect and authenticate-->
      <repositories>
-        <!-- If a custom Umbraco Membership provider is used, specify login & password + set the passwordEncoding to clear: -->
+        <!-- If a custom Umbraco Membership provider is used, specify login & password + set hello passwordEncoding tooclear: -->
         <repository name="Stage web app" alias="stage" type="CourierWebserviceRepositoryProvider" visible="true">
           <url>http://umbracositecms-1-stage.azurewebsites.net</url>
           <user>0</user>
@@ -390,55 +390,55 @@ Acquistare una licenza per Courier2 per il dominio `*.azurewebsites.net` e il do
      </repositories>
     ```
 
-6. Fare clic sulla scheda **Courier2** nel dashboard dell'App Web Umbraco CMS, quindi fare clic su **Posizioni**. Verrà visualizzato il nome del repository, come indicato in `courier.config`. Eseguire questo processo nell'App Web di produzione e di gestione temporanea.
+6. Fare clic su hello **Courier2** scheda hello del dashboard di Umbraco CMS web app e quindi fare clic su **percorsi**. Verrà visualizzato il nome di repository hello come indicato in `courier.config`. Eseguire questo processo nell'App Web di produzione e di gestione temporanea.
 
     ![Visualizzare il repository dell'app Web di destinazione](./media/app-service-web-staged-publishing-realworld-scenarios/16courierloc.png)
 
-7. Per distribuire il contenuto dal sito di gestione temporanea al sito di produzione, andare su **Contenuto**e selezionare una pagina esistente oppure crearne una nuova. In questo caso, verrà selezionata una pagina esistente dell'App Web in cui il titolo della pagina è **Getting Started – new** (Introduzione - Nuovo) e quindi fare clic su **Salva e pubblica**.
+7. toodeploy contenuto dal sito di produzione toohello del sito di gestione temporanea hello andare troppo**contenuto**e selezionare una pagina esistente oppure crearne una nuova pagina. Selezionerà una pagina esistente dall'app web in cui titolo hello della pagina di hello è **Guida introduttiva: nuovo**, quindi fare clic su **salvare e pubblicare**.
 
     ![Modificare il titolo della pagina e pubblicare](./media/app-service-web-staged-publishing-realworld-scenarios/17changepg.png)
 
-8. Fare clic con il pulsante destro del mouse sulla pagina modificata per visualizzare tutte le opzioni. Fare clic su **Courier** per aprire la finestra di dialogo **Distribuzione**. Fare clic su **Distribuisci** per avviare la distribuzione.
+8. Pulsante destro del mouse hello modificato tooview pagina tutte le opzioni di hello. Fare clic su **Courier** tooopen hello **distribuzione** la finestra di dialogo. Fare clic su **Distribuisci** tooinitiate distribuzione.
 
     ![Finestra di dialogo per la distribuzione del modulo Courier](./media/app-service-web-staged-publishing-realworld-scenarios/18dialog1.png)
 
-9. Esaminare le modifiche, quindi fare clic su **Continua**.
+9. Rivedere le modifiche di hello e quindi fare clic su **continua**.
 
     ![Verifica delle modifiche nella finestra di dialogo per la distribuzione del modulo Courier](./media/app-service-web-staged-publishing-realworld-scenarios/19dialog2.png)
 
-    Il log di distribuzione indica se la distribuzione ha avuto esito positivo.
+    log di distribuzione Hello Mostra se la distribuzione di hello è riuscita.
 
      ![Visualizzare i log di distribuzione del modulo Courier](./media/app-service-web-staged-publishing-realworld-scenarios/20successdlg.png)
 
-10. Passare all'app Web di produzione per vedere se riflette le modifiche.
+10. Se vengono riflesse hello, esplorare il toosee app web di produzione.
 
      ![Esplorare l'app Web di produzione](./media/app-service-web-staged-publishing-realworld-scenarios/21umbpg.png)
 
-Per altre informazioni su come usare Courier, vedere la documentazione.
+ulteriori informazioni sulla modalità toouse Courier, revisione hello documentazione toolearn.
 
-#### <a name="how-to-upgrade-the-umbraco-cms-version"></a>Come aggiornare la versione di Umbraco CMS
-Courier non aiuta nell'aggiornamento da una versione di Umbraco CMS a un'altra. Durante l'aggiornamento della versione di Umbraco CMS, è necessario controllare le eventuali incompatibilità con i moduli personalizzati o i moduli dei partner e le librerie di base di Umbraco. Alcune procedure consigliate:
+#### <a name="how-tooupgrade-hello-umbraco-cms-version"></a>Come tooupgrade hello versione Umbraco CMS
+Verrà Courier non si esegue l'aggiornamento da una versione di Umbraco CMS tooanother come guida. Quando si aggiorna una versione di Umbraco CMS, è necessario verificare la presenza di incompatibilità con i moduli personalizzati o da partner e le librerie di base di Umbraco hello. Alcune procedure consigliate:
 
-* Eseguire sempre un backup dell'App Web e del database prima di un aggiornamento. Nelle App Web di Azure è possibile configurare i backup automatici per i siti Web tramite la funzionalità di backup e ripristinare il sito, se necessario, con l'apposita funzionalità. Per altri dettagli, vedere [Come eseguire il backup dell'app Web](web-sites-backup.md) e [Come ripristinare l'app Web](web-sites-restore.md).
-* Verificare se i pacchetti dei partner sono compatibili con la versione a cui si esegue l'aggiornamento. Nella pagina di download del pacchetto vedere le informazioni sulla compatibilità del progetto con la versione di Umbraco CMS.
+* Eseguire sempre un backup dell'App Web e del database prima di un aggiornamento. Nelle App web in Azure, è possibile configurare backup automatici per i siti Web utilizzando le funzionalità di backup hello e ripristino del sito, se necessario utilizzando la funzionalità Ripristino hello. Per ulteriori informazioni, vedere [come tooback backup dell'app web](web-sites-backup.md) e [come toorestore app web](web-sites-restore.md).
+* Verificare se sono compatibili con la versione di hello di che si esegue l'aggiornamento pacchetti da partner. Pagina di download del pacchetto di hello, verificare di compatibilità del progetto con versione Umbraco CMS hello.
 
-Per altre informazioni su come aggiornare l'App Web locale, [vedere le indicazioni generali sull'aggiornamento](https://our.umbraco.org/documentation/getting-started/setup/upgrading/general).
+Per ulteriori informazioni su come tooupgrade in locale, l'app web [vedere indicazioni sull'aggiornamento generale di hello](https://our.umbraco.org/documentation/getting-started/setup/upgrading/general).
 
-Dopo aver aggiornato il sito di sviluppo locale, pubblicare le modifiche nell'App Web di gestione temporanea. Testare l'applicazione. Se tutto sembra corretto, fare clic sul pulsante **Scambia** per scambiare il sito di gestione temporanea con l'App Web di produzione. Durante l'operazione di **scambio**, è possibile visualizzare le modifiche alla configurazione dell'App Web. Con l'operazione di **scambio** vengono scambiati i database e le App Web. Dopo lo **scambio**, l'App Web di produzione sceglie il database umbraco-stage-db e l'App Web di gestione temporanea sceglie il database umbraco-prod-db.
+Dopo l'aggiornamento del sito di sviluppo locale, pubblicare hello modifiche toohello app web di gestione temporanea. Testare l'applicazione. Se si verificano problemi, utilizzare hello **scambiare** pulsante tooswap gestione temporanea del sito toohello produzione app web. Quando si utilizza hello **scambiare** operazione, è possibile visualizzare le modifiche di hello che saranno interessate nella configurazione dell'applicazione web. Questo **scambiare** operazione Scambia hello web App e i database. Dopo aver hello **scambiare**, database di produzione web app verrà toohello punto umbraco-fase-db hello e hello database di gestione temporanea web app verrà tooumbraco punto-op-db.
 
 ![Anteprima dello scambio per la distribuzione di Umbraco CMS.](./media/app-service-web-staged-publishing-realworld-scenarios/22umbswap.png)
 
-I vantaggi dello scambio dell'App Web e del database sono:
+Ecco i vantaggi di swapping sia hello web app e database hello:
 
-* È possibile eseguire il rollback alla versione precedente dell'App Web con un'altra operazione di **scambio** in caso di errori dell'applicazione.
-* Per gli aggiornamenti, è necessario distribuire i file e i database dall'App Web di gestione temporanea all'App Web e al database di produzione. Quando si distribuiscono file e database, molti aspetti potrebbero andare per il verso sbagliato. La funzionalità di **scambio** degli slot consente di ridurre i tempi di inattività durante gli aggiornamenti e di ridurre i rischi di errori che possono verificarsi durante la distribuzione delle modifiche.
-* È possibile eseguire **test A/B** usando la funzionalità [Testing in production](https://azure.microsoft.com/documentation/videos/introduction-to-azure-websites-testing-in-production-with-galin-iliev/).
+* È possibile eseguire il rollback toohello versione precedente dell'app web con un altro **scambiare** se sono presenti eventuali problemi di applicazione.
+* Per un aggiornamento, è necessario toodeploy file e database di gestione temporanea dell'applicazione web di produzione di web app toohello hello e il database. Quando si distribuiscono file e database, molti aspetti potrebbero andare per il verso sbagliato. Utilizzando hello **scambiare** funzionalità di slot, è possibile ridurre i tempi di inattività durante l'aggiornamento e ridurre il rischio di hello di errori che possono verificarsi quando si distribuiscono le modifiche.
+* È possibile eseguire **A / B test** utilizzando hello [test nell'ambiente di produzione](https://azure.microsoft.com/documentation/videos/introduction-to-azure-websites-testing-in-production-with-galin-iliev/) funzionalità.
 
-Questo esempio illustra la flessibilità della piattaforma in cui è possibile creare moduli personalizzati simili al modulo Umbraco Courier per gestire la distribuzione in più ambienti.
+Questo esempio si hello flessibilità della piattaforma hello in cui è possibile compilare moduli personalizzati simili toomanage distribuzione del tooUmbraco Courier modulo tutti gli ambienti.
 
 ## <a name="references"></a>Riferimenti
 [Agile Software Development con il servizio app di Azure](app-service-agile-software-development.md)
 
 [Configurare ambienti di staging per le app Web nel servizio app di Azure](web-sites-staged-publishing.md)
 
-[Come bloccare l'accesso Web agli slot di distribuzione non di produzione](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
+[Modalità di accesso di slot di distribuzione di produzione toonon tooblock web](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)

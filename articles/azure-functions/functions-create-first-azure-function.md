@@ -1,6 +1,6 @@
 ---
-title: Creare la prima funzione nel portale di Azure | Microsoft Docs
-description: Informazioni su come creare la prima funzione di Azure per l'esecuzione senza server tramite il portale di Azure.
+title: la prima funzione dal portale di Azure hello aaaCreate | Documenti Microsoft
+description: Informazioni su come toocreate di Azure prima funzione per l'esecuzione senza tramite hello portale di Azure.
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,59 +16,59 @@ ms.workload: na
 ms.date: 08/07/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 3ec1f278f21d89782137625aff200f07f15fd9fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 84283d7d4bc6015061946af4589f9a70ae61f36b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-function-in-the-azure-portal"></a>Creare la prima funzione nel portale di Azure
+# <a name="create-your-first-function-in-hello-azure-portal"></a>Creare la prima funzione in hello portale di Azure
 
-Funzioni di Azure consente di eseguire il codice in un ambiente senza server senza dover prima creare una macchina virtuale o pubblicare un'applicazione Web. Questo argomento fornisce informazioni su come usare Funzioni per creare una funzione di benvenuto nel portale di Azure.
+Funzioni di Azure consente di eseguire il codice in un ambiente senza server senza dover toofirst crea una macchina virtuale o si pubblica un'applicazione web. In questo argomento, informazioni su come toouse funzioni toocreate una funzione di "hello world" nel portale di Azure hello.
 
-![Creare un'app per le funzioni nel portale di Azure](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
+![Creare app di funzione in hello portale di Azure](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="log-in-to-azure"></a>Accedere ad Azure
+## <a name="log-in-tooazure"></a>Accedi tooAzure
 
-Accedere al [Portale di Azure](https://portal.azure.com/).
+Accedi toohello [portale di Azure](https://portal.azure.com/).
 
 ## <a name="create-a-function-app"></a>Creare un'app per le funzioni
 
-Per ospitare l'esecuzione delle funzioni è necessaria un'app per le funzioni. Un'app per le funzioni consente di raggruppare le funzioni come un'unità logica per semplificare la gestione, la distribuzione e la condivisione delle risorse. 
+È necessario disporre di un'esecuzione di hello toohost app funzione delle funzioni. Un'app per le funzioni consente di raggruppare le funzioni come un'unità logica per semplificare la gestione, la distribuzione e la condivisione delle risorse. 
 
 [!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
-Si creerà ora una funzione nella nuova app per le funzioni.
+Creare quindi una funzione in hello nuova funzione app.
 
 ## <a name="create-function"></a>Creare una funzione attivata tramite HTTP
 
-1. Espandere la nuova app per le funzioni e quindi fare clic sul pulsante **+** accanto a **Funzioni**.
+1. Espandere la nuova app di funzione, quindi fare clic su hello  **+**  accanto troppo**funzioni**.
 
-2.  Nella pagina **Iniziare rapidamente con una funzione preconfezionata** selezionare **Webhook e API**, **scegliere un linguaggio** per la funzione e fare clic su **Creare questa funzione**. 
+2.  In hello **iniziare rapidamente** selezionare **WebHook + API**, **scegliere una lingua** per la funzione, fare clic su **creare questa funzione** . 
    
-    ![Guida di avvio rapido di Funzioni nel portale di Azure.](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
+    ![Funzioni delle Guide rapide in hello portale di Azure.](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
 
-Viene creata una funzione nel linguaggio prescelto usando il modello per una funzione attivata tramite HTTP. È possibile eseguire la nuova funzione inviando una richiesta HTTP.
+Viene creata una funzione nella lingua scelta, utilizzando il modello di hello per una funzione di attivazione HTTP. È possibile eseguire una nuova funzione hello inviando una richiesta HTTP.
 
-## <a name="test-the-function"></a>Testare la funzione
+## <a name="test-hello-function"></a>Funzione hello test
 
 1. Nella nuova funzione fare clic su **</> Recupera URL della funzione**, selezionare **predefinito (tasto funzione)** e quindi fare clic su **Copia**. 
 
-    ![Creare l'URL della funzione dal portale di Azure](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
+    ![Copiare l'URL funzione hello da hello portale di Azure](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
 
-2. Incollare l'URL della funzione nella barra degli indirizzi del browser. Aggiungere la stringa di query `&name=<yourname>` all'URL e premere il tasto `Enter` per eseguire la richiesta. L'esempio seguente riporta la risposta restituita dalla funzione nel browser Edge:
+2. Incollare l'URL funzione hello nella barra degli indirizzi del browser. Aggiungere la stringa di query hello `&name=<yourname>` toothis URL e premere hello `Enter` chiave della richiesta di hello tooexecute tastiera. Hello Ecco un esempio di risposta hello restituito dalla funzione hello nel browser Edge hello:
 
-    ![Risposta della funzione nel browser.](./media/functions-create-first-azure-function/function-app-browser-testing.png)
+    ![Risposta della funzione nel browser hello.](./media/functions-create-first-azure-function/function-app-browser-testing.png)
 
-    L'URL della richiesta include una chiave necessaria per impostazione predefinita per accedere a una funzione tramite HTTP.   
+    richiesta di Hello URL include una chiave che è necessario, per impostazione predefinita, tooaccess la funzione su HTTP.   
 
-3. Quando viene eseguita la funzione, vengono scritte nei log informazioni di traccia. Per visualizzare l'output di traccia dell'esecuzione precedente, tornare alla funzione nel portale e fare clic sulla freccia verso l'alto nella parte inferiore della schermata per espandere **Log**. 
+3. Quando viene eseguita la funzione, le informazioni di traccia viene scritto toohello log. output di traccia toosee hello in seguito all'esecuzione precedente hello, restituire la funzione tooyour nel portale di hello e fare clic su hello freccia nella parte inferiore di hello di hello schermata tooexpand **log**. 
 
-   ![Visualizzatore log di Funzioni nel portale di Azure.](./media/functions-create-first-azure-function/function-view-logs.png)
+   ![Funzioni di accesso Visualizzatore hello portale di Azure.](./media/functions-create-first-azure-function/function-view-logs.png)
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 

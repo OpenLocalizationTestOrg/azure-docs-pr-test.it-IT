@@ -1,6 +1,6 @@
 ---
-title: Abilitare la registrazione diagnostica per le app Web nel servizio app di Azure
-description: Informazioni su come abilitare la registrazione diagnostica e aggiungere strumentazione all'applicazione e su come accedere alle informazioni registrate da Azure.
+title: aaaEnable la registrazione diagnostica per App web nel servizio App di Azure
+description: "Informazioni su come la registrazione diagnostica tooenable e aggiungere strumentazione tooyour applicazione, nonché come tooaccess hello informazioni registrate da Azure."
 services: app-service
 documentationcenter: .net
 author: cephalin
@@ -14,275 +14,275 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 7b125aeb9c0ee1dcbb199da98b0ce079820ea85c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4b2903ff31cc93180552cf51196c33505ffbaf07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-diagnostics-logging-for-web-apps-in-azure-app-service"></a>Abilitare la registrazione diagnostica per le app Web nel servizio app di Azure
 ## <a name="overview"></a>Panoramica
-Azure offre diagnostica integrata per facilitare il debug di un' [app Web del servizio app](http://go.microsoft.com/fwlink/?LinkId=529714). In questo articolo viene descritto come abilitare la registrazione diagnostica e aggiungere strumentazione all'applicazione, oltre a come accedere alle informazioni registrate da Azure.
+Azure offre tooassist di diagnostica con il debug di un [App del servizio web app](http://go.microsoft.com/fwlink/?LinkId=529714). In questo articolo si apprenderà come la registrazione diagnostica tooenable e aggiungere strumentazione tooyour applicazione, nonché come tooaccess hello informazioni registrate da Azure.
 
-L'articolo illustra inoltre l'uso del [portale di Azure](https://portal.azure.com), di Azure PowerShell e dell'interfaccia della riga di comando di Azure (Azure CLI) per elaborare i log di diagnostica. Per informazioni sull'elaborazione dei log di diagnostica in Visual Studio vedere [Risoluzione dei problemi di Azure in Visual Studio](web-sites-dotnet-troubleshoot-visual-studio.md).
+Questo articolo Usa hello [portale Azure](https://portal.azure.com), Azure PowerShell e hello interfaccia della riga di comando di Azure (Azure CLI) toowork con i log di diagnostica. Per informazioni sull'elaborazione dei log di diagnostica in Visual Studio vedere [Risoluzione dei problemi di Azure in Visual Studio](web-sites-dotnet-troubleshoot-visual-studio.md).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="whatisdiag"></a>Diagnostica del server Web e diagnostica dell'applicazione
-App Web del servizio app offre funzionalità diagnostiche per la registrazione di informazioni sia dal server Web sia dall'applicazione Web, logicamente separate in **diagnostica server Web** e **diagnostica applicazioni**.
+Le applicazioni di servizio App web forniscono funzionalità di diagnostica per la registrazione delle informazioni dal server web hello e un'applicazione web hello. logicamente separate in **diagnostica server Web** e **diagnostica applicazioni**.
 
 ### <a name="web-server-diagnostics"></a>Diagnostica del server Web
-È possibile abilitare o disabilitare i seguenti tipi di log:
+È possibile abilitare o disabilitare i seguenti tipi di registri hello:
 
-* **Registrazione degli errori dettagliata**: consente di registrare informazioni dettagliate sugli errori relativi ai codici di stato HTTP che indicano un'operazione non riuscita (codice di stato 400 o superiore), incluse eventualmente le informazioni che aiutano a determinare il motivo per cui il server ha restituito il codice di errore.
-* **Traccia delle richieste non riuscita** : consente di registrare informazioni dettagliate sulle richieste non riuscite, inclusa una traccia dei componenti IIS utilizzati per elaborare la richieste e il tempo impiegato in ciascun componente. Ciò può essere utile se si sta tentando di aumentare le prestazioni del sito oppure isolare la causa della restituzione di uno specifico errore HTTP.
-* **Registrazione del server Web** : consente di registrare informazioni sulle transazioni HTTP tramite il [formato di file di log esteso W3C](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx). Questo è utile nel determinare le metriche generali del sito, ad esempio il numero delle richieste gestite oppure quante di esse provengono da uno specifico indirizzo IP
+* **Registrazione degli errori dettagliata**: consente di registrare informazioni dettagliate sugli errori relativi ai codici di stato HTTP che indicano un'operazione non riuscita (codice di stato 400 o superiore), Può contenere informazioni utili per determinare perché i server di hello ha restituito il codice di errore hello.
+* **Non è stato possibile traccia richiesta** -informazioni dettagliate sulle richieste non riuscite, tra cui una traccia di hello IIS componenti utilizzati tooprocess hello richiesta e tempo hello in ogni componente. Può essere utile se si siano tentando di prestazioni del sito tooincrease o isolare la causa un toobe specifico di errore HTTP restituito.
+* **Registrazione del Server Web** -informazioni sulle transazioni HTTP tramite hello [formato di file registro esteso W3C](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx). Ciò è utile quando si determinano le metriche di generale del sito, ad esempio il numero di hello di richieste gestite o il numero di richieste provengono da un indirizzo IP specifico.
 
 ### <a name="application-diagnostics"></a>Diagnostica applicazioni
-La diagnostica applicazioni consente di acquisire le informazioni prodotte da un'applicazione Web. Le applicazioni ASP.NET possono utilizzare la classe [System.Diagnostics.Trace](http://msdn.microsoft.com/library/36hhw2t6.aspx) per registrare le informazioni nel log di diagnostica applicazioni. Ad esempio:
+Diagnostica delle applicazioni consente informazioni toocapture prodotte da un'applicazione web. Applicazioni ASP.NET possono usare hello [Trace](http://msdn.microsoft.com/library/36hhw2t6.aspx) classe toolog informazioni toohello application diagnostics log. ad esempio:
 
     System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happened");
 
-È possibile recuperare i registri in fase di esecuzione per facilitare la risoluzione dei problemi. Per altre informazioni, vedere [Risoluzione dei problemi delle app Web di Azure in Visual Studio](web-sites-dotnet-troubleshoot-visual-studio.md).
+In fase di esecuzione è possibile recuperare queste toohelp i log di risoluzione dei problemi. Per altre informazioni, vedere [Risoluzione dei problemi delle app Web di Azure in Visual Studio](web-sites-dotnet-troubleshoot-visual-studio.md).
 
-Le app Web del servizio app registrano anche le informazioni di distribuzione dei log quando si pubblicano contenuti in un'app Web. Ciò avviene automaticamente e non sono disponibili impostazioni di configurazione per la registrazione di distribuzione. La registrazione di distribuzione consente di determinare il motivo per cui una distribuzione non è riuscita. Ad esempio, se si utilizza uno script di distribuzione personalizzata, si potrebbe usare la registrazione di distribuzione per determinare il motivo per cui lo script non è riuscito.
+App del servizio web App registrare anche informazioni sulla distribuzione, quando si pubblica l'app web tooa contenuto. Ciò avviene automaticamente e non sono disponibili impostazioni di configurazione per la registrazione di distribuzione. Registrazione di distribuzione consente toodetermine perché una distribuzione non è riuscita. Ad esempio, se si utilizza uno script di distribuzione personalizzati, è possibile utilizzare distribuzione registrazione toodetermine perché hello script non riesce.
 
-## <a name="enablediag"></a>Come abilitare la diagnostica
-Per abilitare la diagnostica nel [Portale di Azure](https://portal.azure.com), passare al pannello dell'app Web e fare clic su **Impostazioni > Log di diagnostica**.
+## <a name="enablediag"></a>La diagnostica tooenable
+diagnostica tooenable in hello [portale Azure](https://portal.azure.com), toohello pannello per l'app web, fare clic su **Impostazioni > log di diagnostica**.
 
 <!-- todo:cleanup dogfood addresses in screenshot -->
 ![Parte del log](./media/web-sites-enable-diagnostic-log/logspart.png)
 
-Quando si abilita **Diagnostica applicazioni** è anche possibile scegliere il **Livello**. Questa impostazione consente di filtrare le informazioni acquisite come **informativa**, **avviso** o **errore**. Impostando il filtro su **Dettagliato** è possibile registrare tutte le informazioni generate dall'applicazione.
+Quando si abilita **diagnostica applicazioni** inoltre è hello **livello**. Questa impostazione consente di informazioni di hello toofilter acquisite troppo**informativo**, **avviso** o **errore** informazioni. L'impostazione troppo**verbose** registrerà tutte le informazioni prodotte da un'applicazione hello.
 
 > [!NOTE]
-> Diversamente da quanto accade nella modifica del file web.config, l'abilitazione della diagnostica applicazioni o la modifica dei livelli dei log di diagnostica non comportano il riciclaggio del dominio dell'applicazione in cui viene eseguita la stessa.
+> A differenza di modifica di Web. config hello file, l'abilitazione di diagnostica dell'applicazione o modifica dei livelli di log di diagnostica non la ricicli dominio applicazione hello eseguita all'interno di un'applicazione hello.
 >
 >
 
-Nella scheda [Configura](https://manage.windowsazure.com) dell'app Web nel **portale classico** è possibile selezionare **archiviazione** o **file system** per **Registrazione server Web**. La selezione di **storage** consente di selezionare un account di archiviazione e quindi un contenitore BLOB in cui verranno scritti i log. Tutti gli altri log per la **diagnostica del sito** verranno scritti solo sul file system.
+In hello [portale classico](https://manage.windowsazure.com) app Web **configura** scheda, è possibile selezionare **archiviazione** o **del file system** per **server web registrazione**. Selezione **archiviazione** consente tooselect un account di archiviazione, quindi selezionare un contenitore blob che verranno scritti i log di hello. Tutti gli altri log per **diagnostica sito** vengono scritti toohello file solo per il sistema.
 
-La scheda [Configura](https://manage.windowsazure.com) dell'app Web del **portale classico** include anche altre impostazioni per la diagnostica applicazioni:
+Hello [portale classico](https://manage.windowsazure.com) app Web **configura** scheda contiene anche le impostazioni aggiuntive per la diagnostica delle applicazioni:
 
-* **File system** : consente di archiviare le informazioni di diagnostica applicazioni sul file system dell'app Web. È possibile accedere a questi file mediante FTP oppure scaricarli come archivio zip tramite Azure PowerShell o l'interfaccia della riga di comando di Azure.
-* **Archivio tabelle** : consente di memorizzare le informazioni di diagnostica applicazioni nell'account di archiviazione di Azure e nel nome tabella specificati.
-* **Archivio BLOB** : consente di memorizzare le informazioni di diagnostica applicazioni nell'account di archiviazione di Azure e nel contenitore BLOB specificati.
-* **Periodo di conservazione**: per impostazione predefinita, i log non vengono eliminati automaticamente dall'**archiviazione BLOB**. Selezionare **imposta mantenimento** e immettere il numero di giorni per cui conservare i log, se si desidera eliminarli automaticamente.
+* **File di sistema** -hello di archivi di sistema di file di applicazione diagnostica informazioni toohello web app. Questi file possono essere accessibile tramite FTP, o scaricati come archivio Zip utilizzando hello Azure PowerShell o l'interfaccia della riga di comando di Azure (Azure CLI).
+* **Archiviazione tabelle** -archivi hello informazioni di diagnostica dell'applicazione nel nome di Account di archiviazione di Azure e di tabella specificato hello.
+* **Archiviazione BLOB** -archivi hello informazioni di diagnostica applicazione contenitore di blob e Account di archiviazione di Azure specificato hello.
+* **Periodo di conservazione**: per impostazione predefinita, i log non vengono eliminati automaticamente dall'**archiviazione BLOB**. Selezionare **di conservazione impostato** e immettere hello numero di giorni tookeep log se si desidera tooautomatically eliminare i log.
 
 > [!NOTE]
-> Se si [rigenerano le chiavi di accesso dell'account di archiviazione](../storage/common/storage-create-storage-account.md), è necessario reimpostare la configurazione di registrazione corrispondente per l'uso delle chiavi aggiornate. A tale scopo, seguire questa procedura:
+> Se si [rigenerare le chiavi di accesso dell'account di archiviazione](../storage/common/storage-create-storage-account.md), è necessario reimpostare le chiavi di hello aggiornato toouse configurazione hello registrazione corrispondente. toodo questo:
 >
-> 1. Nella scheda **Configura** impostare la funzionalità di registrazione corrispondente su **Off**. Salvare l’impostazione.
-> 2. Abilitare di nuovo la registrazione al BLOB dell'account di archiviazione o alla tabella. Salvare l’impostazione.
+> 1. In hello **configura** scheda, impostare la funzionalità di registrazione dei rispettivi hello troppo**Off**. Salvare l’impostazione.
+> 2. Abilitare la registrazione toohello blob dell'account di archiviazione o una tabella. Salvare l’impostazione.
 >
 >
 
-È possibile abilitare contemporaneamente qualsiasi combinazione di file system, archiviazione tabelle e archiviazione BLOB e disporre di singole configurazioni del livello di log. Ad esempio, può essere opportuno registrare gli errori e gli avvisi nell'archiviazione BLOB come soluzione di registrazione a lungo termine e abilitare la registrazione del file system a livello dettagliato.
+Qualsiasi combinazione di file system, archiviazione tabelle o nell'archiviazione blob può essere abilitata in hello stesso tempo, mentre sono le configurazioni a livello di singolo registro. Ad esempio, si consiglia toolog errori e avvisi tooblob archiviazione a lungo termine della registrazione, durante l'abilitazione di registrazione nel file system con un livello di dettaglio.
 
-Benché tutti e tre i percorsi di archiviazione offrano le stesse informazioni di base per gli eventi registrati, l'**archiviazione tabelle** e l'**archiviazione BLOB** consentono di registrare informazioni aggiuntive come l'ID istanza, l'ID di thread e un timestamp maggiormente granulare (formato tick) rispetto alla registrazione sul **file system**.
+Mentre tutte e tre i percorsi di archiviazione forniscono hello stesse informazioni di base per gli eventi registrati, **archivio tabelle** e **nell'archiviazione blob** registrare informazioni aggiuntive, ad esempio l'ID istanza hello, ID thread e più timestamp granulare (formato tick) di registrazione troppo**del file system**.
 
 > [!NOTE]
-> Le informazioni memorizzate nell'**archiviazione tabelle** o **nell'archiviazione BLOB** sono accessibili solo tramite un client o un'applicazione di archiviazione che possano funzionare direttamente con questi sistemi di archiviazione. Ad esempio, Visual Studio 2013 contiene lo strumento Esplora archivi, che può essere utilizzato per esplorare l'archiviazione tabelle o BLOB, e HDInsight, che può accedere ai dati memorizzati nell'archiviazione BLOB. È inoltre possibile scrivere un'applicazione che acceda all'archiviazione Azure mediante uno degli [Azure SDK](/downloads/#).
+> Le informazioni memorizzate nell'**archiviazione tabelle** o **nell'archiviazione BLOB** sono accessibili solo tramite un client o un'applicazione di archiviazione che possano funzionare direttamente con questi sistemi di archiviazione. Ad esempio, Visual Studio 2013 contiene una finestra di esplorazione di archiviazione che possono essere utilizzati tooexplore tabella o archiviazione blob e HDInsight può accedere ai dati archiviati nell'archiviazione blob. È anche possibile scrivere un'applicazione che accede all'archiviazione di Azure utilizzando uno dei hello [Azure SDK](/downloads/#).
 >
 > [!NOTE]
-> È inoltre possibile abilitare la diagnostica da Azure PowerShell mediante il cmdlet **Set-AzureWebsite** . Se Azure PowerShell non è stato installato o configurato per l'uso della sottoscrizione di Azure, vedere [Come usare Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/).
+> Diagnostica può anche essere attivata da Azure PowerShell utilizzando hello **Set-AzureWebsite** cmdlet. Se non è stato installato Azure PowerShell o non configurati toouse la sottoscrizione di Azure, vedere [come tooUse Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/).
 >
 >
 
 ## <a name="download"></a> Procedura: Scaricare i log
-Le informazioni diagnostiche memorizzate nel file system dell'app Web sono accessibili direttamente tramite FTP. È inoltre possibile scaricarle come archivio zip mediante Azure PowerShell o l'interfaccia della riga di comando di Azure.
+Il file system di informazioni di diagnostica archiviate toohello web app è possibile accedere direttamente tramite FTP. Può essere scaricato anche come archivio Zip utilizzando Azure PowerShell o hello interfaccia della riga di comando di Azure.
 
-La struttura di directory in cui sono memorizzati i log è la seguente:
+struttura di directory Hello hello log vengono archiviati in è la seguente:
 
 * **Application logs** - /LogFiles/Application/. In questa cartella sono presenti uno o più file di testo contenenti le informazioni generate dalla registrazione dell'applicazione.
-* **Failed Request Traces** - /LogFiles/W3SVC#########/. Questa cartella contiene un file XSL e uno o più file XML. Verificare che il file XSL venga scaricato nella stessa directory dei file XML in quanto il file XSL fornisce le funzionalità per la formattazione e il filtro dei contenuti del file XML per la visualizzazione in Internet Explorer.
+* **Failed Request Traces** - /LogFiles/W3SVC#########/. Questa cartella contiene un file XSL e uno o più file XML. Assicurarsi di scaricare file XSL hello in hello stessa directory hello che XML file perché il file XSL hello fornisce funzionalità per la formattazione e filtrare il contenuto di hello di hello XML file quando viene visualizzato in Internet Explorer.
 * **Detailed Error Logs** - /LogFiles/DetailedErrors/. Questa cartella contiene uno o più file HTM che forniscono informazioni dettagliate relative agli eventuali errori HTTP che si sono verificati.
-* **Web Server Logs** - /LogFiles/http/RawLogs. Questa cartella contiene uno o più file di testo formattati utilizzando il [formato di file di log esteso W3C](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx).
-* **Deployment logs** - /LogFiles/Git. Questa cartella contiene i log generati dai processi di distribuzione interna utilizzati da app Web di Azure, oltre ai log per le distribuzioni Git.
+* **Web Server Logs** - /LogFiles/http/RawLogs. Questa cartella contiene uno o più file di testo formattati utilizzando hello [formato di file registro esteso W3C](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx).
+* **Deployment logs** - /LogFiles/Git. Questa cartella contiene i log generati da processi di distribuzione interna hello usati da app web di Azure, nonché log per le distribuzioni Git.
 
 ### <a name="ftp"></a>FTP
-Per accedere alle informazioni sulle diagnostiche tramite FTP, visitare il **Dashboard** dell'app Web nel [portale classico](https://manage.windowsazure.com). Nella sezione **riepilogo rapido** usare il collegamento **FTP Diagnostic Logs** per accedere ai file di log mediante FTP. In **Deployment/FTP User** è indicato il nome utente da utilizzare per accedere al sito FTP.
+informazioni di diagnostica tooaccess tramite FTP, visitare hello **Dashboard** dell'app web in hello [portale classico](https://manage.windowsazure.com). In hello **riepilogo rapido** sezione, utilizzare hello **registri di diagnostica FTP** collegare i file di log hello tooaccess tramite FTP. Hello **utente distribuzione/FTP** nome utente hello che deve essere sito FTP hello tooaccess usato è elencata.
 
 > [!NOTE]
-> Se la voce **Utente FTP/distribuzione** non è impostata oppure se è stata dimenticata la password per questo utente, è possibile creare un nuovo utente con relativa password mediante il collegamento **Reimposta credenziali di distribuzione**e nella sezione **Riepilogo rapido** del **Dashboard**.
+> Se hello **utente distribuzione/FTP** voce non è impostata, o hello password per l'utente è stata dimenticata, è possibile creare un nuovo utente e una password utilizzando hello **reimpostare le credenziali di distribuzione** collegamento hello **riepilogo rapido** sezione di hello **Dashboard**.
 >
 >
 
 ### <a name="download-with-azure-powershell"></a>Download con Azure PowerShell
-Per scaricare i file di log, avviare una nuova istanza di Azure PowerShell e utilizzare il comando seguente:
+file di log toodownload hello, avviare una nuova istanza di Azure PowerShell e utilizzare hello comando seguente:
 
     Save-AzureWebSiteLog -Name webappname
 
-In tal modo, i log dell'app Web specificata dal parametro **-Name** verranno salvati in un file denominato **logs.zip** nella directory corrente.
+Ciò consentirà di registri hello per l'app web hello specificato da hello **-nome** file tooa parametro denominato **logs.zip** nella directory corrente hello.
 
 > [!NOTE]
-> Se Azure PowerShell non è stato installato o configurato per l'uso della sottoscrizione di Azure, vedere [Come usare Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/).
+> Se non è stato installato Azure PowerShell o non configurati toouse la sottoscrizione di Azure, vedere [come tooUse Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/).
 >
 >
 
 ### <a name="download-with-azure-command-line-interface"></a>Download con l'interfaccia della riga di comando di Azure
-Per scaricare i file di log mediante l'interfaccia della riga di comando di Azure, aprire un nuovo prompt dei comandi o una sessione di PowerShell, bash o terminal e immettere il comando seguente:
+file di log hello toodownload utilizzando hello Azure interfaccia della riga di comando, aprire un nuovo prompt dei comandi, PowerShell, Bash o sessione Terminal e immettere hello comando seguente:
 
     azure site log download webappname
 
-In tal modo, i log dell'app Web denominata "nomeappWeb" verranno salvati in un file denominato **diagnostics.zip** nella directory corrente.
+Ciò consentirà di registri hello per l'app web hello denominato 'webappname' tooa file denominato **diagnostics.zip** nella directory corrente hello.
 
 > [!NOTE]
-> Se l'interfaccia della riga di comando di Azure non è stata installata o configurata per l'uso della sottoscrizione di Azure, vedere [Installare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
+> Se non è stato installato hello interfaccia della riga di comando di Azure (Azure CLI), o non configurato toouse la sottoscrizione di Azure, vedere [come tooUse CLI di Azure](../cli-install-nodejs.md).
 >
 >
 
 ## <a name="how-to-view-logs-in-application-insights"></a>Procedura: visualizza i registri in Application Insights
-Visual Studio Application Insights fornisce strumenti per il filtro e ricerca dei registri e per correlare i registri con le richieste e altri eventi.
+Visual Studio Application Insights offre strumenti per il filtro e ricerca log e per la correlazione registri hello con le richieste e altri eventi.
 
-1. Aggiungere Application Insights al progetto in Visual Studio
+1. Aggiungi progetto tooyour di Application Insights SDK hello in Visual Studio.
    * Fare clic con il pulsante destro del mouse in Esplora soluzioni e scegliere Aggiungi Application Insights. Informazioni dettagliate dei passaggi che includono la creazione di una risorsa di Application Insights. [Altre informazioni](../application-insights/app-insights-asp-net.md)
-2. Aggiungere il pacchetto di Listener di traccia al progetto.
+2. Aggiungi progetto tooyour pacchetto di hello Listener di traccia.
    * In Visual Studio fare clic con il pulsante destro del mouse sul progetto e scegliere Gestisci pacchetti NuGet. Selezionare `Microsoft.ApplicationInsights.TraceListener` [ulteriori](../application-insights/app-insights-asp-net-trace-logs.md)
-3. Caricare il progetto ed eseguire la generazione di dati del log.
-4. Nel [portale di Azure](https://portal.azure.com/)individuare la nuova risorsa di Application Insights e aprire **Ricerca**. Verranno visualizzati i dati dei log insieme a quelli relativi alle richieste, all'utilizzo e alla telemetria. Alcuni dati di telemetria potrebbe richiedere alcuni minuti per arrivare: fare clic su Aggiorna. [Altre informazioni](../application-insights/app-insights-diagnostic-search.md)
+3. Caricare il progetto ed eseguire toogenerate dati del log.
+4. In hello [portale Azure](https://portal.azure.com/)esplorazione tooyour nuova risorsa di Application Insights e aprire **ricerca**. Verranno visualizzati i dati dei log insieme a quelli relativi alle richieste, all'utilizzo e alla telemetria. Alcuni dati di telemetria potrebbe richiedere alcuni minuti tooarrive: fare clic su Aggiorna. [Altre informazioni](../application-insights/app-insights-diagnostic-search.md)
 
 [Ulteriori informazioni sulle prestazioni di rilevamento con Application Insights](../application-insights/app-insights-azure-web-apps.md)
 
 ## <a name="streamlogs"></a> Procedura: Eseguire lo streaming dei log
-Durante lo sviluppo di un'applicazione, è spesso utile visualizzare le informazioni di registrazione in tempo quasi reale. A tale scopo, eseguire lo streaming delle informazioni di registrazione nel proprio ambiente di sviluppo mediante Azure PowerShell o l'interfaccia della riga di comando di Azure.
+Durante lo sviluppo di un'applicazione, è spesso utile toosee informazioni di registrazione in tempo quasi reale. Questo può essere eseguito dal flusso di registrazione ambiente di sviluppo tooyour informazioni utilizzando Azure PowerShell o hello interfaccia della riga di comando di Azure.
 
 > [!NOTE]
-> Alcuni tipi di buffer di registrazione scrivono nel file di log, producendo nel caso eventi di "fuori servizio" nel flusso. Ad esempio, una voce del log di applicazione che si verifica quando un utente visita una pagina può essere visualizzata nel flusso prima della corrispondente voce di log HTTP per la richiesta della pagina.
+> Alcuni tipi di buffer di registrazione scrivere file di log toohello, che può generare eventi nel flusso di hello non in ordine. Ad esempio, una voce del Registro applicazione che si verifica quando un utente visita una pagina potrebbe essere visualizzata nel flusso di hello prima hello corrispondente HTTP voce di log per la richiesta di pagina hello.
 >
 > [!NOTE]
-> Lo streaming dei log trasmetterà inoltre le informazioni scritte in qualsiasi file di testo memorizzato nella cartella **D:\\home\\LogFiles\\**.
+> Log di streaming anche trasmetterà informazioni scritte tooany file di testo archiviati in hello **unità d:\\home\\LogFiles\\**  cartella.
 >
 >
 
 ### <a name="streaming-with-azure-powershell"></a>Streaming con Azure PowerShell
-Per trasmettere le informazioni di registrazione, avviare una nuova istanza di Azure PowerShell e usare il comando seguente:
+informazioni di registrazione toostream, avviare una nuova istanza di Azure PowerShell e utilizzare hello comando seguente:
 
     Get-AzureWebSiteLog -Name webappname -Tail
 
-Il comando consente di connettersi all'app Web specificata dal parametro **-Name** e di iniziare lo streaming delle informazioni alla finestra di PowerShell mentre gli eventi del log si verificano sull'app Web. Eventuali informazioni scritte nei file con estensione txt, log o htm che sono memorizzati nella directory /LogFiles (d:/home/logfiles) verranno trasmesse alla console locale.
+Verrà connessa toohello web app specificato dal hello **-nome** parametro e avviare il flusso di finestra di PowerShell toohello informazioni nel registro eventi si verificano nell'applicazione web hello. Le informazioni scritte toofiles che terminano con estensione txt, log o con estensione htm che vengono archiviati nella directory /LogFiles hello (d/home/logfiles) verranno trasmesso toohello console locale.
 
-Per filtrare eventi specifici, ad esempio gli errori, utilizzare il parametro **-Message** . Ad esempio:
+eventi specifici toofilter, ad esempio gli errori, utilizzano hello **-messaggio** parametro. ad esempio:
 
     Get-AzureWebSiteLog -Name webappname -Tail -Message Error
 
-Per filtrare tipi di log specifici, ad esempio HTTP, usare il parametro **-Path** . Ad esempio:
+tipi di log specifico toofilter, ad esempio HTTP, utilizzano hello **-percorso** parametro. ad esempio:
 
     Get-AzureWebSiteLog -Name webappname -Tail -Path http
 
-Per visualizzare un elenco di percorsi disponibili usare il parametro -ListPath.
+un elenco di percorsi disponibili, utilizzare hello - ListPath parametro toosee.
 
 > [!NOTE]
-> Se Azure PowerShell non è stato installato o configurato per l'uso della sottoscrizione di Azure, vedere [Come usare Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/).
+> Se non è stato installato Azure PowerShell o non configurati toouse la sottoscrizione di Azure, vedere [come tooUse Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/).
 >
 >
 
 ### <a name="streaming-with-azure-command-line-interface"></a>Streaming con l'interfaccia della riga di comando di Azure
-Per eseguire lo streaming delle informazioni di registrazione, aprire un nuovo prompt dei comandi o una sessione di PowerShell, bash o terminal e immettere il comando seguente:
+informazioni di registrazione toostream, aprire un nuovo prompt dei comandi, PowerShell, Bash o sessione Terminal e immettere hello comando seguente:
 
     azure site log tail webappname
 
-Il comando consente di connettersi all'app Web denominata e di iniziare lo streaming delle informazioni alla finestra di PowerShell mentre gli eventi del log si verificano sull'app Web. Eventuali informazioni scritte nei file con estensione txt, log o htm che sono memorizzati nella directory /LogFiles (d:/home/logfiles) verranno trasmesse alla console locale.
+Questo si connetterà app web toohello denominato 'webappname' e avviare il flusso finestra toohello informazioni nel registro eventi si verificano nell'applicazione web hello. Le informazioni scritte toofiles che terminano con estensione txt, log o con estensione htm che vengono archiviati nella directory /LogFiles hello (d/home/logfiles) verranno trasmesso toohello console locale.
 
-Per filtrare eventi specifici, ad esempio gli errori, utilizzare il parametro **-Filter** . Ad esempio:
+eventi specifici toofilter, ad esempio gli errori, utilizzano hello **-filtro** parametro. ad esempio:
 
     azure site log tail webappname --filter Error
 
-Per filtrare tipi di log specifici, ad esempio HTTP, usare il parametro **--Path** . Ad esempio:
+tipi di log specifico toofilter, ad esempio HTTP, utilizzano hello **-percorso** parametro. ad esempio:
 
     azure site log tail webappname --path http
 
 > [!NOTE]
-> Se l'interfaccia della riga di comando di Azure non è stata installata o configurata per l'uso della sottoscrizione di Azure, vedere [Installare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
+> Se non è stato installato hello interfaccia della riga di comando di Azure, o non configurato toouse la sottoscrizione di Azure, vedere [come tooUse interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
 >
 >
 
 ## <a name="understandlogs"></a> Procedura: Comprendere i log di diagnostica
 ### <a name="application-diagnostics-logs"></a>Log di diagnostica applicazioni
-La diagnostica applicazioni consente di memorizzare le informazioni in un formato specifico per le applicazioni .NET, a seconda della destinazione di archiviazione dei log: file system, archiviazione tabelle o archiviazione BLOB. L'insieme di dati memorizzati di base è lo stesso in tutti e tre i tipi di archiviazione: data e ora in cui si è verificato l'evento, l'ID del processo che ha prodotto l'evento, il tipo di evento (informazioni, avviso, errore) e il messaggio di evento.
+Diagnostica applicazioni archivia le informazioni in un formato specifico per le applicazioni .NET, a seconda se si archiviano i registri toohello file system, archiviazione tabelle, o nell'archiviazione blob. set di dati archiviati base Hello è hello stesso in tutti i tre tipi di archiviazione - evento di hello hello data e ora si è verificato, hello ID di processo che ha generato l'evento hello, tipo di evento hello (informazioni, avviso o errore) e il messaggio di evento hello.
 
 **File system**
 
-Ogni riga registrata nel file system o ricevuta mediante streaming apparirà nel formato seguente:
+Ogni riga toohello registrato del file system o ricevuti mediante il flusso si trovano hello seguente formato:
 
     {Date}  PID[{process id}] {event type/level} {message}
 
-Ad esempio, l'aspetto di un evento di errore sarà simile al seguente:
+Ad esempio, un evento di errore appariranno simili toohello seguenti:
 
-    2014-01-30T16:36:59  PID[3096] Error       Fatal error on the page!
+    2014-01-30T16:36:59  PID[3096] Error       Fatal error on hello page!
 
-La registrazione sul file system fornisce le informazioni più basilari dei tre metodi disponibili, indicando solo l'ora e la data, l'ID di processo, il livello dell'evento e il messaggio.
+Registrazione sistema file toohello offre informazioni di base di hello tre metodi disponibili, fornire solo il tempo di hello, id di processo, livello evento e messaggio hello.
 
 **Archiviazione tabelle**
 
-Durante la registrazione nell'archiviazione tabelle verranno utilizzate proprietà aggiuntive per facilitare la ricerca dei dati memorizzati nella tabella, oltre a informazioni più granulari sull'evento. Verranno utilizzate le proprietà seguenti (colonne) per ogni entità (riga) memorizzata nella tabella.
+Durante la registrazione archiviazione tootable, sono utilizzati toofacilitate ricerca di hello dati archiviati nella tabella hello nonché più granulare informazioni sull'evento hello proprietà aggiuntive. Hello seguente proprietà (colonne) vengono utilizzate per ogni entità (righe) archiviate nella tabella hello.
 
 | Nome proprietà | Valore/formato |
 | --- | --- |
-| PartitionKey |Data/ora dell'evento nel formato aaaaMMggHH |
+| PartitionKey |Data/ora dell'evento hello in formato yyyyMMddHH |
 | RowKey |Valore GUID che identifica questa entità in modo univoco |
-| Timestamp |Data e ora in cui si è verificato l'evento |
-| EventTickCount |Data e ora in cui si è verificato l'evento, in formato Tick (maggiore precisione) |
-| ApplicationName |Nome dell'app Web |
-| Livello |Livello dell'evento (ad esempio, errore, avviso, informazione) |
-| EventId |ID evento di questo evento<p><p>Se non specificato, il valore predefinito è 0 |
-| InstanceId |Istanza dell'app Web sulla quale si è verificato l'evento |
+| Timestamp |si è verificato Hello data e ora di hello evento |
+| EventTickCount |Hello data e ora di hello evento si è verificato, nel formato Tick (la precisione maggiore di) |
+| ApplicationName |nome dell'applicazione web Hello |
+| Level |Livello dell'evento (ad esempio, errore, avviso, informazione) |
+| EventId |ID evento Hello dell'evento<p><p>Per impostazione predefinita too0 se non specificato |
+| InstanceId |Si è verificato l'istanza dell'app web hello che hello anche in |
 | Pid |ID di processo |
-| Tid |ID del thread che ha prodotto l'evento |
+| Tid |Hello ID del thread di hello che ha generato hello evento |
 | Message |Messaggio dettagliato sull'evento |
 
 **Archiviazione BLOB**
 
-Durante la registrazione sull'archiviazione BLOB, i dati vengono memorizzati in formato file con valori delimitati da virgole (CSV). In maniera analoga all'archiviazione tabelle, verranno registrati ulteriori campi per fornire informazioni più granulari sull'evento. Verranno utilizzate le proprietà seguenti per ogni riga memorizzata nel file CSV:
+Durante la registrazione archiviazione tooblob, i dati vengono archiviati in formato con valori delimitati da virgole (CSV). Archiviazione tootable simile, i campi aggiuntivi siano registrati tooprovide più granulare informazioni sull'evento hello. Hello seguenti vengono utilizzate per ogni riga hello CSV:
 
 | Nome proprietà | Valore/formato |
 | --- | --- |
-| Data |Data e ora in cui si è verificato l'evento |
-| Livello |Livello dell'evento (ad esempio, errore, avviso, informazione) |
-| ApplicationName |Nome dell'app Web |
-| InstanceId |Istanza dell'app Web nella quale si è verificato l'evento |
-| EventTickCount |Data e ora in cui si è verificato l'evento, in formato Tick (maggiore precisione) |
-| EventId |ID evento di questo evento<p><p>Se non specificato, il valore predefinito è 0 |
+| Date |si è verificato Hello data e ora di hello evento |
+| Level |Livello dell'evento (ad esempio, errore, avviso, informazione) |
+| ApplicationName |nome dell'applicazione web Hello |
+| InstanceId |Istanza dell'app web hello che hello evento si è verificato in |
+| EventTickCount |Hello data e ora di hello evento si è verificato, nel formato Tick (la precisione maggiore di) |
+| EventId |ID evento Hello dell'evento<p><p>Per impostazione predefinita too0 se non specificato |
 | Pid |ID di processo |
-| Tid |ID del thread che ha prodotto l'evento |
+| Tid |Hello ID del thread di hello che ha generato hello evento |
 | Message |Messaggio dettagliato sull'evento |
 
-L'aspetto dei dati archiviati in un BLOB sarà simile al seguente:
+dati Hello archiviati in un blob avrà un aspetto simile toohello seguenti:
 
     date,level,applicationName,instanceId,eventTickCount,eventId,pid,tid,message
     2014-01-30T16:36:52,Error,mywebapp,6ee38a,635266966128818593,0,3096,9,An error occurred
 
 > [!NOTE]
-> La prima riga del log conterrà le intestazioni di colonna, come rappresentato in questo esempio.
+> prima riga di Hello del log hello conterrà le intestazioni di colonna hello come indicato in questo esempio.
 >
 >
 
 ### <a name="failed-request-traces"></a>Failed Request Traces
-Le tracce delle richieste non riuscite vengono memorizzate nei file XML denominati **fr######.xml**. Per semplificare la visualizzazione delle informazioni registrate, è disponibile un foglio di stile XSL denominato **freb.xsl** nella stessa directory dei file XML. L'apertura di uno dei file XML in Internet Explorer comporterà l'uso del foglio di stile XSL allo scopo di produrre una visualizzazione formattata delle informazioni di traccia. Il risultato sarà simile al seguente:
+Le tracce delle richieste non riuscite vengono memorizzate nei file XML denominati **fr######.xml**. toomake, informazioni di registrazione hello tooview più semplice, un foglio di stile XSL denominato **freb.xsl** viene fornito in hello stessa directory come file XML di hello. Apertura di uno dei file XML di hello in Internet Explorer utilizzerà tooprovide di foglio di stile XSL hello una visualizzazione formattata hello di informazioni di traccia. Questo nome verrà visualizzato simile toohello seguenti:
 
-![richiesta non riuscita visualizzata nel browser](./media/web-sites-enable-diagnostic-log/tws-failedrequestinbrowser.png)
+![richieste non riuscite, visualizzate in browser hello](./media/web-sites-enable-diagnostic-log/tws-failedrequestinbrowser.png)
 
 ### <a name="detailed-error-logs"></a>Detailed Error Logs
 I log di errore dettagliati sono documenti HTML che offrono informazioni più approfondite sugli errori HTTP verificatisi. Poiché si tratta di semplici documenti HTML, è possibile visualizzarli in un browser Web.
 
 ### <a name="web-server-logs"></a>Web Server Logs
-I log del server Web vengono formattati con il [formato file di log esteso W3C](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx). È possibile leggere queste informazioni con un editor di testo oppure analizzarle con utilità come [Log Parser](http://go.microsoft.com/fwlink/?LinkId=246619).
+Hello i registri del server web devono essere formattati utilizzando hello [formato di file registro esteso W3C](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx). È possibile leggere queste informazioni con un editor di testo oppure analizzarle con utilità come [Log Parser](http://go.microsoft.com/fwlink/?LinkId=246619).
 
 > [!NOTE]
-> I log prodotti dalle app Web di Azure non supportano i campi **s-computername**, **s-ip** o **cs-version**.
+> Hello i log generati dall'App web di Azure non supportano hello **s-computername**, **s-ip**, o **cs-version** campi.
 >
 >
 
 ## <a name="nextsteps"></a> Passaggi successivi
-* [Come monitorare le app Web](http://docs.microsoft.com/en-us/azure/app-service-web/web-sites-monitor)
+* [Come tooMonitor App Web](http://docs.microsoft.com/en-us/azure/app-service-web/web-sites-monitor)
 * [Risoluzione dei problemi delle app Web di Azure in Visual Studio](web-sites-dotnet-troubleshoot-visual-studio.md)
 * [Analisi dei log delle app Web in HDInsight](http://gallery.technet.microsoft.com/scriptcenter/Analyses-Windows-Azure-web-0b27d413)
 
 > [!NOTE]
-> Per iniziare a usare il servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 >
 >
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una Guida per la modifica di siti Web al servizio App vedere: [servizio App Azure e il relativo impatto sui servizi di Azure esistente](http://go.microsoft.com/fwlink/?LinkId=529714)
-* Per una guida relativa al passaggio dal portale precedente al nuovo portale, vedere [Informazioni di riferimento per l'esplorazione del portale di Azure](http://go.microsoft.com/fwlink/?LinkId=529715)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello change hello vecchio portale toohello nuovo portale, vedere: [riferimento per la navigazione hello portale di Azure](http://go.microsoft.com/fwlink/?LinkId=529715)

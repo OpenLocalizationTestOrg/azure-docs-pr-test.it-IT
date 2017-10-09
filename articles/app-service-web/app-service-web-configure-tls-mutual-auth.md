@@ -1,6 +1,6 @@
 ---
-title: Come configurare l'autenticazione reciproca TLS per un'app Web
-description: Informazioni su come configurare un'app Web per l'uso dell'autenticazione del certificato client in TLS.
+title: aaaHow tooConfigure l'autenticazione reciproca TLS per l'App Web
+description: Informazioni su come tooconfigure client web app toouse certificato di autenticazione in TLS.
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2016
 ms.author: naziml
-ms.openlocfilehash: db69852cffd1ff331ac4a640b04ea4360d00bf75
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8aeb9b35058fac50b8b38f6428207ad4a82d8637
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-tls-mutual-authentication-for-web-app"></a>Come configurare l'autenticazione reciproca TLS per un'app Web
+# <a name="how-tooconfigure-tls-mutual-authentication-for-web-app"></a>Come tooConfigure l'autenticazione reciproca TLS per l'App Web
 ## <a name="overview"></a>Panoramica
-È possibile limitare l'accesso all'app web di Azure abilitandone diversi tipi di autenticazione. A questo scopo è possibile eseguire l'autenticazione usando un certificato client quando la richiesta è per TLS/SSL. Questo meccanismo è detto l'autenticazione reciproca TLS o autenticazione del certificato client. Questo articolo illustra come configurare un'app Web per l'uso dell'autenticazione del certificato client.
+È possibile limitare l'accesso tooyour Azure web app, consentendo di diversi tipi di autenticazione per tale. Un modo toodo è così tooauthenticate usando un certificato client quando è richiesta hello tramite TLS/SSL. Questo meccanismo è denominato l'autenticazione reciproca TLS o l'autenticazione del certificato client e questo articolo descrive come toosetup l'autenticazione del certificato client toouse app web.
 
-> **Nota:** se si accede al sito tramite HTTP e non HTTPS, non si riceveranno i certificati client. Pertanto, se l'applicazione richiede i certificati client è consigliabile non consentire le richieste all'applicazione tramite HTTP.
+> **Nota:** se si accede al sito tramite HTTP e non HTTPS, non si riceveranno i certificati client. Pertanto, se l'applicazione richiede i certificati client non è consigliabile consentire le richieste applicazione tooyour tramite HTTP.
 > 
 > 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="configure-web-app-for-client-certificate-authentication"></a>Configurare l'app Web per l'autenticazione del certificato client
-Per configurare l'app Web per richiedere certificati client, è necessario aggiungere l'impostazione del sito clientCertEnabled per l'app Web e impostarla su true. Questa impostazione non è attualmente disponibile tramite l'esperienza di gestione nel portale e si dovrà usare l'API REST a questo scopo.
+toosetup i certificati di client toorequire di app web che è necessario tooadd hello clientCertEnabled sito impostazione per l'app web e impostarlo tootrue. Questa impostazione non è attualmente disponibile tramite l'esperienza di gestione di hello in hello portale e API REST hello sarà necessaria tooaccomplish toobe utilizzato.
 
-Per semplificare la definizione della chiamata all'API REST, è possibile usare lo [strumento ARMClient](https://github.com/projectkudu/ARMClient) . Dopo l'accesso con lo strumento, sarà necessario eseguire il comando seguente:
+È possibile utilizzare hello [ARMClient strumento](https://github.com/projectkudu/ARMClient) toomake è facile toocraft hello chiamata all'API REST. Dopo l'accesso con lo strumento hello occorre hello tooissue comando seguente:
 
     ARMClient PUT subscriptions/{Subscription Id}/resourcegroups/{Resource Group Name}/providers/Microsoft.Web/sites/{Website Name}?api-version=2015-04-01 @enableclientcert.json -verbose
 
-sostituire tutti gli elementi tra {} con le informazioni per l'app Web e la creare un file denominato enableclientcert.json con il contenuto JSON seguente:
+tutti gli elementi di {} sostituzione con informazioni per l'app web e creazione di un file chiamato contenuto enableclientcert.json con hello JSON seguente:
 
     {
         "location": "My Web App Location",
@@ -46,19 +46,19 @@ sostituire tutti gli elementi tra {} con le informazioni per l'app Web e la crea
         }
     }
 
-Assicurarsi di modificare il valore di "posizione" con la posizione in cui si trova l'app Web, ad esempio Stati Uniti centro-settentrionali o Stati Uniti occidentali e così via.
+Assicurarsi che valore hello toochange toowherever "location" app web è presente ad esempio North Central US o via di Stati Uniti occidentali.
 
-È anche possibile usare https://resources.azure.com per impostare la proprietà `clientCertEnabled` su `true`.
+È inoltre possibile utilizzare hello tooflip https://resources.azure.com `clientCertEnabled` proprietà troppo`true`.
 
-> **Nota:** se si esegue ARMClient da Powershell, è necessario eseguire l'escape del simbolo @ per il file JSON con un apice inverso `.
+> **Nota:** se si esegue ARMClient da Powershell, è necessario hello tooescape simbolo @ per il file JSON hello con un apice inverso '.
 > 
 > 
 
-## <a name="accessing-the-client-certificate-from-your-web-app"></a>Accesso al certificato client dall'app Web
-Se si usa ASP.NET e si configura l'applicazione per l'uso dell'autenticazione del certificato client, il certificato sarà disponibile tramite la proprietà **HttpRequest.ClientCertificate** . Per gli altri stack di applicazioni, il certificato client è disponibile nell'app tramite un valore con codifica Base64 nell'intestazione della richiesta "X-ARR ClientCert". L'applicazione può creare un certificato da questo valore e quindi usarlo a scopo di autenticazione e autorizzazione nell'applicazione.
+## <a name="accessing-hello-client-certificate-from-your-web-app"></a>L'accesso a hello Client certificato da Your App Web
+Se si utilizza ASP.NET e configura l'autenticazione del certificato client toouse app, il certificato di hello sarà disponibile tramite hello **HttpRequest.ClientCertificate** proprietà. Per altri stack di applicazione, il certificato client di hello sarà disponibile nell'app tramite un valore con codificata base64 nell'intestazione della richiesta "X-ARR-ClientCert" hello. L'applicazione può creare un certificato da questo valore e quindi usarlo a scopo di autenticazione e autorizzazione nell'applicazione.
 
 ## <a name="special-considerations-for-certificate-validation"></a>Considerazioni speciali per la convalida del certificato
-Il certificato client inviato all'applicazione non viene sottoposto ad alcuna convalida da parte della piattaforma di app Web di Azure. La convalida il certificato è responsabilità dell'app Web. Ecco un esempio di codice ASP.NET che convalida le proprietà del certificato a scopo di autenticazione.
+certificato client Hello viene inviato toohello applicazione non passa attraverso qualsiasi convalida dalla piattaforma di App Web di Azure hello. Convalidare il certificato è responsabilità di hello dell'app web hello. Ecco un esempio di codice ASP.NET che convalida le proprietà del certificato a scopo di autenticazione.
 
     using System;
     using System.Collections.Specialized;
@@ -81,8 +81,8 @@ Il certificato client inviato all'applicazione non viene sottoposto ad alcuna co
             public bool isValidCert = false;
 
             //
-            // Read the certificate from the header into an X509Certificate2 object
-            // Display properties of the certificate on the page
+            // Read hello certificate from hello header into an X509Certificate2 object
+            // Display properties of hello certificate on hello page
             //
             protected void Page_Load(object sender, EventArgs e)
             {
@@ -124,13 +124,13 @@ Il certificato client inviato all'applicazione non viene sottoposto ad alcuna co
             //
             private bool IsValidClientCertificate()
             {
-                // In this example we will only accept the certificate as a valid certificate if all the conditions below are met:
-                // 1. The certificate is not expired and is active for the current time on server.
-                // 2. The subject name of the certificate has the common name nildevecc
-                // 3. The issuer name of the certificate has the common name nildevecc and organization name Microsoft Corp
-                // 4. The thumbprint of the certificate is 30757A2E831977D8BD9C8496E4C99AB26CB9622B
+                // In this example we will only accept hello certificate as a valid certificate if all hello conditions below are met:
+                // 1. hello certificate is not expired and is active for hello current time on server.
+                // 2. hello subject name of hello certificate has hello common name nildevecc
+                // 3. hello issuer name of hello certificate has hello common name nildevecc and organization name Microsoft Corp
+                // 4. hello thumbprint of hello certificate is 30757A2E831977D8BD9C8496E4C99AB26CB9622B
                 //
-                // This example does NOT test that this certificate is chained to a Trusted Root Authority (or revoked) on the server 
+                // This example does NOT test that this certificate is chained tooa Trusted Root Authority (or revoked) on hello server 
                 // and it allows for self signed certificates
                 //
 
@@ -175,7 +175,7 @@ Il certificato client inviato all'applicazione non viene sottoposto ad alcuna co
                 // 4. Check thumprint of certificate
                 if (String.Compare(certificate.Thumbprint.Trim().ToUpper(), "30757A2E831977D8BD9C8496E4C99AB26CB9622B") != 0) return false;
 
-                // If you also want to test if the certificate chains to a Trusted Root Authority you can uncomment the code below
+                // If you also want tootest if hello certificate chains tooa Trusted Root Authority you can uncomment hello code below
                 //
                 //X509Chain certChain = new X509Chain();
                 //certChain.Build(certificate);

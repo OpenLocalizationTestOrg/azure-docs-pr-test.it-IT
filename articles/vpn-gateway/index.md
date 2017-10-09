@@ -1,6 +1,6 @@
 ---
-title: Documentazione del gateway VPN di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come configurare i gateway di rete privata virtuale (VPN) per gestire il traffico tra reti virtuali cloud e locali o tra reti virtuali di Azure (VNet) cloud.
+title: aaaAzure VPN Gateway documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toomanage gateway di rete privata virtuale (VPN) tooconfigure il traffico tra reti virtuali a cloud e locali o tra cloud reti virtuali.
 services: vpn-gateway
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 350264be2b885720359b72660397d24dc4d03e11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a518f39e0cb8761e239d0c033a7801803edfd0a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vpn-gateway-documentation"></a>Documentazione del gateway VPN
 
-Informazioni su come configurare un gateway di rete privata virtuale (VPN). Nella documentazione viene illustrato come inviare il traffico di rete tra le reti virtuali di Azure e i percorsi locali o altre reti virtuali di Azure (VNet).
+Informazioni su come tooconfigure Gateway VPN, un gateway di rete privata virtuale. Documentazione viene illustrato come toosend traffico di rete tra reti virtuali di Azure e i percorsi locali o altre reti virtuali di Azure (Vnet).
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Informazioni su come configurare un gateway di rete privata virtuale (VPN). Nell
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di una connessione da sito a sito con il portale di Azure</h3>
+                        <h3>Introduzione alla creazione di una connessione site-to-site utilizzando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Informazioni su come configurare un gateway di rete privata virtuale (VPN). Nell
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di una connessione da punto a sito con il portale di Azure</h3>
+                        <h3>Introduzione alla creazione di una connessione point-to-site utilizzando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ Informazioni su come configurare un gateway di rete privata virtuale (VPN). Nell
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di una connessione da rete virtuale a rete virtuale con il portale di Azure</h3>
+                        <h3>Introduzione alla creazione di una connessione di rete virtuale a utilizzando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ Informazioni su come configurare un gateway di rete privata virtuale (VPN). Nell
  
 ---
 
-<h2>Riferimenti</h2>
+<h2>riferimento</h2>
 <ul class="panelContent cardsW">
     <li>
         <div class="cardSize">

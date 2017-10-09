@@ -1,6 +1,6 @@
 ---
-title: Domande frequenti sulla distribuzione per app Web di Azure | Microsoft Docs
-description: "È possibile ottenere risposte alle domande frequenti sulla distribuzione per la funzionalità App Web del servizio app di Azure."
+title: aaaDeployment domande frequenti per App web di Azure | Documenti Microsoft
+description: "Ottenere risposte toofrequently domande frequenti sulla distribuzione per funzionalità di App Web hello di servizio App di Azure."
 services: app-service\web
 documentationcenter: 
 author: genlin
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/10/2017
 ms.author: genli
-ms.openlocfilehash: 69f8c50f7f5889b75544deca19c54268fbf5eca7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 566e1d7028e678f9679200f436118d27dfb07079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deployment-faqs-for-web-apps-in-azure"></a>Domande frequenti sulla distribuzione per app Web in Azure
 
-Questo articolo offre risposte alle domande frequenti sui problemi di distribuzione per la [funzionalità App Web del servizio app di Azure](https://azure.microsoft.com/services/app-service/web/).
+In questo articolo ha toofrequently risposte domande frequenti (FAQ) sui problemi di distribuzione per hello [funzionalità App Web di Azure App Service](https://azure.microsoft.com/services/app-service/web/).
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
@@ -31,71 +31,71 @@ Questo articolo offre risposte alle domande frequenti sui problemi di distribuzi
 
 Di seguito sono riportate alcune opzioni per la pubblicazione del codice dell'app Web:
 
-*   Eseguire la distribuzione usando Visual Studio. Se è disponibile la soluzione Visual Studio, fare clic con il pulsante destro del mouse sul progetto dell'applicazione Web e quindi scegliere **Pubblica**.
-*   Eseguire la distribuzione usando un client FTP. Nel portale di Azure, scaricare il profilo di pubblicazione per l'app Web nella quale si intende distribuire il codice. Caricare quindi i file in \site\wwwroot usando le stesse credenziali FTP del profilo di pubblicazione.
+*   Eseguire la distribuzione usando Visual Studio. Se si dispone di soluzione di Visual Studio hello, il progetto di applicazione web hello e quindi scegliere **pubblica**.
+*   Eseguire la distribuzione usando un client FTP. Nel portale di Azure hello, hello download profilo per l'app web hello di pubblicazione che si desidera toodeploy il codice. Caricare quindi too\site\wwwroot file hello utilizzando hello stesso pubblicare le credenziali del profilo FTP.
 
-Per altre informazioni, vedere [Distribuire l'app nel servizio app](web-sites-deploy.md).
+Per ulteriori informazioni, vedere [distribuire il servizio di tooApp app](web-sites-deploy.md).
 
-## <a name="i-see-an-error-message-when-i-try-to-deploy-from-visual-studio-how-do-i-resolve-this"></a>Viene visualizzato un messaggio di errore quando si prova a eseguire la distribuzione da Visual Studio. Come posso risolvere il problema?
+## <a name="i-see-an-error-message-when-i-try-toodeploy-from-visual-studio-how-do-i-resolve-this"></a>Quando cerca di toodeploy da Visual Studio, viene visualizzato un messaggio di errore. Come posso risolvere il problema?
 
-Se viene visualizzato il messaggio seguente, è possibile che si stia usando una versione precedente dell'SDK: "Si è verificato un errore durante la distribuzione per la risorsa 'YourResourceName' nel gruppo di risorse 'YourResourceGroup': MissingRegistrationForLocation: La sottoscrizione non è registrata per il tipo di risorsa 'components' nella località 'Stati Uniti centrali'. Eseguire di nuovo la registrazione al provider per accedere a questa località". 
+Se si segue messaggio hello, si potrebbe utilizzando una versione precedente di hello SDK: "Errore durante la distribuzione per la risorsa 'YourResourceName' nel gruppo di risorse 'YourResourceGroup': MissingRegistrationForLocation: sottoscrizione hello non è registrata per Hello tipo di risorsa 'componenti' percorso hello "Central US". Ripetere la registrazione per questo provider nel percorso di ordine toohave accesso toothis." 
 
-Per risolvere questo errore, eseguire l'aggiornamento all'[SDK più recente](https://azure.microsoft.com/downloads/). Se viene visualizzato questo messaggio e si ha l'SDK più recente, inviare una richiesta di supporto.
+tooresolve questo errore, l'aggiornamento toohello [SDK più recente](https://azure.microsoft.com/downloads/). Se viene visualizzato questo messaggio e si dispone di hello SDK più recente, inviare una richiesta di supporto.
 
-## <a name="how-do-i-deploy-an-aspnet-application-from-visual-studio-to-app-service"></a>Come si distribuisce un'applicazione ASP.NET da Visual Studio al servizio app?
+## <a name="how-do-i-deploy-an-aspnet-application-from-visual-studio-tooapp-service"></a>Come distribuire un'applicazione ASP.NET da Visual Studio tooApp servizio?
 <a id="deployasp"></a>
 
-L'esercitazione [Creare la prima app Web ASP.NET in Azure in cinque minuti](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-get-started/) illustra come distribuire un'applicazione Web ASP.NET in un'app Web del servizio app usando Visual Studio 2015.
+esercitazione Hello [creare la prima app web ASP.NET in Azure in cinque minuti](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-get-started/) viene illustrato come toodeploy ASP.NET web applicazione tooa web app nel servizio App con Visual Studio 2015.
 
-## <a name="what-are-the-different-types-of-deployment-credentials"></a>Quali sono i diversi tipi di servizi di credenziali di distribuzione?
+## <a name="what-are-hello-different-types-of-deployment-credentials"></a>Quali sono hello diversi tipi di credenziali di distribuzione?
 
-Il servizio app supporta due tipi di credenziali per la distribuzione Git locale e la distribuzione FTP/S. Per altre informazioni su come configurare le credenziali di distribuzione, vedere [Configurare le credenziali di distribuzione per il servizio app](app-service-deployment-credentials.md).
+Il servizio app supporta due tipi di credenziali per la distribuzione Git locale e la distribuzione FTP/S. Per ulteriori informazioni su come tooconfigure le credenziali di distribuzione, vedere [configurare le credenziali di distribuzione per il servizio App](app-service-deployment-credentials.md).
 
-## <a name="what-is-the-file-or-directory-structure-of-my-app-service-web-app"></a>Qual è la struttura di file o directory dell'app Web del servizio app?
+## <a name="what-is-hello-file-or-directory-structure-of-my-app-service-web-app"></a>Che cos'è una struttura di file o directory hello della mia app web di servizio App?
 
-Per informazioni sulla struttura dei file dell'app del servizio app, vedere [Struttura di file in Azure](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure).
+Per informazioni sulla struttura di file hello della propria applicazione di servizio App, vedere [struttura di File in Azure](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure).
 
-## <a name="how-do-i-resolve-ftp-error-550---there-is-not-enough-space-on-the-disk-when-i-try-to-ftp-my-files"></a>Come si risolve il problema "Errore FTP 550. Spazio su disco insufficiente" quando si prova a caricare i file tramite FTP?
+## <a name="how-do-i-resolve-ftp-error-550---there-is-not-enough-space-on-hello-disk-when-i-try-tooftp-my-files"></a>Come risolvere "Errore di FTP 550 - non è sufficiente spazio su disco hello" quando si tenta tooFTP file?
 
-Se viene visualizzato questo messaggio, è probabile che sia stato raggiunto il limite di quota del disco nel piano di servizio per l'app Web. Potrebbe essere necessario passare a un livello di servizio superiore in base alle esigenze di spazio su disco. Per altre informazioni sui piani tariffari e i limiti delle risorse, vedere il [piano tariffario del servizio app](https://azure.microsoft.com/pricing/details/app-service/).
+Se viene visualizzato questo messaggio, è probabile che siano in esecuzione in una quota del disco nel piano di servizio hello per le app web. Potrebbe essere necessario tooscale backup tooa livello di servizio superiore in base alle proprie esigenze di spazio su disco. Per altre informazioni sui piani tariffari e i limiti delle risorse, vedere il [piano tariffario del servizio app](https://azure.microsoft.com/pricing/details/app-service/).
 
 ## <a name="how-do-i-set-up-continuous-deployment-for-my-app-service-web-app"></a>Come si configura la distribuzione continua dell'app Web del servizio app?
 
-È possibile impostare la distribuzione continua da diverse risorse, tra cui Visual Studio Team Services, OneDrive, GitHub, Bitbucket, Dropbox e altri repository Git. Queste opzioni sono disponibili nel portale. [Distribuzione continua nel servizio app](app-service-continuous-deployment.md) è un'utile esercitazione che illustra come configurare la distribuzione continua.
+È possibile impostare la distribuzione continua da diverse risorse, tra cui Visual Studio Team Services, OneDrive, GitHub, Bitbucket, Dropbox e altri repository Git. Queste opzioni sono disponibili nel portale di hello. [La distribuzione continua tooApp servizio](app-service-continuous-deployment.md) è un'utile esercitazione che illustra come tooset la distribuzione continua.
 
 ## <a name="how-do-i-troubleshoot-issues-with-continuous-deployment-from-github-and-bitbucket"></a>Come si risolvono i problemi con la distribuzione continua da GitHub e Bitbucket?
 
 Per informazioni sull'analisi dei problemi con la distribuzione continua da GitHub o Bitbucket, vedere [Investigating continuous deployment](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment) (Analisi della distribuzione continua).
 
-## <a name="i-cant-ftp-to-my-site-and-publish-my-code-how-do-i-resolve-this"></a>Non è possibile accedere al sito tramite FTP e pubblicare il codice. Come posso risolvere il problema?
+## <a name="i-cant-ftp-toomy-site-and-publish-my-code-how-do-i-resolve-this"></a>Impossibile toomy sito FTP e pubblicare il codice utente. Come posso risolvere il problema?
 
-Per risolvere i problemi FTP:
+problemi di tooresolve FTP:
 
-1. Verificare di aver immesso il nome host e le credenziali corretti. Per informazioni dettagliate sui diversi tipi di credenziali e sul loro uso, vedere [Deployment credentials](https://github.com/projectkudu/kudu/wiki/Deployment-credentials) (Credenziali di distribuzione).
-2. Verificare che le porte FTP non siano bloccate da un firewall. Le porte devono avere le impostazioni seguenti:
+1. Verificare che si immettono le credenziali e il nome host corretto hello. Per informazioni dettagliate sui diversi tipi di credenziali e toouse, vedere [le credenziali di distribuzione](https://github.com/projectkudu/kudu/wiki/Deployment-credentials).
+2. Verificare che le porte FTP hello non sono bloccate da un firewall. porte Hello devono avere le seguenti impostazioni:
     * Porta di connessione di controllo FTP: 21
     * Porta di connessione dati FTP: 989, 10001-10300
 
-## <a name="how-do-i-publish-my-code-to-app-service"></a>Come si pubblica il codice nel servizio app?
+## <a name="how-do-i-publish-my-code-tooapp-service"></a>Come pubblicare il servizio di tooApp di codice
 
-Avvio rapido di Azure è progettato per semplificare la distribuzione dell'app con lo stack di distribuzione e il metodo di propria scelta. Per usare Avvio rapido, nel portale di Azure passare a **Impostazioni** > **Distribuzione app**.
+Guida introduttiva di Azure Hello è progettato toohelp si distribuisce l'app tramite stack distribuzione hello e metodo di propria scelta. Ciao toouse Guide rapide, hello portale di Azure andare troppo**impostazioni** > **della distribuzione di applicazioni**.
 
-## <a name="why-does-my-app-sometimes-restart-after-deployment-to-app-service"></a>Perché l'app a volte si riavvia dopo la distribuzione nel servizio app?
+## <a name="why-does-my-app-sometimes-restart-after-deployment-tooapp-service"></a>Perché mia app talvolta e riavviare tooApp distribuzione servizio?
 
-Per informazioni sulle circostanze in cui la distribuzione di un'applicazione può provocare un riavvio, vedere [Deployment vs runtime issues](https://github.com/projectkudu/kudu/wiki/Deployment-vs-runtime-issues#deployments-and-web-app-restarts") (Problemi di distribuzione e runtime). Come descritto nell'articolo, il servizio app distribuisce i file nella cartella wwwroot. Non riavvia mai direttamente l'app.
+toolearn sulle circostanze hello in cui una distribuzione dell'applicazione potrebbe comportare un riavvio, vedere [distribuzione e problemi di runtime](https://github.com/projectkudu/kudu/wiki/Deployment-vs-runtime-issues#deployments-and-web-app-restarts"). Come descritto nella sezione articolo hello, servizio App distribuisce cartella wwwroot toohello. Non riavvia mai direttamente l'app.
 
 ## <a name="how-do-i-integrate-visual-studio-team-services-code-with-app-service"></a>Come si integra il codice di Visual Studio Team Services con il servizio app?
 
 Sono disponibili due opzioni per l'uso della distribuzione continua con Visual Studio Team Services:
 
-*   Usare un progetto Git. Connettersi tramite servizio app usando le opzioni di distribuzione per il repository.
-*   Usare un progetto di controllo della versione di Team Foundation. Eseguire la distribuzione usando l'agente di compilazione per il servizio app.
+*   Usare un progetto Git. Utilizzando le opzioni di distribuzione hello per repository si connettono tramite servizio App.
+*   Usare un progetto di controllo della versione di Team Foundation. Distribuzione tramite l'agente di compilazione hello per servizio App.
 
 La distribuzione continua di codice per entrambe le opzioni dipende dai flussi di lavoro di sviluppo esistenti e dalle procedure di archiviazione. Per altre informazioni, vedere questi articoli: 
 
-*   [Implementare la distribuzione continua dell'app in un sito Web di Azure](https://www.visualstudio.com/docs/release/examples/azure/azure-web-apps-from-build-and-release-hubs)
-*   [Configurare un account di Visual Studio Team Services per la distribuzione in un'app Web](https://github.com/projectkudu/kudu/wiki/Setting-up-a-VSTS-account-so-it-can-deploy-to-a-Web-App)
+*   [Implementare la distribuzione continua del tooan app sito Web di Azure](https://www.visualstudio.com/docs/release/examples/azure/azure-web-apps-from-build-and-release-hubs)
+*   [Configurare un account di Visual Studio Team Services in modo è possibile distribuire l'app web tooa](https://github.com/projectkudu/kudu/wiki/Setting-up-a-VSTS-account-so-it-can-deploy-to-a-Web-App)
 
-## <a name="how-do-i-use-ftp-or-ftps-to-deploy-my-app-to-app-service"></a>Come si usa FTP o FTPS per distribuire l'app nel servizio app?
+## <a name="how-do-i-use-ftp-or-ftps-toodeploy-my-app-tooapp-service"></a>Come si utilizza FTP o FTPS toodeploy my tooApp app servizio?
 
-Per informazioni sull'uso di FTP o FTPS per distribuire l'app Web nel servizio app, vedere [Distribuire l'app nel servizio app usando FTP/S](app-service-deploy-ftp.md).
+Per informazioni sull'utilizzo di FTP o FTPS toodeploy il tooApp app web del servizio, vedere [distribuire il servizio di tooApp app tramite FTP/S](app-service-deploy-ftp.md).

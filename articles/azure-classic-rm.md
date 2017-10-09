@@ -1,6 +1,6 @@
 ---
-title: Modelli di distribuzione di Resource Manager e Service Management (classica) | Documentazione Microsoft
-description: Comprendere le differenze tra i modelli di distribuzione Gestione risorse e Classico.
+title: "modalità di distribuzione (classico) Manager e gestione dei servizi di aaaResource | Documenti Microsoft"
+description: Differenze di hello tra Gestione risorse e i modelli di distribuzione classica.
 services: virtual-network
 documentationcenter: 
 author: telmosampaio
@@ -16,54 +16,54 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: telmos
-ms.openlocfilehash: 0f451efa239dd36d82229f01cc385d6df46654f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e14f815ba9d79d9dd8f83b45bda78d0eba0bec56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-deployment-models"></a>Modelli di distribuzione di Azure
-La piattaforma Azure è in fase di transizione.  Per gli utenti che non hanno familiarità con Azure o che lo usano da anni è importante comprendere alcune delle principali modifiche che verranno apportate alla piattaforma durante la transizione.
+Hello piattaforma Azure è in fase di transizione.  Se si è tooAzure nuova o viene utilizzata per anni, è importante toounderstand alcune delle principali modifiche hello rendiamo piattaforma toohello durante tale transizione.
 
-Tutte le risorse di Azure supportano uno o entrambi i modelli di distribuzione seguenti:
+Tutte le risorse di Azure supportano uno o entrambi i modelli di distribuzione hello:
 
-* **Gestione risorse** : si tratta del modello di distribuzione più recente per le risorse Azure. La maggior parte delle risorse più recenti supporta già questo modello di distribuzione, che in futuro sarà supportato da tutte le risorse.   
-* **Classico:** questo modello è attualmente supportato dalla maggior parte delle risorse di Azure esistenti. Le nuove risorse aggiunte in Azure non supportano questo modello.
+* **Gestione risorse:** si tratta di modello di distribuzione più recente di hello per le risorse di Azure. La maggior parte delle risorse più recenti supporta già questo modello di distribuzione, che in futuro sarà supportato da tutte le risorse.   
+* **Classico:** questo modello è attualmente supportato dalla maggior parte delle risorse di Azure esistenti. Nuove risorse aggiunti tooAzure non supporta questo modello.
 
-La documentazione per ciascuna risorsa di Azure descrive nel dettaglio con quali modelli del servizio può essere creata.
+Hello documentazione ogni risorsa di Azure i modelli di servizio possibile creare con.
 
 ## <a name="why-does-this-matter"></a>Perché è importante?
-È importante per i motivi seguenti:
+È importante per hello seguenti motivi:
 
-* Le funzionalità della piattaforma Azure in uso sono diverse tra questi due modelli.  Ad esempio, le risorse create usando il modello di distribuzione di Resource Manager (o semplicemente Resource Manager) possono essere create con i [modelli di Azure Resource Manager](azure-resource-manager/resource-group-overview.md#template-deployment), mentre non è possibile farlo con le risorse create con il modello di distribuzione classico.
-* Le funzionalità o i comportamenti delle singole risorse di Azure possono differire tra i due modelli oppure esistere solo in un modello o nell'altro.  Ad esempio, il bilanciamento del carico del traffico tra macchine virtuali create con il modello di distribuzione Classico è *implicito* perché le macchine virtuali sono membri di un servizio cloud di Azure e il carico viene bilanciato automaticamente tra macchine virtuali all'interno di un servizio cloud. Le macchine virtuali create usando Gestione risorse non sono membri di un servizio cloud ed è necessario creare *in modo esplicito* una risorsa separata del Servizio di bilanciamento del carico di Azure per bilanciare il carico tra più macchine virtuali.  
+* funzionalità della piattaforma Azure Hello in uso sono diverse per questi due modelli.  Ad esempio, le risorse create utilizzando il modello di distribuzione di gestione risorse hello (o semplicemente Resource Manager) possono essere create con [modelli di gestione risorse di Azure](azure-resource-manager/resource-group-overview.md#template-deployment), mentre non le risorse create con modello di distribuzione classica hello.
+* Hello funzionalità singole risorse di Azure o comportamenti possono essere diverso nei due modelli di hello o esiste solo in un modello o altri hello.  Ad esempio, bilanciamento del carico del traffico tra macchine virtuali create con modello di distribuzione classica hello è *implicita* perché le macchine virtuali sono membri di un servizio Cloud di Azure e carico viene automaticamente bilanciato tra virtuale macchine in un servizio cloud. Macchine virtuali create con Gestione risorse non sono membri di un servizio cloud e deve essere una risorsa distinta di bilanciamento del carico di Azure *in modo esplicito* creato bilanciare il traffico tooload tra più macchine virtuali.  
 * Le modalità di creazione, configurazione e gestione delle risorse di Azure differiscono tra questi due modelli.
-* Le risorse create usando un modello di distribuzione non possono necessariamente interagire con le risorse create usando un modello di distribuzione differente. Ad esempio, le macchine virtuali di Azure create usando un unico modello di distribuzione possono essere connesse solo alle reti virtuali di Azure create usando lo stesso modello di distribuzione.    
+* Le risorse create usando un modello di distribuzione non possono necessariamente interagire con le risorse create usando un modello di distribuzione differente. Ad esempio, le macchine virtuali di Azure creato tramite un modello di distribuzione può essere solo tooAzure connesso reti virtuali create utilizzando hello stesso modello di distribuzione.    
 
-Alla base di ciascun modello di distribuzione è prevista un'API per ogni risorsa.  Sono disponibili l'[API di Resource Manager](https://msdn.microsoft.com/library/azure/dn948464.aspx) per il modello di distribuzione di Resource Manager e l'[API Gestione dei servizi](https://msdn.microsoft.com/library/azure/ee460799.aspx) per il modello di distribuzione classico. Gli sviluppatori possono scrivere codice per l'interazione *diretta*con queste API.  
+Ciascuno dei modelli di distribuzione hello sottostante è un application programming interface (API) per ogni risorsa.  È presente un [API di gestione risorse](https://msdn.microsoft.com/library/azure/dn948464.aspx) per modello di distribuzione di gestione risorse di hello e una [servizio Gestione API](https://msdn.microsoft.com/library/azure/ee460799.aspx) per modello di distribuzione classica hello. Gli sviluppatori possono scrivere codice toointeract con queste API *direttamente*.  
 
-I professionisti IT, tuttavia, in genere interagiscono con queste API *indirettamente* usando un portale grafico in un Web browser, i cmdlet di Azure PowerShell in un computer Windows oppure l'interfaccia della riga di comando di Azure (CLI) in un computer Windows, OS X o Linux. Tutti e tre i metodi indiretti usati dal professionista IT interagiscono direttamente con le API. Ciò significa che quando una nuova funzionalità viene introdotta nella piattaforma o nelle risorse di Azure è sempre direttamente disponibile usando prima l'API, mentre i metodi indiretti ottengono il supporto per le nuove risorse e funzionalità dopo che l'API è stata resa disponibile.  
+I professionisti IT, tuttavia, in genere interagiscono con le API *indirettamente* tramite un portale con interfaccia grafico in un web browser, tramite Azure PowerShell cmdlet in un computer Windows o con hello Azure interfaccia della riga di comando (CLI) in entrambi un Computer Windows, OS X o Linux. Tutte e tre questi metodi indiretti utilizzati dal professionista IT hello interagiscono direttamente con le API di hello. Ciò significa che quando le nuove funzionalità sono state introdotta toohello Azure piattaforma o le risorse, è sempre disponibile direttamente attraverso hello API in primo luogo, con i metodi di hello indiretta sfruttare il supporto per hello nuove risorse e funzionalità dopo hello API viene reso disponibile.  
 
-Le sezioni seguenti illustrano come configurare le risorse di Azure usando i vari modelli di distribuzione usando i tre metodi indiretti.
+Hello nelle sezioni seguenti vengono illustrano le risorse di Azure vengono configurate mediante hello diversi modelli di distribuzione tramite i metodi di hello tre indiretta.
 
 ## <a name="portals"></a>Portali
 Azure offre due portali:
 
-* **[Portale di Azure](https://manage.windowsazure.com):** se si usa Azure da tempo si conosce già questo portale, che viene usato per creare e configurare le risorse più obsolete di Azure, che supportano il modello di distribuzione classico. Questo portale non permette invece di creare o configurare le risorse che supportano unicamente Gestione risorse. 
-* **[Portale di anteprima di Azure](https://azure.microsoft.com/overview/preview-portal/):** se si usa una risorsa di Azure più recente è probabile che questo portale sia già stato usato. Questo portale consente di creare e configurare alcune risorse di Azure. In futuro sarà possibile creare e configurare tutte le risorse di Azure in questo portale. Per alcune risorse che supportano entrambi i modelli di distribuzione, è possibile usare questo portale per creare e configurare una risorsa con uno dei due modelli di distribuzione. 
+* **[Portale di Azure](https://manage.windowsazure.com):** se si usa Azure da tempo si conosce già questo portale, È utilizzato toocreate e configurare le risorse di Azure meno recenti che supportano il modello di distribuzione classica hello. È possibile usarlo toocreate o configurare le risorse che supportano solo il gestore delle risorse. 
+* **[Portale di anteprima di Azure](https://azure.microsoft.com/overview/preview-portal/):** se si usa una risorsa di Azure più recente è probabile che questo portale sia già stato usato. Può essere utilizzato toocreate e configurare alcune risorse di Azure. Che verrà infine in grado di toocreate e configurare tutte le risorse di Azure con esso. Per alcune risorse che supportano entrambi i modelli di distribuzione, questo portale può essere utilizzato toocreate e configurare una risorsa tramite un modello di distribuzione. 
 
-Alcune risorse e funzionalità possono essere create e configurate solo in un portale o nell'altro. Non è ancora possibile creare o configurare alcune risorse o funzionalità in entrambi i portali, ma solo con PowerShell, l'interfaccia della riga di comando o entrambi. La documentazione per ciascuna risorsa di Azure descrive nel dettaglio con quale metodo può essere creata. 
+Alcune risorse e le funzionalità possono essere solo create e configurate in un portale o hello altri. Alcune risorse o funzionalità non (ancora) è stato possibile creare o configurato in entrambi i portali e può essere configurata solo con PowerShell, hello CLI o entrambi. documentazione di Hello per ogni risorsa di Azure in dettaglio il metodo può essere creato con. 
 
 ## <a name="powershell"></a>PowerShell
-Con [PowerShell](/powershell/azureps-cmdlets-docs) è possibile usare una riga di comando o creare script per creare e configurare le risorse di Azure da un computer Windows.  Le singole risorse di Azure contengono [cmdlet di Resource Manager](/powershell/azure/overview), [cmdlet di Gestione dei servizi](/powershell/azure/overview?view=azuresmps-3.7.0) o entrambi.  Alcune risorse e funzionalità possono essere create e/o configurate solo usando PowerShell oppure l'interfaccia della riga di comando. A seconda della risorsa, quando si usano i cmdlet PowerShell di Gestione risorse potrebbero essere disponibili due opzioni per la creazione e la configurazione delle risorse di Azure:
+Con [PowerShell](/powershell/azureps-cmdlets-docs) è possibile utilizzare un toocreate di script della riga di comando o dall'autore e configurare le risorse di Azure da un computer Windows.  Le singole risorse di Azure contengono [cmdlet di Resource Manager](/powershell/azure/overview), [cmdlet di Gestione dei servizi](/powershell/azure/overview?view=azuresmps-3.7.0) o entrambi.  Alcune risorse e le funzionalità possono essere create solo e/o configurato tramite PowerShell o hello CLI. A seconda risorsa hello, quando si usano i cmdlet PowerShell di gestione risorse è possibile due opzioni per la creazione e configurazione delle risorse di Azure:
 
-* **Solo cmdlet PowerShell:** è possibile creare e configurare singolarmente ciascuna risorsa di Azure usando i cmdlet per ogni risorsa. È possibile eseguire questa operazione dalla riga di comando o includendo più comandi in uno script di PowerShell archiviabile e la cui versione può essere controllata.
-* **Cmdlet PowerShell con un modello di Gestione risorse di Azure:** è possibile usare PowerShell per creare risorse di Azure con un modello di Gestione risorse di Azure. È possibile salvare i modelli e controllarne la versione. Per altre informazioni leggere l'articolo [Distribuire un'applicazione con un modello di Gestione risorse di Azure](resource-group-template-deploy.md) . Esistono anche diversi [modelli di Guida introduttiva](https://azure.microsoft.com/documentation/templates/) per soluzioni comuni che è possibile scaricare e modificare.
+* **Solo i cmdlet di PowerShell:** è possibile creare e configurare ogni risorsa di Azure singolarmente utilizzando i cmdlet di hello per ogni risorsa. È possibile eseguire questa operazione dalla riga di comando o includendo più comandi in uno script di PowerShell archiviabile e la cui versione può essere controllata.
+* **I cmdlet di PowerShell con un modello di gestione risorse di Azure:** è possibile utilizzare PowerShell toocreate Azure risorse usando un modello di gestione risorse di Azure. È possibile salvare i modelli e controllarne la versione. Per ulteriori informazioni, leggere hello [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md) articolo. Esistono anche diversi [modelli di Guida introduttiva](https://azure.microsoft.com/documentation/templates/) per soluzioni comuni che è possibile scaricare e modificare.
 
 ## <a name="cli"></a>CLI
-È possibile creare e configurare le risorse di Azure da computer Windows, OS X o Linux usando l'interfaccia della riga di comando.  Per installare l'interfaccia della riga di comando nel sistema operativo prescelto, leggere l'articolo [Installare l'interfaccia della riga di comando di Azure](cli-install-nodejs.md) . Come PowerShell, sono disponibili diversi comandi che devono essere usati a seconda che si creino risorse con i modelli di distribuzione [Resource Manager](xplat-cli-azure-resource-manager.md) o [Classico (Gestione dei servizi)](virtual-machines/linux/classic/manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+È possibile creare e configurare le risorse di Azure da computer Windows o OS X, Linux utilizzando hello CLI.  Hello lettura [installazione hello Azure CLI](cli-install-nodejs.md) hello tooinstall di articolo CLI sul sistema operativo scelto. Come PowerShell, sono disponibili diversi comandi che devono essere utilizzati a seconda se si creano risorse usando [Gestione risorse](xplat-cli-azure-resource-manager.md) o hello [classica (servizio di gestione)](virtual-machines/linux/classic/manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) modelli di distribuzione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per altre informazioni, vedere [Resource Manager](azure-resource-manager/resource-group-overview.md).
-* Informazioni su come [progettare i modelli](best-practices-resource-manager-design-templates.md).
+* Comprendere come troppo[progettare modelli](best-practices-resource-manager-design-templates.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Creare un'app Web PHP-SQL e distribuire in Azure App Service tramite Git
-description: Un'esercitazione che illustra come creare un'app Web PHP che archivia i dati nel database SQL di Azure e come usare la distribuzione Git nel servizio app di Azure.
+title: aaaCreate un SQL PHP app web e distribuire tooAzure servizio App tramite Git
+description: Un'esercitazione che illustra come toocreate PHP web app che archivia i dati in Database SQL di Azure e utilizzare tooAzure distribuzione Git servizio App.
 services: app-service\web, sql-database
 documentationcenter: php
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 0baa3eced3824fec0907ca937c594f127a2bdf8b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaacb2fe0787bbcdafa72871912e8d08792be29d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-php-sql-web-app-and-deploy-to-azure-app-service-using-git"></a>Creare un'app Web PHP-SQL e distribuire in Azure App Service tramite Git
-Questa esercitazione illustra come creare nel [servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) un'app Web PHP che si connette al database SQL di Azure e come distribuirla tramite Git. In questa esercitazione si presuppone che nel computer siano installati [PHP][install-php], [SQL Server Express][install-SQLExpress], i [driver Microsoft per SQL Server per PHP](http://www.microsoft.com/download/en/details.aspx?id=20098) e [Git][install-git]. Dopo aver completato questa guida, si disporrà di un'app Web PHP-MySQL in esecuzione in Azure.
+# <a name="create-a-php-sql-web-app-and-deploy-tooazure-app-service-using-git"></a>Creare un'app web SQL PHP e distribuire tooAzure servizio App tramite Git
+Questa esercitazione viene illustrato come toocreate PHP web app in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) che si connette tooAzure Database SQL e come toodeploy tramite Git. Questa esercitazione presuppone l'esistenza [PHP][install-php], [SQL Server Express][install-SQLExpress], hello [Microsoft Drivers for SQL Server per PHP ](http://www.microsoft.com/download/en/details.aspx?id=20098), e [Git] [ install-git] installato nel computer. Dopo aver completato questa guida, si disporrà di un'app Web PHP-MySQL in esecuzione in Azure.
 
 > [!NOTE]
-> Per installare e configurare PHP, SQL Server Express e i driver Microsoft per SQL Server per PHP, è possibile usare l' [Installazione guidata piattaforma Web Microsoft](http://www.microsoft.com/web/downloads/platform.aspx).
+> È possibile installare e configurare Microsoft Drivers hello, SQL Server Express e PHP per SQL Server per PHP con hello [installazione guidata piattaforma Web di Microsoft](http://www.microsoft.com/web/downloads/platform.aspx).
 > 
 > 
 
 Si acquisiranno le nozioni seguenti:
 
-* Creare un'app Web di Azure e un database SQL usando il [portale di Azure](http://go.microsoft.com/fwlink/?LinkId=529715). Poiché PHP è abilitato nelle app Web di Servizio app di Azure per impostazione predefinita, non è necessario effettuare operazioni particolari per eseguire il codice PHP.
-* Pubblicare e ripubblicare l'applicazione in Azure tramite Git.
+* Come toocreate di Azure web app e un Database SQL tramite hello [portale Azure](http://go.microsoft.com/fwlink/?LinkId=529715). Poiché per impostazione predefinita, PHP è abilitata nell'App del servizio Web App, niente di speciale è obbligatorio toorun codice PHP.
+* Come toopublish e pubblicare nuovamente l'applicazione tooAzure tramite Git.
 
-Seguendo questa esercitazione, verrà creata una semplice applicazione Web di registrazione in PHP, ospitata in un sito Web di Azure. Di seguito è riportata una schermata dell'applicazione completata:
+Seguendo questa esercitazione, verrà creata una semplice applicazione Web di registrazione in PHP, un'applicazione Hello verrà ospitata in un sito Web di Azure. Di seguito viene riportata una schermata dell'applicazione hello completata:
 
 ![Sito Web PHP di Azure](./media/web-sites-php-sql-database-deploy-use-git/running_app_3.png)
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Per iniziare a usare Servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
 ## <a name="create-an-azure-web-app-and-set-up-git-publishing"></a>Creare un'app Web di Azure e configurare la pubblicazione Git
-Per creare un'app Web di Azure e un database SQL, seguire questa procedura:
+Seguire questi toocreate passaggi un'app web di Azure e un Database SQL:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Aprire Azure Marketplace facendo clic sull'icona **Nuovo** in alto a sinistra nel dashboard, fare clic su **Seleziona tutto** accanto a Marketplace e quindi selezionare **Web e dispositivi mobili**.
-3. Nel Marketplace selezionare **Web e dispositivi mobili**.
-4. Fare clic sull'icona **Web app + SQL** .
-5. Dopo aver letto la descrizione dell'app Web e dell'SQL, fare clic su **Crea**.
-6. Fare clic sulle singole parti, **Gruppo di risorse**, **App Web**, **Database** e **Sottoscrizione** e immettere o selezionare i valori per i campi obbligatori:
+1. Accedi toohello [portale Azure](https://portal.azure.com/).
+2. Aprire hello Azure Marketplace facendo hello **New** sull'icona nella parte superiore di hello a sinistra della dashboard hello, fare clic su **Seleziona tutto** tooMarketplace avanti e selezionando **Web e dispositivi mobili**.
+3. Nel Marketplace hello, selezionare **Web e dispositivi mobili**.
+4. Fare clic su hello **Web app + SQL** icona.
+5. Dopo aver letto descrizione hello di app Web hello + SQL app, selezionare **crea**.
+6. Fare clic su ogni parte (**gruppo di risorse**, **App Web**, **Database**, e **sottoscrizione**) e immettere o selezionare i valori per hello richiesto campi:
    
    * Immettere un nome di URL a scelta.    
    * Configurare le credenziali del server di database.
-   * Selezionare l'area più vicina.
+   * Selezionare hello area più vicina tooyou
      
      ![configurazione dell'app](./media/web-sites-php-sql-database-deploy-use-git/configure-db-settings.png)
-7. Al termine della definizione dell'app Web, fare clic su **Crea**.
+7. Al termine definizione hello web app, fare clic su **crea**.
    
-    Quando l'app Web viene creata, nel pulsante **Notifiche** lampeggia in verde il testo **OPERAZIONE RIUSCITA** e il pannello del gruppo di risorse si apre per visualizzare sia l'app Web sia il database SQL presenti nel gruppo.
-8. Fare clic sull'icona dell'app Web nel pannello del gruppo di risorse per aprire il pannello dell'app Web.
+    Quando hello web app è stata creata, hello **notifiche** pulsante farà lampeggiare una verde **successo** e hello tooshow aprire Pannello gruppo di risorse sia hello web app e hello SQL database nel gruppo di hello.
+8. Fare clic sull'icona dell'app web hello nel pannello hello risorsa gruppo blade tooopen hello dell'app web.
    
     ![Gruppo di risorse per app Web](./media/web-sites-php-sql-database-deploy-use-git/resource-group-blade.png)
 9. In **Impostazioni** fare clic su **Distribuzione continua** > **Configurare le impostazioni necessarie**. Selezionare **Archivio Git locale** e fare clic su **OK**.
    
     ![Posizione del codice](./media/web-sites-php-sql-database-deploy-use-git/setup-local-git.png)
    
-    Se in precedenza non è stato configurato un repository Git, è necessario fornire nome utente e password. A tale scopo, fare clic su **Impostazioni** > **Credenziali per la distribuzione** nel pannello dell'app Web.
+    Se in precedenza non è stato configurato un repository Git, è necessario fornire nome utente e password. toodo, fare clic su **impostazioni** > **le credenziali di distribuzione** nel pannello dell'app web hello.
    
     ![](./media/web-sites-php-sql-database-deploy-use-git/deployment-credentials.png)
-10. In **Impostazioni** fare clic su **Proprietà** per visualizzare l'URL Git remoto da usare per distribuire l'app PHP in un secondo momento.
+10. In **impostazioni** fare clic su **proprietà** toosee hello Git URL remoto è necessario toouse toodeploy app PHP in un secondo momento.
 
 ## <a name="get-sql-database-connection-information"></a>Recuperare le informazioni sulla connessione al database SQL
-Per connettersi all'istanza del database SQL collegata all'app Web, saranno necessarie le informazioni di connessione specificate durante la creazione del database. Per ottenere le informazioni di connessione al database SQL, seguire questa procedura:
+istanza del Database SQL toohello tooconnect che è collegato tooyour web app, sarà necessario hello informazioni di connessione, specificato al momento della creazione del database hello. hello tooget informazioni di connessione al Database SQL, seguire questi passaggi:
 
-1. Tornando nel pannello del gruppo di risorse, fare clic sull'icona del database SQL.
-2. Nel pannello del database SQL fare clic su **Impostazioni** > **Proprietà** e quindi su **Mostra stringhe di connessione del database**. 
+1. Nel pannello del gruppo di risorse hello, fare clic sull'icona del database SQL di hello.
+2. Nel pannello del database SQL di hello, fare clic su **impostazioni** > **proprietà**, quindi fare clic su **Mostra le stringhe di connessione di database**. 
    
     ![Visualizzazione delle proprietà database](./media/web-sites-php-sql-database-deploy-use-git/view-database-properties.png)
-3. Nella sezione **PHP** della finestra di dialogo risultante prendere nota dei valori per `Server`, `SQL Database` e `User Name`. Si useranno questi valori successivamente, al momento di pubblicare l'app Web PHP nel servizio app di Azure.
+3. Da hello **PHP** sezione della finestra di dialogo risultante hello, prendere nota dei valori di hello per `Server`, `SQL Database`, e `User Name`. Utilizzare questi valori in un secondo momento quando la pubblicazione del tooAzure di app web PHP servizio App.
 
 ## <a name="build-and-test-your-application-locally"></a>Creazione e test dell'applicazione in locale
-L'applicazione di registrazione è una semplice applicazione PHP che consente di registrarsi per un evento specificando il proprio nome e l'indirizzo di posta elettronica. Le informazioni sui registranti precedenti vengono visualizzate in una tabella. Le informazioni sulle registrazioni vengono archiviate in un'istanza del database SQL. L'applicazione è costituita da due file (copiare e incollare il codice disponibile di seguito):
+applicazione di registrazione Hello è una semplice applicazione PHP che consente di tooregister per un evento, fornendo il nome e l'indirizzo e-mail. Le informazioni sui registranti precedenti vengono visualizzate in una tabella. Le informazioni sulle registrazioni vengono archiviate in un'istanza del database SQL. un'applicazione Hello è costituito da due file (copiare e incollare codice riportato di seguito):
 
 * **index.php**: consente di visualizzare un modulo per la registrazione e una tabella contenente informazioni sui registranti.
-* **createtable.php**: consente di creare la tabella di database SQL per l'applicazione. Questo file verrà utilizzato una volta sola.
+* **CreateTable.PHP**: Crea tabella di Database SQL di hello per un'applicazione hello. Questo file verrà utilizzato una volta sola.
 
-Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si noti che per questi passaggi si presuppone che nel computer locale siano già stati configurati PHP e SQL Server Express e che sia stata abilitata l'[estensione PDO per SQL Server][pdo-sqlsrv].
+in locale, un'applicazione hello toorun procedura hello riportata di seguito. Si noti che questi passaggi presuppongono che si dispone di PHP e SQL Server Express impostare sul computer locale e che è stata attivata hello [estensione PDO per SQL Server][pdo-sqlsrv].
 
-1. Creare un database di SQL Server denominato `registration`. A tale scopo, immettere nel prompt dei comandi `sqlcmd` i comandi seguenti:
+1. Creare un database di SQL Server denominato `registration`. È possibile farlo da hello `sqlcmd` prompt dei comandi con questi comandi:
    
         >sqlcmd -S localhost\sqlexpress -U <local user name> -P <local password>
         1> create database registration
         2> GO    
 2. Nella directory radice dell'applicazione creare due file: uno denominato `createtable.php` e l'altro denominato `index.php`.
-3. Aprire il file `createtable.php` in un editor di testo o IDE e aggiungere il codice seguente. Questo codice verrà usato per creare la tabella `registration_tbl` nel database `registration`.
+3. Aprire hello `createtable.php` file in un editor di testo o un IDE e aggiungere codice hello riportato di seguito. Questo codice sarà utilizzato toocreate hello `registration_tbl` tabella hello `registration` database.
    
         <?php
         // DB connection info
@@ -122,12 +122,12 @@ Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si not
         echo "<h3>Table created.</h3>";
         ?>
    
-    Si noti che è necessario aggiornare i valori per <code>$user</code> e <code>$pwd</code> con il nome utente di SQL Server locale e la password.
-4. In un terminale nella directory radice dell'applicazione digitare il comando seguente:
+    Si noti che sono necessari valori hello tooupdate per <code>$user</code> e <code>$pwd</code> con il nome utente di SQL Server locale e la password.
+4. In un terminal alla directory radice hello di hello di tipo applicazione hello comando seguente:
    
         php -S localhost:8000
-5. Aprire un Web browser e andare a **http://localhost:8000/createtable.php**. Verrà creata la tabella `registration_tbl` nel database.
-6. Aprire il file **index.php** in un editor di testo o IDE e aggiungere il codice HTML e CSS di base per la pagina (il codice PHP verrà aggiunto nei passaggi successivi).
+5. Aprire un web browser e passare troppo**http://localhost:8000/createtable.php**. Verrà creata hello `registration_tbl` tabella nel database di hello.
+6. Aprire hello **index.php** file in un editor di testo o un IDE e aggiungere hello base codice HTML e CSS per la pagina hello (hello codice PHP aggiunto nei passaggi successivi).
    
         <html>
         <head>
@@ -148,7 +148,7 @@ Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si not
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -159,14 +159,14 @@ Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si not
         ?>
         </body>
         </html>
-7. All'interno dei tag PHP, aggiungere il codice PHP per la connessione al database.
+7. All'interno dei tag PHP hello, aggiungere il codice PHP per la connessione database toohello.
    
         // DB connection info
         $host = "localhost\sqlexpress";
         $user = "user name";
         $pwd = "password";
         $db = "registration";
-        // Connect to database.
+        // Connect toodatabase.
         try {
             $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
             $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -175,8 +175,8 @@ Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si not
             die(var_dump($e));
         }
    
-    Nuovamente, sarà necessario aggiornare i valori per <code>$user</code> e <code>$pwd</code> con il nome utente di MySQL locale e la password.
-8. Dopo il codice di connessione al database, aggiungere il codice per l'inserimento delle informazioni di registrazione nel database.
+    Nuovamente, sarà necessario valori hello tooupdate per <code>$user</code> e <code>$pwd</code> con il nome utente di MySQL locale e la password.
+8. Il seguente codice di connessione database hello, aggiungere il codice per l'inserimento di informazioni di registrazione nel database di hello.
    
         if(!empty($_POST)) {
         try {
@@ -197,7 +197,7 @@ Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si not
         }
         echo "<h3>Your're registered!</h3>";
         }
-9. Infine, dopo il codice sopra riportato, aggiungere il codice per recuperare i dati dal database.
+9. Infine, il seguente codice hello precedente, aggiungere il codice per recuperare dati dal database hello.
    
         $sql_select = "SELECT * FROM registration_tbl";
         $stmt = $conn->query($sql_select);
@@ -218,10 +218,10 @@ Per eseguire l'applicazione in locale, attenersi alla procedura seguente. Si not
             echo "<h3>No one is currently registered.</h3>";
         }
 
-A questo punto è possibile passare a **http://localhost:8000/index.php** per testare l'applicazione.
+È possibile cercare troppo**http://localhost:8000/index.php** tootest un'applicazione hello.
 
 ## <a name="publish-your-application"></a>Pubblicare l'applicazione
-Dopo aver testato l'applicazione in locale, è possibile pubblicarla nelle app Web di Servizio app di Azure tramite Git. È tuttavia necessario aggiornare innanzitutto le informazioni di connessione al database nell'applicazione. Usando le informazioni di connessione al database ottenute in precedenza (nella sezione **Ottenere le informazioni di connessione al database SQL**), aggiornare le seguenti informazioni in **entrambi** i file `createdatabase.php` e `index.php` con i valori appropriati:
+Dopo aver testato l'applicazione localmente, è possibile pubblicare App Web del servizio tooApp tramite Git. Tuttavia, è necessario innanzitutto informazioni di connessione di database tooupdate hello in un'applicazione hello. Utilizzando le informazioni di connessione database hello ottenuti in precedenza (in hello **informazioni di connessione di Database SQL di ottenere** sezione), aggiornamento hello le seguenti informazioni in **entrambi** hello `createdatabase.php` e `index.php` i file con hello valori appropriati:
 
     // DB connection info
     $host = "tcp:<value of Server>";
@@ -230,18 +230,18 @@ Dopo aver testato l'applicazione in locale, è possibile pubblicarla nelle app W
     $db = "<value of SQL Database>";
 
 > [!NOTE]
-> Nel <code>$host</code>, il valore del Server deve essere preceduto da <code>tcp:</code>.
+> In hello <code>$host</code>, il valore di hello del Server deve essere preceduto da <code>tcp:</code>.
 > 
 > 
 
-A questo punto è possibile configurare la pubblicazione Git e pubblicare l'applicazione.
+A questo punto, si sono pronti tooset la pubblicazione Git e pubblica un'applicazione hello.
 
 > [!NOTE]
-> Questi passaggi sono uguali a quelli riportati alla fine della sezione precedente **Creare un'app Web di Azure e configurare la pubblicazione Git** .
+> Si tratta di hello stessi passaggi indicati alla fine hello hello **creare un'app web di Azure e impostare la pubblicazione Git** sezione precedente.
 > 
 > 
 
-1. Aprire GitBash (o un terminale, se Git si trova in `PATH`), passare alla directory radice dell'applicazione (la directory **registration** ) ed eseguire i comandi seguenti:
+1. Aprire GitBash (o un terminale, se si trova in Git il `PATH`), cambiare directory radice toohello di directory dell'applicazione (hello **registrazione** directory), e hello esecuzione seguenti comandi:
    
         git init
         git add .
@@ -249,27 +249,27 @@ A questo punto è possibile configurare la pubblicazione Git e pubblicare l'appl
         git remote add azure [URL for remote repository]
         git push azure master
    
-    Verrà richiesto di specificare la password creata in precedenza.
-2. Passare a **http://[nome app Web].azurewebsites.net/createtable.php** per creare la tabella di database SQL per l'applicazione.
-3. Passare a **http://[nome app Web].azurewebsites.net/index.php** per iniziare a usare l'applicazione.
+    Verrà richiesto di hello password creato in precedenza.
+2. Sfoglia troppo**http://[web app name].azurewebsites.net/createtable.php** toocreate tabella del database SQL di hello per un'applicazione hello.
+3. Sfoglia troppo**http://[web app name].azurewebsites.net/index.php** toobegin utilizzando un'applicazione hello.
 
-Dopo aver pubblicato l'applicazione, è possibile iniziare ad apportarvi modifiche e ad usare Git per pubblicarle. 
+Dopo aver pubblicato l'applicazione, è possibile iniziare a creare tooit modifiche e utilizzare Git toopublish li. 
 
-## <a name="publish-changes-to-your-application"></a>Pubblicazione delle modifiche apportate all'applicazione
-Per pubblicare le modifiche apportate all'applicazione, eseguire la procedura seguente:
+## <a name="publish-changes-tooyour-application"></a>Pubblicare l'applicazione di modifiche tooyour
+toopublish cambia tooapplication, seguire questi passaggi:
 
-1. Apportare le modifiche all'applicazione in locale.
-2. Aprire GitBash (o un terminale, se Git si trova in `PATH`), passare alla directory radice dell'applicazione ed eseguire i comandi seguenti:
+1. Apportare modifiche tooyour applicazione localmente.
+2. Aprire GitBash (o un terminale, it Git è nel `PATH`), modificare le directory toohello radice directory dell'applicazione ed eseguire hello seguenti comandi:
    
         git add .
         git commit -m "comment describing changes"
         git push azure master
    
-    Verrà richiesto di specificare la password creata in precedenza.
-3. Passare a **http://[nome app Web].azurewebsites.net/index.php** per visualizzare le modifiche.
+    Verrà richiesto di hello password creato in precedenza.
+3. Sfoglia troppo**http://[web app name].azurewebsites.net/index.php** toosee le modifiche.
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una guida relativa al passaggio da Siti Web al servizio app, vedere [Servizio app di Azure e impatto sui servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-SQLExpress]: http://www.microsoft.com/download/details.aspx?id=29062

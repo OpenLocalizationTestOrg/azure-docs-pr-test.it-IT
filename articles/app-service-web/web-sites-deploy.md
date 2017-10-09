@@ -1,6 +1,6 @@
 ---
-title: Distribuire l'app nel servizio app di Azure | Microsoft Docs
-description: Informazioni su come distribuire l'app nel servizio app di Azure
+title: aaaDeploy del servizio App di tooAzure app | Documenti Microsoft
+description: Informazioni su come toodeploy il tooAzure app servizio App.
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,152 +14,152 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/05/2017
 ms.author: cephalin
-ms.openlocfilehash: f41be4e00a9250b07ca260c2858e5fc45143f746
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5c84e4ca502874209d750c94efeb86a59aa71a48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-your-app-to-azure-app-service"></a>Distribuire l'app nel servizio app di Azure
-Questo articolo consente di determinare l'opzione migliore per distribuire i file per l'app Web, il back-end dell'app per dispositivi mobili o l'app per le API nel [Servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714). L'articolo quindi descrive le risorse appropriate, con istruzioni sulle procedure specifiche per l'opzione scelta.
+# <a name="deploy-your-app-tooazure-app-service"></a>Distribuire il servizio App di tooAzure app
+In questo articolo consente di determinare hello migliore opzione toodeploy hello file per l'app web back-end dell'app mobile o app per le API troppo[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)e viene quindi tooappropriate risorse con le istruzioni specifiche tooyour opzione preferita.
 
 ## <a name="overview"></a>Panoramica della distribuzione nel servizio app di Azure
-Il framework applicazioni (ASP.NET, PHP, Node.js, e così via) viene gestito direttamente dal servizio app di Azure. Alcuni framework sono abilitati per impostazione predefinita, mentre altri, come Java e Python, possono richiedere una semplice configurazione con segni di spunta per abilitarli. È anche possibile personalizzare il framework applicazioni, ad esempio la versione PHP o il numero di bit del proprio runtime. Per altre informazioni, vedere [Configurare le app Web nel servizio app di Azure](web-sites-configure.md).
+Servizio App di Azure gestisce i framework dell'applicazione hello automaticamente (ASP.NET, PHP, Node.js e così via). Alcuni Framework che sono abilitati per impostazione predefinita, mentre altri, come Java e Python, potrebbe essere necessario un tooenable configurazione semplice segno di spunta è. Inoltre, è possibile personalizzare il framework applicazione, ad esempio la versione di PHP hello o bit hello del runtime. Per altre informazioni, vedere [Configurare le app Web nel servizio app di Azure](web-sites-configure.md).
 
-Non essendo necessario occuparsi del server Web o del framework applicazioni, per distribuire l'app al servizio app è sufficiente distribuire il codice, i file binari, i file di contenuto e le rispettive strutture di directory nella directory [**/site/wwwroot**](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) in Azure o, per i processi Web, nella directory **/site/wwwroot/App_Data/Jobs/**. Il servizio app supporta tre processi di distribuzione diversi. Tutti i metodi di distribuzione in questo articolo usano uno dei processi seguenti: 
+Poiché non si dispone di tooworry su framework di server o un'applicazione web hello, la distribuzione del servizio di tooApp app, è necessario distribuire il codice, i file binari, i file di contenuto e la struttura di directory corrispondente, toohello [   **/sito /wwwroot** directory](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) in Azure (o hello **/sito/wwwroot/App_Data/processi/** directory per i processi Web). Il servizio app supporta tre processi di distribuzione diversi. Tutti i metodi di distribuzione hello in questo articolo utilizzano uno dei seguenti processi hello: 
 
-* [FTP o FTPS](https://en.wikipedia.org/wiki/File_Transfer_Protocol): usare lo strumento abilitato per FTP o FTPS preferito per spostare i file in Azure da [FileZilla](https://filezilla-project.org) a IDE completi, come [NetBeans](https://netbeans.org). Si tratta esclusivamente di un processo di caricamento di file. Non vengono forniti altri servizi dal servizio app, ad esempio controllo della versione, gestione della struttura di file e così via. 
-* [Kudu (Git/Mercurial o OneDrive/Dropbox)](https://github.com/projectkudu/kudu/wiki/Deployment): Kudu è il [motore di distribuzione](https://github.com/projectkudu/kudu/wiki) nel servizio app. Effettuare il push del codice direttamente in Kudu da qualsiasi repository. Kudu fornisce anche altri servizi ogni volta che viene effettuato il push di codice, inclusi controllo della versione, ripristino del pacchetto, MSBuild e [webhook](https://github.com/projectkudu/kudu/wiki/Web-hooks) per la distribuzione continua e altre attività di automazione. Il motore di distribuzione Kudu supporta 3 tipi diversi di origine distribuzione:   
+* [FTP o FTPS](https://en.wikipedia.org/wiki/File_Transfer_Protocol): usare i Preferiti FTP o FTPS abilitata strumento toomove tooAzure il file, da [FileZilla](https://filezilla-project.org) in primo piano toofull IDE come [NetBeans](https://netbeans.org). Si tratta esclusivamente di un processo di caricamento di file. Non vengono forniti altri servizi dal servizio app, ad esempio controllo della versione, gestione della struttura di file e così via. 
+* [Kudu (Git o Mercurial o OneDrive o Dropbox)](https://github.com/projectkudu/kudu/wiki/Deployment): Kudu è hello [motore di distribuzione](https://github.com/projectkudu/kudu/wiki) nel servizio App. Push tooKudu il codice direttamente da un repository. Kudu offre servizi aggiunti ogni volta che tooit, tra cui il controllo della versione, ripristino del pacchetto, MSBuild, push del codice e [web hook](https://github.com/projectkudu/kudu/wiki/Web-hooks) per la distribuzione continua e altre attività di automazione. motore di distribuzione Kudu Hello supporta 3 diversi tipi di origini di distribuzione:   
   
   * Sincronizzazione del contenuto da OneDrive e Dropbox   
   * Distribuzione continua basata su repository con sincronizzazione automatica da GitHub, Bitbucket e Visual Studio Team Services  
   * Distribuzione basata su repository con sincronizzazione manuale da archivio Git locale  
-* [Distribuzione Web](http://www.iis.net/learn/publish/using-web-deploy/introduction-to-web-deploy): distribuire il codice al servizio app direttamente dagli strumenti Microsoft preferiti, ad esempio Visual Studio, tramite gli stessi strumenti di automazione della distribuzione ai server IIS. Questo strumento supporta la distribuzione solo delle differenze, la creazione di database, le trasformazioni delle stringhe di connessione e così via. Distribuzione Web si differenzia da Kudu perché i file binari dell'applicazione vengono compilati prima della distribuzione in Azure. Come FTP, non vengono forniti servizi aggiuntivi dal servizio app.
+* [Web Deploy](http://www.iis.net/learn/publish/using-web-deploy/introduction-to-web-deploy): degli strumenti, ad esempio Visual Studio usando hello stesso strumento che consente di automatizzare i server di distribuzione tooIIS Distribuisci codice tooApp servizio direttamente da Microsoft preferito. Questo strumento supporta la distribuzione solo delle differenze, la creazione di database, le trasformazioni delle stringhe di connessione e così via. Distribuzione Web diversa da Kudu in applicazione i file binari compilati prima di essere distribuita tooAzure. TooFTP simile, nessun servizi aggiuntivi vengono forniti dal servizio App.
 
-Gli strumenti di sviluppo Web più diffusi supportano uno o più di questi processi di distribuzione. Mentre lo strumento scelto determina i processi di distribuzione che è possibile sfruttare, l'effettiva funzionalità DevOps disponibile dipende dalla combinazione del processo di distribuzione e degli strumenti specifici scelti. Ad esempio, se si esegue Distribuzione Web da [Visual Studio con Azure SDK](#vspros), anche se non si usufruisce dell'automazione tramite Kudu, si ottiene l'automazione del ripristino del pacchetto e di MSBuild in Visual Studio. 
+Gli strumenti di sviluppo Web più diffusi supportano uno o più di questi processi di distribuzione. Mentre si sceglie lo strumento hello determina i processi di distribuzione hello è possibile usare, hello funzionalità DevOps effettiva a disposizione dipende dalla combinazione di hello del processo di distribuzione hello e hello strumenti specifici si sceglie. Ad esempio, se si esegue Distribuzione Web da [Visual Studio con Azure SDK](#vspros), anche se non si usufruisce dell'automazione tramite Kudu, si ottiene l'automazione del ripristino del pacchetto e di MSBuild in Visual Studio. 
 
 > [!NOTE]
-> Questi processi di distribuzione in realtà non [effettuano il provisioning delle risorse di Azure](../azure-resource-manager/resource-group-template-deploy-portal.md) che potrebbero essere necessarie per l'applicazione. La maggior parte degli articoli sulle procedure collegati mostra come effettuare il provisioning dell'app E distribuire il codice end-to-end. È anche possibile trovare altre opzioni per il provisioning delle risorse di Azure nella sezione [Automatizzare la distribuzione con gli strumenti da riga di comando](#automate) .
+> Questi processi di distribuzione non effettivamente [provisioning hello risorse di Azure](../azure-resource-manager/resource-group-template-deploy-portal.md) che potrebbe essere necessario l'app. Tuttavia, la maggior parte delle hello collegato come-tooarticles mostrano come tooprovision hello app e distribuire il codice tooit end-to-end. È anche possibile trovare altre opzioni per il provisioning delle risorse di Azure in hello [automatizzare la distribuzione utilizzando gli strumenti da riga di comando](#automate) sezione.
 > 
 > 
 
 ## <a name="ftp"></a>Eseguire manualmente la distribuzione caricando file con il protocollo FTP
-Se di solito si copia il contenuto Web in un server Web manualmente, è possibile usare un'utilità [FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol) per copiare i file, ad esempio Esplora risorse o [FileZilla](https://filezilla-project.org/).
+Se si toomanually utilizzato la copia di server web tooa contenuto web, è possibile utilizzare un [FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol) file toocopy dell'utilità, ad esempio Esplora risorse o [FileZilla](https://filezilla-project.org/).
 
-Ecco i vantaggi della copia manuale dei file:
+i professionisti Hello di copia manuale dei file sono:
 
 * Possibilità di usare strumenti familiari quali gli strumenti FTP e minima complessità di questi. 
 * Conoscenza esatta della destinazione dei file.
 * Maggiore sicurezza con FTPS.
 
-Ecco gli svantaggi della copia manuale dei file:
+gli svantaggi di Hello della copia manuale dei file sono:
 
-* Necessità di conoscere come distribuire i file nelle directory corrette del servizio app. 
+* Con tooknow come toodeploy toohello corretto delle directory dei file nel servizio App. 
 * Nessun controllo della versione per il ripristino dello stato precedente quando si verificano errori.
 * Nessuna cronologia di distribuzione per la risoluzione d eventuali problemi nel corso di questa operazione.
-* Possibilità di tempi lunghi di distribuzione, poiché molti strumenti FTP non sono dotati della funzione di copia delle sole differenze e copiano semplicemente tutti i file.  
+* Distribuzione lungo potenziali volte perché molti strumenti FTP non fornire la copia solo delle differenze e semplicemente copiare tutti i file hello.  
 
-### <a name="howtoftp"></a>Come caricare i file con il protocollo FTP
-Nel [portale di Azure](https://portal.azure.com) sono disponibili tutte le informazioni necessarie per connettersi alle directory dell'app tramite il protocollo FTP o FTPS.
+### <a name="howtoftp"></a>Modalità tooupload in file con FTP
+Hello [portale Azure](https://portal.azure.com) offre tutte le informazioni di hello occorre directory dell'applicazione tooyour tooconnect tramite FTP o FTPS.
 
-* [Distribuire l'app nel servizio app di Azure tramite il protocollo FTP](app-service-deploy-ftp.md)
+* [Distribuire il servizio App di tooAzure app tramite FTP](app-service-deploy-ftp.md)
 
 ## <a name="dropbox"></a>Distribuire tramite sincronizzazione con una cartella nel cloud
-Una valida alternativa alla [copia manuale dei file](#ftp) è la sincronizzazione di file e cartelle con il servizio app da un servizio di archiviazione cloud, ad esempio OneDrive e Dropbox. La sincronizzazione con una cartella nel cloud usa il processo Kudu per la distribuzione. Vedere [Panoramica dei processi di distribuzione](#overview).
+Una buona alternativa troppo[la copia manuale dei file](#ftp) esegue la sincronizzazione di file e cartelle tooApp servizio da un servizio di archiviazione cloud come OneDrive e dell'area di sincronizzazione. La sincronizzazione con una cartella di cloud utilizza il processo Kudu hello per la distribuzione (vedere [panoramica dei processi di distribuzione](#overview)).
 
-Ecco i vantaggi della sincronizzazione con una cartella nel cloud:
+i professionisti Hello di sincronizzazione con una cartella cloud sono:
 
 * Semplicità di distribuzione. Servizi come OneDrive e Dropbox forniscono client di sincronizzazione desktop, quindi la directory di lavoro locale è anche la directory di distribuzione.
 * Distribuzione con un clic.
-* Tutte le funzionalità del motore di distribuzione Kudu, ad esempio il ripristino dei pacchetti e l'automazione, sono disponibili.
+* Tutte le funzionalità nel motore di distribuzione Kudu hello sono disponibile (ad esempio, ripristino del pacchetto, automazione).
 
-Ecco gli svantaggi della sincronizzazione con una cartella nel cloud:
+gli svantaggi di Hello della sincronizzazione con una cartella cloud sono:
 
 * Nessun controllo della versione per il ripristino dello stato precedente quando si verificano errori.
 * Nessuna distribuzione automatizzata. È necessaria la sincronizzazione manuale.
 
-### <a name="howtodropbox"></a>Come distribuire tramite sincronizzazione con una cartella nel cloud
-Nel [portale di Azure](https://portal.azure.com)è possibile designare una cartella per la sincronizzazione del contenuto nel servizio di archiviazione cloud OneDrive o Dropbox, usare il codice e il contenuto dell'app disponibili in tale cartella e procedere alla sincronizzazione con il servizio app con un semplice clic.
+### <a name="howtodropbox"></a>Come toodeploy per la sincronizzazione con una cartella di cloud
+In hello [portale Azure](https://portal.azure.com), è possibile specificare una cartella per la sincronizzazione del contenuto nella memoria cloud OneDrive o Dropbox, con il codice dell'app e il contenuto della cartella di lavoro e fare clic su sincronizzazione tooApp servizio con hello di un pulsante.
 
-* [Sincronizzare il contenuto da una cartella nel cloud al servizio app di Azure](app-service-deploy-content-sync.md) 
+* [Sincronizzare il contenuto di un tooAzure di cartella servizio App cloud](app-service-deploy-content-sync.md). 
 
 ## <a name="continuousdeployment"></a>Eseguire una distribuzione continua da un servizio di controllo del codice sorgente basato sul cloud
-Se il team di sviluppo usa un sistema di gestione del codice sorgente basato sul cloud, ad esempio [Visual Studio Team Services](http://www.visualstudio.com/), [GitHub](https://www.github.com) o [BitBucket](https://bitbucket.org/), è possibile configurare il servizio app in modo da integrarlo con il repository e consentire la distribuzione continua. 
+Se il team di sviluppo Usa un servizio di Gestione (controllo servizi SCM) codice di origine basato su cloud come [Visual Studio Team Services](http://www.visualstudio.com/), [GitHub](https://www.github.com), o [BitBucket](https://bitbucket.org/), è possibile configurare App Servizio toointegrate con il repository e distribuire in modo continuo. 
 
-Di seguito vengono indicati i vantaggi della distribuzione da un servizio di controllo del codice sorgente basato sul cloud:
+i professionisti Hello della distribuzione da un servizio di controllo basato su cloud di origine sono:
 
-* Controllo delle versioni e possibilità di eseguire il ripristino dello stato precedente.
-* Possibilità di configurare la distribuzione continua per i repository Git, nonché per i repository Mercurial, quando applicabile. 
-* Distribuzione specifica per ramo. Consente di distribuire rami diversi a [slot](web-sites-staged-publishing.md) diversi.
-* Sono disponibili tutte le funzionalità del motore di distribuzione Kudu, ad esempio il controllo delle versioni di distribuzione, il ripristino dello stato precedente, il ripristino dei pacchetti, l'automazione.
+* Rollback tooenable controllo di versione.
+* Capacità tooconfigure la distribuzione continua per Git (e Mercurial dove applicabile) repository. 
+* Distribuzione di ramo specifico, è possibile distribuire diversi rami toodifferent [slot](web-sites-staged-publishing.md).
+* Tutte le funzionalità nel motore di distribuzione Kudu hello sono disponibile (ad esempio, il controllo delle versioni di distribuzione, eseguire il rollback, ripristino del pacchetto, automazione).
 
-Svantaggio della distribuzione da un servizio di controllo del codice sorgente basato sul cloud:
+con Hello della distribuzione da un servizio di controllo basato su cloud di origine è:
 
-* È necessaria una certa conoscenza del relativo servizio di gestione del codice sorgente.
+* Conoscenza di hello rispettivi SCM i servizi necessari.
 
-### <a name="vsts"></a>Come eseguire una distribuzione continua da un servizio di controllo del codice sorgente basato sul cloud
-Nel [portale di Azure](https://portal.azure.com)è possibile configurare la distribuzione continua da GitHub, Bitbucket e Visual Studio Team Services.
+### <a name="vsts"></a>Modalità di controllo servizio toodeploy continuamente da un'origine basata su cloud
+In hello [portale Azure](https://portal.azure.com), è possibile configurare la distribuzione continua da GitHub, Bitbucket e Visual Studio Team Services.
 
-* [Distribuzione continua nel servizio app di Azure](app-service-continuous-deployment.md). 
+* [La distribuzione continua tooAzure servizio App](app-service-continuous-deployment.md). 
 
-Per informazioni su come configurare manualmente la distribuzione continua da un repository cloud non elencato nel portale di Azure (ad esempio, [GitLab](https://gitlab.com/)), vedere [Setting up continuous deployment using manual steps](https://github.com/projectkudu/kudu/wiki/Continuous-deployment#setting-up-continuous-deployment-using-manual-steps) (Configurazione manuale della distribuzione continua).
+toofind out come la distribuzione continua tooconfigure manualmente da un repository di cloud non elencata hello portale di Azure (ad esempio [GitLab](https://gitlab.com/)), vedere [configurazione di distribuzione continua tramite i passaggi manuali](https://github.com/projectkudu/kudu/wiki/Continuous-deployment#setting-up-continuous-deployment-using-manual-steps).
 
 ## <a name="localgitdeployment"></a>Distribuire dall'archivio Git locale
-Se il team di sviluppo usa un servizio locale di gestione del codice sorgente locale basato su archivio Git, è possibile configurare questo servizio come origine di distribuzione al servizio app. 
+Se il team di sviluppo Usa un servizio di Gestione (controllo servizi SCM) codice di origine locale locale in base a Git, è possibile configurare come un tooApp di origine di distribuzione del servizio. 
 
 Vantaggi della distribuzione da un archivio Git locale:
 
-* Controllo delle versioni e possibilità di eseguire il ripristino dello stato precedente.
-* Distribuzione specifica per ramo. Consente di distribuire rami diversi a [slot](web-sites-staged-publishing.md) diversi.
-* Sono disponibili tutte le funzionalità del motore di distribuzione Kudu, ad esempio il controllo delle versioni di distribuzione, il ripristino dello stato precedente, il ripristino dei pacchetti, l'automazione.
+* Rollback tooenable controllo di versione.
+* Distribuzione di ramo specifico, è possibile distribuire diversi rami toodifferent [slot](web-sites-staged-publishing.md).
+* Tutte le funzionalità nel motore di distribuzione Kudu hello sono disponibile (ad esempio, il controllo delle versioni di distribuzione, eseguire il rollback, ripristino del pacchetto, automazione).
 
 Svantaggi della distribuzione da un archivio Git locale:
 
-* È necessaria una certa conoscenza del relativo sistema di gestione del codice sorgente.
+* Conoscenza di sistema SCM rispettivo hello richiesto.
 * Nessuna soluzione chiavi in mano per la distribuzione continua. 
 
-### <a name="vsts"></a>Come distribuire dall'archivio Git locale
-Nel [portale di Azure](https://portal.azure.com)è possibile configurare la distribuzione dell'archivio Git locale.
+### <a name="vsts"></a>Come toodeploy da Git locale
+In hello [portale Azure](https://portal.azure.com), è possibile configurare la distribuzione Git locale.
 
-* [Distribuzione dell'archivio Git locale nel servizio app di Azure](app-service-deploy-local-git.md). 
-* [Pubblicazione in App Web da qualsiasi repository Git/Hg](http://blog.davidebbo.com/2013/04/publishing-to-azure-web-sites-from-any.html).  
+* [TooAzure distribuzione Git locale del servizio App](app-service-deploy-local-git.md). 
+* [Pubblicazione di App tooWeb da qualsiasi repository git/hg](http://blog.davidebbo.com/2013/04/publishing-to-azure-web-sites-from-any.html).  
 
 ## <a name="deploy-using-an-ide"></a>Distribuire tramite un IDE
-Se si usa già [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs.aspx) con un [Azure SDK](https://azure.microsoft.com/downloads/) o altri gruppi di IDE come [Xcode](https://developer.apple.com/xcode/), [Eclipse](https://www.eclipse.org) e [IntelliJ IDEA](https://www.jetbrains.com/idea/), è possibile eseguire la distribuzione in Azure direttamente dall'interno dell'IDE. Questa opzione è ideale per un singolo sviluppatore.
+Se si sta già utilizzando [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs.aspx) con un [Azure SDK](https://azure.microsoft.com/downloads/), o altri gruppi di IDE, ad esempio [Xcode](https://developer.apple.com/xcode/), [Eclipse](https://www.eclipse.org), e [ IDEA IntelliJ](https://www.jetbrains.com/idea/), è possibile distribuire tooAzure direttamente dall'interno dell'IDE. Questa opzione è ideale per un singolo sviluppatore.
 
-Visual Studio supporta tutti e tre i processi di distribuzione (FTP, Git e Distribuzione Web) secondo le preferenze dell'utente, mentre altri IDE possono eseguire la distribuzione al servizio app se includono l'integrazione con FTP o Git. Vedere [Panoramica dei processi di distribuzione](#overview).
+Visual Studio supporta tutti i tre processi di distribuzione (FTP, Git e distribuzione Web), in base alle preferenze, mentre altri IDE è possibile distribuire tooApp servizio se dispongono di integrazione Git o FTP (vedere [panoramica dei processi di distribuzione](#overview)).
 
-Ecco i vantaggi della distribuzione con un IDE:
+i professionisti Hello della distribuzione con l'IDE sono:
 
-* Ridurre potenzialmente gli strumenti per il ciclo di vita dell'applicazione end-to-end. Sviluppare, eseguire il debug, tenere traccia e distribuire l'app in Azure senza uscire dall'IDE. 
+* Ridurre potenzialmente hello gli strumenti per il ciclo di vita dell'applicazione end-to-end. Sviluppare, eseguire il debug, traccia e distribuire tooAzure l'app senza dover spostare all'esterno dell'IDE. 
 
-Ecco gli svantaggi della distribuzione con un IDE:
+gli svantaggi di Hello della distribuzione con l'IDE sono:
 
 * Complessità aggiuntiva degli strumenti.
 * Richiede comunque un sistema di controllo del codice sorgente per un progetto team.
 
 <a name="vspros"></a> Altri vantaggi della distribuzione tramite Visual Studio con Azure SDK:
 
-* Azure SDK rende le risorse di Azure elementi di primaria importanza in Visual Studio. Creare, eliminare, modificare, avviare e arrestare app, eseguire query sul database SQL di back-end, live-debug applicazione Azure e molto altro ancora. 
+* Azure SDK rende le risorse di Azure elementi di primaria importanza in Visual Studio. Creare, eliminare, modificare, avviare e arrestare l'App, database SQL di query hello back-end, hello in tempo reale di debug dell'app di Azure e molto altro ancora. 
 * Modifica in tempo reale dei file di codice in Azure.
 * Debug in tempo reale di app in Azure.
 * Azure Explorer integrato.
 * Distribuzione solo delle differenze. 
 
-### <a name="vs"></a>Come distribuire direttamente da Visual Studio
-* [Introduzione ad Azure e ASP.NET](app-service-web-get-started-dotnet.md). Come creare e distribuire un semplice Progetto Applicazione Web MVC ASP.NET utilizzando Visual Studio e Distribuzione Web.
-* [Come eseguire la distribuzione nei processi Web di Azure utilizzando Visual Studio](websites-dotnet-deploy-webjobs.md). Come configurare i progetti di applicazioni console in modo da distribuirli come processi Web.  
-* [Distribuzione di Web ASP.NET con Visual Studio](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/introduction). Una serie di esercitazioni in 12 parti in cui è trattata una gamma più completa di attività di distribuzione rispetto alle altre risorse in questo elenco. Sono state aggiunte alcune funzionalità di distribuzione di Azure dal momento in cui è stata creata l'esercitazione. Tuttavia, le note aggiunte successivamente descrivono gli elementi mancanti.
-* Articolo relativo alla [distribuzione di un sito Web ASP.NET in Azure con Visual Studio 2012 direttamente da un repository Git](http://www.dotnetcurry.com/ShowArticle.aspx?ID=881). L'articolo contiene informazioni su come distribuire un progetto Web ASP.NET con Visual Studio, utilizzando il plugin Git per eseguire il commit del codice a Git e connettere Azure al repository Git. A partire da Visual Studio 2013, il supporto per Git è integrato, pertanto non è più necessario installare un plug-in.
+### <a name="vs"></a>Come toodeploy direttamente da Visual Studio
+* [Introduzione ad Azure e ASP.NET](app-service-web-get-started-dotnet.md). Come toocreate e distribuire un progetto web ASP.NET MVC semplice utilizzando Visual Studio e distribuzione Web.
+* [Come processi Web di Azure con Visual Studio tooDeploy](websites-dotnet-deploy-webjobs.md). Come applicazione Console tooconfigure progetti in modo che la distribuzione come processi Web.  
+* [Distribuzione di Web ASP.NET con Visual Studio](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/introduction). Una serie di esercitazioni 12 parti che copre un intervallo più completo di attività di distribuzione rispetto ad altri utenti hello in questo elenco. Alcune funzionalità di distribuzione di Azure sono stati aggiunti dall'esercitazione hello è stato scritto, ma note aggiunte in seguito viene illustrato cosa manca.
+* [Distribuzione tooAzure un sito Web ASP.NET in Visual Studio 2012, da un Git Repository direttamente](http://www.dotnetcurry.com/ShowArticle.aspx?ID=881). Viene illustrato come progetto di toodeploy un web ASP.NET in Visual Studio, usando hello Git toocommit plug-in hello codice tooGit e connettendosi repository Git toohello Azure. A partire da Visual Studio 2013, il supporto per Git è integrato, pertanto non è più necessario installare un plug-in.
 
-### <a name="aztk"></a>Come distribuire usando i toolkit di Azure per Eclipse e IntelliJ IDEA
-Microsoft consente la distribuzione di App Web in Azure direttamente da Eclipse e IntelliJ tramite il [toolkit di Azure per Eclipse](../azure-toolkit-for-eclipse.md) e il [toolkit di Azure per IntelliJ](../azure-toolkit-for-intellij.md). Le esercitazioni seguenti illustrano i passaggi coinvolti nella distribuzione di una semplice App Web "Hello World" in Azure mediante l'IDE:
+### <a name="aztk"></a>Come toodeploy utilizzando hello Azure Toolkit per Eclipse e IDEA IntelliJ
+Microsoft rende possibile toodeploy tooAzure di applicazioni Web direttamente da Eclipse e IntelliJ tramite hello [Azure Toolkit per Eclipse](../azure-toolkit-for-eclipse.md) e [Azure Toolkit per IntelliJ](../azure-toolkit-for-intellij.md). Hello esercitazioni seguenti illustrano hello passaggi coinvolti nella distribuzione tooAzure App Web di world semplice un "Hello" utilizzando l'IDE:
 
-* [Creare un'app Web Hello World per Azure in Eclipse](app-service-web-eclipse-create-hello-world-web-app.md). Questa esercitazione descrive come usare il toolkit di Azure per Eclipse per creare e distribuire un'App Web Hello World per Azure.
-* [Creare un'app Web Hello World per Azure in IntelliJ](app-service-web-intellij-create-hello-world-web-app.md). Questa esercitazione descrive come usare il toolkit di Azure per IntelliJ per creare e distribuire un'App Web Hello World per Azure.
+* [Creare un'app Web Hello World per Azure in Eclipse](app-service-web-eclipse-create-hello-world-web-app.md). In questa esercitazione Mostra come toouse hello Azure Toolkit per Eclipse toocreate e distribuire un'App Web di Hello World per Azure.
+* [Creare un'app Web Hello World per Azure in IntelliJ](app-service-web-intellij-create-hello-world-web-app.md). In questa esercitazione Mostra come toouse hello Azure Toolkit per IntelliJ toocreate e distribuire un'App Web di Hello World per Azure.
 
 ## <a name="automate"></a>Automatizzare la distribuzione con strumenti da riga di comando
-Se come ambiente di sviluppo si preferisce un terminale da riga di comando, è possibile creare script delle attività di distribuzione per l'app del servizio app usando gli strumenti da riga di comando. 
+Se si preferisce terminal della riga di comando hello come ambiente di sviluppo hello scelta, è possibile creare script delle attività di distribuzione per l'applicazione di servizio App utilizzando gli strumenti da riga di comando. 
 
 Di seguito vengono indicati i vantaggi della distribuzione tramite gli strumenti da riga di comando:
 
@@ -171,14 +171,14 @@ Gli svantaggi della distribuzione tramite gli strumenti da riga di comando sono 
 
 * Approccio non adatto agli sviluppatori che preferiscono l'interfaccia utente grafica.
 
-### <a name="automatehow"></a>Come automatizzare la distribuzione con gli strumenti da riga di comando
+### <a name="automatehow"></a>Come distribuzione tooautomate con gli strumenti da riga di comando
 
-Per un elenco di strumenti da riga di comando e di collegamenti a esercitazioni, vedere [Automatizzare la distribuzione con strumenti da riga di comando](app-service-deploy-command-line.md). 
+Vedere [automatizzare la distribuzione dell'applicazione Azure con gli strumenti da riga di comando](app-service-deploy-command-line.md) per un elenco di tootutorials collegamenti e gli strumenti da riga di comando. 
 
 ## <a name="nextsteps"></a>Passaggi successivi
-In alcuni scenari potrebbe essere necessario passare facilmente da una versione temporanea a una versione di produzione dell'app e viceversa. Per ulteriori informazioni, vedere [Distribuzione temporanea su App Web](web-sites-staged-publishing.md).
+In alcuni scenari potrebbe essere toobe tooeasily in grado di passare avanti e indietro di gestione temporanea e una versione di produzione dell'app. Per ulteriori informazioni, vedere [Distribuzione temporanea su App Web](web-sites-staged-publishing.md).
 
-La definizione di un piano di backup e ripristino è una parte importante di un flusso di distribuzione. Per informazioni sulla funzionalità di backup e ripristino del servizio app, vedere [Eseguire il backup di un'App Web nel servizio app di Azure](web-sites-backup.md).  
+La definizione di un piano di backup e ripristino è una parte importante di un flusso di distribuzione. Per informazioni su backup di servizio App di hello e funzionalità di ripristino, vedere [Web App backup](web-sites-backup.md).  
 
-Per informazioni su come usare il controllo degli accessi in base al ruolo di Azure per gestire l'accesso alla distribuzione del servizio app, vedere [Controllo degli accessi in base al ruolo e pubblicazione di App Web](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/).
+Per informazioni sulla modalità di accesso di distribuzione del servizio tooApp toomanage Role-Based Access Control di Azure toouse, vedere [RBAC pubblicazione sul Web e App](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/).
 

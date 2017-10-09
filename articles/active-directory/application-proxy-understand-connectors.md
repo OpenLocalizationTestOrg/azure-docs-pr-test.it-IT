@@ -1,6 +1,6 @@
 ---
-title: Comprendere i connettori del proxy applicazione Azure AD | Microsoft Docs
-description: Tratta i fondamenti dei connettori del proxy applicazione Azure AD.
+title: connettori Proxy di applicazione aaaUnderstand Azure AD | Documenti Microsoft
+description: Nozioni fondamentali di hello include informazioni sui connettori Proxy di applicazione di Azure AD.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,130 +15,130 @@ ms.date: 08/03/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: c18d0a2bff654573e6e28a7cd7fad853b3a11346
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 294cb26803ef7cf8be9f3af0678d6d2e64f6cc14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-azure-ad-application-proxy-connectors"></a>Comprendere i connettori del proxy applicazione Azure AD
 
-I connettori sono ciò che rende possibile il proxy di applicazione di Azure AD. Sono semplici, estremamente potenti e facile da distribuire e gestire. Questo articolo illustra i connettori, il loro funzionamento e alcune procedure consigliate per ottimizzare al meglio la distribuzione. 
+I connettori sono ciò che rende possibile il proxy di applicazione di Azure AD. Sono semplici, facili toodeploy e mantenere e con privilegi avanzati potente. In questo articolo descrive quali connettori, il loro funzionamento e alcuni suggerimenti per la toooptimize la distribuzione. 
 
 ## <a name="what-is-an-application-proxy-connector"></a>Informazioni su un connettore proxy di applicazione
 
-I connettori sono agenti semplici che si trovano a livello locale e facilitano la connessione in uscita al servizio proxy di applicazione. I connettori devono essere installati su un server Windows dotato di accesso all'applicazione back-end. È possibile organizzare i connettori in gruppi di connettori, con ogni gruppo che gestisce il traffico per applicazioni specifiche. I connettori eseguono automaticamente il bilanciamento del carico e consentono di ottimizzare la struttura di rete. 
+I connettori sono lightweight agenti che si trovano in locale e facilitano il servizio Proxy applicazione toohello di hello connessione in uscita. In un Server di Windows che dispone di accesso toohello back-end applicazione, è necessario installare i connettori. È possibile organizzare i connettori in gruppi di connettori, con ogni gruppo di gestione delle applicazioni toospecific traffico. Il bilanciamento del carico connettori automaticamente e consentono toooptimize la struttura di rete. 
 
 ## <a name="requirements-and-deployment"></a>Requisiti e distribuzione
 
-Per distribuire correttamente il proxy di applicazione, è necessario almeno un connettore, ma sono consigliati due o più connettori per assicurare maggiore resilienza. Installare il connettore in computer con Windows Server 2012 R2 o 2016. Il connettore deve poter comunicare con il servizio proxy di applicazione e con le applicazioni locali che vengono pubblicate. 
+Proxy dell'applicazione toodeploy correttamente, è necessario almeno un connettore, ma è consigliabile due o più per maggiore resilienza. Installare il connettore di hello in Windows Server 2012 R2 o computer 2016. connettore di Hello deve toocommunicate in grado di toobe con servizio Proxy applicazione hello, nonché applicazioni locali hello da pubblicare. 
 
-Per ulteriori informazioni sui requisiti di rete per il server del connettore, vedere [Introduzione al proxy dell'applicazione e installazione di un connettore](active-directory-application-proxy-enable.md).
+Per ulteriori informazioni sui requisiti di rete di hello per hello connettore server, vedere [iniziare con Proxy dell'applicazione e installare un connettore](active-directory-application-proxy-enable.md).
 
 ## <a name="maintenance"></a>Manutenzione 
-I connettori e il servizio si occupano di tutte le attività che richiedono disponibilità elevata. Possono essere aggiunti o rimossi in modo dinamico. Ogni volta che arriva una nuova richiesta, questa viene indirizzata a uno dei connettori attualmente disponibili. Se un connettore è temporaneamente non disponibile, non risponde a questo traffico.
+Hello connettori e servizio hello assicurarti di tutte le attività hello la disponibilità elevata. Possono essere aggiunti o rimossi in modo dinamico. Ogni volta che arriva una nuova richiesta è indirizzato tooone dei connettori hello che è attualmente disponibile. Se un connettore è temporaneamente non disponibile, non risponde toothis traffico.
 
-I connettori sono senza stato e senza dati di configurazione nel computer. Gli unici dati che archiviano sono le impostazioni per la connessione del servizio e il relativo certificato di autenticazione. Quando si connettono al servizio, eseguono il pull di tutti i dati di configurazione necessari e li aggiornano ogni due minuti.
+connettori Hello sono senza stati e senza dati di configurazione nel computer di hello. Hello solo i dati che archiviano sono hello impostazioni per la connessione al servizio hello e il relativo certificato di autenticazione. Quando si connessione toohello servizio, essi pull di tutti i dati di configurazione necessarie hello e aggiornarlo ogni due minuti.
 
-I connettori eseguono inoltre il polling del server per verificare se è disponibile una versione più recente del connettore. Se ne viene individuata una, i connettori vengono aggiornati.
+Connettori, è possibile eseguire anche il polling hello server toofind se è disponibile una versione più recente del connettore hello. Se viene trovata, i connettori di hello aggiornano.
 
-È possibile monitorare i connettori dal computer in cui vengono eseguiti usando il registro eventi e i contatori delle prestazioni. In alternativa è possibile vedere lo stato dalla pagina del proxy di applicazione del portale di Azure:
+È possibile monitorare i connettori dalla macchina di hello che sono in esecuzione, mediante il registro eventi di hello e i contatori delle prestazioni. In alternativa, è possibile visualizzare lo stato dalla pagina di Proxy dell'applicazione hello di hello portale di Azure:
 
  ![Connettori del proxy applicazione AzureAD](./media/application-proxy-understand-connectors/app-proxy-connectors.png)
 
-Non è necessario eliminare manualmente i connettori che non vengono usati. Quando un connettore è in esecuzione, rimane attivo quando si connette al servizio. I connettori inutilizzati vengono contrassegnati come _inattivi_ e vengono rimossi dopo 10 giorni di inattività. Per disinstallare un connettore, disinstallare sia il servizio connettore che il servizio di aggiornamento dal server. Riavviare il computer per rimuovere completamente il servizio.
+Non è necessario toomanually eliminare connettori inutilizzate. Quando è in esecuzione un connettore, rimane attivo della connessione del servizio toohello. I connettori inutilizzati vengono contrassegnati come _inattivi_ e vengono rimossi dopo 10 giorni di inattività. Se si desidera toouninstall un connettore, disinstallare, tuttavia, il servizio connettore hello sia il servizio di aggiornamento hello dal server hello. Riavviare il servizio di hello remove toofully computer.
 
 ## <a name="automatic-updates"></a>Aggiornamenti automatici
 
-Azure AD offre aggiornamenti automatici per tutti i connettori da distribuire. Fino a quando il servizio di aggiornamento del connettore proxy di applicazione è in esecuzione, i connettori vengono aggiornati automaticamente. Se non viene visualizzato il servizio di aggiornamento del connettore nel server, è necessario [reinstallare il connettore](active-directory-application-proxy-enable.md) per ottenere gli aggiornamenti. 
+Azure AD fornisce aggiornamenti automatici per tutti i connettori di hello da distribuire. Fino a quando il servizio di aggiornamento del connettore Proxy dell'applicazione hello è in esecuzione, i connettori di aggiornano automaticamente. Se non viene visualizzato hello servizio di aggiornamento del connettore sul server, è necessario troppo[reinstallare il connettore](active-directory-application-proxy-enable.md) tooget eventuali aggiornamenti. 
 
-Se non si vuole attendere l'aggiornamento automatico del connettore, è possibile eseguire un aggiornamento manuale. Passare alla [pagina di download del connettore](https://download.msappproxy.net/subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/connector/download) nel server in cui si trova il connettore e selezionare **Download**. Grazie a questo processo viene avviato un aggiornamento del connettore locale. 
+Se non si desidera toowait per un connettore tooyour toocome di aggiornamento automatico, è possibile eseguire un aggiornamento manuale. Passare toohello [pagina di download del connettore](https://download.msappproxy.net/subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/connector/download) sul server di hello in cui il connettore si trova e selezionare **scaricare**. Questo processo avvia un aggiornamento per il connettore locale hello. 
 
-In caso di tenant con più connettori, gli aggiornamenti automatici vengono applicati a un connettore per volta in ogni gruppo, al fine di evitare tempo di inattività nell'ambiente in uso. 
+Per un tenant con più connettori, aggiornamenti automatici hello riferimento un connettore alla volta in ogni gruppo tooprevent dei tempi di inattività dell'ambiente. 
 
 Potrebbero verificarsi tempi di inattività quando viene aggiornato il connettore se:  
-- Si ha un solo connettore. Per evitare questo periodo di inattività e migliorare la disponibilità elevata, è consigliabile installare un altro connettore e [creare un gruppo di connettori](active-directory-application-proxy-connectors-azure-portal.md).  
-- Un connettore si trovava nel mezzo di una transazione quando è iniziato l'aggiornamento. Anche se la transazione iniziale viene persa, il browser dovrebbe ripetere automaticamente l'operazione. In caso contrario, è possibile aggiornare la pagina. Quando la richiesta viene inviata di nuovo, il traffico viene indirizzato a un connettore di backup.
+- Si ha un solo connettore. tooavoid questo periodo di inattività e migliorare la disponibilità elevata, si consiglia di installare un altro connettore e [creare un gruppo di connettori](active-directory-application-proxy-connectors-azure-portal.md).  
+- Un connettore è stato centro hello di una transazione all'inizio aggiornamento hello. Anche se la transazione iniziale hello viene persa, il browser deve automaticamente riprovare hello o è possibile aggiornare la pagina. Quando viene nuovamente inviata la richiesta di hello, traffico hello è indirizzato tooa connettore di backup.
 
 ## <a name="creating-connector-groups"></a>Creazione di gruppi di connettori
 
-I gruppi di connettori consentono di assegnare connettori specifici per gestire applicazioni specifiche. È possibile raggruppare una serie di connettori e quindi assegnare ogni applicazione a un gruppo. 
+Gruppi di connettori consentono di applicazioni specifiche di tooassign connettori specifici tooserve. È possibile raggruppare una serie di connettori e quindi assegnare ogni gruppo di applicazioni tooa. 
 
-I gruppi di connettori rendono più semplice gestire le distribuzioni di grandi dimensioni. Migliorano inoltre la latenza per i tenant che dispongono di applicazioni ospitate in diverse aree geografiche, poiché è possibile creare gruppi di connettori basati sulla posizione per gestire solo le applicazioni in locale. 
+Gruppi di connettori rendono più semplice toomanage grandi distribuzioni. Sono anche migliorare latenza per i tenant che hanno le applicazioni ospitate in aree diverse, in quanto è possibile creare gruppi di connettori basati sulla posizione tooserve locale solo applicazioni. 
 
-Per altre informazioni sui gruppi di connettori, vedere [Pubblicare applicazioni in reti e posizioni separate tramite i gruppi di connettori](active-directory-application-proxy-connectors-azure-portal.md).
+toolearn ulteriori informazioni sui gruppi di connettori, vedere [pubblicare le applicazioni su reti separate e percorsi con gruppi di connettori](active-directory-application-proxy-connectors-azure-portal.md).
 
 ## <a name="security-and-networking"></a>Sicurezza e rete
 
-I connettori possono essere installati in qualsiasi punto della rete che consenta loro di inviare richieste al servizio proxy dell'applicazione. È importante che il computer che esegue il connettore abbia anche accesso alle app. È possibile installare i connettori all'interno della rete aziendale o in una macchina virtuale che viene eseguita nel cloud. I connettori possono essere eseguiti in una zona demilitarizzata (DMZ), ma non è necessario poiché tutto il traffico è in uscita, in modo che la rete è protetta.
+I connettori possono essere installati in un punto qualsiasi rete hello che consenta toosend richieste toohello Proxy dell'applicazione servizio. L'aspetto importante è che hello nel computer che esegue il connettore hello anche è accesso tooyour app. È possibile installare i connettori all'interno della rete aziendale o in una macchina virtuale che viene eseguito nel cloud hello. I connettori possono essere eseguiti in una zona demilitarizzata (DMZ), ma non è necessario poiché tutto il traffico è in uscita, in modo che la rete è protetta.
 
-I connettori inviano le richieste soltanto in uscita. Il traffico in uscita viene inviato al servizio proxy applicazione e alle applicazioni pubblicate. Non è necessario aprire porte in ingresso perché il traffico scorre in entrambe le direzioni, dopo aver stabilito una sessione. Non è necessario configurare il bilanciamento del carico tra i connettori o configurare l'accesso in ingresso attraverso firewall. 
+I connettori inviano le richieste soltanto in uscita. il traffico in uscita Hello viene inviato al servizio Proxy applicazione toohello e toohello applicazioni pubblicate. Non è necessario tooopen porte in ingresso perché il traffico passa in entrambe le direzioni, una volta stabilita una sessione. Non hanno tooset di bilanciamento del carico tra i connettori di hello o configurare l'accesso in entrata attraverso i firewall. 
 
 Per maggiori informazioni sulla configurazione delle regole del firewall in uscita, vedere [Usare server proxy locali esistenti](application-proxy-working-with-proxy-servers.md).
 
-Usare lo [strumento per il test delle porte del connettore Proxy di applicazione Azure AD](https://aadap-portcheck.connectorporttest.msappproxy.net/) per verificare che il connettore possa raggiungere il servizio Proxy di applicazione. Assicurarsi almeno che l'area Stati Uniti centrali e l'area più vicina all'utente abbiano segni di spunta verdi. Tuttavia, la presenza di più segni di spunta verde indica una maggiore resilienza. 
+Hello utilizzare [Azure AD applicazione Proxy porte Test strumento connettore](https://aadap-portcheck.connectorporttest.msappproxy.net/) tooverify che il connettore può raggiungere il servizio di Proxy applicazione hello. Come minimo, assicurarsi che area Stati Uniti centro hello e hello area più vicina tooyou hanno tutti i segni di spunta verde. La presenza di più segni di spunta verdi indica una maggiore resilienza. 
 
 ## <a name="performance-and-scalability"></a>Prestazioni e scalabilità
 
-Anche se la scalabilità per il servizio proxy di applicazione è trasparente, è comunque un fattore per i connettori. È necessario disporre di connettori sufficienti per gestire il traffico di picco. Tuttavia, non è necessario configurare il bilanciamento del carico perché tutti i connettori all'interno di un gruppo di connettori eseguono automaticamente il bilanciamento del carico.
+Scala per il servizio Proxy di applicazione hello è trasparente, ma la scala è un fattore per i connettori. È necessario toohave di traffico sufficiente connettori toohandle punta. Tuttavia, non è necessario tooconfigure il bilanciamento del carico perché tutti i connettori all'interno di un gruppo di connettori automaticamente il bilanciamento del carico.
 
-Poiché i connettori sono senza stato, non vengono influenzati dal numero di utenti o sessioni. Dipendono invece dal numero di richieste e dalle dimensioni del payload. In un traffico Web standard, un computer medio può gestire circa duemila richieste al secondo. La capacità specifica dipende dalle esatte caratteristiche del computer. 
+Poiché i connettori sono senza stati, non sono influenzati dal numero di hello di utenti o le sessioni. In alternativa, rispondono toohello numero di richieste e le dimensioni del payload. In un traffico Web standard, un computer medio può gestire circa duemila richieste al secondo. capacità specifica Hello dipende dalle caratteristiche computer esatto hello. 
 
-Le prestazioni del connettore sono legate alla CPU e alla rete. Le prestazioni della CPU sono necessarie per la crittografia SSL e la decrittografia, mentre la rete è fondamentale per una connettività veloce alle applicazioni e al servizio online in Azure.
+prestazioni dei connettori Hello sono associata della CPU e rete. Le prestazioni della CPU sono necessaria per la crittografia SSL e la decrittografia, mentre la rete è importante tooget connettività veloce toohello ad applicazioni del servizio online hello in Azure.
 
-La memoria, al contrario, ha meno importanza per i connettori. Il servizio online si occupa di gran parte dell'elaborazione e di tutto il traffico non autenticato. Tutto ciò che può essere fatto nel cloud viene fatto nel cloud. 
+La memoria, al contrario, ha meno importanza per i connettori. servizio online Hello si occupa della maggior parte dell'elaborazione hello e tutto il traffico non autenticato. Tutti gli elementi che possono essere eseguiti nel cloud hello avviene nel cloud hello. 
 
-Un altro fattore che influenza le prestazioni è la qualità della connessione di rete tra i connettori, inclusi: 
+Un altro fattore che influisce sulle prestazioni è qualità hello delle reti hello tra connettori hello, tra cui: 
 
-* **Il servizio online**: connessioni lente o a elevata latenza al servizio proxy di applicazione in Azure influenzano le prestazioni del connettore. Per ottenere prestazioni ottimali, connettere l'organizzazione ad Azure con Express Route. In caso contrario, assicurarsi che il team di rete garantisca una gestione il più possibile efficiente delle connessioni ad Azure. 
-* **Applicazioni back-end:** in alcuni casi ci sono altri proxy tra il connettore e le applicazioni back-end che possono rallentare o impedire la connessione. Per risolvere questo scenario, aprire un browser dal server del connettore e tentare di accedere all'applicazione. Se si eseguono i connettori in Azure, ma le applicazioni sono locali, l'esperienza degli utenti potrebbe essere diversa da quella prevista.
-* **I controller di dominio:** se i connettori eseguono l'accesso SSO mediante la delega vincolata Kerberos, essi contattano i controller di dominio prima di inviare la richiesta al back-end. I connettori hanno una cache dei ticket Kerberos, ma in ambienti affollati la velocità di risposta dei controller di dominio può influenzare le prestazioni. Questa situazione è più comune per i connettori eseguiti in Azure, ma che comunicano con i controller di dominio locali. 
+* **servizio online Hello**: toohello rallentamento o ad alta latenza delle connessioni del servizio Proxy di applicazione delle prestazioni di connettore di Azure influenza hello. Per prestazioni ottimali hello, connettere tooAzure l'organizzazione con Express Route. Dispone in caso contrario, il team di rete assicurarsi che tooAzure le connessioni vengono gestite nel modo più efficiente possibile. 
+* **applicazioni back-end di Hello**: In alcuni casi, esistono altri proxy tra il connettore di hello e applicazioni back-end hello che possono rallentare o impedire le connessioni. tootroubleshoot questo scenario, aprire un browser dal server connettore hello e provare a un'applicazione hello tooaccess. Se si esegue connettori hello in Azure, ma applicazioni hello sono locali, l'esperienza di hello potrebbe non essere ciò che gli utenti si aspettano.
+* **i controller di dominio di Hello**: se i connettori di hello eseguono SSO mediante la delega vincolata Kerberos, contattano controller di dominio hello prima dell'invio di back-end di hello richiesta toohello. connettori Hello hanno una cache del ticket Kerberos, ma in un ambiente occupato i tempi di risposta hello hello dei controller di dominio può influire sulle prestazioni. Questa situazione è più comune per i connettori eseguiti in Azure, ma che comunicano con i controller di dominio locali. 
 
 Per maggiori informazioni sull'ottimizzazione della rete, vedere [Considerazioni relative alla topologia di rete quando si usa il proxy di applicazione di Azure Active Directory](application-proxy-network-topology-considerations.md).
 
 ## <a name="domain-joining"></a>Aggiunta al dominio
 
-I connettori possono essere eseguiti in un computer che non fa parte del dominio. È necessario tuttavia un computer appartenente al dominio se si sceglie di implementare un accesso Single Sign-On (SSO) per le applicazioni che usano l'autenticazione integrata di Windows (IWA). In questo caso i computer di connessione devono appartenere a un dominio che può eseguire la delega vincolata [Kerberos](https://web.mit.edu/kerberos) per conto degli utenti per le applicazioni pubblicate.
+I connettori possono essere eseguiti in un computer che non fa parte del dominio. Tuttavia, se si desidera single sign-on (SSO) tooapplications che utilizzano l'autenticazione integrata di Windows (IWA), è necessario un computer aggiunto al dominio. In questo caso, è necessario tooa aggiunti a un dominio che è possibile eseguire macchine connettore hello [Kerberos](https://web.mit.edu/kerberos) la delega vincolata per conto degli utenti hello per hello applicazioni pubblicate.
 
-I connettori possono anche essere aggiunti a domini o foreste con attendibilità parziale o a controller di dominio di sola lettura.
+Connettori possono anche essere unite in join toodomains o insiemi di strutture che hanno una relazione di trust parziale o controller di dominio solo tooread.
 
 ## <a name="connector-deployments-on-hardened-environments"></a>Distribuzione dei connettori in ambienti protetti
 
 Nella maggior parte dei casi la distribuzione dei connettori è molto semplice e non richiede una configurazione speciale. Esistono tuttavia alcune condizioni specifiche che devono essere considerate:
 
-* Le organizzazioni che limitano il traffico in uscita devono [aprire le porte necessarie](active-directory-application-proxy-enable.md#open-your-ports).
-* Per i computer conformi FIPS potrebbe essere necessario modificare la configurazione per consentire ai processi connettore di generare e archiviare un certificato.
-* Le organizzazioni, che bloccano il proprio ambiente in base ai processi che inviano le richieste di rete, devono assicurarsi che siano abilitati entrambi i servizi connettore per accedere a tutte le porte e agli indirizzi IP necessari.
-* In alcuni casi il proxy di inoltro in uscita può interrompere l'autenticazione bidirezionale con certificato e non consentire la comunicazione.
+* Le organizzazioni che consentono di limitare il traffico in uscita hello devono [aprire le porte richieste](active-directory-application-proxy-enable.md#open-your-ports).
+* Macchine conformi a FIPS potrebbero essere necessario toochange tooallow loro configurazione connettore processi toogenerate hello e archiviare un certificato.
+* Le organizzazioni che blocca l'ambiente in base a processi hello hello tale problema le richieste di rete possono toomake assicurarsi che entrambi i servizi del connettore sono porte abilitato tooaccess tutte le necessarie e gli indirizzi IP.
+* In alcuni casi, il proxy di inoltro in uscita potrebbe interrompere l'autenticazione del certificato bidirezionale hello e causare hello toofail di comunicazione.
 
 ## <a name="connector-authentication"></a>Autenticazione del connettore
 
-Per garantire un servizio sicuro, i connettori devono eseguire l'autenticazione verso il servizio e il servizio deve eseguire l'autenticazione verso il connettore. Questa autenticazione viene eseguita usando i certificati client e server quando i connettori avviano la connessione. In questo modo il nome utente e la password dell'amministratore non sono archiviati sul computer di connessione.
+servizio hello è tooauthenticate verso il connettore hello tooprovide un servizio protetto, i connettori sono tooauthenticate verso il servizio di hello. Questa autenticazione viene eseguita utilizzando i certificati client e server quando i connettori di hello avviano connessione hello. Nome utente e password dell'amministratore di hello in questo modo non vengono archiviate nel computer di connettore hello.
 
-I certificati utilizzati sono specifici per il servizio proxy applicazione. Vengono creati durante la registrazione iniziale e rinnovati automaticamente dai connettori ogni due mesi. 
+certificati Hello utilizzati sono toohello specifico del servizio Proxy di applicazione. Sono creati durante la registrazione iniziale hello e automaticamente rinnovato dai connettori hello ogni due mesi. 
 
-Se un connettore non viene connesso al servizio per molti mesi, i relativi certificati potrebbero non essere più aggiornati. In questo caso, disinstallare e reinstallare il connettore per attivare la registrazione. È possibile eseguire i seguenti comandi di PowerShell:
+Se non è connesso un connettore servizio toohello da diversi mesi, i certificati potrebbe non essere aggiornato. In questo caso, disinstallare e reinstallare registrazione tootrigger del connettore hello. È possibile eseguire i seguenti comandi PowerShell hello:
 
 ```
 Import-module AppProxyPSModule
 Register-AppProxyConnector
 ```
 
-## <a name="under-the-hood"></a>Dietro le quinte
+## <a name="under-hello-hood"></a>Quinte hello
 
-I connettori sono basati su proxy di applicazione Web di Windows Server, per cui condividono la maggior parte degli strumenti di gestione, inclusi i registri eventi di Windows
+I connettori sono basati su Proxy applicazione Web di Windows Server, pertanto hanno la maggior parte delle hello stessi strumenti di gestione, inclusi i registri eventi di Windows
 
- ![Gestire i registri eventi con il Visualizzatore eventi](./media/application-proxy-understand-connectors/event-view-window.png)
+ ![Gestire i registri eventi con hello Visualizzatore eventi](./media/application-proxy-understand-connectors/event-view-window.png)
 
 e con i contatori delle prestazioni di Windows. 
 
- ![Aggiungere contatori al connettore con Performance Monitor](./media/application-proxy-understand-connectors/performance-monitor.png)
+ ![Aggiungere contatori toohello connettore con hello Performance Monitor](./media/application-proxy-understand-connectors/performance-monitor.png)
 
-I connettori hanno sia log di amministrazione che log di sessione. I log di amministrazione includono gli eventi principali e i relativi errori. I log di sessione includono tutte le transazioni e i relativi dettagli di elaborazione. 
+connettori Hello dispongono di amministrazione sia sessione di log. registri amministrativi Hello includono gli eventi principali e gli errori. registri di sessione Hello includono tutte le transazioni hello e i relativi dettagli di elaborazione. 
 
-Per visualizzare i registri, passare al Visualizzatore eventi, aprire il menu **Visualizza** e abilitare **Visualizza registri analitici e di debug**. È necessario abilitarli per avviare la raccolta degli eventi. Questi log non appaiono nel proxy applicazione Web in Windows Server 2012 R2, in quanto i connettori sono basati su una versione più recente.
+log hello toosee, passare toohello Visualizzatore eventi, aprire hello **vista** menu e abilitare **Mostra analitica e registri di debug**. Quindi, abilitarli toostart la raccolta di eventi. Questi log non appaiono nel Proxy applicazione Web in Windows Server 2012 R2, i connettori di hello sono basati su una versione più recente.
 
-È possibile esaminare lo stato del servizio nella finestra Servizi. Il connettore è costituito da due servizi di Windows, ovvero il connettore stesso e il programma di aggiornamento. Entrambi devono essere eseguiti costantemente.
+È possibile esaminare lo stato di hello del servizio hello nella finestra Servizi hello. connettore Hello è costituito da due servizi di Windows: connettore hello e aggiornamento hello. Entrambi gli elementi devono eseguire tutto il tempo hello.
 
  ![Servizi Azure AD locali](./media/application-proxy-understand-connectors/aad-connector-services.png)
 
@@ -148,5 +148,5 @@ Per visualizzare i registri, passare al Visualizzatore eventi, aprire il menu **
 * [Pubblicare applicazioni in reti e posizioni separate tramite i gruppi di connettori](active-directory-application-proxy-connectors-azure-portal.md)
 * [Usare server proxy locali esistenti](application-proxy-working-with-proxy-servers.md)
 * [Risolvere i problemi di errore del proxy di applicazione e del connettore](active-directory-application-proxy-troubleshoot.md)
-* [Come eseguire un'installazione invisibile all'utente del connettore del proxy di applicazione di Azure AD](active-directory-application-proxy-silent-installation.md)
+* [Come toosilently installa hello connettore del Proxy dell'applicazione AD Azure](active-directory-application-proxy-silent-installation.md)
 

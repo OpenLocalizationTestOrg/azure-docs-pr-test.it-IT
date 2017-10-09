@@ -1,6 +1,6 @@
 ---
-title: Come usare Azure Mobile Apps SDK per Android | Microsoft Docs
-description: Come usare Azure Mobile Apps SDK per Android
+title: aaaHow toouse hello Azure Mobile App SDK per Android | Documenti Microsoft
+description: Come toouse hello App Mobile di Azure SDK per Android
 services: app-service\mobile
 documentationcenter: android
 author: ggailey777
@@ -13,46 +13,46 @@ ms.devlang: java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: glenga
-ms.openlocfilehash: 4b15d024ca6d5bbafe83d321a64021aecd78c4a8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 56eb73c4e1703d69877be499a09fc2130f1d68e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-azure-mobile-apps-sdk-for-android"></a>Come usare Azure Mobile Apps SDK per Android
+# <a name="how-toouse-hello-azure-mobile-apps-sdk-for-android"></a>Come toouse hello App Mobile di Azure SDK per Android
 
-Questa guida illustra come usare Android SDK del client per le App per dispositivi mobili di Azure per implementare scenari comuni, ad esempio:
+Questa guida viene spiegato come toouse hello client SDK per Android per scenari comuni tooimplement App per dispositivi mobili, ad esempio:
 
 * L'esecuzione di query sui dati, come inserimento, aggiornamento ed eliminazione.
 * L'autenticazione.
 * La gestione degli errori.
-* La personalizzazione del client.
+* Personalizzazione client hello.
 
-Questa guida descrive Android SDK lato client.  Per altre informazioni sugli SDK lato server per le app per dispositivi mobili, vedere [Usare l'SDK del server back-end .NET][10] o [Come usare Node.js SDK back-end][11].
+Questa guida è incentrata su hello sul lato client Android SDK.  toolearn hello SDK lato server per le App per dispositivi mobili, vedere altre informazioni sulle [utilizzano back-end .NET SDK] [ 10] o [come toouse hello back-end Node.js SDK] [ 11].
 
 ## <a name="reference-documentation"></a>Documentazione di riferimento
 
-È possibile trovare il [riferimento API Javadocs][12] per la libreria client Android in GitHub.
+È possibile trovare hello [riferimento all'API Javadocs] [ 12] per la libreria client per Android hello su GitHub.
 
 ## <a name="supported-platforms"></a>Piattaforme supportate
 
-Azure Mobile Apps SDK per Android supporta API di livello da 19 a 24 (da KitKat a Nougat) per i fattori di forma di telefoni e tablet.  L'autenticazione in particolare utilizza un approccio comune ai framework Web per raccogliere le credenziali.  L'autenticazione basata sul flusso server non funziona con dispositivi con fattore di forma piccolo, ad esempio gli orologi.
+le applicazioni mobili di Azure SDK per Android Hello supporta livelli API 19 e 24 (KitKat tramite Nougat) per fattori di forma tablet e telefoni.  L'autenticazione, in particolare, utilizza delle credenziali toogather approccio framework web comuni.  L'autenticazione basata sul flusso server non funziona con dispositivi con fattore di forma piccolo, ad esempio gli orologi.
 
 ## <a name="setup-and-prerequisites"></a>Installazione e prerequisiti
 
-Completare l' [esercitazione introduttiva sulle App per dispositivi mobili di Azure](app-service-mobile-android-get-started.md) .  Questa attività garantisce che vengano soddisfatti tutti i prerequisiti per lo sviluppo di App per dispositivi mobili di Azure.  L'esercitazione introduttiva è utile per configurare il proprio account e creare il primo back-end per dispositivi mobili.
+Hello completo [avvio rapido di applicazioni per dispositivi mobili](app-service-mobile-android-get-started.md) esercitazione.  Questa attività garantisce che vengano soddisfatti tutti i prerequisiti per lo sviluppo di App per dispositivi mobili di Azure.  Guida introduttiva Hello consente inoltre di configurare l'account e creare il prima App per dispositivi mobili di back-end.
 
-Se si decide di non completare l'esercitazione introduttiva, completare le attività seguenti:
+Se si decide di non toocomplete hello conosca, completare hello seguenti attività:
 
-* [creare un back-end dell'app per dispositivi mobili][13] da usare con l'app Android.
-* In Android Studio [aggiornare i file di compilazione Gradle](#gradle-build).
+* [creare un back-end dell'App Mobile] [ 13] toouse con l'app Android.
+* In Android Studio [compilare i file di aggiornamento hello Gradle](#gradle-build).
 * [Abilitare l'autorizzazione per Internet](#enable-internet).
 
-### <a name="gradle-build"></a>Aggiornare il file di compilazione Gradle
+### <a name="gradle-build"></a>Aggiornare i file di compilazione Gradle hello
 
 Modificare entrambi i file **build.gradle** :
 
-1. Aggiungere il codice seguente al livello *Project* del file **build.gradle** all'interno del tag *buildscript*:
+1. Aggiungere questo codice toohello *progetto* livello **gradle** file all'interno di hello *buildscript* tag:
 
     ```text
     buildscript {
@@ -62,17 +62,17 @@ Modificare entrambi i file **build.gradle** :
     }
     ```
 
-2. Aggiungere il codice seguente al livello *Module app* del file **build.gradle** all'interno del tag *dependencies*:
+2. Aggiungere questo codice toohello *modulo app* livello **gradle** file all'interno di hello *dipendenze* tag:
 
     ```text
     compile 'com.microsoft.azure:azure-mobile-android:3.3.0'
     ```
 
-    La versione più recente è la 3.3.0. Le versioni supportate sono elencate [su bintray][14].
+    Attualmente la versione più recente di hello è 3.3.0. sono elencate le versioni supportata di Hello [su bintray][14].
 
 ### <a name="enable-internet"></a>Abilitare l'autorizzazione per Internet
 
-Per accedere ad Azure, è necessario abilitare l'autorizzazione INTERNET per l'app. Se non è già abilitata, aggiungere la riga di codice seguente al file **AndroidManifest.xml** :
+tooaccess Azure, l'applicazione deve disporre di autorizzazioni INTERNET hello abilitato. Se non è già abilitato, aggiungere hello successiva riga di codice tooyour **AndroidManifest.xml** file:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -80,26 +80,26 @@ Per accedere ad Azure, è necessario abilitare l'autorizzazione INTERNET per l'a
 
 ## <a name="create-a-client-connection"></a>Creare una connessione client
 
-App per dispositivi mobili di Azure fornisce quattro funzioni all'applicazione per dispositivi mobili:
+Azure App per dispositivi mobili sono disponibili quattro funzioni tooyour applicazioni per dispositivi mobili:
 
 * Accesso ai dati e sincronizzazione offline con un servizio di App per dispositivi mobili di Azure.
-* Chiamata ad API personalizzate scritte con Azure Mobile Apps Server SDK.
+* Chiamare le API personalizzate scritte con hello Azure Mobile App Server SDK.
 * Autenticazione con autenticazione e autorizzazione nel servizio app di Azure.
 * Registrazione di notifiche push con Hub di notifica.
 
-Per ogni funzione prima di tutto è necessario creare un oggetto `MobileServiceClient`.  È consigliabile creare un solo oggetto `MobileServiceClient` nel client per dispositivi mobili, ovvero il modello deve essere singleton.  Per creare un oggetto `MobileServiceClient`:
+Per ogni funzione prima di tutto è necessario creare un oggetto `MobileServiceClient`.  È consigliabile creare un solo oggetto `MobileServiceClient` nel client per dispositivi mobili, ovvero il modello deve essere singleton.  toocreate un `MobileServiceClient` oggetto:
 
 ```java
 MobileServiceClient mClient = new MobileServiceClient(
-    "<MobileAppUrl>",       // Replace with the Site URL
+    "<MobileAppUrl>",       // Replace with hello Site URL
     this);                  // Your application Context
 ```
 
-`<MobileAppUrl>` è una stringa o un oggetto URL che punta al back-end per dispositivi mobili.  Se si usa il servizio app di Azure per ospitare il back-end per dispositivi mobili, verificare di usare la versione `https://` sicura dell'URL.
+Hello `<MobileAppUrl>` è una stringa o un oggetto di URL che punta back-end mobile tooyour.  Se si utilizza Azure App Service toohost back-end per dispositivi mobili, quindi accertarsi di utilizzare hello sicura `https://` versione di hello URL.
 
-Per il client è anche necessario l'accesso all'attività o al contesto (il parametro `this` nell'esempio).  La costruzione MobileServiceClient deve avvenire nel metodo `onCreate()` dell'attività a cui si fa riferimento nel file `AndroidManifest.xml`.
+Hello client inoltre richiede accesso toohello attività o il contesto - hello `this` parametro nell'esempio hello.  Hello MobileServiceClient costruzione deve verificarsi all'interno di hello `onCreate()` metodo dell'attività a cui fa riferimento a hello hello `AndroidManifest.xml` file.
 
-Come procedura consigliata, è opportuno astrarre le comunicazioni del server nella relativa classe (modello singleton).  In questo caso, è consigliabile passare l'attività nel costruttore per configurare il servizio in modo appropriato.  Ad esempio:
+Come procedura consigliata, è opportuno astrarre le comunicazioni del server nella relativa classe (modello singleton).  In questo caso, è necessario passare hello attività all'interno di hello costruttore tooappropriately configurare servizio hello.  ad esempio:
 
 ```java
 package com.example.appname.services;
@@ -141,21 +141,21 @@ public AzureServiceAdapter {
 }
 ```
 
-È ora possibile chiamare `AzureServiceAdapter.Initialize(this);` nel metodo `onCreate()` dell'attività principale.  Tutti gli altri metodi che hanno necessità di accedere al client usano `AzureServiceAdapter.getInstance();` per ottenere un riferimento all'adattatore del servizio.
+È ora possibile chiamare `AzureServiceAdapter.Initialize(this);` in hello `onCreate()` metodo dell'attività principale.  Utilizzano altri metodi che necessitano di client di accesso toohello `AzureServiceAdapter.getInstance();` tooobtain un adattatore del servizio toohello di riferimento.
 
 ## <a name="data-operations"></a>Operazioni dati
 
-Azure Mobile Apps SDK fondamentalmente fornisce accesso ai dati archiviati in SQL Azure nel back-end dell'app per dispositivi mobili.  È possibile accedere a questi dati usando classi fortemente tipizzate (preferibile) o query non tipizzate (non consigliato).  La maggior parte di questa sezione illustra l'uso di classi fortemente tipizzate.
+core Hello di hello App Mobile di Azure SDK è tooprovide toodata di accesso archiviato in SQL Azure nel back-end di hello App per dispositivi mobili.  È possibile accedere a questi dati usando classi fortemente tipizzate (preferibile) o query non tipizzate (non consigliato).  bulk Hello in questa sezione riguarda l'utilizzo di classi fortemente tipizzate.
 
 ### <a name="define-client-data-classes"></a>Definire le classi di dati client
 
-Per accedere ai dati dalle tabelle di SQL Azure, definire le classi di dati client che corrispondono alle tabelle nel back-end dell'app per dispositivi mobili. Negli esempi di questo argomento si presuppone l'uso di una tabella denominata **MyDataTable** con le colonne seguenti:
+tooaccess dati dalle tabelle di SQL Azure, definire classi di dati client corrispondenti tabelle toohello nel back-end di hello App per dispositivi mobili. Negli esempi in questo argomento si presuppone una tabella denominata **MyDataTable**, che dispone di hello seguenti colonne:
 
 * id
 * text
 * complete
 
-L'oggetto lato client tipizzato corrispondente si trova in un file denominato **MyDataTable.java**:
+Hello oggetto sul lato client tipizzato corrispondente si trova in un file denominato **MyDataTable.java**:
 
 ```java
 public class ToDoItem {
@@ -165,40 +165,40 @@ public class ToDoItem {
 }
 ```
 
-Aggiungere i metodi getter e setter per ogni campo aggiunto.  Se la propria tabella di SQL Azure include più colonne, aggiungere i campi corrispondenti a questa classe.  Se ad esempio l'oggetto di trasferimento dati (DTO) include una colonna Priority di tipo Integer, è consigliabile aggiungere questo campo insieme ai relativi metodi getter e setter:
+Aggiungere i metodi getter e setter per ogni campo aggiunto.  Se la tabella di SQL Azure contiene più colonne, è possibile aggiungere classe toothis campi corrispondenti di hello.  Ad esempio, se hello DTO (oggetto di trasferimento di dati) è una colonna di tipo integer priorità, quindi è possibile aggiungere questo campo, insieme ai relativi metodi get e set:
 
 ```java
 private Integer priority;
 
 /**
-* Returns the item priority
+* Returns hello item priority
 */
 public Integer getPriority() {
     return mPriority;
 }
 
 /**
-* Sets the item priority
+* Sets hello item priority
 *
 * @param priority
-*            priority to set
+*            priority tooset
 */
 public final void setPriority(Integer priority) {
     mPriority = priority;
 }
 ```
 
-Per informazioni su come creare altre tabelle nel back-end delle app per dispositivi mobili, vedere [Procedura: Definire un controller tabelle][15] (back-end .NET) o [Procedura: Definire le tabelle con uno schema dinamico][16] (back-end Node.js).
+toolearn toocreate tabelle aggiuntive nel back-end App per dispositivi mobili, vedere [procedura: definire un controller di tabella] [ 15] (back-end .NET) o [definire tabelle utilizzando uno Schema dinamico] [ 16] (Back-end di Node. js).
 
-Una tabella del back-end di App per dispositivi mobili di Azure definisce cinque campi speciali, quattro dei quali disponibili per i client:
+Una tabella di back-end delle App mobili di Azure definisce cinque campi speciali, quattro delle quali sono disponibili tooclients:
 
-* `String id`: ID univoco globale per il record.  Come procedura consigliata, impostare l'ID come rappresentazione di stringa di un oggetto [UUID][17].
-* `DateTimeOffset updatedAt`: data/ora dell'ultimo aggiornamento.  Il campo updatedAt viene impostato dal server e non deve mai essere impostato dal codice client.
-* `DateTimeOffset createdAt`: data/ora di creazione dell'oggetto.  Il campo createdAt viene impostato dal server e non deve mai essere impostato dal codice client.
-* `byte[] version`: rappresentata in genere come stringa, anche la versione viene impostata dal server.
-* `boolean deleted`: indica che il record è stato eliminato, ma non ancora definitivamente.  Non usare `deleted` come proprietà nella classe.
+* `String id`: ID univoco globale per il record di hello hello.  Come procedura consigliata, assicurarsi di rappresentazione di stringa di hello hello id di un [UUID] [ 17] oggetto.
+* `DateTimeOffset updatedAt`: hello data/ora dell'ultimo aggiornamento hello.  campo updatedAt Hello è impostato dal server hello e non deve essere mai impostata dal codice client.
+* `DateTimeOffset createdAt`: hello data/ora è stato creato l'oggetto hello.  campo createdAt Hello è impostato dal server hello e non deve essere mai impostata dal codice client.
+* `byte[] version`: In genere è rappresentato come stringa, versione di hello anche viene impostato dal server hello.
+* `boolean deleted`: Indica che i record di hello è stato eliminato ma non ancora eliminati.  Non usare `deleted` come proprietà nella classe.
 
-Il campo `id` è obbligatorio.  I campi `updatedAt` e `version` vengono usati per la sincronizzazione offline, rispettivamente per la sincronizzazione incrementale e per la risoluzione dei conflitti.  Il campo `createdAt` è un campo di riferimento e non viene usato dal client.  I nomi sono nomi delle proprietà usati per la trasmissione in rete e non sono modificabili.  È tuttavia possibile creare un mapping tra l'oggetto e tali nomi usando la libreria [gson][3].  ad esempio:
+Hello `id` campo è obbligatorio.  Hello `updatedAt` campo e `version` campo vengono utilizzati per la sincronizzazione non in linea (per la risoluzione dei conflitti e di sincronizzazione incrementale rispettivamente).  Hello `createdAt` campo è un campo di riferimento e non viene utilizzato dal client hello.  i nomi di Hello "in transito" come nome di proprietà hello e non sono modificabili.  Tuttavia, è possibile creare un mapping tra l'oggetto e hello "in transito" nomi utilizzando hello [gson] [ 3] libreria.  ad esempio:
 
 ```java
 package com.example.zumoappname;
@@ -258,7 +258,7 @@ public class ToDoItem
 
 ### <a name="create-a-table-reference"></a>Creare un riferimento alla tabella
 
-Per accedere a una tabella, creare prima di tutto un oggetto [MobileServiceTable][8] chiamando il metodo **getTable** su [MobileServiceClient][9].  Questo metodo presenta due overload:
+tooaccess una tabella, creare innanzitutto un [MobileServiceTable] [ 8] oggetto chiamante hello **getTable** metodo hello [MobileServiceClient][9].  Questo metodo presenta due overload:
 
 ```java
 public class MobileServiceClient {
@@ -267,13 +267,13 @@ public class MobileServiceClient {
 }
 ```
 
-Nel codice seguente **mClient** è un riferimento all'oggetto MobileServiceClient.  Il primo overload viene usato quando il nome della classe e il nome della tabella sono identici ed è quello usato nella guida introduttiva:
+Nel seguente codice, hello **mClient** è un oggetto MobileServiceClient tooyour di riferimento.  Hello primo overload viene utilizzato in cui il nome di classe hello e nome della tabella hello sono hello stesso e hello uno utilizzato nella Guida introduttiva hello:
 
 ```java
 MobileServiceTable<ToDoItem> mToDoTable = mClient.getTable(ToDoItem.class);
 ```
 
-Il secondo overload viene usato quando il nome della tabella è diverso da quello della classe: il primo parametro è il nome della tabella.
+Hello secondo overload viene utilizzato il nome di tabella hello è diverso dal nome di classe hello: hello primo parametro è il nome di tabella hello.
 
 ```java
 MobileServiceTable<ToDoItem> mToDoTable = mClient.getTable("ToDoItemBackup", ToDoItem.class);
@@ -281,31 +281,31 @@ MobileServiceTable<ToDoItem> mToDoTable = mClient.getTable("ToDoItemBackup", ToD
 
 ## <a name="query"></a>Eseguire una query su una tabella del back-end
 
-Ottenere prima di tutto un riferimento alla tabella.  Eseguire quindi una query sul riferimento alla tabella.  Una query è qualsiasi combinazione di:
+Ottenere prima di tutto un riferimento alla tabella.  Eseguire una query in riferimento alla tabella hello.  Una query è qualsiasi combinazione di:
 
 * Una [clausola di filtro](#filtering) `.where()`.
 * Una [clausola di ordinamento](#sorting) `.orderBy()`.
 * Una [clausola di selezione campo](#selection) `.select()`.
 * `.skip()` e `.top()` per i [risultati di paging](#paging).
 
-Le clausole devono essere presentate nell'ordine precedente.
+clausole Hello devono essere presentate in hello ordine precedente.
 
 ### <a name="filter"></a> Applicazione di filtri ai risultati
 
-Il formato generale di una query è:
+Hello forma generale di una query è:
 
 ```java
 List<MyDataTable> results = mDataTable
     // More filters here
     .execute()          // Returns a ListenableFuture<E>
-    .get()              // Converts the async into a sync result
+    .get()              // Converts hello async into a sync result
 ```
 
-L'esempio precedente restituisce tutti i risultati, fino alle dimensioni di pagina massime impostate dal server.  Il metodo `.execute()` esegue la query sul back-end.  La query viene convertita in una query [OData v3][19] prima della trasmissione al back-end di App per dispositivi mobili.  Alla ricezione, il back-end di App per dispositivi mobili converte la query in un'istruzione SQL prima di eseguirla nell'istanza di SQL Azure.  Poiché l'attività di rete richiede tempo, il metodo `.execute()` restituisce [`ListenableFuture<E>`][18].
+Hello esempio precedente restituisce tutti i risultati (le dimensioni massime della pagina toohello impostato dal server hello).  Hello `.execute()` metodo esegue query hello sul back-end hello.  query Hello è convertito tooan [OData v3] [ 19] query prima di back-end di trasmissione toohello App per dispositivi mobili.  Al momento della ricezione, back-end App per dispositivi mobili hello converte query hello in un'istruzione SQL prima dell'esecuzione nell'istanza di SQL Azure hello.  Poiché l'attività di rete può richiedere tempo, hello `.execute()` metodo restituisce un [ `ListenableFuture<E>` ] [ 18].
 
 ### <a name="filtering"></a>Filtrare i dati restituiti
 
-L'esecuzione della query seguente restituisce tutti gli elementi della tabella **ToDoItem** in cui **complete** è uguale a **false**.
+Hello dopo l'esecuzione di query restituisce tutti gli elementi da hello **ToDoItem** tabella in cui **completo** è uguale a **false**.
 
 ```java
 List<ToDoItem> result = mToDoTable
@@ -315,11 +315,11 @@ List<ToDoItem> result = mToDoTable
     .get();
 ```
 
-**mToDoTable** è il riferimento alla tabella di Servizi mobili creata in precedenza.
+**mToDoTable** hello riferimento toohello servizio mobile tabella creata in precedenza.
 
-Definire un filtro con la chiamata al metodo **where** sul riferimento alla tabella. Il metodo **where** è seguito da un metodo **field**, seguito a sua volta da un metodo che specifica il predicato logico. I possibili metodi di predicato includono **eq** (uguale a), **ne** (non uguale a), **gt** (maggiore di), **ge** (maggiore o uguale a), **lt** (minore di), **le** (minore o uguale a). Questi metodi consentono di confrontare campi numerici e campi stringa con valori specifici,
+Definire un filtro utilizzando hello **dove** chiamata al metodo nel riferimento alla tabella hello. Hello **in** metodo è seguito da un **campo** metodo seguito da un metodo che specifica hello logico predicato. I possibili metodi di predicato includono **eq** (uguale a), **ne** (non uguale a), **gt** (maggiore di), **ge** (maggiore o uguale a), **lt** (minore di), **le** (minore o uguale a). Questi metodi consentono di confrontare numero e i valori toospecific i campi stringa.
 
-ad esempio filtrare in base alle date. I metodi seguenti consentono di confrontare l'intero campo data o parti della data: **year**, **month**, **day**, **hour**, **minute** e **second**. L'esempio seguente aggiunge un filtro per gli elementi la cui *data di scadenza* (due) è uguale a 2013.
+ad esempio filtrare in base alle date. Hello metodi seguenti consentono di confrontare il campo di data completa hello o parti di data hello: **anno**, **mese**, **giorno**, **ora**, **minuto**, e **secondo**. esempio Hello aggiunge un filtro per gli elementi il cui *data di scadenza* 2013 è uguale.
 
 ```java
 List<ToDoItem> results = MToDoTable
@@ -329,7 +329,7 @@ List<ToDoItem> results = MToDoTable
     .get();
 ```
 
-I metodi seguenti supportano filtri complessi sui campi di tipo stringa: **startsWith**, **endsWith**, **concat**, **subString**, **indexOf**, **replace**, **toLower**, **toUpper**, **trim** e **length**. L'esempio seguente filtra le righe della tabella in cui la colonna *text* inizia con "PRI0".
+Hello metodi seguenti supportano i filtri complessi nei campi stringa: **startsWith**, **endsWith**, **concat**, **sottostringa**, **indexOf**, **sostituire**, **toLower**, **toUpper**, **trim**, e  **lunghezza**. Hello seguendo i filtri di esempio per le righe della tabella in cui hello *testo* colonna inizia con "PRI0".
 
 ```java
 List<ToDoItem> results = mToDoTable
@@ -339,7 +339,7 @@ List<ToDoItem> results = mToDoTable
     .get();
 ```
 
-I metodi operatore seguenti sono supportati sui campi numerici: **add**, **sub**, **mul**, **div**, **mod**, **floor**, **ceiling** e **round**. L'esempio seguente filtra le righe della tabella in cui il valore di **duration** è un numero pari.
+Hello metodi degli operatori seguenti è supportato nei campi numero: **aggiungere**, **sub**, **mul**, **div**, **mod**, **floor**, **ceiling**, e **arrotondare**. Hello seguendo i filtri di esempio per le righe della tabella in cui hello **durata** è un numero pari.
 
 ```java
 List<ToDoItem> results = mToDoTable
@@ -349,7 +349,7 @@ List<ToDoItem> results = mToDoTable
     .get();
 ```
 
-È possibile combinare i predicati con questi metodi logici: **and**, **or** e **not**. L'esempio seguente combina due degli esempi precedenti.
+È possibile combinare i predicati con questi metodi logici: **and**, **or** e **not**. Hello di esempio seguente unisce due precedenti esempi hello.
 
 ```java
 List<ToDoItem> results = mToDoTable
@@ -373,11 +373,11 @@ List<ToDoItem> results = mToDoTable
     .execute().get();
 ```
 
-Per una descrizione più dettagliata ed esempi di filtro, vedere [Exploring the richness of the Android client query model][20] (Analisi delle funzionalità complesse disponibili nel modello di query client per Android).
+Per ulteriori informazioni ed esempi di filtro, vedere [esplorazione ricchezza hello del modello di query client Android hello][20].
 
 ### <a name="sorting"></a>Ordinare i dati restituiti
 
-Il codice di esempio seguente restituisce tutti gli elementi di una tabella di oggetti **ToDoItems** elencati in ordine crescente in base al campo *text* . *mToDoTable* è il riferimento alla tabella del back-end creata in precedenza.
+Hello codice seguente restituisce tutti gli elementi di una tabella **ToDoItems** disposti in ordine crescente da hello *testo* campo. *mToDoTable* hello riferimento toohello back-end tabella creata in precedenza è:
 
 ```java
 List<ToDoItem> results = mToDoTable
@@ -386,11 +386,11 @@ List<ToDoItem> results = mToDoTable
     .get();
 ```
 
-Il primo parametro del metodo **orderBy** è una stringa uguale al nome del campo in base al quale eseguire l'ordinamento. Il secondo parametro usa l'enumerazione **QueryOrder** per specificare l'ordinamento crescente o decrescente.  Se per il filtro si usa il metodo ***where***, è necessario chiamare il metodo ***where*** prima del metodo ***orderBy***.
+primo parametro di hello Hello **orderBy** metodo è un nome di toohello uguale di stringa del campo hello nella quale toosort. secondo parametro Hello utilizza hello **QueryOrder** enumerazione toospecify se toosort crescente o decrescente.  Se si applica un filtro utilizzando hello ***in*** (metodo), hello ***in*** metodo deve essere chiamato prima di hello ***orderBy*** metodo.
 
 ### <a name="selection"></a>Selezionare colonne specifiche
 
-Il codice seguente illustra come restituire tutti gli elementi di una tabella di oggetti **ToDoItems**, visualizzando però solo i campi **complete** e **text**. **mToDoTable** è il riferimento alla tabella del back-end creata in precedenza.
+Hello codice seguente viene illustrato come tooreturn tutti gli elementi di una tabella **ToDoItems**, ma visualizza solo hello **completo** e **testo** campi. **mToDoTable** hello riferimento toohello back-end tabella creata in precedenza.
 
 ```java
 List<ToDoItemNarrow> result = mToDoTable
@@ -399,13 +399,13 @@ List<ToDoItemNarrow> result = mToDoTable
     .get();
 ```
 
-I parametri della funzione select sono i nomi in formato stringa delle colonne della tabella che si vuole restituire.  Il metodo **select** deve seguire metodi come **where** e **orderBy**. Può essere seguito da metodi di paging come **skip** e **top**.
+funzione di selezione di Hello parametri toohello sono nomi di stringa hello hello colonna di tabella che si desidera tooreturn.  Hello **selezionare** metodo richiede metodi toofollow come **in** e **orderBy**. Può essere seguito da metodi di paging come **skip** e **top**.
 
 ### <a name="paging"></a>Restituire i dati in pagine
 
-I dati vengono **SEMPRE** restituiti in pagine.  Il numero massimo di record restituiti viene impostato dal server.  Se il client richiede più record, il server restituisce il numero massimo di record.  Per impostazione predefinita, le dimensioni di pagina massime nel server sono pari a 50 record.
+I dati vengono **SEMPRE** restituiti in pagine.  numero massimo di Hello di record restituito viene impostato dal server hello.  Se il client di hello richiede più record, quindi server hello restituisce hello numero massimo di record.  Per impostazione predefinita, la dimensione massima della pagina hello sul server di hello è 50 record.
 
-Il primo esempio illustra come selezionare i primi cinque elementi di una tabella. La query restituisce gli elementi di una tabella di oggetti **ToDoItems**. **mToDoTable** è il riferimento alla tabella del back-end creata in precedenza.
+Hello primo esempio viene illustrato come tooselect hello primi cinque elementi da una tabella. query Hello restituisce gli elementi di hello da una tabella di **ToDoItems**. **mToDoTable** hello riferimento toohello back-end tabella creata in precedenza è:
 
 ```java
 List<ToDoItem> result = mToDoTable
@@ -414,7 +414,7 @@ List<ToDoItem> result = mToDoTable
     .get();
 ```
 
-Ecco una query che ignora i primi cinque elementi e quindi restituisce i cinque successivi:
+Ecco una query che ignora hello primi cinque elementi e quindi restituisce hello cinque Avanti:
 
 ```java
 List<ToDoItem> result = mToDoTable
@@ -423,7 +423,7 @@ List<ToDoItem> result = mToDoTable
     .get();
 ```
 
-Per ottenere tutti i record in una tabella, implementare il codice per scorrere tutte le pagine:
+Se si desiderano tooget tutti i record in una tabella, è possibile implementare codice tooiterate su tutte le pagine:
 
 ```java
 List<MyDataModel> results = new List<MyDataModel>();
@@ -440,14 +440,14 @@ do {
 } while (nResults > 0);
 ```
 
-Una richiesta per tutti i record con questo metodo crea un minimo di due richieste al back-end di App per dispositivi mobili.
+Una richiesta per tutti i record con questo metodo crea un minimo di back-end di due richieste toohello App per dispositivi mobili.
 
 > [!TIP]
-> La scelta delle dimensioni di pagina appropriate è un equilibrio tra utilizzo della memoria mentre la richiesta è in corso, utilizzo della larghezza di banda e ritardo nella ricezione completa dei dati.  Il valore predefinito (50 record) è adatto a tutti i dispositivi.  Se si opera esclusivamente su dispositivi con maggiore memoria, aumentare fino a 500.  È stato osservato che l'aumento delle dimensioni di pagina oltre i 500 record comporta ritardi inaccettabili e problemi di memoria di grandi dimensioni.
+> Dimensioni di pagina destra scegliendo hello sono un equilibrio tra l'utilizzo della memoria richiesta hello in corso, l'utilizzo della larghezza di banda e ritardi nella ricezione di dati hello completamente.  valore predefinito di Hello (50 record) è adatto per tutti i dispositivi.  Se si opera esclusivamente nei dispositivi più grandi di memoria, aumentare le too500.  Sono stati rilevati tali dimensioni di pagina hello crescente oltre 500 registra i risultati in ritardo accettabile e problemi di memoria di grandi dimensioni.
 
 ### <a name="chaining"></a>Procedura: Concatenare metodi di query
 
-I metodi usati per eseguire query su tabelle di back-end possono essere concatenati. Il concatenamento dei metodi di query consente di selezionare colonne specifiche di righe filtrate ordinate e sottoposte a paging. È possibile creare filtri logici complessi.  Ogni metodo di query restituisce un oggetto Query. Per terminare la serie di metodi ed eseguire effettivamente la query, chiamare il metodo **execute** . ad esempio:
+metodi di Hello utilizzati in una query sulle tabelle di back-end possono essere concatenati. Concatenamento di query metodi consente tooselect colonne specifiche di righe filtrate e del pool di paging. È possibile creare filtri logici complessi.  Ogni metodo di query restituisce un oggetto Query. serie di hello tooend di metodi e query effettivamente esecuzione hello, chiamata hello **eseguire** metodo. ad esempio:
 
 ```java
 List<ToDoItem> results = mToDoTable
@@ -463,26 +463,26 @@ List<ToDoItem> results = mToDoTable
         .get();
 ```
 
-I metodi con query concatenate devono essere ordinati nel modo seguente:
+Hello concatenate query metodi devono essere ordinati come segue:
 
 1. Metodi di filtraggio (**where**).
 2. Metodi di ordinamento (**orderBy**).
 3. Metodi di selezione (**select**).
 4. Metodi di paging (**skip** e **top**).
 
-## <a name="binding"></a>Associare dati all'interfaccia utente
+## <a name="binding"></a>Associare l'interfaccia utente toohello di dati
 
 L'associazione dati riguarda tre componenti:
 
-* Origine dati
-* Layout della schermata
-* Adattatore che collega i due componenti.
+* origine dati Hello
+* layout della schermata Hello
+* scheda Hello che ties hello due insieme.
 
-Nel codice di esempio i dati vengono restituiti dalla tabella di app per dispositivi mobili di SQL Azure **ToDoItem** in una matrice. Si tratta di una delle attività più comuni per le applicazioni dati.  Le query su database restituiscono spesso una raccolta di righe che il client ottiene in un elenco o una matrice. In questo esempio la matrice è l'origine dati.  Nel codice viene specificato un layout di schermata che definisce la visualizzazione dei dati che appaiono sul dispositivo.  I due elementi vengono associati tra loro tramite un adattatore, che in questo codice è un'estensione della classe **ArrayAdapter&lt;ToDoItem&gt;**.
+Nel codice di esempio, si restituiscono dati hello dalla tabella di SQL Azure di App mobili hello **ToDoItem** in una matrice. Si tratta di una delle attività più comuni per le applicazioni dati.  Le query di database spesso restituiscono una raccolta di righe che hello client ottiene un elenco o matrice. In questo esempio, matrice hello è l'origine dati hello.  codice Hello specifica un layout della schermata che definisce hello visualizzazione dati hello che viene visualizzato nel dispositivo hello.  Hello due sono associati insieme a un adapter, che in questo codice è un'estensione di hello **ArrayAdapter&lt;ToDoItem&gt;**  classe.
 
-#### <a name="layout"></a>Definire il layout
+#### <a name="layout"></a>Definire hello Layout
 
-Il layout è definito da diversi frammenti di codice XML. Dato un layout esistente, il codice seguente rappresenta l'oggetto **ListView** che si vuole popolare con i dati del server.
+layout di Hello è definito da diversi frammenti di codice XML. Dato un layout esistente, hello seguente di codice rappresenta hello **ListView** desideriamo toopopulate con i dati del server.
 
 ```xml
     <ListView
@@ -493,7 +493,7 @@ Il layout è definito da diversi frammenti di codice XML. Dato un layout esisten
     </ListView>
 ```
 
-Nel codice precedente l'attributo *listitem* consente di specificare l'ID del layout per una singola riga dell'elenco. Questo codice specifica una casella di controllo e il testo ad essa associato e viene creata una sola istanza per ogni elemento nell'elenco. Questo layout non visualizza il campo **id** , ma se il layout è più complesso nella visualizzazione vengono specificati campi aggiuntivi. Il codice è incluso nel file **row_list_to_do.xml**.
+Nel codice precedente di hello, hello *listitem* attributo specifica l'id di hello del layout di hello per una singola riga nell'elenco di hello. Questo codice consente di specificare una casella di controllo e il testo associato e viene creata un'istanza di una volta per ogni elemento nell'elenco di hello. Questo layout non viene visualizzato hello **id** campo e un layout più complesso specificare campi aggiuntivi nella visualizzazione hello. Questo codice è in hello **row_list_to_do.xml** file.
 
 ```java
 <?xml version="1.0" encoding="utf-8"?>
@@ -509,15 +509,15 @@ Nel codice precedente l'attributo *listitem* consente di specificare l'ID del la
 </LinearLayout>
 ```
 
-#### <a name="adapter"></a>Definire l'adattatore
-Poiché l'origine dati della visualizzazione è una matrice di oggetti **ToDoItem**, viene creata una sottoclasse per l'adattatore da una classe **ArrayAdapter&lt;ToDoItem&gt;**. Questa sottoclasse consente di ottenere una visualizzazione per ogni oggetto **ToDoItem** che usa il layout **row_list_to_do**.  Nel codice viene definita la classe seguente che costituisce un'estensione della classe **ArrayAdapter&lt;E&gt;**:
+#### <a name="adapter"></a>Definire hello adattatore
+Poiché la vista origine dati hello è una matrice di **ToDoItem**, abbiamo sottoclasse l'adapter da un **ArrayAdapter&lt;ToDoItem&gt;**  classe. Questo tipo di sottoclasse produce una visualizzazione per ogni **ToDoItem** utilizzando hello **row_list_to_do** layout.  Nel codice, è possibile definire hello seguente classe che è un'estensione di hello **ArrayAdapter&lt;E&gt;**  classe:
 
 ```java
 public class ToDoItemAdapter extends ArrayAdapter<ToDoItem> {
 }
 ```
 
-Eseguire l'override del metodo **getView** dell'adattatore. ad esempio:
+Eseguire l'override di schede di hello **getView** metodo. ad esempio:
 
 ```
     @Override
@@ -560,16 +560,16 @@ Creare un'istanza della classe nell'attività nel modo seguente:
     mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
 ```
 
-Il secondo parametro del costruttore ToDoItemAdapter è un riferimento al layout. È ora possibile creare un'istanza di **ListView** e assegnare l'adattatore a **ListView**.
+costruttore ToDoItemAdapter toohello Hello secondo parametro è un layout di toohello di riferimento. È ora possibile creare un'istanza hello **ListView** e assegnare hello adapter toohello **ListView**.
 
 ```java
     ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
     listViewToDo.setAdapter(mAdapter);
 ```
 
-#### <a name="use-adapter"></a>Usare l'adattatore per l'associazione all'interfaccia utente
+#### <a name="use-adapter"></a>Utilizzare hello Adapter tooBind toohello dell'interfaccia utente
 
-È ora possibile utilizzare l'associazione dati. Il codice seguente illustra come recuperare gli elementi nella tabella e inserisce gli elementi restituiti per l'adattatore locale.
+Si è ora pronto toouse l'associazione dati. Hello codice seguente viene illustrato come gli elementi tooget tabella hello e riempimenti hello scheda locale con hello restituita.
 
 ```java
     public void showAll(View view) {
@@ -598,13 +598,13 @@ Il secondo parametro del costruttore ToDoItemAdapter è un riferimento al layout
     }
 ```
 
-Chiamare l'adattatore ogni volta che si modifica la tabella **ToDoItem** . Dal momento che le modifiche vengono fatte record per record, si gestisce una singola riga anziché una raccolta. Quando si inserisce un elemento, chiamare il metodo **add** sull'adattatore, mentre quando lo si elimina, chiamare il metodo **remove**.
+Chiamare adapter hello ogni volta che si modifica hello **ToDoItem** tabella. Dal momento che le modifiche vengono fatte record per record, si gestisce una singola riga anziché una raccolta. Quando si inserisce un elemento, chiamare hello **aggiungere** metodo hello adapter; in caso di eliminazione, chiamare hello **rimuovere** metodo.
 
-Un esempio completo è disponibile nel [progetto di avvio rapido per Android][21].
+È possibile trovare un esempio completo in hello [progetto di avvio rapido Android][21].
 
-## <a name="inserting"></a>Inserire dati nel back-end
+## <a name="inserting"></a>Inserire dati back-end hello
 
-Viene creata un'istanza della classe *ToDoItem* e vengono impostate le relative proprietà.
+Creare un'istanza di hello *ToDoItem* classe e impostarne le proprietà.
 
 ```java
 ToDoItem item = new ToDoItem();
@@ -612,7 +612,7 @@ item.text = "Test Program";
 item.complete = false;
 ```
 
-Usare quindi **insert()** per inserire un oggetto:
+Utilizzare quindi **Insert ()** tooinsert oggetto:
 
 ```java
 ToDoItem entity = mToDoTable
@@ -620,21 +620,21 @@ ToDoItem entity = mToDoTable
     .get();
 ```
 
-L'entità restituita corrisponde ai dati inseriti nella tabella del back-end, inclusi l'ID e gli eventuali altri valori, ad esempio i campi `createdAt`, `updatedAt` e `version`, impostati sul back-end.
+Hello dati hello inseriti nella tabella di back-end hello, ID di hello incluso e tutti gli altri valori di corrispondenze di entità restituiti (ad esempio hello `createdAt`, `updatedAt`, e `version` campi) impostato sul back-end hello.
 
-Le tabelle di App per dispositivi mobili richiedono una colonna chiave primaria denominata **id**. Questa colonna deve essere una stringa. Il valore predefinito della colonna ID è un GUID.  È possibile specificare altri valori univoci, come gli indirizzi di posta elettronica o i nomi utente. Se non si fornisce un valore ID di stringa per un record inserito, il back-end genera un nuovo GUID.
+Le tabelle di App per dispositivi mobili richiedono una colonna chiave primaria denominata **id**. Questa colonna deve essere una stringa. il valore predefinito Hello della colonna ID hello è un GUID.  È possibile specificare altri valori univoci, come gli indirizzi di posta elettronica o i nomi utente. Quando un valore di ID di stringa non viene fornito un record inserito, back-end hello genera un nuovo GUID.
 
-I valori ID di stringa offrono i vantaggi seguenti:
+I valori di ID di stringa forniscono hello seguenti vantaggi:
 
-* Gli ID possono essere generati senza creare un round trip al database.
-* L'unione di record da tabelle o database diversi risulta semplificata.
+* ID può essere generato senza un database toohello di andata e ritorno.
+* I record sono toomerge più semplice da diverse tabelle o database.
 * I valori ID si integrano in modo più efficace con la logica di un'applicazione.
 
-I valori ID di stringa sono **OBBLIGATORI** per il supporto di sincronizzazione offline.  Non è possibile modificare un ID dopo che è stato archiviato nel database back-end.
+I valori ID di stringa sono **OBBLIGATORI** per il supporto di sincronizzazione offline.  È possibile modificare un Id di una volta che viene archiviato nel database back-end hello.
 
 ## <a name="updating"></a>Aggiornare dati in un'app per dispositivi mobili
 
-Per aggiornare i dati in una tabella, passare il nuovo oggetto al metodo **update()** .
+tooupdate dati in una tabella, passare hello nuovo oggetto toohello **Update ()** metodo.
 
 ```java
 mToDoTable
@@ -642,18 +642,18 @@ mToDoTable
     .get();
 ```
 
-In questo esempio *item* è un riferimento a una riga nella tabella *ToDoItem* alla quale sono state apportate alcune modifiche.  Viene aggiornata la riga con lo stesso **id** .
+In questo esempio, *elemento* è una riferimento tooa riga hello *ToDoItem* tabella in cui è stato tooit alcune modifiche apportate.  riga Hello con hello stesso **id** viene aggiornato.
 
 ## <a name="deleting"></a>Eliminare dati in un'app per dispositivi mobili
 
-Il codice seguente illustra come eliminare dati da una tabella specificando l'oggetto dati.
+Hello seguente codice mostra come toodelete dati da una tabella specificando hello oggetto dati.
 
 ```java
 mToDoTable
     .delete(item);
 ```
 
-È anche possibile eliminare un elemento specificando il campo **id** della riga da eliminare.
+È anche possibile eliminare un elemento specificando hello **id** campo toodelete riga hello.
 
 ```java
 String myRowId = "2FA404AB-E458-44CD-BC1B-3BC847EF0902";
@@ -663,7 +663,7 @@ mToDoTable
 
 ## <a name="lookup"></a>Cercare un elemento specifico per ID
 
-Cercare un elemento con un campo **id** specifico con il metodo **lookUp()**:
+Cercare un elemento con una versione specifica **id** campo hello **Lookup** metodo:
 
 ```java
 ToDoItem result = mToDoTable
@@ -673,11 +673,11 @@ ToDoItem result = mToDoTable
 
 ## <a name="untyped"></a>Procedura: Usare dati non tipizzati
 
-Il modello di programmazione non tipizzato offre un controllo accurato della serializzazione JSON.  È consigliabile usarlo in alcuni scenari comuni. Un esempio di utilizzo è una tabella di back-end che contiene un numero elevato di colonne ed è necessario fare riferimento solo ad alcune di esse.  Il modello tipizzato richiede la definizione di tutte le colonne definite nel back-end di App per dispositivi mobili nella classe dati.  La maggior parte delle chiamate API per l'accesso ai dati è simile alle chiamate della programmazione tipizzata. La principale differenza consiste nel fatto che nel modello non tipizzato i metodi vengono chiamati sull'oggetto **MobileServiceJsonTable**, anziché su **MobileServiceTable**.
+modello di programmazione non tipizzato Hello offre il controllo completo della serializzazione JSON.  Esistono alcuni scenari comuni in cui è preferibile toouse un modello di programmazione non tipizzato. Ad esempio, se la tabella di back-end contiene molte colonne ed è necessario solo un subset di colonne hello tooreference.  modello tipizzato Hello richiede toodefine tutte le colonne di hello definite nel back-end App per dispositivi mobili hello nella classe di dati.  La maggior parte delle chiamate API per l'accesso ai dati hello sono simile toohello tipizzati chiamate di programmazione. Hello differenza principale è che nel modello non tipizzato hello per richiamare metodi su hello **MobileServiceJsonTable** oggetto, anziché hello **MobileServiceTable** oggetto.
 
 ### <a name="json_instance"></a>Creare un'istanza di una tabella non tipizzata
 
-Analogamente al modello tipizzato, si inizia recuperando un riferimento alla tabella, ma in questo caso si tratta di un oggetto **MobileServicesJsonTable** . Ottenere il riferimento chiamando il metodo **getTable** su un'istanza del client:
+Toohello simile tipizzati modello, iniziare recuperando un riferimento alla tabella, ma in questo caso è un **MobileServicesJsonTable** oggetto. Ottenere riferimento hello hello chiamante **getTable** metodo in un'istanza del client hello:
 
 ```java
 private MobileServiceJsonTable mJsonToDoTable;
@@ -685,10 +685,10 @@ private MobileServiceJsonTable mJsonToDoTable;
 mJsonToDoTable = mClient.getTable("ToDoItem");
 ```
 
-Dopo avere creato un'istanza di **MobileServiceJsonTable**, l'istanza contiene praticamente la stessa API disponibile con il modello di programmazione tipizzato. In alcuni casi, i metodi accettano un parametro non tipizzato anziché un parametro tipizzato.
+Dopo aver creato un'istanza di hello **MobileServiceJsonTable**, è praticamente hello stessa API disponibile come modello di programmazione tipizzato hello. In alcuni casi, i metodi di hello accettano un parametro non tipizzato invece di un parametro tipizzato.
 
 ### <a name="json_insert"></a>Eseguire un inserimento in una tabella non tipizzata
-Nel codice seguente viene illustrato come eseguire un'operazione di insert. Il primo passaggio consiste nel creare un oggetto [JsonObject][1], incluso nella libreria [gson][3].
+Hello seguente codice mostra come toodo un'istruzione insert. primo passaggio Hello è toocreate un [JsonObject][1], che fa parte di hello [gson] [ 3] libreria.
 
 ```java
 JsonObject jsonItem = new JsonObject();
@@ -696,7 +696,7 @@ jsonItem.addProperty("text", "Wake up");
 jsonItem.addProperty("complete", false);
 ```
 
-Usare quindi il metodo **insert()** per inserire l'oggetto non tipizzato nella tabella.
+Utilizzare quindi **Insert ()** tooinsert oggetto non tipizzata di hello in tabella hello.
 
 ```java
 JsonObject insertedItem = mJsonToDoTable
@@ -704,13 +704,13 @@ JsonObject insertedItem = mJsonToDoTable
     .get();
 ```
 
-Se è necessario ottenere l'ID dell'oggetto inserito, usare il metodo **getAsJsonPrimitive()** .
+Se è necessario tooget hello ID dell'oggetto inserito hello, utilizzare hello **getAsJsonPrimitive()** metodo.
 
 ```java
 String id = insertedItem.getAsJsonPrimitive("id").getAsString();
 ```
 ### <a name="json_delete"></a>Eliminare un'istanza da una tabella non tipizzata
-Nel codice seguente viene illustrato come eliminare un'istanza, in questo caso la stessa istanza di un oggetto **JsonObject** creato nell'esempio *insert* precedente. Il codice è analogo a quello del caso tipizzato, ma il metodo ha una firma diversa poiché fa riferimento a un oggetto **JsonObject**.
+Hello codice seguente viene illustrato come toodelete un'istanza, in questo caso, hello stessa istanza di un **JsonObject** creato nella prima hello *inserire* esempio. codice Hello è hello stesso di hello tipizzata case, ma il metodo hello ha una firma diversa, perché fa riferimento a un **JsonObject**.
 
 ```java
 mToDoTable
@@ -724,7 +724,7 @@ mToDoTable.delete(ID);
 ```
 
 ### <a name="json_get"></a>Restituire tutte le righe di una tabella non tipizzata
-Il seguente codice illustra come recuperare un'intera tabella. Poiché si sta usando una tabella JSONO, è possibile recuperare in modo selettivo solo alcune colonne della tabella.
+Hello seguente codice mostra come tooretrieve un'intera tabella. Poiché si utilizza una tabella JSON, è possibile recuperare in modo selettivo solo alcune colonne della tabella hello.
 
 ```java
 public void showAllUntyped(View view) {
@@ -760,20 +760,20 @@ public void showAllUntyped(View view) {
 }
 ```
 
-Lo stesso insieme di metodi di filtro e paging disponibili per il modello tipizzato è disponibile per il modello non tipizzato.
+Hello stesso set di filtri, filtro e paging metodi disponibili per il modello tipizzato hello sono disponibili per il modello non tipizzato hello.
 
 ## <a name="offline-sync"></a>Implementare la sincronizzazione offline
 
-Azure Mobile Apps Client SDK implementa anche la sincronizzazione offline dei dati usando un database SQLite per archiviare una copia locale dei dati del server.  Le operazioni eseguite su una tabella offline non richiedono la connettività per dispositivi mobili.  La sincronizzazione offline agevola la resilienza e le prestazioni a scapito di una logica più complessa per la risoluzione dei conflitti.  Azure Mobile Apps Client SDK implementa le funzionalità seguenti:
+Hello Azure Mobile App Client SDK implementa inoltre la sincronizzazione non in linea dei dati utilizzando un toostore database SQLite una copia dei dati hello del server locale.  Operazioni eseguite su una tabella non in linea non richiedono la connettività mobile toowork.  Sincronizzazione non in linea degli strumenti per la resilienza e delle spese di hello di una logica più complessa per la risoluzione dei conflitti.  Hello Azure Mobile App Client SDK implementa hello seguenti caratteristiche:
 
 * Sincronizzazione incrementale: vengono scaricati solo i record aggiornati e nuovi, risparmiando larghezza di banda e utilizzo della memoria.
-* Concorrenza ottimistica: si presuppone che le operazioni abbiano esito positivo.  La risoluzione dei conflitti viene posticipata finché gli aggiornamenti non vengono eseguiti nel server.
-* Risoluzione dei conflitti: l'SDK rileva quando è stata apportata una modifica in conflitto nel server e fornisce hook per avvisare l'utente.
-* Eliminazione temporanea: i record eliminati vengono contrassegnati come tali, consentendo agli altri dispositivi di aggiornare la cache offline.
+* Concorrenza ottimistica: Le operazioni vengono considerate toosucceed.  Risoluzione dei conflitti viene posticipata fino a quando gli aggiornamenti vengono eseguiti nel server di hello.
+* Risoluzione dei conflitti: hello che SDK rileva se una modifica in conflitto è stata eseguita nel server di hello e fornisce hook utente hello tooalert.
+* L'eliminazione temporanea: Record eliminato è contrassegnata come eliminato, consentendo tooupdate altri dispositivi la cache offline.
 
 ### <a name="initialize-offline-sync"></a>Inizializzare la sincronizzazione offline
 
-Ogni tabella offline deve essere definito nella cache offline prima dell'uso.  La definizione della tabella in genere viene eseguita immediatamente dopo la creazione del client:
+Ogni tabella non in linea deve essere definito nella cache offline di hello prima dell'uso.  Definizione della tabella in genere, viene eseguita subito dopo la creazione di hello del client hello:
 
 ```java
 AsyncTask<Void, Void, Void> initializeStore(MobileServiceClient mClient)
@@ -789,7 +789,7 @@ AsyncTask<Void, Void, Void> initializeStore(MobileServiceClient mClient)
                 }
                 SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "offlineStore", null, 1);
 
-                // Create a table definition.  As a best practice, store this with the model definition and return it via
+                // Create a table definition.  As a best practice, store this with hello model definition and return it via
                 // a static method
                 Map<String, ColumnDataType> toDoItemDefinition = new HashMap<String, ColumnDataType>();
                 toDoItemDefinition.put("id", ColumnDataType.String);
@@ -798,13 +798,13 @@ AsyncTask<Void, Void, Void> initializeStore(MobileServiceClient mClient)
                 toDoItemDefinition.put("version", ColumnDataType.String);
                 toDoItemDefinition.put("updatedAt", ColumnDataType.DateTimeOffset);
 
-                // Now define the table in the local store
+                // Now define hello table in hello local store
                 localStore.defineTable("ToDoItem", toDoItemDefinition);
 
                 // Specify a sync handler for conflict resolution
                 SimpleSyncHandler handler = new SimpleSyncHandler();
 
-                // Initialize the local store
+                // Initialize hello local store
                 syncContext.initialize(localStore, handler).get();
             } catch (final Exception e) {
                 createAndShowDialogFromTask(e, "Error");
@@ -816,7 +816,7 @@ AsyncTask<Void, Void, Void> initializeStore(MobileServiceClient mClient)
 }
 ```
 
-### <a name="obtain-a-reference-to-the-offline-cache-table"></a>Ottenere un riferimento alla tabella della cache offline
+### <a name="obtain-a-reference-toohello-offline-cache-table"></a>Ottenere un toohello di riferimento non in linea la tabella della Cache
 
 Per una tabella online, si usa `.getTable()`.  Per una tabella offline, usare `.getSyncTable()`:
 
@@ -824,11 +824,11 @@ Per una tabella online, si usa `.getTable()`.  Per una tabella offline, usare `.
 MobileServiceTable<ToDoItem> mToDoTable = mClient.getSyncTable("ToDoItem", ToDoItem.class);
 ```
 
-Tutti i metodi disponibili per le tabelle online (inclusi filtri, ordinamento, paging, inserimento di dati, aggiornamento di dati ed eliminazione di dati) funzionano correttamente sia nelle tabelle online che in quelle offline.
+Tutti hello metodi disponibili per le tabelle in linea (incluso il filtro, ordinamento, paging, inserimento di dati, l'aggiornamento dei dati e l'eliminazione dei dati) funzionano altrettanto bene in tabelle online e offline.
 
-### <a name="synchronize-the-local-offline-cache"></a>Sincronizzare la cache locale offline
+### <a name="synchronize-hello-local-offline-cache"></a>Sincronizzare hello Cache Offline locale
 
-La sincronizzazione è sotto il controllo dell'app.  Ecco un esempio di metodo di sincronizzazione:
+La sincronizzazione è all'interno di controllo di hello dell'app.  Ecco un esempio di metodo di sincronizzazione:
 
 ```java
 private AsyncTask<Void, Void, Void> sync(MobileServiceClient mClient) {
@@ -849,23 +849,23 @@ private AsyncTask<Void, Void, Void> sync(MobileServiceClient mClient) {
 }
 ```
 
-Se viene fornito un nome di query al metodo `.pull(query, queryname)`, viene usata la sincronizzazione incrementale per restituire solo i record creati o modificati dopo il corretto completamento dell'ultimo pull.
+Se non viene fornito un nome di query toohello `.pull(query, queryname)` (metodo), la sincronizzazione incrementale è tooreturn utilizzati solo i record che sono stati creati o modificati dopo pull hello completato correttamente.
 
 ### <a name="handle-conflicts-during-offline-synchronization"></a>Gestire i conflitti durante la sincronizzazione offline
 
-Se si verifica un conflitto durante un'operazione `.push()`, viene generata un'eccezione `MobileServiceConflictException`.   L'elemento rilasciato dal server viene incorporato nell'eccezione e può essere recuperato da `.getItem()` nell'eccezione.  Modificare il push chiamando gli elementi seguenti sull'oggetto MobileServiceSyncContext:
+Se si verifica un conflitto durante un'operazione `.push()`, viene generata un'eccezione `MobileServiceConflictException`.   elemento rilasciato server Hello è incorporato nell'eccezione hello e possono essere recuperato tramite `.getItem()` eccezione hello.  Regolare il push di hello da parte del chiamante hello seguenti di elementi nell'oggetto MobileServiceSyncContext hello:
 
 *  `.cancelAndDiscardItem()`
 *  `.cancelAndUpdateItem()`
 *  `.updateOperationAndItem()`
 
-Dopo che tutti i conflitti sono stati contrassegnati nel modo desiderato, chiamare di nuovo `.push()` per risolvere tutti i conflitti.
+Dopo che tutti i conflitti sono contrassegnati come si desidera, chiamare `.push()` tooresolve nuovamente tutti i conflitti di hello.
 
 ## <a name="custom-api"></a>Chiamare un'API personalizzata
 
-Un'API personalizzata consente di definire endpoint personalizzati che espongono la funzionalità del server di cui non è possibile eseguire il mapping a un'operazione di inserimento, aggiornamento, eliminazione o lettura. L'utilizzo di un'API personalizzata offre maggiore controllo sulla messaggistica, incluse la lettura e l'impostazione delle intestazioni del messaggio HTTP e la definizione di un formato del corpo del messaggio diverso da JSON.
+Un'API personalizzata consente toodefine endpoint personalizzati che espongono la funzionalità server che non eseguire il mapping delle insert tooan, aggiornare, eliminare o operazione di lettura. L'utilizzo di un'API personalizzata offre maggiore controllo sulla messaggistica, incluse la lettura e l'impostazione delle intestazioni del messaggio HTTP e la definizione di un formato del corpo del messaggio diverso da JSON.
 
-Per chiamare l'endpoint dell'API personalizzata da un client Android, chiamare il metodo **invokeApi** . L'esempio seguente illustra come chiamare un endpoint API denominato **completeAll**, che restituisce una classe della raccolta denominata **MarkAllResult**.
+Da un client Android, si chiama hello **invokeApi** endpoint API personalizzata di metodo toocall hello. Hello esempio seguente viene illustrato come toocall un endpoint API denominati **completeAll**, che restituisce una classe collection denominata **MarkAllResult**.
 
 ```java
 public void completeItem(View view) {
@@ -885,46 +885,46 @@ public void completeItem(View view) {
 }
 ```
 
-Nel client viene chiamato il metodo **invokeApi** , che invia una richiesta POST alla nuova API personalizzata. Il risultato restituito dall'API personalizzata viene visualizzato in una finestra di dialogo con messaggio, insieme a eventuali errori. Altre versioni di **invokeApi** consentono di inviare facoltativamente un oggetto nel corpo della richiesta, specificare il metodo HTTP e inviare parametri di query con la richiesta. Vengono fornite anche versioni non tipizzate di **invokeApi** .
+Hello **invokeApi** metodo viene chiamato nel client hello, che invia una richiesta di un POST toohello nuova API personalizzata. risultato Hello restituito dall'API personalizzata hello viene visualizzata nella finestra di messaggio, come errori. Altre versioni di **invokeApi** consentono l'invio di un oggetto nel corpo della richiesta hello facoltativamente, specificare il metodo HTTP hello e Invia parametri di query con richiesta di hello. Vengono fornite anche versioni non tipizzate di **invokeApi** .
 
-## <a name="authentication"></a>Aggiungere l'autenticazione all'app
+## <a name="authentication"></a>Aggiungere app tooyour authentication
 
-Le esercitazioni descrivono già in dettaglio come aggiungere queste funzionalità.
+Esercitazioni già descrivono in dettaglio come tooadd queste funzionalità.
 
-Il servizio app supporta l'[autenticazione degli utenti di app](app-service-mobile-android-get-started-users.md) con diversi provider di identità esterni: Facebook, Google, account Microsoft, Twitter e Azure Active Directory. È possibile impostare le autorizzazioni per le tabelle per limitare l'accesso per operazioni specifiche solo agli utenti autenticati. È inoltre possibile utilizzare l'identità degli utenti autenticati per implementare regole di autorizzazione nel backend.
+Il servizio app supporta l'[autenticazione degli utenti di app](app-service-mobile-android-get-started-users.md) con diversi provider di identità esterni: Facebook, Google, account Microsoft, Twitter e Azure Active Directory. È possibile impostare le autorizzazioni di accesso toorestrict tabelle per operazioni specifiche tooonly autenticata users. È inoltre possibile utilizzare identità hello gli utenti autenticati tooimplement delle regole di autorizzazione nel back-end.
 
-Sono supportati due flussi di autenticazione, ovvero un flusso **server** e un flusso **client**. Il flusso server è il processo di autenticazione più semplice, poiché si basa sull'interfaccia Web del provider di identità.  Non sono necessari SDK aggiuntivi per implementare l'autenticazione del flusso server. L'autenticazione del flusso server non fornisce un'integrazione completa con il dispositivo mobile ed è consigliata solo per dimostrare scenari concettuali.
+Sono supportati due flussi di autenticazione, ovvero un flusso **server** e un flusso **client**. flusso di Hello server fornisce l'esperienza di autenticazione più semplice hello, come si basa sull'interfaccia web provider di identità hello.  Nessun SDK aggiuntivo è l'autenticazione del server flusso di tooimplement obbligatorio. L'autenticazione del server del flusso non fornisce un'integrazione completa in dispositivi mobili hello ed è consigliata solo per la prova di scenari.
 
-Il flusso client assicura maggiore integrazione con funzionalità specifiche del dispositivo, ad esempio Single-Sign-On, poiché si basa su SDK forniti dal provider di identità.  Ad esempio, è possibile integrare l'SDK di Facebook nell'applicazione per dispositivi mobili.  Il client per dispositivi mobili passa all'app Facebook e conferma l'accesso prima di passare di nuovo all'app per dispositivi mobili.
+flusso di Hello client consente una maggiore integrazione con funzionalità specifiche del dispositivo, ad esempio accesso single sign-on di si basa sul SDK, fornito dal provider di identità hello.  Ad esempio, è possibile integrare hello Facebook SDK nell'applicazione per dispositivi mobili.  client mobili Hello Scambia in app Facebook hello e conferma il sign-on prima di effettuare lo swapping tooyour indietro app per dispositivi mobili.
 
-Per abilitare l'autenticazione nell'app, è necessario eseguire quattro passaggi:
+Quattro passaggi sono necessari tooenable autenticazione nell'app:
 
 * Registrare l'app per l'autenticazione con un provider di identità.
 * Configurare il back-end del servizio app.
-* Limitare le autorizzazioni per la tabella solo agli utenti autenticati nel back-end del servizio app.
-* Aggiungere codice di autenticazione all'app.
+* Limitare gli utenti tooauthenticated le autorizzazioni di tabella solo in hello back-end del servizio App.
+* Aggiungere app tooyour codice di autenticazione.
 
-È possibile impostare le autorizzazioni per le tabelle per limitare l'accesso per operazioni specifiche solo agli utenti autenticati. Per modificare le richieste, è anche possibile usare il SID di un utente autenticato.  Per altre informazioni, vedere [Aggiungere l'autenticazione all'app Android] e la documentazione sulle procedure dell'SDK del server.
+È possibile impostare le autorizzazioni di accesso toorestrict tabelle per operazioni specifiche tooonly autenticata users. È inoltre possibile utilizzare hello SID di un utente autenticato di toomodify richieste.  Per altre informazioni, vedere [Introduzione all'autenticazione] e documentazione Server SDK HOWTO hello.
 
 ### <a name="caching"></a>Autenticazione: flusso server
 
-Il codice seguente avvia la procedura di accesso del flusso server con il provider Google.  È necessaria una configurazione aggiuntiva a causa dei requisiti di sicurezza per il provider Google:
+Hello codice seguente avvia un processo di accesso server flusso usando il provider di Google hello.  Configurazione aggiuntiva è necessario a causa dei requisiti di sicurezza hello per provider di Google hello:
 
 ```java
 MobileServiceUser user = mClient.login(MobileServiceAuthenticationProvider.Google, "{url_scheme_of_your_app}", GOOGLE_LOGIN_REQUEST_CODE);
 ```
 
-Aggiungere anche il metodo seguente alla classe Activity principale:
+Inoltre, aggiungere hello seguente classe di attività metodo toohello principale:
 
 ```java
-// You can choose any unique number here to differentiate auth providers from each other. Note this is the same code at login() and onActivityResult().
+// You can choose any unique number here toodifferentiate auth providers from each other. Note this is hello same code at login() and onActivityResult().
 public static final int GOOGLE_LOGIN_REQUEST_CODE = 1;
 
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     // When request completes
     if (resultCode == RESULT_OK) {
-        // Check the request code matches the one we send in the login request
+        // Check hello request code matches hello one we send in hello login request
         if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
             MobileServiceActivityResult result = mClient.onActivityResult(data);
             if (result.isLoggedIn()) {
@@ -932,7 +932,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
                 createTable();
             } else {
-                // login failed, check the error message
+                // login failed, check hello error message
                 String errorMessage = result.getErrorMessage();
                 createAndShowDialog(errorMessage, "Error");
             }
@@ -941,9 +941,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
-L'elemento `GOOGLE_LOGIN_REQUEST_CODE` definito nell'attività principale viene usato per il metodo `login()` e nel metodo `onActivityResult()`.  È possibile scegliere qualsiasi numero univoco, purché lo stesso numero venga usato nei metodi `login()` e `onActivityResult()`.  Se si astrae il codice client in un adattatore di un servizio (come illustrato prima), è consigliabile chiamare i metodi appropriati sull'adattatore del servizio.
+Hello `GOOGLE_LOGIN_REQUEST_CODE` definito in principale attività viene utilizzata per hello `login()` (metodo) e all'interno di hello `onActivityResult()` metodo.  È possibile scegliere qualsiasi numero univoco, purché hello stesso numero viene utilizzato all'interno di hello `login()` metodo e hello `onActivityResult()` metodo.  Se il codice client hello astratta in una scheda di servizio (come illustrato in precedenza), è necessario chiamare i metodi appropriati hello nella scheda servizio hello.
 
-È anche necessario configurare il progetto per customtabs.  Specificare prima di tutto un URL di reindirizzamento.  Aggiungere il frammento di codice seguente a `AndroidManifest.xml`:
+È inoltre necessario progetto hello tooconfigure per customtabs.  Specificare prima di tutto un URL di reindirizzamento.  Aggiungere hello seguente frammento di codice troppo`AndroidManifest.xml`:
 
 ```xml
 <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity">
@@ -956,7 +956,7 @@ L'elemento `GOOGLE_LOGIN_REQUEST_CODE` definito nell'attività principale viene 
 </activity>
 ```
 
-Aggiungere **redirectUriScheme** al file `build.gradle` per l'applicazione:
+Aggiungere hello **redirectUriScheme** toohello `build.gradle` file dell'applicazione:
 
 ```text
 android {
@@ -973,7 +973,7 @@ android {
 }
 ```
 
-Aggiungere infine `com.android.support:customtabs:23.0.1` all'elenco di dipendenze nel file `build.gradle`:
+Infine, aggiungere `com.android.support:customtabs:23.0.1` toohello elenco di dipendenze in hello `build.gradle` file:
 
 ```text
 dependencies {
@@ -987,24 +987,24 @@ dependencies {
 }
 ```
 
-È possibile ottenere l'ID dell'utente connesso da un oggetto **MobileServiceUser** usando il metodo **getUserId**. Per un esempio di come usare Futures per chiamare le API di accesso asincrone, vedere [Aggiungere l'autenticazione all'app Android].
+Ottenere ID hello di hello utente connesso da un **MobileServiceUser** utilizzando hello **Recuperaidutente** metodo. Per un esempio di come toouse ritardo toocall hello asincrona accesso API, vedere [Introduzione all'autenticazione].
 
 > [!WARNING]
-> Lo schema URL indicato rispetta la distinzione tra maiuscole e minuscole.  Assicurarsi che tutte le occorrenze di `{url_scheme_of_you_app}` rispettino questa distinzione.
+> lo schema dell'URL indicato Hello è tra maiuscole e minuscole.  Assicurarsi che tutte le occorrenze di `{url_scheme_of_you_app}` rispettino questa distinzione.
 
 ### <a name="caching"></a>Memorizzare nella cache i token di autenticazione
 
-Per memorizzare nella cache i token di autenticazione, è necessario archiviare l'ID utente e il token di autenticazione in locale nel dispositivo. Al successivo avvio dell'app, la cache viene verificata e, se sono presenti questi valori, è possibile ignorare la procedura di accesso e riattivare il client con questi dati. Questi dati sono tuttavia sensibili e devono essere crittografati per garantire la sicurezza in caso di furto del telefono.  È possibile vedere un esempio completo della memorizzazione nella cache dei token di autenticazione nella sezione [Memorizzare nella cache i token di autenticazione][7].
+La memorizzazione nella cache i token di autenticazione richiede toostore hello ID utente e token di autenticazione in locale nel dispositivo hello. Hello prossimo avvio dell'applicazione hello, controllo della cache di hello e, se questi valori sono presenti, è possibile ignorare log hello nella procedura e riattivare i client hello con questi dati. Tuttavia questi dati sono riservati e devono essere archiviato crittografati per garantire la protezione in caso di furto di un telefono hello.  È possibile visualizzare un esempio completo di come token di autenticazione toocache in [Cache sezione token di autenticazione][7].
 
-Quando si prova a usare un token scaduto, viene visualizzata una risposta di tipo *401 - Non autorizzato* . È possibile gestire gli errori di autenticazione tramite i filtri.  I filtri intercettano le richieste al back-end del servizio app. Il codice di filtro verifica quindi la risposta per un errore di tipo 401, attiva il processo di accesso e quindi riprende la richiesta che ha generato l'errore.
+Quando si tenta di toouse un token scaduto, viene visualizzato un *401 non autorizzato* risposta. È possibile gestire gli errori di autenticazione tramite i filtri.  I filtri intercettano richieste toohello back-end del servizio App. il codice del filtro Hello verifica risposta hello per 401, trigger di processo di accesso hello e quindi riprende richiesta hello che ha generato hello 401.
 
 ### <a name="refresh"></a>Usare i token di aggiornamento
 
-La durata definita del token restituito dall'autenticazione e dall'autorizzazione nel servizio app di Azure è di un'ora.  Dopo questo periodo, è necessario ripetere l'autenticazione dell'utente.  Se si usa un token di lunga durata ricevuto tramite l'autenticazione basata sul flusso client, è possibile ripetere l'autenticazione con l'autenticazione e l'autorizzazione del servizio app di Azure usando lo stesso token.  Viene generato un altro token del servizio app di Azure con una nuova durata.
+token di Hello restituito da Azure App Service autenticazione e autorizzazione ha una durata definita di un'ora.  Dopo questo periodo, è necessario ripetere l'autenticazione utente hello.  Se si utilizzando un token di lunga durato che si è ricevuto tramite l'autenticazione client per il flusso, quindi è possibile ripetere l'autenticazione con l'autenticazione del servizio App di Azure e le autorizzazioni mediante hello stesso token.  Viene generato un altro token del servizio app di Azure con una nuova durata.
 
-È anche possibile registrare il provider per l'uso di token di aggiornamento.  Un token di aggiornamento non è sempre disponibile.  È necessaria una configurazione aggiuntiva:
+È anche possibile registrare hello provider toouse i token di aggiornamento.  Un token di aggiornamento non è sempre disponibile.  È necessaria una configurazione aggiuntiva:
 
-* Per **Azure Active Directory**, configurare un segreto client per l'app Azure Active Directory.  Specificare il segreto client nel servizio app di Azure durante la configurazione dell'autenticazione di Azure Active Directory.  Quando si chiama `.login()`, passare `response_type=code id_token` come parametro:
+* Per **Azure Active Directory**, configurare un segreto client per hello App di Azure Active Directory.  Specificare la chiave privata client hello in hello Azure App Service quando si configura l'autenticazione di Azure Active Directory.  Quando si chiama `.login()`, passare `response_type=code id_token` come parametro:
 
     ```java
     HashMap<String, String> parameters = new HashMap<String, String>();
@@ -1016,7 +1016,7 @@ La durata definita del token restituito dall'autenticazione e dall'autorizzazion
         parameters);
     ```
 
-* Per **Google**, passare `access_type=offline` come parametro:
+* Per **Google**, passare hello `access_type=offline` come parametro:
 
     ```java
     HashMap<String, String> parameters = new HashMap<String, String>();
@@ -1028,9 +1028,9 @@ La durata definita del token restituito dall'autenticazione e dall'autorizzazion
         parameters);
     ```
 
-* Per un **account Microsoft**, selezionare l'ambito `wl.offline_access`.
+* Per **Account Microsoft**selezionare hello `wl.offline_access` ambito.
 
-Per aggiornare un token, chiamare `.refreshUser()`:
+toorefresh un token, chiamare `.refreshUser()`:
 
 ```java
 MobileServiceUser user = mClient
@@ -1038,15 +1038,15 @@ MobileServiceUser user = mClient
     .get();
 ```
 
-Come procedura consigliata, creare un filtro che rileva una risposta 401 dal server e prova ad aggiornare il token dell'utente.
+Come procedura consigliata, creare un filtro che rileva una risposta dal server hello 401 e tenta di token dell'utente toorefresh hello.
 
 ## <a name="log-in-with-client-flow-authentication"></a>Accedere con l'autenticazione basata sul flusso client
 
-Il processo generale per l'accesso con l'autenticazione basata sul flusso client è il seguente:
+processo generale di Hello per l'accesso con autenticazione di client per il flusso è come segue:
 
 * Configurare l'autenticazione e l'autorizzazione del servizio app di Azure come si configura l'autenticazione basata sul flusso server.
-* Integrare l'SDK del provider di autenticazione per generare un token di accesso.
-* Chiamare il metodo `.login()` come illustrato di seguito:
+* Integrare il provider di autenticazione hello SDK per l'autenticazione tooproduce un token di accesso.
+* Chiamare hello `.login()` metodo come indicato di seguito:
 
     ```java
     JSONObject payload = new JSONObject();
@@ -1064,14 +1064,14 @@ Il processo generale per l'accesso con l'autenticazione basata sul flusso client
     });
     ```
 
-Sostituire il metodo `onSuccess()` con il codice che si vuole usare all'esecuzione di un accesso.  La stringa `{provider}` è un provider valido: **aad** (Azure Active Directory), **facebook**, **google**, **microsoftaccount** o **twitter**.  Se è stata implementata l'autenticazione personalizzata, è anche possibile usare il tag del provider di autenticazione personalizzata.
+Sostituire hello `onSuccess()` (metodo) con qualsiasi tipo di codice si desidera toouse un account di accesso ha esito positivo.  Hello `{provider}` stringa è un provider valido: **aad** (Azure Active Directory), **facebook**, **google**, **microsoftaccount**, o **twitter**.  Se è stato implementato l'autenticazione personalizzata, è possibile utilizzare tag di provider di autenticazione personalizzata hello.
 
-### <a name="adal"></a>Autenticare gli utenti con Active Directory Authentication Library (ADAL)
+### <a name="adal"></a>Autenticare gli utenti con hello Active Directory Authentication Library (ADAL)
 
-È possibile usare Active Directory Authentication Library (ADAL) per far accedere gli utenti all'applicazione tramite Azure Active Directory. L'uso dell'accesso del flusso client è spesso preferibile all'uso dei metodi `loginAsync()` , perché garantisce un'esperienza utente più naturale e consente una maggiore personalizzazione.
+È possibile utilizzare gli utenti toosign di Active Directory Authentication Library (ADAL) hello in un'applicazione tramite Azure Active Directory. Utilizzando un account di accesso client del flusso è spesso preferibile toousing hello `loginAsync()` metodi che fornisce un'idea dell'esperienza utente più nativa e consente un'ulteriore personalizzazione.
 
-1. Configurare il back-end dell'app per dispositivi mobili per l'accesso ad Azure Active Directory seguendo l'esercitazione [Come configurare un'applicazione del servizio app per usare l'account di accesso di Azure Active Directory][22]. Assicurarsi di completare il passaggio facoltativo di registrazione di un'applicazione client nativa.
-2. Installare ADAL modificando il file build.gradle per includere le definizioni seguenti:
+1. Configurare il back-end dell'app mobile per l'accesso AAD hello seguente [come tooconfigure App del servizio per l'account di accesso Active Directory] [ 22] esercitazione. Verificare che passaggio facoltativo in hello toocomplete di registrazione di un'applicazione client nativa.
+2. Installare ADAL modificando il hello tooinclude del file gradle seguenti definizioni:
 
 ```
 repositories {
@@ -1096,12 +1096,12 @@ dependencies {
 }
 ```
 
-1. Aggiungere all'applicazione il codice seguente apportando le sostituzioni seguenti:
+1. Aggiungere hello seguito codice tooyour applicazione, rendendo hello seguenti sostituzioni:
 
-* Sostituire **INSERT-AUTHORITY-HERE** con il nome del tenant in cui è stato eseguito il provisioning dell'applicazione. Il formato deve essere https://login.microsoftonline.com/contoso.onmicrosoft.com.
-* Sostituire **INSERT-RESOURCE-ID-HERE** con l'ID client per il back-end dell'app per dispositivi mobili. L'ID client è disponibile nella scheda **Avanzate** in **Impostazioni di Azure Active Directory** nel portale.
-* Sostituire **INSERT-CLIENT-ID-HERE** con l'ID client copiato dall'applicazione client nativa.
-* Sostituire **INSERT-REDIRECT-URI-HERE** con l'endpoint */.auth/login/done* del sito, usando lo schema HTTPS. Questo valore deve essere simile a *https://contoso.azurewebsites.net/.auth/login/done*.
+* Sostituire **INSERT-autorità-qui** con nome hello del tenant di hello in cui è stato eseguito il provisioning dell'applicazione. formato di Hello deve essere https://login.microsoftonline.com/contoso.onmicrosoft.com.
+* Sostituire **INSERT-RESOURCE-ID-qui** con hello client ID per il back-end dell'app per dispositivi mobili. È possibile ottenere l'ID client hello da hello **avanzate** scheda **impostazioni di Azure Active Directory** nel portale di hello.
+* Sostituire **INSERT-CLIENT-ID-qui** con ID client hello copiato dall'applicazione client nativa hello.
+* Sostituire **INSERT-REDIRECT-URI-qui** con il sito */.auth/login/done* endpoint, utilizzando lo schema HTTPS hello. Questo valore dovrebbe essere simile troppo*https://contoso.azurewebsites.net/.auth/login/done*.
 
 ```java
 private AuthenticationContext mContext;
@@ -1166,19 +1166,19 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
-## <a name="filters"></a>Modificare la comunicazione client-server
+## <a name="filters"></a>Regolare hello comunicazione tra Client e Server
 
-La connessione client è in genere una connessione HTTP di base che usa la libreria HTTP sottostante fornita con Android SDK.  I motivi per cui potrebbe essere necessario modificarla sono diversi:
+Hello connessione Client è in genere una connessione HTTP di base utilizzando hello sottostante libreria HTTP fornita con hello Android SDK.  Esistono diversi motivi per cui si toochange che:
 
-* Si vuole usare una libreria HTTP alternativa per modificare i timeout.
-* Si vuole fornire un indicatore di stato.
-* Si vuole aggiungere un'intestazione personalizzata per supportare la funzionalità di gestione API.
-* Si vuole intercettare una risposta non riuscita per poter implementare la riautenticazione.
-* Si vogliono registrare le richieste del back-end in un servizio di analisi.
+* Si desidera toouse un timeout di tooadjust libreria HTTP alternativo.
+* Si desidera tooprovide un indicatore di stato.
+* Si desidera tooadd una funzionalità di gestione API toosupport intestazione personalizzata.
+* Si desidera toointercept una risposta non riuscita in modo che è possibile implementare la riautenticazione.
+* Si desidera che il servizio analitica tooan di toolog back-end le richieste.
 
 ### <a name="using-an-alternate-http-library"></a>Uso di una libreria HTTP alternativa
 
-Chiamare il metodo `.setAndroidHttpClientFactory()` immediatamente dopo avere creato il riferimento al client.  Ad esempio, per impostare il timeout di connessione su 60 secondi, invece dei 10 secondi predefiniti:
+Chiamare hello `.setAndroidHttpClientFactory()` metodo subito dopo la creazione del riferimento del client.  Ad esempio, tooset hello connection timeout too60 secondi (anziché hello impostazione predefinita 10 secondi):
 
 ```java
 mClient = new MobileServiceClient("https://myappname.azurewebsites.net");
@@ -1195,7 +1195,7 @@ mClient.setAndroidHttpClientFactory(new OkHttpClientFactory() {
 
 ### <a name="implement-a-progress-filter"></a>Implementare un filtro per l'avanzamento
 
-È possibile implementare un intercettazione di ogni richiesta implementando `ServiceFilter`.  Il codice seguente ad esempio aggiorna un indicatore stato già creato:
+È possibile implementare un intercettazione di ogni richiesta implementando `ServiceFilter`.  Ad esempio, l'esempio hello aggiorna un indicatore di stato creato in precedenza:
 
 ```java
 private class ProgressFilter implements ServiceFilter {
@@ -1232,7 +1232,7 @@ private class ProgressFilter implements ServiceFilter {
 }
 ```
 
-È possibile collegare questo filtro al client come segue:
+È possibile collegare questo client toohello filtro come segue:
 
 ```java
 mClient = new MobileServiceClient(applicationUrl).withFilter(new ProgressFilter());
@@ -1240,7 +1240,7 @@ mClient = new MobileServiceClient(applicationUrl).withFilter(new ProgressFilter(
 
 ### <a name="customize-request-headers"></a>Personalizzare le intestazioni delle richieste
 
-Usare l'elemento `ServiceFilter` seguente e collegare il filtro come per `ProgressFilter`:
+Utilizzare la seguente hello `ServiceFilter` e allegare il filtro hello in hello esattamente come hello `ProgressFilter`:
 
 ```java
 private class CustomHeaderFilter implements ServiceFilter {
@@ -1265,7 +1265,7 @@ private class CustomHeaderFilter implements ServiceFilter {
 
 ### <a name="conversions"></a>Configurare la serializzazione automatica
 
-È possibile specificare una strategia di conversione che si applica a tutte le colonne tramite l'API [gson][3]. La libreria client Android usa [gson][3] in modo invisibile per serializzare oggetti Java in dati JSON, prima che i dati vengano inviati al Servizio app di Azure.  Il codice seguente usa **setFieldNamingStrategy()** per impostare la strategia. Questo esempio elimina il carattere iniziale (una "m") e quindi applica il minuscolo al carattere successivo per ogni nome di campo, ad esempio, trasforma "mId" in "id".  Implementare una strategia di conversione per ridurre la necessità di annotazioni `SerializedName()` nella maggior parte dei campi.
+È possibile specificare una strategia di conversione che si applica a colonna tooevery utilizzando hello [gson] [ 3] API. libreria client per Android Hello Usa [gson] [ 3] background hello tooserialize Java gli oggetti dati tooJSON prima dell'invio dei dati hello tooAzure servizio App.  il codice seguente Hello Usa hello **setFieldNamingStrategy()** strategia hello tooset di metodo. In questo esempio verrà eliminato il carattere iniziale di hello (una "m") e successivo carattere minuscoli hello, per ogni nome di campo. ad esempio, trasforma "mId" in "id".  Implementare un hello tooreduce strategia di conversione necessaria per `SerializedName()` annotazioni nella maggior parte dei campi.
 
 ```java
 FieldNamingStrategy namingStrategy = new FieldNamingStrategy() {
@@ -1282,14 +1282,14 @@ client.setGsonBuilder(
 );
 ```
 
-Questo codice deve essere eseguito prima di creare un riferimento al client per dispositivi mobili usando **MobileServiceClient**.
+Questo codice deve essere eseguito prima di creare un riferimento di client per dispositivi mobili usando hello **MobileServiceClient**.
 
 <!-- URLs. -->
 [Get started with Azure Mobile Apps]: app-service-mobile-android-get-started.md
 [ASCII control codes C0 and C1]: http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set
 [Mobile Services SDK for Android]: http://go.microsoft.com/fwlink/p/?LinkID=717033
 [Azure portal]: https://portal.azure.com
-[Aggiungere l'autenticazione all'app Android]: app-service-mobile-android-get-started-users.md
+[Introduzione all'autenticazione]: app-service-mobile-android-get-started-users.md
 [1]: http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/JsonObject.html
 [2]: http://hashtagfail.com/post/44606137082/mobile-services-android-serialization-gson
 [3]: http://go.microsoft.com/fwlink/p/?LinkId=290801

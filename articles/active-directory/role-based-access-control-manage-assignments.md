@@ -1,6 +1,6 @@
 ---
-title: Visualizzare le assegnazioni di accesso alle risorse di Azure | Microsoft Docs
-description: Visualizzare e gestire tutte le assegnazioni di controllo degli accessi in base al ruolo per qualsiasi utente o gruppo nel portale di Azure
+title: le assegnazioni di accesso di aaaView risorse di Azure | Documenti Microsoft
+description: Visualizzare e gestire tutte le assegnazioni di controllo di accesso basato sui ruoli hello per qualsiasi utente o gruppo in hello portale di Azure
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/04/2017
 ms.author: andredm
-ms.openlocfilehash: 72c695d08bdf5de003d51ffb0768184e1e4d00ba
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ec96c9d4b9e2cb4925949b8bac78767bd564c8ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-access-assignments-for-users-and-groups-in-the-azure-portal"></a>Visualizzare le assegnazioni dell'accesso per utenti e gruppi nel portale di Azure
+# <a name="view-access-assignments-for-users-and-groups-in-hello-azure-portal"></a>Visualizzare le assegnazioni di accesso per utenti e gruppi in hello portale di Azure
 > [!div class="op_single_selector"]
 > * [Gestire l'accesso per utente o gruppo](role-based-access-control-manage-assignments.md)
 > * [Gestire l'accesso per risorsa](role-based-access-control-configure.md)
 
-Il controllo degli accessi in base al ruolo in Azure Active Directory (Azure AD) permette di gestire l'accesso alle risorse di Azure. 
+Controllo di accesso basato sui ruoli (RBAC) in hello Azure Active Directory (Azure AD), è possibile gestire l'accesso tooyour Azure le risorse. 
 
-L'accesso assegnato tramite RBAC è granulare in quanto offre due modalità per limitare le autorizzazioni:
+Accesso assegnato con RBAC è accurato perché è possibile limitare le autorizzazioni di hello in due modi:
 
-* **Ambito:** le assegnazioni di ruolo RBAC hanno un ambito riferito a una sottoscrizione, una risorsa o un gruppo di risorse specifici. Un utente al quale è stato concesso l'accesso a una singola risorsa non può accedere alle altre risorse nella stessa sottoscrizione.
-* **Ruolo:** all'interno dell'ambito dell'assegnazione, l'accesso è ulteriormente limitato con l'assegnazione di un ruolo. I ruoli possono essere di livello superiore, ad esempio quello di proprietario, o specifici, ad esempio quello di lettore di macchina virtuale.
+* **Ambito:** le assegnazioni di ruolo RBAC sono tooa con ambito specifico sottoscrizione, gruppo di risorse o risorse. Un utente con accesso tooa singola risorsa non è possibile accedere alle altre risorse hello stessa sottoscrizione.
+* **Ruolo:** nell'ambito di hello di assegnazione di hello, l'accesso è limitato, ulteriormente tramite l'assegnazione di un ruolo. I ruoli possono essere di livello superiore, ad esempio quello di proprietario, o specifici, ad esempio quello di lettore di macchina virtuale.
 
-I ruoli possono essere assegnati solo all'interno della sottoscrizione, del gruppo di risorse o della risorsa che rientra nell'ambito dell'assegnazione. È tuttavia possibile visualizzare in un'unica posizione tutte le assegnazioni di accesso di un determinato utente o gruppo. È possibile avere fino a 2000 assegnazioni di ruolo in ogni sottoscrizione. 
+Ruoli possono essere assegnati solo all'interno di sottoscrizione hello, gruppo di risorse o risorse che sono hello ambito per l'assegnazione di hello. Ma è possibile visualizzare tutte le assegnazioni di hello accesso per un determinato utente o gruppo in un'unica posizione. È possibile disporre le assegnazioni di ruolo too2000 in ogni sottoscrizione. 
 
-Altre informazioni su come [Usare le assegnazioni di ruolo per gestire l'accesso alle risorse della sottoscrizione di Azure](role-based-access-control-configure.md).
+Ottenere altre informazioni su come troppo[utilizzare le risorse di sottoscrizione di Azure tooyour accesso toomanage assegnazioni ruolo](role-based-access-control-configure.md).
 
 ## <a name="view-access-assignments"></a>Visualizzare le assegnazioni di accesso
-Per individuare le assegnazioni di accesso di un singolo utente o gruppo, avviare Azure Active Directory nel [portale di Azure](http://portal.azure.com).
+toolook le assegnazioni di hello accesso per un singolo utente o gruppo, di avviare in Azure Active Directory hello [portale di Azure](http://portal.azure.com).
 
-1. Selezionare **Azure Active Directory**. Se questa opzione non è visibile nell'elenco di navigazione, selezionare **Altri servizi** e scorrere fino ad **Azure Active Directory**.
+1. Selezionare **Azure Active Directory**. Se questa opzione non è visibile nell'elenco di navigazione, selezionare **più servizi** e quindi scorrere verso il basso toofind **Azure Active Directory**.
 2. Selezionare **Utenti e gruppi** e **Tutti gli utenti** o **Tutti i gruppi**. Questo esempio si incentra sui singoli utenti.
     ![Gestire utenti e gruppi in Azure Active Directory - Schermata](./media/role-based-access-control-manage-assignments/rbac_users_groups.png)
-3. Cercare l'utente in base al nome o al nome utente.
-4. Selezionare **Risorse di Azure** nel pannello dell'utente. Vengono visualizzate tutte le assegnazioni di accesso dell'utente.
+3. Ricerca per utente hello in base al nome o il nome utente.
+4. Selezionare **risorse di Azure** nel pannello utente hello. Vengono visualizzate tutte le assegnazioni di accesso hello per tale utente.
 
-### <a name="read-permissions-to-view-assignments"></a>Autorizzazioni di lettura per la visualizzazione delle assegnazioni
-Questa pagina mostra solo le assegnazioni di accesso per le quali si dispone dell'autorizzazione di lettura. Ad esempio, si ha accesso in lettura alla sottoscrizione A e si apre il pannello delle risorse di Azure per controllare le assegnazioni di un utente. Vengono visualizzate le assegnazioni di accesso per la sottoscrizione A, ma non sarà possibile vedere che l'utente dispone di assegnazioni di accesso per la sottoscrizione B.
+### <a name="read-permissions-tooview-assignments"></a>Tooview assegnazioni delle autorizzazioni di lettura
+Questa pagina Mostra solo le assegnazioni di accesso hello di disporre dell'autorizzazione tooread. Ad esempio, si hanno accesso in lettura toosubscription A e passare toohello risorse di Azure blade toocheck assegnazioni dell'utente. Vengono visualizzate le assegnazioni di accesso per la sottoscrizione A, ma non sarà possibile vedere che l'utente dispone di assegnazioni di accesso per la sottoscrizione B.
 
 ## <a name="delete-access-assignments"></a>Eliminare le assegnazioni di accesso
-Da questo pannello è possibile eliminare le assegnazioni di accesso assegnate direttamente a un utente o gruppo. Se l'assegnazione di accesso è stata ereditato da un gruppo padre, è necessario passare alla risorsa o alla sottoscrizione e gestire da qui l'assegnazione.
+Questo pannello, è possibile eliminare le assegnazioni di accesso che sono state assegnate direttamente tooa utente o gruppo. Se l'assegnazione di accesso hello è stata ereditata da un gruppo padre, è necessario toogo toohello risorse o una sottoscrizione e gestire l'assegnazione di hello non esiste.
 
-1. Dall'elenco di tutte le assegnazioni di accesso di un utente o gruppo, selezionare quella da eliminare.
-2. Selezionare **Rimuovi** e **Sì** per confermare.
+1. Selezionare hello uno desiderato toodelete hello elenco di tutte le assegnazioni di hello accesso per un utente o gruppo.
+2. Selezionare **rimuovere** e quindi **Sì** tooconfirm.
     ![Rimuovere un'assegnazione di accesso - Schermata](./media/role-based-access-control-manage-assignments/delete_assignment.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per un'introduzione al controllo degli accessi in base al ruolo, vedere [Usare le assegnazioni di ruolo per gestire l'accesso alle risorse della sottoscrizione di Azure](role-based-access-control-configure.md)
-* Vedere [Controllo degli accessi in base al ruolo: ruoli predefiniti](role-based-access-built-in-roles.md)
+* Introduzione a controllo di accesso basato sui ruoli troppo[utilizzare le risorse di sottoscrizione di Azure tooyour accesso toomanage assegnazioni ruolo](role-based-access-control-configure.md)
+* Vedere hello [ruoli predefiniti RBAC](role-based-access-built-in-roles.md)
 

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: integrazione di Azure Active Directory con LinkedIn Lookup| Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e LinkedIn Lookup.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e la ricerca di LinkedIn.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,131 +13,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: jeedes
-ms.openlocfilehash: e296431866a8611b30e72f286884890adf0f7e50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d79c34baa676391699e4b49806f16422fcfe73e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-linkedin-lookup"></a>Esercitazione: Integrazione di Azure Active Directory con LinkedIn Lookup
 
-Questa esercitazione descrive come integrare LinkedIn Lookup con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate ricerca LinkedIn con Azure Active Directory (Azure AD).
 
-L'integrazione di LinkedIn Lookup con Azure AD offre i vantaggi seguenti:
+Integrazione di ricerca di LinkedIn con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a LinkedIn Lookup
-- È possibile abilitare gli utenti per l'accesso automatico a LinkedIn Lookup (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure
+- È possibile controllare in Azure AD che ha accesso tooLinkedIn ricerca
+- È possibile abilitare l'utenti tooautomatically get connesso tooLinkedIn ricerca (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con LinkedIn Lookup sono necessari gli elementi seguenti:
+integrazione di Azure AD con ricerca LinkedIn tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di LinkedIn Lookup abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiungere LinkedIn Lookup dalla raccolta
+1. Aggiunta di ricerca di LinkedIn dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-linkedin-lookup-from-the-gallery"></a>Aggiungere LinkedIn Lookup dalla raccolta
-Per configurare l'integrazione di LinkedIn Lookup in Azure AD è necessario aggiungere LinkedIn Lookup dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-linkedin-lookup-from-hello-gallery"></a>Aggiunta di ricerca di LinkedIn dalla raccolta hello
+integrazione hello tooconfigure di ricerca di LinkedIn in Azure AD, è necessario tooadd LinkedIn ricerca dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere LinkedIn Lookup dalla raccolta, seguire questa procedura:**
+**tooadd ricerca LinkedIn dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. Fare clic su **nuova applicazione** pulsante nella parte superiore di hello di hello finestra di dialogo tooadd nuova applicazione.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca online digitare **LinkedIn Lookup**.
+4. Nella casella di ricerca hello, digitare **LinkedIn ricerca**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_search.png)
 
-5. Nel pannello dei risultati selezionare **LinkedIn Lookup** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **ricerca LinkedIn**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con LinkedIn Lookup in base a un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve sapere qual è l'utente di LinkedIn Lookup che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in LinkedIn Lookup.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in ricerca di LinkedIn è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in ricerca di LinkedIn deve toobe stabilita.
 
-La relazione di collegamento viene stabilita assegnando il valore del **nome utente** di Azure AD come valore di **Username** (nome utente) in LinkedIn Lookup.
+Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** nella ricerca di LinkedIn.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con LinkedIn Lookup è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con LinkedIn ricerca, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente test di LinkedIn Lookup](#creating-an-linkedin-lookup-test-user)**: per avere una controparte di Britta Simon in LinkedIn Lookup collegata alla relativa rappresentazione in Azure AD.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test ricerca LinkedIn](#creating-an-linkedin-lookup-test-user)**  -toohave un equivalente di Britta Simon nella ricerca di LinkedIn che è la rappresentazione toohello collegato AD Azure.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di gestione di Azure e viene configurato l'accesso Single Sign-On nell'applicazione LinkedIn Lookup.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione di ricerca di LinkedIn.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con LinkedIn Lookup seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con ricerca LinkedIn, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **LinkedIn Lookup** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **ricerca LinkedIn** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo, nella **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_samlbase.png)
 
-3. In un'altra finestra del Web browser accedere al sito Web di **LinkedIn Lookup** come amministratore.
+3. In una finestra del web browser, accesso tooyour **ricerca LinkedIn** sito Web come amministratore.
 
-4. In **Account Center** (Centro account) fare clic su **Global Settings** (Impostazioni globali) in **Settings** (Impostazioni). Selezionare anche **Lookup** (Cerca) nell'elenco a discesa.
+4. In **Account Center** (Centro account) fare clic su **Global Settings** (Impostazioni globali) in **Settings** (Impostazioni). Selezionare inoltre **ricerca** dall'elenco a discesa hello.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_LinkedIn_admin_011.png)
 
-5. Fare clic su **OR Click Here to load and copy individual fields from the form** (O fare clic qui per caricare e copiare i singoli file dal modulo) e copiare l'**ID entità** e l'**URL ACS (Assertion Consumer Access)**
+5. Fare clic su **o fare clic qui tooload e copia dei singoli campi modulo hello** e copia **Id entità** e **Url asserzione Consumer accesso (ACS)**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_LinkedIn_admin_032.png)
 
-6. Nella sezione **URL e dominio LinkedIn Lookup** del portale di Azure seguire questa procedura se si desidera configurare l'applicazione in modalità avviata da **IDP**:
+6. Nel portale di Azure in **URL e il dominio di ricerca di LinkedIn** seguire hello procedura seguente se si desidera in un'applicazione hello tooconfigure **IDP** modalità iniziata da:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_url.png)
 
-    a. Nella casella di testo **Identificatore** immettere l'**ID entità** copiato dal portale di LinkedIn 
+    a. In hello **identificatore** casella di testo immettere hello **ID entità** copiata dal portale di LinkedIn 
 
-    b. Nella casella di testo **URL di risposta** immettere l'**URL ACS (Assertion Consumer Access)** copiato dal portale di LinkedIn
+    b. In hello **URL di risposta** casella di testo immettere hello **Url asserzione Consumer accesso (ACS)** copiata dal portale di LinkedIn
 
-7. Selezionare **Mostra impostazioni URL avanzate**, se si desidera configurare l'applicazione in modalità avviata da **SP**:
+7. Controllare **Mostra URL impostazioni avanzate**, se si desidera in un'applicazione hello tooconfigure **SP** modalità iniziata da:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_url1.png)
 
-    Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://www.linkedIn.com/checkpoint/enterprise/login/<AccountId>?application=lookup`
+    In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://www.linkedIn.com/checkpoint/enterprise/login/<AccountId>?application=lookup`
      
     > [!NOTE] 
-    > Questo non è il valore reale. L'utente deve aggiornare questi valori con l'URL di accesso effettivo. Per ottenere tale valore, contattare il [team di supporto di LinkedIn Lookup](https://business.LinkedIn.com/lookup).
+    > Questo non è il valore reale. utente Hello presenta tooupdate questi valori con hello URL effettivo Sign-On. Contatto [team di supporto Client di LinkedIn ricerca](https://business.LinkedIn.com/lookup) tooget questo valore.
 
-8. L'applicazione **LinkedIn Lookup** si aspetta che le asserzioni SAML abbiano un formato specifico. L'utente deve aggiungere dei mapping di attributi personalizzati alla configurazione degli attributi del token SAML. La schermata seguente mostra un esempio. Il valore predefinito dell'**ID utente** è **user.userprincipalname** ma LinkedIn Lookup prevede che venga mappato all'indirizzo di posta elettronica dell'utente. È possibile usare l'attributo **user.mail** dall'elenco oppure usare il valore di attributo appropriato in base alla configurazione dell'organizzazione. 
+8. Il **ricerca LinkedIn** asserzioni SAML hello prevista dall'applicazione in un formato specifico. Hello utente dispone di configurazione di attributi del token SAML tooadd attributo personalizzato mapping toohello. Hello seguente schermata mostra un esempio. il valore predefinito di Hello **identificatore utente** è **User** ma LinkedIn ricerca prevede che questo toobe mappato con indirizzo di posta elettronica dell'utente hello. È possibile utilizzare **user.mail** attributo dall'elenco hello o utilizzare il valore di attributo appropriato hello in base alla configurazione dell'organizzazione. 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/updateusermail.png)
     
-9. Nella sezione **Attributi utente** fare clic su **Visualizza e modifica tutti gli altri attributi utente** e impostare gli attributi. L'utente deve aggiungere quattro attestazioni denominate **email**,  **department**, **firstname** e **lastname** e il valore deve essere mappato rispettivamente a **user.mail**, **user.department**, **user.givenname** e **user.surname**
+9. In **gli attributi utente** fare clic su **visualizzare e modificare tutti gli altri attributi utente** e impostare gli attributi di hello. Hello utente necessita di attestazioni di quattro tooadd denominate **posta elettronica**, **reparto**, **firstname**, e **lastname** e il valore di hello è mappata a toobe **user.mail**, **Department**, **user.givenname**, e **user.surname** rispettivamente
 
     | Nome attributo | Valore attributo |
     | --- | --- |
@@ -148,29 +148,29 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/userattribute.png)
 
-    a. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
+    a. Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/4.png)
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/5.png)
    
-    b. Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.
+    b. In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
     
-    c. Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.
+    c. Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.
     
     d. Fare clic su **Ok**
 
-10. Seguire questa procedura sull'attributo **name**.
+10. Eseguire hello seguendo i passaggi hello **nome** - attributo
 
-    a. Fare clic sull'attributo per aprire la finestra **Modifica attributo**.
+    a. Fare clic su hello tooopen di attributo hello **Modifica attributo** finestra.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/url_update.png)
 
-    b. Eliminare il valore dell'URL dallo **spazio dei nomi**.
+    b. Eliminare il valore di URL hello dalla hello **dello spazio dei nomi**.
     
-    c. Fare clic su **Ok** per salvare l'impostazione.
+    c. Fare clic su **Ok** impostazione hello toosave.
 
-10. Nella sezione **Certificato di firma SAML** fare clic su **XML metadati** e quindi salvare il file XML nel computer.
+10. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file XML hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_certificate.png) 
 
@@ -178,72 +178,72 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_general_400.png)
 
-12. Accedere alla sezione **LinkedIn Admin Settings** (Impostazioni di amministrazione LinkedIn). Caricare il file XML scaricato dal portale di Azure facendo clic sull'opzione **Upload XML file** (Carica file XML).
+12. Andare troppo**le impostazioni di amministrazione di LinkedIn** sezione. File XML di hello caricamento è stato scaricato dal portale di Azure hello facendo hello **file caricare XML** opzione.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedIn_metadata_03.png)
 
-13. Fare clic su **On** per abilitare SSO. Lo stato SSO passa da **Not Connected** (Non connesso) a **Connected** (Connesso)
+13. Fare clic su **su** tooenable SSO. Modifica stato SSO da **non connesso** troppo**connesso**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedIn_admin_05.png)
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
  
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/create_aaduser_01.png) 
 
-2. Fare clic **Utenti e gruppi** e su **Tutti gli utenti**.
+2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/create_aaduser_02.png) 
 
-3. Fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. Fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Name** (Nome) digitare **Britta Simon**.
+    a. In hello **nome** casella tipo **Britta Simon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di Britta Simon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di Britta Simon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-an-linkedin-lookup-test-user"></a>Creazione di un utente test di LinkedIn Lookup
 
-L'applicazione Linked Lookup supporta il provisioning dell'utente just-in-time (JIT) e dopo l'autenticazione gli utenti verranno automaticamente creati nell'applicazione. Attivare l'**assegnazione automatica delle licenze** per assegnare una licenza all'utente.
+Applicazione di ricerca collegato supporta immediatamente in il provisioning dell'utente di tempo (JIT) e dopo l'autenticazione degli utenti viene creato automaticamente in un'applicazione hello. Attivare **automaticamente assegnare licenze** tooassign un utente toohello di licenza.
    
    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedin_admin_license.png)
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione viene concesso a Britta Simon l'accesso a LinkedIn Lookup per consentirle di usare l'accesso Single Sign-On di Azure.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooLinkedIn ricerca.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a LinkedIn Lookup seguire questa procedura:**
+**tooassign Britta Simon tooLinkedIn ricerca, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **LinkedIn Lookup**.
+2. Nell'elenco di applicazioni hello, selezionare **LinkedIn ricerca**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -251,7 +251,7 @@ In questa sezione viene concesso a Britta Simon l'accesso a LinkedIn Lookup per 
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -260,15 +260,15 @@ In questa sezione viene concesso a Britta Simon l'accesso a LinkedIn Lookup per 
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro LinkedIn Lookup nel pannello di accesso, si viene reindirizzati alla pagina dell'organizzazione, nella quale è necessario fornire i dettagli dell'account LinkedIn personale. In questo modo l'account personale viene collegato all'account aziendale di LinkedIn. 
+Quando si fa clic hello LinkedIn ricerca riquadro in hello Pannello di accesso, dovrebbe essere reindirizzato tooOrganizational pagina in cui occorre tooprovide i dettagli dell'account personali LinkedIn. In questo modo l'account personale viene collegato all'account aziendale di LinkedIn. 
 
 Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

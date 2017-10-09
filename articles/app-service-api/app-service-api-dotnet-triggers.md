@@ -1,6 +1,6 @@
 ---
-title: Trigger delle app per le API del servizio app | Documentazione Microsoft
-description: Come implementare i trigger in un'app per le API in Servizio app di Azure.
+title: i trigger di app API del servizio aaaApp | Documenti Microsoft
+description: Come tooimplement attivi in un'applicazione API in Azure App Service
 services: logic-apps
 documentationcenter: .net
 author: guangyang
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2016
 ms.author: rachelap
-ms.openlocfilehash: 3ddfb142e7f1a47e2a8564387da785acf36fa61f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d6b6a942a23c0a93987e9c48b69ecc739bfd814
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-api-app-triggers"></a>Trigger delle app per le API del servizio app di Azure
 > [!NOTE]
-> Questa versione dell'articolo si applica alla versione dello schema 2014-12-01-preview delle app per le API.
+> Questa versione di hello articolo applica versione dello schema di tooAPI App 2014-12-01-preview.
 >
 >
 
 ## <a name="overview"></a>Panoramica
-Questo articolo spiega come implementare i trigger delle app per le API e usarli da un'app per la logica.
+Questo articolo spiega come app tooimplement API attiva e utilizzarli da un'app di logica.
 
-Tutti i frammenti di codice in questo argomento sono stati copiati dall' [esempio di codice di app per le API FileWatcher](http://go.microsoft.com/fwlink/?LinkId=534802).
+Tutti i frammenti di codice hello in questo argomento vengono copiati dal hello [nell'esempio di codice App per le API FileWatcher](http://go.microsoft.com/fwlink/?LinkId=534802).
 
-Per la corretta compilazione ed esecuzione del codice riportato in questo articolo, sarà inoltre necessario scaricare il pacchetto NuGet seguente: [http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/).
+Si noti che è necessario hello toodownload seguendo il pacchetto nuget per il codice hello in questo articolo di toobuild ed eseguire: [http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/).
 
 ## <a name="what-are-api-app-triggers"></a>Cosa sono i trigger delle app per le API?
-In genere, le app per le API generano eventi in modo che i client dell'app per le API possano eseguire l'azione appropriata in risposta all'evento. Il meccanismo basato sull'API REST che supporta questo scenario è definito come trigger dell'app per le API.
+È uno scenario comune per un toofire app API un evento in modo che i client di app per le API hello possono intraprendere l'azione appropriata hello nell'evento toohello di risposta. Hello meccanismo API REST in base che supporta questo scenario viene chiamato un trigger di app di API.
 
-Si supponga, ad esempio, che il codice client usi l' [app per le API Twitter Connector](../connectors/connectors-create-api-twitter.md) e che il codice debba eseguire un'azione in base ai nuovi tweet che contengono parole specifiche. In questo caso, è possibile configurare un trigger di polling o di push.
+Ad esempio, supponiamo che il codice client utilizza hello [Twitter API connettore app](../connectors/connectors-create-api-twitter.md) e il codice deve tooperform un'azione in base alle nuove TWEET contenenti parole specifiche. In questo caso, è possibile impostare un toofacilitate trigger polling o di push questa esigenza.
 
 ## <a name="poll-trigger-versus-push-trigger"></a>Trigger di polling e trigger di push
 Attualmente sono supportati due tipi di trigger:
 
-* Trigger di polling: il client esegue il polling dell'app per le API per la notifica di un evento generato
-* Trigger di push: il client riceve una notifica dall'app per le API quando viene generato un evento
+* Trigger di polling - Client esegue il polling app hello per le API per la notifica di un evento che è stata attivata
+* Trigger di push - Client riceve una notifica tramite app hello API quando viene generato un evento
 
 ### <a name="poll-trigger"></a>Trigger di polling
-Un trigger di polling viene implementato come un'API REST normale e prevede che i client, ad esempio un'app per la logica, ne eseguano il polling per ricevere la notifica. Mentre il client può mantenere il suo stato, il trigger di polling stesso è senza stato.
+Un trigger di polling viene implementato come un'API REST regolari e prevede toopoll relativo client (ad esempio un'app di logica) nella notifica tooget ordine. Mentre il client hello può mantenere lo stato, i trigger di polling hello stesso è senza stato.
 
-Le informazioni seguenti relative ai pacchetti di richiesta e di risposta illustrano alcuni aspetti fondamentali del contratto del trigger di polling:
+le seguenti informazioni riguardanti i pacchetti di richiesta e risposta hello Hello vengono illustrati alcuni aspetti chiave del contratto di hello polling trigger:
 
 * Richiesta
   * Metodo HTTP: GET
-  * Parametri
-    * triggerState: questo parametro facoltativo consente ai client di specificare il proprio stato in modo che il trigger di polling possa decidere correttamente se restituire o meno una notifica in base allo stato specificato.
+  * parameters
+    * Questo parametro facoltativo di triggerState - consente ai client toospecify il proprio stato in modo che i trigger di polling di hello correttamente è possibile decidere se tooreturn notifica o hello non in base a stato specificato.
     * Parametri specifici dell'API
 * Response
-  * Codice di stato **200** : la richiesta è valida ed è presente una notifica dal trigger. Il contenuto della notifica si troverà nel corpo della risposta. Un'intestazione "Retry-After" nella risposta indica che è necessario recuperare i dati della notifica aggiuntivi con una chiamata di richiesta successiva.
-  * Codice di stato **202** : la richiesta è valida ma non sono presenti nuove notifiche dal trigger.
-  * Codice di stato **4xx** : la richiesta non è valida. Il client non deve ripetere la richiesta.
-  * Codice di stato **5xx** : durante la richiesta si è verificato un errore interno del server e/o un problema temporaneo. Il client deve ripetere la richiesta.
+  * Codice di stato **200** - richiesta è valida e vi è una notifica da trigger hello. il contenuto di Hello della notifica hello sarà corpo della risposta hello. Un'intestazione "Retry-After" in risposta hello indica che è necessario recuperare i dati di notifica aggiuntivo con una chiamata di richiesta successiva.
+  * Codice di stato **202** : richiesta è valida, ma non è presente alcuna notifica nuovo da un trigger di hello.
+  * Codice di stato **4xx** : la richiesta non è valida. client Hello non deve ripetere la richiesta hello.
+  * Codice di stato **5xx** : durante la richiesta si è verificato un errore interno del server e/o un problema temporaneo. Hello client deve tentare nuovamente hello richieste.
 
-Il frammento di codice seguente descrive come implementare un trigger di polling.
+Hello frammento di codice seguente è riportato un esempio di come un sondaggio tooimplement trigger.
 
     // Implement a poll trigger.
     [HttpGet]
@@ -71,54 +71,54 @@ Il frammento di codice seguente descrive come implementare un trigger di polling
         // Additional parameters
         string searchPattern = "*")
     {
-        // Check to see whether there is any file touched after the timestamp.
+        // Check toosee whether there is any file touched after hello timestamp.
         var lastTriggerTimeUtc = DateTime.Parse(triggerState).ToUniversalTime();
         var touchedFiles = Directory.EnumerateFiles(rootPath, searchPattern, SearchOption.AllDirectories)
             .Select(f => FileInfoWrapper.FromFileInfo(new FileInfo(f)))
             .Where(fi => fi.LastAccessTimeUtc > lastTriggerTimeUtc);
 
-        // If there are files touched after the timestamp, return their information.
+        // If there are files touched after hello timestamp, return their information.
         if (touchedFiles != null && touchedFiles.Count() != 0)
         {
-            // Extension method provided by the AppService service SDK.
+            // Extension method provided by hello AppService service SDK.
             return this.Request.EventTriggered(new { files = touchedFiles });
         }
-        // If there are no files touched after the timestamp, tell the caller to poll again after 1 mintue.
+        // If there are no files touched after hello timestamp, tell hello caller toopoll again after 1 mintue.
         else
         {
-            // Extension method provided by the AppService service SDK.
+            // Extension method provided by hello AppService service SDK.
             return this.Request.EventWaitPoll(new TimeSpan(0, 1, 0));
         }
     }
 
-Per testare il trigger di polling, seguire questa procedura:
+attivare il polling di tootest, seguire questi passaggi:
 
-1. Distribuire l'app per le API impostando l'autenticazione sul livello di accesso **Pubblico (anonimo)**.
-2. Chiamare l'operazione **touch** per creare un file. L'immagine seguente illustra una richiesta di esempio tramite Postman.
+1. Distribuire hello API App con un'impostazione di autenticazione di **pubblico anonimo**.
+2. Chiamare hello **tocco** tootouch operazione un file. Hello seguente immagine mostra una richiesta di esempio tramite Postman.
    ![Chiamata dell'operazione Touch tramite Postman](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
-3. Chiamare il trigger di polling con il parametro **triggerState** impostato su un timestamp prima di procedere al passaggio 2. L'immagine seguente illustra la richiesta di esempio tramite Postman.
+3. Chiamata hello polling trigger con hello **triggerState** parametro impostato tooa ora timbro precedente tooStep #2. Hello immagine seguente mostra la richiesta di esempio hello tramite Postman.
    ![Chiamata del trigger di polling tramite Postman](./media/app-service-api-dotnet-triggers/callpolltriggerfrompostman.PNG)
 
 ### <a name="push-trigger"></a>Trigger di push
-Un trigger di push viene implementato come un'API REST normale che esegue il push delle notifiche ai client registrati per ricevere una notifica quando vengono generati eventi specifici.
+Un trigger di push viene implementato come un'API REST regolari che effettua il push delle notifiche tooclients che hanno registrato toobe una notifica quando vengono generati eventi specifici.
 
-Le informazioni seguenti relative ai pacchetti di richiesta e di risposta illustrano alcuni aspetti fondamentali del contratto del trigger di push:
+le seguenti informazioni riguardanti i pacchetti di richiesta e risposta hello Hello vengono illustrati alcuni aspetti chiave del contratto di trigger push hello.
 
 * Richiesta
   * Metodo HTTP: PUT
-  * Parametri
-    * triggerId: obbligatorio. Si tratta di una stringa opaca (ad esempio un GUID) che rappresenta la registrazione di un trigger di push.
-    * callbackUrl: obbligatorio. Si tratta dell'URL del callback da richiamare quando viene generato l'evento. La chiamata è una semplice chiamata HTTP POST.
+  * parameters
+    * triggerId: obbligatorio - opaco stringa (ad esempio un GUID) che rappresenta hello registrazione di un trigger di push.
+    * callbackUrl: obbligatorio - URL di hello callback tooinvoke quando viene generato l'evento hello. chiamata di Hello è una semplice chiamata HTTP POST.
     * Parametri specifici dell'API
 * Response
-  * Codice di stato **200** : la richiesta di registrazione del client è riuscita.
-  * Codice di stato **4xx** : la richiesta non è valida. Il client non deve ripetere la richiesta.
-  * Codice di stato **5xx** : durante la richiesta si è verificato un errore interno del server e/o un problema temporaneo. Il client deve ripetere la richiesta.
+  * Codice di stato **200** -client tooregister richiesta ha esito positivo.
+  * Codice di stato **4xx** : la richiesta non è valida. client Hello non deve ripetere la richiesta hello.
+  * Codice di stato **5xx** : durante la richiesta si è verificato un errore interno del server e/o un problema temporaneo. Hello client deve tentare nuovamente hello richieste.
 * Callback
   * Metodo HTTP: POST
   * Corpo della richiesta: contenuto della notifica.
 
-Il frammento di codice seguente descrive come implementare un trigger di push:
+Hello seguente frammento di codice è riportato un esempio di come un push tooimplement trigger:
 
     // Implement a push trigger.
     [HttpPut]
@@ -126,14 +126,14 @@ Il frammento di codice seguente descrive come implementare un trigger di push:
     public HttpResponseMessage TouchedFilesPushTrigger(
         // triggerId is an opaque string.
         string triggerId,
-        // A helper class provided by the AppService service SDK.
-        // Here it defines the input of the push trigger is a string and the output to the callback is a FileInfoWrapper object.
+        // A helper class provided by hello AppService service SDK.
+        // Here it defines hello input of hello push trigger is a string and hello output toohello callback is a FileInfoWrapper object.
         [FromBody]TriggerInput<string, FileInfoWrapper> triggerInput)
     {
-        // Register the trigger to some trigger store.
+        // Register hello trigger toosome trigger store.
         triggerStore.RegisterTrigger(triggerId, rootPath, triggerInput);
 
-        // Extension method provided by the AppService service SDK indicating the registration is completed.
+        // Extension method provided by hello AppService service SDK indicating hello registration is completed.
         return this.Request.PushTriggerRegistered(triggerInput.GetCallback());
     }
 
@@ -165,53 +165,53 @@ Il frammento di codice seguente descrive come implementare un trigger di push:
         public void RegisterTrigger(string triggerId, string rootPath,
             TriggerInput<string, FileInfoWrapper> triggerInput)
         {
-            // Use FileSystemWatcher to listen to file change event.
+            // Use FileSystemWatcher toolisten toofile change event.
             var filter = string.IsNullOrEmpty(triggerInput.inputs) ? "*" : triggerInput.inputs;
             var watcher = new FileSystemWatcher(rootPath, filter);
             watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
             watcher.NotifyFilter = NotifyFilters.LastAccess;
 
-            // When some file is changed, fire the push trigger.
+            // When some file is changed, fire hello push trigger.
             watcher.Changed +=
                 (sender, e) => watcher_Changed(sender, e,
                     Runtime.FromAppSettings(),
                     triggerInput.GetCallback());
 
-            // Assoicate the FileSystemWatcher object with the triggerId.
+            // Assoicate hello FileSystemWatcher object with hello triggerId.
             _store[triggerId] = watcher;
 
         }
 
-        // Fire the assoicated push trigger when some file is changed.
+        // Fire hello assoicated push trigger when some file is changed.
         void watcher_Changed(object sender, FileSystemEventArgs e,
-            // AppService runtime object needed to invoke the callback.
+            // AppService runtime object needed tooinvoke hello callback.
             Runtime runtime,
-            // The callback to invoke.
+            // hello callback tooinvoke.
             ClientTriggerCallback<FileInfoWrapper> callback)
         {
-            // Helper method provided by AppService service SDK to invoke a push trigger callback.
+            // Helper method provided by AppService service SDK tooinvoke a push trigger callback.
             callback.InvokeAsync(runtime, FileInfoWrapper.FromFileInfo(new FileInfo(e.FullPath)));
         }
     }
 
-Per testare il trigger di polling, seguire questa procedura:
+attivare il polling di tootest, seguire questi passaggi:
 
-1. Distribuire l'app per le API impostando l'autenticazione sul livello di accesso **Pubblico (anonimo)**.
-2. Passare a [http://requestb.in/](http://requestb.in/) per creare un oggetto RequestBin da usare come URL di callback.
-3. Chiamare il trigger di push con un GUID come **triggerId** e un URL RequestBin come **callbackUrl**.
+1. Distribuire hello API App con un'impostazione di autenticazione di **pubblico anonimo**.
+2. Sfoglia troppo[http://requestb.in/](http://requestb.in/) toocreate un RequestBin che verrà utilizzata come l'URL callback.
+3. Chiamare il trigger di push hello con un GUID come **triggerId** e hello RequestBin URL come **callbackUrl**.
    ![Chiamata del trigger di push tramite Postman](./media/app-service-api-dotnet-triggers/callpushtriggerfrompostman.PNG)
-4. Chiamare l'operazione **touch** per creare un file. L'immagine seguente illustra una richiesta di esempio tramite Postman.
+4. Chiamare hello **tocco** tootouch operazione un file. Hello seguente immagine mostra una richiesta di esempio tramite Postman.
    ![Chiamata dell'operazione Touch tramite Postman](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
-5. Controllare l'oggetto RequestBin per assicurarsi che il callback del trigger di push venga richiamato con l'output delle proprietà.
+5. Controllo hello RequestBin tooconfirm che hello push trigger callback viene richiamato con l'output di proprietà.
    ![Chiamare il trigger di polling tramite Postman](./media/app-service-api-dotnet-triggers/pushtriggercallbackinrequestbin.PNG)
 
 ### <a name="describe-triggers-in-api-definition"></a>Descrivere i trigger nella definizione dell'API
-Dopo aver implementato i trigger e distribuito l'app per le API in Azure, passare al pannello **Definizione API** nel portale di anteprima di Azure. Si noterà che i trigger vengono riconosciuti automaticamente nell'interfaccia utente che è basata sulla definizione API Swagger 2.0 dell'app per le API.
+Dopo l'implementazione di trigger hello e distribuendo il tooAzure app API, passare toohello **di definizione dell'API** pannello nel portale di anteprima di Azure hello e si noterà che i trigger vengono riconosciuti automaticamente nell'interfaccia utente, che si basa sulle hello Hello definizione Swagger 2.0 API dell'applicazione hello API.
 
 ![Pannello Definizione API](./media/app-service-api-dotnet-triggers/apidefinitionblade.PNG)
 
-Se si fa clic sul pulsante **Scarica Swagger** e si apre il file JSON, verranno visualizzati risultati simili ai seguenti:
+Se si fa clic hello **scaricare Swagger** pulsante e i file JSON hello aperto, si noterà toohello simile di risultati seguente:
 
     "/api/files/poll/TouchedFiles": {
       "get": {
@@ -228,20 +228,20 @@ Se si fa clic sul pulsante **Scarica Swagger** e si apre il file JSON, verranno 
       }
     }
 
-La proprietà **x-ms-schedular-trigger** rappresenta il modo in cui i trigger sono descritti nella definizione dell'API e viene aggiunta automaticamente dal gateway dell'app per le API quando si richiede la definizione dell'API tramite il gateway, se la richiesta soddisfa uno dei criteri seguenti. È anche possibile aggiungere questa proprietà manualmente.
+proprietà di estensione Hello **x-ms-schedular-trigger** è come i trigger sono descritti nella definizione dell'API e viene aggiunta automaticamente dal gateway app hello API quando si richiede la definizione hello API tramite il gateway hello se hello richiesta tooone di Hello seguenti criteri. È anche possibile aggiungere questa proprietà manualmente.
 
 * Trigger di polling
-  * Se il metodo HTTP è **GET**.
-  * Se la proprietà **operationId** contiene la stringa **trigger**.
-  * Se la proprietà **parameters** include un parametro con una proprietà **name** impostata su **triggerState**.
+  * Se il metodo HTTP hello **ottenere**.
+  * Se hello **operationId** proprietà contiene la stringa hello **trigger**.
+  * Se hello **parametri** proprietà include un parametro con un **nome** impostata troppo**triggerState**.
 * Trigger di push
-  * Se il metodo HTTP è **PUT**.
-  * Se la proprietà **operationId** contiene la stringa **trigger**.
-  * Se la proprietà **parameters** include un parametro con una proprietà **name** impostata su **triggerId**.
+  * Se il metodo HTTP hello **inserire**.
+  * Se hello **operationId** proprietà contiene la stringa hello **trigger**.
+  * Se hello **parametri** proprietà include un parametro con un **nome** impostata troppo**triggerId**.
 
 ## <a name="use-api-app-triggers-in-logic-apps"></a>Usare i trigger di app per le API nelle app per la logica
-### <a name="list-and-configure-api-app-triggers-in-the-logic-apps-designer"></a>Elencare e configurare i trigger di app per le API nella finestra di progettazione di app per la logica
-Se si crea un'app per la logica nello stesso gruppo di risorse dell'app per le API, sarà possibile aggiungerla all'area di disegno della finestra di progettazione, semplicemente facendo clic su di essa. Vedere le immagini seguenti per un esempio:
+### <a name="list-and-configure-api-app-triggers-in-hello-logic-apps-designer"></a>Elencare e configurare i trigger di app API nella finestra di progettazione di hello logica App
+Se si crea un'app per la logica in hello app per le API di hello stesso gruppo di risorse, sarà in grado di tooadd è canvas di progettazione toohello semplicemente facendovi clic sopra. Hello seguenti immagini illustrare questo concetto:
 
 ![Trigger nella finestra di progettazione di app per la logica](./media/app-service-api-dotnet-triggers/triggersinlogicappdesigner.PNG)
 
@@ -250,15 +250,15 @@ Se si crea un'app per la logica nello stesso gruppo di risorse dell'app per le A
 ![Configurazione del trigger di push nella finestra di progettazione di app per la logica](./media/app-service-api-dotnet-triggers/configurepushtriggerinlogicappdesigner.PNG)
 
 ## <a name="optimize-api-app-triggers-for-logic-apps"></a>Ottimizzare i trigger di app per le API per le app per la logica
-Dopo aver aggiunto i trigger a un'app per le API, è possibile eseguire alcune operazioni per migliorare l'esperienza durante l'uso dell'app per le API in un'app per la logica.
+Dopo aver aggiunto i trigger tooan API app, esistono alcuni aspetti, è possibile eseguire analisi hello tooimprove quando si utilizza l'applicazione hello API in un'app di logica.
 
-Ad esempio, impostare il parametro **triggerState** per i trigger di polling sull'espressione seguente nell'app per la logica. Questa espressione deve valutare l'ultima chiamata del trigger dall'app per la logica e restituire il relativo valore.  
+Ad esempio, hello **triggerState** parametro per i trigger di polling deve essere impostato toohello espressione hello logica App seguente. Questa espressione deve valutare l'ultima chiamata di hello del trigger hello dall'app logica hello e restituiscono tale valore.  
 
     @coalesce(triggers()?.outputs?.body?['triggerState'], '')
 
-NOTA: per una spiegazione delle funzioni usate nell'espressione precedente, fare riferimento alla documentazione relativa al [linguaggio di definizione del flusso di lavoro delle app per la logica](https://msdn.microsoft.com/library/azure/dn948512.aspx).
+Nota: Per una spiegazione delle funzioni hello utilizzate nell'espressione hello precedente, vedere la documentazione di toohello su [linguaggio di definizione del flusso di lavoro logica App](https://msdn.microsoft.com/library/azure/dn948512.aspx).
 
-Gli utenti dell'app per la logica dovranno specificare l'espressione precedente per il parametro **triggerState** durante l'utilizzo del trigger. Questo valore può essere impostato come predefinito dalla finestra di progettazione di app per la logica tramite la proprietà di estensione **x-ms-scheduler-recommendation**.  È possibile impostare la proprietà di estensione **x-ms-visibility** sul valore *internal* in modo che il parametro stesso non venga visualizzato nella finestra di progettazione.  Questo scenario è mostrato nel frammento di codice seguente.
+Logica app utenti devono espressione hello tooprovide sopra per hello **triggerState** parametro durante l'utilizzo di trigger hello. È possibile toohave questo valore predefinito dalla finestra di progettazione di hello logica app tramite proprietà di estensione hello **raccomandazione x-ms-utilità di pianificazione**.  Hello **x-ms-visibilità** estensione può essere impostata tooa valore *interno* in modo che il parametro hello stesso non viene visualizzato nella finestra di progettazione hello.  Hello frammento di codice seguente è illustrata il.
 
     "/api/Messages/poll": {
       "get": {
@@ -278,11 +278,11 @@ Gli utenti dell'app per la logica dovranno specificare l'espressione precedente 
       }
     }
 
-Per i trigger di push, il parametro **triggerId** deve identificare in modo univoco l'app per la logica. In base a una procedura consigliata, è opportuno impostare questa proprietà sul nome del flusso di lavoro tramite l'espressione seguente:
+Per i trigger di push, hello **triggerId** parametro deve identificare in modo univoco hello logica app. Una procedura consigliata è tooset questo nome della proprietà toohello del flusso di lavoro hello utilizzando hello l'espressione seguente:
 
     @workflow().name
 
-Grazie all'uso delle proprietà di estensione **x-ms-scheduler-recommendation** e **x-ms-visibility** nella propria definizione API, l'app per le API può indicare alla finestra di progettazione dell'app per la logica di impostare automaticamente questa espressione.
+Utilizzando hello **raccomandazione x-ms-utilità di pianificazione** e **x-ms-visibilità** possono trasmettere le proprietà di estensione nella relativa definizione API, hello app per le API toohello logica app progettazione tooautomatically impostare espressione per l'utente hello.
 
         "parameters":[  
           {  
@@ -296,11 +296,11 @@ Grazie all'uso delle proprietà di estensione **x-ms-scheduler-recommendation** 
 
 
 ### <a name="add-extension-properties-in-api-defintion"></a>Aggiungere le proprietà di estensione nella definizione dell'API
-Per aggiungere altre informazioni sui metadati, ad esempio le proprietà di estensione **x-ms-scheduler-recommendation** e **x-ms-visibility**, alla definizione dell'API sono disponibili due modi, uno statico e uno dinamico.
+Informazioni aggiuntive sui metadati, ad esempio le proprietà di estensione hello **raccomandazione x-ms-utilità di pianificazione** e **x-ms-visibilità** -possono essere aggiunti nella definizione di hello API in uno dei due modi: statico o dinamico.
 
-Per i metadati statici, è possibile modificare direttamente il file */metadata/apiDefinition.swagger.json* nel progetto e aggiungere manualmente le proprietà.
+Per i metadati statici, è possibile modificare direttamente hello */metadata/apiDefinition.swagger.json* file nel progetto e aggiungere manualmente le proprietà di hello.
 
-Per le app per le API che usano metadati dinamici, è possibile modificare il file SwaggerConfig.cs e aggiungervi un filtro per le operazioni in grado di aggiungere queste estensioni.
+Per App per le API tramite i metadati dinamici, è possibile modificare hello SwaggerConfig.cs file tooadd un filtro di operazione che è possibile aggiungere queste estensioni.
 
     GlobalConfiguration.Configuration
         .EnableSwagger(c =>
@@ -311,9 +311,9 @@ Per le app per le API che usano metadati dinamici, è possibile modificare il fi
             }
 
 
-Di seguito è riportato un esempio di come è possibile implementare questa classe per semplificare lo scenario relativo ai metadati dinamici.
+Hello Ecco un esempio di come questa classe è possibile scenario di metadati dinamici hello toofacilitate implementato.
 
-    // Add extension properties on the triggerState parameter
+    // Add extension properties on hello triggerState parameter
     public class TriggerStateFilter : IOperationFilter
     {
 
@@ -331,8 +331,8 @@ Di seguito è riportato un esempio di come è possibile implementare questa clas
                     }
 
                     // add 2 vendor extensions
-                    // x-ms-visibility: set to 'internal' to signify this is an internal field
-                    // x-ms-scheduler-recommendation: set to a value that logic app can use
+                    // x-ms-visibility: set too'internal' toosignify this is an internal field
+                    // x-ms-scheduler-recommendation: set tooa value that logic app can use
                     triggerStateParam.vendorExtensions.Add("x-ms-visibility", "internal");
                     triggerStateParam.vendorExtensions.Add("x-ms-scheduler-recommendation",
                                                            "@coalesce(triggers()?.outputs?.body?['triggerState'], '')");

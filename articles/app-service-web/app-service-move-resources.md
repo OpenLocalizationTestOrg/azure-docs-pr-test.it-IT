@@ -1,6 +1,6 @@
 ---
-title: Spostamento di risorse di app Web a un altro gruppo di risorse
-description: "Descrive gli scenari dove è possibile spostare le app Web e servizi app da un gruppo di risorse a un altro."
+title: Risorse dell'App Web di aaaMove tooanother gruppo di risorse
+description: "Vengono descritti gli scenari di hello in cui è possibile spostare le applicazioni Web e servizi App da un gruppo di risorse tooanother."
 services: app-service
 documentationcenter: 
 author: ZainRizvi
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/21/2016
 ms.author: zarizvi
-ms.openlocfilehash: 1b5059dc052005b6079f70ecf6771a3771df8d87
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 931012fee656b7f8a4b2c225c38739a9171d3b2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-move-configurations"></a>Configurazioni di spostamento supportate
-È possibile spostare le risorse di App Web di Azure usando l'[API di spostamento delle risorse di Resource Manager](../azure-resource-manager/resource-group-move-resources.md).
+È possibile spostare le risorse di App Web di Azure utilizzando hello [risorsa gestore di spostare risorse API](../azure-resource-manager/resource-group-move-resources.md).
 
-App Web di Microsoft Azure supporta attualmente i seguenti scenari di spostamento:
+Le app Web di Azure supporta attualmente hello seguenti scenari di spostamento:
 
-* Spostamento dell'intero contenuto di un gruppo di risorse (app Web, piani di servizio app e certificati) in un altro gruppo di risorse. 
+* Spostare hello l'intero contenuto di un gruppo di risorse (app web, i piani di servizio app e i certificati) tooanother gruppo di risorse. 
    > [!Note]
-   > In questo scenario il gruppo di risorse di destinazione non può contenere alcuna risorsa Microsoft.Web.
+   > gruppo di risorse di destinazione Hello non può contenere tutte le risorse di Microsoft in questo scenario.
 
-* Spostamento di singole app Web in un altro gruppo di risorse. Le app Web rimangono tuttavia ospitate nel relativo piano di servizio app (il piano di servizio app rimane nel gruppo di risorse precedente).
+* Gruppo di risorse diverso tooa App web singoli, può essere spostato mentre ancora all'hosting in al piano di servizio app (hello app servizio piano rimane nel gruppo di risorse precedente hello) corrente.
 
 

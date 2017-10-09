@@ -1,6 +1,6 @@
 ---
-title: Progettazione metaverse di Azure AD Connect | Microsoft Docs
-description: Comprendere la finestra di progettazione metaverse in Synchronization Service Manager di Azure AD Connect.
+title: aaaAzure AD connettersi progettazione MV | Microsoft documenti
+description: Comprendere hello scheda della finestra di progettazione di Metaverse hello Synchronization Service Manager per Azure AD Connect.
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a7df245d41695dada42b0d1b267fbe9ef637ce13
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ab8b0841aa28e335aa369828c90ca865c094654e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sync-service-manager-metaverse-designer"></a>Progettazione metaverse di Sync Service Manager
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvdesigner.png)
 
-Per la maggior parte dei clienti, qui non c’è nulla da configurare.
+Per la maggior parte dei clienti, non c'è niente tooconfigure qui.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ulteriori informazioni sulla configurazione della [sincronizzazione di Azure AD Connect](active-directory-aadconnectsync-whatis.md).
+Altre informazioni su hello [sincronizzazione di Azure AD Connect](active-directory-aadconnectsync-whatis.md) configurazione.
 
-Ulteriori informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
+Altre informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).

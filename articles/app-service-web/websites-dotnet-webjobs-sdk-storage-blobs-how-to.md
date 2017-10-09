@@ -1,6 +1,6 @@
 ---
-title: Come usare il servizio di archiviazione BLOB di Azure con WebJobs SDK
-description: Informazioni su come usare il servizio di archiviazione BLOB di Azure con WebJobs SDK. Attivare un processo quando viene visualizzato un nuovo BLOB in un contenitore e gestire i BLOB non elaborabili.
+title: aaaHow toouse archiviazione blob di Azure con hello WebJobs SDK
+description: Informazioni su come toouse Azure blob storage con hello WebJobs SDK. Attivare un processo quando viene visualizzato un nuovo BLOB in un contenitore e gestire i BLOB non elaborabili.
 services: app-service\web, storage
 documentationcenter: .net
 author: ggailey777
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: e0a792ccdf8097d5cde254d6d4690a64838378ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b34ea8cffee7c0475641886150dee521130a3132
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-blob-storage-with-the-webjobs-sdk"></a>Come usare il servizio di archiviazione BLOB di Azure con WebJobs SDK
+# <a name="how-toouse-azure-blob-storage-with-hello-webjobs-sdk"></a>La modalità di archiviazione con blob di Azure toouse hello WebJobs SDK
 ## <a name="overview"></a>Panoramica
-In questa guida vengono forniti esempi di codice C# che illustrano come attivare un processo quando viene creato o aggiornato un BLOB di Azure. Gli esempi di codice usano [WebJobs SDK](websites-dotnet-webjobs-sdk.md) versione 1.x.
+Questa guida fornisce c# degli esempi di codice che mostrano come tootrigger un processo quando un blob di Azure viene creato o aggiornato. utilizzo di esempi di codice Hello [WebJobs SDK](websites-dotnet-webjobs-sdk.md) versione 1. x.
 
-Per gli esempi di codice che illustrano come creare BLOB, vedere [Come usare il servizio di archiviazione di accodamento di Azure con WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
+Per esempi di codice che mostrano come toocreate BLOB, vedere [toouse Azure come coda di archiviazione con hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
 
-Nella guida si presuppone che si sappia come [creare un progetto processo Web in Visual Studio con stringhe di connessione che puntano all'account di archiviazione](websites-dotnet-webjobs-sdk-get-started.md) o a [più account di archiviazione](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).
+Guida di Hello presuppone che si conosca [toocreate un progetto processo Web in Visual Studio con connessione come stringhe di account di archiviazione punto tooyour](websites-dotnet-webjobs-sdk-get-started.md) o troppo[più account di archiviazione](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).
 
-## <a id="trigger"></a> Come attivare una funzione quando viene creato o aggiornato un BLOB
-Questa sezione illustra come usare l'attributo `BlobTrigger` . 
+## <a id="trigger"></a>Come tootrigger una funzione quando un blob viene creato o aggiornato
+Questa sezione viene illustrato come hello toouse `BlobTrigger` attributo. 
 
 > [!NOTE]
-> WebJobs SDK esegue la scansione dei file di log per verificare la presenza di BLOB nuovi o modificati. Questo processo non avviene in tempo reale. Una funzione potrebbe non essere attivata per diversi minuti o più dopo la creazione del BLOB. I [log di archiviazione vengono creati in base al principio del "massimo sforzo"](https://msdn.microsoft.com/library/azure/hh343262.aspx). Non è garantito che tutti gli eventi vengano acquisiti. In alcune condizioni, l'acquisizione dei log potrebbe non riuscire. Se le limitazioni di velocità e affidabilità dei trigger dei BLOB non sono accettabili per l'applicazione, il metodo consigliato consiste nel creare un messaggio nella coda quando si crea il BLOB e usare l'attributo [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#trigger) invece dell'attributo `BlobTrigger` nella funzione che elabora il BLOB.
+> Hello WebJobs SDK toowatch file log di analisi per i BLOB nuovo o modificato. Questo processo non è in tempo reale; una funzione potrebbe non viene generata finché diversi minuti o più dopo aver creato il blob hello. I [log di archiviazione vengono creati in base al principio del "massimo sforzo"](https://msdn.microsoft.com/library/azure/hh343262.aspx). Non è garantito che tutti gli eventi vengano acquisiti. In alcune condizioni, l'acquisizione dei log potrebbe non riuscire. Se i limiti di velocità e affidabilità hello dei trigger di blob non sono accettabili per l'applicazione, hello consigliato metodo è un messaggio nella coda toocreate quando si crea il blob hello e utilizza hello [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#trigger) attributo invece di Hello `BlobTrigger` attributo nella funzione hello che elabora i blob hello.
 > 
 > 
 
 ### <a name="single-placeholder-for-blob-name-with-extension"></a>Singolo segnaposto per il nome di BLOB con estensione
-L'esempio di codice seguente copia i BLOB di testo del contenitore di *input* nel contenitore di *output*:
+Hello nell'esempio di codice seguente consente di copiare BLOB di testo che vengono visualizzati in hello *input* contenitore toohello *output* contenitore:
 
         public static void CopyBlob([BlobTrigger("input/{name}")] TextReader input,
             [Blob("output/{name}")] out string output)
@@ -45,9 +45,9 @@ L'esempio di codice seguente copia i BLOB di testo del contenitore di *input* ne
             output = input.ReadToEnd();
         }
 
-Il costruttore dell'attributo usa un parametro di stringa che specifica il nome del contenitore e un segnaposto per il nome del BLOB. In questo esempio, se viene creato un BLOB denominato *Blob1.txt* nel contenitore di *input*, la funzione crea un BLOB denominato *Blob1.txt* nel contenitore di *output*. 
+costruttore di attributo Hello accetta un parametro di stringa che specifica il nome di contenitore hello e un segnaposto per il nome di blob hello. In questo esempio, se un blob denominato *Blob1.txt* viene creato in hello *input* contenitore, la funzione hello crea un blob denominato *Blob1.txt* in hello *output*  contenitore. 
 
-È possibile specificare un modello di nome con il segnaposto del nome del BLOB, come illustrato nel seguente esempio di codice:
+È possibile specificare un modello di nome con segnaposto per nome blob hello, come illustrato nel seguente esempio di codice hello:
 
         public static void CopyBlob([BlobTrigger("input/original-{name}")] TextReader input,
             [Blob("output/copy-{name}")] out string output)
@@ -55,9 +55,9 @@ Il costruttore dell'attributo usa un parametro di stringa che specifica il nome 
             output = input.ReadToEnd();
         }
 
-Questo codice copia solo BLOB con nomi che iniziano con "original-". Ad esempio, *original-Blob1.txt* nel contenitore di *input* viene copiato in *copy-Blob1.txt* nel contenitore di *output*.
+Questo codice copia solo BLOB con nomi che iniziano con "original-". Ad esempio, *originale Blob1.txt* in hello *input* contenitore viene copiato troppo*copia Blob1.txt* in hello *output* contenitore.
 
-Se è necessario specificare un modello di nome per i nomi di BLOB con parentesi graffe nel nome, raddoppiare le parentesi graffe. Se ad esempio si desidera trovare i BLOB nel contenitore *images* con nomi simile al seguente:
+Se è necessario un modello di nome toospecify per i nomi di blob con parentesi graffe nel nome di hello, raddoppiare le parentesi graffe di hello. Ad esempio, se si desidera BLOB toofind in hello *immagini* contenitore i cui nomi simile al seguente:
 
         {20140101}-soundfile.mp3
 
@@ -65,10 +65,10 @@ usare questa soluzione per il modello:
 
         images/{{20140101}}-{name}
 
-Nell'esempio il valore del segnaposto *name* sarebbe *soundfile.mp3*. 
+Nell'esempio hello hello *nome* il valore di segnaposto *soundfile.mp3*. 
 
 ### <a name="separate-blob-name-and-extension-placeholders"></a>Segnaposto di nome ed estensione di BLOB separati
-L'esempio di codice seguente modifica l'estensione del file mentre copia i BLOB visualizzati nel contenitore di *input* nel contenitore di *output*. Il codice registra l'estensione del BLOB di *input* e imposta l'estensione del BLOB di *output* su *.txt*.
+Hello seguenti modifiche di esempio di codice hello estensione di file come copia di blob che vengono visualizzati in hello *input* contenitore toohello *output* contenitore. codice Hello Registra estensione hello di hello *input* blob e imposta l'estensione hello di hello *output* blob troppo*. txt*.
 
         public static void CopyBlobToTxtFile([BlobTrigger("input/{name}.{ext}")] TextReader input,
             [Blob("output/{name}.txt")] out string output,
@@ -81,8 +81,8 @@ L'esempio di codice seguente modifica l'estensione del file mentre copia i BLOB 
             output = input.ReadToEnd();
         }
 
-## <a id="types"></a> Tipi che possono essere associati a BLOB
-È possibile usare l'attributo `BlobTrigger` per i tipi seguenti:
+## <a id="types"></a>Tipi che è possibile associare tooblobs
+È possibile utilizzare hello `BlobTrigger` attributo hello seguenti tipi:
 
 * `string`
 * `TextReader`
@@ -96,12 +96,12 @@ L'esempio di codice seguente modifica l'estensione del file mentre copia i BLOB 
 * `IEnumerable<CloudPageBlob>`
 * Altri tipi deserializzati da [ICloudBlobStreamBinder](#icbsb) 
 
-Se si desidera usare direttamente l'account di archiviazione di Azure, è anche possibile aggiungere un parametro `CloudStorageAccount` alla firma del metodo.
+Se si desidera toowork direttamente con hello account di archiviazione di Azure, è inoltre possibile aggiungere un `CloudStorageAccount` firma del metodo toohello parametro.
 
-Vedere ad esempio il [codice di binding dei BLOB nel repository webjobs-sdk in GitHub.com](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs).
+Per esempi, vedere hello [blob codice di associazione nel repository di azure-sdk-processi Web hello in GitHub.com](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs).
 
-## <a id="string"></a> Ottenere contenuti di BLOB di testo tramite associazione alla stringa
-Se sono previsti BLOB di testo, è possibile applicare `BlobTrigger` a un parametro `string`. L'esempio di codice seguente associa un BLOB di testo a un parametro `string` denominato `logMessage`. La funzione usa tale parametro per scrivere il contenuto del BLOB nel dashboard WebJobs SDK. 
+## <a id="string"></a>Recupero di contenuto di testo blob dall'associazione toostring
+Se si prevede che il BLOB di testo, `BlobTrigger` può essere applicato tooa `string` parametro. esempio di codice seguente Hello associa un tooa blob testo `string` parametro denominato `logMessage`. funzione Hello utilizza tale contenuto hello toowrite dei parametri di hello blob toohello dashboard WebJobs SDK. 
 
         public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
             string name, 
@@ -113,7 +113,7 @@ Se sono previsti BLOB di testo, è possibile applicare `BlobTrigger` a un parame
         }
 
 ## <a id="icbsb"></a> Ottenere contenuti di BLOB serializzati tramite ICloudBlobStreamBinder
-L'esempio di codice seguente usa una classe che implementa `ICloudBlobStreamBinder` per consentire all'attributo `BlobTrigger` di associare un BLOB al tipo `WebImage`.
+Hello nell'esempio di codice seguente viene utilizzata una classe che implementa `ICloudBlobStreamBinder` tooenable hello `BlobTrigger` toobind toohello un blob di attributo `WebImage` tipo.
 
         public static void WaterMark(
             [BlobTrigger("images3/{name}")] WebImage input,
@@ -132,7 +132,7 @@ L'esempio di codice seguente usa una classe che implementa `ICloudBlobStreamBind
             output = input.Resize(width, height);
         }
 
-Il codice di associazione `WebImage` viene fornito in una classe `WebImageBinder` che deriva da `ICloudBlobStreamBinder`.
+Hello `WebImage` codice di associazione è disponibile in un `WebImageBinder` classe che deriva da `ICloudBlobStreamBinder`.
 
         public class WebImageBinder : ICloudBlobStreamBinder<WebImage>
         {
@@ -149,8 +149,8 @@ Il codice di associazione `WebImage` viene fornito in una classe `WebImageBinder
             }
         }
 
-## <a name="getting-the-blob-path-for-the-triggering-blob"></a>Ottenere il percorso BLOB per il BLOB di attivazione
-Per ottenere il nome del contenitore e il nome BLOB del BLOB che ha attivato la funzione, includere un parametro stringa `blobTrigger` nella firma della funzione.
+## <a name="getting-hello-blob-path-for-hello-triggering-blob"></a>Recupero di percorso blob hello per hello attivazione blob
+nome del contenitore tooget hello e nome del blob del blob hello che ha attivato la funzione hello, includere un `blobTrigger` parametro nella firma della funzione hello di stringa.
 
         public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
             string name,
@@ -163,20 +163,20 @@ Per ottenere il nome del contenitore e il nome BLOB del BLOB che ha attivato la 
         }
 
 
-## <a id="poison"></a> Come gestire i BLOB non elaborabili
-Quando una funzione `BlobTrigger` ha esito negativo, l'SDK la chiama nuovamente in caso in cui il problema sia stato causato da un errore temporaneo. Se il problema è causato dal contenuto del BLOB, la funzione ha esito negativo ogni volta che tenta di elaborare il BLOB. Per impostazione predefinita, l'SDK chiama una funzione fino a cinque volte per un determinato BLOB. Se il quinto tentativo ha esito negativo, l'SDK aggiunge un messaggio a una coda denominata *webjobs-blobtrigger-poison*.
+## <a id="poison"></a>Come non elaborabili toohandle BLOB
+Quando un `BlobTrigger` funzione ha esito negativo, hello SDK chiama nuovamente, in caso di errore hello è stato causato da un errore temporaneo. Se l'errore hello è causato da contenuto hello del blob hello, funzione hello ha esito negativo di ogni volta che tenta di blob hello tooprocess. Per impostazione predefinita, hello SDK chiama una funzione i tempi di too5 per un blob specificato. Se non riesce try quinto hello, hello SDK aggiunge una coda di messaggi tooa denominata *non elaborabili processi Web-blobtrigger*.
 
-Il numero massimo di tentativi è configurabile. La stessa impostazione [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) viene usata per la gestione dei BLOB non elaborabili e per la gestione dei messaggi della coda non elaborabile. 
+Hello il numero massimo di tentativi è configurabile. Hello stesso [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) impostazione viene utilizzata per la gestione di messaggi non elaborabili blob e la gestione dei messaggi di coda non elaborabile. 
 
-Il messaggio di coda per i BLOB non elaborabili è un oggetto JSON che contiene le seguenti proprietà:
+messaggio della coda Hello per i BLOB non elaborabile è un oggetto JSON contenente hello le proprietà seguenti:
 
-* FunctionId (nel formato *{Nome processo Web}*.Functions.*{Nome funzione}*, ad esempio: WebJob1.Functions.CopyBlob)
+* FunctionId (in formato hello *{nome del processo Web}*. Funzioni. *{Nome della funzione}*, ad esempio: WebJob1.Functions.CopyBlob)
 * BlobType ("BlockBlob" o "PageBlob")
 * ContainerName
 * BlobName
 * ETag (identificatore di versione del BLOB, ad esempio: "0x8D1DC6E70A277EF")
 
-Nell'esempio di codice seguente la funzione `CopyBlob` contiene codice che ne determina l'esito negativo ogni volta che viene chiamata. Dopo che l'SDK chiama la funzione per il numero massimo di tentativi, nella coda di BLOB non elaborabili viene creato un messaggio elaborato dalla funzione `LogPoisonBlob` . 
+In seguito hello esempio di codice, hello `CopyBlob` funzione dispone di codice che causa toofail ogni volta che viene chiamato. Dopo aver hello SDK chiama per il numero massimo di hello di tentativi, viene creato un messaggio nella coda di messaggi non elaborabili blob hello e che il messaggio viene elaborato da hello `LogPoisonBlob` (funzione). 
 
         public static void CopyBlob([BlobTrigger("input/{name}")] TextReader input,
             [Blob("textblobs/output-{name}")] out string output)
@@ -196,7 +196,7 @@ Nell'esempio di codice seguente la funzione `CopyBlob` contiene codice che ne de
             logger.WriteLine("ETag: {0}", message.ETag);
         }
 
-L'SDK deserializza automaticamente il messaggio JSON. Questa è la classe `PoisonBlobMessage` : 
+Hello SDK deserializza automaticamente messaggio JSON. Ecco hello `PoisonBlobMessage` classe: 
 
         public class PoisonBlobMessage
         {
@@ -208,40 +208,40 @@ L'SDK deserializza automaticamente il messaggio JSON. Questa è la classe `Poiso
         }
 
 ### <a id="polling"></a> Algoritmo di polling di BLOB
-WebJobs SDK analizza tutti i contenitori specificati da attributi `BlobTrigger` all'avvio dell'applicazione. In un account di archiviazione di grandi dimensioni l'analisi può richiedere tempo, pertanto l'individuazione di nuovi BLOB e l'esecuzione delle funzioni `BlobTrigger` potrebbero non essere immediate.
+Hello WebJobs SDK analizza tutti i contenitori specificati da `BlobTrigger` attributi all'avvio dell'applicazione. In un account di archiviazione di grandi dimensioni l'analisi può richiedere tempo, pertanto l'individuazione di nuovi BLOB e l'esecuzione delle funzioni `BlobTrigger` potrebbero non essere immediate.
 
-Per rilevare BLOB nuovi o modificati dopo l'avvio dell'applicazione, l'SDK legge periodicamente i log di archiviazione dei BLOB. Tali log vengono inseriti nel buffer e vengono scritti fisicamente solo ogni 10 minuti circa, pertanto si può riscontrare un ritardo significativo tra la creazione o l'aggiornamento di un BLOB e l'esecuzione della funzione `BlobTrigger` corrispondente. 
+toodetect BLOB nuove o modificate dopo l'avvio dell'applicazione, hello che SDK legge periodicamente dall'archiviazione blob hello Registra. Hello blob vengono memorizzati nel buffer e registri solo ottengano scritta fisicamente ogni 10 minuti oppure in tal caso, pertanto potrebbero esserci un ritardo significativo dopo un blob viene creato o aggiornato prima hello corrispondente `BlobTrigger` funzione viene eseguita. 
 
-Si verifica un'eccezione per i BLOB creati tramite l'attributo `Blob` . Quando WebJobs SDK crea un nuovo BLOB, lo passa immediatamente a tutte le funzioni `BlobTrigger` corrispondenti. Se pertanto si dispone di una catena di input e output di BLOB, l'SDK può elaborarli in modo efficiente. Se invece si desidera una bassa latenza per l'esecuzione delle funzioni di elaborazione dei BLOB creati o aggiornati in altri modi, è consigliabile usare `QueueTrigger` anziché `BlobTrigger`.
+Si verifica un'eccezione per i BLOB creati tramite hello `Blob` attributo. Quando hello WebJobs SDK crea un nuovo blob, passa immediatamente nuovo blob hello tooany corrispondenza `BlobTrigger` funzioni. Pertanto se si dispone di una catena di blob input e output, hello SDK possa elaborarli in modo efficiente. Se invece si desidera una bassa latenza per l'esecuzione delle funzioni di elaborazione dei BLOB creati o aggiornati in altri modi, è consigliabile usare `QueueTrigger` anziché `BlobTrigger`.
 
 ### <a id="receipts"></a> Conferme di BLOB
-WebJobs SDK verifica che nessuna funzione `BlobTrigger` venga chiamata più volte per lo stesso BLOB nuovo o aggiornato. A tale scopo, gestisce *conferme di BLOB* per determinare se una versione di BLOB specifica è stata elaborata.
+Hello WebJobs SDK garantisce che nessun `BlobTrigger` funzione viene chiamato più volte per hello stesso nuovo o aggiornato i blob. Ciò avviene tramite la gestione di *blob conferme di recapito* in ordine toodetermine se è stata elaborata una versione di blob specificato.
 
-Le conferme di BLOB vengono archiviate in un contenitore denominato *azure-webjobs-hosts* nell'account di archiviazione di Azure specificato dalla stringa di connessione AzureWebJobsStorage. Una conferma di BLOB contiene le seguenti informazioni:
+BLOB conferme di recapito vengono archiviati in un contenitore denominato *ospita-processi Web di azure* nell'account di archiviazione Azure hello specificato dalla stringa di connessione AzureWebJobsStorage hello. Un carico di blob è hello le seguenti informazioni:
 
-* La funzione chiamata per il BLOB ("*{Nome processo Web}*.Functions.*{Nome funzione}*", ad esempio: "WebJob1.Functions.CopyBlob")
-* Il nome del contenitore
-* Il tipo di BLOB ("BlockBlob" o "PageBlob")
-* Il nome del BLOB
-* Il valore ETag (identificatore di versione del BLOB, ad esempio: "0x8D1DC6E70A277EF")
+* funzione che è stato chiamato per blob hello Hello ("*{nome del processo Web}*. Funzioni. *{Nome della funzione}*", ad esempio:"WebJob1.Functions.CopyBlob")
+* nome del contenitore Hello
+* tipo di blob Hello ("BlockBlob" o "PageBlob")
+* nome del blob Hello
+* Hello ETag (un identificatore di versione del blob, ad esempio: "0x8D1DC6E70A277EF")
 
-Se si desidera forzare la rielaborazione di un BLOB, è possibile eliminare manualmente la conferma per tale BLOB dal contenitore *azure-webjobs-hosts* .
+Se si desidera tooforce rielaborazione di un blob, è possibile eliminare manualmente conferma di blob hello per tale blob da hello *ospita-processi Web di azure* contenitore.
 
-## <a id="queues"></a>Argomenti correlati trattati dall'articolo sulle code
-Per informazioni su come gestire l'elaborazione di BLOB attivata da un messaggio di coda o per scenari di WebJobs SDK non specifici dell'elaborazione di BLOB, vedere [Come usare il servizio di archiviazione di accodamento di Azure con WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
+## <a id="queues"></a>Argomenti correlati cui all'articolo code hello
+Per informazioni su come l'elaborazione di blob toohandle attivata da un messaggio nella coda o per i processi Web scenari SDK non tooblob specifico, l'elaborazione, vedere [toouse Azure come coda di archiviazione con hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
 
-Tra gli argomenti correlati trattati nell'articolo sono inclusi i seguenti:
+Argomenti trattati in tale articolo includono hello informazioni seguenti:
 
 * Funzioni asincrone
 * Più istanze
 * Arresto normale
-* Usare gli attributi di WebJobs SDK nel corpo di una funzione
-* Impostare le stringhe di connessione SDK nel codice.
+* Utilizzare gli attributi di WebJobs SDK nel corpo di hello di una funzione
+* Impostare le stringhe di connessione SDK hello nel codice.
 * Impostare i valori per i parametri del costruttore WebJobs SDK nel codice
 * Configurare `MaxDequeueCount` per la gestione di BLOB non elaborabili.
 * Attivare manualmente una funzione
 * Scrivere i log
 
 ## <a id="nextsteps"></a> Passaggi successivi
-Questa guida ha fornito esempi di codice che illustrano come gestire scenari comuni per l'uso di BLOB di Azure. Per altre informazioni su come usare i processi Web di Azure e su WebJobs SDK, vedere le [risorse consigliate per i processi Web di Azure](http://go.microsoft.com/fwlink/?linkid=390226).
+Questa guida fornisce esempi di codice che mostrano come toohandle scenari comuni per l'utilizzo con Azure BLOB. Per ulteriori informazioni su come toouse processi Web di Azure e hello WebJobs SDK, vedere [risorse consigliato processi Web di Azure](http://go.microsoft.com/fwlink/?linkid=390226).
 

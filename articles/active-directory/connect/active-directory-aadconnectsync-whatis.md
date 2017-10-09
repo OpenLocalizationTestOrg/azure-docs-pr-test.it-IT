@@ -1,6 +1,6 @@
 ---
 title: 'Servizio di sincronizzazione Azure AD Connect: comprendere e personalizzare la sincronizzazione | Documentazione Microsoft'
-description: Spiega come funziona il servizio di sincronizzazione Azure AD Connect e come personalizzarlo.
+description: Viene illustrato come funziona la sincronizzazione di Azure AD Connect e come toocustomize.
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/01/2016
 ms.author: markvi
-ms.openlocfilehash: 4edac05325ad12596d982d113df0db7461124b12
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 97e4bd9904b077f2628e5f8dcbaa6f1a76168a12
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-sync-understand-and-customize-synchronization"></a>Servizio di sincronizzazione Azure AD Connect: Comprendere e personalizzare la sincronizzazione
-Il servizio di sincronizzazione Azure Active Directory Connect (servizio di sincronizzazione Azure AD Connect) è un componente importante di Azure AD Connect. Si occupa di tutte le operazioni che riguardano la sincronizzazione dei dati relativi alle identità tra l'ambiente locale e Azure AD. Il servizio di sincronizzazione Azure AD Connect è il successore di DirSync, Azure AD Sync e Forefront Identity Manager con il connettore Azure Active Directory configurato.
+servizi di sincronizzazione di Azure Active Directory Connect Hello (sincronizzazione di Azure AD Connect) è un componente principale di Azure AD Connect. Si occupa di tutte le operazioni di hello che sono dati di identità toosynchronize correlati tra l'ambiente locale e Azure AD. Sincronizzazione di Azure AD Connect è successore hello di Forefront Identity Manager DirSync e Azure AD Sync con hello che Azure Active Directory Connector configurato.
 
-Questo argomento fornisce informazioni di base sul **servizio di sincronizzazione Azure AD Connect**, detto anche **motore di sincronizzazione**, e include un elenco di collegamenti a tutti gli altri argomenti correlati. Per collegamenti relativi ad Azure AD Connect, vedere [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
+In questo argomento è hello home per **sincronizzazione di Azure AD Connect** (chiamato anche **motore di sincronizzazione**) e gli elenchi di collegamenti tooall altri tooit di argomenti correlati. Per collegamenti tooAzure AD Connect, vedere [integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
 
-Il servizio di sincronizzazione è costituito da due componenti: la **sincronizzazione di Azure AD Connect** locale e il servizio di Azure AD chiamato **servizio di sincronizzazione di Azure AD Connect**. Il servizio è comune a DirSync, Azure AD Sync e Azure AD Connect.
+il servizio di sincronizzazione Hello è costituito da due componenti, hello locale **sincronizzazione di Azure AD Connect** componente e hello lato servizio in Azure AD chiamato **servizio di sincronizzazione di Azure AD Connect**. servizio Hello è comune per DirSync, Azure AD Sync e Azure AD Connect.
 
 ## <a name="azure-ad-connect-sync-topics"></a>Argomenti relativi al servizio di sincronizzazione Azure AD Connect
-| Argomento | Contenuti e destinatari |
+| Argomento | Vengono illustrate e quando tooread |
 | --- | --- |
 | **Concetti fondamentali sul servizio di sincronizzazione Azure AD Connect** | |
-| [Informazioni sull'architettura](active-directory-aadconnectsync-understanding-architecture.md) |Per chi non ha familiarità con il motore di sincronizzazione e vuole avere informazioni sull'architettura e sulla terminologia usata. |
-| [Concetti tecnici](active-directory-aadconnectsync-technical-concepts.md) |Versione breve dell'argomento relativo all'architettura, con una rapida spiegazione della terminologia usata. |
-| [Topologie per Azure AD Connect](active-directory-aadconnect-topologies.md) |Illustra le diverse topologie e i diversi scenari supportati dal motore di sincronizzazione. |
+| [Informazioni sull'architettura di hello](active-directory-aadconnectsync-understanding-architecture.md) |Per coloro che sono nuovo motore di sincronizzazione toohello e desidera toolearn sull'architettura di hello e termini hello utilizzati. |
+| [Concetti tecnici](active-directory-aadconnectsync-technical-concepts.md) |Una versione abbreviata di argomento architettura hello e brevemente illustra hello termini utilizzati. |
+| [Topologie per Azure AD Connect](active-directory-aadconnect-topologies.md) |Viene descritto hello diversi scenari e le topologie hello sincronizzazione motore supporta. |
 | **Configurazione personalizzata** | |
-| [Nuova esecuzione dell'installazione guidata](active-directory-aadconnectsync-installation-wizard.md) |Spiega quali opzioni sono disponibili se si esegue di nuovo l'installazione guidata di Azure AD Connect. |
-| [Informazioni sul provisioning dichiarativo](active-directory-aadconnectsync-understanding-declarative-provisioning.md) |Descrive il modello di configurazione denominato provisioning dichiarativo. |
-| [Informazioni sulle espressioni di provisioning dichiarativo](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) |Descrive la sintassi del linguaggio delle espressioni usato nel provisioning dichiarativo. |
-| [Informazioni sulla configurazione predefinita](active-directory-aadconnectsync-understanding-default-configuration.md) |Illustra le regole predefinite e la configurazione predefinita. Illustra anche il modo in cui le regole interagiscono per consentire il funzionamento degli scenari predefiniti. |
-| [Informazioni su utenti e contatti](active-directory-aadconnectsync-understanding-users-and-contacts.md) |Continua l'argomento precedente e illustra l'interazione tra le configurazioni di utenti e contatti, in particolare in un ambiente con più foreste. |
-| [Servizio di sincronizzazione Azure AD Connect: Come apportare modifiche alla configurazione predefinita](active-directory-aadconnectsync-change-the-configuration.md) |Illustra in dettaglio come creare una configurazione comune per i flussi di attributi. |
-| [Procedure consigliate per modificare la configurazione predefinita](active-directory-aadconnectsync-best-practices-changing-default-configuration.md) |Limitazioni del supporto e come apportare modifiche alla configurazione predefinita. |
-| [Configurare il filtro](active-directory-aadconnectsync-configure-filtering.md) |Illustra le diverse opzioni per limitare gli oggetti da sincronizzare in Azure AD e fornisce procedure dettagliate per la configurazione di queste opzioni. |
+| [In esecuzione hello installazione guidata](active-directory-aadconnectsync-installation-wizard.md) |Illustra le opzioni sono disponibili quando si esegue nuovamente Installazione guidata di hello Azure AD Connect. |
+| [Informazioni sul provisioning dichiarativo](active-directory-aadconnectsync-understanding-declarative-provisioning.md) |Viene descritto il modello di configurazione hello denominato provisioning dichiarativo. |
+| [Informazioni sulle espressioni di provisioning dichiarativo](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) |Descrive la sintassi di hello per il linguaggio di espressioni hello utilizzato nel provisioning dichiarativo. |
+| [Informazioni su configurazione predefinita di hello](active-directory-aadconnectsync-understanding-default-configuration.md) |Descrive le regole di out-of-box hello e la configurazione predefinita di hello. Descrive inoltre come hello regole interagiscono per toowork out-of-box scenari hello. |
+| [Informazioni su utenti e contatti](active-directory-aadconnectsync-understanding-users-and-contacts.md) |Continua in argomento precedente hello e viene descritto l'utilizzo configurazione hello per utenti e contatti insieme, in particolare in un ambiente a più foreste. |
+| [Come toomake toohello una modifica di configurazione predefinite](active-directory-aadconnectsync-change-the-configuration.md) |Viene illustrata la modalità di scorrimento toomake un tooattribute di modifica di configurazione comuni. |
+| [Procedure consigliate per la modifica di configurazione predefinita di hello](active-directory-aadconnectsync-best-practices-changing-default-configuration.md) |Limitazioni del supporto e per la configurazione di modifiche toohello out-of-box. |
+| [Configurare il filtro](active-directory-aadconnectsync-configure-filtering.md) |Descrive hello diverse opzioni per la modalità di sincronizzazione toolimit che gli oggetti vengono tooAzure Active Directory e come dettagliate tooconfigure queste opzioni. |
 | **Funzionalità e scenari** | |
-| [Impedire eliminazioni accidentali](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) |Illustra la funzionalità che *impedisce le eliminazioni accidentali* e spiega come configurarla. |
-| [Utilità di pianificazione](active-directory-aadconnectsync-feature-scheduler.md) |Illustra l'utilità di pianificazione predefinita, che importa, sincronizza ed esporta i dati. |
-| [Implementare la sincronizzazione password](active-directory-aadconnectsync-implement-password-synchronization.md) |Illustra il funzionamento della sincronizzazione password, spiega come implementarla, usarla e risolverne i problemi. |
+| [Impedire eliminazioni accidentali](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) |Descrive hello *impedire eliminazioni accidentali* funzionalità e la modalità tooconfigure è. |
+| [Utilità di pianificazione](active-directory-aadconnectsync-feature-scheduler.md) |Viene descritto hello predefinite dell'utilità di pianificazione, l'importazione, la sincronizzazione e l'esportazione di dati. |
+| [Implementare la sincronizzazione password](active-directory-aadconnectsync-implement-password-synchronization.md) |Viene descritto il funzionamento della sincronizzazione delle password, come tooimplement e come toooperate e risoluzione dei problemi. |
 | [Writeback dei dispositivi](active-directory-aadconnect-feature-device-writeback.md) |Illustra il funzionamento del writeback dei dispositivi in Azure AD Connect. |
-| [Estensioni della directory](active-directory-aadconnectsync-feature-directory-extensions.md) |Illustra come estendere lo schema di Azure AD con i propri attributi personalizzati. |
+| [Estensioni della directory](active-directory-aadconnectsync-feature-directory-extensions.md) |Viene descritto come tooextend hello dello schema di Azure AD con attributi personalizzati. |
 | **Servizio di sincronizzazione** | |
-| [Funzionalità del servizio di sincronizzazione di Azure AD Connect](active-directory-aadconnectsyncservice-features.md) |Descrive il servizio di sincronizzazione e la modifica delle impostazioni di sincronizzazione in Azure AD. |
-| [Resilienza degli attributi duplicati](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md) |Descrive come abilitare e usare la resilienza dei valori di attributo duplicati **userPrincipalName** e **proxyAddresses**. |
+| [Funzionalità del servizio di sincronizzazione di Azure AD Connect](active-directory-aadconnectsyncservice-features.md) |Descrive lato servizio di sincronizzazione hello e come toochange impostazioni di sincronizzazione in Azure AD. |
+| [Resilienza degli attributi duplicati](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md) |Viene descritto come tooenable e utilizzare **userPrincipalName** e **proxyAddresses** resilienza di valori di attributo duplicato. |
 | **Operazioni e interfaccia utente** | |
-| [Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md) |Descrive l'interfaccia utente di Synchronization Service Manager, comprese le schede [Operations](active-directory-aadconnectsync-service-manager-ui-operations.md) (Operazioni), [Connectors](active-directory-aadconnectsync-service-manager-ui-connectors.md) (Connettori), [Metaverse Designer](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) (Progettazione metaverse) e [Metaverse Search](active-directory-aadconnectsync-service-manager-ui-mvsearch.md) (Ricerca metaverse). |
+| [Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md) |Viene descritto hello UI Synchronization Service Manager, inclusi [operazioni](active-directory-aadconnectsync-service-manager-ui-operations.md), [connettori](active-directory-aadconnectsync-service-manager-ui-connectors.md), [progettazione di Metaverse](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md), e [ricerca Metaverse](active-directory-aadconnectsync-service-manager-ui-mvsearch.md) schede. |
 | [Attività operative e considerazioni](active-directory-aadconnectsync-operations.md) |Illustra aspetti operativi, ad esempio il ripristino di emergenza. |
 | **Procedura:** | |
-| [Reimpostare l'account Azure AD](active-directory-aadconnectsync-howto-azureadaccount.md) |Come reimpostare le credenziali dell'account del servizio usato per la connessione dal servizio di sincronizzazione Azure AD Connect ad Azure AD. |
+| [Reimposta account hello Azure AD](active-directory-aadconnectsync-howto-azureadaccount.md) |Modalità di utilizzo di tooconnect da Azure AD Connect sincronizzazione tooAzure AD credenziali hello tooreset hello dell'account di servizio. |
 | **Altri riferimenti e informazioni** | |
-| [Porte](active-directory-aadconnect-ports.md) |Elenca le porte da aprire tra il motore di sincronizzazione e le directory locali e Azure AD. |
-| [Attributi sincronizzati con Azure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md) |Elenca tutti gli attributi che vengono sincronizzati tra l'istanza locale di AD e Azure AD. |
+| [Porte](active-directory-aadconnect-ports.md) |Gli elenchi di queste porte è necessario tooopen tra il motore di sincronizzazione hello e le directory locali e Azure AD. |
+| [Attributi sincronizzati tooAzure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md) |Elenca tutti gli attributi che vengono sincronizzati tra l'istanza locale di AD e Azure AD. |
 | [Riferimento alle funzioni](active-directory-aadconnectsync-functions-reference.md) |Elenca tutte le funzioni disponibili nel provisioning dichiarativo. |
 
 ## <a name="additional-resources"></a>Risorse aggiuntive

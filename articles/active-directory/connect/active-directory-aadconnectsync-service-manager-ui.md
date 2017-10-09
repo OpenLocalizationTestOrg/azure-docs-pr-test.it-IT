@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 05dd28bf850a84ff4644c46a45bd941b7c6e7d01
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d33f02822097aa7f83042606ba46fd533e85ac23
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-the-azure-ad-connect-synchronization-service-manager-ui"></a>Introduzione all'interfaccia utente di Synchronization Service Manager di Azure AD Connect
+# <a name="introduction-toohello-azure-ad-connect-synchronization-service-manager-ui"></a>Introduzione toohello Azure AD Connect Synchronization Service Manager dell'interfaccia utente
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/ssmui.png)
 
-L'interfaccia utente di **Synchronization Service Manager** si usa per configurare aspetti più avanzati del motore di sincronizzazione e per vedere gli aspetti operativi del servizio.
+Hello **Synchronization Service Manager** tooconfigure utilizzati più avanzate aspetti hello sincronizzazione motore e toosee hello gli aspetti operativi del servizio hello è l'interfaccia utente.
 
-L'interfaccia utente di **Synchronization Service Manager** si avvia dal menu Start. Il nome dell'interfaccia è **Servizio di sincronizzazione** ed è disponibile nel gruppo **Azure AD Connect**.  
+Iniziare hello **Synchronization Service Manager** dell'interfaccia utente da hello menu start. Il file è denominato **servizio di sincronizzazione** ed è disponibile in hello **Azure AD Connect** gruppo.  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)
 
-Fare clic sui collegamenti nella parte superiore di questo argomento per visualizzare altre informazioni sulle diverse schede dell'interfaccia utente.
+Fare clic sui collegamenti di hello nella parte superiore di hello di questo argomento di toolearn ulteriori informazioni sulle diverse schede di hello in hello dell'interfaccia utente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ulteriori informazioni sulla configurazione della [sincronizzazione di Azure AD Connect](active-directory-aadconnectsync-whatis.md).
+Altre informazioni su hello [sincronizzazione di Azure AD Connect](active-directory-aadconnectsync-whatis.md) configurazione.
 
-Ulteriori informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
+Altre informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).

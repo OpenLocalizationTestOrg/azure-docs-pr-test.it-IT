@@ -1,6 +1,6 @@
 ---
-title: Credenziali del certificato in Azure AD | Microsoft Docs
-description: Questo articolo illustra la registrazione e l'uso delle credenziali del certificato per l'autenticazione dell'applicazione
+title: credenziali aaaCertificate in Azure AD | Documenti Microsoft
+description: Questo articolo illustra la registrazione di hello e uso delle credenziali dei certificati per l'autenticazione dell'applicazione
 services: active-directory
 documentationcenter: .net
 author: navyasric
@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 06/02/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 08bb5140bb35bbd120aaa506afeab8ad247f81e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3508803112ac06268d553db86ab74812aa53e455
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="certificate-credentials-for-application-authentication"></a>Credenziali del certificato per l'autenticazione dell'applicazione
 
-Azure Active Directory consente a un'applicazione di usare le proprie credenziali per l'autenticazione, ad esempio, nel flusso di concessione delle credenziali client di OAuth 2.0 e nel flusso on-behalf-of.
-Un tipo di credenziale che può essere usato è un'asserzione di token JSON Web (JWT) firmata con un certificato di proprietà dell'applicazione.
+Azure Active Directory consente un'applicazione toouse le proprie credenziali per l'autenticazione, ad esempio, nel flusso di concessione di credenziali Client OAuth 2.0 hello e flusso di On-Behalf-Of hello.
+Un tipo di credenziale che può essere usato è un'asserzione di Token(JWT) Web JSON firmata con un certificato che possiede un'applicazione hello.
 
-## <a name="format-of-the-assertion"></a>Formato dell'asserzione
-Per calcolare l'asserzione, è preferibile usare una delle numerose librerie di [token JSON Web](https://jwt.io/) nel linguaggio scelto. Le informazioni incluse nel token sono:
+## <a name="format-of-hello-assertion"></a>Formato dell'asserzione hello
+asserzione hello toocompute, si vorrà toouse uno di hello molti [Token Web JSON](https://jwt.io/) librerie in linguaggio hello di propria scelta. informazioni Hello trasportate dal token hello sono:
 
 #### <a name="header"></a>Intestazione
 
@@ -35,21 +35,21 @@ Per calcolare l'asserzione, è preferibile usare una delle numerose librerie di 
 | --- | --- | --- |
 | `alg` | Deve essere **RS256** |
 | `typ` | Deve essere **JWT** |
-| `x5t` | Deve essere l'identificazione personale SHA-1 del certificato X.509 |
+| `x5t` | Deve essere l'identificazione personale del certificato x. 509. SHA-1 hello |
 
 #### <a name="claims-payload"></a>Attestazioni (payload)
 
 | Parametro |  Commento |
 | --- | --- | --- |
 | `aud` | Gruppo di destinatari: deve essere **https://login.microsoftonline.com/*tenant_Id*/oauth2/token** |
-| `exp` | Data di scadenza: la data di scadenza del token. L'ora è rappresentata come numero di secondi dal 1° gennaio 1970 (1970-01-01T0:0:0Z) UTC fino all'ora in cui scade la validità del token.|
-| `iss` | Autorità di certificazione: deve essere il parametro client_id (ID applicazione del servizio client) |
-| `jti` | GUID: l'ID token JWT |
-| `nbf` | Non prima: la data prima della quale il token non può essere usato. La data e l'ora sono rappresentate come numero di secondi dal 1 gennaio 1970 (1970-01-01T0:0:0Z) UTC fino alla data e all'ora in cui il token è stato rilasciato. |
-| `sub` | Oggetto: per quanto riguarda `iss`, deve essere il parametro client_id (ID applicazione del servizio client) |
+| `exp` | Data di scadenza: data hello scadenza token hello. tempo Hello è rappresentato come numero di secondi di hello dal 1 gennaio 1970 (1970-01-01T0:0:0Z) UTC fino alla scadenza hello hello token validità.|
+| `iss` | Autorità di certificazione: deve essere client_id hello (Id applicazione del servizio client hello) |
+| `jti` | GUID: hello ID JWT |
+| `nbf` | Non prima: data hello prima quali hello token non può essere utilizzato. tempo Hello è rappresentato come numero di secondi di hello dal 1 gennaio 1970 (1970-01-01T0:0:0Z) UTC fino a quando non è stato rilasciato hello ora hello token. |
+| `sub` | Oggetto: del `iss`, deve essere client_id hello (Id applicazione del servizio client hello) |
 
 #### <a name="signature"></a>Firma
-La firma viene calcolata applicando il certificato come descritto nella [specifica RFC7519 sul token JSON Web](https://tools.ietf.org/html/rfc7519)
+firma Hello viene calcolata l'applicazione certificato hello come descritto in hello [JSON Web Token RFC7519 specifica](https://tools.ietf.org/html/rfc7519)
 
 ### <a name="example-of-a-decoded-jwt-assertion"></a>Esempio di asserzione del token JWT decodificata
 ```
@@ -73,22 +73,22 @@ La firma viene calcolata applicando il certificato come descritto nella [specifi
 ```
 
 ### <a name="example-of-an-encoded-jwt-assertion"></a>Esempio di asserzione del token JWT codificata
-La stringa seguente è un esempio di asserzione codificata. Se si osserva con attenzione, è possibile notare tre sezioni separate da punti (.).
-La prima sezione codifica l'intestazione, la seconda il payload e l'ultima è la firma calcolata con i certificati a partire dal contenuto delle prime due sezioni.
+Hello stringa seguente è riportato un esempio di asserzione codificato. Se si osserva con attenzione, è possibile notare tre sezioni separate da punti (.).
+prima sezione Hello codifica hello intestazione, hello secondo hello payload, e per ultimo è hello firma hello calcolata con certificati hello dal contenuto hello delle prime due sezioni di hello.
 ```
 "eyJhbGciOiJSUzI1NiIsIng1dCI6Imd4OHRHeXN5amNScUtqRlBuZDdSRnd2d1pJMCJ9.eyJhdWQiOiJodHRwczpcL1wvbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbVwvam1wcmlldXJob3RtYWlsLm9ubWljcm9zb2Z0LmNvbVwvb2F1dGgyXC90b2tlbiIsImV4cCI6MTQ4NDU5MzM0MSwiaXNzIjoiOTdlMGE1YjctZDc0NS00MGI2LTk0ZmUtNWY3N2QzNWM2ZTA1IiwianRpIjoiMjJiM2JiMjYtZTA0Ni00MmRmLTljOTYtNjVkYmQ3MmMxYzgxIiwibmJmIjoxNDg0NTkyNzQxLCJzdWIiOiI5N2UwYTViNy1kNzQ1LTQwYjYtOTRmZS01Zjc3ZDM1YzZlMDUifQ.
 Gh95kHCOEGq5E_ArMBbDXhwKR577scxYaoJ1P{a lot of characters here}KKJDEg"
 ```
 
 ### <a name="register-your-certificate-with-azure-ad"></a>Registrare il certificato con Azure AD
-Per associare la credenziale del certificato all'applicazione client in Azure AD, è necessario modificare il manifesto dell'applicazione.
-Con un certificato disponibile, è necessario calcolare:
-- `$base64Thumbprint`, che è la codifica Base 64 dell'hash del certificato
-- `$base64Value`, che è la codifica Base 64 dei dati non elaborati dell'hash del certificato
+credenziali di certificato tooassociate hello con un'applicazione client hello in Azure AD, è necessario tooedit manifesto dell'applicazione di hello.
+Con l'attesa di un certificato, è necessario toocompute:
+- `$base64Thumbprint`, che è hello codifica base64 del certificato hello Hash
+- `$base64Value`, che è hello codifica base64 di dati non elaborati certificato hello
 
-È anche necessario specificare un GUID per identificare la chiave nel manifesto dell'applicazione (`$keyId`).
+è inoltre necessario disporre di una chiave di hello tooidentify GUID nel manifesto dell'applicazione hello tooprovide (`$keyId`)
 
-Nella registrazione dell'app di Azure per l'applicazione client aprire il manifesto dell'applicazione e sostituire la proprietà *keyCredentials* con le informazioni del nuovo certificato usando lo schema seguente:
+Nella registrazione dell'app Azure per un'applicazione client hello hello, aprire il manifesto dell'applicazione hello e sostituire hello *keyCredentials* proprietà con le informazioni del nuovo certificato utilizzando hello seguente schema:
 ```
 "keyCredentials": [
     {
@@ -101,4 +101,4 @@ Nella registrazione dell'app di Azure per l'applicazione client aprire il manife
 ]
 ```
 
-Salvare le modifiche apportate al manifesto dell'applicazione e caricare in Azure AD. La proprietà keyCredentials è multivalore, quindi è possibile caricare più certificati per una gestione delle chiavi più completa.
+Salvare il manifesto di applicazione hello modifiche toohello e caricare tooAzure Active Directory. proprietà keyCredentials Hello è multivalore, pertanto è possibile caricare più certificati per la gestione delle chiavi più dettagliato.

@@ -1,6 +1,6 @@
 ---
-title: Monitorare un'app Web | Microsoft Docs
-description: Informazioni su come configurare il monitoraggio nell'app Web
+title: un'App Web aaaMonitor | Documenti Microsoft
+description: Informazioni su come tooset di monitoraggio nell'App Web
 services: App-Service
 keywords: 
 author: btardif
@@ -8,41 +8,41 @@ ms.author: byvinyal
 ms.date: 04/04/2017
 ms.topic: article
 ms.service: app-service-web
-ms.openlocfilehash: 29df824062d00e01b786533033097948c008588f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2f5e9842c732a804f1caee5d67e53dad24e190a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-app-service"></a>Monitorare il servizio app
-Questa esercitazione fornisce istruzioni dettagliate su come monitorare l'applicazione e usare gli strumenti della piattaforma predefinita per risolvere i problemi quando si verificano.
+In questa esercitazione illustra il monitoraggio dell'applicazione e l'utilizzo di problemi di toosolve hello piattaforma incorporata strumenti quando si verificano.
 
-Ogni sezione di questo documento illustra una funzionalità specifica. Un utilizzo combinato delle funzionalità consente di:
+Ogni sezione di questo documento illustra una funzionalità specifica. Uso combinato hello funzionalità consentono di:
 - Identificare un problema nell'applicazione.
-- Determinare se il problema è causato dal codice o dalla piattaforma.
-- Limitare l'origine del problema al codice.
-- Eseguire il debug e risolvere il problema.
+- Determinare quando hello è causato dalla piattaforma hello o codice.
+- Restringere causa hello hello problema nel codice.
+- Debug e risoluzione problema hello.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-- Per monitorare e seguire la procedura descritta è necessaria un'app Web.
-    - È possibile creare un'applicazione seguendo la procedura descritta nell'esercitazione [Creare un'app ASP.NET in Azure con un database SQL](app-service-web-tutorial-dotnet-sqldatabase.md).
+- È necessario un toomonitor App Web e seguire hello descritti passaggi.
+    - È possibile creare un'applicazione hello passaggi descritti in hello [creare un'applicazione ASP.NET in Azure con il Database SQL](app-service-web-tutorial-dotnet-sqldatabase.md) esercitazione.
 
-- Se si vuole provare il **Debug remoto** dell'applicazione è necessario Visual Studio.
-    - Se Visual Studio 2017 non è ancora installato, è possibile scaricare e usare la versione gratuita [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/).
-    - Durante l'installazione di Visual Studio abilitare **Sviluppo di Azure**.
+- Se si desidera tootry out **il debug remoto** dell'applicazione, è necessario Visual Studio.
+    - Se si dispone già di Visual Studio 2017, che installata, è possibile scaricare e utilizzare hello libero [2017 di Visual Studio Community Edition](https://www.visualstudio.com/downloads/).
+    - Assicurarsi di abilitare **lo sviluppo di Azure** durante l'installazione di Visual Studio hello.
 
 ## <a name="metrics"></a>Passaggio 1: visualizzare le metriche
-Le **metriche** sono utili per comprendere:
+**Metriche** toounderstand utili sono:
 - Integrità dell'applicazione
 - Prestazioni dell'applicazione
 - Utilizzo di risorse
 
-Quando si analizza un problema dell'app, esaminare le metriche è un buon punto di partenza. Il portale di Azure consente di esaminare visivamente in modo rapido le metriche dell'app usando **Monitoraggio di Azure**.
+Quando si analizzano i problemi di un'applicazione, esaminare le metriche è toostart un buon punto. Portale di Azure è toovisually un modo rapido controllare metriche di hello dell'app utilizzando **Monitor Azure**.
 
-Le metriche forniscono una visualizzazione cronologica in numerose aggregazioni chiave per l'app. Per tutte le app ospitate nel servizio app, si dovrebbero monitorare l'app Web e il piano di servizio app.
+Le metriche forniscono una visualizzazione cronologica in numerose aggregazioni chiave per l'app. Per qualsiasi applicazione ospitata nel servizio app, è necessario monitorare hello App Web sia hello piano di servizio App.
 
 > [!NOTE]
-> Un piano di servizio app rappresenta la raccolta delle risorse fisiche usate per ospitare le app. Tutte le applicazioni assegnate a un piano di servizio app condividono le risorse definite dal piano, in modo da consentire un risparmio sui costi quando si ospitano più app.
+> Un piano di servizio App rappresenta raccolta hello di risorse fisiche utilizzate toohost app. Tutte le applicazioni assegnate tooan risorse hello condivisione piano di servizio App da essa consentendo toosave costo quando più applicazioni di hosting definite.
 >
 > I piani di servizio app definiscono:
 > * Area: Europa settentrionale, Stati Uniti orientali, Asia sud-orientale e così via.
@@ -50,60 +50,60 @@ Le metriche forniscono una visualizzazione cronologica in numerose aggregazioni 
 > * Numero di scala: una, due o tre istanze e così via.
 > * SKU: Free, Shared, Basic, Standard, Premium e così via.
 
-Per esaminare le metriche per l'app Web, passare al pannello **Panoramica** dell'app che si vuole monitorare. A questo punto, è possibile visualizzare un grafico per le metriche dell'app come un **riquadro Monitoraggio**. Fare clic sul riquadro per modificare e configurare le metriche da visualizzare e l'intervallo di tempo di visualizzazione.
+metriche tooreview per l'App Web, visita toohello **Panoramica** pannello App hello desiderato toomonitor. A questo punto, è possibile visualizzare un grafico per le metriche dell'app come un **riquadro Monitoraggio**. Fare clic su tooedit riquadro hello e configurare quali tooview metriche e hello toodisplay intervallo di tempo.
 
-Per impostazione predefinita, il pannello delle risorse fornisce una visualizzazione per le richieste dell'app e gli errori nell'ultima ora.
+Dal pannello della risorsa predefinita hello fornisce una visualizzazione per le richieste dell'applicazione hello e gli errori per hello ultima ora.
 ![Monitorare un'app](media/app-service-web-tutorial-monitoring/app-service-monitor.png)
 
-Come è possibile notare nell'esempio, si dispone di un'app che genera molti **Errori server HTTP**. Il volume elevato di errori è la prima indicazione, dobbiamo esaminare questa app.
+Come si può notare nell'esempio hello, disporre di un'applicazione che genera molti **errori Server HTTP**. numero elevato di errori Hello è prima indicazione hello dobbiamo tooinvestigate questa applicazione.
 
 > [!TIP]
-> Per informazioni sul monitoraggio di Azure usare i collegamenti seguenti:
+> Ulteriori informazioni sul monitoraggio di Azure con hello seguenti collegamenti:
 > - [Introduzione al monitoraggio di Azure](..\monitoring-and-diagnostics\monitoring-overview.md)
 > - [Metriche di Azure](..\monitoring-and-diagnostics\monitoring-overview-metrics.md)
 > - [Metriche supportate con il monitoraggio di Azure](..\monitoring-and-diagnostics\monitoring-supported-metrics.md)
 > - [Dashboard di Azure](..\azure-portal\azure-portal-dashboards.md)
 
 ## <a name="alerts"></a> Passaggio 2: configurare gli avvisi
-Gli **avvisi** possono essere configurati per attivare condizioni specifiche per l'app.
+**Avvisi** può essere configurato tootrigger condizioni specifiche per l'app.
 
-Nel [Passaggio 1: visualizzare le metriche](#metrics), abbiamo visto che l'app includeva un numero elevato di errori.
+In [passaggio 1 - metriche vista](#metrics), abbiamo visto che un'applicazione hello ha un numero elevato di errori.
 
-Configuriamo un avviso per ricevere notifiche automaticamente quando si verificano errori. In questo caso vogliamo che l'avviso invii un messaggio di posta elettronica ogni qualvolta il numero di errori HTTP 50X supera una determinata soglia.
+Consente di configurare un avviso tooautomatically ricevere notifiche quando si verificano errori. In questo caso, si desidera toosend avviso hello e di posta elettronica ogni volta che il numero di hello di errori HTTP 50 X supera una determinata soglia.
 
-Per creare un avviso, passare a **Monitoraggio** > **Avvisi** e fare clic su **[+] Aggiungi avviso**.
+toocreate un avviso, passare troppo**monitoraggio** > **avvisi** e fare clic su **[+] Aggiungi avviso**.
 
 ![Avvisi](media/app-service-web-tutorial-monitoring/app-service-monitor-alerts.png)
 
-Fornire valori per la configurazione degli avvisi:
-- **Risorsa:** il sito per il monitoraggio con l'avviso.
+Fornire valori per la configurazione di avviso hello:
+- **Risorse:** hello toomonitor sito con avviso hello.
 - **Nome:** un nome per l'avviso, in questo caso: *Troppi HTTP 50X*.
 - **Descrizione:** spiegazione in formato testo normale di cosa sta monitorando questo avviso.
 - **Avviso per:** gli avvisi possono monitorare Metriche o Eventi, in questo esempio monitoreremo le metriche.
-- **Metrica:** la metrica da monitorare, in questo caso *Errori server HTTP*.
-- **Condizione:** quando inviare l'avviso, in questo caso selezionare l'opzione *maggiore di*.
-- **Soglia:** valore da cercare, in questo caso *400*.
-- **Periodo:** gli avvisi operano oltre il valore medio di una metrica. Per i periodi di tempo più ristretti, gli avvisi sensibili vengono sospesi. In questo caso, consideriamo *5 minuti*.
+- **Metrica:** quali toomonitor metrica, in questo caso: *errori Server HTTP*.
+- **Condizione:** quando tooalert, in questo caso selezionare hello *maggiore* opzione.
+- **Soglia:** novità toolook valore, in questo caso: *400*.
+- **Periodo:** gli avvisi di operare su valore medio di hello di una metrica. Per i periodi di tempo più ristretti, gli avvisi sensibili vengono sospesi. In questo caso, consideriamo *5 minuti*.
 - **Invia messaggio di posta elettronica a proprietari e collaboratori:** in questo caso *Abilitato*.
 
-Ora che l'avviso è stato creato, viene inviato un messaggio di posta elettronica ogni volta che l'app supera la soglia configurata. Gli avvisi attivi possono essere consultati anche nel portale di Azure.
+Dopo aver creato hello avviso tramite posta elettronica viene inviato ogni volta che hello app supera la soglia configurata di hello. Gli avvisi attivi possono anche essere rivista in hello portale di Azure.
 
 ![Avvisi attivati](media/app-service-web-tutorial-monitoring/app-service-monitor-alerts-triggered.png)
 
 
 > [!TIP]
-> Per informazioni sugli avvisi di Azure usare i collegamenti seguenti:
+> Altre informazioni sugli avvisi di Azure con hello seguenti collegamenti:
 > - [Cosa sono gli avvisi in Microsoft Azure?](..\monitoring-and-diagnostics\monitoring-overview-alerts.md)
 > - [Eseguire operazioni sulle metriche](..\monitoring-and-diagnostics\monitoring-overview.md)
 > - [Creare avvisi delle metriche](..\monitoring-and-diagnostics\insights-alerts-portal.md)
 
 ## <a name="companion"></a> Passaggio 3: App Service Companion
-**App Service Companion** consente di monitorare l'app con un'esperienza nativa nel dispositivo mobile iOS o Android.
+**Complementare di servizio app** offre un modo pratico di toomonitor dell'app con un'esperienza nativa nel dispositivo mobile (iOS e Android).
 
 Usare App Service Companion per:
 - Rivedere le metriche dell'applicazione
 - Rivedere ed eseguire azioni su avvisi e suggerimenti dell'applicazione
-- Eseguire operazioni di base per la risoluzione dei problemi (esplorare, avviare, arrestare, riavviare l'app)
+- Base per la risoluzione (Sfoglia, start, stop, riavvio hello app)
 - Ottenere notifiche push per gli eventi critici.
 
 ![App Service Companion](media/app-service-web-tutorial-monitoring/app-service-companion.png)
@@ -111,28 +111,28 @@ Usare App Service Companion per:
 [![App Service Companion in App Store](media/app-service-web-tutorial-monitoring/app-service-companion-appStore.png)](https://itunes.apple.com/app/azure-app-service-companion/id1146659260)
 [![App Service Companion in Google Play](media/app-service-web-tutorial-monitoring/app-service-companion-googlePlay.png)](https://play.google.com/store/apps/details?id=azureApps.AzureApps)
 
-È possibile installare App Service Companion da [App Store](https://itunes.apple.com/app/azure-app-service-companion/id1146659260) o [Google Play](https://play.google.com/store/apps/details?id=azureApps.AzureApps)
+È possibile installare complementare di servizio App hello [App Store](https://itunes.apple.com/app/azure-app-service-companion/id1146659260) o [Google Play](https://play.google.com/store/apps/details?id=azureApps.AzureApps)
 
 ## <a name="diagnose"></a> Passaggio 4: diagnostica e risoluzione dei problemi
-La **diagnostica e risoluzione dei problemi** consente di separare i problemi legati all'app da quelli legati alla piattaforma. Può inoltre suggerire possibili soluzioni per ripristinare l'integrità dell'app Web.
+La **diagnostica e risoluzione dei problemi** consente di separare i problemi legati all'app da quelli legati alla piattaforma. Può inoltre indicare soluzioni correttive possibili tooget toohealthy di back-l'App Web.
 
 ![Diagnostica e risoluzione dei problemi](media/app-service-web-tutorial-monitoring/app-service-monitor-diagnosis.png)
 
-Continuando con l'esempio dai passaggi precedenti, possiamo vedere che l'app presenta dei problemi di disponibilità. Dall'altro lato, però, la disponibilità della piattaforma non si è spostata dal 100%.
+Continuare con i passaggi precedenti form di esempio hello, possiamo vedere che un'applicazione hello è stata problemi di disponibilità. Al contrario, la disponibilità di hello piattaforma non è stato spostato dal 100%.
 
-Quando l'app, diversamente dalla piattaforma, presenta dei problemi, si tratta di un chiaro segno che i problemi sono legati esclusivamente all'app.
+Quando l'app hello in caso di problema e hello rimane piattaforma backup, è una chiara indicazione che si sta gestiscono i problemi di un'applicazione.
 
 ## <a name="logging"></a> Passaggio 5: registrazione
-Ora che gli errori sono stati circoscritti a un problema dell'app, per ottenere altre informazioni possiamo esaminare i log dell'app e del server.
+Ora che è stato limitato, problema di hello errori tooan dell'applicazione, è possibile esaminare in tooget di registri applicazioni e server hello ulteriori informazioni.
 
-La registrazione consente di raccogliere i log di **diagnostica dell'applicazione** e di **diagnostica del server Web** per l'app Web.
+La registrazione consente toocollect entrambi **Application Diagnostics** e **diagnostica del Server Web** log per l'App Web.
 
 ### <a name="application-diagnostics"></a>Diagnostica applicazioni
-Diagnostica applicazioni consente di acquisire le tracce prodotte dall'applicazione durante il runtime.
+Diagnostica delle applicazioni consente si toocapture le tracce prodotte da un'applicazione hello in fase di esecuzione.
 
-L'aggiunta della traccia all'app migliora notevolmente la capacità di eseguire il debug e di individuare con esattezza i problemi.
+Aggiunta di funzionalità di traccia tooyour applicazione migliora notevolmente il possibilità toodebug e problemi di punto di blocco.
 
-In ASP.NET è possibile registrare le tracce dell'applicazione usando la classe [System.Diagnostics.Trace](https://msdn.microsoft.com/library/system.diagnostics.trace.aspx) per generare eventi che vengono acquisiti dall'infrastruttura dei log. È anche possibile specificare la gravità della traccia per filtrare i risultati in modo più semplice.
+In ASP.NET, è possibile registrare le tracce di applicazione utilizzando [classe Trace](https://msdn.microsoft.com/library/system.diagnostics.trace.aspx) eventi toogenerate acquisite dall'infrastruttura di log hello. È inoltre possibile specificare la gravità hello di traccia hello per il filtro più semplice.
 
 ```csharp
 public ActionResult Delete(Guid? id)
@@ -153,11 +153,11 @@ public ActionResult Delete(Guid? id)
     return View(todo);
 }
 ```
-Per abilitare la registrazione dell'applicazione, andare al **Monitoraggio** > **Log di diagnostica** e abilitare la registrazione delle applicazioni usando i controlli.
+registrazione applicazioni tooenable andare troppo**monitoraggio** > **i log di diagnostica** e abilitare la registrazione delle applicazioni utilizzando gli elementi Toggle hello.
 
 ![Monitorare un'app](media/app-service-web-tutorial-monitoring/app-service-monitor-applogs.png)
 
-I log dell'applicazione possono essere archiviati nel file system dell'app Web o inseriti nell'archiviazione BLOB. Per gli scenari di produzione è consigliabile usare l'archiviazione BLOB.
+Log applicazioni possono essere il sistema di file dell'App Web tooyour stored o distribuirli tooblob archiviazione. Per gli scenari di produzione, è consigliato toouse nell'archiviazione blob.
 
 > [!IMPORTANT]
 > L'abilitazione della registrazione ha effetto sulle prestazioni dell'applicazione e l'uso delle risorse. Per gli scenari di produzione è consigliabile usare i log degli errori. Abilitare una registrazione più dettagliata solo durante l'analisi dei problemi.
@@ -166,19 +166,19 @@ I log dell'applicazione possono essere archiviati nel file system dell'app Web o
 I log del server Web vengono generati anche se l'app non è instrumentata. Il servizio app consente di raccogliere tre tipi diversi di log del server:
 
 - **Registrazione del server Web**
-    - Informazioni sulle transazioni HTTP che usano il [formato di file di log esteso W3C](https://msdn.microsoft.com/library/windows/desktop/aa814385.aspx).
-    - Consente di determinare le metriche generali del sito, ad esempio il numero di richieste gestite oppure il numero di richieste provenienti da un indirizzo IP specifico.
+    - Informazioni sulle transazioni HTTP tramite hello [formato di file registro esteso W3C](https://msdn.microsoft.com/library/windows/desktop/aa814385.aspx).
+    - È utile quando si determinano le metriche di generale del sito, ad esempio il numero di hello di richieste gestite o il numero di richieste provengono da un indirizzo IP specifico.
 - **Registrazione degli errori dettagliata**
     - Informazioni dettagliate sugli errori relativi ai codici di stato HTTP che indicano un'operazione non riuscita (codice di stato 400 o superiore).
     - [Altre informazioni sulla registrazione degli errori dettagliata](https://www.iis.net/learn/troubleshoot/diagnosing-http-errors/how-to-use-http-detailed-errors-in-iis)
 - **Traccia delle richieste non riuscite**
-    - Informazioni dettagliate sulle richieste non riuscite, inclusa una traccia dei componenti IIS usati per elaborare la richieste e il tempo impiegato in ogni componente.
-    - I log delle richieste non riuscite consentono di individuare la causa di un errore HTTP specifico.
+    - Informazioni dettagliate sulle richieste non riuscite, inclusa un'analisi dei componenti IIS hello utilizzato tooprocess hello richiesta e hello tempo impiegato in ogni componente.
+    - Registri richieste non riuscite sono utili quando si tenta di tooisolate causa un errore HTTP specifico.
     - [Altre informazioni sulla traccia delle richieste non riuscite](https://www.iis.net/learn/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis)
 
-Per abilitare la registrazione del server:
-- Passare a **Monitoraggio** > **Log di diagnostica**.
-- Abilitare i diversi tipi di diagnostica del server Web usando i controlli.
+registrazione del Server tooenable:
+- andare troppo**monitoraggio** > **i log di diagnostica**.
+- Abilitare tipi diversi di hello di diagnostica del Server Web utilizzando gli elementi Toggle hello.
 
 ![Monitorare un'app](media/app-service-web-tutorial-monitoring/app-service-monitor-serverlogs.png)
 
@@ -186,7 +186,7 @@ Per abilitare la registrazione del server:
 > L'abilitazione della registrazione ha effetto sulle prestazioni dell'applicazione e l'uso delle risorse. Per gli scenari di produzione è consigliabile usare i log degli errori. Abilitare una registrazione più dettagliata solo durante l'analisi dei problemi.
 
 ### <a name="accessing-logs"></a>Accesso ai log
-I log memorizzati nell'archiviazione BLOB sono accessibili tramite Azure Storage Explorer. I log archiviati nel file system dell'app Web sono accessibili tramite FTP nei percorsi seguenti:
+I log memorizzati nell'archiviazione BLOB sono accessibili tramite Azure Storage Explorer. Registri archiviati nel file System dell'App Web hello sono accessibili tramite FTP in hello seguenti percorsi:
 
 - **Log applicazioni** - `%HOME%/LogFiles/Application/`.
     - In questa cartella sono presenti uno o più file di testo contenenti le informazioni generate dalla registrazione dell'applicazione.
@@ -195,54 +195,54 @@ I log memorizzati nell'archiviazione BLOB sono accessibili tramite Azure Storage
 - **Registrazione degli errori dettagliata** - `%HOME%/LogFiles/DetailedErrors/`.
     - Questa cartella contiene uno o più file con estensione htm con informazioni dettagliate sugli errori HTTP generati dall'app.
 - **Log del server Web** - `%HOME%/LogFiles/http/RawLogs`.
-    - Questa cartella contiene uno o più file di testo formattati usando il formato di file di log esteso W3C.
+    - Questa cartella contiene uno o più file di testo formattati con formato del file registro esteso W3C hello.
 
 ## <a name="streaming"></a> Passaggio 6: streaming dei log
-I log in streaming sono utili durante il debug di un'applicazione poiché consentono di risparmiare tempo rispetto all'[accesso dei log](#Accessing-Logs) tramite FTP.
+I log di streaming sono particolarmente utili quando il debug di un'applicazione, poiché consente di risparmiare tempo confrontato troppo[accesso ai registri hello](#Accessing-Logs) tramite FTP.
 
 Il servizio app può eseguire lo streaming dei **Log applicazione** e dei **Log del server Web** generati.
 
 > [!TIP]
-> Prima di tentare di eseguire lo streaming dei log, assicurarsi di aver abilitato la raccolta dei log come descritto nella sezione [Registrazione](#logging).
+> Prima di tentare di registri toostream, assicurarsi che è stata attivata la raccolta dei registri, come descritto in hello [registrazione](#logging) sezione.
 
-Per eseguire lo streaming dei log, passare a **Monitoraggio**> **Flusso di registrazione**. Selezionare **Log applicazione** o **Log del server Web**, a seconda delle informazioni desiderate. A questo punto, è anche possibile sospendere, riavviare e cancellare il buffer.
+log toostream, andare troppo**monitoraggio**> **flusso del Log**. Selezionare **Log applicazione** o **Log del server Web**, a seconda delle informazioni desiderate. Da qui, è anche possibile sospendere, riavviare e cancellare il buffer di hello.
 
 ![Log in streaming](media/app-service-web-tutorial-monitoring/app-service-monitor-logstream.png)
 
 > [!TIP]
-> I log vengono generati soltanto quando è presente traffico nell'app. È anche possibile aumentare il livello di dettaglio dei log per ottenere più eventi o informazioni.
+> I log vengono generati solo quando il traffico è hello App, è anche possibile aumentare il livello di dettaglio hello di registri tooget più eventi o informazioni.
 
 ## <a name="remote"></a> Passaggio 7 - Debug remoto
-Una volta individuata l'origine dei problemi dell'app, usare **Debug remoto** per esaminare il codice.
+Dopo avere origine a cui punta pin hello dei problemi di applicazioni di hello, utilizzare **il debug remoto** toowalk tramite codice hello.
 
-Il debug remoto consente di collegare un debugger all'app Web in esecuzione nel cloud. È possibile impostare punti di interruzione, manipolare direttamente la memoria, esaminare il codice e cambiarne il percorso come in un'app eseguita in locale.
+Consente di debug remoto si collega un tooyour debugger App Web in esecuzione nel cloud hello. È possibile impostare i punti di interruzione, modificare direttamente memoria, esaminare il codice e cambiare anche percorso di codice hello come se si trattasse di un'app in esecuzione in locale.
 
-Per collegare il debugger all'app in esecuzione nel cloud:
+tooattach hello debugger tooyour app in esecuzione nel cloud hello:
 
-- In Visual Studio 2017 aprire la soluzione per l'app di cui si vuole eseguire il debug
+- Utilizzando Visual Studio 2017, soluzione hello aperto per l'applicazione hello desiderato toodebug
 - Impostare alcuni punti di interruzione esattamente come si farebbe per lo sviluppo locale.
 - Aprire **Cloud Explorer** (CTRL+/, CTRL+X).
 - Accedere con le credenziali di Azure.
-- Individuare l'app di cui si vuole eseguire il debug
-- Selezionare **Collega debugger** dal riquadro **Azioni**.
+- Trova hello app da toodebug
+- Selezionare **collega Debugger** hello modulo **azioni** riquadro.
 
 ![Debug remoto](media/app-service-web-tutorial-monitoring/app-service-monitor-vsdebug.png)
 
-Visual Studio configura l'applicazione per il debug remoto e apre una finestra del browser che consente di passare all'app. Esplorare l'app per attivare i punti di interruzione ed esaminare il codice.
+Visual Studio consente di configurare l'applicazione per il debug remoto e viene avviata una finestra del browser che consente di passare tooyour app. Sfogliare i punti di interruzione tootrigger app e avanzare nel codice hello.
 
 > [!WARNING]
-> L'esecuzione in modalità debug in produzione non è una scelta consigliata. Se l'app in produzione non viene ampliata con più istanze del server, il debug impedisce al server Web di rispondere ad altre richieste. Per la risoluzione dei problemi di produzione è consigliabile [configurare la registrazione](#logging) e usare [Application Insights](#insights).
+> L'esecuzione in modalità debug in produzione non è una scelta consigliata. Se l'applicazione di produzione non è scalare orizzontalmente toomultiple istanze del server, il debug di evitare hello del server web da richieste tooother risponde. Per risolvere i problemi di produzione, la risorsa migliore è troppo[configurare la registrazione](#logging) e [Application Insights](#insights).
 
 
 
 ## <a name="explorer"></a> Passaggio 8: esplora processi
-Quando l'app viene scalata orizzontalmente a più di un'istanza, **Esplora processi** consente di identificare i problemi specifici delle istanze.
+Quando l'applicazione viene ampliato toomore più di un'istanza, **Esplora processi** consente di identificare i problemi specifici di istanza.
 
 Usare **Esplora processi** per:
 
-- Enumerare tutti i processi nelle diverse istanze del piano di servizio app.
-- Eseguire il drill-down e visualizzare gli handle e i moduli associati a ogni processo.
-- Visualizzare il numero di CPU, working set e thread a livello di processo per identificare i processi con eccessivo tempo di esecuzione
+- Consente di enumerare tutti i processi di hello tra istanze diverse del piano di servizio App.
+- Drill-down e visualizzare gli handle di hello e moduli associati a ogni processo.
+- Il numero di CPU di visualizzazione, Working Set e Thread a hello elaborare toohelp livello è identificare i processi per tale tipo
 - Trovare gli handle di file aperti e terminare l'istanza di un processo specifico.
 
 Esplora processi è disponibile in **Monitoraggio** > **Esplora processi**.
@@ -253,16 +253,16 @@ Esplora processi è disponibile in **Monitoraggio** > **Esplora processi**.
 ## <a name="insights"></a> Passaggio 9: Application Insights
 **Application Insights** offre funzionalità avanzate di profilatura e monitoraggio dell'app.
 
-Usare Application Insights per rilevare e diagnosticare le eccezioni e i problemi di prestazioni nell'app Web.
+Usare Application Insights toodetect e diagnosticare le eccezioni e i problemi di prestazioni nell'App Web.
 
 È possibile abilitare Application Insights per l'app Web in **Monitoraggio** > **Application Insights**
 
 > [!NOTE]
-> Application Insights potrebbe richiedere l'installazione dell'estensione del sito Application Insights per avviare la raccolta dati. L'installazione dell'estensione del sito comporta il riavvio dell'applicazione.
+> Application Insights potrebbe richiedere toostart tooinstall hello Application Insights sito estensione con la raccolta dei dati. L'installazione dell'estensione del sito hello comporta il riavvio dell'applicazione.
 
 ![Application Insights](media/app-service-web-tutorial-monitoring/app-service-monitor-appinsights.png)
 
-Application Insights include un'ampia gamma di funzionalità. Per altre informazioni, usare i collegamenti inclusi nella sezione [Passaggi successivi](#next).
+Application Insights è una funzionalità avanzata, impostare toolearn, più collegamenti hello incluso in hello [passaggi successivi](#next) sezione.
 
 ## <a name="next"></a> Passaggi successivi
 

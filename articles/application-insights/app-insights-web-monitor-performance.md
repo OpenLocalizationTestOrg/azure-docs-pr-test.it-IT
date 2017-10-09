@@ -1,5 +1,5 @@
 ---
-title: "Monitoraggio dell'integrità e dell'utilizzo di un'app con Application Insights"
+title: "aaaMonitor integrità dell'applicazione e l'utilizzo con Application Insights"
 description: "Introduzione a Application Insights. Analizzare l'uso, la disponibilità e le prestazioni delle applicazioni locali o Microsoft Azure."
 services: application-insights
 documentationcenter: 
@@ -13,26 +13,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2015
 ms.author: bwren
-ms.openlocfilehash: 5b7b1f4a53cd2624ee8e2ab684ba6ba63252674f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9230a6e65e5afb00c36122ff1d1de01ba19cd7f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-performance-in-web-applications"></a>Monitorare le prestazioni di applicazioni Web
 
 
-Questo prodotto consente di accertarsi che le prestazioni della propria applicazione siano ottimali e di scoprire rapidamente eventuali errori. [Application Insights][start] rileverà eventuali eccezioni e problemi relativi alle prestazioni e aiuterà a individuare e diagnosticare le cause principali.
+Questo prodotto consente di accertarsi che le prestazioni della propria applicazione siano ottimali e di scoprire rapidamente eventuali errori. [Application Insights] [ start] informare eventuali problemi di prestazioni e le eccezioni e consentono di trovare e diagnosticare hello cause principali.
 
 Application Insights può monitorare sia le applicazioni web Java e ASP.NET che i servizi, i servizi WCF. Possono essere ospitati in locale, su macchine virtuali o come siti Web di Microsoft Azure. 
 
-Sul lato client, Application Insights può richiedere dati di telemetria di pagine web e un'ampia gamma di dispositivi, tra l’app Store iOS, Android e Windows.
+Sul lato client hello, Application Insights può richiedere dati di telemetria di pagine web e un'ampia gamma di dispositivi tra cui iOS, Android e App di Windows Store.
 
 >[!Note]
-> È ora disponibile una nuova funzionalità per la ricerca delle pagine a basse prestazioni nell'applicazione Web. Se non si ha accesso alla funzionalità, abilitarla configurando le opzioni di anteprima usando il [pannello Anteprima](app-insights-previews.md). Leggere le informazioni su questa nuova funzionalità in [Individuare e risolvere i colli di bottiglia delle prestazioni con l'analisi interattiva delle prestazioni](#Find-and-fix-performance-bottlenecks-with-an-interactive-Performance-investigation).
+> È ora disponibile una nuova funzionalità per la ricerca delle pagine a basse prestazioni nell'applicazione Web. Se non si dispone di accesso tooit, abilitarla per la configurazione delle opzioni di anteprima con hello [pannello Anteprima](app-insights-previews.md). Informazioni su questa nuova esperienza in [individuare e correggere eventuali colli di bottiglia con analisi delle prestazioni interattivo hello](#Find-and-fix-performance-bottlenecks-with-an-interactive-Performance-investigation).
 
 ## <a name="setup"></a>Configurare il monitoraggio delle prestazioni
-Se Application Insights non è stato ancora aggiunto al progetto (vale a dire, se ApplicationInsights.config non è presente), scegliere uno dei modi seguenti per iniziare:
+Se non sono ancora stati aggiunti tooyour Application Insights (ovvero, se non dispone di Applicationinsights) del progetto, scegliere uno dei seguenti modi tooget avviato:
 
 * [App Web ASP.NET](app-insights-asp-net.md)
   * [Aggiungere il monitoraggio delle eccezioni](app-insights-asp-net-exceptions.md)
@@ -41,37 +41,37 @@ Se Application Insights non è stato ancora aggiunto al progetto (vale a dire, s
   * [Aggiungere il monitoraggio delle dipendenze](app-insights-java-agent.md)
 
 ## <a name="view"></a>Esplorare le metriche delle prestazioni
-Nel [portale di Azure](https://portal.azure.com), passare alla risorsa di Application Insights impostata per la propria applicazione. Il pannello della panoramica mostra i dati delle prestazioni di base:
+In [hello Azure portal](https://portal.azure.com), Sfoglia risorsa di Application Insights toohello configurati per l'applicazione. pannello della panoramica Hello Mostra i dati sulle prestazioni di base:
 
-Fare clic su un riquadro qualsiasi per visualizzare altri dettagli e per vedere i risultati relativi a un periodo più lungo. Ad esempio, fare clic sul riquadro delle richieste e quindi selezionare un intervallo di tempo:
+Fare clic su qualsiasi toosee grafico ulteriori dettagli e toosee risultati per un periodo più lungo. Ad esempio, fare clic sul riquadro di richieste di hello e quindi selezionare un intervallo di tempo:
 
-![Fare clic per visualizzare più dati e selezionare un intervallo di tempo](./media/app-insights-web-monitor-performance/appinsights-48metrics.png)
+![Fare clic sui dati toomore e selezionare un intervallo di tempo](./media/app-insights-web-monitor-performance/appinsights-48metrics.png)
 
-Fare clic su un grafico per scegliere quali metriche visualizzare oppure aggiungere un nuovo grafico e selezionarne le metriche:
+Fare clic su un grafico toochoose le metriche Visualizza, o aggiungere un nuovo grafico e selezionare la metrica:
 
-![Fare clic su un grafico per scegliere le metriche](./media/app-insights-web-monitor-performance/appinsights-61perfchoices.png)
+![Scegliere una metrica toochoose grafico](./media/app-insights-web-monitor-performance/appinsights-61perfchoices.png)
 
 > [!NOTE]
-> **Deselezionare tutte le metriche** per visualizzare la selezione completa disponibile. Le metriche sono suddivise in gruppi; quando si seleziona qualsiasi membro di un gruppo, vengono visualizzati solo gli altri membri di quel gruppo.
+> **Deselezionare tutte le metriche di hello** toosee hello selezione completa che è disponibile. le metriche Hello rientrano in gruppi. Quando viene selezionato qualsiasi membro di un gruppo, hello altri membri del gruppo vengono visualizzate solo.
 
 ## <a name="metrics"></a>Interpretazione dei dati riquadri e report sulle prestazioni
-È possibile ottenere diverse metriche delle prestazioni. Vengono analizzate innanzitutto quelle visualizzate per impostazione predefinita nel pannello dell'applicazione.
+È possibile ottenere diverse metriche delle prestazioni. Iniziamo con quelli che vengono visualizzati per impostazione predefinita nel pannello applicazione hello.
 
-### <a name="requests"></a>Richieste
-Il numero di richieste HTTP ricevute in un periodo specificato. Confrontare questo numero con i risultati di altri report per analizzare il comportamento dell'app al variare del carico.
+### <a name="requests"></a>Requests
+numero di Hello di richieste HTTP ricevute in un periodo specificato. Confrontare i risultati di hello sui toosee altri report come app si comporta come carico hello varia.
 
 Le richieste HTTP includono tutte le richieste GET o POST di pagine, dati e immagini.
 
-Fare clic sul riquadro per visualizzare i conteggi per URL specifici.
+Fare clic sui conteggi di hello riquadro tooget URL specifici.
 
-### <a name="average-response-time"></a>Tempo medio di risposta
-Misura il tempo intercorso tra la ricezione di una richiesta Web da parte dell'applicazione e la risposta restituita.
+### <a name="average-response-time"></a>Tempo di risposta medio
+Tempo di hello misure tra una richiesta web immettere la risposta dell'applicazione e hello restituita.
 
-I punti mostrano una media mobile. Se le richieste sono numerose, alcune di queste potrebbero deviare dalla media senza mostrare un picco o un calo evidente nel grafico.
+Hello punti indicano Media mobile. Se sono presenti numerose richieste, potrebbero esserci alcune si discostano da Media hello senza un picco ovvio o calo grafico hello.
 
-Cercare picchi inconsueti. In genere, il tempo di risposta aumenta con l'aumento delle richieste. Se l'aumento è sproporzionato, l'app potrebbe aver raggiunto un limite di risorsa, ad esempio dovuto alla CPU o alla capacità di un servizio che utilizza.
+Cercare picchi inconsueti. In generale, è probabile che toorise tempo di risposta con un aumento delle richieste. Se aumento hello è eccessivo, l'app potrebbe raggiungere un limite di risorse, ad esempio CPU o hello capacità di un servizio che viene utilizzato.
 
-Fare clic sul riquadro per visualizzare i tempi per URL specifici.
+Fare clic su tempi di hello riquadro tooget per URL specifici.
 
 ![](./media/app-insights-web-monitor-performance/appinsights-42reqs.png)
 
@@ -85,70 +85,70 @@ Mostra quali richieste potrebbero necessitare di un'ottimizzazione delle prestaz
 
 La quantità di richieste che hanno restituito eccezioni non rilevate.
 
-Fare clic sul riquadro per visualizzare i dettagli di errori specifici e selezionare una singola richiesta per visualizzarne i dettagli. 
+Fare clic su hello riquadro toosee hello dettagli degli errori specifici e selezionare toosee una singola richiesta di dettagli. 
 
 Viene conservato solo un campione di errori rappresentativi per l'analisi individuale.
 
 ### <a name="other-metrics"></a>Altre metriche
-Per sapere quali altri metriche è possibile visualizzare, fare clic su un grafico e deselezionare tutte le metriche per vedere l'intero set disponibile. Fare clic su (i) per visualizzare la definizione di ciascuna metrica.
+toosee quali altre metriche, è possibile visualizzare, fare clic su un grafico e quindi deselezionare tutte hello metriche toosee hello completo insieme disponibile. Fare clic su (i) toosee definizione di ogni metrica.
 
-![Deselezionare tutte le metriche per visualizzare l'intero set](./media/app-insights-web-monitor-performance/appinsights-62allchoices.png)
+![Deselezionare tutte le metriche toosee hello intero insieme](./media/app-insights-web-monitor-performance/appinsights-62allchoices.png)
 
-La selezione di una metrica disabilita le altre metriche che non possono essere visualizzate nello stesso grafico.
+Selezionando qualsiasi hello Disabilita metrica ad altri utenti che non possono comparire in hello stesso grafico.
 
 ## <a name="set-alerts"></a>Impostazione di avvisi
-Per ricevere tramite posta elettronica una notifica relativa a valori insoliti di una metrica, aggiungere un avviso. È possibile scegliere di inviare il messaggio di posta elettronica agli amministratori di account o a indirizzi di posta elettronica specifici.
+toobe una notifica tramite posta elettronica di valori insoliti per le metriche, aggiungere un avviso. È possibile scegliere gli amministratori degli account toohello toosend hello posta elettronica o toospecific indirizzi di posta elettronica.
 
 ![](./media/app-insights-web-monitor-performance/appinsights-413setMetricAlert.png)
 
-Impostare la risorsa prima delle altre proprietà. Non scegliere le risorse webtest se si desidera impostare avvisi sulle metriche relative a prestazioni o utilizzo.
+Impostare altre proprietà di risorsa hello prima hello. Non scegliere risorse webtest hello se si desidera ricevere avvisi di tooset relativi alle prestazioni o metrica di utilizzo.
 
-Prendere nota delle unità in cui viene chiesto di immettere il valore soglia.
+Essere unità hello toonote attenzione in cui viene chiesto di valore di soglia tooenter hello.
 
-*Il pulsante Aggiungi avviso non è visibile.* Si tratta di un account di gruppo al quale è possibile accedere in sola lettura? Rivolgersi all'amministratore dell'account.
+*Pulsante di hello Aggiungi avviso non è presente.* -Si tratta di un toowhich di account di gruppo si dispone di accesso in sola lettura? Contattare l'amministratore account hello.
 
 ## <a name="diagnosis"></a>Diagnosi dei problemi
 Di seguito vengono riportati alcuni suggerimenti su come trovare e diagnosticare i problemi di prestazioni:
 
-* Configurare i [test Web][availability] in modo da ricevere un avviso se il sito Web non risponde o risponde in maniera non corretta o lentamente. 
-* Confrontare il conteggio delle richieste con altre metriche per verificare se gli errori o la risposta lenta sono collegati al carico.
-* [Inserire e cercare istruzioni di traccia][diagnostic] nel codice per individuare i problemi.
+* Impostare [test web] [ availability] toobe ricevere un avviso se il sito web diventa inattivo o risponde in modo non corretto o lenta. 
+* Se gli errori o rallentamento della risposta è correlati tooload, confrontare il numero di richieste hello con toosee altre metriche.
+* [Inserire e le istruzioni di traccia di ricerca] [ diagnostic] in toohelp il codice, individuare i problemi.
 * Monitorare l'applicazione Web in esecuzione con [Live Metrics Stream][livestream].
-* Acquisire lo stato dell'applicazione .Net con il [debugger di snapshot][snapshot].
+* Acquisire lo stato di hello dell'applicazione .net con [Debugger Snapshot][snapshot].
 
 ## <a name="find-and-fix-performance-bottlenecks-with-an-interactive-performance-investigation"></a>Individuare e risolvere i colli di bottiglia delle prestazioni con l'analisi interattiva delle prestazioni
 
-È possibile usare la nuova analisi interattiva delle prestazioni di Application Insights per individuare le aree dell'app Web che riducono le prestazioni generali. È possibile individuare rapidamente le singole pagine lente e usare lo [strumento di profilatura](app-insights-profiler.md) per verificare la presenza di una correlazione tra le pagine.
+È possibile utilizzare hello nuovo Application Insights prestazioni interattivo analisi toolocate aree dell'app Web che rallentano le prestazioni complessive. È possibile eseguire rapidamente queste pagine specifiche di ricerca che rallentano e utilizzare hello [dello strumento di profilatura](app-insights-profiler.md) toosee se è presente una correlazione tra le pagine.
 
 ### <a name="create-a-list-of-slow-performing-pages"></a>Creare un elenco delle pagine lente 
 
-La prima operazione da eseguire per individuare i problemi di prestazioni consiste nell'ottenere un elenco delle pagine che rispondono lentamente. Lo screenshot seguente illustra l'uso del pannello Prestazioni per ottenere un elenco delle possibili pagine che meritano un'ulteriore analisi. Nella pagina è immediatamente evidente che si è verificato un rallentamento nel tempo di risposta dell'app alle 18:00 e di nuovo alle 22:00. È anche possibile osservare che l'operazione GET customer/details (Ottieni clienti/dettagli) ha incluso operazioni di lunga durata con un tempo di risposta medio di 507,05 millisecondi. 
+Hello primo passaggio per la ricerca di problemi di prestazioni consiste tooget un elenco di hello lenta risponde pagine. schermata di Hello seguito viene illustrato come utilizzare hello prestazioni pannello tooget un elenco di potenziali ulteriormente tooinvestigate di pagine. È possibile visualizzare rapidamente da questa pagina che si è verificato un rallentamento hello tempi di risposta dell'applicazione hello a circa 6:00 PM e nuovamente a circa 10 PM. È anche possibile vedere che hello/dettagli cliente operazione hanno operazioni a esecuzione prolungata alcune con un tempo di risposta mediano di 507.05 millisecondi. 
 
 ![Analisi interattiva delle prestazioni di Application Insights](./media/app-insights-web-monitor-performance/performance1.png)
 
 ### <a name="drill-down-on-specific-pages"></a>Eseguire il drill-down in pagine specifiche
 
-Dopo aver ottenuto uno snapshot delle prestazioni dell'app, è possibile visualizzare altri dettagli sulle singole operazioni lente. Fare clic su un'operazione nell'elenco per visualizzare i dettagli come illustrato di seguito. Dal grafico è possibile determinare se le prestazioni erano basate su una dipendenza. È anche possibile visualizzare il numero di utenti per i quali si sono verificati i diversi tempi di risposta. 
+Dopo aver ottenuto uno snapshot delle prestazioni dell'app, è possibile visualizzare altri dettagli sulle singole operazioni lente. Fare clic su qualsiasi operazione nel hello toosee hello i dettagli dell'elenco come illustrato di seguito. Tipo di grafico hello è possibile vedere se le prestazioni di hello sono basata su una dipendenza. È inoltre possibile visualizzare quanti hello esperti di utenti diversi tempi di risposta. 
 
 ![Pannello delle operazioni di Application Insights](./media/app-insights-web-monitor-performance/performance5.png)
 
 ### <a name="drill-down-on-a-specific-time-period"></a>Eseguire il drill-in un periodo di tempo specifico
 
-Dopo aver identificato un periodo di tempo da analizzare, eseguire il drill-down per visualizzare le operazioni specifiche che potrebbero aver causato il rallentamento delle prestazioni. Quando si fa clic in un periodo di tempo specifico vengono visualizzati i dettagli della pagina come illustrato di seguito. Nell'esempio seguente sono elencate le operazioni per ogni periodo di tempo con i codici di risposta del server e la durata dell'operazione. È disponibile anche l'URL per aprire un elemento di lavoro TFS per inviare queste informazioni al team di sviluppo.
+Dopo aver identificato un punto nel tempo tooinvestigate, eseguire il drill-down toolook ulteriormente a operazioni specifiche di hello che potrebbero aver causato l'errore rallentamento delle prestazioni hello. Quando si fa clic su uno specifico punto nel tempo recuperare i dettagli di hello della pagina di hello, come illustrato di seguito. In hello esempio riportato di seguito è possibile visualizzare le operazioni di hello elencate per un determinato periodo di tempo insieme ai codici di risposta server hello e durata dell'operazione hello. È inoltre possibile hello url per l'apertura di un elemento di lavoro TFS se è necessario toosend il team di sviluppo tooyour informazioni.
 
 ![Intervallo di tempo di Application Insights](./media/app-insights-web-monitor-performance/performance2.png)
 
 ### <a name="drill-down-on-a-specific-operation"></a>Eseguire il drill-in un'operazione specifica
 
-Dopo aver identificato un periodo di tempo da analizzare, eseguire il drill-down per visualizzare le operazioni specifiche che potrebbero aver causato il rallentamento delle prestazioni. Fare clic su un'operazione nell'elenco per visualizzare i dettagli dell'operazione, come illustrato di seguito. In questo esempio l'operazione non è stata eseguita e Application Insights ha visualizzato i dettagli dell'eccezione generata dall'applicazione. È di nuovo possibile creare un elemento di lavoro TFS da questo pannello.
+Dopo aver identificato un punto nel tempo tooinvestigate, eseguire il drill-down toolook ulteriormente a operazioni specifiche di hello che potrebbero aver causato l'errore rallentamento delle prestazioni hello. Fare clic su un'operazione da hello toosee hello i dettagli dell'elenco dell'operazione di hello, come illustrato di seguito. In questo esempio che è possibile vedere che hello operazione non riuscita e ha fornito le informazioni di hello di hello per Application Insights ha generato un'applicazione hello eccezione. È di nuovo possibile creare un elemento di lavoro TFS da questo pannello.
 
 ![Pannello dell'operazione di Application Insights](./media/app-insights-web-monitor-performance/performance3.png)
 
 
 ## <a name="next"></a>Passaggi successivi
-[Test Web][availability]: possibilità di inviare richieste Web all'applicazione a intervalli regolari da tutto il mondo.
+[Test Web] [ availability] -sono le richieste web inviate applicazione tooyour a intervalli regolari dal mondo hello.
 
-[Acquisire e cercare tracce diagnostiche][diagnostic]: possibilità di inserire chiamate di traccia ed esaminare i risultati per individuare i problemi.
+[Acquisire e cercare le tracce di diagnostica] [ diagnostic] : inserire chiamate di traccia e tra i problemi di toopinpoint risultati hello.
 
 [Monitorare l'utilizzo][usage]: possibilità di scoprire come le persone usano l'applicazione.
 

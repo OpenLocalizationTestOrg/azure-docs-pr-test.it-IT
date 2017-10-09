@@ -1,6 +1,6 @@
 ---
-title: Informazioni di riepilogo per il linguaggio di query di Azure Log Analytics | Microsoft Docs
-description: "Questo articolo offre informazioni utili per la transizione al nuovo linguaggio di query per Log Analytics se si ha già familiarità con il linguaggio legacy."
+title: il foglio informativo language di aaaAzure Analitica Log query | Documenti Microsoft
+description: "Questo articolo fornisce assistenza in fase di transizione toohello nuovo linguaggio di query per Analitica Log se si ha già familiarità con il linguaggio legacy hello."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -13,29 +13,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/23/2017
 ms.author: bwren
-ms.openlocfilehash: 10b7f3ad23d9c5451bc7ff82b8927c260230f6da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8b4ee3d0b5e1ec8a9f95a09e0ad9835615ad1342
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transitioning-to-azure-log-analytics-new-query-language"></a>Transizione al nuovo linguaggio di query di Azure Log Analytics
+# <a name="transitioning-tooazure-log-analytics-new-query-language"></a>In fase di transizione tooAzure Log Analitica nuovo linguaggio di query
 
 > [!NOTE]
-> In [Aggiornare l'area di lavoro di Azure Log Analytics alla nuova ricerca log](log-analytics-log-search-upgrade.md) sono disponibili altre informazioni sul nuovo linguaggio di query di Log Analytics e istruzioni per l'aggiornamento dell'area di lavoro.
+> È possibile leggere ulteriori informazioni su hello Analitica Log nuovo linguaggio di query e ottenere hello procedure tooupgrade l'area di lavoro aggiornamento il [ricerca nei log di Azure Log Analitica dell'area di lavoro toonew](log-analytics-log-search-upgrade.md).
 
-Questo articolo offre informazioni utili per la transizione al nuovo linguaggio di query per Log Analytics se si ha già familiarità con il linguaggio legacy.
+Questo articolo fornisce assistenza in fase di transizione toohello nuovo linguaggio di query per Analitica Log se si ha già familiarità con il linguaggio legacy hello.
 
 ## <a name="language-converter"></a>Convertitore di linguaggio
 
-Se si ha familiarità con il linguaggio di query di Log Analytics legacy, il modo più semplice per creare la stessa query nel nuovo linguaggio consiste nell'usare il convertitore di linguaggio che viene installato nel portale per la ricerca log al momento della conversione dell'area di lavoro.  L'uso del convertitore è molto semplice. È sufficiente digitare una query legacy nella casella di testo superiore e quindi fare clic su **Converti**.  È possibile fare clic sul pulsante di ricerca per eseguire la query o copiare e incollare la query per usarla altrove.
+Se si ha familiarità con il linguaggio di query Log Analitica legacy hello, hello toocreate hello stessa query nella lingua nuova hello più semplice è toouse hello convertitore lingua installata nel portale di ricerca nei Log hello quando viene convertito nell'area di lavoro.  Usando il convertitore hello è semplice come immettere in una query nella casella di testo in alto hello legacy, quindi scegliere **convertire**.  È possibile fare clic su hello pulsante toorun hello ricerca o copia e Incolla toouse in un'altra posizione.
 
 ![Convertitore di linguaggio](media/log-analytics-log-search-upgrade/language-converter.png)
 
 
 ## <a name="cheat-sheet"></a>Tabella di riepilogo
 
-La tabella seguente mette a confronto i comandi equivalenti di svariate query comuni per il linguaggio di query legacy e nuovo di Azure Log Analytics.
+Hello nella tabella seguente fornisce un confronto tra un'ampia gamma di query comuni tooequivalent comandi tra il linguaggio di query di nuove e precedenti hello in Azure Log Analitica.
 
 | Descrizione | Legacy | Nuovo |
 |:--|:--|:--|
@@ -61,5 +61,5 @@ La tabella seguente mette a confronto i comandi equivalenti di svariate query co
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Vedere un'[esercitazione sulla scrittura di query](https://go.microsoft.com/fwlink/?linkid=856078) con il nuovo linguaggio di query.
-- Vedere le [informazioni di riferimento sul linguaggio di query](https://go.microsoft.com/fwlink/?linkid=856079) per informazioni dettagliate su tutti i comandi, gli operatori e le funzioni per il nuovo linguaggio di query.  
+- Estrarre un [esercitazione sulla scrittura di query](https://go.microsoft.com/fwlink/?linkid=856078) utilizzando il nuovo linguaggio di query hello.
+- Fare riferimento toohello [riferimenti al linguaggio di Query](https://go.microsoft.com/fwlink/?linkid=856079) per informazioni dettagliate su tutti i comandi, operatori e funzioni per il nuovo linguaggio di query hello.  
